@@ -276,5 +276,16 @@ ok(Array.isArray(runTool('rankNow', {}, { chart: eChart })), 'runTool(rankNow) r
 let threw = false; try { runTool('definitely-not-a-tool', {}); } catch { threw = true; }
 ok(threw, 'runTool refuses an unknown tool');
 
+// Claude tool format + the codex / operation meta-prompts (Phase 5/6)
+import { toAnthropicTools, buildCodexPrompt, buildOperationPrompt, SITE_URLS } from '../assets/js/core/llm-context.js';
+const aTools = toAnthropicTools();
+ok(aTools.length >= 10 && aTools.every(t => t.name && t.description && t.input_schema), 'toAnthropicTools maps to {name,description,input_schema}');
+const codex = buildCodexPrompt(fullReading(eChart, { birth: { chart: natal } }));
+ok(/Codex of this Hour/i.test(codex) && /never prescribed|no demonstrated efficacy/i.test(codex), 'buildCodexPrompt is Hermetic + keeps the honest caveat');
+ok(/Lord of the Year|life trajectory/i.test(codex), 'buildCodexPrompt includes the natal section when birth data present');
+const opPrompt = buildOperationPrompt(fullReading(eChart), 'when is the next best time to attempt to call rain, and how would the tradition do it?');
+ok(/findNextElection/.test(opPrompt) && opPrompt.includes(SITE_URLS.workbench), 'buildOperationPrompt directs tool use + cites the live tool');
+ok(/never a recommendation|no demonstrated efficacy/i.test(opPrompt), 'buildOperationPrompt keeps the honest caveat');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

@@ -324,7 +324,7 @@ function renderCitations(r) { $('wb-citations').innerHTML = '<b>Sources used in 
 
 function renderAssistantPlaceholder() {
   $('wb-assistant').innerHTML =
-    `<p class="small muted">A local language-model assistant attaches here to explain this reading in plain language,
-      grounded in the computed, cited facts above. It runs on <b>your machine</b> (Ollama or an in-browser model) —
-      nothing leaves the page. See <a href="../docs/LOCAL-LLM.html">how to connect one</a>.</p>`;
+    `<p class="small muted">An AI assistant attaches here to explain this reading in plain language, grounded in the
+      computed, cited facts above — and to plan historical "workings" using the engine tools. It uses <b>Claude</b>
+      (the Anthropic API) with <b>your own key</b>. See <a href="../docs/LOCAL-LLM.html">how it works</a>.</p>`;
 }

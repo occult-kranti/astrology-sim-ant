@@ -192,6 +192,92 @@ export function toolNames() {
   return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection'];
 }
 
+// The live tool's public locations — given to the model so it can point a user
+// at the hosted Workbench and the source.
+export const SITE_URLS = {
+  hosted: 'https://occult-kranti.github.io/astrology-sim-ant/',
+  workbench: 'https://occult-kranti.github.io/astrology-sim-ant/pages/workbench.html',
+  repo: 'https://github.com/occult-kranti/astrology-sim-ant',
+};
+
+// Convert the OpenAI/Ollama-style function schema to the Anthropic Messages tool
+// shape ({name, description, input_schema}) for the Claude backend.
+export function toAnthropicTools() {
+  return buildToolSchema().map(t => ({
+    name: t.function.name,
+    description: t.function.description,
+    input_schema: t.function.parameters,
+  }));
+}
+
+// ---------------------------------------------------------------------------
+//  buildCodexPrompt — the "Codex of the Hour": a user message that asks the
+//  model to narrate the computed master report tool-by-tool in an evocative
+//  Hermes-Trismegistus / Picatrix codebook register — meaning + best historical
+//  use of each — while keeping the honest framing. The cited facts are supplied
+//  separately in the system context (buildContext); this only sets the task.
+// ---------------------------------------------------------------------------
+export function buildCodexPrompt(reading) {
+  const has = k => reading && reading[k];
+  const sections = [
+    'The Figure & the planetary hour — the cast of the moment',
+    'Book I — the dignity ledger, the almutens, and the Lord of the Geniture',
+    'Chart health — the considerations & the Moon weighed above all',
+    'The Lots & antiscia — the hidden geometry',
+    'Aspects & reception — how the planets regard one another',
+    'The Picatrix election — what this hour is fit (and unfit) for',
+    'The talisman — the historical recipe of the ruling planet',
+  ];
+  if (has('horary')) sections.push('Book II — the horary significators & the modes of perfection');
+  if (has('natal')) sections.push('Book III — the life trajectory, the Lord of the Year, the personal Picatrix layer');
+  return (
+    'Compose "THE CODEX OF THIS HOUR" — written in the grave, image-rich register of Hermes ' +
+    'Trismegistus and the Picatrix, yet TRUTHFUL: every claim drawn only from the computed, cited ' +
+    'facts above. For EACH section below give three short lines — (a) WHAT it measures, plainly; ' +
+    '(b) its MEANING for this exact moment, citing the figures; (c) how the tradition would BEST ' +
+    'USE it (the favourable course of action it counsels, framed as historical practice). Keep each ' +
+    'section tight (3–5 sentences total). Number the sections.\n\nSections:\n' +
+    sections.map((s, i) => `${i + 1}. ${s}`).join('\n') +
+    '\n\nClose with a single "Caveat of the Adept": one sentence restating that this is a faithful ' +
+    'reconstruction of a historical, pseudoscientific art — described for study, never prescribed, ' +
+    'and of no demonstrated efficacy.'
+  );
+}
+
+// ---------------------------------------------------------------------------
+//  buildOperationPrompt — the agentic "ask the Workbench to do a working" meta-
+//  prompt (the "conjure rain" pattern). It frames a free-form magical aim as a
+//  tool-using task: map the aim to a catalogued operation, find the next
+//  favourable window with the engine tools, say what to check in the master
+//  report, and lay out the historical procedure — all described, not prescribed.
+// ---------------------------------------------------------------------------
+export function buildOperationPrompt(reading, request, opts = {}) {
+  const inp = (reading && reading.meta && reading.meta.inputs) || {};
+  const place = `lat ${inp.latitude}, lon ${inp.longitude}`;
+  const when = fmtDate(inp.date);
+  const aims = OPERATIONS.map(o => `${o.key} (${o.label})`).join(', ');
+  return (
+    `A practitioner asks: "${String(request).trim()}"\n\n` +
+    'Answer ONLY from the Lilly + Picatrix tradition this Workbench computes, and USE THE ENGINE ' +
+    'TOOLS to ground every number (do not invent positions or times). Proceed in five numbered steps:\n' +
+    `1. INTERPRET the aim and map it to the CLOSEST catalogued operation — one of: ${aims}. If none ` +
+    'truly fits (e.g. weather-working has no exact catalogued aim), say so plainly and choose the ' +
+    'nearest by significator (e.g. rain → the Moon & Jupiter; name the editorial leap).\n' +
+    `2. FIND THE NEXT FAVOURABLE WINDOW for that operation from now (${when}) at this place (${place}) ` +
+    'by calling the `findNextElection` (and/or `rankNow`, `nextAuspiciousTime`) tools. Report the ' +
+    'concrete window the tool returns.\n' +
+    '3. WHAT TO CHECK in the master report (the Workbench): name the exact panels & values to verify ' +
+    '— the planetary hour, the ruling planet’s dignity, the Moon’s phase/mansion/void-of-course, the ' +
+    'election verdict, any fixed-star contact.\n' +
+    '4. THE HISTORICAL PROCEDURE the tradition would follow: the timing (day & hour), the materials ' +
+    'and mansion (call `talismanRecipe` if useful), the design — recorded as historical practice.\n' +
+    '5. Point the practitioner to the live tool to watch it themselves: ' +
+    `${SITE_URLS.workbench} (source: ${SITE_URLS.repo}).\n\n` +
+    'End with one honest sentence: this is a historical, pseudoscientific art with no demonstrated ' +
+    'efficacy — described for study, never a recommendation to act.'
+  );
+}
+
 // ---------------------------------------------------------------------------
 //  runTool — execute an engine function for a tool call. `ctx` may carry the
 //  page's current { chart, birthChart, lat, lon } so tools that need a chart can

@@ -3,82 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Connect a local language model | The Astrologer's Workbench</title>
-<meta name="description" content="How to connect a LOCAL language model (Ollama, or an in-browser WebLLM model) to the Workbench so it can explain the computed, cited reading privately — nothing leaves your machine. Includes the Ollama CORS setting, the two modes (Explain and Tools), and example questions.">
+<title>The AI assistant — how it works | The Astrologer's Workbench</title>
+<meta name="description" content="How the Workbench's AI assistant works: it hands Claude (the Anthropic API, called from your browser with your own key) the computed, cited reading and asks it to explain the result, narrate a Hermetic 'Codex of the Hour', or plan a historical working using the engine tools. Privacy, the CORS header, the three features, and the (currently disabled) local-model option.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › <a href="../pages/tools.html">Tools</a> › <a href="../pages/workbench.html">Workbench</a> › Local model</p>
-  <h1>Connect a local language model</h1>
-  <p class="lede">The <a href="../pages/workbench.html">Workbench</a> can hand its <b>computed, cited</b> reading to a
-    language model running <b>on your own machine</b> and ask it to explain the result in plain language. The model
-    only ever sees the engine's facts (already calculated, each with its source) — and <b>nothing leaves the page</b>:
-    no cloud, no account, no telemetry.</p>
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="../pages/tools.html">Tools</a> › <a href="../pages/workbench.html">Workbench</a> › AI assistant</p>
+  <h1>The AI assistant — how it works</h1>
+  <p class="lede">The <a href="../pages/workbench.html">Workbench</a> hands a language model the <b>computed, cited</b> reading
+    and asks it to explain the result in plain language, narrate a Hermetic <b>Codex of the Hour</b>, or <b>plan a
+    historical working</b> using the engine tools. Because the engine numbers are computed and passed in, the model
+    narrates real results rather than inventing them.</p>
 
   <div class="callout science"><span class="label">Honest note</span>
-    The assistant narrates a <b>historical, pseudoscientific</b> tradition. It is held to the same framing as the rest
-    of the site by a locked system prompt: it <em>describes</em> Lilly's and the Picatrix's reasoning, it does not
-    advise, predict, or present astrology as valid. Magical/talismanic content is historical only. Astrology has no
-    demonstrated predictive validity. See <a href="../pages/about/index.html">Sources &amp; Science</a>.</div>
+    The assistant narrates a <b>historical, pseudoscientific</b> tradition. A locked system prompt holds it to the
+    site's framing: it <em>describes</em> Lilly's and the Picatrix's reasoning, it does not advise, predict, or present
+    astrology as valid. Magical/talismanic content is historical only. See <a href="../pages/about/index.html">Sources &amp; Science</a>.</div>
 
-  <h2>Why a local model fits this project</h2>
-  <p>The whole site is static, offline-first and privacy-respecting. A local model keeps that promise: the engine
-    computes the chart in your browser, builds a small <b>grounded fact sheet</b> (positions, dignities, the
-    chart-health verdict, the Moon's condition, the election reasons, the talisman materials — each cited), and the
-    model turns those facts into prose. Because the numbers are computed and passed in, the model narrates real
-    results rather than inventing them.</p>
-
-  <h2>Option A — Ollama (recommended)</h2>
+  <h2>Claude (the Anthropic API) — the assistant backend</h2>
+  <p>The assistant calls <b>Claude</b> directly from your browser using <b>your own Anthropic API key</b>:</p>
   <ol>
-    <li>Install <a href="https://ollama.com" rel="noopener">Ollama</a> for your OS.</li>
-    <li>Pull a model, e.g. a small instruct model:
-      <pre class="small">ollama pull llama3.1
-# or a lighter one:  ollama pull qwen2.5:7b   /   ollama pull phi3.5</pre></li>
-    <li><b>Allow this page to talk to Ollama (CORS).</b> The Workbench runs in a browser, so Ollama must permit the
-      page's origin. Set <code>OLLAMA_ORIGINS</code> before starting the server:
-      <pre class="small"># Windows (PowerShell)
-$env:OLLAMA_ORIGINS = "*"; ollama serve
-
-# macOS / Linux
-OLLAMA_ORIGINS="*" ollama serve</pre>
-      <span class="small muted">(<code>*</code> allows any local page. To be stricter, list the exact origin you serve
-      the site from, e.g. <code>http://localhost:8003</code>, or <code>null</code> if you open the files directly via
-      <code>file://</code>.)</span></li>
-    <li>On the Workbench, open <b>Ask a local model</b>, leave the backend on <b>Ollama</b>, click
-      <b>Detect / connect</b>, pick your model, and ask.</li>
+    <li>Get an API key from <a href="https://platform.claude.com" rel="noopener">platform.claude.com</a>.</li>
+    <li>On the Workbench, open <b>Ask the Workbench — AI assistant</b>, paste the key, and pick a model
+      (default <code>claude-opus-4-8</code>; Sonnet 4.6, Haiku 4.5, and Fable 5 are also offered).</li>
+    <li>Tick <b>remember on this device</b> to keep the key in this browser's <code>localStorage</code> for next time,
+      or leave it off to re-enter the key each visit (it then lives only in the page for the session).</li>
+    <li>Ask away — or use the two one-click features below.</li>
   </ol>
+  <div class="callout"><span class="label">Privacy &amp; CORS</span>
+    Requests go <b>only</b> to <code>api.anthropic.com</code>, sent with the
+    <code>anthropic-dangerous-direct-browser-access: true</code> header that authorises a browser-origin call, plus your
+    <code>x-api-key</code>. Nothing is proxied through this site; the page is static. Your key is used to call Anthropic
+    and is stored only where you choose (session memory, or this device if you tick "remember").</div>
 
-  <h2>Option B — WebLLM (fully in-browser)</h2>
-  <p>No server at all: the model runs inside the browser tab using <b>WebGPU</b> (Chrome or Edge; recent GPU). Choose
-    the <b>WebLLM</b> backend, click <b>Detect / connect</b>, and it downloads a quantised model on first use (often a
-    few hundred MB to a couple of GB) and caches it. Heavier than Ollama, but zero install.</p>
-
-  <h2>Two modes</h2>
+  <h2>Three ways to use it</h2>
   <ul>
-    <li><b>Explain (default)</b> — the model is given the grounded facts and narrates them. Works with any small model.</li>
-    <li><b>Tools (agentic)</b> — tick <em>“let the model run engine tools”</em> and a tool-capable model (e.g.
-      <code>llama3.1</code>, <code>qwen2.5</code>) may call the engine itself — cast a chart for another time, rank the
-      election aims, find the next good window, look up a mansion — and narrate the <b>real</b> computed result. The
-      tools come from the capability registry; the dispatcher refuses anything not on the list.</li>
+    <li><b>Chat</b> — ask anything about the reading (“why is the love election red?”, “which planet is strongest?”).
+      With <em>“let Claude run the engine tools”</em> ticked, a tool-using model can compute fresh numbers itself —
+      rank the aims, find the next good window, look up a mansion — and narrate the <b>real</b> result.</li>
+    <li><b>📜 Generate the Codex of this Hour</b> — narrates the whole master report tool-by-tool in the grave,
+      image-rich register of Hermes Trismegistus and the Picatrix (yet truthful): for each computation, <em>what it
+      measures</em>, <em>its meaning now</em>, and <em>how the tradition would best use it</em> — with the honest caveat.</li>
+    <li><b>Plan a working (agentic)</b> — the “conjure rain” box. Type a free-form aim (e.g. <em>“when is the next best
+      time to attempt to call rain, and how would the tradition do it?”</em>). Claude maps it to the nearest catalogued
+      operation, <b>calls the engine tools</b> (<code>findNextElection</code>, <code>rankNow</code>,
+      <code>talismanRecipe</code>) to find the next favourable window, says what to check in the report, and lays out the
+      historical procedure — described, not prescribed. Your requests are remembered for quick reuse.</li>
   </ul>
 
-  <h2>Things to ask</h2>
+  <h2>How the grounding works</h2>
+  <p>The assistant is built on three pure modules so the framing and facts can't drift:</p>
   <ul class="clean">
-    <li>“Explain this chart in plain English.”</li>
-    <li>“What does the chart-health verdict mean here, and which testimonies drive it?”</li>
-    <li>“Why is the love election red right now? What would need to change?”</li>
-    <li>“Which planet is strongest and which weakest, and why, citing the dignities?”</li>
-    <li>“Find the next better hour for a wealth talisman.” <span class="small muted">(Tools mode)</span></li>
+    <li><code>assets/js/core/reading.js</code> — <code>fullReading</code> composes the whole engine into one cited object.</li>
+    <li><code>assets/js/core/llm-context.js</code> — <code>buildContext()</code> builds the locked honest-framing system
+      prompt + the cited fact sheet; <code>toAnthropicTools()</code> exposes the engine's callable capabilities to Claude;
+      <code>runTool()</code> safely runs the real engine for a tool call; <code>buildCodexPrompt()</code> and
+      <code>buildOperationPrompt()</code> are the two task prompts.</li>
+    <li><code>assets/js/core/registry.js</code> — the capability map the tool schema is derived from.</li>
   </ul>
 
-  <div class="callout"><span class="label">Under the hood</span>
-    The grounding lives in <code>assets/js/core/llm-context.js</code> (pure, headless-tested): <code>buildContext()</code>
-    builds the system prompt + cited facts, <code>buildToolSchema()</code> exposes the engine's callable capabilities,
-    and <code>runTool()</code> safely dispatches a tool call to the real engine. The capability map is
-    <code>assets/js/core/registry.js</code>; the one composed reading is <code>assets/js/core/reading.js</code>
-    (<code>fullReading</code>).</div>
+  <h2>The local-model option (currently disabled)</h2>
+  <p>The codebase also contains an <b>offline</b> path — a local model via <a href="https://ollama.com" rel="noopener">Ollama</a>
+    or an in-browser <b>WebLLM</b> model — so the assistant can run with nothing leaving your machine. That option is
+    <b>turned off in the UI for now</b> while the Claude experience is the focus; it can be re-enabled in
+    <code>assets/js/app/assistant.js</code>. With Ollama you would run <code>ollama serve</code> with
+    <code>OLLAMA_ORIGINS</code> set to allow this page; WebLLM needs WebGPU.</p>
 
   <p class="small muted">Back to the <a href="../pages/workbench.html">Workbench</a>.</p>
 </main>
