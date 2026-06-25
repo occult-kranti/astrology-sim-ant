@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book III Master Tool — Nativities | Christian Astrology</title>
+<meta name="description" content="A natal super-view: the birth chart with positions and dignities, the Lord of the Geniture, temperament, the annual profection and Lord of the Year, the hyleg and alcocoden, the primary directions to the angles, and the solar return — all computed on a verified astronomical engine.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book III</a> › Master Tool</p>
+  <h1>Book III Master Tool — the Nativity</h1>
+  <p class="lede">One birth, read through Lilly's whole natal apparatus: the chart and its dignities, the
+    <b>Lord of the Geniture</b> and <b>temperament</b>, the <b>annual profection</b> and <b>Lord of the Year</b>,
+    the <b>hyleg &amp; alcocoden</b>, the <b>primary directions</b> to the angles, and the <b>solar return</b> of a
+    chosen year — every figure computed on the <a href="../about/index.html">verified engine</a>.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The mathematics is real; the <em>interpretations</em> are Lilly's, for historical study. The hyleg/alcocoden
+    (length-of-life) and primary-direction methods are contested even within the tradition and are shown with their
+    assumptions — never as predictions. Astrology has no demonstrated predictive validity. See
+    <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="bm-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 200px"><label for="bm-city">Place</label><select id="bm-city"></select></div>
+      <div class="field"><label for="bm-lat">Lat °N</label><input id="bm-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="bm-lon">Lon °E</label><input id="bm-lon" type="number" step="0.0001" style="width:7rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="bm-date">Birth date</label><input id="bm-date" type="date"></div>
+      <div class="field"><label for="bm-time">Time (local)</label><input id="bm-time" type="time"></div>
+      <div class="field"><label for="bm-offset">UTC offset</label><input id="bm-offset" type="number" step="0.5" style="width:6rem"></div>
+      <div class="field"><label for="bm-system">Houses</label><select id="bm-system">
+        <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
+        <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="bm-age">Age now (years)</label><input id="bm-age" type="number" min="0" step="1" style="width:6rem"></div>
+      <div class="field"><label for="bm-ryear">Solar-return year</label><input id="bm-ryear" type="number" step="1" style="width:7rem"></div>
+      <button type="button" class="btn sm" id="bm-now">Now</button>
+      <button type="submit" class="btn">Read the nativity</button>
+    </div>
+  </form>
+
+  <p id="bm-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+
+  <div class="grid cols-2">
+    <section class="card"><h2 style="margin-top:0">The figure</h2><svg id="bm-wheel" viewBox="0 0 540 540" style="width:100%;height:auto"></svg></section>
+    <section class="card"><h2 style="margin-top:0">Positions &amp; dignity</h2>
+      <table class="data"><thead><tr><th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th>Ess.</th><th>Acc.</th></tr></thead><tbody id="bm-planets"></tbody></table>
+      <p class="small muted" style="margin-top:.4rem">Lilly, CA Book I (dignities), applied to the nativity.</p>
+    </section>
+  </div>
+
+  <section class="card"><h2 style="margin-top:0">Lord of the Geniture &amp; temperament <span class="small muted">— Lilly CA Bk III</span></h2>
+    <p id="bm-lord"></p><div id="bm-temperament"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Annual profection &amp; Lord of the Year <span class="small muted">— Bk III (time-lords)</span></h2>
+    <div id="bm-profection"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Hyleg &amp; Alcocoden <span class="small muted">— Bk III (contested)</span></h2>
+    <div id="bm-hyleg"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Primary directions to the angles <span class="small muted">— Bk III (Naibod)</span></h2>
+    <div id="bm-directions"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Solar return (revolution) <span class="small muted">— Bk III</span></h2>
+    <div id="bm-return"></div></section>
+
+  <p class="small muted">See also the focused <a href="nativity.html">Nativity Calculator</a>, the
+    <a href="../book1/master.html">Book I Master Tool</a> and the <a href="../master.html">Unified Master Tool</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  mountChrome('book3');
+  import { initBook3Master } from '../../assets/js/app/book3-master.js';
+  initBook3Master();
+</script>
+</body>
+</html>

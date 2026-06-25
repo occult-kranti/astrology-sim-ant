@@ -104,5 +104,37 @@ ok(Array.isArray(wins), 'findNextElection returns an array');
 ok(wins.every(w => w.start <= w.end), 'each window has start <= end');
 ok(wins.every((w, i) => i === 0 || wins[i - 1].best >= w.best), 'windows ranked by best score');
 
+// --- Natal engine modules (Phase 2C) ---------------------------------------
+const natal = castChart(new Date(Date.UTC(1990, 4, 15, 12, 0)), 51.5074, -0.1278, 'regiomontanus');
+
+import { annualProfection, lordOfYear, monthlyProfection } from '../assets/js/core/profections.js';
+ok(annualProfection(natal, 0).activatedHouse === 1, 'profection year 0 -> 1st house');
+ok(annualProfection(natal, 0).profectedSignIndex === signOf(natal.asc).index, 'profection year 0 -> Asc sign');
+ok(annualProfection(natal, 12).profectedSignIndex === annualProfection(natal, 0).profectedSignIndex, 'profection 12-year cycle');
+ok(['Sun','Moon','Mercury','Venus','Mars','Jupiter','Saturn'].includes(lordOfYear(natal, 30)), 'lordOfYear is a planet');
+ok(monthlyProfection(natal, 0, 0).lord === lordOfYear(natal, 0), 'monthly profection month 0 = lord of year');
+
+import { solarReturn } from '../assets/js/core/solar-return.js';
+const sr = solarReturn(natal, 2026);
+const srDiff = Math.abs(((sr.chart.planets.Sun.lon - natal.planets.Sun.lon + 540) % 360) - 180);
+ok(srDiff < 0.01, `solar return Sun matches natal Sun (diff ${srDiff.toFixed(4)}°)`);
+ok(sr.instant.getUTCFullYear() === 2026, 'solar return instant is in target year');
+
+import { hyleg, alcocoden, HYLEGIACAL_HOUSES, PLANETARY_YEARS } from '../assets/js/core/hyleg.js';
+const hy = hyleg(natal);
+ok([null,'Sun','Moon','Ascendant','Part of Fortune','Syzygy'].includes(hy.hyleg), `hyleg is a valid candidate (got ${hy.hyleg})`);
+ok(Array.isArray(hy.candidatesExamined) && hy.candidatesExamined.length > 0, 'hyleg lists candidates examined');
+ok(hy.reason && hy.assumptions, 'hyleg documents reason + assumptions (contested technique)');
+const al = alcocoden(natal, hy);
+ok(al.alcocoden === null || (al.years && typeof al.years.mean === 'number'), 'alcocoden gives years when a planet is found');
+
+import { arcToYears, directInZodiac, directionsToAngles, KEYS } from '../assets/js/core/directions.js';
+ok(Math.abs(arcToYears(KEYS.naibod) - 1) < 1e-6, 'Naibod: 1 year per 0.9856° arc');
+ok(arcToYears(30, 'ptolemy') === 30, 'Ptolemy key: 1°=1yr');
+ok(directInZodiac(10, 40).directArc === 30, 'directInZodiac direct arc 10->40 = 30°');
+const dirs = directionsToAngles(natal, { maxYears: 90 });
+ok(Array.isArray(dirs) && dirs.every((d, i) => i === 0 || dirs[i - 1].years <= d.years) && dirs.every(d => d.years <= 90),
+   'directionsToAngles sorted ascending, all <= 90yr');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

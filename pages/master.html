@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unified Master Tool | Christian Astrology</title>
+<meta name="description" content="One moment and place, read at once through all three books of William Lilly's Christian Astrology and the Picatrix election layer: positions and the planetary hour, dignities and chart health, the horary significators, the nativity, and the best-vs-least advised magical operations now — each panel linking to its dedicated tool.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › Unified Master Tool</p>
+  <h1>The Unified Master Tool</h1>
+  <p class="lede">One moment and place, read at once through all three of Lilly's books <em>and</em> the Picatrix
+    election layer — the chart and planetary hour, the dignities and chart health, the horary significators, the
+    nativity, and what is <b>best vs least advised</b> right now. Each panel links to its dedicated tool for depth.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The mathematics is real and reproducible; the <em>interpretations</em> are Lilly's and the Picatrix tradition's,
+    presented for historical study. Astrology has no demonstrated predictive validity. See
+    <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="u-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 200px"><label for="u-city">Place</label><select id="u-city"></select></div>
+      <div class="field"><label for="u-lat">Lat °N</label><input id="u-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="u-lon">Lon °E</label><input id="u-lon" type="number" step="0.0001" style="width:7rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="u-date">Date</label><input id="u-date" type="date"></div>
+      <div class="field"><label for="u-time">Time (local)</label><input id="u-time" type="time"></div>
+      <div class="field"><label for="u-offset">UTC offset</label><input id="u-offset" type="number" step="0.5" style="width:6rem"></div>
+      <div class="field"><label for="u-system">Houses</label><select id="u-system">
+        <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
+        <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
+      <button type="button" class="btn sm" id="u-now">Now</button>
+      <button type="submit" class="btn">Read everything</button>
+    </div>
+  </form>
+
+  <section class="card" id="u-moment"><h2 style="margin-top:0">The moment</h2>
+    <div class="grid cols-2">
+      <svg id="u-wheel" viewBox="0 0 480 480" style="width:100%;height:auto"></svg>
+      <div><table class="data"><thead><tr><th class="l">Planet</th><th class="l">Position</th><th>Ho.</th></tr></thead><tbody id="u-positions"></tbody></table>
+        <p id="u-hour" class="small" style="margin-top:.5rem"></p></div>
+    </div></section>
+
+  <div class="grid cols-2">
+    <section class="card"><h2 style="margin-top:0"><a href="book1/master.html">Book I</a> — dignities &amp; chart health</h2><div id="u-book1"></div></section>
+    <section class="card"><h2 style="margin-top:0"><a href="book2/horary.html">Book II</a> — significators</h2><div id="u-book2"></div></section>
+  </div>
+  <section class="card"><h2 style="margin-top:0"><a href="book3/master.html">Book III</a> — the nativity</h2><div id="u-book3"></div></section>
+  <section class="card"><h2 style="margin-top:0"><a href="picatrix/index.html">Picatrix</a> — election &amp; magic (best vs least now)</h2><div id="u-picatrix"></div></section>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('master');
+  import { initMaster } from '../assets/js/app/master-unified.js';
+  initMaster();
+</script>
+</body>
+</html>

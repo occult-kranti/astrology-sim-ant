@@ -152,28 +152,46 @@ function renderMoon(chart, now) {
   }
 }
 
-// 3) Good to do now — the top ranked operations.
+// 3) Best vs least advised now — every operation ranked for this place & time.
+function verdictWord(v) { return v === 'green' ? 'favourable' : v === 'amber' ? 'mixed' : 'unfavourable'; }
+function opRow(r) {
+  const op = r.operation;
+  const reason = (r.reasons && r.reasons[0]) ? r.reasons[0].text : '';
+  return `<li class="adv-${r.verdict === 'green' ? 'good' : r.verdict === 'amber' ? 'note' : 'caution'}">
+    <a href="picatrix/election.html?op=${esc(op.key)}">
+      <span class="verdict ${esc(r.verdict)}">${verdictWord(r.verdict)}</span>
+      <b>${esc(op.label)}</b></a>
+    <span class="small">— ruler ${esc(op.ruler)}, score ${esc(r.score)}</span>
+    ${reason ? `<div class="small muted">${esc(reason)}</div>` : ''}
+  </li>`;
+}
 function renderOps(chart) {
   try {
-    const ranked = rankNow(chart).slice(0, 6);
-    const rows = ranked.map(r => {
-      const op = r.operation;
-      return `<li class="adv-note">
-        <a href="picatrix/election.html">
-          <span class="verdict ${esc(r.verdict)}">${r.verdict === 'green' ? 'favourable' : r.verdict === 'amber' ? 'mixed' : 'unfavourable'}</span>
-          <b>${esc(op.label)}</b></a>
-        <span class="small">— ruler ${esc(op.ruler)}, score ${esc(r.score)}</span>
-      </li>`;
-    }).join('');
-
+    const ranked = rankNow(chart);                 // all operations, best-first
+    if (!ranked.length) { $('n-ops').innerHTML = '<h2>Best vs least advised now</h2><p class="adv-note">No operations could be scored.</p>'; return; }
+    const n = ranked.length;
+    const bestCount = Math.min(5, Math.ceil(n / 2));
+    const best = ranked.slice(0, bestCount);
+    const least = ranked.slice(-3).reverse();       // worst first
+    const topLabel = best[0].operation.label;
     $('n-ops').innerHTML = `
-      <h2>Good to do now</h2>
-      <ul class="advisories">${rows || '<li class="adv-note">No operations could be scored.</li>'}</ul>
-      <p class="small">Ranked by the tradition's electional testimonies for this instant; follow a row to
-        drill into the full breakdown. This is historical method, not advice — astrology has no demonstrated
-        validity.</p>`;
+      <h2>Best vs least advised now</h2>
+      <p class="small">Of the ${n} traditional operations, the strongest testimonies right now favour
+        <b>${esc(topLabel)}</b>. Each links to the full cited breakdown in the Election Engine.</p>
+      <div class="grid cols-2">
+        <div>
+          <h3 style="margin:.2rem 0">✓ Best advised</h3>
+          <ul class="advisories">${best.map(opRow).join('')}</ul>
+        </div>
+        <div>
+          <h3 style="margin:.2rem 0">✕ Least advised</h3>
+          <ul class="advisories">${least.map(opRow).join('')}</ul>
+        </div>
+      </div>
+      <p class="small">Ranked by the Lilly–Picatrix electional testimonies for this instant — historical method,
+        not advice; astrology has no demonstrated validity.</p>`;
   } catch (e) {
-    $('n-ops').innerHTML = `<h2>Good to do now</h2><p class="adv-bad">This section failed: ${esc(e.message)}</p>`;
+    $('n-ops').innerHTML = `<h2>Best vs least advised now</h2><p class="adv-bad">This section failed: ${esc(e.message)}</p>`;
   }
 }
 

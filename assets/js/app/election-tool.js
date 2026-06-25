@@ -18,6 +18,11 @@ export function initElection() {
   const opSel = $('e-op');
   opSel.innerHTML = OPERATIONS.map(o =>
     `<option value="${esc(o.key)}">${esc(o.label)}</option>`).join('');
+  // honour ?op=<key> so the Right-Now dashboard can deep-link a specific aim
+  try {
+    const want = new URLSearchParams(location.search).get('op');
+    if (want && OPERATIONS.some(o => o.key === want)) opSel.value = want;
+  } catch { /* non-fatal */ }
 
   // 2) prefill date/time/offset; default place London
   const n = nowLocalFields();

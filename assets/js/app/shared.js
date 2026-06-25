@@ -14,6 +14,7 @@ import { autolinkGlossary } from './autolink.js';
 const NAV = [
   ['index.html', 'Home'],
   ['pages/now.html', 'Now'],
+  ['pages/master.html', 'Master'],
   ['pages/workflow.html', 'Workflow'],
   ['pages/book1/index.html', 'Book I'],
   ['pages/book2/index.html', 'Book II'],
@@ -53,8 +54,10 @@ export function mountChrome(activeKey = '') {
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
+        <li><a href="${R('pages/master.html')}">Unified Master Tool</a></li>
         <li><a href="${R('pages/now.html')}">Right Now — live sky</a></li>
         <li><a href="${R('pages/picatrix/election.html')}">Election — choose the moment</a></li>
+        <li><a href="${R('pages/book3/master.html')}">Book III Master Tool</a></li>
         <li><a href="${R('pages/tools.html')}">All Tools &amp; Calculators</a></li>
         <li><a href="${R('pages/workflow.html')}">Chapter Map &amp; Workflows</a></li>
         <li><a href="${R('pages/book1/master.html')}">Book I Master Tool</a></li>
