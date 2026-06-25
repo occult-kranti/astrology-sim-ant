@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Degree Tables & Body Parts | Christian Astrology</title>
+<meta name="description" content="Lilly's two necessary Tables of the Signs — the masculine/feminine and light/dark/smoky/void degrees — the deep/pitted, azimene and fortunate degrees, and the planet-by-sign body-parts grid.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book I</a> › Degree Tables &amp; Body Parts</p>
+  <h1>The Degree Tables &amp; the Body-Parts Grid</h1>
+  <p class="lede">Chapter XIX closes with Lilly's finer tables: the degrees that are
+    <em>masculine or feminine</em>, <em>light, dark, smoky or void</em>, <em>deep/pitted</em>,
+    <em>lame (azimene)</em>, or <em>increasing fortune</em>; and a grid of which member of the body each
+    planet governs in each sign. The <a href="master.html">Master Tool</a> applies these to a live chart.</p>
+
+  <h2>1 · Masculine &amp; Feminine degrees</h2>
+  <div class="callout lilly" id="use-mf"></div>
+  <div id="mf-table" style="overflow-x:auto"></div>
+
+  <h2>2 · Light, Dark, Smoky &amp; Void degrees</h2>
+  <div class="callout lilly" id="use-ld"></div>
+  <div id="ld-table" style="overflow-x:auto"></div>
+
+  <h2>3 · The body-parts grid — planet by sign</h2>
+  <p class="small muted">Lilly's rule: a planet in its own sign governs the Head; in the next sign the Neck;
+    then Arms, Breast, Heart, Belly, Reins, Secrets, Thighs, Knees, Legs, Feet — counting from its earliest
+    domicile. (So Saturn in Gemini → the Belly.) Used to locate a disease in the body.</p>
+  <div id="body-table" style="overflow-x:auto"></div>
+
+  <h2>4 · Lilly's flagging degrees</h2>
+  <div class="grid cols-2">
+    <div class="card"><h3>Deep / Pitted</h3><p class="small" id="use-deep"></p></div>
+    <div class="card"><h3>Azimene (lame / deficient)</h3><p class="small" id="use-azimene"></p></div>
+    <div class="card"><h3>Degrees increasing fortune</h3><p class="small" id="use-fortune"></p>
+      <p class="small" id="fortune-degs"></p></div>
+    <div class="card"><h3>On the exact degrees</h3><p class="small">The masculine/feminine and light/dark/smoky/void
+      tables above are transcribed and verified against Lilly's 1647 text. The specific <em>pitted</em> and
+      <em>azimene</em> degree-lists vary between transcriptions; read them directly in the
+      <a href="../read.html">scanned original</a> (Book I, p.116) to be certain. The fortunate degrees that
+      read cleanly from the scan are listed at left.</p></div>
+  </div>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { SIGNS } from '../../assets/js/core/data/signs.js';
+  import { MASC_FEM, LIGHT_DARK, FORTUNE_DEG, MEMBERS, bodyPartOf, TABLE_USE } from '../../assets/js/core/data/degree-tables.js';
+  import { PLANET_GLYPHS } from '../../assets/js/core/astro.js';
+  mountChrome('book1');
+  const G = p => PLANET_GLYPHS[p] || p;
+  const PL = ['Saturn','Jupiter','Mars','Sun','Venus','Mercury','Moon'];
+
+  document.getElementById('use-mf').textContent = TABLE_USE.mascfem;
+  document.getElementById('use-ld').textContent = TABLE_USE.lightdark;
+  document.getElementById('use-deep').textContent = TABLE_USE.deep;
+  document.getElementById('use-azimene').textContent = TABLE_USE.azimene;
+  document.getElementById('use-fortune').textContent = TABLE_USE.fortune;
+
+  // render bands from [[bound,code],...]
+  const LBL = { M:'M', F:'F', L:'Light', D:'Dark', S:'Smoky', V:'Void' };
+  function bands(arr) {
+    let prev = 0; const out = [];
+    for (const [b, c] of arr) { const lo = prev + 1; out.push(`${LBL[c]} ${lo === b ? b : lo + '–' + b}`); prev = b; }
+    return out.join(', ');
+  }
+  function signTable(data, id) {
+    document.getElementById(id).innerHTML = '<table class="data"><thead><tr><th class="l">Sign</th><th class="l">Degrees</th></tr></thead><tbody>' +
+      SIGNS.map((s, i) => `<tr><td class="l">${s.glyph} ${s.name}</td><td class="l small">${bands(data[i])}</td></tr>`).join('') + '</tbody></table>';
+  }
+  signTable(MASC_FEM, 'mf-table');
+  signTable(LIGHT_DARK, 'ld-table');
+
+  // body-parts grid 7 planets × 12 signs
+  let h = '<table class="data"><thead><tr><th class="l">Planet</th>' + SIGNS.map(s => `<th>${s.glyph}</th>`).join('') + '</tr></thead><tbody>';
+  for (const p of PL) h += `<tr><td class="l">${G(p)} ${p}</td>` + SIGNS.map((s, i) => `<td class="small">${bodyPartOf(p, i)}</td>`).join('') + '</tr>';
+  document.getElementById('body-table').innerHTML = h + '</tbody></table>';
+
+  document.getElementById('fortune-degs').innerHTML = '<b>Fortunate degrees (per the scan):</b> ' +
+    SIGNS.map((s, i) => FORTUNE_DEG[i].length ? `${s.name} ${FORTUNE_DEG[i].join(', ')}°` : null).filter(Boolean).join(' · ');
+</script>
+</body>
+</html>

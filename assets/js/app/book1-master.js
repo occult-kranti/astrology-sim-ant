@@ -15,6 +15,7 @@ import { renderChart } from '../core/chart.js';
 import { planetaryHour } from '../core/planetary-hours.js';
 import { SIGNS } from '../core/data/signs.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
+import { genderOfDegree, qualityOfDegree, isFortunateDegree, bodyPartOf } from '../core/data/degree-tables.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
 
 const $ = id => document.getElementById(id);
@@ -106,9 +107,14 @@ function compute() {
     <li>Dragon's Head ☊ at <b>${formatLon(nn.lon)}</b>, house ${nn.house}; Tail ☋ at ${formatLon(chart.planets.SouthNode.lon)}</li>
     <li>The chart is <b>${isDay ? 'diurnal (a day chart)' : 'nocturnal (a night chart)'}</b> — the Sun is ${isDay ? 'above' : 'below'} the horizon.</li>`;
 
-  // 6) Body-part rulerships (sign of each planet → member governed)
+  // 6) Body-part rulerships (Lilly's planet×sign grid) + degree qualities
   $('m-body').innerHTML = PL.map(name => {
-    const s = SIGNS[signOf(chart.planets[name].lon).index];
-    return `<li>${G(name)} ${name} in ${s.glyph} ${s.name} → governs the <b>${s.body.toLowerCase()}</b></li>`;
+    const s = signOf(chart.planets[name].lon);
+    const part = bodyPartOf(name, s.index);
+    const gender = genderOfDegree(s.index, s.degInSign);
+    const quality = qualityOfDegree(s.index, s.degInSign);
+    const fort = isFortunateDegree(s.index, s.degInSign);
+    return `<li>${G(name)} ${name} in ${SIGNS[s.index].glyph} ${s.name} → rules the <b>${(part || '').toLowerCase()}</b>
+      <span class="muted small">(${gender}, ${quality} degree${fort ? ', <b class="pos">fortunate</b>' : ''})</span></li>`;
   }).join('');
 }
