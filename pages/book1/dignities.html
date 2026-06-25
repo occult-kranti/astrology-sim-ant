@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Essential Dignity Calculator | Christian Astrology</title>
+<meta name="description" content="Score any planet in any degree by William Lilly's essential-dignity points: domicile, exaltation, triplicity, term and face, with the almuten of the degree.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book I</a> › Essential Dignity</p>
+  <h1>Essential Dignity Calculator</h1>
+  <p class="lede">Enter a planet, sign and degree to see exactly which dignities and debilities it holds,
+    scored by Lilly's points, with the dispositor and the almuten of the degree.</p>
+
+  <form id="d-form" class="calc">
+    <div class="field-row">
+      <div class="field"><label for="d-planet">Planet</label><select id="d-planet"></select></div>
+      <div class="field"><label for="d-sign">Sign</label><select id="d-sign"></select></div>
+      <div class="field"><label for="d-deg">Degree (0–29)</label><input id="d-deg" type="number" min="0" max="29.99" step="0.1" value="21"></div>
+      <div class="field"><label for="d-sect">Sect</label><select id="d-sect"><option value="day">Day chart</option><option value="night">Night chart</option></select></div>
+    </div>
+  </form>
+  <div id="d-result" class="card" style="margin-top:1rem"></div>
+
+  <h2>How essential dignity works</h2>
+  <p>A planet is dignified when it occupies a sign or degree it has rulership over. Lilly recognises five,
+    in descending strength: <b>domicile</b> (+5), <b>exaltation</b> (+4), <b>triplicity</b> (+3),
+    <b>term</b> (+2) and <b>face</b> (+1). A planet in the sign opposite its domicile is in <b>detriment</b>
+    (−5); opposite its exaltation it is in <b>fall</b> (−4). A planet with no dignity of its own at all is
+    <b>peregrine</b> (−5) — “wandering”, like a stranger with no standing.</p>
+  <div class="callout lilly">“A Planet is then said to be really strong when he hath many essentiall
+    dignities… in his house, exaltation, triplicity, terme or face, at time of the erecting of the figure.”
+    <cite>— Lilly, Christian Astrology, Book I</cite></div>
+
+  <h2>The full Table of Essential Dignities</h2>
+  <div id="dig-table" style="overflow-x:auto"></div>
+
+  <h2>Accidental dignity &amp; debility</h2>
+  <p>Where essential dignity measures a planet's quality, <b>accidental</b> dignity measures its situation —
+    its house, motion, and relationship to the Sun and to the benefics, malefics and fixed stars. Lilly's
+    table (Book I, p.115):</p>
+  <div class="grid cols-2">
+    <table class="data"><thead><tr><th class="l">Accidental dignity</th><th>Pts</th></tr></thead><tbody>
+      <tr><td class="l">In the 1st or 10th house</td><td class="pos">+5</td></tr>
+      <tr><td class="l">In the 7th, 4th or 11th</td><td class="pos">+4</td></tr>
+      <tr><td class="l">In the 2nd or 5th</td><td class="pos">+3</td></tr>
+      <tr><td class="l">In the 9th</td><td class="pos">+2</td></tr>
+      <tr><td class="l">In the 3rd</td><td class="pos">+1</td></tr>
+      <tr><td class="l">Direct</td><td class="pos">+4</td></tr>
+      <tr><td class="l">Swift in motion</td><td class="pos">+2</td></tr>
+      <tr><td class="l">☄ Oriental (♄♃♂) / Occidental (☿♀)</td><td class="pos">+2</td></tr>
+      <tr><td class="l">Free from the Sun's beams</td><td class="pos">+5</td></tr>
+      <tr><td class="l">Cazimi (heart of the Sun)</td><td class="pos">+5</td></tr>
+      <tr><td class="l">Partile ☌ Jupiter or Venus</td><td class="pos">+5</td></tr>
+      <tr><td class="l">☌ Regulus (24° Leo)</td><td class="pos">+6</td></tr>
+      <tr><td class="l">☌ Spica (18° Libra)</td><td class="pos">+5</td></tr>
+    </tbody></table>
+    <table class="data"><thead><tr><th class="l">Accidental debility</th><th>Pts</th></tr></thead><tbody>
+      <tr><td class="l">In the 12th house</td><td class="neg">−5</td></tr>
+      <tr><td class="l">In the 8th or 6th</td><td class="neg">−2</td></tr>
+      <tr><td class="l">Retrograde</td><td class="neg">−5</td></tr>
+      <tr><td class="l">Slow in motion</td><td class="neg">−2</td></tr>
+      <tr><td class="l">Combust the Sun</td><td class="neg">−5</td></tr>
+      <tr><td class="l">Under the Sun's beams</td><td class="neg">−4</td></tr>
+      <tr><td class="l">Partile ☌ Saturn or Mars</td><td class="neg">−5</td></tr>
+      <tr><td class="l">Besieged by Saturn &amp; Mars</td><td class="neg">−5</td></tr>
+      <tr><td class="l">Partile □ or ☍ Saturn/Mars</td><td class="neg">−4</td></tr>
+      <tr><td class="l">☌ Caput Algol (20° Taurus)</td><td class="neg">−5</td></tr>
+      <tr><td class="l">Partile ☌ South Node</td><td class="neg">−4</td></tr>
+    </tbody></table>
+  </div>
+  <p class="small muted">The <a href="../book2/horary.html">Horary Calculator</a> applies the full accidental
+    table automatically to a real chart. Star longitudes are Lilly's 1647 positions.</p>
+</main>
+
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { initDignityCalc, renderDignityTable } from '../../assets/js/app/book1.js';
+  mountChrome('book1');
+  initDignityCalc();
+  renderDignityTable(document.getElementById('dig-table'));
+</script>
+</body>
+</html>

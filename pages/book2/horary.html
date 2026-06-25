@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horary Chart Calculator — Christian Astrology</title>
+<meta name="description" content="Cast a horary chart in William Lilly's Regiomontanus style for any moment and place: significators, dignities, aspects with Lilly's orbs, and the considerations before judgement.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book II — Horary</a> › Horary Chart Calculator</p>
+  <h1>Horary Chart Calculator</h1>
+  <p class="lede">A horary chart is cast for the <em>moment a question is understood</em>. This tool
+    erects the figure in Lilly's Regiomontanus houses, finds the significators, scores every
+    planet's dignity, lists the aspects by Lilly's orbs, and runs the considerations before judgement.</p>
+
+  <form id="h-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 220px"><label for="h-city">Place (preset)</label>
+        <select id="h-city"></select></div>
+      <div class="field"><label for="h-lat">Latitude °N</label><input id="h-lat" type="number" step="0.0001" style="width:8rem"></div>
+      <div class="field"><label for="h-lon">Longitude °E</label><input id="h-lon" type="number" step="0.0001" style="width:8rem"></div>
+      <button type="button" class="btn sm ghost" id="h-geo" style="color:#7a3b1e;border-color:#b8862b">Use my location</button>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="h-date">Date</label><input id="h-date" type="date"></div>
+      <div class="field"><label for="h-time">Time (local)</label><input id="h-time" type="time"></div>
+      <div class="field"><label for="h-offset">UTC offset (h)</label><input id="h-offset" type="number" step="0.5" style="width:7rem"></div>
+      <button type="button" class="btn sm" id="h-now">Now</button>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="h-system">House system</label>
+        <select id="h-system">
+          <option value="regiomontanus">Regiomontanus (Lilly)</option>
+          <option value="placidus">Placidus</option>
+          <option value="whole">Whole Sign</option>
+          <option value="equal">Equal</option>
+        </select></div>
+      <div class="field" style="flex:1 1 260px"><label for="h-quesited">The quesited — house of the matter asked about</label>
+        <select id="h-quesited"></select></div>
+      <button type="submit" class="btn">Cast the chart</button>
+    </div>
+    <p class="small muted" style="margin:.7rem 0 0">Tip: choose the house that signifies your question — e.g. marriage &amp; theft are the 7th, money the 2nd, career the 10th, sickness the 6th. The full guide is in <a href="houses.html">Book II, house by house</a>.</p>
+  </form>
+
+  <p id="h-summary" style="margin:1.2rem 0 .4rem; font-size:1.05rem"></p>
+
+  <div class="chart-layout">
+    <div>
+      <div id="h-wheel" class="card" style="padding:.6rem"></div>
+      <p id="h-almuten" class="small muted center" style="margin-top:.5rem"></p>
+    </div>
+    <div>
+      <h3 style="margin-top:0">Significators &amp; perfection</h3>
+      <div id="h-significators" class="card"></div>
+    </div>
+  </div>
+
+  <h2>The planets — dignity &amp; debility</h2>
+  <table class="data">
+    <thead><tr><th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th class="l">Essential dignities</th><th>Ess.</th><th>Acc.</th></tr></thead>
+    <tbody id="h-planets"></tbody>
+  </table>
+  <p class="small muted">“Ess.” is the net essential-dignity score (domicile +5, exaltation +4, triplicity +3,
+    term +2, face +1; detriment −5, fall −4, peregrine −5). “Acc.” is the net accidental score (house,
+    motion, combustion, fixed stars…). These are Lilly's own point system from Book 1.</p>
+
+  <div class="grid cols-2">
+    <div>
+      <h2>Considerations before judgement</h2>
+      <ul class="clean" id="h-considerations"></ul>
+      <p class="small muted">Lilly offers these as cautions for reflection, not absolute bars — see
+        <a href="considerations.html">the full chapter</a>.</p>
+    </div>
+    <div>
+      <h2>Aspects (Lilly's orbs)</h2>
+      <ul class="clean" id="h-aspects"></ul>
+    </div>
+  </div>
+
+  <div class="callout science"><span class="label">How to read this</span>
+    The chart and every number above are computed astronomically and are accurate. Whether a horary
+    chart can actually <em>answer a question</em> is a different claim — one with no scientific support.
+    Use this to learn Lilly's method, not to make decisions.</div>
+</main>
+
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { initHorary } from '../../assets/js/app/horary.js';
+  mountChrome('horary.html');
+  initHorary();
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planetary Hours | Christian Astrology</title>
+<meta name="description" content="The ruler of the present planetary hour and day in the Chaldean order, with the full table of the twenty-four unequal hours from sunrise to sunrise.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book I</a> › Planetary Hours</p>
+  <h1>Planetary Hours</h1>
+  <p class="lede">The day is divided into twelve equal “hours” between sunrise and sunset, and the night
+    into twelve between sunset and the next sunrise — so the hours are <em>unequal</em>, longer by day in
+    summer. Each is ruled by a planet in the Chaldean order, beginning at sunrise with the ruler of the weekday.</p>
+
+  <form id="ph-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 220px"><label for="ph-city">Place</label><select id="ph-city"></select></div>
+      <div class="field"><label for="ph-lat">Latitude °N</label><input id="ph-lat" type="number" step="0.0001" style="width:8rem"></div>
+      <div class="field"><label for="ph-lon">Longitude °E</label><input id="ph-lon" type="number" step="0.0001" style="width:8rem"></div>
+      <div class="field"><label for="ph-date">Date</label><input id="ph-date" type="date"></div>
+      <button type="button" class="btn sm" id="ph-now">Today</button>
+      <button type="submit" class="btn">Show hours</button>
+    </div>
+  </form>
+
+  <div id="ph-current" style="margin-top:1rem"></div>
+  <div id="ph-result"></div>
+
+  <h2>How it works</h2>
+  <p>The <b>Chaldean order</b> arranges the planets from slowest to fastest:
+    <b>Saturn ♄ · Jupiter ♃ · Mars ♂ · Sun ☉ · Venus ♀ · Mercury ☿ · Moon ☽</b>.
+    The planetary day begins not at midnight but at <em>sunrise</em>; the first hour is ruled by the planet
+    of the weekday (Sun→Sunday, Moon→Monday, Mars→Tuesday, Mercury→Wednesday, Jupiter→Thursday,
+    Venus→Friday, Saturn→Saturday). Each following hour steps one place along the Chaldean order.</p>
+  <div class="callout"><span class="label">Why the days are named as they are</span>
+    Because 24 hours leave a remainder of three when divided among the seven planets, each day's first hour
+    falls three places further along the Chaldean ring — which is exactly the order of the weekdays. The same
+    Chaldean order also rules the faces (decans) of the zodiac.</div>
+  <p class="small muted">Sunrise/sunset are computed astronomically for the place and date. In horary, Lilly
+    checks whether the planetary hour-ruler agrees with the ruler of the Ascendant as a test of the figure's
+    radicality — see the <a href="../book2/horary.html">Horary Calculator</a>.</p>
+</main>
+
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { initPlanetaryHours } from '../../assets/js/app/book1.js';
+  mountChrome('book1');
+  initPlanetaryHours();
+</script>
+</body>
+</html>
