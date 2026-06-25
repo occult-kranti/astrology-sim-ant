@@ -8,7 +8,7 @@
 // ============================================================================
 import { wireCitySelect, toUTC, nowLocalFields, VERDICT_LEGEND } from './shared.js';
 import { writeStateToURL, readStateFromURL, copyShareLink, downloadJSON, downloadSVG, svgToPNG,
-  downloadMarkdown, saveReadingEntry, listSavedReadings, removeSavedReading, publishGist } from './state.js';
+  downloadMarkdown, saveReadingEntry, listSavedReadings, removeSavedReading } from './state.js';
 import { castChart, PLANET_GLYPHS } from '../core/astro.js';
 import { allAspects } from '../core/aspects.js';
 import { renderChart } from '../core/chart.js';
@@ -19,6 +19,7 @@ import { OPERATIONS } from '../core/election.js';
 import { mansionOf } from '../core/data/lunar-mansions.js';
 import { faceOf } from '../core/data/decan-faces.js';
 import { starsInAspect } from '../core/data/behenian-stars.js';
+import { prayerFor } from '../core/data/picatrix-prayers.js';
 import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
@@ -56,9 +57,11 @@ export function initWorkbench() {
   wireCitySelect($('wb-city'), $('wb-lat'), $('wb-lon'), $('wb-offset'));
 
   $('wb-op').innerHTML = OPERATIONS.map(o => `<option value="${o.key}">${esc(o.label)} (${o.ruler})</option>`).join('');
-  $('wb-quesited').innerHTML = '<option value="">— none —</option>' +
+  // The horary house picker lives IN the horary card now (the main form no longer
+  // asks it). Default to the general view (querent + Moon, no specific question).
+  $('wb-horary-house').innerHTML = '<option value="">— querent &amp; Moon only (general) —</option>' +
     HOUSES.map(h => `<option value="${h.n}">${h.n} — ${esc(h.signifies.split(';')[0])}</option>`).join('');
-  $('wb-quesited').value = '7';   // shown by default as an illustrative question-house
+  $('wb-horary-house').addEventListener('change', () => run());
 
   $('wb-form').addEventListener('submit', e => { e.preventDefault(); run(); });
   $('wb-copy').addEventListener('click', () => copyShareLink($('wb-status'), currentState()));
@@ -68,19 +71,14 @@ export function initWorkbench() {
   $('wb-png').addEventListener('click', () => { svgToPNG(wheelSvg, 'chart.png').catch(() => { $('wb-status').textContent = 'Could not export PNG.'; }); });
   $('wb-print').addEventListener('click', () => window.print());
 
-  // save / publish: restore the optional GitHub token, wire publish + the list
-  try { const t = localStorage.getItem('wb-gh-token'); if (t) { $('wb-gh-token').value = t; $('wb-gh-remember').checked = true; } } catch { /* ignore */ }
-  $('wb-gh-token').addEventListener('change', persistToken);
-  $('wb-gh-remember').addEventListener('change', persistToken);
-  $('wb-publish').addEventListener('click', () => publishReading());
-  renderSaved();
+  renderSaved();   // the on-device saved-readings list (auto-saved each compute)
 
   // restore shared state from the URL, if any
   const s = readStateFromURL(STATE_KEYS);
   const set = (k, id) => { if (s[k] != null && s[k] !== '') $(id).value = s[k]; };
   set('date', 'wb-date'); set('time', 'wb-time'); set('offset', 'wb-offset');
   set('lat', 'wb-lat'); set('lon', 'wb-lon'); set('system', 'wb-system');
-  set('op', 'wb-op'); set('q', 'wb-quesited');
+  set('op', 'wb-op'); set('q', 'wb-horary-house');
   set('bdate', 'wb-bdate'); set('btime', 'wb-btime'); set('boffset', 'wb-boffset'); set('blat', 'wb-blat'); set('blon', 'wb-blon');
   if (s.bdate) $('wb-birth-details').open = true;
 
@@ -92,7 +90,7 @@ function currentState() {
   return {
     date: $('wb-date').value, time: $('wb-time').value, offset: $('wb-offset').value,
     lat: $('wb-lat').value, lon: $('wb-lon').value, system: $('wb-system').value,
-    op: $('wb-op').value, q: $('wb-quesited').value,
+    op: $('wb-op').value, q: $('wb-horary-house').value,
     bdate: $('wb-bdate').value, btime: $('wb-btime').value, boffset: $('wb-boffset').value,
     blat: $('wb-blat').value, blon: $('wb-blon').value,
   };
@@ -104,7 +102,7 @@ function run() {
   const date = toUTC($('wb-date').value, $('wb-time').value, parseFloat($('wb-offset').value) || 0);
   const system = $('wb-system').value;
   const operationKey = $('wb-op').value || 'love';
-  const quesitedHouse = $('wb-quesited').value ? parseInt($('wb-quesited').value, 10) : null;
+  const quesitedHouse = $('wb-horary-house').value ? parseInt($('wb-horary-house').value, 10) : null;
 
   // optional birth chart → the natal/trajectory block
   let birth = null;
@@ -119,7 +117,7 @@ function run() {
   const chart = castChart(date, lat, lon, system);
   const reading = fullReading(chart, { operationKey, quesitedHouse, birth, generatedAt: new Date().toISOString() });
   lastReading = reading; lastChart = chart; lastBirthChart = birth ? birth.chart : null;
-  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ before: '#wb-assistant-card' }); vedicUpdate(chart); } catch { /* non-fatal */ }
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ before: '#wb-horary-card' }); vedicUpdate(chart); } catch { /* non-fatal */ }
 
   // chart wheel (reuse the shared renderer)
   try {
@@ -168,26 +166,9 @@ function renderSaved() {
 }
 function restoreSaved(key) {
   const e = listSavedReadings().find(x => x.key === key); if (!e || !e.state) return;
-  for (const [k, v] of Object.entries(e.state)) { const id = 'wb-' + (k === 'q' ? 'quesited' : k); if ($(id) != null && v != null) $(id).value = v; }
+  for (const [k, v] of Object.entries(e.state)) { const id = 'wb-' + (k === 'q' ? 'horary-house' : k); if ($(id) != null && v != null) $(id).value = v; }
   if (e.state.bdate) $('wb-birth-details').open = true;
   run();
-}
-function persistToken() {
-  try {
-    const remember = $('wb-gh-remember').checked, t = $('wb-gh-token').value.trim();
-    if (remember && t) localStorage.setItem('wb-gh-token', t); else localStorage.removeItem('wb-gh-token');
-  } catch { /* ignore */ }
-}
-async function publishReading() {
-  if (!lastReading) { $('wb-status').textContent = 'Compute a reading first.'; return; }
-  persistToken();
-  const token = $('wb-gh-token').value.trim();
-  if (!token) { $('wb-status').textContent = 'Enter a GitHub token (gist scope) to publish — or just use the local auto-save.'; return; }
-  $('wb-status').textContent = 'Publishing to a secret Gist…';
-  try {
-    const url = await publishGist(lastReading, token, { public: false });
-    $('wb-status').innerHTML = 'Published (secret): <a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(url) + '</a>';
-  } catch (e) { $('wb-status').textContent = 'Publish failed: ' + (e && e.message ? e.message : 'error'); }
 }
 
 const safe = fn => { try { fn(); } catch (e) { /* a failing panel never breaks the page */ } };
@@ -277,10 +258,25 @@ function renderCautions(r) {
 }
 
 function renderHorary(r) {
-  const card = $('wb-horary-card');
-  if (!r.horary) { card.style.display = 'none'; return; }
-  card.style.display = '';
   $('wb-horary-links').innerHTML = regLinks('perfection');
+  // GENERAL view (no specific question house chosen): the querent's significator
+  // and the Moon's condition & next aspect — the horary "state of play" that needs
+  // no quesited house. Pick a house above for the quesited significator & perfection.
+  if (!r.horary) {
+    const lordAsc = r.cautions.lordAsc;
+    const qp = lordAsc ? r.moment.planets[lordAsc] : null;
+    const moon = r.moment.planets.Moon;
+    let mn = null;
+    for (const a of r.aspects.list) {
+      if ((a.from === 'Moon' || a.to === 'Moon') && a.applying && (!mn || a.orb < mn.orb)) mn = { other: a.from === 'Moon' ? a.to : a.from, aspect: a.aspect, glyph: a.glyph, orb: a.orb };
+    }
+    const sel = r.election.selected, voc = sel && sel.moon ? sel.moon.voidOfCourse : false;
+    $('wb-horary').innerHTML =
+      `<p class="small muted">The <b>general</b> horary state — the querent's significator and the Moon. Choose the house your question is about (above) for the quesited significator and the modes of perfection.</p>
+       <p><b>Querent</b> — the Lord of the Ascendant is ${qp ? `${G(lordAsc)} <b>${esc(lordAsc)}</b> at ${esc(qp.label)} in the ${qp.house}th house` : esc(lordAsc || 'n/a')}, with the Moon as co-significator.</p>
+       <p><b>The Moon</b> is in ${esc(moon.sign)}, the ${moon.house}th house${voc ? ', and is <b>void of course</b> — "nothing will come of the matter"' : (mn ? `; she next applies to a <b>${esc(mn.aspect.toLowerCase())}</b> ${mn.glyph || ''} of <b>${G(mn.other)} ${esc(mn.other)}</b> (orb ${mn.orb.toFixed(1)}°)` : '')}.</p>`;
+    return;
+  }
   const h = r.horary;
   const modeLines = [];
   const M = h.perfection.modes || {};
@@ -337,11 +333,18 @@ function renderTalisman(r) {
   if (!t) { $('wb-talisman').innerHTML = '<p class="muted">No recipe.</p>'; return; }
   const sp = t.materials.spirits;
   const steps = t.steps.map(s => `<li>${esc(s.text)} <span class="small muted">— ${esc(s.cite)}</span></li>`).join('');
+  const pr = prayerFor(t.planet);
+  const prayerHtml = pr ? `<p class="small"><b>Picatrix Book III — the prayer &amp; spirit of ${esc(t.planet)}:</b>
+       addressed as <i>${esc(pr.address.split('.')[0].toLowerCase())}</i>; prayer-angel ${esc(pr.prayerAngel.latin || '—')}, directional spirit ${esc(pr.spirit.master)}.
+       <br><span class="muted">“${esc(pr.prayerExcerpt.slice(0, 150))}…”</span>
+       <a href="picatrix/prayers.html">full prayer &amp; spirits ↗</a>${pr.flag ? ` <span class="neg">⚠ ${esc(pr.flag.split('—')[0])}</span>` : ''}
+       <span class="muted small">— historical text, described not prescribed.</span></p>` : '';
   $('wb-talisman').innerHTML =
     `<p>Aim: <b>${esc(t.aim)}</b> · ruling planet <b>${esc(t.planet)}</b> ${G(t.planet)} · this moment: ${vbadge(t.verdict)}</p>
      <p class="small"><b>Materials (historical):</b> suffumigation ${esc(t.materials.suffumigation)}; colour ${esc(t.materials.colour)};
        metal ${esc(t.materials.metal)}; stone ${esc(t.materials.stone)}. <b>Powers (kept distinct):</b>
        Picatrix prayer-angel ${esc(sp.picatrixPrayerAngel)}; Agrippa angel ${esc(sp.agrippa.angel)}, intelligence ${esc(sp.agrippa.intelligence)}, spirit ${esc(sp.agrippa.spirit)}.</p>
+     ${prayerHtml}
      <ol class="small">${steps}</ol>
      <p class="small muted">${esc(t.disclaimer)}</p>`;
 }

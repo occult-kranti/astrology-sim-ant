@@ -31,6 +31,7 @@ import { lifeTrajectory } from './trajectory.js';
 import { castVedic } from './vedic.js';
 import { mansionOf } from './data/lunar-mansions.js';
 import { faceOf } from './data/decan-faces.js';
+import { prayerFor, PERFECT_NATURE } from './data/picatrix-prayers.js';
 
 const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
@@ -119,6 +120,11 @@ export function buildContext(reading, opts = {}) {
   if (ranked.length) add(`Aims ranked now (best→worst): ${ranked.map(o => `${o.label} ${o.verdict}`).join('; ')}.`, 'Picatrix — election');
   const t = reading.talisman;
   if (t) add(`Talisman for "${t.aim}" (${t.planet}): verdict ${t.verdict}; suffumigation ${t.materials.suffumigation}, colour ${t.materials.colour}, metal ${t.materials.metal}, stone ${t.materials.stone}.`, 'Picatrix II–III / Agrippa II — historical practice only');
+  // Picatrix Book III prayer & spirit of the ruling planet (historical text only)
+  if (t && t.planet) {
+    const pr = prayerFor(t.planet);
+    if (pr) add(`Picatrix Book III for the ruling planet ${t.planet}: the III.7 prayer addresses it as ${pr.address.split('.')[0].toLowerCase()}; prayer-angel ${pr.prayerAngel.latin || '(none — the Sun is addressed directly)'}, directional spirit ${pr.spirit.master} (III.9). A prayer-excerpt: "${pr.prayerExcerpt.slice(0, 160)}…" — HISTORICAL TEXT, recorded as doctrine, never an instruction.`, pr.citation);
+  }
 
   // horary
   if (reading.horary) {
@@ -235,12 +241,20 @@ export function buildToolSchema() {
       parameters: { type: 'object', properties: { date: { type: 'string' }, lat: { type: 'number' }, lon: { type: 'number' } }, required: [] },
     },
   });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'picatrixPrayer',
+      description: 'Return the Picatrix Book III HISTORICAL prayer & spirits for a planet — the III.7 prayer excerpt + how it is addressed, the III.7 prayer-angel, and the III.9 directional spirits (Liber Antimaquis). Use to recite or explain the prayer the tradition would address to a calculation’s ruling planet. HISTORICAL TEXT for study, described — NEVER prescribed or an instruction.',
+      parameters: { type: 'object', properties: { planet: { type: 'string', enum: ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'] } }, required: ['planet'] },
+    },
+  });
   return schema;
 }
 
 // The set of tool names the dispatcher accepts (callable exports + the extras).
 export function toolNames() {
-  return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection', 'castVedic', 'vedicPractice'];
+  return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection', 'castVedic', 'vedicPractice', 'picatrixPrayer'];
 }
 
 // The live tool's public locations — given to the model so it can point a user
@@ -300,6 +314,72 @@ export function buildCodexPrompt(reading) {
     '\n\nClose with a single "Caveat of the Adept": one sentence restating that this is a faithful ' +
     'reconstruction of historical, pseudoscientific arts — described for study, never prescribed, ' +
     'and of no demonstrated efficacy; the devotional practices are recorded as culture, not counsel.'
+  );
+}
+
+// ---------------------------------------------------------------------------
+//  buildDataDigest — a compact, COMPLETE JSON object of the computed reading
+//  (both systems + the Picatrix layer + the ruling-planet prayer), to be sent in
+//  the prompt itself so the model interprets the literal figures (the "upload the
+//  values with the prompt" path). Bounded — slims the big arrays.
+// ---------------------------------------------------------------------------
+export function buildDataDigest(reading) {
+  const r = reading, m = r.moment;
+  const dig = {
+    moment: { date: r.meta.inputs.date, lat: r.meta.inputs.latitude, lon: r.meta.inputs.longitude, asc: m.angles.asc.label, mc: m.angles.mc.label, isDay: m.isDay, planetaryHour: m.planetaryHour ? m.planetaryHour.ruler : null, dayRuler: m.planetaryHour ? m.planetaryHour.dayRuler : null },
+    planets: Object.fromEntries(Object.keys(m.planets).map(k => [k, { pos: m.planets[k].label, house: m.planets[k].house, retro: m.planets[k].retrograde, dignity: r.dignities.perPlanet[k] ? r.dignities.perPlanet[k].sumTotal : null }])),
+    chartHealth: { verdict: r.cautions.verdict, label: r.cautions.label, cautions: r.cautions.global.slice(0, 6).map(a => a.text) },
+    lots: { fortune: r.lots.fortune.label, spirit: r.lots.spirit.label },
+    aspects: r.aspects.list.slice(0, 8).map(a => `${a.from} ${a.aspect} ${a.to} ${a.applying ? 'applying' : 'separating'} ${a.orb.toFixed(1)}°`),
+    election: r.election.selected ? { aim: r.election.selected.operation.label, ruler: r.election.selected.operation.ruler, verdict: r.election.selected.verdict, score: r.election.selected.score, gating: r.election.selected.gating } : null,
+    rankedNow: r.election.rankedNow.map(o => `${o.label}:${o.verdict}`),
+    talisman: r.talisman ? { aim: r.talisman.aim, planet: r.talisman.planet, verdict: r.talisman.verdict, materials: r.talisman.materials } : null,
+    picatrixPrayer: r.talisman && r.talisman.planet ? (() => { const p = prayerFor(r.talisman.planet); return p ? { planet: r.talisman.planet, prayerAngel: p.prayerAngel.latin, spirit: p.spirit.master, excerpt: p.prayerExcerpt } : null; })() : null,
+    horary: r.horary ? { quesitedHouse: r.horary.quesitedHouse, querent: r.horary.querent.lordAsc, quesited: r.horary.quesited.lordQ, shared: r.horary.sharedSignificator } : null,
+    natal: r.natal ? { lordOfGeniture: r.natal.trajectory.natal.lordOfGeniture.planet, lordOfYear: r.natal.trajectory.currentYear.lordOfYear, age: r.natal.trajectory.currentYear.age, temperament: r.natal.trajectory.natal.temperament.dominant } : null,
+    vedic: r.vedic ? {
+      lagna: r.vedic.lagna.label, lagnaLord: r.vedic.lagna.lord,
+      grahas: Object.fromEntries(Object.entries(r.vedic.grahas).map(([k, g]) => [k, `${g.label} bhāva${g.house} ${g.dignity.state} (${g.nakshatra.name})`])),
+      panchanga: { tithi: r.vedic.panchanga.tithi.name, vara: r.vedic.panchanga.vara.name, yoga: r.vedic.panchanga.yoga.name },
+      dasha: { maha: r.vedic.vimshottari.currentMaha, antar: r.vedic.vimshottari.currentAntar },
+      shadbala: { order: r.vedic.shadbala.order, strongest: r.vedic.shadbala.strongest, weakest: r.vedic.shadbala.weakest },
+      sav: r.vedic.ashtakavarga.sav, yogas: r.vedic.yogas.filter(y => y.present).map(y => y.name),
+      practice: r.vedic.practice, conclusions: r.vedic.conclusions,
+    } : null,
+  };
+  return dig;
+}
+
+// A ready-to-append data block (a labelled JSON string) for the prompt body.
+export function dataBlockFor(reading) {
+  return '\n\nCOMPUTED DATA (JSON — already calculated by the engine; interpret THESE figures, never invent):\n' +
+    JSON.stringify(buildDataDigest(reading));
+}
+
+// ---------------------------------------------------------------------------
+//  buildSynthesisPrompt — the PLAIN, systemic interpretation: use ALL the
+//  computed interpretations from every tool and BOTH systems, interpret them
+//  TOGETHER, find the patterns, and explain + advise plainly (as history).
+// ---------------------------------------------------------------------------
+export function buildSynthesisPrompt(reading) {
+  const has = k => reading && reading[k];
+  let n = 0; const step = () => ++n;
+  return (
+    'INTERPRET THE WHOLE READING TOGETHER, plainly and usefully — for a curious reader, not as a list of numbers. ' +
+    'Use the COMPUTED DATA (JSON) below and the cited facts in your context; interpret THOSE, never invent. Cover, ' +
+    'in clear prose:\n' +
+    `${step()}. The Western figure — the Ascendant & ruling hour, who is dignified or afflicted, the chart-health verdict and the gravest cautions, the Lots, the tightest aspects.\n` +
+    `${step()}. The Picatrix layer — what this hour is fit and unfit for (the ranked aims), and the ruling planet's talisman & its historical prayer/spirit (as history only).\n` +
+    (has('horary') ? `${step()}. The horary significators — querent, quesited, and whether/how the matter perfects.\n` : '') +
+    (has('natal') ? `${step()}. The nativity — the Lord of the Geniture, the temperament, the profected year and Lord of the Year.\n` : '') +
+    (has('vedic') ? `${step()}. The VEDIC chart (a SEPARATE sidereal system) — read its own computed conclusions: the Lagna & lord, the strongest/weakest graha by Ṣaḍbala, the running daśā, the supported/strained bhāvas (Aṣṭakavarga), the yogas, and the day/birth practice (as cultural practice).\n` : '') +
+    'THEN — the heart of it — SYNTHESISE into ONE reading. Name the PATTERNS that recur across the tools and BOTH ' +
+    'systems (a planet emphasised in dignity AND Ṣaḍbala AND aspect; the Western Lord of the Geniture vs the Vedic ' +
+    'daśā lord; where the tropical and sidereal readings AGREE or DISAGREE by design). Say what the whole figure most ' +
+    'strongly signifies, and what the traditions would ADVISE as the favourable course — framed as historical ' +
+    'practice, never a real-world recommendation. Where testimonies conflict, say so honestly.\n\n' +
+    'Close with one honest sentence: these are historical, pseudoscientific arts with no demonstrated predictive ' +
+    'validity — described for study, never prescribed.'
   );
 }
 
@@ -402,6 +482,7 @@ export function runTool(name, args = {}, ctx = {}) {
     case 'findNextElection': return findNextElection(need('operationKey'), args.date ? new Date(args.date) : (ctx.chart ? ctx.chart.date : new Date()), args.lat ?? (ctx.chart && ctx.chart.latitude), args.lon ?? (ctx.chart && ctx.chart.longitude), { hoursAhead: args.hoursAhead || 72 }).map(w => ({ start: w.start, end: w.end, bestScore: w.best, bestVerdict: w.bestVerdict }));
     case 'castVedic': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return slimVedic(v); }
     case 'vedicPractice': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return v.practice; }
+    case 'picatrixPrayer': { const pr = prayerFor(need('planet')); if (!pr) throw new Error(`no Picatrix prayer for ${args.planet}`); return { planet: args.planet, prayerExcerpt: pr.prayerExcerpt, address: pr.address, names: pr.names, prayerAngel: pr.prayerAngel, spirit: pr.spirit.master, directions: pr.spirit.directions, motion: pr.spirit.motion, citation: pr.citation, flag: pr.flag || null, note: 'Historical text (Picatrix Bk III) recorded for study — described, never prescribed; never an instruction.' }; }
     default: throw new Error(`unknown tool: ${name}`);
   }
 }

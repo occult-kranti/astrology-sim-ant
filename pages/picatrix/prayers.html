@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planetary Prayers & Spirits — Picatrix Books III & IV | The Astrologer's Workbench</title>
+<meta name="description" content="The Picatrix's Book III and IV: the seven planetary prayers (III.7), the directional planetary spirits of the Liber Antimaquis (III.9), the Perfect Nature (III.6), and a summary of Book IV — recorded as historical text for study of medieval astral magic, described never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Prayers &amp; Spirits</p>
+  <h1>Planetary Prayers &amp; Spirits — Picatrix Books III &amp; IV</h1>
+  <p class="lede">The Picatrix's third and fourth books gather the <b>seven planetary prayers</b> (III.7), the
+    <b>planetary spirits</b> of the <i>Liber Antimaquis</i> (III.9), the <b>Perfect Nature</b> — the practitioner's
+    personal celestial genius (III.6) — and Book IV's suffumigations and natural magic. They are presented here as
+    <b>historical text for study</b>, the doctrine of a tradition — <b>described, never prescribed</b>.</p>
+  <p class="small">These link to the calculators: the planet ruling an <a href="election.html">election</a> or
+    <a href="talisman.html">talisman</a> is the one whose prayer and spirit the tradition would address — and the
+    <a href="../workbench.html">Workbench</a> assistant can recite or explain a planet's prayer on request.</p>
+
+  <div id="pr-out"></div>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  mountChrome('picatrix');
+  import { renderPrayers } from '../../assets/js/app/picatrix-prayers.js';
+  renderPrayers('pr-out');
+</script>
+</body>
+</html>

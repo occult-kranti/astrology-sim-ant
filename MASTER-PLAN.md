@@ -73,6 +73,28 @@ A user-driven round that completed several roadmap gaps and deepened the assista
 - **Workbench superset** — added the Picatrix moment-correspondences (mansion / decan faces / Behenian stars)
   it previously lacked, so it is now a true superset of the Master tool.
 
+### Shipped this round — "Phase R3", 2026-06-25 *(verified: audit 0 · engine-test all passed · 36-page Chromium sweep 0 errors)*
+A consolidation + integration round:
+- **One master tool.** The redundant "Unified Master Tool" (`master-unified.js`) is folded into **the Workbench**, which
+  is now *the* master tool. `pages/master.html` is a redirect; nav collapses to a single **Master Tool** entry (now 13
+  items); all home/tools/footer/page links retargeted. The book-scoped Book I & III calculators remain (clearly book-scoped).
+- **Workbench reorganised.** The **🕉 Vedic toggle moved to the top** (right after the figure); **horary moved up** and the
+  "question about house" field removed from the form — the horary card now shows the **general** querent+Moon state by default,
+  with an **in-card house picker** for a specific quesited.
+- **Vedic conclusions & advice** (gap toward #19 in spirit) — `vedic.js` `buildVedicConclusions()` adds a COMPUTED,
+  deterministic interpretive layer (Lagna & lord, strongest/weakest graha, the running daśā, supported/strained bhāvas by
+  Aṣṭakavarga, yogas, the Moon's nakṣatra, and a synthesised conclusion + caveat). Rendered on every Vedic panel & the JSON.
+- **Picatrix Book III & IV** (gaps #11 + #21) — new `data/picatrix-prayers.js`: the seven planetary **prayers** (III.7), the
+  **directional spirits** of the Liber Antimaquis (III.9 — the third spirit system, kept distinct), the **Perfect Nature**
+  (III.6), and a **Book IV** summary (toxic/animal/poison items flagged HISTORICAL-ONLY). New page `picatrix/prayers.html`;
+  the ruling planet of a talisman links to its prayer; a `picatrixPrayer` tool lets the assistant recite/explain it;
+  3 glossary terms + a registry entry. Greer–Warnock translation, cross-checked.
+- **Assistant prompts redesigned** — data-first: the **whole computed reading is sent as JSON** in the prompt. Two presets
+  (🔎 *Interpret & advise — everything together*, a plain cross-system synthesis; 📜 *Codex*, evocative) **plus** the custom
+  "plan a working" box; **every reply has a ⤓ save** (raw → Markdown). The Vedic & prayer tools are available to the agentic loop.
+- **Save simplified** — the GitHub-Gist publish was removed (messy); the report is **downloaded** (JSON/Markdown) and
+  auto-saved on-device.
+
 ---
 
 ## (A) COVERAGE TABLES
@@ -159,12 +181,12 @@ lists and 4 blank fortune-degree signs — both held back on **accuracy** ground
 | **Per-planet correspondences** — suffumigation, colour, metal, stone, spirit-names | ✅ | `data/planetary-magic.js` (7); `picatrix/correspondences.html` (📖 reference render) |
 | **Election engine** (is this moment fit for aim X?) — 11 operations, gating filters, ranking, find-next-window | ✅ | `core/election.js` `electionScore`/`rankNow`/`findNextElection`/`nextAuspiciousTime`/`OPERATIONS`; `picatrix/election.html` |
 | **Talisman recipe** (aim → election → correspondences → mansion/face/star → design → cited steps) | ✅ | `core/talisman.js` `talismanRecipe`/`allRecipes`; `picatrix/talisman.html` (wizard + worked example) |
-| Spirit-name systems | ◑ | **2 of 3** present (Picatrix prayer-angel + Agrippa Angel/Intelligence/Spirit triad). **Picatrix "Mirror" angels** flagged but **not in data** |
+| Spirit-name systems | ✅ | **3 of 3** — Picatrix III.7 prayer-angel + the Picatrix III.9 directional spirits (Liber Antimaquis) + the Agrippa Angel/Intelligence/Spirit triad, kept distinct (`data/picatrix-prayers.js`, `data/planetary-magic.js`) — *2026-06-25* |
 | **Per-mansion talismanic images** (Picatrix I.4) | ⛔ | `lunar-mansions.js` header: "image/spirit/suffumigation to be added in a second pass" — **uses present, images absent** |
 | **Per-planet planetary-image set** (the talisman figures, Picatrix II.22–46, distinct from decan-face images) | 📖/⛔ | described in the talisman step; **not tabled as data** |
-| **Planetary prayers / invocation texts** (Picatrix III.7–9 Sabian prayers) | 📖/⛔ | **angel names only**; prayer texts absent |
-| **The "Perfect Nature"** (Picatrix III.6) | 📖/⛔ | reference-level/absent — gap |
-| **Book IV** — the 12 lunar-sign prayers; incense recipes; natural & alchemical magic | ⛔ | not encoded (framing-sensitive; historical-only if added) |
+| **Planetary prayers / invocation texts** (Picatrix III.7 Sabian prayers) | ✅ | the seven prayers (short cited excerpts + epithets + names) in `data/picatrix-prayers.js`; page `picatrix/prayers.html`; linked from the talisman; `picatrixPrayer` AI tool — historical text only — *2026-06-25* |
+| **The "Perfect Nature"** (Picatrix III.6) | ✅ | the four names + Hermes' account + the rite framing, with the "four spirits vs one/four-powers" ambiguity flagged in-data — *2026-06-25* |
+| **Book IV** — the 12 lunar-sign prayers; incense recipes; natural & alchemical magic | ◑ | a cited **summary** of IV.1–IV.9 (toxic/animal/poison items flagged HISTORICAL-ONLY); the full per-sign liturgies & recipes deliberately not reproduced — *2026-06-25* |
 | Magic squares / kāmeas; planetary seals/sigils | ⛔ | **not present** (note: kāmeas are Agrippa II.22, not strictly Picatrix — flag clearly if added) |
 
 **Picatrix verdict:** the **computable** heart (mansions, faces, Behenian stars, correspondences,
@@ -206,7 +228,7 @@ educational payoff (never predictive worth).
 | 8 | ✅ **DONE (2026-06-25)** — **Vedic glossary terms** folded into the auto-linker | Jyotiṣa | S | Med | Closes the cross-link gap. 20 terms in `glossary.js`, wired to registry |
 | 9 | ✅ **DONE (2026-06-25)** — **Vedic daily/birth remedies** (mantra/japa/deity/yantra/gem; āsana flagged modern; selection algorithmic) | Jyotiṣa | M | Med | The flagged Vedic remedy follow-up; kept historical-described. `data/vedic-remedies.js` + `buildPractice()` |
 | 10 | **Glossary completion (Western/Picatrix)** — Election, Profection, Suffumigation, Behenian, Perfect Nature, the two spirit systems | cross | S | Med | Auto-linking is wired; the terms simply need entries |
-| 11 | **Picatrix Mirror-angel spirit system** (3rd system) into `planetary-magic.js`, kept distinct | Picatrix III | S | Med | Completes "two of three"; pure cited data add |
+| 11 | ✅ **DONE (2026-06-25)** — **Picatrix III.9 directional spirit system** (3rd system, Liber Antimaquis) in `data/picatrix-prayers.js`, kept distinct | Picatrix III | S | Med | Completes "two of three". Done with the prayers module |
 | 12 | **Per-planet planetary-image set** (Picatrix II.22–46) as data, distinct from decan-face images | Picatrix II | M | Med | The talisman *design* note currently has no backing image table |
 | 13 | **Structure / Patterns explorer** page — the modular-partition + planetary-week-theorem (24≡3 mod 7, gcd=1) + antiscia-reflection + aspect-harmonics teaching view | cross | M | Med-High | REVIEW's recommended-first experimental; pure teaching, showcases the unification |
 | 14 | **Falsification demo** page — permute birth time N× over `fullReading`, plot the verdict/dignity null distribution → in-tool, honest-science centre-piece | cross | M | Med-High | The strongest honesty feature; mathematically + rhetorically clean |
@@ -216,7 +238,7 @@ educational payoff (never predictive worth).
 | 18 | **Decumbiture mode** (6th-house illness, critical days) | Lilly II | M | Low-Med | A named early-plan feature; niche |
 | 19 | **Natal topic readers** (wealth/marriage/children/profession/accidents to the 12 houses) | Lilly III | L | Med | Book III's back half; derivable but not surfaced as topic flows |
 | 20 | **Rectification helper** (Trutine of Hermes, Animodar, accidents-based) | Lilly III | L | Low-Med | Completeness; lower demand |
-| 21 | **Picatrix Book IV** (12 lunar-sign prayers, incense recipes) + **Perfect Nature** + **planetary prayer texts** — historical-only | Picatrix III–IV | M | Low-Med | Framing-sensitive; reference-level, describe-never-instruct |
+| 21 | ◑ **MOSTLY DONE (2026-06-25)** — **planetary prayer texts** (III.7) ✅ + **Perfect Nature** (III.6) ✅ + a **Book IV** cited summary ✅; still optional: the full per-sign Book IV liturgies & incense recipes (deliberately not reproduced — framing-sensitive) | Picatrix III–IV | M | Low-Med | Describe-never-instruct; the heart is shipped |
 | 22 | **Magic squares / kāmeas + planetary seals** (flag as Agrippa II.22, not strictly Picatrix) | (Agrippa) | M | Low | Frequently expected by users; clearly label provenance |
 | 23 | **Accuracy finishing** — `accuracy-check` the pitted/azimene/fortune degrees; fill the 4 blank fortune signs; record provenance in-data | Lilly I | S | Med | Closes the only Book I data holes, on the accuracy mandate |
 | 24 | **SVG/PNG export + generalised URL-share across all tools** | cross | S | Low-Med | Mostly done in `app/state.js`/Workbench; sweep the remaining tools |
@@ -243,9 +265,9 @@ Make the existing engine *truer to the texts* before adding surface area.
 
 ### Phase 2 — Picatrix completion *(close the named magic-layer gaps; historical framing throughout)*
 6. **Per-mansion talismanic images** (Picatrix I.4) — gap #5.
-7. **Mirror-angel spirit system** (3rd system) — gap #11.
+7. ✅ **DONE (2026-06-25)** — **Picatrix III.9 directional spirit system** (3rd system) — gap #11.
 8. **Per-planet planetary-image set** (Picatrix II.22–46) — gap #12.
-9. *(Optional, framing-sensitive)* **Perfect Nature**, **planetary prayer texts**, and a sourced selection of **Book IV** lunar prayers — gap #21 (describe-never-instruct; note toxic/illegal historical substances without recommending).
+9. ◑ **MOSTLY DONE (2026-06-25)** — **Perfect Nature** ✅, **planetary prayer texts** ✅, **Book IV** summary ✅ — gap #21 (still optional: the full per-sign Book IV liturgies & incense recipes — describe-never-instruct; toxic/illegal substances flagged, never recommended).
 10. *(Optional, clearly provenance-flagged as Agrippa)* **magic squares / kāmeas + seals** — gap #22.
 
 ### Phase 3 — The mathematician's-lens explainers *(REVIEW R2; teaching + honesty payoff)*

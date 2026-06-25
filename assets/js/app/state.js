@@ -138,30 +138,6 @@ export function readingToMarkdown(reading) {
 }
 function fmtUTC(d) { try { return new Date(d).toISOString().replace('.000Z', 'Z'); } catch { return String(d); } }
 
-// --- Optional: publish a reading to a secret GitHub Gist (browser-direct) ----
-//  A static site has no backend, so the honest way to "send it to GitHub" from
-//  the browser is the GitHub REST API with the user's own token. SILENT — returns
-//  the gist URL, fires no notification. The token never leaves api.github.com.
-export async function publishGist(reading, token, opts = {}) {
-  if (!token) throw new Error('A GitHub token (gist scope) is required.');
-  const filename = opts.filename || 'workbench-reading.json';
-  const body = {
-    description: opts.description || "The Astrologer's Workbench — a computed reading (historical study only).",
-    public: !!opts.public,
-    files: {
-      [filename]: { content: JSON.stringify(reading, null, 2) },
-      'reading.md': { content: readingToMarkdown(reading) },
-    },
-  };
-  const res = await fetch('https://api.github.com/gists', {
-    method: 'POST',
-    headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json', 'X-GitHub-Api-Version': '2022-11-28' },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) throw new Error('GitHub HTTP ' + res.status + ' — ' + (await res.text()).slice(0, 200));
-  return (await res.json()).html_url;
-}
-
 // Download a reading as a Markdown summary.
 export function downloadMarkdown(reading, filename = 'reading.md') {
   downloadText(readingToMarkdown(reading), filename, 'text/markdown;charset=utf-8');

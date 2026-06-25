@@ -21,7 +21,8 @@
 //  only on an explicit click and is wrapped so a failure updates the panel text
 //  rather than throwing a console error (there is no API key in CI).
 // ============================================================================
-import { buildContext, runTool, toAnthropicTools, buildCodexPrompt, buildOperationPrompt, SITE_URLS } from '../core/llm-context.js';
+import { buildContext, runTool, toAnthropicTools, buildCodexPrompt, buildSynthesisPrompt, buildOperationPrompt, dataBlockFor, SITE_URLS } from '../core/llm-context.js';
+import { downloadText } from './state.js';
 
 const ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages';
 const KEY_STORE = 'wb-claude-key';
@@ -82,11 +83,13 @@ function render() {
       <p id="wb-asst-status" class="small muted" style="margin:.4rem 0 0">Paste your key and ask — nothing is sent until you do.</p>
     </fieldset>
 
-    <div class="field-row" style="gap:.4rem;margin:.2rem 0 .5rem;flex-wrap:wrap">
-      <button type="button" class="btn sm" id="wb-asst-codex">📜 Generate the Codex of this Hour</button>
-      <span class="small muted">— a deep Hermetic reading of every computation across <b>both systems</b> (Western + Vedic),
-        the <b>patterns</b> between them, and the day’s practice — grounded in the values above.</span>
+    <div class="field-row" style="gap:.4rem;margin:.2rem 0 .3rem;flex-wrap:wrap">
+      <button type="button" class="btn sm" id="wb-asst-synth">🔎 Interpret &amp; advise — everything, together</button>
+      <button type="button" class="btn sm" id="wb-asst-codex">📜 Codex of this Hour — evocative</button>
     </div>
+    <p class="small muted" style="margin:.1rem 0 .6rem">First <b>compute a reading above</b>; both buttons then send the
+      <b>whole computed reading as JSON</b> so Claude interprets the real figures across <b>both systems</b> (Western + Vedic)
+      and the Picatrix layer — the plain one synthesises &amp; advises, the Codex is image-rich. Each reply has a <b>⤓ save</b> link.</p>
 
     <fieldset style="border:1px solid #2a3350;border-radius:.5rem;padding:.7rem .8rem;margin:.2rem 0 .6rem">
       <legend class="small" style="padding:0 .4rem">Plan a working (agentic)</legend>
@@ -110,6 +113,7 @@ function render() {
       <div id="wb-asst-preview" class="small muted"></div></details>`;
 
   el('wb-asst-model').value = MODELS[0][0];
+  el('wb-asst-synth').addEventListener('click', () => generateSynthesis());
   el('wb-asst-codex').addEventListener('click', () => generateCodex());
   el('wb-asst-plan').addEventListener('click', () => planOperation());
   el('wb-asst-send').addEventListener('click', () => send());
@@ -255,21 +259,43 @@ async function send() {
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
   try {
-    if (el('wb-asst-tools').checked) await claudeToolLoop(messages, system, asstEl);
-    else await claudeStream(messages, system, asstEl);
+    const out = el('wb-asst-tools').checked ? await claudeToolLoop(messages, system, asstEl) : await claudeStream(messages, system, asstEl);
+    addSaveLink(asstEl, out, 'reply');
   } catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
+}
+
+// Append a "⤓ save" link to a finished assistant reply (raw text → .md download).
+function addSaveLink(spanEl, text, name) {
+  if (!spanEl || !text) return;
+  const div = spanEl.closest('div'); if (!div) return;
+  const a = document.createElement('a');
+  a.href = '#'; a.className = 'small'; a.style.marginLeft = '.6rem'; a.textContent = '⤓ save';
+  a.addEventListener('click', e => { e.preventDefault(); downloadText(text, `workbench-${name || 'reply'}.md`, 'text/markdown;charset=utf-8'); });
+  div.appendChild(a);
+}
+
+async function generateSynthesis() {
+  if (!preflight()) return;
+  // Data-first: the reading is already computed; send the WHOLE reading as JSON so
+  // Claude interprets the real figures and synthesises across both systems.
+  const { system } = buildContext(currentReading, { maxFacts: 400 });
+  appendMsg('user', '🔎 Interpret & advise — the whole reading, together (data sent as JSON)');
+  const asstEl = appendMsg('assistant', '…');
+  controller = new AbortController();
+  try { const out = await claudeStream([{ role: 'user', content: buildSynthesisPrompt(currentReading) + dataBlockFor(currentReading) }], system, asstEl, 6144); addSaveLink(asstEl, out, 'interpretation'); }
+  catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
 }
 
 async function generateCodex() {
   if (!preflight()) return;
-  // Embed the WHOLE computed reading (both systems + the daily/birth practice) in
-  // the grounding — the "upload the values with the prompt" path — so the model
-  // interprets the real figures rather than browsing or inventing.
+  // Embed the WHOLE computed reading (both systems + the daily/birth practice) as
+  // JSON in the prompt — the "upload the values with the prompt" path — so the
+  // model interprets the real figures rather than browsing or inventing.
   const { system } = buildContext(currentReading, { maxFacts: 400 });
-  appendMsg('user', '📜 Generate the Codex of this Hour (deep interpretation, both systems)');
+  appendMsg('user', '📜 Codex of this Hour (deep interpretation, both systems; data sent as JSON)');
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
-  try { await claudeStream([{ role: 'user', content: buildCodexPrompt(currentReading) }], system, asstEl, 6144); }
+  try { const out = await claudeStream([{ role: 'user', content: buildCodexPrompt(currentReading) + dataBlockFor(currentReading) }], system, asstEl, 6144); addSaveLink(asstEl, out, 'codex'); }
   catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
 }
 
@@ -280,6 +306,6 @@ async function planOperation() {
   appendMsg('user', '🜔 ' + req);
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
-  try { await claudeToolLoop([{ role: 'user', content: buildOperationPrompt(currentReading, req) }], system, asstEl); }
+  try { const out = await claudeToolLoop([{ role: 'user', content: buildOperationPrompt(currentReading, req) + dataBlockFor(currentReading) }], system, asstEl); addSaveLink(asstEl, out, 'working'); }
   catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
 }

@@ -45,7 +45,6 @@
     </div>
     <div class="field-row" style="margin-top:.8rem">
       <div class="field"><label for="wb-op">Election / talisman aim</label><select id="wb-op"></select></div>
-      <div class="field"><label for="wb-quesited">Horary — question about house</label><select id="wb-quesited"></select></div>
     </div>
     <details id="wb-birth-details" style="margin-top:.8rem">
       <summary class="small"><b>Optional — add a birth moment</b> to include the whole-life trajectory (natal, profections, directions, solar return, personal Picatrix)</summary>
@@ -67,19 +66,11 @@
       <button type="button" class="btn sm" id="wb-print">Print</button>
       <span id="wb-status" class="small muted"></span>
     </div>
-    <details id="wb-publish-details" style="margin-top:.6rem">
-      <summary class="small"><b>Save &amp; publish this reading</b></summary>
+    <details id="wb-saved-details" style="margin-top:.6rem">
+      <summary class="small"><b>Saved readings (on this device)</b></summary>
       <div style="margin-top:.5rem;border-top:1px dashed var(--rule);padding-top:.6rem">
-        <p class="small muted" style="margin:0 0 .5rem">Every reading you compute is <b>auto-saved on this device</b> (listed below; nothing leaves your
-          browser). A static site has no server, so to actually <b>send a copy to GitHub</b> the honest path is a direct,
-          <b>silent</b> call to <code>api.github.com</code> with <b>your own token</b> (gist scope) — it creates a
-          <b>secret Gist</b> and gives you the link. No notifications are sent.</p>
-        <div class="field-row" style="align-items:flex-end;gap:.6rem;flex-wrap:wrap">
-          <div class="field" style="flex:1 1 300px"><label for="wb-gh-token">GitHub token (optional · gist scope)</label>
-            <input id="wb-gh-token" type="password" autocomplete="off" spellcheck="false" placeholder="ghp_…" style="width:100%"></div>
-          <label class="small" style="display:flex;align-items:center;gap:.3rem"><input type="checkbox" id="wb-gh-remember"> remember on this device</label>
-          <button type="button" class="btn sm" id="wb-publish">Publish to a secret Gist</button>
-        </div>
+        <p class="small muted" style="margin:0 0 .5rem">Every reading you compute is <b>auto-saved on this device</b> — nothing leaves your browser. To keep
+          a permanent copy, just <b>Download JSON</b> or <b>Download summary (MD)</b> above: the report is yours to save and share.</p>
         <p id="wb-saved" class="small" style="margin:.6rem 0 0"></p>
       </div>
     </details>
@@ -93,6 +84,15 @@
       <div id="wb-moment" style="flex:1 1 320px;min-width:280px"></div>
     </div></section>
 
+  <!-- The 🕉 Vedic (Jagannath Hora) side-by-side toggle is injected here (before #wb-horary-card), near the top. -->
+
+  <section class="card" id="wb-horary-card"><h2 style="margin-top:0">Book II — horary significators <span class="small muted" id="wb-horary-links"></span></h2>
+    <div class="field-row" style="gap:.5rem;align-items:center;margin:0 0 .5rem">
+      <label class="small" for="wb-horary-house">For a specific question, the house it is about:</label>
+      <select id="wb-horary-house" style="max-width:20rem"></select>
+    </div>
+    <div id="wb-horary"></div></section>
+
   <section class="card"><h2 style="margin-top:0">Book I — the dignity ledger <span class="small muted" id="wb-dignities-links"></span></h2>
     <div id="wb-dignities"></div></section>
 
@@ -104,9 +104,6 @@
 
   <section class="card"><h2 style="margin-top:0">Chart health <span class="small muted" id="wb-cautions-links"></span></h2>
     <div id="wb-cautions"></div></section>
-
-  <section class="card" id="wb-horary-card"><h2 style="margin-top:0">Book II — horary perfection <span class="small muted" id="wb-horary-links"></span></h2>
-    <div id="wb-horary"></div></section>
 
   <section class="card"><h2 style="margin-top:0">Picatrix — election <span class="small muted" id="wb-election-links"></span></h2>
     <div id="wb-election"></div></section>
@@ -137,8 +134,8 @@
 
   <p id="wb-citations" class="small muted" style="margin-top:1rem"></p>
 
-  <p class="small muted">See also the quick <a href="master.html">Unified Master Tool</a> (a subset glance), the
-    <a href="trajectory.html">Life Trajectory</a>, the <a href="now.html">Right-Now</a> dashboard, the
+  <p class="small muted">See also the <a href="trajectory.html">Life Trajectory</a>, the <a href="now.html">Right-Now</a>
+    dashboard, the <a href="vedic/index.html">dedicated Vedic chart</a>, the
     <a href="picatrix/election.html">Election Engine</a> and the <a href="picatrix/talisman.html">Talisman Workshop</a>.</p>
 </main>
 <script type="module">

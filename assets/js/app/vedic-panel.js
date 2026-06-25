@@ -56,6 +56,13 @@ export function renderVedicPanel(body, chart, opts = {}) {
     <p class="small muted">Mantras, vratas, yantras &amp; gems are recorded from the Jyotiṣa / tantra tradition as <b>cultural practice for study, not instruction</b>;
       the <b>graha→āsana map is a modern syncretism</b> (no classical Jyotiṣa basis). Astrology has no demonstrated efficacy.</p>` : '';
 
+  // Conclusions & advice — the computed interpretive synthesis (described, not prescribed)
+  const cc = v.conclusions;
+  const conclusionsHtml = cc ? `
+    <h3 class="small" style="margin:.9rem 0 .2rem">Conclusions &amp; advice <span class="muted small">(how the tradition reads this chart — computed, described not prescribed)</span></h3>
+    ${cc.sections.map(s => `<p class="small"><b>${esc(s.title)}.</b> ${esc(s.text)}</p>`).join('')}
+    <div class="callout science" style="margin:.4rem 0"><span class="label">In sum</span> ${esc(cc.conclusion)}</div>` : '';
+
   body.innerHTML = `
     <p class="small muted">Sidereal (Lahiri ayanāṁśa ${v.ayanamsa}°) · whole-sign houses · modelled on Jagannath Hora.
       A <b>separate system</b> from the Western/tropical chart above — shown for comparison, not as a competing forecast.</p>
@@ -86,6 +93,8 @@ export function renderVedicPanel(body, chart, opts = {}) {
     <p class="small muted">Strongest <b>${esc(sb.strongest)}</b>, weakest <b>${esc(sb.weakest)}</b> (the remedial focus). Ratio ≥ 1× = meets the BPHS minimum.</p>
 
     ${practiceHtml}
+
+    ${conclusionsHtml}
 
     <details style="margin-top:.5rem"><summary class="small">Ṣaḍbala method &amp; sources</summary>
       <p class="small muted">${esc(sb.note)}</p>

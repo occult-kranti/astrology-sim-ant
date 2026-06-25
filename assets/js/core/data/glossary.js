@@ -85,6 +85,9 @@ export const GLOSSARY = [
   { term: 'Planetary Hours', cat: 'Time', def: 'The division of day and night each into twelve unequal hours, ruled by the planets in the Chaldean order, beginning at sunrise with the lord of the weekday.', see: 'pages/book1/planetary-hours.html' },
   { term: 'Chaldean Order', cat: 'Time', def: 'The planets from slowest to fastest: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon — the order of the planetary hours and the faces.' },
   { term: 'Lunar Mansions', cat: 'Magic', def: 'The 28 divisions of the Moon’s monthly path (≈12°51′ each), each with its own magical virtues — central to electional and Picatrix magic.' },
+  { term: 'Planetary Prayer (Picatrix)', cat: 'Magic', def: 'The seven invocations of Picatrix III.7 — a Sabian/Harranian rite addressing each planet by its epithets and names in several tongues. Historical text recorded for study, never prescribed.', see: 'pages/picatrix/prayers.html' },
+  { term: 'Planetary Spirits (Picatrix)', cat: 'Magic', def: 'The Picatrix III.9 spirit-names (from the Liber Antimaquis): a master spirit per planet plus six directional spirits and a spirit of its motion. Kept distinct from the III.7 prayer-angels and the Agrippa Angel/Intelligence/Spirit triad. Historical doctrine only.', see: 'pages/picatrix/prayers.html' },
+  { term: 'Perfect Nature', cat: 'Magic', def: 'Al-Ṭibāʿ al-Tāmm (Picatrix III.6) — the practitioner’s personal celestial guardian or genius, linked to the planet ruling his nativity; invoked by four names (Meegius, Betzahuech, Vacdez, Nufeneguediz). The closest medieval analogue to the later "Holy Guardian Angel." Historical doctrine only.', see: 'pages/picatrix/prayers.html' },
 
   // — Houses systems —
   { term: 'Regiomontanus', cat: 'Houses', def: "The quadrant house system Lilly used, dividing the celestial equator into equal arcs. This site's default.", see: 'pages/about/index.html#debates' },

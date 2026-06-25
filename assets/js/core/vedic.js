@@ -369,6 +369,80 @@ function detectYogas(grahas) {
 }
 
 // ---------------------------------------------------------------------------
+//  buildVedicConclusions(v) — a COMPUTED, described-not-prescribed interpretive
+//  layer. Pure deterministic templates filled from the reading `v` (NO LLM).
+//  Turns the numbers into the tradition's own language, BPHS-cited, then closes
+//  with the honest caveat. Astrology has no demonstrated predictive validity;
+//  this DESCRIBES how Jyotiṣa reads a chart — it never prescribes or forecasts.
+// ---------------------------------------------------------------------------
+// GRAHA → one-line significance (kāraka role). Source: BPHS — graha kāraka.
+const GRAHA_SIGNIFICANCE = {
+  Sun:     { sig: 'the soul, father, authority and vitality',        verb: 'self-expression, confidence and standing' },
+  Moon:    { sig: 'the mind, mother, emotion and the public',        verb: 'mental ease, receptivity and rapport' },
+  Mars:    { sig: 'energy, courage, siblings and conflict',          verb: 'drive, initiative and the capacity to act' },
+  Mercury: { sig: 'intellect, speech, commerce and learning',        verb: 'reasoning, communication and skill' },
+  Jupiter: { sig: 'wisdom, children, wealth and dharma',             verb: 'growth, faith, guidance and good fortune' },
+  Venus:   { sig: 'love, marriage, art and pleasure',                verb: 'harmony, affection and refinement' },
+  Saturn:  { sig: 'discipline, longevity, labour and delay',         verb: 'endurance, structure and patient effort' },
+  Rahu:    { sig: 'obsession, foreignness, illusion and sudden rise', verb: 'ambition and unconventional reach' },
+  Ketu:    { sig: 'detachment, the past, and mokṣa',                  verb: 'withdrawal, insight and letting-go' },
+};
+// BHĀVA (1..12) → life-area (Parāśarī bhāvādhyāya). Source: BPHS.
+const BHAVA_LIFE_AREA = [
+  { n: 1, name: 'Tanu (body/self)', area: 'the self, body, vitality and overall life-direction' },
+  { n: 2, name: 'Dhana (wealth)', area: 'wealth, family, speech and accumulated resources' },
+  { n: 3, name: 'Sahaja (siblings)', area: 'courage, siblings, effort and skill of hand' },
+  { n: 4, name: 'Sukha (home/heart)', area: 'home, mother, land, vehicles and inner contentment' },
+  { n: 5, name: 'Putra (children/mind)', area: 'children, intelligence, creativity and past merit' },
+  { n: 6, name: 'Ari (adversity)', area: 'illness, debt, enemies and daily obstacles overcome' },
+  { n: 7, name: 'Yuvati (partnership)', area: 'marriage, the spouse and open dealings with others' },
+  { n: 8, name: 'Randhra (transformation)', area: 'longevity, upheaval, the hidden, inheritance and the occult' },
+  { n: 9, name: 'Dharma (fortune)', area: 'fortune, the father, dharma, the guru and higher learning' },
+  { n: 10, name: 'Karma (career)', area: 'career, status, public action and one’s work in the world' },
+  { n: 11, name: 'Lābha (gains)', area: 'gains, income, networks and fulfilled desires' },
+  { n: 12, name: 'Vyaya (loss/release)', area: 'expenditure, loss, foreign lands, seclusion and mokṣa' },
+];
+const ELEMENT_NATURE = { Fire: 'ardent and self-driving', Earth: 'grounded and practical', Air: 'communicative and relational', Water: 'feeling and receptive' };
+const MODE_NATURE = { Movable: 'initiating and restless', Fixed: 'steady and persevering', Dual: 'adaptable and dual-natured' };
+const ORD12 = ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+const ordinal = n => ORD12[n] || `${n}th`;
+
+export function buildVedicConclusions(v) {
+  const sections = [], g = v.grahas;
+  // (a) Lagna & its lord
+  const lr = v.lagna.lord, lrG = g[lr], lagRashi = RASHIS[v.lagna.rashiIndex];
+  const rashiNature = `${ELEMENT_NATURE[lagRashi.element]}, ${MODE_NATURE[lagRashi.mode]}`;
+  const lordBhava = BHAVA_LIFE_AREA[lrG.house - 1];
+  const dignityClause = d => d.state === 'Neutral' ? '' : d.state === 'Debilitated' ? ', and there weakened (debilitated)' : `, and there well-placed (${d.state.toLowerCase()})`;
+  sections.push({ title: 'The Lagna and its lord', text: `The Lagna is ${v.lagna.rashi} (${v.lagna.sanskrit}) — a ${rashiNature} sign — rising in nakṣatra ${v.lagna.nakshatra.name}, so the chart's temperament and body are read through ${lr}, its lord. ${lr} sits in the ${ordinal(lrG.house)} bhāva (${lordBhava.name}: ${lordBhava.area})${dignityClause(lrG.dignity)}, turning the life's main emphasis toward ${lordBhava.area.split(',')[0]}. (BPHS — the Lagna as the chart's foundation; its lord's bhāva colours the whole life.)` });
+  // (b) Strongest & weakest graha by Ṣaḍbala
+  const sb = v.shadbala, st = sb.strongest, wk = sb.weakest, sS = sb.perGraha[st], sW = sb.perGraha[wk];
+  const weakNuance = sW.kashta > sW.ishta ? ' Its Kaṣṭa exceeds its Iṣṭa — the classic profile of a graha the texts single out for propitiation.' : ' Even so its Iṣṭa is not eclipsed.';
+  sections.push({ title: 'Strength of the grahas (Ṣaḍbala)', text: `By the six-fold Ṣaḍbala the strongest graha is ${st} (${sS.ratio}× its required strength; Iṣṭa ${sS.ishta} vs Kaṣṭa ${sS.kashta}), so ${GRAHA_SIGNIFICANCE[st].sig} are expressed most freely — a capacity for ${GRAHA_SIGNIFICANCE[st].verb}. The weakest is ${wk} (${sW.ratio}× required; Iṣṭa ${sW.ishta} vs Kaṣṭa ${sW.kashta}) — governing ${GRAHA_SIGNIFICANCE[wk].sig} — the graha the remedial tradition would seek to strengthen.${weakNuance} (BPHS Ch. 27 — required minimums; Iṣṭa = benefic yield, Kaṣṭa its difficult counterpart.)` });
+  // (c) Running Vimśottarī mahā / antar daśā
+  const mh = v.vimshottari.currentMaha, an = v.vimshottari.currentAntar;
+  const antarClause = an ? `, presently sub-coloured by the ${an} antardaśā (${GRAHA_SIGNIFICANCE[an].sig})` : '';
+  const antarNuance = (an && an !== mh) ? `The antara lord is the near-term tone within the mahā's larger arc — here, ${GRAHA_SIGNIFICANCE[mh].verb} inflected by ${GRAHA_SIGNIFICANCE[an].verb}.` : `The mahā lord also runs its own antara, doubling its emphasis.`;
+  sections.push({ title: 'The current daśā period', text: `The running mahādaśā is ${mh} (the sequence balanced from the Moon in ${v.vimshottari.nakshatra.name}), so the tradition reads this long chapter of life through ${mh}'s themes — ${GRAHA_SIGNIFICANCE[mh].sig}${antarClause}. ${antarNuance} (BPHS — the Vimśottarī daśā unfolds the kāraka of the period-lord.)` });
+  // (d) Aṣṭakavarga by bhāva
+  const bhavaSav = [];
+  for (let n = 1; n <= 12; n++) { const si = (v.lagna.rashiIndex + n - 1) % 12; bhavaSav.push({ n, bindus: v.ashtakavarga.sav[si] }); }
+  const top = bhavaSav.reduce((a, b) => (b.bindus > a.bindus ? b : a)), low = bhavaSav.reduce((a, b) => (b.bindus < a.bindus ? b : a));
+  const topArea = BHAVA_LIFE_AREA[top.n - 1], lowArea = BHAVA_LIFE_AREA[low.n - 1];
+  sections.push({ title: 'Aṣṭakavarga — the supported & the strained bhāvas', text: top.n === low.n ? `The Sarvāṣṭakavarga is unusually even across the bhāvas (around the per-bhāva mean of 28); no single area stands out. (BPHS Ch. 66–67.)` : `Reckoning the Sarvāṣṭakavarga by bhāva from the Lagna, the best-supported is the ${ordinal(top.n)} (${topArea.name}, ${top.bindus} bindus — above the mean of 28), favouring ${topArea.area}. The least-supported is the ${ordinal(low.n)} (${lowArea.name}, ${low.bindus} bindus), the area the tradition reads as needing most care: ${lowArea.area}. (BPHS Ch. 66–67 — the SAV grades each bhāva; 28 is the per-bhāva mean.)` });
+  // (e) Present yogas
+  const present = (v.yogas || []).filter(y => y.present);
+  sections.push({ title: 'Yogas present in the chart', text: present.length ? `The chart shows ${present.length === 1 ? 'one classical yoga' : present.length + ' classical yogas'}: ${present.map(y => `${y.name} — ${y.detail}`).join('; ')} (named planetary combinations of classical Jyotiṣa / BPHS).` : `None of the yogas this engine checks (Gajakesarī, Budha-Āditya, Candra-Maṅgala, Kemadruma) are formed in this chart.`, yogas: present.map(y => ({ name: y.name, detail: y.detail })) });
+  // (f) Birth Moon's nakṣatra
+  const mn = g.Moon.nakshatra, nakInfo = NAKSHATRA_INFO[mn.num - 1] || {};
+  sections.push({ title: 'The mind — the Moon’s nakṣatra', text: `The Moon — kāraka of the mind (manas), mother and emotion — lies in ${mn.name} (pada ${mn.pada}), whose devatā is ${nakInfo.deity || mn.deity}. The tradition reads the native's instinctive mind through this mansion's theme: ${nakInfo.significance || ''} (TS 4.4.10 nakṣatra-devatā list as carried in BPHS; the Moon as kāraka of manas.)`.trim() });
+  // (g) Final honest conclusion
+  const dashaLabel = (an && an !== mh) ? `${mh}–${an}` : mh;
+  const conclusion = `Drawing the threads together: this chart's native strength lies with ${st} (${GRAHA_SIGNIFICANCE[st].sig}); it is presently living its ${dashaLabel} daśā (${GRAHA_SIGNIFICANCE[mh].sig}); and the tradition's remedial attention would fall on ${wk} as the weakest significator (${GRAHA_SIGNIFICANCE[wk].sig}). Read in the tradition's own terms, the emphasis is on ${GRAHA_SIGNIFICANCE[st].verb} carried through a period of ${GRAHA_SIGNIFICANCE[mh].verb}. However — and this is essential — Vedic astrology, like all astrology, has no demonstrated predictive validity. Everything above is a faithful reconstruction of how the Jyotiṣa tradition DESCRIBES a chart, offered for study and cultural interest. It is described, never prescribed: nothing here forecasts your life, and no decision should rest on it.`;
+  return { sections, conclusion };
+}
+
+// ---------------------------------------------------------------------------
 //  castVedic(chart, opts) — the composed sidereal reading. `chart` is a
 //  tropical castChart result. opts.currentDate selects the running daśā
 //  (default = the chart moment). Never throws for a normal chart.
@@ -429,7 +503,7 @@ export function castVedic(chart, opts = {}) {
     'Modelled on Jagannath Hora (P.V.R. Narasimha Rao); whole-sign houses; mean nodes for Rāhu/Ketu.',
   ];
 
-  return {
+  const out = {
     system: 'vedic', ayanamsa: +ayanamsa.toFixed(4), ayanamsaName: 'Lahiri (Citrāpakṣa)',
     lagna: { lon: lagnaLon, label: fmtSid(lagnaLon), rashiIndex: lagnaR.index, rashi: lagnaR.name, sanskrit: lagnaR.sanskrit, lord: lagnaR.lord, deg: lagnaR.deg, nakshatra: nakshatraOf(lagnaLon) },
     grahas, panchanga: pancha, vimshottari: dasha, vargas,
@@ -437,4 +511,7 @@ export function castVedic(chart, opts = {}) {
     citations,
     notes: 'Lahiri ayanāṁśa; whole-sign houses; Rāhu/Ketu from the mean node; full six-fold Ṣaḍbala (with documented JHora simplifications). JHora-modelled.',
   };
+  // computed interpretive conclusions & advice (deterministic, described-not-prescribed)
+  try { out.conclusions = buildVedicConclusions(out); } catch { out.conclusions = null; }
+  return out;
 }

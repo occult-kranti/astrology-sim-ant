@@ -46,7 +46,7 @@ export const REGISTRY = [
     callable: true,
     book: 'Book I', chapter: 'CA Bk I — erecting the figure',
     citation: 'Lilly, Christian Astrology Bk I; positions from astronomy-engine (~1 arc-minute).',
-    pages: ['pages/master.html', 'pages/book1/master.html'], howItWorks: 'pages/how-it-works.html',
+    pages: ['pages/workbench.html', 'pages/book1/master.html'], howItWorks: 'pages/how-it-works.html',
     glossaryTerms: ['Ascendant', 'Midheaven (Medium Coeli, MC)', 'Regiomontanus'],
   },
   {
@@ -62,7 +62,7 @@ export const REGISTRY = [
     callable: true,
     book: 'Book I', chapter: 'CA Bk I, pp.101-116',
     citation: 'Lilly, Christian Astrology Bk I — essential dignity & debility.',
-    pages: ['pages/book1/dignities.html', 'pages/master.html'], howItWorks: HIW('dignity'),
+    pages: ['pages/book1/dignities.html', 'pages/workbench.html'], howItWorks: HIW('dignity'),
     glossaryTerms: ['Essential Dignity', 'Domicile (House)', 'Exaltation', 'Triplicity', 'Term (Bound)', 'Face (Decan)', 'Detriment', 'Fall', 'Peregrine', 'Dispositor'],
   },
   {
@@ -77,7 +77,7 @@ export const REGISTRY = [
     callable: false,
     book: 'Book I', chapter: 'CA Bk I — accidental fortitudes',
     citation: 'Lilly, Christian Astrology Bk I — accidental dignity & debility.',
-    pages: ['pages/book1/dignities.html', 'pages/master.html'], howItWorks: HIW('accidental'),
+    pages: ['pages/book1/dignities.html', 'pages/workbench.html'], howItWorks: HIW('accidental'),
     glossaryTerms: ['Accidental Dignity', 'Retrograde', 'Combust', 'Cazimi', 'Under the Sunbeams', 'Besieged'],
   },
   {
@@ -107,7 +107,7 @@ export const REGISTRY = [
     callable: false,
     book: 'Book II', chapter: 'CA Bk II — considerations before judgement',
     citation: 'Lilly, Christian Astrology Bk II — the considerations before judgement & the Moon’s condition.',
-    pages: ['pages/master.html', 'pages/now.html'], howItWorks: HIW('accidental'),
+    pages: ['pages/workbench.html', 'pages/now.html'], howItWorks: HIW('accidental'),
     glossaryTerms: ['Verdict (green / amber / red)', 'Considerations before Judgement', 'Void of Course', 'Via Combusta'],
   },
   {
@@ -139,7 +139,7 @@ export const REGISTRY = [
     callable: false,
     book: 'Book I', chapter: 'CA Bk I — the Part of Fortune',
     citation: 'Lilly, Christian Astrology Bk I — the Part of Fortune; the Arabic Parts.',
-    pages: ['pages/book1/master.html', 'pages/master.html'], howItWorks: HIW('fortune'),
+    pages: ['pages/book1/master.html', 'pages/workbench.html'], howItWorks: HIW('fortune'),
     glossaryTerms: ['Part of Fortune (⊕)', 'Antiscion'],
   },
   {
@@ -357,11 +357,11 @@ export const REGISTRY = [
       { name: 'chart', type: 'object', desc: 'a castChart result', required: true },
       { name: 'opts', type: 'object', desc: '{ operationKey?, quesitedHouse?, birth? }' },
     ],
-    outputShape: '{ meta, moment, dignities, aspects, lots, cautions, horary, election, talisman, natal, citations }',
+    outputShape: '{ meta, moment, dignities, aspects, lots, cautions, horary, election, talisman, natal, vedic, citations }',
     callable: false,
     book: 'all', chapter: 'the unified spine',
     citation: 'Composes Lilly Bk I–III and the Picatrix into one reading; every block carries its own citations.',
-    pages: ['pages/master.html'], howItWorks: 'pages/how-it-works.html',
+    pages: ['pages/workbench.html'], howItWorks: 'pages/how-it-works.html',
     glossaryTerms: [],
   },
   {
@@ -379,6 +379,19 @@ export const REGISTRY = [
     citation: 'Parāśara, Bṛhat Parāśara Horā Śāstra; P.V.R. Narasimha Rao, Vedic Astrology (Jagannath Hora).',
     pages: ['pages/vedic/index.html'], howItWorks: 'pages/vedic/index.html',
     glossaryTerms: ['Sidereal Zodiac', 'Ayanāṁśa', 'Lagna', 'Graha', 'Nakṣatra', 'Vimśottarī Daśā', 'Pañcāṅga', 'Varga', 'Navāṁśa', 'Aṣṭakavarga', 'Ṣaḍbala', 'Bhāva', 'Kāraka', 'Bīja Mantra', 'Yantra'],
+  },
+  {
+    id: 'picatrix-prayers', title: 'Picatrix prayers, spirits & the Perfect Nature (Bk III–IV)',
+    module: 'assets/js/core/data/picatrix-prayers.js', exportName: 'prayerFor',
+    exports: ['prayerFor'],
+    computes: 'Reference: the Picatrix Book III/IV historical material — the seven planetary prayers (III.7), the directional planetary spirits of the Liber Antimaquis (III.9), the Perfect Nature (III.6) and a Book IV summary. The ruling planet of an election/talisman links to its prayer; the assistant can recite/explain it via the picatrixPrayer tool. Historical text, described — never prescribed.',
+    inputs: [{ name: 'planet', type: 'string', desc: 'one of the 7 planets', required: true }],
+    outputShape: '{ prayerExcerpt, address, names, prayerAngel, spirit, citation, flag? }',
+    callable: false,
+    book: 'Picatrix', chapter: 'Bk III.6–III.9 & Bk IV',
+    citation: 'Picatrix (Ghāyat al-Ḥakīm) III.6–9 & IV; Greer–Warnock translation, cross-checked Attrell–Porreca & Atallah/Kiesel.',
+    pages: ['pages/picatrix/prayers.html'], howItWorks: 'pages/picatrix/prayers.html',
+    glossaryTerms: ['Planetary Prayer (Picatrix)', 'Planetary Spirits (Picatrix)', 'Perfect Nature'],
   },
 ];
 

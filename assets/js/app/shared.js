@@ -15,8 +15,7 @@ import { attachGeolocate } from './location.js';
 const NAV = [
   ['index.html', 'Home', 'home'],
   ['pages/now.html', 'Now', 'now'],
-  ['pages/workbench.html', 'Workbench', 'workbench'],
-  ['pages/master.html', 'Master', 'master'],
+  ['pages/workbench.html', 'Master Tool', 'workbench'],
   ['pages/trajectory.html', 'Trajectory', 'trajectory'],
   ['pages/workflow.html', 'Workflow', 'workflow'],
   ['pages/book1/index.html', 'Book I', 'book1'],
@@ -102,8 +101,7 @@ export function mountChrome(activeKey = '') {
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
-        <li><a href="${R('pages/workbench.html')}">The Workbench — everything, with a local model</a></li>
-        <li><a href="${R('pages/master.html')}">Unified Master Tool</a></li>
+        <li><a href="${R('pages/workbench.html')}">The Master Tool (Workbench) — every calculation in one place</a></li>
         <li><a href="${R('pages/trajectory.html')}">Life Trajectory (birth chart anywhere)</a></li>
         <li><a href="${R('pages/now.html')}">Right Now — live sky</a></li>
         <li><a href="${R('pages/picatrix/election.html')}">Election — choose the moment</a></li>
