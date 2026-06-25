@@ -223,3 +223,60 @@ Rule of thumb: **a page never ships before the data/engine it renders is headles
 - **Scope creep / "perfect chart"** → election ranks, never demands perfection; phases gated.
 - **Browser drift** → `verify-site` pins the puppeteer Chromium path + apt libs.
 - **Honest-science integrity** → disclaimers stay; magic is framed historically throughout.
+
+---
+
+## STATUS (as built) — Phases 0–2 complete
+- **Phase 0** ✅ reconcile/preserve/skills. **Phase 1** ✅ Picatrix data + reference pages.
+- **Phase 2A/2B** ✅ Election Engine + Election tool + Right-Now (best-vs-least). **Phase 2C** ✅
+  natal engine (profections/hyleg/directions/solar-return) + Book III Master + Unified Master Tool.
+- Linking done incrementally (nav/footer/hubs). See `COVERAGE.md` for the full audit.
+- **Remaining:** Phase T (talisman workflow — next), Phase 4 (live worked examples), Phase 3 polish
+  (a11y/print/share/export), accuracy finishing (flagged degrees, mansion images).
+
+---
+
+## PHASE T — The Talisman track (next)
+**Goal:** turn the reference + election layers into a **guided, step-by-step talisman workflow**
+that ends in a concrete, historically-sourced **recipe card** — presented strictly as the history
+of a practice (described, never prescribed; toxic/illegal historical materials noted, not advised).
+
+### T1 — `core/talisman.js` (pure, cited, headless-tested)
+`talismanRecipe(chart, operationKey)` assembles, from engines already built:
+- the **aim** and its ruling planet (`election.OPERATIONS`);
+- the **election verdict** for this moment (`electionScore`) + the next best window (`findNextElection`);
+- the planet's **correspondences** — suffumigation, colour, metal, stone, spirits (`planetary-magic`);
+- the **Moon's mansion** + its use (`lunar-mansions`), the **decan face** + image (`decan-faces`),
+  any **Behenian star** contact (`behenian-stars`);
+- a **design note** (what figure/seal the tradition engraves) and the **timing** (planet's day & hour).
+Returns `{ aim, planet, when, verdict, window, materials{…}, mansion, face, stars, design, steps[], citations[] }`.
+**Check:** headless test — recipe has all sections, every section carries a citation, steps non-empty.
+
+### T2 — `pages/picatrix/talisman.html` (+ `app/talisman.js`)
+A wizard: **(1)** choose an aim → **(2)** confirm/he­lp-find the elected moment (reuses the Election
+Engine + "find next window") → **(3)** the assembled **recipe card** (the end result): materials,
+timing, mansion/face/star, design, and the numbered ritual steps, each cited, with the disclaimer.
+"Print / save" the card (ties into Phase 3 export).
+**Check:** `verify-site`; the card renders live for every aim; deep-links from Right-Now/Election.
+
+### T3 — Worked example baked into the page (and `book2/examples`-style)
+Ship one fully worked example as the default render + a static narrative:
+
+> **Worked example — "A talisman of Venus for concord & friendship"**
+> 1. **Aim:** love/concord → ruler **Venus** (Picatrix III, Venus).
+> 2. **Elect the moment:** wait for the **day & hour of Venus**, the **Moon waxing** and **swift**,
+>    **not** void-of-course and **not** in the via combusta (Spica exempt); Venus dignified and free of
+>    Mars/Saturn; a benefic on an angle. The engine scans the next 72 h and returns the best window.
+> 3. **Mansion/face/star:** prefer a **mansion of love/concord** (e.g. Mansion 13, *Al Awwa*); the
+>    **decan face** ruled by Venus; **Spica** or **Sirius** conjunct Venus or the Moon if available.
+> 4. **Materials (historical):** suffumigation of **aloes, musk & roses**; colour **white/green**;
+>    metal **copper**; stone **emerald**; spirit names kept in their distinct systems
+>    (Picatrix prayer-angel *Beyteyl*; Agrippa Angel **Haniel** / Intelligence **Hagiel** / Spirit **Kedemel**).
+> 5. **Design:** engrave the image of Venus per Agrippa/Picatrix at the elected hour.
+> **End result — the recipe card:** *"Venus talisman for concord — cast [elected date/time, place];
+> Venus in [sign/dignity], Moon waxing in Mansion 13; copper, emerald, white garment, rose suffumigation;
+> Haniel/Hagiel/Kedemel. Verdict: green."* (All historical; not a recommendation.)
+
+**Check:** the example recomputes live (no hard-coded chart); numbers self-consistent with the Election tool.
+
+### Phase-T exit: a maker can follow aim → election → materials → design → a cited recipe card, end to end.

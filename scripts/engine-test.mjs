@@ -136,5 +136,18 @@ const dirs = directionsToAngles(natal, { maxYears: 90 });
 ok(Array.isArray(dirs) && dirs.every((d, i) => i === 0 || dirs[i - 1].years <= d.years) && dirs.every(d => d.years <= 90),
    'directionsToAngles sorted ascending, all <= 90yr');
 
+// --- Talisman workflow (Phase T) -------------------------------------------
+import { talismanRecipe, allRecipes, TALISMAN_DISCLAIMER } from '../assets/js/core/talisman.js';
+const rec = talismanRecipe(eChart, 'love');
+ok(rec.aim && rec.planet === 'Venus', 'recipe: love -> Venus');
+ok(rec.materials && rec.materials.suffumigation && rec.materials.metal && rec.materials.stone, 'recipe has materials (suffumigation/metal/stone)');
+ok(rec.materials.spirits && rec.materials.spirits.agrippa && rec.materials.spirits.agrippa.angel === 'Haniel', 'recipe spirits: Venus Agrippa angel Haniel');
+ok(rec.moon && rec.moon.mansion && rec.moon.mansion.num >= 1, 'recipe reports the Moon mansion');
+ok(Array.isArray(rec.steps) && rec.steps.length >= 6 && rec.steps.every(s => s.text && s.cite), 'recipe has >=6 cited steps');
+ok(Array.isArray(rec.citations) && rec.citations.length > 0, 'recipe collects citations');
+ok(['green','amber','red'].includes(rec.verdict), 'recipe carries an election verdict');
+ok(typeof TALISMAN_DISCLAIMER === 'string' && /historical/i.test(TALISMAN_DISCLAIMER), 'talisman disclaimer present');
+ok(allRecipes(eChart).length === OPERATIONS.length, 'allRecipes covers every operation');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

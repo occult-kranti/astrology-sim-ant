@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talisman Workflow — Picatrix | Christian Astrology</title>
+<meta name="description" content="A guided, step-by-step talisman workflow: choose an aim, elect the moment, gather the historical correspondences (suffumigation, colour, metal, stone, spirits), set the Moon's mansion and the decan image, and read the end-result recipe card — presented strictly as the history of a practice.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Talisman Workflow</p>
+  <h1>The Talisman Workflow</h1>
+  <p class="lede">Choose an aim and a moment; this guided flow <b>elects the time</b>, gathers the
+    <b>historical correspondences</b>, sets the <b>Moon's mansion</b> and the <b>decan image</b>, and assembles the
+    numbered ritual steps into an end-result <b>recipe card</b> — every line cited, all computed on the
+    <a href="../about/index.html">verified engine</a>.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    This is presented strictly as a <b>historical and cultural artefact</b> — the documented practice of medieval
+    and Renaissance magicians — <em>described, not prescribed</em>. Talismanic magic has no demonstrated efficacy;
+    some historical recipes name materials that are toxic or illegal and are recorded for study only, never as
+    instruction. See <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <h2>1 — Choose the aim &amp; the moment</h2>
+  <form id="t-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 220px"><label for="t-op">Aim</label><select id="t-op"></select></div>
+      <div class="field" style="flex:1 1 200px"><label for="t-city">Place</label><select id="t-city"></select></div>
+      <div class="field"><label for="t-lat">Lat °N</label><input id="t-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="t-lon">Lon °E</label><input id="t-lon" type="number" step="0.0001" style="width:7rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="t-date">Date</label><input id="t-date" type="date"></div>
+      <div class="field"><label for="t-time">Time (local)</label><input id="t-time" type="time"></div>
+      <div class="field"><label for="t-offset">UTC offset</label><input id="t-offset" type="number" step="0.5" style="width:6rem"></div>
+      <button type="button" class="btn sm" id="t-now">Now</button>
+      <button type="submit" class="btn">Build the recipe</button>
+    </div>
+  </form>
+
+  <h2>2 — The working, step by step</h2>
+  <div id="t-steps"></div>
+
+  <h2>3 — The end result</h2>
+  <div id="t-card"></div>
+
+  <h2>A worked example — a Venus talisman for concord</h2>
+  <p>The classic illustration: a talisman of <b>Venus</b> for <b>love &amp; concord</b> (Picatrix III, Venus).</p>
+  <ol class="steps">
+    <li><b>Aim &amp; planet:</b> concord → Venus.</li>
+    <li><b>Elect the time:</b> the day <em>and</em> hour of Venus, the Moon <b>waxing</b> and <b>swift</b>, not
+      void-of-course and not in the via combusta (Spica exempt), Venus dignified and free of Mars/Saturn, a benefic
+      on an angle. The engine scans the next 72 hours and returns the best window.</li>
+    <li><b>Set the Moon:</b> prefer a mansion of love/concord (e.g. Mansion 13, <i>Al Awwa</i>); a decan face of
+      Venus; Spica or Sirius conjunct Venus or the Moon if available.</li>
+    <li><b>Materials (historical):</b> suffumigation of aloes, mastic &amp; roses; colour white; metal copper;
+      stone emerald.</li>
+    <li><b>Powers (kept distinct):</b> Picatrix prayer-angel <i>Beyteyl</i>; Agrippa Angel <b>Haniel</b>,
+      Intelligence <b>Hagiel</b>, Spirit <b>Kedemel</b>.</li>
+    <li><b>Design:</b> engrave the image of Venus in copper at the elected hour.</li>
+  </ol>
+  <p class="small muted">Select “Love &amp; concord” above and press <b>Build the recipe</b> to see this computed live
+    for your own time and place — the recipe card is the end result. Drill into the timing with the
+    <a href="election.html">Election Engine</a> or watch it live on <a href="../now.html">Right Now</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  mountChrome('picatrix');
+  import { initTalisman } from '../../assets/js/app/talisman.js';
+  initTalisman();
+</script>
+</body>
+</html>
