@@ -188,3 +188,10 @@ ul.clean li { padding: .15rem 0; }
   background: var(--gold); color: #2a2008; border-radius: 50%; display: grid; place-items: center;
   font-family: var(--sans); font-weight: 700; font-size: .9rem; }
 .steps { counter-reset: step; }
+
+/* ---- Auto-linked glossary terms ---- */
+.gloss-link { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--gold); cursor: help; }
+.gloss-link:hover { color: var(--link); border-bottom-color: var(--link); background: #fbf2dd; }
+.gloss-card { scroll-margin-top: 80px; }
+.gloss-card.target { box-shadow: 0 0 0 2px var(--gold); animation: glosshi 2.4s ease; }
+@keyframes glosshi { 0%, 45% { background: #fbeec2; } 100% { background: var(--card); } }

@@ -7,6 +7,7 @@ import { allAspects, aspectBetween, mutualReception } from '../core/aspects.js';
 import { renderChart } from '../core/chart.js';
 import { planetaryHour } from '../core/planetary-hours.js';
 import { considerations } from '../core/considerations.js';
+import { modesOfPerfection, timeToPerfection } from '../core/perfection.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
 import { HOUSES } from '../core/data/houses.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
@@ -134,6 +135,27 @@ function compute() {
       ruled by <b>${lordQ}</b> ${PLANET_GLYPHS[lordQ]} at ${formatLon(quesitedSig.lon)} in the ${quesitedSig.house}th.</p>
     <p>${perfection}${recep}</p>
     <p>${moonNext}</p>`;
+
+  // --- modes of perfection & timing ---
+  const modes = modesOfPerfection(chart, lordAsc, lordQ, l => dignityRulersAt(l, isDay));
+  const mLines = [];
+  if (lordAsc === lordQ) mLines.push('Querent and quesited share one significator — a strong, often affirmative, direct testimony.');
+  if (modes.direct) {
+    const dir = modes.direct;
+    mLines.push(`<b>Direct ${dir.aspect.toLowerCase()}</b> ${dir.glyph} of the significators — <span class="${dir.applying ? 'pos' : 'muted'}">${dir.applying ? 'applying, so the matter perfects' : 'separating, so it is past or denied'}</span> (orb ${dir.orb.toFixed(1)}°).`);
+    if (dir.applying) {
+      const t = timeToPerfection(dir.orb, querentSig.lon, querentSig.house);
+      mLines.push(`<b>Timing</b>: from ${dir.orb.toFixed(1)}° to perfection, the significator being in a ${t.mode.toLowerCase()} sign in an ${t.house.toLowerCase()} house → <b>${t.text}</b> <span class="muted">(Lilly proportions a mean; treat as an estimate).</span>`);
+    }
+  }
+  if (modes.translation) mLines.push(`<b>Translation of light</b>: ${PLANET_GLYPHS[modes.translation.carrier]} ${modes.translation.carrier} carries light from ${modes.translation.from} to ${modes.translation.to} — a third party brings the matter about.`);
+  if (modes.collection) mLines.push(`<b>Collection of light</b>: ${PLANET_GLYPHS[modes.collection.collector]} ${modes.collection.collector} collects both significators${modes.collection.received ? ' and receives them in its dignities' : ''} — perfection by a weightier third party.`);
+  if (modes.reception) mLines.push(`<b>Reception</b>: ${modes.reception.mutual ? 'mutual reception' : 'one-way reception'} between the significators — eases the matter, even through a hard aspect.`);
+  if (modes.prohibition) mLines.push(`<span class="neg"><b>Prohibition</b></span>: ${PLANET_GLYPHS[modes.prohibition.planet]} ${modes.prohibition.planet} perfects with ${modes.prohibition.target} first — the matter may be hindered.`);
+  if (modes.refranation) mLines.push(`<span class="neg"><b>Refranation</b></span>: ${modes.refranation.planet} turns retrograde before perfecting — the matter may come undone.`);
+  if (!modes.direct && !modes.translation && !modes.collection)
+    mLines.push('No direct aspect, translation or collection between the significators within orb — read the Moon, or reconsider the quesited house.');
+  $('h-perfection').innerHTML = mLines.map(l => `<li>${l}</li>`).join('');
 
   // --- aspects list ---
   $('h-aspects').innerHTML = asps.length

@@ -27,6 +27,7 @@
 <script type="module">
   import { mountChrome, ROOT } from '../assets/js/app/shared.js';
   import { GLOSSARY, GLOSSARY_CATEGORIES } from '../assets/js/core/data/glossary.js';
+  import { slugTerm } from '../assets/js/app/autolink.js';
   mountChrome('glossary');
   const list = document.getElementById('g-list');
   const search = document.getElementById('g-search');
@@ -41,7 +42,7 @@
       (!cat || g.cat===cat) &&
       (!q || g.term.toLowerCase().includes(q) || g.def.toLowerCase().includes(q)));
     count.textContent = `${items.length} term${items.length===1?'':'s'}`;
-    list.innerHTML = items.map(g => `<div class="card" style="margin-bottom:.7rem">
+    list.innerHTML = items.map(g => `<div class="card gloss-card" id="${slugTerm(g.term)}" style="margin-bottom:.7rem">
       <h3 style="margin:.1rem 0">${g.term} <span class="pill">${g.cat}</span></h3>
       <p style="margin:.3rem 0">${g.def}</p>
       ${g.see?`<a class="small" href="${ROOT}/${g.see}">→ see it in use</a>`:''}
@@ -50,6 +51,16 @@
   search.addEventListener('input', render);
   catSel.addEventListener('change', render);
   render();
+  // jump to + highlight an anchored term (e.g. arriving from an auto-link)
+  function gotoHash() {
+    if (!location.hash) return;
+    const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.querySelectorAll('.gloss-card.target').forEach(c => c.classList.remove('target'));
+      el.classList.add('target'); }
+  }
+  window.addEventListener('hashchange', gotoHash);
+  setTimeout(gotoHash, 100);
 </script>
 </body>
 </html>

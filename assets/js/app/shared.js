@@ -9,6 +9,8 @@
 export const ROOT = new URL('../../../', import.meta.url).href.replace(/\/$/, '');
 const R = p => `${ROOT}/${p.replace(/^\//, '')}`;
 
+import { autolinkGlossary } from './autolink.js';
+
 const NAV = [
   ['index.html', 'Home'],
   ['pages/contents.html', 'Index'],
@@ -54,6 +56,7 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/book1/planetary-hours.html')}">Planetary Hours</a></li>
         <li><a href="${R('pages/glossary.html')}">Glossary &amp; Dictionary</a></li>
         <li><a href="${R('pages/contents.html')}">Master Index</a></li>
+        <li><a href="${R('pages/read.html')}">Read the original (free scans)</a></li>
         <li><a href="${R('pages/about/index.html')}">Sources &amp; scientific context</a></li>
       </ul></div>
     <p class="disclaimer">This site presents astrology as a historical, cultural and
@@ -64,6 +67,11 @@ export function mountChrome(activeKey = '') {
       <a href="${R('pages/about/index.html')}">About & Sources</a>.</p>
   </div>`;
   document.body.appendChild(footer);
+
+  // auto-link glossary terms in the page's prose (not on the glossary itself)
+  if (activeKey !== 'glossary') {
+    try { autolinkGlossary(document.querySelector('main'), R('pages/glossary.html')); } catch (e) { /* non-fatal */ }
+  }
 }
 
 // --- A curated set of cities with coordinates and IANA-ish UTC offsets ---
