@@ -11,11 +11,13 @@ const R = p => `${ROOT}/${p.replace(/^\//, '')}`;
 
 const NAV = [
   ['index.html', 'Home'],
-  ['pages/book1/index.html', 'Book I · Fundamentals'],
-  ['pages/book2/index.html', 'Book II · Horary'],
-  ['pages/book3/index.html', 'Book III · Nativities'],
-  ['pages/book2/horary.html', 'Horary Calculator'],
-  ['pages/about/index.html', 'About & Sources']
+  ['pages/contents.html', 'Index'],
+  ['pages/book1/index.html', 'Book I'],
+  ['pages/book2/index.html', 'Book II'],
+  ['pages/book3/index.html', 'Book III'],
+  ['pages/book2/horary.html', 'Horary'],
+  ['pages/glossary.html', 'Glossary'],
+  ['pages/about/index.html', 'About']
 ];
 
 export function mountChrome(activeKey = '') {
@@ -44,12 +46,15 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/book2/index.html')}">Book II — Resolution of All Questions</a></li>
         <li><a href="${R('pages/book3/index.html')}">Book III — Judgement of Nativities</a></li>
       </ul></div>
-    <div><b style="color:#e9dfc4">Tools</b>
+    <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
         <li><a href="${R('pages/book2/horary.html')}">Horary Chart Calculator</a></li>
+        <li><a href="${R('pages/book1/master.html')}">Book I Master Tool</a></li>
         <li><a href="${R('pages/book1/dignities.html')}">Essential Dignity Calculator</a></li>
         <li><a href="${R('pages/book1/planetary-hours.html')}">Planetary Hours</a></li>
-        <li><a href="${R('pages/about/index.html')}">Sources & scientific context</a></li>
+        <li><a href="${R('pages/glossary.html')}">Glossary &amp; Dictionary</a></li>
+        <li><a href="${R('pages/contents.html')}">Master Index</a></li>
+        <li><a href="${R('pages/about/index.html')}">Sources &amp; scientific context</a></li>
       </ul></div>
     <p class="disclaimer">This site presents astrology as a historical, cultural and
       intellectual artefact. Astrology has no demonstrated predictive validity and is

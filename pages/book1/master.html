@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book I Master Tool | Christian Astrology</title>
+<meta name="description" content="The Book I master calculator: one chart input yields every fundamental computation — positions, full essential and accidental dignity, almutens, aspects, antiscia, the Part of Fortune, planetary hour and body-part rulerships.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book I</a> › Master Tool</p>
+  <h1>Book I — Master Tool</h1>
+  <p class="lede">Every fundamental calculation of Book I in one place. Enter a moment and place and the
+    tool reports the full dignity ledger for all seven planets, the almutens of the angles, every aspect by
+    Lilly's orbs, the antiscia and their hidden contacts, the special points, the planetary hour, and the
+    body-part rulerships.</p>
+
+  <form id="m-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 200px"><label for="m-city">Place</label><select id="m-city"></select></div>
+      <div class="field"><label for="m-lat">Lat °N</label><input id="m-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="m-lon">Lon °E</label><input id="m-lon" type="number" step="0.0001" style="width:7rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="m-date">Date</label><input id="m-date" type="date"></div>
+      <div class="field"><label for="m-time">Time (local)</label><input id="m-time" type="time"></div>
+      <div class="field"><label for="m-offset">UTC offset</label><input id="m-offset" type="number" step="0.5" style="width:6rem"></div>
+      <div class="field"><label for="m-system">Houses</label><select id="m-system">
+        <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
+        <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
+      <button type="button" class="btn sm" id="m-now">Now</button>
+      <button type="submit" class="btn">Compute everything</button>
+    </div>
+  </form>
+
+  <p id="m-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+  <div class="chart-layout">
+    <div id="m-wheel" class="card" style="padding:.6rem"></div>
+    <div>
+      <h3 style="margin-top:0">Almutens of the angles</h3>
+      <div id="m-almutens" class="card"></div>
+      <h3>Special points</h3>
+      <ul class="clean" id="m-points"></ul>
+      <h3>Body governed (by sign)</h3>
+      <ul class="clean small" id="m-body"></ul>
+    </div>
+  </div>
+
+  <h2>Dignity &amp; debility — every planet</h2>
+  <table class="data"><thead><tr>
+    <th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th class="l">Essential dignities</th>
+    <th>Ess.</th><th>Acc.</th><th>Net</th><th>Disp.</th></tr></thead>
+    <tbody id="m-dignities"></tbody></table>
+
+  <div class="grid cols-2">
+    <div><h2>Aspects</h2><ul class="clean" id="m-aspects"></ul></div>
+    <div><h2>Antiscia contacts</h2><ul class="clean" id="m-contacts"></ul></div>
+  </div>
+
+  <h2>Antiscia table</h2>
+  <table class="data" style="max-width:560px"><thead><tr><th class="l">Planet</th><th class="l">Antiscion</th><th class="l">Contra-antiscion</th></tr></thead>
+    <tbody id="m-antiscia"></tbody></table>
+  <p class="small muted">Antiscia are reflections across the solstitial (0° Cancer–0° Capricorn) axis — hidden
+    bonds that act like a soft aspect (antiscion) or a hard one (contra-antiscion).</p>
+
+  <div class="callout"><span class="label">Next</span> The Book II and Book III master tools build on this same
+    engine; the eventual unified <em>master tool</em> will integrate all three with the electional and Picatrix
+    layers. See <a href="../../PLAN.md">the plan</a>.</div>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { initMaster } from '../../assets/js/app/book1-master.js';
+  mountChrome('book1');
+  initMaster();
+</script>
+</body>
+</html>
