@@ -22,7 +22,16 @@ true bridge between Lilly and Picatrix.
 ✅ done · 🔧 in progress · ⏳ planned
 
 Core engine ✅ · Books I–III content + 4 calculators ✅ · Glossary ✅ · Master Index ✅ ·
-Book I Master Tool ✅ · Picatrix research ✅ · Election engine ⏳ · Picatrix modules ⏳.
+Book I Master Tool ✅ · **Cautions/chart-health engine ✅** · **Tools hub + Workflow chapter-map ✅** ·
+Phase A (degree tables, body-parts, auto-linking, reader) ✅ · Phase B perfection+timing ✅ ·
+Picatrix research ✅ · Election engine ⏳ · Picatrix data modules ⏳.
+
+> **Build log (latest):** Phase A bundle merged to `main`; added `core/cautions.js` (the
+> consolidated chart-health engine, the seed of the Election Engine), wired the full
+> **Cautions & chart-health** panel + ascending-degree readout into the Master Tool, and added
+> two navigation hubs — `pages/tools.html` (all calculators) and `pages/workflow.html` (the
+> per-chapter map + worked examples + horary/nativity step-flows + Picatrix forward-map). Nav
+> reworked; all 20 pages verified at 0 console errors. See `HANDOFF.md`.
 
 ---
 

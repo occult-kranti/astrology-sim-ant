@@ -17,11 +17,18 @@ the browser.
 
 | Area | Pages / tools |
 |------|---------------|
-| **Home** | `index.html` — overview, the three books, the tools, the science note |
-| **Book I — Fundamentals** | hub, signs/planets/houses reference, **Essential Dignity Calculator**, **Planetary Hours** |
-| **Book II — Horary** | hub + step-by-step method, **Horary Chart Calculator**, considerations before judgement, house-by-house question guide, Lilly's worked charts |
+| **Home** | `index.html` — overview, "find your way", the three books, the tools, the science note |
+| **Workflow & Chapter Map** | `pages/workflow.html` — every chapter of each book → concept → calculation → worked example → tool; the horary & nativity step-flows; the Picatrix election bridge |
+| **Tools hub** | `pages/tools.html` — every calculator in one place, with a "what each computes" table |
+| **Book I — Fundamentals** | hub, signs/planets/houses reference, **Master Tool** (now with a full **Cautions & chart-health** panel), **Essential Dignity Calculator**, **Planetary Hours**, **Degree Tables** |
+| **Book II — Horary** | hub + step-by-step method, **Horary Chart Calculator** (perfection: translation/collection/prohibition/refranation + timing), considerations, house-by-house guide, Lilly's worked charts |
 | **Book III — Nativities** | hub + natal method, **Nativity Calculator** (Lord of the Geniture, temperament) |
+| **Reference** | **Glossary & Dictionary** (auto-linked in prose), **Master Index**, **Read the Original** (free scans) |
 | **About & Sources** | biography, editions, the modern revival, the scientific assessment, technical notes, full citations |
+
+> **For the next contributor:** `HANDOFF.md` has the current state, the architecture rules,
+> the verify-in-a-browser harness, and the **bundle-so-it-applies-cleanly** procedure.
+> `MASTER-PLAN.md` has the full Lilly × Picatrix vision and the phased roadmap.
 
 ### The calculators are real
 
@@ -54,29 +61,37 @@ Validated with `node` + headless Chromium:
 It's a static site — no build step.
 
 ```bash
-python3 -m http.server 8099
-# then open http://localhost:8099/index.html
+python3 -m http.server 8003
+# then open http://localhost:8003/index.html
 ```
 
 ## Project structure
 
 ```
-index.html                     home page
+index.html                     home page (with "find your way" hubs)
 assets/
-  css/style.css                design system
+  css/style.css                design system (advisories, verdict, chip, flowmap…)
   js/lib/astronomy.js          vendored astronomy-engine (MIT)
-  js/core/                     calculation engine
-    astro.js                   positions, angles, houses, Part of Fortune, node
+  js/core/                     calculation engine (pure, headless-testable in Node)
+    astro.js                   positions, angles, houses, Part of Fortune, node, antiscia
     dignities.js               essential + accidental scoring, almuten, reception rulers
     aspects.js                 Ptolemaic aspects, Lilly orbs, applying/separating
-    considerations.js          considerations before judgement
+    considerations.js          considerations before judgement (radicality)
+    perfection.js              translation/collection/prohibition/refranation + timing
+    cautions.js                consolidated chart-health engine → severity advisories + verdict
     planetary-hours.js         Chaldean-order day & hour rulers
-    chart.js                   SVG chart-wheel renderer
-    data/                      dignities-data, planets, signs, houses (from Lilly's text)
-  js/app/                      page logic: shared chrome, horary, book1, book3
-pages/book1|book2|book3|about/ content pages
+    chart.js                   SVG chart-wheel renderer (the only DOM-touching core file)
+    data/                      dignities-data, planets, signs, houses, degree-tables, glossary
+  js/app/                      page logic: shared chrome, autolink, horary, book1, book1-master, book3
+pages/
+  workflow.html                chapter map & workflows (per-chapter, all three books)
+  tools.html                   tools hub (every calculator + what each computes)
+  contents.html                master index · glossary.html · read.html
+  book1|book2|book3|about/      content pages & calculators
 .github/workflows/pages.yml    GitHub Pages deployment (self-enabling)
-PLAN.md                        the full plan, feature list and roadmap
+MASTER-PLAN.md                 the full Lilly × Picatrix vision and phased roadmap
+HANDOFF.md                     state, architecture rules, verify harness, bundle procedure
+PLAN.md                        the original plan and feature list
 ```
 
 ## Deployment

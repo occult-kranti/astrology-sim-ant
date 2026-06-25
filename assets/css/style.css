@@ -195,3 +195,38 @@ ul.clean li { padding: .15rem 0; }
 .gloss-card { scroll-margin-top: 80px; }
 .gloss-card.target { box-shadow: 0 0 0 2px var(--gold); animation: glosshi 2.4s ease; }
 @keyframes glosshi { 0%, 45% { background: #fbeec2; } 100% { background: var(--card); } }
+
+/* ---- Advisories / cautions panel (Master Tool, Horary, Election) ---- */
+.advisories { list-style: none; padding-left: 0; margin: .4rem 0; }
+.advisories li { position: relative; padding: .5rem .7rem .5rem 2.1rem; margin: .4rem 0;
+  border-radius: 6px; border: 1px solid var(--rule); background: var(--card); font-size: .94rem; }
+.advisories li::before { position: absolute; left: .6rem; top: .5rem; font-size: 1rem; }
+.adv-good    { border-left: 4px solid var(--benefic); background: #eef7ee; }
+.adv-good::before    { content: "✓"; color: var(--benefic); }
+.adv-note    { border-left: 4px solid var(--air); background: #eef5fa; }
+.adv-note::before    { content: "ℹ"; color: var(--air); }
+.adv-caution { border-left: 4px solid var(--gold); background: #fbf4e2; }
+.adv-caution::before { content: "⚠"; color: #b8860b; }
+.adv-bad     { border-left: 4px solid var(--malefic); background: #fbeeee; }
+.adv-bad::before     { content: "✕"; color: var(--malefic); }
+.verdict { font-family: var(--sans); font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
+  display: inline-block; padding: .35rem .9rem; border-radius: 99px; font-size: .85rem; }
+.verdict.green { background: #d8efd6; color: #1f5e1d; border: 1px solid var(--benefic); }
+.verdict.amber { background: #faedcb; color: #7a5a06; border: 1px solid var(--gold); }
+.verdict.red   { background: #f6d9d9; color: #7a1d1d; border: 1px solid var(--malefic); }
+.sev-legend { font-size: .8rem; color: var(--muted, #6b6450); margin: .3rem 0 .6rem; }
+.sev-legend span { margin-right: 1rem; white-space: nowrap; }
+
+/* ---- Workflow / chapter map ---- */
+.flowmap { display: grid; gap: .5rem; margin: 1rem 0; }
+.flow-node { border: 1px solid var(--rule); border-radius: 8px; padding: .7rem .9rem; background: var(--card); }
+.flow-node h4 { margin: 0 0 .25rem; font-size: 1rem; }
+.flow-arrow { text-align: center; color: var(--gold); font-size: 1.3rem; line-height: 1; }
+table.data td.l small { color: #6b6450; }
+.chip { display:inline-block; font-family:var(--sans); font-size:.66rem; font-weight:700; letter-spacing:.04em;
+  text-transform:uppercase; padding:.1rem .45rem; border-radius:4px; margin-right:.3rem; }
+.chip.done { background:#d8efd6; color:#1f5e1d; }
+.chip.tool { background:#e7eef7; color:#2b4a6b; }
+.chip.soon { background:#f0e8d4; color:#7a5a06; }
+.tool-card .what { font-size:.85rem; color:#5a5340; margin-top:.4rem; }
+.tool-card .what b { color:#3a3322; }

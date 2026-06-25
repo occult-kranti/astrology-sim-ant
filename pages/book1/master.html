@@ -36,6 +36,23 @@
   </form>
 
   <p id="m-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+
+  <section class="card" style="margin:.6rem 0 1.2rem">
+    <h2 style="margin-top:0;display:flex;align-items:center;gap:.6rem">Cautions &amp; chart health <span id="m-verdict"></span></h2>
+    <p class="small muted" style="margin:.1rem 0 .5rem">Lilly's <a href="../book2/considerations.html">considerations before judgement</a>,
+      the Moon's condition (the electional tradition weighs her above all), and the accidental afflictions of every planet —
+      gathered in one place. These are <em>flags for reflection</em>, never automatic bars to judgement.</p>
+    <p class="sev-legend">
+      <span class="pos">✓ favourable</span>
+      <span style="color:#2b6da3">ℹ note</span>
+      <span style="color:#b8860b">⚠ caution</span>
+      <span class="neg">✕ serious affliction</span>
+    </p>
+    <ul class="advisories" id="m-cautions"></ul>
+    <details style="margin-top:.5rem"><summary style="cursor:pointer;font-family:var(--sans);font-size:.85rem">Afflictions, planet by planet</summary>
+      <div id="m-afflict" style="margin-top:.5rem"></div></details>
+  </section>
+
   <div class="chart-layout">
     <div id="m-wheel" class="card" style="padding:.6rem"></div>
     <div>
@@ -43,6 +60,8 @@
       <div id="m-almutens" class="card"></div>
       <h3>Special points</h3>
       <ul class="clean" id="m-points"></ul>
+      <h3>The ascending degree</h3>
+      <ul class="clean small" id="m-ascdeg"></ul>
       <h3>Body governed (by sign)</h3>
       <ul class="clean small" id="m-body"></ul>
     </div>

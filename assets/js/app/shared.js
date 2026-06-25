@@ -13,11 +13,11 @@ import { autolinkGlossary } from './autolink.js';
 
 const NAV = [
   ['index.html', 'Home'],
-  ['pages/contents.html', 'Index'],
+  ['pages/workflow.html', 'Workflow'],
   ['pages/book1/index.html', 'Book I'],
   ['pages/book2/index.html', 'Book II'],
   ['pages/book3/index.html', 'Book III'],
-  ['pages/book2/horary.html', 'Horary'],
+  ['pages/tools.html', 'Tools'],
   ['pages/glossary.html', 'Glossary'],
   ['pages/about/index.html', 'About']
 ];
@@ -50,10 +50,10 @@ export function mountChrome(activeKey = '') {
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
-        <li><a href="${R('pages/book2/horary.html')}">Horary Chart Calculator</a></li>
+        <li><a href="${R('pages/tools.html')}">All Tools &amp; Calculators</a></li>
+        <li><a href="${R('pages/workflow.html')}">Chapter Map &amp; Workflows</a></li>
         <li><a href="${R('pages/book1/master.html')}">Book I Master Tool</a></li>
-        <li><a href="${R('pages/book1/dignities.html')}">Essential Dignity Calculator</a></li>
-        <li><a href="${R('pages/book1/planetary-hours.html')}">Planetary Hours</a></li>
+        <li><a href="${R('pages/book2/horary.html')}">Horary Chart Calculator</a></li>
         <li><a href="${R('pages/glossary.html')}">Glossary &amp; Dictionary</a></li>
         <li><a href="${R('pages/contents.html')}">Master Index</a></li>
         <li><a href="${R('pages/read.html')}">Read the original (free scans)</a></li>

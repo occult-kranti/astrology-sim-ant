@@ -13,9 +13,10 @@ import { essentialDignity, accidentalDignity, almuten, dignityRulersAt } from '.
 import { allAspects, aspectBetween } from '../core/aspects.js';
 import { renderChart } from '../core/chart.js';
 import { planetaryHour } from '../core/planetary-hours.js';
+import { chartCautions } from '../core/cautions.js';
 import { SIGNS } from '../core/data/signs.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
-import { genderOfDegree, qualityOfDegree, isFortunateDegree, bodyPartOf } from '../core/data/degree-tables.js';
+import { genderOfDegree, qualityOfDegree, isFortunateDegree, bodyPartOf, TABLE_USE } from '../core/data/degree-tables.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
 
 const $ = id => document.getElementById(id);
@@ -47,6 +48,19 @@ function compute() {
   $('m-summary').innerHTML = `<strong>${formatLon(chart.asc)}</strong> ascending · MC
     <strong>${formatLon(chart.mc)}</strong> · ${isDay ? 'day' : 'night'} chart
     ${ph ? `· hour of <b>${G(ph.ruler)} ${ph.ruler}</b> (${ph.dayRuler}-day)` : ''}`;
+
+  // 0) Cautions & chart health — the consolidated advisory engine
+  const cau = chartCautions(chart, { hourRuler: ph ? ph.ruler : null });
+  $('m-verdict').innerHTML = `<span class="verdict ${cau.verdict}">${cau.verdict === 'green' ? 'Clean' : cau.verdict === 'amber' ? 'Cautions' : 'Impeded'}</span>`;
+  $('m-verdict').title = cau.label;
+  $('m-cautions').innerHTML = cau.global.map(a =>
+    `<li class="adv-${a.severity}">${a.text}</li>`).join('');
+  const afflictRows = Object.entries(cau.planets)
+    .filter(([, info]) => info.flags.length)
+    .map(([name, info]) =>
+      `<p style="margin:.3rem 0"><b>${G(name)} ${name}</b></p><ul class="advisories" style="margin-top:.2rem">${
+        info.flags.map(f => `<li class="adv-${f.severity}">${f.text}</li>`).join('')}</ul>`).join('');
+  $('m-afflict').innerHTML = afflictRows || '<p class="muted small">No planet carries an accidental affliction in this figure.</p>';
 
   // 1) Full essential + accidental dignity ledger
   let rows = '';
@@ -106,6 +120,17 @@ function compute() {
     <li>Part of Fortune ⊕ at <b>${formatLon(pof.lon)}</b>, house ${pof.house}</li>
     <li>Dragon's Head ☊ at <b>${formatLon(nn.lon)}</b>, house ${nn.house}; Tail ☋ at ${formatLon(chart.planets.SouthNode.lon)}</li>
     <li>The chart is <b>${isDay ? 'diurnal (a day chart)' : 'nocturnal (a night chart)'}</b> — the Sun is ${isDay ? 'above' : 'below'} the horizon.</li>`;
+
+  // 5b) The ascending degree, read by Lilly's supplementary tables
+  const ascS = signOf(chart.asc);
+  const ascGender = genderOfDegree(ascS.index, ascS.degInSign);
+  const ascQuality = qualityOfDegree(ascS.index, ascS.degInSign);
+  const ascFort = isFortunateDegree(ascS.index, ascS.degInSign);
+  const ascAl = almuten(chart.asc, isDay);
+  $('m-ascdeg').innerHTML = `
+    <li><b>${formatLon(chart.asc)}</b> rises — a <b>${ascQuality.toLowerCase()}</b> and <b>${ascGender.toLowerCase()}</b> degree${ascFort ? ', <b class="pos">increasing fortune</b>' : ''}.</li>
+    <li>Its almuten (lord of the degree) is <b>${G(ascAl.planet)} ${ascAl.planet}</b>; its sign-lord is <b>${G(cau.lordAsc)} ${cau.lordAsc}</b>.</li>
+    <li class="muted small">A ${ascQuality.toLowerCase()} degree on the cusp makes the native ${ascQuality === 'Light' ? 'fairer and more conspicuous' : ascQuality === 'Dark' ? 'more obscure' : ascQuality === 'Smoky' ? 'of a mixed, middling condition' : 'of small understanding, per Lilly'}.</li>`;
 
   // 6) Body-part rulerships (Lilly's planet×sign grid) + degree qualities
   $('m-body').innerHTML = PL.map(name => {
