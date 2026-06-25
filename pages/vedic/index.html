@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jagannath Hora — the Vedic (sidereal) reading | The Astrologer's Workbench</title>
+<meta name="description" content="A real Vedic (Jyotiṣa) horoscope modelled on Jagannath Hora: the sidereal Lagna and nine grahas with nakṣatra & pada, whole-sign houses, the Pañcāṅga, the Vimśottarī daśā, the divisional charts (vargas), the Aṣṭakavarga (SAV) and a partial Ṣaḍbala — computed on the same verified astronomical engine as the Western tools. A separate system, shown for study. Astrology has no demonstrated predictive validity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="../tools.html">Tools</a> › Jagannath Hora (Vedic)</p>
+  <h1>Jagannath Hora — the Vedic (sidereal) reading</h1>
+  <p class="lede">A second, <b>independent</b> system. Where the rest of this site computes William Lilly's <b>Western,
+    tropical</b> astrology, this page computes the <b>Vedic (Jyotiṣa)</b> horoscope as <a href="https://www.vedicastrologer.org/jh/" rel="noopener">Jagannath
+    Hora</a> does — the <b>sidereal</b> zodiac (tropical − Lahiri ayanāṁśa), <b>whole-sign</b> houses, the 27 <b>nakṣatras</b>,
+    the <b>Vimśottarī daśā</b>, the <b>Pañcāṅga</b>, the divisional charts (<b>vargas</b>), the <b>Aṣṭakavarga</b>, and a
+    partial <b>Ṣaḍbala</b>. The astronomy is the same verified engine; only the zodiac, houses and methods differ.</p>
+  <p class="small"><b>The two systems disagree by design.</b> The same planet sits ~24° earlier in the sidereal zodiac, so it
+    often lands in a different sign and house than the Western chart. That is expected — see the worked example below, and
+    toggle <b>🕉 Jagannath Hora — Vedic view</b> on any calculator to compare them side by side.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Vedic astrology, like all astrology, has <b>no demonstrated predictive validity</b> and is regarded by the scientific
+    community as a pseudoscience. The mathematics here (sidereal positions, daśā arithmetic, the varga and aṣṭakavarga
+    tables) is real and reproducible and cited to <b>Parāśara's BPHS</b> and <b>P.V.R. Narasimha Rao's</b> JHora; the
+    <em>interpretations</em> are the tradition's, reproduced for study — never as a forecast. See
+    <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="v-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 180px"><label for="v-city">Birth place (preset)</label><select id="v-city"></select></div>
+      <div class="field"><label for="v-lat">Lat °N</label><input id="v-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="v-lon">Lon °E</label><input id="v-lon" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="v-date">Birth date</label><input id="v-date" type="date"></div>
+      <div class="field"><label for="v-time">Time (local)</label><input id="v-time" type="time"></div>
+      <div class="field"><label for="v-offset">UTC offset</label><input id="v-offset" type="number" step="0.5" style="width:6rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <button type="submit" class="btn">Compute the Vedic chart</button>
+      <button type="button" class="btn sm" id="v-copy">Copy shareable link</button>
+      <button type="button" class="btn sm" id="v-print">Print</button>
+      <span id="v-copy-status" class="small muted"></span>
+    </div>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The chart (Jagannath Hora style)</h2>
+    <div id="v-out"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Worked example — reading a Vedic chart</h2>
+    <p class="small">Take the default chart above (<b>15 May 1990, 12:00, London</b>). Here is how the tradition reads it,
+      step by step — every figure recomputes live above, so you can change the birth data and watch the reasoning move:</p>
+    <ol class="small">
+      <li><b>Sidereal shift.</b> The Lahiri ayanāṁśa for 1990 is ≈23.7°, so every tropical longitude is pulled back ~24°.
+        The Sun, ~24° Taurus in the Western chart, becomes <b>0°41′ Taurus</b> sidereally — a different degree, and often a
+        different sign than the Western reading.</li>
+      <li><b>Lagna &amp; houses.</b> The sidereal Ascendant is <b>Leo</b>, so Leo is the 1st <em>bhāva</em> and the houses
+        run whole-sign from there. The Sun in Taurus therefore sits in the <b>10th</b> (career, status) — the kāraka of the
+        soul on the house of action.</li>
+      <li><b>Dignities.</b> <b>Venus is exalted</b> in Pisces (8th) and <b>Saturn is in its own sign</b> Capricorn (6th):
+        two strong grahas. A planet's strength is read first by sign (exalted / own / mūlatrikoṇa / debilitated), then
+        confirmed by the divisional charts and Ṣaḍbala.</li>
+      <li><b>Nakṣatra &amp; daśā.</b> The Moon sits in <b>Uttara Āṣāḍhā</b>, ruled by the Sun, so life opens in a Sun
+        mahā-daśā; by 2026 the chart is deep in the <b>Rāhu</b> mahā-daśā. The Vimśottarī daśā is the spine of Vedic timing
+        — the running mahā/antar lord colours the period.</li>
+      <li><b>Pañcāṅga.</b> The five limbs of the day (tithi, vāra, nakṣatra, yoga, karaṇa) frame the muhūrta — the Vedic
+        counterpart of Lilly's election: which moment is fit for which act.</li>
+      <li><b>Aṣṭakavarga.</b> The Sarvāṣṭakavarga distributes 337 points across the 12 signs (average 28); a sign with
+        &gt;28 bindus is a strong field for the planets transiting it — a quick, numeric strength map of the whole chart.</li>
+    </ol>
+    <p class="small muted">Compare this with the <a href="../master.html">Western Unified Master Tool</a> for the same birth
+      moment, or open the <a href="../workbench.html">Workbench</a> and toggle the Vedic view to see both at once.</p>
+  </section>
+
+  <p class="small muted">See also: <a href="../how-it-works.html">how the Western calculations work</a> ·
+    <a href="../master.html">Unified Master Tool</a> · <a href="../trajectory.html">Life Trajectory</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  mountChrome('vedic');
+  import { initVedic } from '../../assets/js/app/vedic.js';
+  initVedic();
+</script>
+</body>
+</html>

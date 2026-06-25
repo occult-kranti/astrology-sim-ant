@@ -18,10 +18,12 @@ import { hyleg, alcocoden } from '../core/hyleg.js';
 import { directionsToAngles } from '../core/directions.js';
 import { solarReturn } from '../core/solar-return.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
 const PL = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
 const G = p => PLANET_GLYPHS[p] || p;
+let vedicUpdate = null;
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const sgn = n => (n >= 0 ? '+' : '') + n;
 const QUALITY = {
@@ -50,6 +52,7 @@ function compute() {
   const ryear = parseInt($('bm-ryear').value, 10) || new Date().getFullYear();
   const chart = castChart(date, lat, lon, system);
   const isDay = chart.isDay;
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
 
   // 1. wheel + positions
   safe($('bm-wheel'), () => {

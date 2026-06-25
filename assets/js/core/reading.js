@@ -35,6 +35,7 @@ import { modesOfPerfection, timeToPerfection } from './perfection.js';
 import { OPERATIONS, electionScore, rankNow } from './election.js';
 import { talismanRecipe } from './talisman.js';
 import { lifeTrajectory } from './trajectory.js';
+import { castVedic } from './vedic.js';
 import { DOMICILE } from './data/dignities-data.js';
 import { HOUSES } from './data/houses.js';
 
@@ -62,6 +63,7 @@ const CITE = {
   election: 'Picatrix III / Agrippa II — election: is this moment fit for the work? It ranks, never demands a flawless chart.',
   talisman: 'Picatrix II–III / Agrippa II — the talisman recipe, recorded as historical practice (described, not prescribed).',
   trajectory: 'Lilly CA Bk III + Picatrix — the life trajectory: profections, primary directions, the solar return, the Picatrix overlay.',
+  vedic: 'Parāśara BPHS / Jagannath Hora — the Vedic (sidereal) reading: a SEPARATE system shown for comparison.',
 };
 
 const safe = (fn, fallback = null) => { try { return fn(); } catch { return fallback; } };
@@ -237,6 +239,13 @@ export function fullReading(chart, opts = {}) {
     }
   }
 
+  // ---- vedic (Jyotiṣa) — a parallel sidereal system, for side-by-side study --
+  let vedic = null;
+  if (opts.includeVedic !== false) {
+    vedic = safe(() => castVedic(chart, { currentDate: opts.vedicCurrentDate instanceof Date ? opts.vedicCurrentDate : chart.date }));
+    if (vedic) addCite(CITE.vedic);
+  }
+
   const meta = {
     schemaVersion: 1,
     engine: 'astronomy-engine (~1 arc-minute)',
@@ -250,7 +259,7 @@ export function fullReading(chart, opts = {}) {
 
   return {
     meta, moment, dignities, aspects, lots, cautions,
-    horary, election, talisman, natal,
+    horary, election, talisman, natal, vedic,
     citations: [...cites],
   };
 }

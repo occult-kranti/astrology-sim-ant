@@ -21,6 +21,8 @@ import { mansionOf } from '../core/data/lunar-mansions.js';
 import { faceOf } from '../core/data/decan-faces.js';
 import { starsInAspect } from '../core/data/behenian-stars.js';
 import { wireCitySelect, VERDICT_LEGEND } from './shared.js';
+import { attachVedicPanel } from './vedic-panel.js';
+let vedicUpdate = null;
 
 const $ = id => document.getElementById(id);
 
@@ -82,6 +84,7 @@ function render() {
     return;
   }
   try { ph = planetaryHour(now, lat, lon); } catch { ph = null; }
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ currentDate: now }); vedicUpdate(chart); } catch { /* non-fatal */ }
 
   renderHead(chart, ph, now, lat, lon);
   renderMoon(chart, now);

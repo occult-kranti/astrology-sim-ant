@@ -154,3 +154,42 @@ The unification is the right substrate for the `REVIEW.md §4` experiments: a **
 permutes `fullReading` over jittered birth times; **generalised Lots** slot into `reading.lots`; an
 **election heat-map** reuses `rankNow` over a time grid; a **structure explorer** reads the registry.
 Each is now a small addition over one object and one catalogue rather than a new silo.
+
+---
+
+## 7. Round 2 — a Claude assistant, a Hermetic codex, and a Vedic (Jagannath Hora) system
+
+**The AI assistant is now Claude (Anthropic API), called direct from the browser.** `app/assistant.js`
+posts to `api.anthropic.com` with the user's own key and the `anthropic-dangerous-direct-browser-access`
+header (default `claude-opus-4-8`; Sonnet/Haiku/Fable optional; key optionally remembered in
+`localStorage`). The local backends (Ollama / WebLLM) remain in the codebase but are **disabled in the
+UI**. Three uses, all grounded in the cited `fullReading` and held to the locked honest-framing system
+prompt: **grounded chat** (Explain or agentic Tools mode), **"Generate the Codex of this Hour"** — a
+Hermes-Trismegistus/Picatrix codebook narration of every computation, its meaning and best historical
+use — and an agentic **"Plan a working"** box (the "conjure rain" pattern) that maps a free-form aim to a
+catalogued operation, **calls the engine tools** (`findNextElection`/`rankNow`/`talismanRecipe`) to find
+the next favourable window, and lays out the procedure. The prompts (`buildCodexPrompt`,
+`buildOperationPrompt`), the Anthropic tool conversion (`toAnthropicTools`) and the hosted-URL handoff
+(`SITE_URLS`) live in `core/llm-context.js` (pure, headless-tested).
+
+**A second, independent astrology system: Jagannath Hora (Vedic / Jyotiṣa).** Where the rest of the site
+is Lilly's Western/tropical astrology, `core/vedic.js` + `core/data/vedic-data.js` compute the **sidereal**
+chart as JHora does: Lahiri ayanāṁśa, whole-sign houses, the 27 nakṣatras + padas, Parāśarī dignities, the
+**Pañcāṅga**, the **Vimśottarī daśā** (mahā + antar, balanced from the Moon), the divisional charts
+(**vargas D1–D60**), the **Aṣṭakavarga** (BAV + SAV, checksum **337**), a partial Ṣaḍbala, and a handful of
+yogas. It reuses the same astronomy (sidereal = tropical − ayanāṁśa); it re-implements no positions. Every
+contested value is cited to **Parāśara's BPHS** and **P.V.R. Narasimha Rao's** JHora, and the varga rules
+pass the book's own unit-test vectors (D9 11° Gemini → Capricorn, D60 12°58′ Scorpio → Sagittarius, etc.).
+
+A shared, **toggleable side-by-side panel** (`app/vedic-panel.js`) is wired into **every integrated tool**
+(Workbench, Master, Book I & III Masters, Horary, Nativity, Right-Now, Trajectory, Election, Talisman) plus
+a **dedicated page** (`pages/vedic/index.html`) with a worked example; the **🕉 Vedic view** toggle is off by
+default and computes lazily. The Vedic reading is also folded into `fullReading.vedic` (so the JSON export
+and the Claude assistant see it) and catalogued in `registry.js`. The home page and Tools hub introduce the
+two-system framing with examples for both.
+
+**Verified (Round 2):** `node scripts/audit.mjs` → 0 problems (35 HTML / 49 JS); `node scripts/engine-test.mjs`
+→ all passed (incl. the Vedic block — SAV 337, all book varga vectors, the Claude-tool/codex/operation
+prompts); the real-Chromium sweep → **35 pages, 0 errors**; content assertions confirm the Claude-only
+assistant (no network on load), the Vedic page render, and the side-by-side toggle. Node is provided by a
+conda env (`astro-workbench`, Node 26) on Windows.

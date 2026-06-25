@@ -9,6 +9,8 @@ import { castChart, formatLon, signOf, PLANET_GLYPHS } from '../core/astro.js';
 import { OPERATIONS } from '../core/election.js';
 import { talismanRecipe } from '../core/talisman.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { attachVedicPanel } from './vedic-panel.js';
+let vedicUpdate = null;
 
 const $ = id => document.getElementById(id);
 const G = p => PLANET_GLYPHS[p] || p;
@@ -33,6 +35,7 @@ function build() {
     const lat = parseFloat($('t-lat').value), lon = parseFloat($('t-lon').value);
     if (isNaN(lat) || isNaN(lon)) return;
     const chart = castChart(date, lat, lon, 'regiomontanus');
+    try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
     const r = talismanRecipe(chart, $('t-op').value, { scanHours: 72, stepMinutes: 30 });
 
     // Step-by-step

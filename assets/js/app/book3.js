@@ -10,10 +10,12 @@ import { renderChart } from '../core/chart.js';
 import { SIGNS } from '../core/data/signs.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
 const PL = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
 const G = p => PLANET_GLYPHS[p] || p;
+let vedicUpdate = null;
 
 // Each sign's elemental qualities (hot/cold, dry/moist) for temperament.
 const QUALITY = { // [hot(+)/cold(-), dry(+)/moist(-)] and humour
@@ -37,6 +39,7 @@ function compute() {
   if (isNaN(lat) || isNaN(lon)) return;
   const chart = castChart(date, lat, lon, $('n-system').value);
   const isDay = chart.isDay;
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
 
   const bodies = {}; for (const p of PL) bodies[p] = chart.planets[p];
   const asps = allAspects(bodies);

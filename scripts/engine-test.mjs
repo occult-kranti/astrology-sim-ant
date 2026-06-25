@@ -201,6 +201,7 @@ ok(['green', 'amber', 'red'].includes(reading.cautions.verdict), 'fullReading.ca
 ok(reading.dignities.lordOfGeniture.planet && typeof reading.dignities.lordOfGeniture.score === 'number',
    'fullReading reports the Lord of the Geniture');
 ok(reading.election.rankedNow.length === OPERATIONS.length, 'fullReading.election ranks every operation');
+ok(reading.vedic && reading.vedic.lagna && reading.vedic.ashtakavarga.savTotal === 337, 'fullReading includes the Vedic (sidereal) block with SAV 337');
 const readingH = fullReading(eChart, { quesitedHouse: 7 });
 ok(readingH.horary && readingH.horary.quesitedHouse === 7 && readingH.horary.perfection &&
    'modes' in readingH.horary.perfection, 'fullReading: quesitedHouse populates the horary block');
@@ -286,6 +287,35 @@ ok(/Lord of the Year|life trajectory/i.test(codex), 'buildCodexPrompt includes t
 const opPrompt = buildOperationPrompt(fullReading(eChart), 'when is the next best time to attempt to call rain, and how would the tradition do it?');
 ok(/findNextElection/.test(opPrompt) && opPrompt.includes(SITE_URLS.workbench), 'buildOperationPrompt directs tool use + cites the live tool');
 ok(/never a recommendation|no demonstrated efficacy/i.test(opPrompt), 'buildOperationPrompt keeps the honest caveat');
+
+// --- Vedic (Jyotiṣa) engine ------------------------------------------------
+import { castVedic } from '../assets/js/core/vedic.js';
+import { vargaSign, lahiriAyanamsa, nakshatraOf, RASHIS } from '../assets/js/core/data/vedic-data.js';
+// ayanamsa sanity: ~24.2° for 2026
+ok(Math.abs(lahiriAyanamsa(new Date(Date.UTC(2026, 5, 25))) - 24.22) < 0.05, `Lahiri ayanamsa ~24.22° in 2026 (got ${lahiriAyanamsa(new Date(Date.UTC(2026,5,25))).toFixed(3)})`);
+// nakshatra boundaries
+ok(nakshatraOf(0).num === 1 && nakshatraOf(0).pada === 1, 'nakshatraOf(0) = Ashwini pada 1');
+ok(nakshatraOf(359.9).num === 27, 'nakshatraOf(359.9) = Revati (27)');
+// varga rules — the book's own unit-test vectors (sidereal longitudes)
+ok(vargaSign(71, 9) === 9, 'D9 of 11° Gemini → Capricorn (book vector)');
+ok(vargaSign(229, 9) === 8, 'D9 of 19° Scorpio → Sagittarius (book vector)');
+ok(vargaSign(70, 10) === 5, 'D10 of 10° Gemini → Virgo (book vector)');
+ok(vargaSign(229, 10) === 9, 'D10 of 19° Scorpio → Capricorn (book vector)');
+ok(vargaSign(71, 24) === 0, 'D24 of 11° Gemini → Aries (book vector)');
+ok(vargaSign(229, 24) === 6, 'D24 of 19° Scorpio → Libra (book vector)');
+ok(vargaSign(222.9667, 60) === 8, 'D60 of 12°58′ Scorpio → Sagittarius (book vector)');
+// full reading on the natal chart
+const vd = castVedic(natal, { currentDate: new Date(Date.UTC(2026, 5, 25)) });
+ok(vd.system === 'vedic' && vd.lagna && vd.grahas && vd.panchanga && vd.vimshottari && vd.vargas && vd.ashtakavarga, 'castVedic returns all blocks');
+ok(Object.keys(vd.grahas).length === 9, 'castVedic has all 9 grahas');
+ok(vd.grahas.Sun.nakshatra && vd.grahas.Sun.dignity && vd.grahas.Sun.house >= 1 && vd.grahas.Sun.house <= 12, 'each graha has nakshatra, dignity, whole-sign house');
+ok(vd.ashtakavarga.savTotal === 337, `Ashtakavarga SAV checksum = 337 (got ${vd.ashtakavarga.savTotal})`);
+ok(['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'].includes(vd.vimshottari.startLord), 'Vimśottarī start lord is a graha');
+ok(vd.vimshottari.balanceYears > 0 && vd.vimshottari.maha.filter(m => m.current).length === 1, 'Vimśottarī has a positive balance & exactly one current mahā');
+ok(vd.panchanga.tithi.num >= 1 && vd.panchanga.tithi.num <= 30 && vd.panchanga.yoga.num >= 1 && vd.panchanga.yoga.num <= 27, 'panchanga tithi 1–30 & yoga 1–27');
+ok(Array.isArray(vd.yogas) && vd.yogas.length >= 4, 'yogas detected');
+let vdRound = false; try { vdRound = !!JSON.parse(JSON.stringify(vd)).lagna; } catch { vdRound = false; }
+ok(vdRound, 'castVedic is JSON-serializable');
 
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

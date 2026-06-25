@@ -138,6 +138,12 @@ export function buildContext(reading, opts = {}) {
     add(`Native ruling planets: ${tj.picatrix.rulingPlanets.join(', ')}.`, 'Picatrix overlay');
   }
 
+  // vedic (a separate sidereal system, shown for comparison)
+  if (reading.vedic) {
+    const vd = reading.vedic;
+    add(`Vedic (sidereal / Jagannath Hora): Lagna ${vd.lagna.label}, Moon in nakṣatra ${vd.grahas.Moon.nakshatra.name}; running Vimśottarī daśā ${vd.vimshottari.currentMaha} mahā${vd.vimshottari.currentAntar ? '/' + vd.vimshottari.currentAntar + ' antar' : ''}; tithi ${vd.panchanga.tithi.name}. (A SEPARATE system from the Western chart — do not conflate the two zodiacs.)`, 'Parāśara BPHS / Jagannath Hora');
+  }
+
   const trimmed = facts.slice(0, maxFacts);
   const glossary = relevantGlossary(presentSet);
 

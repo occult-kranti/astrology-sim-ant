@@ -11,9 +11,11 @@ import { modesOfPerfection, timeToPerfection } from '../core/perfection.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
 import { HOUSES } from '../core/data/houses.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
+let vedicUpdate = null;
 
 export function initHorary() {
   // pre-fill "now" + London
@@ -51,6 +53,7 @@ function compute() {
   const chart = castChart(date, lat, lon, system);
   const ph = planetaryHour(date, lat, lon);
   const isDay = chart.isDay;
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
 
   // --- chart wheel ---
   const bodies = {}; for (const p of PLANETS7) bodies[p] = chart.planets[p];

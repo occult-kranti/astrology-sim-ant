@@ -19,6 +19,8 @@ import { starsInAspect } from '../core/data/behenian-stars.js';
 import { hyleg, alcocoden } from '../core/hyleg.js';
 import { annualProfection } from '../core/profections.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { attachVedicPanel } from './vedic-panel.js';
+let vedicUpdate = null;
 
 const $ = id => document.getElementById(id);
 const PL = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -47,6 +49,7 @@ function compute() {
   const system = $('u-system').value;
   const chart = castChart(date, lat, lon, system);
   const isDay = chart.isDay;
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
   const ph = planetaryHour(date, lat, lon);
 
   // 1. the moment

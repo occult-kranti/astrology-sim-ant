@@ -19,10 +19,12 @@ import { SIGNS } from '../core/data/signs.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
 import { genderOfDegree, qualityOfDegree, isFortunateDegree, bodyPartOf, TABLE_USE } from '../core/data/degree-tables.js';
 import { wireCitySelect, toUTC, nowLocalFields, VERDICT_LEGEND } from './shared.js';
+import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
 const PL = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
 const G = p => PLANET_GLYPHS[p] || p;
+let vedicUpdate = null;
 
 export function initMaster() {
   const n = nowLocalFields();
@@ -40,6 +42,7 @@ function compute() {
   if (isNaN(lat) || isNaN(lon)) return;
   const chart = castChart(date, lat, lon, $('m-system').value);
   const isDay = chart.isDay;
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
   const ph = planetaryHour(date, lat, lon);
 
   const bodies = {}; for (const p of PL) bodies[p] = chart.planets[p];

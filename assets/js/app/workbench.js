@@ -15,6 +15,7 @@ import { fullReading } from '../core/reading.js';
 import { REGISTRY, byId } from '../core/registry.js';
 import { HOUSES } from '../core/data/houses.js';
 import { OPERATIONS } from '../core/election.js';
+import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -27,7 +28,7 @@ const vbadge = v => `<span class="verdict ${v}">${v}</span>`;
 const rel = p => String(p).replace(/^pages\//, '');           // path from inside pages/
 
 // --- last computed reading + a tiny subscription, for the assistant ---------
-let lastReading = null, lastChart = null, lastBirthChart = null, wheelSvg = null;
+let lastReading = null, lastChart = null, lastBirthChart = null, wheelSvg = null, vedicUpdate = null;
 const readingSubs = [];
 export const getReading = () => lastReading;
 // the live engine context tool-calls need (the actual castChart objects).
@@ -106,6 +107,7 @@ function run() {
   const chart = castChart(date, lat, lon, system);
   const reading = fullReading(chart, { operationKey, quesitedHouse, birth, generatedAt: new Date().toISOString() });
   lastReading = reading; lastChart = chart; lastBirthChart = birth ? birth.chart : null;
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ before: '#wb-assistant-card' }); vedicUpdate(chart); } catch { /* non-fatal */ }
 
   // chart wheel (reuse the shared renderer)
   try {

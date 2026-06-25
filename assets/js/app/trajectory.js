@@ -22,8 +22,10 @@ import { castChart, formatLon, signOf, PLANET_GLYPHS } from '../core/astro.js';
 import { lifeTrajectory } from '../core/trajectory.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
 import { attachGeolocate, nearestCity } from './location.js';
+import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
+let vedicUpdate = null;
 const G = p => (p && PLANET_GLYPHS[p]) ? `${PLANET_GLYPHS[p]} ${p}` : (p || '—');
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const sgn = n => (n == null ? '—' : (n >= 0 ? '+' : '') + n);
@@ -156,6 +158,7 @@ function run() {
     $('tj-summary').innerHTML = `<span class="muted">Could not cast this nativity: ${esc(e && e.message)}</span>`;
     return;
   }
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ currentDate: new Date() }); vedicUpdate(birthChart); } catch { /* non-fatal */ }
 
   // Header summary
   safe($('tj-summary'), () => {

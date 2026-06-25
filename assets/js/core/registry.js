@@ -364,6 +364,22 @@ export const REGISTRY = [
     pages: ['pages/master.html'], howItWorks: 'pages/how-it-works.html',
     glossaryTerms: [],
   },
+  {
+    id: 'vedic', title: 'Vedic (Jyotiṣa) reading — Jagannath Hora',
+    module: 'assets/js/core/vedic.js', exportName: 'castVedic',
+    exports: ['castVedic'],
+    computes: 'A SEPARATE system: the sidereal (Lahiri) chart — Lagna & nine grahas with nakṣatra+pada, whole-sign houses, Parāśarī dignity, the Pañcāṅga, the Vimśottarī daśā, the divisional charts (vargas), the Aṣṭakavarga (SAV) and a partial Ṣaḍbala. Modelled on Jagannath Hora; shown side by side with the Western chart.',
+    inputs: [
+      { name: 'chart', type: 'object', desc: 'a castChart result (tropical)', required: true },
+      { name: 'opts', type: 'object', desc: '{ currentDate? } for the running daśā' },
+    ],
+    outputShape: '{ ayanamsa, lagna, grahas, panchanga, vimshottari, vargas, ashtakavarga, shadbala, yogas }',
+    callable: false,
+    book: 'Vedic (Jyotiṣa)', chapter: 'Parāśara BPHS / Jagannath Hora',
+    citation: 'Parāśara, Bṛhat Parāśara Horā Śāstra; P.V.R. Narasimha Rao, Vedic Astrology (Jagannath Hora).',
+    pages: ['pages/vedic/index.html'], howItWorks: 'pages/vedic/index.html',
+    glossaryTerms: [],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------

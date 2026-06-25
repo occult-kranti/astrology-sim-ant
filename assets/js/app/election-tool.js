@@ -8,6 +8,8 @@
 import { castChart, formatLon } from '../core/astro.js';
 import { OPERATIONS, electionScore, findNextElection } from '../core/election.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { attachVedicPanel } from './vedic-panel.js';
+let vedicUpdate = null;
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c =>
@@ -57,6 +59,7 @@ function judge() {
   try {
     when = toUTC($('e-date').value, $('e-time').value, offset);
     chart = castChart(when, lat, lon, system);
+    try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
     e = electionScore(chart, op);
   } catch (err) {
     $('e-summary').innerHTML =
