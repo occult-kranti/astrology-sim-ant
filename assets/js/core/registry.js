@@ -368,17 +368,17 @@ export const REGISTRY = [
     id: 'vedic', title: 'Vedic (Jyotiṣa) reading — Jagannath Hora',
     module: 'assets/js/core/vedic.js', exportName: 'castVedic',
     exports: ['castVedic'],
-    computes: 'A SEPARATE system: the sidereal (Lahiri) chart — Lagna & nine grahas with nakṣatra+pada, whole-sign houses, Parāśarī dignity, the Pañcāṅga, the Vimśottarī daśā, the divisional charts (vargas), the Aṣṭakavarga (SAV) and a partial Ṣaḍbala. Modelled on Jagannath Hora; shown side by side with the Western chart.',
+    computes: 'A SEPARATE system: the sidereal (Lahiri) chart — Lagna & nine grahas with nakṣatra+pada, whole-sign houses, Parāśarī dignity, the Pañcāṅga, the Vimśottarī daśā, the divisional charts (vargas D1–D60), the Aṣṭakavarga (SAV=337) and the FULL six-fold Ṣaḍbala, plus the traditional daily (vāra) & birth-keyed devotional practice (mantra/yoga/yantra — described, not prescribed). Modelled on Jagannath Hora; shown side by side with the Western chart.',
     inputs: [
       { name: 'chart', type: 'object', desc: 'a castChart result (tropical)', required: true },
-      { name: 'opts', type: 'object', desc: '{ currentDate? } for the running daśā' },
+      { name: 'opts', type: 'object', desc: '{ currentDate? } for the running daśā & daily practice' },
     ],
-    outputShape: '{ ayanamsa, lagna, grahas, panchanga, vimshottari, vargas, ashtakavarga, shadbala, yogas }',
+    outputShape: '{ ayanamsa, lagna, grahas, panchanga, vimshottari, vargas, ashtakavarga, shadbala, yogas, practice }',
     callable: false,
     book: 'Vedic (Jyotiṣa)', chapter: 'Parāśara BPHS / Jagannath Hora',
     citation: 'Parāśara, Bṛhat Parāśara Horā Śāstra; P.V.R. Narasimha Rao, Vedic Astrology (Jagannath Hora).',
     pages: ['pages/vedic/index.html'], howItWorks: 'pages/vedic/index.html',
-    glossaryTerms: [],
+    glossaryTerms: ['Sidereal Zodiac', 'Ayanāṁśa', 'Lagna', 'Graha', 'Nakṣatra', 'Vimśottarī Daśā', 'Pañcāṅga', 'Varga', 'Navāṁśa', 'Aṣṭakavarga', 'Ṣaḍbala', 'Bhāva', 'Kāraka', 'Bīja Mantra', 'Yantra'],
   },
 ];
 

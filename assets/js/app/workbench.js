@@ -7,7 +7,8 @@
 //  "where each number comes from" stays in sync with the code.
 // ============================================================================
 import { wireCitySelect, toUTC, nowLocalFields, VERDICT_LEGEND } from './shared.js';
-import { writeStateToURL, readStateFromURL, copyShareLink, downloadJSON, downloadSVG, svgToPNG } from './state.js';
+import { writeStateToURL, readStateFromURL, copyShareLink, downloadJSON, downloadSVG, svgToPNG,
+  downloadMarkdown, saveReadingEntry, listSavedReadings, removeSavedReading, publishGist } from './state.js';
 import { castChart, PLANET_GLYPHS } from '../core/astro.js';
 import { allAspects } from '../core/aspects.js';
 import { renderChart } from '../core/chart.js';
@@ -15,6 +16,9 @@ import { fullReading } from '../core/reading.js';
 import { REGISTRY, byId } from '../core/registry.js';
 import { HOUSES } from '../core/data/houses.js';
 import { OPERATIONS } from '../core/election.js';
+import { mansionOf } from '../core/data/lunar-mansions.js';
+import { faceOf } from '../core/data/decan-faces.js';
+import { starsInAspect } from '../core/data/behenian-stars.js';
 import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
@@ -59,9 +63,17 @@ export function initWorkbench() {
   $('wb-form').addEventListener('submit', e => { e.preventDefault(); run(); });
   $('wb-copy').addEventListener('click', () => copyShareLink($('wb-status'), currentState()));
   $('wb-json').addEventListener('click', () => { if (lastReading) downloadJSON(lastReading, 'workbench-reading.json'); });
+  $('wb-md').addEventListener('click', () => { if (lastReading) downloadMarkdown(lastReading, 'workbench-reading.md'); });
   $('wb-svg').addEventListener('click', () => downloadSVG(wheelSvg, 'chart.svg'));
   $('wb-png').addEventListener('click', () => { svgToPNG(wheelSvg, 'chart.png').catch(() => { $('wb-status').textContent = 'Could not export PNG.'; }); });
   $('wb-print').addEventListener('click', () => window.print());
+
+  // save / publish: restore the optional GitHub token, wire publish + the list
+  try { const t = localStorage.getItem('wb-gh-token'); if (t) { $('wb-gh-token').value = t; $('wb-gh-remember').checked = true; } } catch { /* ignore */ }
+  $('wb-gh-token').addEventListener('change', persistToken);
+  $('wb-gh-remember').addEventListener('change', persistToken);
+  $('wb-publish').addEventListener('click', () => publishReading());
+  renderSaved();
 
   // restore shared state from the URL, if any
   const s = readStateFromURL(STATE_KEYS);
@@ -132,7 +144,50 @@ function run() {
 
   writeStateToURL(currentState());
   $('wb-status').textContent = '';
+  try { autoSave(reading); } catch { /* non-fatal: saving never blocks the reading */ }
   for (const cb of readingSubs) { try { cb(reading); } catch { /* ignore */ } }
+}
+
+// --- save / publish ---------------------------------------------------------
+const stateKey = s => Object.values(s).join('|');
+function autoSave(reading) {                       // silent: no status, no network
+  const s = currentState();
+  const asc = reading && reading.moment && reading.moment.angles ? reading.moment.angles.asc.label : '';
+  const label = `${s.date || ''} ${s.time || ''}${asc ? ' · ' + asc + ' asc' : ''} · ${s.lat},${s.lon}`.trim();
+  saveReadingEntry({ key: stateKey(s), ts: new Date().toISOString(), label, state: s });
+  renderSaved();
+}
+function renderSaved() {
+  const box = $('wb-saved'); if (!box) return;
+  const list = listSavedReadings();
+  if (!list.length) { box.innerHTML = '<span class="muted">No saved readings yet — every reading you compute is auto-saved here, on this device only.</span>'; return; }
+  box.innerHTML = '<b>Saved on this device:</b><ul class="clean">' + list.map(e =>
+    `<li><a href="#" class="gloss-link" data-restore="${esc(e.key)}">${esc(e.label || e.ts)}</a> <span class="muted small">${esc((e.ts || '').slice(0, 16).replace('T', ' '))}</span> · <a href="#" class="small muted" data-remove="${esc(e.key)}">remove</a></li>`).join('') + '</ul>';
+  box.querySelectorAll('a[data-restore]').forEach(a => a.addEventListener('click', ev => { ev.preventDefault(); restoreSaved(a.getAttribute('data-restore')); }));
+  box.querySelectorAll('a[data-remove]').forEach(a => a.addEventListener('click', ev => { ev.preventDefault(); removeSavedReading(a.getAttribute('data-remove')); renderSaved(); }));
+}
+function restoreSaved(key) {
+  const e = listSavedReadings().find(x => x.key === key); if (!e || !e.state) return;
+  for (const [k, v] of Object.entries(e.state)) { const id = 'wb-' + (k === 'q' ? 'quesited' : k); if ($(id) != null && v != null) $(id).value = v; }
+  if (e.state.bdate) $('wb-birth-details').open = true;
+  run();
+}
+function persistToken() {
+  try {
+    const remember = $('wb-gh-remember').checked, t = $('wb-gh-token').value.trim();
+    if (remember && t) localStorage.setItem('wb-gh-token', t); else localStorage.removeItem('wb-gh-token');
+  } catch { /* ignore */ }
+}
+async function publishReading() {
+  if (!lastReading) { $('wb-status').textContent = 'Compute a reading first.'; return; }
+  persistToken();
+  const token = $('wb-gh-token').value.trim();
+  if (!token) { $('wb-status').textContent = 'Enter a GitHub token (gist scope) to publish — or just use the local auto-save.'; return; }
+  $('wb-status').textContent = 'Publishing to a secret Gist…';
+  try {
+    const url = await publishGist(lastReading, token, { public: false });
+    $('wb-status').innerHTML = 'Published (secret): <a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(url) + '</a>';
+  } catch (e) { $('wb-status').textContent = 'Publish failed: ' + (e && e.message ? e.message : 'error'); }
 }
 
 const safe = fn => { try { fn(); } catch (e) { /* a failing panel never breaks the page */ } };
@@ -263,6 +318,16 @@ function renderElection(r) {
   const rank = r.election.rankedNow.map(o => `<tr><td>${esc(o.label)}</td><td>${G(o.ruler)} ${o.ruler}</td><td>${vbadge(o.verdict)}</td><td class="r">${o.score}</td></tr>`).join('');
   html += `<p class="small"><b>All aims ranked for this moment:</b></p>
      <table class="data"><thead><tr><th>Aim</th><th>Ruler</th><th>Verdict</th><th>Score</th></tr></thead><tbody>${rank}</tbody></table>`;
+  // Picatrix correspondences of the moment (mansion / decan faces / Behenian stars)
+  if (lastChart) {
+    try {
+      const moon = lastChart.planets.Moon, sun = lastChart.planets.Sun;
+      const mm = mansionOf(moon.lon), mf = faceOf(moon.lon), sf = faceOf(sun.lon);
+      const stars = starsInAspect(lastChart, 6);
+      const starsTxt = stars.length ? stars.map(s => `${G(s.planet)} ${esc(s.planet)} ∠ ${esc(s.star)} (${s.sep.toFixed(1)}°)`).join('; ') : 'none closely conjunct a planet now';
+      html += `<p class="small" style="margin-top:.6rem"><b>Picatrix correspondences of the moment:</b> Moon in <b>Mansion ${mm.num} — ${esc(mm.name)}</b> (“${esc(mm.use)}”); Moon’s face ${esc(mf.ruler)} — ${esc(mf.image)}; Sun’s face ${esc(sf.ruler)}. Behenian contacts: ${starsTxt}.</p>`;
+    } catch { /* non-fatal */ }
+  }
   $('wb-election').innerHTML = html;
 }
 

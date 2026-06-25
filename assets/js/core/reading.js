@@ -240,9 +240,14 @@ export function fullReading(chart, opts = {}) {
   }
 
   // ---- vedic (Jyotiṣa) — a parallel sidereal system, for side-by-side study --
+  // When a birth radix is supplied, the Vedic horoscope is cast from THAT (a
+  // personal natal chart) with the daśā running as of the current moment;
+  // otherwise the moment itself is read sidereally.
   let vedic = null;
   if (opts.includeVedic !== false) {
-    vedic = safe(() => castVedic(chart, { currentDate: opts.vedicCurrentDate instanceof Date ? opts.vedicCurrentDate : chart.date }));
+    const vChart = hasBirth ? opts.birth.chart : chart;
+    const vNow = opts.vedicCurrentDate instanceof Date ? opts.vedicCurrentDate : chart.date;
+    vedic = safe(() => castVedic(vChart, { currentDate: vNow }));
     if (vedic) addCite(CITE.vedic);
   }
 

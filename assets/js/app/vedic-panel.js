@@ -31,6 +31,31 @@ export function renderVedicPanel(body, chart, opts = {}) {
   const navamsa = Object.keys(v.grahas).map(p => `${GL[p] || ''}${esc(RASHI_SHORT(v.navamsa[p]))}`).join(' ');
   const yogas = v.yogas.filter(y => y.present);
 
+  // Ṣaḍbala (full six-fold) table
+  const sb = v.shadbala;
+  const sbRows = (sb && sb.order ? sb.order : []).map(p => {
+    const s = sb.perGraha[p];
+    return `<tr><td>${GL[p] || ''} ${esc(p)}</td><td class="r">${s.totalRupa.toFixed(2)}</td>
+      <td class="r small muted">${s.required}</td><td class="r ${s.strong ? 'pos' : 'neg'}">${s.ratio}×</td>
+      <td class="r small">${s.ishta}/${s.kashta}</td></tr>`;
+  }).join('');
+
+  // Practice — the day (vāra) + the birth-keyed remedy (cultural/devotional)
+  const pr = v.practice;
+  const practiceHtml = pr ? `
+    <h3 class="small" style="margin:.8rem 0 .2rem">Practice — the day &amp; the birth <span class="muted small">(cultural/devotional · described, not prescribed)</span></h3>
+    <p class="small"><b>Today (${esc(pr.vara.name)} / ${esc(pr.vara.sanskrit)}, a ${esc(pr.vara.graha)}-vāra):</b>
+      deity ${esc(pr.vara.deity)}${pr.vara.popular ? ' <span class="muted">(later/popular pairing)</span>' : ''}; ${esc(pr.vara.vrata)}; colour ${esc(pr.vara.colour)}.
+      Mantra <b>${esc(pr.vara.mantra)}</b> <span class="muted">(bīja ${esc(pr.vara.bija)}; japa ${pr.vara.japa})</span>;
+      yoga ${esc(pr.vara.yoga)} <span class="muted">(modern)</span>; ${esc(pr.vara.yantra)}.</p>
+    <p class="small"><b>Birth-keyed:</b> remedial focus <b>${esc(pr.birth.focusGraha)}</b> — ${esc(pr.birth.reason)}.
+      Mantra <b>${esc(pr.birth.mantra)}</b> <span class="muted">(bīja ${esc(pr.birth.bija)}; japa ${pr.birth.japa}; deity ${esc(pr.birth.deity)})</span>;
+      yoga ${esc(pr.birth.yoga)} <span class="muted">(modern)</span>; ${esc(pr.birth.yantra)}; gem ${esc(pr.birth.gem)}.
+      <br>Lagna lord <b>${esc(pr.birth.lagnaLord)}</b>; running daśā lord <b>${esc(pr.birth.dashaLord)}</b>${pr.birth.dashaMantra ? ` <span class="muted">(${esc(pr.birth.dashaMantra)})</span>` : ''};
+      birth Moon-nakṣatra <b>${esc(pr.birth.moonNakshatra)}</b> <span class="muted">(${esc(pr.birth.moonNakshatraDeity)} — ${esc(pr.birth.moonNakshatraMeaning)})</span>.</p>
+    <p class="small muted">Mantras, vratas, yantras &amp; gems are recorded from the Jyotiṣa / tantra tradition as <b>cultural practice for study, not instruction</b>;
+      the <b>graha→āsana map is a modern syncretism</b> (no classical Jyotiṣa basis). Astrology has no demonstrated efficacy.</p>` : '';
+
   body.innerHTML = `
     <p class="small muted">Sidereal (Lahiri ayanāṁśa ${v.ayanamsa}°) · whole-sign houses · modelled on Jagannath Hora.
       A <b>separate system</b> from the Western/tropical chart above — shown for comparison, not as a competing forecast.</p>
@@ -56,8 +81,14 @@ export function renderVedicPanel(body, chart, opts = {}) {
 
     ${yogas.length ? `<h3 class="small" style="margin:.7rem 0 .2rem">Yogas</h3><ul class="clean small">${yogas.map(y => `<li><b>${esc(y.name)}</b> — ${esc(y.detail)}</li>`).join('')}</ul>` : ''}
 
-    <details style="margin-top:.5rem"><summary class="small">Partial Ṣaḍbala (flagged) &amp; sources</summary>
-      <p class="small muted">${esc(v.shadbala.note)}</p>
+    <h3 class="small" style="margin:.8rem 0 .2rem">Ṣaḍbala (six-fold strength)</h3>
+    <table class="data"><thead><tr><th>Graha</th><th class="r">Rūpas</th><th class="r">Req.</th><th class="r">Strength</th><th class="r" title="Iṣṭa / Kaṣṭa phala">Iṣṭa/Kaṣṭa</th></tr></thead><tbody>${sbRows}</tbody></table>
+    <p class="small muted">Strongest <b>${esc(sb.strongest)}</b>, weakest <b>${esc(sb.weakest)}</b> (the remedial focus). Ratio ≥ 1× = meets the BPHS minimum.</p>
+
+    ${practiceHtml}
+
+    <details style="margin-top:.5rem"><summary class="small">Ṣaḍbala method &amp; sources</summary>
+      <p class="small muted">${esc(sb.note)}</p>
       <p class="small muted">${v.citations.map(esc).join(' · ')}</p></details>
 
     <p class="small muted" style="margin-top:.4rem">Vedic astrology, like all astrology, has no demonstrated predictive validity; this is a faithful

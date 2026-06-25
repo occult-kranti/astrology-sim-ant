@@ -84,7 +84,8 @@ function render() {
 
     <div class="field-row" style="gap:.4rem;margin:.2rem 0 .5rem;flex-wrap:wrap">
       <button type="button" class="btn sm" id="wb-asst-codex">📜 Generate the Codex of this Hour</button>
-      <span class="small muted">— a Hermetic narration of every computation, its meaning &amp; best historical use.</span>
+      <span class="small muted">— a deep Hermetic reading of every computation across <b>both systems</b> (Western + Vedic),
+        the <b>patterns</b> between them, and the day’s practice — grounded in the values above.</span>
     </div>
 
     <fieldset style="border:1px solid #2a3350;border-radius:.5rem;padding:.7rem .8rem;margin:.2rem 0 .6rem">
@@ -176,11 +177,11 @@ function anthHeaders(key) {
   };
 }
 
-async function claudeStream(messages, system, asstEl) {
+async function claudeStream(messages, system, asstEl, maxTokens = 3072) {
   const key = getKey(); const model = el('wb-asst-model').value;
   const res = await fetch(ANTHROPIC_URL, {
     method: 'POST', headers: anthHeaders(key),
-    body: JSON.stringify({ model, max_tokens: 3072, system, messages, stream: true }),
+    body: JSON.stringify({ model, max_tokens: maxTokens, system, messages, stream: true }),
     signal: controller.signal,
   });
   if (!res.ok) throw new Error('Claude HTTP ' + res.status + ' — ' + (await res.text()).slice(0, 240));
@@ -261,11 +262,14 @@ async function send() {
 
 async function generateCodex() {
   if (!preflight()) return;
-  const { system } = buildContext(currentReading);
-  appendMsg('user', '📜 Generate the Codex of this Hour');
+  // Embed the WHOLE computed reading (both systems + the daily/birth practice) in
+  // the grounding — the "upload the values with the prompt" path — so the model
+  // interprets the real figures rather than browsing or inventing.
+  const { system } = buildContext(currentReading, { maxFacts: 400 });
+  appendMsg('user', '📜 Generate the Codex of this Hour (deep interpretation, both systems)');
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
-  try { await claudeStream([{ role: 'user', content: buildCodexPrompt(currentReading) }], system, asstEl); }
+  try { await claudeStream([{ role: 'user', content: buildCodexPrompt(currentReading) }], system, asstEl, 6144); }
   catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
 }
 

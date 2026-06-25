@@ -19,6 +19,7 @@ import { starsInAspect } from '../core/data/behenian-stars.js';
 import { hyleg, alcocoden } from '../core/hyleg.js';
 import { annualProfection } from '../core/profections.js';
 import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { attachGeolocate } from './location.js';
 import { attachVedicPanel } from './vedic-panel.js';
 let vedicUpdate = null;
 
@@ -38,6 +39,15 @@ export function initMaster() {
   $('u-lat').value = 51.5074; $('u-lon').value = -0.1278;
   wireCitySelect($('u-city'), $('u-lat'), $('u-lon'), $('u-offset'));
   $('u-now').addEventListener('click', () => { const n = nowLocalFields(); $('u-date').value = n.date; $('u-time').value = n.time; $('u-offset').value = n.offset; });
+  // a prominent "use my location" button on the main moment (wireCitySelect also
+  // adds one beside the place picker; this keeps the action visible in the row).
+  try { attachGeolocate($('u-here'), $('u-lat'), $('u-lon'), null, () => compute()); } catch { /* non-fatal */ }
+
+  // optional birth moment → Book III + the Vedic chart as a personal horoscope
+  wireCitySelect($('u-bcity'), $('u-blat'), $('u-blon'), $('u-boffset'));
+  ['u-bdate', 'u-btime', 'u-boffset', 'u-blat', 'u-blon'].forEach(id => $(id).addEventListener('change', () => compute()));
+  $('u-bclear').addEventListener('click', () => { ['u-bdate', 'u-btime', 'u-boffset', 'u-blat', 'u-blon', 'u-bcity'].forEach(id => { $(id).value = ''; }); compute(); });
+
   $('u-form').addEventListener('submit', e => { e.preventDefault(); compute(); });
   compute();
 }
@@ -49,7 +59,21 @@ function compute() {
   const system = $('u-system').value;
   const chart = castChart(date, lat, lon, system);
   const isDay = chart.isDay;
-  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
+
+  // Optional birth moment: if a full birth date/time/place is given, the nativity
+  // and the Vedic chart are read from THAT (a personal horoscope); the running
+  // daśā/profection is taken as of today. Otherwise the current moment is read as
+  // a birth (the historical "read any moment as a nativity" default).
+  let birthChart = null, birthDate = null;
+  const blat = parseFloat($('u-blat').value), blon = parseFloat($('u-blon').value);
+  if ($('u-bdate').value && $('u-btime').value && !isNaN(blat) && !isNaN(blon)) {
+    try { birthDate = toUTC($('u-bdate').value, $('u-btime').value, parseFloat($('u-boffset').value) || 0); birthChart = castChart(birthDate, blat, blon, system); } catch { birthChart = null; birthDate = null; }
+  }
+  const natalChart = birthChart || chart;
+  const natalIsDay = natalChart.isDay;
+  const age = birthDate ? Math.max(0, Math.floor((new Date().getTime() - birthDate.getTime()) / (365.2425 * 86400000))) : 0;
+
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(natalChart); } catch { /* non-fatal */ }
   const ph = planetaryHour(date, lat, lon);
 
   // 1. the moment
@@ -88,16 +112,20 @@ function compute() {
       <p class="small muted">For the full horary judgement — quesited house, perfection, timing — open the <a href="book2/horary.html">Horary Calculator</a>.</p>`;
   });
 
-  // 4. Book III — the nativity (the moment read as a birth)
+  // 4. Book III — the nativity (a provided birth, or the current moment read as one)
   safe($('u-book3'), () => {
-    const totals = {}; for (const n of PL) totals[n] = essentialDignity(n, chart.planets[n].lon, isDay).total + accidentalDignity(n, chart).total;
+    const totals = {}; for (const n of PL) totals[n] = essentialDignity(n, natalChart.planets[n].lon, natalIsDay).total + accidentalDignity(n, natalChart).total;
     let lord = null, best = -999; for (const [p, t] of Object.entries(totals)) if (t > best) { best = t; lord = p; }
-    const hy = hyleg(chart); const al = alcocoden(chart, hy);
-    const loy = annualProfection(chart, 0).lordOfYear;
-    $('u-book3').innerHTML = `<p><b>Lord of the Geniture:</b> ${G(lord)} ${lord} (dignity ${sgn(best)}).</p>
+    const hy = hyleg(natalChart); const al = alcocoden(natalChart, hy);
+    const loy = annualProfection(natalChart, age).lordOfYear;
+    const src = birthChart
+      ? `Read from the <b>birth moment</b> you entered (age ${age}).`
+      : 'Reading the <b>current moment</b> above as a birth — add a birth date/time/place to make this a personal nativity.';
+    $('u-book3').innerHTML = `<p class="small muted" style="margin-top:0">${src}</p>
+      <p><b>Lord of the Geniture:</b> ${G(lord)} ${lord} (dignity ${sgn(best)}).</p>
       <p><b>Hyleg:</b> ${esc(hy.hyleg || 'none')} · <b>Alcocoden:</b> ${esc(al.alcocoden || 'none')}${al.years ? ` (≈ ${al.years.mean} mean years)` : ''}.</p>
-      <p><b>Lord of the (first) Year:</b> ${G(loy)} ${loy}.</p>
-      <p class="small muted">Natal techniques shown for the birth-moment reading; the hyleg/alcocoden is contested. Full detail in the <a href="book3/master.html">Book III Master Tool</a>.</p>`;
+      <p><b>Lord of the Year</b> (age ${age}): ${G(loy)} ${loy}.</p>
+      <p class="small muted">Natal techniques; the hyleg/alcocoden is contested. Full detail in the <a href="book3/master.html">Book III Master Tool</a> and the <a href="trajectory.html">Life Trajectory</a>.</p>`;
   });
 
   // 5. Picatrix — election & magic (best vs least advised now)

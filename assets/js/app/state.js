@@ -74,6 +74,99 @@ export function downloadJSON(obj, filename = 'reading.json') {
   downloadBlob(new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' }), filename);
 }
 
+// --- localStorage: silent reading history (no DOM/network) ------------------
+//  Each generated reading's INPUT STATE is auto-saved here so it can be restored
+//  later. localStorage is only touched inside these functions (guarded), so the
+//  module stays import-safe in Node.
+const HISTORY_KEY = 'wb-saved-readings';
+const lsGet = k => { try { return localStorage.getItem(k); } catch { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch { /* quota / disabled */ } };
+export function listSavedReadings() { try { return JSON.parse(lsGet(HISTORY_KEY) || '[]'); } catch { return []; } }
+// entry: { key, ts, label, state }. De-dupes by key, newest first, capped.
+export function saveReadingEntry(entry, cap = 30) {
+  if (!entry || !entry.key) return listSavedReadings();
+  const list = [entry, ...listSavedReadings().filter(e => e.key !== entry.key)].slice(0, cap);
+  lsSet(HISTORY_KEY, JSON.stringify(list));
+  return list;
+}
+export function removeSavedReading(key) {
+  const list = listSavedReadings().filter(e => e.key !== key);
+  lsSet(HISTORY_KEY, JSON.stringify(list));
+  return list;
+}
+export function clearSavedReadings() { lsSet(HISTORY_KEY, '[]'); }
+
+// --- A readable Markdown summary of a fullReading (pure) ---------------------
+export function readingToMarkdown(reading) {
+  if (!reading) return '# Reading\n\n(empty)';
+  const r = reading, L = [];
+  const m = r.moment || {}, inp = (r.meta && r.meta.inputs) || {};
+  L.push("# The Astrologer's Workbench — a reading");
+  L.push('');
+  L.push(`*Generated for ${fmtUTC(inp.date)} at lat ${inp.latitude}, lon ${inp.longitude} (${inp.system} houses, a ${m.isDay ? 'day' : 'night'} chart).*`);
+  L.push('');
+  L.push('> Astrology has no demonstrated predictive validity and is regarded by science as a pseudoscience. The mathematics is real; the interpretations are historical doctrine — described for study, never prescribed.');
+  L.push('');
+  if (m.angles) L.push(`**The figure.** Ascendant ${m.angles.asc.label}; Midheaven ${m.angles.mc.label}.${m.planetaryHour ? ` Planetary hour of ${m.planetaryHour.ruler} (a ${m.planetaryHour.dayRuler}-day).` : ''}`);
+  if (m.planets) {
+    L.push('');
+    L.push('| Body | Position | House | Retro |');
+    L.push('|---|---|---|---|');
+    for (const [n, p] of Object.entries(m.planets)) L.push(`| ${n} | ${p.label} | ${p.house} | ${p.retrograde ? '℞' : ''} |`);
+  }
+  if (r.cautions) L.push(`\n**Chart health:** ${r.cautions.verdict} — ${r.cautions.label}.`);
+  if (r.dignities && r.dignities.lordOfGeniture) L.push(`**Lord of the Geniture:** ${r.dignities.lordOfGeniture.planet}. Almuten of the Ascendant: ${r.dignities.almutens.ascendant.planet}.`);
+  if (r.lots) L.push(`**Part of Fortune:** ${r.lots.fortune.label}; **Part of Spirit:** ${r.lots.spirit.label}.`);
+  const sel = r.election && r.election.selected;
+  if (sel) L.push(`\n**Election** for *${sel.operation.label}* (${sel.operation.ruler}): ${sel.verdict} (score ${sel.score}).`);
+  if (r.election && r.election.rankedNow && r.election.rankedNow.length) L.push(`**Aims ranked now:** ${r.election.rankedNow.map(o => `${o.label} (${o.verdict})`).join('; ')}.`);
+  if (r.vedic) {
+    const v = r.vedic;
+    L.push('');
+    L.push('## Vedic (Jagannath Hora) — a separate, sidereal system');
+    L.push(`Lagna ${v.lagna.label} (lord ${v.lagna.lord}); Moon nakṣatra ${v.grahas.Moon.nakshatra.name}.`);
+    L.push(`Pañcāṅga: tithi ${v.panchanga.tithi.name}, vāra ${v.panchanga.vara.name}, yoga ${v.panchanga.yoga.name}.`);
+    L.push(`Vimśottarī: running ${v.vimshottari.currentMaha} mahā${v.vimshottari.currentAntar ? ' / ' + v.vimshottari.currentAntar + ' antar' : ''}.`);
+    if (v.shadbala) L.push(`Ṣaḍbala: strongest ${v.shadbala.strongest}, weakest ${v.shadbala.weakest} (order ${v.shadbala.order.join(' > ')}).`);
+    if (v.practice) {
+      L.push('');
+      L.push(`**Practice (cultural/devotional — described, not prescribed).** Today (${v.practice.vara.name}, a ${v.practice.vara.graha}-vāra): mantra ${v.practice.vara.mantra}; yoga ${v.practice.vara.yoga} (modern). Birth-keyed focus ${v.practice.birth.focusGraha}: mantra ${v.practice.birth.mantra}; gem ${v.practice.birth.gem}.`);
+    }
+  }
+  if (r.citations) { L.push('\n---'); L.push(`*Sources: ${r.citations.join(' · ')}*`); }
+  return L.join('\n');
+}
+function fmtUTC(d) { try { return new Date(d).toISOString().replace('.000Z', 'Z'); } catch { return String(d); } }
+
+// --- Optional: publish a reading to a secret GitHub Gist (browser-direct) ----
+//  A static site has no backend, so the honest way to "send it to GitHub" from
+//  the browser is the GitHub REST API with the user's own token. SILENT — returns
+//  the gist URL, fires no notification. The token never leaves api.github.com.
+export async function publishGist(reading, token, opts = {}) {
+  if (!token) throw new Error('A GitHub token (gist scope) is required.');
+  const filename = opts.filename || 'workbench-reading.json';
+  const body = {
+    description: opts.description || "The Astrologer's Workbench — a computed reading (historical study only).",
+    public: !!opts.public,
+    files: {
+      [filename]: { content: JSON.stringify(reading, null, 2) },
+      'reading.md': { content: readingToMarkdown(reading) },
+    },
+  };
+  const res = await fetch('https://api.github.com/gists', {
+    method: 'POST',
+    headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json', 'X-GitHub-Api-Version': '2022-11-28' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error('GitHub HTTP ' + res.status + ' — ' + (await res.text()).slice(0, 200));
+  return (await res.json()).html_url;
+}
+
+// Download a reading as a Markdown summary.
+export function downloadMarkdown(reading, filename = 'reading.md') {
+  downloadText(readingToMarkdown(reading), filename, 'text/markdown;charset=utf-8');
+}
+
 // Download arbitrary text.
 export function downloadText(text, filename, mime = 'text/plain') {
   downloadBlob(new Blob([text], { type: mime }), filename);

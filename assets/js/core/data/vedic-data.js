@@ -225,12 +225,56 @@ export const ASHTAKAVARGA = {
 export const ASHTAKAVARGA_PLANETS = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 export const ASHTAKAVARGA_SOURCE = 'BPHS Ch.66–67 — Bhinnāṣṭakavarga bindu tables; SAV grand total = 337.';
 
-// --- Ṣaḍbala reference data (partial — see vedic.js for what is computed) -----
-// Naisargika bala in Rūpas (= 60 × rank/7 Virūpas). Source: BPHS Ch.27 tradition.
+// --- Ṣaḍbala reference data (FULL six-fold — see vedic.js shadbala()) ---------
+// Everything below is in BPHS Ch.27 terms. The Ṣaḍbala engine works in VIRŪPAS
+// (1 rūpa = 60 virūpas) and divides by 60 at the end. Source: BPHS Ch.27;
+// P.V.R. Narasimha Rao (Jagannath Hora).
+
+// Naisargika (natural) bala in VIRŪPAS = 60 × rank/7. Source: BPHS 27.33.
+export const NAISARGIKA_VIRUPA = { Sun: 60, Moon: 51.43, Venus: 42.86, Jupiter: 34.29, Mercury: 25.71, Mars: 17.14, Saturn: 8.57 };
+// (kept in rūpas too for back-compat / display)
 export const NAISARGIKA_BALA = { Sun: 1.0, Moon: 0.857, Venus: 0.714, Jupiter: 0.571, Mercury: 0.429, Mars: 0.286, Saturn: 0.143 };
-// Dig bala: house of full directional strength (0 at the opposite cusp, linear).
+
+// Dig (directional) bala: the kendra of full strength → its OPPOSITE point is the
+// powerless point. Offset (from the Lagna longitude, zodiacally) to the powerless
+// point: Sun/Mars powerless at +90° (4th), Jup/Merc at +180° (7th), Moon/Venus at
+// +270° (10th), Saturn at +0° (Lagna). Source: BPHS 27.13–15.
+export const DIG_POWERLESS_OFFSET = { Sun: 90, Mars: 90, Jupiter: 180, Mercury: 180, Moon: 270, Venus: 270, Saturn: 0 };
+// (legacy whole-sign strong-house map, retained for reference)
 export const DIG_BALA_STRONG_HOUSE = { Sun: 10, Moon: 4, Mars: 10, Mercury: 1, Jupiter: 1, Venus: 4, Saturn: 7 };
-// Minimum required total Ṣaḍbala (Rūpas) for a graha to be "strong".
-// (Sun = 6.5 is the common standard; some sources use 5.0 — flagged.)
+
+// Natural (naisargika) friendship — BPHS 3.55–57. Others (not listed) = neutral.
+export const NATURAL_RELATION = {
+  Sun: { friend: ['Moon', 'Mars', 'Jupiter'], enemy: ['Venus', 'Saturn'] },
+  Moon: { friend: ['Sun', 'Mercury'], enemy: [] },
+  Mars: { friend: ['Sun', 'Moon', 'Jupiter'], enemy: ['Mercury'] },
+  Mercury: { friend: ['Sun', 'Venus'], enemy: ['Moon'] },
+  Jupiter: { friend: ['Sun', 'Moon', 'Mars'], enemy: ['Mercury', 'Venus'] },
+  Venus: { friend: ['Mercury', 'Saturn'], enemy: ['Sun', 'Moon'] },
+  Saturn: { friend: ['Mercury', 'Venus'], enemy: ['Sun', 'Moon', 'Mars'] },
+};
+// Saptavargaja dignity tiers (virūpas), BPHS 27.7–9.
+export const SAPTAVARGA_TIER = { moolatrikona: 45, own: 30, greatFriend: 22.5, friend: 15, neutral: 7.5, enemy: 3.75, greatEnemy: 1.875 };
+export const SAPTAVARGA_VARGAS = [1, 2, 3, 7, 9, 12, 30];   // the 7 vargas for Saptavargaja
+
+// Drekkāṇa (decanate) gender groups — BPHS 27.12 (15 virūpas if matched).
+export const DREKKANA_GROUPS = [['Sun', 'Mars', 'Jupiter'], ['Saturn', 'Mercury'], ['Moon', 'Venus']];
+// Benefics / malefics for Pakṣa & Dṛk bala (Mercury & Moon counted benefic — simplified, flagged).
+export const SHADBALA_BENEFICS = ['Jupiter', 'Venus', 'Mercury', 'Moon'];
+export const SHADBALA_MALEFICS = ['Sun', 'Mars', 'Saturn'];
+// Nathonnata: "nata" (nocturnal-strong) vs "unnata" (diurnal-strong); Mercury always 60.
+export const NATA_GRAHAS = ['Moon', 'Mars', 'Saturn'];
+export const UNNATA_GRAHAS = ['Sun', 'Jupiter', 'Venus'];
+// Tribhāga lords of the three parts of day / night — BPHS 27.18 (+ Jupiter always 60).
+export const TRIBHAGA_DAY = ['Mercury', 'Sun', 'Saturn'];
+export const TRIBHAGA_NIGHT = ['Moon', 'Venus', 'Mars'];
+// Ayana (declination) bala: north-strong grahas (Mercury counts both, handled in code).
+export const AYANA_NORTH_STRONG = ['Sun', 'Mars', 'Jupiter', 'Venus'];
+// Mean daily motion (°/day, sidereal) for Ceṣṭā bala — Sun/Moon handled specially.
+export const MEAN_SPEED = { Sun: 0.9856, Moon: 13.176, Mars: 0.524, Mercury: 1.383, Jupiter: 0.083, Venus: 1.602, Saturn: 0.034 };
+// Special full (60-virūpa) aspects by house-distance for Dṛk bala — BPHS.
+export const SPECIAL_ASPECTS = { Mars: [4, 7, 8], Jupiter: [5, 7, 9], Saturn: [3, 7, 10] };
+
+// Minimum required total Ṣaḍbala (Rūpas) for a graha to be "strong". BPHS 27.48–49.
 export const SHADBALA_REQUIRED = { Sun: 6.5, Moon: 6.0, Mars: 5.0, Mercury: 7.0, Jupiter: 6.5, Venus: 5.5, Saturn: 5.0 };
-export const SHADBALA_SOURCE = 'BPHS Ch.27 — Naisargika & Dig bala (full six-fold strength is partial here; flagged).';
+export const SHADBALA_SOURCE = 'BPHS Ch.27 (graha-bala) — the full six-fold Ṣaḍbala (Sthāna, Dig, Kāla, Ceṣṭā, Naisargika, Dṛk) in virūpas; required minimums 27.48–49; cross-checked with Jagannath Hora (P.V.R. Narasimha Rao).';

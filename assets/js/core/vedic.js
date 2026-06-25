@@ -21,10 +21,18 @@ import {
   lahiriAyanamsa, toSidereal, RASHIS, NAKSHATRA_ARC, nakshatraOf, VIMSHOTTARI,
   EXALTATION, OWN_SIGNS, MOOLATRIKONA, GRAHAS, GRAHA_SANSKRIT, KARAKAS,
   TITHIS, YOGAS, KARANAS_MOVABLE, VARA_LORDS, VARA_NAMES, vargaSign, VARGA_LIST,
-  ASHTAKAVARGA, ASHTAKAVARGA_PLANETS, NAISARGIKA_BALA, DIG_BALA_STRONG_HOUSE, SHADBALA_REQUIRED,
+  ASHTAKAVARGA, ASHTAKAVARGA_PLANETS, SHADBALA_REQUIRED,
+  NAISARGIKA_VIRUPA, DIG_POWERLESS_OFFSET, NATURAL_RELATION, SAPTAVARGA_TIER, SAPTAVARGA_VARGAS,
+  DREKKANA_GROUPS, SHADBALA_BENEFICS, SHADBALA_MALEFICS, NATA_GRAHAS, UNNATA_GRAHAS,
+  TRIBHAGA_DAY, TRIBHAGA_NIGHT, AYANA_NORTH_STRONG, MEAN_SPEED, SPECIAL_ASPECTS,
   RASHI_SOURCE, NAKSHATRA_SOURCE, VIMSHOTTARI_SOURCE, DIGNITY_SOURCE, PANCHANGA_SOURCE,
   VARGA_SOURCE, ASHTAKAVARGA_SOURCE, SHADBALA_SOURCE,
 } from './data/vedic-data.js';
+import { planetaryHour } from './planetary-hours.js';
+import {
+  GRAHA_MANTRAS, GRAHA_JAPA, GRAHA_DEVATAS, VARA as VARA_REMEDIES, NAKSHATRA_INFO,
+  GRAHA_ASANA, VARA_ASANA, GRAHA_YANTRA, REMEDIES_FRAMING,
+} from './data/vedic-remedies.js';
 
 const norm360 = x => ((x % 360) + 360) % 360;
 const YEAR_MS = 365.2425 * 86400000;
@@ -129,30 +137,219 @@ function ashtakavarga(rashiByGraha, lagnaIndex) {
 }
 
 // ---------------------------------------------------------------------------
-//  Partial Ṣaḍbala — Naisargika + Dig + Uccha (exaltation) bala only. The
-//  Kāla / Ceṣṭā / Dṛk balas are computation-heavy and OMITTED here; this is
-//  flagged and should be read as indicative, not authoritative.
+//  FULL six-fold Ṣaḍbala (Sthāna, Dig, Kāla, Ceṣṭā, Naisargika, Dṛk) per BPHS
+//  Ch.27, computed in VIRŪPAS (1 rūpa = 60). Faithful to JHora with documented
+//  simplifications (flagged in the returned `note`): Ceṣṭā via the eight
+//  motional-states speed mapping; declination via the β≈0 approximation;
+//  Abda/Māsa year/month lords from the Sun's sidereal position; Mercury counted
+//  benefic for Pakṣa/Dṛk. SEVEN grahas only (the nodes carry no Ṣaḍbala).
 // ---------------------------------------------------------------------------
-function shadbalaPartial(grahas) {
+const D2R = Math.PI / 180, R2D = 180 / Math.PI;
+const r2 = x => Math.round(x * 100) / 100;
+const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+const fold180 = a => { const x = norm360(a); return x > 180 ? 360 - x : x; };   // 0..180
+const signFold = a => { const x = norm360(a); return x > 180 ? x - 360 : x; };  // -180..180
+const SEVEN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
+
+function declination(tropLon, eps) { return Math.asin(Math.sin(eps * D2R) * Math.sin(tropLon * D2R)) * R2D; }
+function rightAscension(tropLon, eps) { return norm360(Math.atan2(Math.cos(eps * D2R) * Math.sin(tropLon * D2R), Math.cos(tropLon * D2R)) * R2D); }
+
+function ojaYugma(p, signIndex) {
+  const isOddSign = signIndex % 2 === 0;                  // Aries(idx0) = 1st = odd
+  const wantsEven = p === 'Moon' || p === 'Venus';
+  return (wantsEven ? !isOddSign : isOddSign) ? 15 : 0;
+}
+function cheshtaFromSpeed(p, speed) {
+  const mean = MEAN_SPEED[p] || 1;
+  if (speed == null) return 30;
+  if (speed < 0) return 60;                               // Vakra (retrograde) — max effort
+  if (Math.abs(speed) < 0.02 * mean) return 15;          // Vikala (stationary)
+  const r = speed / mean;
+  if (r < 0.5) return 7.5;                                // Mandatara
+  if (r < 1.0) return 15;                                 // Manda
+  if (r < 1.5) return 30;                                 // Sama / Chara
+  return 45;                                              // Atichara
+}
+// BPHS graha-dṛṣṭi value (virūpas) by separation A (0..360); special full aspects
+// are applied separately by the caller.
+function drishtiValue(A) {
+  if (A >= 30 && A < 60) return (A - 30) * 0.5;           // 30→0 .. 60→15
+  if (A >= 60 && A < 90) return 15 + (A - 60) * 0.5;      // 60→15 .. 90→30
+  if (A >= 90 && A < 120) return 30 + (A - 90) * 0.5;     // 90→30 .. 120→45
+  if (A >= 120 && A < 150) return 45 - (A - 120) * 0.5;   // 120→45 .. 150→30
+  if (A >= 150 && A < 180) return 30 + (A - 150);         // 150→30 .. 180→60 (full opposition)
+  if (A >= 180 && A < 210) return 60 - (A - 180) * 2;     // 180→60 .. 210→0
+  if (A >= 270 && A < 300) return (A - 270) * 0.5;        // 270→0 .. 300→15
+  if (A >= 300 && A < 360) return 15 - (A - 300) * 0.25;  // 300→15 .. 360→0
+  return 0;
+}
+
+// Compound (pañcadhā-maitrī) friendship → Saptavargaja tier virūpas, computed once
+// between each pair of the 7 grahas (natural + temporary friendship from D1).
+function compoundRelations(grahas) {
+  const T = SAPTAVARGA_TIER, out = {};
+  for (const a of SEVEN) {
+    out[a] = {};
+    const nat = NATURAL_RELATION[a];
+    for (const b of SEVEN) {
+      if (a === b) continue;
+      const natural = nat.friend.includes(b) ? 'friend' : nat.enemy.includes(b) ? 'enemy' : 'neutral';
+      const dist = ((grahas[b].rashiIndex - grahas[a].rashiIndex + 12) % 12) + 1;   // 1..12
+      const tempFriend = [2, 3, 4, 10, 11, 12].includes(dist);
+      out[a][b] = natural === 'friend' ? (tempFriend ? T.greatFriend : T.neutral)
+        : natural === 'neutral' ? (tempFriend ? T.friend : T.enemy)
+          : (tempFriend ? T.neutral : T.greatEnemy);
+    }
+  }
+  return out;
+}
+
+function shadbala(chart, sid, grahas, lagnaLon, ph) {
+  const eps = chart.obliquity != null ? chart.obliquity : 23.4367;
+  const ramc = chart.ramc;
+  const compound = compoundRelations(grahas);
+
+  // shared temporal quantities (Kāla bala)
+  let noonDist = null;                                    // 0 at local noon, 180 at midnight
+  if (ramc != null) noonDist = Math.abs(signFold(ramc - rightAscension(chart.planets.Sun.lon, eps)));
+  const unnata = noonDist == null ? 30 : (180 - noonDist) / 3;
+  const nata = noonDist == null ? 30 : noonDist / 3;
+  const moonPhaseBala = fold180(sid.Moon - sid.Sun) / 3;  // 0 (new) .. 60 (full)
+
+  // Abda (year) & Māsa (month) lords from the Sun's sidereal position (~1-day approx)
+  const dayMs = 86400000, meanSunSpeed = 0.9856, sunSid = sid.Sun, t0 = chart.date.getTime();
+  const yearLord = VARA_LORDS[new Date(t0 - (sunSid / meanSunSpeed) * dayMs).getUTCDay()];
+  const monthLord = VARA_LORDS[new Date(t0 - ((sunSid % 30) / meanSunSpeed) * dayMs).getUTCDay()];
+  const varaLord = ph ? ph.dayRuler : VARA_LORDS[chart.date.getUTCDay()];
+  const horaLord = ph ? ph.ruler : null;
+  let tribhagaLord = null;
+  if (ph) {
+    const part = clamp(Math.floor((ph.isNight ? ph.hourNumber - 13 : ph.hourNumber - 1) / 4), 0, 2);
+    tribhagaLord = ph.isNight ? TRIBHAGA_NIGHT[part] : TRIBHAGA_DAY[part];
+  }
+
   const per = {};
-  for (const p of ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn']) {
-    const g = grahas[p];
-    const naisargika = NAISARGIKA_BALA[p];
-    const strong = DIG_BALA_STRONG_HOUSE[p];
-    const opp = ((strong + 6 - 1) % 12) + 1;
-    const housesFromOpp = Math.min((g.house - opp + 12) % 12, (opp - g.house + 12) % 12); // 0..6
-    const dig = housesFromOpp / 6;                                 // 0..1 rūpa (whole-sign approx)
-    const ex = EXALTATION[p];
-    const debilLon = ((ex.sign + 6) % 12) * 30 + (ex.deg || 0);
-    const uccha = Math.abs(norm360(g.lon - debilLon + 180) - 180) / 180; // 0..1 rūpa
-    const total = naisargika + dig + uccha;
-    const required = SHADBALA_REQUIRED[p];
+  for (const p of SEVEN) {
+    const g = grahas[p], ex = EXALTATION[p];
+    // ---- Sthāna ----
+    const debLon = ((ex.sign + 6) % 12) * 30 + (ex.deg || 0);
+    const uccha = fold180(g.lon - debLon) / 3;             // 0..60
+    let sapta = 0;
+    for (const n of SAPTAVARGA_VARGAS) {
+      const vs = vargaSign(sid[p], n), lord = RASHIS[vs].lord;
+      sapta += (lord === p) ? (MOOLATRIKONA[p] === vs ? SAPTAVARGA_TIER.moolatrikona : SAPTAVARGA_TIER.own) : compound[p][lord];
+    }
+    const oja = ojaYugma(p, g.rashiIndex) + ojaYugma(p, vargaSign(sid[p], 9));
+    const kendradi = [1, 4, 7, 10].includes(g.house) ? 60 : [2, 5, 8, 11].includes(g.house) ? 30 : 15;
+    const drekkana = DREKKANA_GROUPS[Math.min(2, Math.floor(g.deg / 10))].includes(p) ? 15 : 0;
+    const sthana = uccha + sapta + oja + kendradi + drekkana;
+    // ---- Dig ----
+    const dig = fold180(g.lon - norm360(lagnaLon + DIG_POWERLESS_OFFSET[p])) / 3;
+    // ---- Ayana (declination) ----
+    const decl = declination(chart.planets[p].lon, eps), k = Math.abs(decl);
+    const aligned = p === 'Mercury' ? true : AYANA_NORTH_STRONG.includes(p) ? decl >= 0 : decl < 0;
+    let ayana = ((aligned ? 24 + k : 24 - k) / 48) * 60;
+    if (p === 'Sun') ayana *= 2;
+    // ---- Kāla ----
+    const natho = p === 'Mercury' ? 60 : NATA_GRAHAS.includes(p) ? nata : unnata;
+    const paksha = SHADBALA_BENEFICS.includes(p) ? moonPhaseBala * 2 : (60 - moonPhaseBala);
+    const tribhaga = (tribhagaLord === p ? 60 : 0) + (p === 'Jupiter' ? 60 : 0);
+    const abda = p === yearLord ? 15 : 0, masa = p === monthLord ? 30 : 0;
+    const vara = p === varaLord ? 45 : 0, hora = horaLord === p ? 60 : 0;
+    // ---- Ceṣṭā ----
+    const cheshta = p === 'Sun' ? ayana : p === 'Moon' ? paksha : cheshtaFromSpeed(p, chart.planets[p].speed);
+    // ---- Naisargika ----
+    const naisargika = NAISARGIKA_VIRUPA[p];
+    // ---- Dṛk ----
+    let benefic = 0, malefic = 0;
+    for (const a of SEVEN) {
+      if (a === p) continue;
+      let v = drishtiValue(norm360(g.lon - grahas[a].lon));
+      const houseDist = ((g.rashiIndex - grahas[a].rashiIndex + 12) % 12) + 1;
+      if (houseDist === 7 || (SPECIAL_ASPECTS[a] && SPECIAL_ASPECTS[a].includes(houseDist))) v = 60;
+      if (SHADBALA_BENEFICS.includes(a)) benefic += v; else malefic += v;
+    }
+    const drik = (benefic - malefic) / 4;
+    const kalaNoYuddha = natho + paksha + tribhaga + abda + masa + vara + hora + ayana;
     per[p] = {
-      naisargika: +naisargika.toFixed(3), dig: +dig.toFixed(3), uccha: +uccha.toFixed(3),
-      total: +total.toFixed(3), required, ratio: +(total / required).toFixed(2), strong: total >= required,
+      _sthana: { uccha: r2(uccha), saptavargaja: r2(sapta), ojaYugma: oja, kendradi, drekkana, total: r2(sthana) },
+      _dig: r2(dig), _kala: { nathonnata: r2(natho), paksha: r2(paksha), tribhaga, abda, masa, vara, hora, ayana: r2(ayana), yuddha: 0 },
+      _cheshta: r2(cheshta), _naisargika: r2(naisargika), _drik: r2(drik),
+      _uccha: uccha, _cheshtaRaw: cheshta, _kalaSum: kalaNoYuddha, _sixNoYuddha: sthana + dig + kalaNoYuddha + cheshta + naisargika + drik,
     };
   }
-  return { perGraha: per, note: 'Partial Ṣaḍbala — Naisargika + Dig + Uccha (exaltation) bala only, at whole-sign granularity; Kāla/Ceṣṭā/Dṛk balas omitted (heavy). Indicative, not authoritative.' };
+  // Yuddha (planetary war) — non-luminary pairs within 1°
+  const WAR = ['Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
+  for (let i = 0; i < WAR.length; i++) for (let j = i + 1; j < WAR.length; j++) {
+    const A = WAR[i], B = WAR[j];
+    if (fold180(grahas[A].lon - grahas[B].lon) < 1) {
+      const d = Math.abs(per[A]._sixNoYuddha - per[B]._sixNoYuddha) / 2;
+      const win = grahas[A].lon <= grahas[B].lon ? A : B, lose = win === A ? B : A;
+      per[win]._kala.yuddha = r2(per[win]._kala.yuddha + d);
+      per[lose]._kala.yuddha = r2(per[lose]._kala.yuddha - d);
+    }
+  }
+  const out = {};
+  for (const p of SEVEN) {
+    const x = per[p];
+    const kalaTotal = r2(x._kalaSum + x._kala.yuddha);
+    const totalV = x._sthana.total + x._dig + kalaTotal + x._cheshta + x._naisargika + x._drik;
+    const rupas = totalV / 60, required = SHADBALA_REQUIRED[p];
+    const uc = clamp(x._uccha, 0, 60), ch = clamp(x._cheshtaRaw, 0, 60);
+    out[p] = {
+      sthana: x._sthana, dig: x._dig, kala: { ...x._kala, total: kalaTotal }, cheshta: x._cheshta, naisargika: x._naisargika, drik: x._drik,
+      totalVirupa: r2(totalV), totalRupa: r2(rupas), required, ratio: r2(rupas / required), strong: rupas >= required,
+      ishta: r2(Math.sqrt(uc * ch)), kashta: r2(Math.sqrt((60 - uc) * (60 - ch))),
+    };
+  }
+  const ranked = Object.entries(out).sort((a, b) => b[1].ratio - a[1].ratio).map(([k]) => k);
+  return {
+    perGraha: out, order: ranked, strongest: ranked[0], weakest: ranked[ranked.length - 1],
+    timeLords: { yearLord, monthLord, varaLord, horaLord, tribhagaLord },
+    units: 'virūpas (1 rūpa = 60 virūpas); required minimums in rūpas',
+    note: 'Full six-fold Ṣaḍbala (Sthāna, Dig, Kāla, Ceṣṭā, Naisargika, Dṛk) per BPHS Ch.27, in virūpas. Faithful to Jagannath Hora with documented simplifications: Ceṣṭā via the eight motional-states (speed) mapping; declination via the β≈0 approximation; the Abda/Māsa year/month lords from the Sun’s sidereal position (~1-day); Mercury counted benefic for Pakṣa/Dṛk. It reproduces the tradition’s own strength ranking — astrology has no demonstrated predictive validity.',
+  };
+}
+
+// ---------------------------------------------------------------------------
+//  buildPractice — the traditional daily (vāra) + birth-based devotional practice,
+//  DERIVED from the chart (not hardcoded): the day's weekday-lord drives the daily
+//  mantra/āsana/observance; the WEAKEST graha by Ṣaḍbala (the one the remedial
+//  tradition would propitiate), the Lagna lord, the running daśā lord and the
+//  birth Moon's nakṣatra drive the birth practice. CULTURAL/DEVOTIONAL PRACTICE,
+//  DESCRIBED — NOT PRESCRIBED. The graha→āsana map is modern/syncretic (flagged).
+// ---------------------------------------------------------------------------
+function buildPractice(chart, grahas, lagnaR, dasha, shad, currentDate) {
+  const wd = (currentDate instanceof Date ? currentDate : new Date()).getUTCDay();
+  const vr = VARA_REMEDIES[wd], dayLord = vr.lord;
+  const dayM = GRAHA_MANTRAS[dayLord], dayA = GRAHA_ASANA[dayLord], dayY = GRAHA_YANTRA[dayLord];
+  const vara = {
+    name: vr.name, sanskrit: vr.sanskrit, graha: dayLord, deity: vr.deity, vrata: vr.vrata,
+    colour: vr.colour, offering: vr.offering, popular: !!vr.popular,
+    mantra: dayM.namaIAST, bija: dayM.bijaIAST, japa: dayM.japa,
+    yoga: dayA ? `${dayA.primaryIAST} (${dayA.primaryEN})` : null,
+    yantra: dayY ? dayY.yantraName : null, source: vr.source,
+  };
+  const focusGraha = (shad && shad.weakest) || lagnaR.lord;
+  const fm = GRAHA_MANTRAS[focusGraha], fa = GRAHA_ASANA[focusGraha], fy = GRAHA_YANTRA[focusGraha];
+  const moonNak = grahas.Moon.nakshatra, nakInfo = NAKSHATRA_INFO[moonNak.num - 1];
+  const dashaLord = dasha ? dasha.currentMaha : null;
+  const birth = {
+    focusGraha,
+    reason: shad && shad.perGraha[focusGraha] ? `the weakest graha by Ṣaḍbala (${shad.perGraha[focusGraha].ratio}× its required strength) — the one the remedial tradition would propitiate` : 'the Lagna lord',
+    lagnaLord: lagnaR.lord, dashaLord,
+    moonNakshatra: moonNak.name, moonNakshatraDeity: nakInfo ? nakInfo.deity : moonNak.deity,
+    moonNakshatraMeaning: nakInfo ? nakInfo.significance : '',
+    mantra: fm.namaIAST, bija: fm.bijaIAST, japa: fm.japa, deity: fm.mainDeity,
+    yoga: fa ? `${fa.primaryIAST} (${fa.primaryEN})` : null,
+    yantra: fy ? `${fy.yantraName} (magic-square constant ${fy.yantraConstant})` : null,
+    gem: fy ? fy.gem : null, metal: fy ? fy.metal : null,
+    dashaMantra: dashaLord && GRAHA_MANTRAS[dashaLord] ? GRAHA_MANTRAS[dashaLord].namaIAST : null,
+  };
+  return {
+    vara, birth, asanaIsModern: true, framing: REMEDIES_FRAMING,
+    source: 'Mantra Mahodadhi / Navagraha Stotra (mantras & japa); Purāṇic vāra-vrata calendar (weekday deity/vrata/colour); graha-yantra & ratna tradition (yantra/gem/metal); modern astro-yoga (āsana — flagged classical:false). Cultural/devotional practice recorded for study, never prescribed.',
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -217,8 +414,13 @@ export function castVedic(chart, opts = {}) {
   const pancha = panchanga(sid.Sun, sid.Moon, date);
   const dasha = vimshottari(sid.Moon, date, currentDate);
   const av = ashtakavarga(avRashi, lagnaR.index);
-  const shad = shadbalaPartial(grahas);
+  let ph = null; try { ph = planetaryHour(date, chart.latitude, chart.longitude); } catch { ph = null; }
+  const shad = shadbala(chart, sid, grahas, lagnaLon, ph);
   const yogas = detectYogas(grahas);
+  // traditional daily (vāra) + birth-based devotional practice — derived from the
+  // chart (weekday lord, weakest graha by Ṣaḍbala, Lagna lord, daśā lord, Moon
+  // nakṣatra). Cultural/devotional practice, described — never prescribed.
+  const practice = buildPractice(chart, grahas, lagnaR, dasha, shad, currentDate);
 
   const citations = [
     'Sidereal positions = tropical (astronomy-engine) − Lahiri ayanāṁśa.',
@@ -231,8 +433,8 @@ export function castVedic(chart, opts = {}) {
     system: 'vedic', ayanamsa: +ayanamsa.toFixed(4), ayanamsaName: 'Lahiri (Citrāpakṣa)',
     lagna: { lon: lagnaLon, label: fmtSid(lagnaLon), rashiIndex: lagnaR.index, rashi: lagnaR.name, sanskrit: lagnaR.sanskrit, lord: lagnaR.lord, deg: lagnaR.deg, nakshatra: nakshatraOf(lagnaLon) },
     grahas, panchanga: pancha, vimshottari: dasha, vargas,
-    navamsa: vargas.D9, ashtakavarga: av, shadbala: shad, yogas,
+    navamsa: vargas.D9, ashtakavarga: av, shadbala: shad, yogas, practice,
     citations,
-    notes: 'Lahiri ayanāṁśa; whole-sign houses; Rāhu/Ketu from the mean node; Ṣaḍbala is partial (flagged). JHora-modelled.',
+    notes: 'Lahiri ayanāṁśa; whole-sign houses; Rāhu/Ketu from the mean node; full six-fold Ṣaḍbala (with documented JHora simplifications). JHora-modelled.',
   };
 }

@@ -1,218 +1,290 @@
-# Master Plan — Lilly × Picatrix integrated platform
+# Master Plan — The Astrologer's Workbench (Lilly × Picatrix × Jyotiṣa)
 
-This plan models the **complete** target system: William Lilly's *Christian Astrology*
-(the astrology) integrated with the *Picatrix* (the astrological magic), as one
-well-structured, cross-indexed, interface-driven learning-and-calculation site.
+**Coverage audit + phased roadmap. Authoritative master plan, refreshed 2026-06-25.**
 
-It maps **functionality per chapter of each book**, defines the **master tools** (one
-per book, then a unified master tool), and specifies the **election engine** that is the
-true bridge between Lilly and Picatrix.
+This is the project's spine document. It supersedes the original vision plan (preserved in git
+history) with a **verified** coverage audit — every status below was checked against the actual
+code in `assets/js/core/` and the pages in `pages/`, not just prior docs. It pairs with
+`COVERAGE.md` (the short audit), `REVIEW.md` (the critical + mathematician's-lens review),
+`MASTER-PLAN-V2.md` (the round-by-round build log), `HANDOFF.md` (environment + ship), and
+`research/SOURCE-DATA.md` (the cited data).
 
-> **Execution order (per the user): finish Book I to the last line first.** Picatrix and
-> Books II–III deepen afterwards. Picatrix research is complete and captured below so the
-> plan is whole; building follows the phases at the end.
->
-> **Historical justification for pairing them:** a Picatrix manuscript demonstrably passed
-> through Lilly's own circle (Simon Forman → Richard Napier → Elias Ashmole → William
-> Lilly, BL MS). Lilly's astrology *is* the apparatus Picatrix assumes for its elections.
+> **Honest framing (load-bearing, non-negotiable).** Astrology has no demonstrated predictive
+> validity and is classified as a pseudoscience. This project reconstructs Lilly's *Christian
+> Astrology* (1647), the *Picatrix*, and Jyotiṣa as **historical formal systems** — described,
+> never prescribed. The **astronomy is real and verifiable**; the **interpretations are the
+> tradition's**, offered for study. "Coverage" below means **fidelity to the historical texts'
+> own techniques**, never predictive accuracy. The canonical disclaimer lives in
+> `core/reading.js` (`HONEST_FRAMING`) and is locked into the LLM system prompt.
 
----
+> **The registry is the spine of "what exists."** `assets/js/core/registry.js` catalogues 21
+> capabilities, each naming the module, export, citation, surfacing page, how-it-works anchor,
+> and glossary terms. An anti-drift test in `scripts/engine-test.mjs` asserts every referenced
+> export/page/anchor/term actually resolves — so the map cannot silently rot. This audit uses it
+> as the index and verifies each entry against the implementation.
 
-## 0. Status legend
-✅ done · 🔧 in progress · ⏳ planned
-
-Core engine ✅ · Books I–III content + 4 calculators ✅ · Glossary ✅ · Master Index ✅ ·
-Book I Master Tool ✅ · **Cautions/chart-health engine ✅** · **Tools hub + Workflow chapter-map ✅** ·
-Phase A (degree tables, body-parts, auto-linking, reader) ✅ · Phase B perfection+timing ✅ ·
-Picatrix research ✅ · Election engine ⏳ · Picatrix data modules ⏳.
-
-> **Build log (latest):** Phase A bundle merged to `main`; added `core/cautions.js` (the
-> consolidated chart-health engine, the seed of the Election Engine), wired the full
-> **Cautions & chart-health** panel + ascending-degree readout into the Master Tool, and added
-> two navigation hubs — `pages/tools.html` (all calculators) and `pages/workflow.html` (the
-> per-chapter map + worked examples + horary/nativity step-flows + Picatrix forward-map). Nav
-> reworked; all 20 pages verified at 0 console errors. See `HANDOFF.md`.
+Legend: ✅ **IMPLEMENTED** (working calculator) · ◑ **PARTIAL** (works but simplified/flagged, or
+data incomplete) · 📖 **EXPLAINED ONLY** (content, no tool) · ⛔ **MISSING**.
 
 ---
 
-## 1. The integration model
+## Status at a glance
 
-```
-                         ┌──────────────────────────────┐
-                         │   ELECTION ENGINE (the bridge)│
-                         │  dignities + Moon condition +  │
-                         │  planetary hour + mansion +    │
-                         │  cautions  →  "is this moment  │
-                         │  fit for X?"                   │
-                         └───────────────┬────────────────┘
-            Lilly (astrology) ───────────┤────────── Picatrix (magic)
-   signs/planets/houses/dignities/       │   talismans, planetary spirits,
-   aspects/horary/nativities             │   suffumigations, 28 mansions,
-                                         │   36 decan faces, Behenian stars
-                         ┌───────────────┴────────────────┐
-                         │   UNIFIED MASTER TOOL           │
-                         │  one chart → every reading +    │
-                         │  every election + every caution │
-                         └─────────────────────────────────┘
-```
+The computational heart is **built and verified**: Lilly Books I–III, Picatrix I–III (the
+computable parts), the Lilly↔Picatrix election/talisman bridge, a whole-life trajectory, a
+unified `fullReading` spine, a capability registry, a Claude-powered grounded assistant, and a
+**second independent system** (Jyotiṣa / Jagannath Hora). Verified each round via `verify-site`
+(audit `Problems: 0`; engine-test `all passed`; real-Chromium sweep of 35 pages, 0 console errors).
 
-The site already computes the left side. The election engine reuses that exact
-dignity/aspect/Moon machinery to drive the right side. Nothing is duplicated.
+**What genuinely remains** is not core astronomy — it is **(1)** a handful of fidelity/correctness
+refinements already flagged in REVIEW; **(2)** the *textual/ritual* remainder of Picatrix (Book IV
+prayers, the Mirror-angel spirit system, per-mansion talismanic images, the per-planet planetary-image
+set); **(3)** Lilly's Book II **house-by-house worked judgements** and **live** reproductions of his
+printed charts; **(4)** Book III **rectification** and **natal topic** chapters; and **(5)** the
+proposed mathematician's-lens explainers (structure, lots, falsification, heat-map). *(The
+**full six-fold Ṣaḍbala**, the **Vedic glossary + remedies**, and the **mobile-nav collapse** — gaps
+#7/#8/#9/#16 below — were **shipped 2026-06-25**; see the round note.)*
+
+### Shipped this round — "Phase R2", 2026-06-25 *(verified: audit 0 · engine-test all passed · 35-page Chromium sweep 0 errors)*
+A user-driven round that completed several roadmap gaps and deepened the assistant + the second system:
+- **Full six-fold Ṣaḍbala** (gap #7) — `vedic.js` `shadbala()` now computes Sthāna, Dig, Kāla, Ceṣṭā,
+  Naisargika and Dṛk bala in **virūpas**, with required minimums, ratios, and Iṣṭa/Kaṣṭa phala (BPHS Ch. 27;
+  documented JHora simplifications flagged). Rendered as a table on every Vedic panel.
+- **Vedic glossary** (gap #8) — 20 Jyotiṣa terms (Sidereal Zodiac, Ayanāṁśa, Lagna, Graha, Nakṣatra,
+  Vimśottarī Daśā, Pañcāṅga, Varga, Navāṁśa, Aṣṭakavarga, Ṣaḍbala, Bhāva, Kāraka, Bīja Mantra, Yantra…)
+  in `data/glossary.js`, auto-linked and wired into the registry's `vedic` entry.
+- **Vedic daily/birth remedies** (gap #9) — `data/vedic-remedies.js` (navagraha bīja+nāma mantras & japa,
+  vāra observances, nakṣatra devatās, graha→yantra/gem, and a **modern-flagged** graha→āsana map), composed
+  by `vedic.js` `buildPractice()` into `castVedic().practice`. The *selection* is algorithmic — the day's
+  vāra lord, the **weakest graha by Ṣaḍbala**, the Lagna lord, the daśā lord and the Moon nakṣatra drive it —
+  never hardcoded. Described, never prescribed; the āsana map is loudly labelled modern syncretism.
+- **Mobile nav collapse** (gap #16, partial) — the 14-item bar now collapses behind an accessible hamburger
+  below 880 px (`shared.js` + `style.css`); breadcrumbs/≤2-click reachability remain.
+- **Deeper Claude assistant** (beyond the roadmap) — the Codex now embeds the **whole** computed reading
+  (both systems + the daily/birth practice) and asks for a cross-system **Concordance** (pattern-finding,
+  agree/disagree between tropical & sidereal); the agentic flow gained `castVedic`/`vedicPractice` tools so a
+  custom prompt computes via the **in-browser engine** instead of browsing the site; richer Vedic facts in
+  `buildContext`.
+- **Unified Master birth moment** — `master.html` gained an optional birth-moment block (+ a prominent
+  📍 use-my-location button), so Book III and the Vedic chart read from an **actual birth**.
+- **Save & publish** — the Workbench silently auto-saves each reading's inputs to `localStorage`, exports a
+  **Markdown** summary, and can publish a reading to a **secret GitHub Gist** with the user's own token
+  (the honest browser path to "send it to GitHub" — a static site has no backend).
+- **Workbench superset** — added the Picatrix moment-correspondences (mansion / decan faces / Behenian stars)
+  it previously lacked, so it is now a true superset of the Master tool.
 
 ---
 
-## 2. Functionality map — LILLY, chapter by chapter
+## (A) COVERAGE TABLES
 
-### Book I — An Introduction to Astrology (chs. I–XXI)
-| Chapter(s) | Concept | Functionality | Status |
-|---|---|---|---|
-| I–VI | Ephemeris, erecting a figure, the houses, terms of art | Chart engine; house systems; glossary of terms | ✅ |
-| VII | The 12 houses & significations | Houses reference; house-by-house data | ✅ |
-| VIII–XV | The 7 planets; shapes & colours | Planets reference; planet data | ✅ |
-| XVI–XVII | The 12 signs; **antiscia**; sign classifications | Signs reference; antiscia calc | ✅ |
-| XVIII | **Table of Essential Dignities** | Dignity table + Dignity Calculator + almuten | ✅ |
-| XIX | Aspects, orbs, application/separation, **combustion, cazimi, reception**; **degree tables** (masculine/feminine, light/dark/smoky/void, pitted, azimene, fortunate); **body-parts grid** | Aspects engine ✅; combustion/cazimi ✅; reception ✅; **degree-tables lookup ⏳**; **7×12 body-parts grid ⏳** |
-| XX–XXI | Considerations; significator/querent/quesited | Considerations engine; significator finder | ✅ |
-| — | **Book I Master Tool** | Unified Book I calc | ✅ |
+### A.1 — Lilly, *Christian Astrology*, **Book I** (Introduction) → essentially complete
 
-**Book I remaining (the "every line" pass):** ⏳ supplementary degree tables (azimene/pitted/
-fortunate/masculine-feminine/light-dark-smoky-void) as data + a reference page + flags in the
-Master Tool; ⏳ full planet×sign body-parts grid; ⏳ in-text auto-linking of every term to the
-Glossary; ⏳ per-chapter reader pages keyed to the free scans.
-
-### Book II — The Resolution of All Questions
-| Topic | Functionality | Status |
+| Technique (Lilly's matter) | Status | Evidence |
 |---|---|---|
-| The method; considerations; significators | Step-by-step method; Horary Calculator | ✅ |
-| Perfection: conjunction/aspect | Aspect applying/separating | ✅ |
-| **Translation / collection of light** | Detector in horary output | ⏳ (engine pieces exist) |
-| **Prohibition / refranation / frustration** | Detector in horary output | ⏳ |
-| Reception & mutual reception | Reception in horary | ✅ |
-| **Timing of events** | Degrees→time engine (sign mode + house) | ⏳ |
-| House-by-house questions | Questions guide | ✅ |
-| Worked charts | Case studies page | ✅ (live reproduction ⏳) |
-| Decumbiture (6th, illness) | Decumbiture mode | ⏳ |
-| **Book II Master Tool** | Horary super-view | ⏳ |
+| Erecting the figure; positions of the 7 planets + nodes | ✅ | `core/astro.js` `castChart`/`bodyPosition` (VSOP87, ~1′); registry `positions` |
+| Houses — Regiomontanus (default), Placidus, whole, equal | ✅ | `astro.js` `houses` (`regioCusp`/`placidusCusp`) |
+| The 7 planets, their natures, significations | ✅ | `data/planets.js` (7, ~20 fields each); `book1/reference.html` (live render) |
+| The 12 signs & classifications | ✅ | `data/signs.js` (12 + ELEMENTS/MODES) |
+| The 12 houses & significations | ✅ | `data/houses.js` (12, incl. joys/co-significators/questions) |
+| Aspects, orbs, moieties, applying/separating | ✅ | `core/aspects.js` `aspectBetween`/`allAspects` (Lilly's planet-based orbs + moiety rule) |
+| Combustion, cazimi, under-the-beams | ✅ | `dignities.js` `accidentalDignity`; `cautions.js` |
+| Reception & mutual reception | ✅ | `aspects.js` `mutualReception` (all 5 dignity kinds) |
+| **Table of Essential Dignities** (domicile/exalt/trip/term/face + detriment/fall/peregrine) | ✅ | `dignities.js` `essentialDignity`; `data/dignities-data.js` (terms verified to sum 30°/sign); tool `book1/dignities.html` |
+| Accidental dignity (house/speed/retro/combust/star) | ✅ | `dignities.js` `accidentalDignity`; `book1/master.html` |
+| Almuten of a degree | ✅ | `dignities.js` `almuten` (argmax of essential dignity) |
+| Part of Fortune; antiscia/contra-antiscia; mean node | ✅ | `astro.js` `partOfFortune`/`antiscion`/`contraAntiscion`/`meanNode` |
+| Planetary day & hour (Chaldean order, sunrise-based) | ✅ | `core/planetary-hours.js` `planetaryHour`/`hoursTable`; tool `book1/planetary-hours.html` |
+| Fixed stars (Lilly's accidental-dignity set: Regulus/Spica/Algol) | ✅ | `dignities-data.js` FIXED_STARS (3) |
+| Degree tables — masculine/feminine; light/dark/smoky/void; body-parts grid | ✅ | `data/degree-tables.js` (12 signs each); tool `book1/degrees.html` |
+| Degree tables — **fortunate degrees** | ◑ | `degree-tables.js` FORTUNE_DEG — **4 signs blank** (Taurus/Leo/Sagittarius/Capricorn, left empty not guessed) |
+| Degree tables — **pitted (deep) & azimene degrees** | 📖/⛔ | deliberately **not encoded** (transcriptions conflict); shown for reference only, `degree-tables.js` ~L106-108 |
 
-### Book III — The Judgement of Nativities
-| Topic | Functionality | Status |
+**Book I verdict:** complete to "every line" except the deliberately-deferred pitted/azimene
+lists and 4 blank fortune-degree signs — both held back on **accuracy** grounds, awaiting an
+`accuracy-check` pass.
+
+### A.2 — Lilly **Book II** (Horary) → mechanics complete; judgements & live examples open
+
+| Technique | Status | Evidence |
 |---|---|---|
-| Nativity, dignities, Lord of Geniture, temperament | Nativity Calculator | ✅ |
-| Rectification (Trutine, Animodar, accidents) | Rectification helper | ⏳ |
-| Hyleg / Alcocoden | Hyleg/alcocoden finder | ⏳ |
-| **Primary directions (Naibod)** | Directions tool | ⏳ |
-| **Annual profections** | Profection tool (Lord of the Year) | ⏳ |
-| **Solar revolutions** | Solar-return chart | ⏳ |
-| **Book III Master Tool** | Nativity super-view | ⏳ |
+| Considerations before judgement (radicality) | ✅ | `core/considerations.js` (all 8); `book2/considerations.html` (📖 prose) |
+| Significators of querent & quesited; the 12 houses of questions | ✅ | `app/horary.js`; `data/houses.js` `questions`; `book2/houses.html` (live grid) |
+| The Moon's condition — void of course (with exceptions), via combusta | ✅ | `considerations.js` `moonVoidOfCourse`/`moonInViaCombusta`; `election.js` `isViaCombusta` (configurable bounds + **Spica exception**) |
+| **Perfection** — direct, translation, collection, prohibition, refranation, reception | ✅ | `core/perfection.js` `modesOfPerfection` (all six detected) |
+| Timing of the event (degrees → time by sign-mode + house) | ✅ | `perfection.js` `timeToPerfection` |
+| Chart-health verdict (consolidated cautions) | ◑ | `core/cautions.js` `chartCautions` — works, but a **flat severity count**, not weighted by the *actual* significators of the matter (REVIEW open) |
+| Horary calculator (one moment + quesited house → full judgement) | ✅ | `book2/horary.html` → `app/horary.js` |
+| **Lilly's worked charts** (Ship at Sea, Stolen Fish, Marriage, Lost Dog) | 📖 | `book2/examples.html` is **static prose only** — imports `shared.js` (chrome) only, no engine; positions are narrated, not computed |
+| **House-by-house judgement guidance** (Lilly's per-house question chapters, II.xvii–end) | 📖/◑ | houses described in data; **no dedicated per-house judgement walkthroughs** with the relevant significator/perfection logic surfaced per topic |
+| Decumbiture (6th house, illness, critical days) | ⛔ | not built (named in early plan) |
+| Antiscia *used in judgement* (as hidden aspects in horary) | ◑ | antiscia computed/displayed; **not woven into the perfection/aspect search** |
+
+### A.3 — Lilly **Book III** (Nativities) → core apparatus complete; topics & rectification open
+
+| Technique | Status | Evidence |
+|---|---|---|
+| The natal figure, positions, dignity ledger | ✅ | `book3/nativity.html` → `app/book3.js`; `book3/master.html` |
+| Lord of the Geniture | ✅ | computed in `trajectory.js`/Book III master (greatest-dignity planet) |
+| Temperament (humoral) | ◑ | `trajectory.js` ~L54/111 — explicitly **SIMPLIFIED** (coarse Asc+Moon+sect-light tally, not Lilly's full rule); citation hedged |
+| Annual profection & Lord of the Year (ℤ/12) | ✅ | `core/profections.js` `annualProfection`/`lordOfYear`/`monthlyProfection` |
+| Hyleg & Alcocoden (length of life) | ◑ | `core/hyleg.js` — full sect-ordered candidate logic, **contested**, every disputed choice surfaced in `assumptions`/`reason` |
+| Primary directions | ◑ | `core/directions.js` — **simplified in-zodiac Naibod**, self-flagged "study approximations, not casting-grade"; **not** Placidian mundane (semi-arc) |
+| Solar revolution (return) | ✅ | `core/solar-return.js` `solarReturn`/`solarReturnInstant` (bracket + bisect) |
+| Whole-life trajectory (profection timeline + directions + SR + Picatrix overlay) | ✅ | `core/trajectory.js` `lifeTrajectory`; `trajectory.html` |
+| **Rectification** (Trutine of Hermes, Animodar, accidents) | ⛔ | not built |
+| **Natal topic chapters** (wealth/marriage/children/profession/honour/accidents to the 12 houses) | 📖/◑ | derivable from dignities+houses; **no dedicated topic readers** doing the per-house natal judgement |
+| Rigorous Placidian **mundane** primary directions (semi-arc) | ⛔ | out of scope, documented in `directions.js` |
+
+### A.4 — Cross-cutting (all three books)
+
+| Capability | Status | Evidence |
+|---|---|---|
+| Unified `fullReading` spine (one moment → the whole engine, serializable + cited) | ✅ | `core/reading.js` `fullReading` |
+| Unified Master Tool / Workbench | ✅ | `pages/master.html` (`master-unified.js`), `pages/workbench.html` (`workbench.js`) — JSON/SVG/PNG export, shareable URL |
+| Live "Right Now" dashboard | ✅ | `pages/now.html` (`now.js`, auto-refresh) |
+| Capability registry + anti-drift test | ✅ | `core/registry.js`; `scripts/engine-test.mjs` |
+| Grounded AI assistant (Claude; Explain / Tools / Codex / Plan-a-working) | ✅ | `app/assistant.js` + `core/llm-context.js` (`buildContext`/`runTool`/codex/operation prompts) |
+| Glossary / dictionary (auto-linked) | ◑ | `data/glossary.js` (92 terms) — **missing**: Election, Profection, Suffumigation, Behenian, Perfect Nature, the spirit-system terms |
+| **Generalised Arabic Parts / Lots** (Eros, Necessity, Victory, Basis, …) | ◑ | `astro.js` `lot()` exists; `reading.lots` exposes **only Fortune + Spirit** — the seven Hermetic lots not surfaced |
+| **Sect-aware Part of Fortune** (reverse by night) | ◑ | engine supports it (`partOfFortune({sectAware})`) but `castChart` calls it **non-sect-aware**; **no UI toggle** |
+
+### A.5 — The **Picatrix** (Ghāyat al-Ḥakīm)
+
+| Technique | Status | Evidence |
+|---|---|---|
+| **28 lunar mansions** + Moon's mansion now + uses | ✅ | `data/lunar-mansions.js` (28, cited) `mansionOf`; `picatrix/mansions.html` (live) |
+| **36 decan faces** + face-of-a-degree + images (Agrippa, 3 Picatrix variants flagged) | ✅ | `data/decan-faces.js` (36, `imageAlt` variants); `faceOf`; `picatrix/faces.html` (live) |
+| **15 Behenian fixed stars** with **live precession** (50.29″/yr); Alkaid canonical, Fomalhaut flagged modern | ✅ | `data/behenian-stars.js` `behenianLongitude`/`starsInAspect`; `picatrix/stars.html` (live) |
+| Planetary hours (shared with Lilly) | ✅ | `planetary-hours.js`; cross-linked |
+| **Per-planet correspondences** — suffumigation, colour, metal, stone, spirit-names | ✅ | `data/planetary-magic.js` (7); `picatrix/correspondences.html` (📖 reference render) |
+| **Election engine** (is this moment fit for aim X?) — 11 operations, gating filters, ranking, find-next-window | ✅ | `core/election.js` `electionScore`/`rankNow`/`findNextElection`/`nextAuspiciousTime`/`OPERATIONS`; `picatrix/election.html` |
+| **Talisman recipe** (aim → election → correspondences → mansion/face/star → design → cited steps) | ✅ | `core/talisman.js` `talismanRecipe`/`allRecipes`; `picatrix/talisman.html` (wizard + worked example) |
+| Spirit-name systems | ◑ | **2 of 3** present (Picatrix prayer-angel + Agrippa Angel/Intelligence/Spirit triad). **Picatrix "Mirror" angels** flagged but **not in data** |
+| **Per-mansion talismanic images** (Picatrix I.4) | ⛔ | `lunar-mansions.js` header: "image/spirit/suffumigation to be added in a second pass" — **uses present, images absent** |
+| **Per-planet planetary-image set** (the talisman figures, Picatrix II.22–46, distinct from decan-face images) | 📖/⛔ | described in the talisman step; **not tabled as data** |
+| **Planetary prayers / invocation texts** (Picatrix III.7–9 Sabian prayers) | 📖/⛔ | **angel names only**; prayer texts absent |
+| **The "Perfect Nature"** (Picatrix III.6) | 📖/⛔ | reference-level/absent — gap |
+| **Book IV** — the 12 lunar-sign prayers; incense recipes; natural & alchemical magic | ⛔ | not encoded (framing-sensitive; historical-only if added) |
+| Magic squares / kāmeas; planetary seals/sigils | ⛔ | **not present** (note: kāmeas are Agrippa II.22, not strictly Picatrix — flag clearly if added) |
+
+**Picatrix verdict:** the **computable** heart (mansions, faces, Behenian stars, correspondences,
+election, talisman) is implemented and cross-linked. The **textual/ritual remainder** (Mirror
+angels, prayer texts, Perfect Nature, mansion images, the planetary-image set, Book IV, magic
+squares) is reference-level or absent — acceptable for an honest study edition, but the named
+gaps are the Picatrix-completion backlog.
+
+### A.6 — Jyotiṣa (Vedic) — the second, independent system
+
+| Technique | Status | Evidence |
+|---|---|---|
+| Sidereal chart (Lahiri ayanāṁśa, live precession), whole-sign houses, 9 grahas + nakṣatra/pada | ✅ | `core/vedic.js` `castVedic`; `data/vedic-data.js`; `pages/vedic/index.html` + 🕉 side-by-side toggle on every tool |
+| Pañcāṅga (tithi, vāra, nakṣatra, yoga, karaṇa) | ✅ | `vedic.js` |
+| Vimśottarī daśā (mahā + antar, balanced from Moon) | ✅ | `vedic.js` (120-yr cycle verified) |
+| Vargas D1–D60 (book unit-test vectors pass) | ✅ | `vedic-data.js` `vargaSign` |
+| Aṣṭakavarga (BAV + SAV, checksum 337) | ✅ | `vedic.js` |
+| Parāśarī dignities; core yogas | ✅ | `vedic.js` |
+| **Ṣaḍbala** | ✅ | **Full six-fold** (Sthāna/Dig/Kāla/Ceṣṭā/Naisargika/Dṛk) in virūpas + required minimums + Iṣṭa/Kaṣṭa (`vedic.js` `shadbala()`, BPHS Ch. 27; JHora simplifications flagged in `note`) — *shipped 2026-06-25* |
+| **Vedic glossary** (sidereal zodiac, ayanāṁśa, nakṣatra, daśā, varga, graha, ṣaḍbala terms) | ✅ | 20 terms in `data/glossary.js`, auto-linked, wired into registry `vedic` — *shipped 2026-06-25* |
+| **Daily / birth remedies** (mantra/japa, vāra observance, yantra/gem, āsana — historical/cultural) | ✅ | `data/vedic-remedies.js` + `vedic.js` `buildPractice()` → `castVedic().practice`; selection algorithmic (vāra lord, weakest graha by Ṣaḍbala, Lagna/daśā lord, Moon nakṣatra). Described not prescribed; āsana map flagged modern — *shipped 2026-06-25* |
 
 ---
 
-## 3. Functionality map — PICATRIX, chapter by chapter
+## (B) RANKED GAP LIST (value × effort)
 
-*(Source: the four-book outline from research. Each becomes reference content + data; the
-practical chapters feed the election/talisman engine. Presented as historical practice.)*
+Effort: **S** ≤ ½ day · **M** 1–2 days · **L** 3+ days. Value reflects fidelity-to-text and
+educational payoff (never predictive worth).
 
-### Picatrix Book I — Foundations
-| Ch. | Content | Functionality | Status |
-|---|---|---|---|
-| I.1–3 | Philosophy of magic; talisman theory; the spheres | Reference essay | ⏳ |
-| **I.4** | **The 28 Mansions of the Moon + talismans** | **Mansions data + "Moon's mansion now" + per-mansion uses** | ⏳ |
-| I.5 | Favourable constellations for images | Reference | ⏳ |
-| I.6–7 | Microcosm; chain of being; *Hyle* | Reference essay | ⏳ |
-
-### Picatrix Book II — Celestial sphere, decans, election theory
-| Ch. | Content | Functionality | Status |
-|---|---|---|---|
-| II.2, 11, 12 | **The 36 decan faces + images** | **Decan-face reference + "face of a degree" lookup** | ⏳ |
-| II.3 | **Election theory; lunar impediments; eclipses** | **Feeds the election engine** | ⏳ |
-| II.10 | Planetary talismans, stones, metals, engraved figures | Talisman reference per planet | ⏳ |
-
-### Picatrix Book III — Planetary properties, spirits, correspondences
-| Ch. | Content | Functionality | Status |
-|---|---|---|---|
-| III.1–2 | Planetary & sign dominions; planetary hours | Cross-link to planetary hours ✅ | 🔧 |
-| **III.3** | **Colours, garments, materials, suffumigations** | **Per-planet correspondence tables** | ⏳ |
-| III.5–6 | Spirits/*pneumata*; the "Perfect Nature" | Reference (3 spirit-name systems, kept distinct) | ⏳ |
-| **III.7–9** | **Sabian planetary prayers + angel names** | Per-planet ritual reference | ⏳ |
-| III.10–11 | Protective talismans, charms | Reference | ⏳ |
-
-### Picatrix Book IV — Spirits, lunar prayers, recipes
-| Ch. | Content | Functionality | Status |
-|---|---|---|---|
-| IV.2 | Moon prayers in the 12 signs; magical characters | Reference | ⏳ |
-| IV.6–9 | Incense recipes; the practical "recipe" catalogue | Talisman recipe reference | ⏳ |
-
-### Complementary (NOT in Picatrix — flag clearly)
-| Source | Content | Functionality | Status |
-|---|---|---|---|
-| *De Quindecim Stellis* / Agrippa II.47 | **The 15 Behenian fixed stars** (canonical list has **Alkaid**, not Fomalhaut) | Behenian-star data + "stars in aspect now" | ⏳ |
-| Agrippa II.33 | Mansion magical virtues | Cross-reference with Picatrix mansion uses | ⏳ |
-| Agrippa "Scale of Seven" | Angel / Intelligence / Spirit triads | Spirit cross-reference table | ⏳ |
+| # | Gap | Book/Work | Effort | Value | Why it matters |
+|---|---|---|---|---|---|
+| 1 | **Significator-weighted chart health** — weight cautions by whether the flag touches the querent/quesited (or natal) significators, not a flat count | Lilly II | M | **High** | The flat count is *alien to Lilly's method*; this is the single most-cited fidelity defect (REVIEW §2) |
+| 2 | **Sect-aware Part of Fortune toggle + generalised Lots view** (`core/lots.js`: Spirit, Eros, Necessity, Victory, Basis, Courage, Nemesis) | Lilly I | S→M | **High** | Resolves the sect-fork honestly; clean affine math; unlocks a whole class of Hermetic technique already half-wired |
+| 3 | **Lilly's worked charts as LIVE figures** (Ship at Sea, Stolen Fish, Marriage, Lost Dog) — recompute from historical data, draw the wheel, annotate his reasoning; verify vs his printed positions | Lilly II | L | **High** | The headline pedagogy gap; `examples.html` is currently prose-only |
+| 4 | **House-by-house horary judgement walkthroughs** — per-topic (lost objects, marriage, sickness, travel, lawsuits…) flows that surface the right significators + perfection per question | Lilly II | L | **High** | This *is* Book II's bulk; currently only house data + a generic calculator |
+| 5 | **Per-mansion talismanic images** (Picatrix I.4) into `lunar-mansions.js` | Picatrix I | M | Med | The acknowledged "second pass"; completes the mansion records the talisman flow already wants |
+| 6 | **Election gating polish** — already gates retrograde/combust/detriment/fall; add **curated mansion-fitness keyword map** (replace naive substring) and **down-weight malefic mansions** | Picatrix | M | Med | REVIEW open item; removes a known false-positive path in the elector |
+| 7 | ✅ **DONE (2026-06-25)** — **Full six-fold Ṣaḍbala** (Kāla, Ceṣṭā, Dṛk added) + Iṣṭa/Kaṣṭa phala | Jyotiṣa | L | Med | The flagged Vedic follow-up; finishes the JHora strength model. `vedic.js` `shadbala()` |
+| 8 | ✅ **DONE (2026-06-25)** — **Vedic glossary terms** folded into the auto-linker | Jyotiṣa | S | Med | Closes the cross-link gap. 20 terms in `glossary.js`, wired to registry |
+| 9 | ✅ **DONE (2026-06-25)** — **Vedic daily/birth remedies** (mantra/japa/deity/yantra/gem; āsana flagged modern; selection algorithmic) | Jyotiṣa | M | Med | The flagged Vedic remedy follow-up; kept historical-described. `data/vedic-remedies.js` + `buildPractice()` |
+| 10 | **Glossary completion (Western/Picatrix)** — Election, Profection, Suffumigation, Behenian, Perfect Nature, the two spirit systems | cross | S | Med | Auto-linking is wired; the terms simply need entries |
+| 11 | **Picatrix Mirror-angel spirit system** (3rd system) into `planetary-magic.js`, kept distinct | Picatrix III | S | Med | Completes "two of three"; pure cited data add |
+| 12 | **Per-planet planetary-image set** (Picatrix II.22–46) as data, distinct from decan-face images | Picatrix II | M | Med | The talisman *design* note currently has no backing image table |
+| 13 | **Structure / Patterns explorer** page — the modular-partition + planetary-week-theorem (24≡3 mod 7, gcd=1) + antiscia-reflection + aspect-harmonics teaching view | cross | M | Med-High | REVIEW's recommended-first experimental; pure teaching, showcases the unification |
+| 14 | **Falsification demo** page — permute birth time N× over `fullReading`, plot the verdict/dignity null distribution → in-tool, honest-science centre-piece | cross | M | Med-High | The strongest honesty feature; mathematically + rhetorically clean |
+| 15 | **Election heat-map** (7 days × 24 h grid of `rankNow` for an aim; the weekly planetary-hour periodicity emerges) | Picatrix | S | Med | Cheap, visual, reuses `electionScore` |
+| 16 | ◑ **PARTLY DONE (2026-06-25)** — **Mobile nav collapse** shipped (14-item bar → accessible hamburger < 880 px, `shared.js`+`style.css`). **Remaining:** breadcrumbs, "every page ≤2 clicks", un-dead-end `correspondences.html` | cross | M | Med | The standing UX debt |
+| 17 | **Antiscia woven into judgement** (treat antiscia/contra-antiscia as hidden contacts in the perfection/aspect search) | Lilly II | S | Low-Med | Lilly uses them in judgement; currently display-only |
+| 18 | **Decumbiture mode** (6th-house illness, critical days) | Lilly II | M | Low-Med | A named early-plan feature; niche |
+| 19 | **Natal topic readers** (wealth/marriage/children/profession/accidents to the 12 houses) | Lilly III | L | Med | Book III's back half; derivable but not surfaced as topic flows |
+| 20 | **Rectification helper** (Trutine of Hermes, Animodar, accidents-based) | Lilly III | L | Low-Med | Completeness; lower demand |
+| 21 | **Picatrix Book IV** (12 lunar-sign prayers, incense recipes) + **Perfect Nature** + **planetary prayer texts** — historical-only | Picatrix III–IV | M | Low-Med | Framing-sensitive; reference-level, describe-never-instruct |
+| 22 | **Magic squares / kāmeas + planetary seals** (flag as Agrippa II.22, not strictly Picatrix) | (Agrippa) | M | Low | Frequently expected by users; clearly label provenance |
+| 23 | **Accuracy finishing** — `accuracy-check` the pitted/azimene/fortune degrees; fill the 4 blank fortune signs; record provenance in-data | Lilly I | S | Med | Closes the only Book I data holes, on the accuracy mandate |
+| 24 | **SVG/PNG export + generalised URL-share across all tools** | cross | S | Low-Med | Mostly done in `app/state.js`/Workbench; sweep the remaining tools |
+| 25 | **A11y pass** (ARIA landmarks, keyboard nav, contrast, alt on glyphs; extend `verify-site` to assert landmarks) | cross | M | Med | Standing quality debt |
 
 ---
 
-## 4. The ELECTION ENGINE (the bridge) ⏳
+## (C) PHASED ROADMAP
 
-A single module `election.js` answering: *"Is moment T at place P fit for operation O?"*
-Reusing the existing dignity/aspect/Moon/planetary-hour code. Checks (from Picatrix III.4–5,
-II.3, cross-checked with Lilly's considerations):
+Ordering integrates the already-planned items (REVIEW's R1/R2, the carried Phase 3/4, the
+accuracy backlog) with the gaps above, by value/effort. **Every phase ends at the `verify-site`
+gate** (audit `Problems: 0` + engine/data headless tests + 0-console-error Chromium sweep) and is
+committed (push direct to `origin/main`, or `ship-bundle` if blocked). Run `accuracy-check` before
+encoding any contested datum; new data modules use `add-data-module` (provenance per record,
+in-data discrepancy flags, a headless test, no DOM in core).
 
-1. **Planet of the work** dignified (domicile/exaltation/triplicity/term), **direct**, **not
-   combust**, **not cadent**, oriental/angular, free of Mars–Saturn squares.
-2. **Planetary day + hour** of the operation's planet.
-3. **Moon condition:** waxing (benefic) / waning (banishing); speed ≥ 12°/day; **not combust /
-   under-beams (±12°)**; **not in the Via Combusta** (configurable 8° Libra–3° Scorpio or
-   15°–15°); not conjunct/applying to a malefic; not cadent from the MC; applying by
-   trine/sextile to the relevant benefic.
-4. **Moon's mansion** appropriate to the operation (28-mansion table).
-5. **Cautions panel:** lists every failing condition; the **Jupiter/Venus-on-angle override**
-   ("rectify an unfortunate Moon"); the **inversion note** for malefic work.
-6. **Election finder:** scan forward to suggest the next window satisfying the rules.
+### Phase 1 — Fidelity & correctness *(highest value, mostly REVIEW R1)*
+Make the existing engine *truer to the texts* before adding surface area.
+1. **Significator-weighted chart health** — gap #1.
+2. **Sect-aware Part of Fortune + generalised Lots** (`core/lots.js`, sect toggle, `reading.lots` exposes the seven Hermetic lots) — gap #2.
+3. **Election polish** — curated mansion-fitness keyword map; down-weight malefic mansions — gap #6.
+4. **Glossary completion** (Western/Picatrix terms) + **Vedic glossary terms** — gaps #10, #8.
+5. **Accuracy finishing** — `accuracy-check` the pitted/azimene/fortune degrees; fill 4 blank fortune signs — gap #23.
 
-Output: a green/amber/red verdict + the full caution list + the talisman correspondences for
-the chosen planet/mansion/decan/star.
+### Phase 2 — Picatrix completion *(close the named magic-layer gaps; historical framing throughout)*
+6. **Per-mansion talismanic images** (Picatrix I.4) — gap #5.
+7. **Mirror-angel spirit system** (3rd system) — gap #11.
+8. **Per-planet planetary-image set** (Picatrix II.22–46) — gap #12.
+9. *(Optional, framing-sensitive)* **Perfect Nature**, **planetary prayer texts**, and a sourced selection of **Book IV** lunar prayers — gap #21 (describe-never-instruct; note toxic/illegal historical substances without recommending).
+10. *(Optional, clearly provenance-flagged as Agrippa)* **magic squares / kāmeas + seals** — gap #22.
+
+### Phase 3 — The mathematician's-lens explainers *(REVIEW R2; teaching + honesty payoff)*
+11. **Structure / Patterns explorer** (`pages/structure.html`) — gap #13.
+12. **Falsification demo** (`pages/experiment.html`) — gap #14.
+13. **Election heat-map** (time-scan grid on the election page) — gap #15.
+   *(Lots from Phase 1 #2 feed these; each is a small addition over `fullReading` + the registry.)*
+
+### Phase 4 — Lilly depth: live examples & judgements *(the headline pedagogy, carried Phase 4)*
+14. **Reusable computed-example component** (`app/example.js`) that casts a real chart and renders engine output inline.
+15. **Lilly's worked charts as LIVE figures** (Ship at Sea, Stolen Fish, Marriage, Lost Dog), verified vs his printed positions within tolerance — gap #3.
+16. **House-by-house horary judgement walkthroughs** (per-topic flows) — gap #4.
+17. **Antiscia woven into judgement** — gap #17.
+18. *(Optional)* **Decumbiture mode** — gap #18.
+
+### Phase 5 — Book III depth & the Vedic strength/remedy layer
+19. ✅ **DONE (2026-06-25)** — **Full six-fold Ṣaḍbala** (+ Iṣṭa/Kaṣṭa phala) — gap #7.
+20. ✅ **DONE (2026-06-25)** — **Vedic daily/birth remedies** (historical-only) — gap #9.
+21. **Natal topic readers** (wealth/marriage/children/profession/accidents to the 12 houses) — gap #19.
+22. *(Optional)* **Rectification helper** (Trutine/Animodar) — gap #20.
+23. *(Documented out-of-scope unless promoted)* rigorous **Placidian mundane** primary directions.
+
+### Phase 6 — Organize / link / UX / ship *(carried Phase 3 polish)*
+24. ◑ **Mobile nav collapse DONE (2026-06-25)**; still: breadcrumbs, ≤2-click reachability, un-dead-end `correspondences.html` — gap #16.
+25. **SVG/PNG export + generalised URL-share** swept across all tools — gap #24.
+26. **A11y pass** (landmarks/keyboard/contrast/alt; extend `verify-site` to assert) — gap #25.
+27. **Final QA** — spot-check ~10 numbers vs external references; refresh `README.md`/`COVERAGE.md`/this plan; ship.
 
 ---
 
-## 5. Data modules to add ⏳
-- `lunar-mansions.js` — 28 mansions: number, tropical boundary, Arabic & Picatrix/Agrippa
-  names, principal stars, Picatrix + Agrippa uses, image/spirit/suffumigation.
-- `decan-faces.js` — 36 faces: ruler (Chaldean), Agrippa image, Picatrix image (flag variants).
-- `behenian-stars.js` — 15 stars (Alkaid canonical; Fomalhaut flagged modern): name, ~longitude
-  (compute live), nature, stone, plant, use. Mark precession caveat.
-- `planetary-magic.js` — per planet: spirit names (3 systems, kept separate), suffumigation,
-  colour, metal, stone, plants, animals, garment/approach, governed petitions, ring image.
-- `degree-tables.js` — masculine/feminine, light/dark/smoky/void, pitted, azimene, fortunate.
+## Dependency notes
+- Phase 1 #2 (**Lots**) underpins Phase 3 (the structure/falsification explorers read the lots + registry).
+- Phase 2 data adds feed the talisman/election layers already built — **reuse, never re-implement**
+  (compose `cautions.js`→`election.js`→`talisman.js`; compose the data modules into `fullReading`).
+- Phase 4 #14 (example component) is a prerequisite for #15/#16.
+- New capabilities must be added to `registry.js` (the anti-drift test enforces export/page/anchor/term existence) and surfaced in nav/Tools-hub/Workflow so nothing is orphaned.
 
-All sourced from the research reports (Warnock/Renaissance Astrology, Agrippa at
-esotericarchives, Wikipedia Behenian, the Greer–Warnock & Attrell–Porreca Picatrix), with
-discrepancies flagged in-data.
-
----
-
-## 6. Cross-cutting: indexing, dictionary, linking (the user's emphasis) 🔧
-- Glossary/Dictionary ✅ and Master Index ✅ done.
-- ⏳ Auto-link every glossary term where it appears in body text (a small `autolink.js`).
-- ⏳ Extend the Glossary to cover all Picatrix terms (mansion, decan, suffumigation, Behenian,
-  Perfect Nature, the spirit systems).
-- ⏳ Every planet/sign/star/mansion gets a hover-card / linked detail popup wherever named.
-- ⏳ Per-chapter reader pages linked to the free public scans (Archive.org/Wikisource).
-
----
-
-## 7. Phased roadmap
-
-- **Phase A — Finish Book I (current):** degree tables + body-parts grid + flags in Master Tool;
-  auto-linking of terms; per-chapter reader scaffolding. ⏳
-- **Phase B — Book II depth:** translation/collection/prohibition/refranation/frustration
-  detection; timing engine; decumbiture; Book II Master Tool; live worked-chart reproduction. ⏳
-- **Phase C — Book III depth:** rectification, hyleg/alcocoden, profections, directions, solar
-  returns; Book III Master Tool. ⏳
-- **Phase D — Picatrix data + reference:** mansions, decan faces, Behenian stars, planetary
-  correspondences/spirits; reference pages for all four Picatrix books. ⏳
-- **Phase E — Election engine:** the bridge module + UI + caution system + election finder. ⏳
-- **Phase F — Unified Master Tool:** one input → all readings + all elections + all cautions,
-  with full cross-linking. ⏳
-
-Each phase: research-verify → encode data → build → **verify in a real browser** → commit →
-(bundle for manual upload while the managed push path is blocked).
+## Architecture invariants (do not break)
+- **No build step**; vanilla ES modules; shared chrome from `app/shared.js` computing root via `import.meta.url`. Never hard-code absolute site paths.
+- **Engine stays pure & headless-testable** — computation in `assets/js/core/` (except `chart.js`), DOM in `assets/js/app/`.
+- **Data is sourced & flagged** in `assets/js/core/data/` — provenance per record; discrepancies flagged in-data, never silently chosen.
+- **Honest framing on everything interpretive**; magic described as history, never prescribed.

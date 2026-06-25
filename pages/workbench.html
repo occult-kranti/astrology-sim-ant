@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Workbench — everything, in one tool | The Astrologer's Workbench</title>
-<meta name="description" content="The unified Workbench: one moment and place computes the WHOLE engine at once — positions and the figure, the full dignity ledger, aspects and reception, the lots and antiscia, chart health, horary perfection, the Picatrix election layer, the talisman recipe, and (with a birth moment) the life trajectory. Export the reading as JSON, share it by link, and ask a LOCAL language model to explain it. Historical study only — astrology has no demonstrated predictive validity.">
+<meta name="description" content="The unified Workbench: one moment and place computes the WHOLE engine at once — positions and the figure, the full dignity ledger, aspects and reception, the lots and antiscia, chart health, horary perfection, the Picatrix election & talisman, the life trajectory, AND the Vedic (Jagannath Hora) chart side by side. Export the reading as JSON/Markdown, share it by link, save it (and optionally publish to a secret Gist), and ask Claude to explain it. Historical study only — astrology has no demonstrated predictive validity.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -15,9 +15,10 @@
   <p class="lede">One moment and place runs the <b>whole engine at once</b> through a single composed reading
     (<code>fullReading</code>): the <b>figure</b>, the full <b>dignity ledger</b>, <b>aspects &amp; reception</b>,
     the <b>lots &amp; antiscia</b>, <b>chart health</b>, <b>horary perfection</b>, the Picatrix <b>election</b> layer,
-    the <b>talisman</b> recipe, and — with a birth moment — the whole <b>life trajectory</b>. Every value is the
-    same engine the dedicated tools use; nothing is re-derived. You can <b>export the reading as JSON</b>,
-    <b>share it by link</b>, download the <b>chart</b>, and <b>ask a local language model</b> to explain it.</p>
+    the <b>talisman</b> recipe, and — with a birth moment — the whole <b>life trajectory</b>; plus the
+    <b>🕉 Vedic (Jagannath Hora) chart</b> side by side (toggle below). Every value is the same engine the dedicated
+    tools use; nothing is re-derived. You can <b>export as JSON/Markdown</b>, <b>share by link</b>, <b>save &amp;
+    publish</b> the reading, download the <b>chart</b>, and <b>ask Claude</b> to explain it (the Anthropic API, your own key).</p>
   <p class="small"><b>Where each number comes from:</b> every panel below links to its dedicated tool, its
     <a href="how-it-works.html">step-by-step explanation</a>, and the glossary — see the
     <a href="#wb-reference">Reference index</a> at the foot for the full map of functions &amp; data.</p>
@@ -27,7 +28,7 @@
     those of William Lilly (1647) and the medieval <em>Picatrix</em>, reproduced faithfully so the tradition can be
     examined — never as guidance or a forecast. <b>Astrology has no demonstrated predictive validity</b> and is
     regarded by the scientific community as a pseudoscience; the magical/talismanic material is recorded as historical
-    practice only and is never a recommendation. The local-model assistant narrates these computed, cited results and
+    practice only and is never a recommendation. The Claude assistant narrates these computed, cited results and
     is held to the same framing. See <a href="about/index.html">Sources &amp; Science</a>.</div>
 
   <form id="wb-form" class="calc">
@@ -60,11 +61,28 @@
       <button type="submit" class="btn">Compute the reading</button>
       <button type="button" class="btn sm" id="wb-copy">Copy shareable link</button>
       <button type="button" class="btn sm" id="wb-json">Download JSON</button>
+      <button type="button" class="btn sm" id="wb-md">Download summary (MD)</button>
       <button type="button" class="btn sm" id="wb-svg">Download chart (SVG)</button>
       <button type="button" class="btn sm" id="wb-png">Download chart (PNG)</button>
       <button type="button" class="btn sm" id="wb-print">Print</button>
       <span id="wb-status" class="small muted"></span>
     </div>
+    <details id="wb-publish-details" style="margin-top:.6rem">
+      <summary class="small"><b>Save &amp; publish this reading</b></summary>
+      <div style="margin-top:.5rem;border-top:1px dashed var(--rule);padding-top:.6rem">
+        <p class="small muted" style="margin:0 0 .5rem">Every reading you compute is <b>auto-saved on this device</b> (listed below; nothing leaves your
+          browser). A static site has no server, so to actually <b>send a copy to GitHub</b> the honest path is a direct,
+          <b>silent</b> call to <code>api.github.com</code> with <b>your own token</b> (gist scope) — it creates a
+          <b>secret Gist</b> and gives you the link. No notifications are sent.</p>
+        <div class="field-row" style="align-items:flex-end;gap:.6rem;flex-wrap:wrap">
+          <div class="field" style="flex:1 1 300px"><label for="wb-gh-token">GitHub token (optional · gist scope)</label>
+            <input id="wb-gh-token" type="password" autocomplete="off" spellcheck="false" placeholder="ghp_…" style="width:100%"></div>
+          <label class="small" style="display:flex;align-items:center;gap:.3rem"><input type="checkbox" id="wb-gh-remember"> remember on this device</label>
+          <button type="button" class="btn sm" id="wb-publish">Publish to a secret Gist</button>
+        </div>
+        <p id="wb-saved" class="small" style="margin:.6rem 0 0"></p>
+      </div>
+    </details>
   </form>
 
   <p id="wb-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>

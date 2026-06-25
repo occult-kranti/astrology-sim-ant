@@ -67,10 +67,23 @@ export function mountChrome(activeKey = '') {
       <span class="mark">✶</span>
       <span><b>The Astrologer's Workbench</b><small>Lilly's <i>Christian Astrology</i> × the <i>Picatrix</i> · computed for study</small></span>
     </a>
-    <nav class="main" aria-label="Primary">${NAV.map(([href, label, key]) =>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-bars" aria-hidden="true"></span></button>
+    <nav id="site-nav" class="main" aria-label="Primary">${NAV.map(([href, label, key]) =>
       `<a href="${R(href)}"${key === active ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('')}
     </nav></div>`;
   document.body.prepend(header);
+
+  // Mobile nav: the 14-item bar collapses behind a hamburger on narrow screens.
+  // CSS hides the toggle (and shows the full bar) above the breakpoint, so this
+  // is a no-op on the desktop layout.
+  const navToggle = header.querySelector('.nav-toggle');
+  const navEl = header.querySelector('nav.main');
+  if (navToggle && navEl) {
+    const setOpen = open => { navEl.classList.toggle('open', open); navToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); };
+    navToggle.addEventListener('click', () => setOpen(!navEl.classList.contains('open')));
+    navEl.addEventListener('click', e => { if (e.target.closest('a')) setOpen(false); });   // collapse after picking a destination
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  }
 
   const footer = document.createElement('footer');
   footer.className = 'site';

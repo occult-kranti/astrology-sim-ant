@@ -28,8 +28,11 @@ import { electionScore, rankNow, findNextElection, OPERATIONS } from './election
 import { talismanRecipe } from './talisman.js';
 import { annualProfection } from './profections.js';
 import { lifeTrajectory } from './trajectory.js';
+import { castVedic } from './vedic.js';
 import { mansionOf } from './data/lunar-mansions.js';
 import { faceOf } from './data/decan-faces.js';
+
+const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
 // ---------------------------------------------------------------------------
 //  The locked guardrail. Prepended (and not removable) as the model's system
@@ -57,6 +60,7 @@ function presentCapabilityIds(reading) {
     'aspects', 'part-of-fortune', 'moon-condition', 'election', 'talisman'];
   if (reading.horary) ids.push('perfection');
   if (reading.natal) ids.push('profections', 'directions', 'solar-return', 'hyleg', 'life-trajectory');
+  if (reading.vedic) ids.push('vedic');
   return ids;
 }
 
@@ -76,7 +80,7 @@ function relevantGlossary(presentSet) {
 // ---------------------------------------------------------------------------
 export function buildContext(reading, opts = {}) {
   const presentSet = new Set(presentCapabilityIds(reading));
-  const maxFacts = opts.maxFacts ?? 60;
+  const maxFacts = opts.maxFacts ?? 110;
   const facts = [];
   const add = (text, cite) => { if (text) facts.push({ text, cite: cite || '' }); };
 
@@ -138,10 +142,35 @@ export function buildContext(reading, opts = {}) {
     add(`Native ruling planets: ${tj.picatrix.rulingPlanets.join(', ')}.`, 'Picatrix overlay');
   }
 
-  // vedic (a separate sidereal system, shown for comparison)
+  // vedic (a SEPARATE sidereal system, shown for comparison) — a fuller block so
+  // the model can read the Vedic chart in detail and CROSS-COMPARE it with the
+  // Western one (the two zodiacs disagree by design; never conflate them).
   if (reading.vedic) {
     const vd = reading.vedic;
-    add(`Vedic (sidereal / Jagannath Hora): Lagna ${vd.lagna.label}, Moon in nakṣatra ${vd.grahas.Moon.nakshatra.name}; running Vimśottarī daśā ${vd.vimshottari.currentMaha} mahā${vd.vimshottari.currentAntar ? '/' + vd.vimshottari.currentAntar + ' antar' : ''}; tithi ${vd.panchanga.tithi.name}. (A SEPARATE system from the Western chart — do not conflate the two zodiacs.)`, 'Parāśara BPHS / Jagannath Hora');
+    add(`VEDIC SYSTEM (sidereal / Jagannath Hora, Lahiri ayanāṁśa ${vd.ayanamsa}°) — a SECOND, INDEPENDENT reading to COMPARE with the Western chart above, never to merge. The astronomy is identical; only the zodiac (tropical−ayanāṁśa) and the methods differ.`, 'Parāśara BPHS / Jagannath Hora');
+    add(`Vedic Lagna ${vd.lagna.label} (lord ${vd.lagna.lord}); Lagna nakṣatra ${vd.lagna.nakshatra.name} pada ${vd.lagna.nakshatra.pada}.`, 'BPHS — the Lagna');
+    for (const p of ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu']) {
+      const g = vd.grahas[p]; if (!g) continue;
+      add(`${p} (Vedic): ${g.label}, bhāva ${g.house}, nakṣatra ${g.nakshatra.name} p${g.nakshatra.pada}, ${g.dignity.state}${g.retrograde && p !== 'Rahu' && p !== 'Ketu' ? ', retrograde' : ''}; kāraka of ${g.karaka}.`, 'BPHS — grahas & Parāśarī dignity');
+    }
+    const pa = vd.panchanga;
+    add(`Pañcāṅga: tithi ${pa.tithi.name} (${pa.tithi.paksha}); vāra ${pa.vara.name} (lord ${pa.vara.lord}); nakṣatra ${pa.nakshatra.name}; yoga ${pa.yoga.name}; karaṇa ${pa.karana.name}.`, 'Classical pañcāṅga');
+    const dz = vd.vimshottari;
+    add(`Vimśottarī daśā: running ${dz.currentMaha} mahādaśā${dz.currentAntar ? ' / ' + dz.currentAntar + ' antardaśā' : ''} (balance ${dz.balanceYears} yr from the Moon in ${dz.nakshatra.name}); next mahās ${dz.maha.filter(m => !m.current).slice(0, 3).map(m => m.lord).join(' → ')}.`, 'BPHS — Vimśottarī');
+    const yp = vd.yogas.filter(y => y.present);
+    if (yp.length) add(`Vedic yogas present: ${yp.map(y => `${y.name} (${y.detail})`).join('; ')}.`, 'BPHS — yogas');
+    const sav = vd.ashtakavarga.sav, hi = Math.max(...sav), lo = Math.min(...sav);
+    add(`Sarvāṣṭakavarga total ${vd.ashtakavarga.savTotal} (checksum 337); strongest sign ${RASHI_NAMES[sav.indexOf(hi)]} (${hi} bindus), weakest ${RASHI_NAMES[sav.indexOf(lo)]} (${lo}). Avg 28 per sign.`, 'BPHS — Aṣṭakavarga');
+    if (vd.shadbala && vd.shadbala.perGraha) {
+      const s = vd.shadbala, st = s.perGraha[s.strongest], wk = s.perGraha[s.weakest];
+      add(`Ṣaḍbala (six-fold strength, rūpas): strongest ${s.strongest} (${st.totalRupa}, ${st.ratio}× its required ${st.required}); weakest ${s.weakest} (${wk.totalRupa}, ${wk.ratio}×). Full order ${s.order.join(' > ')}.`, 'BPHS Ch.27 — Ṣaḍbala (with documented JHora simplifications)');
+    }
+    // daily (vāra) + birth-keyed traditional practice — CULTURAL/DEVOTIONAL, described, never prescribed.
+    if (vd.practice) {
+      const pr = vd.practice, vv = pr.vara, bb = pr.birth;
+      add(`Traditional practice for the day (${vv.name}/${vv.sanskrit}, a ${vv.graha}-ruled vāra): deity ${vv.deity}; observance ${vv.vrata}; colour ${vv.colour}; mantra "${vv.mantra}" (bīja "${vv.bija}", japa ${vv.japa}); yoga ${vv.yoga} (modern syncretic); yantra ${vv.yantra}. Recorded as cultural/devotional practice, NEVER prescribed.`, vv.source);
+      add(`Birth-keyed practice: the remedial focus is ${bb.focusGraha} (${bb.reason}); its mantra "${bb.mantra}" (bīja "${bb.bija}", japa ${bb.japa}, deity ${bb.deity}); yoga ${bb.yoga} (modern); yantra ${bb.yantra}; gem ${bb.gem}. Lagna lord ${bb.lagnaLord}; running daśā lord ${bb.dashaLord}; birth Moon-nakṣatra ${bb.moonNakshatra} (deity ${bb.moonNakshatraDeity}).`, 'Mantra Mahodadhi / Navagraha Stotra / graha-yantra tradition — historical practice only');
+    }
   }
 
   const trimmed = facts.slice(0, maxFacts);
@@ -190,12 +219,28 @@ export function buildToolSchema() {
       },
     },
   });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'castVedic',
+      description: 'Compute the VEDIC (Jyotiṣa / sidereal, Jagannath Hora) horoscope — Lagna & 9 grahas (nakṣatra, bhāva, dignity), pañcāṅga, Vimśottarī daśā, key vargas, Sarvāṣṭakavarga and the six-fold Ṣaḍbala. A SEPARATE system from the Western chart. Uses the current chart if no date/lat/lon is given.',
+      parameters: { type: 'object', properties: { date: { type: 'string' }, lat: { type: 'number' }, lon: { type: 'number' } }, required: [] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'vedicPractice',
+      description: 'Return the traditional daily (vāra) + birth-keyed devotional practice the Jyotiṣa tradition lists for a chart — the weekday deity/mantra/observance and the birth-keyed mantra/yoga/yantra (derived from the weakest graha by Ṣaḍbala, the Lagna lord, the daśā lord and the Moon nakṣatra). HISTORICAL/CULTURAL PRACTICE, described not prescribed; the graha→āsana map is modern/syncretic. Uses the current chart if no date/lat/lon is given.',
+      parameters: { type: 'object', properties: { date: { type: 'string' }, lat: { type: 'number' }, lon: { type: 'number' } }, required: [] },
+    },
+  });
   return schema;
 }
 
-// The set of tool names the dispatcher accepts (callable exports + the two extras).
+// The set of tool names the dispatcher accepts (callable exports + the extras).
 export function toolNames() {
-  return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection'];
+  return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection', 'castVedic', 'vedicPractice'];
 }
 
 // The live tool's public locations — given to the model so it can point a user
@@ -226,27 +271,35 @@ export function toAnthropicTools() {
 export function buildCodexPrompt(reading) {
   const has = k => reading && reading[k];
   const sections = [
-    'The Figure & the planetary hour — the cast of the moment',
-    'Book I — the dignity ledger, the almutens, and the Lord of the Geniture',
-    'Chart health — the considerations & the Moon weighed above all',
-    'The Lots & antiscia — the hidden geometry',
-    'Aspects & reception — how the planets regard one another',
-    'The Picatrix election — what this hour is fit (and unfit) for',
-    'The talisman — the historical recipe of the ruling planet',
+    'The Figure & the planetary hour — the cast of the moment (the place, the day/night sect, the Ascendant & Midheaven, the ruling hour)',
+    'Book I — the dignity ledger, the almutens, and the Lord of the Geniture (who is dignified, who is peregrine or fallen, who governs)',
+    'Chart health — the considerations & the Moon weighed above all (the verdict, the gravest impediments, the Moon’s condition)',
+    'The Lots & antiscia — the hidden geometry (Fortune, Spirit, the shadow-degrees)',
+    'Aspects & reception — how the planets regard one another (the tightest applying/separating aspects, any mutual reception)',
+    'The Picatrix election — what this hour is fit (and unfit) for (the chosen aim’s verdict, and the best-vs-least ranked aims now)',
+    'The talisman — the historical recipe of the ruling planet (timing, materials, mansion, the named powers — recorded as history)',
   ];
-  if (has('horary')) sections.push('Book II — the horary significators & the modes of perfection');
-  if (has('natal')) sections.push('Book III — the life trajectory, the Lord of the Year, the personal Picatrix layer');
+  if (has('horary')) sections.push('Book II — the horary significators & the modes of perfection (querent, quesited, how/whether the matter perfects, and the timing)');
+  if (has('natal')) sections.push('Book III — the life trajectory, the Lord of the Year, the personal Picatrix layer (the natal signatures, the profected year, the ruling works)');
+  if (has('vedic')) sections.push('The Vedic mirror (Jagannath Hora) — the sidereal Lagna & grahas by bhāva and nakṣatra, the Pañcāṅga, the running Vimśottarī daśā, the Ṣaḍbala (who is strong/weak) and the Sarvāṣṭakavarga — read AS A SEPARATE SYSTEM and explicitly COMPARED with the Western chart above (where do the two traditions AGREE, where do they DISAGREE by design?)');
+  if (reading && reading.vedic && reading.vedic.practice) sections.push('The day’s practice & the birth-keyed remedy (the vāra deity/mantra/observance for today, and the birth-keyed mantra/yoga/yantra the tradition lists for the weakest graha, the Lagna lord and the daśā lord) — recorded strictly as historical/cultural/devotional PRACTICE, never instruction; note that the graha→āsana map is a modern syncretism');
   return (
-    'Compose "THE CODEX OF THIS HOUR" — written in the grave, image-rich register of Hermes ' +
-    'Trismegistus and the Picatrix, yet TRUTHFUL: every claim drawn only from the computed, cited ' +
-    'facts above. For EACH section below give three short lines — (a) WHAT it measures, plainly; ' +
-    '(b) its MEANING for this exact moment, citing the figures; (c) how the tradition would BEST ' +
-    'USE it (the favourable course of action it counsels, framed as historical practice). Keep each ' +
-    'section tight (3–5 sentences total). Number the sections.\n\nSections:\n' +
+    'Compose "THE CODEX OF THIS HOUR" — a deep reading written in the grave, image-rich register of Hermes ' +
+    'Trismegistus and the Picatrix, yet RIGOROUSLY TRUTHFUL: every claim drawn only from the computed, cited ' +
+    'facts above (the Western chart, the Picatrix layer AND the Vedic chart — both the birth moment and the ' +
+    'current place/time given). For EACH section below give: (a) WHAT it measures, plainly; (b) its MEANING for ' +
+    'THIS exact figure, citing the actual numbers/positions; (c) how the tradition would BEST USE it (the ' +
+    'favourable course of action it counsels, as historical practice). Then — this is the heart of the Codex — ' +
+    'a "Concordance of the Hour": SYNTHESISE ACROSS the sections and BOTH systems. Name the PATTERNS that recur ' +
+    '(a planet emphasised in dignity AND in Ṣaḍbala AND by aspect; a theme echoed by the Western Lord of the ' +
+    'Geniture and the Vedic daśā lord; an agreement or a sharp disagreement between the tropical and sidereal ' +
+    'readings). Say what the whole figure, read together, most strongly signifies — and where the testimonies ' +
+    'conflict, say so honestly rather than forcing a verdict. Keep each lettered point tight; let the ' +
+    'Concordance be the fullest part.\n\nSections:\n' +
     sections.map((s, i) => `${i + 1}. ${s}`).join('\n') +
     '\n\nClose with a single "Caveat of the Adept": one sentence restating that this is a faithful ' +
-    'reconstruction of a historical, pseudoscientific art — described for study, never prescribed, ' +
-    'and of no demonstrated efficacy.'
+    'reconstruction of historical, pseudoscientific arts — described for study, never prescribed, ' +
+    'and of no demonstrated efficacy; the devotional practices are recorded as culture, not counsel.'
   );
 }
 
@@ -262,24 +315,38 @@ export function buildOperationPrompt(reading, request, opts = {}) {
   const place = `lat ${inp.latitude}, lon ${inp.longitude}`;
   const when = fmtDate(inp.date);
   const aims = OPERATIONS.map(o => `${o.key} (${o.label})`).join(', ');
+  // A few live values embedded up front, so the model is grounded BEFORE it even
+  // calls a tool (the "upload the values with the prompt" path) — it should still
+  // call the tools to ground anything it computes fresh.
+  const ph = reading && reading.moment && reading.moment.planetaryHour;
+  const sel = reading && reading.election && reading.election.selected;
+  const grounding = [
+    ph ? `the present planetary hour is ${ph.ruler} (a ${ph.dayRuler}-day)` : null,
+    sel && sel.moon ? `the Moon is ${sel.moon.phase}, in ${sel.moon.sign}, mansion ${sel.moon.mansion.num}` : null,
+    reading && reading.vedic ? `the Vedic vāra is ${reading.vedic.panchanga.vara.name} and the running mahādaśā is ${reading.vedic.vimshottari.currentMaha}` : null,
+  ].filter(Boolean).join('; ');
   return (
     `A practitioner asks: "${String(request).trim()}"\n\n` +
-    'Answer ONLY from the Lilly + Picatrix tradition this Workbench computes, and USE THE ENGINE ' +
-    'TOOLS to ground every number (do not invent positions or times). Proceed in five numbered steps:\n' +
+    'Answer ONLY from the Lilly + Picatrix (and, where relevant, the Jyotiṣa) traditions this Workbench ' +
+    'computes. You do NOT need to browse the website: the engine is available to you AS TOOLS — call them ' +
+    'to ground every number (do not invent positions or times). ' +
+    (grounding ? `For context, already computed for this moment: ${grounding}. ` : '') +
+    'Proceed in five numbered steps:\n' +
     `1. INTERPRET the aim and map it to the CLOSEST catalogued operation — one of: ${aims}. If none ` +
     'truly fits (e.g. weather-working has no exact catalogued aim), say so plainly and choose the ' +
     'nearest by significator (e.g. rain → the Moon & Jupiter; name the editorial leap).\n' +
     `2. FIND THE NEXT FAVOURABLE WINDOW for that operation from now (${when}) at this place (${place}) ` +
-    'by calling the `findNextElection` (and/or `rankNow`, `nextAuspiciousTime`) tools. Report the ' +
-    'concrete window the tool returns.\n' +
+    'by calling the `findNextElection` (and/or `rankNow`, `nextAuspiciousTime`, `electionScore`) tools. ' +
+    'Report the concrete window the tool returns.\n' +
     '3. WHAT TO CHECK in the master report (the Workbench): name the exact panels & values to verify ' +
     '— the planetary hour, the ruling planet’s dignity, the Moon’s phase/mansion/void-of-course, the ' +
-    'election verdict, any fixed-star contact.\n' +
+    'election verdict, any fixed-star contact; and, if the aim has a devotional dimension, the Vedic ' +
+    'day/birth practice (call `vedicPractice` / `castVedic`).\n' +
     '4. THE HISTORICAL PROCEDURE the tradition would follow: the timing (day & hour), the materials ' +
     'and mansion (call `talismanRecipe` if useful), the design — recorded as historical practice.\n' +
     '5. Point the practitioner to the live tool to watch it themselves: ' +
     `${SITE_URLS.workbench} (source: ${SITE_URLS.repo}).\n\n` +
-    'End with one honest sentence: this is a historical, pseudoscientific art with no demonstrated ' +
+    'End with one honest sentence: these are historical, pseudoscientific arts with no demonstrated ' +
     'efficacy — described for study, never a recommendation to act.'
   );
 }
@@ -308,6 +375,17 @@ export function runTool(name, args = {}, ctx = {}) {
     gating: e.gating, reasons: e.reasons.slice(0, 8).map(r => ({ severity: r.severity, text: r.text, cite: r.cite })),
     moon: { sign: e.moon.sign, phase: e.moon.phase, mansion: e.moon.mansion, voidOfCourse: e.moon.voidOfCourse },
   });
+  const slimVedic = v => ({
+    system: 'vedic (sidereal / Jagannath Hora)', ayanamsa: v.ayanamsa,
+    lagna: `${v.lagna.label} (lord ${v.lagna.lord})`,
+    grahas: Object.fromEntries(Object.entries(v.grahas).map(([k, g]) => [k, { position: g.label, bhava: g.house, nakshatra: `${g.nakshatra.name} p${g.nakshatra.pada}`, dignity: g.dignity.state }])),
+    panchanga: { tithi: v.panchanga.tithi.name, vara: v.panchanga.vara.name, nakshatra: v.panchanga.nakshatra.name, yoga: v.panchanga.yoga.name, karana: v.panchanga.karana.name },
+    dasha: { maha: v.vimshottari.currentMaha, antar: v.vimshottari.currentAntar, balanceYears: v.vimshottari.balanceYears },
+    yogas: v.yogas.filter(y => y.present).map(y => y.name),
+    sarvashtakavarga: { total: v.ashtakavarga.savTotal, bySign: v.ashtakavarga.sav },
+    shadbala: { strongest: v.shadbala.strongest, weakest: v.shadbala.weakest, order: v.shadbala.order, rupas: Object.fromEntries(Object.entries(v.shadbala.perGraha).map(([k, s]) => [k, s.totalRupa])) },
+    note: 'A SEPARATE sidereal system from the Western chart; do not conflate the two zodiacs.',
+  });
 
   switch (name) {
     case 'castChart': return slimChart(castChart(new Date(need('date')), need('lat'), need('lon'), args.system || 'regiomontanus'));
@@ -322,6 +400,8 @@ export function runTool(name, args = {}, ctx = {}) {
     case 'lifeTrajectory': { const tj = lifeTrajectory(ctx.birthChart || chartFromArgs(), {}); return { natal: tj.natal, currentYear: tj.currentYear, rulingPlanets: tj.picatrix.rulingPlanets }; }
     case 'rankNow': return rankNow(chartFromArgs()).map(r => ({ aim: r.operation.label, ruler: r.operation.ruler, verdict: r.verdict, score: r.score }));
     case 'findNextElection': return findNextElection(need('operationKey'), args.date ? new Date(args.date) : (ctx.chart ? ctx.chart.date : new Date()), args.lat ?? (ctx.chart && ctx.chart.latitude), args.lon ?? (ctx.chart && ctx.chart.longitude), { hoursAhead: args.hoursAhead || 72 }).map(w => ({ start: w.start, end: w.end, bestScore: w.best, bestVerdict: w.bestVerdict }));
+    case 'castVedic': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return slimVedic(v); }
+    case 'vedicPractice': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return v.practice; }
     default: throw new Error(`unknown tool: ${name}`);
   }
 }

@@ -88,7 +88,28 @@ export const GLOSSARY = [
 
   // — Houses systems —
   { term: 'Regiomontanus', cat: 'Houses', def: "The quadrant house system Lilly used, dividing the celestial equator into equal arcs. This site's default.", see: 'pages/about/index.html#debates' },
-  { term: 'Triplicity / Quadruplicity', cat: 'Signs', def: 'Triplicity = the four elemental groups of three signs; quadruplicity = the three modal groups of four (movable, fixed, common).', see: 'pages/book1/reference.html#signs' }
+  { term: 'Triplicity / Quadruplicity', cat: 'Signs', def: 'Triplicity = the four elemental groups of three signs; quadruplicity = the three modal groups of four (movable, fixed, common).', see: 'pages/book1/reference.html#signs' },
+
+  // — Vedic (Jyotiṣa) — a SEPARATE, sidereal system (Jagannath Hora) —
+  { term: 'Sidereal Zodiac', cat: 'Vedic (Jyotiṣa)', def: 'The zodiac measured against the fixed stars rather than the equinox. Vedic astrology is sidereal: a planet’s sidereal longitude = its tropical longitude − the ayanāṁśa. This is the chief computational difference from Lilly’s tropical system.', see: 'pages/vedic/index.html' },
+  { term: 'Ayanāṁśa', cat: 'Vedic (Jyotiṣa)', def: 'The accumulated offset between the tropical and sidereal zodiacs from precession (≈24.2° today). This site uses the Lahiri (Citrāpakṣa) ayanāṁśa, the Indian government standard and historic Jagannath Hora default.', see: 'pages/vedic/index.html' },
+  { term: 'Rāśi', cat: 'Vedic (Jyotiṣa)', def: 'A sign of the sidereal zodiac (Meṣa/Aries … Mīna/Pisces); also the D1 divisional chart (the rāśi chart). Each rāśi has a planetary lord, as in the Western scheme.', see: 'pages/vedic/index.html' },
+  { term: 'Lagna', cat: 'Vedic (Jyotiṣa)', def: 'The Vedic Ascendant — the sidereal degree rising in the east. The 1st bhāva and the foundation of the whole-sign house scheme.', see: 'pages/vedic/index.html' },
+  { term: 'Graha', cat: 'Vedic (Jyotiṣa)', def: 'A "seizer" / planet of Jyotiṣa — the seven of Lilly plus the two lunar nodes Rāhu and Ketu (the navagraha, nine grahas).', see: 'pages/vedic/index.html' },
+  { term: 'Nakṣatra', cat: 'Vedic (Jyotiṣa)', def: 'One of the 27 lunar mansions (13°20′ each) of the sidereal zodiac, each ruled by a graha and a deity. The Moon’s nakṣatra seeds the Vimśottarī daśā. (Distinct from the Picatrix’s 28 lunar mansions.)', see: 'pages/vedic/index.html' },
+  { term: 'Pada', cat: 'Vedic (Jyotiṣa)', def: 'A "quarter" — one of the four 3°20′ sub-divisions of a nakṣatra, mapping to a navāṁśa sign.', see: 'pages/vedic/index.html' },
+  { term: 'Vimśottarī Daśā', cat: 'Vedic (Jyotiṣa)', def: 'The principal Vedic timing system: a 120-year cycle of planetary periods (mahādaśā) and sub-periods (antardaśā), apportioned from the Moon’s birth nakṣatra. The running daśā lord colours the period.', see: 'pages/vedic/index.html' },
+  { term: 'Pañcāṅga', cat: 'Vedic (Jyotiṣa)', def: 'The "five limbs" of the Vedic almanac for a moment: tithi (lunar day), vāra (weekday), nakṣatra, yoga and karaṇa — the basis of muhūrta (Vedic election).', see: 'pages/vedic/index.html' },
+  { term: 'Tithi', cat: 'Vedic (Jyotiṣa)', def: 'A lunar day — one of 30 in a synodic month, each 12° of Moon-minus-Sun elongation; waxing (śukla) or waning (kṛṣṇa).', see: 'pages/vedic/index.html' },
+  { term: 'Vāra', cat: 'Vedic (Jyotiṣa)', def: 'The weekday and its ruling graha — the same Chaldean weekday-lord scheme as Lilly’s planetary days, and the anchor of the day’s traditional observance (vrata) and mantra.', see: 'pages/vedic/index.html' },
+  { term: 'Varga', cat: 'Vedic (Jyotiṣa)', def: 'A divisional (harmonic) chart, Dn, that re-maps each sign into n parts to examine a life area — D9 navāṁśa (marriage/dharma), D10 daśāṁśa (career), etc. This site computes D1–D60.', see: 'pages/vedic/index.html' },
+  { term: 'Navāṁśa', cat: 'Vedic (Jyotiṣa)', def: 'The D9 varga (ninth-divisions): the most-used divisional chart, read for marriage, dharma and the inner strength of each graha.', see: 'pages/vedic/index.html' },
+  { term: 'Aṣṭakavarga', cat: 'Vedic (Jyotiṣa)', def: 'A bindu (point) scoring system: each graha contributes benefic points to the signs, giving its Bhinnāṣṭakavarga; summed across grahas it gives the Sarvāṣṭakavarga (SAV), whose grand total is always 337.', see: 'pages/vedic/index.html' },
+  { term: 'Ṣaḍbala', cat: 'Vedic (Jyotiṣa)', def: 'The "six-fold strength" of a graha — Sthāna (positional), Dig (directional), Kāla (temporal), Ceṣṭā (motional), Naisargika (natural) and Dṛk (aspectual) bala, summed in rūpas and weighed against a required minimum. (BPHS Ch. 27.)', see: 'pages/vedic/index.html' },
+  { term: 'Bhāva', cat: 'Vedic (Jyotiṣa)', def: 'A Vedic house. This site uses whole-sign bhāvas: the Lagna’s whole sign is the 1st, the next sign the 2nd, and so on.', see: 'pages/vedic/index.html' },
+  { term: 'Kāraka', cat: 'Vedic (Jyotiṣa)', def: 'A natural significator — each graha "shows" certain matters (the Sun the soul and father, Jupiter wisdom and children, Venus love and art, etc.).', see: 'pages/vedic/index.html' },
+  { term: 'Bīja Mantra', cat: 'Vedic (Jyotiṣa)', def: 'A "seed" mantra — a tāntric syllable-formula addressed to a graha (e.g. Oṁ Hrāṁ Hrīṁ Hrauṁ Saḥ Sūryāya Namaḥ for the Sun). Recorded here as historical/cultural practice, never prescribed.', see: 'pages/vedic/index.html' },
+  { term: 'Yantra', cat: 'Vedic (Jyotiṣa)', def: 'A geometric diagram — for the grahas, a planetary magic square (the Sun’s is the 3×3 summing to 15; each graha’s constant steps by 3). Recorded as cultural practice, not prescribed.', see: 'pages/vedic/index.html' }
 ];
 
 export const GLOSSARY_CATEGORIES = [...new Set(GLOSSARY.map(g => g.cat))].sort();
