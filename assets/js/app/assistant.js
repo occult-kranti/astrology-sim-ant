@@ -28,10 +28,10 @@ const ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages';
 const KEY_STORE = 'wb-claude-key';
 const OPS_STORE = 'wb-operations';
 const MODELS = [
-  ['claude-opus-4-8', 'Claude Opus 4.8 — most capable (default)'],
+  ['claude-opus-4-8', 'Claude Opus 4.8 — recommended default'],
+  ['claude-fable-5', 'Claude Fable 5 — most powerful (and most costly)'],
   ['claude-sonnet-4-6', 'Claude Sonnet 4.6 — balanced'],
   ['claude-haiku-4-5', 'Claude Haiku 4.5 — fast & cheap'],
-  ['claude-fable-5', 'Claude Fable 5 — most powerful'],
 ];
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -201,6 +201,7 @@ async function claudeStream(messages, system, asstEl, maxTokens = 3072) {
       const payload = line.slice(5).trim(); if (!payload || payload === '[DONE]') continue;
       let o; try { o = JSON.parse(payload); } catch { continue; }
       if (o.type === 'content_block_delta' && o.delta && o.delta.type === 'text_delta') { full += o.delta.text; asstEl.textContent = full; scrollLog(); }
+      else if (o.type === 'message_delta' && o.delta && o.delta.stop_reason === 'refusal' && !full) { full = '(The model declined this request. Some safety classifiers flag historical occult/magical content — try the recommended Opus 4.8 model, or rephrase.)'; asstEl.textContent = full; }
       else if (o.type === 'error') throw new Error((o.error && o.error.message) || 'Claude stream error');
     }
   }
@@ -219,6 +220,7 @@ async function claudeToolLoop(messages, system, asstEl) {
     });
     if (!res.ok) throw new Error('Claude HTTP ' + res.status + ' — ' + (await res.text()).slice(0, 240));
     const data = await res.json();
+    if (data.stop_reason === 'refusal') { finalText = '(The model declined this request. Some safety classifiers flag historical occult/magical content — try the recommended Opus 4.8 model, or rephrase.)'; asstEl.textContent = finalText; break; }
     const blocks = data.content || [];
     const toolUses = blocks.filter(b => b.type === 'tool_use');
     const text = blocks.filter(b => b.type === 'text').map(b => b.text).join('');

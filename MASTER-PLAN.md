@@ -95,6 +95,22 @@ A consolidation + integration round:
 - **Save simplified** — the GitHub-Gist publish was removed (messy); the report is **downloaded** (JSON/Markdown) and
   auto-saved on-device.
 
+### Shipped this round — "Phase R4", 2026-06-25 *(verified: audit 0 · engine-test all passed · Chromium sweep 0 errors)*
+A teaching, interpretation & coverage round (with an independent UX review — see `REVIEW-R4.md`):
+- **The on-ramp** (the review's #1 gap) — new **`pages/basics.html`** explains *every concept* (Western + Picatrix +
+  Vedic) in plain English with no maths, featured first in the home "Start here" and the nav; new
+  **`pages/interpret.html`** is a panel-by-panel "how to read your results" guide. Every concept now has a basics
+  entry + a glossary definition.
+- **Picatrix images completed** — **per-mansion talismanic images** (gap #5, `data/mansion-images.js`, 28, Agrippa
+  II.46 + Picatrix IV.9 — shown on the Mansions page & by the Moon's mansion in the Master Tool) and the
+  **per-planet planetary-image set** (gap #12, `data/planet-images.js`, 7, Agrippa II.38–44 — shown for the ruling
+  planet in the talisman panel). Single-witness/divergent records and toxic/animal materials flagged.
+- **UX fixes** (from the review): the AI conversation text is now **white** on the dark log; **wide tables scroll** on
+  mobile; the **assistant model labels** were reconciled and Fable **refusals are handled gracefully**; honest-note
+  callouts added to the **glossary** and the **Book I hub**.
+- The remaining UX backlog (jargon autolink on dynamic panels, election auto-run, nav grouping, a11y pass) is tracked
+  in `REVIEW-R4.md` and the gap list below.
+
 ---
 
 ## (A) COVERAGE TABLES
@@ -182,8 +198,8 @@ lists and 4 blank fortune-degree signs — both held back on **accuracy** ground
 | **Election engine** (is this moment fit for aim X?) — 11 operations, gating filters, ranking, find-next-window | ✅ | `core/election.js` `electionScore`/`rankNow`/`findNextElection`/`nextAuspiciousTime`/`OPERATIONS`; `picatrix/election.html` |
 | **Talisman recipe** (aim → election → correspondences → mansion/face/star → design → cited steps) | ✅ | `core/talisman.js` `talismanRecipe`/`allRecipes`; `picatrix/talisman.html` (wizard + worked example) |
 | Spirit-name systems | ✅ | **3 of 3** — Picatrix III.7 prayer-angel + the Picatrix III.9 directional spirits (Liber Antimaquis) + the Agrippa Angel/Intelligence/Spirit triad, kept distinct (`data/picatrix-prayers.js`, `data/planetary-magic.js`) — *2026-06-25* |
-| **Per-mansion talismanic images** (Picatrix I.4) | ⛔ | `lunar-mansions.js` header: "image/spirit/suffumigation to be added in a second pass" — **uses present, images absent** |
-| **Per-planet planetary-image set** (the talisman figures, Picatrix II.22–46, distinct from decan-face images) | 📖/⛔ | described in the talisman step; **not tabled as data** |
+| **Per-mansion talismanic images** (Agrippa II.46 / Picatrix IV.9) | ✅ | `data/mansion-images.js` (28, cited; mansion 22 single-witness & 11 divergence flagged); on `picatrix/mansions.html` & the Master Tool — *2026-06-25* |
+| **Per-planet planetary-image set** (the talisman figures, Agrippa II.38–44 / Picatrix II.10 & III, distinct from decan-face images) | ✅ | `data/planet-images.js` (7, cited); in the Master Tool's talisman panel — *2026-06-25* |
 | **Planetary prayers / invocation texts** (Picatrix III.7 Sabian prayers) | ✅ | the seven prayers (short cited excerpts + epithets + names) in `data/picatrix-prayers.js`; page `picatrix/prayers.html`; linked from the talisman; `picatrixPrayer` AI tool — historical text only — *2026-06-25* |
 | **The "Perfect Nature"** (Picatrix III.6) | ✅ | the four names + Hermes' account + the rite framing, with the "four spirits vs one/four-powers" ambiguity flagged in-data — *2026-06-25* |
 | **Book IV** — the 12 lunar-sign prayers; incense recipes; natural & alchemical magic | ◑ | a cited **summary** of IV.1–IV.9 (toxic/animal/poison items flagged HISTORICAL-ONLY); the full per-sign liturgies & recipes deliberately not reproduced — *2026-06-25* |
@@ -222,14 +238,14 @@ educational payoff (never predictive worth).
 | 2 | **Sect-aware Part of Fortune toggle + generalised Lots view** (`core/lots.js`: Spirit, Eros, Necessity, Victory, Basis, Courage, Nemesis) | Lilly I | S→M | **High** | Resolves the sect-fork honestly; clean affine math; unlocks a whole class of Hermetic technique already half-wired |
 | 3 | **Lilly's worked charts as LIVE figures** (Ship at Sea, Stolen Fish, Marriage, Lost Dog) — recompute from historical data, draw the wheel, annotate his reasoning; verify vs his printed positions | Lilly II | L | **High** | The headline pedagogy gap; `examples.html` is currently prose-only |
 | 4 | **House-by-house horary judgement walkthroughs** — per-topic (lost objects, marriage, sickness, travel, lawsuits…) flows that surface the right significators + perfection per question | Lilly II | L | **High** | This *is* Book II's bulk; currently only house data + a generic calculator |
-| 5 | **Per-mansion talismanic images** (Picatrix I.4) into `lunar-mansions.js` | Picatrix I | M | Med | The acknowledged "second pass"; completes the mansion records the talisman flow already wants |
+| 5 | ✅ **DONE (2026-06-25)** — **Per-mansion talismanic images** (`data/mansion-images.js`, Agrippa II.46 + Picatrix IV.9) on the Mansions page & the Master Tool | Picatrix I/IV | M | Med | The acknowledged "second pass" — completed |
 | 6 | **Election gating polish** — already gates retrograde/combust/detriment/fall; add **curated mansion-fitness keyword map** (replace naive substring) and **down-weight malefic mansions** | Picatrix | M | Med | REVIEW open item; removes a known false-positive path in the elector |
 | 7 | ✅ **DONE (2026-06-25)** — **Full six-fold Ṣaḍbala** (Kāla, Ceṣṭā, Dṛk added) + Iṣṭa/Kaṣṭa phala | Jyotiṣa | L | Med | The flagged Vedic follow-up; finishes the JHora strength model. `vedic.js` `shadbala()` |
 | 8 | ✅ **DONE (2026-06-25)** — **Vedic glossary terms** folded into the auto-linker | Jyotiṣa | S | Med | Closes the cross-link gap. 20 terms in `glossary.js`, wired to registry |
 | 9 | ✅ **DONE (2026-06-25)** — **Vedic daily/birth remedies** (mantra/japa/deity/yantra/gem; āsana flagged modern; selection algorithmic) | Jyotiṣa | M | Med | The flagged Vedic remedy follow-up; kept historical-described. `data/vedic-remedies.js` + `buildPractice()` |
 | 10 | **Glossary completion (Western/Picatrix)** — Election, Profection, Suffumigation, Behenian, Perfect Nature, the two spirit systems | cross | S | Med | Auto-linking is wired; the terms simply need entries |
 | 11 | ✅ **DONE (2026-06-25)** — **Picatrix III.9 directional spirit system** (3rd system, Liber Antimaquis) in `data/picatrix-prayers.js`, kept distinct | Picatrix III | S | Med | Completes "two of three". Done with the prayers module |
-| 12 | **Per-planet planetary-image set** (Picatrix II.22–46) as data, distinct from decan-face images | Picatrix II | M | Med | The talisman *design* note currently has no backing image table |
+| 12 | ✅ **DONE (2026-06-25)** — **Per-planet planetary-image set** (`data/planet-images.js`, Agrippa II.38–44 + Picatrix II.10/III), distinct from decan-face images; in the talisman panel | Picatrix II | M | Med | Completed — the talisman design note now has a backing image |
 | 13 | **Structure / Patterns explorer** page — the modular-partition + planetary-week-theorem (24≡3 mod 7, gcd=1) + antiscia-reflection + aspect-harmonics teaching view | cross | M | Med-High | REVIEW's recommended-first experimental; pure teaching, showcases the unification |
 | 14 | **Falsification demo** page — permute birth time N× over `fullReading`, plot the verdict/dignity null distribution → in-tool, honest-science centre-piece | cross | M | Med-High | The strongest honesty feature; mathematically + rhetorically clean |
 | 15 | **Election heat-map** (7 days × 24 h grid of `rankNow` for an aim; the weekly planetary-hour periodicity emerges) | Picatrix | S | Med | Cheap, visual, reuses `electionScore` |

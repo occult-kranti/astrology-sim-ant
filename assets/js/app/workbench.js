@@ -20,6 +20,8 @@ import { mansionOf } from '../core/data/lunar-mansions.js';
 import { faceOf } from '../core/data/decan-faces.js';
 import { starsInAspect } from '../core/data/behenian-stars.js';
 import { prayerFor } from '../core/data/picatrix-prayers.js';
+import { mansionImage } from '../core/data/mansion-images.js';
+import { planetImage } from '../core/data/planet-images.js';
 import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
@@ -321,7 +323,9 @@ function renderElection(r) {
       const mm = mansionOf(moon.lon), mf = faceOf(moon.lon), sf = faceOf(sun.lon);
       const stars = starsInAspect(lastChart, 6);
       const starsTxt = stars.length ? stars.map(s => `${G(s.planet)} ${esc(s.planet)} ∠ ${esc(s.star)} (${s.sep.toFixed(1)}°)`).join('; ') : 'none closely conjunct a planet now';
-      html += `<p class="small" style="margin-top:.6rem"><b>Picatrix correspondences of the moment:</b> Moon in <b>Mansion ${mm.num} — ${esc(mm.name)}</b> (“${esc(mm.use)}”); Moon’s face ${esc(mf.ruler)} — ${esc(mf.image)}; Sun’s face ${esc(sf.ruler)}. Behenian contacts: ${starsTxt}.</p>`;
+      const mi = mansionImage(mm.num);
+      html += `<p class="small" style="margin-top:.6rem"><b>Picatrix correspondences of the moment:</b> Moon in <b>Mansion ${mm.num} — ${esc(mm.name)}</b> (“${esc(mm.use)}”); Moon’s face ${esc(mf.ruler)} — ${esc(mf.image)}; Sun’s face ${esc(sf.ruler)}. Behenian contacts: ${starsTxt}.</p>` +
+        (mi ? `<p class="small muted">Mansion ${mm.num} talismanic image (historical): ${esc(mi.image)} <i>— ${esc(mi.purpose)}</i> <span class="small">[${esc(mi.citation)}]</span></p>` : '');
     } catch { /* non-fatal */ }
   }
   $('wb-election').innerHTML = html;
@@ -333,6 +337,8 @@ function renderTalisman(r) {
   if (!t) { $('wb-talisman').innerHTML = '<p class="muted">No recipe.</p>'; return; }
   const sp = t.materials.spirits;
   const steps = t.steps.map(s => `<li>${esc(s.text)} <span class="small muted">— ${esc(s.cite)}</span></li>`).join('');
+  const pimg = planetImage(t.planet);
+  const imgHtml = pimg ? `<p class="small"><b>Planetary talismanic image (historical):</b> ${esc(pimg.image)} <i>— ${esc(pimg.purpose)}</i> <span class="muted small">[${esc(pimg.citation)}]</span></p>` : '';
   const pr = prayerFor(t.planet);
   const prayerHtml = pr ? `<p class="small"><b>Picatrix Book III — the prayer &amp; spirit of ${esc(t.planet)}:</b>
        addressed as <i>${esc(pr.address.split('.')[0].toLowerCase())}</i>; prayer-angel ${esc(pr.prayerAngel.latin || '—')}, directional spirit ${esc(pr.spirit.master)}.
@@ -344,6 +350,7 @@ function renderTalisman(r) {
      <p class="small"><b>Materials (historical):</b> suffumigation ${esc(t.materials.suffumigation)}; colour ${esc(t.materials.colour)};
        metal ${esc(t.materials.metal)}; stone ${esc(t.materials.stone)}. <b>Powers (kept distinct):</b>
        Picatrix prayer-angel ${esc(sp.picatrixPrayerAngel)}; Agrippa angel ${esc(sp.agrippa.angel)}, intelligence ${esc(sp.agrippa.intelligence)}, spirit ${esc(sp.agrippa.spirit)}.</p>
+     ${imgHtml}
      ${prayerHtml}
      <ol class="small">${steps}</ol>
      <p class="small muted">${esc(t.disclaimer)}</p>`;

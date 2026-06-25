@@ -14,6 +14,7 @@ import { attachGeolocate } from './location.js';
 
 const NAV = [
   ['index.html', 'Home', 'home'],
+  ['pages/basics.html', 'Basics', 'basics'],
   ['pages/now.html', 'Now', 'now'],
   ['pages/workbench.html', 'Master Tool', 'workbench'],
   ['pages/trajectory.html', 'Trajectory', 'trajectory'],
@@ -39,6 +40,8 @@ function currentSection() {
   if (/\/pages\/picatrix\//.test(p)) return 'picatrix';
   if (/\/pages\/vedic\//.test(p)) return 'vedic';
   if (/\/pages\/about\//.test(p)) return 'about';
+  if (/\/pages\/basics\.html$/.test(p)) return 'basics';
+  if (/\/pages\/interpret\.html$/.test(p)) return 'basics';
   if (/\/pages\/now\.html$/.test(p)) return 'now';
   if (/\/pages\/workbench\.html$/.test(p)) return 'workbench';
   if (/\/pages\/master\.html$/.test(p)) return 'master';
@@ -107,6 +110,8 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/picatrix/election.html')}">Election — choose the moment</a></li>
         <li><a href="${R('pages/book3/master.html')}">Book III Master Tool</a></li>
         <li><a href="${R('pages/tools.html')}">All Tools &amp; Calculators</a></li>
+        <li><a href="${R('pages/basics.html')}">The Basics — every concept explained</a></li>
+        <li><a href="${R('pages/interpret.html')}">Reading your results (a reference)</a></li>
         <li><a href="${R('pages/how-it-works.html')}">How it's calculated (step by step)</a></li>
         <li><a href="${R('pages/workflow.html')}">Chapter Map &amp; Workflows</a></li>
         <li><a href="${R('pages/book1/master.html')}">Book I Master Tool</a></li>

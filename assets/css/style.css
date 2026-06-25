@@ -79,6 +79,18 @@ nav.main a:hover, nav.main a.active { background: rgba(217,177,90,.18); color: #
   nav.main a:last-child { border-bottom: 0; }
 }
 
+/* AI assistant conversation — white/parchment letters on the dark log so the
+   user's input and Claude's reply are legible (the labels were green/grey before). */
+#wb-asst-log { color: #f4efe2; }
+#wb-asst-log b, #wb-asst-log .pos, #wb-asst-log .muted, #wb-asst-log code { color: #f4efe2; }
+#wb-asst-log a { color: #e2c178; }
+#wb-asst-log code { background: rgba(255,255,255,.08); }
+
+/* Wide data tables scroll horizontally on small screens instead of clipping. */
+@media (max-width: 680px) {
+  table.data { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
 /* ---- Headings & text ---- */
 h1, h2, h3, h4 { font-family: var(--serif); line-height: 1.2; color: #2a2419; }
 h1 { font-size: 2.1rem; margin: .2em 0 .3em; }

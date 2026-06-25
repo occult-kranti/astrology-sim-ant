@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading your results — a reference guide | The Astrologer's Workbench</title>
+<meta name="description" content="A panel-by-panel guide to reading the output of the Master Tool: the figure and positions, the dignity ledger and its +/- scores, aspects and reception, the Lots, the chart-health verdict, horary perfection, the Picatrix election and talisman, the life trajectory, and the Vedic chart (grahas, daśā, Aṣṭakavarga, Ṣaḍbala, conclusions) — plus how to use the AI assistant and save the report. Described, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › Reading your results</p>
+  <h1>Reading your results — a reference guide</h1>
+  <p class="lede">You have cast a chart on the <a href="workbench.html">Master Tool</a> — now what do the panels
+    <em>mean</em>? This is a plain guide to <b>every block of the output</b>, what its numbers and badges say, and how
+    the tradition would weigh them. New to the words? Read <a href="basics.html">The Basics</a> first; for the
+    arithmetic, <a href="how-it-works.html">How it's calculated</a>.</p>
+
+  <div class="callout science"><span class="label">Before you read a thing</span>
+    None of this predicts or determines anything in the real world — astrology has <b>no demonstrated predictive
+    validity</b>. Read every panel as <em>"this is what the tradition's rules say about this figure,"</em> a faithful
+    reconstruction for study — <b>described, never prescribed</b>. Magical material is historical only.</div>
+
+  <h2>How to work the tool</h2>
+  <ol class="clean">
+    <li><b>Set the moment &amp; place</b> — pick a city (or <b>📍 Use my location</b>), or type a latitude/longitude;
+      set the date, time and UTC offset. Choose a house system if you have a preference (Regiomontanus is Lilly's).</li>
+    <li><b>(Optional) add a birth moment</b> — open "add a birth moment" to compute the <b>life trajectory</b> and the
+      <b>Vedic natal chart</b> from an actual birth (the main moment still drives the "now" panels).</li>
+    <li><b>Compute the reading</b> — every panel fills at once. Toggle the <b>🕉 Vedic view</b> (near the top) to see
+      the sidereal chart side by side.</li>
+    <li><b>Save it</b> — <b>Download JSON</b> (the full data) or <b>Download summary (MD)</b> (a readable report);
+      every reading is also auto-saved on your device. <b>Copy shareable link</b> puts the inputs in the URL.</li>
+    <li><b>Ask Claude</b> — at the foot, the assistant interprets the whole reading (see below).</li>
+  </ol>
+
+  <h2>The figure &amp; the positions</h2>
+  <p>The <b>summary line</b> gives the Ascendant and Midheaven, whether it's a day or night chart, the ruling
+    <b>planetary hour</b>, and the chart-health badge. The <b>positions table</b> lists each body's longitude
+    (e.g. <i>14°22′ Leo</i>), its <b>house</b>, its speed, and a <b>dignity total</b>. A <b>℞</b> marks retrograde.
+    The <b>wheel</b> draws the same thing; download it as SVG/PNG.</p>
+
+  <h2>Book I — the dignity ledger</h2>
+  <p>This scores each planet's <b>strength</b>. Read the signed numbers as a tally, not a percentage:</p>
+  <ul class="clean small">
+    <li><b>Essential</b> — strength by sign/degree (domicile +5 … face +1; detriment −5, fall −4, peregrine −5). A
+      high positive means the planet is "at home" and acts freely; a negative means it is weak or ill-placed.</li>
+    <li><b>Accidental</b> — strength by situation (angular house, swift/direct motion, free of the Sun's beams,
+      good contacts). <b>Total</b> = essential + accidental.</li>
+    <li><b>Almuten</b> of the Ascendant/MC and the <b>Lord of the Geniture</b> (the most-dignified planet overall)
+      name the chart's governing planets — the ones whose nature dominates the reading.</li>
+  </ul>
+  <p class="small muted">Rule of thumb: a planet strong by <em>essential</em> dignity does its own work well; strong
+    by <em>accidental</em> dignity, it acts powerfully (for good or ill). The two can disagree — note it.</p>
+
+  <h2>Aspects &amp; reception</h2>
+  <p>Each line is two planets in a significant angle: the <b>aspect</b> (trine, square…), whether it is
+    <b>applying</b> (coming about) or <b>separating</b> (past/denied), and the <b>orb</b> (distance from exact —
+    smaller is stronger; "partile" = exact to the degree). <b>Reception</b> lines show one planet sitting in
+    another's dignity — a welcome that softens even a hard aspect (and <b>mutual</b> reception most of all).</p>
+
+  <h2>Lots &amp; antiscia · chart health</h2>
+  <p>The <b>Part of Fortune</b> (⊕) and <b>Part of Spirit</b> are computed points for material and active fortune;
+    the <b>antiscia</b> table gives each planet's "shadow" degrees — hidden sympathies.</p>
+  <p>The <b>Chart health</b> panel is the headline <b>verdict</b> — <span class="verdict green">green</span> /
+    <span class="verdict amber">amber</span> / <span class="verdict red">red</span> — a <b>traffic-light scale for the
+    gravity of the judgement</b>, with the specific <b>cautions</b> beneath it (a void Moon, a combust significator, a
+    via-combusta Moon…). It is a quick summary of impediments, <em>not</em> a substitute for weighing the actual
+    significators — and red marks <b>severity only</b>, never a planetary or talisman colour.</p>
+
+  <h2>Horary — the significators</h2>
+  <p>By default the panel shows the <b>general</b> state: the <b>querent</b>'s significator (the Lord of the
+    Ascendant) and the <b>Moon</b>'s condition and next applying aspect. <b>Pick the house your question is about</b>
+    (the in-panel dropdown) to add the <b>quesited</b>'s significator and the <b>modes of perfection</b> — whether and
+    how the matter completes (a direct aspect, translation, collection, reception) or fails (prohibition,
+    refranation), with an estimated timing.</p>
+
+  <h2>Picatrix — election &amp; talisman</h2>
+  <ul class="clean">
+    <li><b>Election</b> — for the chosen aim, a <b>verdict</b> and a <b>score</b> with a cited breakdown, then
+      <b>all aims ranked</b> for this moment. A <b>hard requirement unmet</b> (a "gating" line — e.g. the ruler
+      retrograde or combust) keeps the verdict from green however high the score. The <b>Picatrix correspondences of
+      the moment</b> give the Moon's mansion, the decan faces and any Behenian star contact.</li>
+    <li><b>Talisman</b> — the ruling planet, its <b>materials</b> (suffumigation, colour, metal, stone), the named
+      <b>spirits</b> (three systems kept distinct), the planet's historical <b>Picatrix prayer</b>, and the cited
+      steps. <b>Historical practice only</b> — the recipe is recorded, never recommended; flagged materials must
+      never be made.</li>
+  </ul>
+
+  <h2>Book III — the life trajectory</h2>
+  <p>If you added a birth moment: the <b>natal signatures</b> (Lord of the Geniture, temperament, hyleg/alcocoden),
+    <b>this year</b>'s profection and <b>Lord of the Year</b>, and the native's <b>ruling planets</b>. The full
+    year-by-year timeline, directions and solar return are on the <a href="trajectory.html">Life Trajectory</a> tool.</p>
+
+  <h2>The Vedic (🕉) panel</h2>
+  <p>A <b>separate, sidereal</b> reading — never merge it with the Western chart; compare them.</p>
+  <ul class="clean small">
+    <li><b>Grahas table</b> — each graha's sidereal position, <b>bhāva</b> (whole-sign house), <b>nakṣatra</b> &amp;
+      pada, and Parāśarī <b>dignity</b> (Exalted / Own / Mūlatrikoṇa = strong; Debilitated = weak).</li>
+    <li><b>Pañcāṅga</b> — the day's tithi, vāra, nakṣatra, yoga, karaṇa.
+      <b>Vimśottarī daśā</b> — the running mahā (and antar) period that times the life.</li>
+    <li><b>Navāṁśa &amp; Sarvāṣṭakavarga</b> — the D9 signs and the <b>SAV</b> bindu counts by sign (total always 337;
+      &gt;28 per sign is a strong field).</li>
+    <li><b>Ṣaḍbala</b> — the six-fold strength per graha in <b>rūpas</b>, against a required minimum (ratio ≥ 1× =
+      "strong"), with <b>Iṣṭa</b> (benefic yield) vs <b>Kaṣṭa</b> (its difficult counterpart). The <b>weakest</b>
+      graha is the remedial focus.</li>
+    <li><b>Practice</b> — the day's and the birth's traditional mantra, yoga and yantra. <b>Cultural/devotional
+      practice, recorded for study, never prescribed</b>; the graha→āsana map is a <em>modern</em> syncretism, flagged.</li>
+    <li><b>Conclusions &amp; advice</b> — a computed plain-English synthesis of the above, ending in the honest caveat.</li>
+  </ul>
+
+  <h2>Ask the Workbench — the AI assistant</h2>
+  <p>Paste your own <b>Anthropic (Claude) API key</b> (it is sent only to <code>api.anthropic.com</code>; optionally
+    remembered on your device). Then:</p>
+  <ul class="clean small">
+    <li><b>🔎 Interpret &amp; advise</b> — a plain, cross-system synthesis of the whole reading, with the patterns
+      between the Western and Vedic charts and what the traditions would advise (as history).</li>
+    <li><b>📜 Codex of this Hour</b> — the same depth in an evocative, image-rich register.</li>
+    <li><b>Plan a working</b> — a free-form box (e.g. <i>"the next good time to make a Jupiter talisman, and how"</i>)
+      that lets Claude <b>use the engine tools</b> to find the window and lay out the historical procedure.</li>
+  </ul>
+  <p class="small muted">The whole computed reading is sent as <b>JSON</b> so the model interprets the real figures,
+    not invented ones; every reply has a <b>⤓ save</b> link. The assistant is held to the same honest framing — it
+    describes a historical, pseudoscientific tradition; it does not advise or predict.</p>
+
+  <hr class="fancy">
+  <p class="small muted">See also <a href="basics.html">The Basics</a> (every concept explained), the
+    <a href="glossary.html">Glossary</a>, and <a href="how-it-works.html">How it's calculated</a>. Back to the
+    <a href="workbench.html">Master Tool</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('interpret');
+</script>
+</body>
+</html>

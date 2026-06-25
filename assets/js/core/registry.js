@@ -393,6 +393,32 @@ export const REGISTRY = [
     pages: ['pages/picatrix/prayers.html'], howItWorks: 'pages/picatrix/prayers.html',
     glossaryTerms: ['Planetary Prayer (Picatrix)', 'Planetary Spirits (Picatrix)', 'Perfect Nature'],
   },
+  {
+    id: 'mansion-images', title: 'Lunar-mansion talismanic images',
+    module: 'assets/js/core/data/mansion-images.js', exportName: 'mansionImage',
+    exports: ['mansionImage'],
+    computes: 'Reference: the talismanic IMAGE the tradition assigns to each of the 28 lunar mansions (the figure, purpose & material). Surfaced by the Moon’s mansion in the Master Tool’s Picatrix correspondences and on the Mansions page. Historical text only; flagged materials are HISTORICAL-ONLY.',
+    inputs: [{ name: 'num', type: 'number', desc: 'mansion number 1–28', required: true }],
+    outputShape: '{ num, name, image, purpose, material, citation, note }',
+    callable: false,
+    book: 'Picatrix', chapter: 'Agrippa II.46 / Picatrix IV.9',
+    citation: 'Agrippa, Three Books II.46 (images of the mansions) + Picatrix IV.9, Greer–Warnock.',
+    pages: ['pages/picatrix/mansions.html'], howItWorks: 'pages/basics.html#picatrix',
+    glossaryTerms: ['Lunar Mansions'],
+  },
+  {
+    id: 'planet-images', title: 'Planetary talismanic images',
+    module: 'assets/js/core/data/planet-images.js', exportName: 'planetImage',
+    exports: ['planetImage'],
+    computes: 'Reference: the talismanic IMAGE the tradition assigns to each of the seven planets (the figure, purpose & material). Surfaced for the ruling planet in the Master Tool’s talisman panel. Historical text only.',
+    inputs: [{ name: 'planet', type: 'string', desc: 'one of the 7 planets', required: true }],
+    outputShape: '{ image, purpose, material, citation }',
+    callable: false,
+    book: 'Picatrix', chapter: 'Agrippa II.38–44 / Picatrix II.10 & III',
+    citation: 'Agrippa, Three Books II.38–44 (images of the planets) + Picatrix II.10 & III, Greer–Warnock.',
+    pages: ['pages/picatrix/correspondences.html'], howItWorks: 'pages/basics.html#picatrix',
+    glossaryTerms: ['Planetary Prayer (Picatrix)'],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------

@@ -36,6 +36,7 @@
         <th scope="col" class="l">Name</th>
         <th scope="col" class="l">Indicator star</th>
         <th scope="col" class="l">Traditional magical use (Agrippa II.33)</th>
+        <th scope="col" class="l">Talismanic image (Agrippa II.46 / Picatrix IV.9)</th>
       </tr>
     </thead>
     <tbody id="mansions-body"></tbody>
@@ -47,6 +48,7 @@
 <script type="module">
   import { mountChrome } from '../../assets/js/app/shared.js';
   import { LUNAR_MANSIONS, mansionOf } from '../../assets/js/core/data/lunar-mansions.js';
+  import { mansionImage } from '../../assets/js/core/data/mansion-images.js';
   import { bodyPosition, formatLon } from '../../assets/js/core/astro.js';
 
   mountChrome('picatrix');
@@ -75,12 +77,15 @@
   body.innerHTML = LUNAR_MANSIONS.map(m => {
     const aliases = (m.aliases && m.aliases.length)
       ? `<br><small>aka ${esc(m.aliases.join(', '))}</small>` : '';
+    const img = mansionImage(m.num);
+    const imgCell = img ? `${esc(img.image)} <span class="muted">— ${esc(img.purpose)}</span>` : '<small>—</small>';
     return `<tr>` +
       `<td>${m.num}</td>` +
       `<td class="l">${esc(m.signSpan)}</td>` +
       `<td class="l">${esc(m.name)}${aliases}</td>` +
       `<td class="l">${esc(m.indicator) || '<small>—</small>'}</td>` +
       `<td class="l">${esc(m.use)}</td>` +
+      `<td class="l small">${imgCell}</td>` +
       `</tr>`;
   }).join('');
 
@@ -88,9 +93,10 @@
   const src = (LUNAR_MANSIONS[0] && LUNAR_MANSIONS[0].source) || '';
   document.getElementById('mansions-sources').innerHTML =
     `${esc(src)}. Spellings vary considerably by source (e.g. Al Sharatain / Alnath, ` +
-    `Al Jubana / Az Zubana), and <em>Picatrix</em> I.4 expands each brief Agrippan use with ` +
-    `its own image, spirit and suffumigation. Everything here is presented as historical ` +
-    `magical practice, not as a claim about the world.`;
+    `Al Jubana / Az Zubana). The <b>talismanic image</b> column is from Agrippa II.46 and ` +
+    `<em>Picatrix</em> IV.9; the original recipes name suffumigations and materials that are sometimes ` +
+    `toxic, animal-derived or dangerous — those are recorded <b>HISTORICAL-ONLY</b> and must never be made. ` +
+    `Everything here is presented as historical magical practice, not as a claim about the world.`;
 </script>
 </body>
 </html>
