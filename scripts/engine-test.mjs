@@ -182,5 +182,99 @@ const nc = nearestCity(51.5, -0.12);
 ok(nc && typeof nc.name === 'string' && nc.name.length > 0, `nearestCity returns a name (got ${nc && nc.name})`);
 ok(nc && typeof nc.distanceKm === 'number' && nc.distanceKm >= 0, 'nearestCity returns a numeric distance');
 
+// --- Unified reading spine (Phase A1) --------------------------------------
+import { fullReading, HONEST_FRAMING } from '../assets/js/core/reading.js';
+const reading = fullReading(eChart);
+ok(reading && reading.meta && reading.moment && reading.dignities && reading.aspects &&
+   reading.lots && reading.cautions && reading.election && reading.talisman,
+   'fullReading returns all core blocks');
+ok(reading.horary === null && reading.natal === null, 'fullReading: horary & natal null without their opts');
+let roundTrip = false;
+try { roundTrip = !!JSON.parse(JSON.stringify(reading)).meta; } catch { roundTrip = false; }
+ok(roundTrip, 'fullReading is JSON-serializable (round-trips)');
+ok(Array.isArray(reading.citations) && reading.citations.length > 0, 'fullReading collects a flat citations array');
+ok(/pseudoscience|no demonstrated/i.test(reading.meta.framing) && reading.meta.framing === HONEST_FRAMING,
+   'fullReading carries the canonical HONEST_FRAMING');
+ok(reading.moment.planets.Sun.antiscion.lon === antiscion(eChart.planets.Sun.lon),
+   'fullReading reuses antiscion (not re-derived)');
+ok(['green', 'amber', 'red'].includes(reading.cautions.verdict), 'fullReading.cautions has a verdict');
+ok(reading.dignities.lordOfGeniture.planet && typeof reading.dignities.lordOfGeniture.score === 'number',
+   'fullReading reports the Lord of the Geniture');
+ok(reading.election.rankedNow.length === OPERATIONS.length, 'fullReading.election ranks every operation');
+const readingH = fullReading(eChart, { quesitedHouse: 7 });
+ok(readingH.horary && readingH.horary.quesitedHouse === 7 && readingH.horary.perfection &&
+   'modes' in readingH.horary.perfection, 'fullReading: quesitedHouse populates the horary block');
+const readingN = fullReading(eChart, { birth: { chart: natal } });
+ok(readingN.natal && readingN.natal.trajectory && Array.isArray(readingN.natal.trajectory.timeline) &&
+   readingN.natal.trajectory.timeline.length > 0, 'fullReading: birth chart populates the natal/trajectory block');
+import { antiscion } from '../assets/js/core/astro.js';
+
+// --- Capability registry: anti-drift sync test (Phase A2) ------------------
+import { REGISTRY, allExports, toToolSchema, OP_KEYS, callableEntries } from '../assets/js/core/registry.js';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+
+ok(JSON.stringify(OP_KEYS) === JSON.stringify(OPERATIONS.map(o => o.key)),
+   'registry OP_KEYS matches election.js OPERATIONS');
+
+let regExportFails = 0;
+for (const { module, exportName, id } of allExports()) {
+  if (!existsSync(resolve(REPO_ROOT, module))) { console.log(`  ✗ registry[${id}]: module missing ${module}`); regExportFails++; continue; }
+  let mod;
+  try { mod = await import('../' + module); } catch (e) { console.log(`  ✗ registry[${id}]: import failed ${module} (${e.message})`); regExportFails++; continue; }
+  if (!(exportName in mod)) { console.log(`  ✗ registry[${id}]: ${module} has no export "${exportName}"`); regExportFails++; }
+}
+ok(regExportFails === 0, `every registry export resolves (${allExports().length} checked)`);
+
+let regLinkFails = 0;
+for (const e of REGISTRY) {
+  for (const pg of (e.pages || [])) if (!existsSync(resolve(REPO_ROOT, pg))) { console.log(`  ✗ registry[${e.id}]: page missing ${pg}`); regLinkFails++; }
+  if (e.howItWorks) {
+    const [file, anchor] = e.howItWorks.split('#');
+    if (!existsSync(resolve(REPO_ROOT, file))) { console.log(`  ✗ registry[${e.id}]: hiw file missing ${file}`); regLinkFails++; }
+    else if (anchor && !readFileSync(resolve(REPO_ROOT, file), 'utf8').includes(`id="${anchor}"`)) { console.log(`  ✗ registry[${e.id}]: anchor #${anchor} not found`); regLinkFails++; }
+  }
+}
+ok(regLinkFails === 0, 'every registry page & how-it-works anchor resolves');
+
+import { GLOSSARY } from '../assets/js/core/data/glossary.js';
+const TERMS = new Set(GLOSSARY.map(g => g.term));
+let regTermFails = 0;
+for (const e of REGISTRY) for (const t of (e.glossaryTerms || [])) if (!TERMS.has(t)) { console.log(`  ✗ registry[${e.id}]: glossary term not found: "${t}"`); regTermFails++; }
+ok(regTermFails === 0, 'every registry glossary term exists in GLOSSARY');
+
+const toolSchema = toToolSchema();
+ok(toolSchema.length === callableEntries().length && toolSchema.every(t => t.function && t.function.name && t.function.parameters),
+   `toToolSchema well-formed for every callable capability (${toolSchema.length})`);
+
+// --- Share-state helpers: pure encode/decode round-trip (Phase A3) ---------
+import { encodeState, decodeState } from '../assets/js/app/state.js';
+const st = { date: '2026-06-25', time: '12:00', lat: '51.5074', lon: '-0.1278', empty: '', nil: null };
+const enc = encodeState(st);
+const dec = decodeState('?' + enc);
+ok(!/empty=|nil=/.test(enc), 'encodeState drops empty/null values');
+ok(dec.date === '2026-06-25' && dec.lat === '51.5074' && !('empty' in dec), 'decodeState round-trips the kept keys');
+
+// --- Local-LLM context bridge (Phase B1) -----------------------------------
+import { HONEST_SYSTEM_PREAMBLE, buildContext, buildToolSchema, runTool, toolNames } from '../assets/js/core/llm-context.js';
+import { HONEST_FRAMING as HF } from '../assets/js/core/reading.js';
+ok(HONEST_SYSTEM_PREAMBLE.includes(HF), 'LLM preamble embeds the canonical HONEST_FRAMING');
+const ctx = buildContext(fullReading(eChart, { quesitedHouse: 7 }));
+ok(/pseudoscience|no demonstrated/i.test(ctx.system) && /never\s+prescribe/i.test(ctx.system), 'buildContext system locks the honest framing');
+ok(ctx.facts.length > 0 && ctx.facts.every(f => typeof f.text === 'string'), 'buildContext returns labelled facts');
+ok(/Ascendant|Chart-health verdict/i.test(ctx.system), 'buildContext system carries the computed facts');
+ok(Array.isArray(ctx.glossary) && ctx.glossary.length > 0, 'buildContext includes a relevant glossary');
+const tools = buildToolSchema();
+ok(tools.length >= 10 && tools.every(t => t.function && t.function.name && t.function.parameters), 'buildToolSchema is well-formed');
+ok(toolNames().includes('electionScore') && toolNames().includes('rankNow'), 'toolNames lists the callable tools');
+const tElect = runTool('electionScore', { operationKey: 'love' }, { chart: eChart });
+ok(['green', 'amber', 'red'].includes(tElect.verdict) && Array.isArray(tElect.reasons), 'runTool(electionScore) returns a verdict + reasons');
+ok(runTool('mansionOf', { lon: 210 }).num >= 1, 'runTool(mansionOf) returns a mansion');
+ok(Array.isArray(runTool('rankNow', {}, { chart: eChart })), 'runTool(rankNow) returns ranked aims');
+let threw = false; try { runTool('definitely-not-a-tool', {}); } catch { threw = true; }
+ok(threw, 'runTool refuses an unknown tool');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Workbench — everything, in one tool | The Astrologer's Workbench</title>
+<meta name="description" content="The unified Workbench: one moment and place computes the WHOLE engine at once — positions and the figure, the full dignity ledger, aspects and reception, the lots and antiscia, chart health, horary perfection, the Picatrix election layer, the talisman recipe, and (with a birth moment) the life trajectory. Export the reading as JSON, share it by link, and ask a LOCAL language model to explain it. Historical study only — astrology has no demonstrated predictive validity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › The Workbench</p>
+  <h1>The Workbench — every calculation, linked in one tool</h1>
+  <p class="lede">One moment and place runs the <b>whole engine at once</b> through a single composed reading
+    (<code>fullReading</code>): the <b>figure</b>, the full <b>dignity ledger</b>, <b>aspects &amp; reception</b>,
+    the <b>lots &amp; antiscia</b>, <b>chart health</b>, <b>horary perfection</b>, the Picatrix <b>election</b> layer,
+    the <b>talisman</b> recipe, and — with a birth moment — the whole <b>life trajectory</b>. Every value is the
+    same engine the dedicated tools use; nothing is re-derived. You can <b>export the reading as JSON</b>,
+    <b>share it by link</b>, download the <b>chart</b>, and <b>ask a local language model</b> to explain it.</p>
+  <p class="small"><b>Where each number comes from:</b> every panel below links to its dedicated tool, its
+    <a href="how-it-works.html">step-by-step explanation</a>, and the glossary — see the
+    <a href="#wb-reference">Reference index</a> at the foot for the full map of functions &amp; data.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    This is a <b>historical study tool</b>. The astronomy is real and verifiable; the <em>interpretations</em> are
+    those of William Lilly (1647) and the medieval <em>Picatrix</em>, reproduced faithfully so the tradition can be
+    examined — never as guidance or a forecast. <b>Astrology has no demonstrated predictive validity</b> and is
+    regarded by the scientific community as a pseudoscience; the magical/talismanic material is recorded as historical
+    practice only and is never a recommendation. The local-model assistant narrates these computed, cited results and
+    is held to the same framing. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="wb-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 180px"><label for="wb-city">Place (preset)</label><select id="wb-city"></select></div>
+      <div class="field"><label for="wb-lat">Lat °N</label><input id="wb-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="wb-lon">Lon °E</label><input id="wb-lon" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="wb-date">Date</label><input id="wb-date" type="date"></div>
+      <div class="field"><label for="wb-time">Time (local)</label><input id="wb-time" type="time"></div>
+      <div class="field"><label for="wb-offset">UTC offset</label><input id="wb-offset" type="number" step="0.5" style="width:6rem"></div>
+      <div class="field"><label for="wb-system">Houses</label><select id="wb-system">
+        <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
+        <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="wb-op">Election / talisman aim</label><select id="wb-op"></select></div>
+      <div class="field"><label for="wb-quesited">Horary — question about house</label><select id="wb-quesited"></select></div>
+    </div>
+    <details id="wb-birth-details" style="margin-top:.8rem">
+      <summary class="small"><b>Optional — add a birth moment</b> to include the whole-life trajectory (natal, profections, directions, solar return, personal Picatrix)</summary>
+      <div class="field-row" style="margin-top:.6rem">
+        <div class="field"><label for="wb-blat">Birth Lat °N</label><input id="wb-blat" type="number" step="0.0001" style="width:7rem"></div>
+        <div class="field"><label for="wb-blon">Birth Lon °E</label><input id="wb-blon" type="number" step="0.0001" style="width:7rem"></div>
+        <div class="field"><label for="wb-bdate">Birth date</label><input id="wb-bdate" type="date"></div>
+        <div class="field"><label for="wb-btime">Birth time (local)</label><input id="wb-btime" type="time"></div>
+        <div class="field"><label for="wb-boffset">Birth UTC offset</label><input id="wb-boffset" type="number" step="0.5" style="width:6rem"></div>
+      </div>
+    </details>
+    <div class="field-row" style="margin-top:.8rem">
+      <button type="submit" class="btn">Compute the reading</button>
+      <button type="button" class="btn sm" id="wb-copy">Copy shareable link</button>
+      <button type="button" class="btn sm" id="wb-json">Download JSON</button>
+      <button type="button" class="btn sm" id="wb-svg">Download chart (SVG)</button>
+      <button type="button" class="btn sm" id="wb-png">Download chart (PNG)</button>
+      <button type="button" class="btn sm" id="wb-print">Print</button>
+      <span id="wb-status" class="small muted"></span>
+    </div>
+  </form>
+
+  <p id="wb-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+
+  <section class="card"><h2 style="margin-top:0">The figure <span class="small muted" id="wb-moment-cite"></span></h2>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start">
+      <div id="wb-wheel" style="flex:0 0 auto"></div>
+      <div id="wb-moment" style="flex:1 1 320px;min-width:280px"></div>
+    </div></section>
+
+  <section class="card"><h2 style="margin-top:0">Book I — the dignity ledger <span class="small muted" id="wb-dignities-links"></span></h2>
+    <div id="wb-dignities"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Aspects &amp; reception <span class="small muted" id="wb-aspects-links"></span></h2>
+    <div id="wb-aspects"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Lots &amp; antiscia <span class="small muted" id="wb-lots-links"></span></h2>
+    <div id="wb-lots"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Chart health <span class="small muted" id="wb-cautions-links"></span></h2>
+    <div id="wb-cautions"></div></section>
+
+  <section class="card" id="wb-horary-card"><h2 style="margin-top:0">Book II — horary perfection <span class="small muted" id="wb-horary-links"></span></h2>
+    <div id="wb-horary"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Picatrix — election <span class="small muted" id="wb-election-links"></span></h2>
+    <div id="wb-election"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Picatrix — talisman recipe <span class="small muted" id="wb-talisman-links"></span></h2>
+    <div id="wb-talisman"></div></section>
+
+  <section class="card" id="wb-natal-card"><h2 style="margin-top:0">Book III — the life trajectory <span class="small muted" id="wb-natal-links"></span></h2>
+    <div id="wb-natal"></div></section>
+
+  <section class="card" id="wb-assistant-card"><h2 style="margin-top:0">Ask a local model</h2>
+    <div id="wb-assistant"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Reference index — every function &amp; datum <span class="small muted">(the capability registry)</span></h2>
+    <p class="small muted">This map is generated from <code>core/registry.js</code>; a test asserts every link below
+      resolves to a real export, page, explanation and glossary term — so it can never drift from the code.</p>
+    <div id="wb-reference"></div>
+    <details style="margin-top:1rem"><summary class="small">Show the raw reading object (JSON)</summary>
+      <pre id="wb-json-view" class="small" style="overflow:auto;max-height:24rem;white-space:pre-wrap"></pre></details>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of the above predicts or determines anything in the real world. There is no causal mechanism by which planetary
+    positions could govern personality, events, or the outcome of a "talisman," and controlled studies find no such
+    effect. Materials named in historical magical recipes may be toxic or illegal; they are recorded for study only and
+    must never be made or used. Treat every line as a faithful reconstruction of how astrologers and magicians once
+    reasoned — interesting history, not guidance.</div>
+
+  <p id="wb-citations" class="small muted" style="margin-top:1rem"></p>
+
+  <p class="small muted">See also the quick <a href="master.html">Unified Master Tool</a> (a subset glance), the
+    <a href="trajectory.html">Life Trajectory</a>, the <a href="now.html">Right-Now</a> dashboard, the
+    <a href="picatrix/election.html">Election Engine</a> and the <a href="picatrix/talisman.html">Talisman Workshop</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('workbench');
+  import { initWorkbench, getReading, getContext, subscribeReading } from '../assets/js/app/workbench.js';
+  initWorkbench();
+  import { initAssistant } from '../assets/js/app/assistant.js';
+  initAssistant({ getReading, getContext, subscribeReading });
+</script>
+</body>
+</html>

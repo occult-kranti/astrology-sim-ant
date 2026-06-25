@@ -98,3 +98,24 @@ actual significators; gating filters in the elector (never green over a combust/
 weighting & non-substring mansion match; mobile nav collapse; add the Picatrix Mirror-angel data; per-tool inline
 "how it's calculated" links (centralised page done); Phase 4 live worked examples for Lilly's charts; SVG/PNG export;
 generalised URL-share across all tools.
+
+## Round log — the unified Workbench + a local-LLM bridge (2026-06-25, later)
+**Shipped this round** (see `WORKBENCH.md` for the full results & design):
+- **`core/reading.js`** — `fullReading(chart, opts)`: ONE pure function composing the union of every computation
+  (figure · dignity ledger · aspects/reception · lots/antiscia · chart health · horary perfection · election ·
+  talisman · life-trajectory) into one serializable, cited object. The single source of truth for the UI, the JSON
+  export and the LLM. Exports the canonical `HONEST_FRAMING`.
+- **`core/registry.js`** — the capability catalogue (21 entries); an anti-drift engine-test asserts every export, page,
+  how-it-works anchor and glossary term it names actually exists, so the map can't rot.
+- **`core/llm-context.js`** — `buildContext()` (locked honest-framing system prompt + cited facts), `buildToolSchema()`,
+  `runTool()` (safe engine dispatcher).
+- **`app/state.js`** — generalised share/export (`encodeState/decodeState`, URL round-trip, `downloadJSON`,
+  SVG/PNG chart export — closes the long-open backlog item).
+- **`pages/workbench.html` + `app/workbench.js`** — THE unified tool; every panel registry-linked; JSON/SVG/PNG export;
+  shareable URL; wired into nav/footer/Tools hub and linked from `master.html` as its superset.
+- **`app/assistant.js` + `docs/LOCAL-LLM.html`** — "Ask a local model" (Ollama / in-browser WebLLM; Explain + Tools
+  modes). Makes NO network call on load (keeps the browser gate green); honest framing locked in the system prompt.
+- **Verified:** audit `Problems: 0`; engine-test `all passed` (incl. reading/registry/llm-context blocks); real-browser
+  sweep **34 pages, 0 errors**; a content assertion confirms every Workbench panel renders; an end-to-end assistant test
+  against a mock Ollama confirms detect → streamed reply → a Tools-mode tool-call executing the **real** engine.
+- **Environment:** Node 26 via a conda env (`astro-workbench`); the `verify-site` gate runs on Windows.

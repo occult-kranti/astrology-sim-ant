@@ -15,6 +15,7 @@ import { attachGeolocate } from './location.js';
 const NAV = [
   ['index.html', 'Home', 'home'],
   ['pages/now.html', 'Now', 'now'],
+  ['pages/workbench.html', 'Workbench', 'workbench'],
   ['pages/master.html', 'Master', 'master'],
   ['pages/trajectory.html', 'Trajectory', 'trajectory'],
   ['pages/workflow.html', 'Workflow', 'workflow'],
@@ -38,6 +39,7 @@ function currentSection() {
   if (/\/pages\/picatrix\//.test(p)) return 'picatrix';
   if (/\/pages\/about\//.test(p)) return 'about';
   if (/\/pages\/now\.html$/.test(p)) return 'now';
+  if (/\/pages\/workbench\.html$/.test(p)) return 'workbench';
   if (/\/pages\/master\.html$/.test(p)) return 'master';
   if (/\/pages\/trajectory\.html$/.test(p)) return 'trajectory';
   if (/\/pages\/workflow\.html$/.test(p)) return 'workflow';
@@ -84,6 +86,7 @@ export function mountChrome(activeKey = '') {
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
+        <li><a href="${R('pages/workbench.html')}">The Workbench — everything, with a local model</a></li>
         <li><a href="${R('pages/master.html')}">Unified Master Tool</a></li>
         <li><a href="${R('pages/trajectory.html')}">Life Trajectory (birth chart anywhere)</a></li>
         <li><a href="${R('pages/now.html')}">Right Now — live sky</a></li>

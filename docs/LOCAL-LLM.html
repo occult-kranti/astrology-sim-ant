@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect a local language model | The Astrologer's Workbench</title>
+<meta name="description" content="How to connect a LOCAL language model (Ollama, or an in-browser WebLLM model) to the Workbench so it can explain the computed, cited reading privately — nothing leaves your machine. Includes the Ollama CORS setting, the two modes (Explain and Tools), and example questions.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="../pages/tools.html">Tools</a> › <a href="../pages/workbench.html">Workbench</a> › Local model</p>
+  <h1>Connect a local language model</h1>
+  <p class="lede">The <a href="../pages/workbench.html">Workbench</a> can hand its <b>computed, cited</b> reading to a
+    language model running <b>on your own machine</b> and ask it to explain the result in plain language. The model
+    only ever sees the engine's facts (already calculated, each with its source) — and <b>nothing leaves the page</b>:
+    no cloud, no account, no telemetry.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The assistant narrates a <b>historical, pseudoscientific</b> tradition. It is held to the same framing as the rest
+    of the site by a locked system prompt: it <em>describes</em> Lilly's and the Picatrix's reasoning, it does not
+    advise, predict, or present astrology as valid. Magical/talismanic content is historical only. Astrology has no
+    demonstrated predictive validity. See <a href="../pages/about/index.html">Sources &amp; Science</a>.</div>
+
+  <h2>Why a local model fits this project</h2>
+  <p>The whole site is static, offline-first and privacy-respecting. A local model keeps that promise: the engine
+    computes the chart in your browser, builds a small <b>grounded fact sheet</b> (positions, dignities, the
+    chart-health verdict, the Moon's condition, the election reasons, the talisman materials — each cited), and the
+    model turns those facts into prose. Because the numbers are computed and passed in, the model narrates real
+    results rather than inventing them.</p>
+
+  <h2>Option A — Ollama (recommended)</h2>
+  <ol>
+    <li>Install <a href="https://ollama.com" rel="noopener">Ollama</a> for your OS.</li>
+    <li>Pull a model, e.g. a small instruct model:
+      <pre class="small">ollama pull llama3.1
+# or a lighter one:  ollama pull qwen2.5:7b   /   ollama pull phi3.5</pre></li>
+    <li><b>Allow this page to talk to Ollama (CORS).</b> The Workbench runs in a browser, so Ollama must permit the
+      page's origin. Set <code>OLLAMA_ORIGINS</code> before starting the server:
+      <pre class="small"># Windows (PowerShell)
+$env:OLLAMA_ORIGINS = "*"; ollama serve
+
+# macOS / Linux
+OLLAMA_ORIGINS="*" ollama serve</pre>
+      <span class="small muted">(<code>*</code> allows any local page. To be stricter, list the exact origin you serve
+      the site from, e.g. <code>http://localhost:8003</code>, or <code>null</code> if you open the files directly via
+      <code>file://</code>.)</span></li>
+    <li>On the Workbench, open <b>Ask a local model</b>, leave the backend on <b>Ollama</b>, click
+      <b>Detect / connect</b>, pick your model, and ask.</li>
+  </ol>
+
+  <h2>Option B — WebLLM (fully in-browser)</h2>
+  <p>No server at all: the model runs inside the browser tab using <b>WebGPU</b> (Chrome or Edge; recent GPU). Choose
+    the <b>WebLLM</b> backend, click <b>Detect / connect</b>, and it downloads a quantised model on first use (often a
+    few hundred MB to a couple of GB) and caches it. Heavier than Ollama, but zero install.</p>
+
+  <h2>Two modes</h2>
+  <ul>
+    <li><b>Explain (default)</b> — the model is given the grounded facts and narrates them. Works with any small model.</li>
+    <li><b>Tools (agentic)</b> — tick <em>“let the model run engine tools”</em> and a tool-capable model (e.g.
+      <code>llama3.1</code>, <code>qwen2.5</code>) may call the engine itself — cast a chart for another time, rank the
+      election aims, find the next good window, look up a mansion — and narrate the <b>real</b> computed result. The
+      tools come from the capability registry; the dispatcher refuses anything not on the list.</li>
+  </ul>
+
+  <h2>Things to ask</h2>
+  <ul class="clean">
+    <li>“Explain this chart in plain English.”</li>
+    <li>“What does the chart-health verdict mean here, and which testimonies drive it?”</li>
+    <li>“Why is the love election red right now? What would need to change?”</li>
+    <li>“Which planet is strongest and which weakest, and why, citing the dignities?”</li>
+    <li>“Find the next better hour for a wealth talisman.” <span class="small muted">(Tools mode)</span></li>
+  </ul>
+
+  <div class="callout"><span class="label">Under the hood</span>
+    The grounding lives in <code>assets/js/core/llm-context.js</code> (pure, headless-tested): <code>buildContext()</code>
+    builds the system prompt + cited facts, <code>buildToolSchema()</code> exposes the engine's callable capabilities,
+    and <code>runTool()</code> safely dispatches a tool call to the real engine. The capability map is
+    <code>assets/js/core/registry.js</code>; the one composed reading is <code>assets/js/core/reading.js</code>
+    (<code>fullReading</code>).</div>
+
+  <p class="small muted">Back to the <a href="../pages/workbench.html">Workbench</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome();
+</script>
+</body>
+</html>

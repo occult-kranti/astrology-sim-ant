@@ -18,6 +18,7 @@ the browser.
 | Area | Pages / tools |
 |------|---------------|
 | **Home** | `index.html` — overview, "find your way", the three books, the tools, the science note |
+| **The Workbench** | `pages/workbench.html` — the unified tool: one moment runs the **whole engine at once** (the `fullReading` spine), every panel cross-linked via the capability registry, with **JSON/SVG/PNG export**, shareable URLs, and an **"Ask a local model"** assistant (Ollama / in-browser WebLLM). See `WORKBENCH.md` and `docs/LOCAL-LLM.html`. |
 | **Workflow & Chapter Map** | `pages/workflow.html` — every chapter of each book → concept → calculation → worked example → tool; the horary & nativity step-flows; the Picatrix election bridge |
 | **Tools hub** | `pages/tools.html` — every calculator in one place, with a "what each computes" table |
 | **Book I — Fundamentals** | hub, signs/planets/houses reference, **Master Tool** (now with a full **Cautions & chart-health** panel), **Essential Dignity Calculator**, **Planetary Hours**, **Degree Tables** |
@@ -80,9 +81,14 @@ assets/
     perfection.js              translation/collection/prohibition/refranation + timing
     cautions.js                consolidated chart-health engine → severity advisories + verdict
     planetary-hours.js         Chaldean-order day & hour rulers
+    election.js · talisman.js · trajectory.js   the Picatrix election/talisman/life-trajectory composers
+    reading.js                 fullReading() — composes the WHOLE engine into one serializable, cited object
+    registry.js                the capability catalogue (drives the reference index + the LLM tool schema)
+    llm-context.js             local-LLM bridge: buildContext() · buildToolSchema() · runTool()
     chart.js                   SVG chart-wheel renderer (the only DOM-touching core file)
     data/                      dignities-data, planets, signs, houses, degree-tables, glossary
-  js/app/                      page logic: shared chrome, autolink, horary, book1, book1-master, book3
+  js/app/                      page logic: shared chrome, autolink, horary, book1, book1-master, book3,
+                               workbench (the unified tool), assistant (local-LLM panel), state (share/export)
 pages/
   workflow.html                chapter map & workflows (per-chapter, all three books)
   tools.html                   tools hub (every calculator + what each computes)
