@@ -2,8 +2,9 @@
 
 The original handoff plan (`ROADMAP.md`) is **executed through Phase T**. This file is the
 authoritative, current status + the remaining step-by-step work, including the two features
-added this round (Location service, Life Trajectory). Pairs with `COVERAGE.md` (audit) and
-`HANDOFF.md` (environment/ship). Every phase ends at the **`verify-site`** gate.
+added this round (Location service, Life Trajectory). Pairs with `COVERAGE.md` (audit),
+`REVIEW.md` (the critical + mathematician's-lens review with experimental features & the R1/R2
+plan), and `HANDOFF.md` (environment/ship). Every phase ends at the **`verify-site`** gate.
 
 > **Verified each round:** `node scripts/audit.mjs` (0 problems), `node scripts/engine-test.mjs`
 > (all pass — now incl. trajectory + location), and the 31-page real-Chromium sweep (0 console errors).
