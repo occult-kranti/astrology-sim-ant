@@ -9,6 +9,14 @@ Read with: `HANDOFF.md` (environment + architecture + ship procedure — *enviro
 `research/SOURCE-DATA.md` (the cited data to encode + accuracy caveats), `MASTER-PLAN.md`
 (the long-form Lilly × Picatrix vision). Skills in `.claude/skills/` automate the gates.
 
+> **Locked decisions (maintainer, this session):**
+> 1. **Framing = historical, described not prescribed.** All Picatrix/magical material is
+>    presented as documented medieval/Renaissance practice with the honest-science note;
+>    describe recipes/spirits/suffumigations but never instruct; flag toxic/illegal historical
+>    substances without recommending. (Matches the site's existing tone.)
+> 2. **Execution order = literature/data first**, exactly as the phases below (Phase 1 before the
+>    Election Engine). Do **not** jump ahead to Phase 2A.
+
 ---
 
 ## 0. Reconciliation of the two handoffs (read once)
