@@ -112,16 +112,31 @@ export function chartCautions(chart, { hourRuler = null } = {}) {
   const global = [...con.advisories, ...moon]
     .sort((a, b) => RANK[b.severity] - RANK[a.severity]);
 
-  // verdict from the worst signals across global + per-planet flags
-  const allSeverities = [
-    ...global.map(a => a.severity),
-    ...Object.values(planets).flatMap(p => p.flags.map(f => f.severity))
-  ];
-  const bad = allSeverities.filter(s => s === 'bad').length;
-  const caution = allSeverities.filter(s => s === 'caution').length;
-  let verdict = 'green', label = 'Few impediments — a clean figure.';
-  if (bad >= 1 || caution >= 3) { verdict = 'red'; label = 'Strongly impeded — judge or elect with great care.'; }
-  else if (caution >= 1) { verdict = 'amber'; label = 'Some cautions stand — weigh them before judging.'; }
+  // Verdict — WEIGHTED BY THE SIGNIFICATORS, not a flat tally of all seven
+  // planets. The `global` list (Lilly's considerations + the Moon) is already
+  // significator-level; among the per-planet flags, those on the Lord of the
+  // Ascendant and the Moon are "key" and drive the verdict, while afflictions to
+  // peripheral planets only escalate it when several pile up. This is closer to
+  // Lilly's habit of weighing the planets that actually signify the matter.
+  const KEY = new Set([con.lordAsc, 'Moon']);
+  let keyBad = global.filter(a => a.severity === 'bad').length;
+  let keyCaution = global.filter(a => a.severity === 'caution').length;
+  let otherBad = 0, otherCaution = 0;
+  for (const [name, p] of Object.entries(planets)) {
+    for (const f of p.flags) {
+      const key = KEY.has(name);
+      if (f.severity === 'bad') { if (key) keyBad++; else otherBad++; }
+      else if (f.severity === 'caution') { if (key) keyCaution++; else otherCaution++; }
+    }
+  }
+  let verdict = 'green', label = 'Few impediments — the significators are sound.';
+  if (keyBad >= 1 || keyCaution >= 2 || otherBad >= 2) {
+    verdict = 'red'; label = 'Strongly impeded — a key significator (Lord of the Ascendant or the Moon) is afflicted; judge or elect with great care.';
+  } else if (keyCaution >= 1 || otherBad >= 1 || otherCaution >= 2) {
+    verdict = 'amber'; label = 'Some cautions stand — weigh them, especially any on the significators.';
+  }
 
-  return { verdict, label, lordAsc: con.lordAsc, global, planets, counts: { bad, caution } };
+  const bad = keyBad + otherBad, caution = keyCaution + otherCaution;
+  return { verdict, label, lordAsc: con.lordAsc, global, planets,
+    counts: { bad, caution, keyBad, keyCaution, otherBad, otherCaution } };
 }

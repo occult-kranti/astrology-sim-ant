@@ -199,11 +199,21 @@ export function houseOf(lon, cusps) {
 }
 
 // ---------------------------------------------------------------------------
-//  Part of Fortune (Lilly's practice: Asc + Moon − Sun for BOTH day and night)
+//  Part of Fortune. CONTESTED FORK: Lilly prints Asc + Moon − Sun for BOTH day
+//  and night, so that is the DEFAULT here. The older Ptolemaic rule reverses it
+//  by night to Asc + Sun − Moon — pass opts {sectAware:true, isDay} to use it.
+//  (The Part of Fortune is a hyleg candidate, so the choice can ripple into the
+//  length-of-life reading; see pages/about.)
 // ---------------------------------------------------------------------------
-export function partOfFortune(asc, sunLon, moonLon) {
-  return norm360(asc + moonLon - sunLon);
+export function partOfFortune(asc, sunLon, moonLon, opts = {}) {
+  const reverse = opts.sectAware && opts.isDay === false; // night + sect-aware
+  return norm360(reverse ? asc + sunLon - moonLon : asc + moonLon - sunLon);
 }
+
+// A generalized Arabic Part / Lot: Lot = Asc + (B − C), reduced to [0,360).
+// The Part of Fortune is lot(asc, moonLon, sunLon) by day. Exposed for the
+// experimental Lots view; the seven Hermetic lots can be built from this.
+export function lot(asc, B, C) { return norm360(asc + B - C); }
 
 // ---------------------------------------------------------------------------
 //  Antiscia — a point's "shadow" reflected across the 0° Cancer–0° Capricorn

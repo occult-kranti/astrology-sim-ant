@@ -108,6 +108,17 @@ ok(wins.every((w, i) => i === 0 || wins[i - 1].best >= w.best), 'windows ranked 
 const na = nextAuspiciousTime(eDate, 51.5074, -0.1278, { hoursAhead: 24, target: 'amber', stepMinutes: 60 });
 ok(na === null || (na.time > eDate && ['amber', 'green'].includes(na.verdict)), 'nextAuspiciousTime: null or a later amber/green moment');
 
+// R1: election gating — a green verdict requires no hard-requirement failure
+ok(Array.isArray(love.gating), 'electionScore exposes a gating array');
+ok(love.gating.length === 0 || love.verdict !== 'green', 'a gating failure forbids a green verdict');
+ok(rankNow(eChart).every(r => r.gating.length === 0 || r.verdict !== 'green'), 'no operation is green over a gating failure');
+
+// R1: sect-aware Part of Fortune + generalized Lot
+import { partOfFortune, lot } from '../assets/js/core/astro.js';
+ok(partOfFortune(100, 10, 40) === ((100 + 40 - 10) % 360), 'Part of Fortune default = Asc + Moon - Sun (both sects)');
+ok(partOfFortune(100, 10, 40, { sectAware: true, isDay: false }) === ((100 + 10 - 40 + 360) % 360), 'sect-aware night Part of Fortune reverses to Asc + Sun - Moon');
+ok(lot(100, 40, 10) === 130, 'generalized lot(asc,B,C) = Asc + B - C');
+
 // --- Natal engine modules (Phase 2C) ---------------------------------------
 const natal = castChart(new Date(Date.UTC(1990, 4, 15, 12, 0)), 51.5074, -0.1278, 'regiomontanus');
 

@@ -34,6 +34,9 @@ const MALEFICS = ['Mars', 'Saturn'];
 const BENEFICS = ['Jupiter', 'Venus'];
 const ANGLES = [1, 4, 7, 10];
 const MOON_MEAN = 13.176;
+// Mansions whose traditional use is destructive/separative (Agrippa II.33 /
+// Picatrix I.4) — fitting for works of decrease/banishing, ill for increase.
+const MALEFIC_MANSIONS = [9, 11, 12, 14, 21, 22, 23, 25, 27];
 const CITE = {
   hour: 'Picatrix III.7 & Agrippa II — operate in the planet’s own day & hour',
   dignity: 'Lilly, Christian Astrology pp.115-116 — a planet acts strongly only when dignified',
@@ -143,6 +146,16 @@ export function electionScore(chart, operationKey, opts = {}) {
     else if (f.severity === 'good') add(+1, 'good', `${op.ruler}: ${f.text}`, CITE.dignity);
   }
 
+  // Hard requirements (gating): the tradition will NOT call a work fit while its
+  // ruling planet is retrograde, combust, or essentially debilitated — however
+  // high the additive score. These cap a "green" verdict at amber.
+  const gating = [];
+  const isLuminary = op.ruler === 'Sun' || op.ruler === 'Moon';
+  if (!isLuminary && chart.planets[op.ruler].retrograde) gating.push(`${op.ruler} is retrograde`);
+  if (rulerFlags.some(f => /combust/i.test(f.text))) gating.push(`${op.ruler} is combust`);
+  if (ed.rows.some(r => r.kind === 'Detriment')) gating.push(`${op.ruler} is in detriment`);
+  if (ed.rows.some(r => r.kind === 'Fall')) gating.push(`${op.ruler} is in fall`);
+
   // --- the Moon: phase, condition, mansion, dispositor ---------------------
   const moon = chart.planets.Moon;
   const phase = moonPhase(chart);
@@ -171,11 +184,15 @@ export function electionScore(chart, operationKey, opts = {}) {
     else if (/applying to a hard aspect of (Mars|Saturn)/i.test(a.text)) add(-2, 'caution', a.text, CITE.moon);
   }
 
-  // mansion fitness (Bk I)
+  // mansion fitness (Bk I) — keyword match, plus malefic-mansion awareness:
+  // a destructive mansion suits decrease/banishing but harms a work of increase.
   const mansion = mansionOf(moon.lon);
   const useText = (mansion.use || '').toLowerCase();
   const mansionHit = op.keywords.some(k => useText.includes(k));
+  const malefMansion = MALEFIC_MANSIONS.includes(mansion.num);
   if (mansionHit) add(+2, 'good', `The Moon is in Mansion ${mansion.num} (${mansion.name}), whose use — “${mansion.use}” — suits this work.`, CITE.mansion);
+  else if (malefMansion && wantWax) add(-1, 'caution', `The Moon is in a destructive mansion (${mansion.num}, ${mansion.name}: “${mansion.use}”) — ill-suited to a work of increase.`, CITE.mansion);
+  else if (malefMansion && !wantWax) add(+1, 'good', `The Moon is in a destructive mansion (${mansion.num}, ${mansion.name}: “${mansion.use}”) — fitting for a work of decrease/banishing.`, CITE.mansion);
   else add(0, 'note', `The Moon is in Mansion ${mansion.num} (${mansion.name}); use: “${mansion.use}”.`, CITE.mansion);
 
   // the Moon's dispositor — the outcome
@@ -200,20 +217,26 @@ export function electionScore(chart, operationKey, opts = {}) {
       add(+1, 'good', `${c.planet} is conjunct the fixed star ${c.star} (within ${c.sep.toFixed(1)}°) — lends its virtue to this work.`, CITE.star);
   }
 
-  // --- verdict from score, but never green over a hard caution -------------
+  // --- verdict from score, but never green over a hard caution OR a gating fail
   const bad = reasons.filter(r => r.severity === 'bad').length;
   const cautions = reasons.filter(r => r.severity === 'caution').length;
   let verdict, label;
   if (bad >= 1 || score <= -2) { verdict = 'red'; label = 'Unfavourable — strong testimony against this work now.'; }
-  else if (score >= 5 && cautions === 0) { verdict = 'green'; label = 'Favourable — the testimonies agree.'; }
+  else if (score >= 5 && cautions === 0 && gating.length === 0) { verdict = 'green'; label = 'Favourable — the testimonies agree.'; }
   else { verdict = 'amber'; label = 'Mixed — some support, some impediment; weigh the cautions.'; }
+  // a failed hard requirement caps a high score at amber and is stated plainly
+  if (gating.length) {
+    if (verdict === 'green') verdict = 'amber';
+    label += ` Hard requirement unmet (${gating.join('; ')}) — the tradition would not call this fit, however high the score.`;
+    reasons.push({ severity: 'caution', text: `Hard requirement unmet: ${gating.join('; ')}.`, cite: CITE.dignity, delta: 0 });
+  }
 
   // sort reasons worst-first for display
   const RANK = { bad: 3, caution: 2, note: 1, good: 0 };
   reasons.sort((a, b) => RANK[b.severity] - RANK[a.severity]);
 
   return {
-    operation: op, verdict, label, score,
+    operation: op, verdict, label, score, gating,
     ruler: { planet: op.ruler, essential: ed.total, peregrine: ed.peregrine },
     hour: ph ? { ruler: ph.ruler, dayRuler: dRuler, hourMatch, dayMatch } : null,
     moon: {
