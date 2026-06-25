@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 15 Behenian Fixed Stars | Picatrix</title>
+<meta name="description" content="The medieval set of 15 Behenian fixed stars (Hermes / Agrippa) used in talismanic magic — each with a planetary nature, stone, plant and traditional use — with each star's ecliptic longitude precessed live to the current year (~50.3″/yr).">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Behenian Fixed Stars</p>
+  <h1>The 15 Behenian Fixed Stars</h1>
+  <p class="lede">The medieval set of <b>15 powerful fixed stars</b> (attributed to Hermes and transmitted by
+    Cornelius Agrippa in <em>Three Books of Occult Philosophy</em> II.47) used in talismanic magic — each star
+    carries a <b>planetary nature</b> and a matched <b>stone</b>, <b>plant</b> and traditional <b>use</b>.
+    Because fixed-star positions <b>precess</b> (≈50.3″ per year, roughly 1° every 72 years), this page does
+    not use a frozen catalog: each star's ecliptic longitude is precessed <b>live to the current year</b>.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The mathematics is real and reproducible — each longitude is precessed from a catalog epoch by a plain,
+    fixed rate, and the live conjunction check uses a <a href="../about/index.html">verified astronomical
+    engine</a> (≈1 arc-minute). The <em>magical natures and uses</em> are the historical interpretations of
+    Hermes and Agrippa, presented strictly for historical study — astrology has no demonstrated predictive
+    validity. See <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <div class="callout"><span class="label">Accuracy</span>
+    The canonical <b>15th</b> Behenian star is <b>Alkaid</b> (Hermes / Agrippa). <b>Fomalhaut</b> is one of the
+    four <b>Royal stars</b> and is <b>not</b> one of the historical 15 — it entered the list only as a later
+    substitute, so it is shown <a href="#modern">separately below</a> as a modern addition, never counted among
+    the canonical fifteen.</div>
+
+  <h2>Any star conjunct a planet right now</h2>
+  <div class="card" id="stars-now"><p class="small">Computing current conjunctions…</p></div>
+
+  <h2>The 15 canonical Behenian stars</h2>
+  <table class="data">
+    <thead>
+      <tr>
+        <th scope="col" class="l">Star</th>
+        <th scope="col" class="l">Longitude now</th>
+        <th scope="col" class="l">Nature</th>
+        <th scope="col" class="l">Stone</th>
+        <th scope="col" class="l">Plant</th>
+        <th scope="col" class="l">Traditional use</th>
+      </tr>
+    </thead>
+    <tbody id="stars-body"></tbody>
+  </table>
+
+  <h2 id="modern">Modern addition (not one of the historical 15)</h2>
+  <p>The following star is <b>not</b> a historical Behenian star. It is included only because later practice
+    sometimes substitutes it; it is kept separate so the canonical fifteen above remain unambiguous.</p>
+  <table class="data">
+    <thead>
+      <tr>
+        <th scope="col" class="l">Star</th>
+        <th scope="col" class="l">Longitude now</th>
+        <th scope="col" class="l">Nature</th>
+        <th scope="col" class="l">Stone</th>
+        <th scope="col" class="l">Plant</th>
+        <th scope="col" class="l">Note</th>
+      </tr>
+    </thead>
+    <tbody id="modern-body"></tbody>
+  </table>
+
+  <h2>Sources &amp; caveat</h2>
+  <p class="small" id="stars-sources"></p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import {
+    BEHENIAN_STARS, behenianLongitude, starsInAspect,
+    BEHENIAN_EPOCH, PRECESSION_DEG_PER_YEAR
+  } from '../../assets/js/core/data/behenian-stars.js';
+  import { bodyPosition, formatLon } from '../../assets/js/core/astro.js';
+
+  mountChrome('picatrix');
+
+  const esc = s => String(s).replace(/[&<>"]/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // --- Live readout: any Behenian star currently conjunct a planet ----------
+  const nowBox = document.getElementById('stars-now');
+  try {
+    const d = new Date();
+    const planets = {};
+    for (const n of ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'])
+      planets[n] = bodyPosition(n, d);
+    const hits = starsInAspect({ date: d, planets }, 6);
+
+    if (!hits.length) {
+      nowBox.innerHTML =
+        `<p>No Behenian star is closely conjunct a planet right now.</p>`;
+    } else {
+      const natureOf = name => {
+        const s = BEHENIAN_STARS.find(x => x.name === name);
+        return s ? s.nature : '';
+      };
+      const items = hits
+        .sort((a, b) => a.sep - b.sep)
+        .map(h =>
+          `<li><b>${esc(h.planet)}</b> is within <b>${h.sep.toFixed(1)}°</b> of ` +
+          `<b>${esc(h.star)}</b> (${esc(natureOf(h.star))}).</li>`)
+        .join('');
+      nowBox.innerHTML = `<ul>${items}</ul>`;
+    }
+  } catch (e) {
+    nowBox.innerHTML =
+      `<p class="small">Live planetary positions could not be computed in this browser, ` +
+      `but the full table of stars below is unaffected.</p>`;
+  }
+
+  // --- Row builder, shared by both tables -----------------------------------
+  const now = new Date();
+  const lonNow = name => {
+    const lon = behenianLongitude(name, now);
+    return (typeof lon === 'number') ? esc(formatLon(lon)) : '<small>—</small>';
+  };
+  const natureCell = s => esc(s.nature) +
+    (s.natureAlt ? `<br><small>or ${esc(s.natureAlt)}</small>` : '');
+
+  // --- The 15 canonical stars (modern === false) ----------------------------
+  const body = document.getElementById('stars-body');
+  body.innerHTML = BEHENIAN_STARS.filter(s => !s.modern).map(s =>
+    `<tr>` +
+    `<td class="l">${esc(s.name)}</td>` +
+    `<td class="l">${lonNow(s.name)}</td>` +
+    `<td class="l">${natureCell(s)}</td>` +
+    `<td class="l">${esc(s.stone)}</td>` +
+    `<td class="l">${esc(s.plant)}</td>` +
+    `<td class="l">${esc(s.use)}</td>` +
+    `</tr>`).join('');
+
+  // --- The modern addition(s) (modern === true) -----------------------------
+  const modernBody = document.getElementById('modern-body');
+  modernBody.innerHTML = BEHENIAN_STARS.filter(s => s.modern).map(s =>
+    `<tr>` +
+    `<td class="l">${esc(s.name)}</td>` +
+    `<td class="l">${lonNow(s.name)}</td>` +
+    `<td class="l">${natureCell(s)}</td>` +
+    `<td class="l">${esc(s.stone)}</td>` +
+    `<td class="l">${esc(s.plant)}</td>` +
+    `<td class="l">${s.sourceNote ? esc(s.sourceNote) : esc(s.use)}</td>` +
+    `</tr>`).join('');
+
+  // --- Sources & caveat -----------------------------------------------------
+  const src = (BEHENIAN_STARS[0] && BEHENIAN_STARS[0].source) || '';
+  const variants = BEHENIAN_STARS
+    .filter(s => s.sourceNote)
+    .map(s => `<li><b>${esc(s.name)}:</b> ${esc(s.sourceNote)}</li>`)
+    .join('');
+  document.getElementById('stars-sources').innerHTML =
+    `${esc(src)}. Catalog longitudes are taken at epoch ${BEHENIAN_EPOCH} and precessed forward at ` +
+    `${(PRECESSION_DEG_PER_YEAR * 3600).toFixed(2)}″ per year to the current date. Star <b>natures vary ` +
+    `by source</b>; where they disagree the variant is flagged inline (shown as “or …” in the Nature column) ` +
+    `and detailed here:` +
+    (variants ? `<ul>${variants}</ul>` : ` (none)`) +
+    `Everything above — natures, stones, plants and uses — is recorded as historical magical practice, ` +
+    `described and not prescribed; some historical plants are toxic and are listed only for fidelity.`;
+</script>
+</body>
+</html>

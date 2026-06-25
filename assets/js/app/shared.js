@@ -17,6 +17,7 @@ const NAV = [
   ['pages/book1/index.html', 'Book I'],
   ['pages/book2/index.html', 'Book II'],
   ['pages/book3/index.html', 'Book III'],
+  ['pages/picatrix/index.html', 'Picatrix'],
   ['pages/tools.html', 'Tools'],
   ['pages/glossary.html', 'Glossary'],
   ['pages/about/index.html', 'About']
@@ -47,6 +48,7 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/book1/index.html')}">Book I — An Introduction to Astrology</a></li>
         <li><a href="${R('pages/book2/index.html')}">Book II — Resolution of All Questions</a></li>
         <li><a href="${R('pages/book3/index.html')}">Book III — Judgement of Nativities</a></li>
+        <li><a href="${R('pages/picatrix/index.html')}">Picatrix — Astrological Magic</a></li>
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">

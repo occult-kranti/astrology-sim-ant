@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planetary Magic — Correspondences | Picatrix</title>
+<meta name="description" content="A study reference for the seven-planet talismanic correspondences of the Picatrix and Cornelius Agrippa: the petitions each planet governs and its matching suffumigations, colours, metals, stones and named spirits — historical magical practice, described for study, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Planetary Correspondences</p>
+  <h1>Planetary Magic — Correspondences</h1>
+  <p class="lede">In the <em>Picatrix</em> and Cornelius Agrippa, each of the seven planets governs particular
+    petitions and is approached with its matching suffumigations, colours, metals, stones and named spirits.
+    This is the raw material of talismanic election — the table from which a medieval or Renaissance practitioner
+    would have chosen what to burn, wear and inscribe under a given planet.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    This page records <em>historical</em> magical practice for study — it is described, never prescribed. The
+    correspondences are reproduced as the sources give them; astrology and talismanic magic have no demonstrated
+    validity. Some historical recipes name substances that are <strong>toxic or illegal</strong> (for example
+    opium, or "blood" in martial recipes); these are listed because the texts list them, and are in no way
+    recommended. See <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <div class="callout" id="magic-disclaimer" role="note">
+    <span class="label">Disclaimer</span>
+    <span id="disclaimer-text"></span>
+  </div>
+
+  <h2>The seven planets</h2>
+  <p class="small">Listed in Chaldean order (slowest to fastest). Each card gives the planet's petitions and its
+    talismanic correspondences, with the spirit-name systems kept separate (see the note below).</p>
+
+  <div class="grid cols-2" id="planet-grid"></div>
+
+  <h2>Why the spirit names are not merged</h2>
+  <p>The historical material carries <strong>three distinct spirit-name systems</strong>, and the sources keep
+    them apart — so this reference does too, and does not collapse them into a single "spirit of the planet":</p>
+  <ul>
+    <li><strong>Picatrix prayer-angel</strong> — the angel addressed in the planetary prayer of
+      <em>Picatrix</em> Book III.7 (the Sun has none; it is approached directly).</li>
+    <li><strong>Agrippa's Angel</strong> — the planetary Angel of Agrippa's <em>Three Books of Occult
+      Philosophy</em>, Book II.</li>
+    <li><strong>Agrippa's Intelligence</strong> — the planetary Intelligence (the ordering, benevolent power),
+      distinct from both the Angel and the Spirit.</li>
+    <li><strong>Agrippa's Spirit</strong> — the planetary Spirit (the "demon" name) of the same triad.</li>
+  </ul>
+  <p>Conflating these would misrepresent the texts: a Picatrix prayer-angel is not Agrippa's Angel, and within
+    Agrippa the Angel, Intelligence and Spirit are three separate names with separate roles.</p>
+
+  <h2>Sources &amp; caveat</h2>
+  <p class="small" id="sources-note"></p>
+  <p class="small">Reproduced strictly as a study reference for the historical texts. Nothing here is an
+    instruction to perform any rite or prepare any substance.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { PLANETARY_MAGIC, MAGIC_DISCLAIMER, magicFor } from '../../assets/js/core/data/planetary-magic.js';
+  import { PLANET_GLYPHS, CHALDEAN } from '../../assets/js/core/astro.js';
+
+  mountChrome('picatrix');
+
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const orDash = s => (s && String(s).trim() !== '') ? esc(s) : '—';
+
+  // Disclaimer (rendered from the module, not hard-coded).
+  document.getElementById('disclaimer-text').textContent = MAGIC_DISCLAIMER;
+
+  // One card per planet, in Chaldean order.
+  const grid = document.getElementById('planet-grid');
+  grid.innerHTML = CHALDEAN.map(planet => {
+    const m = magicFor(planet);
+    if (!m) return '';
+    const glyph = PLANET_GLYPHS[planet] || '';
+    const a = m.agrippa || {};
+    return `
+      <div class="card">
+        <h3><span aria-hidden="true">${esc(glyph)}</span> ${esc(planet)}</h3>
+        <table class="data">
+          <tbody>
+            <tr><th class="l" scope="row">Governs (petitions)</th><td class="l">${orDash(m.governs)}</td></tr>
+            <tr><th class="l" scope="row">Suffumigation</th><td class="l">${orDash(m.suffumigation)}</td></tr>
+            <tr><th class="l" scope="row">Colour</th><td class="l">${orDash(m.colour)}</td></tr>
+            <tr><th class="l" scope="row">Metal</th><td class="l">${orDash(m.metal)}</td></tr>
+            <tr><th class="l" scope="row">Stone</th><td class="l">${orDash(m.stone)}</td></tr>
+            <tr><th class="l" scope="row">Picatrix prayer-angel</th><td class="l">${orDash(m.picatrixPrayerAngel)}</td></tr>
+            <tr><th class="l" scope="row">Agrippa — Angel</th><td class="l">${orDash(a.angel)}</td></tr>
+            <tr><th class="l" scope="row">Agrippa — Intelligence</th><td class="l">${orDash(a.intelligence)}</td></tr>
+            <tr><th class="l" scope="row">Agrippa — Spirit</th><td class="l">${orDash(a.spirit)}</td></tr>
+          </tbody>
+        </table>
+      </div>`;
+  }).join('');
+
+  // Sources footnote, drawn from the data's source fields (deduplicated).
+  const sources = [...new Set(CHALDEAN.map(p => magicFor(p)?.source).filter(Boolean))];
+  document.getElementById('sources-note').textContent =
+    'Sources: ' + (sources.join(' · ') || '—') + '.';
+</script>
+</body>
+</html>

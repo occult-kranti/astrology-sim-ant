@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 28 Mansions of the Moon | Picatrix</title>
+<meta name="description" content="The 28 tropical Mansions of the Moon used in Picatrix and Agrippa astrological magic — each a uniform 12°51′26″ arc from 0° Aries — with indicator stars, the traditional magical use of each (Agrippa II.33), and a live readout of the Moon's current mansion.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Mansions of the Moon</p>
+  <h1>The 28 Mansions of the Moon</h1>
+  <p class="lede">The <b>tropical</b> lunar mansions: twenty-eight uniform arcs of the ecliptic, each
+    <b>12°51′26″</b> (360° ÷ 28) beginning from 0° Aries. These are the mansions used in the
+    <em>Picatrix</em> and in Cornelius Agrippa's <em>Three Books of Occult Philosophy</em> for
+    astrological magic, indexed here by the Moon's ecliptic longitude.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The mathematics is real and reproducible — the Moon's longitude comes from a
+    <a href="../about/index.html">verified astronomical engine</a> (≈1 arc-minute), and each mansion is a
+    plain division of the zodiac. The <em>magical uses</em> are the historical interpretations of Agrippa
+    and the <em>Picatrix</em>, presented strictly for historical study — astrology has no demonstrated
+    predictive validity. See <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <h2>Where the Moon is now</h2>
+  <div class="card" id="moon-now"><p class="small">Computing the Moon's current mansion…</p></div>
+
+  <h2>The 28 mansions</h2>
+  <table class="data">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" class="l">Longitude span</th>
+        <th scope="col" class="l">Name</th>
+        <th scope="col" class="l">Indicator star</th>
+        <th scope="col" class="l">Traditional magical use (Agrippa II.33)</th>
+      </tr>
+    </thead>
+    <tbody id="mansions-body"></tbody>
+  </table>
+
+  <h2>Sources &amp; caveat</h2>
+  <p class="small" id="mansions-sources"></p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { LUNAR_MANSIONS, mansionOf } from '../../assets/js/core/data/lunar-mansions.js';
+  import { bodyPosition, formatLon } from '../../assets/js/core/astro.js';
+
+  mountChrome('picatrix');
+
+  const esc = s => String(s).replace(/[&<>"]/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // --- Live readout: the Moon's current mansion ----------------------------
+  const nowBox = document.getElementById('moon-now');
+  try {
+    const pos = bodyPosition('Moon', new Date());
+    const m = mansionOf(pos.lon);
+    nowBox.innerHTML =
+      `<p>Right now the Moon is in <b>Mansion ${m.num} — ${esc(m.name)}</b> ` +
+      `(${esc(m.signSpan)}); traditional use: <em>${esc(m.use)}</em>.</p>` +
+      `<p class="small">Moon's current ecliptic position: <b>${esc(formatLon(pos.lon))}</b>` +
+      (m.indicator ? ` · indicator star: ${esc(m.indicator)}` : '') + `.</p>`;
+  } catch (e) {
+    nowBox.innerHTML =
+      `<p class="small">The Moon's live position could not be computed in this browser, ` +
+      `but the full table of mansions below is unaffected.</p>`;
+  }
+
+  // --- The full table ------------------------------------------------------
+  const body = document.getElementById('mansions-body');
+  body.innerHTML = LUNAR_MANSIONS.map(m => {
+    const aliases = (m.aliases && m.aliases.length)
+      ? `<br><small>aka ${esc(m.aliases.join(', '))}</small>` : '';
+    return `<tr>` +
+      `<td>${m.num}</td>` +
+      `<td class="l">${esc(m.signSpan)}</td>` +
+      `<td class="l">${esc(m.name)}${aliases}</td>` +
+      `<td class="l">${esc(m.indicator) || '<small>—</small>'}</td>` +
+      `<td class="l">${esc(m.use)}</td>` +
+      `</tr>`;
+  }).join('');
+
+  // --- Sources & caveat ----------------------------------------------------
+  const src = (LUNAR_MANSIONS[0] && LUNAR_MANSIONS[0].source) || '';
+  document.getElementById('mansions-sources').innerHTML =
+    `${esc(src)}. Spellings vary considerably by source (e.g. Al Sharatain / Alnath, ` +
+    `Al Jubana / Az Zubana), and <em>Picatrix</em> I.4 expands each brief Agrippan use with ` +
+    `its own image, spirit and suffumigation. Everything here is presented as historical ` +
+    `magical practice, not as a claim about the world.`;
+</script>
+</body>
+</html>

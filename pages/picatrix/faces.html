@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 36 Decan Faces | Picatrix</title>
+<meta name="description" content="The 36 decan faces of the zodiac — each 10° face with its ruling planet in Chaldean order and its traditional magical image from Agrippa's Three Books II.37 (with Picatrix II.11 variants flagged), presented for historical study.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Decan Faces</p>
+  <h1>The 36 Decan Faces</h1>
+  <p class="lede">Each zodiac sign divides into three 10° <b>faces</b> (decans). Every face has a ruling planet in
+    the <b>Chaldean order</b> and a traditional magical <b>image</b> drawn from Agrippa's
+    <a href="../about/index.html">Three Books of Occult Philosophy</a> II.37 — the <em>Picatrix</em> II.11 carries a
+    parallel image-set that varies on a few faces (flagged in-line below). These images were used in talismanic magic.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The face boundaries and rulers are exact and reproducible; the <em>images</em> are historical magical
+    iconography, described here for study, not prescribed — astrology and talismanic magic have no demonstrated
+    validity. See <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <h2>The Sun's face today</h2>
+  <div class="callout"><p id="sun-face" class="lede">Computing the Sun's current face…</p></div>
+
+  <h2>The 36 faces by sign</h2>
+  <div id="faces"></div>
+
+  <h2>Sources &amp; caveat</h2>
+  <div class="callout">
+    <p class="small" id="sources">Sources: loading…</p>
+    <p class="small">Agrippa (Three Books II.37) and the <em>Picatrix</em> (II.11) descend from different recensions of
+      the Greek/Arabic decan lore and <b>diverge on several faces</b>. Where they differ, the Agrippa image is shown
+      as the primary entry and the <b>Picatrix variant</b> is given beneath it; we do not silently resolve the
+      divergence. Everything here is framed strictly as <b>historical practice</b>.</p>
+  </div>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { DECAN_FACES, faceOf } from '../../assets/js/core/data/decan-faces.js';
+  import { bodyPosition, SIGN_GLYPHS, PLANET_GLYPHS } from '../../assets/js/core/astro.js';
+
+  mountChrome('picatrix');
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const ORDINALS = ['1st', '2nd', '3rd'];
+  const planetGlyph = p => PLANET_GLYPHS[p] ? PLANET_GLYPHS[p] + ' ' : '';
+
+  // --- Live readout: the Sun's current face ---
+  (function () {
+    const el = document.getElementById('sun-face');
+    if (!el) return;
+    try {
+      const f = faceOf(bodyPosition('Sun', new Date()).lon);
+      el.innerHTML = `The Sun today is in the <b>${esc(ORDINALS[f.decan - 1])} face of ${esc(f.sign)}</b> `
+        + `${esc(SIGN_GLYPHS[f.signIndex])}, ruled by ${esc(planetGlyph(f.ruler))}<b>${esc(f.ruler)}</b>: `
+        + `<em>${esc(f.image)}</em>`;
+    } catch (e) {
+      el.textContent = 'The Sun’s current face could not be computed in this browser.';
+    }
+  })();
+
+  // --- The 36 faces grouped by sign ---
+  (function () {
+    const root = document.getElementById('faces');
+    if (!root) return;
+
+    // group by signIndex
+    const bySign = [];
+    for (const f of DECAN_FACES) (bySign[f.signIndex] ||= []).push(f);
+
+    let html = '';
+    for (let s = 0; s < bySign.length; s++) {
+      const faces = bySign[s].slice().sort((a, b) => a.decan - b.decan);
+      const sign = faces[0].sign;
+      html += `<section><h3>${esc(SIGN_GLYPHS[s])} ${esc(sign)}</h3>`
+        + `<table class="data"><thead><tr>`
+        + `<th class="l" scope="col">Face</th>`
+        + `<th class="l" scope="col">Ruler</th>`
+        + `<th class="l" scope="col">Image (Agrippa II.37)</th>`
+        + `<th class="l" scope="col">Keywords</th>`
+        + `</tr></thead><tbody>`;
+      for (const f of faces) {
+        const span = `${f.start % 30}°–${f.end % 30 === 0 ? 30 : f.end % 30}°`;
+        let imgCell = `${esc(f.image)}`;
+        if (f.imageAlt) {
+          imgCell += `<br><span class="small"><b>Picatrix variant:</b> ${esc(f.imageAlt)}</span>`;
+        }
+        html += `<tr>`
+          + `<td class="l"><b>${esc(ORDINALS[f.decan - 1])}</b> <span class="small">${esc(span)}</span></td>`
+          + `<td class="l">${esc(planetGlyph(f.ruler))}${esc(f.ruler)}</td>`
+          + `<td class="l">${imgCell}</td>`
+          + `<td class="l">${esc(f.keywords)}</td>`
+          + `</tr>`;
+      }
+      html += `</tbody></table></section>`;
+    }
+    root.innerHTML = html;
+  })();
+
+  // --- Sources footnote from the data ---
+  (function () {
+    const el = document.getElementById('sources');
+    if (!el) return;
+    const srcs = [...new Set(DECAN_FACES.map(f => f.source))].sort();
+    el.innerHTML = 'Sources: ' + srcs.map(esc).join('; ') + '.';
+  })();
+</script>
+</body>
+</html>
