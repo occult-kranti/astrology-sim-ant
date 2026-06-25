@@ -5,7 +5,7 @@
 // ============================================================================
 import { signOf, norm360 } from './astro.js';
 import {
-  DOMICILE, DETRIMENT, EXALTATION, TRIPLICITY_BY_SIGN, DIGNITY_SCORES,
+  DOMICILE, DETRIMENT, EXALTATION, EXALT_BY_SIGN, TRIPLICITY_BY_SIGN, DIGNITY_SCORES,
   termRulerAt, faceRulerAt, FIXED_STARS, SOLAR, ORBS
 } from './data/dignities-data.js';
 
@@ -112,6 +112,19 @@ const MEAN_SPEED = { Saturn: 0.034, Jupiter: 0.083, Mars: 0.524, Venus: 1.2, Mer
 
 function ordinal(n) {
   return { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th', 6: '6th', 7: '7th', 8: '8th', 9: '9th', 10: '10th', 11: '11th', 12: '12th' }[n];
+}
+
+// --- The five dignity rulers at a longitude (for reception tests) ---
+export function dignityRulersAt(lon, isDay) {
+  const s = signOf(lon), si = s.index, d = s.degInSign;
+  const tri = TRIPLICITY_BY_SIGN[si];
+  return {
+    domicile: DOMICILE[si],
+    exaltation: EXALT_BY_SIGN[si] ? EXALT_BY_SIGN[si].planet : null,
+    triplicity: isDay ? tri.day : tri.night,
+    term: termRulerAt(si, d),
+    face: faceRulerAt(si, d)
+  };
 }
 
 // --- Almuten of a degree: the planet with most essential dignity there ---

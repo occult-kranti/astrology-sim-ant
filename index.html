@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christian Astrology — The Interactive William Lilly</title>
+<meta name="description" content="An interactive study edition of William Lilly's Christian Astrology (1647): the three books of horary, natal and elemental astrology, with working calculators built on a verified astronomical engine. Faithful, cited, and scientifically honest.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<section class="hero">
+  <div class="wrap">
+    <h1>Christian Astrology</h1>
+    <p class="sub">“Modestly Treated of in Three Books” — William Lilly, London, 1647</p>
+    <p>The first complete textbook of astrology written in English, brought to life as an
+      interactive study edition. Read Lilly's three books chapter by chapter, then test every
+      technique with calculators that compute real charts from a verified astronomical engine —
+      and judge them by Lilly's own rules, step by step.</p>
+    <p style="margin-top:1.4rem">
+      <a class="btn" href="pages/book2/horary.html">Cast a Horary Chart →</a>
+      <a class="btn ghost" href="pages/book1/index.html">Begin with the Fundamentals</a>
+    </p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <div class="callout science">
+    <span class="label">Read this first — an honest note</span>
+    Astrology has <strong>no demonstrated predictive validity</strong> and is classed by the
+    scientific community as a pseudoscience (see the <a href="pages/about/index.html">Sources &amp; Science</a>
+    page for the evidence — Carlson's 1985 <em>Nature</em> double-blind test, the “time-twins” study, and more).
+    This project presents Lilly's astrology as a landmark of intellectual and cultural history,
+    and as a fascinating formal system to learn and compute. The calculations are real and
+    verifiable; the <em>interpretations</em> are Lilly's, offered for study — not as guidance.
+  </div>
+
+  <h2>The Three Books</h2>
+  <div class="grid cols-3">
+    <a class="card" href="pages/book1/index.html">
+      <span class="tag">Book I</span>
+      <h3>An Introduction to Astrology</h3>
+      <p>The alphabet of the art: the twelve signs, the seven planets, the twelve houses,
+        the aspects, and the all-important tables of <em>essential dignity</em>. With an
+        interactive dignity calculator and planetary-hours tool.</p>
+    </a>
+    <a class="card" href="pages/book2/index.html">
+      <span class="tag">Book II</span>
+      <h3>The Resolution of All Questions</h3>
+      <p>Horary astrology — answering a question from the chart of the moment it is asked.
+        The considerations before judgement, the significators, the perfecting aspects, and
+        Lilly's own famous worked charts. Includes a full horary calculator.</p>
+    </a>
+    <a class="card" href="pages/book3/index.html">
+      <span class="tag">Book III</span>
+      <h3>The Judgement of Nativities</h3>
+      <p>Natal astrology: rectification, the giver of life (hyleg), the Lord of the Geniture,
+        temperament, and prediction by directions, profections and revolutions — with a
+        nativity calculator.</p>
+    </a>
+  </div>
+
+  <hr class="fancy">
+
+  <h2>Interactive Tools</h2>
+  <div class="grid cols-2">
+    <a class="card" href="pages/book2/horary.html">
+      <span class="glyph-badge">☽☿☉</span>
+      <h3>Horary Chart Calculator</h3>
+      <p>Cast a Regiomontanus chart (Lilly's house system) for any moment and place.
+        It identifies the significators, scores every planet's dignity, lists the
+        applying and separating aspects with Lilly's orbs, runs the <em>considerations
+        before judgement</em>, and draws the wheel.</p>
+    </a>
+    <a class="card" href="pages/book1/dignities.html">
+      <span class="glyph-badge">♄♃♂</span>
+      <h3>Essential Dignity Calculator</h3>
+      <p>Enter any planet and degree and see exactly which dignities and debilities it holds —
+        domicile, exaltation, triplicity, term and face — scored by Lilly's points, with the
+        almuten of the degree.</p>
+    </a>
+    <a class="card" href="pages/book1/planetary-hours.html">
+      <span class="glyph-badge">🕖</span>
+      <h3>Planetary Hours</h3>
+      <p>The ruler of the present planetary hour and day in the Chaldean order, with the full
+        table of the twenty-four unequal hours from sunrise to sunrise.</p>
+    </a>
+    <a class="card" href="pages/book3/nativity.html">
+      <span class="glyph-badge">⊕</span>
+      <h3>Nativity Calculator</h3>
+      <p>A birth chart with houses, dignities, the Part of Fortune, the Lord of the Geniture,
+        and the temperament balance — the starting point for Lilly's natal method.</p>
+    </a>
+  </div>
+
+  <hr class="fancy">
+
+  <div class="grid cols-2">
+    <div>
+      <h2>Built on verified astronomy</h2>
+      <p>Every chart is computed in the browser from the
+        <a href="https://github.com/cosinekitty/astronomy" rel="noopener">astronomy-engine</a>
+        (a truncated-VSOP87 model, MIT-licensed, accurate to about one arc-minute). The angles
+        and house cusps are computed here and checked against published reference vectors.</p>
+      <p class="small muted">Validation: mean obliquity matches the standard value to five decimal
+        places; the Sun falls on 0° Aries at the equinox and 0° Cancer at the solstice; it sits on
+        the Midheaven at local noon; and the twelve Regiomontanus cusps come out strictly in order.
+        Tables of dignity reproduce Lilly's 1647 text (every term-row sums to 30°).</p>
+    </div>
+    <div>
+      <h2>Faithful &amp; cited</h2>
+      <p>The text follows Lilly's first edition (1647), cross-checked against the 1659 second
+        edition and the modern Regulus (1985) and Astrology Classics editions. Where editors or
+        later authors disagree with Lilly — the orbs, the triplicity rulers, the Part of Fortune
+        by sect — we follow what Lilly actually printed and flag the difference.</p>
+      <p class="small muted">Full citations, the publishing history, the modern traditional
+        revival, and the scientific assessment are on the
+        <a href="pages/about/index.html">About &amp; Sources</a> page.</p>
+    </div>
+  </div>
+
+</main>
+
+<script type="module">
+  import { mountChrome } from './assets/js/app/shared.js';
+  mountChrome('index.html');
+</script>
+</body>
+</html>
