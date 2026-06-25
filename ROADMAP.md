@@ -1,5 +1,9 @@
 # ROADMAP — execution plan (reconciled handoffs)
 
+> **Current status lives in [`MASTER-PLAN-V2.md`](MASTER-PLAN-V2.md)** (refreshed 2026-06-25):
+> the handoff plan is executed through Phase T, plus the Location service and Life-Trajectory
+> feature; remaining = Phase 3 polish (export/share/a11y), Phase 4 live examples, accuracy finishing.
+
 This is the **authoritative, ordered execution plan**. It reconciles the two parallel handoffs
 and sequences the work to the maintainer's stated priority:
 

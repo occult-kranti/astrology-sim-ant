@@ -10,11 +10,13 @@ export const ROOT = new URL('../../../', import.meta.url).href.replace(/\/$/, ''
 const R = p => `${ROOT}/${p.replace(/^\//, '')}`;
 
 import { autolinkGlossary } from './autolink.js';
+import { attachGeolocate } from './location.js';
 
 const NAV = [
   ['index.html', 'Home'],
   ['pages/now.html', 'Now'],
   ['pages/master.html', 'Master'],
+  ['pages/trajectory.html', 'Trajectory'],
   ['pages/workflow.html', 'Workflow'],
   ['pages/book1/index.html', 'Book I'],
   ['pages/book2/index.html', 'Book II'],
@@ -55,6 +57,7 @@ export function mountChrome(activeKey = '') {
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
         <li><a href="${R('pages/master.html')}">Unified Master Tool</a></li>
+        <li><a href="${R('pages/trajectory.html')}">Life Trajectory (birth chart anywhere)</a></li>
         <li><a href="${R('pages/now.html')}">Right Now — live sky</a></li>
         <li><a href="${R('pages/picatrix/election.html')}">Election — choose the moment</a></li>
         <li><a href="${R('pages/book3/master.html')}">Book III Master Tool</a></li>
@@ -129,6 +132,9 @@ export function toUTC(dateStr, timeStr, offsetHours) {
 }
 
 // Populate a <select> with the city list; on change set lat/lon/offset inputs.
+// Also injects a "📍 Use my location" button + a nearest-city status line right
+// after the select, so every tool that wires a place picker gets device
+// geolocation for free (offline nearest-city lookup; nothing leaves the page).
 export function wireCitySelect(sel, latIn, lonIn, offIn) {
   sel.innerHTML = '<option value="">— choose a place —</option>' +
     CITIES.map(([n], i) => `<option value="${i}">${n}</option>`).join('');
@@ -137,6 +143,20 @@ export function wireCitySelect(sel, latIn, lonIn, offIn) {
     if (!c) return;
     latIn.value = c[1]; lonIn.value = c[2]; if (offIn) offIn.value = c[3];
   });
+
+  // Inject the geolocate control once, next to the select.
+  try {
+    if (sel.dataset && sel.dataset.geoWired) return;
+    if (sel.dataset) sel.dataset.geoWired = '1';
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'btn sm geo-btn';
+    btn.textContent = '📍 Use my location';
+    const status = document.createElement('span');
+    status.className = 'small muted geo-status'; status.style.marginLeft = '.5rem';
+    sel.insertAdjacentElement('afterend', status);
+    sel.insertAdjacentElement('afterend', btn);
+    attachGeolocate(btn, latIn, lonIn, status);
+  } catch (e) { /* non-fatal: the place picker still works without geolocation */ }
 }
 
 export function nowLocalFields() {

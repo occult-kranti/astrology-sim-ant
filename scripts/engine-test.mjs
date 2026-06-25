@@ -149,5 +149,23 @@ ok(['green','amber','red'].includes(rec.verdict), 'recipe carries an election ve
 ok(typeof TALISMAN_DISCLAIMER === 'string' && /historical/i.test(TALISMAN_DISCLAIMER), 'talisman disclaimer present');
 ok(allRecipes(eChart).length === OPERATIONS.length, 'allRecipes covers every operation');
 
+// --- Life trajectory + location (round: trajectory & location) -------------
+import { lifeTrajectory, ageBetween } from '../assets/js/core/trajectory.js';
+ok(ageBetween(new Date(Date.UTC(1990, 4, 15, 12, 0)), new Date(Date.UTC(2026, 5, 25, 12, 0))) === 36, 'ageBetween 1990-05-15 -> 2026-06-25 = 36');
+ok(ageBetween(new Date(Date.UTC(1990, 4, 15)), new Date(Date.UTC(1990, 0, 1))) === 0, 'ageBetween clamps to 0 before birth');
+const tj = lifeTrajectory(natal, { currentDate: new Date(Date.UTC(2026, 5, 25, 12, 0)) });
+ok(['Sun','Moon','Mercury','Venus','Mars','Jupiter','Saturn'].includes(tj.natal.lordOfGeniture.planet), 'trajectory: Lord of Geniture is a planet');
+ok(Array.isArray(tj.timeline) && tj.timeline.length > 0 && tj.timeline.filter(t => t.current).length === 1, 'trajectory: timeline has exactly one current year');
+ok(Array.isArray(tj.directions), 'trajectory: directions is an array');
+ok(Array.isArray(tj.picatrix.rulingPlanets) && tj.picatrix.rulingPlanets.length >= 1, 'trajectory: >=1 ruling planet');
+ok(Array.isArray(tj.picatrix.affinities), 'trajectory: affinities is an array');
+ok(tj.recommendedTalisman === undefined || tj.picatrix.recommendedTalisman === null || (tj.picatrix.recommendedTalisman && tj.picatrix.recommendedTalisman.aim), 'trajectory: recommended talisman is null or has an aim');
+ok(Array.isArray(tj.citations) && tj.citations.length > 0, 'trajectory: citations collected');
+
+import { nearestCity } from '../assets/js/app/location.js';
+const nc = nearestCity(51.5, -0.12);
+ok(nc && typeof nc.name === 'string' && nc.name.length > 0, `nearestCity returns a name (got ${nc && nc.name})`);
+ok(nc && typeof nc.distanceKm === 'number' && nc.distanceKm >= 0, 'nearestCity returns a numeric distance');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);
