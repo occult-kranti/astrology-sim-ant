@@ -206,6 +206,14 @@ export function partOfFortune(asc, sunLon, moonLon) {
 }
 
 // ---------------------------------------------------------------------------
+//  Antiscia — a point's "shadow" reflected across the 0° Cancer–0° Capricorn
+//  (solstitial) axis. Antiscion = 360 − longitude, reduced to [0,360).
+//  Contra-antiscion is the opposite point. Acts like a hidden aspect.
+// ---------------------------------------------------------------------------
+export function antiscion(lon) { return norm360(360 - lon); }
+export function contraAntiscion(lon) { return norm360(180 - lon); }
+
+// ---------------------------------------------------------------------------
 //  Full chart
 // ---------------------------------------------------------------------------
 export function castChart(date, latitude, longitude, system = 'regiomontanus') {
