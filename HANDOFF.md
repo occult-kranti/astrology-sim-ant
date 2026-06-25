@@ -1,8 +1,19 @@
 # Handoff notes — for the next model/build
 
-This file tells the next contributor (human or LLM) exactly where things stand, how the
-code is shaped, how to verify it, and how to ship changes **so the bundle applies cleanly**.
-Read this together with `MASTER-PLAN.md` (the full vision) and `PLAN.md` (the original plan).
+This file is the **environment + architecture + ship-procedure** truth. For *what to build
+next and in what order*, read **`ROADMAP.md`** (the reconciled, phased plan). For *the data to
+encode and its accuracy caveats*, read **`research/SOURCE-DATA.md`**. The long-form vision is
+`MASTER-PLAN.md`; `PLAN.md` is the original (archival).
+
+> **Doc map:** `ROADMAP.md` = the plan (phases + gates) · this file = how the box works + how to
+> ship · `research/SOURCE-DATA.md` = cited data + caveats · `MASTER-PLAN.md` = vision ·
+> `.claude/skills/` = automation (`verify-site`, `add-data-module`, `ship-bundle`, `accuracy-check`).
+>
+> **Two handoffs were reconciled.** A parallel handoff (`updatehandoff.bundle`) carried an
+> excellent forward plan + research data (now folded into `ROADMAP.md` and `SOURCE-DATA.md`) but
+> **stale environment notes** — it said `git push` returns 403 and to use Chromium at
+> `/opt/pw-browsers/...`. **In THIS container neither is true:** push works; use the puppeteer
+> Chromium (see §4 / the `verify-site` skill). When in doubt, trust this file for mechanics.
 
 ---
 
