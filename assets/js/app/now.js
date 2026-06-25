@@ -53,6 +53,16 @@ export function initNow() {
   $('n-city').addEventListener('change', refresh);
   $('n-lat').addEventListener('change', refresh);
   $('n-lon').addEventListener('change', refresh);
+  // Explicit "Calculate" button — recompute for the (possibly hand-edited) place.
+  const calcBtn = $('n-calc');
+  if (calcBtn) calcBtn.addEventListener('click', () => {
+    refresh();
+    const s = $('n-calc-status');
+    if (s) {
+      const t = new Date();
+      s.textContent = `Updated for ${(parseFloat($('n-lat').value) || 0).toFixed(2)}°, ${(parseFloat($('n-lon').value) || 0).toFixed(2)}° at ${t.toLocaleTimeString()}`;
+    }
+  });
 
   render();
   if (timer) clearInterval(timer);
