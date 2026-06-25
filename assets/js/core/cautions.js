@@ -36,7 +36,7 @@ function planetFlags(name, chart, isDay) {
 
   if (has('Cazimi')) flags.push({ severity: 'good', text: 'Cazimi — in the very heart of the Sun, greatly fortified.' });
   else if (has('Combust')) flags.push({ severity: 'bad', text: 'Combust — within 8°½ of the Sun and burnt up; gravely weakened.' });
-  else if (has('Under the Sun')) flags.push({ severity: 'caution', text: 'Under the Sun’s beams (within ~12°) — obscured and weakened.' });
+  else if (has('Under the Sun')) flags.push({ severity: 'caution', text: 'Under the Sun’s beams (within 17°) — obscured and weakened.' });
 
   if (has('Retrograde')) flags.push({ severity: 'caution', text: 'Retrograde — going backward; perverse, irresolute, things undone or reversed.' });
   if (has('Slow in motion')) flags.push({ severity: 'note', text: 'Slow in motion — feeble and dilatory in action.' });

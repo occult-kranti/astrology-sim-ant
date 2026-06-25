@@ -16,11 +16,11 @@
 import { castChart, formatLon, signOf } from '../core/astro.js';
 import { planetaryHour } from '../core/planetary-hours.js';
 import { chartCautions } from '../core/cautions.js';
-import { rankNow, moonPhase, moonDispositor, isViaCombusta } from '../core/election.js';
+import { rankNow, moonPhase, moonDispositor, isViaCombusta, nextAuspiciousTime } from '../core/election.js';
 import { mansionOf } from '../core/data/lunar-mansions.js';
 import { faceOf } from '../core/data/decan-faces.js';
 import { starsInAspect } from '../core/data/behenian-stars.js';
-import { wireCitySelect } from './shared.js';
+import { wireCitySelect, VERDICT_LEGEND } from './shared.js';
 
 const $ = id => document.getElementById(id);
 
@@ -175,21 +175,21 @@ function renderOps(chart) {
     const least = ranked.slice(-3).reverse();       // worst first
     const topLabel = best[0].operation.label;
     $('n-ops').innerHTML = `
-      <h2>Best vs least advised now</h2>
-      <p class="small">Of the ${n} traditional operations, the strongest testimonies right now favour
-        <b>${esc(topLabel)}</b>. Each links to the full cited breakdown in the Election Engine.</p>
+      <h2>How the election rules score the present sky</h2>
+      <p class="small">Of the ${n} traditional operations, the electional testimonies right now score
+        <b>${esc(topLabel)}</b> highest. Each links to the full cited breakdown in the Election Engine.</p>
       <div class="grid cols-2">
         <div>
-          <h3 style="margin:.2rem 0">✓ Best advised</h3>
+          <h3 style="margin:.2rem 0">Highest-scoring now</h3>
           <ul class="advisories">${best.map(opRow).join('')}</ul>
         </div>
         <div>
-          <h3 style="margin:.2rem 0">✕ Least advised</h3>
+          <h3 style="margin:.2rem 0">Lowest-scoring now</h3>
           <ul class="advisories">${least.map(opRow).join('')}</ul>
         </div>
       </div>
-      <p class="small">Ranked by the Lilly–Picatrix electional testimonies for this instant — historical method,
-        not advice; astrology has no demonstrated validity.</p>`;
+      <p class="small">A ranking of the Lilly–Picatrix electional testimonies for this instant — historical
+        method, <em>described not prescribed</em>; not advice, and astrology has no demonstrated validity.</p>`;
   } catch (e) {
     $('n-ops').innerHTML = `<h2>Best vs least advised now</h2><p class="adv-bad">This section failed: ${esc(e.message)}</p>`;
   }
@@ -201,12 +201,31 @@ function renderCautions(chart, ph) {
     const cau = chartCautions(chart, { hourRuler: ph ? ph.ruler : null });
     const items = cau.global.map(a =>
       `<li class="adv-${esc(a.severity)}">${esc(a.text)}</li>`).join('');
+    const nextBtn = cau.verdict === 'green'
+      ? '<p class="small adv-good">The chart-health is already clear right now.</p>'
+      : `<p><button type="button" class="btn sm" id="n-next-ausp">Find the next clearer hour →</button>
+          <span id="n-next-ausp-out" class="small muted"></span></p>`;
     $('n-cautions').innerHTML = `
       <h2>Cautions now</h2>
       <p><span class="verdict ${esc(cau.verdict)}">${cau.verdict === 'green' ? 'Clean' : cau.verdict === 'amber' ? 'Cautions' : 'Impeded'}</span>
         ${esc(cau.label)}</p>
       <ul class="advisories">${items || '<li class="adv-good">No global cautions stand right now.</li>'}</ul>
+      ${nextBtn}
+      ${VERDICT_LEGEND}
       ${SEV_LEGEND}`;
+    // On demand: scan forward for the next moment the verdict improves (kept off
+    // the 60s auto-refresh so the live view stays snappy).
+    const btn = document.getElementById('n-next-ausp');
+    if (btn) btn.addEventListener('click', () => {
+      const out = document.getElementById('n-next-ausp-out');
+      if (out) out.textContent = 'Scanning the next 48 hours…';
+      try {
+        const na = nextAuspiciousTime(new Date(), LAT, LON, { hoursAhead: 48, target: 'amber' });
+        if (out) out.textContent = na
+          ? `Next more auspicious: ${na.time.toLocaleString()} (~${na.hoursFromNow.toFixed(1)}h) — improves to “${na.verdict}”.`
+          : 'No clearer window in the next 48 hours.';
+      } catch (e) { if (out) out.textContent = 'Could not scan: ' + (e && e.message); }
+    });
   } catch (e) {
     $('n-cautions').innerHTML = `<h2>Cautions now</h2><p class="adv-bad">This section failed: ${esc(e.message)}</p>`;
   }

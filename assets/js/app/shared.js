@@ -13,40 +13,68 @@ import { autolinkGlossary } from './autolink.js';
 import { attachGeolocate } from './location.js';
 
 const NAV = [
-  ['index.html', 'Home'],
-  ['pages/now.html', 'Now'],
-  ['pages/master.html', 'Master'],
-  ['pages/trajectory.html', 'Trajectory'],
-  ['pages/workflow.html', 'Workflow'],
-  ['pages/book1/index.html', 'Book I'],
-  ['pages/book2/index.html', 'Book II'],
-  ['pages/book3/index.html', 'Book III'],
-  ['pages/picatrix/index.html', 'Picatrix'],
-  ['pages/tools.html', 'Tools'],
-  ['pages/glossary.html', 'Glossary'],
-  ['pages/about/index.html', 'About']
+  ['index.html', 'Home', 'home'],
+  ['pages/now.html', 'Now', 'now'],
+  ['pages/master.html', 'Master', 'master'],
+  ['pages/trajectory.html', 'Trajectory', 'trajectory'],
+  ['pages/workflow.html', 'Workflow', 'workflow'],
+  ['pages/book1/index.html', 'Book I', 'book1'],
+  ['pages/book2/index.html', 'Book II', 'book2'],
+  ['pages/book3/index.html', 'Book III', 'book3'],
+  ['pages/picatrix/index.html', 'Picatrix', 'picatrix'],
+  ['pages/tools.html', 'Tools', 'tools'],
+  ['pages/glossary.html', 'Glossary', 'glossary'],
+  ['pages/about/index.html', 'About', 'about']
 ];
 
+// Determine the active NAV section from the URL (exact, not substring — a bare
+// `includes()` lit up Home + all books at once). Nested tool pages (e.g.
+// book2/horary.html, book1/master.html) resolve to their parent section.
+function currentSection() {
+  const p = location.pathname;
+  if (/\/pages\/book1\//.test(p)) return 'book1';
+  if (/\/pages\/book2\//.test(p)) return 'book2';
+  if (/\/pages\/book3\//.test(p)) return 'book3';
+  if (/\/pages\/picatrix\//.test(p)) return 'picatrix';
+  if (/\/pages\/about\//.test(p)) return 'about';
+  if (/\/pages\/now\.html$/.test(p)) return 'now';
+  if (/\/pages\/master\.html$/.test(p)) return 'master';
+  if (/\/pages\/trajectory\.html$/.test(p)) return 'trajectory';
+  if (/\/pages\/workflow\.html$/.test(p)) return 'workflow';
+  if (/\/pages\/tools\.html$/.test(p)) return 'tools';
+  if (/\/pages\/glossary\.html$/.test(p)) return 'glossary';
+  if (/(\/index\.html$|\/$)/.test(p)) return 'home';
+  return '';
+}
+
 export function mountChrome(activeKey = '') {
+  const active = currentSection() || activeKey;
+  // accessibility: a skip link + a target id on <main>
+  const skip = document.createElement('a');
+  skip.className = 'skip-link'; skip.href = '#content'; skip.textContent = 'Skip to content';
+  document.body.prepend(skip);
+  const mainEl = document.querySelector('main');
+  if (mainEl && !mainEl.id) mainEl.id = 'content';
+
   const header = document.createElement('header');
   header.className = 'site';
   header.innerHTML = `<div class="wrap">
     <a class="brand" href="${R('index.html')}">
       <span class="mark">✶</span>
-      <span><b>Christian Astrology</b><small>The Work of William Lilly · 1647</small></span>
+      <span><b>The Astrologer's Workbench</b><small>Lilly's <i>Christian Astrology</i> × the <i>Picatrix</i> · computed for study</small></span>
     </a>
-    <nav class="main">${NAV.map(([href, label]) =>
-      `<a href="${R(href)}"${href.includes(activeKey) && activeKey ? ' class="active"' : ''}>${label}</a>`).join('')}
+    <nav class="main" aria-label="Primary">${NAV.map(([href, label, key]) =>
+      `<a href="${R(href)}"${key === active ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('')}
     </nav></div>`;
   document.body.prepend(header);
 
   const footer = document.createElement('footer');
   footer.className = 'site';
   footer.innerHTML = `<div class="wrap">
-    <div><b style="color:#e9dfc4">Christian Astrology</b><br>
-      An interactive study edition of William Lilly's 1647 textbook of horary,
-      natal and elemental astrology — with working calculators built on a
-      verified astronomical engine.</div>
+    <div><b style="color:#e9dfc4">The Astrologer's Workbench</b><br>
+      A scientifically-honest study &amp; calculation edition of William Lilly's
+      <i>Christian Astrology</i> (1647) and the <i>Picatrix</i> — horary, nativity,
+      election, talismans and a live sky, on a verified astronomical engine.</div>
     <div><b style="color:#e9dfc4">Study the Books</b>
       <ul class="clean small">
         <li><a href="${R('pages/book1/index.html')}">Book I — An Introduction to Astrology</a></li>
@@ -62,6 +90,7 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/picatrix/election.html')}">Election — choose the moment</a></li>
         <li><a href="${R('pages/book3/master.html')}">Book III Master Tool</a></li>
         <li><a href="${R('pages/tools.html')}">All Tools &amp; Calculators</a></li>
+        <li><a href="${R('pages/how-it-works.html')}">How it's calculated (step by step)</a></li>
         <li><a href="${R('pages/workflow.html')}">Chapter Map &amp; Workflows</a></li>
         <li><a href="${R('pages/book1/master.html')}">Book I Master Tool</a></li>
         <li><a href="${R('pages/book2/horary.html')}">Horary Chart Calculator</a></li>
@@ -168,3 +197,19 @@ export function nowLocalFields() {
     offset: -n.getTimezoneOffset() / 60
   };
 }
+
+// ---------------------------------------------------------------------------
+//  VERDICT_LEGEND — one explanation of the green / amber / red badge, reused on
+//  every page that shows a verdict. It is a TRAFFIC-LIGHT GRAVITY SCALE for the
+//  judgement only — deliberately distinguished from the planetary/talisman
+//  COLOURS (e.g. Mars's red garment), which are a different thing entirely.
+// ---------------------------------------------------------------------------
+export const VERDICT_LEGEND = `<div class="callout verdict-legend"><span class="label">What the colours mean</span>
+  The verdict badge is a <b>traffic-light scale for the gravity of the judgement</b>, not a quality of the planets:
+  <span class="verdict green">green</span> few impediments — favourable / fit to proceed;
+  <span class="verdict amber">amber</span> mixed — some cautions stand, weigh them;
+  <span class="verdict red">red</span> strongly impeded — the testimonies stand against it.
+  <span class="small muted">Red shows <em>severity</em>, nothing more — it is <b>not</b> the planetary or
+  talisman colour red (e.g. Mars's red garment); those ritual colours are listed under each planet's
+  correspondences and mean something different. The badge is a <b>crude count of impediments</b>, a quick
+  summary — not a substitute for weighing the actual significators of the matter, which is the real Lilly method.</span></div>`;

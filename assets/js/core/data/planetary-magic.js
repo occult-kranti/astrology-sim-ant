@@ -18,13 +18,15 @@
 //   • Cornelius Agrippa, "Three Books of Occult Philosophy" Book II — the
 //     Angel / Intelligence / Spirit triad of each planet (esotericarchives.com).
 //
-//  IMPORTANT fidelity note: the historical material carries THREE distinct
-//  spirit-name systems and the sources keep them separate — this module does
-//  too, and does NOT merge them:
-//   • picatrixPrayerAngel  — Picatrix Bk III.7 prayer-angel (Sun has none).
-//   • agrippa.angel        — Agrippa's planetary Angel.
-//   • agrippa.intelligence — Agrippa's planetary Intelligence.
-//   • agrippa.spirit       — Agrippa's planetary Spirit (the "demon" name).
+//  IMPORTANT fidelity note: spirit-names come from DIFFERENT source-systems that
+//  must NOT be conflated. This module represents TWO of them and keeps them
+//  separate; a third (the Picatrix "Mirror of the planets" angels) is noted but
+//  not yet included:
+//   • picatrixPrayerAngel  — Picatrix Bk III.7 prayer-angel (Sun has none). [system 1]
+//   • agrippa.{angel, intelligence, spirit} — Agrippa's ONE triad per planet:
+//     the Angel, its Intelligence (good genius), and its Spirit (the "demon"
+//     name). These three are roles WITHIN a single system, not three systems. [system 2]
+//   • (not included) the Picatrix "Mirror" angels — a distinct further set. [system 3]
 //  Planet names follow the codebase convention:
 //   Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon.
 // ============================================================================

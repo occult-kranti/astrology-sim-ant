@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it's calculated — step by step | The Astrologer's Workbench</title>
+<meta name="description" content="Every calculation on the site explained in plain English: its meaning, the numbered step-by-step method exactly as the engine performs it, and a concrete worked example — for dignity, planetary hours, aspects, the Moon's condition, election scoring, the lunar mansions, decan faces, Behenian stars, profections, directions, the solar return, the talisman recipe and the life trajectory.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › How it's calculated</p>
+  <h1>How it's calculated — step by step</h1>
+  <p class="lede">Every calculation on the Workbench, explained in plain English: what it <b>means</b>, the numbered
+    <b>step-by-step method exactly as the engine performs it</b> (with the real thresholds and formulas), and a
+    concrete <b>worked example</b>. Each explainer links to the tool that runs it.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The mathematics below is real and reproducible; the <em>interpretive</em> rules (dignities, considerations,
+    elections, talismans) are the historical doctrine of Lilly and the <i>Picatrix</i>, presented for study.
+    Astrology has no demonstrated predictive validity. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small"><b>Foundations — Book I:</b> <a href="#hiw-dignity">Essential dignity &amp; the almuten</a> · <a href="#hiw-accidental">Accidental dignity & chart health (the green/amber/red verdict)</a> · <a href="#hiw-fortune">Part of Fortune &amp; antiscia</a> · <a href="#hiw-hours">Planetary hours &amp; the day ruler</a></p>
+  <p class="small"><b>Horary — Book II:</b> <a href="#hiw-aspects">Aspects, orbs & the modes of perfection</a> · <a href="#hiw-moon">The Moon’s condition: void of course &amp; the via combusta (Spica exception)</a></p>
+  <p class="small"><b>Nativities — Book III:</b> <a href="#hiw-profections">Annual profections &amp; the Lord of the Year</a> · <a href="#hiw-directions">Primary directions (Naibod key)</a> · <a href="#hiw-solar">The solar return (revolution of the year)</a> · <a href="#hiw-hyleg">Hyleg &amp; alcocoden (the contested length-of-life)</a> · <a href="#hiw-trajectory">The life trajectory</a></p>
+  <p class="small"><b>Picatrix & magic:</b> <a href="#hiw-mansions">The 28 lunar mansions</a> · <a href="#hiw-faces">The 36 decan faces</a> · <a href="#hiw-behenian">The 15 Behenian fixed stars & precession</a> · <a href="#hiw-election">Election scoring — is this moment fit for X?</a> · <a href="#hiw-talisman">The talisman recipe</a></p>
+
+  <h2 id="grp-dignity">Foundations — Book I</h2>
+  <section class="card" id="hiw-dignity">
+    <h3 style="margin-top:0">Essential dignity &amp; the almuten</h3>
+    <div class="meaning"><p>Essential dignity measures how "at home" a planet is at a given zodiac longitude, by the five Ptolemaic rulerships Lilly tabulates: domicile, exaltation, triplicity, term, and face. Each gives a planet a fixed number of points (and detriment/fall subtract points), so a positive score means strength and a negative score means weakness. The <em>almuten</em> of a degree answers a related question: of the seven traditional planets, which one holds the most essential dignity at that exact point — i.e. who is the rightful "lord" of that degree.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>Find the sign and the degree-within-sign from the longitude (<span class="small muted">signOf(lon)</span> gives sign index 0=Aries…11=Pisces and the degree 0–30).</li>
+<li><strong>Domicile (+5):</strong> if the planet is the domicile lord of that sign (from the <span class="small">DOMICILE</span> table, e.g. Aries→Mars).</li>
+<li><strong>Exaltation (+4):</strong> if the planet's exaltation sign matches (whole-sign, the exact degree is stored but not required for the point), e.g. Sun→19° Aries, Moon→3° Taurus, Saturn→21° Libra.</li>
+<li><strong>Triplicity (+3):</strong> using Lilly's two-ruler (day/night) scheme, award if <code>isDay</code> and the planet is the day ruler, or night and it is the night ruler. Fire = Sun/Jupiter, Earth = Venus/Moon, Air = Saturn/Mercury, Water = Mars/Mars.</li>
+<li><strong>Term (+2):</strong> look up the Ptolemaic term containing the degree (<span class="small">termRulerAt</span>: matches where <code>start ≤ deg &lt; end</code>; the five terms per sign sum to 30°). Sun and Moon never rule terms.</li>
+<li><strong>Face (+1):</strong> the 10°-wide decan ruler (<span class="small">faceRulerAt</span> = <code>floor(deg/10)</code>, capped at 2), in continuous Chaldean order starting with Mars at 0° Aries.</li>
+<li><strong>Debilities:</strong> Detriment (−5) if the planet rules the opposite sign; Fall (−4) if the sign is opposite the planet's exaltation.</li>
+<li><strong>Peregrine (−5):</strong> only if the planet has NO positive dignity above AND is not already in detriment or fall (so a debility is never double-counted).</li>
+<li>Sum every row to get the net total.</li>
+<li><strong>Almuten:</strong> run the essential-dignity scoring for all seven planets (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon) at that longitude, sum only the <em>positive</em> dignity points for each, and pick the highest scorer (ties resolved by first-found in that planet order).</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take a planet at <strong>10° Libra (longitude 190°)</strong> in a <strong>daytime</strong> chart, and compute the almuten of that degree. 10° Libra falls in Libra's third term and second face.</p>
+<table class="data">
+<thead><tr><th>Dignity at 10° Libra (day)</th><th>Ruler</th><th>Points</th></tr></thead>
+<tbody>
+<tr><td>Domicile (Libra)</td><td>Venus</td><td>+5</td></tr>
+<tr><td>Exaltation (Libra)</td><td>Saturn (21° Libra)</td><td>+4</td></tr>
+<tr><td>Triplicity (Air, day)</td><td>Saturn</td><td>+3</td></tr>
+<tr><td>Term (6°–11° Libra)</td><td>Venus</td><td>+2</td></tr>
+<tr><td>Face (10°–20° Libra)</td><td>Saturn</td><td>+1</td></tr>
+</tbody>
+</table>
+<p>Tallying positive dignity per planet at this degree:</p>
+<ul>
+<li><strong>Saturn:</strong> exaltation +4, triplicity +3, face +1 = <strong>8</strong></li>
+<li><strong>Venus:</strong> domicile +5, term +2 = <strong>7</strong></li>
+<li>All other planets: 0</li>
+</ul>
+<p>The <strong>almuten of 10° Libra (day) is Saturn with 8 points</strong>, narrowly beating Venus (7). Note the almuten can differ from the simple domicile lord (Venus here), because exaltation + triplicity + face stack up for Saturn. In a <em>night</em> chart the Air triplicity ruler becomes Mercury, so Saturn would drop to 5 and Venus's 7 would make <strong>Venus</strong> the almuten instead.</p>
+    <p class="small muted"><b>Source:</b> William Lilly, Christian Astrology, Book 1 — "Table of Essentiall Dignities" (p.104) and "A ready Table of the Essential and Accidental Dignities/Fortitudes and Debilities" (p.115). Point values per CA pp.101/115; Ptolemaic terms; Chaldean-order faces. See SOURCE-DATA header in dignities-data.js.</p>
+    <p class="small"><a href="book1/dignities.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-accidental">
+    <h3 style="margin-top:0">Accidental dignity & chart health (the green/amber/red verdict)</h3>
+    <div class="meaning"><p>Where <em>essential</em> dignity asks "is this planet strong by sign?", <strong>accidental</strong> dignity asks "is it well-placed and well-conditioned in <em>this particular chart</em>?" — by house, by speed and direction, by nearness to the Sun, and by conjunction with the three table fixed stars. The tool adds up the resulting fortitudes and debilities into a per-planet ledger (Lilly's own method), and then a separate <strong>chart-health</strong> engine distils those afflictions, plus the Moon's condition and Lilly's Considerations, into a single <span class="muted">green / amber / red</span> verdict that tells you, at a glance, how clean or impeded the whole figure is.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li><strong>House placement.</strong> Score the planet by the house it occupies from a fixed table: angular 1st and 10th = <strong>+5</strong>; 7th and 4th and 11th = <strong>+4</strong>; 2nd and 5th = <strong>+3</strong>; 9th = +2; 3rd = +1; and the dark houses 8th = <strong>−2</strong>, 6th = −2, 12th = <strong>−5</strong>.</li>
+<li><strong>Direction & speed</strong> (the five non-luminaries only; nodes and Fortune skipped). Retrograde = <strong>−5</strong>, else direct = <strong>+4</strong>. Compare the planet's speed to its mean daily motion (Saturn 0.034, Jupiter 0.083, Mars 0.524, Venus 1.2, Mercury 1.383 °/day): faster than mean = swift <strong>+2</strong>, slower = slow <strong>−2</strong>. The Moon is scored swift/slow against mean 13.176 °/day but never retrograde.</li>
+<li><strong>Moon's light.</strong> Take the elongation = (Moon − Sun) mod 360. Under 180° she is increasing (waxing) <strong>+2</strong>; otherwise decreasing (waning) <strong>−2</strong>.</li>
+<li><strong>Solar proximity</strong> (every planet except the Sun, nodes, Fortune). Measure the shortest separation from the Sun. Within <strong>0°17′ (0.283°)</strong> = Cazimi <strong>+5</strong>; else within <strong>8°30′ (8.5°)</strong> = Combust <strong>−5</strong>; else within <strong>17°</strong> = under the Sun's beams <strong>−4</strong>; else free of the beams <strong>+5</strong>.</li>
+<li><strong>Fixed-star conjunctions.</strong> Test the three table stars at their 1647 longitudes — Regulus 144° (+6), Spica 198° (+5), Caput Algol 50° (−5). Orb is <strong>2°</strong>, except Algol which uses a <strong>5°</strong> orb. Within orb, add that star's score.</li>
+<li><strong>Sum the ledger.</strong> The accidental total is the sum of all rows above. (Essential dignity is computed separately: domicile +5, exaltation +4, triplicity +3, term +2, face +1; detriment −5, fall −4, peregrine −5.)</li>
+<li><strong>Distil afflictions per planet</strong> (chart-health engine, the seven planets). Each affliction is tagged with a severity: combust / besieged by both malefics = <strong>bad</strong>; under-beams, retrograde, cadent (3/6/9/12), peregrine = <strong>caution</strong>; slow = <strong>note</strong>; cazimi = <strong>good</strong>. <em>Besieged</em> = a non-malefic aspecting both Mars and Saturn with the configuration hemmed (separating from one while applying to the other, or applying to both).</li>
+<li><strong>Add Moon &amp; chart-wide signals.</strong> Append the Moon's condition (waxing/waning, swift vs. slow under 12°/day "slow as Saturn", under-beams, new-moon, eclipse-season near a node within 12° at syzygy, applying hard aspect to a malefic) and Lilly's Considerations advisories. Sort all by severity.</li>
+<li><strong>The verdict.</strong> Count <code>bad</code> and <code>caution</code> severities across every global and per-planet flag. <strong>RED</strong> if bad ≥ 1 OR caution ≥ 3 ("strongly impeded"). Else <strong>AMBER</strong> if caution ≥ 1 ("some cautions stand"). Else <strong>GREEN</strong> ("few impediments — a clean figure").</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take <strong>Mars at 22° Taurus 00′ (longitude 52°)</strong>, retrograde, moving 0.30°/day, placed in the <strong>12th house</strong>, with the <strong>Sun at 25° Taurus (longitude 55°)</strong>, in a day chart.</p>
+<table class="data">
+<tr><th>Test</th><th>Finding</th><th>Score</th></tr>
+<tr><td>House</td><td>12th house</td><td>−5</td></tr>
+<tr><td>Direction</td><td>Retrograde</td><td>−5</td></tr>
+<tr><td>Speed</td><td>0.30 &lt; mean 0.524 → slow</td><td>−2</td></tr>
+<tr><td>Solar proximity</td><td>|55 − 52| = 3° → within 8.5° = Combust</td><td>−5</td></tr>
+<tr><td>Fixed star</td><td>Algol at 50°; |52 − 50| = 2° ≤ 5° orb → conjunct</td><td>−5</td></tr>
+<tr><td colspan="2"><strong>Accidental total</strong></td><td><strong>−22</strong></td></tr>
+</table>
+<p class="small muted">Note solar proximity is checked before the under-beams band, so 3° lands on Combust (−5), not under-beams.</p>
+<p>Now the chart-health distillation of this one planet yields three flags: <strong>Combust = bad</strong>, <strong>Retrograde = caution</strong>, <strong>Cadent (12th) = caution</strong> (and slow = a "note"). With a single <code>bad</code> already present, the rule <em>bad ≥ 1</em> fires immediately:</p>
+<ul>
+<li><strong>Verdict: RED</strong> — "Strongly impeded — judge or elect with great care."</li>
+</ul>
+<p class="small muted">Even if Mars were not combust, the two cautions (retrograde + cadent) plus any one more caution elsewhere — three cautions total — would also push the figure to RED; a single caution alone would be AMBER.</p>
+    <p class="small muted"><b>Source:</b> William Lilly, <em>Christian Astrology</em> (1647), Bk I: accidental-dignity table and point scores pp.101 &amp; 115; solar-proximity thresholds (cazimi 0°17′, combust 8°30′, under beams 17°) pp.113–114; fixed-star longitudes are Lilly's 1647 positions. Verdict thresholds and severity tagging are this project's own engine over those rules (SOURCE-DATA: assets/js/core/data/dignities-data.js — SOLAR, FIXED_STARS, DIGNITY_SCORES).</p>
+    <p class="small"><a href="book1/master.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-fortune">
+    <h3 style="margin-top:0">Part of Fortune &amp; antiscia</h3>
+    <div class="meaning"><p>The <strong>Part (Lot) of Fortune</strong> is a calculated point — not a planet — that carries the Moon's relationship to the Sun forward from the Ascendant. Traditionally it marks the body, livelihood, and material wellbeing of the native. <strong>Antiscia</strong> are the "shadow" points a degree casts when reflected across the solstice axis (0&deg; Cancer&ndash;0&deg; Capricorn); two planets in antiscion behave as if hidden in aspect — they share the same declination and answer the question "where does this degree secretly connect?"</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>Read three ecliptic longitudes in degrees from the cast chart: the Ascendant (<code>asc</code>), the Sun's longitude, and the Moon's longitude.</li>
+<li><strong>Part of Fortune:</strong> compute <code>asc + moonLon &minus; sunLon</code>. The code uses this single formula for <em>both</em> day and night charts (it does <em>not</em> flip to Asc + Sun &minus; Moon at night).</li>
+<li>Reduce the result into the 0&ndash;360&deg; circle with <code>norm360(x) = ((x % 360) + 360) % 360</code>, so any negative or over-360 value wraps cleanly.</li>
+<li>Assign the resulting longitude to a chart point (<code>Fortune</code>, glyph &#8853;) with latitude 0, speed 0, not retrograde, and look up its house with <code>houseOf</code> against the cusps.</li>
+<li><strong>Antiscion of any point:</strong> compute <code>norm360(360 &minus; lon)</code> — the mirror across the 0&deg; Cancer / 0&deg; Capricorn solstitial axis.</li>
+<li><strong>Contra-antiscion:</strong> compute <code>norm360(180 &minus; lon)</code> — the point diametrically opposite the antiscion (mirror across the 0&deg; Aries / 0&deg; Libra equinoctial axis).</li>
+<li>Note the day/night flag itself is set separately: <code>isDay</code> is true when the Sun's house is &ge; 7 (Sun above the horizon), but this flag is <em>not</em> applied to the Fortune formula in this code.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take a chart with Ascendant at <strong>15&deg; Taurus = 45&deg;</strong>, Sun at <strong>10&deg; Gemini = 70&deg;</strong>, Moon at <strong>20&deg; Leo = 140&deg;</strong>.</p>
+<p><strong>Part of Fortune</strong> = <code>asc + moonLon &minus; sunLon</code> = 45 + 140 &minus; 70 = <strong>115&deg;</strong>. Since 115 is already in range, <code>norm360(115) = 115&deg;</code> = <strong>25&deg; Cancer</strong>. That point is then placed in whatever house contains 115&deg;.</p>
+<p>A case that needs wrapping: Asc 300&deg;, Sun 350&deg;, Moon 40&deg; gives 300 + 40 &minus; 350 = &minus;10, and <code>norm360(&minus;10) = 350&deg;</code> (20&deg; Pisces).</p>
+<p><strong>Antiscia</strong> of the Sun at 70&deg; (10&deg; Gemini):</p>
+<ul>
+<li>Antiscion = <code>norm360(360 &minus; 70)</code> = <strong>290&deg;</strong> = 20&deg; Capricorn.</li>
+<li>Contra-antiscion = <code>norm360(180 &minus; 70)</code> = <strong>110&deg;</strong> = 20&deg; Cancer.</li>
+</ul>
+<p>So a planet sitting near 20&deg; Capricorn would be in antiscion to this Sun — a hidden conjunction by reflected degree.</p>
+    <p class="small muted"><b>Source:</b> William Lilly, Christian Astrology (1647), Bk. I — Part of Fortune computed Asc + Moon &minus; Sun (Lilly does not reverse it by sect); antiscia per CA Bk. I (solstitial mirror across Cancer/Capricorn). Reflected in code comments at assets/js/core/astro.js lines 202&ndash;214.</p>
+    <p class="small"><a href="book1/master.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-hours">
+    <h3 style="margin-top:0">Planetary hours &amp; the day ruler</h3>
+    <div class="meaning"><p>Each day and night is split into twelve unequal "planetary hours," and every hour (plus the day itself) is governed by one of the seven planets. This tells you <em>which planet rules right now</em> &mdash; the answer to "is this a good hour to begin a Venus matter, a Saturn matter, and so on?" The planetary day starts at <strong>sunrise</strong>, not midnight, and the rulers cycle in the Chaldean order.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>For the location (lat/lon) and date, find <strong>sunrise</strong>, the following <strong>sunset</strong>, and the <strong>next sunrise</strong> using the astronomy engine (<code>SearchRiseSet</code> on the Sun).</li>
+<li>Decide which planetary day the instant falls in: if the instant is at or after today's sunrise it belongs to today's day; if it is before sunrise it belongs to the <em>previous</em> day's night (the code steps back 24 hours and uses that day's sunrise/sunset).</li>
+<li>Split the daylight span into 12 equal day-hours of length <code>(sunset &minus; sunrise) / 12</code>, and the night span into 12 equal night-hours of length <code>(nextSunrise &minus; sunset) / 12</code>. These hours are generally <em>not</em> 60 minutes.</li>
+<li>Compute the hour index 0&ndash;23. Daytime: <code>floor((instant &minus; sunrise) / dayHourLen)</code>. Night: <code>12 + floor((instant &minus; sunset) / nightHourLen)</code>. The result is clamped to 0&ndash;23.</li>
+<li>Find the <strong>day ruler</strong> from the weekday of the day-start sunrise, indexed into <code>DAY_RULERS = [Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn]</code> by <code>getUTCDay()</code> (0 = Sunday).</li>
+<li>The <strong>first hour of the day is always ruled by the day ruler.</strong> Locate the day ruler's position in the Chaldean order <code>[Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon]</code>, then step forward by the hour index, wrapping every 7: <code>ruler = CHALDEAN[(startIdx + hourNo) % 7]</code>.</li>
+<li>Report the ruler, the day ruler, the 1-based hour number (<code>hourNo + 1</code>), whether it is a night hour, and the hour length in minutes.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take a <strong>Tuesday</strong> (<code>getUTCDay() = 2</code>). The day ruler is <code>DAY_RULERS[2] = Mars</code> &mdash; hence "Tuesday/Mars."</p>
+<p>Suppose for that location sunrise is 06:00 and sunset is 18:00, so the daylight span is 12 hours. Each day-hour is <code>(18:00 &minus; 06:00) / 12 = 60 minutes</code> (equal-length only because day and night happen to be 12h here). We want the ruler at <strong>11:30</strong>.</p>
+<ul>
+<li>Instant 11:30 is after sunrise &rarr; today's day, daytime branch.</li>
+<li>Hour index = <code>floor((11:30 &minus; 06:00) / 60min) = floor(5.5) = 5</code> &rarr; the 6th hour (<code>hourNumber = 6</code>).</li>
+<li>Day ruler Mars sits at index <code>2</code> in the Chaldean order.</li>
+<li><code>ruler = CHALDEAN[(2 + 5) % 7] = CHALDEAN[0] = Saturn</code>.</li>
+</ul>
+<p>Sequence of the day from the 1st hour: <span class="small muted">Mars, Sun, Venus, Mercury, Moon, <strong>Saturn</strong>, Jupiter, &hellip;</span> &mdash; confirming the 6th hour is Saturn.</p>
+<table class="data">
+<tr><th>Hour</th><th>Span</th><th>Ruler</th></tr>
+<tr><td>1</td><td>06:00&ndash;07:00</td><td>Mars (day ruler)</td></tr>
+<tr><td>5</td><td>10:00&ndash;11:00</td><td>Moon</td></tr>
+<tr><td>6</td><td>11:00&ndash;12:00</td><td>Saturn</td></tr>
+</table>
+    <p class="small muted"><b>Source:</b> Chaldean order and sunrise-based planetary day/hour rulership: William Lilly, <em>Christian Astrology</em> (1647); see also Agrippa, <em>Three Books of Occult Philosophy</em> II.34 (planetary hours table). Order arrays defined in SOURCE-DATA: <code>CHALDEAN</code> in <code>assets/js/core/astro.js</code> and <code>DAY_RULERS</code> in <code>assets/js/core/data/dignities-data.js</code>.</p>
+    <p class="small"><a href="book1/planetary-hours.html">Open the tool that does this →</a></p>
+  </section>
+  <h2 id="grp-aspects">Horary — Book II</h2>
+  <section class="card" id="hiw-aspects">
+    <h3 style="margin-top:0">Aspects, orbs & the modes of perfection</h3>
+    <div class="meaning"><p>An <strong>aspect</strong> is a meaningful angular distance between two bodies (conjunction 0°, sextile 60°, square 90°, trine 120°, opposition 180°). Following Lilly, orbs belong to the <em>planets</em>, not the aspects: two bodies are "in aspect" when their distance from the exact angle is within the sum of their two <em>moieties</em> (half-orbs). The <strong>modes of perfection</strong> answer the horary question "will the matter come to pass, and how?" by looking at whether the two significators complete an aspect directly, or whether the light is carried, gathered, cut off, or withdrawn by a third planet.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li><strong>Smallest separation.</strong> For longitudes a and b compute <span class="small">|((a − b + 540) mod 360) − 180|</span>, giving a distance in 0–180°.</li>
+<li><strong>Allowance = sum of moieties.</strong> Each planet has a full orb (Saturn 9, Jupiter 9, Mars 7, Sun 15, Venus 7, Mercury 7, Moon 12; nodes/Fortune 0); the moiety is half that. The allowance is moiety(A) + moiety(B).</li>
+<li><strong>Test each aspect.</strong> For each of the five Ptolemaic angles, compute orbOff = |distance − angle|. If orbOff ≤ allowance, the bodies are in that aspect (only the first match is returned, scanned 0→60→90→120→180).</li>
+<li><strong>Partile / exact flags.</strong> It is flagged <em>exact</em> when orbOff &lt; 0.0167 × allowance (≈1% of the allowance), and <em>partile</em> when both bodies share the same whole degree of their sign and orbOff &lt; 1°.</li>
+<li><strong>Applying vs separating.</strong> Step both longitudes forward by dt = 0.05 (lon + speed × 0.05) and recompute orbOff. If the future orb is smaller, the aspect is <em>applying</em>; otherwise <em>separating</em>.</li>
+<li><strong>Direct perfection.</strong> If the two significators A and B are in aspect at all, that is recorded as the direct mode.</li>
+<li><strong>Translation of light.</strong> A lighter (faster) third planet C that is <em>separating</em> from one significator and <em>applying</em> to the other carries the light between them. Speed rank, fastest→slowest: Moon, Mercury, Venus, Sun, Mars, Jupiter, Saturn.</li>
+<li><strong>Collection of light.</strong> A heavier (slower than both) third planet C to which both A and B are <em>applying</em> collects the light; "received" is true if C's longitude falls in dignities ruled by both A and B.</li>
+<li><strong>Prohibition.</strong> While A and B apply, if a faster third planet C applies to one of them with a <em>smaller</em> orb than the A–B orb, it perfects first and cuts the matter off.</li>
+<li><strong>Refranation.</strong> If A and B are applying but the significator about to perfect is retrograde, it withdraws (refrains).</li>
+<li><strong>Timing.</strong> count = max(0.5, round(orbOff × 2)/2) degrees-to-exact (half-degree precision); the unit comes from a table keyed by the sign's mode (Movable/Common/Fixed) and the house type (Angular 1/4/7/10, Succedent 2/5/8/11, else Cadent) — e.g. Movable+Angular → days, Fixed+Succedent → years.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take the Moon at 10°00′ Gemini and Mars at 14°00′ Leo.</p>
+<ul>
+<li>Gemini begins at 60°, so Moon = 70°; Leo begins at 120°, so Mars = 134°. Distance = |134 − 70| = 64°.</li>
+<li>Moiety(Moon) = 12/2 = 6°; moiety(Mars) = 7/2 = 3.5°. Allowance = 9.5°.</li>
+<li>Sextile angle = 60°, so orbOff = |64 − 60| = 4°. Since 4° ≤ 9.5°, they are in a <strong>sextile</strong>.</li>
+<li>Exact? threshold = 0.0167 × 9.5 ≈ 0.159°; 4° &gt; that, so not exact. Not partile (10 ≠ 14).</li>
+<li>Moon moves faster than Mars and is approaching the trine point, so stepping forward shrinks the orb → <strong>applying</strong>.</li>
+</ul>
+<p>If the Moon sits in the 3rd house (Cadent) and Gemini is a Common sign, the timing table gives the unit <em>months</em>; count = round(4 × 2)/2 = 4, so the reading is "about 4 months."</p>
+<table class="data">
+<tr><th>Quantity</th><th>Value</th></tr>
+<tr><td>Distance</td><td>64°</td></tr>
+<tr><td>Allowance (moieties)</td><td>6° + 3.5° = 9.5°</td></tr>
+<tr><td>Aspect / orbOff</td><td>Sextile / 4°</td></tr>
+<tr><td>Condition</td><td>Applying</td></tr>
+<tr><td>Timing</td><td>about 4 months</td></tr>
+</table>
+    <p class="small muted"><b>Source:</b> Lilly, Christian Astrology, Book I (planetary orbs/moiety table) and Book II (the modes by which a thing is brought to perfection: direct aspect, translation, collection, prohibition, refranation); orb values per SOURCE-DATA ORBS in dignities-data.js (Saturn 9, Jupiter 9, Mars 7, Sun 15, Venus 7, Mercury 7, Moon 12).</p>
+    <p class="small"><a href="book2/horary.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-moon">
+    <h3 style="margin-top:0">The Moon’s condition: void of course &amp; the via combusta (Spica exception)</h3>
+    <div class="meaning"><p>Before electing a moment for any work, the tradition weighs the Moon above all other testimonies. Two of her afflictions are checked here. <strong>Void of course</strong> asks: will the Moon complete another applying Ptolemaic aspect before she leaves her current sign? If not, she is "void" and the old maxim warns "nothing will come of the matter." The <strong>via combusta</strong> ("burning way") asks: is the Moon travelling the distressed arc between 15&deg; Libra and 15&deg; Scorpio? If so the work is troubled &mdash; <em>unless</em> she sits on the fortunate fixed star Spica (~24&deg; Libra), the one "oasis" in that arc, which lifts the distress.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li><strong>Void of course.</strong> Compute the Moon's degrees-to-sign-change: <code>degLeft = 30 &minus; degInSign</code>.</li>
+<li>For each of Sun, Mercury, Venus, Mars, Jupiter, Saturn, take the aspect between it and the Moon. If any aspect is <em>applying</em> and its <code>orb &le; degLeft + 0.5</code> (i.e. it will perfect before the Moon quits her sign), the Moon is <strong>not</strong> void. Otherwise she is void of course.</li>
+<li>Severity: if the void Moon is in Taurus, Cancer, Sagittarius or Pisces she "performs somewhat" &rarr; flagged only as a <span class="muted">note</span>; in any other sign it is a <span class="muted">caution</span>. In the election score a caution-level void costs <strong>&minus;3</strong> (bad), a note-level void <strong>&minus;1</strong>.</li>
+<li><strong>Via combusta zone.</strong> Normalise the Moon's longitude and test <code>195&deg; &le; lon &le; 225&deg;</code> (15&deg; Libra to 15&deg; Scorpio). If outside, no via-combusta penalty.</li>
+<li><strong>Spica exception.</strong> If in the zone, precess Spica's catalog longitude to the chart date: <code>spica = 204.1 + (50.29&Prime;/3600) &times; (year &minus; 2020)</code>, i.e. ~0.013969&deg;/yr from its 2020 value of 204.1&deg; (24&deg;Lib06&prime;).</li>
+<li>If the Moon is within the Spica orb (default <code>spicaOrb = 2&deg;</code>) of that precessed longitude, set <code>exemptBySpica</code> &rarr; the distress is lifted (a <span class="muted">note</span>, +0, "the fortunate oasis").</li>
+<li>The via combusta is <code>active = inZone &amp;&amp; !exemptBySpica</code>. An active via combusta costs <strong>&minus;2</strong> (caution) in the election score.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p><strong>Setup:</strong> Moon at 23&deg;30&prime; Libra (longitude 203.5&deg;), date 2026-06-25, electing a love operation.</p>
+<p><strong>Via combusta test:</strong></p>
+<ul>
+<li>203.5&deg; lies in 195&ndash;225&deg; &rarr; <code>inZone = true</code>.</li>
+<li>Spica precessed to 2026: 204.1 + (50.29/3600) &times; (2026 &minus; 2020) = 204.1 + 0.013969 &times; 6 = <strong>204.184&deg;</strong>.</li>
+<li>Separation: |203.5 &minus; 204.184| = 0.68&deg;, which is &le; 2&deg; orb &rarr; <code>exemptBySpica = true</code>.</li>
+<li>Therefore <code>active = inZone &amp;&amp; !exemptBySpica = false</code>. Result: a <span class="muted">note</span> &mdash; "in the Via Combusta but conjunct Spica &mdash; the distress is lifted," <strong>+0</strong> to the score.</li>
+</ul>
+<p><strong>Void-of-course test:</strong> suppose the Moon (in late Libra) has only 6.5&deg; left in her sign (<code>degLeft = 30 &minus; 23.5 = 6.5</code>). She applies to a trine of Saturn with orb 4.0&deg;. Since 4.0 &le; 6.5 + 0.5 = 7.0, the aspect perfects before she leaves Libra &rarr; <strong>not void</strong> (no penalty). Had her nearest applying aspect been 9&deg; off, 9 &gt; 7.0 &rarr; <strong>void of course</strong>; in Libra (not an exception sign) that is a caution, costing <strong>&minus;3</strong>.</p>
+<table class="data">
+<tr><th>Test</th><th>Value</th><th>Outcome</th></tr>
+<tr><td>Via combusta zone</td><td>203.5&deg; in 195&ndash;225&deg;</td><td>in zone</td></tr>
+<tr><td>Spica (precessed 2026)</td><td>204.184&deg;, sep 0.68&deg; &le; 2&deg;</td><td>exempt &mdash; +0</td></tr>
+<tr><td>Void of course</td><td>orb 4.0&deg; &le; degLeft+0.5 = 7.0&deg;</td><td>not void &mdash; no penalty</td></tr>
+</table>
+    <p class="small muted"><b>Source:</b> Lilly, Christian Astrology (1647), "Considerations before Judgement," Bk II pp.121&ndash;123 (Moon void of course; via combusta 15&deg; Libra&ndash;15&deg; Scorpio). Spica longitude &amp; precession (50.29&Prime;/yr, lon2020 = 204.1&deg;) per assets/js/core/data/behenian-stars.js / research SOURCE-DATA.</p>
+    <p class="small"><a href="now.html">Open the tool that does this →</a></p>
+  </section>
+  <h2 id="grp-profections">Nativities — Book III</h2>
+  <section class="card" id="hiw-profections">
+    <h3 style="margin-top:0">Annual profections &amp; the Lord of the Year</h3>
+    <div class="meaning"><p>Annual profection is a traditional timing technique that "advances" the chart one whole sign for every completed year of life. The sign reached at a given age, and its domicile ruler, the <strong>Lord of the Year</strong>, tell you which house topics and which planet are activated for that year of the native's life. It answers: <em>which part of my chart, and which planet, is in charge of this year?</em></p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>Find the natal Ascendant's sign index with <code>signOf(chart.asc).index</code> (0 = Aries, 1 = Taurus, &hellip; 11 = Pisces).</li>
+<li>Take <code>age</code> as whole completed years since birth (an integer &ge; 0; year 0 is the birth year).</li>
+<li>Compute the profected sign index: <code>(natalAscSign + age) % 12</code>. Each year advances exactly one sign, completing the 12-sign circuit every 12 years.</li>
+<li>Compute the activated house: <code>(age % 12) + 1</code>, so age 0 &rarr; 1st house, age 1 &rarr; 2nd house, and so on (whole-sign houses from the Ascendant).</li>
+<li>Look up the <strong>Lord of the Year</strong> as the domicile ruler of the profected sign from the <code>DOMICILE</code> table, indexed by sign: <span class="small">Aries=Mars, Taurus=Venus, Gemini=Mercury, Cancer=Moon, Leo=Sun, Virgo=Mercury, Libra=Venus, Scorpio=Mars, Sagittarius=Jupiter, Capricorn=Saturn, Aquarius=Saturn, Pisces=Jupiter.</span></li>
+<li>Judge that lord's condition <em>in the natal chart</em>: <code>essentialDignity(lord, lon, isDay).total</code> for its essential score and <code>accidentalDignity(lord, chart).total</code> for its accidental score (both <code>null</code> if the planet is missing from the chart).</li>
+<li><span class="muted">Monthly profection (optional): starting from the annual profected sign, advance one sign per month, <code>(profectedSignIndex + monthIndex) % 12</code>, with monthIndex 0 = the annual sign; its domicile ruler is that month's lord.</span></li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Native born with the Ascendant at <strong>17&deg; Scorpio</strong>; we want the Lord of the Year at <strong>age 34</strong>.</p>
+<ul>
+<li><code>signOf(asc).index</code> = floor(227 / 30) = <strong>7</strong> (Scorpio).</li>
+<li>Profected sign index = <code>(7 + 34) % 12</code> = 41 % 12 = <strong>5</strong> &rarr; <strong>Virgo</strong>.</li>
+<li>Activated house = <code>(34 % 12) + 1</code> = 10 + 1 = <strong>11th house</strong>.</li>
+<li><code>DOMICILE[5]</code> = <strong>Mercury</strong> &rarr; Mercury is the Lord of the Year.</li>
+</ul>
+<table class="data">
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>age</td><td>34</td></tr>
+<tr><td>profectedSign</td><td>Virgo (index 5)</td></tr>
+<tr><td>activatedHouse</td><td>11</td></tr>
+<tr><td>lordOfYear</td><td>Mercury</td></tr>
+<tr><td>lordCondition</td><td>Mercury's natal essential + accidental dignity totals</td></tr>
+</table>
+<p class="small">So at age 34 this native's year is governed by the 11th-house topics and by natal Mercury; the quality of the year is read from Mercury's dignity scores in the birth chart.</p>
+    <p class="small muted"><b>Source:</b> Lilly, Christian Astrology Bk III (Directions &amp; Revolutions); traditional Hellenistic/Perso-Arabic profections (Vettius Valens, Anthology Bk IV; Abu Ma'shar). Domicile rulerships per SOURCE-DATA (assets/js/core/data/dignities-data.js, DOMICILE).</p>
+    <p class="small"><a href="book3/master.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-directions">
+    <h3 style="margin-top:0">Primary directions (Naibod key)</h3>
+    <div class="meaning"><p>A primary direction times an event by measuring the arc between a <strong>significator</strong> (a radical point of the chart — here the Ascendant or Midheaven) and a <strong>promissor</strong> (a planet that "promises" an event). That arc, measured in degrees, is converted into <strong>years of life</strong> by a time key. When the years lived equal the arc-in-years, the directed event comes to pass. It answers: <em>at roughly what age does this planet "come to" the angle?</em> Note: this module uses the simplified <strong>zodiacal (in-zodiac)</strong> arc — difference of ecliptic longitudes — not the rigorous mundane (Placidian semi-arc) method, which is deliberately out of scope.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>Pick the <strong>time key</strong>. The default is <code>naibod</code> = <strong>0.985647°</strong> of arc per year of life (the Sun's mean daily motion, ≈ 1° per year). The alternative is <code>ptolemy</code> = exactly <strong>1°</strong> per year.</li>
+<li>Take the two <strong>significators</strong> (angles): the Ascendant (<code>chart.asc</code>) and the Midheaven (<code>chart.mc</code>).</li>
+<li>For each of the seven <strong>promissors</strong> in order — Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon — read its ecliptic longitude.</li>
+<li>Compute the <strong>direct zodiacal arc</strong>: <code>arc = norm360(planetLon − angleLon)</code>, i.e. promissor longitude minus significator longitude, normalised into the range 0–360° (forward succession of the signs).</li>
+<li>Convert the arc to <strong>years</strong>: <code>years = arc / 0.985647</code> (Naibod). With the Ptolemy key it would be <code>years = arc / 1</code>.</li>
+<li>Keep only directions where <strong>0 ≤ years ≤ maxYears</strong> (default <code>maxYears = 90</code>); discard anything beyond a lifetime.</li>
+<li><strong>Sort</strong> all surviving directions ascending by years, so the earliest-fructifying direction comes first.</li>
+</ol>
+<p class="small muted">The <code>directInZodiac</code> helper additionally reports a <strong>converse</strong> arc (<code>norm360(significatorLon − promissorLon)</code>) and an unsigned <strong>shortest</strong> ecliptic arc (0–180°), but the angle-directions list uses only the direct arc above.</p>
+    <h4>Worked example</h4>
+    <p>Suppose the chart has <strong>Ascendant at 10° Aries = 10.0°</strong> and <strong>Mars at 25° Taurus = 55.0°</strong> longitude. Direct Mars (promissor) to the Ascendant (significator) with the Naibod key.</p>
+<table class="data">
+<tr><th>Quantity</th><th>Value</th></tr>
+<tr><td>Significator (Asc)</td><td>10.0°</td></tr>
+<tr><td>Promissor (Mars)</td><td>55.0°</td></tr>
+<tr><td>Direct arc = norm360(55.0 − 10.0)</td><td>45.0°</td></tr>
+<tr><td>Years = 45.0 / 0.985647 (Naibod)</td><td>≈ 45.66 years</td></tr>
+<tr><td>Years = 45.0 / 1 (Ptolemy, for comparison)</td><td>45.00 years</td></tr>
+<tr><td>0 ≤ 45.66 ≤ 90?</td><td>Yes — kept</td></tr>
+</table>
+<p>So the direction of Mars to the Ascendant fructifies at about <strong>age 45.7</strong> under the Naibod key. The Naibod key stretches the timeline slightly versus the plain "degree-for-a-year" Ptolemy key (45.66 vs 45.00 years) because each year of life is worth a little under one full degree (0.985647°).</p>
+    <p class="small muted"><b>Source:</b> William Lilly, "Christian Astrology" (1647), Book III — directing significators to promittors, arcs of direction converted to years of life. Naibod key per Valentine Naibod: the Sun's mean motion 0.985647°/day ≈ 1° per year. (Rigorous Ptolemaic/Placidian mundane method — Tetrabiblos III, Placidus de Titis — deliberately out of scope per the module header.)</p>
+    <p class="small"><a href="book3/master.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-solar">
+    <h3 style="margin-top:0">The solar return (revolution of the year)</h3>
+    <div class="meaning"><p>The solar return — Lilly's "revolution of the year" — is the chart cast for the exact UTC instant each year when the transiting Sun returns to the very same tropical ecliptic longitude it held at your birth. It answers: <em>what is the shape of the coming year?</em> Because the Sun's return drifts about six hours later each year (and a whole day across leap years), the moment is found astronomically, not on the calendar birthday. The radix (natal chart) remains the perpetual significator; the revolution figure is judged for that year's accidents.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>Take the <strong>natal Sun's tropical longitude</strong> from the radix (<code>natalChart.planets.Sun.lon</code>) and normalize it to [0, 360) as the <em>target</em>.</li>
+<li>Define a signed difference <code>d(t) = angleDiff(sunLon(t), target)</code>, reduced to the range (−180°, 180°]. It is positive when the transiting Sun is "ahead" of its natal place and crosses zero exactly once per calendar year (the Sun moves ~0.985°/day, so there is one crossing).</li>
+<li>Set the scan window. With no hint, sweep the whole year (Jan 1 00:00 UTC of <code>year</code> to Jan 1 of <code>year+1</code>). If a birthday hint (<code>aroundMonth</code>/<code>aroundDay</code>) is given, search ±20 days around that date at noon UTC.</li>
+<li><strong>Bracket the crossing</strong> by stepping day-by-day (86,400,000 ms): find the adjacent pair of days where <code>sign(d)</code> flips. A genuine crossing is a tiny step, so the flip is only accepted when <code>|d(cur) − d(lo)| &lt; 180°</code> (this guards against the ±180° wrap).</li>
+<li><strong>Bisect</strong> the bracketed interval up to 30 iterations, halving the time span each pass, until <code>|d(mid)| &lt; 0.0005°</code> (well under sub-arcsecond). Return the midpoint <code>Date</code> as the return instant.</li>
+<li><strong>Cast the revolution chart</strong> for that instant via <code>castChart</code>, using the natal latitude/longitude by default (overridable) and the <strong>Regiomontanus</strong> house system by default — Lilly's quadrant houses.</li>
+<li>Return <code>{ instant, chart, natalSunLon }</code>. By construction the return chart's Sun matches the natal Sun to within 0.0005° because both use the same <code>bodyPosition</code> engine.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Suppose a nativity with the natal Sun at <strong>94.30° tropical</strong> (4°18′ Cancer), and we want the revolution for the year <strong>2026</strong>, location London (51.51° N, 0.13° W).</p>
+<ul>
+<li><strong>Target</strong> = norm360(94.30°) = 94.30°.</li>
+<li><strong>Day-step bracket:</strong> on 2026-06-25 the Sun is near 93.9° → <code>d ≈ −0.4°</code>; on 2026-06-26 the Sun is near 94.9° → <code>d ≈ +0.6°</code>. The sign flips and |Δd| ≈ 1.0° &lt; 180°, so the crossing is bracketed in [Jun 25, Jun 26].</li>
+<li><strong>Bisect:</strong> halving this ~1-day window repeatedly drives <code>|d(mid)|</code> below 0.0005° in roughly 20-something iterations, converging on an instant of about <strong>2026-06-25 ~14:30 UTC</strong> (the Sun crossing 94.30°).</li>
+<li><strong>Cast:</strong> <code>castChart</code> builds the figure for that UTC instant at 51.51° N / 0.13° W in Regiomontanus houses.</li>
+</ul>
+<table class="data">
+<tr><th>Quantity</th><th>Value</th></tr>
+<tr><td>Natal Sun longitude</td><td>94.30° (4°18′ Cancer)</td></tr>
+<tr><td>Return year</td><td>2026</td></tr>
+<tr><td>Return instant (≈)</td><td>2026-06-25 ~14:30 UTC</td></tr>
+<tr><td>Return Sun longitude</td><td>94.30° (matches to &lt; 0.0005°)</td></tr>
+<tr><td>House system</td><td>Regiomontanus</td></tr>
+</table>
+<p class="small muted">Exact minute depends on the ephemeris; the convergence tolerance (0.0005°) is what the code guarantees, not the rounded clock time shown here.</p>
+    <p class="small muted"><b>Source:</b> Lilly, Christian Astrology, Book III (Of Annual Revolutions / Revolutions of the Year); SOURCE-DATA solar-return module header.</p>
+    <p class="small"><a href="book3/master.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-hyleg">
+    <h3 style="margin-top:0">Hyleg &amp; alcocoden (the contested length-of-life)</h3>
+    <div class="meaning"><p>The <strong>hyleg</strong> ("giver of life", Ptolemy's apheta) is the one chart point judged fit to set the native's vitality; the <strong>alcocoden</strong> ("giver of years", the oikodektor) is the planet that disposes that point, and its traditional planetary "years" estimate the span of life. This module answers: <em>which of Sun, Moon, Ascendant, Part of Fortune, or the pre-natal syzygy is the hyleg, who rules its degree, and how many years does that ruler bestow?</em> It is an openly <strong>contested</strong> technique — authors disagree on the aphetic houses, the order of examination, and whether dignity is required — so the code implements <em>one</em> clearly-scoped Lilly/Ptolemy reading and labels every assumption it makes.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li><strong>Fix the aphetic (hylegiacal) houses.</strong> The code uses exactly the canonical five: <code>HYLEGIACAL_HOUSES = [1, 7, 9, 10, 11]</code>. The 8th (admitted by some authors) is deliberately excluded.</li>
+<li><strong>Build the candidate list in sect order.</strong> If the chart is diurnal (<code>chart.isDay</code>): Sun, Moon, Ascendant, Part of Fortune, Syzygy. If nocturnal: Moon, Sun, Ascendant, Part of Fortune, Syzygy.</li>
+<li><strong>Compute the pre-natal syzygy point.</strong> Measure elongation = Moon&minus;Sun (mod 360). If &lt; 180&deg; the birth is waxing, so seek the last <em>New Moon</em> (conjunction, elongation crossing 0&deg;); else the last <em>Full Moon</em> (opposition, crossing 180&deg;). Scan backward in 1-day steps up to <strong>31 days</strong> to bracket the sign change, then <strong>bisect 40 times</strong> (down to a 1-second tolerance). The syzygy point is the <em>Moon's longitude</em> at that instant. If it fails to bracket within 31 days, the Syzygy candidate is dropped and noted.</li>
+<li><strong>Find each candidate's house</strong> with the cusp-span lookup <code>require_houseOf(lon, cusps)</code>: for each house <em>i</em>, if <code>norm360(lon − cusp[i]) &lt; norm360(cusp[i+1] − cusp[i])</code> the point sits in house <em>i</em>. Flag it <code>hylegiacal</code> if that house is in {1,7,9,10,11}.</li>
+<li><strong>Test dignity in place.</strong> For Sun or Moon: <code>planetDignifiedAt</code> &mdash; the luminary itself must hold some positive essential dignity (domicile / exaltation / triplicity / term / face, sect-aware) at its own degree (any one row with <code>score &gt; 0</code>). For the abstract points (Ascendant, Part of Fortune, Syzygy): <code>pointDignified</code> &mdash; compute the degree's almuten and require <code>almuten.score &gt; 3</code> (i.e. more than the unavoidable term(2)+face(1) minimum, so a domicile/exaltation/triplicity ruler is present).</li>
+<li><strong>Choose the hyleg (strict).</strong> Take the <em>first</em> candidate, in sect order, that is BOTH in a hylegiacal house AND dignified there.</li>
+<li><strong>Fallback if none qualifies.</strong> If no candidate is both aphetic and dignified, take the first candidate merely <em>occupying</em> a hylegiacal house (flagged in <code>reason</code> as a documented fallback). If not even that exists, hyleg is <code>null</code>.</li>
+<li><strong>Derive the alcocoden.</strong> Compute <code>almuten(hylegLon, isDay)</code> &mdash; the planet with the highest sum of positive essential dignities at the hyleg's degree. That planet is the alcocoden.</li>
+<li><strong>Look up the years.</strong> Return its three traditional spans from <code>PLANETARY_YEARS</code> (greatest / mean / least). The angular&rArr;greatest, succedent&rArr;mean, cadent&rArr;least choice is left to the caller; all three are returned.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take a <strong>diurnal</strong> chart. In sect order the first candidate is the <strong>Sun</strong>; suppose it sits at <strong>5&deg; Leo (longitude 125&deg;)</strong>.</p>
+<ul>
+<li><strong>House:</strong> say the cusps place 5&deg; Leo in the <strong>11th house</strong> &rarr; 11 is in {1,7,9,10,11}, so <code>hylegiacal = true</code>.</li>
+<li><strong>Dignity:</strong> the Sun rules Leo by <em>domicile</em>, so <code>essentialDignity('Sun', 125, true)</code> has a row with <code>score &gt; 0</code> &rarr; <code>dignified = true</code>.</li>
+<li><strong>Strict choice:</strong> the Sun is the first candidate that is both aphetic and dignified &rarr; <strong>hyleg = Sun</strong> at 125&deg;.</li>
+</ul>
+<p>Now the <strong>alcocoden</strong>: evaluate <code>almuten(125, true)</code>. At 5&deg; Leo the candidate dignities sum roughly as:</p>
+<table class="data">
+<tr><th>Planet</th><th>Dignity at 5&deg; Leo (day)</th><th>Score</th></tr>
+<tr><td>Sun</td><td>domicile (+5), triplicity of fire by day (+3)</td><td>8</td></tr>
+<tr><td>Jupiter</td><td>term (5&deg;&ndash;... Leo)</td><td>2</td></tr>
+<tr><td>Saturn</td><td>face (0&deg;&ndash;10&deg; Leo)</td><td>1</td></tr>
+</table>
+<p>The Sun has the highest sum, so the <strong>almuten of the degree is the Sun</strong> &rarr; the alcocoden is the <strong>Sun itself</strong>. From <code>PLANETARY_YEARS.Sun</code> the spans are <strong>greatest 120, mean 69.5, least 19</strong>. If the Sun is angular it gives the greatest (120 years); succedent (as here, 11th) the mean (<strong>69.5 years</strong>); cadent the least (19 years).</p>
+<p class="small muted">Exact almuten scores depend on the term/triplicity tables in dignities.js; the point is that the place's strongest dispositor sets the alcocoden, and that planet's row in PLANETARY_YEARS sets the length-of-life estimate.</p>
+    <p class="small muted"><b>Source:</b> Lilly, Christian Astrology, Bk III, "Of the Hyleg and Alcocoden" (order of examining Sol, Luna, Ascendant, Pars Fortunae and the pre-natal conjunction/opposition; hyleg must be in an aphetic place with essential dignity); Ptolemy, Tetrabiblos III.10–11 ("Of the Length of Life") for the aphetic places {1,7,9,10,11} and the oikodektor/alcocoden; traditional planetary years (greatest/mean/least) per Tetrabiblos III.11 and Lilly Bk III — encoded in PLANETARY_YEARS in assets/js/core/hyleg.js.</p>
+    <p class="small"><a href="book3/master.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-trajectory">
+    <h3 style="margin-top:0">The life trajectory</h3>
+    <div class="meaning"><p>The <strong>life trajectory</strong> is a single composed reading that walks one natal chart across the whole arc of a life. It does not invent a new technique: it runs the engines already built — essential and accidental dignity, the almuten of the Ascendant, the Lord of the Geniture, sect and temperament, the Hyleg/Alcocoden length-of-life judgement, the year-by-year annual profections, the primary directions to the angles, and the current solar return — then layers a Picatrix overlay (the native's ruling planets, the magical works naturally suited to them, what the Lord of the Year favours, the best/worst operations for the present moment, and a recommended talisman). It answers: <em>read as one historical narrative, what does this nativity say about the shape of a life year by year?</em> Presented as historical practice only; astrology has no demonstrated predictive validity.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li><strong>Set the frame.</strong> Read <code>opts.currentDate</code> (default now), <code>opts.years</code> (default 90), house <code>system</code> (default <code>regiomontanus</code>), and <code>nowPlace</code> (defaults to the birth lat/lon). Compute <code>ageNow = ageBetween(birth, currentDate)</code> — whole completed UTC years, clamped to 0, subtracting one if the birthday/time has not yet arrived.</li>
+<li><strong>Natal signatures.</strong> Take the <em>almuten of the Ascendant</em> (chief dispositor of the Asc degree by essential dignity); the <em>Lord of the Geniture</em> = the one of the seven planets with the greatest total (essential + accidental) dignity, scored over all seven, ties broken by Chaldean order; the <em>sect light</em> = Sun if <code>isDay</code> else Moon.</li>
+<li><strong>Temperament (coarse).</strong> Look at the signs of the Ascendant, the Moon, and the sect light. Each sign is hot|cold and dry|moist by triplicity (Fire = hot+dry, Air = hot+moist, Earth = cold+dry, Water = cold+moist). Count: hot if at least 2 of 3 are hot, dry if at least 2 of 3 are dry. Map to Choleric (Hot/Dry), Sanguine (Hot/Moist), Melancholic (Cold/Dry), or Phlegmatic (Cold/Moist).</li>
+<li><strong>Length of life.</strong> Run <code>hyleg()</code> then <code>alcocoden()</code>; both are wrapped in try/catch so a contested chart records a note instead of throwing.</li>
+<li><strong>Timeline of profections.</strong> For each age 0 .. min(years, ageNow+12), capped so the list is at most 102 entries (upper = min(maxAge, 101)): profected sign index = (natal Asc sign index + age) mod 12; activated house = (age mod 12) + 1 — the Ascendant advances one whole sign/house per completed year, a full circuit every 12 years. The domicile ruler of the profected sign is the Lord of the Year; record its natal essential and accidental dignity totals and flag <code>current</code> when age == ageNow.</li>
+<li><strong>Primary directions.</strong> Call <code>directionsToAngles</code> with maxYears = 90. For each of the seven planets (as promissor) to the Asc and MC (significators), take the direct zodiacal arc = norm360(planet.lon − angle.lon) and convert to years with the <strong>Naibod key 0.985647°/year</strong> (the Sun's mean daily motion ≈ 1°/yr); keep 0 ≤ years ≤ 90, sorted ascending.</li>
+<li><strong>Current year.</strong> Annual profection at ageNow gives this year's Lord of the Year, profected sign and activated house; the solar return for <code>currentDate</code>'s year gives the revolution instant, its Asc/MC and the Sun's house.</li>
+<li><strong>Picatrix overlay.</strong> Ruling planets = [almuten of Asc, Lord of Geniture, sect light], deduped in order. <em>Affinities</em> = Picatrix operations whose ruler is a ruling planet. <em>Year focus</em> = operations ruled by the current Lord of the Year. Cast a now-chart for currentDate at nowPlace; <code>rankNow</code> gives the top 3 (best) and bottom 3 reversed (worst) operations.</li>
+<li><strong>Recommended talisman.</strong> Among the affinity operations, score each on the now-chart with <code>electionScore</code> and pick the highest <em>rank = (verdict_value × 1000) + score</em>, where verdict_value is green = 2, amber = 1, red = 0 (so verdict dominates, score breaks ties); fall back to the first affinity, else <code>'love'</code>. Build the recipe with <code>talismanRecipe</code>.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take a <strong>day chart</strong> with Ascendant at 18° Leo and a current age of 33.</p>
+<ul>
+<li><strong>Sect light:</strong> day chart, so the sect light is the <strong>Sun</strong>.</li>
+<li><strong>Profection timeline.</strong> Natal Asc sign = Leo (index 4). At age 33: profected sign index = (4 + 33) mod 12 = 37 mod 12 = <strong>1 = Taurus</strong>; activated house = (33 mod 12) + 1 = 9 + 1 = <strong>10th house</strong>. Domicile ruler of Taurus is <strong>Venus</strong> → Lord of the Year = Venus. The engine then records Venus's natal essential + accidental dignity totals.</li>
+<li><strong>A primary direction.</strong> Suppose Jupiter sits at 2° Libra (longitude 182°) and the MC at 9° Cancer (longitude 99°). Direct arc = norm360(182 − 99) = 83°. Years = 83 / 0.985647 = <strong>84.2 years</strong> — within maxYears 90, so it is kept; Jupiter directs to the MC near age 84.</li>
+</ul>
+<table class="data">
+<tr><th>Quantity</th><th>Value</th></tr>
+<tr><td>Profected sign (age 33)</td><td>Taurus</td></tr>
+<tr><td>Activated house</td><td>10th</td></tr>
+<tr><td>Lord of the Year</td><td>Venus</td></tr>
+<tr><td>Jupiter→MC arc</td><td>83°</td></tr>
+<tr><td>Naibod years (÷ 0.985647)</td><td>84.2</td></tr>
+</table>
+<p class="small muted">Temperament tally: if Asc (Leo, hot+dry), Moon, and Sun signs give at least 2 hot and at least 2 dry, the verdict is Choleric (Hot &amp; Dry).</p>
+    <p class="small muted"><b>Source:</b> Lilly, Christian Astrology (1647), Bk I (almuten, Lord of the Geniture, sect, temperament) &amp; Bk III (profections/Lord of the Year, primary directions with the Naibod key 0.985647°/yr, the Solar Revolution, Hyleg &amp; Alcocoden); the Picatrix (Ghayat al-Hakim) for the seven planetary operations. See SOURCE-DATA and assets/js/core/trajectory.js.</p>
+    <p class="small"><a href="trajectory.html">Open the tool that does this →</a></p>
+  </section>
+  <h2 id="grp-mansions">Picatrix & magic</h2>
+  <section class="card" id="hiw-mansions">
+    <h3 style="margin-top:0">The 28 lunar mansions</h3>
+    <div class="meaning"><p>The 28 lunar mansions ("Mansions of the Moon") divide the ecliptic into 28 equal stations the Moon passes through on its roughly 27-to-28-day circuit. Each mansion is a fixed slice of zodiac longitude carrying a traditional magical "use" (good for journeys, love, healing, destruction, etc.). The question this answers is: <em>which mansion is the Moon (or any longitude) in right now, and what is that mansion good for?</em> This module uses the <strong>tropical</strong> scheme, fixing Mansion 1 at 0&deg; Aries.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>Define one mansion's arc as <code>MANSION_ARC = 360 / 28 = 12.857142857&deg;</code> (i.e. 12&deg;51&prime;26&Prime;). The full zodiac is split into 28 uniform arcs, not 12.</li>
+<li>Build the table: mansion <em>n</em> spans <code>start = (n&minus;1) &times; 12.857143&deg;</code> up to <code>end = n &times; 12.857143&deg;</code> in ecliptic longitude [0,360). Mansion 1 = 0&deg;&ndash;12.857&deg;, Mansion 2 = 12.857&deg;&ndash;25.714&deg;, and so on. The <code>signSpan</code> string (e.g. "0&deg;00&prime; Aries &ndash; 12&deg;51&prime; Aries") is the same value rounded to the arc-minute for display.</li>
+<li>Take the input ecliptic longitude (the Moon's tropical longitude, in degrees).</li>
+<li>Normalize it into the range [0,360): <code>norm = ((moonLon % 360) + 360) % 360</code> (handles negatives and values over 360).</li>
+<li>Compute the zero-based index: <code>idx = Math.floor(norm / 12.857143)</code>, giving 0&hellip;27.</li>
+<li>Return <code>LUNAR_MANSIONS[idx]</code>. By construction 0&deg; lands in Mansion 1 (idx 0) and 359.9&deg; lands in Mansion 28 (idx 27). Each record carries <code>name</code>, <code>aliases</code>, <code>indicator</code> (marker star), <code>use</code> (Agrippa Bk II.33), and <code>source</code>.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Suppose the Moon is at tropical longitude <strong>200.0&deg;</strong> (which is 20&deg;00&prime; Libra).</p>
+<ul>
+<li>Normalize: <code>((200 % 360) + 360) % 360 = 200.0&deg;</code> &mdash; already in range.</li>
+<li>Index: <code>floor(200.0 / 12.857143) = floor(15.555&hellip;) = 15</code>.</li>
+<li><code>LUNAR_MANSIONS[15]</code> is mansion <strong>num 16</strong> (zero-based 15).</li>
+</ul>
+<table class="data">
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Mansion #</td><td>16</td></tr>
+<tr><td>Name</td><td>Al Jubana <span class="muted">(Azubene / Az Zubana)</span></td></tr>
+<tr><td>Span</td><td>15 &times; 12.857143 = 192.857&deg; to 16 &times; 12.857143 = 205.714&deg;</td></tr>
+<tr><td>signSpan</td><td>12&deg;51&prime; Libra &ndash; 25&deg;43&prime; Libra</td></tr>
+<tr><td>Indicator star</td><td>Zubenelgenubi (&alpha; Librae)</td></tr>
+<tr><td>Use</td><td>merchandising/gain; (freeing captives)</td></tr>
+</table>
+<p class="small muted">Check: 200&deg; falls between 192.857&deg; and 205.714&deg;, so Mansion 16 is correct.</p>
+    <p class="small muted"><b>Source:</b> Cornelius Agrippa, Three Books of Occult Philosophy Bk II ch.33 (brief uses); Picatrix Bk I.4 (expands); cross-checked with Christopher Warnock / Renaissance Astrology. See research/SOURCE-DATA.md &sect;1.</p>
+    <p class="small"><a href="picatrix/mansions.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-faces">
+    <h3 style="margin-top:0">The 36 decan faces</h3>
+    <div class="meaning"><p>Each zodiac sign is split into three 10° slices called <strong>faces</strong> (or decans), giving 36 in all around the wheel. Every face has a planetary ruler — the weakest of the five essential dignities, worth just <strong>+1 point</strong> if a planet falls in its own face — and a traditional magical image inherited from Agrippa and the Picatrix. This module answers: "Which face does a given ecliptic longitude fall in, who rules it, and what figure does the old tradition assign to it?"</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>Lay out the 36 faces in zodiac order: for sign index <code>s</code> (0 = Aries) and decan <code>d</code> (0,1,2), the face spans <code>start = s*30 + d*10</code> degrees up to <code>start + 10</code>. So each face is exactly <strong>10° wide</strong>.</li>
+<li>Assign each face its ruler from the <code>FACES</code> table in <span class="muted">dignities-data.js</span>. That table is built in <strong>continuous Chaldean order beginning with Mars at 0° Aries</strong>: the cycle <code>[Mars, Sun, Venus, Mercury, Moon, Saturn, Jupiter]</code> stepped once per face — ruler = <code>FACE_ORDER[(s*3 + d) % 7]</code>. Rulers are <em>not</em> recomputed here; they are reused verbatim.</li>
+<li>Attach the magical image. The text is paraphrased one sentence per face from <strong>Agrippa, Three Books of Occult Philosophy II.37</strong> (Freake 1651), stored in <code>image</code> with a short <code>keywords</code> tag.</li>
+<li>Where the <strong>Picatrix II.11</strong> tradition diverges, store that variant separately in <code>imageAlt</code> (e.g. Cancer face 1, Scorpio face 1). The divergence is <em>not</em> silently resolved; the <code>source</code> field then reads "Agrippa, Three Books II.37; Picatrix II.11" instead of Agrippa alone.</li>
+<li>To look up a longitude, normalise it to 0–360 with <code>((lon % 360) + 360) % 360</code>, then index <code>DECAN_FACES[Math.floor(norm / 10)]</code>. Dividing by 10 and flooring picks the face directly — no orbs or thresholds are involved.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take a planet at <strong>15° Leo</strong>. Leo is sign index <code>s = 4</code>, so its absolute ecliptic longitude is <code>4*30 + 15 = 135°</code>.</p>
+<ul>
+<li><strong>Normalise:</strong> <code>((135 % 360) + 360) % 360 = 135</code>.</li>
+<li><strong>Pick the face:</strong> <code>Math.floor(135 / 10) = 13</code> → <code>DECAN_FACES[13]</code>, the <em>second</em> face of Leo (decan 2, spanning 130°–140°, i.e. 10°–20° Leo).</li>
+<li><strong>Ruler:</strong> <code>FACE_ORDER[(4*3 + 1) % 7] = FACE_ORDER[13 % 7] = FACE_ORDER[6] = Jupiter</code>.</li>
+</ul>
+<table class="data">
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>sign / decan</td><td>Leo, face 2 (130°–140°)</td></tr>
+<tr><td>ruler</td><td>Jupiter</td></tr>
+<tr><td>image (Agrippa)</td><td>A crowned man with a drawn sword and a buckler, hands raised</td></tr>
+<tr><td>keywords</td><td>victory, contention</td></tr>
+<tr><td>source</td><td>Agrippa, Three Books II.37</td></tr>
+</table>
+<p class="small muted">A planet here that did not own a higher dignity would gain just <strong>+1</strong> for being in its own face — and only if it were Jupiter. Jupiter at 15° Leo therefore scores its face point; any other planet scores nothing from face here.</p>
+    <p class="small muted"><b>Source:</b> Cornelius Agrippa, Three Books of Occult Philosophy II.37 (Freake 1651); Picatrix (Ghayat al-Hakim) II.11 for the flagged variants; rulers from FACES in dignities-data.js (Chaldean order, verified vs Lilly CA). SOURCE-DATA: assets/js/core/data/decan-faces.js.</p>
+    <p class="small"><a href="picatrix/faces.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-behenian">
+    <h3 style="margin-top:0">The 15 Behenian fixed stars & precession</h3>
+    <div class="meaning"><p>The Behenian stars are a canon of fifteen powerful fixed stars from Hermes (via Agrippa) used in talismanic magic, each with its own planetary nature, gemstone, plant, and magical "use." Because fixed stars drift along the ecliptic by precession (~50.29″ per year, about 1° every 72 years), a catalogue longitude is only valid for one epoch. This explainer answers: <em>where does each Behenian star actually fall on your chart's date, and which of your planets sit conjunct one?</em></p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li>Start from the catalogue longitude <code>lon2020</code>, stored in ecliptic degrees 0..360 (0 = 0°Aries, 30 = 0°Taurus, ...). These are the star positions at the epoch <code>BEHENIAN_EPOCH = 2020</code>. The canonical 15th star is <strong>Alkaid</strong> (177.2°); Fomalhaut is flagged <code>modern: true</code> and is excluded from chart scans.</li>
+<li>Convert the chart <code>Date</code> to a fractional year: <code>yearOf = UTC year + UTC month / 12</code> (month/12 is precise enough for a ~50″/yr drift).</li>
+<li>Compute the precessed longitude: <code>behenianLongitude = norm360( lon2020 + PRECESSION_DEG_PER_YEAR × (yearOf − 2020) )</code>, where <code>PRECESSION_DEG_PER_YEAR = 50.29 / 3600 = 0.0139694°/yr</code> and <code>norm360(x) = ((x % 360) + 360) % 360</code> wraps to 0..360.</li>
+<li>To find hits, loop over every non-modern Behenian star and every chart planet with a numeric <code>lon</code>. Compute the smallest circular separation: <code>d = |norm360(planetLon) − norm360(starLon)|; sep = d > 180 ? 360 − d : d</code>.</li>
+<li>If <code>sep ≤ orb</code> (default conjunction orb <code>orb = 6</code>°), record a hit <code>{ star, planet, sep, lon }</code>. Only conjunctions are tested — no other aspects.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Take <strong>Spica</strong> (<code>lon2020 = 204.1</code>, nature Venus + Mercury) for a chart dated <strong>2026-06-25</strong>, against a Sun at 205.0° (25°Lib00′).</p>
+<ul>
+<li>Fractional year: <code>2026 + 5/12 = 2026.4167</code> (June is UTC month index 5).</li>
+<li>Years since epoch: <code>2026.4167 − 2020 = 6.4167</code>.</li>
+<li>Precession applied: <code>0.0139694 × 6.4167 = 0.0896°</code>.</li>
+<li>Precessed longitude: <code>204.1 + 0.0896 = 204.1896°</code> → about 24°11.4′ Libra.</li>
+<li>Separation from Sun: <code>|205.0 − 204.1896| = 0.81°</code>, which is &le; 180, so <code>sep = 0.81°</code>.</li>
+<li>Test: <code>0.81 ≤ 6</code> &rarr; <strong>hit</strong>. Result: <code>{ star: 'Spica', planet: 'Sun', sep: 0.81, lon: 204.19 }</code> — Sun conjunct Spica (riches, favour, wins lawsuits).</li>
+</ul>
+<p class="small muted">Note: without precession the star would read at its 2020 longitude (204.1°); over ~6 years the 0.09° shift is tiny, but over a century it is ~1.4° — enough to move a star in or out of orb, which is why the code never treats one epoch as "now."</p>
+    <p class="small muted"><b>Source:</b> Cornelius Agrippa, Three Books of Occult Philosophy II.47 (Hermes on the 15 stars), via esotericarchives.com; cross-checked against Renaissance Astrology (C. Warnock) and Wikipedia "Behenian fixed star" — full table and caveats in research/SOURCE-DATA.md §3 (longitudes, contested natures, Alkaid-as-15th).</cite>
+<parameter name="toolHref">picatrix/stars.html</p>
+    
+  </section>
+  <section class="card" id="hiw-election">
+    <h3 style="margin-top:0">Election scoring — is this moment fit for X?</h3>
+    <div class="meaning"><p>Election is the art of choosing <em>when</em> to begin a thing so the sky favours it. This tool answers one question — "is this moment fit for operation X?" (love, wealth, healing, banishing, and so on) — by auto-calculating every testimony the tradition weighs (planetary hour, the ruling planet's dignity and afflictions, the Moon's phase, speed, mansion, via combusta, dispositor, malefics/benefics on the angles, and Behenian fixed-star contacts), summing them into a single score, and returning a green / amber / red verdict with a fully cited, per-rule breakdown. It is presented as historical practice, not advice.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li><strong>Pick the operation.</strong> Each of the 11 operations (e.g. <span class="small">love→Venus, wealth→Jupiter, banishing→Mars, binding/endings→Saturn</span>) carries a <em>ruler</em> planet, a <em>polarity</em> (<span class="small">increase wants a waxing Moon; decrease wants waning</span>), trigger <em>keywords</em>, and a list of favourable <em>stars</em>. Start <code>score = 0</code>.</li>
+<li><strong>Planetary hour &amp; day.</strong> Compare the current planetary hour ruler and day ruler to the operation's ruler: both match <strong>+3</strong>; hour only <strong>+2</strong>; day only <strong>+1</strong>; neither <strong>-1</strong>.</li>
+<li><strong>Ruler's essential dignity.</strong> Score the ruler's essential dignity: total ≥ 5 → <strong>+3</strong>; total &gt; 0 → <strong>+1</strong>; peregrine → <strong>-2</strong>; otherwise debilitated → <strong>-3</strong>.</li>
+<li><strong>Ruler's afflictions.</strong> Pull the ruler's flags from the Cautions engine: each <em>bad</em> flag <strong>-3</strong>, each <em>caution</em> <strong>-1</strong>, each <em>good</em> <strong>+1</strong>.</li>
+<li><strong>Moon phase.</strong> Elongation = Moon − Sun longitude; waxing if &lt; 180°. If phase matches the wanted polarity <strong>+2</strong>, else <strong>-1</strong>.</li>
+<li><strong>Moon speed.</strong> Using mean motion 13.176°/day: speed ≥ 13.176 → swift <strong>+1</strong>; speed &lt; 12 → slow <strong>-1</strong> (between 12 and 13.176 scores nothing).</li>
+<li><strong>Void of course.</strong> From cautions: a hard void <strong>-3</strong>, a softer void note <strong>-1</strong>.</li>
+<li><strong>Via combusta.</strong> Moon between 195°–225° (15° Libra–15° Scorpio) → <strong>-2</strong>, unless within 2° of Spica's precessed longitude, in which case the distress is lifted (a 0-point note).</li>
+<li><strong>Other Moon afflictions (from cautions):</strong> under the Sun's beams <strong>-2</strong>; eclipse season <strong>-3</strong>; Moon applying to a hard aspect of Mars or Saturn <strong>-2</strong>.</li>
+<li><strong>Lunar mansion fitness.</strong> If any operation keyword appears in the Moon's mansion "use" text → <strong>+2</strong>; otherwise a 0-point note naming the mansion.</li>
+<li><strong>Moon's dispositor.</strong> Ruler of the Moon's sign; combine its essential + accidental dignity. Total &gt; 0 → <strong>+1</strong>; otherwise <strong>-1</strong>.</li>
+<li><strong>Angles.</strong> Each malefic (Mars, Saturn) in houses 1/4/7/10 → <strong>-2</strong>; any benefic (Jupiter, Venus) angular → <strong>+2</strong> (rectifies an afflicted Moon).</li>
+<li><strong>Behenian fixed stars.</strong> For each star contact within the star orb (default 6°) that is in the operation's star list AND on the ruler or the Moon → <strong>+1</strong>.</li>
+<li><strong>Verdict.</strong> Count bad and caution flags. If any <em>bad</em> flag exists OR score ≤ -2 → <strong>red</strong>. Else if score ≥ 5 AND zero cautions → <strong>green</strong>. Otherwise → <strong>amber</strong>. (Green is never granted over a hard caution.)</li>
+</ol>
+    <h4>Worked example</h4>
+    <p>Operation: <strong>Love &amp; concord</strong> (ruler <strong>Venus</strong>, polarity <em>increase</em>, stars Spica/Sirius). Suppose at the chosen moment:</p>
+<table class="data">
+<tr><th>Testimony</th><th>Finding</th><th>Delta</th></tr>
+<tr><td>Planetary hour / day</td><td>Hour of Venus, day of the Sun (Sunday) — hour matches only</td><td>+2</td></tr>
+<tr><td>Venus essential dignity</td><td>+1 (in her own term) — some dignity, &gt; 0 but &lt; 5</td><td>+1</td></tr>
+<tr><td>Venus afflictions</td><td>none flagged</td><td>0</td></tr>
+<tr><td>Moon phase</td><td>Waxing (elongation 95°) — matches "increase"</td><td>+2</td></tr>
+<tr><td>Moon speed</td><td>13.5°/day ≥ 13.176 — swift</td><td>+1</td></tr>
+<tr><td>Via combusta</td><td>Moon at 70° (Gemini) — not in 195°–225°</td><td>0</td></tr>
+<tr><td>Lunar mansion</td><td>Use text lacks "love/concord/friendship…" — note only</td><td>0</td></tr>
+<tr><td>Moon's dispositor</td><td>Mercury (ruler of Gemini), dignity total +3 → well placed</td><td>+1</td></tr>
+<tr><td>Angles</td><td>Jupiter angular in the 10th</td><td>+2</td></tr>
+<tr><td>Behenian star</td><td>none of Spica/Sirius within 6° of Venus or Moon</td><td>0</td></tr>
+</table>
+<p><strong>Total score = +9.</strong> Zero <em>bad</em> flags and zero <em>caution</em> flags, and score ≥ 5 → <strong>verdict = green</strong>: "Favourable — the testimonies agree." If instead the Moon had sat at 200° (deep via combusta, far from Spica), that adds -2, introducing a caution flag — even at a positive score the result would drop to <strong>amber</strong>, since green is never allowed over a caution.</p>
+    <p class="small muted"><b>Source:</b> Composed per research/SOURCE-DATA.md §5 (validated electional checklist); rules cited in-code to Lilly, Christian Astrology pp.115-116, 121-123 (dignity & the Moon's considerations, via combusta); Picatrix I.4 & III.7; and Agrippa, Three Books II.33 (lunar mansions, planetary day/hour, Behenian fixed stars).</p>
+    <p class="small"><a href="picatrix/election.html">Open the tool that does this →</a></p>
+  </section>
+  <section class="card" id="hiw-talisman">
+    <h3 style="margin-top:0">The talisman recipe</h3>
+    <div class="meaning"><p>The talisman recipe assembles a complete, historically-sourced "how to make this talisman" sheet for one magical aim (love, wealth, victory, binding, etc.) at a given moment and place. It answers: <em>which planet rules this work, is now a fit time to make the talisman, and what materials, images, mansion, fixed star and spirit-names does the tradition assign to it?</em> It does not invent anything — it composes the Election Engine (the timing verdict) with the cited Picatrix/Agrippa correspondence tables. It is presented strictly as historical practice for study; astrology and talismanic magic have no demonstrated efficacy, and some named materials are toxic or illegal and are recorded, never recommended.</p></div>
+    <h4>How it's calculated, step by step</h4>
+    <ol class="steps">
+<li><strong>Choose the aim and its ruling planet.</strong> Look up the operation in the <code>OPERATIONS</code> catalogue: each aim carries a fixed <code>ruler</code>, a Moon <code>polarity</code> (<span class="muted">increase = waxing, decrease = waning</span>), keyword themes and preferred fixed stars. E.g. <em>Love &amp; concord</em> &rarr; Venus, increase; <em>Binding &amp; restraint</em> &rarr; Saturn, decrease.</li>
+
+<li><strong>Score the timing via <code>electionScore</code>.</strong> The recipe runs the full Election Engine, which sums signed point-deltas across every testimony and reaches a green/amber/red verdict:
+  <ul class="small">
+    <li><em>Planetary day &amp; hour:</em> day AND hour of the ruler = <strong>+3</strong>; hour only = +2; day only = +1; neither = &minus;1.</li>
+    <li><em>Ruler's essential dignity:</em> dignity total &ge;5 = +3; &gt;0 = +1; peregrine = &minus;2; debilitated (&le;0, not peregrine) = &minus;3.</li>
+    <li><em>Affliction flags</em> on the ruler (from cautions.js, e.g. combust): bad = &minus;3, caution = &minus;1, good = +1.</li>
+    <li><em>Moon phase vs. polarity:</em> phase matches (waxing&lt;180&deg; elongation for increase) = +2; against = &minus;1.</li>
+    <li><em>Moon speed:</em> &ge; mean 13.176&deg;/day = +1 (swift); &lt;12&deg;/day = &minus;1 (slow).</li>
+    <li><em>Void of course</em> = &minus;3; <em>Via Combusta</em> (Moon 195&deg;&ndash;225&deg;, i.e. 15&deg; Libra&ndash;15&deg; Scorpio) = &minus;2, but lifted to a note (0) if within 2&deg; of precessed Spica.</li>
+    <li><em>Under the Sun's beams</em> &minus;2; <em>eclipse season</em> &minus;3; Moon <em>applying to hard Mars/Saturn</em> &minus;2.</li>
+    <li><em>Moon's mansion</em> (28 mansions, arc 360/28 = 12.857&deg; each): if a keyword of the aim appears in the mansion's "use" text = +2, else note (0).</li>
+    <li><em>Moon's dispositor</em> (ruler of her sign) essential+accidental &gt;0 = +1, else &minus;1.</li>
+    <li><em>Angles:</em> each malefic (Mars/Saturn) on an angle (house 1/4/7/10) = &minus;2; benefic (Jupiter/Venus) angular = +2.</li>
+    <li><em>Behenian star contact:</em> a preferred star within the orb (default 6&deg;) conjunct the ruler or Moon = +1.</li>
+  </ul>
+  <strong>Verdict:</strong> any <em>bad</em> flag OR score &le;&minus;2 &rarr; <span class="muted">red</span>; score &ge;5 with zero cautions &rarr; green; otherwise amber.</li>
+
+<li><strong>Pick the Moon's mansion</strong> with <code>mansionOf(Moon.lon)</code> and report its number, name and traditional "use", flagging it as "fitting this work" if a keyword matches (Agrippa II.33 / Picatrix I.4).</li>
+
+<li><strong>Gather the materials</strong> from <code>PLANETARY_MAGIC[ruler]</code>: suffumigation, colour, metal and stone — taken verbatim from the Picatrix III.7 / Agrippa II table (no recomputation).</li>
+
+<li><strong>Name the powers</strong>, kept in their distinct systems: the Picatrix Bk III.7 prayer-angel (the Sun has none, addressed directly), and Agrippa's Angel / Intelligence / Spirit triad.</li>
+
+<li><strong>Design the engraving.</strong> Use <code>preferredFace(ruler)</code> — the first of the 36 decan faces whose <code>ruler</code> matches the planet — and instruct: engrave the planet's image upon its metal, in the planet's day and hour, with the Moon well placed; the named decan face supplies the figure.</li>
+
+<li><strong>Strengthen with a fixed star</strong> if available: from the chart's Behenian contacts, pick a star listed for the aim (else the first contact), reporting the planet and separation; if none, the tradition would wait for one.</li>
+
+<li><strong>(Optional) scan forward.</strong> If <code>opts.scanHours&gt;0</code>, call <code>findNextElection</code> (default step 30 min) to return the best upcoming amber/green window.</li>
+</ol>
+    <h4>Worked example</h4>
+    <p><strong>Aim: Love &amp; concord</strong> (operation <code>love</code> &rarr; ruler <strong>Venus</strong>, polarity <em>increase</em>, stars Spica/Sirius). Suppose at the chosen moment it is the day and hour of Venus, the Moon is waxing and swift at <strong>10&deg; Taurus (lon 40&deg;)</strong>.</p>
+<table class="data">
+<tr><th>Step</th><th>Found</th><th>&Delta;</th></tr>
+<tr><td>Day &amp; hour of Venus</td><td>both match</td><td>+3</td></tr>
+<tr><td>Venus essential dignity</td><td>domicile in Taurus (&ge;5)</td><td>+3</td></tr>
+<tr><td>Moon phase</td><td>waxing, suits increase</td><td>+2</td></tr>
+<tr><td>Moon speed</td><td>13.5&deg;/day &ge; 13.176</td><td>+1</td></tr>
+<tr><td>Mansion of Moon</td><td>40&deg; &divide; 12.857 &rarr; Mansion 4 (Aldebaran)</td><td>per use text</td></tr>
+<tr><td>Behenian star</td><td>no Spica/Sirius contact within 6&deg;</td><td>0</td></tr>
+</table>
+<p>Score so far &asymp; <strong>+9</strong>, no <em>bad</em> flags, no cautions &rarr; verdict <strong>green</strong>.</p>
+<ul>
+<li><strong>Materials (PLANETARY_MAGIC.Venus):</strong> suffumigation of aloes, mastic, roses; colour white(/gold); metal <strong>copper</strong>; stone emerald/coral.</li>
+<li><strong>Powers:</strong> Picatrix prayer-angel (Venus); Agrippa Angel, Intelligence and Spirit of Venus.</li>
+<li><strong>Design:</strong> <code>preferredFace('Venus')</code> = first Venus-ruled decan face; engrave the image of Venus upon copper, in the day and hour of Venus, while the Moon is well placed.</li>
+<li><strong>Star:</strong> none conjunct now &rarr; "the tradition would wait for one (Spica/Sirius) if a star is desired."</li>
+</ul>
+<p class="small muted">The recipe returns aim, planet, the green verdict and score, the Moon's mansion/face, the material list, the engraving instruction, any star, and the full numbered cited steps plus the historical-practice disclaimer.</p>
+    <p class="small muted"><b>Source:</b> Picatrix Book III.7 (suffumigations, colours, metals, stones, prayer-angels) and Book I.4 (lunar mansions, Moon polarity); Agrippa, Three Books of Occult Philosophy II.33 (mansion uses), II.37 (decan-face images), and II (Angel/Intelligence/Spirit triads, Behenian stars); timing rules from Lilly, Christian Astrology pp.115-116 &amp; pp.121-123, and research/SOURCE-DATA.md §4-§5. (assets/js/core/talisman.js, composing election.js + data/planetary-magic.js, data/lunar-mansions.js, data/decan-faces.js, data/behenian-stars.js)</p>
+    <p class="small"><a href="picatrix/talisman.html">Open the tool that does this →</a></p>
+  </section>
+
+  <p class="small muted">Sources are cited per section; the data tables and their provenance are in the
+    <a href="glossary.html">Glossary</a> and the project's research notes.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('how-it-works');
+</script>
+</body>
+</html>

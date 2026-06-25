@@ -71,7 +71,7 @@ ok(Object.values(PLANETARY_MAGIC).every(p => p.governs && p.suffumigation && p.s
    'every planet has governs + suffumigation + source + agrippa.angel');
 
 // --- Election engine (Phase 2A) --------------------------------------------
-import { OPERATIONS, isViaCombusta, moonPhase, moonDispositor, electionScore, rankNow, findNextElection } from '../assets/js/core/election.js';
+import { OPERATIONS, isViaCombusta, moonPhase, moonDispositor, electionScore, rankNow, findNextElection, nextAuspiciousTime } from '../assets/js/core/election.js';
 ok(OPERATIONS.length >= 10 && OPERATIONS.every(o => o.ruler && o.keywords && o.polarity), `>=10 operations, each with ruler+keywords+polarity`);
 
 // via combusta + Spica exception (Spica ~204.1° = 24°06' Libra)
@@ -103,6 +103,10 @@ const wins = findNextElection('love', eDate, 51.5074, -0.1278, { hoursAhead: 12,
 ok(Array.isArray(wins), 'findNextElection returns an array');
 ok(wins.every(w => w.start <= w.end), 'each window has start <= end');
 ok(wins.every((w, i) => i === 0 || wins[i - 1].best >= w.best), 'windows ranked by best score');
+
+// nextAuspiciousTime: returns null or an improving, in-window result
+const na = nextAuspiciousTime(eDate, 51.5074, -0.1278, { hoursAhead: 24, target: 'amber', stepMinutes: 60 });
+ok(na === null || (na.time > eDate && ['amber', 'green'].includes(na.verdict)), 'nextAuspiciousTime: null or a later amber/green moment');
 
 // --- Natal engine modules (Phase 2C) ---------------------------------------
 const natal = castChart(new Date(Date.UTC(1990, 4, 15, 12, 0)), 51.5074, -0.1278, 'regiomontanus');

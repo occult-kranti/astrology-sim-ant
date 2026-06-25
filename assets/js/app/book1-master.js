@@ -14,10 +14,11 @@ import { allAspects, aspectBetween } from '../core/aspects.js';
 import { renderChart } from '../core/chart.js';
 import { planetaryHour } from '../core/planetary-hours.js';
 import { chartCautions } from '../core/cautions.js';
+import { nextAuspiciousTime } from '../core/election.js';
 import { SIGNS } from '../core/data/signs.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
 import { genderOfDegree, qualityOfDegree, isFortunateDegree, bodyPartOf, TABLE_USE } from '../core/data/degree-tables.js';
-import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { wireCitySelect, toUTC, nowLocalFields, VERDICT_LEGEND } from './shared.js';
 
 const $ = id => document.getElementById(id);
 const PL = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -55,6 +56,16 @@ function compute() {
   $('m-verdict').title = cau.label;
   $('m-cautions').innerHTML = cau.global.map(a =>
     `<li class="adv-${a.severity}">${a.text}</li>`).join('');
+  // The next more-auspicious time (the electional habit of waiting for a better hour).
+  if (cau.verdict === 'green') {
+    $('m-next-ausp').innerHTML = 'This figure is already clear (green) — no need to wait.';
+  } else {
+    const na = nextAuspiciousTime(date, lat, lon, { hoursAhead: 48, target: 'amber' });
+    $('m-next-ausp').innerHTML = na
+      ? `<b>Next more auspicious time:</b> ${na.time.toUTCString()} (~${na.hoursFromNow.toFixed(1)}h later) — the chart-health improves from <span class="verdict ${cau.verdict}">${cau.verdict}</span> to <span class="verdict ${na.verdict}">${na.verdict}</span>.`
+      : '<b>Next more auspicious time:</b> none found within 48 hours of this moment.';
+  }
+  $('m-verdict-legend').innerHTML = VERDICT_LEGEND;
   const afflictRows = Object.entries(cau.planets)
     .filter(([, info]) => info.flags.length)
     .map(([name, info]) =>

@@ -28,6 +28,7 @@ export const GLOSSARY = [
   { term: 'Fall', cat: 'Dignity', def: 'The sign opposite a planet’s exaltation, where it is dejected. −4.', see: 'pages/book1/dignities.html' },
   { term: 'Peregrine', cat: 'Dignity', def: '"Wandering" — a planet with no essential dignity of its own anywhere in its place, like a stranger with no standing. −5.', see: 'pages/book1/dignities.html' },
   { term: 'Almuten', cat: 'Dignity', def: 'The planet with the most essential dignity at a given degree — the "victor" or lord of that degree.', see: 'pages/book1/dignities.html' },
+  { term: 'Verdict (green / amber / red)', cat: 'This site', def: "The site's chart-health and election badge: a traffic-light scale for the GRAVITY of the judgement. Green = few impediments / favourable; amber = mixed, weigh the cautions; red = strongly impeded / unfavourable. Red marks SEVERITY only — it is NOT the planetary or talisman colour red (e.g. Mars's red garment), which is a separate ritual correspondence.", see: 'pages/now.html' },
   { term: 'Dispositor', cat: 'Dignity', def: 'The planet that rules (by domicile) the sign another planet occupies; it "disposes of" the guest.' },
 
   // — Accidental dignity —

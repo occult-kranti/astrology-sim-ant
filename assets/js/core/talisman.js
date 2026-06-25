@@ -46,7 +46,9 @@ export function talismanRecipe(chart, operationKey, opts = {}) {
     } catch { window = null; }
   }
 
-  const star = e.stars.find(s => op.stars.includes(s.star)) || e.stars[0] || null;
+  // Only a star RELEVANT to this operation strengthens it — never an unrelated
+  // (possibly contrary) star that merely happens to be in aspect right now.
+  const star = e.stars.find(s => op.stars.includes(s.star)) || null;
   const pf = preferredFace(op.ruler);
 
   const materials = {
@@ -58,10 +60,10 @@ export function talismanRecipe(chart, operationKey, opts = {}) {
   };
 
   const design =
-    `Engrave the image of ${op.ruler} (per Agrippa, Three Books II) upon ${m.metal}, ` +
-    `in the day and hour of ${op.ruler}, while the Moon is well placed; ` +
-    (pf ? `the decan face of ${op.ruler} (${pf.sign} face ${pf.decan}) shows the figure: ${pf.image}` :
-          `set the planet strong and dignified.`);
+    `Engrave ${op.ruler}'s own talismanic image (the planetary images of Agrippa, Three Books II.22–46) upon ${m.metal}, ` +
+    `in the day and hour of ${op.ruler} while the Moon is well placed. ` +
+    (pf ? `(A related decan image — the face of ${op.ruler}, ${pf.sign} face ${pf.decan}, a DIFFERENT image-set from the planetary images — is: ${pf.image})` :
+          `Set the planet strong and dignified.`);
 
   // The numbered, cited working steps.
   const steps = [
@@ -78,7 +80,9 @@ export function talismanRecipe(chart, operationKey, opts = {}) {
     { text: `Name the powers (kept in their distinct systems): Picatrix prayer-angel ${materials.spirits.picatrixPrayerAngel}; ` +
             `Agrippa Angel ${m.agrippa.angel}, Intelligence ${m.agrippa.intelligence}, Spirit ${m.agrippa.spirit}.`,
       cite: 'Picatrix III.7; Agrippa II' },
-    { text: design, cite: 'Agrippa, Three Books II.37 (faces) / II (planetary images)' },
+    { text: design, cite: 'Agrippa, Three Books II.22–46 (planetary images); II.37 (faces)' },
+    { text: `Consecrate at the elected hour: kindle ${op.ruler}'s suffumigation (${m.suffumigation}) and speak the petition over the engraving WHILE the smoke rises — the smoke is concurrent with the inscription, not a preparatory step. In Picatrix III the fumigation and prayer are the act that "draws the spirit" into the image.`,
+      cite: 'Picatrix III (the suffumigation & prayer as the consecrating act)' },
     star ? { text: `If available, strengthen with the fixed star ${star.star} (${star.planet} within ${star.sep.toFixed(1)}°).`, cite: 'Agrippa II (Behenian stars)' }
          : { text: `No Behenian fixed star is conjunct the significator now; the tradition would wait for one if a star is desired.`, cite: 'Agrippa II (Behenian stars)' },
   ];

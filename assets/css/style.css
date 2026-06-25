@@ -250,3 +250,9 @@ table.data td.l small { color: #6b6450; }
   h1, h2, h3 { color: #000 !important; }
   @page { margin: 1.5cm; }
 }
+
+/* ---- Accessibility: skip link ---- */
+.skip-link { position: absolute; left: -999px; top: 0; z-index: 1000;
+  background: #1a1407; color: #e9dfc4; padding: .5rem .8rem; border-radius: 0 0 6px 0; }
+.skip-link:focus { left: 0; }
+@media print { .skip-link { display: none !important; } }

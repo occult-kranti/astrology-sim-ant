@@ -48,16 +48,19 @@ const CITE = {
 };
 
 // ---------------------------------------------------------------------------
-//  The catalogue of operations (election aims). Each is cited to the planet
-//  whose correspondences govern it (see data/planetary-magic.js) plus the
-//  appropriate Moon polarity and mansion themes. `polarity`: 'increase' wants a
-//  waxing Moon, 'decrease' (banishing/binding/endings) wants a waning Moon.
+//  The catalogue of operations (election aims). The operation→ruling-planet
+//  mapping is an EDITORIAL convenience derived from the planetary
+//  correspondences of Picatrix III & Agrippa II (see data/planetary-magic.js) —
+//  the source texts give per-planet powers, not this exact list of named aims;
+//  the `keywords` (matched against the Moon's mansion use) and the `stars` are
+//  likewise an editorial overlay. `polarity`: 'increase' wants a waxing Moon,
+//  'decrease' (banishing/binding/endings) wants a waning Moon.
 // ---------------------------------------------------------------------------
 export const OPERATIONS = [
   { key: 'love',      label: 'Love & concord',           ruler: 'Venus',   polarity: 'increase', book: 'Picatrix III (Venus)',   keywords: ['love', 'concord', 'friendship', 'married', 'goodwill'], stars: ['Spica', 'Sirius'] },
   { key: 'wealth',    label: 'Wealth & gain',            ruler: 'Jupiter', polarity: 'increase', book: 'Picatrix III (Jupiter)', keywords: ['gain', 'treasure', 'merchand', 'riches', 'business', 'harvest', 'herds'], stars: ['Spica', 'Regulus'] },
   { key: 'honour',    label: 'Honour, office & favour',  ruler: 'Sun',     polarity: 'increase', book: 'Picatrix III (Sun)',     keywords: ['kings', 'favour', 'dominion', 'honour'], stars: ['Regulus', 'Capella'] },
-  { key: 'knowledge', label: 'Knowledge & eloquence',    ruler: 'Mercury', polarity: 'increase', book: 'Picatrix III (Mercury)', keywords: ['business', 'gain', 'friendship'], stars: ['Procyon'] },
+  { key: 'knowledge', label: 'Knowledge & eloquence',    ruler: 'Mercury', polarity: 'increase', book: 'Picatrix III (Mercury)', keywords: ['business', 'merchand', 'learning', 'writing', 'science', 'eloquence', 'gain'], stars: ['Procyon'] },
   { key: 'journey',   label: 'Journeys & beginnings',    ruler: 'Moon',    polarity: 'increase', book: 'Picatrix I (Moon)',      keywords: ['journey', 'voyage', 'travel', 'protection'], stars: ['Sirius'] },
   { key: 'victory',   label: 'Victory & courage',        ruler: 'Mars',    polarity: 'increase', book: 'Picatrix III (Mars)',    keywords: ['victory', 'war', 'fear', 'reverence'], stars: ['Regulus', 'Antares'] },
   { key: 'healing',   label: 'Healing & medicine',       ruler: 'Jupiter', polarity: 'increase', book: 'Picatrix / Agrippa',     keywords: ['healing', 'childbirth', 'medicines', 'sickness'], stars: ['Arcturus'] },
@@ -266,4 +269,44 @@ export function findNextElection(operationKey, fromDate, lat, lon, opts = {}) {
   if (cur) windows.push(cur);
   windows.sort((a, b) => b.best - a.best);
   return windows;
+}
+
+// ---------------------------------------------------------------------------
+//  nextAuspiciousTime — scan forward for the next moment the CHART-HEALTH
+//  verdict (cautions.js) reaches `target` ('amber' = amber-or-better, the
+//  default; or 'green'). Used by the chart-health panels to answer "if now is
+//  impeded, when does the sky next clear?". Returns {time, verdict, label,
+//  hoursFromNow, changed[]} or null if nothing qualifies within the window.
+//  This is the electional tradition's habit of WAITING for a better hour —
+//  presented as method, not advice.
+// ---------------------------------------------------------------------------
+export function nextAuspiciousTime(fromDate, lat, lon, opts = {}) {
+  const hoursAhead = opts.hoursAhead ?? 48;
+  const stepMin = opts.stepMinutes ?? 20;
+  const system = opts.system || 'regiomontanus';
+  const RANK = { red: 0, amber: 1, green: 2 };
+  const want = RANK[opts.target] ?? RANK.amber;
+  const baseline = (() => {
+    try {
+      const c = castChart(fromDate, lat, lon, system);
+      const ph = planetaryHour(fromDate, lat, lon);
+      return chartCautions(c, { hourRuler: ph && ph.ruler });
+    } catch { return null; }
+  })();
+  const base = baseline ? RANK[baseline.verdict] : -1;
+  const steps = Math.ceil((hoursAhead * 60) / stepMin);
+  for (let i = 1; i <= steps; i++) {
+    const t = new Date(fromDate.getTime() + i * stepMin * 60000);
+    let cau;
+    try {
+      const c = castChart(t, lat, lon, system);
+      const ph = planetaryHour(t, lat, lon);
+      cau = chartCautions(c, { hourRuler: ph && ph.ruler });
+    } catch { continue; }
+    // the next moment that both meets the target AND improves on right now
+    if (RANK[cau.verdict] >= want && RANK[cau.verdict] > base) {
+      return { time: t, verdict: cau.verdict, label: cau.label, hoursFromNow: (i * stepMin) / 60, baseline: baseline ? baseline.verdict : null };
+    }
+  }
+  return null;
 }

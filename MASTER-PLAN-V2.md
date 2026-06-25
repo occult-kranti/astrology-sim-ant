@@ -70,3 +70,30 @@ feature** are built and verified. What remains is **Phase 3 polish** (export, ge
 share, a11y), **Phase 4 live examples**, and **accuracy finishing** — all additive and gated by
 `verify-site`. The astronomy/engine layer is complete; the remaining work is presentation,
 shareability, and sourcing rather than new computation.
+
+---
+
+## Round log — rename, home page, chart-health, critique fixes (2026-06-25, later)
+**Shipped this round** (Ultracode workflow: 4 critics → 30 prioritized findings + 16 explainers):
+- **Renamed** the site to **The Astrologer's Workbench** (brand, footer, all page titles).
+- **New home page** — explains and links every feature (live & personal, the three books, Picatrix,
+  learn/tools/workflow), honest note now includes the magic layer, and the two "Master" tools are disambiguated.
+- **`pages/how-it-works.html`** — all 16 calculations with meaning + step-by-step (as the engine runs them) +
+  a worked example + citation; linked from home, footer and Tools hub.
+- **Chart health → next auspicious time**: `election.nextAuspiciousTime()` scans forward for the next clearer
+  hour; wired into the Book I master panel and Right Now (on-demand).
+- **Verdict colours explained**: `VERDICT_LEGEND` (green/amber/red = a gravity scale, **not** the planetary/
+  talisman colours; a crude impediment count, not a substitute for weighing significators) on now/master/book1,
+  + a Glossary entry.
+- **Real bug fixed**: nav active-state used substring matching (lit up 6 items); now exact per-section + a11y skip link.
+- **Lilly/Picatrix/honesty fixes**: under-beams copy 12°→17°; Part-of-Fortune day/night flagged as a contested fork;
+  election reframed as *ranks, not a hard elector*; talisman gains the **suffumigation+petition consecration step**,
+  the decan-face vs planetary-image distinction, and a relevant-only Behenian star; the "three spirit systems" claim
+  corrected to two-represented-of-three (Mirror angels flagged as not-yet-included); Mercury operation keywords fixed;
+  operation→planet mapping flagged editorial.
+
+**Still open (from the 30 findings — lower priority):** sect-aware Part-of-Fortune toggle; weight chart-health by the
+actual significators; gating filters in the elector (never green over a combust/retrograde ruler); mansion malefic
+weighting & non-substring mansion match; mobile nav collapse; add the Picatrix Mirror-angel data; per-tool inline
+"how it's calculated" links (centralised page done); Phase 4 live worked examples for Lilly's charts; SVG/PNG export;
+generalised URL-share across all tools.
