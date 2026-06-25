@@ -70,5 +70,39 @@ ok(magicFor('Venus').agrippa.angel === 'Haniel', "Venus's Agrippa angel = Haniel
 ok(Object.values(PLANETARY_MAGIC).every(p => p.governs && p.suffumigation && p.source && p.agrippa?.angel),
    'every planet has governs + suffumigation + source + agrippa.angel');
 
+// --- Election engine (Phase 2A) --------------------------------------------
+import { OPERATIONS, isViaCombusta, moonPhase, moonDispositor, electionScore, rankNow, findNextElection } from '../assets/js/core/election.js';
+ok(OPERATIONS.length >= 10 && OPERATIONS.every(o => o.ruler && o.keywords && o.polarity), `>=10 operations, each with ruler+keywords+polarity`);
+
+// via combusta + Spica exception (Spica ~204.1° = 24°06' Libra)
+ok(isViaCombusta(210, new Date(Date.UTC(2026, 0, 1))).active === true, 'Moon at 210° is in active via combusta');
+ok(isViaCombusta(100, new Date(Date.UTC(2026, 0, 1))).active === false, 'Moon at 100° is not in via combusta');
+const spicaTest = isViaCombusta(204.1, new Date(Date.UTC(2026, 0, 1)));
+ok(spicaTest.inZone && spicaTest.exemptBySpica && spicaTest.active === false, 'Moon on Spica (~204°) is in-zone but exempt (active=false)');
+
+// real chart, full election readout
+const eDate = new Date(Date.UTC(2026, 5, 25, 12, 0));
+const eChart = castChart(eDate, 51.5074, -0.1278, 'regiomontanus');
+ok(typeof moonPhase(eChart).waxing === 'boolean', 'moonPhase returns waxing boolean');
+ok(moonDispositor(eChart).planet !== undefined, 'moonDispositor resolves a planet');
+const love = electionScore(eChart, 'love');
+ok(['green', 'amber', 'red'].includes(love.verdict), `electionScore verdict valid (got ${love.verdict})`);
+ok(love.reasons.length > 0 && love.reasons.every(r => r.cite && r.text && r.severity), 'every election reason has severity+text+cite');
+ok(love.moon.mansion && love.moon.mansion.num >= 1 && love.moon.mansion.num <= 28, 'election reports the Moon mansion');
+ok(love.hour && love.hour.ruler, 'election reports the planetary hour');
+ok(love.correspondences && love.correspondences.agrippa, 'election reports the planet correspondences');
+
+// rankNow scores every operation, sorted best-first
+const ranked = rankNow(eChart);
+ok(ranked.length === OPERATIONS.length, `rankNow scores all ${OPERATIONS.length} operations`);
+const VR = { green: 2, amber: 1, red: 0 };
+ok(ranked.every((r, i) => i === 0 || VR[ranked[i - 1].verdict] >= VR[r.verdict]), 'rankNow is sorted by verdict (best first)');
+
+// findNextElection returns ranked, well-formed windows
+const wins = findNextElection('love', eDate, 51.5074, -0.1278, { hoursAhead: 12, stepMinutes: 60 });
+ok(Array.isArray(wins), 'findNextElection returns an array');
+ok(wins.every(w => w.start <= w.end), 'each window has start <= end');
+ok(wins.every((w, i) => i === 0 || wins[i - 1].best >= w.best), 'windows ranked by best score');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

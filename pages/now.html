@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Right Now — live sky | Christian Astrology</title>
+<meta name="description" content="A live astrological dashboard for the present moment: the planetary hour and day, the Moon's condition and mansion, what the tradition deemed fit to do now, the active cautions and any Behenian fixed-star contacts — auto-computed and refreshed every minute on a verified astronomical engine. Presented for historical study only.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › Right Now</p>
+  <h1>Right Now — the live sky</h1>
+  <p class="lede">This dashboard auto-computes the present planetary hour, the Moon's condition and mansion, what
+    the tradition deemed fit to do now, the active cautions and any Behenian fixed-star contacts — refreshing
+    every minute, on the same <a href="about/index.html">verified engine</a> (≈1 arc-minute) that powers the
+    calculators.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The mathematics is real and reproducible. The <em>interpretations</em> are the Lilly–Picatrix tradition's,
+    presented for historical study — astrology has no demonstrated predictive validity. See
+    <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <div class="card">
+    <div class="field">
+      <label for="n-city">Place</label>
+      <select id="n-city" aria-label="Choose a place"></select>
+    </div>
+    <div class="grid cols-2">
+      <div class="field">
+        <label for="n-lat">Latitude</label>
+        <input id="n-lat" type="number" step="0.0001" value="51.5074" aria-label="Latitude">
+      </div>
+      <div class="field">
+        <label for="n-lon">Longitude</label>
+        <input id="n-lon" type="number" step="0.0001" value="-0.1278" aria-label="Longitude">
+      </div>
+    </div>
+    <p class="small">Defaults to London. The moment is always <b>now</b> — the page recomputes every minute.</p>
+  </div>
+
+  <div id="n-head" class="card" aria-live="polite"></div>
+
+  <div class="grid cols-2">
+    <section id="n-moon" class="card" aria-label="The Moon now"></section>
+    <section id="n-ops" class="card" aria-label="Good to do now"></section>
+  </div>
+
+  <div class="grid cols-2">
+    <section id="n-cautions" class="card" aria-label="Cautions now"></section>
+    <section id="n-stars" class="card" aria-label="Fixed stars now"></section>
+  </div>
+
+  <p id="n-sunface" class="small"></p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('now');
+  import { initNow } from '../assets/js/app/now.js';
+  initNow();
+</script>
+</body>
+</html>
