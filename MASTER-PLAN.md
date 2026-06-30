@@ -36,14 +36,16 @@ unified `fullReading` spine, a capability registry, a Claude-powered grounded as
 **second independent system** (Jyotiṣa / Jagannath Hora). Verified each round via `verify-site`
 (audit `Problems: 0`; engine-test `all passed`; real-Chromium sweep of 35 pages, 0 console errors).
 
-**What genuinely remains** is not core astronomy — it is **(1)** a handful of fidelity/correctness
-refinements already flagged in REVIEW; **(2)** the *textual/ritual* remainder of Picatrix (Book IV
-prayers, the Mirror-angel spirit system, per-mansion talismanic images, the per-planet planetary-image
-set); **(3)** Lilly's Book II **house-by-house worked judgements** and **live** reproductions of his
-printed charts; **(4)** Book III **rectification** and **natal topic** chapters; and **(5)** the
-proposed mathematician's-lens explainers (structure, lots, falsification, heat-map). *(The
-**full six-fold Ṣaḍbala**, the **Vedic glossary + remedies**, and the **mobile-nav collapse** — gaps
-#7/#8/#9/#16 below — were **shipped 2026-06-25**; see the round note.)*
+**What genuinely remains** (see the **NEXT STEPS** roadmap below) is not core astronomy — it is
+**(1)** two fidelity refinements: *significator-weighted chart health* and the *seven Hermetic Lots +
+sect-aware Part of Fortune* (which also feeds the new natal-topic reader); **(2)** the proposed
+mathematician's-lens **explainers** (falsification demo, structure/patterns, election heat-map);
+**(3)** Lilly/Picatrix polish (election gating, antiscia-in-judgement, accuracy degrees, glossary
+completion); and **(4)** the quality sweep (a full **a11y** audit, navigation finish, export/share,
+final QA). *(The Lilly-depth pedagogy — **live worked charts**, **house-by-house judgement**, **natal
+topic readers**, **rectification** (gaps #3/#4/#19/#20) — was **shipped 2026-06-30, Phase R5**; the
+**six-fold Ṣaḍbala**, **Vedic glossary + remedies**, **Picatrix images** and **mobile-nav collapse**
+were shipped earlier. See the round notes.)*
 
 ### Shipped this round — "Phase R2", 2026-06-25 *(verified: audit 0 · engine-test all passed · 35-page Chromium sweep 0 errors)*
 A user-driven round that completed several roadmap gaps and deepened the assistant + the second system:
@@ -140,6 +142,60 @@ The Lilly-depth round (the headline pedagogy gap) + the UX backlog (researched b
 
 ---
 
+## NEXT STEPS — the post-R5 roadmap *(planned 2026-06-30)*
+
+R5 closed the Lilly-depth pedagogy (worked charts, house-by-house judgement, natal topics, rectification — gaps
+#3, #4, #19, #20) and cleared most of the UX backlog (chat redesign, autolink-on-dynamic, nav grouping, election
+live-update, a partial a11y pass). What remains, in **priority order**. Every phase ends at the `verify-site` gate
+(audit `Problems: 0` + engine-test + 0-console-error Chromium sweep) and is committed to `origin/main`.
+
+### Phase R6 — Fidelity & the Lots *(truth-to-text before more surface area — HIGHEST value)*
+- **R6-1 · Significator-weighted chart health** — gap #1. Weight each caution by whether it touches the
+  querent/quesited (or natal) significators, instead of a flat severity count. The single most-cited fidelity
+  defect; the flat count is alien to Lilly's method. `core/cautions.js` → flows into every verdict badge.
+- **R6-2 · The seven Hermetic Lots + sect-aware Part of Fortune toggle** — gap #2. New `core/lots.js` (Fortune,
+  Spirit, Eros, Necessity, Victory, Courage, Nemesis — *plus* the topic Lots of Marriage / Children / Father that
+  the **R5 natal-topics reader already names but does not yet compute**), a sect toggle, and `reading.lots`
+  exposing them all. Directly upgrades the R5 reader and underpins Phase R7.
+
+### Phase R7 — The honest-science explainers *(the locked framing, made interactive)*
+- **R7-1 · Falsification demo** — gap #14. `pages/experiment.html`: permute the birth time N× through
+  `fullReading`, plot the verdict/dignity **null distribution** in-tool. The strongest honesty feature —
+  mathematically and rhetorically clean, and core to the non-negotiable framing.
+- **R7-2 · Structure / Patterns explorer** — gap #13. `pages/structure.html`: the modular-week theorem, antiscia
+  reflection and aspect harmonics as one teaching view of the system's hidden symmetry.
+- **R7-3 · Election heat-map** — gap #15. A 7-day × 24-hour `rankNow` grid on the election page; the weekly
+  planetary-hour periodicity emerges visually. Cheap; reuses `electionScore`.
+
+### Phase R8 — Lilly / Picatrix polish & accuracy
+- **R8-1 · Election gating polish** — gap #6. Curated mansion-fitness keyword map (replace the naive substring),
+  down-weight malefic mansions — removes a known false-positive path in the elector.
+- **R8-2 · Antiscia woven into judgement** — gap #17. Treat antiscia/contra-antiscia as hidden contacts in the
+  perfection/aspect search (Lilly judges by them; currently display-only).
+- **R8-3 · Accuracy finishing** — gap #23. `accuracy-check` the pitted/azimene/fortune degrees; fill the 4 blank
+  fortune signs (Taurus/Leo/Sagittarius/Capricorn); record provenance in-data.
+- **R8-4 · Glossary completion** — gap #10. The remaining Western/Picatrix terms (Election, Profection,
+  Suffumigation, Behenian, Perfect Nature, the two spirit systems).
+- *(Optional)* Decumbiture mode (gap #18); magic squares / kāmeas, clearly flagged Agrippa (gap #22).
+
+### Phase R9 — Quality & ship
+- **R9-1 · Complete the a11y pass** — gap #25. Finish what the R5 audit agent could not (it hit a spend limit):
+  table `scope`/`caption` across **all** data tables, an `aria-live` review of every live region, a contrast
+  audit, and extend the verify gate to assert landmarks/labels.
+- **R9-2 · Navigation finish** — gap #16. Breadcrumbs, every page ≤2 clicks, un-dead-end `correspondences.html`.
+- **R9-3 · Export / share sweep** — gap #24. SVG/PNG export + URL-share across **all** tools (mostly done in the
+  Workbench/`state.js`; sweep the rest).
+- **R9-4 · Final QA** — spot-check ~10 numbers vs external references; refresh `README.md` / `COVERAGE.md` / this
+  plan; ship.
+
+### Deliberately out of scope *(unless explicitly promoted)*
+- Rigorous **Placidian mundane** primary directions (semi-arc) — the Naibod approximation stays, self-flagged.
+- The **Picatrix Book IV** full per-sign liturgies & incense recipes — framing-sensitive, kept summary-only.
+
+**Dependency:** R6-2 (Lots) underpins both the R5 natal-topics reader and the R7 explainers — do it before R7.
+
+---
+
 ## (A) COVERAGE TABLES
 
 ### A.1 — Lilly, *Christian Astrology*, **Book I** (Introduction) → essentially complete
@@ -168,7 +224,7 @@ The Lilly-depth round (the headline pedagogy gap) + the UX backlog (researched b
 lists and 4 blank fortune-degree signs — both held back on **accuracy** grounds, awaiting an
 `accuracy-check` pass.
 
-### A.2 — Lilly **Book II** (Horary) → mechanics complete; judgements & live examples open
+### A.2 — Lilly **Book II** (Horary) → mechanics, house-by-house judgement & live worked charts complete *(R5)*
 
 | Technique | Status | Evidence |
 |---|---|---|
@@ -180,11 +236,12 @@ lists and 4 blank fortune-degree signs — both held back on **accuracy** ground
 | Chart-health verdict (consolidated cautions) | ◑ | `core/cautions.js` `chartCautions` — works, but a **flat severity count**, not weighted by the *actual* significators of the matter (REVIEW open) |
 | Horary calculator (one moment + quesited house → full judgement) | ✅ | `book2/horary.html` → `app/horary.js` |
 | **Lilly's worked charts** (Ship at Sea, Stolen Fish, Marriage, Lost Dog) | 📖 | `book2/examples.html` is **static prose only** — imports `shared.js` (chrome) only, no engine; positions are narrated, not computed |
-| **House-by-house judgement guidance** (Lilly's per-house question chapters, II.xvii–end) | 📖/◑ | houses described in data; **no dedicated per-house judgement walkthroughs** with the relevant significator/perfection logic surfaced per topic |
+| **House-by-house judgement** (Lilly's per-house question chapters, II.xvii–end) | ✅ | `core/horary-judge.js` `horaryJudgement` + `data/horary-house-judgement.js` (12-house affirm/deny + perfection-meaning) → live reader & reference on `book2/houses.html`; also drives the worked charts |
+| **Lilly's worked example charts** (live, from his printed figures) | ✅ | `core/chart-from-positions.js` + `data/worked-charts.js` (4 figures from the 1647 woodcuts) → `book2/examples.html` draws the wheel, scores dignities, runs the judgement beside his words |
 | Decumbiture (6th house, illness, critical days) | ⛔ | not built (named in early plan) |
 | Antiscia *used in judgement* (as hidden aspects in horary) | ◑ | antiscia computed/displayed; **not woven into the perfection/aspect search** |
 
-### A.3 — Lilly **Book III** (Nativities) → core apparatus complete; topics & rectification open
+### A.3 — Lilly **Book III** (Nativities) → core apparatus, the 12 topic readers & rectification complete *(R5)*
 
 | Technique | Status | Evidence |
 |---|---|---|
@@ -197,7 +254,8 @@ lists and 4 blank fortune-degree signs — both held back on **accuracy** ground
 | Solar revolution (return) | ✅ | `core/solar-return.js` `solarReturn`/`solarReturnInstant` (bracket + bisect) |
 | Whole-life trajectory (profection timeline + directions + SR + Picatrix overlay) | ✅ | `core/trajectory.js` `lifeTrajectory`; `trajectory.html` |
 | **Rectification** (Trutine of Hermes, Animodar, accidents) | ⛔ | not built |
-| **Natal topic chapters** (wealth/marriage/children/profession/honour/accidents to the 12 houses) | 📖/◑ | derivable from dignities+houses; **no dedicated topic readers** doing the per-house natal judgement |
+| **Natal topic readers** (wealth/marriage/children/profession/honour to the 12 houses) | ✅ | `core/natal-topics.js` `natalTopicReading` — each topic from house-lord + natural significator + occupants → favourable/mixed/afflicted tone, on `book3/master.html`. *(Topic Lots described; computing them is R6-2)* |
+| **Rectification** (Trutine of Hermes, Animodar) | ✅ | `core/rectification.js` — both contested, every assumption surfaced, reusing the hyleg pre-natal syzygy; on `book3/master.html` |
 | Rigorous Placidian **mundane** primary directions (semi-arc) | ⛔ | out of scope, documented in `directions.js` |
 
 ### A.4 — Cross-cutting (all three books)
@@ -263,8 +321,8 @@ educational payoff (never predictive worth).
 |---|---|---|---|---|---|
 | 1 | **Significator-weighted chart health** — weight cautions by whether the flag touches the querent/quesited (or natal) significators, not a flat count | Lilly II | M | **High** | The flat count is *alien to Lilly's method*; this is the single most-cited fidelity defect (REVIEW §2) |
 | 2 | **Sect-aware Part of Fortune toggle + generalised Lots view** (`core/lots.js`: Spirit, Eros, Necessity, Victory, Basis, Courage, Nemesis) | Lilly I | S→M | **High** | Resolves the sect-fork honestly; clean affine math; unlocks a whole class of Hermetic technique already half-wired |
-| 3 | **Lilly's worked charts as LIVE figures** (Ship at Sea, Stolen Fish, Marriage, Lost Dog) — recompute from historical data, draw the wheel, annotate his reasoning; verify vs his printed positions | Lilly II | L | **High** | The headline pedagogy gap; `examples.html` is currently prose-only |
-| 4 | **House-by-house horary judgement walkthroughs** — per-topic (lost objects, marriage, sickness, travel, lawsuits…) flows that surface the right significators + perfection per question | Lilly II | L | **High** | This *is* Book II's bulk; currently only house data + a generic calculator |
+| 3 | ✅ **DONE (2026-06-30)** — **Lilly's worked charts as LIVE figures** (Stolen Fish, Ship at Sea, Marriage, Lost Dog) read from the 1647 woodcuts via `chart-from-positions.js`, wheel + dignities + judgement beside his words. `data/worked-charts.js`, `pages/book2/examples.html` | Lilly II | L | **High** | The headline pedagogy gap — shipped (the dog corrected to Mercury, lord of the 6th) |
+| 4 | ✅ **DONE (2026-06-30)** — **House-by-house horary judgement** — `core/horary-judge.js` (`horaryJudgement`) + a live reader & 12-house reference on `pages/book2/houses.html` (inverted sense for sickness/death/prison; contests by the stronger significator) | Lilly II | L | **High** | Book II's bulk — shipped |
 | 5 | ✅ **DONE (2026-06-25)** — **Per-mansion talismanic images** (`data/mansion-images.js`, Agrippa II.46 + Picatrix IV.9) on the Mansions page & the Master Tool | Picatrix I/IV | M | Med | The acknowledged "second pass" — completed |
 | 6 | **Election gating polish** — already gates retrograde/combust/detriment/fall; add **curated mansion-fitness keyword map** (replace naive substring) and **down-weight malefic mansions** | Picatrix | M | Med | REVIEW open item; removes a known false-positive path in the elector |
 | 7 | ✅ **DONE (2026-06-25)** — **Full six-fold Ṣaḍbala** (Kāla, Ceṣṭā, Dṛk added) + Iṣṭa/Kaṣṭa phala | Jyotiṣa | L | Med | The flagged Vedic follow-up; finishes the JHora strength model. `vedic.js` `shadbala()` |
@@ -279,13 +337,13 @@ educational payoff (never predictive worth).
 | 16 | ◑ **PARTLY DONE (2026-06-25)** — **Mobile nav collapse** shipped (14-item bar → accessible hamburger < 880 px, `shared.js`+`style.css`). **Remaining:** breadcrumbs, "every page ≤2 clicks", un-dead-end `correspondences.html` | cross | M | Med | The standing UX debt |
 | 17 | **Antiscia woven into judgement** (treat antiscia/contra-antiscia as hidden contacts in the perfection/aspect search) | Lilly II | S | Low-Med | Lilly uses them in judgement; currently display-only |
 | 18 | **Decumbiture mode** (6th-house illness, critical days) | Lilly II | M | Low-Med | A named early-plan feature; niche |
-| 19 | **Natal topic readers** (wealth/marriage/children/profession/accidents to the 12 houses) | Lilly III | L | Med | Book III's back half; derivable but not surfaced as topic flows |
-| 20 | **Rectification helper** (Trutine of Hermes, Animodar, accidents-based) | Lilly III | L | Low-Med | Completeness; lower demand |
+| 19 | ✅ **DONE (2026-06-30)** — **Natal topic readers** — `core/natal-topics.js` reads all 12 Book III topics (house-lord + natural significator + occupants → favourable/mixed/afflicted tone) on `pages/book3/master.html` | Lilly III | L | Med | Book III's back half — shipped (topic Lots described; computing them is R6-2) |
+| 20 | ✅ **DONE (2026-06-30)** — **Rectification helper** — `core/rectification.js`: Animodar (Ptolemy) + Trutine of Hermes, both contested, every assumption surfaced, reusing the hyleg pre-natal syzygy; on `pages/book3/master.html` | Lilly III | L | Low-Med | Completeness — shipped |
 | 21 | ◑ **MOSTLY DONE (2026-06-25)** — **planetary prayer texts** (III.7) ✅ + **Perfect Nature** (III.6) ✅ + a **Book IV** cited summary ✅; still optional: the full per-sign Book IV liturgies & incense recipes (deliberately not reproduced — framing-sensitive) | Picatrix III–IV | M | Low-Med | Describe-never-instruct; the heart is shipped |
 | 22 | **Magic squares / kāmeas + planetary seals** (flag as Agrippa II.22, not strictly Picatrix) | (Agrippa) | M | Low | Frequently expected by users; clearly label provenance |
 | 23 | **Accuracy finishing** — `accuracy-check` the pitted/azimene/fortune degrees; fill the 4 blank fortune signs; record provenance in-data | Lilly I | S | Med | Closes the only Book I data holes, on the accuracy mandate |
 | 24 | **SVG/PNG export + generalised URL-share across all tools** | cross | S | Low-Med | Mostly done in `app/state.js`/Workbench; sweep the remaining tools |
-| 25 | **A11y pass** (ARIA landmarks, keyboard nav, contrast, alt on glyphs; extend `verify-site` to assert landmarks) | cross | M | Med | Standing quality debt |
+| 25 | ◑ **PARTLY DONE (2026-06-30)** — global `:focus-visible` ring, `aria-hidden` decorative glyphs, responsive coordinate inputs, `<caption>` on the worked-charts ledger, `aria-live` on the Now dashboard. **Remaining:** table `scope`/`caption` across *all* tables, full `aria-live`/contrast review, extend `verify-site` to assert landmarks (the R5 audit agent hit a spend limit) | cross | M | Med | Standing quality debt — Phase R9-1 |
 
 ---
 
@@ -319,18 +377,18 @@ Make the existing engine *truer to the texts* before adding surface area.
 13. **Election heat-map** (time-scan grid on the election page) — gap #15.
    *(Lots from Phase 1 #2 feed these; each is a small addition over `fullReading` + the registry.)*
 
-### Phase 4 — Lilly depth: live examples & judgements *(the headline pedagogy, carried Phase 4)*
-14. **Reusable computed-example component** (`app/example.js`) that casts a real chart and renders engine output inline.
-15. **Lilly's worked charts as LIVE figures** (Ship at Sea, Stolen Fish, Marriage, Lost Dog), verified vs his printed positions within tolerance — gap #3.
-16. **House-by-house horary judgement walkthroughs** (per-topic flows) — gap #4.
-17. **Antiscia woven into judgement** — gap #17.
-18. *(Optional)* **Decumbiture mode** — gap #18.
+### Phase 4 — Lilly depth: live examples & judgements ✅ **DONE (2026-06-30, Phase R5)**
+14. ✅ **DONE** — **Reusable computed-figure path** — `core/chart-from-positions.js` + `app/worked-charts.js` cast a printed figure and render engine output inline.
+15. ✅ **DONE** — **Lilly's worked charts as LIVE figures** (Stolen Fish, Ship at Sea, Marriage, Lost Dog) from the 1647 woodcuts — gap #3.
+16. ✅ **DONE** — **House-by-house horary judgement** (`horary-judge.js` + live reader) — gap #4.
+17. **Antiscia woven into judgement** — gap #17 *(carried to Phase R8-2)*.
+18. *(Optional)* **Decumbiture mode** — gap #18 *(carried, optional)*.
 
-### Phase 5 — Book III depth & the Vedic strength/remedy layer
+### Phase 5 — Book III depth & the Vedic strength/remedy layer ✅ **DONE**
 19. ✅ **DONE (2026-06-25)** — **Full six-fold Ṣaḍbala** (+ Iṣṭa/Kaṣṭa phala) — gap #7.
 20. ✅ **DONE (2026-06-25)** — **Vedic daily/birth remedies** (historical-only) — gap #9.
-21. **Natal topic readers** (wealth/marriage/children/profession/accidents to the 12 houses) — gap #19.
-22. *(Optional)* **Rectification helper** (Trutine/Animodar) — gap #20.
+21. ✅ **DONE (2026-06-30)** — **Natal topic readers** (12 houses) — gap #19.
+22. ✅ **DONE (2026-06-30)** — **Rectification helper** (Trutine + Animodar) — gap #20.
 23. *(Documented out-of-scope unless promoted)* rigorous **Placidian mundane** primary directions.
 
 ### Phase 6 — Organize / link / UX / ship *(carried Phase 3 polish)*
