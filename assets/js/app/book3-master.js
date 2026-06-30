@@ -17,7 +17,9 @@ import { annualProfection, monthlyProfection } from '../core/profections.js';
 import { hyleg, alcocoden } from '../core/hyleg.js';
 import { directionsToAngles } from '../core/directions.js';
 import { solarReturn } from '../core/solar-return.js';
-import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { natalTopicReading } from '../core/natal-topics.js';
+import { rectify } from '../core/rectification.js';
+import { wireCitySelect, toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
@@ -116,6 +118,45 @@ function compute() {
     const c = sr.chart;
     $('bm-return').innerHTML = `<p>The Sun returns to its natal place (${formatLon(sr.natalSunLon)}) on <b>${sr.instant.toUTCString()}</b>.</p><p>The revolution for <b>${ryear}</b> rises <b>${formatLon(c.asc)}</b>, with MC <b>${formatLon(c.mc)}</b> and the Sun at <b>${formatLon(c.planets.Sun.lon)}</b> in the ${c.planets.Sun.house}${ord(c.planets.Sun.house)} house.</p><p class="small muted">The solar return (revolution) is read as the theme of the year ahead — Lilly, Book III.</p>`;
   });
+
+  // 7. natal topics — Book III, house by house
+  safe($('bm-topics'), () => {
+    const r = natalTopicReading(chart);
+    const toneCls = t => t === 'favourable' ? 'green' : t === 'afflicted' ? 'red' : 'amber';
+    const cards = r.topics.map(t => `<div class="card" style="margin:0">
+      <h3 style="margin:0 0 .3rem;font-size:1.02rem">${t.house}. ${esc(t.label)} <span class="verdict ${toneCls(t.tone)}">${t.tone}</span></h3>
+      <ul class="clean small" style="margin:.2rem 0">${t.lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>
+      <p class="small muted" style="margin:.1rem 0 0">— ${esc(t.cite)}</p></div>`).join('');
+    $('bm-topics').innerHTML = `<div class="grid cols-2" style="gap:.8rem">${cards}</div>
+      <div class="callout science" style="margin-top:.8rem"><span class="label">How to read it</span> ${esc(r.caveat)}</div>`;
+  });
+
+  // 8. rectification — Animodar & Trutine of Hermes (contested)
+  safe($('bm-rectify'), () => {
+    const r = rectify(chart);
+    const a = r.animodar, t = r.trutine;
+    let html = '';
+    if (a.ok) {
+      html += `<p><b>Animodar (Ptolemy).</b> The pre-natal ${esc(a.syzygy.type)} fell at <b>${esc(a.syzygy.label)}</b>; its almuten is
+        <b>${G(a.almuten)} ${esc(a.almuten)}</b> at ${esc(a.almutenLabel)}. Setting the <b>${esc(a.angle)}</b> to its degree-in-sign gives
+        <b>${esc(a.correctedAngleLabel)}</b> (from ${esc(a.currentAngleLabel)}) — a suggested birth time of
+        <b>${esc(a.suggestedTime.toUTCString())}</b>, a shift of <b>${a.deltaMinutes >= 0 ? '+' : ''}${a.deltaMinutes} min</b>
+        (residual ${a.residualDegrees}°).</p><p class="small muted">${esc(a.assumptions)} <span class="muted">${esc(a.citation)}</span></p>`;
+    } else { html += `<p class="small muted">Animodar: ${esc(a.reason)}</p>`; }
+    if (t.ok) {
+      html += `<p style="margin-top:.6rem"><b>Trutine of Hermes (a check).</b> Estimating conception at birth − ${t.gestationDays} days:
+        the natal Ascendant (${esc(t.natalAsc.label)}) vs the conception Moon (${esc(t.conceptionMoon.label)}) differ by <b>${t.ascVsConcMoon}°</b>;
+        the natal Moon (${esc(t.natalMoon.label)}) vs the conception Asc/Desc by <b>${t.moonVsConcAscDesc}°</b> —
+        overall agreement <b>${t.agreementDegrees}°</b> (<b>${esc(t.verdict)}</b>).</p><p class="small muted">${esc(t.assumptions)} <span class="muted">${esc(t.citation)}</span></p>`;
+    } else { html += `<p class="small muted">Trutine: ${esc(t.reason)}</p>`; }
+    $('bm-rectify').innerHTML = html +
+      `<div class="callout science" style="margin-top:.6rem"><span class="label">Contested — for study only</span>
+       Rectification has no demonstrated validity; conception is unknown, authors disagree on the almuten and which angle to correct,
+       and the gestation length is an idealisation. Shown with every assumption, never as a measurement of your true birth time.</div>`;
+  });
+
+  // auto-link glossary jargon in the freshly-rendered prose panels
+  autolinkResultPanels(['bm-lord', 'bm-temperament', 'bm-profection', 'bm-hyleg', 'bm-return', 'bm-topics', 'bm-rectify']);
 }
 
 const ORD = { 1: 'st', 2: 'nd', 3: 'rd' };

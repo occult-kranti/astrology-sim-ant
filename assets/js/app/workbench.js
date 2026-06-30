@@ -6,7 +6,7 @@
 //  reads the SAME object. Cross-links are generated from core/registry.js, so
 //  "where each number comes from" stays in sync with the code.
 // ============================================================================
-import { wireCitySelect, toUTC, nowLocalFields, VERDICT_LEGEND } from './shared.js';
+import { wireCitySelect, toUTC, nowLocalFields, VERDICT_LEGEND, autolinkResultPanels } from './shared.js';
 import { writeStateToURL, readStateFromURL, copyShareLink, downloadJSON, downloadSVG, svgToPNG,
   downloadMarkdown, saveReadingEntry, listSavedReadings, removeSavedReading } from './state.js';
 import { castChart, PLANET_GLYPHS } from '../core/astro.js';
@@ -141,6 +141,11 @@ function run() {
   safe(() => renderReference());
   safe(() => renderJSON(reading));
   safe(() => renderCitations(reading));
+
+  // P1-2: auto-link unexplained jargon in the freshly-rendered prose panels
+  // (the static autolinker at mount can't reach DOM injected by a compute).
+  safe(() => autolinkResultPanels(['wb-summary', 'wb-lots', 'wb-aspects', 'wb-cautions',
+    'wb-horary', 'wb-election', 'wb-talisman', 'wb-natal']));
 
   writeStateToURL(currentState());
   $('wb-status').textContent = '';

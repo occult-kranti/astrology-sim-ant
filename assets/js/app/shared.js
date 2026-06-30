@@ -9,24 +9,35 @@
 export const ROOT = new URL('../../../', import.meta.url).href.replace(/\/$/, '');
 const R = p => `${ROOT}/${p.replace(/^\//, '')}`;
 
-import { autolinkGlossary } from './autolink.js';
+import { autolinkGlossary, autolinkResults } from './autolink.js';
 import { attachGeolocate } from './location.js';
 
-const NAV = [
-  ['index.html', 'Home', 'home'],
-  ['pages/basics.html', 'Basics', 'basics'],
-  ['pages/now.html', 'Now', 'now'],
-  ['pages/workbench.html', 'Master Tool', 'workbench'],
-  ['pages/trajectory.html', 'Trajectory', 'trajectory'],
-  ['pages/workflow.html', 'Workflow', 'workflow'],
-  ['pages/book1/index.html', 'Book I', 'book1'],
-  ['pages/book2/index.html', 'Book II', 'book2'],
-  ['pages/book3/index.html', 'Book III', 'book3'],
-  ['pages/picatrix/index.html', 'Picatrix', 'picatrix'],
-  ['pages/vedic/index.html', 'Vedic', 'vedic'],
-  ['pages/tools.html', 'Tools', 'tools'],
-  ['pages/glossary.html', 'Glossary', 'glossary'],
-  ['pages/about/index.html', 'About', 'about']
+// Grouped navigation — Start • Tools • Books • Reference. The grouping renders
+// as faintly-divided clusters on desktop and as labelled sections in the mobile
+// drop-down, so the 14-item bar reads as four short menus instead of one wall.
+const NAV_GROUPS = [
+  { label: 'Start', items: [
+    ['index.html', 'Home', 'home'],
+    ['pages/basics.html', 'Basics', 'basics'],
+  ] },
+  { label: 'Tools', items: [
+    ['pages/now.html', 'Now', 'now'],
+    ['pages/workbench.html', 'Master Tool', 'workbench'],
+    ['pages/trajectory.html', 'Trajectory', 'trajectory'],
+    ['pages/workflow.html', 'Workflow', 'workflow'],
+    ['pages/tools.html', 'All Tools', 'tools'],
+  ] },
+  { label: 'Books', items: [
+    ['pages/book1/index.html', 'Book I', 'book1'],
+    ['pages/book2/index.html', 'Book II', 'book2'],
+    ['pages/book3/index.html', 'Book III', 'book3'],
+    ['pages/picatrix/index.html', 'Picatrix', 'picatrix'],
+    ['pages/vedic/index.html', 'Vedic', 'vedic'],
+  ] },
+  { label: 'Reference', items: [
+    ['pages/glossary.html', 'Glossary', 'glossary'],
+    ['pages/about/index.html', 'About', 'about'],
+  ] },
 ];
 
 // Determine the active NAV section from the URL (exact, not substring — a bare
@@ -66,12 +77,13 @@ export function mountChrome(activeKey = '') {
   header.className = 'site';
   header.innerHTML = `<div class="wrap">
     <a class="brand" href="${R('index.html')}">
-      <span class="mark">✶</span>
+      <span class="mark" aria-hidden="true">✶</span>
       <span><b>The Astrologer's Workbench</b><small>Lilly's <i>Christian Astrology</i> × the <i>Picatrix</i> · computed for study</small></span>
     </a>
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-bars" aria-hidden="true"></span></button>
-    <nav id="site-nav" class="main" aria-label="Primary">${NAV.map(([href, label, key]) =>
-      `<a href="${R(href)}"${key === active ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('')}
+    <nav id="site-nav" class="main" aria-label="Primary">${NAV_GROUPS.map(g =>
+      `<span class="nav-group" role="group" aria-label="${g.label}"><span class="nav-group-label" aria-hidden="true">${g.label}</span>${g.items.map(([href, label, key]) =>
+        `<a href="${R(href)}"${key === active ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('')}</span>`).join('')}
     </nav></div>`;
   document.body.prepend(header);
 
@@ -134,6 +146,17 @@ export function mountChrome(activeKey = '') {
   if (activeKey !== 'glossary') {
     try { autolinkGlossary(document.querySelector('main'), R('pages/glossary.html')); } catch (e) { /* non-fatal */ }
   }
+}
+
+// Re-link glossary jargon in freshly-rendered RESULT panels after a compute.
+// Tools call this with the ids of the panels they just rendered; the static
+// glossary on the glossary page is excluded by the caller never invoking it
+// there. Non-fatal — a failure never breaks a reading.
+export function autolinkResultPanels(ids) {
+  try {
+    const roots = ids.map(id => document.getElementById(id)).filter(Boolean);
+    if (roots.length) autolinkResults(roots, R('pages/glossary.html'));
+  } catch (e) { /* non-fatal */ }
 }
 
 // --- A curated set of cities with coordinates and IANA-ish UTC offsets ---

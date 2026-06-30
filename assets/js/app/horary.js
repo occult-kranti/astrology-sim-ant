@@ -10,7 +10,7 @@ import { considerations } from '../core/considerations.js';
 import { modesOfPerfection, timeToPerfection } from '../core/perfection.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
 import { HOUSES } from '../core/data/houses.js';
-import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { wireCitySelect, toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
@@ -177,6 +177,9 @@ function compute() {
   // --- almuten of the ascendant ---
   const al = almuten(chart.asc, isDay);
   $('h-almuten').textContent = `Almuten of the Ascendant degree: ${al.planet} (essential score ${al.score}).`;
+
+  // auto-link glossary jargon in the freshly-rendered prose panels
+  autolinkResultPanels(['h-significators', 'h-perfection']);
 }
 
 function ordinal(n) { return ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'][n]; }

@@ -74,7 +74,7 @@ export const PLANETARY_YEARS = {
 //  opposition), then bisect for precision. Wrapped in try/catch by the caller;
 //  if anything fails the candidate is omitted and noted in the result.
 // ---------------------------------------------------------------------------
-function prenatalSyzygy(date) {
+export function prenatalSyzygy(date) {
   // elongation = Moon − Sun, normalised to [0,360). Waxing < 180, waning >= 180.
   const elong = d => norm360(bodyPosition('Moon', d).lon - bodyPosition('Sun', d).lon);
   const e0 = elong(date);

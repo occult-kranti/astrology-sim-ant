@@ -3,35 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Questions, House by House | The Astrologer's Workbench</title>
-<meta name="description" content="Which house rules which horary question, with Lilly's own list of topics for each of the twelve houses in Book II.">
+<title>Horary, House by House (with a live judgement reader) | The Astrologer's Workbench</title>
+<meta name="description" content="Which house rules which horary question, with Lilly's natural significators, what perfection means for each topic, and the testimonies that affirm and deny — plus a live judgement reader that casts a chart for any house and moment and runs Lilly's Book II method.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
 <main class="wrap">
   <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book II</a> › House by House</p>
-  <h1>The Questions, House by House</h1>
-  <p class="lede">Book II is organised by the twelve houses. To judge a question, first decide which house
-    rules the matter — that house and its lord become the <em>quesited</em>. Here is Lilly's arrangement,
-    with the kinds of question he files under each house.</p>
+  <h1>Horary, House by House</h1>
+  <p class="lede">Book II is organised by the twelve houses. To judge a question, first decide which house rules
+    the matter — that house and its lord become the <em>quesited</em>. Below: a <b>live judgement reader</b> that
+    runs Lilly's method for any house and moment, then the twelve houses as a reference — the natural
+    significators, <b>what perfection means</b> for each topic, and the testimonies that <b>affirm</b> and
+    <b>deny</b>.</p>
+
   <div class="callout"><span class="label">Turning the chart</span> To ask about a third party, make that
     person's house a new Ascendant and count the others from it. Your brother's money is the 2nd from the 3rd;
     a friend's illness is the 6th from the 11th.</div>
+
+  <h2>Live judgement reader</h2>
+  <p class="small muted">Pick the house your question falls under and a moment; the engine finds the significators,
+    runs the modes of perfection, reads the Moon, and gives an affirmed / qualified / denied <b>tone</b> with the
+    house's own rule. A study tool — astrology has no demonstrated predictive validity.</p>
+  <form id="hh-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 200px"><label for="hh-city">Place</label><select id="hh-city"></select></div>
+      <div class="field"><label for="hh-lat">Lat °N</label><input id="hh-lat" type="number" step="0.0001" class="w-coord"></div>
+      <div class="field"><label for="hh-lon">Lon °E</label><input id="hh-lon" type="number" step="0.0001" class="w-coord"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="hh-date">Date</label><input id="hh-date" type="date"></div>
+      <div class="field"><label for="hh-time">Time (local)</label><input id="hh-time" type="time"></div>
+      <div class="field"><label for="hh-offset">UTC offset</label><input id="hh-offset" type="number" step="0.5" class="w-offset"></div>
+      <div class="field" style="flex:1 1 260px"><label for="hh-house">The matter — its house</label><select id="hh-house"></select></div>
+      <button type="button" class="btn sm" id="hh-now">Now</button>
+      <button type="submit" class="btn">Judge</button>
+    </div>
+  </form>
+  <div id="hh-out" class="card" style="margin-top:.8rem"></div>
+
+  <h2>The twelve houses</h2>
   <div id="house-guide" class="grid cols-2"></div>
+
+  <p style="margin-top:1.4rem"><a class="btn" href="examples.html">See Lilly's own worked charts →</a>
+    <a class="btn" href="horary.html">Cast a full horary chart →</a></p>
 </main>
 <script type="module">
   import { mountChrome } from '../../assets/js/app/shared.js';
-  import { HOUSES } from '../../assets/js/core/data/houses.js';
-  import { PLANET_GLYPHS } from '../../assets/js/core/astro.js';
+  import { initHoraryHouses } from '../../assets/js/app/horary-houses.js';
   mountChrome('book2');
-  document.getElementById('house-guide').innerHTML = HOUSES.map(h => `<div class="card">
-    <h3>${h.n}. ${h.name} ${h.angle?`<span class="pill">${h.angle}</span>`:''}</h3>
-    <p class="small"><b>Signifies:</b> ${h.signifies}</p>
-    <p class="small"><b>Typical questions:</b></p>
-    <ul class="small">${h.questions.map(q=>`<li>${q}</li>`).join('')}</ul>
-    <p class="small muted">Co-significators: ${h.cosig}${h.joy?` · joy of ${PLANET_GLYPHS[h.joy]} ${h.joy}`:''}</p>
-  </div>`).join('');
+  initHoraryHouses();
 </script>
 </body>
 </html>

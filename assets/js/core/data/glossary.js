@@ -70,6 +70,7 @@ export const GLOSSARY = [
   { term: 'Refranation', cat: 'Horary', def: 'A significator turns retrograde before the awaited aspect completes — the matter "will never be effected."', see: 'pages/book2/index.html' },
   { term: 'Frustration', cat: 'Horary', def: 'A swift planet hastening to a significator is forestalled because that significator joins another planet first.', see: 'pages/book2/index.html' },
   { term: 'Turning the Chart', cat: 'Horary', def: 'Reading a third party’s affairs by treating their house as a new Ascendant (e.g. the 2nd from the 7th = the spouse’s money).', see: 'pages/book2/houses.html' },
+  { term: 'Significator', cat: 'Horary', def: 'The planet that stands for a person or matter in a question — the lord of the 1st (and the Moon) for the querent, the lord of the house of the matter for the quesited. The judgement turns on the significators’ condition and how they perfect.', see: 'pages/book2/houses.html' },
 
   // — Points & special —
   { term: 'Part of Fortune (⊕)', cat: 'Points', def: 'A computed point, Ascendant + Moon − Sun, marking material well-being. Lilly uses the same formula by day and night.', see: 'pages/book2/horary.html' },
@@ -80,6 +81,9 @@ export const GLOSSARY = [
   { term: 'Alcocoden', cat: 'Nativities', def: 'The "giver of years" — the planet ruling the hyleg’s place, indicating possible length of life by its planetary years.', see: 'pages/book3/index.html' },
   { term: 'Lord of the Geniture', cat: 'Nativities', def: 'The planet with the most essential and accidental dignity in a nativity — the most powerful and predominant influence.', see: 'pages/book3/nativity.html' },
   { term: 'Temperament', cat: 'Nativities', def: 'The humoral balance (choleric, melancholic, sanguine, phlegmatic) of a nativity, judged from the Ascendant, the lights and the season.', see: 'pages/book3/nativity.html' },
+  { term: 'Rectification', cat: 'Nativities', def: 'Correcting an uncertain birth time so the chart agrees with known events or rules. Contested; the Workbench offers the Animodar and the Trutine of Hermes, shown only with their assumptions — never as a measurement.', see: 'pages/book3/master.html' },
+  { term: 'Animodar', cat: 'Nativities', def: 'Ptolemy’s rectification (Tetrabiblos III.2): take the almuten of the pre-natal New or Full Moon; the degree it holds within its sign should be the degree of the nearest angle (Ascendant or Midheaven). Contested.', see: 'pages/book3/master.html' },
+  { term: 'Trutine of Hermes', cat: 'Nativities', def: 'The Trutina Hermetis: the Moon’s degree at conception equals the Ascendant at birth, and the Ascendant at conception equals the birth Moon (or its opposite), over a ~273-day gestation. Used as a check on the birth time; contested.', see: 'pages/book3/master.html' },
 
   // — Time & motion —
   { term: 'Planetary Hours', cat: 'Time', def: 'The division of day and night each into twelve unequal hours, ruled by the planets in the Chaldean order, beginning at sunrise with the lord of the weekday.', see: 'pages/book1/planetary-hours.html' },

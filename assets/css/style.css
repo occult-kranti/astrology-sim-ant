@@ -51,9 +51,13 @@ header.site .wrap { display: flex; align-items: center; gap: 1rem; padding: .55r
 .brand .mark { font-size: 1.5rem; color: var(--gold-2); }
 .brand b { font-family: var(--serif); font-size: 1.12rem; letter-spacing: .02em; }
 .brand small { display: block; font-family: var(--sans); font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; color: #b9b29a; }
-nav.main { margin-left: auto; display: flex; gap: .2rem; flex-wrap: wrap; font-family: var(--sans); font-size: .82rem; }
-nav.main a { color: #d8d0bb; text-decoration: none; padding: .35rem .6rem; border-radius: 6px; }
+nav.main { margin-left: auto; display: flex; gap: .15rem; flex-wrap: wrap; font-family: var(--sans); font-size: .82rem; }
+nav.main a { color: #d8d0bb; text-decoration: none; padding: .35rem .55rem; border-radius: 6px; }
 nav.main a:hover, nav.main a.active { background: rgba(217,177,90,.18); color: #fff; }
+/* Grouped nav — clusters divided by a faint gilt rule on desktop */
+.nav-group { display: flex; align-items: center; gap: .1rem; }
+.nav-group + .nav-group { margin-left: .3rem; padding-left: .42rem; border-left: 1px solid rgba(217,177,90,.28); }
+.nav-group-label { display: none; }
 
 /* Hamburger toggle — hidden on the desktop layout, shown below the breakpoint */
 .nav-toggle { display: none; margin-left: auto; background: transparent; border: 1px solid rgba(217,177,90,.45);
@@ -77,14 +81,41 @@ nav.main a:hover, nav.main a.active { background: rgba(217,177,90,.18); color: #
   nav.main.open { display: flex; }
   nav.main a { padding: .65rem .5rem; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,.07); }
   nav.main a:last-child { border-bottom: 0; }
+  /* Grouped nav on mobile: each cluster becomes a labelled section */
+  nav.main .nav-group { flex-direction: column; align-items: stretch; gap: 0; border-left: 0; margin: 0; padding: 0; }
+  nav.main .nav-group-label { display: block; font-family: var(--sans); font-size: .62rem; letter-spacing: .14em;
+    text-transform: uppercase; color: #b0a576; padding: .7rem .5rem .2rem; }
 }
 
-/* AI assistant conversation — white/parchment letters on the dark log so the
-   user's input and Claude's reply are legible (the labels were green/grey before). */
-#wb-asst-log { color: #f4efe2; }
-#wb-asst-log b, #wb-asst-log .pos, #wb-asst-log .muted, #wb-asst-log code { color: #f4efe2; }
-#wb-asst-log a { color: #e2c178; }
-#wb-asst-log code { background: rgba(255,255,255,.08); }
+/* ---- AI assistant conversation -------------------------------------------
+   A readable chat transcript: each turn is its own bubble with a clear role
+   label, so the user's question and Claude's reply are easy to tell apart and
+   easy to read. High contrast on the deep-night log; the message body keeps the
+   model's line breaks (pre-wrap) so lists and paragraphs survive. */
+#wb-asst-log { color: #eef1f8; background: #0d1430 !important; font-size: .92rem;
+  display: flex; flex-direction: column; gap: .55rem; line-height: 1.6; }
+.wb-chat-turn { border-radius: .55rem; padding: .55rem .7rem .6rem; max-width: 100%;
+  border: 1px solid transparent; }
+.wb-chat-turn .wb-chat-role { font-family: var(--sans); font-size: .66rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: .25rem; display: flex;
+  align-items: center; gap: .35rem; }
+.wb-chat-turn .wb-chat-body { white-space: pre-wrap; word-break: break-word; color: #f3f5fb; }
+.wb-chat-turn .wb-chat-body b { color: #fff; }
+/* You — gold-tinted, aligned to the right edge of the column */
+.wb-chat-user { background: rgba(217,177,90,.16); border-color: rgba(217,177,90,.38);
+  border-left: 3px solid var(--gold-2); align-self: flex-end; }
+.wb-chat-user .wb-chat-role { color: #eccf8f; }
+.wb-chat-user .wb-chat-body { color: #fbf3df; }
+/* Claude — cool slate card, aligned left */
+.wb-chat-bot { background: rgba(120,150,210,.13); border-color: rgba(120,150,210,.34);
+  border-left: 3px solid #7e9bd8; align-self: flex-start; }
+.wb-chat-bot .wb-chat-role { color: #a9c2f0; }
+.wb-chat-bot .wb-chat-body { color: #eef2fb; }
+.wb-chat-note { align-self: flex-start; font-size: .8rem; color: #aeb8d4; margin-left: .6rem; }
+.wb-chat-note code { background: rgba(255,255,255,.1); color: #d7def0; }
+#wb-asst-log a, .wb-chat-turn a { color: #f0d28a; }
+#wb-asst-log code, .wb-chat-turn code { background: rgba(255,255,255,.1); color: #eaeefb; }
+.wb-chat-save { font-family: var(--sans); font-size: .72rem; }
 
 /* Wide data tables scroll horizontally on small screens instead of clipping. */
 @media (max-width: 680px) {
@@ -292,3 +323,17 @@ table.data td.l small { color: #6b6450; }
   background: #1a1407; color: #e9dfc4; padding: .5rem .8rem; border-radius: 0 0 6px 0; }
 .skip-link:focus { left: 0; }
 @media print { .skip-link { display: none !important; } }
+
+/* ---- Accessibility: a visible keyboard-focus ring everywhere ---- */
+a:focus-visible, button:focus-visible, summary:focus-visible,
+select:focus-visible, input:focus-visible, textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold-2); outline-offset: 2px; border-radius: 4px;
+}
+/* On the dark header the gilt ring needs a touch more contrast */
+header.site a:focus-visible, header.site button:focus-visible { outline-color: #f0d28a; }
+
+/* Responsive coordinate/offset inputs — fixed widths that collapse on phones */
+.w-coord { width: 7rem; max-width: 100%; }
+.w-offset { width: 6rem; max-width: 100%; }
+@media (max-width: 560px) { .w-coord, .w-offset { width: 100%; } }

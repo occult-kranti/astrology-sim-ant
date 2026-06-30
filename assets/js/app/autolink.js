@@ -2,7 +2,15 @@
 //  autolink.js — automatically turns the first mention of each glossary term in
 //  a page's prose into a link to its Glossary entry. Conservative: only touches
 //  text inside <p> and <li>, never inside links, forms, headings, code, data
-//  tables, calculators or chart SVGs. Links each term at most once per page.
+//  tables, calculators or chart SVGs. Links each term at most once per pass.
+//
+//  Two entry points:
+//    • autolinkGlossary(root, href)        — once, over a page's static prose
+//      (called by shared.js mountChrome).
+//    • autolinkResults(roots, href)        — over freshly-rendered RESULT panels
+//      after a compute, sharing ONE link-once set across the panels. Safe to
+//      call on every recompute: the panels' innerHTML is replaced each time, so
+//      a fresh set per call re-links the new DOM (no creeping accumulation).
 // ============================================================================
 import { GLOSSARY } from '../core/data/glossary.js';
 
@@ -21,9 +29,8 @@ function matchPhrase(t) {
 const SKIP_TAGS = new Set(['A', 'BUTTON', 'CODE', 'H1', 'H2', 'H3', 'H4', 'SCRIPT',
   'STYLE', 'SELECT', 'INPUT', 'LABEL', 'TEXTAREA', 'TH', 'CITE']);
 
-export function autolinkGlossary(root, glossaryHref) {
-  if (!root) return;
-  // phrase → slug, longest phrases first so multi-word terms win
+// Build the phrase→slug map and the alternation regex once per pass.
+function buildMatcher() {
   const seen = new Set();
   const list = GLOSSARY.map(g => ({ phrase: matchPhrase(g.term), slug: slugTerm(g.term) }))
     .filter(e => e.phrase.length > 3)
@@ -33,14 +40,13 @@ export function autolinkGlossary(root, glossaryHref) {
   for (const e of list) phraseToSlug[e.phrase.toLowerCase()] = e.slug;
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const re = new RegExp('\\b(' + list.map(e => esc(e.phrase)).join('|') + ')\\b', 'i');
+  return { phraseToSlug, re };
+}
 
-  const linked = new Set();
-
-  root.querySelectorAll('p, li').forEach(block => {
-    if (block.closest('a, .calc, table.data, .no-autolink, #m-points, #m-body, #h-considerations, #h-aspects')) return;
-    walk(block);
-  });
-
+// Link the first match in each text node under `block`, honouring `linked`.
+function linkBlock(block, glossaryHref, phraseToSlug, re, linked) {
+  if (block.closest('a, .calc, table.data, .no-autolink, #m-points, #m-body, #h-considerations, #h-aspects')) return;
+  walk(block);
   function walk(node) {
     for (const child of [...node.childNodes]) {
       if (child.nodeType === 3) {
@@ -65,5 +71,25 @@ export function autolinkGlossary(root, glossaryHref) {
         walk(child);
       }
     }
+  }
+}
+
+export function autolinkGlossary(root, glossaryHref) {
+  if (!root) return;
+  const { phraseToSlug, re } = buildMatcher();
+  const linked = new Set();
+  root.querySelectorAll('p, li').forEach(block => linkBlock(block, glossaryHref, phraseToSlug, re, linked));
+}
+
+// Autolink across several freshly-rendered result containers. One shared set so
+// each term links at most once across the panels of THIS compute.
+export function autolinkResults(roots, glossaryHref) {
+  if (!roots) return;
+  const { phraseToSlug, re } = buildMatcher();
+  const linked = new Set();
+  for (const root of (Array.isArray(roots) ? roots : [roots])) {
+    if (!root) continue;
+    if (root.matches && root.matches('p, li')) linkBlock(root, glossaryHref, phraseToSlug, re, linked);
+    root.querySelectorAll('p, li').forEach(block => linkBlock(block, glossaryHref, phraseToSlug, re, linked));
   }
 }

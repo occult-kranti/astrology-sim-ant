@@ -39,6 +39,10 @@ export function initElection() {
   });
 
   $('e-form').addEventListener('submit', e => { e.preventDefault(); judge(); });
+  // Live update: changing the aim or house system re-judges at once (no need to
+  // press "Judge"), so the readout always matches the selected aim.
+  $('e-op').addEventListener('change', () => judge());
+  $('e-system').addEventListener('change', () => judge());
 
   // 4) auto-run once so the page is never empty
   judge();

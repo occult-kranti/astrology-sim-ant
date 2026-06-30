@@ -111,6 +111,33 @@ A teaching, interpretation & coverage round (with an independent UX review — s
 - The remaining UX backlog (jargon autolink on dynamic panels, election auto-run, nav grouping, a11y pass) is tracked
   in `REVIEW-R4.md` and the gap list below.
 
+### Shipped this round — "Phase R5", 2026-06-30 *(verified: audit 0 · engine-test all passed (77 registry exports) · Chromium sweep 38 pages 0 errors)*
+The Lilly-depth round (the headline pedagogy gap) + the UX backlog (researched by a 6-agent workflow — see `REVIEW-R5.md`):
+- **Live Lilly worked charts** — Lilly's OWN horary figures (the stolen fish, the ship at sea, the marriage, the lost
+  dog) are now read **live** from the positions he printed in the 1647 woodcuts: `core/chart-from-positions.js` feeds
+  the printed figure into the engine, `data/worked-charts.js` holds the sourced positions (with per-planet confidence
+  & honest caveats), and `pages/book2/examples.html` draws each wheel, scores every dignity and runs the judgement
+  **beside Lilly's words and the recorded outcome**. (The common "Venus in Libra = the dog" retelling was corrected: the
+  dog is **Mercury**, lord of the 6th.)
+- **House-by-house horary judgement** — `core/horary-judge.js` (`horaryJudgement`) identifies the significators, runs
+  the modes of perfection, reads the Moon, and reduces to an affirmed/qualified/denied tone with the cited Book II rule
+  (sickness/death/prison read in the inverted sense, contests by the stronger significator). `data/horary-house-judgement.js`
+  is the reference layer; `pages/book2/houses.html` gains a **live judgement reader** + the 12 houses with their
+  natural significators, perfection-meaning and affirm/deny testimonies.
+- **Book III natal-topic readers + rectification** — `core/natal-topics.js` reads each of the 12 Book III topics from
+  three testimonies into a tone; `core/rectification.js` adds the **Animodar** (Ptolemy) and **Trutine of Hermes**
+  (both contested, every assumption surfaced; the Animodar/Trutine reuse the hyleg engine's pre-natal syzygy). Both are
+  surfaced on `pages/book3/master.html`.
+- **UX backlog cleared** — the **Claude chat** is redesigned into readable, high-contrast labelled bubbles (You = gold,
+  Claude = slate, pre-wrap body); **jargon autolinks** now reach dynamically-rendered result panels (workbench, horary,
+  Book III master, worked charts); the **nav is grouped** Start • Tools • Books • Reference (faint dividers on desktop,
+  labelled sections on mobile); the **election tool** re-judges live on aim/house-system change; and an **a11y pass**
+  added a global `:focus-visible` ring, `aria-hidden` on decorative glyphs, responsive coordinate inputs, and table
+  `<caption>` on the worked-charts ledger. (A full automated a11y audit is still open — its workflow agent hit a spend
+  limit; tracked in `REVIEW-R5.md`.)
+- Registry gains `horary-judgement`, `worked-charts`, `chart-from-positions`, `natal-topics`, `rectification`; glossary
+  gains Significator, Rectification, Animodar, Trutine of Hermes.
+
 ---
 
 ## (A) COVERAGE TABLES

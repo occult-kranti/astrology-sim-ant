@@ -152,21 +152,30 @@ function refreshPreview() {
 }
 
 // --- chat log ---------------------------------------------------------------
+// Each turn is its own labelled bubble (You = gold, Claude = slate) so the
+// conversation is easy to read and to tell apart. The returned element is the
+// message BODY — streaming writes its textContent, preserving the model's line
+// breaks (the body is white-space:pre-wrap in CSS).
 function appendMsg(role, text) {
   const log = el('wb-asst-log');
-  const div = document.createElement('div');
-  div.style.margin = '.35rem 0';
-  div.innerHTML = `<b class="${role === 'user' ? 'pos' : 'muted'}">${role === 'user' ? 'You' : 'Claude'}:</b> <span></span>`;
-  div.querySelector('span').textContent = text;
-  log.appendChild(div); log.scrollTop = log.scrollHeight;
-  return div.querySelector('span');
+  const turn = document.createElement('div');
+  turn.className = `wb-chat-turn ${role === 'user' ? 'wb-chat-user' : 'wb-chat-bot'}`;
+  const label = document.createElement('div');
+  label.className = 'wb-chat-role';
+  label.innerHTML = `<span aria-hidden="true">${role === 'user' ? '🜨' : '✶'}</span> ${role === 'user' ? 'You' : 'Claude'}`;
+  const body = document.createElement('div');
+  body.className = 'wb-chat-body';
+  body.textContent = text;
+  turn.appendChild(label); turn.appendChild(body);
+  log.appendChild(turn); log.scrollTop = log.scrollHeight;
+  return body;
 }
 function appendToolNote(name, args, result) {
   const log = el('wb-asst-log');
   const div = document.createElement('div');
-  div.className = 'small muted'; div.style.margin = '.2rem 0 .2rem 1rem';
+  div.className = 'wb-chat-note';
   const ok = !(result && result.error);
-  div.innerHTML = `↳ tool <code>${esc(name)}</code>(${esc(JSON.stringify(args || {}))}) → ${ok ? 'computed' : 'error: ' + esc(result.error)}`;
+  div.innerHTML = `↳ ran <code>${esc(name)}</code>(${esc(JSON.stringify(args || {}))}) → ${ok ? 'computed' : 'error: ' + esc(result.error)}`;
   log.appendChild(div); log.scrollTop = log.scrollHeight;
 }
 const scrollLog = () => { const l = el('wb-asst-log'); if (l) l.scrollTop = l.scrollHeight; };
@@ -267,13 +276,14 @@ async function send() {
 }
 
 // Append a "⤓ save" link to a finished assistant reply (raw text → .md download).
-function addSaveLink(spanEl, text, name) {
-  if (!spanEl || !text) return;
-  const div = spanEl.closest('div'); if (!div) return;
+function addSaveLink(bodyEl, text, name) {
+  if (!bodyEl || !text) return;
+  const turn = bodyEl.closest('.wb-chat-turn') || bodyEl.parentElement; if (!turn) return;
   const a = document.createElement('a');
-  a.href = '#'; a.className = 'small'; a.style.marginLeft = '.6rem'; a.textContent = '⤓ save';
+  a.href = '#'; a.className = 'wb-chat-save'; a.style.display = 'inline-block'; a.style.marginTop = '.4rem';
+  a.textContent = '⤓ save this reply';
   a.addEventListener('click', e => { e.preventDefault(); downloadText(text, `workbench-${name || 'reply'}.md`, 'text/markdown;charset=utf-8'); });
-  div.appendChild(a);
+  turn.appendChild(a);
 }
 
 async function generateSynthesis() {
