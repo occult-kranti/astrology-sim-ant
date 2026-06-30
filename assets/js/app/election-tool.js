@@ -44,6 +44,8 @@ export function initElection() {
   // press "Judge"), so the readout always matches the selected aim.
   $('e-op').addEventListener('change', () => judge());
   $('e-system').addEventListener('change', () => judge());
+  const hb = $('e-heatmap-btn');
+  if (hb) hb.addEventListener('click', () => renderHeatmap());
 
   // 4) auto-run once so the page is never empty
   judge();
@@ -205,4 +207,57 @@ function renderWindows(op, when, lat, lon) {
   } catch (err) {
     box.innerHTML = '<p class="small muted">The upcoming-window scan could not be completed in this browser; the readout above is unaffected.</p>';
   }
+}
+
+// ---------------------------------------------------------------------------
+//  The 7-day × 24-hour election heat-map. Each cell is electionScore for that
+//  hour & aim; the weekly planetary-hour periodicity emerges as a diagonal.
+const VCOLOR = { green: '#2f7d4f', amber: '#c79a2b', red: '#b23b2e' };
+const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+function renderHeatmap() {
+  const op = $('e-op').value;
+  const lat = parseFloat($('e-lat').value), lon = parseFloat($('e-lon').value);
+  const offset = parseFloat($('e-offset').value) || 0;
+  const system = $('e-system').value;
+  const dateStr = $('e-date').value;
+  const box = $('e-heatmap'), status = $('e-heatmap-status');
+  if (isNaN(lat) || isNaN(lon)) { box.innerHTML = '<p class="small muted">Enter a valid latitude and longitude.</p>'; return; }
+  status.textContent = 'Scoring 168 hours…';
+  // Defer so the status paints before the (synchronous) compute loop runs.
+  setTimeout(() => {
+    try {
+      const rows = [];
+      for (let d = 0; d < 7; d++) {
+        const cells = [];
+        for (let h = 0; h < 24; h++) {
+          const when = toUTC(dateStr, `${String(h).padStart(2, '0')}:00`, offset);
+          when.setUTCDate(when.getUTCDate() + d);
+          let v = 'amber', sc = 0;
+          try { const e = electionScore(castChart(when, lat, lon, system), op); v = e.verdict; sc = e.score; } catch { /* leave default */ }
+          cells.push({ v, sc, h });
+        }
+        const lbl = toUTC(dateStr, '12:00', offset); lbl.setUTCDate(lbl.getUTCDate() + d);
+        const localDow = new Date(lbl.getTime() + offset * 3600000).getUTCDay();
+        rows.push({ dow: DOW[localDow], cells });
+      }
+      const opLabel = (OPERATIONS.find(o => o.key === op) || {}).label || op;
+      const head = '<th class="l" style="font-size:.7rem">day＼h</th>' +
+        Array.from({ length: 24 }, (_, h) => `<th style="font-size:.62rem;font-weight:400;padding:0 1px">${h}</th>`).join('');
+      const body = rows.map(r => `<tr><td class="l small" style="white-space:nowrap;padding-right:.4rem">${esc(r.dow)}</td>` +
+        r.cells.map(c => `<td title="${esc(r.dow)} ${c.h}:00 — ${esc(c.v)} (score ${c.sc})" style="background:${VCOLOR[c.v] || '#777'};width:16px;height:16px;border:1px solid rgba(0,0,0,.15)"></td>`).join('') + '</tr>').join('');
+      box.innerHTML =
+        `<p class="small" style="margin:.2rem 0"><b>${esc(opLabel)}</b> — every hour of the next 7 days
+           (<span style="color:${VCOLOR.green}">■</span> fit · <span style="color:${VCOLOR.amber}">■</span> mixed ·
+           <span style="color:${VCOLOR.red}">■</span> unfit).</p>
+         <table style="border-collapse:collapse"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>
+         <p class="small muted" style="margin:.3rem 0 0">The favourable cells repeat on a 7-day diagonal because the
+           ruler's planetary day &amp; hour recur weekly — the periodicity is the <em>arithmetic of the planetary hours</em>,
+           transparent and reproducible, not evidence of an influence on events.</p>`;
+      status.textContent = '';
+    } catch (err) {
+      box.innerHTML = '<p class="small muted">The heat-map could not be computed in this browser.</p>';
+      status.textContent = '';
+    }
+  }, 30);
 }

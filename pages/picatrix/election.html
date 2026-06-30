@@ -68,6 +68,15 @@
 
   <h2>Best upcoming windows (next 72 hours)</h2>
   <div id="e-windows"></div>
+
+  <h2>The week at a glance — an election heat-map</h2>
+  <p class="small muted">Every hour of the next seven days scored for this aim. Watch the <b>weekly rhythm</b>
+    emerge: the planetary day &amp; hour of the aim's ruler recur on a 7-day beat, so the favourable cells fall in a
+    repeating diagonal — a visible consequence of the planetary-hour arithmetic, not a hidden force. Green = fit,
+    amber = mixed, red = unfit. (Reuses the same cited scorer.)</p>
+  <p><button type="button" class="btn sm" id="e-heatmap-btn">Show the 7-day heat-map</button>
+    <span id="e-heatmap-status" class="small muted" style="margin-left:.5rem"></span></p>
+  <div id="e-heatmap" style="overflow-x:auto"></div>
 </main>
 <script type="module">
   import { mountChrome } from '../../assets/js/app/shared.js';

@@ -59,6 +59,7 @@ function currentSection() {
   if (/\/pages\/trajectory\.html$/.test(p)) return 'trajectory';
   if (/\/pages\/workflow\.html$/.test(p)) return 'workflow';
   if (/\/pages\/tools\.html$/.test(p)) return 'tools';
+  if (/\/pages\/(experiment|structure)\.html$/.test(p)) return 'tools';
   if (/\/pages\/glossary\.html$/.test(p)) return 'glossary';
   if (/(\/index\.html$|\/$)/.test(p)) return 'home';
   return '';
@@ -124,6 +125,8 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/tools.html')}">All Tools &amp; Calculators</a></li>
         <li><a href="${R('pages/basics.html')}">The Basics — every concept explained</a></li>
         <li><a href="${R('pages/interpret.html')}">Reading your results (a reference)</a></li>
+        <li><a href="${R('pages/structure.html')}">Structure &amp; patterns (the hidden symmetry)</a></li>
+        <li><a href="${R('pages/experiment.html')}">Test it yourself (the falsification demo)</a></li>
         <li><a href="${R('pages/how-it-works.html')}">How it's calculated (step by step)</a></li>
         <li><a href="${R('pages/workflow.html')}">Chapter Map &amp; Workflows</a></li>
         <li><a href="${R('pages/book1/master.html')}">Book I Master Tool</a></li>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test it yourself — the falsification demo | The Astrologer's Workbench</title>
+<meta name="description" content="An in-tool honest-science demonstration: permute the moment of an election across a window and watch the fitness score scatter into a null distribution. See where your moment falls, and how a few minutes can flip the verdict — the rule is a deterministic function of the clock, not a measured effect on events.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › Test it yourself</p>
+  <h1>Test it yourself — the falsification demo</h1>
+  <p class="lede">Astrology's central claim is that the moment encodes the outcome. Here is a way to <em>look at
+    that claim directly</em>: take an aim and a place, permute the <b>moment</b> across a window, and watch how the
+    “fitness” score is distributed over random times — the <b>null distribution</b>. See where your chosen moment
+    falls in it, and how sensitive the verdict is to a few minutes' change.</p>
+
+  <div class="callout science"><span class="label">Why this matters</span>
+    The numbers are real and reproducible — but a “favourable” verdict is favourable <em>by the rule's arithmetic</em>.
+    Its frequency is set by how strict the rule is, not by any measured effect on events; no controlled study has found
+    electional timing to influence outcomes. This tool shows the rule's behaviour so you can judge it for yourself. See
+    <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="x-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 200px"><label for="x-op">Aim of the work</label><select id="x-op"></select></div>
+      <div class="field" style="flex:1 1 200px"><label for="x-city">Place</label><select id="x-city"></select></div>
+      <div class="field"><label for="x-lat">Lat °N</label><input id="x-lat" type="number" step="0.0001" class="w-coord"></div>
+      <div class="field"><label for="x-lon">Lon °E</label><input id="x-lon" type="number" step="0.0001" class="w-coord"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="x-date">Date</label><input id="x-date" type="date"></div>
+      <div class="field"><label for="x-time">Time (local)</label><input id="x-time" type="time"></div>
+      <div class="field"><label for="x-offset">UTC offset</label><input id="x-offset" type="number" step="0.5" class="w-offset"></div>
+      <div class="field"><label for="x-window">Window</label><select id="x-window">
+        <option value="day">this day (±12 h)</option><option value="week">this week (±3.5 days)</option><option value="year" selected>this year (±182 days)</option></select></div>
+      <div class="field"><label for="x-n">Samples</label><input id="x-n" type="number" min="50" max="1000" step="50" value="300" style="width:6rem"></div>
+      <button type="button" class="btn sm" id="x-now">Now</button>
+      <button type="submit" class="btn">Run the test</button>
+    </div>
+  </form>
+
+  <div id="x-out" style="margin-top:1.1rem"></div>
+
+  <p class="small muted" style="margin-top:1.4rem">Companion: the <a href="structure.html">Structure &amp; patterns</a>
+    explorer shows the hidden symmetry the rules are built on (the planetary-week theorem, antiscia, harmonic aspects).</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  import { initExperiment } from '../assets/js/app/experiment.js';
+  mountChrome('tools');
+  initExperiment();
+</script>
+</body>
+</html>
