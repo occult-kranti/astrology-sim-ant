@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarot — the spread, laid &amp; read | The Astrologer's Workbench</title>
+<meta name="description" content="The 78-card Rider–Waite–Smith / Golden Dawn Tarot: choose a spread (single, Past/Present/Future, the Horseshoe, or the ten-card Celtic Cross), shuffle &amp; draw with optional reversals, and the engine lays each card in its position, reads the Golden Dawn elemental dignities between neighbours, and reports the spread's balance — with an AI diviner to narrate it. Historical study only; a divinatory art of no demonstrated validity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .tarot-board { position:relative; width:100%; max-width:46rem; margin:.5rem auto; border:1px dashed var(--rule);
+    border-radius:.6rem; background:linear-gradient(160deg,#fffdf8,#f3ead6); }
+  .tarot-slot { width:5rem; }
+  .tarot-pos { text-align:center; margin-bottom:.2rem; line-height:1.05; max-width:5.4rem; }
+  .tarot-card { width:4.8rem; height:7rem; border:1.5px solid var(--rule); border-radius:.45rem; background:var(--card);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(20,20,40,.12); margin:0 auto; }
+  .tarot-card-inner { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.2rem; padding:.25rem; text-align:center; }
+  .tarot-badge { font-size:1.25rem; line-height:1; }
+  .tarot-cname { font-size:.66rem; line-height:1.05; font-weight:600; }
+  .tarot-suit { font-size:.58rem; color:var(--muted); }
+  .tarot-el-fire { border-color:var(--fire); } .tarot-el-water { border-color:var(--water); }
+  .tarot-el-air { border-color:var(--air); } .tarot-el-earth { border-color:var(--earth); }
+  .tarot-el-none { border-color:var(--gold); }
+  .tarot-positions { display:grid; grid-template-columns:repeat(auto-fill, minmax(17rem, 1fr)); gap:.5rem; margin-top:.4rem; }
+  .tarot-pos-row { border:1px solid var(--rule); border-radius:.5rem; padding:.5rem .6rem; background:var(--card); }
+  .tarot-pos-h { margin-bottom:.2rem; }
+  .tarot-explain { margin-left:.3rem; }
+  .tarot-ref-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(14rem, 1fr)); gap:.5rem; margin-top:.5rem; }
+  .tarot-ref-card { border:1px solid var(--rule); border-left:4px solid var(--gold); border-radius:.4rem; padding:.4rem .6rem; background:var(--card); }
+  .tarot-ref-card.tarot-el-fire { border-left-color:var(--fire); } .tarot-ref-card.tarot-el-water { border-left-color:var(--water); }
+  .tarot-ref-card.tarot-el-air { border-left-color:var(--air); } .tarot-ref-card.tarot-el-earth { border-left-color:var(--earth); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Tarot</p>
+  <h1>Tarot — the spread, laid &amp; read</h1>
+  <p class="lede">The Tarot's <b>78 cards</b> — 22 <b>Major Arcana</b> and the four suits of the <b>Minor Arcana</b>
+    (Wands/Fire, Cups/Water, Swords/Air, Pentacles/Earth) — read in the <b>Rider–Waite–Smith</b> and <b>Golden Dawn</b>
+    tradition. Choose a spread, <b>shuffle &amp; draw</b> (with reversals if you like), and the engine lays each card in
+    its position, weighs the <b>elemental dignities</b> between neighbours, and shows the spread's balance — the weight
+    of the Major Arcana, the leading suit, the reversals.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Tarot cartomancy is a <b>historical divinatory art of no demonstrated validity</b>. The deck's correspondences
+    (Hebrew letters, decans, elements) are a <b>late-Victorian Golden Dawn / Waite–Smith synthesis</b> (c. 1888–1911) —
+    a symbolic grammar, not a fact about the world. The cards are shuffled by your browser's random generator; the
+    reading is the tradition's, reproduced for study — never a prediction or advice.</div>
+
+  <form id="tarot-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 100%"><label for="tarot-question">Your question (optional)</label>
+        <input id="tarot-question" type="text" placeholder="e.g. what should I understand about this situation?" style="width:100%"></div>
+    </div>
+    <div class="field-row" style="margin-top:.6rem;align-items:flex-end">
+      <div class="field" style="flex:1 1 260px"><label for="tarot-spread">Spread</label><select id="tarot-spread"></select></div>
+      <label class="small" style="display:flex;align-items:center;gap:.3rem"><input type="checkbox" id="tarot-reversals" checked> include reversals</label>
+      <button type="submit" class="btn" id="tarot-draw">🔀 Shuffle &amp; draw</button>
+    </div>
+    <p id="tarot-spread-desc" class="small muted" style="margin:.4rem 0 0"></p>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The spread</h2>
+    <div id="tarot-board"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The reading</h2>
+    <div id="tarot-out"></div>
+    <div class="callout" style="margin-top:.6rem"><span class="label">A story, not a verdict</span> A reading lays a
+      symbolic story — each position frames a card, reversals soften or block it, and the elemental dignities show which
+      neighbours agree. Tarot has no demonstrated predictive validity; this is structured reflection for study.</div></section>
+
+  <section class="card" id="dv-assistant-card"><h2 style="margin-top:0">Ask the diviner — AI interpretation (Claude or a free provider)</h2>
+    <div id="dv-assistant"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The 78 cards <span class="small muted">(reference)</span></h2>
+    <div id="tarot-reference"></div></section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything in the real world. The Tarot is a deck of symbolic images; the meanings
+    assigned to the cards and their correspondences are a historical tradition with no demonstrated connection to events.
+    Treat every reading as a faithful reconstruction of how cartomancers reason — interesting history and a mirror for
+    reflection, not guidance. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="geomancy.html">Geomancy</a> shield, the
+    <a href="workbench.html">Master Tool</a>, and the <a href="picatrix/index.html">Picatrix</a> magical layer.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('tools');
+  import { initTarot } from '../assets/js/app/tarot.js';
+  initTarot();
+</script>
+</body>
+</html>

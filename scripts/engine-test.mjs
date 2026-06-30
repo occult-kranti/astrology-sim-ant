@@ -317,5 +317,60 @@ ok(Array.isArray(vd.yogas) && vd.yogas.length >= 4, 'yogas detected');
 let vdRound = false; try { vdRound = !!JSON.parse(JSON.stringify(vd)).lagna; } catch { vdRound = false; }
 ok(vdRound, 'castVedic is JSON-serializable');
 
+// --- Geomancy (the Shield Chart) -------------------------------------------
+import { GEOMANTIC_FIGURES, figureByRows, EVEN_FIGURES } from '../assets/js/core/data/geomantic-figures.js';
+import { addFigures, mothersFromTallies, castShield, castFromTallies, geomancyHouses, geomanticJudgement } from '../assets/js/core/geomancy.js';
+ok(GEOMANTIC_FIGURES.length === 16, `16 geomantic figures (got ${GEOMANTIC_FIGURES.length})`);
+ok(new Set(GEOMANTIC_FIGURES.map(f => f.rows.join(''))).size === 16, 'all 16 figures have a distinct dot-pattern (a complete bijection)');
+ok(figureByRows([1, 1, 1, 1]).key === 'via' && figureByRows([2, 2, 2, 2]).key === 'populus', 'Via=1111, Populus=2222');
+ok(figureByRows([1, 2, 2, 1]).key === 'carcer' && figureByRows([2, 1, 1, 2]).key === 'coniunctio', 'Carcer=1221, Coniunctio=2112 (the non-trivial palindromes)');
+ok(EVEN_FIGURES.length === 8, `exactly 8 even figures can stand as Judge (got ${EVEN_FIGURES.length})`);
+// reverse-pairs are involutions
+ok(GEOMANTIC_FIGURES.every(f => figureByRows(GEOMANTIC_FIGURES.find(g => g.key === f.reversedOf).rows).reversedOf === f.key), 'reversedOf is an involution (a↔b)');
+// addFigures parity rule: 1+1->2 (even), 1+2->1 (odd), 2+2->2
+ok(addFigures(figureByRows([1, 1, 1, 1]), figureByRows([1, 1, 1, 1])).rows.join('') === '2222', 'addFigures(Via,Via) = Populus (1+1 even → double)');
+ok(addFigures(figureByRows([1, 1, 1, 1]), figureByRows([2, 2, 2, 2])).rows.join('') === '1111', 'addFigures(Via,Populus) = Via (1+2 odd → single)');
+// the Judge-is-always-even theorem (geomancy's checksum) over many casts
+let judgeOdd = 0;
+for (let s = 0; s < 500; s++) { const sh = castFromTallies(Array.from({ length: 16 }, (_, i) => s * 7 + i * 13 + (i % 5))); if (!sh.judge.even) judgeOdd++; }
+ok(judgeOdd === 0, `the Judge is ALWAYS an even figure over 500 casts (odd Judges: ${judgeOdd})`);
+const gsh = castShield(mothersFromTallies([3, 5, 2, 8, 1, 4, 7, 2, 9, 3, 6, 1, 2, 2, 5, 4]));
+ok(gsh.daughters.length === 4 && gsh.nieces.length === 4 && gsh.judge && gsh.reconciler, 'castShield returns daughters, nieces, judge & reconciler');
+ok(gsh.daughters[0].rows.join('') === [gsh.mothers[0].rows[0], gsh.mothers[1].rows[0], gsh.mothers[2].rows[0], gsh.mothers[3].rows[0]].join(''), 'Daughter 1 is the transposition of the Mothers’ heads');
+ok(geomancyHouses(gsh).length === 12, 'geomancyHouses lays 12 figures');
+const gj = geomanticJudgement(gsh, 7);
+ok(['affirmed', 'qualified', 'denied'].includes(gj.tone) && gj.querentFigure && gj.quesitedFigure && Array.isArray(gj.lines), 'geomanticJudgement returns a tone + significators + lines');
+
+// --- Tarot (the spread) -----------------------------------------------------
+import { TAROT_DECK, cardById, SUITS, MAJORS, MINORS } from '../assets/js/core/data/tarot-deck.js';
+import { SPREADS, SPREAD_KEYS, elementalDignity, drawSpread, tarotReading } from '../assets/js/core/tarot.js';
+ok(TAROT_DECK.length === 78, `78-card deck (got ${TAROT_DECK.length})`);
+ok(MAJORS.length === 22 && MINORS.length === 56, `22 majors + 56 minors (got ${MAJORS.length}+${MINORS.length})`);
+ok(new Set(TAROT_DECK.map(c => c.id)).size === 78, 'all 78 card ids are distinct');
+ok(['wands', 'cups', 'swords', 'pentacles'].every(s => MINORS.filter(c => c.suit === s).length === 14), 'each suit has 14 cards (Ace–Ten + 4 courts)');
+ok(MINORS.every(c => ['Fire', 'Water', 'Air', 'Earth'].includes(c.element)), 'every minor card carries a capitalised suit-element');
+ok(cardById('the-fool').number === 0 && cardById('the-world').number === 21, 'Fool=0, World=21');
+ok(elementalDignity('Fire', 'Fire').relation === 'reinforce', 'like elements reinforce');
+ok(elementalDignity('Fire', 'Air').relation === 'strengthen' && elementalDignity('Fire', 'Water').relation === 'weaken', 'Fire+Air friendly, Fire+Water contrary');
+ok(SPREAD_KEYS.length >= 4 && SPREADS.celticCross.count === 10, 'spreads include the 10-card Celtic Cross');
+const tdraws = [{ id: 'the-tower', reversed: false }, { id: 'wands-ace', reversed: true }, { id: 'cups-two', reversed: false }];
+const tr = tarotReading('three', tdraws, { question: 'a test' });
+ok(tr.cards.length === 3 && tr.cards[1].reversed === true && tr.dignities.length === 2, 'tarotReading lays 3 cards, honours reversal, reads 2 dignities');
+ok(tr.balance && typeof tr.balance.majors === 'number' && Array.isArray(tr.summaryLines), 'tarotReading reports a balance + summary');
+let tThrew = false; try { drawSpread('three', [{ id: 'the-fool', reversed: false }]); } catch { tThrew = true; }
+ok(tThrew, 'drawSpread refuses a wrong-length draw');
+
+// --- Divination LLM context (the diviner bridge) ---------------------------
+import { buildGeomancyContext, buildTarotContext, buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, geomancyDataBlock, tarotDataBlock, DIVINER_PREAMBLE } from '../assets/js/core/llm-context.js';
+const gctx = buildGeomancyContext({ kind: 'geomancy', question: 'a test', quesitedHouse: 7, shield: gsh, judgement: gj, houses: geomancyHouses(gsh) });
+ok(/pseudoscience|no demonstrated/i.test(gctx.system) && /never\s+prescribe|describe/i.test(gctx.system), 'buildGeomancyContext keeps the honest framing');
+ok(gctx.facts.length > 0 && /Judge/i.test(gctx.system), 'buildGeomancyContext grounds the Judge + facts');
+ok(gctx.glossary.length > 0 && DIVINER_PREAMBLE.length > 0, 'buildGeomancyContext pulls the geomancy glossary + diviner persona');
+const tctx = buildTarotContext({ kind: 'tarot', question: 'a test', spreadKey: 'three', reading: tr });
+ok(/pseudoscience|no demonstrated/i.test(tctx.system) && /Tower|Ace of Wands/i.test(tctx.system), 'buildTarotContext keeps the framing + grounds the drawn cards');
+ok(/describe|never\s+predict|history/i.test(buildGeomancyInterpretPrompt({ judgement: gj, shield: gsh })) , 'geomancy interpret prompt keeps the caveat');
+ok(/Golden Dawn|elemental/i.test(buildTarotInterpretPrompt(tr)) && /never invent|interpret THESE/i.test(geomancyDataBlock({ judgement: gj, shield: gsh, houses: [] })), 'tarot interpret + geomancy data block well-formed');
+ok(/interpret THESE cards/i.test(tarotDataBlock({ reading: tr })), 'tarot data block is well-formed');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

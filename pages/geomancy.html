@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geomancy — the Shield Chart, cast & judged | The Astrologer's Workbench</title>
+<meta name="description" content="Western/Arabic geomancy (ʿilm al-raml), Agrippa's 'daughter of astrology': strike the four Mothers and the engine derives the Daughters, Nieces, the two Witnesses, the Judge and the Reconciler by pure algebra (the Judge always checks out even), lays the twelve figures into the houses, and gives a house-by-house judgement — with an AI diviner to narrate it. Historical study only; a divinatory art of no demonstrated validity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .geo-dots { display:inline-flex; flex-direction:column; gap:.28rem; padding:.2rem 0; }
+  .geo-row { display:flex; gap:.45rem; justify-content:center; min-height:.8rem; }
+  .geo-dot { width:.5rem; height:.5rem; border-radius:50%; background:var(--ink); display:inline-block; }
+  .geo-figure { display:inline-flex; flex-direction:column; align-items:center; gap:.3rem; text-align:center;
+    border:1px solid var(--rule); border-left:4px solid var(--rule); border-radius:.5rem; padding:.5rem .7rem;
+    background:var(--card); min-width:7.2rem; }
+  .geo-slot { font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+  .geo-fname { font-size:.86rem; line-height:1.15; }
+  .geo-favorable { border-left-color:var(--benefic); }
+  .geo-unfavorable { border-left-color:var(--malefic); }
+  .geo-neutral, .geo-mixed { border-left-color:var(--gold); }
+  .geo-row-figs { display:flex; flex-wrap:wrap; gap:.6rem; align-items:stretch; }
+  .geo-verdict-figs .geo-figure { min-width:8rem; }
+  .geo-tier { margin:.8rem 0; }
+  .geo-tier h3 { margin:.2rem 0 .5rem; font-size:1rem; }
+  .geo-houses { display:grid; grid-template-columns:repeat(auto-fill, minmax(8.5rem, 1fr)); gap:.6rem; }
+  .geo-house { border:1px solid var(--rule); border-radius:.5rem; padding:.5rem; text-align:center; background:var(--card);
+    display:flex; flex-direction:column; align-items:center; gap:.3rem; }
+  .geo-house-n { font-size:.72rem; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); }
+  .geo-querent { outline:2px solid var(--air); }
+  .geo-quesited { outline:2px solid var(--gold); }
+  .geo-ref-card { display:flex; gap:.7rem; align-items:flex-start; border:1px solid var(--rule); border-left:4px solid var(--rule);
+    border-radius:.5rem; padding:.5rem .7rem; background:var(--card); }
+  .geo-ref-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(15rem, 1fr)); gap:.6rem; }
+  .geo-mpad { display:inline-flex; flex-direction:column; gap:.3rem; align-items:center; margin:.3rem .6rem .3rem 0; }
+  .geo-mline { background:var(--card); border:1px solid var(--rule); border-radius:.3rem; padding:.3rem .8rem; cursor:pointer; min-width:3.4rem; }
+  .geo-mline[aria-pressed="true"] { border-color:var(--gold); }
+  .geo-explain { margin-top:.2rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Geomancy</p>
+  <h1>Geomancy — the Shield Chart, cast &amp; judged</h1>
+  <p class="lede">Geomancy — <i>ʿilm al-raml</i>, "the science of the sand" — is the divinatory art Agrippa called the
+    <b>daughter of astrology</b>. You strike four hasty rows of marks to raise the <b>four Mothers</b>; from them the
+    engine derives the <b>Daughters</b>, the <b>Nieces</b>, the two <b>Witnesses</b>, the <b>Judge</b> and the
+    <b>Reconciler</b> by pure algebra — and the Judge <b>always comes out an even figure</b>, the tradition's own
+    built-in check that the working is sound. The twelve figures are then laid into the <b>twelve houses</b> and read
+    by the house your question falls under.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Geomancy is a <b>historical divinatory art of no demonstrated validity</b>. The mathematics of the shield is real
+    and verifiable (it is Boolean algebra over sixteen figures); the <em>interpretations</em> are those of Agrippa
+    (1533), Robert Fludd and the sand-geomancers, reproduced faithfully for study — never a prediction or advice.
+    The figures are cast by your browser's random generator (or set by hand); nothing leaves the page.</div>
+
+  <form id="geo-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 100%"><label for="geo-question">Your question (optional)</label>
+        <input id="geo-question" type="text" placeholder="e.g. will the matter I am set on come to good?" style="width:100%"></div>
+    </div>
+    <div class="field-row" style="margin-top:.6rem;align-items:flex-end">
+      <div class="field" style="flex:1 1 280px"><label for="geo-topic">The house the question is about</label>
+        <select id="geo-topic"></select></div>
+      <button type="submit" class="btn" id="geo-cast">✶ Cast the figures</button>
+    </div>
+    <details style="margin-top:.7rem">
+      <summary class="small"><b>Or strike the marks yourself</b> — set the four Mothers by hand (tap each line for a single · or double : point)</summary>
+      <div style="margin-top:.5rem;border-top:1px dashed var(--rule);padding-top:.6rem">
+        <div id="geo-manual-pad" style="display:flex;flex-wrap:wrap"></div>
+        <button type="button" class="btn sm" id="geo-manual-read">Read this cast</button>
+        <span id="geo-manual-status" class="small muted" style="margin-left:.5rem"></span>
+      </div>
+    </details>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The Shield</h2>
+    <div id="geo-shield"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The judgement</h2>
+    <div id="geo-out"></div>
+    <div class="callout" style="margin-top:.6rem"><span class="label">A tone, not a verdict</span> This is a structured
+      weighing of the geomantic tradition, shown for study — geomancy has no demonstrated predictive validity. The Judge
+      gives the outcome, the Witnesses the road to it, and the figure of the topic house the matter itself.</div></section>
+
+  <section class="card"><h2 style="margin-top:0">The House Chart <span class="small muted">(the twelve figures in the houses)</span></h2>
+    <p class="small muted">The four Mothers fill houses 1–4, the Daughters 5–8, the Nieces 9–12. The
+      <span style="outline:2px solid var(--air);padding:0 .2rem">querent</span> is the 1st house; the
+      <span style="outline:2px solid var(--gold);padding:0 .2rem">quesited</span> is your chosen topic house.</p>
+    <div id="geo-houses"></div></section>
+
+  <section class="card" id="dv-assistant-card"><h2 style="margin-top:0">Ask the diviner — AI interpretation (Claude or a free provider)</h2>
+    <div id="dv-assistant"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The sixteen figures <span class="small muted">(reference)</span></h2>
+    <div id="geo-reference" class="geo-ref-grid"></div></section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything in the real world. Geomancy is a historical method of structured
+    reflection; the shield's algebra is genuine mathematics, but the meanings assigned to the figures have no
+    demonstrated connection to events. Treat every line as a faithful reconstruction of how diviners once reasoned —
+    interesting history, not guidance. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="tarot.html">Tarot</a> reader, the
+    <a href="workbench.html">Master Tool</a>, and the <a href="picatrix/index.html">Picatrix</a> magical layer.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('tools');
+  import { initGeomancy } from '../assets/js/app/geomancy.js';
+  initGeomancy();
+</script>
+</body>
+</html>

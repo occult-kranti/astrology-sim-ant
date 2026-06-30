@@ -211,31 +211,49 @@ live-update, a partial a11y pass). What remained, in **priority order**:
   the grounded prompt reaches the provider, the reply streams into a bubble. *(No key is ever bundled — embedding one
   in a public static repo would be scraped/abused; free tiers are rate-limited and need a personal signup. BYOK is the
   right pattern.)*
-- ⬜ **Deepen** (the research's ranked list, by value): per-panel **"✶ Explain this"** buttons (a scoped, cite-bound
-  sub-prompt per result panel); a **cite-bound output contract** (number facts `[F#]`, require the model to tag
-  claims); a **glossary-aware** `defineTerm` tool + inline term links in replies; a **structured talisman walk-through**
-  renderer over `talisman.steps[]`; **streaming-markdown** rendering with copy/regenerate; and a **unified
-  refusal/error** path across providers. Files: `app/assistant.js`, `core/llm-context.js`, `app/workbench.js`.
+### Deepen the AI — ✅ **SHIPPED** (the diviner), then continue
+- ✅ **Shared transport** — extracted `app/llm-core.js` (the provider table + the live-tested Anthropic & OpenAI-compatible
+  streaming + the agentic Claude tool-loop), and refactored `app/assistant.js` onto it (behaviour-preserving). Both the
+  Workbench assistant and the new **divination assistant** (`app/divination-assistant.js`) now share ONE transport.
+- ✅ **Expert-diviner persona + grounding** — `core/llm-context.js` gained `DIVINER_PREAMBLE` (a learned-historian voice,
+  layered on the LOCKED `HONEST_FRAMING`) and `buildGeomancyContext` / `buildTarotContext` + interpret-prompt & data-block
+  builders, so the AI narrates the **computed, cited** cast and never invents figures/cards. **Free-tier-aware** context
+  (Groq 8000 TPM): a leaner fact/glossary budget and no JSON data block for OpenAI-compatible keys. **Live-tested on the
+  real Groq free tier** (geomancy + tarot interpret): HTTP 200, grounded replies, 0 console errors.
+- ✅ **Per-panel "✶ Explain this"** — every geomancy shield-figure / house and every dealt tarot card carries an explain
+  chip that pre-fills a focused, grounded question into the diviner chat.
+- ⬜ **Still to deepen:** a cite-bound output contract (`[F#]` fact tags); a glossary-aware `defineTerm` tool + inline
+  term links; a structured talisman walk-through renderer; streaming-markdown rendering with copy/regenerate.
 
-### The next oracle to build — **GEOMANCY** *(the research's top pick: heavy occult usage × excellent engine fit)*
-Renaissance **astrological geomancy** — Agrippa's "daughter of astrology": 16 binary inputs → the **Shield chart**
-(Mothers, Daughters, Nieces, Witnesses, Judge, Reconciler) and the **House chart** judged **horary-style**. The best
-next tool because it scores top on BOTH axes (heavily practised *and* native to this site's tradition), and it is
-**almost entirely computable** — the whole Shield is boolean algebra; only the final per-house narrative is interpretive.
-- **DATA** `core/data/geomantic-figures.js` — the 16 figures `{ name, english, rows[4]∈{1,2}, binary, planet, sign,
-  element, character, mobility, meaning, source }` (run `accuracy-check` on the canonical pattern+ruler table; cite
-  Agrippa *Of Geomancy* + Greer + Skinner).
-- **CORE** `core/geomancy.js` (PURE) — `addFigures(a,b)` (row-wise parity), `castShield(16 bits)`, `figureOf(rows)`,
-  Part of Fortune (total points mod 12 → house), `houseChart(shield)` projecting figures into the **existing
-  `data/houses.js`**, and `geomanticJudgement(shield, quesitedHouse)` **reusing the `horary-judge.js` house-significator
-  + perfection shape** → `{ tone, lines, cite }`. A crypto-RNG cast, shown honestly as a coin-flip.
-- **PAGE** `pages/geomancy.html` + `app/geomancy.js` (renders the Shield, the House chart, the judgement). Register in
-  `registry.js` (`callable:true`); extend `engine-test.mjs` (16 figures; `addFigures(Via,Via)=Populus`; Shield
-  determinism on a fixed seed). Honest framing: the cast is acknowledged random; everything after is exact, verifiable
-  boolean algebra — the same "the calculation is real, the interpretation is historical" line.
-- **Runners-up:** Tarot (very-high usage, *good* fit via decan/planetary correspondences — a strong follow-on);
-  Sigils/planetary kameas (good fit, Agrippa II); the Kabbalah Tree of Life (medium). I Ching, numerology and gematria
-  score *weak* on engine fit.
+### Geomancy — ✅ **SHIPPED** *(the research's top pick: heavy occult usage × excellent engine fit)*
+Western/Arabic **geomancy** (ʿilm al-raml) — Agrippa's "daughter of astrology": four random Mothers → the **Shield**
+(Daughters by transposition, Nieces, two Witnesses, the **Judge** — always an even figure, the built-in checksum — and
+the Reconciler) and the **House Chart** judged horary-style. Almost entirely computable: the whole Shield is boolean
+algebra; only the final narrative is interpretive.
+- **DATA** `core/data/geomantic-figures.js` — the 16 figures as a **provably-complete, distinct bijection** of the 2⁴
+  dot-patterns (derived by exhaustive elimination — the 4 palindromes, the 6 reverse-pairs, the planetary rulers and the
+  even/odd parity — after both research agents *and* a web transcription each introduced duplicate patterns; cited Agrippa
+  II.48–53 + Greer).
+- **CORE** `core/geomancy.js` (PURE, no RNG) — `addFigures` (row-wise parity), `mothersFromTallies`, `castShield`,
+  `geomancyHouses`, `geomanticJudgement` (the four modes of perfection → an affirmed/qualified/denied tone). The cast's
+  randomness lives only in `app/geomancy.js` (crypto RNG, or strike the marks by hand).
+- **PAGE** `pages/geomancy.html` + `app/geomancy.js` (the Shield in tiers, the 12-house chart, the judgement, the diviner
+  panel, the 16-figure reference). Registered in `registry.js`; `engine-test.mjs` asserts the 16-figure bijection, the
+  parity rule, and the **Judge-is-always-even theorem over 500 casts**.
+
+### Tarot — ✅ **SHIPPED** *(the strong follow-on: very-high usage, good fit via the Golden Dawn correspondences)*
+The **78-card** Rider–Waite–Smith / Golden Dawn deck.
+- **DATA** `core/data/tarot-deck.js` — 22 Major (with the GD Hebrew-letter & astrological attributions) + 56 Minor (four
+  suits × Ace–Ten + 4 courts), each with a normalised element, upright/reversed keywords and a Waite-register meaning
+  (generated from a verified research table; cited Waite 1911 + Book T).
+- **CORE** `core/tarot.js` (PURE, no RNG) — the canonical spreads (single, Past/Present/Future, Horseshoe, the 10-card
+  **Celtic Cross**) with positioned cards, the Golden Dawn **elemental dignities**, and a balance summary. The shuffle/draw
+  lives only in `app/tarot.js` (crypto RNG, optional reversals).
+- **PAGE** `pages/tarot.html` + `app/tarot.js` (a laid-out board, per-position reading, dignities, the diviner panel, the
+  78-card reference). Registered in `registry.js`; `engine-test.mjs` asserts the 78 distinct cards, 14-per-suit, the
+  dignity rules, and the Celtic Cross.
+- **Runners-up (future):** Sigils/planetary kameas (good fit, Agrippa II); the Kabbalah Tree of Life (medium). I Ching,
+  numerology and gematria score *weak* on engine fit.
 
 ---
 

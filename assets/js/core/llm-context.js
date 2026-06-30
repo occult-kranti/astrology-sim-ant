@@ -486,3 +486,125 @@ export function runTool(name, args = {}, ctx = {}) {
     default: throw new Error(`unknown tool: ${name}`);
   }
 }
+
+// ===========================================================================
+//  DIVINATION (Geomancy & Tarot) — the same honest, grounded bridge for the two
+//  cartomantic/geomantic tools. PURE: takes a computed reading object the tool
+//  produced (not a fullReading) and returns {system, facts} + prompt builders.
+//  The model speaks as a learned historian-diviner, yet is bound by the SAME
+//  locked honest framing — described never prescribed, a pseudoscience.
+// ===========================================================================
+
+// The expert-diviner ("shaman") persona, layered ON TOP of the honest preamble.
+export const DIVINER_PREAMBLE =
+  '\n\nVOICE: speak as a learned historian-diviner of the Western esoteric tradition — at home with ' +
+  'Cornelius Agrippa, the sand-geomancers of the medieval Arabic and Latin worlds, the Picatrix, A. E. Waite ' +
+  'and the Hermetic Order of the Golden Dawn. You know the figures and the cards, AND the rituals by which they ' +
+  'were cast and read (how a geomancer struck rows of marks in earth or sand; how a reader shuffles, cuts and ' +
+  'lays a spread, weighing reversals and elemental dignities). Explain this lore vividly and ACCURATELY, the way ' +
+  'a scholar demonstrates a working astrolabe — its craft and its history alive in the telling.\n' +
+  'BUT THE FRAMING ABOVE IS ABSOLUTE: these are arts of NO demonstrated validity. You DESCRIBE how the tradition ' +
+  'reasons and what it counselled, as HISTORY and symbolism; you NEVER predict the real future, never give ' +
+  'real-world advice (medical, legal, financial, relationship, safety) as fact, and never present the casting as ' +
+  'truth. If asked to foretell or to act on a reading, decline gently and restate the framing. Ground every claim ' +
+  'in the COMPUTED FIGURES below — the cast is fixed; interpret what was actually drawn, never invent cards or ' +
+  'figures. Be concise, evocative and honest at once.';
+
+function divinationGlossary(cats) {
+  return GLOSSARY.filter(g => cats.includes(g.cat)).map(g => ({ term: g.term, def: g.def }));
+}
+function assembleSystem(facts, glossary, label) {
+  return HONEST_SYSTEM_PREAMBLE + DIVINER_PREAMBLE +
+    '\n\nGLOSSARY (terms of art):\n' + glossary.map(g => `- ${g.term}: ${g.def}`).join('\n') +
+    `\n\nCOMPUTED ${label} (already cast & calculated by the engine; cite these, never invent):\n` +
+    facts.map(f => `- ${f.text}${f.cite ? `  [${f.cite}]` : ''}`).join('\n');
+}
+
+// ---- Geomancy --------------------------------------------------------------
+//  g = { kind:'geomancy', question, quesitedHouse, shield, judgement, houses }
+export function buildGeomancyContext(g, opts = {}) {
+  const j = g.judgement, sh = g.shield;
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  const F = f => `${f.english} (${f.latin}, ${f.nature})`;
+  if (g.question) add(`The question: "${g.question}" — read under the ${j.quesitedHouse}th house (${j.topic}).`, 'the querent');
+  add(`The four Mothers cast at random: ${sh.mothers.map(m => m.english).join(', ')}.`, 'Agrippa II.48 — the cast');
+  add(`Querent (1st house): ${F(j.querentFigure)} — ${j.querentFigure.meaning}`, 'JMG Greer — the significators');
+  add(`Quesited (${j.quesitedHouse}th house, ${j.topic}): ${F(j.quesitedFigure)} — ${j.quesitedFigure.meaning}`, 'the topic house');
+  add(`Perfection: ${j.perfects ? j.perfection.map(p => p.name).join(', ') : 'none — the significators do not meet'}.`, 'Agrippa II.51 — perfection');
+  add(`Right Witness ${F(sh.witnesses.right)} (the querent / the past); Left Witness ${F(sh.witnesses.left)} (the quesited / what follows).`, 'the Witnesses');
+  add(`JUDGE: ${F(sh.judge)}, ${sh.judge.points} points (even — the chart checks out) — ${sh.judge.meaning}`, 'the Judge gives the outcome');
+  add(`Reconciler (clarifier): ${F(sh.reconciler)}.`, 'the Reconciler');
+  add(`The tradition's reading: ${j.toneText}`, j.cite);
+  for (const h of (g.houses || [])) add(`House ${h.house} (${(h.signifies || '').split(';')[0]}): ${h.figure.english} (${h.figure.nature}).`, 'the House Chart');
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Geomancy']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'GEOMANTIC FIGURES'), facts: trimmed, glossary };
+}
+
+export function buildGeomancyInterpretPrompt(g) {
+  return (
+    'Interpret this geomantic cast as a master of the art would, FROM THE COMPUTED FIGURES ONLY. In clear prose: ' +
+    '(1) name what the question is and the topic house; (2) read the figure of the 1st house (the querent) and of ' +
+    'the topic house (the matter); (3) say whether and HOW the matter perfects (occupation, conjunction, mutation, ' +
+    'translation) — i.e. whether the parties truly meet; (4) read the two Witnesses as the road (right = the ' +
+    'querent and the past, left = the quesited and what follows) and the JUDGE as the outcome, noting its nature; ' +
+    '(5) bring in the Reconciler if the Judge is doubtful. THEN give one synthesis: what the whole shield, read ' +
+    'together, most strongly signifies — and what the tradition would COUNSEL as the favourable course, framed as ' +
+    'historical practice, never a real-world recommendation. Close with one honest sentence: geomancy is a ' +
+    'historical, pseudoscientific art of no demonstrated validity — described for study, never prescribed.'
+  );
+}
+export function geomancyDataBlock(g) {
+  const j = g.judgement, sh = g.shield;
+  const slim = f => ({ figure: f.english, latin: f.latin, nature: f.nature, points: f.points });
+  const dig = {
+    question: g.question || '', topicHouse: j.quesitedHouse, topic: j.topic,
+    mothers: sh.mothers.map(m => m.english), daughters: sh.daughters.map(m => m.english), nieces: sh.nieces.map(m => m.english),
+    querent: slim(j.querentFigure), quesited: slim(j.quesitedFigure),
+    witnesses: { right: slim(sh.witnesses.right), left: slim(sh.witnesses.left) },
+    judge: slim(sh.judge), reconciler: slim(sh.reconciler),
+    perfection: j.perfection.map(p => p.name), tone: j.tone,
+    houses: (g.houses || []).map(h => ({ house: h.house, figure: h.figure.english, nature: h.figure.nature })),
+  };
+  return '\n\nCOMPUTED GEOMANTIC SHIELD (JSON — interpret THESE figures, never invent):\n' + JSON.stringify(dig);
+}
+
+// ---- Tarot -----------------------------------------------------------------
+//  t = { kind:'tarot', question, spreadKey, reading }  (reading = tarotReading)
+export function buildTarotContext(t, opts = {}) {
+  const r = t.reading;
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (s, c) => s && facts.push({ text: s, cite: c || '' });
+  add(`Spread: ${r.spread.name}${t.question ? ` for the question "${t.question}"` : ''}. ${r.spread.description}`, 'Waite, Pictorial Key');
+  for (const c of r.cards) add(`${c.position}: ${c.card.name}${c.reversed ? ' (reversed)' : ''} — ${(c.text || []).join(', ')}. ${c.meaning}`, 'Waite — the card');
+  for (const d of r.dignities) add(`Elemental dignity — ${d.between[0]} & ${d.between[1]} (${d.positions.join(' / ')}): ${d.relation}; ${d.note}`, 'Golden Dawn — elemental dignities');
+  if (r.balance) add(`Balance: ${r.balance.majors} Major Arcana of ${r.cards.length}${r.balance.dominantSuit ? `, leading suit ${r.balance.dominantSuit}` : ''}${r.balance.dominantElement ? `, leading element ${r.balance.dominantElement}` : ''}, ${r.balance.reversed} reversed.`, 'the spread balance');
+  for (const s of (r.summaryLines || [])) add(s, 'the reading');
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Tarot']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'TAROT SPREAD'), facts: trimmed, glossary };
+}
+
+export function buildTarotInterpretPrompt(t) {
+  return (
+    'Read this tarot spread as a reader in the Golden Dawn tradition would, FROM THE DRAWN CARDS ONLY. In clear ' +
+    'prose: (1) go position by position — name the card, honour its orientation (a reversal softens, blocks, ' +
+    'internalises or delays it), and bind its meaning to what the position asks; (2) weigh the ELEMENTAL ' +
+    'DIGNITIES — which neighbouring cards strengthen one another and which are contrary; (3) note the balance ' +
+    '(the weight of the Major Arcana = fated forces, the leading suit/element, the reversals). THEN weave it into ' +
+    'ONE narrative: the story the spread tells, and what the tradition would COUNSEL — as historical symbolism, ' +
+    'never a forecast or real-world advice. Close with one honest sentence: tarot cartomancy has no demonstrated ' +
+    'predictive validity — a historical symbolic system described for study, never prescribed.'
+  );
+}
+export function tarotDataBlock(t) {
+  const r = t.reading;
+  const dig = {
+    question: t.question || '', spread: r.spread.name,
+    cards: r.cards.map(c => ({ position: c.position, card: c.card.name, reversed: c.reversed, element: c.card.element, keywords: c.text })),
+    dignities: r.dignities.map(d => ({ between: d.between, relation: d.relation })),
+    balance: r.balance,
+  };
+  return '\n\nCOMPUTED TAROT SPREAD (JSON — interpret THESE cards, never invent):\n' + JSON.stringify(dig);
+}

@@ -523,6 +523,38 @@ export const REGISTRY = [
     pages: ['pages/workbench.html'], howItWorks: HIW('dignity'),
     glossaryTerms: ['Almuten Figuris', 'Perfect Nature', 'Sect Light'],
   },
+  {
+    id: 'geomancy', title: 'Geomancy — the Shield Chart, cast & judged',
+    module: 'assets/js/core/geomancy.js', exportName: 'geomanticJudgement',
+    exports: ['castShield', 'mothersFromTallies', 'geomancyHouses', 'GEOMANTIC_FIGURES'],
+    computes: 'Western/Arabic geomancy (ʿilm al-raml): from four randomly-cast Mother figures, derives the whole Shield Chart by pure algebra — the four Daughters (by transposition), four Nieces, two Witnesses, the Judge (always an even figure — a built-in checksum) and the Reconciler — lays the twelve figures into the houses, and judges the matter by its house (occupation/conjunction/mutation/translation) into an affirmed/qualified/denied tone. A historical art of no demonstrated validity, described never prescribed.',
+    inputs: [
+      { name: 'mothers', type: 'object', desc: 'the four Mother figures (or use mothersFromTallies on 16 random marks)', required: true },
+      { name: 'quesitedHouse', type: 'number', desc: 'house 1–12 of the matter' },
+    ],
+    outputShape: '{ shield:{mothers,daughters,nieces,witnesses,judge,reconciler}, querentFigure, quesitedFigure, judge, perfection, tone, toneText, lines }',
+    callable: false,
+    book: 'Geomancy', chapter: 'Agrippa, Three Books II.48–53',
+    citation: 'Agrippa, Three Books of Occult Philosophy II.48–53; Robert Fludd, Fasciculus Geomanticus; J. M. Greer, The Art and Practice of Geomancy.',
+    pages: ['pages/geomancy.html'], howItWorks: 'pages/geomancy.html',
+    glossaryTerms: ['Geomancy', 'Geomantic Figure', 'Shield Chart', 'Witnesses & Judge', 'Perfection (Geomancy)'],
+  },
+  {
+    id: 'tarot', title: 'Tarot — the spread, laid & read',
+    module: 'assets/js/core/tarot.js', exportName: 'tarotReading',
+    exports: ['drawSpread', 'elementalDignity', 'SPREADS', 'TAROT_DECK'],
+    computes: 'The 78-card Rider–Waite–Smith / Golden Dawn Tarot: lays an array of drawn cards (upright or reversed) into a chosen spread (single, Past/Present/Future, the Horseshoe, the ten-card Celtic Cross), reads the Golden Dawn elemental dignities between neighbouring cards, and reports the spread’s balance (the weight of the Major Arcana, the leading suit/element, the reversals). The shuffle/draw is the caller’s; the engine is pure. A historical art of no demonstrated validity, described never prescribed.',
+    inputs: [
+      { name: 'spreadKey', type: 'enum', values: ['single', 'three', 'horseshoe', 'celticCross'], desc: 'the spread', required: true },
+      { name: 'draws', type: 'object', desc: 'the drawn cards [{id, reversed}] of the spread’s length', required: true },
+    ],
+    outputShape: '{ spread, cards:[{position, card, reversed, text, meaning}], dignities:[{between, relation, note}], balance, summaryLines }',
+    callable: false,
+    book: 'Tarot', chapter: 'Waite, The Pictorial Key; Golden Dawn, Book T',
+    citation: 'A. E. Waite, The Pictorial Key to the Tarot (1911); the Hermetic Order of the Golden Dawn, Book T; Mary K. Greer.',
+    pages: ['pages/tarot.html'], howItWorks: 'pages/tarot.html',
+    glossaryTerms: ['Tarot', 'Major Arcana', 'Minor Arcana', 'Elemental Dignities', 'Reversal (Tarot)'],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------

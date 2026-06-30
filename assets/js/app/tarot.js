@@ -1,0 +1,134 @@
+// ============================================================================
+//  tarot.js — drives pages/tarot.html. Choose a spread, shuffle & draw from the
+//  78-card deck (optionally with reversals), and the engine (core/tarot.js)
+//  lays each card in its position, reads the Golden Dawn elemental dignities
+//  between neighbours, and reports the spread's balance. The diviner AI panel
+//  narrates it. The SHUFFLE/DRAW (randomness) lives HERE; the engine is pure.
+//
+//  HONEST FRAMING: Tarot cartomancy has no demonstrated predictive validity —
+//  a historical symbolic system shown for study, described never prescribed.
+// ============================================================================
+import { tarotReading, SPREADS, SPREAD_KEYS } from '../core/tarot.js';
+import { TAROT_DECK, DECK_IDS, SUITS } from '../core/data/tarot-deck.js';
+import { autolinkResultPanels } from './shared.js';
+import { initDivinationAssistant } from './divination-assistant.js';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const ROMAN = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'];
+const SUIT_GLYPH = { wands: '🜂', cups: '🜄', swords: '🜁', pentacles: '🜃' };
+const REL_LABEL = { reinforce: 'reinforce', strengthen: 'strengthen', weaken: 'weaken', neutral: 'neutral' };
+
+let reading = null, spreadKey = 'three', question = '', reversalsOn = true;
+let divAssistant = null;
+const subscribers = [];
+
+// --- crypto-quality shuffle (the randomness lives in the app) ----------------
+function randInt(n) {
+  try { const a = new Uint32Array(1); (self.crypto || window.crypto).getRandomValues(a); return a[0] % n; }
+  catch { return Math.floor(Math.random() * n); }
+}
+function shuffledDraw(count, reversals) {
+  const ids = DECK_IDS.slice();
+  for (let i = ids.length - 1; i > 0; i--) { const j = randInt(i + 1); [ids[i], ids[j]] = [ids[j], ids[i]]; }
+  return ids.slice(0, count).map(id => ({ id, reversed: reversals && randInt(2) === 1 }));
+}
+
+export function initTarot() {
+  $('tarot-spread').innerHTML = SPREAD_KEYS.map(k => `<option value="${k}">${esc(SPREADS[k].name)}</option>`).join('');
+  $('tarot-spread').value = 'three';
+  renderReference();
+
+  $('tarot-form').addEventListener('submit', e => { e.preventDefault(); draw(); });
+  $('tarot-draw').addEventListener('click', () => draw());
+  $('tarot-spread').addEventListener('change', () => { $('tarot-spread-desc').textContent = SPREADS[$('tarot-spread').value].description; });
+  $('tarot-reversals').addEventListener('change', () => { reversalsOn = $('tarot-reversals').checked; });
+  $('tarot-spread-desc').textContent = SPREADS.three.description;
+
+  document.addEventListener('click', e => {
+    const chip = e.target.closest && e.target.closest('.tarot-explain');
+    if (chip && divAssistant) divAssistant.prefill(chip.getAttribute('data-q'));
+  });
+
+  divAssistant = initDivinationAssistant({
+    kind: 'tarot',
+    getReading: () => currentReading(),
+    subscribeReading: cb => subscribers.push(cb),
+  });
+
+  draw(); // a first draw on load (pure compute, no network)
+}
+
+function currentReading() { return reading ? { kind: 'tarot', question, spreadKey, reading } : null; }
+function notify() { const r = currentReading(); subscribers.forEach(cb => { try { cb(r); } catch { /* non-fatal */ } }); }
+
+function draw() {
+  spreadKey = $('tarot-spread').value;
+  reversalsOn = $('tarot-reversals').checked;
+  question = $('tarot-question').value.trim();
+  const draws = shuffledDraw(SPREADS[spreadKey].count, reversalsOn);
+  try { reading = tarotReading(spreadKey, draws, { question }); }
+  catch (e) { $('tarot-out').innerHTML = `<p class="muted">Could not lay the spread (${esc(e.message)}).</p>`; return; }
+  render();
+  notify();
+}
+
+// --- rendering --------------------------------------------------------------
+function cardFace(c, opts = {}) {
+  const card = c.card;
+  const isMajor = card.arcana === 'major';
+  const suit = card.suit;
+  const elClass = card.element ? 'tarot-el-' + card.element.toLowerCase() : 'tarot-el-none';
+  const badge = isMajor ? (ROMAN[card.number] || card.number) : `${SUIT_GLYPH[suit] || ''} ${card.number <= 10 ? card.number : ''}`;
+  const transform = `${opts.rotated ? 'rotate(90deg) ' : ''}${c.reversed ? 'scaleY(-1)' : ''}`;
+  return `<div class="tarot-card ${elClass}" ${opts.style || ''}>
+    <div class="tarot-card-inner" style="transform:${transform || 'none'}">
+      <div class="tarot-badge">${esc(badge)}</div>
+      <div class="tarot-cname">${esc(card.name)}</div>
+      <div class="tarot-suit small">${isMajor ? 'Major' : esc((SUITS[suit] && SUITS[suit].name) || suit)}${c.reversed ? ' · reversed' : ''}</div>
+    </div></div>`;
+}
+
+function render() {
+  const r = reading;
+  // the laid-out board
+  const tall = spreadKey === 'celticCross' ? 30 : (spreadKey === 'horseshoe' ? 22 : 17);
+  const board = r.cards.map(c => {
+    const style = `style="position:absolute; left:${(c.x * 100).toFixed(1)}%; top:${(c.y * 100).toFixed(1)}%; transform:translate(-50%,-50%);"`;
+    return `<div class="tarot-slot" ${style}>
+      <div class="tarot-pos small muted">${esc(c.n)}. ${esc(c.position)}</div>
+      ${cardFace(c, { rotated: c.rotated })}</div>`;
+  }).join('');
+  $('tarot-board').innerHTML = `<div class="tarot-board" style="height:${tall}rem">${board}</div>`;
+
+  // per-position reading
+  $('tarot-out').innerHTML = `
+    ${r.summaryLines.length ? `<p class="small"><b>The spread at a glance:</b></p><ul class="clean small">${r.summaryLines.map(s => `<li>${esc(s)}</li>`).join('')}</ul>` : ''}
+    <div class="tarot-positions">${r.cards.map(c => {
+      const chip = `Read the card ${c.card.name}${c.reversed ? ' (reversed)' : ''} in the position "${c.position}" (${c.positionMeaning}): its Golden Dawn correspondence ${c.card.astro || ''}${c.card.hebrew ? ', Hebrew letter ' + c.card.hebrew : ''}, and how the tradition reads it here. Describe as history; do not forecast.`;
+      return `<div class="tarot-pos-row">
+        <div class="tarot-pos-h"><b>${esc(c.n)}. ${esc(c.position)}</b> — ${esc(c.card.name)}${c.reversed ? ' <span class="muted">(reversed)</span>' : ''}
+          <button type="button" class="btn sm tarot-explain" data-q="${esc(chip)}">✶ explain</button></div>
+        <div class="small muted">${esc(c.positionMeaning)}</div>
+        <div class="small"><b>${esc((c.text || []).join(', '))}.</b> ${esc(c.meaning)}</div>
+      </div>`;
+    }).join('')}</div>
+    ${r.dignities.length ? `<p class="small" style="margin-top:.6rem"><b>Elemental dignities</b> (Golden Dawn — how neighbours strengthen or weaken):</p>
+      <ul class="clean small">${r.dignities.map(d => `<li><b>${esc(REL_LABEL[d.relation] || d.relation)}</b> — ${esc(d.between[0])} &amp; ${esc(d.between[1])} (${esc(d.positions.join(' / '))}): ${esc(d.note)}</li>`).join('')}</ul>` : ''}
+    <p class="small muted"><b>How a reading works:</b> ${esc(r.note)} <span class="muted">— ${esc(r.cite)}</span></p>`;
+
+  try { autolinkResultPanels(['tarot-out']); } catch { /* non-fatal */ }
+}
+
+function renderReference() {
+  const byArc = { major: TAROT_DECK.filter(c => c.arcana === 'major'), wands: [], cups: [], swords: [], pentacles: [] };
+  for (const c of TAROT_DECK) if (c.arcana === 'minor') byArc[c.suit].push(c);
+  const section = (title, cards) => `<details class="small"><summary><b>${esc(title)}</b> (${cards.length})</summary>
+    <div class="tarot-ref-grid">${cards.map(c => `<div class="tarot-ref-card ${c.element ? 'tarot-el-' + c.element.toLowerCase() : ''}">
+      <b>${esc(c.name)}</b> <span class="muted">${esc(c.astro || '')}${c.hebrew ? ' · ' + esc(c.hebrew) : ''}</span>
+      <div class="small">↑ ${esc((c.upright || []).join(', '))}<br>↓ ${esc((c.reversed || []).join(', '))}</div></div>`).join('')}</div></details>`;
+  $('tarot-reference').innerHTML =
+    section('Major Arcana', byArc.major) +
+    section('Wands (Fire)', byArc.wands) + section('Cups (Water)', byArc.cups) +
+    section('Swords (Air)', byArc.swords) + section('Pentacles (Earth)', byArc.pentacles);
+}
