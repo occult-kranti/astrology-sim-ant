@@ -90,6 +90,11 @@ function saveOp(req) { lsSet(OPS_STORE, JSON.stringify([req, ...recentOps().filt
 
 const provName = () => { const s = el('wb-asst-provider'); return s && PROVIDERS[s.value] ? s.value : 'anthropic'; };
 const provCfg = () => PROVIDERS[provName()];
+// Free OpenAI-compatible tiers have small per-minute token caps (e.g. Groq's
+// 8000 TPM), so the grounded context must be MUCH smaller than for Claude. These
+// budgets keep a typical request under ~6–7k tokens on a free key.
+const isFree = () => provCfg().kind === 'openai';
+const factBudget = big => isFree() ? (big ? 45 : 28) : (big ? 400 : 110);
 const keyStore = () => 'wb-llm-key-' + provName();
 const baseStore = () => 'wb-llm-base-' + provName();
 
@@ -293,7 +298,13 @@ async function openaiStream(messages, system, asstEl, maxTokens = 3072) {
     body: JSON.stringify({ model, messages: oaMessages, stream: true, max_tokens: maxTokens, temperature: 0.8 }),
     signal: controller.signal,
   });
-  if (!res.ok) throw new Error('HTTP ' + res.status + ' — ' + (await res.text()).slice(0, 240));
+  if (!res.ok) {
+    const body = (await res.text()).slice(0, 240);
+    if (res.status === 413) throw new Error('This free model’s per-minute token limit is smaller than the grounded context. Pick a model with a higher limit (e.g. Groq llama-3.3-70b-versatile), wait a minute, or use Claude. (' + body + ')');
+    if (res.status === 429) throw new Error('Rate limited by the free tier — wait a minute and retry, or switch model/provider. (' + body + ')');
+    if (res.status === 401) throw new Error('The provider rejected the key (401) — check it is correct for this provider. (' + body + ')');
+    throw new Error('HTTP ' + res.status + ' — ' + body);
+  }
   asstEl.textContent = '';
   const reader = res.body.getReader(); const dec = new TextDecoder(); let buf = '', full = '';
   for (;;) {
@@ -362,8 +373,8 @@ async function send() {
   const input = el('wb-asst-input');
   const q = input.value.trim(); if (!q || !preflight()) return;
   input.value = '';
-  const { system } = buildContext(currentReading);
-  const messages = [...history.slice(-8), { role: 'user', content: q }];
+  const { system } = buildContext(currentReading, { maxFacts: factBudget(false) });
+  const messages = [...history.slice(isFree() ? -4 : -8), { role: 'user', content: q }];
   history.push({ role: 'user', content: q });
   appendMsg('user', q);
   const asstEl = appendMsg('assistant', '…');
@@ -386,7 +397,7 @@ function addSaveLink(bodyEl, text, name) {
 
 async function generateSynthesis() {
   if (!preflight()) return;
-  const { system } = buildContext(currentReading, { maxFacts: 400 });
+  const { system } = buildContext(currentReading, { maxFacts: factBudget(true) });
   appendMsg('user', '🔎 Interpret & advise — the whole reading, together (data sent as JSON)');
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
@@ -396,7 +407,7 @@ async function generateSynthesis() {
 
 async function generateCodex() {
   if (!preflight()) return;
-  const { system } = buildContext(currentReading, { maxFacts: 400 });
+  const { system } = buildContext(currentReading, { maxFacts: factBudget(true) });
   appendMsg('user', '📜 Codex of this Hour (deep interpretation, both systems; data sent as JSON)');
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
