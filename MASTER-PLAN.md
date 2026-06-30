@@ -142,14 +142,18 @@ The Lilly-depth round (the headline pedagogy gap) + the UX backlog (researched b
 
 ---
 
-## NEXT STEPS — the post-R5 roadmap *(planned 2026-06-30)*
+## NEXT STEPS — the post-R5 roadmap *(planned 2026-06-30; **R6–R9 all shipped 2026-06-30**)*
+
+✅ **ALL FOUR PHASES SHIPPED (2026-06-30)** — see the round notes below; verified each wave at the `verify-site`
+gate (audit 0 · engine-test all passed · Chromium sweep 40 pages 0 errors, now with **a11y landmark assertions**)
+and pushed to `origin/main` (R6 `e5637a3`, R7 `d9f1d47`, R8 `b2b0b53`, R9 this commit). The plan below is kept for
+the record with each phase marked done.
 
 R5 closed the Lilly-depth pedagogy (worked charts, house-by-house judgement, natal topics, rectification — gaps
 #3, #4, #19, #20) and cleared most of the UX backlog (chat redesign, autolink-on-dynamic, nav grouping, election
-live-update, a partial a11y pass). What remains, in **priority order**. Every phase ends at the `verify-site` gate
-(audit `Problems: 0` + engine-test + 0-console-error Chromium sweep) and is committed to `origin/main`.
+live-update, a partial a11y pass). What remained, in **priority order**:
 
-### Phase R6 — Fidelity & the Lots *(truth-to-text before more surface area — HIGHEST value)*
+### Phase R6 — Fidelity & the Lots ✅ **DONE** *(+ personalization & "here-and-now")*
 - **R6-1 · Significator-weighted chart health** — gap #1. Weight each caution by whether it touches the
   querent/quesited (or natal) significators, instead of a flat severity count. The single most-cited fidelity
   defect; the flat count is alien to Lilly's method. `core/cautions.js` → flows into every verdict badge.
@@ -158,7 +162,7 @@ live-update, a partial a11y pass). What remains, in **priority order**. Every ph
   the **R5 natal-topics reader already names but does not yet compute**), a sect toggle, and `reading.lots`
   exposing them all. Directly upgrades the R5 reader and underpins Phase R7.
 
-### Phase R7 — The honest-science explainers *(the locked framing, made interactive)*
+### Phase R7 — The honest-science explainers ✅ **DONE** *(the locked framing, made interactive)*
 - **R7-1 · Falsification demo** — gap #14. `pages/experiment.html`: permute the birth time N× through
   `fullReading`, plot the verdict/dignity **null distribution** in-tool. The strongest honesty feature —
   mathematically and rhetorically clean, and core to the non-negotiable framing.
@@ -167,7 +171,7 @@ live-update, a partial a11y pass). What remains, in **priority order**. Every ph
 - **R7-3 · Election heat-map** — gap #15. A 7-day × 24-hour `rankNow` grid on the election page; the weekly
   planetary-hour periodicity emerges visually. Cheap; reuses `electionScore`.
 
-### Phase R8 — Lilly / Picatrix polish & accuracy
+### Phase R8 — Lilly / Picatrix polish & accuracy ✅ **DONE** *(+ fixed the swapped antiscion labels)*
 - **R8-1 · Election gating polish** — gap #6. Curated mansion-fitness keyword map (replace the naive substring),
   down-weight malefic mansions — removes a known false-positive path in the elector.
 - **R8-2 · Antiscia woven into judgement** — gap #17. Treat antiscia/contra-antiscia as hidden contacts in the
@@ -178,7 +182,7 @@ live-update, a partial a11y pass). What remains, in **priority order**. Every ph
   Suffumigation, Behenian, Perfect Nature, the two spirit systems).
 - *(Optional)* Decumbiture mode (gap #18); magic squares / kāmeas, clearly flagged Agrippa (gap #22).
 
-### Phase R9 — Quality & ship
+### Phase R9 — Quality & ship ✅ **DONE**
 - **R9-1 · Complete the a11y pass** — gap #25. Finish what the R5 audit agent could not (it hit a spend limit):
   table `scope`/`caption` across **all** data tables, an `aria-live` review of every live region, a contrast
   audit, and extend the verify gate to assert landmarks/labels.

@@ -145,6 +145,20 @@ export function mountChrome(activeKey = '') {
   </div>`;
   document.body.appendChild(footer);
 
+  // a11y: ensure every data-table header cell carries a `scope` — now (static
+  // tables) and as result panels render (a light observer on <main>). One pass
+  // covers the whole site instead of per-table edits.
+  try {
+    const fixScopes = root => (root || document).querySelectorAll('table.data th:not([scope])')
+      .forEach(th => th.setAttribute('scope', th.closest('thead') ? 'col' : 'row'));
+    fixScopes(document);
+    const main = document.querySelector('main');
+    if (main && typeof MutationObserver === 'function') {
+      const mo = new MutationObserver(ms => { for (const m of ms) if (m.addedNodes && m.addedNodes.length) { fixScopes(main); break; } });
+      mo.observe(main, { childList: true, subtree: true });
+    }
+  } catch (e) { /* non-fatal */ }
+
   // auto-link glossary terms in the page's prose (not on the glossary itself)
   if (activeKey !== 'glossary') {
     try { autolinkGlossary(document.querySelector('main'), R('pages/glossary.html')); } catch (e) { /* non-fatal */ }

@@ -12,6 +12,7 @@ import { DOMICILE } from '../core/data/dignities-data.js';
 import { HOUSES } from '../core/data/houses.js';
 import { wireCitySelect, toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
+import { downloadSVG, svgToPNG, copyShareLink, writeStateToURL, readStateFromURL } from './state.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -41,7 +42,24 @@ export function initHorary() {
     });
   });
   $('h-form').addEventListener('submit', e => { e.preventDefault(); compute(); });
+
+  // export + share the chart (reuses state.js, like the Workbench)
+  const wheelSvg = () => $('h-wheel').querySelector('svg');
+  const estat = $('h-export-status');
+  $('h-svg').addEventListener('click', () => downloadSVG(wheelSvg(), 'horary-chart.svg'));
+  $('h-png').addEventListener('click', () => svgToPNG(wheelSvg(), 'horary-chart.png').catch(() => { if (estat) estat.textContent = 'Could not export PNG.'; }));
+  $('h-share').addEventListener('click', () => copyShareLink(estat, hState()));
+  // restore inputs from a shared link, if present
+  const s = readStateFromURL(['date', 'time', 'offset', 'lat', 'lon', 'system', 'quesited']);
+  for (const [k, id] of [['date', 'h-date'], ['time', 'h-time'], ['offset', 'h-offset'], ['lat', 'h-lat'], ['lon', 'h-lon'], ['system', 'h-system'], ['quesited', 'h-quesited']])
+    if (s[k] != null && s[k] !== '') $(id).value = s[k];
+
   compute();
+}
+
+function hState() {
+  return { date: $('h-date').value, time: $('h-time').value, offset: $('h-offset').value,
+    lat: $('h-lat').value, lon: $('h-lon').value, system: $('h-system').value, quesited: $('h-quesited').value };
 }
 
 function compute() {
@@ -181,6 +199,7 @@ function compute() {
 
   // auto-link glossary jargon in the freshly-rendered prose panels
   autolinkResultPanels(['h-significators', 'h-perfection']);
+  try { writeStateToURL(hState()); } catch { /* non-fatal */ }
 }
 
 function ordinal(n) { return ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'][n]; }

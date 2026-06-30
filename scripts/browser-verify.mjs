@@ -35,6 +35,18 @@ for (const rel of pages) {
     await new Promise(r => setTimeout(r, 400));
     const hdr = (await pg.$('header.site')) ? 'hdr✓' : 'hdr✗';
     if (hdr === 'hdr✗') { errs.push('chrome not injected (no header.site)'); }
+    // a11y landmarks: one <main>, a skip link, a labelled primary nav, and every
+    // data-table header cell carries a scope (the mountChrome a11y pass adds it).
+    const a11y = await pg.evaluate(() => {
+      const out = [];
+      if (document.querySelectorAll('main').length !== 1) out.push('a11y: expected exactly one <main>');
+      if (!document.querySelector('a.skip-link')) out.push('a11y: missing skip link');
+      if (!document.querySelector('nav.main[aria-label]')) out.push('a11y: primary nav lacks aria-label');
+      const noScope = document.querySelectorAll('table.data th:not([scope])').length;
+      if (noScope) out.push('a11y: ' + noScope + ' data-table th without scope');
+      return out;
+    });
+    a11y.forEach(e => errs.push(e));
     console.log(`${errs.length ? '✗ ' + errs.length + ' err' : '✓ clean'} ${hdr}  ${rel}`);
     errs.forEach(e => console.log('     · ' + e.slice(0, 140)));
     tot += errs.length;
