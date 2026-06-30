@@ -200,6 +200,45 @@ live-update, a partial a11y pass). What remained, in **priority order**:
 
 ---
 
+## FURTHER ROADMAP — AI integration & the next oracle *(planned 2026-06-30, after a 3-agent research workflow)*
+
+### AI integration — provider-agnostic ✅ **SHIPPED**, then deepen
+- ✅ **Provider-agnostic assistant** — `app/assistant.js` now supports **Claude** (recommended, agentic tools) **and
+  OpenAI-compatible** backends so users can bring a **free-tier** key: **Groq, Google Gemini, OpenRouter, Cerebras,
+  Mistral** (all five **verified browser-direct CORS** by the research, with current 2026 model IDs) + a custom base
+  URL. Streaming `/chat/completions` parsing; the grounded honest-framing system prompt flows through both paths;
+  tools stay Claude-only. **Tested end-to-end against a local mock OpenAI server** (no account): no network on load,
+  the grounded prompt reaches the provider, the reply streams into a bubble. *(No key is ever bundled — embedding one
+  in a public static repo would be scraped/abused; free tiers are rate-limited and need a personal signup. BYOK is the
+  right pattern.)*
+- ⬜ **Deepen** (the research's ranked list, by value): per-panel **"✶ Explain this"** buttons (a scoped, cite-bound
+  sub-prompt per result panel); a **cite-bound output contract** (number facts `[F#]`, require the model to tag
+  claims); a **glossary-aware** `defineTerm` tool + inline term links in replies; a **structured talisman walk-through**
+  renderer over `talisman.steps[]`; **streaming-markdown** rendering with copy/regenerate; and a **unified
+  refusal/error** path across providers. Files: `app/assistant.js`, `core/llm-context.js`, `app/workbench.js`.
+
+### The next oracle to build — **GEOMANCY** *(the research's top pick: heavy occult usage × excellent engine fit)*
+Renaissance **astrological geomancy** — Agrippa's "daughter of astrology": 16 binary inputs → the **Shield chart**
+(Mothers, Daughters, Nieces, Witnesses, Judge, Reconciler) and the **House chart** judged **horary-style**. The best
+next tool because it scores top on BOTH axes (heavily practised *and* native to this site's tradition), and it is
+**almost entirely computable** — the whole Shield is boolean algebra; only the final per-house narrative is interpretive.
+- **DATA** `core/data/geomantic-figures.js` — the 16 figures `{ name, english, rows[4]∈{1,2}, binary, planet, sign,
+  element, character, mobility, meaning, source }` (run `accuracy-check` on the canonical pattern+ruler table; cite
+  Agrippa *Of Geomancy* + Greer + Skinner).
+- **CORE** `core/geomancy.js` (PURE) — `addFigures(a,b)` (row-wise parity), `castShield(16 bits)`, `figureOf(rows)`,
+  Part of Fortune (total points mod 12 → house), `houseChart(shield)` projecting figures into the **existing
+  `data/houses.js`**, and `geomanticJudgement(shield, quesitedHouse)` **reusing the `horary-judge.js` house-significator
+  + perfection shape** → `{ tone, lines, cite }`. A crypto-RNG cast, shown honestly as a coin-flip.
+- **PAGE** `pages/geomancy.html` + `app/geomancy.js` (renders the Shield, the House chart, the judgement). Register in
+  `registry.js` (`callable:true`); extend `engine-test.mjs` (16 figures; `addFigures(Via,Via)=Populus`; Shield
+  determinism on a fixed seed). Honest framing: the cast is acknowledged random; everything after is exact, verifiable
+  boolean algebra — the same "the calculation is real, the interpretation is historical" line.
+- **Runners-up:** Tarot (very-high usage, *good* fit via decan/planetary correspondences — a strong follow-on);
+  Sigils/planetary kameas (good fit, Agrippa II); the Kabbalah Tree of Life (medium). I Ching, numerology and gematria
+  score *weak* on engine fit.
+
+---
+
 ## (A) COVERAGE TABLES
 
 ### A.1 — Lilly, *Christian Astrology*, **Book I** (Introduction) → essentially complete
