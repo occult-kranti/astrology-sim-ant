@@ -492,6 +492,37 @@ export const REGISTRY = [
     pages: ['pages/book3/master.html'], howItWorks: HIW('hyleg'),
     glossaryTerms: ['Rectification', 'Animodar', 'Trutine of Hermes', 'Hyleg (Apheta)', 'Almuten'],
   },
+  {
+    id: 'lots', title: 'The Hermetic Lots (Arabic Parts)',
+    module: 'assets/js/core/lots.js', exportName: 'computeLots',
+    exports: ['LOTS', 'lotsByKey'],
+    computes: 'The seven Hermetic Lots of the planets (Fortune, Spirit, Eros, Necessity, Courage, Victory, Nemesis — Paulus Alexandrinus) plus the natal topic Lots (Marriage, Children, Father, Mother), each the affine point Asc + A − B, with a sect-aware toggle (Lilly’s both-sects ⊕ by default, Ptolemaic night-reversal when on).',
+    inputs: [
+      { name: 'chart', type: 'object', desc: 'a castChart result', required: true },
+      { name: 'opts', type: 'object', desc: '{ sectAware?: boolean }' },
+    ],
+    outputShape: '{ sectAware, lots:[{ key, name, planet, lon, label, formula, topic, house }], citation }',
+    callable: false,
+    book: 'Book I', chapter: 'CA Bk I — the Arabic Parts; Paulus Alexandrinus ch.23',
+    citation: 'Paulus Alexandrinus, Introduction ch.23; al-Bīrūnī §476 — the seven Hermetic Lots (formulas vary by author; Paulus shown).',
+    pages: ['pages/workbench.html'], howItWorks: HIW('fortune'),
+    glossaryTerms: ['Lot / Arabic Part', 'Part of Fortune (⊕)', 'Lot of Spirit', 'Lot of Eros'],
+  },
+  {
+    id: 'personalization', title: 'Tuned to the native (Picatrix III.5–6)',
+    module: 'assets/js/core/personalization.js', exportName: 'personalize',
+    exports: ['almutenFiguris', 'rulingPlanets', 'PERFECT_NATURE_NAMES'],
+    computes: 'How a nativity TUNES Picatrix magic: the almuten figuris (the planet of the Perfect Nature) over the five hylegiacal places, the native’s ruling planets, and a per-aim radix-harmony fit — “suits you” when the aim’s ruling planet is one of yours / a dignified friend, “caution” when it is an afflicted malefic or afflicts your Ascendant lord.',
+    inputs: [
+      { name: 'birthChart', type: 'object', desc: 'a natal castChart result', required: true },
+    ],
+    outputShape: '{ almutenFiguris, rulingPlanets, perfectNature, aims:[{ key, label, ruler, fit, reason }] }',
+    callable: false,
+    book: 'Picatrix III', chapter: 'Picatrix III.5–6 — the dispositor of the nativity & the Perfect Nature',
+    citation: 'Picatrix (Ghāyat al-Ḥakīm) III.5 (work the dispositor/almuten of your nativity) & III.6 (the Perfect Nature); almuten figuris after Ibn Ezra / Zoller–Warnock.',
+    pages: ['pages/workbench.html'], howItWorks: HIW('dignity'),
+    glossaryTerms: ['Almuten Figuris', 'Perfect Nature', 'Sect Light'],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------

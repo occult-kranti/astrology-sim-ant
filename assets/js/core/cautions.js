@@ -17,6 +17,7 @@ import { norm360, signOf } from './astro.js';
 import { aspectBetween } from './aspects.js';
 import { essentialDignity, accidentalDignity } from './dignities.js';
 import { considerations, moonVoidOfCourse, moonInViaCombusta } from './considerations.js';
+import { DOMICILE } from './data/dignities-data.js';
 
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
 const MALEFICS = ['Mars', 'Saturn'];
@@ -100,43 +101,87 @@ function moonCautions(chart) {
 }
 
 // --- The headline engine ----------------------------------------------------
-// opts: { hourRuler } — pass the planetary-hour ruler for the radicality test.
-export function chartCautions(chart, { hourRuler = null } = {}) {
+//  SIGNIFICATOR-WEIGHTED chart health (Lilly Bk II): a caution is weighed by
+//  whether it touches the ACTUAL significators of the matter, not counted flat.
+//  opts:
+//    hourRuler?           the planetary-hour ruler (for the radicality test);
+//    quesitedHouse?       1..12 — adds the lord of that house as a PRIMARY sig;
+//    naturalSignificators? planet names — the topic's natural significators
+//                          (e.g. Venus for marriage), counted SECONDARY;
+//    extraPrimary?        planet names forced into the primary set (e.g. the
+//                          natal Lord of the Geniture for a nativity).
+//  The Moon and the sect light are ALWAYS primary (Lilly makes the Moon
+//  co-significatrix and weighs the chart's luminary). A 'bad'-severity affliction
+//  on ANY primary significator is decisive (red), exactly as Lilly judges.
+export function chartCautions(chart, opts = {}) {
+  const { hourRuler = null, quesitedHouse = null, naturalSignificators = [], extraPrimary = [] } = opts;
   const isDay = chart.isDay;
   const con = considerations(chart, hourRuler);     // Lilly's considerations
   const moon = moonCautions(chart);                 // the Moon's election state
   const planets = {};
   for (const name of PLANETS7) planets[name] = planetFlags(name, chart, isDay);
 
-  // a flat, de-duplicated global list (considerations + Moon), severity-sorted
+  // --- significator sets ---------------------------------------------------
+  const sectLight = isDay ? 'Sun' : 'Moon';
+  const lordQ = (quesitedHouse && chart.cusps) ? DOMICILE[signOf(chart.cusps[quesitedHouse]).index] : null;
+  const PRIMARY = new Set([con.lordAsc, 'Moon', sectLight, lordQ, ...extraPrimary].filter(Boolean));
+  const SECONDARY = new Set(naturalSignificators.filter(n => !PRIMARY.has(n)));
+  const roleOf = name => PRIMARY.has(name) ? 'primary' : SECONDARY.has(name) ? 'secondary' : 'other';
+  const WEIGHT = { primary: 3, secondary: 1.75, other: 1 };
+  const SEV = { bad: -5, caution: -2, note: -1, good: 2 };
+
+  // a flat, de-duplicated global list (considerations + Moon), severity-sorted.
+  // Lilly's considerations and the Moon's condition are SIGNIFICATOR-LEVEL by
+  // nature (the Moon is primary; the considerations weigh the Asc/lord/hour), so
+  // they all count against the primary set in the weighting below.
   const global = [...con.advisories, ...moon]
     .sort((a, b) => RANK[b.severity] - RANK[a.severity]);
 
-  // Verdict — WEIGHTED BY THE SIGNIFICATORS, not a flat tally of all seven
-  // planets. The `global` list (Lilly's considerations + the Moon) is already
-  // significator-level; among the per-planet flags, those on the Lord of the
-  // Ascendant and the Moon are "key" and drive the verdict, while afflictions to
-  // peripheral planets only escalate it when several pile up. This is closer to
-  // Lilly's habit of weighing the planets that actually signify the matter.
-  const KEY = new Set([con.lordAsc, 'Moon']);
-  let keyBad = global.filter(a => a.severity === 'bad').length;
-  let keyCaution = global.filter(a => a.severity === 'caution').length;
-  let otherBad = 0, otherCaution = 0;
+  // --- weighted impediment + which significators are actually hit ----------
+  let impediment = 0;
+  let primaryBadHit = false;
+  const afflicted = new Set();                       // significators carrying ≥ caution
+  const primaryCautionSubjects = new Set();
+
+  // global cautions weigh as primary (severity × 3)
+  for (const a of global) {
+    impediment += (SEV[a.severity] || 0) * WEIGHT.primary;
+    if (a.severity === 'bad') { primaryBadHit = true; }
+  }
+  // per-planet flags weigh by the planet's role
+  let keyBad = 0, keyCaution = 0, otherBad = 0, otherCaution = 0;
   for (const [name, p] of Object.entries(planets)) {
+    const role = roleOf(name), w = WEIGHT[role];
     for (const f of p.flags) {
-      const key = KEY.has(name);
-      if (f.severity === 'bad') { if (key) keyBad++; else otherBad++; }
-      else if (f.severity === 'caution') { if (key) keyCaution++; else otherCaution++; }
+      impediment += (SEV[f.severity] || 0) * w;
+      const onSig = role !== 'other';
+      if (f.severity === 'bad') {
+        if (onSig) { keyBad++; primaryBadHit = primaryBadHit || role === 'primary'; afflicted.add(name); if (role === 'primary') primaryCautionSubjects.add(name); }
+        else otherBad++;
+      } else if (f.severity === 'caution') {
+        if (onSig) { keyCaution++; afflicted.add(name); if (role === 'primary') primaryCautionSubjects.add(name); }
+        else otherCaution++;
+      }
     }
   }
-  let verdict = 'green', label = 'Few impediments — the significators are sound.';
-  if (keyBad >= 1 || keyCaution >= 2 || otherBad >= 2) {
-    verdict = 'red'; label = 'Strongly impeded — a key significator (Lord of the Ascendant or the Moon) is afflicted; judge or elect with great care.';
-  } else if (keyCaution >= 1 || otherBad >= 1 || otherCaution >= 2) {
-    verdict = 'amber'; label = 'Some cautions stand — weigh them, especially any on the significators.';
+
+  // --- verdict: hard rule first, then the weighted thresholds --------------
+  let verdict = 'green', label = 'Few impediments — the significators of the matter are sound.';
+  if (primaryBadHit || primaryCautionSubjects.size >= 2 || impediment <= -14) {
+    verdict = 'red';
+    label = 'Strongly impeded — a primary significator (the Lord of the Ascendant, the Moon, the sect light, or the quesited’s lord) is gravely afflicted; judge or elect with great care.';
+  } else if (keyCaution >= 1 || otherBad >= 1 || impediment <= -5) {
+    verdict = 'amber';
+    label = 'Some cautions stand — weigh them, above all any that fall on the significators of the matter.';
   }
 
   const bad = keyBad + otherBad, caution = keyCaution + otherCaution;
-  return { verdict, label, lordAsc: con.lordAsc, global, planets,
-    counts: { bad, caution, keyBad, keyCaution, otherBad, otherCaution } };
+  return {
+    verdict, label, lordAsc: con.lordAsc,
+    significators: { primary: [...PRIMARY], secondary: [...SECONDARY] },
+    afflictedSignificators: [...afflicted],
+    impediment: Math.round(impediment * 10) / 10,
+    global, planets,
+    counts: { bad, caution, keyBad, keyCaution, otherBad, otherCaution },
+  };
 }

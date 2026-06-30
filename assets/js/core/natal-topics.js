@@ -20,6 +20,12 @@
 import { signOf, formatLon, PLANET_GLYPHS } from './astro.js';
 import { essentialDignity, accidentalDignity } from './dignities.js';
 import { DOMICILE } from './data/dignities-data.js';
+import { lotsByKey } from './lots.js';
+
+// The relevant computed Lot(s) per topic house (lots.js keys).
+const LOT_FOR_HOUSE = {
+  2: ['fortune'], 4: ['father'], 5: ['children'], 7: ['marriageMen', 'marriageWomen'], 10: ['spirit'],
+};
 
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
 const BENEFIC = new Set(['Jupiter', 'Venus']);
@@ -86,7 +92,7 @@ function conditionOf(chart, planet) {
 }
 
 // Read one topic.
-function readTopic(chart, topic) {
+function readTopic(chart, topic, lots) {
   const cuspLon = chart.cusps[topic.house];
   const sign = signOf(cuspLon);
   const ruler = DOMICILE[sign.index];
@@ -130,13 +136,21 @@ function readTopic(chart, topic) {
   lines.push(occupants.length
     ? 'In the house: ' + occupants.map(oc => `${oc.glyph} ${oc.planet} (ess. ${sgn(oc.essential)})`).join(', ') + '.'
     : 'No planet occupies the house.');
+  // the relevant computed Lot(s) for this topic (lots.js)
+  const lotKeys = LOT_FOR_HOUSE[topic.house] || [];
+  const topicLots = lotKeys.map(k => lots && lots[k]).filter(Boolean);
+  if (topicLots.length) {
+    lines.push('Relevant Lot' + (topicLots.length > 1 ? 's' : '') + ': ' +
+      topicLots.map(l => `${l.name} at ${l.label}${l.house ? ' (' + ord(l.house) + ' house)' : ''}`).join('; ') +
+      `${topicLots.some(l => l.confidence !== 'high') ? ' (formula contested)' : ''}.`);
+  }
   lines.push(topic.rule);
 
   return {
     house: topic.house, label: topic.label,
     sign: sign.name, signGlyph: sign.glyph,
     ruler, rulerGlyph: rulerCond.glyph, ruler_condition: rulerCond,
-    naturalSignificators: naturalConds, occupants,
+    naturalSignificators: naturalConds, occupants, lots: topicLots,
     tone, lines, cite: topic.cite,
   };
 }
@@ -147,8 +161,9 @@ const sgn = n => (n >= 0 ? '+' : '') + n;
 //  natalTopicReading(chart) — read all twelve topics.
 // ---------------------------------------------------------------------------
 export function natalTopicReading(chart) {
+  const lots = lotsByKey(chart);
   return {
-    topics: NATAL_TOPICS.map(t => readTopic(chart, t)),
+    topics: NATAL_TOPICS.map(t => readTopic(chart, t, lots)),
     caveat: 'Each topic weighs three testimonies (the house lord, the natural significator, and the planets in the house) into a crude favourable / mixed / afflicted tone. This is Lilly’s Book III procedure, shown for study — a historical, pseudoscientific method with no demonstrated validity, described never prescribed.',
     citation: 'Lilly, Christian Astrology, Book III — the judgement of nativities, house by house.',
   };

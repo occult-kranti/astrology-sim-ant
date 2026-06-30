@@ -22,7 +22,8 @@ export function initHorary() {
   const n = nowLocalFields();
   $('h-date').value = n.date; $('h-time').value = n.time; $('h-offset').value = 0;
   $('h-lat').value = 51.5074; $('h-lon').value = -0.1278;
-  wireCitySelect($('h-city'), $('h-lat'), $('h-lon'), $('h-offset'));
+  wireCitySelect($('h-city'), $('h-lat'), $('h-lon'), $('h-offset'),
+    { dateIn: $('h-date'), timeIn: $('h-time'), afterGeo: () => compute() });
 
   // quesited house dropdown
   $('h-quesited').innerHTML = HOUSES.map(h =>

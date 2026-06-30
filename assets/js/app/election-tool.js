@@ -30,7 +30,8 @@ export function initElection() {
   const n = nowLocalFields();
   $('e-date').value = n.date; $('e-time').value = n.time; $('e-offset').value = 0;
   $('e-lat').value = 51.5074; $('e-lon').value = -0.1278;
-  wireCitySelect($('e-city'), $('e-lat'), $('e-lon'), $('e-offset'));
+  wireCitySelect($('e-city'), $('e-lat'), $('e-lon'), $('e-offset'),
+    { dateIn: $('e-date'), timeIn: $('e-time'), afterGeo: () => judge() });
 
   // 3) Now button refills the moment fields
   $('e-now').addEventListener('click', () => {

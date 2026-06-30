@@ -10,7 +10,7 @@ export const ROOT = new URL('../../../', import.meta.url).href.replace(/\/$/, ''
 const R = p => `${ROOT}/${p.replace(/^\//, '')}`;
 
 import { autolinkGlossary, autolinkResults } from './autolink.js';
-import { attachGeolocate } from './location.js';
+import { attachGeolocate, nearestCity } from './location.js';
 
 // Grouped navigation — Start • Tools • Books • Reference. The grouping renders
 // as faintly-divided clusters on desktop and as labelled sections in the mobile
@@ -209,7 +209,13 @@ export function toUTC(dateStr, timeStr, offsetHours) {
 // Also injects a "📍 Use my location" button + a nearest-city status line right
 // after the select, so every tool that wires a place picker gets device
 // geolocation for free (offline nearest-city lookup; nothing leaves the page).
-export function wireCitySelect(sel, latIn, lonIn, offIn) {
+//
+// `timeFields` (optional) makes the geolocate button "here AND now": when given
+// { dateIn, timeIn, afterGeo? } it also fills the date/time with the current
+// local moment and the offset with the nearest city's standard UTC offset, then
+// calls afterGeo() so the tool can recompute. Present-moment pickers pass it;
+// the birth-data picker does NOT (a birth time must never jump to "now").
+export function wireCitySelect(sel, latIn, lonIn, offIn, timeFields = null) {
   sel.innerHTML = '<option value="">— choose a place —</option>' +
     CITIES.map(([n], i) => `<option value="${i}">${n}</option>`).join('');
   sel.addEventListener('change', () => {
@@ -224,12 +230,23 @@ export function wireCitySelect(sel, latIn, lonIn, offIn) {
     if (sel.dataset) sel.dataset.geoWired = '1';
     const btn = document.createElement('button');
     btn.type = 'button'; btn.className = 'btn sm geo-btn';
-    btn.textContent = '📍 Use my location';
+    btn.textContent = timeFields ? '📍 Use my location & time' : '📍 Use my location';
     const status = document.createElement('span');
     status.className = 'small muted geo-status'; status.style.marginLeft = '.5rem';
     sel.insertAdjacentElement('afterend', status);
     sel.insertAdjacentElement('afterend', btn);
-    attachGeolocate(btn, latIn, lonIn, status);
+    const onGeo = ({ lat, lon }) => {
+      if (!timeFields) return;
+      try {
+        const f = nowLocalFields();
+        if (timeFields.dateIn) timeFields.dateIn.value = f.date;
+        if (timeFields.timeIn) timeFields.timeIn.value = f.time;
+        const near = nearestCity(lat, lon);
+        if (offIn && near) offIn.value = near.offset;     // best-guess standard offset for the place
+        if (typeof timeFields.afterGeo === 'function') timeFields.afterGeo();
+      } catch (e) { /* non-fatal */ }
+    };
+    attachGeolocate(btn, latIn, lonIn, status, onGeo);
   } catch (e) { /* non-fatal: the place picker still works without geolocation */ }
 }
 

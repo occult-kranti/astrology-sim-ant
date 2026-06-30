@@ -23,6 +23,7 @@ import { prayerFor } from '../core/data/picatrix-prayers.js';
 import { mansionImage } from '../core/data/mansion-images.js';
 import { planetImage } from '../core/data/planet-images.js';
 import { attachVedicPanel } from './vedic-panel.js';
+import { attachPersonPicker } from './person.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -36,6 +37,7 @@ const rel = p => String(p).replace(/^pages\//, '');           // path from insid
 
 // --- last computed reading + a tiny subscription, for the assistant ---------
 let lastReading = null, lastChart = null, lastBirthChart = null, wheelSvg = null, vedicUpdate = null;
+let sectAwareFortune = false;   // Lots toggle: Lilly's both-sects ⊕ (default) vs Ptolemaic night-reversal
 const readingSubs = [];
 export const getReading = () => lastReading;
 // the live engine context tool-calls need (the actual castChart objects).
@@ -56,7 +58,16 @@ export function initWorkbench() {
   const f = nowLocalFields();
   $('wb-date').value = f.date; $('wb-time').value = f.time; $('wb-offset').value = f.offset;
   $('wb-lat').value = 51.5074; $('wb-lon').value = -0.1278;
-  wireCitySelect($('wb-city'), $('wb-lat'), $('wb-lon'), $('wb-offset'));
+  wireCitySelect($('wb-city'), $('wb-lat'), $('wb-lon'), $('wb-offset'),
+    { dateIn: $('wb-date'), timeIn: $('wb-time'), afterGeo: () => run() });
+
+  // "Tuned to a specific person": a saved-people picker on the birth section.
+  try {
+    const summary = document.querySelector('#wb-birth-details summary');
+    attachPersonPicker(summary,
+      { bdate: $('wb-bdate'), btime: $('wb-btime'), boffset: $('wb-boffset'), blat: $('wb-blat'), blon: $('wb-blon') },
+      { onSelect: () => { $('wb-birth-details').open = true; run(); } });
+  } catch (e) { /* non-fatal */ }
 
   $('wb-op').innerHTML = OPERATIONS.map(o => `<option value="${o.key}">${esc(o.label)} (${o.ruler})</option>`).join('');
   // The horary house picker lives IN the horary card now (the main form no longer
@@ -117,7 +128,7 @@ function run() {
   }
 
   const chart = castChart(date, lat, lon, system);
-  const reading = fullReading(chart, { operationKey, quesitedHouse, birth, generatedAt: new Date().toISOString() });
+  const reading = fullReading(chart, { operationKey, quesitedHouse, birth, sectAwareFortune, generatedAt: new Date().toISOString() });
   lastReading = reading; lastChart = chart; lastBirthChart = birth ? birth.chart : null;
   try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ before: '#wb-horary-card' }); vedicUpdate(chart); } catch { /* non-fatal */ }
 
@@ -238,15 +249,26 @@ function renderAspects(r) {
 function renderLots(r) {
   $('wb-lots-links').innerHTML = regLinks('part-of-fortune');
   const L = r.lots;
+  const list = L.list || [];
+  const hermetic = list.filter(l => l.cat === 'hermetic');
+  const topic = list.filter(l => l.cat === 'topic');
+  const lotRow = l => `<tr><td>${l.glyph ? l.glyph + ' ' : ''}${esc(l.name)}</td><td class="l">${esc(l.label)}${l.house ? ` <span class="muted">(${l.house}h)</span>` : ''}</td><td class="l small muted">${esc(l.topic)}${l.confidence && l.confidence !== 'high' ? ' <span class="neg">[formula contested]</span>' : ''}</td></tr>`;
   let anti = '';
   for (const name of PLANETS7) {
     const p = r.moment.planets[name];
     anti += `<tr><td>${G(name)} ${name}</td><td class="l">${esc(p.antiscion.label)}</td><td class="l muted">${esc(p.contraAntiscion.label)}</td></tr>`;
   }
   $('wb-lots').innerHTML =
-    `<p><b>Part of Fortune</b> ⊕ ${esc(L.fortune.label)} <span class="small muted">(${esc(L.fortune.formula)})</span> ·
-        <b>Part of Spirit</b> ${esc(L.spirit.label)} <span class="small muted">(${esc(L.spirit.formula)})</span></p>
-     <table class="data"><thead><tr><th>Planet</th><th>Antiscion</th><th>Contra-antiscion</th></tr></thead><tbody>${anti}</tbody></table>`;
+    `<label class="small" style="display:inline-flex;align-items:center;gap:.3rem;margin-bottom:.4rem">
+       <input type="checkbox" id="wb-lots-sect" ${L.sectAware ? 'checked' : ''}> sect-aware Lots (Ptolemy: reverse by night) — off = Lilly's both-sects ⊕</label>
+     <p class="small muted" style="margin:.1rem 0 .5rem">The <b>seven Hermetic Lots</b> (Paulus): each a point Asc + A − B. <b>Fortune</b> is the body &amp; material life; <b>Spirit</b> its mirror (mind &amp; action); the five planetary Lots build from them.</p>
+     <table class="data"><caption class="small muted">The seven Hermetic Lots</caption><thead><tr><th scope="col" class="l">Lot</th><th scope="col" class="l">Position</th><th scope="col" class="l">Signifies</th></tr></thead><tbody>${hermetic.map(lotRow).join('')}</tbody></table>
+     ${topic.length ? `<p class="small" style="margin:.6rem 0 .2rem"><b>Natal topic Lots</b> <span class="muted">(formulas vary by author — Paulus shown)</span></p>
+       <table class="data"><tbody>${topic.map(lotRow).join('')}</tbody></table>` : ''}
+     <p class="small" style="margin:.7rem 0 .2rem"><b>Antiscia</b> (a point's solstitial shadow — a hidden contact)</p>
+     <table class="data"><thead><tr><th scope="col">Planet</th><th scope="col">Antiscion</th><th scope="col">Contra-antiscion</th></tr></thead><tbody>${anti}</tbody></table>`;
+  const t = $('wb-lots-sect');
+  if (t) t.addEventListener('change', () => { sectAwareFortune = t.checked; run(); });
 }
 
 function renderCautions(r) {
@@ -257,11 +279,15 @@ function renderCautions(r) {
     const icon = a.severity === 'good' ? '✓' : a.severity === 'caution' ? '⚠' : '·';
     return `<li><span class="${cls}">${icon}</span> ${esc(a.text)}</li>`;
   }).join('');
+  const sig = c.significators || { primary: [], secondary: [] };
+  const affl = c.afflictedSignificators || [];
   $('wb-cautions').innerHTML =
     `<p style="font-size:1.05rem">Verdict: ${vbadge(c.verdict)} — ${esc(c.label)}</p>
      ${VERDICT_LEGEND}
+     <p class="small"><b>Significators of the matter:</b> ${sig.primary.map(p => `${G(p)} ${esc(p)}`).join(', ')}${sig.secondary && sig.secondary.length ? ` <span class="muted">(also ${sig.secondary.map(p => esc(p)).join(', ')})</span>` : ''}.
+       ${affl.length ? `<span class="neg">Afflicted: ${affl.map(p => `${G(p)} ${esc(p)}`).join(', ')}.</span>` : '<span class="pos">None of them is gravely afflicted.</span>'}</p>
      <ul class="clean">${adv}</ul>
-     <p class="small muted">Impediments — ${c.counts.caution} caution, ${c.counts.bad} grave (of which ${c.counts.keyCaution + c.counts.keyBad} touch a key significator).</p>`;
+     <p class="small muted">The verdict is <b>weighted by the significators</b> (a flaw on the Lord of the Ascendant, the Moon, the sect light or the quesited's lord weighs far more than one on an unrelated planet) — weighted impediment ${c.impediment}. ${c.counts.caution} caution, ${c.counts.bad} grave in all.</p>`;
 }
 
 function renderHorary(r) {
@@ -318,9 +344,13 @@ function renderElection(r) {
     if (sel.gating && sel.gating.length) html += `<p class="neg small">Hard requirement unmet: ${esc(sel.gating.join('; '))} — the tradition would not call this fit, however high the score.</p>`;
     html += `<ul class="clean small">${reasons}</ul>`;
   }
-  const rank = r.election.rankedNow.map(o => `<tr><td>${esc(o.label)}</td><td>${G(o.ruler)} ${o.ruler}</td><td>${vbadge(o.verdict)}</td><td class="r">${o.score}</td></tr>`).join('');
-  html += `<p class="small"><b>All aims ranked for this moment:</b></p>
-     <table class="data"><thead><tr><th>Aim</th><th>Ruler</th><th>Verdict</th><th>Score</th></tr></thead><tbody>${rank}</tbody></table>`;
+  const pz = r.natal && r.natal.personalization;
+  const fitOf = key => pz && pz.aims ? (pz.aims.find(a => a.key === key) || {}).fit : null;
+  const fitBadge = f => f === 'suits' ? '<span class="verdict green">suits you</span>' : f === 'caution' ? '<span class="verdict red">caution</span>' : f === 'neutral' ? '<span class="muted">neutral</span>' : '';
+  const rank = r.election.rankedNow.map(o => `<tr><td>${esc(o.label)}</td><td>${G(o.ruler)} ${o.ruler}</td><td>${vbadge(o.verdict)}</td><td class="r">${o.score}</td>${pz ? `<td>${fitBadge(fitOf(o.key))}</td>` : ''}</tr>`).join('');
+  html += `<p class="small"><b>All aims ranked for this moment${pz ? ', and tuned to the nativity' : ''}:</b></p>
+     <table class="data"><thead><tr><th scope="col">Aim</th><th scope="col">Ruler</th><th scope="col">Verdict (now)</th><th scope="col">Score</th>${pz ? '<th scope="col">For you</th>' : ''}</tr></thead><tbody>${rank}</tbody></table>`;
+  if (pz) html += personalizationHtml(pz, r.election.operationKey);
   // Picatrix correspondences of the moment (mansion / decan faces / Behenian stars)
   if (lastChart) {
     try {
@@ -334,6 +364,25 @@ function renderElection(r) {
     } catch { /* non-fatal */ }
   }
   $('wb-election').innerHTML = html;
+}
+
+// "Tuned to this nativity" — the Picatrix personalization layer (only when a
+// birth moment is present). Answers, honestly: does a birthdate bear on the
+// magic? It is primarily electional, but the native's chart TUNES which works
+// suit them (Picatrix III.5–6).
+function personalizationHtml(pz, currentKey) {
+  const suits = pz.aims.filter(a => a.fit === 'suits').map(a => a.label);
+  const cautions = pz.aims.filter(a => a.fit === 'caution');
+  const cur = pz.aims.find(a => a.key === currentKey);
+  return `<div class="callout" style="margin-top:.7rem"><span class="label">Tuned to this nativity (Picatrix III.5–6)</span>
+    <p class="small" style="margin:.2rem 0">Picatrix magic is chiefly about the <b>moment</b> — but the tradition tunes it to you.
+      This nativity's <b>ruling planets</b> are ${pz.rulingPlanets.map(p => `${G(p)} ${esc(p)}`).join(', ')}; the
+      <b>almuten figuris</b> — “the planet that governs you”, the planet of your <b>Perfect Nature</b> — is
+      <b>${G(pz.perfectNature.planet)} ${esc(pz.perfectNature.planet)}</b>.</p>
+    <p class="small" style="margin:.2rem 0"><b>Works naturally yours:</b> ${suits.length ? esc(suits.join(', ')) : '—'}.
+      ${cautions.length ? `<span class="neg"><b>Approach with caution:</b> ${cautions.map(a => esc(a.label)).join(', ')}</span> — the tradition warns against strengthening a planet that signifies harm in your own chart.` : ''}</p>
+    ${cur ? `<p class="small" style="margin:.2rem 0">For the selected aim (<b>${esc(cur.label)}</b>): <b>${cur.fit === 'suits' ? 'suits you' : cur.fit === 'caution' ? 'caution' : 'neutral for you'}</b> — ${esc(cur.reason)}</p>` : ''}
+    <p class="small muted" style="margin:.2rem 0 0">${esc(pz.perfectNature.description)} <span class="muted">${esc(pz.citation)}</span></p></div>`;
 }
 
 function renderTalisman(r) {

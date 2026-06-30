@@ -36,6 +36,9 @@ import { OPERATIONS, electionScore, rankNow } from './election.js';
 import { talismanRecipe } from './talisman.js';
 import { lifeTrajectory } from './trajectory.js';
 import { castVedic } from './vedic.js';
+import { computeLots } from './lots.js';
+import { personalize } from './personalization.js';
+import { HORARY_TOPICS } from './horary-judge.js';
 import { DOMICILE } from './data/dignities-data.js';
 import { HOUSES } from './data/houses.js';
 
@@ -153,22 +156,35 @@ export function fullReading(chart, opts = {}) {
   addCite(CITE.aspects);
 
   // ---- lots / Arabic parts (affine points) ----------------------------------
-  const sunLon = chart.planets.Sun.lon, moonLon = chart.planets.Moon.lon;
-  const fortuneLon = chart.planets.Fortune ? chart.planets.Fortune.lon
-    : partOfFortune(chart.asc, sunLon, moonLon);
-  // Spirit is the reflection of Fortune: by day Asc + Sun − Moon, reversed by night.
-  const spiritLon = isDay ? lot(chart.asc, sunLon, moonLon) : lot(chart.asc, moonLon, sunLon);
+  // The seven Hermetic Lots + the natal topic Lots (lots.js). `sectAwareFortune`
+  // (opts) flips Fortune/Spirit & the planetary lots to the Ptolemaic/Hermetic
+  // night-reversal; the default is Lilly's both-sects Part of Fortune.
+  const lotsComputed = safe(() => computeLots(chart, { sectAware: !!opts.sectAwareFortune }), { lots: [], citation: CITE.lots });
+  const lotsList = lotsComputed.lots || [];
+  const byKey = k => lotsList.find(l => l.key === k);
+  const fortune = byKey('fortune'), spirit = byKey('spirit');
   const lots = {
-    fortune: { ...point(fortuneLon), formula: 'Asc + Moon − Sun' },
-    spirit: { ...point(spiritLon), formula: isDay ? 'Asc + Sun − Moon (day)' : 'Asc + Moon − Sun (night)' },
+    sectAware: !!opts.sectAwareFortune,
+    fortune: fortune ? { lon: fortune.lon, label: fortune.label, sign: fortune.sign, degInSign: fortune.degInSign, formula: fortune.formula } : point(partOfFortune(chart.asc, chart.planets.Sun.lon, chart.planets.Moon.lon)),
+    spirit: spirit ? { lon: spirit.lon, label: spirit.label, sign: spirit.sign, degInSign: spirit.degInSign, formula: spirit.formula } : point(lot(chart.asc, chart.planets.Sun.lon, chart.planets.Moon.lon)),
+    list: lotsList,
     citations: [CITE.lots],
   };
   addCite(CITE.lots);
 
-  // ---- chart health (cautions) ----------------------------------------------
-  const cau = chartCautions(chart, { hourRuler: ph && ph.ruler });
+  // ---- chart health (cautions) — SIGNIFICATOR-WEIGHTED -----------------------
+  // When a quesited house is asked, add its lord (primary) and the topic's
+  // natural significators (secondary) so the verdict reflects the actual
+  // significators of THIS matter, not a flat tally of every planet.
+  const topicNat = quesitedHouse && HORARY_TOPICS[quesitedHouse] ? (HORARY_TOPICS[quesitedHouse].natural || []) : [];
+  const cau = chartCautions(chart, {
+    hourRuler: ph && ph.ruler,
+    quesitedHouse: quesitedHouse || null,
+    naturalSignificators: topicNat.filter(n => n !== 'Part of Fortune'),
+  });
   const cautions = {
     verdict: cau.verdict, label: cau.label, lordAsc: cau.lordAsc,
+    significators: cau.significators, afflictedSignificators: cau.afflictedSignificators, impediment: cau.impediment,
     global: cau.global, planets: cau.planets, counts: cau.counts,
     citations: [CITE.cautions],
   };
@@ -234,6 +250,9 @@ export function fullReading(chart, opts = {}) {
     }));
     if (trajectory) {
       natal = { trajectory };
+      // Picatrix "tuned to the native": almuten figuris / Perfect Nature, the
+      // ruling planets, and the per-aim radix-harmony fit (personalization.js).
+      natal.personalization = safe(() => personalize(opts.birth.chart));
       (trajectory.citations || []).forEach(addCite);
       addCite(CITE.trajectory);
     }

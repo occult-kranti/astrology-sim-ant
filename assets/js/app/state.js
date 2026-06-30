@@ -96,6 +96,27 @@ export function removeSavedReading(key) {
 }
 export function clearSavedReadings() { lsSet(HISTORY_KEY, '[]'); }
 
+// --- localStorage: saved PEOPLE (birth moments) -----------------------------
+//  A "person" is a saved birth moment the tools can be tuned to: name + birth
+//  date/time/place. Stored on-device only (nothing leaves the page). Used to
+//  personalise the natal & Picatrix layers ("tuned to a specific person").
+const PERSONS_KEY = 'wb-persons';
+export function listPersons() { try { return JSON.parse(lsGet(PERSONS_KEY) || '[]'); } catch { return []; } }
+// person: { id, name, bdate, btime, boffset, blat, blon, place }
+export function savePerson(person, cap = 40) {
+  if (!person || !person.name) return listPersons();
+  const id = person.id || ('p' + person.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + (person.bdate || ''));
+  const entry = { ...person, id };
+  const list = [entry, ...listPersons().filter(p => p.id !== id)].slice(0, cap);
+  lsSet(PERSONS_KEY, JSON.stringify(list));
+  return list;
+}
+export function removePerson(id) {
+  const list = listPersons().filter(p => p.id !== id);
+  lsSet(PERSONS_KEY, JSON.stringify(list));
+  return list;
+}
+
 // --- A readable Markdown summary of a fullReading (pure) ---------------------
 export function readingToMarkdown(reading) {
   if (!reading) return '# Reading\n\n(empty)';

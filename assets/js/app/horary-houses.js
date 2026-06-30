@@ -26,7 +26,8 @@ export function initHoraryHouses() {
   const n = nowLocalFields();
   $('hh-date').value = n.date; $('hh-time').value = n.time; $('hh-offset').value = n.offset;
   $('hh-lat').value = 51.5074; $('hh-lon').value = -0.1278;
-  wireCitySelect($('hh-city'), $('hh-lat'), $('hh-lon'), $('hh-offset'));
+  wireCitySelect($('hh-city'), $('hh-lat'), $('hh-lon'), $('hh-offset'),
+    { dateIn: $('hh-date'), timeIn: $('hh-time'), afterGeo: () => run() });
   $('hh-house').innerHTML = HOUSES.map(h => `<option value="${h.n}">${h.n} — ${esc(h.signifies.split(';')[0])}</option>`).join('');
   $('hh-house').value = 7;
   $('hh-now').addEventListener('click', () => { const f = nowLocalFields(); $('hh-date').value = f.date; $('hh-time').value = f.time; $('hh-offset').value = f.offset; run(); });
