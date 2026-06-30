@@ -340,6 +340,18 @@ ok(gsh.daughters[0].rows.join('') === [gsh.mothers[0].rows[0], gsh.mothers[1].ro
 ok(geomancyHouses(gsh).length === 12, 'geomancyHouses lays 12 figures');
 const gj = geomanticJudgement(gsh, 7);
 ok(['affirmed', 'qualified', 'denied'].includes(gj.tone) && gj.querentFigure && gj.quesitedFigure && Array.isArray(gj.lines), 'geomanticJudgement returns a tone + significators + lines');
+// a self-question (the topic IS the querent's house) must NOT fire spurious perfection
+const gjSelf = geomanticJudgement(gsh, 1);
+ok(gjSelf.perfection.length === 0 && gjSelf.perfects === false && /querent themselves/i.test(gjSelf.toneText), 'a 1st-house self-question skips spurious perfection and is judged on the Judge + house figure');
+// over high-entropy casts, self-questions must span all tones — not the old
+// 100%-affirmed degeneracy, and not a never-affirmed one either. The shield is
+// LINEAR over GF(2) (figure addition is XOR), so structured seeds collapse the
+// Judge; we drive it with a seeded LCG stream (deterministic, high-entropy).
+let _lcg = 123456789 >>> 0;
+const lcg16 = () => { _lcg = (Math.imul(_lcg, 1103515245) + 12345) >>> 0; return (_lcg >>> 16) % 16 + 1; };
+const selfTones = { affirmed: 0, qualified: 0, denied: 0 };
+for (let s = 0; s < 600; s++) selfTones[geomanticJudgement(castFromTallies(Array.from({ length: 16 }, lcg16)), 1).tone]++;
+ok(selfTones.affirmed > 60 && selfTones.denied > 20 && selfTones.qualified > 60, `self-questions span all tones, not the old always-affirmed degeneracy (${JSON.stringify(selfTones)})`);
 
 // --- Tarot (the spread) -----------------------------------------------------
 import { TAROT_DECK, cardById, SUITS, MAJORS, MINORS } from '../assets/js/core/data/tarot-deck.js';
@@ -359,6 +371,9 @@ ok(tr.cards.length === 3 && tr.cards[1].reversed === true && tr.dignities.length
 ok(tr.balance && typeof tr.balance.majors === 'number' && Array.isArray(tr.summaryLines), 'tarotReading reports a balance + summary');
 let tThrew = false; try { drawSpread('three', [{ id: 'the-fool', reversed: false }]); } catch { tThrew = true; }
 ok(tThrew, 'drawSpread refuses a wrong-length draw');
+// the Celtic Cross "crossing" card (position 2, rotated) is always read upright
+const cc = drawSpread('celticCross', TAROT_DECK.slice(0, 10).map(c => ({ id: c.id, reversed: true })));
+ok(cc.cards[1].reversed === false && cc.cards[0].reversed === true, 'the Celtic Cross crossing card is never reversed (read upright either way)');
 
 // --- Divination LLM context (the diviner bridge) ---------------------------
 import { buildGeomancyContext, buildTarotContext, buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, geomancyDataBlock, tarotDataBlock, DIVINER_PREAMBLE } from '../assets/js/core/llm-context.js';

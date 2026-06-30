@@ -39,8 +39,9 @@ export function initTarot() {
   $('tarot-spread').value = 'three';
   renderReference();
 
+  // the draw button is type=submit, so the form-submit handler covers both click
+  // and Enter — a separate click handler would fire draw() twice.
   $('tarot-form').addEventListener('submit', e => { e.preventDefault(); draw(); });
-  $('tarot-draw').addEventListener('click', () => draw());
   $('tarot-spread').addEventListener('change', () => { $('tarot-spread-desc').textContent = SPREADS[$('tarot-spread').value].description; });
   $('tarot-reversals').addEventListener('change', () => { reversalsOn = $('tarot-reversals').checked; });
   $('tarot-spread-desc').textContent = SPREADS.three.description;

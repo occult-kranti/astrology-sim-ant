@@ -64,7 +64,8 @@ export function initGeomancy() {
   renderReference();
   buildManualPad();
 
-  $('geo-cast').addEventListener('click', () => { castRandom(); });
+  // the cast button is type=submit, so the form-submit handler covers both click
+  // and Enter — a separate click handler would cast twice.
   $('geo-form').addEventListener('submit', e => { e.preventDefault(); castRandom(); });
   $('geo-topic').addEventListener('change', () => { if (shield) recompute(); });
   $('geo-manual-read').addEventListener('click', () => castManual());

@@ -103,11 +103,13 @@ export function drawSpread(spreadKey, draws) {
     const card = cardById(d.id);
     if (!card) throw new Error(`tarot: unknown card "${d.id}"`);
     const pos = spread.positions[i];
+    // a rotated position (the Celtic Cross "crossing") is read upright either way
+    const reversed = pos.rotated ? false : !!d.reversed;
     return {
       n: pos.n, position: pos.label, positionMeaning: pos.meaning, x: pos.x, y: pos.y, rotated: !!pos.rotated,
-      card, reversed: !!d.reversed,
-      text: (d.reversed ? card.reversed : card.upright) || [],
-      meaning: d.reversed ? (card.reversedMeaning || card.meaning) : card.meaning,
+      card, reversed,
+      text: (reversed ? card.reversed : card.upright) || [],
+      meaning: reversed ? (card.reversedMeaning || card.meaning) : card.meaning,
     };
   });
   const dignities = spread.neighbors.map(([i, j]) => ({

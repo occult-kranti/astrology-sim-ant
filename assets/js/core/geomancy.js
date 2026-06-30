@@ -122,24 +122,31 @@ export function geomanticJudgement(shield, quesitedHouse = 7, opts = {}) {
   const quesitedHomes = occupiedHouses(houses, quesitedFig.key);
 
   // --- the modes of perfection -------------------------------------------
+  // A SELF-QUESTION (the question is about the querent's own house, e.g. the 1st)
+  // has no second party: querent and quesited are the same figure, so the
+  // perfection tests (which assume two distinct houses) would fire spuriously.
+  // We skip them and judge on the Judge + the house figure alone.
+  const selfQuestion = qH === querentHouse;
   const modes = [];
-  const sameFigure = querentFig.key === quesitedFig.key && querentHouse !== qH;
-  // Occupation: the querent's figure also stands in the quesited's house (or the
-  // two significators are the very same figure) — the strongest perfection.
-  if (sameFigure || quesitedHomes.includes(querentHouse) || querentHomes.includes(qH))
-    modes.push({ name: 'occupation', note: 'the significators occupy one another’s house — the matter comes to pass directly.' });
-  // Conjunction: a significator passes into a house adjacent to the other.
-  if (querentHomes.some(h => adjacent(h, qH)) || quesitedHomes.some(h => adjacent(h, querentHouse)))
-    modes.push({ name: 'conjunction', note: 'a significator moves beside the other — the parties are brought together.' });
-  // Mutation: the two significators appear together in some other adjacent pair.
-  for (const a of querentHomes) for (const b of quesitedHomes) if (adjacent(a, b) && !(a === querentHouse && b === qH))
-    { modes.push({ name: 'mutation', note: 'the significators meet elsewhere in the figure — the matter perfects by exchange.' }); break; }
-  // Translation: a third, identical figure stands beside both significators.
-  for (const h of houses) {
-    if (h.figure.key === querentFig.key || h.figure.key === quesitedFig.key) continue;
-    const beside = occupiedHouses(houses, h.figure.key);
-    if (beside.length >= 2 && beside.some(x => adjacent(x, querentHouse)) && beside.some(x => adjacent(x, qH)))
-      { modes.push({ name: 'translation', note: `${h.figure.english} carries the light between the significators.` }); break; }
+  if (!selfQuestion) {
+    const sameFigure = querentFig.key === quesitedFig.key;
+    // Occupation: the querent's figure also stands in the quesited's house (or the
+    // two significators are the very same figure) — the strongest perfection.
+    if (sameFigure || quesitedHomes.includes(querentHouse) || querentHomes.includes(qH))
+      modes.push({ name: 'occupation', note: 'the significators occupy one another’s house — the matter comes to pass directly.' });
+    // Conjunction: a significator passes into a house adjacent to the other.
+    if (querentHomes.some(h => adjacent(h, qH)) || quesitedHomes.some(h => adjacent(h, querentHouse)))
+      modes.push({ name: 'conjunction', note: 'a significator moves beside the other — the parties are brought together.' });
+    // Mutation: the two significators appear together in some other adjacent pair.
+    for (const a of querentHomes) for (const b of quesitedHomes) if (adjacent(a, b) && !(a === querentHouse && b === qH))
+      { modes.push({ name: 'mutation', note: 'the significators meet elsewhere in the figure — the matter perfects by exchange.' }); break; }
+    // Translation: a third, identical figure stands beside both significators.
+    for (const h of houses) {
+      if (h.figure.key === querentFig.key || h.figure.key === quesitedFig.key) continue;
+      const beside = occupiedHouses(houses, h.figure.key);
+      if (beside.length >= 2 && beside.some(x => adjacent(x, querentHouse)) && beside.some(x => adjacent(x, qH)))
+        { modes.push({ name: 'translation', note: `${h.figure.english} carries the light between the significators.` }); break; }
+    }
   }
   // de-duplicate by name
   const seen = new Set(); const perfection = modes.filter(m => !seen.has(m.name) && seen.add(m.name));
@@ -149,18 +156,33 @@ export function geomanticJudgement(shield, quesitedHouse = 7, opts = {}) {
   // the Judge is decisive; the topic-house figure colours it; perfection turns a
   // neutral chart; an unfavourable Judge denies even a perfecting matter.
   const fav = f => f.nature === 'favorable' ? 1 : f.nature === 'unfavorable' ? -1 : 0;
-  const score = fav(judge) * 2 + fav(quesitedFig) + (perfects ? 1 : -1);
+  // a self-question is judged on the Judge + the house figure alone (no perfection term)
+  const score = selfQuestion ? fav(judge) * 2 + fav(quesitedFig) : fav(judge) * 2 + fav(quesitedFig) + (perfects ? 1 : -1);
   let tone, toneText;
-  if (score >= 2) { tone = 'affirmed'; toneText = `The Judge is ${judge.english} (${judge.nature}) and the matter perfects — the tradition reads the question favourably.`; }
-  else if (score <= -2) { tone = 'denied'; toneText = `The Judge is ${judge.english} (${judge.nature})${perfects ? '' : ' and the significators make no perfecting contact'} — the tradition reads against the matter.`; }
-  else { tone = 'qualified'; toneText = `The Judge is ${judge.english} (${judge.nature}); the testimonies are mixed — weigh the Witnesses and the figure of the ${ord(qH)} house.`; }
+  if (selfQuestion) {
+    tone = score >= 2 ? 'affirmed' : score <= -2 ? 'denied' : 'qualified';
+    toneText = `The question concerns the querent themselves (the ${ord(qH)} house), so there is no second party to perfect with — the tradition reads it by the Judge (${judge.english}, ${judge.nature}) and the figure of the house (${quesitedFig.english}, ${quesitedFig.nature}).`;
+  } else if (score >= 2) {
+    tone = 'affirmed';
+    toneText = `The Judge is ${judge.english} (${judge.nature})${perfects ? ' and the matter perfects' : ', and though the significators make no perfecting contact the testimonies favour the matter'} — the tradition reads the question favourably.`;
+  } else if (score <= -2) {
+    tone = 'denied';
+    toneText = `The Judge is ${judge.english} (${judge.nature})${perfects ? '' : ' and the significators make no perfecting contact'} — the tradition reads against the matter.`;
+  } else {
+    tone = 'qualified';
+    toneText = `The Judge is ${judge.english} (${judge.nature}); the testimonies are mixed — weigh the Witnesses and the figure of the ${ord(qH)} house.`;
+  }
 
   // --- cited lines --------------------------------------------------------
   const lines = [];
-  lines.push(`Querent — the ${ord(querentHouse)} house holds ${querentFig.english} (${querentFig.latin}), ${querentFig.nature}: ${querentFig.meaning}`);
-  lines.push(`Quesited — the ${ord(qH)} house (${(houses[qH - 1].signifies || '').split(';')[0]}) holds ${quesitedFig.english} (${quesitedFig.latin}), ${quesitedFig.nature}: ${quesitedFig.meaning}`);
-  if (perfection.length) for (const m of perfection) lines.push(`Perfection by ${m.name}: ${m.note}`);
-  else lines.push('No mode of perfection joins the significators — the matter does not come about of itself.');
+  if (selfQuestion) {
+    lines.push(`The question concerns the querent themselves — the ${ord(qH)} house (${(houses[qH - 1].signifies || '').split(';')[0]}) holds ${quesitedFig.english} (${quesitedFig.latin}), ${quesitedFig.nature}: ${quesitedFig.meaning}`);
+  } else {
+    lines.push(`Querent — the ${ord(querentHouse)} house holds ${querentFig.english} (${querentFig.latin}), ${querentFig.nature}: ${querentFig.meaning}`);
+    lines.push(`Quesited — the ${ord(qH)} house (${(houses[qH - 1].signifies || '').split(';')[0]}) holds ${quesitedFig.english} (${quesitedFig.latin}), ${quesitedFig.nature}: ${quesitedFig.meaning}`);
+    if (perfection.length) for (const m of perfection) lines.push(`Perfection by ${m.name}: ${m.note}`);
+    else lines.push('No mode of perfection joins the significators — the matter does not come about of itself.');
+  }
   lines.push(`Right Witness ${right.english} (the querent’s side / what is past) and Left Witness ${left.english} (the quesited’s side / what is to come) add to the Judge.`);
   lines.push(`Judge — ${judge.english} (${judge.latin}), ${judge.nature}, ${judge.points} points (an even figure — the chart checks out): ${judge.meaning}`);
   if (shield.reconciler) lines.push(`Reconciler — ${shield.reconciler.english}, added to clarify a doubtful Judge.`);
