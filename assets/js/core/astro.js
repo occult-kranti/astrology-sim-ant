@@ -217,11 +217,16 @@ export function lot(asc, B, C) { return norm360(asc + B - C); }
 
 // ---------------------------------------------------------------------------
 //  Antiscia — a point's "shadow" reflected across the 0° Cancer–0° Capricorn
-//  (solstitial) axis. Antiscion = 360 − longitude, reduced to [0,360).
-//  Contra-antiscion is the opposite point. Acts like a hidden aspect.
+//  (solstitial) axis: the point of EQUAL DECLINATION. For an ecliptic point
+//  sin δ = sin ε · sin λ, so λ and 180° − λ share a declination — that is the
+//  antiscion (e.g. Taurus↔Leo, Aries↔Virgo), which acts like a hidden
+//  conjunction. The CONTRA-antiscion, 360° − λ (reflection across the equinox),
+//  has the opposite declination and acts like a hidden opposition.
+//  (Corrected 2026-06-30: the two were previously swapped — 360−λ does not
+//  reflect across the solstitial axis.)
 // ---------------------------------------------------------------------------
-export function antiscion(lon) { return norm360(360 - lon); }
-export function contraAntiscion(lon) { return norm360(180 - lon); }
+export function antiscion(lon) { return norm360(180 - lon); }
+export function contraAntiscion(lon) { return norm360(360 - lon); }
 
 // ---------------------------------------------------------------------------
 //  Full chart

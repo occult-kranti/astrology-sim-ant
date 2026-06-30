@@ -45,22 +45,24 @@ export const LIGHT_DARK = [
   [[6,'D'],[12,'L'],[18,'D'],[22,'L'],[25,'V'],[28,'L'],[30,'D']]   // Pisces
 ];
 
-// Degrees increasing fortune — read cleanly from the scan's right-hand column
-// (e.g. Aries 19 = the Sun's exaltation degree). Signs without a clean reading
-// are left empty rather than guessed.
+// Degrees increasing fortune — Lilly's "De. encreasing fortune" column from the
+// two Tables of the Signs, Christian Astrology Bk I p.116 (1647), read from the
+// first-edition scan. The four signs once left blank (Taurus, Leo, Sagittarius,
+// Capricorn) were re-read from p.116 at high zoom (2026-06-30); all four now
+// filled at high confidence.
 export const FORTUNE_DEG = [
-  [19],        // Aries
-  [],          // Taurus
-  [11],        // Gemini
-  [1, 2, 3],   // Cancer
-  [],          // Leo
-  [3, 14, 20], // Virgo
-  [3, 15, 21], // Libra
-  [20],        // Scorpio
-  [],          // Sagittarius
-  [],          // Capricorn
-  [17, 20],    // Aquarius
-  [13, 20]     // Pisces
+  [19],            // Aries
+  [3, 15, 27],     // Taurus      (p.116, re-read 2026-06-30)
+  [11],            // Gemini
+  [1, 2, 3],       // Cancer
+  [2, 5, 7, 19],   // Leo         (p.116, re-read 2026-06-30)
+  [3, 14, 20],     // Virgo
+  [3, 15, 21],     // Libra
+  [20],            // Scorpio
+  [13, 20],        // Sagittarius (p.116, re-read 2026-06-30)
+  [12, 13, 14, 20],// Capricorn   (p.116, re-read 2026-06-30)
+  [17, 20],        // Aquarius
+  [13, 20]         // Pisces
 ];
 
 // ---------------------------------------------------------------------------

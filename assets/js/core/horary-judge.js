@@ -16,7 +16,7 @@
 //
 //  PURE — no DOM. Composes perfection.js + aspects.js + dignities.js.
 // ============================================================================
-import { signOf, formatLon, PLANET_GLYPHS, norm360 } from './astro.js';
+import { signOf, formatLon, PLANET_GLYPHS, norm360, antiscion, contraAntiscion } from './astro.js';
 import { essentialDignity, accidentalDignity, dignityRulersAt } from './dignities.js';
 import { aspectBetween } from './aspects.js';
 import { modesOfPerfection, timeToPerfection } from './perfection.js';
@@ -123,6 +123,17 @@ export function horaryJudgement(chart, quesitedHouse, opts = {}) {
   let timing = null;
   if (modes.direct && modes.direct.applying && querent) timing = timeToPerfection(modes.direct.orb, querent.lon, querent.house);
 
+  // antiscia — a hidden contact when one significator sits on the other's
+  // antiscion (acts like a conjunction) or contra-antiscion (like an opposition).
+  // Lilly judges by these; the engine now weaves them into the search.
+  const angDist = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
+  const ANT_ORB = 1.5;
+  const antisciaContacts = [];
+  if (!shared && querent && quesited) {
+    if (angDist(querent.lon, antiscion(quesited.lon)) <= ANT_ORB) antisciaContacts.push({ kind: 'antiscion', note: 'a hidden conjunction (equal declination)' });
+    if (angDist(querent.lon, contraAntiscion(quesited.lon)) <= ANT_ORB) antisciaContacts.push({ kind: 'contra-antiscion', note: 'a hidden opposition' });
+  }
+
   // the Moon co-significator
   const moon = chart.planets.Moon;
   const mn = moonNext(chart);
@@ -141,7 +152,8 @@ export function horaryJudgement(chart, quesitedHouse, opts = {}) {
   }).filter(Boolean);
 
   // --- weigh a tone --------------------------------------------------------
-  const perfects = shared || !!(modes.direct && modes.direct.applying) || !!modes.translation || !!modes.collection;
+  const perfects = shared || !!(modes.direct && modes.direct.applying) || !!modes.translation || !!modes.collection
+    || antisciaContacts.some(c => c.kind === 'antiscion');
   const moonCarries = mn && (mn.to === lordQ || mn.to === lordAsc);
   const blocked = !!modes.prohibition || !!modes.refranation;
   const moonVoid = moonInfo.voidOfCourse;
@@ -184,6 +196,7 @@ export function horaryJudgement(chart, quesitedHouse, opts = {}) {
   if (modes.reception) lines.push(`Reception: ${modes.reception.mutual ? 'mutual' : 'one-way'} reception between the significators.`);
   if (modes.prohibition) lines.push(`Prohibition: ${modes.prohibition.planet} perfects with ${modes.prohibition.target} first.`);
   if (modes.refranation) lines.push(`Refranation: ${modes.refranation.planet} turns retrograde before perfecting.`);
+  for (const c of antisciaContacts) lines.push(`Antiscia: the querent's significator sits on the quesited's ${c.kind} — ${c.note}, a hidden contact Lilly weighs.`);
   lines.push(moonInfo.voidOfCourse
     ? 'The Moon is void of course — she makes no further applying aspect before leaving her sign.'
     : `The Moon next applies to a ${mn.aspect.toLowerCase()} of ${mn.to} (orb ${mn.orb.toFixed(1)}°).`);
@@ -193,6 +206,7 @@ export function horaryJudgement(chart, quesitedHouse, opts = {}) {
     querentHouse, quesitedHouse, topic: HOUSES[quesitedHouse - 1].signifies.split(';')[0],
     querent, quesited, sharedSignificator: shared,
     moon: moonInfo, perfection: { modes, timing }, reception: modes.reception || null,
+    antiscia: antisciaContacts,
     naturalSignificators, tone, toneText,
     note: topic.note, cite: topic.cite,
     lines,

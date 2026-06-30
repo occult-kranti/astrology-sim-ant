@@ -186,9 +186,17 @@ export function electionScore(chart, operationKey, opts = {}) {
 
   // mansion fitness (Bk I) — keyword match, plus malefic-mansion awareness:
   // a destructive mansion suits decrease/banishing but harms a work of increase.
+  // The match is WORD-BOUNDARY (so 'gain' no longer fires inside 'against') and
+  // skips a keyword sitting in a negated phrase ("against journeys", "destroys
+  // love") — the false-positive path the old raw substring left open.
   const mansion = mansionOf(moon.lon);
   const useText = (mansion.use || '').toLowerCase();
-  const mansionHit = op.keywords.some(k => useText.includes(k));
+  const NEG = /\b(against|destroy|destroys|hinder|hinders|impede|impedes|prevent|prevents|loss of|to lose|losing|no)\b/;
+  const mansionHit = op.keywords.some(k => {
+    const m = new RegExp('\\b' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').exec(useText);
+    if (!m) return false;
+    return !NEG.test(useText.slice(Math.max(0, m.index - 22), m.index));   // short look-behind window
+  });
   const malefMansion = MALEFIC_MANSIONS.includes(mansion.num);
   if (mansionHit) add(+2, 'good', `The Moon is in Mansion ${mansion.num} (${mansion.name}), whose use — “${mansion.use}” — suits this work.`, CITE.mansion);
   else if (malefMansion && wantWax) add(-1, 'caution', `The Moon is in a destructive mansion (${mansion.num}, ${mansion.name}: “${mansion.use}”) — ill-suited to a work of increase.`, CITE.mansion);
