@@ -151,7 +151,16 @@ export const GLOSSARY = [
   { term: 'Elemental Dignities', cat: 'Tarot', def: 'The Golden Dawn rule by which adjacent cards modify one another by element: like reinforces like; Fire+Air and Water+Earth are friendly (strengthen); Fire+Water and Air+Earth are contrary (weaken).', see: 'pages/tarot.html' },
   { term: 'Reversal (Tarot)', cat: 'Tarot', def: 'A card dealt upside-down, read by many (esp. post-Golden Dawn) as a blocked, weakened, internalised or shadow form of its upright meaning — a dimmer-switch, not automatically a negation. Some traditions ignore orientation.', see: 'pages/tarot.html' },
   { term: 'Celtic Cross', cat: 'Tarot', def: 'A. E. Waite’s famous ten-card spread: a cross of six (the situation, its crossing, foundation, past, crown and near future) and a staff of four (the querent, environment, hopes & fears, and outcome).', see: 'pages/tarot.html' },
-  { term: 'Significator (Tarot)', cat: 'Tarot', def: 'A card chosen to stand for the querent or the matter at the centre of a spread (in the Celtic Cross, the first card, which the crossing card covers).', see: 'pages/tarot.html' }
+  { term: 'Significator (Tarot)', cat: 'Tarot', def: 'A card chosen to stand for the querent or the matter at the centre of a spread (in the Celtic Cross, the first card, which the crossing card covers).', see: 'pages/tarot.html' },
+
+  // — I Ching (the Book of Changes) —
+  { term: 'I Ching', cat: 'I Ching', def: 'The Yijing, the Book of Changes — a Chinese divinatory classic that answers a question with a hexagram cast at the moment of asking. A historical art of no demonstrated validity; the structure is exact mathematics, the meanings are the tradition’s.', see: 'pages/iching.html' },
+  { term: 'Hexagram', cat: 'I Ching', def: 'One of the 64 figures of six lines (each yin/broken or yang/solid), read bottom to top — the lower trigram beneath the upper. The 64 are exactly the 2⁶ combinations, numbered in the King Wen sequence.', see: 'pages/iching.html' },
+  { term: 'Trigram', cat: 'I Ching', def: 'One of the eight three-line figures (bagua) — Heaven, Lake, Fire, Thunder, Wind, Water, Mountain, Earth — from which the hexagrams are built (an upper over a lower trigram).', see: 'pages/iching.html' },
+  { term: 'Moving (Changing) Lines', cat: 'I Ching', def: 'Lines cast as "old" (old yin 6 or old yang 9) rather than "young" (7, 8). They are the pivots of the reading, and flipping them to their opposite yields the relating hexagram.', see: 'pages/iching.html' },
+  { term: 'Relating Hexagram', cat: 'I Ching', def: 'The second hexagram obtained by flipping every moving line of the primary — the direction the situation tends toward.', see: 'pages/iching.html' },
+  { term: 'Nuclear Hexagram', cat: 'I Ching', def: 'The inner hexagram built from the middle lines of the primary (lines 2–4 as the lower, 3–5 as the upper) — read as the hidden core of the matter.', see: 'pages/iching.html' },
+  { term: 'King Wen Sequence', cat: 'I Ching', def: 'The traditional order of the 64 hexagrams (1 The Creative, 2 The Receptive, … 64 Before Completion), attributed to King Wen of Zhou.', see: 'pages/iching.html' }
 ];
 
 export const GLOSSARY_CATEGORIES = [...new Set(GLOSSARY.map(g => g.cat))].sort();

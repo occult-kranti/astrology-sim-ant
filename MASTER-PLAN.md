@@ -252,8 +252,27 @@ The **78-card** Rider–Waite–Smith / Golden Dawn deck.
 - **PAGE** `pages/tarot.html` + `app/tarot.js` (a laid-out board, per-position reading, dignities, the diviner panel, the
   78-card reference). Registered in `registry.js`; `engine-test.mjs` asserts the 78 distinct cards, 14-per-suit, the
   dignity rules, and the Celtic Cross.
-- **Runners-up (future):** Sigils/planetary kameas (good fit, Agrippa II); the Kabbalah Tree of Life (medium). I Ching,
-  numerology and gematria score *weak* on engine fit.
+### I Ching — ✅ **SHIPPED** *(the third divination oracle: the Book of Changes)*
+The **Yijing** — a hexagram cast at the moment of asking.
+- **DATA** `core/data/iching-hexagrams.js` — the 8 trigrams + the 64 hexagrams in the **King Wen sequence** (name, pinyin,
+  the six lines bottom→top, Judgment, Image, six changing-line texts, keywords), generated from a research/verify workflow.
+  Line texts are **original paraphrases after James Legge** (SBE XVI, 1899, public domain), NOT the copyrighted
+  Wilhelm–Baynes. The 64 line-patterns are a verified complete, distinct bijection.
+- **CORE** `core/iching.js` (PURE, no RNG) — `linesFromThrows` (the 6/7/8/9 three-coin mapping), `castReading` (primary +
+  moving lines + **nuclear** inner hexagram + **relating** hexagram by flipping the moving lines). The coin toss lives in
+  `app/iching.js` (crypto RNG, or set the lines by hand).
+- **PAGE** `pages/iching.html` + `app/iching.js` (the hexagram lines drawn primary→relating, the reading, the diviner
+  panel, the 8-trigram + 64-hexagram reference). Registered in `registry.js`; `engine-test.mjs` asserts the 64-hexagram
+  bijection, the 6/7/8/9 mapping, relating/nuclear correctness, and that **every hexagram's derived trigrams match its
+  named lower/upper** (a cross-check that caught a swapped-trigram data bug, found live).
+
+### AI — provider trim ✅ **SHIPPED**
+The assistant now offers **only Claude + Groq**, with **Groq the default** (`llm-core.js` `PROVIDERS`/`PROV_ORDER`). A
+git-skipped **`app/local-config.js`** (committed EMPTY — no secret) lets the maintainer pre-fill their own key as the
+default on their own device (`git update-index --skip-worktree`) without ever exposing it in the public repo.
+
+- **Runners-up (future):** Sigils/planetary kameas (good fit, Agrippa II); the Kabbalah Tree of Life (medium); runes;
+  numerology/gematria score *weak* on engine fit.
 
 ---
 

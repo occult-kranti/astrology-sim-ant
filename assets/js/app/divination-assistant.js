@@ -15,11 +15,12 @@
 //  click and wrapped so a failure updates the panel, never throws.
 // ============================================================================
 import {
-  buildGeomancyContext, buildTarotContext,
-  buildGeomancyInterpretPrompt, buildTarotInterpretPrompt,
-  geomancyDataBlock, tarotDataBlock, SITE_URLS,
+  buildGeomancyContext, buildTarotContext, buildIchingContext,
+  buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, buildIchingInterpretPrompt,
+  geomancyDataBlock, tarotDataBlock, ichingDataBlock, SITE_URLS,
 } from '../core/llm-context.js';
 import { PROVIDERS, PROV_ORDER, streamChat, factBudget, isFreeKind, openrouterHeaders } from './llm-core.js';
+import { LOCAL_DEFAULTS } from './local-config.js';
 import { downloadText } from './state.js';
 
 const PROV_STORE = 'wb-llm-provider';
@@ -36,28 +37,33 @@ const baseStore = () => 'wb-llm-base-' + provName();
 const lsGet = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch { /* ignore */ } };
 const lsDel = k => { try { localStorage.removeItem(k); } catch { /* ignore */ } };
+// default provider: remembered choice, else local-config default, else Groq
+const defaultProv = () => { const p = lsGet(PROV_STORE) || LOCAL_DEFAULTS.provider || 'groq'; return PROVIDERS[p] ? p : 'groq'; };
+// pre-fill the key: remembered key, else the local-config key (this device only)
+const prefillKey = () => lsGet(keyStore()) || (provName() === LOCAL_DEFAULTS.provider ? (LOCAL_DEFAULTS.key || '') : '');
 
 // Build the grounded context + interpret prompt for whichever divination we are.
 // Free OpenAI-compatible tiers have small per-minute token caps (Groq's 8000 TPM),
 // and the diviner persona + glossary already cost ~700 tokens, so free providers
 // get a much leaner fact set and a trimmed glossary (and drop the JSON data block
 // below) to keep a grounded interpret request under the cap.
+const CTX = { geomancy: buildGeomancyContext, tarot: buildTarotContext, iching: buildIchingContext };
+const PROMPT = { geomancy: buildGeomancyInterpretPrompt, tarot: buildTarotInterpretPrompt, iching: buildIchingInterpretPrompt };
+const DATABLOCK = { geomancy: geomancyDataBlock, tarot: tarotDataBlock, iching: ichingDataBlock };
+const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast' };
+
 function buildCtx(reading, big) {
   const free = isFree();
   const maxFacts = free ? (big ? 22 : 14) : factBudget(provCfg().kind, big);
   const maxGlossary = free ? 4 : 99;
-  return api.kind === 'geomancy'
-    ? buildGeomancyContext(reading, { maxFacts, maxGlossary })
-    : buildTarotContext(reading, { maxFacts, maxGlossary });
+  return (CTX[api.kind] || buildGeomancyContext)(reading, { maxFacts, maxGlossary });
 }
 function interpretBody(reading) {
-  const free = isFree();
-  const base = api.kind === 'geomancy' ? buildGeomancyInterpretPrompt(reading) : buildTarotInterpretPrompt(reading);
-  if (free) return base; // the cited facts in the system prompt already ground the cast
-  const data = api.kind === 'geomancy' ? geomancyDataBlock(reading) : tarotDataBlock(reading);
-  return base + data;
+  const base = (PROMPT[api.kind] || buildGeomancyInterpretPrompt)(reading);
+  if (isFree()) return base; // the cited facts in the system prompt already ground the cast
+  return base + (DATABLOCK[api.kind] || geomancyDataBlock)(reading);
 }
-const subjectWord = () => (api.kind === 'geomancy' ? 'shield' : 'spread');
+const subjectWord = () => SUBJECT[api.kind] || 'cast';
 
 export function initDivinationAssistant(_api) {
   api = _api || {};
@@ -70,7 +76,7 @@ export function initDivinationAssistant(_api) {
 function render() {
   const host = el('dv-assistant');
   if (!host) return;
-  const savedProv = lsGet(PROV_STORE) || 'anthropic';
+  const savedProv = defaultProv();
   host.innerHTML = `
     <div class="callout science" style="margin-top:0"><span class="label">About this diviner</span>
       It interprets the <b>computed, cited</b> ${esc(subjectWord())} above using an LLM called directly from your browser with
@@ -116,7 +122,7 @@ function render() {
     <details style="margin-top:.6rem"><summary class="small">What the model is told (the grounded facts)</summary>
       <div id="dv-asst-preview" class="small muted"></div></details>`;
 
-  el('dv-asst-provider').value = PROVIDERS[savedProv] ? savedProv : 'anthropic';
+  el('dv-asst-provider').value = savedProv;
   onProviderChange();
   el('dv-asst-provider').addEventListener('change', () => { lsSet(PROV_STORE, provName()); onProviderChange(); });
   el('dv-asst-interpret').addEventListener('click', () => interpret());
@@ -133,7 +139,7 @@ function onProviderChange() {
   const p = provCfg();
   el('dv-asst-model').innerHTML = p.models.map(([v, l]) => `<option value="${v}">${esc(l)}</option>`).join('');
   el('dv-asst-key').placeholder = p.keyHint;
-  el('dv-asst-key').value = lsGet(keyStore()) || '';
+  el('dv-asst-key').value = prefillKey();
   el('dv-asst-remember').checked = !!lsGet(keyStore());
   el('dv-asst-base-row').style.display = p.custom ? '' : 'none';
   if (p.custom) el('dv-asst-base').value = lsGet(baseStore()) || '';

@@ -608,3 +608,46 @@ export function tarotDataBlock(t) {
   };
   return '\n\nCOMPUTED TAROT SPREAD (JSON — interpret THESE cards, never invent):\n' + JSON.stringify(dig);
 }
+
+// ---- I Ching ---------------------------------------------------------------
+//  x = { kind:'iching', question, reading }  (reading = castReading output)
+export function buildIchingContext(x, opts = {}) {
+  const r = x.reading;
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (s, c) => s && facts.push({ text: s, cite: c || '' });
+  const p = r.primary, t = r.trigrams;
+  if (x.question) add(`The question: "${x.question}".`, 'the querent');
+  add(`Primary hexagram: ${p.num}. ${p.name} (${p.pinyin}) — ${t.upper.name} over ${t.lower.name}.`, 'King Wen sequence');
+  add(`Judgment: ${p.judgment}`, 'Legge / the tradition');
+  add(`Image: ${p.image}`, 'Legge / the tradition');
+  for (const m of r.moving) add(`Moving ${m.position} line (${m.yang ? 'old yang' : 'old yin'}): ${m.text}`, 'the moving line');
+  add(`Nuclear (inner) hexagram: ${r.nuclear.num}. ${r.nuclear.name}.`, 'the nuclear figure');
+  if (r.relating) add(`Relating hexagram (the tendency of change): ${r.relating.num}. ${r.relating.name} — ${r.relating.judgment}`, 'the relating figure');
+  add(r.guidance, 'the reading');
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['I Ching']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'I CHING CAST'), facts: trimmed, glossary };
+}
+
+export function buildIchingInterpretPrompt(x) {
+  return (
+    'Read this I Ching cast as a scholar of the Yijing would, FROM THE COMPUTED HEXAGRAM ONLY. In clear prose: ' +
+    '(1) the PRIMARY hexagram — its two trigrams, its Judgment and Image, and what situation the tradition reads in it; ' +
+    '(2) the MOVING LINE(S), if any — the pivots of the reading, in order; (3) the NUCLEAR hexagram as the hidden core ' +
+    'of the matter; (4) the RELATING hexagram, if any, as the direction the situation tends. THEN synthesise: what the ' +
+    'whole cast, read together, most strongly reflects, and what the tradition would COUNSEL — as historical wisdom and ' +
+    'a mirror for reflection, never a forecast or real-world advice. Close with one honest sentence: the I Ching is a ' +
+    'historical divinatory art of no demonstrated predictive validity — described for study, never prescribed.'
+  );
+}
+export function ichingDataBlock(x) {
+  const r = x.reading;
+  const dig = {
+    question: x.question || '',
+    primary: { num: r.primary.num, name: r.primary.name, upper: r.trigrams.upper.name, lower: r.trigrams.lower.name },
+    moving: r.moving.map(m => ({ line: m.line, yang: m.yang, text: m.text })),
+    nuclear: { num: r.nuclear.num, name: r.nuclear.name },
+    relating: r.relating ? { num: r.relating.num, name: r.relating.name } : null,
+  };
+  return '\n\nCOMPUTED I CHING CAST (JSON — interpret THIS hexagram, never invent):\n' + JSON.stringify(dig);
+}

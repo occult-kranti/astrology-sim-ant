@@ -25,33 +25,11 @@ export const PROVIDERS = {
     url: 'https://api.groq.com/openai/v1/chat/completions', keyHint: 'gsk_…', keyUrl: 'https://console.groq.com/keys',
     models: [['openai/gpt-oss-120b', 'GPT-OSS 120B'], ['openai/gpt-oss-20b', 'GPT-OSS 20B (fast)'], ['qwen/qwen3-32b', 'Qwen3 32B']],
   },
-  gemini: {
-    label: 'Google Gemini — free tier (no card)', kind: 'openai', tools: false, cors: 'yes',
-    url: 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions', keyHint: 'AIza…', keyUrl: 'https://aistudio.google.com/apikey',
-    models: [['gemini-2.5-flash', 'Gemini 2.5 Flash'], ['gemini-2.5-flash-lite', 'Gemini 2.5 Flash-Lite'], ['gemini-2.5-pro', 'Gemini 2.5 Pro (low quota)']],
-  },
-  openrouter: {
-    label: 'OpenRouter — free models', kind: 'openai', tools: false, cors: 'yes',
-    url: 'https://openrouter.ai/api/v1/chat/completions', keyHint: 'sk-or-…', keyUrl: 'https://openrouter.ai/keys',
-    models: [['deepseek/deepseek-r1:free', 'DeepSeek R1 (free)'], ['deepseek/deepseek-v3:free', 'DeepSeek V3 (free)'], ['meta-llama/llama-3.3-70b:free', 'Llama 3.3 70B (free)']],
-  },
-  cerebras: {
-    label: 'Cerebras — free 1M tokens/day, very fast', kind: 'openai', tools: false, cors: 'yes',
-    url: 'https://api.cerebras.ai/v1/chat/completions', keyHint: 'csk-…', keyUrl: 'https://cloud.cerebras.ai',
-    models: [['gpt-oss-120b', 'GPT-OSS 120B'], ['llama-3.3-70b', 'Llama 3.3 70B'], ['qwen-3-32b', 'Qwen3 32B']],
-  },
-  mistral: {
-    label: 'Mistral — free Experiment tier', kind: 'openai', tools: false, cors: 'yes',
-    url: 'https://api.mistral.ai/v1/chat/completions', keyHint: '…', keyUrl: 'https://console.mistral.ai/api-keys',
-    models: [['mistral-small-latest', 'Mistral Small'], ['mistral-large-latest', 'Mistral Large']],
-  },
-  custom: {
-    label: 'Custom OpenAI-compatible endpoint…', kind: 'openai', tools: false, cors: 'unknown', custom: true,
-    url: '', keyHint: 'your key', keyUrl: '',
-    models: [['', '(type a model name below)']],
-  },
+  // Only Claude (recommended, agentic tools) + Groq (free default) are offered.
+  // The provider-agnostic transport still supports any OpenAI-compatible endpoint;
+  // more providers can be re-added to this table if wanted.
 };
-export const PROV_ORDER = ['anthropic', 'groq', 'gemini', 'openrouter', 'cerebras', 'mistral', 'custom'];
+export const PROV_ORDER = ['groq', 'anthropic'];
 
 // Free OpenAI-compatible tiers have small per-minute token caps (e.g. Groq's
 // 8000 TPM), so the grounded context must be much smaller than for Claude.

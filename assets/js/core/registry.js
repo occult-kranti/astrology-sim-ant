@@ -555,6 +555,22 @@ export const REGISTRY = [
     pages: ['pages/tarot.html'], howItWorks: 'pages/tarot.html',
     glossaryTerms: ['Tarot', 'Major Arcana', 'Minor Arcana', 'Elemental Dignities', 'Reversal (Tarot)'],
   },
+  {
+    id: 'iching', title: 'I Ching — the Book of Changes, cast & read',
+    module: 'assets/js/core/iching.js', exportName: 'castReading',
+    exports: ['linesFromThrows', 'relatingHexagram', 'nuclearHexagram', 'trigramsOf', 'HEXAGRAMS', 'TRIGRAMS'],
+    computes: 'The I Ching (Yijing): from six cast lines (young/old yin/yang), reads the primary hexagram over the 64 King Wen figures and 8 trigrams, the moving (changing) lines, the nuclear (inner) hexagram, and the relating hexagram (flipping the moving lines) — the tendency of the change. Line texts are original paraphrases after Legge (public domain). A historical art of no demonstrated validity, described never prescribed.',
+    inputs: [
+      { name: 'lines', type: 'object', desc: 'the 6 static lines (1=yang/0=yin, bottom→top)', required: true },
+      { name: 'changing', type: 'object', desc: 'the 6 moving-line flags (booleans)' },
+    ],
+    outputShape: '{ primary, trigrams:{upper,lower}, nuclear, relating, moving:[{line,yang,text}], movingCount, guidance, lines_out }',
+    callable: false,
+    book: 'I Ching', chapter: 'The Yijing (King Wen sequence); Legge SBE XVI',
+    citation: 'The Yijing (Book of Changes); James Legge, The I Ching (Sacred Books of the East XVI, 1899, public domain); the received tradition.',
+    pages: ['pages/iching.html'], howItWorks: 'pages/iching.html',
+    glossaryTerms: ['I Ching', 'Hexagram', 'Trigram', 'Moving (Changing) Lines', 'Relating Hexagram'],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------

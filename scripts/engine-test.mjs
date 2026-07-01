@@ -375,8 +375,35 @@ ok(tThrew, 'drawSpread refuses a wrong-length draw');
 const cc = drawSpread('celticCross', TAROT_DECK.slice(0, 10).map(c => ({ id: c.id, reversed: true })));
 ok(cc.cards[1].reversed === false && cc.cards[0].reversed === true, 'the Celtic Cross crossing card is never reversed (read upright either way)');
 
+// --- I Ching (the Book of Changes) -----------------------------------------
+import { HEXAGRAMS, TRIGRAMS, hexagramByLines, hexagramByNum, trigramByLines } from '../assets/js/core/data/iching-hexagrams.js';
+import { linesFromThrows, castReading, relatingHexagram, nuclearHexagram, trigramsOf } from '../assets/js/core/iching.js';
+ok(HEXAGRAMS.length === 64 && TRIGRAMS.length === 8, `64 hexagrams + 8 trigrams (got ${HEXAGRAMS.length}+${TRIGRAMS.length})`);
+ok(new Set(HEXAGRAMS.map(h => h.lines.join(''))).size === 64, 'all 64 hexagrams have a distinct 6-line pattern (a complete bijection)');
+ok(HEXAGRAMS.every(h => h.lines.length === 6 && h.lineTexts.length === 6), 'every hexagram has 6 lines and 6 line-texts');
+ok(hexagramByNum(1).lines.join('') === '111111' && hexagramByNum(2).lines.join('') === '000000', '#1 Qian all-yang, #2 Kun all-yin');
+ok(hexagramByLines([1, 1, 1, 0, 0, 0]).num === 11 && hexagramByLines([0, 0, 0, 1, 1, 1]).num === 12, 'Earth-over-Heaven=11 (Peace), Heaven-over-Earth=12 (Standstill)');
+ok(TRIGRAMS.every(t => t.lines.length === 3) && trigramByLines([1, 1, 1]).key === 'qian' && trigramByLines([0, 0, 0]).key === 'kun', 'trigrams: qian=111, kun=000');
+// the asymmetric trigrams must be bottom-to-top canonical (zhen=100, gen=001, xun=011, dui=110)
+ok(trigramByLines([1, 0, 0]).key === 'zhen' && trigramByLines([0, 0, 1]).key === 'gen' && trigramByLines([0, 1, 1]).key === 'xun' && trigramByLines([1, 1, 0]).key === 'dui', 'asymmetric trigrams canonical: zhen=100, gen=001, xun=011, dui=110');
+// every hexagram's DERIVED trigrams (from its lines) must match its named lower/upper
+ok(HEXAGRAMS.every(h => { const t = trigramsOf(h.lines); return t.lower && t.upper && t.lower.key === h.lower && t.upper.key === h.upper; }), 'every hexagram’s derived trigrams match its named lower/upper fields');
+// throws → lines/changing
+const thr = linesFromThrows([9, 7, 8, 6, 7, 8]);
+ok(thr.lines.join('') === '110010' && thr.changing.map(c => c ? 1 : 0).join('') === '100100', 'linesFromThrows: 9,7,8,6,7,8 → lines 110010, changing 100100');
+let icThrew = false; try { linesFromThrows([5, 7, 8, 6, 7, 8]); } catch { icThrew = true; }
+ok(icThrew, 'linesFromThrows rejects an out-of-range throw');
+// a full reading + relating/nuclear correctness
+const icr = castReading(thr.lines, thr.changing);
+const flipped = thr.lines.map((l, i) => (thr.changing[i] ? (l ? 0 : 1) : l));
+ok(icr.relating && icr.relating.num === hexagramByLines(flipped).num, 'relating hexagram = the primary with moving lines flipped');
+ok(nuclearHexagram([1, 1, 1, 1, 1, 1]).num === 1 && nuclearHexagram([0, 0, 0, 0, 0, 0]).num === 2, 'nuclear of Qian=Qian, of Kun=Kun');
+ok(icr.moving.length === 2 && icr.moving.every(m => m.text) && Array.isArray(icr.lines_out), 'castReading reports the moving lines + cited lines');
+const icNoMove = castReading([1, 1, 1, 1, 1, 1], [false, false, false, false, false, false]);
+ok(icNoMove.relating === null && /stable/i.test(icNoMove.guidance), 'no moving lines → no relating hexagram, stable guidance');
+
 // --- Divination LLM context (the diviner bridge) ---------------------------
-import { buildGeomancyContext, buildTarotContext, buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, geomancyDataBlock, tarotDataBlock, DIVINER_PREAMBLE } from '../assets/js/core/llm-context.js';
+import { buildGeomancyContext, buildTarotContext, buildIchingContext, buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, buildIchingInterpretPrompt, geomancyDataBlock, tarotDataBlock, ichingDataBlock, DIVINER_PREAMBLE } from '../assets/js/core/llm-context.js';
 const gctx = buildGeomancyContext({ kind: 'geomancy', question: 'a test', quesitedHouse: 7, shield: gsh, judgement: gj, houses: geomancyHouses(gsh) });
 ok(/pseudoscience|no demonstrated/i.test(gctx.system) && /never\s+prescribe|describe/i.test(gctx.system), 'buildGeomancyContext keeps the honest framing');
 ok(gctx.facts.length > 0 && /Judge/i.test(gctx.system), 'buildGeomancyContext grounds the Judge + facts');
@@ -386,6 +413,9 @@ ok(/pseudoscience|no demonstrated/i.test(tctx.system) && /Tower|Ace of Wands/i.t
 ok(/describe|never\s+predict|history/i.test(buildGeomancyInterpretPrompt({ judgement: gj, shield: gsh })) , 'geomancy interpret prompt keeps the caveat');
 ok(/Golden Dawn|elemental/i.test(buildTarotInterpretPrompt(tr)) && /never invent|interpret THESE/i.test(geomancyDataBlock({ judgement: gj, shield: gsh, houses: [] })), 'tarot interpret + geomancy data block well-formed');
 ok(/interpret THESE cards/i.test(tarotDataBlock({ reading: tr })), 'tarot data block is well-formed');
+const ictx = buildIchingContext({ kind: 'iching', question: 'a test', reading: icr });
+ok(/pseudoscience|no demonstrated/i.test(ictx.system) && /Hexagram|Judgment/i.test(ictx.system), 'buildIchingContext keeps the framing + grounds the hexagram');
+ok(/Yijing|hexagram|never\s+predict|describe/i.test(buildIchingInterpretPrompt(icr)) && /interpret THIS hexagram/i.test(ichingDataBlock({ reading: icr })), 'iching interpret prompt + data block well-formed');
 
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

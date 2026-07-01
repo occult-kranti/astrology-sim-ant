@@ -23,6 +23,7 @@
 import { buildContext, runTool, toAnthropicTools, buildCodexPrompt, buildSynthesisPrompt, buildOperationPrompt, dataBlockFor, SITE_URLS } from '../core/llm-context.js';
 import { downloadText } from './state.js';
 import { PROVIDERS, PROV_ORDER, streamChat as coreStreamChat, claudeToolLoop as coreToolLoop, openrouterHeaders } from './llm-core.js';
+import { LOCAL_DEFAULTS } from './local-config.js';
 
 const PROV_STORE = 'wb-llm-provider';
 const OPS_STORE = 'wb-operations';
@@ -56,10 +57,15 @@ const factBudget = big => isFree() ? (big ? 45 : 28) : (big ? 400 : 110);
 const keyStore = () => 'wb-llm-key-' + provName();
 const baseStore = () => 'wb-llm-base-' + provName();
 
+// the default provider: a remembered choice, else the local-config default, else Groq
+const defaultProv = () => { const p = lsGet(PROV_STORE) || LOCAL_DEFAULTS.provider || 'groq'; return PROVIDERS[p] ? p : 'groq'; };
+// pre-fill the key field: a remembered key, else the local-config key (this device only)
+const prefillKey = () => lsGet(keyStore()) || (provName() === LOCAL_DEFAULTS.provider ? (LOCAL_DEFAULTS.key || '') : '');
+
 function render() {
   const host = el('wb-assistant');
   if (!host) return;
-  const savedProv = lsGet(PROV_STORE) || 'anthropic';
+  const savedProv = defaultProv();
   host.innerHTML = `
     <div class="callout science" style="margin-top:0"><span class="label">About this assistant</span>
       It explains the <b>computed, cited</b> reading above using an LLM called directly from your browser with
@@ -119,7 +125,7 @@ function render() {
     <details style="margin-top:.6rem"><summary class="small">What the model is told (the grounded facts)</summary>
       <div id="wb-asst-preview" class="small muted"></div></details>`;
 
-  el('wb-asst-provider').value = PROVIDERS[savedProv] ? savedProv : 'anthropic';
+  el('wb-asst-provider').value = savedProv;
   onProviderChange();
   el('wb-asst-provider').addEventListener('change', () => { lsSet(PROV_STORE, provName()); onProviderChange(); });
   el('wb-asst-synth').addEventListener('click', () => generateSynthesis());
@@ -142,7 +148,7 @@ function onProviderChange() {
   const modelSel = el('wb-asst-model');
   modelSel.innerHTML = p.models.map(([v, l]) => `<option value="${v}">${esc(l)}</option>`).join('');
   el('wb-asst-key').placeholder = p.keyHint;
-  el('wb-asst-key').value = lsGet(keyStore()) || '';
+  el('wb-asst-key').value = prefillKey();
   el('wb-asst-remember').checked = !!lsGet(keyStore());
   el('wb-asst-base-row').style.display = p.custom ? '' : 'none';
   if (p.custom) el('wb-asst-base').value = lsGet(baseStore()) || '';

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I Ching — the Book of Changes, cast &amp; read | The Astrologer's Workbench</title>
+<meta name="description" content="The I Ching (Yijing): cast the coins and the engine reads the primary hexagram, the moving lines, the nuclear (inner) hexagram, and the relating hexagram — the tendency of the change — over the 64 King Wen figures and the 8 trigrams, with an AI diviner to narrate it. Historical study only; a divinatory art of no demonstrated validity. Line texts are original paraphrases after Legge (public domain).">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .hx-figure { display:inline-flex; flex-direction:column; gap:.32rem; padding:.3rem 0; align-items:center; }
+  .hx-line { position:relative; display:flex; gap:.5rem; justify-content:center; align-items:center; width:5.2rem; }
+  .hx-bar { height:.52rem; background:var(--ink); border-radius:1px; flex:1 1 auto; }
+  .hx-half { flex:0 0 43%; }
+  .hx-gap { flex:0 0 14%; }
+  .hx-changing .hx-bar { background:var(--link); }
+  .hx-mark { position:absolute; right:-1.1rem; font-size:.8rem; color:var(--link); }
+  .hx-pair { display:flex; gap:1.4rem; align-items:center; flex-wrap:wrap; justify-content:center; }
+  .hx-col { display:flex; flex-direction:column; align-items:center; gap:.3rem; text-align:center; }
+  .hx-name { line-height:1.15; }
+  .hx-arrow { font-size:1.6rem; color:var(--gold); }
+  .ich-ref-card { display:flex; gap:.7rem; align-items:center; border:1px solid var(--rule); border-radius:.5rem; padding:.4rem .7rem; background:var(--card); }
+  .ich-ref-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(13rem, 1fr)); gap:.5rem; }
+  .ich-hex-card { display:flex; gap:.6rem; align-items:center; border:1px solid var(--rule); border-radius:.45rem; padding:.35rem .5rem; background:var(--card); }
+  .ich-hex-card .hx-figure { gap:.16rem; }
+  .ich-hex-card .hx-line { width:2.6rem; } .ich-hex-card .hx-bar { height:.28rem; }
+  .ich-hex-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(13rem, 1fr)); gap:.4rem; }
+  .ich-mline-row { display:flex; align-items:center; gap:.6rem; margin:.2rem 0; }
+  .ich-mline { min-width:6rem; border:1px solid var(--rule); border-radius:.3rem; padding:.25rem .6rem; background:var(--card); cursor:pointer; }
+  .ich-mline.yang { border-left:4px solid var(--ink); } .ich-mline.yin { border-left:4px solid var(--rule); }
+  .ich-mline.old { border-color:var(--gold); }
+  .ich-explain { margin-top:.2rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › I Ching</p>
+  <h1>I Ching — the Book of Changes, cast &amp; read</h1>
+  <p class="lede">The <i>Yijing</i> — the Book of Changes — answers a question by a <b>hexagram</b> cast at the moment of
+    asking. Six lines are thrown (each young or old, yin or yang); the static lines give the <b>primary hexagram</b>
+    (the situation), any <b>moving lines</b> are its pivots, the inner lines give the <b>nuclear hexagram</b> (the
+    hidden core), and flipping the moving lines gives the <b>relating hexagram</b> — the direction the situation tends.
+    All 64 figures are the King Wen sequence over the eight <b>trigrams</b>.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    The I Ching is a <b>historical divinatory art of no demonstrated validity</b>. The hexagram structure is exact,
+    verifiable mathematics (the 64 figures are the 2⁶ combinations of six lines); the <em>meanings</em> are the
+    tradition's, reproduced for study — never a prediction or advice. The line texts here are <b>original paraphrases
+    after James Legge</b> (1899, public domain), not the copyrighted Wilhelm–Baynes translation. The coins are thrown
+    by your browser's random generator; nothing leaves the page.</div>
+
+  <form id="ich-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 100%"><label for="ich-question">Your question (optional)</label>
+        <input id="ich-question" type="text" placeholder="e.g. what should I understand about this situation?" style="width:100%"></div>
+    </div>
+    <div class="field-row" style="margin-top:.6rem">
+      <button type="submit" class="btn" id="ich-cast">☯ Cast the coins</button>
+    </div>
+    <details style="margin-top:.7rem">
+      <summary class="small"><b>Or set the lines yourself</b> — tap each line to cycle yin / yang / old-yin (×) / old-yang (○)</summary>
+      <div style="margin-top:.5rem;border-top:1px dashed var(--rule);padding-top:.6rem">
+        <div id="ich-manual-pad"></div>
+        <button type="button" class="btn sm" id="ich-manual-read">Read this cast</button>
+        <span id="ich-manual-status" class="small muted" style="margin-left:.5rem"></span>
+      </div>
+    </details>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The hexagram</h2>
+    <div id="ich-figure"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The reading</h2>
+    <div id="ich-out"></div>
+    <div class="callout" style="margin-top:.6rem"><span class="label">A mirror, not a verdict</span> The I Ching offers
+      an image to reflect on — the situation, its pivots, and where it tends. It has no demonstrated predictive validity;
+      this is structured reflection for study.</div></section>
+
+  <section class="card" id="dv-assistant-card"><h2 style="margin-top:0">Ask the diviner — AI interpretation (Groq or Claude)</h2>
+    <div id="dv-assistant"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The eight trigrams <span class="small muted">(the building blocks)</span></h2>
+    <div id="ich-trigrams" class="ich-ref-grid"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The 64 hexagrams <span class="small muted">(King Wen sequence)</span></h2>
+    <div id="ich-hexes" class="ich-hex-grid"></div></section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything in the real world. The I Ching is a book of images and a method of
+    structured reflection; the meanings assigned to the hexagrams have no demonstrated connection to events. Treat every
+    reading as a faithful reconstruction of how the tradition reasons — a mirror for thought, not guidance. See
+    <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="geomancy.html">Geomancy</a> shield, the
+    <a href="tarot.html">Tarot</a> reader, and the <a href="workbench.html">Master Tool</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('tools');
+  import { initIching } from '../assets/js/app/iching.js';
+  initIching();
+</script>
+</body>
+</html>
