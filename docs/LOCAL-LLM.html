@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The AI assistant — how it works | The Astrologer's Workbench</title>
-<meta name="description" content="How the Workbench's AI assistant works: it hands Claude (the Anthropic API, called from your browser with your own key) the computed, cited reading and asks it to explain the result, narrate a Hermetic 'Codex of the Hour', or plan a historical working using the engine tools. Privacy, the CORS header, the three features, and the (currently disabled) local-model option.">
+<meta name="description" content="How the Workbench's AI assistant and the oracle-page diviner work: the browser hands the model (the free Groq tier by default, or Claude with agentic engine tools — always your own key, never proxied) the computed, cited reading and asks it to explain the result, narrate a Hermetic 'Codex of the Hour', interpret an oracle cast, or plan a historical working. Privacy, grounding, the honest framing.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -22,27 +22,34 @@
     site's framing: it <em>describes</em> Lilly's and the Picatrix's reasoning, it does not advise, predict, or present
     astrology as valid. Magical/talismanic content is historical only. See <a href="../pages/about/index.html">Sources &amp; Science</a>.</div>
 
-  <h2>Claude (the Anthropic API) — the assistant backend</h2>
-  <p>The assistant calls <b>Claude</b> directly from your browser using <b>your own Anthropic API key</b>:</p>
+  <h2>Two backends — Groq (free, the default) or Claude (agentic tools)</h2>
+  <p>The assistant calls the model <b>directly from your browser with your own key</b> — nothing is proxied, and no key
+    is ever bundled with the site:</p>
   <ol>
-    <li>Get an API key from <a href="https://platform.claude.com" rel="noopener">platform.claude.com</a>.</li>
-    <li>On the Workbench, open <b>Ask the Workbench — AI assistant</b>, paste the key, and pick a model
-      (default <code>claude-opus-4-8</code>; Sonnet 4.6, Haiku 4.5, and Fable 5 are also offered).</li>
+    <li><b>Groq (the default)</b> — a genuinely free tier, no card needed: get a key at
+      <a href="https://console.groq.com/keys" rel="noopener">console.groq.com/keys</a>. Fast open models
+      (GPT-OSS 120B/20B, Qwen3). Streaming chat over the computed, cited reading; the grounded context is automatically
+      slimmed to fit the free per-minute token cap.</li>
+    <li><b>Claude (Anthropic)</b> — the strongest experience, and the only backend with the <b>agentic engine tools</b>:
+      get a key at <a href="https://platform.claude.com" rel="noopener">platform.claude.com</a>
+      (default model <code>claude-opus-4-8</code>).</li>
     <li>Tick <b>remember on this device</b> to keep the key in this browser's <code>localStorage</code> for next time,
       or leave it off to re-enter the key each visit (it then lives only in the page for the session).</li>
-    <li>Ask away — or use the two one-click features below.</li>
+    <li>Ask away — the same key works on the Workbench assistant and on every oracle page's <b>diviner</b>.</li>
   </ol>
   <div class="callout"><span class="label">Privacy &amp; CORS</span>
-    Requests go <b>only</b> to <code>api.anthropic.com</code>, sent with the
-    <code>anthropic-dangerous-direct-browser-access: true</code> header that authorises a browser-origin call, plus your
-    <code>x-api-key</code>. Nothing is proxied through this site; the page is static. Your key is used to call Anthropic
-    and is stored only where you choose (session memory, or this device if you tick "remember").</div>
+    Requests go <b>only</b> to the chosen provider (<code>api.groq.com</code> or <code>api.anthropic.com</code> — the
+    Anthropic call carries the <code>anthropic-dangerous-direct-browser-access: true</code> header that authorises a
+    browser-origin request). Nothing is proxied through this site; the page is static. Your key is stored only where you
+    choose (session memory, or this device if you tick "remember"). <b>No network request fires on page load</b> — every
+    call happens on an explicit click.</div>
 
   <h2>Three ways to use it</h2>
   <ul>
     <li><b>Chat</b> — ask anything about the reading (“why is the love election red?”, “which planet is strongest?”).
-      With <em>“let Claude run the engine tools”</em> ticked, a tool-using model can compute fresh numbers itself —
-      rank the aims, find the next good window, look up a mansion — and narrate the <b>real</b> result.</li>
+      With <em>“let the model run the engine tools”</em> ticked (Claude only), a tool-using model can compute fresh
+      numbers itself — rank the aims, find the next good window, look up a mansion, even <b>cast an oracle</b>
+      (geomancy, tarot, I Ching) — and narrate the <b>real</b> result.</li>
     <li><b>📜 Generate the Codex of this Hour</b> — narrates the whole master report tool-by-tool in the grave,
       image-rich register of Hermes Trismegistus and the Picatrix (yet truthful): for each computation, <em>what it
       measures</em>, <em>its meaning now</em>, and <em>how the tradition would best use it</em> — with the honest caveat.</li>
@@ -64,12 +71,21 @@
     <li><code>assets/js/core/registry.js</code> — the capability map the tool schema is derived from.</li>
   </ul>
 
+  <h2>The diviner — the same assistant on the oracle pages</h2>
+  <p>Each oracle page (<a href="../pages/geomancy.html">Geomancy</a>, <a href="../pages/tarot.html">Tarot</a>,
+    <a href="../pages/iching.html">I Ching</a>) carries an <b>“Ask the diviner”</b> panel built on the same transport
+    and the same key. It speaks in the voice of a learned historian of the Western esoteric tradition — vivid about the
+    figures, the cards and their rituals — yet it is held to the identical locked framing, and it is grounded in the
+    <b>computed cast</b> (the shield, the spread, the hexagram): it interprets what was actually drawn, never inventing
+    a figure or card. Every figure and card also carries a <b>✶ explain</b> chip that pre-fills a focused question.</p>
+
   <h2>The local-model option (currently disabled)</h2>
   <p>The codebase also contains an <b>offline</b> path — a local model via <a href="https://ollama.com" rel="noopener">Ollama</a>
     or an in-browser <b>WebLLM</b> model — so the assistant can run with nothing leaving your machine. That option is
-    <b>turned off in the UI for now</b> while the Claude experience is the focus; it can be re-enabled in
-    <code>assets/js/app/assistant.js</code>. With Ollama you would run <code>ollama serve</code> with
-    <code>OLLAMA_ORIGINS</code> set to allow this page; WebLLM needs WebGPU.</p>
+    <b>turned off in the UI for now</b>; the shared transport (<code>assets/js/app/llm-core.js</code>) already speaks
+    the OpenAI-compatible protocol any local server exposes, so it can be re-enabled by adding the endpoint to the
+    provider table. With Ollama you would run <code>ollama serve</code> with <code>OLLAMA_ORIGINS</code> set to allow
+    this page; WebLLM needs WebGPU.</p>
 
   <p class="small muted">Back to the <a href="../pages/workbench.html">Workbench</a>.</p>
 </main>

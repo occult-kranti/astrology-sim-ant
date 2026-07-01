@@ -15,6 +15,7 @@ import { castShield, mothersFromTallies, geomanticJudgement, geomancyHouses, GEO
 import { figureByRows } from '../core/data/geomantic-figures.js';
 import { autolinkResultPanels } from './shared.js';
 import { initDivinationAssistant } from './divination-assistant.js';
+import { renderCastHour } from './cast-hour.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -58,6 +59,7 @@ function figureCard(f, label, extra = '') {
 function explainChip(text) { return `<button type="button" class="btn sm geo-explain" data-q="${esc(text)}">✶ explain</button>`; }
 
 export function initGeomancy() {
+  try { renderCastHour('cast-hour'); } catch { /* non-fatal */ }
   // topic select
   $('geo-topic').innerHTML = TOPICS.map(([n, t]) => `<option value="${n}">${n} — ${esc(t)}</option>`).join('');
   $('geo-topic').value = 7;

@@ -13,6 +13,7 @@
 import { castReading, linesFromThrows, HEXAGRAMS, TRIGRAMS } from '../core/iching.js';
 import { autolinkResultPanels } from './shared.js';
 import { initDivinationAssistant } from './divination-assistant.js';
+import { renderCastHour } from './cast-hour.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -46,6 +47,7 @@ function hexFigure(hexOrLines, changing) {
 function explainChip(text) { return `<button type="button" class="btn sm ich-explain" data-q="${esc(text)}">✶ explain</button>`; }
 
 export function initIching() {
+  try { renderCastHour('cast-hour'); } catch { /* non-fatal */ }
   renderReference();
   buildManualPad();
   $('ich-form').addEventListener('submit', e => { e.preventDefault(); castCoins(); });

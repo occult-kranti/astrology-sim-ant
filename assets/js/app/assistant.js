@@ -38,6 +38,45 @@ export function initAssistant(_api) {
   currentReading = api.getReading ? api.getReading() : null;
   render();
   if (api.subscribeReading) api.subscribeReading(r => { currentReading = r; refreshPreview(); });
+  try { injectExplainChips(); } catch { /* non-fatal — the panels explain themselves */ }
+}
+
+// Drop a focused question into the chat box and bring it into view.
+export function prefill(text) {
+  const input = el('wb-asst-input'); if (!input) return;
+  input.value = text;
+  const card = document.getElementById('wb-assistant-card');
+  if (card && card.scrollIntoView) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  input.focus();
+}
+
+// --- per-panel "✶ explain this" chips ----------------------------------------
+// Each Workbench result panel gets a chip in its heading that pre-fills a
+// scoped, grounded question. The chip only NAMES the panel — the values come
+// from the already-grounded context, so nothing can be misquoted.
+const PANEL_EXPLAIN = {
+  'wb-moment': 'Explain the figure of this moment — the Ascendant, the angles, the day/night sect and the planetary hour — and what the tradition read in them. Ground only in the computed facts; describe, never predict.',
+  'wb-horary': 'Explain the horary panel of this reading — the querent’s and quesited’s significators, their condition, and whether/how the matter perfects. Describe the tradition’s reasoning; never predict.',
+  'wb-dignities': 'Explain the dignity ledger of this reading — which planets are strongest and weakest by essential and accidental dignity, and why. Ground only in the computed facts; describe, never predict.',
+  'wb-aspects': 'Explain the aspects & reception panel of this reading — the tightest applying and separating aspects and any reception, and what the tradition made of them. Describe, never predict.',
+  'wb-lots': 'Explain the Lots & antiscia of this reading — the Part of Fortune and Spirit and the notable antiscia contacts, and how the tradition used them. Describe, never predict.',
+  'wb-cautions': 'Explain the chart-health verdict of this reading — which considerations and afflictions drive it, weighted by the significators. Ground only in the computed facts; describe, never predict.',
+  'wb-election': 'Explain the election panel of this reading — what this hour is fit and unfit for by the tradition’s testimonies, and why the chosen aim got its verdict. Describe as history; never advise.',
+  'wb-talisman': 'Explain the talisman recipe of this reading — the ruling planet, the timing, the materials and the mansion — strictly as HISTORICAL practice, never an instruction.',
+  'wb-natal': 'Explain the life-trajectory panel of this reading — the Lord of the Geniture, the profected year and Lord of the Year, and the notable directions. Describe the tradition’s method; never predict.',
+};
+function injectExplainChips() {
+  if (!el('wb-asst-input')) return;
+  for (const [panelId, q] of Object.entries(PANEL_EXPLAIN)) {
+    const panel = document.getElementById(panelId); if (!panel) continue;
+    const card = panel.closest('section.card'); if (!card) continue;
+    const h2 = card.querySelector('h2'); if (!h2 || h2.querySelector('.wb-explain')) continue;
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'btn sm wb-explain'; btn.style.marginLeft = '.5rem';
+    btn.textContent = '✶ explain';
+    btn.addEventListener('click', () => prefill(q));
+    h2.appendChild(btn);
+  }
 }
 
 // --- storage helpers (best-effort; never throw) -----------------------------
@@ -70,7 +109,7 @@ function render() {
     <div class="callout science" style="margin-top:0"><span class="label">About this assistant</span>
       It explains the <b>computed, cited</b> reading above using an LLM called directly from your browser with
       <b>your own API key</b> (nothing is proxied; no key is bundled). Use <b>Claude</b> (recommended, supports the
-      agentic tools) or a <b>free-tier</b> provider (Groq, Gemini, OpenRouter…). It describes a historical,
+      agentic tools) or the <b>free Groq tier</b> (the default — no card needed). It describes a historical,
       <b>pseudoscientific</b> tradition; it does not advise or predict. Magical material is historical only.
       New here? <a href="../docs/LOCAL-LLM.html">How the assistant works →</a></div>
 
@@ -155,7 +194,7 @@ function onProviderChange() {
   const gk = el('wb-asst-getkey'); if (gk) { gk.href = p.keyUrl || '#'; gk.style.display = p.keyUrl ? '' : 'none'; }
   el('wb-asst-tools-wrap').style.display = p.tools ? 'flex' : 'none';
   setStatus(p.cors === 'unknown'
-    ? 'Note: this provider’s browser-direct (CORS) support is unverified — if you see a network error, it blocks direct calls; use Claude/Groq/Gemini/OpenRouter, which do allow it.'
+    ? 'Note: this provider’s browser-direct (CORS) support is unverified — if you see a network error, it blocks direct calls; use Groq or Claude, which do allow it.'
     : 'Paste your key and ask — nothing is sent until you do.');
 }
 
@@ -226,11 +265,18 @@ async function streamChat(messages, system, asstEl, maxTokens = 3072) {
   return full;
 }
 
+// crypto randomness for the oracle tools (castGeomancy/drawTarot/castIChing):
+// the APP throws the dice, never the model and never the pure core.
+function appRand(n) {
+  try { const a = new Uint32Array(1); (self.crypto || window.crypto).getRandomValues(a); return a[0] % n; }
+  catch { return Math.floor(Math.random() * n); }
+}
+
 async function claudeToolLoop(messages, system, asstEl) {
   const full = await coreToolLoop({
     url: provCfg().url, model: el('wb-asst-model').value, key: getKey(),
     system, messages, tools: toAnthropicTools(),
-    runTool: (name, input) => runTool(name, input, api.getContext ? api.getContext() : {}),
+    runTool: (name, input) => runTool(name, input, { ...(api.getContext ? api.getContext() : {}), rand: appRand }),
     signal: controller.signal,
     onText: t => { asstEl.textContent = t; scrollLog(); },
     onToolNote: (name, input, result) => appendToolNote(name, input, result),

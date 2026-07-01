@@ -24,6 +24,7 @@ const NAV_GROUPS = [
     ['pages/now.html', 'Now', 'now'],
     ['pages/workbench.html', 'Master Tool', 'workbench'],
     ['pages/trajectory.html', 'Trajectory', 'trajectory'],
+    ['pages/tools.html#divination', 'Oracles', 'oracles'],
     ['pages/workflow.html', 'Workflow', 'workflow'],
     ['pages/tools.html', 'All Tools', 'tools'],
   ] },

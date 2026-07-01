@@ -82,8 +82,8 @@ function render() {
       It interprets the <b>computed, cited</b> ${esc(subjectWord())} above using an LLM called directly from your browser with
       <b>your own API key</b> (nothing is proxied; no key is bundled). It narrates in the voice of a learned
       historian of the Western esoteric tradition — vivid about the figures, cards and their <b>rituals</b> — yet it
-      describes a <b>pseudoscientific</b> art for study only: never a prediction, never advice. Use <b>Claude</b> or a
-      <b>free-tier</b> provider (Groq, Gemini, OpenRouter…). The same key works across every tool on the site.</div>
+      describes a <b>pseudoscientific</b> art for study only: never a prediction, never advice. Use the <b>free Groq
+      tier</b> (the default — no card needed) or <b>Claude</b>. The same key works across every tool on the site.</div>
 
     <fieldset style="border:1px solid #2a3350;border-radius:.5rem;padding:.7rem .8rem;margin:.6rem 0">
       <legend class="small" style="padding:0 .4rem">Connect an AI (your own key)</legend>
@@ -145,7 +145,7 @@ function onProviderChange() {
   if (p.custom) el('dv-asst-base').value = lsGet(baseStore()) || '';
   const gk = el('dv-asst-getkey'); if (gk) { gk.href = p.keyUrl || '#'; gk.style.display = p.keyUrl ? '' : 'none'; }
   setStatus(p.cors === 'unknown'
-    ? 'Note: this provider’s browser-direct (CORS) support is unverified — if you see a network error, it blocks direct calls; use Claude/Groq/Gemini/OpenRouter.'
+    ? 'Note: this provider’s browser-direct (CORS) support is unverified — if you see a network error, it blocks direct calls; use Groq or Claude.'
     : 'Paste your key and ask — nothing is sent until you do.');
 }
 

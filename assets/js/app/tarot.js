@@ -12,6 +12,7 @@ import { tarotReading, SPREADS, SPREAD_KEYS } from '../core/tarot.js';
 import { TAROT_DECK, DECK_IDS, SUITS } from '../core/data/tarot-deck.js';
 import { autolinkResultPanels } from './shared.js';
 import { initDivinationAssistant } from './divination-assistant.js';
+import { renderCastHour } from './cast-hour.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -35,6 +36,7 @@ function shuffledDraw(count, reversals) {
 }
 
 export function initTarot() {
+  try { renderCastHour('cast-hour'); } catch { /* non-fatal */ }
   $('tarot-spread').innerHTML = SPREAD_KEYS.map(k => `<option value="${k}">${esc(SPREADS[k].name)}</option>`).join('');
   $('tarot-spread').value = 'three';
   renderReference();

@@ -222,6 +222,12 @@ live-update, a partial a11y pass). What remained, in **priority order**:
   real Groq free tier** (geomancy + tarot interpret): HTTP 200, grounded replies, 0 console errors.
 - ✅ **Per-panel "✶ Explain this"** — every geomancy shield-figure / house and every dealt tarot card carries an explain
   chip that pre-fills a focused, grounded question into the diviner chat.
+- ✅ **Per-panel "✶ explain this" on the Workbench** — every result panel (figure, horary, dignities, aspects, lots,
+  cautions, election, talisman, natal) carries a chip that pre-fills a scoped, grounded question into the assistant
+  (the chip only NAMES the panel; the values come from the grounded context, so nothing can be misquoted).
+- ✅ **The AI can cast the oracles** — `castGeomancy` / `drawTarot` / `castIChing` are engine tools (Claude agentic
+  mode): the randomness is injected by the APP layer (`ctx.rand`, crypto) — never chosen by the model, never generated
+  in the pure core — or reproduced from explicit tallies/throws; every tool result carries the honest framing.
 - ⬜ **Still to deepen:** a cite-bound output contract (`[F#]` fact tags); a glossary-aware `defineTerm` tool + inline
   term links; a structured talisman walk-through renderer; streaming-markdown rendering with copy/regenerate.
 
@@ -271,8 +277,29 @@ The assistant now offers **only Claude + Groq**, with **Groq the default** (`llm
 git-skipped **`app/local-config.js`** (committed EMPTY — no secret) lets the maintainer pre-fill their own key as the
 default on their own device (`git update-index --skip-worktree`) without ever exposing it in the public repo.
 
-- **Runners-up (future):** Sigils/planetary kameas (good fit, Agrippa II); the Kabbalah Tree of Life (medium); runes;
-  numerology/gematria score *weak* on engine fit.
+### R11 — Organise & integrate ✅ **SHIPPED** (2026-07-01)
+A whole-site organisation + cross-feature integration pass:
+- **Navigation & indexes** — an **Oracles** entry in the main nav (→ `tools.html#divination`); the Master Index
+  (`contents.html`) completed with Picatrix, Vedic, Oracles and AI-assistant cards (it had only the three Books +
+  Reference); the Picatrix hub cross-links "the daughters of astrology"; the live **Now** dashboard links "cast an
+  oracle at this hour".
+- **"The hour of the cast"** (`app/cast-hour.js`) — the oracle pages now surface the astrology engine's own timing
+  lore: the planetary day & hour, the Moon's sign/phase/mansion, void-of-course and Via-Combusta flags — the tradition's
+  practice (geomancers cast in the hour of the matter; Lilly warns against judging under a void Moon), shown for study.
+- **AI integration** (see the Deepen list above): per-panel explain chips on the Workbench; the three oracle tools.
+- **Copy refresh** — "ask Claude (Anthropic API)" → "the AI assistant (Groq free tier or Claude)" across
+  workbench/tools/docs; the assistant panels no longer advertise removed providers; `docs/LOCAL-LLM.html` rewritten for
+  the two-backend reality + the diviner.
+
+### FURTHER ROADMAP (next candidates, in rough value order)
+1. **Planetary kameas + sigils** (Agrippa II.22) — the seven magic squares, their seals, and a name→sigil tracer on the
+   kamea; extends the talisman workshop; fully computable. The strongest next oracle-adjacent build.
+2. **Cite-bound AI output** — number the grounded facts `[F#]` and require the model to tag claims; a glossary-aware
+   `defineTerm` tool; streaming-markdown rendering with copy/regenerate.
+3. **Oracle exports & sharing** — JSON/Markdown export + share-links for geomancy/tarot/iching casts (the Workbench
+   pattern, reusing `state.js`).
+4. **Runes (Elder Futhark)** (medium fit); the Kabbalah **Tree of Life** explorer (medium); numerology/gematria remain
+   *weak* engine fits.
 
 ---
 

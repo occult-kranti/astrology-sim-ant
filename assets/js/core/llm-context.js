@@ -32,6 +32,11 @@ import { castVedic } from './vedic.js';
 import { mansionOf } from './data/lunar-mansions.js';
 import { faceOf } from './data/decan-faces.js';
 import { prayerFor, PERFECT_NATURE } from './data/picatrix-prayers.js';
+// the divination oracles (pure engines; randomness is injected by the app via ctx.rand)
+import { castFromTallies, geomanticJudgement } from './geomancy.js';
+import { tarotReading, SPREADS } from './tarot.js';
+import { DECK_IDS } from './data/tarot-deck.js';
+import { linesFromThrows, castReading as castIchingReading } from './iching.js';
 
 const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
@@ -244,6 +249,30 @@ export function buildToolSchema() {
   schema.push({
     type: 'function',
     function: {
+      name: 'castGeomancy',
+      description: 'Cast a geomantic Shield Chart for a question and judge it by house: four random Mothers (thrown by the USER’S BROWSER at their request — you never choose the figures) derive the Daughters, Nieces, Witnesses, Judge and Reconciler; returns the significators, the perfection modes and the tone. Optionally pass 16 explicit tallies to reproduce a cast. HISTORICAL divination of no demonstrated validity — narrate as such.',
+      parameters: { type: 'object', properties: { quesitedHouse: { type: 'number', description: 'house 1–12 the question is about (default 7)' }, tallies: { type: 'array', items: { type: 'number' }, description: 'optional: 16 mark-counts to reproduce a specific cast' } }, required: [] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'drawTarot',
+      description: 'Shuffle & draw a Tarot spread (the USER’S BROWSER supplies the randomness at their request — you never choose the cards): returns each position’s card (upright/reversed), the Golden Dawn elemental dignities and the balance. HISTORICAL divination of no demonstrated validity — narrate as such.',
+      parameters: { type: 'object', properties: { spreadKey: { type: 'string', enum: ['single', 'three', 'horseshoe', 'celticCross'], description: 'the spread (default three)' }, reversals: { type: 'boolean', description: 'include reversed cards (default true)' } }, required: [] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'castIChing',
+      description: 'Cast an I Ching hexagram by the three-coin method (the USER’S BROWSER throws the coins at their request — you never choose the lines): returns the primary hexagram with Judgment/Image, the moving lines, the nuclear and the relating hexagram. Optionally pass 6 explicit line-throws (each 6, 7, 8 or 9, bottom to top) to reproduce a cast. HISTORICAL divination of no demonstrated validity — narrate as such.',
+      parameters: { type: 'object', properties: { throws: { type: 'array', items: { type: 'number' }, description: 'optional: 6 line values (6=old yin, 7=young yang, 8=young yin, 9=old yang), bottom to top' } }, required: [] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
       name: 'picatrixPrayer',
       description: 'Return the Picatrix Book III HISTORICAL prayer & spirits for a planet — the III.7 prayer excerpt + how it is addressed, the III.7 prayer-angel, and the III.9 directional spirits (Liber Antimaquis). Use to recite or explain the prayer the tradition would address to a calculation’s ruling planet. HISTORICAL TEXT for study, described — NEVER prescribed or an instruction.',
       parameters: { type: 'object', properties: { planet: { type: 'string', enum: ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'] } }, required: ['planet'] },
@@ -254,7 +283,8 @@ export function buildToolSchema() {
 
 // The set of tool names the dispatcher accepts (callable exports + the extras).
 export function toolNames() {
-  return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection', 'castVedic', 'vedicPractice', 'picatrixPrayer'];
+  return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection', 'castVedic', 'vedicPractice', 'picatrixPrayer',
+    'castGeomancy', 'drawTarot', 'castIChing'];
 }
 
 // The live tool's public locations — given to the model so it can point a user
@@ -483,6 +513,55 @@ export function runTool(name, args = {}, ctx = {}) {
     case 'castVedic': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return slimVedic(v); }
     case 'vedicPractice': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return v.practice; }
     case 'picatrixPrayer': { const pr = prayerFor(need('planet')); if (!pr) throw new Error(`no Picatrix prayer for ${args.planet}`); return { planet: args.planet, prayerExcerpt: pr.prayerExcerpt, address: pr.address, names: pr.names, prayerAngel: pr.prayerAngel, spirit: pr.spirit.master, directions: pr.spirit.directions, motion: pr.spirit.motion, citation: pr.citation, flag: pr.flag || null, note: 'Historical text (Picatrix Bk III) recorded for study — described, never prescribed; never an instruction.' }; }
+    // --- the divination oracles. The randomness comes from the CALLER (the
+    // app injects ctx.rand, a crypto n→[0,n) function) or from explicit args —
+    // never from this pure module, and never from the model itself.
+    case 'castGeomancy': {
+      const tallies = Array.isArray(args.tallies) && args.tallies.length >= 16 ? args.tallies.slice(0, 16)
+        : (typeof ctx.rand === 'function' ? Array.from({ length: 16 }, () => ctx.rand(16) + 1) : null);
+      if (!tallies) throw new Error('castGeomancy: supply 16 tallies, or run where the app provides the random cast');
+      const sh = castFromTallies(tallies);
+      const j = geomanticJudgement(sh, args.quesitedHouse || 7);
+      const F = f => `${f.english} (${f.latin}, ${f.nature})`;
+      return {
+        mothers: sh.mothers.map(m => m.english), querent: F(j.querentFigure), quesited: F(j.quesitedFigure),
+        witnesses: { right: F(sh.witnesses.right), left: F(sh.witnesses.left) }, judge: F(sh.judge),
+        reconciler: F(sh.reconciler), perfection: j.perfection.map(p => p.name), tone: j.tone, reading: j.toneText,
+        note: 'Cast by the user’s browser RNG. Historical divination of no demonstrated validity — described, never prescribed.',
+      };
+    }
+    case 'drawTarot': {
+      if (typeof ctx.rand !== 'function') throw new Error('drawTarot: only available where the app provides the random shuffle');
+      const spreadKey = args.spreadKey && SPREADS[args.spreadKey] ? args.spreadKey : 'three';
+      const ids = DECK_IDS.slice();
+      for (let i = ids.length - 1; i > 0; i--) { const k = ctx.rand(i + 1); [ids[i], ids[k]] = [ids[k], ids[i]]; }
+      const reversals = args.reversals !== false;
+      const draws = ids.slice(0, SPREADS[spreadKey].count).map(id => ({ id, reversed: reversals && ctx.rand(2) === 1 }));
+      const r = tarotReading(spreadKey, draws);
+      return {
+        spread: r.spread.name,
+        cards: r.cards.map(c => ({ position: c.position, card: c.card.name, reversed: c.reversed, keywords: c.text.slice(0, 4) })),
+        dignities: r.dignities.map(d => ({ between: d.between, relation: d.relation })),
+        balance: r.summaryLines,
+        note: 'Shuffled by the user’s browser RNG. Historical divination of no demonstrated validity — described, never prescribed.',
+      };
+    }
+    case 'castIChing': {
+      const throws = Array.isArray(args.throws) && args.throws.length === 6 ? args.throws
+        : (typeof ctx.rand === 'function' ? Array.from({ length: 6 }, () => (ctx.rand(2) + 2) + (ctx.rand(2) + 2) + (ctx.rand(2) + 2)) : null);
+      if (!throws) throw new Error('castIChing: supply 6 line-throws (6–9), or run where the app provides the coin toss');
+      const { lines, changing } = linesFromThrows(throws);
+      const r = castIchingReading(lines, changing);
+      return {
+        primary: { num: r.primary.num, name: r.primary.name, judgment: r.primary.judgment, image: r.primary.image },
+        trigrams: `${r.trigrams.upper.name} over ${r.trigrams.lower.name}`,
+        moving: r.moving.map(m => ({ line: m.line, text: m.text })),
+        nuclear: `${r.nuclear.num}. ${r.nuclear.name}`,
+        relating: r.relating ? { num: r.relating.num, name: r.relating.name, judgment: r.relating.judgment } : null,
+        guidance: r.guidance,
+        note: 'Coins thrown by the user’s browser RNG. Historical divination of no demonstrated validity — described, never prescribed.',
+      };
+    }
     default: throw new Error(`unknown tool: ${name}`);
   }
 }

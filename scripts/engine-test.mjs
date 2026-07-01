@@ -417,5 +417,21 @@ const ictx = buildIchingContext({ kind: 'iching', question: 'a test', reading: i
 ok(/pseudoscience|no demonstrated/i.test(ictx.system) && /Hexagram|Judgment/i.test(ictx.system), 'buildIchingContext keeps the framing + grounds the hexagram');
 ok(/Yijing|hexagram|never\s+predict|describe/i.test(buildIchingInterpretPrompt(icr)) && /interpret THIS hexagram/i.test(ichingDataBlock({ reading: icr })), 'iching interpret prompt + data block well-formed');
 
+// --- the AI oracle tools (randomness injected by the caller, never the core) -
+const oracleNames = ['castGeomancy', 'drawTarot', 'castIChing'];
+ok(oracleNames.every(n => toolNames().includes(n)), 'toolNames lists the three oracle tools');
+ok(oracleNames.every(n => buildToolSchema().some(t => t.function.name === n && /no demonstrated validity/i.test(t.function.description))), 'oracle tool schemas exist and carry the honest framing');
+let seed = 42 >>> 0; const testRand = n => { seed = (Math.imul(seed, 1103515245) + 12345) >>> 0; return (seed >>> 16) % n; };
+const gTool = runTool('castGeomancy', { quesitedHouse: 7 }, { rand: testRand });
+ok(['affirmed', 'qualified', 'denied'].includes(gTool.tone) && gTool.judge && gTool.mothers.length === 4, 'runTool(castGeomancy) casts and judges via ctx.rand');
+const gFixed = runTool('castGeomancy', { quesitedHouse: 7, tallies: [3, 5, 2, 8, 1, 4, 7, 2, 9, 3, 6, 1, 2, 2, 5, 4] }, {});
+ok(gFixed.judge.includes('Gain'), `castGeomancy with explicit tallies is deterministic (judge: ${gFixed.judge})`);
+const tTool = runTool('drawTarot', { spreadKey: 'three' }, { rand: testRand });
+ok(tTool.cards.length === 3 && tTool.cards.every(c => c.card && c.position), 'runTool(drawTarot) lays a 3-card spread via ctx.rand');
+const iTool = runTool('castIChing', { throws: [9, 7, 8, 6, 7, 8] }, {});
+ok(iTool.primary.num === 60 && iTool.moving.length === 2 && iTool.relating, 'castIChing with explicit throws is deterministic (9,7,8,6,7,8 → #60 with 2 moving lines)');
+let oracleThrew = false; try { runTool('castGeomancy', {}, {}); } catch { oracleThrew = true; }
+ok(oracleThrew, 'oracle tools refuse to run without a caller-supplied random source or explicit input');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);
