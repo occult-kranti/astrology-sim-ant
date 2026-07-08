@@ -464,6 +464,23 @@ ok(ae.aquariusYearLahiri > 2300 && ae.aquariusYearLahiri < 2600 && ae.datings.le
 ok(JUNG_TIMELINE.length >= 10 && JUNG_TIMELINE.every(e => e.cite && e.text && e.kind), 'the Jung timeline entries all carry citations');
 ok(JUNG_PLANET_ARCHETYPES.length === 7, 'seven planetary archetypes');
 
+// --- the planetary kameas & sigils -------------------------------------------
+import { KAMEAS, kameaByPlanet } from '../assets/js/core/data/kameas.js';
+import { validateKamea, sigilFor, letterValues, reduceToCell } from '../assets/js/core/kamea.js';
+ok(KAMEAS.length === 7, `7 planetary kameas (got ${KAMEAS.length})`);
+ok(KAMEAS.every(k => validateKamea(k.rows).ok), 'EVERY kamea grid is a valid magic square (rows/columns/diagonals + 1..n² bijection)');
+ok(KAMEAS.every(k => validateKamea(k.rows).constant === k.magicConstant && validateKamea(k.rows).total === k.totalSum), 'every kamea’s stated constant & total match the computed ones');
+ok(kameaByPlanet('Saturn').magicConstant === 15 && kameaByPlanet('Sun').totalSum === 666 && kameaByPlanet('Moon').magicConstant === 369, 'anchor constants: Saturn 15, Sun total 666, Moon 369');
+ok(kameaByPlanet('Venus').spirit.value === 175 && /157|misprint|transposition/i.test(kameaByPlanet('Venus').sealNote || '') , 'Kedemel = 175 with the 1651 misprint flagged in-record');
+ok(kameaByPlanet('Moon').spiritOfSpirits && kameaByPlanet('Moon').spiritOfSpirits.value === 3321 && /corrupt/i.test(kameaByPlanet('Moon').intelligence.note || ''), 'the Moon’s three names carried, its corrupt printed Hebrew flagged');
+ok(reduceToCell(300, 9) === 3 && reduceToCell(45, 9) === 9, 'reduceToCell collapses powers of ten then digit-sums (300→3; 45→9)');
+const sig = sigilFor('GABRIEL', kameaByPlanet('Moon'));
+ok(sig.steps.length === 7 && sig.steps[0].cellValue === 7 && sig.steps[6].cellValue === 12, 'sigilFor(GABRIEL, Moon) traces deterministically (G→7 … L→12)');
+const sigRep = sigilFor('AAB', kameaByPlanet('Saturn'));
+ok(sigRep.steps.length === 2 && sigRep.steps[0].repeats === 2, 'a repeated cell collapses into one step with a repeat marker');
+ok(/modern|Latin/i.test(sig.methodNote) && /Hebrew|gematria/i.test(sig.note), 'the sigil result flags the Latin adaptation honestly');
+ok(letterValues('AZ', 'aiq').map(l => l.value).join(',') === '1,800', 'aiq-style ladder: A=1, Z=800');
+
 // --- the AI oracle tools (randomness injected by the caller, never the core) -
 const oracleNames = ['castGeomancy', 'drawTarot', 'castIChing'];
 ok(oracleNames.every(n => toolNames().includes(n)), 'toolNames lists the three oracle tools');

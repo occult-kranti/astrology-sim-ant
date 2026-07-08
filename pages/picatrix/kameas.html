@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planetary kameas &amp; sigils — the seven magic squares | The Astrologer's Workbench</title>
+<meta name="description" content="The seven planetary kameas (magic squares) exactly as Agrippa prints them (Three Books II.22) — Saturn 3×3 to the Moon 9×9, every row, column and diagonal verified live — with the intelligence and spirit names and their gematria, the engraving metals and recorded uses, and a live sigil tracer that draws any name on the square (Agrippa III.30, the aiq-bekar method). Historical magic of no demonstrated efficacy — described, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Kameas &amp; sigils</p>
+  <h1>The planetary kameas — seven magic squares &amp; their sigils</h1>
+  <p class="lede">Agrippa's "tables of the planets" (<i>Three Books of Occult Philosophy</i> II.22): seven <b>magic
+    squares</b>, from Saturn's 3×3 to the Moon's 9×9, each cell-pattern summing alike in every row, column and diagonal —
+    real, checkable mathematics that the tradition read as the planets' "divine numbers." From these squares the magicians
+    derived the planetary <b>seals</b> and traced the <b>sigils</b> of spirit-names — a line drawn cell to cell through a
+    name's letter-values, begun with a circle and ended with a bar. Type any name below and watch the method work.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    The <b>mathematics is real</b> — this page verifies every square live, and the engine's test suite proves all seven.
+    The <em>magic</em> is historical practice of <b>no demonstrated efficacy</b>: the talismanic uses quoted below are
+    Agrippa's own words, recorded for study and never a recommendation. The 1651 printing's errors (Kedemel's misprinted
+    gematria, the Moon's corrupt Hebrew) are flagged rather than silently repaired — that is what honest sourcing looks like.</div>
+
+  <div id="cast-hour"></div>
+
+  <form id="km-form" class="calc">
+    <div class="field-row" style="align-items:flex-end">
+      <div class="field" style="flex:0 1 260px"><label for="km-planet">The square</label><select id="km-planet"></select></div>
+      <div class="field" style="flex:1 1 240px"><label for="km-name">Trace a name as a sigil (optional)</label>
+        <input id="km-name" type="text" placeholder="e.g. Gabriel" style="width:100%"></div>
+      <div class="field" style="flex:0 1 320px"><label for="km-method">Letter-values</label><select id="km-method"></select></div>
+    </div>
+  </form>
+
+  <section class="card">
+    <div style="display:flex;flex-wrap:wrap;gap:1.2rem;align-items:flex-start">
+      <div id="km-square" style="flex:1 1 320px;max-width:500px"></div>
+      <div id="km-info" style="flex:1 1 320px;min-width:280px"></div>
+    </div></section>
+
+  <section class="card"><h2 style="margin-top:0">How the tradition did it</h2>
+    <p class="small">Agrippa prints the finished seals and characters beside each square but withholds the method —
+      "the wise searcher … shall easily find out." The key he leaves is Book III ch. 30: the Hebrew alphabet laid on the
+      <b>nine chambers</b> of <i>aiq bekar</i> (units 1–9, tens 10–90, hundreds 100–900), so any name becomes a run of
+      numbers; values beyond the square's range collapse to their chamber (300 → 3), and the line passes cell to cell —
+      a circle where it begins, a bar where it ends, a small wave where a cell repeats. The <b>intelligence</b> of each
+      planet (its "good" mover) and its <b>spirit</b> (the raw daemon) bear gematria values keyed to the square itself —
+      Nachiel 111 is the Sun-square's line-sum, Sorath 666 its total. The Latin letter-values offered above are a
+      <b>modern convenience</b> for study; the historical practice worked on the Hebrew spellings.</p>
+    <p class="small muted">Timing: the tradition engraved a kamea "when the planet was fortunate" — the very judgement the
+      <a href="election.html">Election Engine</a> computes; the strip at the top of this page shows the present hour.
+      See also the <a href="talisman.html">Talisman Workshop</a> for the full recipe, and Jung's
+      <a href="../jung/theory.html">reading of such symbol-systems as projected psychology</a>.</p></section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    Engraving numbers on lead or gold does nothing to the world; no controlled evidence supports any talismanic effect,
+    and the materials named in the historical uses may be toxic. The squares remain beautiful mathematics, the sigils an
+    elegant medieval cipher — history to be studied, not practice to be followed. See
+    <a href="../about/index.html">Sources &amp; Science</a>.</div>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  mountChrome('picatrix');
+  import { initKameas } from '../../assets/js/app/kamea.js';
+  initKameas();
+</script>
+</body>
+</html>

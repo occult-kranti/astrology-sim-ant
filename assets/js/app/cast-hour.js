@@ -20,6 +20,8 @@ import { aspectBetween } from '../core/aspects.js';
 
 const PLANETS7 = ['Sun', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+// site root (same trick as shared.js) so the strip's links work at ANY page depth
+const ROOT = new URL('../../../', import.meta.url).href.replace(/\/$/, '');
 
 // The Moon's next applying Ptolemaic aspect (void of course if none) — the same
 // weighing horary-judge.js uses.
@@ -58,6 +60,6 @@ export function renderCastHour(id, opts = {}) {
       <span class="small muted">The geomancers cast in the hour of the matter's planet, and Lilly's considerations warn
       against judging under a void or afflicted Moon — recorded as the tradition's practice (for London; the hours vary
       by place). It has no demonstrated effect, least of all on a random cast — see the
-      <a href="now.html">live dashboard</a> and the <a href="book1/planetary-hours.html">planetary hours</a>.</span></div>`;
+      <a href="${ROOT}/pages/now.html">live dashboard</a> and the <a href="${ROOT}/pages/book1/planetary-hours.html">planetary hours</a>.</span></div>`;
   } catch (e) { host.innerHTML = ''; /* non-fatal — the oracle still works */ }
 }

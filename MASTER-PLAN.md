@@ -320,15 +320,27 @@ figures from CW 8 §§872–915 + appendix):
 - Wired: nav "Jung" (Books group), tools hub (2 cards), Master Index card, About-page science item + sources line,
   10 glossary terms, registry entry, engine-test asserts.
 
+### R13 — Kameas & sigils + cite-bound AI + oracle share/export ✅ **SHIPPED** (2026-07-07)
+- **Kameas** (`core/data/kameas.js` + `core/kamea.js` + `app/kamea.js` + `pages/picatrix/kameas.html`): the seven
+  planetary magic squares exactly as Agrippa prints them (II.22), from a research workflow whose grids were verified
+  cell-for-cell against the 1651 printing AND re-proven arithmetically three independent times (the workflow's verifier,
+  the generator script, and `validateKamea` in the engine-test + live on the page). Intelligence/spirit names with
+  independently-computed gematria (the 1651 "Kedemel 157" misprint and the Moon's corrupt printed Hebrew flagged
+  in-record, not silently fixed); engraving metals & Agrippa's recorded uses; and a **sigil tracer** — any name drawn on
+  the square by the aiq-bekar method (III.30), start-circle, end-bar, repeat-wave, with Latin letter-values honestly
+  flagged as a modern convenience. The cast-hour strip ties it to the Election Engine (links now root-based, fixed for
+  any page depth).
+- **Cite-bound AI output** — every grounded system prompt (Workbench + all diviners + Jung) now numbers its facts
+  `[F1..]` and carries an OUTPUT CONTRACT requiring computed claims to be tagged; the fact previews show the numbers.
+- **Oracle share & export** — geomancy/tarot/iching casts travel in the URL (mothers / exact draws / line-throws) and
+  restore deterministically; every oracle page gains "Copy shareable link" + "Download reading (MD)".
+
 ### FURTHER ROADMAP (next candidates, in rough value order)
-1. **Planetary kameas + sigils** (Agrippa II.22) — the seven magic squares, their seals, and a name→sigil tracer on the
-   kamea; extends the talisman workshop; fully computable. The strongest next oracle-adjacent build.
-2. **Cite-bound AI output** — number the grounded facts `[F#]` and require the model to tag claims; a glossary-aware
-   `defineTerm` tool; streaming-markdown rendering with copy/regenerate.
-3. **Oracle exports & sharing** — JSON/Markdown export + share-links for geomancy/tarot/iching casts (the Workbench
-   pattern, reusing `state.js`).
-4. **Runes (Elder Futhark)** (medium fit); the Kabbalah **Tree of Life** explorer (medium); numerology/gematria remain
-   *weak* engine fits.
+1. **Runes (Elder Futhark)** — a 24-stave oracle on the shared diviner engine (medium fit).
+2. **The Kabbalah Tree of Life explorer** — the 10 sephiroth / 22 paths ↔ planets & tarot trumps (medium fit; ties the
+   kameas, tarot and Agrippa layers together).
+3. **Streaming-markdown AI replies** with copy/regenerate; a glossary-aware `defineTerm` tool.
+4. Numerology/gematria remain *weak* engine fits.
 
 ---
 

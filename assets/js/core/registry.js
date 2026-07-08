@@ -586,6 +586,22 @@ export const REGISTRY = [
     pages: ['pages/jung/tool.html', 'pages/jung/experiment.html'], howItWorks: 'pages/jung/theory.html',
     glossaryTerms: ['Synchronicity', 'Archetype', 'Anima / Animus', 'Coniunctio', 'Synastry', 'Platonic Month (Aeon)', 'Marriage Experiment (Jung)'],
   },
+  {
+    id: 'kameas', title: 'The planetary kameas (magic squares) & the sigil tracer',
+    module: 'assets/js/core/kamea.js', exportName: 'sigilFor',
+    exports: ['validateKamea', 'letterValues', 'reduceToCell', 'SIGIL_METHODS', 'KAMEAS', 'kameaByPlanet'],
+    computes: 'The seven planetary kameas exactly as Agrippa prints them (Three Books II.22) — Saturn 3×3 to the Moon 9×9, every grid PROVEN live (rows, columns, diagonals against the magic constant; the 1..n² bijection) — with the intelligence/spirit names and their gematria, the engraving metals and recorded uses (misprints of the 1651 edition flagged in-record); and the sigil-tracing of any name upon a square (Agrippa III.30, the aiq-bekar reduction; Latin letter-values flagged as a modern convenience). Historical magic of no demonstrated efficacy — described, never prescribed.',
+    inputs: [
+      { name: 'text', type: 'string', desc: 'the name to trace', required: true },
+      { name: 'kamea', type: 'object', desc: 'a KAMEAS entry (kameaByPlanet)', required: true },
+    ],
+    outputShape: '{ text, method, planet, order, steps:[{letter,value,cellValue,row,col,repeats}], note, cite }',
+    callable: false,
+    book: 'Picatrix & Magic', chapter: 'Agrippa, Three Books II.22 & III.30',
+    citation: 'Agrippa, Three Books of Occult Philosophy II.22 (the tables of the planets) & III.30 (the characters); verified against the 1651 English printing (Peterson, esotericarchives.com).',
+    pages: ['pages/picatrix/kameas.html'], howItWorks: 'pages/picatrix/kameas.html',
+    glossaryTerms: ['Kamea (Magic Square)', 'Sigil', 'Aiq Bekar (Nine Chambers)', 'Intelligence & Spirit (of a planet)'],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------
