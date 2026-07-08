@@ -25,7 +25,7 @@ for (const h of htmls) {
     const url = m[1];
     if (/^(https?:|data:|mailto:|#|javascript:)/.test(url)) continue;
     if (url.includes('${')) continue; // JS template literal inside an inline <script>
-    const path = url.split('#')[0];
+    const path = url.split('#')[0].split('?')[0];   // a link may carry a query string (e.g. the golden-case share link)
     if (!path) continue;
     if (!existsSync(resolve(dirname(h), path))) { console.log(`BROKEN LINK  ${relative(ROOT, h)} -> ${url}`); problems++; }
   }

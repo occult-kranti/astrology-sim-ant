@@ -20,7 +20,7 @@
 //  predict. VERIFY-GATE: NO network request fires on load; every fetch is on an
 //  explicit click and is wrapped so a failure updates the panel, never throws.
 // ============================================================================
-import { buildContext, runTool, toAnthropicTools, buildCodexPrompt, buildSynthesisPrompt, buildOperationPrompt, dataBlockFor, SITE_URLS } from '../core/llm-context.js';
+import { buildContext, runTool, toAnthropicTools, buildCodexPrompt, buildSynthesisPrompt, buildPlainReadingPrompt, buildOperationPrompt, dataBlockFor, SITE_URLS } from '../core/llm-context.js';
 import { downloadText } from './state.js';
 import { PROVIDERS, PROV_ORDER, streamChat as coreStreamChat, claudeToolLoop as coreToolLoop, openrouterHeaders } from './llm-core.js';
 import { LOCAL_DEFAULTS } from './local-config.js';
@@ -136,12 +136,15 @@ function render() {
     </fieldset>
 
     <div class="field-row" style="gap:.4rem;margin:.2rem 0 .3rem;flex-wrap:wrap">
+      <button type="button" class="btn sm" id="wb-asst-plain">🗣 Plain words — explain every result simply</button>
       <button type="button" class="btn sm" id="wb-asst-synth">🔎 Interpret &amp; advise — everything, together</button>
       <button type="button" class="btn sm" id="wb-asst-codex">📜 Codex of this Hour — evocative</button>
     </div>
-    <p class="small muted" style="margin:.1rem 0 .6rem">First <b>compute a reading above</b>; both buttons then send the
+    <p class="small muted" style="margin:.1rem 0 .6rem">First <b>compute a reading above</b>; each button then sends the
       <b>whole computed reading as JSON</b> so the model interprets the real figures across <b>both systems</b> (Western + Vedic)
-      and the Picatrix layer — the plain one synthesises &amp; advises, the Codex is image-rich. Each reply has a <b>⤓ save</b> link.</p>
+      and the Picatrix layer. <b>🗣 Plain words</b> walks every panel for a beginner — what it means in simple terms, the good
+      points, the hard points, the concerns, and one theme to reflect on (a mirror, never advice); <b>🔎 Interpret</b>
+      synthesises; the <b>📜 Codex</b> is image-rich. Replies are cite-bound ([F#]) and each has a <b>⤓ save</b> link.</p>
 
     <fieldset style="border:1px solid #2a3350;border-radius:.5rem;padding:.7rem .8rem;margin:.2rem 0 .6rem">
       <legend class="small" style="padding:0 .4rem">Plan a working (agentic)</legend>
@@ -167,6 +170,7 @@ function render() {
   el('wb-asst-provider').value = savedProv;
   onProviderChange();
   el('wb-asst-provider').addEventListener('change', () => { lsSet(PROV_STORE, provName()); onProviderChange(); });
+  el('wb-asst-plain').addEventListener('click', () => generatePlain());
   el('wb-asst-synth').addEventListener('click', () => generateSynthesis());
   el('wb-asst-codex').addEventListener('click', () => generateCodex());
   el('wb-asst-plan').addEventListener('click', () => planOperation());
@@ -300,8 +304,14 @@ async function send() {
   const input = el('wb-asst-input');
   const q = input.value.trim(); if (!q || !preflight()) return;
   input.value = '';
-  const { system } = buildContext(currentReading, { maxFacts: factBudget(false) });
-  const messages = [...history.slice(isFree() ? -4 : -8), { role: 'user', content: q }];
+  const { system } = buildContext(currentReading, { maxFacts: factBudget(false), maxGlossary: isFree() ? 6 : 99 });
+  // window the history: the Anthropic API requires the FIRST message to be a
+  // user turn (drop any leading assistant the slice cut into), and free tiers
+  // can't afford a full one-click reply in the window — truncate long turns.
+  let hist = history.slice(isFree() ? -4 : -8);
+  while (hist[0] && hist[0].role === 'assistant') hist = hist.slice(1);
+  if (isFree()) hist = hist.map(m => (typeof m.content === 'string' && m.content.length > 1200) ? { ...m, content: m.content.slice(0, 1200) + ' …[earlier reply truncated]' } : m);
+  const messages = [...hist, { role: 'user', content: q }];
   history.push({ role: 'user', content: q });
   appendMsg('user', q);
   const asstEl = appendMsg('assistant', '…');
@@ -322,31 +332,38 @@ function addSaveLink(bodyEl, text, name) {
   turn.appendChild(a);
 }
 
-async function generateSynthesis() {
+// A shared one-click flow: shows a compact label as the user turn, RECORDS that
+// turn in history (so a follow-up send() never begins with an assistant turn —
+// the Anthropic API rejects that), streams the reply, adds a save-link.
+async function oneClick(label, body, saveName, maxTokens = 6144) {
   if (!preflight()) return;
-  const { system } = buildContext(currentReading, { maxFacts: factBudget(true) });
-  appendMsg('user', '🔎 Interpret & advise — the whole reading, together (data sent as JSON)');
+  const { system } = buildContext(currentReading, { maxFacts: factBudget(true), maxGlossary: isFree() ? 6 : 99 });
+  appendMsg('user', label);
+  history.push({ role: 'user', content: label });
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
-  try { const out = await streamChat([{ role: 'user', content: buildSynthesisPrompt(currentReading) + dataBlockFor(currentReading) }], system, asstEl, 6144); addSaveLink(asstEl, out, 'interpretation'); }
+  // free tiers count the reserved output against a tight per-minute cap
+  const maxT = isFree() ? 3072 : maxTokens;
+  try { const out = await streamChat([{ role: 'user', content: body }], system, asstEl, maxT); addSaveLink(asstEl, out, saveName); }
   catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
 }
+// On a free tier the big JSON digest would blow the per-minute token cap — the
+// numbered facts in the system prompt already ground the reading there.
+const withData = prompt => prompt + (isFree() ? '' : dataBlockFor(currentReading));
 
-async function generateCodex() {
-  if (!preflight()) return;
-  const { system } = buildContext(currentReading, { maxFacts: factBudget(true) });
-  appendMsg('user', '📜 Codex of this Hour (deep interpretation, both systems; data sent as JSON)');
-  const asstEl = appendMsg('assistant', '…');
-  controller = new AbortController();
-  try { const out = await streamChat([{ role: 'user', content: buildCodexPrompt(currentReading) + dataBlockFor(currentReading) }], system, asstEl, 6144); addSaveLink(asstEl, out, 'codex'); }
-  catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
-}
+const generateSynthesis = () => oneClick('🔎 Interpret & advise — the whole reading, together (data sent as JSON)',
+  withData(buildSynthesisPrompt(currentReading)), 'interpretation');
+const generateCodex = () => oneClick('📜 Codex of this Hour (deep interpretation, both systems; data sent as JSON)',
+  withData(buildCodexPrompt(currentReading)), 'codex');
+const generatePlain = () => oneClick('🗣 Plain words — every result explained simply: the good, the hard, the concerns, what to reflect on',
+  withData(buildPlainReadingPrompt(currentReading)), 'plain-words', 8192);
 
 async function planOperation() {
   const req = el('wb-asst-op').value.trim(); if (!req || !preflight()) return;
   saveOp(req); renderRecentOps();
   const { system } = buildContext(currentReading);
   appendMsg('user', '🜔 ' + req);
+  history.push({ role: 'user', content: '🜔 ' + req });
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
   const messages = [{ role: 'user', content: buildOperationPrompt(currentReading, req) + dataBlockFor(currentReading) }];

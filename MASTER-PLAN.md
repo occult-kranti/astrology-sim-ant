@@ -335,11 +335,31 @@ figures from CW 8 §§872–915 + appendix):
 - **Oracle share & export** — geomancy/tarot/iching casts travel in the URL (mothers / exact draws / line-throws) and
   restore deterministically; every oracle page gains "Copy shareable link" + "Download reading (MD)".
 
+### R14 — Plain-words AI over everything + the golden example case ✅ **SHIPPED** (2026-07-08)
+- **🗣 Plain words** — a new one-click, CODEBOOKED reading on the Workbench assistant that walks EVERY computed panel
+  (figure/hour, dignities, chart health, aspects, lots, election, talisman, + horary/natal/vedic when present) in a
+  fixed five-part structure per step: **In plain words** (jargon translated), **The good**, **The hard**, **Concerns**,
+  **To reflect on** (a mirror/question — never advice, prediction or a claim about the person). The honest frame is
+  step 0, FIRST, so free-tier truncation can never lose it; replies are cite-bound ([F#]). The same five-part
+  **plain-words coda** now ends every oracle interpret (geomancy/tarot/iching) and the Jung reading (`PLAIN_CODA`).
+- **`defineTerm`** — a glossary tool for the agentic mode: the model can look any term up so its definitions match the
+  site exactly (fuzzy, top-5).
+- **Free-tier budget hardening** — `buildContext` gained `maxGlossary`; the one-click flows drop the JSON digest and
+  cap output at 3072 tokens on free providers (the numbered facts already ground them); the Workbench assistant got
+  the same assistant-first-history fix and history-truncation the diviner review mandated.
+- **THE GOLDEN EXAMPLE CASE** — one fixed, externally-verifiable scenario through the ENTIRE pipeline, asserted on
+  every test run and documented on the About page with a one-click reproduction link: J2000 (2000-01-01 12:00 UT) at
+  London + Jung's published nativity + a 7th-house question. Externals: Sun 280.37° (10°22′ Capricorn — textbook),
+  Lahiri ayanāṁśa 23.853°, Jung's Leo/Taurus/Aquarius figures; internals: age 124 → 5th-house profection, SAV 337,
+  every block composed, JSON round-trip, the 12-step plain-words codebook. Live E2E (real Chromium + real Groq):
+  the share-link computes the case, the plain-words reply arrives with the honest frame first, all five labels,
+  [F#] tags, zero console errors.
+
 ### FURTHER ROADMAP (next candidates, in rough value order)
 1. **Runes (Elder Futhark)** — a 24-stave oracle on the shared diviner engine (medium fit).
 2. **The Kabbalah Tree of Life explorer** — the 10 sephiroth / 22 paths ↔ planets & tarot trumps (medium fit; ties the
    kameas, tarot and Agrippa layers together).
-3. **Streaming-markdown AI replies** with copy/regenerate; a glossary-aware `defineTerm` tool.
+3. **Streaming-markdown AI replies** with copy/regenerate.
 4. Numerology/gematria remain *weak* engine fits.
 
 ---

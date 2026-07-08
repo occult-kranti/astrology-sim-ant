@@ -131,6 +131,16 @@
     at local apparent noon; the twelve Regiomontanus cusps come out strictly in zodiacal order; and the dignity
     tables reproduce Lilly's 1647 text (every term-row sums to 30°). Historical caveat: Lilly worked in Old-Style
     (Julian) dates and local apparent time; the calculators use the modern Gregorian calendar and a UTC offset.</p>
+  <p class="small"><b>The golden example case — reproduce it yourself.</b> The test suite runs one fixed,
+    externally-verifiable scenario through the <em>entire</em> engine:
+    <a href="../workbench.html?date=2000-01-01&amp;time=12%3A00&amp;offset=0&amp;lat=51.5074&amp;lon=-0.1278&amp;q=7&amp;bdate=1875-07-26&amp;btime=19%3A32&amp;boffset=0.62&amp;blat=47.596&amp;blon=9.314">the
+    J2000 epoch (1 Jan 2000, 12:00 UT) at London, with C.&nbsp;G.&nbsp;Jung's published nativity as the birth
+    moment and a 7th-house question</a>. Click it and check the figures against any almanac: the Sun stands at
+    <b>10°22′ Capricorn</b> (the textbook J2000 solar longitude, 280.37°), the Lahiri ayanāṁśa reads <b>23°51′</b>,
+    Jung's chart shows its published <b>Leo Sun / Taurus Moon / early-Aquarius Ascendant</b>, his profected age of 124
+    activates the 5th house (124&nbsp;mod&nbsp;12&nbsp;=&nbsp;4), and the Vedic Sarvāṣṭakavarga sums to its invariant
+    337. The same case runs headlessly in <code>scripts/engine-test.mjs</code> on every change — the mathematics is
+    the checkable part of this site, and this is how we keep it checkable.</p>
 
   <h2 id="sources">Principal sources</h2>
   <p class="small">Primary: William Lilly, <em>Christian Astrology</em> (1647; 1659), Books I–III. Biography &amp;

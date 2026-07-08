@@ -194,7 +194,8 @@ export function buildContext(reading, opts = {}) {
   }
 
   const trimmed = facts.slice(0, maxFacts);
-  const glossary = relevantGlossary(presentSet);
+  // opts.maxGlossary caps the definitions for tight free-tier token budgets
+  const glossary = relevantGlossary(presentSet).slice(0, opts.maxGlossary ?? 99);
 
   const system =
     HONEST_SYSTEM_PREAMBLE +
@@ -259,6 +260,14 @@ export function buildToolSchema() {
   schema.push({
     type: 'function',
     function: {
+      name: 'defineTerm',
+      description: 'Look up a term of art in the site\u2019s glossary (Lilly, Picatrix, Vedic, divination, Jung \u2014 every term the site defines). Use it whenever the user asks what a term means, or before explaining jargon, so the definition matches the site exactly. Partial matches return the closest terms.',
+      parameters: { type: 'object', properties: { term: { type: 'string', description: 'the term to define, e.g. "combust", "void of course", "synchronicity"' } }, required: ['term'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
       name: 'castGeomancy',
       description: 'Cast a geomantic Shield Chart for a question and judge it by house: four random Mothers (thrown by the USER’S BROWSER at their request — you never choose the figures) derive the Daughters, Nieces, Witnesses, Judge and Reconciler; returns the significators, the perfection modes and the tone. Optionally pass 16 explicit tallies to reproduce a cast. HISTORICAL divination of no demonstrated validity — narrate as such.',
       parameters: { type: 'object', properties: { quesitedHouse: { type: 'number', description: 'house 1–12 the question is about (default 7)' }, tallies: { type: 'array', items: { type: 'number' }, description: 'optional: 16 mark-counts to reproduce a specific cast' } }, required: [] },
@@ -294,7 +303,7 @@ export function buildToolSchema() {
 // The set of tool names the dispatcher accepts (callable exports + the extras).
 export function toolNames() {
   return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection', 'castVedic', 'vedicPractice', 'picatrixPrayer',
-    'castGeomancy', 'drawTarot', 'castIChing'];
+    'castGeomancy', 'drawTarot', 'castIChing', 'defineTerm'];
 }
 
 // The live tool's public locations — given to the model so it can point a user
@@ -424,6 +433,64 @@ export function buildSynthesisPrompt(reading) {
 }
 
 // ---------------------------------------------------------------------------
+//  buildPlainReadingPrompt — the "PLAIN WORDS" CODEBOOK: every computed result
+//  explained for a complete beginner, panel by panel, in a FIXED five-part
+//  structure. The self-reflection part is framed the only honest way this site
+//  allows: the symbol as a MIRROR the tradition held up — themes to reflect on,
+//  never advice, never prediction, never a fact about the person.
+// ---------------------------------------------------------------------------
+export const PLAIN_STRUCTURE =
+  'For EVERY numbered step below use EXACTLY this five-part structure (keep the bold labels):\n' +
+  '- **In plain words:** what this panel measures and what it says here, in everyday language a newcomer understands ' +
+  '(no jargon — or explain each term of art in a following parenthesis), citing the fact numbers [F#].\n' +
+  '- **The good:** what the tradition counted FAVOURABLE in these figures [F#].\n' +
+  '- **The hard:** what it counted DIFFICULT or afflicted [F#].\n' +
+  '- **Concerns:** the cautions the tradition would flag before leaning on this panel (including where the computed ' +
+  'testimony is weak, mixed, or method-dependent).\n' +
+  '- **To reflect on:** ONE theme this symbolism would have a person sit with — phrased as a question or a mirror ' +
+  '("the tradition would ask you to consider…"), NEVER as advice, an instruction, a prediction, or a statement about ' +
+  'who the person really is.\n';
+
+export function buildPlainReadingPrompt(reading) {
+  const has = k => reading && reading[k];
+  let n = 0; const step = () => ++n;
+  return (
+    'EXPLAIN THE WHOLE READING IN PLAIN WORDS — a codebooked walk through every computed panel, for someone who has ' +
+    'never read a chart. Use ONLY the COMPUTED DATA (JSON) below and the numbered facts in your context; never invent ' +
+    'a value. ' + PLAIN_STRUCTURE + '\nThe steps:\n' +
+    `**${step()}. The honest frame first** — open with two plain sentences BEFORE anything else: astrology is a ` +
+    'historical symbolic system with no demonstrated predictive validity; everything below is computed faithfully ' +
+    'and read as the tradition read it — a structured mirror for reflection, described never prescribed.\n' +
+    `**${step()}. The figure & the hour** — the Ascendant, day/night, the planetary hour.\n` +
+    `**${step()}. The planets & their dignity** — who is strong, who is weak, and what "dignity" even means.\n` +
+    `**${step()}. Chart health** — the green/amber/red verdict and the cautions behind it.\n` +
+    `**${step()}. Aspects & reception** — how the planets stand toward one another.\n` +
+    `**${step()}. The Lots** — Fortune and Spirit, and what a "Lot" is.\n` +
+    `**${step()}. The election** — what the tradition judged this hour fit and unfit FOR (the ranked aims).\n` +
+    `**${step()}. The talisman** — the recipe of the hour, strictly as recorded history.\n` +
+    (has('horary') ? `**${step()}. The horary question** — querent, quesited, and whether the matter "perfects".\n` : '') +
+    (has('natal') ? `**${step()}. The nativity & the year** — the Lord of the Geniture, the profected year, the Lord of the Year.\n` : '') +
+    (has('vedic') ? `**${step()}. The Vedic mirror** — a SEPARATE sidereal system: the Lagna, the strongest and weakest graha, the running daśā — compared, never merged, with the Western chart.\n` : '') +
+    `**${step()}. The whole picture** — three plain sentences on what the panels, taken together, most strongly ` +
+    'emphasise; where they AGREE and where they CONTRADICT each other; then the single strongest "to reflect on" ' +
+    'theme of the whole reading.\n\n' +
+    'Close with the honest word, in plain language too: none of this predicts or measures anything real — it is a ' +
+    'historical symbolic system, computed faithfully, whose worth today is as a structured mirror for reflection; ' +
+    'described, never prescribed.'
+  );
+}
+
+// A compact PLAIN-WORDS coda appended to the oracle interpret prompts, so every
+// tool's AI reading ends with the same beginner-friendly, honestly-framed digest.
+export const PLAIN_CODA =
+  '\n\nEND with a section titled "**In plain words**" using exactly this structure (bold labels): ' +
+  '**The good:** what the tradition counted favourable in this cast. ' +
+  '**The hard:** what it counted against. ' +
+  '**Concerns:** the cautions before leaning on any of it. ' +
+  '**To reflect on:** ONE theme the symbolism would have a person sit with — a question or mirror, never advice, ' +
+  'never a prediction, never a statement about who they really are.';
+
+// ---------------------------------------------------------------------------
 //  buildOperationPrompt — the agentic "ask the Workbench to do a working" meta-
 //  prompt (the "conjure rain" pattern). It frames a free-form magical aim as a
 //  tool-using task: map the aim to a catalogued operation, find the next
@@ -526,6 +593,13 @@ export function runTool(name, args = {}, ctx = {}) {
     // --- the divination oracles. The randomness comes from the CALLER (the
     // app injects ctx.rand, a crypto n→[0,n) function) or from explicit args —
     // never from this pure module, and never from the model itself.
+    case 'defineTerm': {
+      const q = String(need('term')).toLowerCase().trim();
+      const hits = GLOSSARY.filter(g => g.term.toLowerCase().includes(q) || q.includes(g.term.toLowerCase()))
+        .slice(0, 5).map(g => ({ term: g.term, category: g.cat, definition: g.def }));
+      if (!hits.length) return { term: q, found: false, note: 'No glossary entry matches; explain from the tradition and say the site has no entry.' };
+      return { term: q, found: true, entries: hits };
+    }
     case 'castGeomancy': {
       const tallies = Array.isArray(args.tallies) && args.tallies.length >= 16 ? args.tallies.slice(0, 16)
         : (typeof ctx.rand === 'function' ? Array.from({ length: 16 }, () => ctx.rand(16) + 1) : null);
@@ -642,7 +716,7 @@ export function buildGeomancyInterpretPrompt(g) {
     '(5) bring in the Reconciler if the Judge is doubtful. THEN give one synthesis: what the whole shield, read ' +
     'together, most strongly signifies — and what the tradition would COUNSEL as the favourable course, framed as ' +
     'historical practice, never a real-world recommendation. Close with one honest sentence: geomancy is a ' +
-    'historical, pseudoscientific art of no demonstrated validity — described for study, never prescribed.'
+    'historical, pseudoscientific art of no demonstrated validity — described for study, never prescribed.' + PLAIN_CODA
   );
 }
 export function geomancyDataBlock(g) {
@@ -685,7 +759,7 @@ export function buildTarotInterpretPrompt(t) {
     '(the weight of the Major Arcana = fated forces, the leading suit/element, the reversals). THEN weave it into ' +
     'ONE narrative: the story the spread tells, and what the tradition would COUNSEL — as historical symbolism, ' +
     'never a forecast or real-world advice. Close with one honest sentence: tarot cartomancy has no demonstrated ' +
-    'predictive validity — a historical symbolic system described for study, never prescribed.'
+    'predictive validity — a historical symbolic system described for study, never prescribed.' + PLAIN_CODA
   );
 }
 export function tarotDataBlock(t) {
@@ -727,7 +801,7 @@ export function buildIchingInterpretPrompt(x) {
     'of the matter; (4) the RELATING hexagram, if any, as the direction the situation tends. THEN synthesise: what the ' +
     'whole cast, read together, most strongly reflects, and what the tradition would COUNSEL — as historical wisdom and ' +
     'a mirror for reflection, never a forecast or real-world advice. Close with one honest sentence: the I Ching is a ' +
-    'historical divinatory art of no demonstrated predictive validity — described for study, never prescribed.'
+    'historical divinatory art of no demonstrated predictive validity — described for study, never prescribed.' + PLAIN_CODA
   );
 }
 export function ichingDataBlock(x) {
@@ -831,7 +905,7 @@ export function buildJungInterpretPrompt(j) {
     `causal science; that you tested astrology statistically (the marriage experiment) and found nothing beyond ` +
     `chance, and said so; that the horoscope\'s worth is as a symbolic mirror for the work of self-knowledge — never a ` +
     `prediction, a diagnosis, or a determinism. And acknowledge in one plain sentence that this voice is a modern ` +
-    `reconstruction of Jung\'s documented views, not the man himself. One honest paragraph.`
+    `reconstruction of Jung\'s documented views, not the man himself. One honest paragraph.` + PLAIN_CODA
   );
 }
 

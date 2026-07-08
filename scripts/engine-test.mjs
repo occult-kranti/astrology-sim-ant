@@ -497,5 +497,54 @@ ok(iTool.primary.num === 60 && iTool.moving.length === 2 && iTool.relating, 'cas
 let oracleThrew = false; try { runTool('castGeomancy', {}, {}); } catch { oracleThrew = true; }
 ok(oracleThrew, 'oracle tools refuse to run without a caller-supplied random source or explicit input');
 
+// ============================================================================
+//  THE GOLDEN EXAMPLE CASE — one fixed, externally-verifiable scenario run
+//  through the WHOLE pipeline, so "the tools, the calculations and the results"
+//  are provably right end-to-end:
+//    moment  = J2000.0 (2000-01-01 12:00 UTC) at London — the epoch every
+//              ephemeris publishes, so the positions are checkable anywhere;
+//    natal   = C. G. Jung's nativity — externally published (Baumann-Jung 1975);
+//    horary  = a 7th-house question;  plus the Vedic block and the plain-words
+//              AI codebook over the composed reading.
+// ============================================================================
+import { buildPlainReadingPrompt, PLAIN_STRUCTURE, PLAIN_CODA } from '../assets/js/core/llm-context.js';
+import { horaryJudgement } from '../assets/js/core/horary-judge.js';
+// lahiriAyanamsa, annualProfection and ageBetween are already imported above.
+const goldenProfection = annualProfection, goldenAge = ageBetween;
+
+const J2000 = new Date(Date.UTC(2000, 0, 1, 12, 0));
+const golden = castChart(J2000, 51.5074, -0.1278, 'regiomontanus');
+// External fact 1: the Sun's apparent ecliptic longitude at J2000.0 ≈ 280.37°
+// (10° Capricorn) — published in every almanac.
+ok(Math.abs(golden.planets.Sun.lon - 280.37) < 0.3, `GOLDEN: Sun at J2000 ≈ 280.37° (got ${golden.planets.Sun.lon.toFixed(2)}°)`);
+ok(signOf(golden.planets.Sun.lon).name === 'Capricorn', 'GOLDEN: Sun in Capricorn at J2000');
+// External fact 2: the Lahiri ayanāṁśa at 2000.0 ≈ 23°51′ = 23.85°.
+ok(Math.abs(lahiriAyanamsa(J2000) - 23.85) < 0.06, `GOLDEN: Lahiri ayanāṁśa at J2000 ≈ 23.85° (got ${lahiriAyanamsa(J2000).toFixed(3)}°)`);
+// External fact 3: Jung's natal signs (already proven above) feed the natal leg.
+// Internal arithmetic that must hold exactly:
+ok(goldenAge(new Date(Date.UTC(1875, 6, 26, 18, 55)), J2000) === 124, 'GOLDEN: Jung’s completed age at J2000 = 124');
+ok(goldenProfection(_jChart, 124).activatedHouse === 5, 'GOLDEN: profection at age 124 → the 5th house (124 mod 12 = 4 signs on)');
+// The composed reading with EVERY block:
+const goldenReading = fullReading(golden, { quesitedHouse: 7, birth: { chart: _jChart } });
+ok(goldenReading.moment && goldenReading.dignities && goldenReading.aspects && goldenReading.lots &&
+   goldenReading.cautions && goldenReading.election && goldenReading.talisman && goldenReading.horary &&
+   goldenReading.natal && goldenReading.vedic, 'GOLDEN: fullReading composes every block (figure→talisman + horary + natal + vedic)');
+ok(['green', 'amber', 'red'].includes(goldenReading.cautions.verdict), 'GOLDEN: chart-health verdict valid');
+ok(goldenReading.horary.quesitedHouse === 7 && goldenReading.horary.querent && 'modes' in goldenReading.horary.perfection, 'GOLDEN: the horary block carries significators + perfection for house 7');
+ok(['affirmed', 'qualified', 'denied'].includes(horaryJudgement(golden, 7).tone), 'GOLDEN: the house-by-house judgement gives a valid tone');
+ok(goldenReading.natal.trajectory.currentYear.age === 124, 'GOLDEN: the natal leg reads Jung at age 124');
+ok(goldenReading.vedic.ashtakavarga.savTotal === 337, 'GOLDEN: the Vedic SAV checksum holds (337)');
+let goldenRT = false; try { goldenRT = !!JSON.parse(JSON.stringify(goldenReading)).meta; } catch { goldenRT = false; }
+ok(goldenRT, 'GOLDEN: the composed reading is JSON-serializable');
+// The plain-words AI codebook over the golden reading:
+const plain = buildPlainReadingPrompt(goldenReading);
+ok((plain.match(/\*\*\d+\./g) || []).length === 12, `GOLDEN: the plain-words codebook has 12 steps for the full reading (got ${(plain.match(/\*\*\d+\./g) || []).length})`);
+ok(plain.indexOf('honest frame first') > -1 && plain.indexOf('honest frame first') < plain.indexOf('The figure & the hour'), 'GOLDEN: the codebook puts the honest frame FIRST (truncation-safe)');
+ok(['In plain words', 'The good', 'The hard', 'Concerns', 'To reflect on'].every(l => plain.includes(l)), 'GOLDEN: the codebook demands all five plain-words labels');
+ok(/never as advice|never advice|never as advice, an instruction/i.test(PLAIN_STRUCTURE) && /described, never prescribed/i.test(plain), 'GOLDEN: the plain-words codebook keeps the honest framing');
+const goldenCtx = buildContext(goldenReading);
+ok(/\[F1\]/.test(goldenCtx.system) && /OUTPUT CONTRACT/i.test(goldenCtx.system), 'GOLDEN: the grounded context is cite-bound');
+ok(/In plain words/.test(PLAIN_CODA) && /To reflect on/.test(PLAIN_CODA), 'the oracle interpret prompts end with the plain-words coda');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);
