@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Jung chart tool — psychological horoscope · synastry · aeon clock | The Astrologer's Workbench</title>
+<meta name="description" content="The three kinds of chart-work C. G. Jung actually did, computed live: the psychological horoscope he cast for patients (planets as archetypes, the element→function balance, anima/animus, the Sol–Luna coniunctio), the synastry cross-aspects of his 1952 marriage experiment (with the three classic marriage aspects flagged and the honest chance-rate), and the aeon clock of Aion (precession, the Platonic month, the competing datings of the Age of Aquarius). One click loads Jung's own nativity. Historical study only — astrology has no demonstrated validity, and Jung's own experiment failed statistically.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Jung &amp; astrology</a> › The chart tool</p>
+  <h1>The Jung chart tool — the charts he actually made</h1>
+  <p class="lede">Three kinds of chart-work are documented in Jung's own writing, and this tool computes all three on the
+    site's verified engine: the <b>psychological horoscope</b> he cast in difficult diagnoses ("a further point of view
+    from an entirely different angle" — to B. V. Raman, 1947); the <b>synastry cross-aspects</b> his 1952
+    <a href="experiment.html">marriage experiment</a> tallied between spouses' charts; and the <b>aeon clock</b> of
+    <i>Aion</i> — the precession of the vernal point through the fishes.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Jung <b>used</b> astrology as an interpretive, projective instrument; he never validated it. His own experiment
+    showed nothing beyond chance <b>and he said so</b>. The astronomy below is real and verifiable; the archetypal
+    readings are a historical school of interpretation (Jung's, and where flagged, his followers') — described for
+    study, never a diagnosis, a prediction, or advice.</div>
+
+  <section class="card"><h2 style="margin-top:0">1 · The psychological horoscope</h2>
+    <form id="jt-horoscope-form" class="calc">
+      <p class="small" style="margin:.1rem 0 .4rem"><b>Person A</b> — the nativity to read.</p>
+      <div class="field-row">
+        <div class="field" style="flex:1 1 180px"><label for="ja-city">Birth place (preset)</label><select id="ja-city"></select></div>
+        <div class="field"><label for="ja-lat">Lat °N</label><input id="ja-lat" type="number" step="0.0001" style="width:7rem"></div>
+        <div class="field"><label for="ja-lon">Lon °E</label><input id="ja-lon" type="number" step="0.0001" style="width:7rem"></div>
+        <div class="field"><label for="ja-date">Birth date</label><input id="ja-date" type="date"></div>
+        <div class="field"><label for="ja-time">Time (local)</label><input id="ja-time" type="time"></div>
+        <div class="field"><label for="ja-offset">UTC offset</label><input id="ja-offset" type="number" step="0.01" style="width:6rem"></div>
+      </div>
+      <div id="ja-picker-anchor"></div>
+      <div class="field-row" style="margin-top:.6rem">
+        <button type="submit" class="btn">Read the psychological horoscope</button>
+        <button type="button" class="btn sm" id="ja-usejung">✶ Use Jung's own nativity</button>
+      </div>
+    </form>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;margin-top:.8rem">
+      <div id="jt-wheel" style="flex:0 0 auto"></div>
+      <div id="jt-reading" style="flex:1 1 340px;min-width:300px"><p class="muted small">Enter a birth moment (or load Jung's own) and compute.</p></div>
+    </div></section>
+
+  <section class="card" id="dv-assistant-card"><h2 style="margin-top:0">Ask Jung himself — the reading in his own voice (Claude or Groq)</h2>
+    <div id="dv-assistant"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">2 · The marriage-experiment synastry</h2>
+    <p class="small">Jung's experiment tallied the <b>conjunctions and oppositions</b> between spouses' charts among
+      Sun, Moon, Mars, Venus, and the Ascendant–Descendant axis (fifty cross-aspects; the MC/IC he deliberately left
+      out — CW 8 §878). Enter a second nativity to lay the same grid between <b>Person A</b> (above) and <b>Person B</b>:</p>
+    <form class="calc" onsubmit="return false">
+      <p class="small" style="margin:.1rem 0 .4rem"><b>Person B</b></p>
+      <div class="field-row">
+        <div class="field" style="flex:1 1 180px"><label for="jb-city">Birth place (preset)</label><select id="jb-city"></select></div>
+        <div class="field"><label for="jb-lat">Lat °N</label><input id="jb-lat" type="number" step="0.0001" style="width:7rem"></div>
+        <div class="field"><label for="jb-lon">Lon °E</label><input id="jb-lon" type="number" step="0.0001" style="width:7rem"></div>
+        <div class="field"><label for="jb-date">Birth date</label><input id="jb-date" type="date"></div>
+        <div class="field"><label for="jb-time">Time (local)</label><input id="jb-time" type="time"></div>
+        <div class="field"><label for="jb-offset">UTC offset</label><input id="jb-offset" type="number" step="0.01" style="width:6rem"></div>
+      </div>
+      <div id="jb-picker-anchor"></div>
+      <div class="field-row" style="margin-top:.6rem">
+        <button type="button" class="btn" id="jt-synastry-run">Lay the cross-aspect grid</button>
+      </div>
+    </form>
+    <div id="jt-synastry" style="margin-top:.8rem"></div></section>
+
+  <section class="card" id="aeon"><h2 style="margin-top:0">3 · The aeon clock <span class="small muted">(Aion, 1951)</span></h2>
+    <div id="jt-aeon"></div></section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this describes, predicts or diagnoses anything about a real person. The archetypal reading is a historical
+    school of psychological interpretation; the synastry aspects occur by chance in about one pairing in eleven; the
+    "ages" are conventions drawn on a real but meaningless-in-itself precession. Treat every line as the history of
+    ideas, computed honestly. See <a href="sources.html">the sources</a> and
+    <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">The story behind these charts: <a href="index.html">Jung &amp; astrology</a> ·
+    <a href="timeline.html">the timeline</a> · <a href="theory.html">the theory</a> ·
+    <a href="experiment.html">the marriage experiment, re-run honestly</a> · <a href="sources.html">sources &amp; reading</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  mountChrome('jung');
+  import { initJungTool } from '../../assets/js/app/jung-tool.js';
+  initJungTool();
+</script>
+</body>
+</html>

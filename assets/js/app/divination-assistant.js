@@ -15,9 +15,9 @@
 //  click and wrapped so a failure updates the panel, never throws.
 // ============================================================================
 import {
-  buildGeomancyContext, buildTarotContext, buildIchingContext,
-  buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, buildIchingInterpretPrompt,
-  geomancyDataBlock, tarotDataBlock, ichingDataBlock, SITE_URLS,
+  buildGeomancyContext, buildTarotContext, buildIchingContext, buildJungContext,
+  buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, buildIchingInterpretPrompt, buildJungInterpretPrompt,
+  geomancyDataBlock, tarotDataBlock, ichingDataBlock, jungDataBlock, SITE_URLS,
 } from '../core/llm-context.js';
 import { PROVIDERS, PROV_ORDER, streamChat, factBudget, isFreeKind, openrouterHeaders } from './llm-core.js';
 import { LOCAL_DEFAULTS } from './local-config.js';
@@ -47,10 +47,13 @@ const prefillKey = () => lsGet(keyStore()) || (provName() === LOCAL_DEFAULTS.pro
 // and the diviner persona + glossary already cost ~700 tokens, so free providers
 // get a much leaner fact set and a trimmed glossary (and drop the JSON data block
 // below) to keep a grounded interpret request under the cap.
-const CTX = { geomancy: buildGeomancyContext, tarot: buildTarotContext, iching: buildIchingContext };
-const PROMPT = { geomancy: buildGeomancyInterpretPrompt, tarot: buildTarotInterpretPrompt, iching: buildIchingInterpretPrompt };
-const DATABLOCK = { geomancy: geomancyDataBlock, tarot: tarotDataBlock, iching: ichingDataBlock };
-const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast' };
+const CTX = { geomancy: buildGeomancyContext, tarot: buildTarotContext, iching: buildIchingContext, jung: buildJungContext };
+const PROMPT = { geomancy: buildGeomancyInterpretPrompt, tarot: buildTarotInterpretPrompt, iching: buildIchingInterpretPrompt, jung: buildJungInterpretPrompt };
+const DATABLOCK = { geomancy: geomancyDataBlock, tarot: tarotDataBlock, iching: ichingDataBlock, jung: jungDataBlock };
+const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast', jung: 'report' };
+// per-tool copy overrides (a tool may pass api.copy to re-skin the panel, e.g.
+// the Jung tool makes it speak in Jung's own first-person voice).
+const cp = (k, d) => (api && api.copy && api.copy[k] != null) ? api.copy[k] : d;
 
 function buildCtx(reading, big) {
   const free = isFree();
@@ -78,12 +81,12 @@ function render() {
   if (!host) return;
   const savedProv = defaultProv();
   host.innerHTML = `
-    <div class="callout science" style="margin-top:0"><span class="label">About this diviner</span>
-      It interprets the <b>computed, cited</b> ${esc(subjectWord())} above using an LLM called directly from your browser with
+    <div class="callout science" style="margin-top:0"><span class="label">${esc(cp('aboutLabel', 'About this diviner'))}</span>
+      ${cp('aboutHtml', `It interprets the <b>computed, cited</b> ${esc(subjectWord())} above using an LLM called directly from your browser with
       <b>your own API key</b> (nothing is proxied; no key is bundled). It narrates in the voice of a learned
       historian of the Western esoteric tradition — vivid about the figures, cards and their <b>rituals</b> — yet it
       describes a <b>pseudoscientific</b> art for study only: never a prediction, never advice. Use the <b>free Groq
-      tier</b> (the default — no card needed) or <b>Claude</b>. The same key works across every tool on the site.</div>
+      tier</b> (the default — no card needed) or <b>Claude</b>. The same key works across every tool on the site.`)}</div>
 
     <fieldset style="border:1px solid #2a3350;border-radius:.5rem;padding:.7rem .8rem;margin:.6rem 0">
       <legend class="small" style="padding:0 .4rem">Connect an AI (your own key)</legend>
@@ -107,14 +110,14 @@ function render() {
     </fieldset>
 
     <div class="field-row" style="gap:.4rem;margin:.2rem 0 .3rem;flex-wrap:wrap">
-      <button type="button" class="btn sm" id="dv-asst-interpret">🔮 Interpret this ${esc(subjectWord())} — the whole reading</button>
+      <button type="button" class="btn sm" id="dv-asst-interpret">${esc(cp('interpretLabel', `🔮 Interpret this ${subjectWord()} — the whole reading`))}</button>
     </div>
-    <p class="small muted" style="margin:.1rem 0 .6rem">First <b>cast above</b>; the button sends the <b>whole computed
-      ${esc(subjectWord())} as data</b> so the model reads the real figures. Each reply has a <b>⤓ save</b> link.</p>
+    <p class="small muted" style="margin:.1rem 0 .6rem">${cp('interpretHint', `First <b>cast above</b>; the button sends the <b>whole computed
+      ${esc(subjectWord())} as data</b> so the model reads the real figures. Each reply has a <b>⤓ save</b> link.`)}</p>
 
     <div id="dv-asst-log" class="small" style="max-height:24rem;overflow:auto;border:1px solid #2a3350;border-radius:.4rem;padding:.6rem;background:#0c0f1a"></div>
     <div class="field-row" style="margin-top:.5rem;gap:.4rem">
-      <textarea id="dv-asst-input" rows="2" placeholder="Ask about this ${esc(subjectWord())}… (e.g. “what does the Judge mean here?”)" style="flex:1 1 320px;min-width:240px"></textarea>
+      <textarea id="dv-asst-input" rows="2" placeholder="${esc(cp('placeholder', `Ask about this ${subjectWord()}… (e.g. “what does the Judge mean here?”)`))}" style="flex:1 1 320px;min-width:240px"></textarea>
       <button type="button" class="btn" id="dv-asst-send">Send</button>
       <button type="button" class="btn sm" id="dv-asst-stop">Stop</button>
     </div>
@@ -159,9 +162,10 @@ function persistKey() {
 
 function refreshPreview() {
   const p = el('dv-asst-preview'); if (!p) return;
-  if (!currentReading) { p.textContent = `Cast a ${subjectWord()} above first.`; return; }
+  if (!currentReading) { p.textContent = cp('emptyText', `Cast a ${subjectWord()} above first.`); return; }
   try { const { facts } = buildCtx(currentReading, false);
-    p.innerHTML = '<ul class="clean">' + facts.map(f => `<li>${esc(f.text)}${f.cite ? ` <span class="muted">[${esc(f.cite)}]</span>` : ''}</li>`).join('') + '</ul>';
+    p.innerHTML = '<p class="muted" style="margin:.2rem 0">Replies are <b>cite-bound</b>: the model tags computed claims with these fact numbers, e.g. [F3].</p>'
+      + '<ul class="clean">' + facts.map((f, i) => `<li><b>[F${i + 1}]</b> ${esc(f.text)}${f.cite ? ` <span class="muted">[${esc(f.cite)}]</span>` : ''}</li>`).join('') + '</ul>';
   } catch { p.textContent = 'Could not build the context.'; }
 }
 
@@ -171,7 +175,7 @@ function appendMsg(role, text) {
   turn.className = `wb-chat-turn ${role === 'user' ? 'wb-chat-user' : 'wb-chat-bot'}`;
   const label = document.createElement('div');
   label.className = 'wb-chat-role';
-  label.innerHTML = `<span aria-hidden="true">${role === 'user' ? '🜨' : '✶'}</span> ${role === 'user' ? 'You' : provName() === 'anthropic' ? 'Claude' : 'The diviner'}`;
+  label.innerHTML = `<span aria-hidden="true">${role === 'user' ? '🜨' : '✶'}</span> ${role === 'user' ? 'You' : cp('botLabel', provName() === 'anthropic' ? 'Claude' : 'The diviner')}`;
   const body = document.createElement('div');
   body.className = 'wb-chat-body'; body.textContent = text;
   turn.appendChild(label); turn.appendChild(body);
@@ -191,7 +195,7 @@ function addSaveLink(bodyEl, text, name) {
 }
 
 function preflight() {
-  if (!currentReading) { setStatus(`Cast a ${subjectWord()} above first.`); return false; }
+  if (!currentReading) { setStatus(cp('emptyText', `Cast a ${subjectWord()} above first.`)); return false; }
   if (provCfg().custom && !(el('dv-asst-base').value || '').trim()) { setStatus('Enter the OpenAI-compatible base URL.'); return false; }
   if (!getKey()) { setStatus('Enter your API key first.'); return false; }
   setStatus(''); return true;
@@ -216,7 +220,14 @@ async function send() {
   const q = input.value.trim(); if (!q || !preflight()) return;
   input.value = '';
   const { system } = buildCtx(currentReading, false);
-  const messages = [...history.slice(isFree() ? -4 : -8), { role: 'user', content: q }];
+  // window the history: the Anthropic API requires the FIRST message to be a
+  // user turn, so drop any leading assistant message the window sliced into;
+  // and free tiers (Groq 8000 TPM) can't afford a full interpret reply in the
+  // window — truncate long turns there.
+  let hist = history.slice(isFree() ? -4 : -8);
+  while (hist[0] && hist[0].role === 'assistant') hist = hist.slice(1);
+  if (isFree()) hist = hist.map(m => (typeof m.content === 'string' && m.content.length > 1200) ? { ...m, content: m.content.slice(0, 1200) + ' …[earlier reply truncated]' } : m);
+  const messages = [...hist, { role: 'user', content: q }];
   history.push({ role: 'user', content: q });
   appendMsg('user', q);
   const asstEl = appendMsg('assistant', '…');
@@ -228,10 +239,18 @@ async function send() {
 async function interpret() {
   if (!preflight()) return;
   const { system } = buildCtx(currentReading, true);
-  appendMsg('user', `🔮 Interpret this ${subjectWord()} — the whole reading (data sent)`);
+  const label = cp('interpretUserMsg', `🔮 Interpret this ${subjectWord()} — the whole reading (data sent)`);
+  appendMsg('user', label);
+  // record a compact user turn so a follow-up send() never starts the message
+  // array with an assistant turn (the Anthropic API rejects that with a 400)
+  history.push({ role: 'user', content: label });
   const asstEl = appendMsg('assistant', '…');
   controller = new AbortController();
-  try { const out = await transport([{ role: 'user', content: interpretBody(currentReading) }], system, asstEl, 6144); addSaveLink(asstEl, out, 'interpretation'); }
+  // free tiers count reserved output tokens against a tight per-minute cap (Groq
+  // 8000 TPM), so keep the reservation modest there; a paid provider (Claude) may
+  // take a much larger budget for an "extremely detailed" reading (the Jung codebook).
+  const maxT = isFree() ? 4096 : (api.interpretMaxTokens || 6144);
+  try { const out = await transport([{ role: 'user', content: interpretBody(currentReading) }], system, asstEl, maxT); addSaveLink(asstEl, out, 'interpretation'); }
   catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
 }
 

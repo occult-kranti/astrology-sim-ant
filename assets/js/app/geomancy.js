@@ -12,10 +12,11 @@
 //  computed for study — described, never prescribed.
 // ============================================================================
 import { castShield, mothersFromTallies, geomanticJudgement, geomancyHouses, GEOMANTIC_FIGURES } from '../core/geomancy.js';
-import { figureByRows } from '../core/data/geomantic-figures.js';
+import { figureByRows, figureGlyph } from '../core/data/geomantic-figures.js';
 import { autolinkResultPanels } from './shared.js';
 import { initDivinationAssistant } from './divination-assistant.js';
 import { renderCastHour } from './cast-hour.js';
+import { copyShareLink, readStateFromURL, downloadText } from './state.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -78,6 +79,11 @@ export function initGeomancy() {
     if (chip && divAssistant) divAssistant.prefill(chip.getAttribute('data-q'));
   });
 
+  // share / export
+  const shareBtn = $('geo-share'), mdBtn = $('geo-md');
+  if (shareBtn) shareBtn.addEventListener('click', () => copyShareLink($('geo-share-status'), shareState()));
+  if (mdBtn) mdBtn.addEventListener('click', () => downloadText(toMarkdown(), 'geomancy-reading.md', 'text/markdown;charset=utf-8'));
+
   // AI panel
   divAssistant = initDivinationAssistant({
     kind: 'geomancy',
@@ -85,7 +91,53 @@ export function initGeomancy() {
     subscribeReading: cb => subscribers.push(cb),
   });
 
-  castRandom(); // a first cast on load (no network; pure compute)
+  if (!restoreFromURL()) castRandom(); // a shared cast, else a first cast on load (no network; pure compute)
+}
+
+// --- share & export -----------------------------------------------------------
+// the share-link carries the four Mothers (everything else derives), the house
+// and the question — so a cast can be reproduced exactly on another device.
+function shareState() {
+  if (!shield) return {};
+  return { gm: shield.mothers.map(m => m.rows.join('')).join('-'), gh: String(quesitedHouse), gq: question || '' };
+}
+function restoreFromURL() {
+  try {
+    const st = readStateFromURL(['gm', 'gh', 'gq']);
+    if (!st || !st.gm) return false;
+    const rows = st.gm.split('-').map(s => s.split('').map(Number));
+    if (rows.length !== 4 || rows.some(r => r.length !== 4 || r.some(v => v !== 1 && v !== 2))) return false;
+    shield = castShield(rows.map(r => figureByRows(r)));
+    if (st.gq) $('geo-question').value = st.gq;
+    if (st.gh && +st.gh >= 1 && +st.gh <= 12) $('geo-topic').value = st.gh;
+    recompute();
+    return true;
+  } catch { return false; }
+}
+function toMarkdown() {
+  if (!shield || !judgement) return '# Geomancy — no cast yet\n';
+  const j = judgement;
+  const F = f => `${f.english} (${f.latin}) ${figureGlyph(f)}`;
+  return [
+    '# Geomancy — the Shield Chart',
+    question ? `**Question:** ${question} (house ${j.quesitedHouse} — ${j.topic})` : `**Topic:** house ${j.quesitedHouse} — ${j.topic}`,
+    '',
+    `**Mothers:** ${shield.mothers.map(F).join(' · ')}`,
+    `**Daughters:** ${shield.daughters.map(F).join(' · ')}`,
+    `**Nieces:** ${shield.nieces.map(F).join(' · ')}`,
+    `**Witnesses:** right ${F(shield.witnesses.right)}; left ${F(shield.witnesses.left)}`,
+    `**Judge:** ${F(shield.judge)} — **Reconciler:** ${F(shield.reconciler)}`,
+    '',
+    `## Judgement — ${j.tone}`,
+    j.toneText, '',
+    ...j.lines.map(l => `- ${l}`),
+    '',
+    `> ${j.note}`,
+    `> — ${j.cite}`,
+    '',
+    '*A historical divinatory art of no demonstrated validity — described for study, never prescribed.*',
+    `*Cast at ${new Date().toISOString()} on The Astrologer's Workbench.*`,
+  ].join('\n');
 }
 
 function currentReading() {

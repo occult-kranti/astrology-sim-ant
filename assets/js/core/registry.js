@@ -571,6 +571,21 @@ export const REGISTRY = [
     pages: ['pages/iching.html'], howItWorks: 'pages/iching.html',
     glossaryTerms: ['I Ching', 'Hexagram', 'Trigram', 'Moving (Changing) Lines', 'Relating Hexagram'],
   },
+  {
+    id: 'jung', title: 'Jung — the psychological horoscope, the marriage-experiment synastry & the aeon clock',
+    module: 'assets/js/core/jung.js', exportName: 'jungianReading',
+    exports: ['crossAspects', 'jungAspectHits', 'experimentBatch', 'expectedRate', 'aeonClock', 'JUNG_BIRTH', 'JUNG_MARRIAGE_ASPECTS', 'SYNASTRY_POINTS'],
+    computes: 'The chart-work C. G. Jung actually did: a natal chart read through the Jungian layer (planets as archetypal images, the element→function balance of his typology, anima/animus significators, the Sol–Luna coniunctio, the senex/shadow); the synastry cross-aspect grid of his 1952 marriage experiment (conjunctions/oppositions of Sun, Moon, Mars, Venus and the Asc–Desc axis between two nativities — CW 8 §878 — with the three classic marriage aspects flagged) and its honest chance-rate null model; and the aeon clock of Aion (precession, the Platonic month, the competing Age-of-Aquarius datings). Jung used astrology and never validated it — his own experiment was null and he said so.',
+    inputs: [
+      { name: 'chart', type: 'object', desc: 'a castChart result (a nativity)', required: true },
+    ],
+    outputShape: '{ planets:[{planet,archetype,meaning,cite}], elements:{tally,dominant,inferior}, coniunctio, animaAnimus, shadow, caveat }',
+    callable: false,
+    book: 'Jung', chapter: 'CW 8 (Synchronicity), CW 9ii (Aion), CW 14 (Mysterium Coniunctionis), Letters',
+    citation: 'C. G. Jung, CW 8 §§872–915 (the astrological experiment); Aion (CW 9ii) ch. VI; Mysterium Coniunctionis (CW 14); Letters (Raman 1947, Barbault 1954); G. Baumann-Jung, Spring (1975).',
+    pages: ['pages/jung/tool.html', 'pages/jung/experiment.html'], howItWorks: 'pages/jung/theory.html',
+    glossaryTerms: ['Synchronicity', 'Archetype', 'Anima / Animus', 'Coniunctio', 'Synastry', 'Platonic Month (Aeon)', 'Marriage Experiment (Jung)'],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------

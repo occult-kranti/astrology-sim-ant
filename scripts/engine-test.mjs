@@ -403,7 +403,7 @@ const icNoMove = castReading([1, 1, 1, 1, 1, 1], [false, false, false, false, fa
 ok(icNoMove.relating === null && /stable/i.test(icNoMove.guidance), 'no moving lines → no relating hexagram, stable guidance');
 
 // --- Divination LLM context (the diviner bridge) ---------------------------
-import { buildGeomancyContext, buildTarotContext, buildIchingContext, buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, buildIchingInterpretPrompt, geomancyDataBlock, tarotDataBlock, ichingDataBlock, DIVINER_PREAMBLE } from '../assets/js/core/llm-context.js';
+import { buildGeomancyContext, buildTarotContext, buildIchingContext, buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, buildIchingInterpretPrompt, geomancyDataBlock, tarotDataBlock, ichingDataBlock, DIVINER_PREAMBLE, buildJungContext, buildJungInterpretPrompt, jungDataBlock, JUNG_PREAMBLE } from '../assets/js/core/llm-context.js';
 const gctx = buildGeomancyContext({ kind: 'geomancy', question: 'a test', quesitedHouse: 7, shield: gsh, judgement: gj, houses: geomancyHouses(gsh) });
 ok(/pseudoscience|no demonstrated/i.test(gctx.system) && /never\s+prescribe|describe/i.test(gctx.system), 'buildGeomancyContext keeps the honest framing');
 ok(gctx.facts.length > 0 && /Judge/i.test(gctx.system), 'buildGeomancyContext grounds the Judge + facts');
@@ -416,6 +416,53 @@ ok(/interpret THESE cards/i.test(tarotDataBlock({ reading: tr })), 'tarot data b
 const ictx = buildIchingContext({ kind: 'iching', question: 'a test', reading: icr });
 ok(/pseudoscience|no demonstrated/i.test(ictx.system) && /Hexagram|Judgment/i.test(ictx.system), 'buildIchingContext keeps the framing + grounds the hexagram');
 ok(/Yijing|hexagram|never\s+predict|describe/i.test(buildIchingInterpretPrompt(icr)) && /interpret THIS hexagram/i.test(ichingDataBlock({ reading: icr })), 'iching interpret prompt + data block well-formed');
+// the first-person "Jung reads it himself" bridge (self-contained — the Jung
+// engine block is defined later in the file; import bindings are hoisted)
+const _jChart = castChart(new Date(Date.UTC(1875, 6, 26, 19, 32) - JUNG_BIRTH.utcOffset * 3600000), JUNG_BIRTH.lat, JUNG_BIRTH.lon, 'regiomontanus');
+const _jr = jungianReading(_jChart);
+const jungObj = { kind: 'jung', name: 'C. G. Jung', isJung: true, reading: _jr, asc: formatLon(_jChart.asc), mc: formatLon(_jChart.mc), ascSign: signOf(_jChart.asc).name, mcSign: signOf(_jChart.mc).name };
+const jungCtx = buildJungContext(jungObj);
+ok(/first person|as Carl Gustav Jung|as C\. G\. Jung|reconstruction/i.test(jungCtx.system) && /pseudoscience|no demonstrated/i.test(jungCtx.system), 'buildJungContext installs the first-person Jung persona ON the honest framing');
+ok(jungCtx.facts.length > 5 && /Sol.?Luna|Ascendant/i.test(jungCtx.system) && jungCtx.glossary.length > 0, 'buildJungContext grounds the positions + pulls the Jung glossary');
+const jungPrompt = buildJungInterpretPrompt(jungObj);
+ok(/first person|CODEBOOK/i.test(jungPrompt) && /coniunctio/i.test(jungPrompt) && /honest word|synchronicity/i.test(jungPrompt) && /\*\*0\./.test(jungPrompt) && /\*\*10\./.test(jungPrompt), 'the Jung codebook prompt is first-person + step-by-step (0–10) + keeps the honest close');
+ok(/interpret THESE positions as Jung/i.test(jungDataBlock(jungObj)) && JUNG_PREAMBLE.length > 400, 'jung data block + persona are well-formed');
+// the cite-bound output contract: numbered facts + the [F#] tagging rule
+ok(/\[F1\]/.test(ctx.system) && /OUTPUT CONTRACT/i.test(ctx.system), 'buildContext numbers the facts [F1..] and appends the cite-bound contract');
+ok(/\[F1\]/.test(gctx.system) && /OUTPUT CONTRACT/i.test(gctx.system) && /\[F1\]/.test(jungCtx.system), 'the divination & Jung contexts are cite-bound too');
+
+// --- Jung: the psychological horoscope, synastry & the aeon clock ------------
+import { jungianReading, crossAspects, jungAspectHits, experimentBatch as jungBatch, expectedRate as jungRate, aeonClock, JUNG_BIRTH, JUNG_MARRIAGE_ASPECTS, PLATONIC_MONTH } from '../assets/js/core/jung.js';
+import { JUNG_TIMELINE, JUNG_EXPERIMENT, JUNG_PLANET_ARCHETYPES } from '../assets/js/core/data/jung-astrology.js';
+// Jung's own nativity reproduces the published figures (Baumann-Jung 1975)
+const jungUTC = new Date(Date.UTC(1875, 6, 26, 19, 32) - JUNG_BIRTH.utcOffset * 3600000);
+const jungChart = castChart(jungUTC, JUNG_BIRTH.lat, JUNG_BIRTH.lon, 'regiomontanus');
+ok(signOf(jungChart.planets.Sun.lon).name === 'Leo' && signOf(jungChart.planets.Moon.lon).name === 'Taurus' && signOf(jungChart.asc).name === 'Aquarius',
+   `Jung's nativity: Sun Leo, Moon Taurus, Asc Aquarius (got ${signOf(jungChart.planets.Sun.lon).name}/${signOf(jungChart.planets.Moon.lon).name}/${signOf(jungChart.asc).name})`);
+const jr = jungianReading(jungChart);
+ok(jr.planets.length === 7 && jr.planets.every(p => p.archetype && p.cite), 'jungianReading: 7 planets, each with archetype + citation');
+ok(jr.coniunctio.aspect === 'Square', `Jung's famous Sol–Luna square is detected (got ${jr.coniunctio.aspect})`);
+ok(jr.elements.dominant && jr.elements.inferior && /post-Jungian|Greene|Arroyo/i.test(jr.caveat), 'jungianReading reports the function balance + flags post-Jungian doctrine');
+// synastry: an exact-conjunction control
+const b1 = castChart(new Date(Date.UTC(1980, 0, 1, 12)), 51.5, 0, 'regiomontanus');
+const cross11 = crossAspects(b1, b1);
+ok(cross11.some(h => h.from === 'Sun' && h.to === 'Sun' && h.aspect === 'Conjunction' && h.orb < 0.01), 'crossAspects: a chart against itself yields exact conjunctions');
+ok(jungAspectHits(b1, b1).length === 3 && jungAspectHits(b1, b1).every(h => typeof h.present === 'boolean'), 'jungAspectHits reports the three classic marriage aspects');
+ok(JUNG_MARRIAGE_ASPECTS.length === 3 && JUNG_EXPERIMENT.batches.length === 3 && JUNG_EXPERIMENT.totalPairs === JUNG_EXPERIMENT.batches.reduce((s, b) => s + b.pairs, 0), 'experiment data: 3 batches summing to the total pairs');
+// the null model: rate ≈ 2·orb/360, and the batch simulator stays near it
+ok(Math.abs(jungRate(8) - 16 / 360) < 1e-12, 'expectedRate(8°) = 16/360');
+let js = 99 >>> 0; const jrand = () => { js = (Math.imul(js, 1103515245) + 12345) >>> 0; return (js >>> 16) / 65536; };
+const jb = jungBatch(jrand, { pairs: 4000 });
+ok(Math.abs(jb.rates.moonMoon - jungRate(8)) < 0.02, `null model: Moon☌Moon rate ≈ ${(jungRate(8) * 100).toFixed(1)}% (got ${(jb.rates.moonMoon * 100).toFixed(1)}%)`);
+let jThrew = false; try { jungBatch(null); } catch { jThrew = true; }
+ok(jThrew, 'experimentBatch refuses to run without an injected rand');
+// the aeon clock
+const ae = aeonClock(new Date(Date.UTC(2026, 6, 1)));
+ok(Math.abs(PLATONIC_MONTH - 2147.7) < 1, `Platonic month ≈ 2148 yr (got ${PLATONIC_MONTH.toFixed(1)})`);
+ok(ae.inPisces && ae.pctThroughPisces > 70 && ae.pctThroughPisces < 95, `the vernal point is late in Pisces (${ae.pctThroughPisces}%)`);
+ok(ae.aquariusYearLahiri > 2300 && ae.aquariusYearLahiri < 2600 && ae.datings.length >= 3, `Lahiri Aquarius entry in the 25th century (got AD ${ae.aquariusYearLahiri}) + the competing datings listed`);
+ok(JUNG_TIMELINE.length >= 10 && JUNG_TIMELINE.every(e => e.cite && e.text && e.kind), 'the Jung timeline entries all carry citations');
+ok(JUNG_PLANET_ARCHETYPES.length === 7, 'seven planetary archetypes');
 
 // --- the AI oracle tools (randomness injected by the caller, never the core) -
 const oracleNames = ['castGeomancy', 'drawTarot', 'castIChing'];

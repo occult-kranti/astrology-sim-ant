@@ -13,6 +13,7 @@ import { TAROT_DECK, DECK_IDS, SUITS } from '../core/data/tarot-deck.js';
 import { autolinkResultPanels } from './shared.js';
 import { initDivinationAssistant } from './divination-assistant.js';
 import { renderCastHour } from './cast-hour.js';
+import { copyShareLink, readStateFromURL, downloadText } from './state.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -21,6 +22,7 @@ const SUIT_GLYPH = { wands: '🜂', cups: '🜄', swords: '🜁', pentacles: '�
 const REL_LABEL = { reinforce: 'reinforce', strengthen: 'strengthen', weaken: 'weaken', neutral: 'neutral' };
 
 let reading = null, spreadKey = 'three', question = '', reversalsOn = true;
+let lastDraws = null;                 // the drawn cards of the current spread (for share/export)
 let divAssistant = null;
 const subscribers = [];
 
@@ -59,7 +61,55 @@ export function initTarot() {
     subscribeReading: cb => subscribers.push(cb),
   });
 
-  draw(); // a first draw on load (pure compute, no network)
+  const shareBtn = $('tarot-share'), mdBtn = $('tarot-md');
+  if (shareBtn) shareBtn.addEventListener('click', () => copyShareLink($('tarot-share-status'), shareState()));
+  if (mdBtn) mdBtn.addEventListener('click', () => downloadText(toMarkdown(), 'tarot-reading.md', 'text/markdown;charset=utf-8'));
+
+  if (!restoreFromURL()) draw(); // a shared spread, else a first draw on load (pure compute, no network)
+}
+
+// --- share & export -----------------------------------------------------------
+// the share-link carries the spread, the exact drawn cards (with reversals) and
+// the question — so a spread can be reproduced exactly on another device.
+function shareState() {
+  if (!lastDraws) return {};
+  return { ts: spreadKey, td: lastDraws.map(d => d.id + (d.reversed ? '.r' : '')).join(','), tq: question || '' };
+}
+function restoreFromURL() {
+  try {
+    const st = readStateFromURL(['ts', 'td', 'tq']);
+    if (!st || !st.ts || !st.td || !SPREADS[st.ts]) return false;
+    const draws = st.td.split(',').map(tok => { const rev = tok.endsWith('.r'); return { id: rev ? tok.slice(0, -2) : tok, reversed: rev }; });
+    if (draws.length !== SPREADS[st.ts].count) return false;
+    spreadKey = st.ts; $('tarot-spread').value = st.ts;
+    $('tarot-spread-desc').textContent = SPREADS[st.ts].description;
+    if (st.tq) { $('tarot-question').value = st.tq; }
+    question = st.tq || '';
+    computeFromDraws(draws);
+    return reading != null;
+  } catch { return false; }
+}
+function toMarkdown() {
+  if (!reading) return '# Tarot — no spread yet\n';
+  const r = reading;
+  return [
+    `# Tarot — ${r.spread.name}`,
+    question ? `**Question:** ${question}` : '',
+    '',
+    ...r.cards.map(c => `- **${c.n}. ${c.position}** — ${c.card.name}${c.reversed ? ' (reversed)' : ''}: ${(c.text || []).join(', ')}. ${c.meaning}`),
+    '',
+    r.dignities.length ? '## Elemental dignities' : '',
+    ...r.dignities.map(d => `- ${d.relation}: ${d.between[0]} & ${d.between[1]} (${d.positions.join(' / ')})`),
+    '',
+    r.summaryLines.length ? '## The spread at a glance' : '',
+    ...r.summaryLines.map(s => `- ${s}`),
+    '',
+    `> ${r.note}`,
+    `> — ${r.cite}`,
+    '',
+    '*A historical divinatory art of no demonstrated validity — described for study, never prescribed.*',
+    `*Drawn at ${new Date().toISOString()} on The Astrologer's Workbench.*`,
+  ].filter(l => l !== '').join('\n');
 }
 
 function currentReading() { return reading ? { kind: 'tarot', question, spreadKey, reading } : null; }
@@ -69,9 +119,12 @@ function draw() {
   spreadKey = $('tarot-spread').value;
   reversalsOn = $('tarot-reversals').checked;
   question = $('tarot-question').value.trim();
-  const draws = shuffledDraw(SPREADS[spreadKey].count, reversalsOn);
+  computeFromDraws(shuffledDraw(SPREADS[spreadKey].count, reversalsOn));
+}
+function computeFromDraws(draws) {
   try { reading = tarotReading(spreadKey, draws, { question }); }
-  catch (e) { $('tarot-out').innerHTML = `<p class="muted">Could not lay the spread (${esc(e.message)}).</p>`; return; }
+  catch (e) { $('tarot-out').innerHTML = `<p class="muted">Could not lay the spread (${esc(e.message)}).</p>`; reading = null; return; }
+  lastDraws = draws;
   render();
   notify();
 }

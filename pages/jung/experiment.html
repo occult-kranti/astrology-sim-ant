@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jung's astrological marriage experiment — re-run honestly | The Astrologer's Workbench</title>
+<meta name="description" content="C. G. Jung's 1952 astrological experiment from the Synchronicity essay, in full: 483 married couples, 50 cross-aspects, the three classic marriage aspects topping the three batches — and why it failed. Includes a live Monte-Carlo re-run: chance pairings produce Jung's 'significant' ~10% top-aspect rates on their own, exactly as the Fierz correction showed. Jung conceded the statistics and read the run as synchronicity, not astral causation.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Jung &amp; astrology</a> › The experiment</p>
+  <h1>The astrological marriage experiment — and its honest re-run</h1>
+  <p class="lede">For the <i>Synchronicity</i> essay (1952) Jung mounted the one formal empirical test of astrology he
+    ever ran: collect the horoscopes of hundreds of <b>married couples</b>, tally the <b>cross-aspects</b> between the
+    spouses' charts, and ask whether the tradition's "marriage aspects" — above all the <b>Sun–Moon conjunction</b>,
+    astrology's own image of the marital <i>coniunctio</i> — occur more often between real spouses than chance allows.
+    The three classic aspects did top his three batches in turn. The statistics, honestly done, showed nothing.</p>
+
+  <div class="callout science"><span class="label">The honest headline</span>
+    Jung's best batch rate was about <b>10%</b>. At his own 8° orb, <b>chance pairing alone yields ≈ 9%</b> — as the
+    simulation below shows live, and as the physicist Markus Fierz's correction showed him. Jung conceded the point in
+    print, and reinterpreted the run of lucky aspects as <b>synchronicity</b> — a meaningful coincidence involving the
+    experimenters' own hopeful psyche — not as evidence that the stars arrange marriages.</div>
+
+  <section class="card"><h2 style="margin-top:0">What Jung did — the figures</h2>
+    <div id="jx-figures"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The re-run — what chance alone produces</h2>
+    <div id="jx-sim"></div>
+    <p style="margin-top:.6rem"><button type="button" class="btn sm" id="jx-run">↻ Re-run 200 fresh chance batches</button></p></section>
+
+  <section class="card"><h2 style="margin-top:0">What Jung took from the failure</h2>
+    <p class="small">The experiment was designed to illustrate <b>synchronicity</b>, and its failure became its lesson.
+      That the traditional marriage aspects — the Sun–Moon <i>coniunctio</i> above all — surfaced at the top of each
+      successive batch struck Jung not as astral causation (the numbers forbade that) but as a <b>meaningful
+      coincidence</b> keyed to the psychic situation of the experimenters themselves: a "secret mutual connivance," the
+      archetype of the marriage-union constellating in the material just as the researchers hoped to find it. Whatever
+      one makes of that reading, the empirical verdict he accepted stands: the couples' charts held nothing that chance
+      does not hold.</p>
+    <p class="small muted">— Jung, "An Astrological Experiment", <i>Synchronicity: An Acausal Connecting Principle</i>
+      (CW 8); the Fierz correspondence; <i>Atom and Archetype: The Pauli/Jung Letters</i>. Try the same cross-aspect grid
+      on two charts of your own in <a href="tool.html">the chart tool</a>.</p></section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">Why this page matters here</span>
+    This is the site's whole method in one historical episode: state the tradition's claim precisely, compute it
+    honestly, and show the null distribution beside the observation. Jung did the first two and — to his credit —
+    published the third even though it undid his hope. Compare the site's own
+    <a href="../experiment.html">falsification demo</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">Continue: <a href="theory.html">the theory</a> ·
+    <a href="timeline.html">the timeline</a> · <a href="tool.html">the chart tool</a> ·
+    <a href="sources.html">sources &amp; reading</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  mountChrome('jung');
+  import { initJungExperiment } from '../../assets/js/app/jung.js';
+  initJungExperiment();
+</script>
+</body>
+</html>

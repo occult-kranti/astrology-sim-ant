@@ -14,11 +14,13 @@ import { castReading, linesFromThrows, HEXAGRAMS, TRIGRAMS } from '../core/ichin
 import { autolinkResultPanels } from './shared.js';
 import { initDivinationAssistant } from './divination-assistant.js';
 import { renderCastHour } from './cast-hour.js';
+import { copyShareLink, readStateFromURL, downloadText } from './state.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 let reading = null, question = '';
+let lastThrows = null;                 // the six line-throws of the current cast (for share/export)
 let divAssistant = null;
 const subscribers = [];
 
@@ -61,23 +63,75 @@ export function initIching() {
     getReading: () => currentReading(),
     subscribeReading: cb => subscribers.push(cb),
   });
-  castCoins(); // a first cast on load (pure compute, no network)
+  const shareBtn = $('ich-share'), mdBtn = $('ich-md');
+  if (shareBtn) shareBtn.addEventListener('click', () => copyShareLink($('ich-share-status'), shareState()));
+  if (mdBtn) mdBtn.addEventListener('click', () => downloadText(toMarkdown(), 'iching-reading.md', 'text/markdown;charset=utf-8'));
+  if (!restoreFromURL()) castCoins(); // a shared cast, else a first cast on load (pure compute, no network)
 }
 
 function currentReading() { return reading ? { kind: 'iching', question, reading } : null; }
 function notify() { const r = currentReading(); subscribers.forEach(cb => { try { cb(r); } catch { /* non-fatal */ } }); }
 
 function castCoins() {
-  const { lines, changing } = linesFromThrows(castThrows());
+  const throws = castThrows();
+  lastThrows = throws;
+  const { lines, changing } = linesFromThrows(throws);
   compute(lines, changing);
 }
 function castManual() {
   try {
     const throws = readManualThrows();
+    lastThrows = throws;
     const { lines, changing } = linesFromThrows(throws);
     compute(lines, changing);
     $('ich-out').scrollIntoView({ behavior: 'smooth', block: 'start' });
   } catch (e) { $('ich-manual-status').textContent = 'Could not read the cast: ' + e.message; }
+}
+
+// --- share & export -----------------------------------------------------------
+// the share-link carries the six line-throws (6..9, bottom to top) and the
+// question — the whole cast derives from them, so it reproduces exactly.
+function shareState() {
+  return lastThrows ? { it: lastThrows.join(''), iq: question || '' } : {};
+}
+function restoreFromURL() {
+  try {
+    const st = readStateFromURL(['it', 'iq']);
+    if (!st || !st.it || !/^[6-9]{6}$/.test(st.it)) return false;
+    const throws = st.it.split('').map(Number);
+    lastThrows = throws;
+    if (st.iq) $('ich-question').value = st.iq;
+    const { lines, changing } = linesFromThrows(throws);
+    compute(lines, changing);
+    return true;
+  } catch { return false; }
+}
+function toMarkdown() {
+  if (!reading) return '# I Ching — no cast yet\n';
+  const r = reading;
+  return [
+    `# I Ching — ${r.primary.num}. ${r.primary.name} (${r.primary.pinyin})`,
+    question ? `**Question:** ${question}` : '',
+    '',
+    `**Figure:** ${r.trigrams.upper.name} over ${r.trigrams.lower.name} — lines (bottom→top): ${r.lines.map((l, i) => (l ? '⚊' : '⚋') + (r.changing[i] ? '·' : '')).join(' ')}`,
+    '',
+    `**Judgment.** ${r.primary.judgment}`,
+    `**Image.** ${r.primary.image}`,
+    '',
+    r.moving.length ? '## Moving lines' : '_No moving lines — the situation is stable._',
+    ...r.moving.map(m => `- **${m.position} line** (${m.yang ? 'old yang 9' : 'old yin 6'}): ${m.text}`),
+    '',
+    `**Nuclear hexagram:** ${r.nuclear.num}. ${r.nuclear.name}`,
+    r.relating ? `**Relating hexagram:** ${r.relating.num}. ${r.relating.name} — ${r.relating.judgment}` : '',
+    '',
+    `**Reading.** ${r.guidance}`,
+    '',
+    `> ${r.note}`,
+    `> — ${r.cite}`,
+    '',
+    '*A historical divinatory art of no demonstrated validity — described for study, never prescribed.*',
+    `*Cast at ${new Date().toISOString()} on The Astrologer's Workbench.*`,
+  ].filter(l => l !== '').join('\n');
 }
 function compute(lines, changing) {
   question = $('ich-question').value.trim();

@@ -80,6 +80,15 @@ function relevantGlossary(presentSet) {
   return GLOSSARY.filter(g => wanted.has(g.term)).map(g => ({ term: g.term, def: g.def }));
 }
 
+// The CITE-BOUND output contract, appended to every grounded system prompt:
+// the model must tag computed claims with the fact number, so a reader can
+// audit every sentence of a reply back to a real engine output.
+export const CITE_CONTRACT =
+  '\n\nOUTPUT CONTRACT — cite-bound replies: whenever you state a computed value or verdict from the facts above, ' +
+  'tag the sentence with the fact number(s) in square brackets, e.g. "the Moon is void of course [F7]". If you draw ' +
+  'on general knowledge of the tradition instead of a numbered fact, say so plainly (e.g. "by the tradition, …"). ' +
+  'Never attach a fact-tag to a claim the numbered facts do not support.';
+
 // ---------------------------------------------------------------------------
 //  buildContext — the system prompt + the structured fact table.
 //  opts.maxFacts (default 60) bounds the size.
@@ -191,8 +200,9 @@ export function buildContext(reading, opts = {}) {
     HONEST_SYSTEM_PREAMBLE +
     '\n\nGLOSSARY (for grounding the terms of art):\n' +
     glossary.map(g => `- ${g.term}: ${g.def}`).join('\n') +
-    '\n\nCOMPUTED FACTS for this moment (already calculated by the engine; cite these, do not invent):\n' +
-    trimmed.map(f => `- ${f.text}${f.cite ? `  [${f.cite}]` : ''}`).join('\n');
+    '\n\nCOMPUTED FACTS for this moment (already calculated by the engine; cite these, do not invent). Each fact is numbered:\n' +
+    trimmed.map((f, i) => `- [F${i + 1}] ${f.text}${f.cite ? `  [${f.cite}]` : ''}`).join('\n') +
+    CITE_CONTRACT;
 
   return { system, facts: trimmed, glossary };
 }
@@ -592,11 +602,12 @@ export const DIVINER_PREAMBLE =
 function divinationGlossary(cats) {
   return GLOSSARY.filter(g => cats.includes(g.cat)).map(g => ({ term: g.term, def: g.def }));
 }
-function assembleSystem(facts, glossary, label) {
-  return HONEST_SYSTEM_PREAMBLE + DIVINER_PREAMBLE +
+function assembleSystem(facts, glossary, label, preamble = DIVINER_PREAMBLE) {
+  return HONEST_SYSTEM_PREAMBLE + preamble +
     '\n\nGLOSSARY (terms of art):\n' + glossary.map(g => `- ${g.term}: ${g.def}`).join('\n') +
-    `\n\nCOMPUTED ${label} (already cast & calculated by the engine; cite these, never invent):\n` +
-    facts.map(f => `- ${f.text}${f.cite ? `  [${f.cite}]` : ''}`).join('\n');
+    `\n\nCOMPUTED ${label} (already cast & calculated by the engine; cite these, never invent). Each fact is numbered:\n` +
+    facts.map((f, i) => `- [F${i + 1}] ${f.text}${f.cite ? `  [${f.cite}]` : ''}`).join('\n') +
+    CITE_CONTRACT;
 }
 
 // ---- Geomancy --------------------------------------------------------------
@@ -729,4 +740,110 @@ export function ichingDataBlock(x) {
     relating: r.relating ? { num: r.relating.num, name: r.relating.name } : null,
   };
   return '\n\nCOMPUTED I CHING CAST (JSON — interpret THIS hexagram, never invent):\n' + JSON.stringify(dig);
+}
+
+// ===========================================================================
+//  JUNG — a FIRST-PERSON "C. G. Jung reads your horoscope" bridge. The model
+//  speaks AS Jung, in a faithful reconstruction of his documented voice and
+//  views, and explains the computed psychological horoscope step by step. Bound
+//  by the SAME locked honest framing — which, happily, is Jung's OWN considered
+//  position: astrology as projected psychology and synchronicity, never a causal
+//  science; his one statistical test came out null and he said so.
+// ===========================================================================
+
+// The persona: it is layered on HONEST_SYSTEM_PREAMBLE (which locks the framing).
+export const JUNG_PREAMBLE =
+  '\n\nVOICE — a FIRST-PERSON RECONSTRUCTION OF C. G. JUNG. You are to speak AS Carl Gustav Jung (1875–1961), in the ' +
+  'first person ("I"), reading this horoscope aloud the way he did in his consulting room at Küsnacht — grave, ' +
+  'erudite, warm, unhurried, digressive toward myth and alchemy, and scrupulously honest about what astrology can and ' +
+  'cannot be. This is a faithful HISTORICAL RECONSTRUCTION of his voice and documented views for study — not a ' +
+  'channelling and not the real man; never claim to be conscious, alive, or to have knowledge beyond the computed ' +
+  'figures and Jung\'s published thought.\n' +
+  'WHAT JUNG ACTUALLY HELD (stay inside it): the planets are ARCHETYPAL IMAGES of the collective unconscious projected ' +
+  'onto the sky — "astrology represents the summation of all the psychological knowledge of antiquity" (CW 15). The ' +
+  'horoscope is a MIRROR OF THE PSYCHE, a symbolic aid he used "for a further point of view from an entirely different ' +
+  'angle" in difficult diagnoses (to B. V. Raman, 1947) — never a determinism. Where it seems to work it works by ' +
+  'SYNCHRONICITY (acausal, meaningful coincidence) and PROJECTION, not by rays or forces. Read Sol as consciousness ' +
+  'and the ego\'s road to the Self; Luna as the unconscious, the mother, the anima; Mercurius as the trickster-' +
+  'psychopomp; Saturn as the senex; the Sol–Luna aspect as the coniunctio, the marriage of conscious and unconscious ' +
+  'that is the goal of individuation; the elements as the four functions of consciousness (thinking, feeling, ' +
+  'sensation, intuition), the weakest being the INFERIOR FUNCTION, the door through which the unconscious enters.\n' +
+  'HONESTY (in your own voice, because it was truly his): you tested astrology once, formally — the marriage ' +
+  'experiment of 483 couples in the Synchronicity essay — and it came out NULL; the "significant" aspects were ' +
+  'chance, as Fierz\'s statistics showed you, and you said so in print. So: describe the SYMBOLIC, PSYCHOLOGICAL ' +
+  'meaning of this figure as a mirror for self-knowledge; NEVER present it as prediction, medical/clinical diagnosis, ' +
+  'or fact about the person\'s future or fate. Ground every statement in the COMPUTED POSITIONS below — never invent a ' +
+  'placement. Be richly detailed, but every claim must trace to a real position in the chart or to your published ideas.';
+
+// j = { kind:'jung', reading (jungianReading output), asc, mc, ascSign, mcSign, name?, isJung? }
+export function buildJungContext(j, opts = {}) {
+  const r = j.reading;
+  const max = opts.maxFacts ?? 90;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  if (j.name) add(`The nativity read${j.isJung ? ' (this is my OWN horoscope, as my daughter Gret Baumann-Jung cast it)' : ''}: ${j.name}.`, j.isJung ? 'Baumann-Jung, Spring (1975)' : '');
+  add(`The Ascendant rises at ${j.asc} (${j.ascSign}); the Midheaven at ${j.mc} (${j.mcSign}).`, 'the figure');
+  for (const p of r.planets) add(`${p.planet} at ${p.label} in ${p.sign}, house ${p.house}${p.retrograde ? ' (retrograde)' : ''} — archetype: ${p.archetype}. ${p.meaning}`, p.cite);
+  add(`The four elements as the four functions (weighted): ${r.elements.functions.map(f => `${f.element}/${f.function} ${f.weight}`).join(', ')}. Leading (superior) function: ${r.elements.dominant.element} → ${r.elements.dominant.function}; weakest element → candidate inferior function: ${r.elements.inferior.element} → ${r.elements.inferior.function} (an element→function mapping that is post-Jungian doctrine, not Jung's own).${r.elements.axisNote ? ' ' + r.elements.axisNote : ''}`, r.elements.dominant.cite);
+  add(`Sol–Luna: ${r.coniunctio.text}`, 'CW 14 Mysterium Coniunctionis');
+  add(`Anima significators: ${r.animaAnimus.anima}. Animus significators: ${r.animaAnimus.animus}.`, 'CW 9ii');
+  add(`The senex / shadow: ${r.shadow.saturn}. ${r.shadow.text}`, 'post-Jungian (Hillman, Greene)');
+  add(`Honest frame: ${r.caveat}`, r.cite);
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Jung']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'PSYCHOLOGICAL HOROSCOPE', JUNG_PREAMBLE), facts: trimmed, glossary };
+}
+
+// THE CODEBOOK — the step-by-step protocol by which "Jung" reads the figure.
+// Each numbered step is an explicit instruction; the reply is a first-person,
+// extremely detailed reading that walks the figure in this fixed order.
+export function buildJungInterpretPrompt(j) {
+  const who = j && j.isJung ? 'my own nativity' : (j && j.name ? `the nativity of ${j.name}` : 'this nativity');
+  return (
+    `Read ${who} ALOUD, in the FIRST PERSON as C. G. Jung, in an extremely detailed psychological horoscope — a full ` +
+    `hour in the consulting room. Draw ONLY on the computed positions in your context. Follow this CODEBOOK exactly, ` +
+    `step by step, keeping each numbered heading so the reading is a clear protocol:\n\n` +
+    `**0. The frame.** Open in your own voice: say plainly what a horoscope is FOR YOU — a mirror of the psyche, the ` +
+    `projected god-images of antiquity, to be read for self-knowledge and never as fate or forecast. Two or three ` +
+    `sentences.\n` +
+    `**1. The whole figure & the Ascendant.** The rising sign as the mask (persona) the world meets, and the overall ` +
+    `temper of the chart — is it weighted to fire, earth, air, water; angular or scattered.\n` +
+    `**2. Sol — consciousness.** The Sun by sign and house: the conscious standpoint, the ego and its long road toward ` +
+    `the Self. What kind of light does this consciousness give?\n` +
+    `**3. Luna — the unconscious.** The Moon by sign and house: the nocturnal psyche, the mother-imago, and (in the ` +
+    `psychology of a man) the anima. What does the unconscious want here?\n` +
+    `**4. The coniunctio — Sol and Luna together.** The exact aspect between the lights (from the context) as the ` +
+    `central drama of individuation: the marriage, tension, or opposition of conscious and unconscious. This is the ` +
+    `heart of the reading — dwell on it, and connect it to the alchemical coniunctio of Mysterium Coniunctionis.\n` +
+    `**5. Mercurius.** Mercury as the trickster-psychopomp, the mediating and translating spirit — how the mind moves ` +
+    `between the worlds in this figure.\n` +
+    `**6. Eros & the sword — Venus and Mars.** Venus as Eros and relatedness, Mars as the assertive, separating drive; ` +
+    `read them also as the anima/animus significators, naming honestly that this significator-scheme is of my era.\n` +
+    `**7. The wise king & the senex — Jupiter and Saturn.** Jupiter as the drive to meaning (the religious function); ` +
+    `Saturn as the senex, limit and time — and whether Saturn presses hard on the lights, which is the shadow\'s ` +
+    `weight demanding integration.\n` +
+    `**8. The four functions.** From the element balance in the context: name the SUPERIOR function (the dominant ` +
+    `element) and the INFERIOR function (the weakest) — the inferior being the door through which the unconscious, and ` +
+    `the whole problem of the personality, enters. This is the typological core.\n` +
+    `**9. The synthesis — the individuation task.** Weave steps 1–8 into ONE reading: what this figure shows about the ` +
+    `person\'s path toward wholeness — the shadow to be met, the anima/animus to be related to, the coniunctio to be ` +
+    `achieved. Speak of the Self, never of fate.\n` +
+    `**10. The honest word.** Close in your own true voice: that this is projected psychology and synchronicity, not a ` +
+    `causal science; that you tested astrology statistically (the marriage experiment) and found nothing beyond ` +
+    `chance, and said so; that the horoscope\'s worth is as a symbolic mirror for the work of self-knowledge — never a ` +
+    `prediction, a diagnosis, or a determinism. And acknowledge in one plain sentence that this voice is a modern ` +
+    `reconstruction of Jung\'s documented views, not the man himself. One honest paragraph.`
+  );
+}
+
+export function jungDataBlock(j) {
+  const r = j.reading;
+  const dig = {
+    name: j.name || '', isJung: !!j.isJung, asc: j.asc, ascSign: j.ascSign, mc: j.mc, mcSign: j.mcSign,
+    planets: r.planets.map(p => ({ planet: p.planet, position: p.label, sign: p.sign, house: p.house, retrograde: p.retrograde, archetype: p.archetype })),
+    functions: r.elements.functions.map(f => ({ element: f.element, function: f.function, weight: f.weight })),
+    dominant: r.elements.dominant.function, inferior: r.elements.inferior.function,
+    solLuna: r.coniunctio.aspect, coniunctio: r.coniunctio.text,
+    anima: r.animaAnimus.anima, animus: r.animaAnimus.animus, saturn: r.shadow.saturn, shadow: r.shadow.text,
+  };
+  return '\n\nCOMPUTED PSYCHOLOGICAL HOROSCOPE (JSON — interpret THESE positions as Jung, never invent):\n' + JSON.stringify(dig);
 }

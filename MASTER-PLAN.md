@@ -291,6 +291,35 @@ A whole-site organisation + cross-feature integration pass:
   workbench/tools/docs; the assistant panels no longer advertise removed providers; `docs/LOCAL-LLM.html` rewritten for
   the two-backend reality + the diviner.
 
+### R12 — The Jung wing ✅ **SHIPPED** (2026-07-07)
+A complete study wing + tool for C. G. Jung's actual astrological practice, from a 6-agent deep-research workflow
+(web-verified against the primary texts: CW paragraph numbers, the Freud/Jung letters verbatim, the experiment's
+figures from CW 8 §§872–915 + appendix):
+- **DATA** `core/data/jung-astrology.js` — the 7 planetary archetypes (Jung vs post-Jungian flagged per record), the
+  element→function mapping (honestly credited to Arroyo 1975/Greene 1977), the VERIFIED marriage-experiment record
+  (batches 180/220/83 = 483 pairs; orb 8°; the 32,220-pair control at 5.3%; the Fierz-correction story; Frey-Rohn),
+  the Aion aeon datings (Jung's own: "between AD 2000 and AD 2200", n. to §149), Jung's nativity (Baumann-Jung 1975,
+  flagged as a family reconstruction), and a 23-entry cited timeline (1875 → Tarnas 2006).
+- **ENGINE** `core/jung.js` (PURE) — `jungianReading` (archetypes, function balance, coniunctio, anima/animus, senex);
+  `crossAspects`/`jungAspectHits` (the experiment's grid: conj/opp of Sun, Moon, Mars, Venus, Asc–Desc per CW 8 §878);
+  `experimentBatch`/`expectedRate` (the honest null model — injected rand); `aeonClock` (Platonic month ≈2148 yr,
+  Lahiri Aquarius ≈ AD 2440). Engine-test reproduces Jung's own chart (Sun 3° Leo, Moon 15° Taurus, Asc early
+  Aquarius — his famous Sol–Luna square detected).
+- **PAGES** `pages/jung/` — index (hub), timeline (rendered from the cited data module), theory (8 sections, CW-cited),
+  experiment (the real figures + a live 200-batch Monte-Carlo showing chance produces his ~10% maxima), sources (the
+  full bibliography incl. Rossi & Le Grice 2017), tool.
+- **TOOL** `app/jung-tool.js` + `pages/jung/tool.html` — the psychological horoscope (wheel + archetype table +
+  typology + coniunctio + shadow; one click loads Jung's own nativity), the marriage-experiment synastry grid with the
+  three classic aspects flagged and the honest chance-rate callout, and the aeon clock.
+- **AI** — "Let Jung read it himself": a first-person C. G. Jung persona (`JUNG_PREAMBLE`, layered ON the locked honest
+  framing — explicitly a historical reconstruction, never prediction/diagnosis) with a STEP-BY-STEP CODEBOOK interpret
+  prompt (`buildJungInterpretPrompt`: numbered steps 0–10 — the frame, Sol, Luna, the coniunctio, Mercurius,
+  Venus/Mars, Jupiter/Saturn, the four functions, the individuation synthesis, the honest word), grounded in the
+  computed report via `buildJungContext`/`jungDataBlock`, wired through the shared divination assistant (Claude
+  recommended at 8192 tokens; free Groq fits at 4096). Live-tested on Groq: in-character, grounded, 0 errors.
+- Wired: nav "Jung" (Books group), tools hub (2 cards), Master Index card, About-page science item + sources line,
+  10 glossary terms, registry entry, engine-test asserts.
+
 ### FURTHER ROADMAP (next candidates, in rough value order)
 1. **Planetary kameas + sigils** (Agrippa II.22) — the seven magic squares, their seals, and a name→sigil tracer on the
    kamea; extends the talisman workshop; fully computable. The strongest next oracle-adjacent build.

@@ -218,7 +218,8 @@ function refreshPreview() {
   if (!currentReading) { p.textContent = 'Compute a reading above first.'; return; }
   try {
     const { facts } = buildContext(currentReading);
-    p.innerHTML = '<ul class="clean">' + facts.map(f => `<li>${esc(f.text)}${f.cite ? ` <span class="muted">[${esc(f.cite)}]</span>` : ''}</li>`).join('') + '</ul>';
+    p.innerHTML = '<p class="muted" style="margin:.2rem 0">Replies are <b>cite-bound</b>: the model tags computed claims with these fact numbers, e.g. [F3].</p>'
+      + '<ul class="clean">' + facts.map((f, i) => `<li><b>[F${i + 1}]</b> ${esc(f.text)}${f.cite ? ` <span class="muted">[${esc(f.cite)}]</span>` : ''}</li>`).join('') + '</ul>';
   } catch { p.textContent = 'Could not build the context.'; }
 }
 

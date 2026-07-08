@@ -34,6 +34,7 @@ const NAV_GROUPS = [
     ['pages/book3/index.html', 'Book III', 'book3'],
     ['pages/picatrix/index.html', 'Picatrix', 'picatrix'],
     ['pages/vedic/index.html', 'Vedic', 'vedic'],
+    ['pages/jung/index.html', 'Jung', 'jung'],
   ] },
   { label: 'Reference', items: [
     ['pages/glossary.html', 'Glossary', 'glossary'],
@@ -51,6 +52,7 @@ function currentSection() {
   if (/\/pages\/book3\//.test(p)) return 'book3';
   if (/\/pages\/picatrix\//.test(p)) return 'picatrix';
   if (/\/pages\/vedic\//.test(p)) return 'vedic';
+  if (/\/pages\/jung\//.test(p)) return 'jung';
   if (/\/pages\/about\//.test(p)) return 'about';
   if (/\/pages\/basics\.html$/.test(p)) return 'basics';
   if (/\/pages\/interpret\.html$/.test(p)) return 'basics';
@@ -115,6 +117,7 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/book3/index.html')}">Book III — Judgement of Nativities</a></li>
         <li><a href="${R('pages/picatrix/index.html')}">Picatrix — Astrological Magic</a></li>
         <li><a href="${R('pages/vedic/index.html')}">Jagannath Hora — Vedic (sidereal)</a></li>
+        <li><a href="${R('pages/jung/index.html')}">Jung &amp; astrology — the psychologist among the horoscopes</a></li>
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
