@@ -1018,6 +1018,158 @@ export function timelordsDataBlock(x) {
   return '\n\nCOMPUTED TIME-LORD DATA (JSON — interpret THESE periods, never invent):\n' + JSON.stringify(dig);
 }
 
+// ---- The Indian mirror: praśna · muhūrta · tājika ---------------------------
+//  One shared Jyotiṣa-historian voice; the same absolute honest framing.
+export const JYOTISHI_PREAMBLE =
+  '\n\nVOICE: speak as a learned historian of Jyotiṣa — at home with Varāhamihira\'s Bṛhat Jātaka, the praśna ' +
+  'classics (Ṣaṭpañcāśikā, Praśna Mārga), the muhūrta tradition (Muhūrta Cintāmaṇi), the Tājika synthesis ' +
+  '(Samarasiṃha, Nīlakaṇṭha, Balabhadra\'s Hāyanaratna) and Krishnamurti\'s modern paddhati. Explain the rules ' +
+  'vividly and ACCURATELY, always naming the text a rule comes from. BUT THE FRAMING ABOVE IS ABSOLUTE: this is ' +
+  'a historical symbolic system of NO demonstrated validity. You DESCRIBE what the tradition computed and ' +
+  'counselled, as history; you NEVER predict, never give real-world advice, never present a verdict as truth. ' +
+  'Where the Indian and Western engines judge the same moment, compare the two rulebooks — never merge them. ' +
+  'Ground every claim in the numbered facts; never invent a position or a verse.';
+
+//  x = currentPrasnaReport() (app/prasna.js)
+export function buildPrasnaContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  add(`The question${x.question ? `: "${x.question}"` : ' (unstated)'} — read under bhāva ${x.quesitedHouse}${x.quesited && x.quesited.meaning ? ` (${x.quesited.meaning})` : ''}, at ${String(x.momentUTC).replace('T', ' ').slice(0, 16)} UT.`, 'the querent; Praśna Mārga I.47');
+  if (x.lagna) add(`The praśna lagna: ${x.lagna.sign}${x.lagna.nakshatra ? `, nakṣatra ${x.lagna.nakshatra.name}` : ''}${x.lagna.shirshodaya ? ' — a śīrṣodaya (head-rising) sign' : ''}${x.lagna.overriddenByKpNumber ? ' (fixed by the querent\'s KP horary number)' : ''}.`, 'the lagna is the querent');
+  if (x.moon) add(`The Moon (the querent's mind): house ${x.moon.house}, ${x.moon.sign}${x.moon.nakshatra ? `, ${x.moon.nakshatra.name}` : ''}; tithi ${x.moon.tithi ? x.moon.tithi.name : '—'} (${x.moon.paksha || ''}).`, 'Daivajña Vallabha III.2');
+  const cl = x.judgement && x.judgement.classification;
+  if (cl) add(`Benefics this moment: ${cl.benefics.join(', ')}; malefics: ${cl.maleficsWithNodes ? cl.maleficsWithNodes.join(', ') : cl.malefics.join(', ')} (the Moon is ${cl.waxing ? 'waxing → benefic' : 'waning → malefic'}).`, 'Bṛhat Jātaka II.5; nodes per Phaladīpikā (flagged layering)');
+  for (const t of (x.judgement ? x.judgement.testimonies : []) || []) add(`Testimony ${t.verdict.toUpperCase()}: ${t.rule}${t.detail ? ` — ${t.detail}` : ''}`, t.cite);
+  if (x.judgement) add(`The tally: ${x.judgement.counts.for} for, ${x.judgement.counts.against} against, ${x.judgement.counts.neutral} neutral → the tradition's leaning is ${x.judgement.leaning.toUpperCase()}.`, 'a tally of historical rules, not a prediction');
+  if (x.kp && x.kp.lagna) add(`The KP chain of the lagna: sign lord ${x.kp.lagna.signLord} → star lord ${x.kp.lagna.starLord} → SUB-LORD ${x.kp.lagna.subLord}${x.kp.cusps && x.kp.cusps[x.quesitedHouse - 1] ? `; the quesited cusp's sub-lord is ${x.kp.cusps[x.quesitedHouse - 1].subLord}` : ''}.`, 'K. S. Krishnamurti, KP Readers IV & VI');
+  if (x.horaryNumber) add(`The querent's horary number ${x.horaryNumber.number} fixed the lagna in that sub-arc (No. 1 = 0° Aries … No. 249 = the last sub of Revatī).`, 'KP Reader VI');
+  if (x.judgement && x.judgement.outOfScope && x.judgement.outOfScope.length) add(`Out of computable scope (the texts demand them; a website cannot): ${x.judgement.outOfScope.map(o => o.layer).join(', ')}.`, 'declared honestly, each cited in the tool');
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Indian horary']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'PRAŚNA JUDGEMENT', JYOTISHI_PREAMBLE), facts: trimmed, glossary };
+}
+export function buildPrasnaInterpretPrompt() {
+  return (
+    'Read this praśna as a historian of the Indian horary art would, FROM THE NUMBERED FACTS ONLY: ' +
+    '(1) THE MOMENT AS THE CHART — explain praśna\'s premise (the question\'s instant stands for the question) and ' +
+    'name the lagna and the Moon\'s condition, book meaning → plain terms; (2) THE TESTIMONIES — walk each cited ' +
+    'rule that fired, for and against, translating what the rule is literally looking at (a sign rising, a planet ' +
+    'in an angle, a waning Moon) and what the text counted it to mean; (3) THE KP LAYER — what a sub-lord is (pure ' +
+    'Vimśottarī arithmetic on the zodiac) and what Krishnamurti\'s convention reads from the lagna and quesited-cusp ' +
+    'sub-lords; (4) THE LEANING — state it as what it is: a tally of historical rules, never an answer to the ' +
+    'question; name the ritual layers the texts demand that no engine can compute; (5) THE TWO RULEBOOKS — one ' +
+    'plain paragraph comparing how this praśna grammar and Lilly\'s horary would approach the same moment ' +
+    '(significators vs lagna-Moon, perfection vs kendra-testimony), compared never merged. Close with one honest ' +
+    'sentence: praśna is a historical divinatory art of no demonstrated validity — described, never prescribed.' + PLAIN_CODA
+  );
+}
+export function prasnaDataBlock(x) {
+  const dig = {
+    question: x.question || '', house: x.quesitedHouse,
+    lagna: x.lagna ? { sign: x.lagna.sign, nakshatra: x.lagna.nakshatra && x.lagna.nakshatra.name, kpFixed: !!x.lagna.overriddenByKpNumber } : null,
+    moon: x.moon ? { house: x.moon.house, sign: x.moon.sign, tithi: x.moon.tithi && x.moon.tithi.name } : null,
+    testimonies: ((x.judgement && x.judgement.testimonies) || []).map(t => ({ rule: t.rule, verdict: t.verdict })),
+    leaning: x.judgement && x.judgement.leaning,
+    kp: x.kp ? { lagnaSub: x.kp.lagna && x.kp.lagna.subLord, cusps: (x.kp.cusps || []).map(c => `${c.house}:${c.subLord}`) } : null,
+    horaryNumber: x.horaryNumber && x.horaryNumber.number,
+  };
+  return '\n\nCOMPUTED PRAŚNA (JSON — interpret THESE, never invent):\n' + JSON.stringify(dig);
+}
+
+//  x = currentMuhurtaReport() (app/muhurta.js)
+export function buildMuhurtaContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  const hm = d => { try { return new Date(d).toISOString().slice(11, 16) + ' UT'; } catch { return '—'; } };
+  add(`The sunrise-bounded day: sunrise ${hm(x.sunrise)}, sunset ${hm(x.sunset)}, next sunrise ${hm(x.nextSunrise)} — vāra ${x.vara ? `${x.vara.name} (lord ${x.vara.lord})` : '—'}. All divisions below are pure arithmetic on these real sun times.`, 'the pañcāṅga day begins at sunrise');
+  if (x.current) add(`The CURRENT muhūrta: #${x.current.num} ${x.current.name} (${hm(x.current.start)}–${hm(x.current.end)}), classically graded ${x.current.quality}${x.current.contested ? ' — a CONTESTED grading (both positions kept in-data)' : ''}.`, x.current.cite || 'the 30-muhūrta table (later jyotiṣa tradition)');
+  if (x.abhijit) add(`Abhijit (the 8th day-muhūrta): ${hm(x.abhijit.start)}–${hm(x.abhijit.end)}, midpoint at local apparent noon — the tradition's default-auspicious window${x.abhijit.todayException ? `; ${x.abhijit.todayException}` : ''}.`, x.abhijit.cite || 'the muhūrta tradition');
+  if (x.brahma) add(`Brāhma muhūrta (the 29th): ${hm(x.brahma.start)}–${hm(x.brahma.end)} — the pre-dawn study window.`, x.brahma.cite || 'the muhūrta tradition');
+  if (x.kalas) for (const k of ['rahu', 'yama', 'gulika']) { const K = x.kalas[k]; if (K) add(`${k === 'rahu' ? 'Rāhu-kāla' : k === 'yama' ? 'Yamaghaṇṭa' : 'Gulika-kāla'}: ${hm(K.start)}–${hm(K.end)} (octant ${K.octant} of the daylight arc, by the weekday table) — classically avoided.`, K.cite || 'the weekday octant tables'); }
+  if (x.screens) for (const k of ['tithi', 'yoga', 'karana', 'nakshatra']) { const s = x.screens[k]; if (s) add(`Pañcāṅga screen — ${k}: ${s.value}${s.class ? ` (${s.class})` : ''} → the classical verdict is ${String(s.verdict).toUpperCase()}.`, s.cite); }
+  add('These gradings are assigned lore attached to real, checkable sun-and-moon arithmetic; choosing a "good" muhūrta changes nothing real.', 'the honest frame');
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Muhūrta']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'MUHŪRTA DAY-CLOCK', JYOTISHI_PREAMBLE), facts: trimmed, glossary };
+}
+export function buildMuhurtaInterpretPrompt() {
+  return (
+    'Explain this muhūrta day as a historian of the Indian electional art would, FROM THE NUMBERED FACTS ONLY: ' +
+    '(1) THE FRAME — the sunrise-bounded day and its divisions (30 muhūrtas = each arc ÷ 15; the kālas = the ' +
+    'daylight arc ÷ 8 by weekday): real astronomy carrying assigned meanings; (2) THE PRESENT MOMENT — the current ' +
+    'muhūrta by name and grading (flag it plainly if the grading is contested between sources), and where Abhijit ' +
+    'and Brāhma fall today, book meaning → plain terms; (3) THE AVOIDED HOURS — Rāhu-kāla, Yamaghaṇṭa and ' +
+    'Gulika-kāla: what the tradition claimed of them and what they literally are (fixed fractions of daylight ' +
+    'picked by the weekday); (4) THE PAÑCĀṄGA SCREENS — each limb\'s value and classical verdict translated; ' +
+    '(5) TWO RULEBOOKS — one plain paragraph comparing this system with the Picatrix election engine on the same ' +
+    'sky (planetary hours vs muhūrtas, Moon\'s mansion vs nakṣatra screens), compared never merged. Close with one ' +
+    'honest sentence: electing times is a historical selection ritual with no demonstrated effect on outcomes — ' +
+    'described, never prescribed.' + PLAIN_CODA
+  );
+}
+export function muhurtaDataBlock(x) {
+  const hm = d => { try { return new Date(d).toISOString().slice(11, 16); } catch { return null; } };
+  const dig = {
+    vara: x.vara && x.vara.name,
+    current: x.current ? { num: x.current.num, name: x.current.name, quality: x.current.quality } : null,
+    kalas: x.kalas ? Object.fromEntries(['rahu', 'yama', 'gulika'].map(k => [k, x.kalas[k] ? [hm(x.kalas[k].start), hm(x.kalas[k].end)] : null])) : null,
+    screens: x.screens ? Object.fromEntries(Object.entries(x.screens).map(([k, s]) => [k, s && `${s.value}: ${s.verdict}`])) : null,
+    muhurtas: (x.muhurtas || []).map(m => `${m.num} ${m.name} ${m.quality}${m.isAbhijit ? ' ★abhijit' : ''}${m.isBrahma ? ' ★brahma' : ''}`),
+  };
+  return '\n\nCOMPUTED MUHŪRTA DAY (JSON — interpret THESE, never invent):\n' + JSON.stringify(dig);
+}
+
+//  x = currentTajikaReport() (app/tajika.js)
+export function buildTajikaContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  const m = x.meta || {};
+  add(`The nativity: ${String(m.birthUTC || '').replace('T', ' ').slice(0, 16)} UT; the year chart is for ${m.targetYear} (completed years: ${m.completedYears}).`, 'the varṣaphala inputs');
+  if (x.varshaPravesha) add(`The varṣa-praveśa (SIDEREAL solar return): ${String(x.varshaPravesha.instantISO || '').replace('T', ' ').slice(0, 16)} UT — ${Math.round(x.varshaPravesha.driftMinutes)} minutes after the tropical return (real astronomy: the ayanāṁśa drift).`, 'Hāyanaratna ch. 1; the sidereal return');
+  if (x.annual && x.annual.lagna) add(`The annual lagna: ${x.annual.lagna.rashi} (${x.annual.lagna.sanskrit || ''}), a ${x.annual.isDay ? 'day' : 'night'} chart.`, 'the annual chart');
+  if (x.muntha) add(`The munthā: ${x.muntha.rashi}, house ${x.muntha.house} of the annual chart (natal Asc sign + ${x.muntha.completedYears} completed years, one sign per year).`, x.muntha.cite || 'Samarasiṃha, quoted in Hāyanaratna ch. 5');
+  if (x.varsheshvara) {
+    add(`The varṣeśvara (year-lord): ${x.varsheshvara.chosen.planet}${x.varsheshvara.chosen.roles ? ` (${x.varsheshvara.chosen.roles.join(' + ')})` : ''}, chosen from the five candidates by the aspect-to-lagna precondition${x.varsheshvara.viaDispute ? ' — NOTE: no candidate aspected the lagna, so the choice fell to the tradition\'s own four-way disputed fallback (Balabhadra\'s verdict implemented, dispute recorded)' : ''}.`, x.varsheshvara.cite || 'Hāyanaratna; Tājikakaustubha tie-chain');
+    for (const c of x.varsheshvara.candidates || []) add(`Candidate — ${c.role}: ${c.planet}${c.aspectsLagna ? `, aspects the annual lagna (${c.aspect || 'aspect'})` : ', does NOT aspect the lagna'}${c.chosen ? ' → CHOSEN' : ''}.`, 'the five-candidate rule');
+  }
+  const pairs = (x.aspects && x.aspects.pairs || []).filter(p => p.verdict === 'itthasala' || p.verdict === 'isarapha').slice(0, 8);
+  for (const p of pairs) add(`${p.a}–${p.b}: ${p.verdict === 'itthasala' ? 'itthaśāla (applying — the matter forms)' : 'īsarāpha (separating — the matter dissolves)'}${p.carveOut ? ' [past by <1° — still itthaśāla per the ancient commentator]' : ''}, gap ${Number(p.gap).toFixed(1)}° within the deeptāṁśa orbs.`, 'Tājikabhūṣaṇa 4.10; Hāyanaratna ch. 3');
+  if (x.yogas) add(`Year-yogas: ikkavāla ${x.yogas.ikkavala ? 'YES' : 'no'}, induvāra ${x.yogas.induvara ? 'YES' : 'no'}; ${x.yogas.itthasalaCount} itthaśāla and ${x.yogas.isaraphaCount} īsarāpha pairs; nakta/yamayā/kambūla found: ${(x.yogas.naktas || []).length}/${(x.yogas.yamayas || []).length}/${(x.yogas.kambulas || []).length}.`, 'the sixteen-yoga doctrine (core subset computed)');
+  for (const s of (x.sahams && x.sahams.sahams || []).slice(0, 12)) add(`Saham ${s.name}: ${s.sign} ${Number(s.degInSign).toFixed(1)}° (house ${s.house})${s.correctionApplied ? ' [+30° correction applied — a rule Viśvanātha\'s Prakāśikā rejected; contested in-data]' : ''}.`, s.cite || 'Saṃjñātantra 3.5 via Hāyanaratna');
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Tājika']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'TĀJIKA YEAR CHART', JYOTISHI_PREAMBLE), facts: trimmed, glossary };
+}
+export function buildTajikaInterpretPrompt() {
+  return (
+    'Read this varṣaphala as a historian of the Tājika tradition would, FROM THE NUMBERED FACTS ONLY: ' +
+    '(1) THE YEAR-ENTRY — what a varṣa-praveśa is (the Sun regaining its natal sidereal place — real, checkable ' +
+    'astronomy) and when this year\'s fell; (2) THE MUNTHĀ — the year-sign and its house, book meaning → plain ' +
+    'terms; (3) THE VARṢEŚVARA — how the five candidates competed, why this planet won under the ' +
+    'aspect-precondition; if the disputed no-aspect fallback fired, present the four-way disagreement as the ' +
+    'tradition\'s own unresolved argument; (4) THE CONFIGURATIONS — the itthaśāla/īsarāpha pairs, and say plainly ' +
+    'that these are the Arabic ittiṣāl/inṣirāf — the SAME applying/separating doctrine Lilly\'s horary inherited, ' +
+    'surfacing in Sanskrit dress; (5) THE SAHAMS — the year\'s lots, what each named saham was held to govern, and ' +
+    'the contested +30° correction where it fired; (6) THE YEAR, GATHERED — what the tradition would have said this ' +
+    'year emphasises, strictly as historical doctrine, plus one plain comparison with the Western solar return of ' +
+    'the same instant. Close with one honest sentence: the varṣaphala is a historical annual-chart doctrine of no ' +
+    'demonstrated validity — described, never prescribed.' + PLAIN_CODA
+  );
+}
+export function tajikaDataBlock(x) {
+  const dig = {
+    year: x.meta && x.meta.targetYear,
+    pravesha: x.varshaPravesha && String(x.varshaPravesha.instantISO || '').slice(0, 16),
+    lagna: x.annual && x.annual.lagna && x.annual.lagna.rashi,
+    muntha: x.muntha ? `${x.muntha.rashi} h${x.muntha.house}` : null,
+    varsheshvara: x.varsheshvara ? { chosen: x.varsheshvara.chosen.planet, viaDispute: !!x.varsheshvara.viaDispute } : null,
+    pairs: (x.aspects && x.aspects.pairs || []).filter(p => p.verdict === 'itthasala' || p.verdict === 'isarapha')
+      .map(p => `${p.a}-${p.b}:${p.verdict}${p.carveOut ? '(carveout)' : ''}`),
+    sahams: (x.sahams && x.sahams.sahams || []).map(s => `${s.name}:${s.sign} ${Number(s.degInSign).toFixed(1)}${s.correctionApplied ? '+30' : ''}`),
+  };
+  return '\n\nCOMPUTED VARṢAPHALA (JSON — interpret THESE, never invent):\n' + JSON.stringify(dig);
+}
+
 // ===========================================================================
 //  JUNG — a FIRST-PERSON "C. G. Jung reads your horoscope" bridge. The model
 //  speaks AS Jung, in a faithful reconstruction of his documented voice and

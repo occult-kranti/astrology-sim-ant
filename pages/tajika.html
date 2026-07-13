@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tājika varṣaphala — the Indo-Persian annual chart · munthā · varṣeśvara · sahams | The Astrologer's Workbench</title>
+<meta name="description" content="The Tājika varṣaphala (annual chart) computed live on the verified engine: the varṣa-praveśa (the SIDEREAL solar return), the munthā, the varṣeśvara chosen from the five candidates (with the tradition's own four-way dispute shown honestly), the Tājika aspects with deeptāṁśa orbs (itthaśāla/īsarāpha — the same Arabic applying/separating doctrine Lilly inherited), and the core dozen sahams with the contested +30° correction. Per Balabhadra's Hāyanaratna (trans. Gansten, Brill 2020). Historical study only — astrology has no demonstrated validity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Tājika varṣaphala</p>
+  <h1>Tājika varṣaphala — the Indo-Persian annual chart</h1>
+  <p class="lede">The <b>varṣaphala</b> ("fruit of the year") is Jyotiṣa's annual-chart system — but its grammar is
+    <b>Arabic</b>, carried into Sanskrit by the 13th-century Tājika school: <b>itthaśāla</b> and <b>īsarāpha</b>
+    <i>are</i> ittiṣāl and inṣirāf, the very applying and separating that Lilly's horary uses. This tool computes the
+    <b>varṣa-praveśa</b> (the <b>sidereal</b> solar return), the <b>munthā</b>, the <b>varṣeśvara</b> (ruler of the
+    year, from the five candidates), the Tājika aspects with their <b>deeptāṁśa</b> orbs, and the core dozen
+    <b>sahams</b> — every rule cited to Balabhadra's <i>Hāyanaratna</i> (1649) in Martin Gansten's critical edition
+    (Brill 2020), with the tradition's own disagreements flagged, never silently resolved.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    This is a <b>historical calculation grammar</b>, reproduced faithfully for study. The astronomy underneath (the
+    return instant, the positions) is real and verifiable; the idea that the year's ruler or a saham "means" anything
+    has <b>no demonstrated predictive validity</b> — astrology is regarded by the scientific community as a
+    pseudoscience. Where the tradition disagrees with itself (the +30° saham correction that Viśvanātha rejected, the
+    varṣeśvara fallback that four authorities settle four ways, the Mitra phrasing, Gaurava's night form, Putra's
+    reversal), the fork is shown in the data. Described, never prescribed. See
+    <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="tj-form" class="calc">
+    <p class="small" style="margin:.1rem 0 .4rem"><b>Birth data</b> — the nativity whose year-chart is computed.</p>
+    <div class="field-row">
+      <div class="field" style="flex:1 1 180px"><label for="tj-city">Birth place (preset)</label><select id="tj-city"></select></div>
+      <div class="field"><label for="tj-lat">Lat °N</label><input id="tj-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="tj-lon">Lon °E</label><input id="tj-lon" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="tj-date">Birth date</label><input id="tj-date" type="date"></div>
+      <div class="field"><label for="tj-time">Time (local)</label><input id="tj-time" type="time"></div>
+      <div class="field"><label for="tj-offset">UTC offset</label><input id="tj-offset" type="number" step="0.01" style="width:6rem"></div>
+    </div>
+    <div id="tj-picker-anchor"></div>
+    <div class="field-row" style="margin-top:.6rem">
+      <div class="field"><label for="tj-year">Target year (the varṣa to read)</label><input id="tj-year" type="number" step="1" style="width:7rem"></div>
+      <button type="submit" class="btn">Compute the varṣaphala</button>
+      <span id="tj-status" class="small muted"></span>
+    </div>
+    <p class="small muted" style="margin:.5rem 0 0">The target year defaults to the current year. The annual chart is
+      cast at the birth place (the classical default). Nothing you enter leaves this page.</p>
+  </form>
+
+  <section class="calc" id="tj-return-card" style="margin-top:1rem">
+    <h2 style="margin-top:0">1 · Varṣa-praveśa <span class="small muted">— the sidereal solar return &amp; the annual chart (Hāyanaratna ch.1 §6)</span></h2>
+    <div id="tj-return"><p class="muted small">Enter a birth moment above and compute.</p></div>
+  </section>
+
+  <section class="calc" id="tj-yearlord-card" style="margin-top:1rem">
+    <h2 style="margin-top:0">2 · Varṣeśvara <span class="small muted">— the ruler of the year from the five candidates (Hāyanaratna ch.5 §8)</span></h2>
+    <div id="tj-yearlord"><p class="muted small">Enter a birth moment above and compute.</p></div>
+  </section>
+
+  <section class="calc" id="tj-aspects-card" style="margin-top:1rem">
+    <h2 style="margin-top:0">3 · Tājika aspects &amp; yogas <span class="small muted">— deeptāṁśa orbs · itthaśāla · īsarāpha (Hāyanaratna chs.2–3)</span></h2>
+    <div id="tj-aspects"><p class="muted small">Enter a birth moment above and compute.</p></div>
+  </section>
+
+  <section class="calc" id="tj-sahams-card" style="margin-top:1rem">
+    <h2 style="margin-top:0">4 · Sahams <span class="small muted">— the core dozen Tājika lots, with the contested +30° correction (Hāyanaratna ch.4)</span></h2>
+    <div id="tj-sahams"><p class="muted small">Enter a birth moment above and compute.</p></div>
+  </section>
+
+  <section class="calc" id="tj-compare-card" style="margin-top:1rem">
+    <h2 style="margin-top:0">5 · The same return, two rulebooks <span class="small muted">— Tājika beside Lilly's revolution</span></h2>
+    <div id="tj-compare"><p class="small">The Western wing reads the <b>tropical</b> return of the same year with
+      Lilly's grammar in the <a href="book3/master.html">Book III master tool</a>; the varṣaphala reads the
+      <b>sidereal</b> return — about 20 minutes later per year of age — with Samarasiṃha's. Same sky, same technique of
+      "the Sun regains its natal place", two rulebooks that historically share one Arabic ancestor. Compute above to
+      see both instants side by side.</p></div>
+  </section>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <section class="card" id="hiw-tajika">
+    <h2 style="margin-top:0">How this works — the varṣaphala, step by step</h2>
+
+    <h3>The varṣa-praveśa is sidereal</h3>
+    <p class="small">The annual chart is cast for the instant the Sun "attains the same sign, degree, minute and
+      second" as at birth — measured in the <b>sidereal</b> zodiac (the Hāyanaratna reckons with the Sūrya-siddhānta
+      sidereal year of 365.25875 days; Hāyanaratna ch.1 §6). This tool reuses the site's solar-return bisection
+      (<code>solar-return.js</code>) but re-targets it: the return is found where the tropical Sun reaches
+      <i>natal sidereal longitude + ayanāṁśa(return instant)</i>, iterated to convergence. The sidereal frame uses the
+      <b>Lahiri</b> ayanāṁśa — a modern convention, flagged as such: Balabhadra's own constants are Sūrya-siddhānta
+      era. The sidereal return lands ≈20.4 minutes later than the tropical return per year of age.</p>
+
+    <h3>The munthā</h3>
+    <p class="small">"Dividing the total years elapsed from the nativity by twelve, taking the remainder and counting
+      from the ascendant, [the sign] where it finds rest will be the munthahā" (Samarasiṃha, quoted in Hāyanaratna
+      ch.5 §1). Operationally: <b>munthā sign = (natal ascendant sign + completed years) mod 12</b> — at age 0 it IS
+      the natal ascendant sign. Within the year it progresses about 2.5° a month (strictly, the house extent ÷ 12 — a
+      rule of the <i>Tājikamuktāvali</i> as quoted by Balabhadra). Its house in the annual chart sets the year's
+      focus (ch.5 §2).</p>
+
+    <h3>The varṣeśvara — five candidates, one precondition, one honest dispute</h3>
+    <p class="small">The ruler of the year is chosen from exactly five office-holders (pañcādhikārin): the
+      <b>munthā lord</b>, the <b>natal-lagna lord</b>, the <b>annual-lagna lord</b>, the <b>Tājika triplicity lord</b>
+      of the annual lagna (the system's own day/night table — day Sun/Venus/Saturn/Venus, night
+      Jupiter/Moon/Mercury/Mars for fire/earth/air/water — <i>not</i> the sign ruler), and the lord of the
+      <b>Sun's sign by day / Moon's sign by night</b>. The precondition is the aspect, not the muscle: "even [a
+      planet] without strength, aspecting the ascendant, is ruler of the year; one not aspecting [the ascendant],
+      although strong, is not" (Yādava). Ties run down the Tājikakaustubha chain: greatest aspect → greater strength →
+      more claims among the five dignities (documented here, not computed) → the munthā lord. When <b>no</b> candidate
+      aspects the lagna, the authorities genuinely split four ways (Yādava: munthā lord · Tuka: annual-lagna lord ·
+      Gaṇeśa: the candidate that aspected in the nativity · Balabhadra: strongest in ṣaḍbala, ties to the munthā
+      lord); this tool implements Balabhadra's verdict and displays the dispute whenever the fallback fires.</p>
+
+    <h3>Tājika aspects, deeptāṁśa orbs, and the Arabic bridge</h3>
+    <p class="small">Aspects are counted sign to sign: 5th/9th open friendship (¾ strength), 3rd/11th secret
+      friendship (¼), 4th/10th secret enmity (½), 7th open enmity (full), and the conjunction a full aspect "similar
+      to the mutual aspect on the seventh" (Hāyanaratna ch.2, with Vāmana's strengths). A configuration operates
+      within the planets' <b>deeptāṁśa</b> ("orbs of light"): Sun 15°, Moon 12°, Mars 8°, Mercury 7°, Jupiter 9°,
+      Venus 7°, Saturn 9° (Daivajñālaṃkṛti 8.9 = Tājikasāra 88; the Praśnavaiṣṇava alone adds Rāhu 12°, and one
+      popular website's "Mars 12°" is a transcription error). The text's own combining rule is "within their own orbs
+      of light, or within twelve degrees"; the modern half-sum convention is unverified in the sources — though it is
+      mathematically identical to this site's Lilly moiety rule. <b>Itthaśāla</b> (ittiṣāl) is the applying
+      configuration: the swifter planet behind the slower within orb; <b>īsarāpha</b> (inṣirāf) is separation — but
+      only once the swifter planet is a <i>full degree</i> past exactness (Tājikabhūṣaṇa 4.10): past by less than 1°
+      is <i>still itthaśāla</i>, "so says the ancient commentator" (Hāyanaratna ch.3 §4). That sliver diverges from
+      the Western applying flag of this site's <code>aspects.js</code>, and the tables mark it. Nakta, yamayā and
+      kambūla are the translation, collection and reception of light — the same doctrine Lilly learned from the same
+      Arabic sources (Gansten 2020 for the transmission).</p>
+
+    <h3>The sahams and the contested +30°</h3>
+    <p class="small">Every saham has the form <b>minuend − subtrahend + added point</b> (usually the Lagna; Venus for
+      Mitra; Sun by day / Moon by night for Gaurava), the minuend and subtrahend swapping at night unless the text
+      says otherwise (Bhrātṛ and Putra do not reverse; Gaurava has an explicit night form). Then the check: "if the
+      ascendant is not between the signs of the subtrahend and the minuend … one sign should be added" — +30° when
+      the added point falls outside the arc from subtrahend forward to minuend. The correction is general in
+      Balabhadra and Raman — but <b>Viśvanātha Daivajña's Prakāśikā (1629) rejects it outright</b> ("no statement in
+      support of this notion is found anywhere, nor is there any adding of one [sign] in the school of the Yavanas").
+      It is contested <i>within</i> the tradition; this tool applies it as the operational default and marks every
+      saham where it fired.</p>
+
+    <p class="small muted">Sources: Balabhadra, <i>Hāyanaratna</i> (1649), trans. Martin Gansten, <i>The Jewel of
+      Annual Astrology</i> (Brill 2020, open access) — the critical edition every rule above is checked against;
+      Nīlakaṇṭha, <i>Tājika-nīlakaṇṭhī</i> (1587); B. V. Raman, <i>Varshaphala or the Hindu Progressed Horoscope</i>;
+      the Sanskrit texts Balabhadra quotes (Samarasiṃha's <i>Tājikasāra</i>/<i>Saṃjñātantra</i>, the
+      <i>Daivajñālaṃkṛti</i>, the <i>Tājikabhūṣaṇa</i>).</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    Nothing on this page predicts or describes your year. The varṣaphala is a 700-year-old synthesis of Arabic and
+    Sanskrit astrology, reproduced here because its mechanics — and its honest internal disputes — are historically
+    instructive, especially beside <a href="book3/master.html">Lilly's revolution of the year</a>, which inherited
+    the same Arabic doctrine by another road. Treat every line as the history of ideas, computed honestly. See
+    <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">Related: <a href="vedic/index.html">the Vedic (Jyotiṣa) horoscope</a> ·
+    <a href="book3/master.html">Book III — the solar revolution</a> · <a href="timelords.html">time-lords &amp; progressions</a> ·
+    <a href="glossary.html">glossary</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('tajika');
+  import { initTajika } from '../assets/js/app/tajika.js';
+  initTajika();
+</script>
+</body>
+</html>

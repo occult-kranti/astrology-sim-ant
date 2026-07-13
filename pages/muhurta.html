@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhūrta — the Indian election of the moment | The Astrologer's Workbench</title>
+<meta name="description" content="Muhūrta, the Indian electional art: the 30 muhūrtas of the sunrise-to-sunrise day (Rudra to Samudra, with Abhijit at noon and the pre-dawn Brāhma muhūrta), the three avoided kālas (Rāhu-kāla, Yamaghaṇṭa, Gulika-kāla) from the weekday octant tables, and the classical pañcāṅga quality screens — tithi, yoga, karaṇa, nakṣatra — every rule cited, contested values flagged. A historical doctrine of no demonstrated validity, described for study.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .mu-q { padding:.08rem .45rem; border-radius:.4rem; font-size:.75rem; white-space:nowrap; border:1px solid var(--rule); }
+  .mu-q-ausp { color:var(--benefic); border-color:var(--benefic); }
+  .mu-q-inausp { color:var(--malefic); border-color:var(--malefic); }
+  .mu-q-mixed { color:var(--gold); border-color:var(--gold); }
+  .mu-kala { font-size:.7rem; border:1px solid var(--malefic); color:var(--malefic); border-radius:.4rem;
+    padding:.05rem .35rem; margin-right:.25rem; white-space:nowrap; display:inline-block; }
+  .mu-star td { background:var(--card); outline:1px solid var(--gold); }
+  .mu-flag { cursor:help; color:var(--gold); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Muhūrta</p>
+  <h1>Muhūrta — the Indian election of the moment</h1>
+  <p class="lede">Muhūrta is Indian astrology's <b>electional</b> art — the doctrine of <em>choosing the moment</em>.
+    The day from sunrise to the next sunrise is cut into <b>30 muhūrtas</b> (15 by day, 15 by night, each ≈48
+    minutes), each named and graded by the tradition — from inauspicious <b>Rudra</b> at sunrise to <b>Samudra</b>
+    closing the night, with the famous <b>Abhijit</b> straddling local apparent noon and the pre-dawn
+    <b>Brāhma muhūrta</b> of daily practice. Over this clock the pañcāṅga lays its screens: three avoided
+    <b>kālas</b> each day (Rāhu-kāla, Yamaghaṇṭa, Gulika-kāla — one eighth of the daylight arc, picked by the
+    weekday), and the classical quality gradings of the moment's <b>tithi</b>, <b>yoga</b>, <b>karaṇa</b> and
+    <b>nakṣatra</b>.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Muhūrta is a <b>historical electional doctrine of no demonstrated validity</b>. The arithmetic on this page is
+    real and reproducible — equal divisions of the measured sunrise/sunset arcs on a verified astronomical engine —
+    but the <em>gradings</em> (auspicious, inauspicious, avoid) are the tradition's, reproduced faithfully for study
+    with their sources; they are never a prediction or advice. Where the sources genuinely disagree (two muhūrta
+    qualities, the Abhijit weekday exception, one table's misprint) the dispute is <b>flagged ⚑ with both
+    positions, never silently resolved</b>.</div>
+
+  <form id="mu-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 180px"><label for="mu-city">Place (preset)</label><select id="mu-city"></select></div>
+      <div class="field"><label for="mu-lat">Lat °N</label><input id="mu-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="mu-lon">Lon °E</label><input id="mu-lon" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="mu-date">Date</label><input id="mu-date" type="date"></div>
+      <div class="field"><label for="mu-time">Time (local)</label><input id="mu-time" type="time"></div>
+      <div class="field"><label for="mu-offset">UTC offset</label><input id="mu-offset" type="number" step="0.5" style="width:6rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <button type="submit" class="btn">Compute the day</button>
+      <button type="button" class="btn sm" id="mu-now">Now</button>
+      <span id="mu-status" class="small muted"></span>
+    </div>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The day at a glance</h2>
+    <div id="mu-summary"><p class="muted small">Pick a moment and place above.</p></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The thirty muhūrtas <span class="small muted">(the day's timeline, kālas overlaid)</span></h2>
+    <div id="mu-timeline"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The pañcāṅga screens <span class="small muted">(at the chosen moment)</span></h2>
+    <div id="mu-screens"></div></section>
+
+  <div class="callout"><span class="label">Two traditions, two rulebooks, same sky</span>
+    The Latin West elects its moments too — the <a href="picatrix/election.html">Picatrix Election engine</a> weighs
+    the very same instant by planetary hours, the Moon's mansion and dignities, where muhūrta weighs it by the
+    sunrise-day's divisions and the pañcāṅga. Cast both for one moment and they will often disagree:
+    <b>two rulebooks, one sky — compared, never merged</b>. Neither has any demonstrated validity; the comparison is
+    the honest lesson.</div>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <section class="card" id="hiw-muhurta">
+    <h2 style="margin-top:0">How this works</h2>
+    <h3>The sunrise-bounded day &amp; the 30 muhūrtas</h3>
+    <p class="small">The muhūrta day runs <b>sunrise → next sunrise</b>, taken from the same rise/set search the
+      planetary-hours tool uses (sunrise is computed once, never re-derived). The daylight arc (sunrise→sunset) is
+      cut into <b>15 equal parts</b> and the night arc (sunset→next sunrise) into 15 more — muhūrtas 1–30, each
+      exactly one fifteenth of its arc (≈48 minutes only on a mean 12h/12h day). <b>Abhijit is day-muhūrta 8</b>:
+      its midpoint is <em>always</em> the mid-day point sunrise + D/2 (an algebraic identity — the middle of 15
+      parts), i.e. local apparent noon ± 24 minutes on the mean day. <b>Brāhma muhūrta is No. 29</b>, from
+      2 night-muhūrtas before sunrise to 1 before (04:24–05:12 on the mean day). The 30-name list (Rudra →
+      Samudra) is <b>later jyotiṣa tradition, unattributed in the cited sources</b> — it is <em>not</em> the
+      Taittirīya-Brāhmaṇa III.10.1 list, whose fifteen day-names are entirely different; two of the thirty
+      qualities (#16 Girīśa, #22 Agni) are graded oppositely by the two sources and are flagged ⚑ with both
+      positions.</p>
+    <h3>The three kālas</h3>
+    <p class="small">Rāhu-kāla, Yamaghaṇṭa and Gulika-kāla each occupy <b>one eighth of the daylight arc</b>; which
+      eighth depends on the weekday, from three verified octant tables (Rāhu: Sun 8th, Mon 2nd, Tue 7th, Wed 5th,
+      Thu 6th, Fri 4th, Sat 3rd; Yamaghaṇṭa 5/4/3/2/1/7/6; Gulika 7/6/5/4/3/2/1). Gulika's table even has a
+      derivation: assign the day's eight parts lords starting from the weekday's ruler in weekday order (the eighth
+      part lordless) — Gulika is <b>Saturn's part</b>. These are the <b>day</b> tables; nocturnal variants exist and
+      are deliberately not encoded. The tables were verified against two independent published sources and a
+      same-day live pañcāṅga (Ujjain, Monday 2026-07-13: Rāhu 07:32–09:12, Yamaghaṇṭa 10:52–12:32, Gulika
+      14:12–15:52 — the engine reproduces all three to the minute of its own sunrise).</p>
+    <h3>The vāra correction</h3>
+    <p class="small">The weekday that picks the octant is the <b>sunrise-bounded vāra</b>: the Indian weekday begins
+      at sunrise, not at civil midnight. The site's Vedic pañcāṅga uses the civil-UTC weekday (a documented
+      simplification); this tool computes the vāra itself from the sunrise instant, taking the weekday of the local
+      civil date of that sunrise (local mean time = UTC + longitude/15h — sunrise sits hours from midnight, so
+      time-zone quirks cannot flip the day). When the two disagree, the summary flags it.</p>
+    <h3>The pañcāṅga screens</h3>
+    <p class="small">Four of the five limbs are screened by the classical rules: <b>tithi</b> by the fivefold
+      Nandā/Bhadrā/Jayā/<b>Riktā</b>/Pūrṇā cycle (Riktā — the 4th, 9th and 14th of each paksha — is the avoid
+      class; amāvāsyā is avoided besides); <b>yoga</b> by the <b>nine</b> avoided nitya-yogas (Viṣkambha, Atigaṇḍa,
+      Śūla, Gaṇḍa, Vyāghāta, Vajra, Vyatīpāta, Parigha, Vaidhṛti — the last two <em>mahā-doṣa</em> yogas avoided
+      whole, the rest classically only in their opening ghaṭīs: 3/6/5/6/9/3/–/30/– respectively, 1 ghaṭī = 24 min);
+      <b>karaṇa</b> by Viṣṭi (<b>Bhadrā</b>), the standard avoid, which falls on every 7th half-tithi slot, eight
+      times a lunar month; and <b>nakṣatra</b> by the sevenfold Muhūrta-Cintāmaṇi classification (Dhruva, Cara,
+      Ugra, Miśra, Kṣipra, Mṛdu, Tīkṣṇa — Ugra and Tīkṣṇa avoided for auspicious works). The pañcāṅga here is an
+      instantaneous snapshot — limb <em>end-times</em> are not computed, so opening-ghaṭī rules are stated, not
+      clocked. Every record carries its citation; the classical anchor text is the <b>Muhūrta Cintāmaṇi</b> of Rāma
+      Daivajña (Kāśī, 1600 CE).</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything in the real world. The divisions of the day are genuine, verifiable
+    arithmetic on measured sunrise and sunset times; the qualities assigned to them have <b>no demonstrated
+    connection to events</b>. Treat every grading as a faithful reconstruction of how the pañcāṅga tradition
+    reasoned — interesting history, not guidance. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="vedic/index.html">Vedic (sidereal) reading</a>,
+    the <a href="picatrix/election.html">Picatrix Election engine</a>, and the
+    <a href="workbench.html">Master Tool</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('muhurta');
+  import { initMuhurta } from '../assets/js/app/muhurta.js';
+  initMuhurta();
+</script>
+</body>
+</html>

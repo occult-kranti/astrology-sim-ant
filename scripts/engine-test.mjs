@@ -848,5 +848,270 @@ import { buildMomentFinderPrompt } from '../assets/js/core/llm-context.js';
   ok(/NO qualifying window/.test(mpEmpty), 'moment finder: the empty-scan case is stated honestly');
 }
 
+// --- Praśna (Indian horary) + KP sub-lords ----------------------------------
+import { buildSubLordTable, subLordOf, kpForNumber, kpSignificators } from '../assets/js/core/kp.js';
+import { prasnaJudgement, classifyGrahas, arudhaFromDirection } from '../assets/js/core/prasna.js';
+import { castChart as prCastChart } from '../assets/js/core/astro.js';
+import { castVedic as prCastVedic } from '../assets/js/core/vedic.js';
+{
+  const sec = (d, m, s) => d * 3600 + m * 60 + s;
+  const kpt = buildSubLordTable();
+  ok(kpt.length === 249, `KP table has exactly 249 entries (got ${kpt.length})`);
+  ok(kpt.filter(e => e.split).length === 12, 'exactly 6 split subs (12 flagged half-entries)');
+  const kpSplits = kpt.filter(e => e.split && e.fromSec % 108000 === 0);
+  ok(kpSplits.map(e => e.sign).join(',') === 'Taurus,Cancer,Virgo,Scorpio,Capricorn,Pisces',
+    'the 6 splits sit at 0° Ta/Cn/Vi/Sc/Cp/Pi');
+  ok(kpSplits.every(e => (e.starLord === 'Sun' && e.subLord === 'Rahu') || (e.starLord === 'Jupiter' && e.subLord === 'Moon')),
+    'split pattern: Rāhu sub in Sun stars, Moon sub in Jupiter stars');
+  ok(kpt[0].fromSec === 0 && kpt[248].toSec === 1296000 && kpt.every((e, i) => i === 0 || e.fromSec === kpt[i - 1].toSec),
+    'KP arcs tile 0°→360° with no gaps or overlaps');
+  ok(Math.abs(kpt.reduce((a, e) => a + (e.toDeg - e.fromDeg), 0) - 360) < 1e-9, 'KP arc widths sum to 360°');
+  const ladder = [[2800, 'Ketu'], [10800, 'Venus'], [13200, 'Sun'], [17200, 'Moon'], [20000, 'Mars'],
+    [27200, 'Rahu'], [33600, 'Jupiter'], [41200, 'Saturn'], [48000, 'Mercury']];
+  ok(ladder.every(([end, lord], i) => kpt[i].toSec === end && kpt[i].subLord === lord && kpt[i].starLord === 'Ketu'),
+    'Aśvinī ladder at the verified boundaries (Ketu →0°46′40″, Venus →3°00′, Sun →3°40′ …)');
+  const kpRow = (n, sign, fromS, toS, nak, star, sub) => {
+    const e = kpt[n - 1];
+    ok(e.sign === sign && e.fromSec === fromS && e.toSec === toS && e.nakshatra === nak && e.starLord === star && e.subLord === sub,
+      `KP No.${n} = ${sign} ${nak} ${star}/${sub} (published row, re-derived)`);
+  };
+  kpRow(1, 'Aries', 0, sec(0, 46, 40), 'Ashwini', 'Ketu', 'Ketu');
+  kpRow(10, 'Aries', sec(13, 20, 0), sec(15, 33, 20), 'Bharani', 'Venus', 'Venus');
+  kpRow(22, 'Aries', sec(29, 13, 20), 108000, 'Krittika', 'Sun', 'Rahu');
+  kpRow(23, 'Taurus', 108000, 108000 + sec(1, 13, 20), 'Krittika', 'Sun', 'Rahu');
+  kpRow(40, 'Taurus', 108000 + sec(26, 6, 40), 108000 + sec(27, 53, 20), 'Mrigashira', 'Mars', 'Jupiter');
+  kpRow(76, 'Cancer', 324000 + sec(18, 33, 20), 324000 + sec(19, 20, 0), 'Ashlesha', 'Mercury', 'Ketu');
+  kpRow(108, 'Virgo', 540000 + sec(3, 0, 0), 540000 + sec(5, 6, 40), 'Uttara Phalguni', 'Sun', 'Saturn');
+  kpRow(124, 'Virgo', 540000 + sec(27, 53, 20), 648000, 'Chitra', 'Mars', 'Saturn');
+  ok(!kpt[123].split, 'No.124 ends EXACTLY at 30° Virgo — Citrā never splits (Mars+Rāhu+Jupiter+Saturn = 400′)');
+  kpRow(125, 'Libra', 648000, 648000 + sec(1, 53, 20), 'Chitra', 'Mars', 'Mercury');
+  kpRow(200, 'Capricorn', 972000 + sec(17, 46, 40), 972000 + sec(19, 40, 0), 'Shravana', 'Moon', 'Mercury');
+  kpRow(249, 'Pisces', 1188000 + sec(27, 53, 20), 1296000, 'Revati', 'Mercury', 'Saturn');
+  ok([1, 76, 125, 200, 249].every(n => {
+    const k = kpForNumber(n);
+    return subLordOf((k.entry.fromDeg + k.entry.toDeg) / 2).entry.num === n && subLordOf(k.ascLon).entry.num === n;
+  }), 'subLordOf round-trips kpForNumber at arc start & midpoint');
+  ok(kpForNumber(0) === null && kpForNumber(250) === null, 'kpForNumber rejects out-of-range numbers');
+
+  // Bṛhat Jātaka II.5 classification (verified vector)
+  const prFake = moonLon => ({ grahas: {
+    Sun: { lon: 0, rashiIndex: 0 }, Moon: { lon: moonLon, rashiIndex: Math.floor(moonLon / 30) },
+    Mercury: { lon: 150, rashiIndex: 5 }, Venus: { lon: 200, rashiIndex: 6 },
+    Mars: { lon: 250, rashiIndex: 8 }, Jupiter: { lon: 100, rashiIndex: 3 }, Saturn: { lon: 310, rashiIndex: 10 },
+    Rahu: { lon: 50, rashiIndex: 1 }, Ketu: { lon: 230, rashiIndex: 7 } } });
+  const prWax = classifyGrahas(prFake(90));
+  ok(prWax.waxing && prWax.benefics.slice().sort().join() === 'Jupiter,Mercury,Moon,Venus'
+    && prWax.malefics.slice().sort().join() === 'Mars,Saturn,Sun',
+    'BJ II.5: elongation 90° → benefics {Jup,Ven,Moon,Merc}, malefics {Sun,Mars,Sat}');
+  ok(!classifyGrahas(prFake(270)).waxing && classifyGrahas(prFake(270)).malefics.includes('Moon'),
+    'elongation 270° → the waning Moon joins the malefics');
+  ok(prWax.maleficsWithNodes.includes('Rahu') && prWax.flags.some(f => /Phalad/i.test(f)),
+    'Rāhu/Ketu malefic only under the flagged Phaladīpikā extension');
+
+  // ārūḍha needs a supplied direction (PM II.7–11) — never inferred
+  ok(arudhaFromDirection('east').rashis.join() === 'Aries,Taurus'
+    && arudhaFromDirection('south-east').rashis.join() === 'Gemini'
+    && arudhaFromDirection(null) === null, 'ārūḍha: east→{Meṣa,Vṛṣabha}, SE→Mithuna, none→null');
+
+  // the judgement on a fixed moment — every testimony carries a cite
+  const prChart = prCastChart(new Date(Date.UTC(2026, 0, 5, 12, 0)), 51.5074, -0.1278, 'whole');
+  const prV = prCastVedic(prChart, { currentDate: new Date(Date.UTC(2026, 0, 5, 12, 0)) });
+  const prJ = prasnaJudgement(prV, { quesitedHouse: 7, question: 'engine test' });
+  ok(prJ.testimonies.length >= 6, `prasnaJudgement returns testimonies (got ${prJ.testimonies.length})`);
+  ok(prJ.testimonies.every(t => t.cite && t.cite.length > 10), 'every testimony carries a cite');
+  ok(prJ.testimonies.every(t => ['for', 'against', 'neutral'].includes(t.verdict))
+    && ['favourable', 'unfavourable', 'mixed'].includes(prJ.leaning), 'verdicts & leaning use the fixed vocabularies');
+  ok(/no demonstrated/.test(prJ.caveat) && prJ.outOfScope.length >= 4 && prJ.outOfScope.every(o => o.cite),
+    'the locked caveat + cited out-of-scope layers (omens, breath, tāmbūla…) ride along');
+  ok(prJ.counts.for + prJ.counts.against + prJ.counts.neutral === prJ.testimonies.length, 'testimony counts reconcile');
+  const prJ125 = prasnaJudgement(prV, { quesitedHouse: 7, kpNumber: 125 });
+  ok(prJ125.kpNumber === 125 && prJ125.lagna.sign === 'Libra' && prJ125.lagna.overriddenByKpNumber,
+    'KP horary number 125 fixes the praśna lagna at 0° Libra');
+  const prKp = kpSignificators(prV);
+  ok(prKp.cusps.length === 12 && prKp.planets.length === 9
+    && prKp.lagna.subLord === subLordOf(prV.lagna.lon).subLord && prKp.cusps[0].subLord === prKp.lagna.subLord,
+    'kpSignificators: 12 cusps + 9 grahas, lagna sub-lord consistent with subLordOf');
+  ok(prKp.flags.length >= 5 && /Placidus/i.test(prKp.cuspNote), 'KP convention flags (Placidus, ayanāṁśa, +1″, nodes) stored in-data');
+}
+
+// --- Muhūrta (Indian electional) --------------------------------------------
+import { muhurtasOf, kalas, panchangaScreens, muhurtaReport, scanDay } from '../assets/js/core/muhurta.js';
+import { MUHURTA_NAMES, OCTANT_TABLES, TITHI_SCREEN, YOGA_SCREEN, KARANA_SCREEN, NAKSHATRA_CLASSES } from '../assets/js/core/data/muhurta-data.js';
+
+{
+  const when = new Date(Date.UTC(2026, 6, 13, 6, 30));            // Ujjain, Monday 2026-07-13, 12:00 IST
+  const ms = muhurtasOf(when, 23.1793, 75.7849);
+  ok(ms.length === 30, 'muhūrta: 30 slots');
+  ok(ms.every((m, i) => i === 29 || m.end.getTime() === ms[i + 1].start.getTime()) && ms.every(m => m.start < m.end),
+    'muhūrta: the 30 slots partition sunrise→next-sunrise exactly (no gaps, monotone)');
+  const dayArc = ms[14].end - ms[0].start, nightArc = ms[29].end - ms[14].end;
+  ok(ms.slice(0, 15).every(m => Math.abs((m.end - m.start) - dayArc / 15) <= 1)
+    && ms.slice(15).every(m => Math.abs((m.end - m.start) - nightArc / 15) <= 1),
+    'muhūrta: every slot = its arc/15 within 1 ms');
+  const abhi = ms[7];
+  ok(abhi.isAbhijit && Math.abs((abhi.start.getTime() + abhi.end.getTime()) / 2
+      - (ms[0].start.getTime() + ms[14].end.getTime()) / 2) <= 120000,
+    'muhūrta: Abhijit is slot 8, midpoint = the mid-day point (±2 min)');
+  ok(ms[28].isBrahma, 'muhūrta: Brāhma is slot 29');
+  ok(!!ms[15].contested && ms[15].contested.positions.length >= 2
+    && !!ms[21].contested && ms[21].contested.positions.length >= 2 && !!ms[7].contested,
+    'muhūrta: contested flags on #16 Girīśa, #22 Agni and the Abhijit weekday exception (both positions kept)');
+  ok(MUHURTA_NAMES.length === 30 && MUHURTA_NAMES.every(r => r.cite)
+    && YOGA_SCREEN.avoid.every(y => y.cite) && TITHI_SCREEN.groups.every(g => g.cite)
+    && NAKSHATRA_CLASSES.every(c => c.cite) && !!KARANA_SCREEN.avoid.cite
+    && !!OCTANT_TABLES.cites.rahu && !!OCTANT_TABLES.cites.yama && !!OCTANT_TABLES.cites.gulika,
+    'muhūrta: every data record carries .cite');
+  // the three verified octant tables, intact + the Gulika Saturn-part derivation
+  ok(OCTANT_TABLES.rahu.join() === '8,2,7,5,6,4,3' && OCTANT_TABLES.yama.join() === '5,4,3,2,1,7,6'
+    && OCTANT_TABLES.gulika.join() === '7,6,5,4,3,2,1', 'muhūrta: the three verified octant tables are intact');
+  ok(OCTANT_TABLES.gulika.every((k, w) => {
+      let s = -1; for (let p = 0; p < 7; p++) if ((w + p) % 7 === 6) s = p + 1; return s === k;
+    }), "muhūrta: Gulika = Saturn's part — the lord-derivation reproduces the table for all 7 weekdays");
+  const kk = kalas(when, 23.1793, 75.7849);                       // Monday → Rāhu = 2nd octant
+  const arc = kk.sunset - kk.sunrise;
+  ok(kk.weekday === 1 && kk.rahu.octant === 2
+    && kk.rahu.start.getTime() === kk.sunrise.getTime() + Math.round(arc / 8)
+    && kk.rahu.end.getTime() === kk.sunrise.getTime() + Math.round(2 * arc / 8)
+    && kk.yama.octant === 4 && kk.gulika.octant === 6,
+    'muhūrta: Monday kālas = octants 2/4/6 of the real day (sunrise-bounded vāra)');
+  // screens: the verified synthetic avoid-day (Riktā 14, Vyatīpāta, Viṣṭi, Mūla)
+  const s = panchangaScreens({ tithi: { num: 14, name: 'Caturdaśī', paksha: 'Śukla (waxing)' },
+    yoga: { num: 17, name: 'Vyatīpāta' }, karana: { num: 8, name: 'Viṣṭi' },
+    nakshatra: { num: 19, name: 'Mula', sanskrit: 'Mūla' }, vara: {} });
+  ok(['tithi', 'yoga', 'karana', 'nakshatra'].every(k => s[k].verdict === 'avoid' && !!s[k].cite),
+    'muhūrta: synthetic avoid-day flags all four screens negative, with cites');
+  ok(YOGA_SCREEN.avoid.map(y => y.num).join() === '1,6,9,10,13,15,17,19,27'
+    && YOGA_SCREEN.avoid.find(y => y.num === 15).ghatis === 3
+    && YOGA_SCREEN.avoid.filter(y => y.scope === 'whole').map(y => y.num).join() === '17,27',
+    'muhūrta: nine avoided yogas; Vajra = 3 ghaṭīs (the verified correction); mahā-doṣa tier = 17 + 27');
+  const rep = muhurtaReport(when, 23.1793, 75.7849);
+  ok(!rep.error && /never prescribed/.test(rep.caveat) && rep.citations.length >= 8,
+    'muhūrta: report composes with the honest caveat + citations');
+  const sc = scanDay(when, 23.1793, 75.7849);
+  ok(sc.rows.length === 30 && sc.rows.filter(r => r.kalas.length).every(r => r.isDay),
+    'muhūrta: scanDay overlays the kālas on day rows only');
+}
+
+// --- Tājika varṣaphala (the Indo-Persian annual chart) ----------------------
+import {
+  munthaSign, muntha, tajikaTriplicityLord, tajikaAspect, deeptamsaOrb,
+  tajikaPair, computeSaham, computeSahams, varshaphala,
+} from '../assets/js/core/tajika.js';
+import { aspectBetween } from '../assets/js/core/aspects.js';
+import {
+  DEEPTAMSA, DEEPTAMSA_RECORD, TAJIKA_ASPECT_CLASSES, TAJIKA_TRIPLICITY,
+  MUNTHA_RECORD, VARSHESHVARA_RECORD, TAJIKA_YOGAS, SAHAMS,
+  SAHAM_CORRECTION_RECORD, VARSHA_PRAVESHA_RECORD, TRANSMISSION_NOTE,
+} from '../assets/js/core/data/tajika-data.js';
+
+// munthā vectors (Hāyanaratna ch.5 §1, Samarasiṃha's rule)
+ok(munthaSign(4, 25) === 5 && munthaSign(4, 0) === 4 && munthaSign(4, 12) === 4,
+  'muntha: (Leo,25)→Virgo, (Leo,0)→Leo, (Leo,12)→Leo');
+ok(/Tājikamuktāvali/.test(muntha(4, 25, 5).monthlyMotion.attribution),
+  'muntha ~2.5°/month attributed to Tājikamuktāvali-as-quoted-by-Balabhadra');
+
+// saham vectors (research verbatim; Saṃjñātantra 3.5 + Balabhadra's gloss)
+const tjV1 = computeSaham(110, 275, 10), tjV2 = computeSaham(160, 50, 10), tjV3 = computeSaham(50, 160, 10);
+ok(tjV1.lon === 205 && !tjV1.correctionApplied, 'saham vector 1: 205.0 = Libra 25, no +30');
+ok(tjV2.raw === 120 && tjV2.lon === 150 && tjV2.correctionApplied, 'saham vector 2: 120 → +30 → 150.0 = Virgo 0');
+ok(tjV3.lon === 260 && !tjV3.correctionApplied, 'saham vector 3 (night, swapped): 260.0 = Sagittarius 20');
+ok(tjV1.granularityAgrees && tjV2.granularityAgrees && tjV3.granularityAgrees,
+  'saham between-check: degree- and sign-granular readings agree on all vectors');
+
+// deeptāṁśa table as data (Daivajñālaṃkṛti 8.9 = Tājikasāra 88)
+ok(DEEPTAMSA.Sun === 15 && DEEPTAMSA.Moon === 12 && DEEPTAMSA.Mars === 8 && DEEPTAMSA.Mercury === 7 &&
+  DEEPTAMSA.Jupiter === 9 && DEEPTAMSA.Venus === 7 && DEEPTAMSA.Saturn === 9 && deeptamsaOrb('Mars') === 8,
+  'deeptāṁśa orbs = 15/12/8/7/9/7/9 (Mars 8, not the vedastro-12 error)');
+ok(DEEPTAMSA_RECORD.variants.some(v => v.planet === 'Rahu' && v.orb === 12 && v.flagged) &&
+  DEEPTAMSA_RECORD.knownErrors.length > 0 &&
+  DEEPTAMSA_RECORD.combinationRule.primary === 'within their own orbs of light, or within twelve degrees' &&
+  DEEPTAMSA_RECORD.combinationRule.halfSum.contested === true,
+  'deeptāṁśa record: Rāhu-12 variant flagged, Mars-12 error recorded, primary rule verbatim, half-sum flagged unverified');
+
+// itthaśāla truth-table incl. the <1° carve-out (documented aspects.js divergence)
+const tjSat = { lon: 135, speed: 0.033 }, tjM = d => ({ lon: d, speed: 0.52 });
+const tjA = tajikaPair('Mars', tjM(10), 'Saturn', tjSat), tjWA = aspectBetween('Mars', tjM(10), 'Saturn', tjSat);
+const tjB = tajikaPair('Mars', tjM(15.5), 'Saturn', tjSat), tjWB = aspectBetween('Mars', tjM(15.5), 'Saturn', tjSat);
+const tjC = tajikaPair('Mars', tjM(16), 'Saturn', tjSat), tjWC = aspectBetween('Mars', tjM(16), 'Saturn', tjSat);
+ok(tjA.verdict === 'itthasala' && !tjA.carveOut && tjA.withinOwnOrbs && tjA.halfSum === 8.5 && tjWA.applying === true,
+  'Mars Ar10/Saturn Le15: itthaśāla (gap 5 ≤ own orbs & half-sum 8.5); aspects.js agrees applying');
+ok(tjB.verdict === 'itthasala' && tjB.carveOut === true && tjWB.applying === false,
+  'Mars Ar15°30′: STILL itthaśāla (past <1°, ancient commentator) while aspects.js applying=false — documented divergence');
+ok(tjC.verdict === 'isarapha' && tjWC.applying === false, 'Mars Ar16: īsarāpha (1° past, Tājikabhūṣaṇa 4.10)');
+ok(tajikaAspect(0, 5) === null && tajikaAspect(0, 6).strength === 1 && tajikaAspect(0, 4).strength === 0.75 &&
+  tajikaAspect(0, 2).strength === 0.25 && tajikaAspect(0, 3).strength === 0.5,
+  'Tājika aspects: none at 2/6/8/12; Vāmana strengths ¼ (3/11), ½ (4/10), ¾ (5/9), full (7)');
+
+// Tājika triplicity table (NOT sign rulership)
+ok(tajikaTriplicityLord(0, true) === 'Sun' && tajikaTriplicityLord(1, true) === 'Venus' &&
+  tajikaTriplicityLord(2, true) === 'Saturn' && tajikaTriplicityLord(3, true) === 'Venus' &&
+  tajikaTriplicityLord(0, false) === 'Jupiter' && tajikaTriplicityLord(1, false) === 'Moon' &&
+  tajikaTriplicityLord(2, false) === 'Mercury' && tajikaTriplicityLord(3, false) === 'Mars',
+  'Tājika triplicity lords day Sun/Venus/Saturn/Venus · night Jupiter/Moon/Mercury/Mars');
+
+// day/night saham behaviour on synthetic positions
+const tjPos = { Asc: 10, Sun: 275, Moon: 110, Mercury: 100, Venus: 200, Mars: 300, Jupiter: 40, Saturn: 250 };
+const tjDay = computeSahams(tjPos, { isDay: true, lagnaSignIndex: 0 });
+const tjNight = computeSahams(tjPos, { isDay: false, lagnaSignIndex: 0 });
+ok(tjDay.sahams.length === 12 && tjDay.sahams.find(s => s.key === 'punya').lon === 205,
+  'computeSahams: core dozen; Puṇya = 205 on the day vector');
+ok(/^Jupiter/.test(tjNight.sahams.find(s => s.key === 'bhratri').formula) &&
+  /^Jupiter/.test(tjNight.sahams.find(s => s.key === 'putra').formula) &&
+  /^Jupiter − Sun \+ Moon/.test(tjNight.sahams.find(s => s.key === 'gaurava').formula),
+  'night: Bhrātṛ & Putra unreversed; Gaurava uses the EXPLICIT night form (not a mechanical reversal)');
+ok(/Jupiter − Mars/.test(tjDay.sahams.find(s => s.key === 'samarthya').formula),
+  'Sāmarthya: Mars-rules-Lagna exception (Aries lagna) → Jupiter − Mars + Asc at all times');
+ok(tjDay.sahams.find(s => s.key === 'mitra').betweenCheckPoint === 'Venus', 'Mitra between-check point = Venus');
+
+// the sidereal return + varṣeśvara on a live nativity
+const tjBirth = new Date(Date.UTC(1984, 8, 24, 3, 30));
+const tjNatal = castChart(tjBirth, 28.6139, 77.2090, 'whole');
+const tjR = varshaphala(tjNatal, 2026);
+ok(tjR.varshaPravesha.siderealMatchDeg < 0.01,
+  `varṣa-praveśa: annual SIDEREAL Sun = natal sidereal Sun to <0.01° (Δ ${tjR.varshaPravesha.siderealMatchDeg.toExponential(1)})`);
+ok(tjR.varshaPravesha.driftMinutes > 0, 'sidereal return later than the tropical return of the same year');
+ok(tjR.varsheshvara.candidates.length === 5 &&
+  tjR.varsheshvara.candidates.some(c => c.planet === tjR.varsheshvara.chosen.planet),
+  'varṣeśvara: exactly five candidates; chosen among them');
+ok(tjR.varsheshvara.candidates.some(c => c.aspectsLagna)
+    ? (tjR.varsheshvara.chosen.aspectsLagna === true && tjR.varsheshvara.viaDispute === false)
+    : (tjR.varsheshvara.viaDispute === true),
+  'varṣeśvara aspect precondition respected (dispute fallback flagged when it fires)');
+ok(tjR.aspects.pairs.length === 21 && !(tjR.yogas.ikkavala && tjR.yogas.induvara),
+  'aspect table 21 pairs; ikkavāla/induvāra mutually exclusive');
+ok(tjR.sahams.sahams.length === 12 && tjR.sahams.sahams.every(s => s.lon >= 0 && s.lon < 360),
+  'all 12 sahams computed on the live annual chart');
+
+// data discipline: every record cited; the three contested flags exist
+ok(SAHAMS.every(s => s.cite) && TAJIKA_YOGAS.every(y => y.cite) && TAJIKA_ASPECT_CLASSES.every(c => c.cite) &&
+  [DEEPTAMSA_RECORD, TAJIKA_TRIPLICITY, MUNTHA_RECORD, VARSHESHVARA_RECORD, SAHAM_CORRECTION_RECORD,
+    VARSHA_PRAVESHA_RECORD, TRANSMISSION_NOTE].every(r => r.cite),
+  'tajika-data: every record has .cite');
+ok(SAHAM_CORRECTION_RECORD.contested.visvanatha.contested === true,
+  'contested flag: Viśvanātha (Prakāśikā 1629) rejects the +30° correction — in-data');
+ok(SAHAMS.find(s => s.key === 'mitra').contested.phrasing.contested === true,
+  'contested flag: Mitra "lot of the teacher" phrasing ambiguity — in-data');
+ok(VARSHESHVARA_RECORD.noAspectDispute.contested === true && VARSHESHVARA_RECORD.noAspectDispute.positions.length === 4,
+  'contested flag: the four-way no-aspect varṣeśvara dispute — in-data');
+
+// --- AI: the Indian-mirror assistant kinds (cite-bound, plain coda) ---------
+import {
+  buildPrasnaContext, buildPrasnaInterpretPrompt,
+  buildMuhurtaContext, buildMuhurtaInterpretPrompt,
+  buildTajikaContext, buildTajikaInterpretPrompt, JYOTISHI_PREAMBLE,
+} from '../assets/js/core/llm-context.js';
+{
+  const px = buildPrasnaContext({ kind: 'prasna', question: 'test?', quesitedHouse: 7, momentUTC: '2026-01-05T12:00:00Z' });
+  const mx = buildMuhurtaContext({ kind: 'muhurta' });
+  const tx = buildTajikaContext({ kind: 'tajika', meta: { birthUTC: '1984-09-24T03:30:00Z', targetYear: 2026, completedYears: 42 } });
+  ok([px, mx, tx].every(c => /\[F1\]/.test(c.system) && /OUTPUT CONTRACT/i.test(c.system)),
+    'AI Indian mirror: all three grounded contexts are cite-bound');
+  ok(/NO demonstrated validity/i.test(JYOTISHI_PREAMBLE) && /never merge/i.test(JYOTISHI_PREAMBLE),
+    'AI Indian mirror: the Jyotiṣa-historian voice keeps the locked framing + compare-never-merge');
+  ok([buildPrasnaInterpretPrompt(), buildMuhurtaInterpretPrompt(), buildTajikaInterpretPrompt()]
+    .every(p => /no demonstrated validity|no demonstrated effect/i.test(p) && /To reflect on/.test(p) && /never prescribed/i.test(p)),
+    'AI Indian mirror: all three interpret prompts carry the honest close + the plain-words coda');
+}
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

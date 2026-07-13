@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praśna — Indian horary &amp; the KP sub-lords | The Astrologer's Workbench</title>
+<meta name="description" content="Praśna (Indian horary): judge a question from the sidereal chart of the moment it is asked, by the verified rules of the Ṣaṭpañcāśikā, Daivajña Vallabha and Praśna Mārga — plus the KP (Krishnamurti Paddhati) layer: the self-verifiable 249-entry sub-lord table, the horary number 1–249, cusp and graha sub-lords. The Indian mirror of the Workbench's Western horary — the same moment judged both ways, never merged. A historical art of no demonstrated validity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Praśna (Indian horary)</p>
+  <h1>Praśna — Indian horary &amp; the KP sub-lords</h1>
+  <p class="lede"><i>Praśna</i> ("the question") is the Indian tradition's answer to the same problem Western horary
+    addresses: <b>read a question from the sidereal chart of the moment it is asked</b>. The praśna lagna stands for the
+    querent and is judged exactly as a birth lagna (Praśna Mārga I.47); the <b>Moon is the querent's mind</b> and its
+    house is itself a testimony; the Moon's <b>nakṣatra</b> is a data layer with no Western analogue. Layered on top is
+    <b>KP (Krishnamurti Paddhati)</b>: each nakṣatra cut into nine <b>subs</b> proportional to the Vimśottarī years —
+    a self-verifiable table of exactly <b>249 entries</b>, from which the querent's chosen <b>horary number</b> fixes
+    the ascendant.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Praśna and KP, like all astrology, have <b>no demonstrated predictive validity</b>. The arithmetic here is real and
+    reproducible — the sidereal chart runs on the same verified engine as every other tool, and the 249-entry sub-lord
+    table is generated from first principles and checks itself (exactly 249 entries, exactly 6 rāśi-boundary splits,
+    arcs that tile the zodiac without gap or overlap). The <em>judgement rules</em> are those of the
+    <b>Ṣaṭpañcāśikā</b> (6th c.), the <b>Daivajña Vallabha</b> and the <b>Praśna Mārga</b> (Kerala, 1649), each
+    testimony cited to its verse, with edition disagreements flagged in-data — reproduced for study, never as advice.
+    See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="pr-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 100%"><label for="pr-question">Your question (optional)</label>
+        <input id="pr-question" type="text" placeholder="e.g. will the one who left return?" style="width:100%"></div>
+    </div>
+    <div class="field-row" style="margin-top:.6rem">
+      <div class="field" style="flex:1 1 380px"><label for="pr-house">The quesited — which bhāva (house) the question is about</label>
+        <select id="pr-house"></select></div>
+      <div class="field"><label for="pr-number">KP horary number (1–249, optional)</label>
+        <input id="pr-number" type="number" min="1" max="249" step="1" placeholder="—" style="width:8rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.6rem">
+      <div class="field" style="flex:1 1 180px"><label for="pr-city">Place (preset)</label><select id="pr-city"></select></div>
+      <div class="field"><label for="pr-lat">Lat °N</label><input id="pr-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="pr-lon">Lon °E</label><input id="pr-lon" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="pr-date">Date</label><input id="pr-date" type="date"></div>
+      <div class="field"><label for="pr-time">Time (local)</label><input id="pr-time" type="time"></div>
+      <div class="field"><label for="pr-offset">UTC offset</label><input id="pr-offset" type="number" step="0.5" style="width:6rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <button type="submit" class="btn">✶ Judge the praśna</button>
+      <span id="pr-status" class="small muted"></span>
+    </div>
+    <p class="small muted" style="margin:.6rem 0 0">The moment defaults to <b>now</b> — the classical praśna is judged
+      for the instant the question reaches the astrologer. The KP number, when given, fixes the lagna from the
+      querent's chosen sub-arc instead of the horizon (KP Reader VI); leave it blank for the plain time-chart.</p>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The praśna chart <span class="small muted">(sidereal, whole-sign)</span></h2>
+    <div id="pr-chart"></div></section>
+
+  <section class="card" id="pr-number-card" hidden><h2 style="margin-top:0">The KP horary number</h2>
+    <div id="pr-number-out"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The testimonies <span class="small muted">(each with its verse)</span></h2>
+    <div id="pr-judgement"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The KP layer <span class="small muted">(star-lords &amp; sub-lords)</span></h2>
+    <div id="pr-kp"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The Indian mirror of Western horary</h2>
+    <p class="small">This page and the <a href="workbench.html">Master Tool's</a> Lilly horary read the <b>same
+      moment</b> with two independent grammars — and they are <b>never merged</b>. Cast the same date, time and place
+      in both and compare: the tropical/Regiomontanus chart will put the planets in different signs and houses than
+      the sidereal whole-sign chart (the ~24° ayanāṁśa shift guarantees it), Lilly judges by <em>aspect perfection
+      between significators</em> (translation and collection of light), praśna by <em>bhāva fortification and
+      occupancy</em>; Lilly's Moon is co-significator, praśna's Moon is the querent's mind and its house a verdict in
+      itself. Where the two disagree, that disagreement is historically instructive — two traditions answering the
+      same question from the same sky by different rules, neither with any demonstrated validity.</p></section>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <section class="card" id="hiw-prasna">
+    <h2 style="margin-top:0">How this works</h2>
+    <h3>The 249-entry KP sub-lord table — generated, not copied</h3>
+    <p class="small">The zodiac is 27 nakṣatras of 13°20′ (48 000″), lords cycling
+      Ketu→Venus→Sun→Moon→Mars→Rāhu→Jupiter→Saturn→Mercury from Aśvinī at 0° sidereal Aries. Each nakṣatra is cut into
+      <b>nine subs proportional to the Vimśottarī daśā years</b> (sub arc = years × 400″ — Ketu 46′40″, Venus 2°13′20″,
+      Sun 40′, Moon 1°06′40″, Mars 46′40″, Rāhu 2°, Jupiter 1°46′40″, Saturn 2°06′40″, Mercury 1°53′20″; the nine sum
+      to exactly 13°20′), the sequence <b>starting from the nakṣatra's own lord</b>. That gives 27 × 9 = 243 arcs; the
+      six rāśi boundaries that fall mid-sub (0° Taurus, Cancer, Virgo, Scorpio, Capricorn, Pisces) split their sub into
+      two numbered entries — the Rāhu sub in the Sun-ruled boundary nakṣatras, the Moon sub in the Jupiter-ruled ones —
+      and 243 + 6 = <b>249</b>. The Mars-ruled boundary nakṣatras never split: Mars+Rāhu+Jupiter+Saturn arcs sum to
+      exactly 6°40′, so the sign line falls precisely on a sub junction. The whole table is integer arc-second
+      arithmetic — every boundary exact, every published row reproducible (verified against the JyotishPortal 1–249
+      chart; where published tables print a row start 1″ high, that is an anti-overlap display convention, flagged).</p>
+    <h3>The horary number &amp; the sub-lord of a degree</h3>
+    <p class="small">In KP horary (KP Reader VI) the <b>querent</b> — not the astrologer — picks a number 1–249; that
+      entry's sub-arc fixes the ascendant (degree taken at the start of the arc — an implemented convention, flagged),
+      while the planets stand for the moment of judgment. For any sidereal longitude the engine walks the same table:
+      sign lord → star lord (the nakṣatra's) → sub-lord. KP doctrine calls the cuspal sub-lord the "final judge" of a
+      house's matter; that claim is reported, not endorsed. Two conventions are flagged rather than hidden: KP proper
+      uses <b>Placidus</b> cusps and <b>Krishnamurti's ayanāṁśa</b> (~5–6′ from the Lahiri used here — enough to flip a
+      sub-lord near a boundary); this page reckons cusps whole-sign from the lagna, the convention of this site's Vedic
+      wing.</p>
+    <h3>The praśna judgement — a cited, verified ruleset</h3>
+    <p class="small">The chart is judged as a nativity (<b>PM I.47</b>). Benefics and malefics follow <b>Bṛhat Jātaka
+      II.5</b>: malefics are the waning Moon, the Sun, Mars, Saturn and Mercury joined with any of these; benefics are
+      Jupiter, Venus, the waxing Moon and unafflicted Mercury (the benefic list comes from the translator notes, not
+      the verse — flagged; Rāhu/Ketu are malefic only under the later Phaladīpikā layer, flagged). The master rule
+      (<b>ṢPŚ I.4</b>): a benefic in the lagna, a benefic varga rising, <em>or a śīrṣodaya sign rising</em> (the clause
+      most summaries drop) gives success; a malefic gives failure; mixed gives success with difficulty. The kendra
+      configuration (<b>DV II.20/21 &amp; III.3</b>): benefics in quadrants and trines with malefics in 3/6/11 —
+      <em>and not in the angles or the 8th</em> (the exclusion clause shorter quotations truncate). The Moon's house
+      (<b>DV III.2</b>; the 8th as obstruction per <b>PM XVII.15</b>, genre-dependent and flagged), bhāva fortification
+      (<b>ṢPŚ I.3</b>), the retrograde 7th lord as the return of the absent (<b>DV IV.10, IX.5</b>), and the corrected
+      lost-item rule (<b>ṢPŚ I.5</b>: the <em>full</em> Moon <em>in the lagna</em> aspected by Jupiter or Venus — not
+      merely "a strong Moon"). Every testimony in the table above carries its verse.</p>
+    <h3>What is honestly out of scope</h3>
+    <p class="small">The texts demand layers no engine can compute: <b>nimittas</b> (omens observed from the moment the
+      astrologer leaves home), the <b>breath</b> (svara) examination, the Kerala <b>tāmbūla</b> (betel-leaf) and
+      <b>aṣṭamaṅgala</b> gold-coin rituals, and the diviner's steady mind (PM II.12–15). The <b>ārūḍha</b> — the sign
+      of the compass direction the querent faces (PM II.7–11) — is computable only if that physical datum is supplied,
+      and is never inferred here. These are listed with the judgement, described as history.</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything. Praśna's rules are a faithful reconstruction of how the Indian
+    horary tradition reasoned — a historical symbolic grammar, cited verse by verse, with its edition disagreements
+    stored rather than smoothed over. The KP table is genuine, self-checking arithmetic inside a divinatory convention
+    with no demonstrated validity. Interesting history, not guidance. See <a href="about/index.html">Sources &amp;
+    Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="workbench.html">Master Tool</a> (Western horary
+    on the same moment), the <a href="vedic/index.html">Jagannath Hora (Vedic) reading</a>, and the
+    <a href="geomancy.html">Geomancy</a> and <a href="iching.html">I Ching</a> oracles.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('prasna');
+  import { initPrasna } from '../assets/js/app/prasna.js';
+  initPrasna();
+</script>
+</body>
+</html>

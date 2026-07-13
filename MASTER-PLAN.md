@@ -408,7 +408,13 @@ Its only external dependency is Google Fonts (stripped in the port — this site
 ### NEXT PHASES — R19–R21 *(planned 2026-07-12; each data layer REQUIRES the research + adversarial-verify
 workflow before encoding — the R15–R18 discipline: primary sources fetched, every load-bearing number recomputed)*
 
-- **R19 — Praśna, Muhūrta & Tājika: the Indian horary/election mirror.** The Vedic wing already computes the
+- **R19 — Praśna, Muhūrta & Tājika: the Indian horary/election mirror.** ✅ **SHIPPED** (2026-07-13; research
+  workflow: 1 inventory + 4 research + 4 adversarial verifiers, everything checked against the primary texts —
+  KP's 249-entry table re-derived from first principles, Tājika verbatim vs Gansten's Hāyanaratna (Brill 2020),
+  the muhūrta octant tables vs two independent published tables + a live pañcāṅga. Three tools on pages/prasna,
+  /muhurta, /tajika with cited testimonies, contested values flagged in-data, AI assistants in the
+  Jyotiṣa-historian voice, ~120 new engine-test asserts. Verified: engine-test all passed · audit 0 ·
+  Chromium 61 pages 0 errors.) Original plan: the Vedic wing already computes the
   sidereal chart, nakṣatras, pañcāṅga, Vimśottarī daśā and the solar return — these three classical layers reuse
   exactly those calculations (excellent engine fit):
   1. **Praśna** (Indian horary): the query chart judged by lagna/ārūḍha, Moon's condition, and the praśna-specific

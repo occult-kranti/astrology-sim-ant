@@ -68,7 +68,7 @@ function currentSection() {
   if (/\/pages\/cycles\.html$/.test(p)) return 'cycles';
   if (/\/pages\/workflow\.html$/.test(p)) return 'workflow';
   if (/\/pages\/tools\.html$/.test(p)) return 'tools';
-  if (/\/pages\/(experiment|structure|geomancy|tarot|iching)\.html$/.test(p)) return 'tools';
+  if (/\/pages\/(experiment|structure|geomancy|tarot|iching|prasna|muhurta|tajika)\.html$/.test(p)) return 'tools';
   if (/\/pages\/glossary\.html$/.test(p)) return 'glossary';
   if (/(\/index\.html$|\/$)/.test(p)) return 'home';
   return '';
@@ -143,6 +143,9 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/geomancy.html')}">Geomancy — the Shield Chart</a></li>
         <li><a href="${R('pages/tarot.html')}">Tarot — the spread, laid &amp; read</a></li>
         <li><a href="${R('pages/iching.html')}">I Ching — the Book of Changes</a></li>
+        <li><a href="${R('pages/prasna.html')}">Praśna — Indian horary &amp; the KP sub-lords</a></li>
+        <li><a href="${R('pages/muhurta.html')}">Muhūrta — the Indian election of the moment</a></li>
+        <li><a href="${R('pages/tajika.html')}">Tājika varṣaphala — the Indo-Persian annual chart</a></li>
         <li><a href="${R('pages/how-it-works.html')}">How it's calculated (step by step)</a></li>
         <li><a href="${R('pages/workflow.html')}">Chapter Map &amp; Workflows</a></li>
         <li><a href="${R('pages/book1/master.html')}">Book I Master Tool</a></li>

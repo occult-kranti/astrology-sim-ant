@@ -20,6 +20,9 @@ import {
   geomancyDataBlock, tarotDataBlock, ichingDataBlock, jungDataBlock, SITE_URLS,
   buildCyclesContext, buildCyclesInterpretPrompt, cyclesDataBlock,
   buildTimelordsContext, buildTimelordsInterpretPrompt, timelordsDataBlock,
+  buildPrasnaContext, buildPrasnaInterpretPrompt, prasnaDataBlock,
+  buildMuhurtaContext, buildMuhurtaInterpretPrompt, muhurtaDataBlock,
+  buildTajikaContext, buildTajikaInterpretPrompt, tajikaDataBlock,
 } from '../core/llm-context.js';
 import { PROVIDERS, PROV_ORDER, streamChat, factBudget, isFreeKind, openrouterHeaders } from './llm-core.js';
 import { LOCAL_DEFAULTS } from './local-config.js';
@@ -50,12 +53,16 @@ const prefillKey = () => lsGet(keyStore()) || (provName() === LOCAL_DEFAULTS.pro
 // get a much leaner fact set and a trimmed glossary (and drop the JSON data block
 // below) to keep a grounded interpret request under the cap.
 const CTX = { geomancy: buildGeomancyContext, tarot: buildTarotContext, iching: buildIchingContext, jung: buildJungContext,
-  cycles: buildCyclesContext, timelords: buildTimelordsContext };
+  cycles: buildCyclesContext, timelords: buildTimelordsContext,
+  prasna: buildPrasnaContext, muhurta: buildMuhurtaContext, tajika: buildTajikaContext };
 const PROMPT = { geomancy: buildGeomancyInterpretPrompt, tarot: buildTarotInterpretPrompt, iching: buildIchingInterpretPrompt, jung: buildJungInterpretPrompt,
-  cycles: buildCyclesInterpretPrompt, timelords: buildTimelordsInterpretPrompt };
+  cycles: buildCyclesInterpretPrompt, timelords: buildTimelordsInterpretPrompt,
+  prasna: buildPrasnaInterpretPrompt, muhurta: buildMuhurtaInterpretPrompt, tajika: buildTajikaInterpretPrompt };
 const DATABLOCK = { geomancy: geomancyDataBlock, tarot: tarotDataBlock, iching: ichingDataBlock, jung: jungDataBlock,
-  cycles: cyclesDataBlock, timelords: timelordsDataBlock };
-const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast', jung: 'report', cycles: 'sweep', timelords: 'periods' };
+  cycles: cyclesDataBlock, timelords: timelordsDataBlock,
+  prasna: prasnaDataBlock, muhurta: muhurtaDataBlock, tajika: tajikaDataBlock };
+const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast', jung: 'report', cycles: 'sweep', timelords: 'periods',
+  prasna: 'judgement', muhurta: 'day', tajika: 'year chart' };
 // per-tool copy overrides (a tool may pass api.copy to re-skin the panel, e.g.
 // the Jung tool makes it speak in Jung's own first-person voice).
 const cp = (k, d) => (api && api.copy && api.copy[k] != null) ? api.copy[k] : d;
