@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moment Scanner — every rulebook, one timeline | The Astrologer's Workbench</title>
+<meta name="description" content="The cross-system moment scanner: one time-range scan showing each tradition's verdict on the same sky, side by side — the Lilly/Picatrix election verdict, the Chaldean planetary hour, the Indian muhūrta, the three kālas, and the pañcāṅga quality screens. Separate historical rulebooks, compared — never merged; agreement means nothing more than coincidence of conventions. No demonstrated validity — described, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .mo-q { padding:.08rem .45rem; border-radius:.4rem; font-size:.75rem; white-space:nowrap; border:1px solid var(--rule); }
+  .mo-q-ausp { color:var(--benefic); border-color:var(--benefic); }
+  .mo-q-inausp { color:var(--malefic); border-color:var(--malefic); }
+  .mo-q-mixed { color:var(--gold); border-color:var(--gold); }
+  .mo-kala { font-size:.7rem; border:1px solid var(--malefic); color:var(--malefic); border-radius:.4rem;
+    padding:.05rem .35rem; white-space:nowrap; display:inline-block; }
+  .mo-star { color:var(--gold); cursor:help; }
+  .mo-flag { cursor:help; color:var(--gold); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Moment Scanner</p>
+  <h1>The Moment Scanner — every rulebook, one timeline</h1>
+  <p class="lede">Several traditions on this site claim to grade <em>the same moment</em> — each by its own,
+    incompatible rulebook. This tool scans a time range once and lays their verdicts <b>side by side</b>: the
+    <b>Lilly/Picatrix election</b> verdict for a chosen aim, the <b>Chaldean planetary hour</b>, the Indian
+    <b>muhūrta</b> of the sunrise-day, the three avoided <b>kālas</b>, and the classical <b>pañcāṅga screens</b>.
+    One sky, several rulebooks — <b>compared, never merged</b>. Watching them agree and disagree along the timeline
+    is the honest lesson.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Every column of this scan is a <b>historical doctrine of no demonstrated validity</b>. The astronomy underneath
+    (sunrises, planetary positions, day-divisions) is real and reproducible; the <em>gradings</em> laid over it are
+    the traditions' own, reproduced faithfully for study. The columns are <b>separate rulebooks</b>: when two of
+    them mark the same stretch "good" or "avoid", that agreement means <b>nothing more than a coincidence of
+    conventions</b> — it is not corroboration, and disagreement (the usual case) is not a contradiction to be
+    resolved. Described, never prescribed.</div>
+
+  <form id="mo-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 180px"><label for="mo-city">Place (preset)</label><select id="mo-city"></select></div>
+      <div class="field"><label for="mo-lat">Lat °N</label><input id="mo-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="mo-lon">Lon °E</label><input id="mo-lon" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="mo-date">Start date</label><input id="mo-date" type="date"></div>
+      <div class="field"><label for="mo-time">Time (local)</label><input id="mo-time" type="time"></div>
+      <div class="field"><label for="mo-offset">UTC offset</label><input id="mo-offset" type="number" step="0.5" style="width:6rem"></div>
+    </div>
+    <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="mo-hours">Hours ahead</label>
+        <select id="mo-hours">
+          <option value="24" selected>24 h</option>
+          <option value="48">48 h</option>
+          <option value="72">72 h</option>
+          <option value="168">168 h (a week)</option>
+        </select></div>
+      <div class="field" style="flex:1 1 220px"><label for="mo-aim">Aim (for the Lilly/Picatrix column)</label>
+        <select id="mo-aim"></select></div>
+      <button type="submit" class="btn">Scan the range</button>
+      <button type="button" class="btn sm" id="mo-now">Now</button>
+      <span id="mo-status" class="small muted"></span>
+    </div>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The timeline <span class="small muted">(a row whenever any
+    tradition's state changes)</span></h2>
+    <div id="mo-out"><p class="muted small">Pick a start, place and aim above.</p></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Legend — each column is a different tradition</h2>
+    <ul class="clean small">
+      <li><b>Lilly election</b> — the Latin West's electional verdict (green/amber/red, with its additive score) for
+        the chosen aim: planetary day &amp; hour, the ruler's dignities, the Moon's phase, mansion, void-of-course
+        and via combusta, malefics on the angles, Behenian star contacts. Source: Lilly, <i>Christian Astrology</i>
+        (1647); the <i>Picatrix</i>; Agrippa II. Hover a verdict for its leading testimony. Single-system view:
+        the <a href="picatrix/election.html">Election engine</a>.</li>
+      <li><b>Planetary hour</b> — the Chaldean-order hour ruler of the unequal (seasonal) hour, day arc ÷ 12 and
+        night arc ÷ 12 from sunrise/sunset. The oldest layer of Western election: "operate in the planet's own day
+        and hour."</li>
+      <li><b>Muhūrta</b> — which of the <b>30 muhūrtas</b> of the Indian sunrise-to-sunrise day the moment falls in,
+        with the tradition's grading (auspicious/mixed/inauspicious), ★ for Abhijit and the Brāhma muhūrta, ⚑ where
+        the sources disagree. Single-system view: the <a href="muhurta.html">Muhūrta tool</a>.</li>
+      <li><b>Kāla</b> — whether the moment falls in one of the three avoided spans of the Indian day (Rāhu-kāla,
+        Yamaghaṇṭa, Gulika-kāla — one eighth of the daylight arc each, picked by the weekday). Day arc only: the
+        night shows no kāla by construction.</li>
+      <li><b>Pañcāṅga screens</b> — the classical quality verdicts on the moment's tithi (T), yoga (Y), karaṇa (K)
+        and nakṣatra (N): Riktā tithis, the nine avoided yogas, Viṣṭi karaṇa, the sevenfold nakṣatra classes.
+        Sidereal (Lahiri), from the same sky as every other column.</li>
+    </ul>
+    <p class="small muted">These five rulebooks share the astronomy and nothing else — different day-boundaries
+      (sunrise vs midnight), different zodiacs (tropical vs sidereal), different units (unequal hours vs
+      thirtieths of the day). That is why the scanner compares and never merges.</p></section>
+
+  <div class="callout"><span class="label">Want one moment, walked through by the AI?</span>
+    The <a href="workbench.html">Master Tool (Workbench)</a> has a <b>🎯 Auspicious moment</b> button: the engine
+    scans ahead for the chosen aim and the AI explains each window, book meaning → real life — a mirror, never
+    advice. For the single-system deep dives, see the <a href="muhurta.html">Muhūrta day-clock</a> and the
+    <a href="picatrix/election.html">Picatrix Election engine</a>.</div>
+
+  <section class="card" id="hiw-moments">
+    <h2 style="margin-top:0">How this works</h2>
+    <p class="small">This tool adds <b>no new data or doctrine</b>. It steps through the chosen range (30-minute
+      strides, capped at one week) and, at each step, asks the engines that already exist on this site — the same
+      code paths their own pages run:</p>
+    <ul class="small">
+      <li><b>One chart per step</b> is cast on the verified astronomical engine (Regiomontanus houses, the election
+        engine's default) and shared: the election verdict reads its dignities, Moon condition and angles; the
+        sidereal pañcāṅga reads only planet longitudes, the ascendant and the date — none of which depend on the
+        house system, so its limbs are identical to a whole-sign cast (asserted in the headless test).</li>
+      <li><b>The planetary hour</b> is computed once per step and passed into the election engine so it is never
+        recomputed.</li>
+      <li><b>The muhūrtas and kālas are properties of the sunrise-day, not of the step</b> — they are computed once
+        per sunrise-to-sunrise day and cached; every step inside that day reuses the same 30 slots and 3 kālas, so
+        the scan's boundaries match the Muhūrta page exactly.</li>
+      <li><b>The pañcāṅga is computed at every step</b> rather than reused hourly: profiling showed the sidereal
+        snapshot costs well under a millisecond, so a full week's scan stays under a second and no boundary
+        blurring is needed. It remains an instantaneous snapshot — limb end-times are not clocked, so a limb can
+        change between steps.</li>
+      <li><b>The table compresses runs</b>: a 168-hour scan takes 337 steps, but a row is rendered only when
+        something changes — the Lilly verdict, the hour ruler, the muhūrta, the kāla, or a screen verdict. A row's
+        state holds until the next row.</li>
+    </ul>
+    <p class="small muted">Engines composed: <code>election.js</code> (electionScore), <code>planetary-hours.js</code>
+      (planetaryHour), <code>muhurta.js</code> (muhurtasOf, kalas, panchangaScreens), <code>vedic.js</code>
+      (castVedic), on <code>astro.js</code> (castChart). Each carries its own citations on its own page.</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything in the real world. The columns are separate historical rulebooks;
+    agreement between them means nothing more than coincidence of conventions, and "described, never prescribed"
+    holds for every cell of the table. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="muhurta.html">Muhūrta tool</a>,
+    the <a href="picatrix/election.html">Picatrix Election engine</a>, the
+    <a href="book1/planetary-hours.html">Planetary Hours</a>, and the <a href="workbench.html">Master Tool</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('moments');
+  import { initMoments } from '../assets/js/app/moments.js';
+  initMoments();
+</script>
+</body>
+</html>

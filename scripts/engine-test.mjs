@@ -1094,6 +1094,43 @@ ok(SAHAMS.find(s => s.key === 'mitra').contested.phrasing.contested === true,
 ok(VARSHESHVARA_RECORD.noAspectDispute.contested === true && VARSHESHVARA_RECORD.noAspectDispute.positions.length === 4,
   'contested flag: the four-way no-aspect varṣeśvara dispute — in-data');
 
+// --- The Moment Scanner (cross-system) ---------------------------------------
+import { scanMoments, DEFAULT_OPERATION_KEY, MOMENTS_CAVEAT, MAX_HOURS_AHEAD } from '../assets/js/core/moments.js';
+
+{
+  const from = new Date(Date.UTC(2026, 6, 13, 9, 0));             // London, 48 h
+  const res = scanMoments(from, 48, 51.5074, -0.1278);
+  ok(res.rows.length === 97, 'moments: 48 h / 30-min steps = 97 rows');
+  ok(res.rows.every(r => r.time instanceof Date
+    && r.lilly && ['green', 'amber', 'red'].includes(r.lilly.verdict) && Number.isFinite(r.lilly.score) && r.lilly.topReason
+    && r.hour && r.hour.ruler && typeof r.hour.isNight === 'boolean'
+    && r.muhurta && r.muhurta.num >= 1 && r.muhurta.num <= 30
+    && (r.kala === null || ['rahu', 'yama', 'gulika'].includes(r.kala))
+    && r.panchanga && r.panchanga.tithi && r.panchanga.nakshatra && r.panchanga.yogaVerdicts),
+    'moments: every row has all five columns populated');
+  ok(res.rows.every(r => {
+      const m = muhurtasOf(r.time, 51.5074, -0.1278).find(s => r.time >= s.start && r.time < s.end);
+      return m && m.num === r.muhurta.num && m.name === r.muhurta.name && m.quality === r.muhurta.quality;
+    }), 'moments: the muhūrta at every step matches muhurtasOf directly (day cache is boundary-exact)');
+  const flagged = res.rows.filter(r => r.kala);
+  ok(flagged.length > 0 && flagged.every(r => {
+      const k = kalas(r.time, 51.5074, -0.1278);
+      return !r.hour.isNight && r.time >= k[r.kala].start && r.time < k[r.kala].end;
+    }), 'moments: kāla flags only in the day arc & match kalas() directly');
+  const direct = electionScore(castChart(from, 51.5074, -0.1278, 'regiomontanus'), DEFAULT_OPERATION_KEY);
+  ok(res.rows[0].lilly.verdict === direct.verdict && res.rows[0].lilly.score === direct.score,
+    'moments: the Lilly verdict at step 0 = electionScore on a directly-cast chart');
+  ok(MAX_HOURS_AHEAD === 168
+    && (scanMoments(from, 500, 51.5074, -0.1278, { stepMinutes: 120 }).meta.to - from) / 3600000 === 168,
+    'moments: hoursAhead is capped at 168 (a week)');
+  ok(res.meta.caveat === MOMENTS_CAVEAT && /never merged/.test(res.meta.caveat)
+    && /coincidence of conventions/.test(res.meta.caveat) && /never prescribed/.test(res.meta.caveat),
+    'moments: the honest caveat — separate rulebooks / coincidence of conventions / described, never prescribed');
+  ok(scanMoments(from, 6, 51.5074, -0.1278, { operationKey: 'wealth' }).meta.operation.key === 'wealth'
+    && (() => { try { scanMoments(from, 6, 51.5074, -0.1278, { operationKey: 'nope' }); return false; } catch { return true; } })(),
+    'moments: explicit aim honoured; unknown aim throws');
+}
+
 // --- AI: the Indian-mirror assistant kinds (cite-bound, plain coda) ---------
 import {
   buildPrasnaContext, buildPrasnaInterpretPrompt,
@@ -1112,6 +1149,81 @@ import {
     .every(p => /no demonstrated validity|no demonstrated effect/i.test(p) && /To reflect on/.test(p) && /never prescribed/i.test(p)),
     'AI Indian mirror: all three interpret prompts carry the honest close + the plain-words coda');
 }
+
+// --- Kabbalah: the Tree of Life & gematria (R20) -----------------------------
+import {
+  SEPHIROTH, PATHS, HEBREW_LETTERS, SY_PLANET_SPREAD, DISPUTES,
+  TRANSMISSION, QUOTES, SY_RECENSIONS, DAATH, ORIENTATION,
+} from '../assets/js/core/data/kabbalah-data.js';
+import { gematria, pathBetween, pathsAt, letterByChar, kameaCellFor, GEMATRIA_EXAMPLES } from '../assets/js/core/kabbalah.js';
+import { cardById as kbCardById } from '../assets/js/core/data/tarot-deck.js';
+import { kameaByPlanet as kbKameaByPlanet } from '../assets/js/core/kamea.js';
+
+ok(SEPHIROTH.length === 10, '10 sephiroth');
+const kbPlanetary = SEPHIROTH.filter(s => s.planet);
+ok(kbPlanetary.length === 7 &&
+   JSON.stringify(kbPlanetary.map(s => s.planet).sort()) ===
+   JSON.stringify(['Saturn', 'Jupiter', 'Mars', 'Sun', 'Venus', 'Mercury', 'Moon'].sort()),
+  'the 7 planetary sephiroth = the kamea set Saturn..Moon exactly');
+ok(kbPlanetary.every(s => s.kameaPlanet === s.planet && kbKameaByPlanet(s.kameaPlanet)),
+  'every planetary sephira joins a real kamea');
+ok(SEPHIROTH.filter(s => !s.planet).every(s => s.kameaPlanet === null && s.variants),
+  'Kether/Chokmah/Malkuth: no planet + flagged variants note (outer planets never adopted)');
+
+ok(PATHS.length === 22, '22 paths');
+const kbCls = c => PATHS.filter(p => p.letterClass === c).length;
+ok(kbCls('mother') === 3 && kbCls('double') === 7 && kbCls('simple') === 12,
+  'path partition {3 mothers, 7 doubles, 12 simples}');
+ok(PATHS.every(p => p.from >= 1 && p.from <= 10 && p.to >= 1 && p.to <= 10 && p.from !== p.to),
+  'every path connects two valid distinct sephiroth');
+ok(JSON.stringify(HEBREW_LETTERS.map(l => l.value)) ===
+   JSON.stringify([1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400]),
+  'alphabet standard values = the canonical 1..400 list');
+const kbChars = new Set(PATHS.map(p => p.letter.char));
+ok(kbChars.size === 22 && HEBREW_LETTERS.every(l => kbChars.has(l.char)),
+  'the 22 path letters = the full alphabet');
+ok(HEBREW_LETTERS.filter(l => l.finalChar).map(l => l.finalValue).join() === '500,600,700,800,900',
+  'finals 500..900 present as the flagged mispar-gadol variant');
+
+ok(gematria('אחד').total === 13 && gematria('אהבה').total === 13 &&
+   gematria('חי').total === 18 && gematria('יהוה').total === 26,
+  'gematria vectors: echad 13, ahavah 13, chai 18, YHVH 26');
+ok(GEMATRIA_EXAMPLES.every(x => gematria(x.he).total === x.total), 'all worked examples verify');
+ok(gematria('אמן').total === 91 && gematria('אמן', { method: 'gadol' }).total === 741,
+  'mispar-gadol variant: amen 91 standard / 741 with final-nun 700');
+ok(gematria('abc אחד 123').total === 13, 'non-Hebrew characters ignored');
+ok(kameaCellFor(300, 3) === 3, 'kamea-cell reuse: 300 collapses to 3 on the 3×3 (aiq-bekar)');
+
+const kbP13 = pathBetween(1, 6);
+ok(kbP13 && kbP13.num === 13 && kbP13.letter.name === 'Gimel' && kbP13.gdTrump.name === 'The High Priestess',
+  'pathBetween(1,6) = path 13 Gimel / High Priestess');
+ok(pathBetween(6, 1) && pathBetween(6, 1).num === 13 && pathBetween(1, 10) === null,
+  'pathBetween order-insensitive; no 1–10 path on the Kircher tree');
+ok(pathsAt(1).map(p => p.num).join() === '11,12,13', 'pathsAt(1) = 11,12,13');
+
+ok(SY_PLANET_SPREAD.columns.length === 4 &&
+   SY_PLANET_SPREAD.columns.find(c => c.key === 'goldenDawn').matchesNoManuscript === true &&
+   SY_PLANET_SPREAD.columns.find(c => c.key === 'zohar').uncertain === true,
+  'SY spread: 4 columns; GD flagged matches-no-manuscript; Zohar flagged uncertain');
+ok(/not even that of Golden Dawn founder W\. W\. Westcott/.test(SY_PLANET_SPREAD.karrQuote.text),
+  'Karr clincher quote present');
+const kbDids = new Set(DISPUTES.map(d => d.id));
+ok(['tzaddi-heh', 'agrippa-division', 'westcott-latin', 'outer-planets', 'gra-zohar'].every(id => kbDids.has(id)),
+  'disputes present: tzaddi, agrippa, westcott, outer-planets, gra-zohar');
+ok(PATHS.filter(p => p.letterClass === 'double').every(p => (p.disputeIds || []).includes('sy-double-planets')),
+  'all 7 double paths flag the SY planet-spread dispute');
+
+ok(PATHS.every(p => {
+  const c = kbCardById(p.gdTrump.id);
+  return c && c.arcana === 'major' && c.name === p.gdTrump.name && c.number === p.gdTrump.number &&
+    c.hebrew === p.letter.translit &&
+    (c.astro === p.correspondence || c.astro.startsWith(p.correspondence + ' ('));
+}), 'every gdTrump resolves in tarot-deck.js with matching name, number, hebrew & astro');
+
+ok([SEPHIROTH, PATHS, HEBREW_LETTERS, DISPUTES, TRANSMISSION, QUOTES].every(arr => arr.every(r => r.cite)) &&
+   SY_RECENSIONS.versions.every(r => r.cite) && !!SY_RECENSIONS.dating.cite &&
+   !!DAATH.cite && !!ORIENTATION.cite && !!SY_PLANET_SPREAD.cite,
+  'every kabbalah record carries .cite');
 
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

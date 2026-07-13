@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kabbalah — the Tree of Life explorer &amp; gematria | The Astrologer's Workbench</title>
+<meta name="description" content="The kabbalistic Tree of Life in Kircher's 1652 layout as an interactive diagram: 10 sephiroth (pillar, sphere, planet and its kamea) and 22 paths (Hebrew letter, Sefer Yetzirah letter-class, Golden Dawn tarot trump), with the recension spread for the seven double letters — the Golden Dawn's planetary order matches no manuscript — a live gematria calculator, and the dated transmission timeline. A layered historical symbolic construction of no demonstrated validity, recorded for study.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .kb-wrap { display:flex; flex-wrap:wrap; gap:1.2rem; align-items:flex-start; }
+  .kb-treebox { flex:1 1 340px; max-width:520px; }
+  .kb-treebox svg { width:100%; height:auto; display:block; }
+  .kb-inspector { flex:1 1 300px; min-width:270px; }
+  .kb-seph { cursor:pointer; }
+  .kb-seph circle { fill:var(--card); stroke:var(--ink); stroke-width:1.6; }
+  .kb-seph.planetary circle { stroke-width:2.2; }
+  .kb-seph.sel circle, .kb-path.sel .kb-edge { stroke:var(--gold); stroke-width:3; }
+  .kb-seph:hover circle, .kb-seph:focus circle { stroke:var(--link); }
+  .kb-path { cursor:pointer; }
+  .kb-edge { stroke:var(--ink); stroke-width:1.4; opacity:.75; }
+  .kb-path:hover .kb-edge, .kb-path:focus .kb-edge { stroke:var(--link); opacity:1; }
+  .kb-glyph circle { fill:var(--card); stroke:var(--rule); stroke-width:1; }
+  .kb-path:hover .kb-glyph circle, .kb-path.sel .kb-glyph circle { stroke:var(--gold); }
+  .kb-daath circle { fill:none; stroke:var(--rule); stroke-width:1.4; stroke-dasharray:5 4; }
+  .kb-daath { cursor:pointer; }
+  .kb-svgtext { fill:var(--ink); pointer-events:none; }
+  .kb-key { min-width:2.4rem; padding:.3rem .45rem; font-size:1.05rem; line-height:1; }
+  .kb-keys { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.4rem; }
+  .kb-total { font-size:1.9rem; font-weight:700; }
+  .kb-breakdown span { display:inline-block; border:1px solid var(--rule); border-radius:.35rem; background:var(--card); padding:.15rem .45rem; margin:.15rem .15rem 0 0; }
+  .kb-flag { border-left:3px solid var(--gold); padding-left:.6rem; }
+  #kb-word { font-size:1.4rem; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Kabbalah</p>
+  <h1>Kabbalah — the Tree of Life explorer &amp; gematria</h1>
+  <p class="lede">The kabbalistic <b>Tree of Life</b> as Athanasius Kircher drew it (<i>Oedipus Aegyptiacus</i>,
+    1652–54) and the Golden Dawn adopted it: <b>ten sephiroth</b> on three pillars, joined by <b>twenty-two paths</b>,
+    one for each Hebrew letter. Click any sphere or path to open its record — sphere, pillar, planet (and its
+    <a href="picatrix/kameas.html">kamea</a>), Hebrew letter, <i>Sefer Yetzirah</i> letter-class, Golden Dawn
+    <a href="tarot.html">tarot trump</a> — and use the <b>gematria calculator</b> below to sum any Hebrew word
+    the way the tradition did.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Everything on this page is a <b>layered historical construction of no demonstrated validity</b>, and each layer is
+    dated: the <i>Sefer Yetzirah</i> (dating contested — mainstream c. 2nd–6th c. CE, proposals 2nd–9th) speaks of ten
+    <i>sefirot belimah</i> as abstract <b>numbers</b> only; the named emanations are medieval Kabbalah (Bahir c. 1176,
+    Zohar c. 1286); the earliest printed tree (1516) had only <b>17 paths</b>; the 22-path layout here is
+    <b>Kircher's (1652–54)</b>; the tarot–letter linkage begins with <b>Lévi (1854–56</b>, with a different scheme);
+    the Golden Dawn table is c. 1887–1900; Crowley edited it in 1904 and 1944. The gematria <em>arithmetic</em> is
+    exact and checkable; what the tradition read into equal sums is symbolism, recorded for study —
+    described, never prescribed. Contested values are flagged where they occur and <b>never resolved</b>.</div>
+
+  <section class="card"><h2 style="margin-top:0">The Tree <span class="small muted">(Kircher layout, 1652–54)</span></h2>
+    <div class="kb-wrap">
+      <div class="kb-treebox" id="kb-tree"></div>
+      <div class="kb-inspector" id="kb-inspector"></div>
+    </div>
+    <p class="small muted" id="kb-orientation" style="margin-bottom:0"></p></section>
+
+  <section class="card"><h2 style="margin-top:0">Gematria — sum a Hebrew word</h2>
+    <form id="kb-calc" class="calc">
+      <div class="field-row" style="align-items:flex-end">
+        <div class="field" style="flex:1 1 260px"><label for="kb-word">Hebrew text (type, or use the letter keys)</label>
+          <input id="kb-word" type="text" dir="rtl" lang="he" autocomplete="off" spellcheck="false" placeholder="אחד" style="width:100%"></div>
+        <div class="field" style="flex:0 1 340px"><label for="kb-method">Counting method</label><select id="kb-method"></select></div>
+      </div>
+      <div id="kb-keyboard"></div>
+      <div class="field-row" style="margin-top:.5rem">
+        <span class="small muted" style="align-self:center">Verified examples:</span><span id="kb-examples"></span>
+      </div>
+    </form>
+    <div id="kb-result"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The seven double letters — which planet? <span class="small muted">(by recension; contested, never resolved)</span></h2>
+    <div id="kb-spread"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The <i>Sefer Yetzirah</i> — recensions, dating &amp; verified quotes</h2>
+    <div id="kb-recensions"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">How the Tree got here — the transmission timeline</h2>
+    <div id="kb-timeline"></div></section>
+
+  <section class="card" id="hiw-kabbalah"><h2 style="margin-top:0">How it works — what is computed here</h2>
+    <p class="small"><b>Gematria</b> is exact arithmetic over a fixed table: each Hebrew letter carries a standard value
+      (<i>mispar hechrachi</i>: Aleph 1 … Yod 10, Kaph 20 … Qoph 100, Resh 200, Shin 300, Tau 400) and a word's value is
+      the sum — <code>gematria('אחד')</code> walks the string, looks each codepoint up, and adds. The
+      <b>mispar-gadol toggle</b> switches the five final forms (ך ם ן ף ץ) to their variant values 500–900; standard
+      counting values finals the same as their medials, so the variant is <b>flagged, never the default</b>. Non-Hebrew
+      characters are ignored. The engine-test proves the four classical examples (13 / 13 / 18 / 26) on every run.</p>
+    <p class="small"><b>The Tree</b> is a data table, not a computation: 10 sephiroth records (pillar, sphere, planet
+      where the tradition assigned one) and 22 path records (letter, <i>Sefer Yetzirah</i> class, Golden Dawn trump),
+      drawn as SVG from normalized Kircher-layout coordinates. <code>pathBetween(a,b)</code> is a lookup in that table
+      — e.g. <code>pathBetween(1,6)</code> → path 13, Gimel, the High Priestess. The seven planetary sephiroth join the
+      seven <a href="picatrix/kameas.html">kameas</a> (Agrippa II.22) by planet name, and every path's trump joins the
+      <a href="tarot.html">tarot deck</a> by id — the engine-test asserts both joins hold, letter for letter.</p>
+    <p class="small"><b>What is NOT computed:</b> any meaning. The letter-to-planet assignment for the seven doubles is
+      genuinely contested between recensions (the table above shows all four attested columns), the Golden Dawn's own
+      order matches no manuscript, and none of the correspondences has demonstrated validity. The site displays the GD
+      standard because the tree shown is the GD's — a choice of <em>what to describe</em>, not a resolution.</p>
+    <p class="small muted">Sources: Kaplan, <i>Sefer Yetzirah: The Book of Creation</i>, rev. ed. (Weiser, 1997);
+      Hayman, <i>Sefer Yesira</i> (Mohr Siebeck, 2004); Karr, "Notes on Editions of Sefer Yetzirah in English";
+      Kircher, <i>Oedipus Aegyptiacus</i> II (1652–54); Regardie, <i>The Golden Dawn</i> (6th ed. 1989);
+      Crowley, <i>777</i> (1909/1955); Agrippa, <i>Three Books of Occult Philosophy</i> I.74, II.13, III.10.</p></section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    No sephira, path, letter-value or correspondence on this page describes the real world. The Tree of Life is a
+    <b>symbolic diagram assembled over roughly seventeen centuries</b> by authors who never met, frequently
+    contradicted one another (the recension table above is the proof), and whose systems have <b>no demonstrated
+    validity</b>. The arithmetic is real; the meanings are the tradition's, reproduced faithfully for study — never
+    a claim, a prediction, or a practice to follow. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="picatrix/kameas.html">planetary kameas &amp;
+    sigils</a>, the <a href="tarot.html">Tarot</a> reader, and the <a href="glossary.html">Glossary</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('kabbalah');
+  import { initKabbalah } from '../assets/js/app/kabbalah.js';
+  initKabbalah();
+</script>
+</body>
+</html>

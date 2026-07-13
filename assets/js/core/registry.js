@@ -755,6 +755,40 @@ export const REGISTRY = [
     pages: ['pages/tajika.html'], howItWorks: 'pages/tajika.html#hiw-tajika',
     glossaryTerms: ['Varṣaphala', 'Varṣa-praveśa', 'Munthā', 'Varṣeśvara', 'Itthaśāla', 'Īsarāpha', 'Saham', 'Deeptāṁśa'],
   },
+  {
+    id: 'moments', title: 'The Moment Scanner — every rulebook, one timeline',
+    module: 'assets/js/core/moments.js', exportName: 'scanMoments',
+    computes: 'One time-range scan (default 30-min steps, capped at 168 h) showing each tradition\'s verdict on the same sky, side by side: the Lilly/Picatrix election verdict for a chosen aim (green/amber/red + score + leading testimony), the Chaldean planetary-hour ruler, the Indian muhūrta of the sunrise-bounded day (computed once per day and reused), the three avoided kālas, and the four pañcāṅga screen verdicts (computed per step). Composes the existing engines only — election.js, planetary-hours.js, muhurta.js, vedic.js on astro.js; no new data or doctrine. The columns are separate historical rulebooks, compared — never merged; agreement between them means nothing more than a coincidence of conventions. No demonstrated validity — described, never prescribed.',
+    inputs: [
+      { name: 'fromDate', type: 'string', desc: 'ISO datetime (UTC) — the start of the scan', required: true },
+      { name: 'hoursAhead', type: 'number', desc: 'length of the scan in hours (capped at 168 — one week)', required: true },
+      { name: 'lat', type: 'number', desc: 'latitude °', required: true },
+      { name: 'lon', type: 'number', desc: 'longitude °', required: true },
+      { name: 'opts', type: 'object', desc: '{ operationKey: an election.js OPERATIONS key (default: the first catalogued aim), stepMinutes (default 30) }' },
+    ],
+    outputShape: '{ rows:[{ time, lilly:{verdict,score,topReason}, hour:{ruler,isNight}, muhurta:{num,name,quality,isAbhijit,isBrahma,contested}|null, kala:null|"rahu"|"yama"|"gulika", panchanga:{tithi,nakshatra,yogaVerdicts:{tithi,yoga,karana,nakshatra,summary}} }], meta:{ operation, from, to, stepMinutes, place, caveat, notes } }',
+    callable: false,
+    book: 'Cross-system', chapter: 'Electional comparison — one sky, several rulebooks',
+    citation: 'Composes the underlying engines\' citations, adding none of its own: the election verdict per Lilly, Christian Astrology (1647), the Picatrix & Agrippa II (election.js); the Chaldean-order planetary day & hour (planetary-hours.js); the 30-muhūrta sunrise-day, the kāla weekday-octant tables & the pañcāṅga screens of the Muhūrta-Cintāmaṇi tradition (muhurta.js); the sidereal (Lahiri) pañcāṅga (vedic.js); astronomy via astro.js. Every rule carries its citation in its own engine.',
+    pages: ['pages/moments.html'], howItWorks: 'pages/moments.html#hiw-moments',
+    glossaryTerms: ['Muhūrta', 'Rāhu-kāla', 'Pañcāṅga'],
+  },
+  {
+    id: 'kabbalah', title: 'Kabbalah — the Tree of Life & gematria',
+    module: 'assets/js/core/kabbalah.js', exportName: 'gematria',
+    exports: ['pathBetween', 'sephiraByNum', 'pathByNum', 'pathsAt', 'letterByChar', 'kameaCellFor', 'GEMATRIA_EXAMPLES', 'GEMATRIA_METHODS'],
+    computes: 'Gematria of any Hebrew string (standard mispar hechrachi; the mispar-gadol finals variant flagged, never default) with a per-letter breakdown, and the Kircher/GD Tree of Life lookups — 10 sephiroth (pillar, sphere, the 7 planetary rows joining the kameas) and 22 paths (Hebrew letter, Sefer-Yetzirah class, GD trump joining the tarot deck) — plus the SY recension planet-spread for the 7 double letters, in which the Golden Dawn column matches NO manuscript (contested, never resolved). A layered modern symbolic construction of no demonstrated validity — described, never prescribed.',
+    inputs: [
+      { name: 'text', type: 'string', desc: 'Hebrew text (non-Hebrew characters ignored)', required: true },
+      { name: 'method', type: 'enum', values: ['standard', 'gadol'], desc: 'standard counts finals as medials; gadol = the 500–900 finals VARIANT' },
+    ],
+    outputShape: '{ total, letters:[{char,name,translit,value,isFinal}], method, methodNote }',
+    callable: false,
+    book: 'Picatrix & magic', chapter: 'Sefer Yetzirah → Kircher → the Golden Dawn',
+    citation: 'Kaplan, Sefer Yetzirah: The Book of Creation, rev. ed. (Weiser 1997); Hayman, Sefer Yesira (Mohr Siebeck 2004); Karr, "Notes on Editions of Sefer Yetzirah in English"; Kircher, Oedipus Aegyptiacus II (1652–54); Regardie, The Golden Dawn (6th ed. 1989); Crowley, 777 (1909/1955); Agrippa, Three Books I.74, II.13, III.10.',
+    pages: ['pages/kabbalah.html'], howItWorks: 'pages/kabbalah.html#hiw-kabbalah',
+    glossaryTerms: ['Sephiroth', 'Tree of Life (Kircher layout)', 'The 22 Paths', 'The Three Pillars', 'Gematria', 'Mispar gadol', 'Sefer Yetzirah', 'Daath'],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------
