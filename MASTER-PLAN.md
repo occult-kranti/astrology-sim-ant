@@ -355,12 +355,89 @@ figures from CW 8 §§872–915 + appendix):
   the share-link computes the case, the plain-words reply arrives with the honest frame first, all five labels,
   [F#] tags, zero console errors.
 
-### FURTHER ROADMAP (next candidates, in rough value order)
+### R15–R18 — The Hermetic Chronology merger & the historical-calculation layer ✅ **SHIPPED** (2026-07-12)
+*(planned & built after a 10-agent research workflow: 2 inventory + 4 web-research + 4 adversarial verifiers; every
+load-bearing numeric claim cross-checked against primary sources AND recomputed with our own engine. Verified:
+engine-test all passed · audit 0 · Chromium 58 pages 0 errors · cast-link E2E chronology→workbench ALL PASS.
+Also shipped: the **🎯 Auspicious moment** one-click on the Workbench assistant — the ENGINE scans 72 h ahead with
+findNextElection (deterministic, 30-min steps) and the model translates each found window through a codebooked
+walk, book meaning → literal real-life terms, honest frame first, five-part plain-words coda.)*
+
+**The second tool.** `occult-kranti/hermetic-timeline` — "The Hermetic Chronology" — is a 7-page static sourced
+timeline of Hermetic philosophy/magic/occult (Babylon → the academy), 43 entries in 8 eras, each carrying an
+epistemic label (*documented / disputed / debunked / conspiracy*), plus alchemy / rituals / hermetica / field-guide /
+library companion pages. Same honest-framing philosophy as this site; shared citations (Pingree, Agrippa, Picatrix).
+Its only external dependency is Google Fonts (stripped in the port — this site is offline-first, system fonts only).
+
+- **R15 — The Chronology wing** (`pages/chronology/`, 6 pages): timeline data → `core/data/chronology.js`
+  (verbatim bodies + sources + labels, pure data), rendered/filtered by `app/chronology.js` (search, era, label
+  chips, reveal animation honoring `prefers-reduced-motion`); companion pages ported onto the site design system;
+  epistemic-label legend as a reusable component; the library merged as the wing's sources page; cross-links into
+  Picatrix/Lilly/Jung/oracle pages; glossary terms + registry + engine-test invariants (43 entries, labels ∈ 4-set,
+  every entry cited).
+- **R16 — The historical-calculation layer** (`core/calendar.js`): Julian↔proleptic-Gregorian conversion
+  (Fliegel–Van Flandern/Richards, verified vectors: reform 1582-10-04→10-14 = JDN 2299160; Dee 1527-07-13→07-23
+  (+10d); Thales −584-05-28→05-22 (−6d, and our engine independently places that eclipse's syzygy at 14:00 UT that
+  day); England 1752 (+11d, Lady-Day double-dating cautioned); ~11k-sample round-trip). Era-accuracy tiers derived
+  from the underlying models (the astronomy-engine README states **no** year range — verified): **casting-grade
+  1600–2200 · study-grade 500–1600 & 2200–3000 · illustrative −1999–500 · refuse outside** (Espenak–Meeus ΔT fit
+  −1999…+3000; ΔT σ per Morrison & Stephenson 2004 = 0.8t², ±8.5 min of time at −700 → Moon honest to ~±¼°).
+  Precision is gated by tier at DISPLAY time; historical charts show classical planets only + a ΔT line; timeline
+  entries with defensible dates get **"cast this moment"** share-links (calendar-converted).
+- **R17 — Cycles of History** (`pages/cycles.html`, `core/cycles.js`): geocentric tropical-of-date Jupiter–Saturn
+  **great conjunctions** by bisection (our engine matched all 13 almanac vectors 1603–2020 to the arcminute, incl.
+  the 1940-41/1980-81 triples & retrograde flags, and the 7 BCE Pisces triple at ~1° separation); triplicity/trigon
+  classification with the doctrinal mean-cycle overlay (19.859 yr; ~220 yr/trigon astronomical vs 240 doctrinal;
+  960 medieval vs Kepler's 794 = 40 conjunctions); the **eclipse finder** — the bundled lib already ships
+  `SearchGlobalSolarEclipse`/`SearchLunarEclipse` (ground truth) and we teach the classical **ecliptic-limit**
+  criterion on top (NASA: solar 15.39–18.59°, lunar 15.3–17.1°, umbral 9°30′/12°15′ classical; global claims ONLY,
+  never local visibility). Doctrine layer cited to Abu Ma'shar (Yamamoto & Burnett, Brill 2000), Kepler *De Stella
+  Nova* (1606), the Paris 1348 report (the 1345 Aquarius triple — engine-confirmed — as *documented belief,
+  debunked cause*), Star of Bethlehem as *disputed* (Hughes 1976), Babylonian eclipse divination (Rochberg 1988/
+  2004, Steele 2000, Parpola 1983: EAE 15–22, the 223-month cycle, šar pūhi).
+- **R18 — Time-lords & progressions** (`pages/timelords.html`): **secondary progressions** (day-for-a-year, Valens
+  IX.3; angles by Naibod arc 0.98564733°/yr only), **firdaria** (day Sun 10 · Venus 8 · Mercury 13 · Moon 9 ·
+  Saturn 11 · Jupiter 12 · Mars 7 · NN 3 · SN 2 = 75; night starts Moon; Abu Ma'shar nodes-at-end default with the
+  Bonatti nodes-after-Mars night variant as a documented toggle — the dispute flagged in-data; 7 equal sub-periods
+  from the lord, nodes never sub-lords), **zodiacal releasing** from Spirit/Fortune (Valens IV.4–IV.10: sign years
+  with **Capricorn 27**, 360-day years / 30-day months / 2.5-day / 5-hour units, loosing of the bond → opposite
+  sign, only in signs ≥ 19). All ten verified test vectors become engine asserts.
+- **AI integration**: `cycles` and `timelords` assistant kinds on the shared diviner engine — cite-bound, codebooked
+  interprets ending in the five-part plain-words coda; honest frame first, always.
+
+### NEXT PHASES — R19–R21 *(planned 2026-07-12; each data layer REQUIRES the research + adversarial-verify
+workflow before encoding — the R15–R18 discipline: primary sources fetched, every load-bearing number recomputed)*
+
+- **R19 — Praśna, Muhūrta & Tājika: the Indian horary/election mirror.** The Vedic wing already computes the
+  sidereal chart, nakṣatras, pañcāṅga, Vimśottarī daśā and the solar return — these three classical layers reuse
+  exactly those calculations (excellent engine fit):
+  1. **Praśna** (Indian horary): the query chart judged by lagna/ārūḍha, Moon's condition, and the praśna-specific
+     rules. Niche primary sources to research & verify: *Praśna Mārga* (Kerala, 1649 — trans. B. V. Raman),
+     *Ṣaṭpañcāśikā* of Pṛthuyaśas (56 verses, the praśna classic), *Daivajña Vallabhā*. Also **KP (Krishnamurti
+     Paddhati)** as the modern niche system: the 249 sub-lord table is PURE Vimśottarī proportion arithmetic
+     (self-verifiable, like the kameas) — cite Krishnamurti's six Readers.
+  2. **Muhūrta** (Indian election, the direct mirror of the Picatrix engine): the 30 muhūrtas of the day,
+     Rāhu-kāla/Yama-ghaṇṭa/Gulika periods (pure day-arc arithmetic), tithi/vāra/nakṣatra/yoga/karaṇa quality
+     screens. Source: *Muhūrta Cintāmaṇi* of Rāma (1600 CE, trans. G. C. Sharma).
+  3. **Tājika varṣaphala** (the Indo-Persian annual chart — the bridge tradition BETWEEN Lilly's solar return and
+     the Vedic wing): tājika aspects, the year-lord (varṣeśvara), sahams (the Arabic Lots, Sanskritised — reuses
+     lots.js!). Source: *Tājika-nīlakaṇṭhī* of Nīlakaṇṭha (1587, trans. M. Ramakrishna Bhat / Dykes scholarship).
+- **R20 — The Kabbalah Tree of Life explorer.** The 10 sephiroth / 22 paths as an interactive map wired into the
+  engines that already exist: the 7 doubles ↔ planets (→ kameas), the 12 simples ↔ signs, the 3 mothers ↔ elements
+  (*Sefer Yetzirah*'s 3-7-12 division — trans. A. Kaplan), the Golden Dawn path↔tarot-trump attribution (→ the
+  tarot deck), and a **gematria calculator** built on kamea.js's existing letterValues. Sources: Sefer Yetzirah,
+  GD *777* (with the attribution disputes flagged in-data), Agrippa Book III, Regardie. Version differences
+  (Ari vs GD tree, trump attributions) recorded as disputes, never silently resolved.
+- **R21 — The auspicious-moment automation, deepened.** V1 SHIPPED with R15–R18 (the 🎯 one-click below). Next:
+  the **cross-system moment scanner** — one time-range scan showing each tradition's verdict SEPARATELY and
+  honestly (Lilly/Picatrix election · pañcāṅga quality · planetary hour · post-R19 muhūrta screen — compared,
+  never merged), plus the per-tool deep codebooks rolled out everywhere: every testimony explained as
+  *book meaning → literal real-life translation → implications*, the pattern the 🎯 prompt establishes.
+
+### FURTHER ROADMAP (after R21, in rough value order)
 1. **Runes (Elder Futhark)** — a 24-stave oracle on the shared diviner engine (medium fit).
-2. **The Kabbalah Tree of Life explorer** — the 10 sephiroth / 22 paths ↔ planets & tarot trumps (medium fit; ties the
-   kameas, tarot and Agrippa layers together).
-3. **Streaming-markdown AI replies** with copy/regenerate.
-4. Numerology/gematria remain *weak* engine fits.
+2. **Streaming-markdown AI replies** with copy/regenerate.
+3. Numerology beyond gematria remains a *weak* engine fit.
 
 ---
 

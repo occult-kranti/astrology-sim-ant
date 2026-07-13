@@ -491,6 +491,57 @@ export const PLAIN_CODA =
   'never a prediction, never a statement about who they really are.';
 
 // ---------------------------------------------------------------------------
+//  buildMomentFinderPrompt — the AUSPICIOUS-MOMENT automation (🎯). The ENGINE
+//  does the finding (the app passes findNextElection's ranked windows in —
+//  computed, deterministic, never the model's guess); the model's job is the
+//  codebooked WALK: for the chosen aim, explain the present verdict, each
+//  found window (what changes astrologically to open it), and the book-meaning
+//  → literal real-life translation of every testimony — honest frame FIRST,
+//  five-part plain-words structure per step, described never prescribed.
+// ---------------------------------------------------------------------------
+export function buildMomentFinderPrompt(reading, windows = []) {
+  const e = (reading && reading.election) || {};
+  const op = e.operation || {};
+  const inp = (reading && reading.meta && reading.meta.inputs) || {};
+  const fmtT = d => new Date(d).toISOString().replace('T', ' ').slice(0, 16) + ' UT';
+  const wlines = windows.slice(0, 3).map((w, i) => {
+    const rs = (w.peak && w.peak.reasons) || [];
+    const pro = rs.filter(r => r.delta > 0).slice(0, 4).map(r => r.text).join('; ');
+    const con = rs.filter(r => r.severity === 'caution' || r.delta < 0).slice(0, 2).map(r => r.text).join('; ');
+    return `WINDOW ${i + 1}: ${fmtT(w.start)} → ${fmtT(w.end)}, best verdict ${w.bestVerdict} (score ${w.best}).` +
+      (pro ? ` For it: ${pro}.` : '') + (con ? ` Against it: ${con}.` : '');
+  }).join('\n');
+  return (
+    'THE AUSPICIOUS-MOMENT BRIEF. The engine has already scanned the coming days mechanically (30-minute steps, ' +
+    'amber-or-better) and ranked the windows the TRADITION would call favourable for the aim below — the times are ' +
+    'COMPUTED, not yours to invent. Your job is the translation: book meaning → plain, literal real-life terms. ' +
+    PLAIN_STRUCTURE + '\nWalk these steps IN ORDER:\n' +
+    '**0. The honest frame first** — open with two plain sentences BEFORE anything else: electional astrology is a ' +
+    'historical selection ritual with no demonstrated effect on outcomes; choosing these times changes nothing real, ' +
+    'and nothing here is advice or an instruction to schedule anything by the sky.\n' +
+    `**1. The aim** — the operation "${op.name || inp.operationKey || 'the chosen aim'}"${op.ruler ? `, ruled by ${op.ruler}` : ''}: ` +
+    'what the tradition demanded the sky show for such work, and why — the book meaning, then the plain translation ' +
+    'of each demand.\n' +
+    `**2. The present moment** — verdict ${e.verdict || 'unknown'} (score ${e.score ?? '?'})${e.label ? `: ${e.label}` : ''}. ` +
+    'Take the strongest two or three testimonies FOR and AGAINST right now from the numbered facts; for each, give ' +
+    'the book meaning and the literal real-life reading of what the rule is actually looking at (a clock time, a ' +
+    'moon phase, a planet\'s sign — physical facts carrying assigned meanings).\n' +
+    '**3. The windows the engine found**:\n' + (wlines || 'NO qualifying window was found in the scanned span — say so honestly and explain, from the facts, which testimony blocks every moment.') + '\n' +
+    'For EACH window: say in plain words WHAT CHANGES astrologically to open it (the planetary hour turning, the ' +
+    'Moon\'s state or mansion, the ascendant moving on), then apply the five-part structure to the window.\n' +
+    '**4. What the tradition would then do** — the working as the Picatrix-era sources describe it for this aim ' +
+    '(timing, materials, prayer), strictly as recorded historical practice, with its citation.\n' +
+    '**5. The real-life implications, gathered** — one plain paragraph: what a person today can LITERALLY take from ' +
+    'all of the above (a window is just a time the old rules score well; the value is historical understanding and ' +
+    'a structured occasion for reflection or ceremony) — and what they should NOT take from it (no improved odds, ' +
+    'no protection, no timing edge for real decisions).\n\n' +
+    'Close with the honest word: an election is the tradition\'s answer to "when would the sky approve?", computed ' +
+    'faithfully here — and the sky\'s approval, then as now, has no demonstrated effect on anything; described, ' +
+    'never prescribed.' + PLAIN_CODA
+  );
+}
+
+// ---------------------------------------------------------------------------
 //  buildOperationPrompt — the agentic "ask the Workbench to do a working" meta-
 //  prompt (the "conjure rain" pattern). It frames a free-form magical aim as a
 //  tool-using task: map the aim to a catalogued operation, find the next
@@ -814,6 +865,157 @@ export function ichingDataBlock(x) {
     relating: r.relating ? { num: r.relating.num, name: r.relating.name } : null,
   };
   return '\n\nCOMPUTED I CHING CAST (JSON — interpret THIS hexagram, never invent):\n' + JSON.stringify(dig);
+}
+
+// ---- Cycles of History ------------------------------------------------------
+//  x = { kind:'cycles', scan: { fromY, toY, conjunctions[], runs[] } | null,
+//        eclipse: eclipseNear() result | null }  (app/cycles.js currentCyclesReport)
+export const HISTORIAN_PREAMBLE =
+  '\n\nVOICE: speak as a historian of MUNDANE astrology and ancient astronomy — at home with Abū Maʿshar\'s ' +
+  'doctrine of the great conjunctions, Kepler\'s trigon diagram, the Babylonian eclipse omina and the modern ' +
+  'ephemerides alike. Two registers, NEVER blurred: (a) the COMPUTED ASTRONOMY below is real, verifiable ' +
+  'celestial mechanics — describe it with precision and pleasure; (b) the MEANINGS the tradition attached to it ' +
+  '(religions from trigon shifts, plagues from conjunctions, kings\' deaths from eclipses) are DOCUMENTED BELIEFS ' +
+  'of no demonstrated validity — narrate them as history, cite them, and never present them as fact or forecast. ' +
+  'Eclipse claims are GLOBAL ONLY ("an eclipse occurred or was possible somewhere on Earth") — never local ' +
+  'visibility. If asked to predict world events from a conjunction, decline gently and restate the framing. ' +
+  'Ground every claim in the numbered facts; never invent dates or positions.';
+
+export function buildCyclesContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  const day = d => new Date(d).toISOString().slice(0, 10);
+  if (x.scan && x.scan.conjunctions && x.scan.conjunctions.length) {
+    const cs = x.scan.conjunctions, runs = x.scan.runs || [];
+    add(`Scan ${x.scan.fromY}…${x.scan.toY}: ${cs.length} geocentric Jupiter–Saturn conjunctions in ecliptic longitude (tropical of-date), in ${runs.length} trigon run${runs.length === 1 ? '' : 's'}.`, 'computed by the engine; cross-verified vs Nolle/NASA');
+    for (const r of runs) add(`Trigon run: ${r.triplicity} × ${r.count} conjunction${r.count === 1 ? '' : 's'}, ${new Date(r.start).getUTCFullYear()}–${new Date(r.end).getUTCFullYear()}${r.reversion ? ' — a one-off reversion, not a lasting shift' : ''}.`, 'computed trigon runs');
+    const show = cs.length > 14 ? cs.slice(-14) : cs;
+    if (cs.length > show.length) add(`(The ${cs.length - show.length} earlier conjunctions are omitted here for space; the count above covers them.)`, 'budget note');
+    for (const c of show) add(`${day(c.date)}: conjunction at ${formatLon(c.lon)} (${c.triplicity} trigon)${c.jupiterRetrograde && c.saturnRetrograde ? ', both planets retrograde (a triple-pass member)' : ''}; minimum separation ${c.sep}′ — they pass near, never through.`, 'the engine\'s longitude crossing');
+  }
+  add('The doctrine (documented belief): Abū Maʿshar tiered the cycle — the ~20-year conjunction, the shift of triplicity (~240 doctrinal years) read for religious & dynastic change, and the full return (960 years medieval; Kepler computed 794 = 40 conjunctions). The doctrine ran on MEAN conjunctions — one per 19.859 years, never triple; the sky gives geocentric singles or triples via retrogradation.', 'Abū Maʿshar, On Historical Astrology (Yamamoto & Burnett, Brill 2000); Kepler, De Stella Nova (1606)');
+  if (x.eclipse) {
+    const s = x.eclipse.solar, l = x.eclipse.lunar;
+    if (s) add(`Nearest NEW moon ${day(s.syzygy)}: node distance ${s.nodeDistanceDeg}° → classical ecliptic-limit verdict "${s.verdict}" (solar: certain <15.39°, impossible >18.59°); ground-truth global search: ${s.groundTruth.sameSyzygy ? `a ${s.groundTruth.kind} solar eclipse at this syzygy (peak ${day(s.groundTruth.peak)})` : 'no eclipse at this syzygy'}.`, 'NASA/Espenak ecliptic limits; the engine\'s global eclipse search');
+    if (l) add(`Nearest FULL moon ${day(l.syzygy)}: node distance ${l.nodeDistanceDeg}° → any-type verdict "${l.verdictAny}" (lunar: certain <15.3°, impossible >17.1°), classical umbral verdict "${l.verdictUmbral}" (9°30′/12°15′); ground truth: ${l.groundTruth.sameSyzygy ? `a ${l.groundTruth.kind} lunar eclipse at this syzygy (peak ${day(l.groundTruth.peak)})` : 'no eclipse at this syzygy'}.`, 'NASA/Espenak; Meeus AA ch. 54');
+    add('Eclipse claims here are GLOBAL only — visible from SOME location on Earth. Local visibility needs Besselian elements, out of scope.', 'NASA SE/LE periodicity pages');
+  }
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Cycles']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'CYCLES OF HISTORY', HISTORIAN_PREAMBLE), facts: trimmed, glossary };
+}
+
+export function buildCyclesInterpretPrompt() {
+  return (
+    'Explain this computed sweep of the cycles of history, FROM THE NUMBERED FACTS ONLY, in clear prose: ' +
+    '(1) THE ASTRONOMY — what was scanned and found: how the ~20-year Jupiter–Saturn rhythm shows in the dates, ' +
+    'where the trigon (triplicity) runs and shifts fall, and any triple passes (explain retrogradation as the ' +
+    'cause, and that the planets only ever pass near each other); (2) THE DOCTRINE — what Abū Maʿshar\'s scheme ' +
+    'and Kepler\'s trigon made of exactly these rhythms, as documented historical belief: what a trigon shift was ' +
+    'held to signify, and how the mean-conjunction clock differs from the observed sky; (3) THE ECLIPSE CHECK, if ' +
+    'present — read the node-distance verdict against the ground-truth search, say plainly whether an eclipse ' +
+    'occurred or was possible SOMEWHERE ON EARTH near that date, and connect the method to the Babylonian ' +
+    '"eclipse possibility" logic; (4) ONE synthesis — what this stretch of sky actually did, versus what the ' +
+    'tradition believed it meant. Close with one honest sentence: mundane astrology\'s meanings are documented ' +
+    'beliefs of no demonstrated validity — the astronomy is real, the significations are not.' + PLAIN_CODA
+  );
+}
+export function cyclesDataBlock(x) {
+  const day = d => new Date(d).toISOString().slice(0, 10);
+  const dig = {
+    scan: x.scan ? {
+      range: [x.scan.fromY, x.scan.toY],
+      conjunctions: (x.scan.conjunctions || []).map(c => ({ date: day(c.date), pos: formatLon(c.lon), tri: c.triplicity, retro: !!(c.jupiterRetrograde && c.saturnRetrograde), sepMin: c.sep })),
+      runs: (x.scan.runs || []).map(r => ({ tri: r.triplicity, count: r.count, from: new Date(r.start).getUTCFullYear(), to: new Date(r.end).getUTCFullYear(), reversion: !!r.reversion })),
+    } : null,
+    eclipse: x.eclipse ? {
+      solar: { syzygy: day(x.eclipse.solar.syzygy), D: x.eclipse.solar.nodeDistanceDeg, verdict: x.eclipse.solar.verdict, groundTruth: x.eclipse.solar.groundTruth.sameSyzygy ? x.eclipse.solar.groundTruth.kind : 'none' },
+      lunar: { syzygy: day(x.eclipse.lunar.syzygy), D: x.eclipse.lunar.nodeDistanceDeg, any: x.eclipse.lunar.verdictAny, umbral: x.eclipse.lunar.verdictUmbral, groundTruth: x.eclipse.lunar.groundTruth.sameSyzygy ? x.eclipse.lunar.groundTruth.kind : 'none' },
+    } : null,
+  };
+  return '\n\nCOMPUTED CYCLES DATA (JSON — interpret THESE, never invent):\n' + JSON.stringify(dig);
+}
+
+// ---- Time-lords -------------------------------------------------------------
+//  x = currentTimelordsReport(): { kind:'timelords', meta, progressions,
+//      firdaria:{majors,current,...}, releasing:{lots, fromSpirit, fromFortune} }
+export function buildTimelordsContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  const m = x.meta || {};
+  add(`The nativity: ${String(m.birthUTC || '').replace('T', ' ').slice(0, 16)} UT at ${m.lat}, ${m.lon} — a ${m.isDay ? 'DAY' : 'NIGHT'} birth; Asc ${m.asc}, MC ${m.mc}. Age ${Number(m.ageTropicalYears).toFixed(2)} tropical years as of ${String(m.asOf || '').slice(0, 10)}.`, 'computed nativity');
+  const p = x.progressions;
+  if (p) {
+    add(`Secondary progressions (one ephemeris day after birth ≡ one year of life): the progressed instant is ${p.progressedDate.toISOString ? p.progressedDate.toISOString().replace('T', ' ').slice(0, 16) : String(p.progressedDate).slice(0, 16)} UT.`, 'Valens, Anthology IX.3 (Riley)');
+    const nat = p.natal && p.natal.planets ? p.natal.planets : null;
+    for (const name of ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn']) {
+      const q = p.planets && p.planets[name];
+      if (q) add(`Progressed ${name}: ${formatLon(q.lon)}${q.retrograde ? ' (retrograde)' : ''}${nat && nat[name] ? ` — natal ${formatLon(nat[name].lon)}` : ''}.`, 'the ephemeris at birth + age-in-days');
+    }
+    add(`Progressed angles by the Naibod arc only (${Number(p.naibodArcDeg).toFixed(2)}° = 0.98564733°/yr × age): MC ${formatLon(p.progressedMC)}, Asc ${formatLon(p.progressedAsc)} (re-derived at the birth latitude).`, 'Naibod, 16th c.; the mean solar rate 59′08″/yr');
+  }
+  const f = x.firdaria;
+  if (f) {
+    add(`Firdaria (${f.isDay ? 'day' : 'night'} sequence${!f.isDay ? `, ${f.nightNodes === 'afterMars' ? 'Bonatti nodes-after-Mars variant' : 'Abū Maʿshar nodes-at-end order'}` : ''}): ${(f.majors || []).map(mj => `${mj.lord} ${mj.startAge}–${mj.endAge}`).join(', ')} (a 75-year cycle).`, 'Abū Maʿshar, On the Revolutions of the Years of Nativities (Dykes, Persian Nativities IV)');
+    const cf = f.current;
+    if (cf && cf.major) add(`The CURRENT firdaria: ${cf.major.lord} major period (ages ${cf.major.startAge}–${cf.major.endAge})${cf.sub ? `, ${cf.sub.lord} sub-period (${Number(cf.sub.startAge).toFixed(1)}–${Number(cf.sub.endAge).toFixed(1)})` : ' (a node period — undivided)'}.`, 'the 7 equal sub-periods, first ruled by the period lord');
+    if (!f.isDay) add('The night-chart node placement is genuinely DISPUTED in the sources: Abū Maʿshar (with Hand and Birchfield) puts the nodes at the end (ages 70–75); Bonatti (followed by Zoller) inserts them after Mars (39–44). Both are shown; neither is "correct".', 'the documented dispute, flagged in-data');
+  }
+  const r = x.releasing;
+  if (r) {
+    if (r.lots) add(`The Lots (sect-aware, reversing by night as Valens's Lots do): Spirit ${r.lots.spirit.label || formatLon(r.lots.spirit.lon)} (action/career), Fortune ${r.lots.fortune.label || formatLon(r.lots.fortune.lon)} (body).`, 'Valens IV.4 — Fortune the body, Daimon/Spirit the action');
+    const cur = (leg, name, topic) => {
+      if (!leg || !leg.current) return;
+      const c = leg.current;
+      if (c.l1) add(`Zodiacal releasing from ${name} (${topic}): the current L1 is ${c.l1.sign} (${c.l1.years} × 360-day years, ${String(c.l1.startDate).slice ? new Date(c.l1.startDate).toISOString().slice(0, 10) : ''}…${new Date(c.l1.endDate).toISOString().slice(0, 10)})${c.l2 ? `; current L2 ${c.l2.sign} (${c.l2.months} × 30-day months)${c.l2.loosed ? ' — reached by LOOSING OF THE BOND (the jump to the opposite sign)' : ''}` : ''}. Distribution age: ${c.distributionAge.years} yr ${Math.floor(c.distributionAge.days)} d in 360-day years.`, 'Valens IV.4–IV.10 (Riley); Capricorn counts 27');
+    };
+    cur(r.fromSpirit, 'the Lot of Spirit', 'action & career');
+    cur(r.fromFortune, 'the Lot of Fortune', 'the body');
+  }
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Time-lords']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'TIME-LORD PERIODS', DIVINER_PREAMBLE), facts: trimmed, glossary };
+}
+
+export function buildTimelordsInterpretPrompt() {
+  return (
+    'Read these computed time-lord periods as a learned historian of the Hellenistic and Persian timing doctrines ' +
+    'would, FROM THE NUMBERED FACTS ONLY. In clear prose: (1) THE FRAME — whose nativity this is (day or night ' +
+    'birth, the age reached) and that three independent classical clocks were computed over it; (2) SECONDARY ' +
+    'PROGRESSIONS — read the progressed Sun and Moon against their natal places (the slow arc of the Sun ≈ 1°/year, ' +
+    'the Moon\'s ~13°/year sweep), note any progressed station or sign change visible in the positions, and the ' +
+    'Naibod-progressed angles; (3) FIRDARIA — name the current major lord and sub-lord and what the Persian ' +
+    'tradition read in that pairing; if this is a night birth, state the node-placement dispute honestly; ' +
+    '(4) ZODIACAL RELEASING — the current L1 and L2 signs from Spirit (career/action) and Fortune (body), what ' +
+    'Valens\'s doctrine made of their ruler-years, and — if a period was reached by loosing of the bond — why the ' +
+    'tradition marked such jumps as decisive; (5) ONE synthesis: where the three clocks agree or diverge on "whose ' +
+    'time this is", as the tradition would have argued it. Never predict events, never advise; every signification ' +
+    'is historical doctrine. Close with one honest sentence: time-lord systems are historical timing conventions ' +
+    'of no demonstrated validity — described for study, never prescribed.' + PLAIN_CODA
+  );
+}
+export function timelordsDataBlock(x) {
+  const day = d => { try { return new Date(d).toISOString().slice(0, 10); } catch { return String(d).slice(0, 10); } };
+  const p = x.progressions, f = x.firdaria, r = x.releasing;
+  const leg = l => l && l.current ? {
+    l1: l.current.l1 ? { sign: l.current.l1.sign, years: l.current.l1.years, from: day(l.current.l1.startDate), to: day(l.current.l1.endDate) } : null,
+    l2: l.current.l2 ? { sign: l.current.l2.sign, months: l.current.l2.months, loosed: !!l.current.l2.loosed } : null,
+  } : null;
+  const dig = {
+    meta: x.meta,
+    progressions: p ? {
+      progressedDate: day(p.progressedDate), naibodArcDeg: p.naibodArcDeg,
+      planets: Object.fromEntries(Object.entries(p.planets || {}).map(([k, v]) => [k, formatLon(v.lon) + (v.retrograde ? ' R' : '')])),
+      mc: formatLon(p.progressedMC), asc: formatLon(p.progressedAsc),
+    } : null,
+    firdaria: f ? {
+      isDay: f.isDay, nightNodes: f.nightNodes,
+      majors: (f.majors || []).map(mj => `${mj.lord} ${mj.startAge}-${mj.endAge}`),
+      current: f.current && f.current.major ? { major: f.current.major.lord, sub: f.current.sub ? f.current.sub.lord : null } : null,
+    } : null,
+    releasing: r ? { spirit: leg(r.fromSpirit), fortune: leg(r.fromFortune) } : null,
+  };
+  return '\n\nCOMPUTED TIME-LORD DATA (JSON — interpret THESE periods, never invent):\n' + JSON.stringify(dig);
 }
 
 // ===========================================================================

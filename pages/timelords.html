@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time-lords &amp; progressions — secondary progressions · firdaria · zodiacal releasing | The Astrologer's Workbench</title>
+<meta name="description" content="The three classical time-lord techniques computed live on the verified engine: secondary progressions (the day-for-a-year of Valens IX.3, angles by the Naibod arc), the Persian firdaria periods of Abu Ma'shar (with the disputed night-node placement exposed honestly), and Vettius Valens's zodiacal releasing from the Lots of Spirit and Fortune (360-day years, loosing of the bond). Historical study only — astrology has no demonstrated predictive validity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Time-lords &amp; progressions</p>
+  <h1>Time-lords &amp; progressions — who "rules" the years of a life</h1>
+  <p class="lede">Three classical answers to the same question — <i>which planet governs this stretch of a life?</i> —
+    computed side by side on the site's verified engine: the <b>secondary progressions</b> of the day-for-a-year rule
+    (Valens, <i>Anthology</i> IX.3, angles by the <b>Naibod arc</b>), the Persian <b>firdaria</b> periods of
+    Abu Ma&#700;shar (75-year cycle, with the disputed night-node placement exposed as an option), and Vettius Valens's
+    <b>zodiacal releasing</b> from the Lots of Spirit and Fortune (360-day years, the <b>loosing of the bond</b>).</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    These are <b>historical timing doctrines</b>, reproduced faithfully for study. The astronomy underneath
+    (ephemeris positions, angles, the Lots) is real and verifiable; the idea that a planet "rules" a period of a
+    life is a symbolic convention with <b>no demonstrated predictive validity</b> — astrology is regarded by the
+    scientific community as a pseudoscience. Where the tradition itself disagrees (the firdaria night-node order,
+    the year-length conventions), the fork is flagged in the data and shown, never silently chosen. Described,
+    never prescribed. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="tl-form" class="calc">
+    <p class="small" style="margin:.1rem 0 .4rem"><b>Birth data</b> — the nativity whose time-lords are computed.</p>
+    <div class="field-row">
+      <div class="field" style="flex:1 1 180px"><label for="tl-city">Birth place (preset)</label><select id="tl-city"></select></div>
+      <div class="field"><label for="tl-lat">Lat °N</label><input id="tl-lat" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="tl-lon">Lon °E</label><input id="tl-lon" type="number" step="0.0001" style="width:7rem"></div>
+      <div class="field"><label for="tl-date">Birth date</label><input id="tl-date" type="date"></div>
+      <div class="field"><label for="tl-time">Time (local)</label><input id="tl-time" type="time"></div>
+      <div class="field"><label for="tl-offset">UTC offset</label><input id="tl-offset" type="number" step="0.01" style="width:6rem"></div>
+      <div class="field"><label for="tl-system">Houses</label><select id="tl-system">
+        <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
+        <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
+    </div>
+    <div id="tl-picker-anchor"></div>
+    <div class="field-row" style="margin-top:.6rem">
+      <div class="field"><label for="tl-asof">As of (the date to read)</label><input id="tl-asof" type="date"></div>
+      <button type="submit" class="btn">Compute the time-lords</button>
+      <span id="tl-status" class="small muted"></span>
+    </div>
+    <p class="small muted" style="margin:.5rem 0 0">The "as of" date defaults to today; it sets the age at which the
+      current period-lords are highlighted. Nothing you enter leaves this page.</p>
+  </form>
+
+  <p id="tl-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+
+  <section class="calc" id="tl-prog-card" style="margin-top:1rem">
+    <h2 style="margin-top:0">1 · Secondary progressions <span class="small muted">— day-for-a-year (Valens IX.3); angles by the Naibod arc</span></h2>
+    <div id="tl-prog"><p class="muted small">Enter a birth moment above and compute.</p></div>
+  </section>
+
+  <section class="calc" id="tl-fird-card" style="margin-top:1rem">
+    <h2 style="margin-top:0">2 · Firdaria <span class="small muted">— the Persian time-lord periods (Abu Ma&#700;shar)</span></h2>
+    <div class="field-row small" role="radiogroup" aria-label="Night-chart node placement">
+      <span class="small"><b>Night-chart node placement</b> (a documented dispute; day charts are identical either way):</span>
+      <label class="small"><input type="radio" name="tl-nodes" value="end" checked> Abu Ma&#700;shar (default) — nodes at the end (ages 70–75)</label>
+      <label class="small"><input type="radio" name="tl-nodes" value="afterMars"> Bonatti variant — nodes after Mars (ages 39–44)</label>
+    </div>
+    <div id="tl-fird" style="margin-top:.6rem"><p class="muted small">Enter a birth moment above and compute.</p></div>
+  </section>
+
+  <section class="calc" id="tl-zr-card" style="margin-top:1rem">
+    <h2 style="margin-top:0">3 · Zodiacal releasing <span class="small muted">— Valens, Anthology IV.4–IV.10, from the Lots of Spirit &amp; Fortune</span></h2>
+    <div id="tl-zr"><p class="muted small">Enter a birth moment above and compute.</p></div>
+  </section>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <section class="card" id="hiw-timelords">
+    <h2 style="margin-top:0">How this works — the three techniques, step by step</h2>
+
+    <h3>Secondary progressions (day-for-a-year)</h3>
+    <p class="small">The classical statement is Vettius Valens, <i>Anthology</i> IX.3 (trans. M. Riley): <i>"add a
+      number of days to the birth date equivalent to the age (in years) of the native… cast a horoscope for that
+      day."</i> The modern convention computed here: the <b>progressed instant = birth instant + age in days</b>,
+      where the age is counted in <b>tropical years</b> (elapsed time ÷ 365.2422 d). The seven planets are read from
+      the real ephemeris at that instant — one day of sky after birth stands for one year of life. The
+      <b>angles</b> are progressed by the <b>Naibod arc</b> only: the Sun's mean daily motion, 360° ÷ 365.2422 =
+      <b>0.98564733°</b> = 59′08″ per year (Valentin Naibod, 16th c. — the same key as this site's primary
+      directions); the progressed MC = natal MC + arc, and the progressed Ascendant is re-derived from that MC
+      through the birth latitude and natal obliquity. Recognized alternatives (solar-arc MC, solar arc in right
+      ascension, mean quotidian) are out of scope. The formalization of the day-for-a-year technique is
+      conventionally credited to Placidus (17th c.), with Salmasius a rival claimant — an attribution question, not
+      a settled fact.</p>
+
+    <h3>Firdaria (al-firdārāt)</h3>
+    <p class="small">Life is divided into a repeating <b>75-year cycle</b> of major periods (Abu Ma&#700;shar,
+      <i>On the Revolutions of the Years of Nativities</i>, trans. B. Dykes, <i>Persian Nativities IV</i>). A
+      <b>day</b> birth runs Sun 10 · Venus 8 · Mercury 13 · Moon 9 · Saturn 11 · Jupiter 12 · Mars 7 · North Node 3 ·
+      South Node 2; a <b>night</b> birth starts from the Moon (Moon 9 · Saturn 11 · Jupiter 12 · Mars 7 · Sun 10 ·
+      Venus 8 · Mercury 13, then the nodes). <b>The disputed point</b>, flagged in the data and exposed as the toggle
+      above: Abu Ma&#700;shar as read by Dykes, Rob Hand and Steven Birchfield puts the nodes at the <b>end</b> of the
+      night sequence (ages 70–75) — the default here — while Bonatti (<i>Book of Astronomy</i>), followed by Robert
+      Zoller and several modern calculators, inserts them <b>after Mars</b> (ages 39–44). Day charts are identical
+      under both. Each <b>planetary</b> major period divides into <b>7 equal sub-periods</b>, the first ruled by the
+      major lord itself, continuing in the firdaria order and skipping the nodes; the node periods are undivided.
+      Dates here use Julian years (365.25 d) — an implementation convention, not a sourced rule.</p>
+
+    <h3>Zodiacal releasing</h3>
+    <p class="small">Valens, <i>Anthology</i> IV.4–IV.10 (trans. M. Riley): periods are "released" through the signs
+      from the whole sign holding the <b>Lot of Spirit</b> (Daimon — employment, rank, action) or the <b>Lot of
+      Fortune</b> (the body); the degree is irrelevant. Each sign lasts its ruler's <b>minor years</b> — Aries 15,
+      Taurus 8, Gemini 20, Cancer 25, Leo 19, Virgo 20, Libra 8, Scorpio 15, Sagittarius 12, <b>Capricorn 27</b>
+      (Valens derives it as half of half of the Moon's 108 — not 30), Aquarius 30, Pisces 12; the twelve sum to 211.
+      The clock runs on Valens's own units (IV.9–IV.10): the distribution <b>year is 360 days</b>, and each level is
+      1/12 of the one above — L1 = number × 360 d, L2 = number × 30 d, L3 = number × 2.5 d, L4 = number × 5 h — so
+      period boundaries drift against calendar years (a Cancer L1 beginning 2012-01-01 ends 9 000 real days later on
+      2036-08-22). Sub-periods start from their parent's own sign and proceed zodiacally, truncated at the parent's
+      end; when a subdivision completes all 12 signs and would repeat its start, the 13th period instead jumps to the
+      <b>opposite sign</b> — the <b>loosing of the bond</b> (R. Schmidt's term), possible only inside L1 signs whose
+      number is ≥ 19 (Gemini, Cancer, Leo, Virgo, Capricorn, Aquarius), since a full L2 cycle = 211 months = 17 y 7 m.
+      Valens's doctrinal swap rule — if Fortune or its ruler is badly situated, Spirit distributes both — is recorded
+      as a note; this tool computes both releasings and leaves that judgement to the reader.</p>
+
+    <p class="small muted"><b>Sources.</b> Vettius Valens, <i>Anthologies</i> (2nd c. CE), trans. Mark T. Riley
+      (2010; free PDF, csus.edu; annotated ed. github.com/janegca/latex-valens) — Bk IV.4–IV.10 (zodiacal releasing)
+      and IX.3 (day-for-a-year). Abu Ma&#700;shar, <i>On the Revolutions of the Years of Nativities</i>, trans.
+      B. Dykes, <i>Persian Nativities IV</i> (Cazimi Press). Bonatti, <i>Book of Astronomy</i> (the night-node
+      variant). C. Brennan, <i>Hellenistic Astrology: The Study of Fate and Fortune</i> (2017) and Astrology Podcast
+      ep. 192 (the modern 360-day standard). Naibod rate 59′08″/yr per the standard references. Every contested value
+      above is flagged where it is stored.</p>
+  </section>
+
+  <p class="small muted" style="margin-top:1rem">Related: <a href="trajectory.html">Life Trajectory</a> (profections,
+    directions &amp; the solar return) · <a href="workbench.html">the Master Tool</a> ·
+    <a href="glossary.html">the glossary</a> · <a href="about/index.html">Sources &amp; Science</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('timelords');
+  import { initTimelords } from '../assets/js/app/timelords.js';
+  initTimelords();
+</script>
+</body>
+</html>

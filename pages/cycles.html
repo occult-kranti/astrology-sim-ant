@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cycles of History — Jupiter–Saturn great conjunctions &amp; the honest eclipse finder | The Astrologer's Workbench</title>
+<meta name="description" content="The Jupiter–Saturn great conjunctions computed across the centuries (geocentric, tropical of-date) with the trigon shifts, the triple passes and Abū Maʿshar's doctrinal mean-conjunction overlay — plus an honest eclipse finder that answers 'was an eclipse possible somewhere on Earth near this date?' two ways: the classical NASA/Espenak ecliptic limits and a real global eclipse search. History described, never endorsed; astrology has no demonstrated validity.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .cy-tri { display:inline-block; font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; padding:.1rem .55rem; border-radius:99px; color:#fff; white-space:nowrap; }
+  .cy-tri-fire { background:var(--fire); } .cy-tri-earth { background:var(--earth); }
+  .cy-tri-air { background:var(--air); } .cy-tri-water { background:var(--water); }
+  table.data tr.cy-shift td { background:#fbeec2 !important; border-top:2px solid var(--gold); }
+  .cy-event { font-family:var(--sans); font-size:.72rem; color:#7a5a06; font-weight:700; }
+  .cy-event.rev { color:var(--muted); font-weight:600; }
+  .cy-retro { color:var(--malefic); font-weight:700; }
+  .cy-hist { border-left:4px solid var(--gold); }
+  .cy-status { display:inline-block; font-family:var(--sans); font-size:.66rem; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; padding:.12rem .5rem; border-radius:4px; margin-bottom:.3rem; }
+  .cy-status.belief { background:#faedcb; color:#7a5a06; }
+  .cy-status.debunked { background:#f6d9d9; color:#7a1d1d; }
+  .cy-status.disputed { background:#e7e2f2; color:#4a3f77; }
+  .cy-status.astronomy { background:#d8efd6; color:#1f5e1d; }
+  .cy-verdict { display:inline-block; font-family:var(--sans); font-size:.74rem; font-weight:700; letter-spacing:.04em;
+    text-transform:uppercase; padding:.15rem .6rem; border-radius:99px; border:1px solid var(--rule); }
+  .cy-verdict.certain { background:#d8efd6; color:#1f5e1d; border-color:var(--benefic); }
+  .cy-verdict.possible { background:#faedcb; color:#7a5a06; border-color:var(--gold); }
+  .cy-verdict.impossible { background:#f6d9d9; color:#7a1d1d; border-color:var(--malefic); }
+  .cy-syzygy { border:1px solid var(--rule); border-radius:.6rem; padding: .7rem .9rem; background:var(--card); }
+  .cy-syzygy h3 { margin-top:0; }
+  .cy-cite { font-size:.78rem; color:var(--muted); margin-top:.4rem; }
+  .cy-agree { font-family:var(--sans); font-size:.78rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Cycles of History</p>
+  <h1>Cycles of History — great conjunctions &amp; eclipses</h1>
+  <p class="lede">Every ~20 years Jupiter overtakes Saturn: the <b>great conjunction</b>, the slowest beat the naked-eye
+    sky keeps. Medieval astrologers, following <b>Abū Maʿshar</b>, made this the clock of world history — dynasties on
+    the 20-year hand, religions on the ~240-year <b>shift of triplicity</b>, prophets on the ~960-year return — and
+    Kepler drew its rotating <b>trigon</b> in 1606. This tool computes the real conjunctions across the centuries,
+    lays the doctrine's idealized <b>mean</b> series beside them, and adds an honest <b>eclipse finder</b> built on the
+    same "possibility" logic the Babylonians used.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    The astronomy on this page is real and checkable: the conjunctions, trigon shifts and eclipse windows are computed
+    in your browser (≈1 arc-minute engine) and verified against published tables. The <em>meanings</em> — plagues,
+    prophets, the fates of kings — are <b>documented historical beliefs with no demonstrated validity</b>, reproduced
+    for study with their sources. The two most famous cases below are a debunked cause (the Black Death) and a disputed
+    identification (the Star of Bethlehem). Described, never prescribed.</div>
+
+  <h2>1 · Scan the centuries for great conjunctions</h2>
+  <form id="cy-form" class="calc">
+    <div class="field-row">
+      <div class="field"><label for="cy-from">From year</label>
+        <input id="cy-from" type="number" min="-1999" max="3000" step="1" value="1500" class="w-coord"></div>
+      <div class="field"><label for="cy-to">To year</label>
+        <input id="cy-to" type="number" min="-1999" max="3000" step="1" value="2100" class="w-coord"></div>
+      <button type="submit" class="btn" id="cy-scan">✶ Scan for conjunctions</button>
+      <span id="cy-scan-status" class="small muted"></span>
+    </div>
+    <div class="field-row" style="margin-top:.6rem">
+      <label class="small"><input type="checkbox" id="cy-mean-toggle"> show the <b>doctrinal mean-conjunction
+        overlay</b> (Abū Maʿshar's idealized 19.859-year clock — one conjunction per period, never a triple)</label>
+    </div>
+    <p class="small muted" style="margin-bottom:0">Years use astronomical numbering (1 BCE = year 0; 7 BCE = −6) and are
+      clamped to −1999…3000, the range the engine's ΔT model supports. Dates shown are proleptic-Gregorian UT;
+      before the 1582 reform, historical sources record <em>Julian</em> dates up to ~10 days later.</p>
+  </form>
+  <div id="cy-era-badge"></div>
+  <section class="card"><h2 style="margin-top:0">The conjunction timeline</h2>
+    <div id="cy-conj-out"><p class="muted small">Scanning…</p></div></section>
+
+  <h2>2 · Conjunctions that made history</h2>
+  <p class="small muted">Each case is labelled with its epistemic status. Where the moment is castable, a link opens the
+    Master Tool on that sky — with the era-accuracy tier the calendar module assigns it.</p>
+  <div id="cy-history-cards" class="grid cols-2"></div>
+
+  <h2>3 · The eclipse finder — “was an eclipse possible near this date?”</h2>
+  <form id="cy-ecl-form" class="calc">
+    <div class="field-row">
+      <div class="field"><label for="cy-ecl-date">Date (UT)</label>
+        <input id="cy-ecl-date" type="date" required></div>
+      <button type="submit" class="btn" id="cy-ecl-go">☾ Check the syzygies</button>
+      <span id="cy-ecl-status" class="small muted"></span>
+    </div>
+    <p class="small muted" style="margin-bottom:0">The tool finds the <b>new moon</b> and <b>full moon</b> nearest your
+      date and answers two ways: the <b>classical ecliptic limits</b> (how far the Moon stood from a lunar node — the
+      criterion, in essence, that Babylonian astronomers ran on the 223-month cycle) and a modern <b>global eclipse
+      search</b> as ground truth. Every verdict is global — “somewhere on Earth” — never a claim about local
+      visibility. (The browser's date field starts at 1 CE; the engine itself supports −1999…3000.)</p>
+  </form>
+  <section class="card"><h2 style="margin-top:0">The two syzygies</h2>
+    <div id="cy-eclipse-out"><p class="muted small">Pick a date and check.</p></div></section>
+
+  <h2>4 · Where eclipse divination began — Babylon</h2>
+  <div id="cy-babylon" class="grid cols-3"></div>
+
+  <section class="card" id="hiw-cycles">
+    <h2 style="margin-top:0">How this works</h2>
+    <h3>Finding the conjunctions</h3>
+    <p class="small">The engine samples the signed difference <code>lon(Jupiter) − lon(Saturn)</code> in ~20-day steps
+      and watches for a change of sign — a zero crossing. (The ±180° jump at <em>opposition</em> is also a sign change,
+      so crossings are only accepted where the difference moves by a few degrees, not ~360°.) Each crossing is then
+      <b>bisected</b> to under an hour. Because the difference moves at most ~0.25°/day, a 20-day step cannot skip a
+      conjunction. Near opposition, apparent <b>retrogradation</b> can make Jupiter pass Saturn three times in ~6–7
+      months — the famous <b>triple conjunctions</b> (1940–41, 1980–81, 7 BCE; next 2238–39). The quoted separation is
+      the <em>minimum great-circle distance</em> sampled ±10 days around the crossing: the planets differ in ecliptic
+      latitude, so they pass near each other, never through.</p>
+    <h3>Which longitudes these are</h3>
+    <p class="small">All positions are <b>geocentric, apparent, tropical of-date</b> (true equinox of date) — the frame
+      of the zodiac signs and of R. Nolle's published conjunction table, against which all thirteen reference
+      conjunctions on this page were verified to the arcminute. Fixed-epoch (J2000) tables such as Wikipedia's differ
+      by accumulated precession, ≈1.396°/century, and date their rows by <em>minimum separation</em> rather than the
+      longitude crossing — two honest conventions that disagree by a degree or two and a day or two. Conjunctions in
+      <em>right ascension</em> fall on different days again.</p>
+    <h3>Mean vs geocentric — the doctrinal overlay</h3>
+    <p class="small">Abū Maʿshar's historical astrology runs on <b>mean conjunctions</b> computed from mean motions:
+      exactly one every 19.859 Julian years, each +242.98° (tropical) from the last, twelve per triplicity, 960 years
+      round the cycle — an idealized clock that never produces a triple. The overlay is anchored at the engine-verified
+      2020-12-21 crossing and stepped by exactly those constants. Comparing it with the computed timeline shows where
+      doctrine and sky part company — e.g. the 1980–81 Libra triple, an <em>air</em> foray inside the earth series the
+      mean clock knows nothing about.</p>
+    <h3>The eclipse limits</h3>
+    <p class="small">An eclipse needs a syzygy <em>near a lunar node</em>. The tool measures the Moon's distance in
+      longitude from the nearer node at the exact new/full moon and applies the NASA/Espenak <b>ecliptic limits</b>:
+      solar — certain under 15.39°, impossible over 18.59°; lunar (any type, penumbral included) — certain under
+      15.3°, impossible over 17.1°; the classical <em>umbral</em> lunar limits are 9°30′ / 12°15′. Between the bounds
+      lies the <b>uncertain band</b>: “an eclipse is possible” — exactly the prediction the Babylonian 223-month cycle
+      delivered. As ground truth, the bundled engine's global searches (<code>SearchGlobalSolarEclipse</code> /
+      <code>SearchLunarEclipse</code>) report what actually happened at that syzygy. All criteria are <b>global</b>:
+      they say an eclipse occurred or was possible <em>somewhere on Earth</em> — local visibility would need Besselian
+      elements and is never claimed here.</p>
+    <h3>How far back the numbers can be trusted</h3>
+    <p class="small">Every computation is range-guarded by the calendar module's <b>era-accuracy tiers</b>:
+      <b>casting-grade</b> (1600–2200, arcminute confidence), <b>study-grade</b> (500–1600 and 2200–3000, sign and
+      degree reliable), <b>illustrative</b> (before 500 CE, whole degrees only — ΔT is uncertain by minutes of time),
+      and <b>refuse</b> outside −1999…3000, where the tool declines to compute at all. Out-of-casting scans show the
+      tier badge above the results.</p>
+  </section>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    Nothing on this page predicts or determines anything. The conjunctions and eclipses are real, computable astronomy;
+    the historical meanings attached to them are conventions — and where they were put to the test they failed
+    (the Paris masters' conjunction did not cause the plague; <em>Yersinia pestis</em> did). Treat every judgement
+    quoted here as a faithful record of how people once reasoned about the sky — interesting history, not guidance.
+    See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="workbench.html">Master Tool</a> (cast any of
+    these moments), <a href="structure.html">Structure &amp; patterns</a>, and the
+    <a href="experiment.html">falsification demo</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('cycles');
+  import { initCycles } from '../assets/js/app/cycles.js';
+  initCycles();
+</script>
+</body>
+</html>

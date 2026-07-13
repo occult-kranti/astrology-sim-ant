@@ -24,6 +24,7 @@ import { mansionImage } from '../core/data/mansion-images.js';
 import { planetImage } from '../core/data/planet-images.js';
 import { attachVedicPanel } from './vedic-panel.js';
 import { attachPersonPicker } from './person.js';
+import { eraAccuracy } from '../core/calendar.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -140,6 +141,7 @@ function run() {
   } catch { /* non-fatal */ }
 
   safe(() => renderSummary(reading));
+  safe(() => renderEraBadge(chart));
   safe(() => renderMoment(reading));
   safe(() => renderDignities(reading));
   safe(() => renderAspects(reading));
@@ -201,6 +203,21 @@ function renderSummary(r) {
     (ph ? ` · planetary hour of <b>${esc(ph.ruler)}</b> ${G(ph.ruler)} (a ${esc(ph.dayRuler)}-day)` : '') +
     ` · chart health ${vbadge(r.cautions.verdict)}`;
   $('wb-moment-cite').textContent = '— positions from astronomy-engine (~1′); Regiomontanus houses';
+}
+
+// Historical-era honesty (R16): charts outside the casting-grade window carry
+// their accuracy tier and the ΔT line — the recorded-time and time-scale
+// uncertainty dwarfs the ephemeris there. Display policy, not a computation.
+function renderEraBadge(chart) {
+  const year = chart.date.getUTCFullYear();
+  const tier = eraAccuracy(year);
+  if (tier.grade === 'casting') return;
+  const dT = tier.deltaTSeconds, sig = tier.deltaTSigmaSeconds;
+  const fmt = s => s >= 3600 ? `${(s / 3600).toFixed(1)} h` : s >= 90 ? `${(s / 60).toFixed(1)} min` : `${Math.round(s)} s`;
+  $('wb-moment-cite').textContent =
+    `— positions from astronomy-engine (~1′); Regiomontanus houses · HISTORICAL DATE, ${tier.label.toUpperCase()}: ` +
+    tier.note + (dT != null ? ` ΔT ≈ ${fmt(dT)} (Espenak–Meeus), uncertainty ±${fmt(sig)} at this epoch (Morrison & Stephenson 2004).` : '') +
+    (year < 1583 ? ' Dates are proleptic Gregorian — sources of this era record JULIAN dates; convert before casting (see the Chronology wing).' : '');
 }
 
 function renderMoment(r) {

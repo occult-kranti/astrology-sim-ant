@@ -20,7 +20,8 @@
 //  predict. VERIFY-GATE: NO network request fires on load; every fetch is on an
 //  explicit click and is wrapped so a failure updates the panel, never throws.
 // ============================================================================
-import { buildContext, runTool, toAnthropicTools, buildCodexPrompt, buildSynthesisPrompt, buildPlainReadingPrompt, buildOperationPrompt, dataBlockFor, SITE_URLS } from '../core/llm-context.js';
+import { buildContext, runTool, toAnthropicTools, buildCodexPrompt, buildSynthesisPrompt, buildPlainReadingPrompt, buildOperationPrompt, buildMomentFinderPrompt, dataBlockFor, SITE_URLS } from '../core/llm-context.js';
+import { findNextElection } from '../core/election.js';
 import { downloadText } from './state.js';
 import { PROVIDERS, PROV_ORDER, streamChat as coreStreamChat, claudeToolLoop as coreToolLoop, openrouterHeaders } from './llm-core.js';
 import { LOCAL_DEFAULTS } from './local-config.js';
@@ -137,13 +138,16 @@ function render() {
 
     <div class="field-row" style="gap:.4rem;margin:.2rem 0 .3rem;flex-wrap:wrap">
       <button type="button" class="btn sm" id="wb-asst-plain">🗣 Plain words — explain every result simply</button>
+      <button type="button" class="btn sm" id="wb-asst-moment">🎯 Auspicious moment — scan ahead &amp; translate</button>
       <button type="button" class="btn sm" id="wb-asst-synth">🔎 Interpret &amp; advise — everything, together</button>
       <button type="button" class="btn sm" id="wb-asst-codex">📜 Codex of this Hour — evocative</button>
     </div>
     <p class="small muted" style="margin:.1rem 0 .6rem">First <b>compute a reading above</b>; each button then sends the
       <b>whole computed reading as JSON</b> so the model interprets the real figures across <b>both systems</b> (Western + Vedic)
       and the Picatrix layer. <b>🗣 Plain words</b> walks every panel for a beginner — what it means in simple terms, the good
-      points, the hard points, the concerns, and one theme to reflect on (a mirror, never advice); <b>🔎 Interpret</b>
+      points, the hard points, the concerns, and one theme to reflect on (a mirror, never advice); <b>🎯 Auspicious
+      moment</b> has the <b>engine</b> scan the next 72 hours for the chosen aim (deterministic, 30-minute steps) and the
+      model translate each found window — book meaning → literal real-life terms, honest frame first; <b>🔎 Interpret</b>
       synthesises; the <b>📜 Codex</b> is image-rich. Replies are cite-bound ([F#]) and each has a <b>⤓ save</b> link.</p>
 
     <fieldset style="border:1px solid #2a3350;border-radius:.5rem;padding:.7rem .8rem;margin:.2rem 0 .6rem">
@@ -171,6 +175,7 @@ function render() {
   onProviderChange();
   el('wb-asst-provider').addEventListener('change', () => { lsSet(PROV_STORE, provName()); onProviderChange(); });
   el('wb-asst-plain').addEventListener('click', () => generatePlain());
+  el('wb-asst-moment').addEventListener('click', () => generateMoment());
   el('wb-asst-synth').addEventListener('click', () => generateSynthesis());
   el('wb-asst-codex').addEventListener('click', () => generateCodex());
   el('wb-asst-plan').addEventListener('click', () => planOperation());
@@ -357,6 +362,22 @@ const generateCodex = () => oneClick('📜 Codex of this Hour (deep interpretati
   withData(buildCodexPrompt(currentReading)), 'codex');
 const generatePlain = () => oneClick('🗣 Plain words — every result explained simply: the good, the hard, the concerns, what to reflect on',
   withData(buildPlainReadingPrompt(currentReading)), 'plain-words', 8192);
+
+// 🎯 The auspicious-moment automation: the ENGINE finds the windows
+// (findNextElection — deterministic, 72 h ahead at 30-minute steps); the model
+// only translates them, codebooked: book meaning → literal real-life terms,
+// honest frame first. The scan runs here in the app, never in the model.
+function generateMoment() {
+  if (!preflight()) return;
+  const inp = currentReading.meta.inputs;
+  let windows = [];
+  try {
+    windows = findNextElection(inp.operationKey || 'talisman', new Date(inp.date), inp.latitude, inp.longitude,
+      { hoursAhead: 72, stepMinutes: 30, system: inp.system });
+  } catch { windows = []; }
+  oneClick('🎯 Auspicious moment — the engine scans 72 h ahead for the chosen aim; every window explained, book meaning → real life',
+    buildMomentFinderPrompt(currentReading, windows), 'auspicious-moment', 8192);
+}
 
 async function planOperation() {
   const req = el('wb-asst-op').value.trim(); if (!req || !preflight()) return;

@@ -546,5 +546,307 @@ const goldenCtx = buildContext(goldenReading);
 ok(/\[F1\]/.test(goldenCtx.system) && /OUTPUT CONTRACT/i.test(goldenCtx.system), 'GOLDEN: the grounded context is cite-bound');
 ok(/In plain words/.test(PLAIN_CODA) && /To reflect on/.test(PLAIN_CODA), 'the oracle interpret prompts end with the plain-words coda');
 
+// --- The calendar layer (R16): Julian ↔ proleptic Gregorian + era tiers ---
+import {
+  julianToJDN, gregorianToJDN, jdnToGregorian, jdnToJulian, julianToGregorian,
+  julianGregorianOffset, utcDate, isoDate, deltaTSeconds, deltaTSigmaSeconds, eraAccuracy
+} from '../assets/js/core/calendar.js';
+
+ok(julianToJDN(1582, 10, 4) === 2299160 && gregorianToJDN(1582, 10, 15) === 2299161,
+  'calendar: the Gregorian reform anchor (Julian 1582-10-04 = JDN 2299160; next day Gregorian 1582-10-15)');
+{
+  const g = julianToGregorian(1582, 10, 4);
+  ok(g.y === 1582 && g.m === 10 && g.d === 14, 'calendar: Julian 1582-10-04 → Gregorian 1582-10-14');
+  const dee = julianToGregorian(1527, 7, 13);
+  ok(dee.y === 1527 && dee.m === 7 && dee.d === 23 && julianGregorianOffset(1527, 7, 13) === 10,
+    'calendar GOLDEN: John Dee, Julian 1527-07-13 = proleptic Gregorian 1527-07-23 (+10 days)');
+  const th = julianToGregorian(-584, 5, 28);
+  ok(th.y === -584 && th.m === 5 && th.d === 22 && julianToJDN(-584, 5, 28) === 1507900,
+    'calendar GOLDEN: Thales eclipse, Julian −584-05-28 = Gregorian −584-05-22 = JDN 1507900 (−6 days; 1 BCE = year 0)');
+  ok(julianToJDN(1752, 9, 2) === 2361221 && gregorianToJDN(1752, 9, 14) === 2361222,
+    'calendar: England 1752 — Julian 09-02 (JDN 2361221) followed by Gregorian 09-14 (11 days dropped)');
+  ok(gregorianToJDN(2000, 1, 1) === 2451545 && gregorianToJDN(1858, 11, 17) === 2400001,
+    'calendar: external anchors (J2000 = JDN 2451545; MJD 0 = JDN 2400001)');
+  let rt = 0;
+  for (let j = 1000000; j <= 2500000; j += 1371) {
+    const gg = jdnToGregorian(j); if (gregorianToJDN(gg.y, gg.m, gg.d) !== j) rt++;
+    const jj = jdnToJulian(j); if (julianToJDN(jj.y, jj.m, jj.d) !== j) rt++;
+  }
+  ok(rt === 0, 'calendar: JDN round-trips hold across ≈ −2000 BCE…2132 CE (both calendars, ~1100 samples each)');
+  ok(utcDate(50, 3, 1).toISOString().startsWith('0050-03-01'), 'calendar: utcDate survives the JS years-0–99 remap trap');
+  ok(isoDate(-584, 5, 22) === '-000584-05-22' && isoDate(1527, 7, 23) === '1527-07-23', 'calendar: ISO date forms');
+  ok(Math.abs(deltaTSeconds(-700) - 20301) < 60 && Math.abs(deltaTSigmaSeconds(-700) - 508) < 2,
+    'calendar: ΔT(−700) ≈ 20,301 s with σ ≈ 508 s (Espenak–Meeus; Morrison & Stephenson 2004)');
+  ok(eraAccuracy(2000).grade === 'casting' && eraAccuracy(1527).grade === 'study' &&
+     eraAccuracy(-700).grade === 'illustrative' && eraAccuracy(-700).moonWholeDegrees === true &&
+     eraAccuracy(-2500).grade === 'refuse' && eraAccuracy(2500).grade === 'study' && eraAccuracy(3100).grade === 'refuse',
+    'calendar: era-accuracy tiers (casting 1600–2200 · study 500–1600 & 2200–3000 · illustrative −1999–500 · refuse outside)');
+  ok(/no year range stated/i.test(eraAccuracy(0).citation), 'calendar: the tier citation records that the engine README states no year range');
+}
+
+// --- The Hermetic Chronology wing (R15) --------------------------------------
+import { CHRONOLOGY_ERAS, CHRONOLOGY_ENTRIES, CHRONOLOGY_CITATION } from '../assets/js/core/data/chronology.js';
+{
+  const chronLabels = new Set(['documented', 'disputed', 'debunked', 'conspiracy']);
+  const chronEraIds = new Set(CHRONOLOGY_ERAS.map(e => e.id));
+  ok(CHRONOLOGY_ERAS.length === 8, `chronology: 8 eras (got ${CHRONOLOGY_ERAS.length})`);
+  ok(CHRONOLOGY_ENTRIES.length === 43, `chronology: 43 entries (got ${CHRONOLOGY_ENTRIES.length})`);
+  ok(CHRONOLOGY_ENTRIES.every(e => chronLabels.has(e.label)),
+    'chronology: every label is documented/disputed/debunked/conspiracy');
+  ok(CHRONOLOGY_ENTRIES.every(e => Array.isArray(e.sources) && e.sources.length >= 1
+    && e.sources.every(s => typeof s === 'string' && s.length)),
+    'chronology: every entry has >=1 source string');
+  ok(CHRONOLOGY_ENTRIES.every(e => chronEraIds.has(e.era)), 'chronology: every referenced era id exists');
+  ok(CHRONOLOGY_ENTRIES.every(e => e.title && e.body && e.dateText && Number.isFinite(e.sortYear)),
+    'chronology: every entry has title/body/dateText/sortYear');
+  const chronCasts = CHRONOLOGY_ENTRIES.filter(e => e.cast);
+  ok(chronCasts.length >= 3, `chronology: day-datable cast moments present (got ${chronCasts.length})`);
+  ok(chronCasts.every(e => e.cast.calendar === 'julian' || e.cast.calendar === 'gregorian'),
+    "chronology: every cast entry's calendar field is julian or gregorian");
+  ok(chronCasts.every(e => [e.cast.y, e.cast.m, e.cast.d, e.cast.hour, e.cast.lat, e.cast.lon]
+    .every(v => typeof v === 'number' && Number.isFinite(v))
+    && e.cast.m >= 1 && e.cast.m <= 12 && e.cast.d >= 1 && e.cast.d <= 31
+    && e.cast.hour >= 0 && e.cast.hour <= 23 && e.cast.place && e.cast.note),
+    'chronology: every cast has numeric y/m/d/hour/lat/lon + place + note');
+  ok(chronCasts.every(e => eraAccuracy(e.cast.y).grade !== 'refuse'),
+    'chronology: every cast year is inside the computable era range');
+  // golden: the Dee cast (Julian 1527-07-13, London) = proleptic Gregorian 1527-07-23
+  const chronDee = chronCasts.find(e => e.cast.y === 1527);
+  ok(!!chronDee && chronDee.cast.calendar === 'julian', 'chronology: the Dee cast entry (Julian 1527) is present');
+  if (chronDee) {
+    const g = julianToGregorian(chronDee.cast.y, chronDee.cast.m, chronDee.cast.d);
+    ok(isoDate(g.y, g.m, g.d) === '1527-07-23',
+      `chronology: Dee Julian 1527-07-13 → Gregorian ${isoDate(g.y, g.m, g.d)} (expect 1527-07-23)`);
+  }
+  ok(JSON.stringify(JSON.parse(JSON.stringify(CHRONOLOGY_ENTRIES))) === JSON.stringify(CHRONOLOGY_ENTRIES),
+    'chronology: JSON round-trip is lossless');
+  ok(typeof CHRONOLOGY_CITATION === 'string' && CHRONOLOGY_CITATION.length > 100,
+    'chronology: CHRONOLOGY_CITATION present');
+}
+
+// --- Cycles of History: great conjunctions + eclipse finder -----------------
+import { conjunctionsBetween, triplicityRuns, meanConjunctionSeries, eclipseNear } from '../assets/js/core/cycles.js';
+import {
+  CYCLE_CONSTANTS, DOCTRINE, KEPLER, PARIS_1348, BETHLEHEM,
+  GOLDEN_CONJUNCTIONS, ECLIPSE_LIMITS, ECLIPSE_VECTORS, BABYLON,
+} from '../assets/js/core/data/cycles-data.js';
+
+const cyDays = (d, iso) => { const [y, m, dd] = iso.split('-').map(Number);
+  return Math.abs(d.getTime() - utcDate(y, m, dd, 12).getTime()) / 86400000; };
+
+// all 13 golden conjunctions reproduced ±1 day & ±0.2° (tropical of-date),
+// with both-retrograde flags on the two triple middle passes
+const cyScan = conjunctionsBetween(utcDate(1600, 1, 1, 0), utcDate(2030, 12, 31, 12));
+ok(GOLDEN_CONJUNCTIONS.length === 13, `13 golden conjunctions (got ${GOLDEN_CONJUNCTIONS.length})`);
+for (const v of GOLDEN_CONJUNCTIONS) {
+  let best = null, bd = Infinity;
+  for (const c of cyScan) { const d = cyDays(c.date, v.date); if (d < bd) { bd = d; best = c; } }
+  ok(best && bd <= 1 && Math.abs(best.lon - v.lon) < 0.2,
+    `great conjunction ${v.date} @ ${v.lon}° reproduced ±1d ±0.2° (got ${best && best.lon.toFixed(3)})`);
+  if (v.retro) ok(best && best.jupiterRetrograde && best.saturnRetrograde,
+    `${v.date} (triple middle pass) both retrograde`);
+}
+
+// the 7 BCE (astronomical −6) triple: three crossings in Pisces, sep 55–75′
+const cyBC = conjunctionsBetween(utcDate(-7, 6, 1, 0), utcDate(-5, 6, 1, 0));
+ok(cyBC.length === 3 && cyBC.every(c => c.sign.name === 'Pisces'),
+  `7 BCE triple: 3 crossings, all Pisces (got ${cyBC.length}: ${cyBC.map(c => c.sign.name).join(',')})`);
+ok(cyBC.every(c => c.sep >= 55 && c.sep <= 75),
+  `7 BCE separations 55–75′ — never a visual merger (got ${cyBC.map(c => c.sep).join(', ')})`);
+ok(cyBC[1] && cyBC[1].jupiterRetrograde && cyBC[1].saturnRetrograde, '7 BCE middle pass both retrograde');
+
+// trigon-run machinery: the 1980–81 Libra foray is flagged as a one-off reversion
+const cyRuns = triplicityRuns(conjunctionsBetween(utcDate(1900, 1, 1, 0), utcDate(2030, 12, 31, 12)));
+const cyLibra = cyRuns.find(r => r.triplicity === 'air' && r.start.getUTCFullYear() === 1980);
+ok(cyLibra && cyLibra.count === 3 && cyLibra.reversion === true, '1980–81 Libra triple flagged as one-off reversion');
+
+// CYCLE_CONSTANTS invariants (frame-tagged)
+ok(CYCLE_CONSTANTS.synodicJulianYears === 19.859, 'synodic period 19.859 Julian yr');
+ok(CYCLE_CONSTANTS.meanAdvance.tropicalDeg === 242.98 && CYCLE_CONSTANTS.meanAdvance.siderealDeg === 242.7,
+  'mean advance 242.98° tropical / 242.70° sidereal (frame-tagged)');
+ok(CYCLE_CONSTANTS.fullReturn.medievalYears === 960 && CYCLE_CONSTANTS.fullReturn.keplerYears === 794
+  && CYCLE_CONSTANTS.fullReturn.keplerConjunctions === 40, 'full return 960 yr medieval vs Kepler 794 yr (40 conjunctions)');
+ok(CYCLE_CONSTANTS.triples.countBetween1200and2400 === 7 && /2238/.test(CYCLE_CONSTANTS.triples.next),
+  '7 J–S triples 1200–2400, next 2238–39');
+
+// doctrinal mean series: anchored at 2020 = 300.487°, advancing exactly +242.98°
+const cyMean = meanConjunctionSeries(1900, 2100);
+ok(cyMean.some(m => m.year === 2020 && Math.abs(m.lon - 300.487) < 1e-9), 'mean series anchored 2020 → 300.487°');
+ok(cyMean.every((m, i) => !i
+  || Math.abs((((m.lon - cyMean[i - 1].lon) % 360) + 360) % 360 - CYCLE_CONSTANTS.meanAdvance.tropicalDeg) < 1e-6),
+  'mean series advances exactly +242.98° tropical per step');
+
+// eclipse vectors: 9 positives through BOTH layers, 2 negatives rejected by BOTH
+for (const v of ECLIPSE_VECTORS) {
+  const [y, m, d] = v.date.split('-').map(Number);
+  const r = eclipseNear(utcDate(y, m, d, 12));
+  const s = v.kind === 'solar' ? r.solar : r.lunar;
+  if (v.negative) {
+    ok(s.verdict === 'impossible' && !s.groundTruth.sameSyzygy,
+      `eclipse NEGATIVE ${v.date} (${v.kind}): rejected by both layers (D=${s.nodeDistanceDeg}°)`);
+  } else {
+    ok(s.groundTruth.sameSyzygy && s.groundTruth.kind === v.type && cyDays(s.groundTruth.peak, v.date) <= 1,
+      `eclipse ${v.date} ${v.kind}: ground truth ${v.type}, peak within 1 day (got ${s.groundTruth.kind})`);
+    ok(s.verdict === 'certain' || s.verdict === 'possible',
+      `eclipse ${v.date}: classical limits say certain/possible (got ${s.verdict}, D=${s.nodeDistanceDeg}°)`);
+  }
+}
+
+// data discipline: every record cited; the classical solar-limit discrepancy is flagged
+const cyRecords = [CYCLE_CONSTANTS, DOCTRINE, KEPLER, PARIS_1348, BETHLEHEM, ECLIPSE_LIMITS,
+  ...GOLDEN_CONJUNCTIONS, ...ECLIPSE_VECTORS, ...BABYLON];
+ok(cyRecords.every(r => typeof r.cite === 'string' && r.cite.length > 10), 'cycles-data: every record has .cite');
+const cyFlag = ECLIPSE_LIMITS.classicalSolarDiscrepancy;
+ok(cyFlag && cyFlag.status === 'UNRESOLVED' && cyFlag.flag.includes('15°21′') && cyFlag.flag.includes('15°31′'),
+  'cycles-data: 15°21′/15°31′ classical solar-limit discrepancy flagged UNRESOLVED in ECLIPSE_LIMITS');
+ok(!JSON.stringify(cyRecords).includes('historicalastrology.com'), 'cycles-data: hijacked domain cited nowhere');
+
+// range guard: refuses (with the era citation) outside −1999…3000
+let cyThrew = false;
+try { conjunctionsBetween(utcDate(-2100, 1, 1, 0), utcDate(-2050, 1, 1, 0)); }
+catch (e) { cyThrew = /−1999…3000/.test(e.message); }
+ok(cyThrew, 'conjunctionsBetween refuses outside −1999…3000 (citing eraAccuracy)');
+
+// --- Time-lords: progressions · firdaria · zodiacal releasing ---------------
+import { progressedPositions, ageFromDates, naibodArc } from '../assets/js/core/progressions.js';
+import { firdaria, currentFirdaria } from '../assets/js/core/firdaria.js';
+import { zodiacalReleasing, distributionAge, unitTable, SIGN_PERIODS, PERIOD_SUM, LOOSING_L1_SIGNS } from '../assets/js/core/releasing.js';
+import { norm360 } from '../assets/js/core/astro.js';
+
+const tlBirth = new Date(Date.UTC(1990, 0, 5, 12, 0)); // fixed: 1990-01-05 12:00 UT, London
+const tlNear = (a, b, tol) => Math.abs(a - b) <= tol;
+
+// (1) firdaria day-chart boundaries (Abu Ma'shar via Dykes; sums verified)
+const tlFd = firdaria(tlBirth, true);
+const tlExpDay = [['Sun',0,10],['Venus',10,18],['Mercury',18,31],['Moon',31,40],['Saturn',40,51],
+  ['Jupiter',51,63],['Mars',63,70],['NorthNode',70,73],['SouthNode',73,75]];
+ok(tlFd.majors.length === 9 && tlExpDay.every(([l,s,e],i) =>
+  tlFd.majors[i].lord === l && tlFd.majors[i].startAge === s && tlFd.majors[i].endAge === e),
+  'firdaria day boundaries: Sun 0-10 … Mars 63-70, NN 70-73, SN 73-75');
+
+// (2) night, nodes at END (Abu Ma'shar default)
+const tlFn = firdaria(tlBirth, false);
+const tlExpN = [['Moon',0,9],['Saturn',9,20],['Jupiter',20,32],['Mars',32,39],['Sun',39,49],
+  ['Venus',49,57],['Mercury',57,70],['NorthNode',70,73],['SouthNode',73,75]];
+ok(tlExpN.every(([l,s,e],i) =>
+  tlFn.majors[i].lord === l && tlFn.majors[i].startAge === s && tlFn.majors[i].endAge === e),
+  "firdaria night 'end': Moon 0-9 … Mercury 57-70, NN 70-73, SN 73-75");
+
+// (3) night, Bonatti 'afterMars' variant
+const tlFa = firdaria(tlBirth, false, { nightNodes: 'afterMars' });
+const tlExpA = [['Moon',0,9],['Saturn',9,20],['Jupiter',20,32],['Mars',32,39],['NorthNode',39,42],
+  ['SouthNode',42,44],['Sun',44,54],['Venus',54,62],['Mercury',62,75]];
+ok(tlExpA.every(([l,s,e],i) =>
+  tlFa.majors[i].lord === l && tlFa.majors[i].startAge === s && tlFa.majors[i].endAge === e),
+  "firdaria night 'afterMars' (Bonatti): NN 39-42, SN 42-44, Sun 44-54, Venus 54-62, Mercury 62-75");
+
+// (4) Sun-major sub-periods at 10/7 boundaries; node majors undivided
+const tlSun = tlFd.majors[0], tlSubLords = ['Sun','Venus','Mercury','Moon','Saturn','Jupiter','Mars'];
+ok(tlSun.subs.length === 7 && tlSun.subs.every((s, i) => s.lord === tlSubLords[i]
+    && tlNear(s.startAge, i * 10 / 7, 1e-9) && tlNear(s.endAge, (i + 1) * 10 / 7, 1e-9)),
+  'firdaria Sun-major subs: 7 equal 10/7-yr parts, Sun→Venus→Mercury→Moon→Saturn→Jupiter→Mars');
+ok(tlFd.majors[7].subs === null && tlFd.majors[8].subs === null
+    && tlFa.majors[4].subs === null && tlFa.majors[5].subs === null,
+  'firdaria node majors have subs === null');
+const tlCf = currentFirdaria(tlFd.majors, 30.5);
+ok(tlCf.major && tlCf.major.lord === 'Mercury' && tlCf.sub && tlCf.sub.lord === 'Venus',
+  'currentFirdaria(30.5): Mercury major / Venus sub (7th sub, 29.143-31)');
+
+// (5) ZR sign years: sum 211; CAPRICORN 27, not 30 (Valens IV.6)
+ok(PERIOD_SUM === 211 && SIGN_PERIODS.reduce((a, b) => a + b, 0) === 211, 'ZR sign years sum to 211');
+ok(SIGN_PERIODS[9] === 27 && SIGN_PERIODS[10] === 30 && SIGN_PERIODS[3] === 25,
+  'ZR Capricorn = 27 (half of half of the Moon’s 108 — Valens IV.6), Aquarius 30, Cancer 25');
+
+// (6) Cancer L1 from 2012-01-01: 9000 days, ends 2036-08-22 (T. Louis example)
+const tlZrB = new Date(Date.UTC(2012, 0, 1));
+const tlZr = zodiacalReleasing(3, tlZrB, { maxYears: 100 });
+const tlC1 = tlZr.l1[0];
+ok(tlC1.sign === 'Cancer' && tlC1.endDay - tlC1.startDay === 9000
+    && tlC1.endDate.toISOString().slice(0, 10) === '2036-08-22',
+  `ZR Cancer L1 from 2012-01-01: 25×360 = 9000 d, ends ${tlC1.endDate.toISOString().slice(0, 10)} (2036-08-22, NOT 2037-01-01)`);
+
+// (7) Cancer L1 L2 chain + loosing of the bond at month 211 → CAPRICORN
+const tlL2 = tlC1.l2;
+const tlExpL2 = [['Cancer',25],['Leo',19],['Virgo',20],['Libra',8],['Scorpio',15],['Sagittarius',12],
+  ['Capricorn',27],['Aquarius',30],['Pisces',12],['Aries',15],['Taurus',8],['Gemini',20]];
+ok(tlExpL2.every(([s, m], i) => tlL2[i].sign === s && tlL2[i].months === m)
+    && tlNear(tlL2[11].endDay - tlC1.startDay, 211 * 30, 1e-6),
+  'ZR Cancer L1: first 12 L2s Cancer 25m … Gemini 20m, cumulative 211 months');
+ok(tlL2[12] && tlL2[12].sign === 'Capricorn' && tlL2[12].loosed === true
+    && tlNear(tlL2[12].startDay - tlC1.startDay, 211 * 30, 1e-6)
+    && tlL2[13].sign === 'Aquarius' && tlL2[14].sign === 'Pisces',
+  'ZR loosing of the bond: 13th L2 = CAPRICORN (opposite sign) at month 211, then Aquarius, Pisces…');
+const tlLast = tlL2[tlL2.length - 1];
+ok(tlNear(tlLast.endDay - tlC1.startDay, 300 * 30, 1e-6) && tlLast.truncated === true,
+  'ZR Cancer L1 L2 chain truncated at month 300 (the parent’s end)');
+ok(JSON.stringify(LOOSING_L1_SIGNS) === JSON.stringify([2, 3, 4, 5, 9, 10]),
+  'ZR loosing-eligible L1 signs (number ≥ 19): Gemini, Cancer, Leo, Virgo, Capricorn, Aquarius');
+
+// (8) L3/L4 unit table = Valens IV.10 (n × 2.5 d, n × 5 h)
+const tlUt = unitTable(); const tlU = s => tlUt.find(u => u.sign === s);
+ok([['Aries', 37.5, '3d3h'], ['Leo', 47.5, '3d23h'], ['Cancer', 62.5, '5d5h'], ['Aquarius', 75, '6d6h'],
+    ['Capricorn', 67.5, '5d15h'], ['Sagittarius', 30, '2d12h'], ['Taurus', 20, '1d16h'], ['Gemini', 50, '4d4h']]
+  .every(([s, l3, l4]) => { const u = tlU(s); return tlNear(u.l3Days, l3, 1e-9) && `${u.l4.days}d${u.l4.hours}h` === l4; }),
+  'ZR unit table matches Valens IV.10 (Mars 37.5d/3d3h · Sun 47.5d/3d23h · Moon 62.5d/5d5h · Aqu 75d/6d6h · Cap 67.5d/5d15h · Jup 30d/2d12h · Ven 20d/1d16h · Mer 50d/4d4h)');
+
+// (9) distribution age: Valens IV.9's own arithmetic — 11,903 days = 33 yr + 23 d
+const tlDa = distributionAge(tlZrB, new Date(tlZrB.getTime() + 11903 * 86400000));
+ok(tlDa.years === 33 && tlNear(tlDa.days, 23, 1e-9), 'ZR distributionAge(11,903 d) = 33 yr + 23 d (Valens IV.9)');
+
+// (10) secondary progressions, 1990-01-05 12:00 UT London
+const tlP30 = progressedPositions(tlBirth, 51.5074, -0.1278, 30);
+const tlNatal = tlP30.natal;
+const tlSunAdv = norm360(tlP30.planets.Sun.lon - tlNatal.planets.Sun.lon);
+ok(tlSunAdv >= 28.6 && tlSunAdv <= 30.6, `progressed Sun at 30 = natal + ${tlSunAdv.toFixed(2)}° (28.6–30.6)`);
+const tlMoonAdv = norm360(tlP30.planets.Moon.lon - tlNatal.planets.Moon.lon) + 360;
+ok(tlNear(tlMoonAdv, 395, 5), `progressed Moon at 30 = natal + ${tlMoonAdv.toFixed(1)}° (395 ± 5, mod 360 handled)`);
+const tlP0 = progressedPositions(tlBirth, 51.5074, -0.1278, 0);
+ok(Math.abs(((tlP0.progressedMC - tlNatal.mc + 540) % 360) - 180) < 0.01
+    && Math.abs(((tlP0.progressedAsc - tlNatal.asc + 540) % 360) - 180) < 0.01,
+  'progressions at age 0 reproduce the natal MC & Asc to < 0.01°');
+ok(tlNear(naibodArc(30), 29.5694, 1e-4), `naibodArc(30) = ${naibodArc(30).toFixed(5)}° (29.5694 ± 0.0001)`);
+ok(tlNear(ageFromDates(tlBirth, new Date(Date.UTC(2020, 0, 5, 12, 0))), 30, 0.03),
+  'ageFromDates: 1990-01-05 → 2020-01-05 ≈ 30 tropical years');
+
+// --- AI: the cycles & timelords assistant kinds (cite-bound, plain coda) ----
+import { buildCyclesContext, buildCyclesInterpretPrompt, buildTimelordsContext, buildTimelordsInterpretPrompt } from '../assets/js/core/llm-context.js';
+{
+  const cyc = buildCyclesContext({ kind: 'cycles',
+    scan: { fromY: 1990, toY: 2030, conjunctions: cyScan.filter(c => c.date.getUTCFullYear() >= 1990), runs: [] },
+    eclipse: null });
+  ok(/\[F1\]/.test(cyc.system) && /OUTPUT CONTRACT/i.test(cyc.system), 'AI cycles: the grounded context is cite-bound');
+  ok(/documented beliefs/i.test(buildCyclesInterpretPrompt()) && /In plain words/.test(buildCyclesInterpretPrompt()),
+    'AI cycles: interpret prompt keeps the honest framing + the plain-words coda');
+  const tlx = { kind: 'timelords',
+    meta: { birthUTC: tlBirth.toISOString(), lat: 51.5074, lon: -0.1278, isDay: true, ageTropicalYears: 30, asOf: '2020-01-05', asc: 'x', mc: 'y' },
+    progressions: tlP30,
+    firdaria: { ...tlFd, current: tlCf },
+    releasing: {
+      lots: { spirit: { lon: 100, label: "10°00' Cancer" }, fortune: { lon: 200, label: "20°00' Libra" } },
+      fromSpirit: { ...tlZr, current: { l1: tlC1, l2: tlC1.l2[0], distributionAge: { years: 14, days: 255 } } },
+      fromFortune: null,
+    } };
+  const tlc = buildTimelordsContext(tlx);
+  ok(/\[F1\]/.test(tlc.system) && /OUTPUT CONTRACT/i.test(tlc.system), 'AI timelords: the grounded context is cite-bound');
+  ok(tlc.facts.some(f => /CURRENT firdaria: Mercury/i.test(f.text)), 'AI timelords: the current-firdaria fact carries the computed lords');
+  ok(/no demonstrated validity/i.test(buildTimelordsInterpretPrompt()) && /To reflect on/.test(buildTimelordsInterpretPrompt()),
+    'AI timelords: honest close + the plain-words coda');
+}
+
+// --- AI: the 🎯 auspicious-moment finder prompt (engine finds, model translates) ---
+import { buildMomentFinderPrompt } from '../assets/js/core/llm-context.js';
+{
+  const wins = findNextElection('talisman', J2000, 51.5074, -0.1278, { hoursAhead: 24, stepMinutes: 60 });
+  const mp = buildMomentFinderPrompt(goldenReading, wins);
+  ok(mp.indexOf('honest frame first') > -1 && mp.indexOf('honest frame first') < mp.indexOf('The aim'),
+    'moment finder: the honest frame is step 0, FIRST');
+  ok(wins.length === 0 || /WINDOW 1: \d{4}-\d{2}-\d{2} \d{2}:\d{2} UT/.test(mp),
+    'moment finder: computed windows are embedded with real UT times (never the model\'s guess)');
+  ok(/changes nothing real/i.test(mp) && /To reflect on/.test(mp) && /never\s+prescribed/i.test(mp),
+    'moment finder: honest framing + five-part coda locked in');
+  const mpEmpty = buildMomentFinderPrompt(goldenReading, []);
+  ok(/NO qualifying window/.test(mpEmpty), 'moment finder: the empty-scan case is stated honestly');
+}
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

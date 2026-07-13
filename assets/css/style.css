@@ -337,3 +337,85 @@ header.site a:focus-visible, header.site button:focus-visible { outline-color: #
 .w-coord { width: 7rem; max-width: 100%; }
 .w-offset { width: 6rem; max-width: 100%; }
 @media (max-width: 560px) { .w-coord, .w-offset { width: 100%; } }
+
+/* --- Chronology wing (R15) -------------------------------------------------
+   The Hermetic Chronology: epistemic-label badges (documented / disputed /
+   debunked / conspiracy), the timeline rail & markers, the legend grid and the
+   filter chips. The original site's label colours (gold/slate/red/amber on a
+   dark ground) are re-derived here in darker shades that read on parchment,
+   from the site's own palette where possible. Everything is namespaced
+   `chron-` and touches nothing else. */
+:root {
+  --chron-doc: var(--gold);       /* documented — the site's gilt */
+  --chron-disp: #4a68a8;          /* disputed — slate blue (darkened from #8FA6CE) */
+  --chron-deb: #b23b2e;           /* debunked — rubric red (site --malefic) */
+  --chron-con: #b06f1f;           /* conspiracy — burnt amber (darkened from #D79E56) */
+}
+
+/* label badges */
+.chron-badge { display: inline-block; font-family: var(--sans); font-size: .66rem; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase; padding: .12rem .5rem; border-radius: 4px;
+  border: 1px solid; vertical-align: middle; }
+.chron-badge.chron-doc  { color: #6b4d0c; background: #f7ecce; border-color: var(--chron-doc); }
+.chron-badge.chron-disp { color: #2b4a6b; background: #e7eef7; border-color: var(--chron-disp); }
+.chron-badge.chron-deb  { color: #7a1d1d; background: #f6d9d9; border-color: var(--chron-deb); }
+.chron-badge.chron-con  { color: #7a4a06; background: #f8e8d0; border-color: var(--chron-con); }
+
+/* timeline rail + markers (documented = gilt diamond; others = circles,
+   hollow for disputed/conspiracy, solid for debunked — as on the original) */
+.chron-item { position: relative; margin: 0 0 1rem; padding-left: 1.6rem; border-left: 3px solid var(--rule); }
+.chron-item::before { content: ''; position: absolute; left: -8px; top: 1.15rem; width: 11px; height: 11px;
+  border-radius: 50%; background: var(--card); border: 3px solid var(--chron-doc); }
+.chron-l-doc::before  { border-color: var(--chron-doc); background: var(--chron-doc);
+  border-radius: 2px; transform: rotate(45deg); }
+.chron-l-disp::before { border-color: var(--chron-disp); }
+.chron-l-deb::before  { border-color: var(--chron-deb); background: var(--chron-deb); }
+.chron-l-con::before  { border-color: var(--chron-con); }
+
+.chron-era { margin-top: 2.2rem; }
+.chron-era .chron-range { font-family: var(--sans); font-size: .78rem; font-weight: 400;
+  color: var(--muted); letter-spacing: .04em; white-space: nowrap; }
+.chron-meta { margin: 0 0 .2rem; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+.chron-date { font-family: var(--sans); font-size: .78rem; font-weight: 700; letter-spacing: .05em;
+  color: #6b5a2a; text-transform: uppercase; }
+.chron-entry h3 { margin: .1rem 0 .35rem; }
+.chron-src { margin: .4rem 0 0; }
+.chron-links { margin: .35rem 0 0; }
+.chron-cast { margin: .5rem 0 0; border-top: 1px dashed var(--rule); padding-top: .45rem; }
+.chron-tier { display: inline-block; font-family: var(--sans); font-size: .66rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: #5a5340; background: var(--parchment-2);
+  border: 1px solid var(--rule); border-radius: 99px; padding: .08rem .5rem; margin-left: .35rem; cursor: help; }
+
+/* legend grid */
+.chron-legend { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin: 1rem 0; }
+.chron-legend .chron-key { background: var(--card); border: 1px solid var(--rule); border-radius: 8px;
+  padding: .55rem .7rem; font-size: .88rem; }
+
+/* filter chips */
+.chron-chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .7rem; }
+.chron-chip { font-family: var(--sans); font-size: .74rem; font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase; padding: .3rem .7rem; border-radius: 99px; cursor: pointer;
+  background: var(--parchment-2); color: var(--muted); border: 1px solid var(--rule); transition: .15s; }
+.chron-chip[aria-pressed="true"].chron-doc  { color: #6b4d0c; background: #f7ecce; border-color: var(--chron-doc); }
+.chron-chip[aria-pressed="true"].chron-disp { color: #2b4a6b; background: #e7eef7; border-color: var(--chron-disp); }
+.chron-chip[aria-pressed="true"].chron-deb  { color: #7a1d1d; background: #f6d9d9; border-color: var(--chron-deb); }
+.chron-chip[aria-pressed="true"].chron-con  { color: #7a4a06; background: #f8e8d0; border-color: var(--chron-con); }
+.chron-chip[aria-pressed="false"] { opacity: .55; text-decoration: line-through; }
+
+/* reveal animation — disabled outright under prefers-reduced-motion */
+.chron-reveal { opacity: 0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease; }
+.chron-reveal.chron-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .chron-reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* library reliability tiers + field-guide swatches */
+.chron-tag { display: inline-block; font-family: var(--sans); font-size: .64rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; padding: .1rem .45rem; border-radius: 4px;
+  margin-right: .4rem; border: 1px solid; vertical-align: middle; }
+.chron-tag.sch { color: #1f5e1d; background: #d8efd6; border-color: var(--benefic); }
+.chron-tag.jrn { color: #2b4a6b; background: #e7eef7; border-color: var(--chron-disp); }
+.chron-tag.web { color: #7a5a06; background: #faedcb; border-color: var(--gold); }
+.chron-swatch { display: inline-block; width: .85em; height: .85em; border-radius: 50%;
+  border: 1px solid rgba(0,0,0,.25); vertical-align: baseline; margin-right: .35rem; }
+/* --- end Chronology wing (R15) --------------------------------------------- */

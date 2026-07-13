@@ -18,6 +18,8 @@ import {
   buildGeomancyContext, buildTarotContext, buildIchingContext, buildJungContext,
   buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, buildIchingInterpretPrompt, buildJungInterpretPrompt,
   geomancyDataBlock, tarotDataBlock, ichingDataBlock, jungDataBlock, SITE_URLS,
+  buildCyclesContext, buildCyclesInterpretPrompt, cyclesDataBlock,
+  buildTimelordsContext, buildTimelordsInterpretPrompt, timelordsDataBlock,
 } from '../core/llm-context.js';
 import { PROVIDERS, PROV_ORDER, streamChat, factBudget, isFreeKind, openrouterHeaders } from './llm-core.js';
 import { LOCAL_DEFAULTS } from './local-config.js';
@@ -47,10 +49,13 @@ const prefillKey = () => lsGet(keyStore()) || (provName() === LOCAL_DEFAULTS.pro
 // and the diviner persona + glossary already cost ~700 tokens, so free providers
 // get a much leaner fact set and a trimmed glossary (and drop the JSON data block
 // below) to keep a grounded interpret request under the cap.
-const CTX = { geomancy: buildGeomancyContext, tarot: buildTarotContext, iching: buildIchingContext, jung: buildJungContext };
-const PROMPT = { geomancy: buildGeomancyInterpretPrompt, tarot: buildTarotInterpretPrompt, iching: buildIchingInterpretPrompt, jung: buildJungInterpretPrompt };
-const DATABLOCK = { geomancy: geomancyDataBlock, tarot: tarotDataBlock, iching: ichingDataBlock, jung: jungDataBlock };
-const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast', jung: 'report' };
+const CTX = { geomancy: buildGeomancyContext, tarot: buildTarotContext, iching: buildIchingContext, jung: buildJungContext,
+  cycles: buildCyclesContext, timelords: buildTimelordsContext };
+const PROMPT = { geomancy: buildGeomancyInterpretPrompt, tarot: buildTarotInterpretPrompt, iching: buildIchingInterpretPrompt, jung: buildJungInterpretPrompt,
+  cycles: buildCyclesInterpretPrompt, timelords: buildTimelordsInterpretPrompt };
+const DATABLOCK = { geomancy: geomancyDataBlock, tarot: tarotDataBlock, iching: ichingDataBlock, jung: jungDataBlock,
+  cycles: cyclesDataBlock, timelords: timelordsDataBlock };
+const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast', jung: 'report', cycles: 'sweep', timelords: 'periods' };
 // per-tool copy overrides (a tool may pass api.copy to re-skin the panel, e.g.
 // the Jung tool makes it speak in Jung's own first-person voice).
 const cp = (k, d) => (api && api.copy && api.copy[k] != null) ? api.copy[k] : d;

@@ -24,6 +24,8 @@ const NAV_GROUPS = [
     ['pages/now.html', 'Now', 'now'],
     ['pages/workbench.html', 'Master Tool', 'workbench'],
     ['pages/trajectory.html', 'Trajectory', 'trajectory'],
+    ['pages/timelords.html', 'Time-lords', 'timelords'],
+    ['pages/cycles.html', 'Cycles', 'cycles'],
     ['pages/tools.html#divination', 'Oracles', 'oracles'],
     ['pages/workflow.html', 'Workflow', 'workflow'],
     ['pages/tools.html', 'All Tools', 'tools'],
@@ -35,6 +37,7 @@ const NAV_GROUPS = [
     ['pages/picatrix/index.html', 'Picatrix', 'picatrix'],
     ['pages/vedic/index.html', 'Vedic', 'vedic'],
     ['pages/jung/index.html', 'Jung', 'jung'],
+    ['pages/chronology/index.html', 'Chronology', 'chronology'],
   ] },
   { label: 'Reference', items: [
     ['pages/glossary.html', 'Glossary', 'glossary'],
@@ -53,6 +56,7 @@ function currentSection() {
   if (/\/pages\/picatrix\//.test(p)) return 'picatrix';
   if (/\/pages\/vedic\//.test(p)) return 'vedic';
   if (/\/pages\/jung\//.test(p)) return 'jung';
+  if (/\/pages\/chronology\//.test(p)) return 'chronology';
   if (/\/pages\/about\//.test(p)) return 'about';
   if (/\/pages\/basics\.html$/.test(p)) return 'basics';
   if (/\/pages\/interpret\.html$/.test(p)) return 'basics';
@@ -60,6 +64,8 @@ function currentSection() {
   if (/\/pages\/workbench\.html$/.test(p)) return 'workbench';
   if (/\/pages\/master\.html$/.test(p)) return 'master';
   if (/\/pages\/trajectory\.html$/.test(p)) return 'trajectory';
+  if (/\/pages\/timelords\.html$/.test(p)) return 'timelords';
+  if (/\/pages\/cycles\.html$/.test(p)) return 'cycles';
   if (/\/pages\/workflow\.html$/.test(p)) return 'workflow';
   if (/\/pages\/tools\.html$/.test(p)) return 'tools';
   if (/\/pages\/(experiment|structure|geomancy|tarot|iching)\.html$/.test(p)) return 'tools';
@@ -118,11 +124,14 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/picatrix/index.html')}">Picatrix — Astrological Magic</a></li>
         <li><a href="${R('pages/vedic/index.html')}">Jagannath Hora — Vedic (sidereal)</a></li>
         <li><a href="${R('pages/jung/index.html')}">Jung &amp; astrology — the psychologist among the horoscopes</a></li>
+        <li><a href="${R('pages/chronology/index.html')}">The Hermetic Chronology — as above, so below</a></li>
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
         <li><a href="${R('pages/workbench.html')}">The Master Tool (Workbench) — every calculation in one place</a></li>
         <li><a href="${R('pages/trajectory.html')}">Life Trajectory (birth chart anywhere)</a></li>
+        <li><a href="${R('pages/timelords.html')}">Time-lords &amp; progressions — firdaria · zodiacal releasing</a></li>
+        <li><a href="${R('pages/cycles.html')}">Cycles of History — great conjunctions &amp; eclipses</a></li>
         <li><a href="${R('pages/now.html')}">Right Now — live sky</a></li>
         <li><a href="${R('pages/picatrix/election.html')}">Election — choose the moment</a></li>
         <li><a href="${R('pages/book3/master.html')}">Book III Master Tool</a></li>
