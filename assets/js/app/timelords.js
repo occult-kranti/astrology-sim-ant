@@ -84,7 +84,9 @@ function compute() {
 
   const prog = progressedPositions(birth, lat, lon, ageYears, { system });
   const fird = firdaria(birth, chart.isDay, { nightNodes: nodeChoice() });
-  const curF = currentFirdaria(fird.majors, ageYears);
+  // firdaria boundaries use Julian years (365.25 d, the module's documented
+  // convention) — the "current" lookup must use the same clock, not tropical
+  const curF = currentFirdaria(fird.majors, (asOf.getTime() - birth.getTime()) / (365.25 * 86400000));
   // Lots SECT-AWARE for the releasing: Valens's Hellenistic Lots reverse by
   // night (Lilly's non-reversing convention is the site default elsewhere).
   const lots = lotsByKey(chart, { sectAware: true });

@@ -110,7 +110,24 @@ export function conjunctionsBetween(startDate, endDate, opts = {}) {
   const t0 = startDate.getTime(), t1 = endDate.getTime();
   const hits = [];
 
+  // A grazing retrograde loop can dip through zero TWICE inside one coarse
+  // step (verified: October 979 BCE — two crossings 6 days apart, same sign at
+  // both step samples). So besides sign changes, any low-|f| sample triplet
+  // that brackets a local minimum is re-scanned at fine resolution.
+  const fineScan = (aMs, bMs) => {
+    const fine = 2 * DAY_MS;
+    let pT = aMs, pF = jsDiff(aMs);
+    for (let t = aMs + fine; pT < bMs; t += fine) {
+      if (t > bMs) t = bMs;
+      const f = jsDiff(t);
+      if ((pF === 0 || pF * f < 0) && Math.abs(f - pF) < 90) hits.push(bisectCrossing(pT, t, pF));
+      pT = t; pF = f;
+      if (t === bMs) break;
+    }
+  };
+
   let prevT = t0, prevF = jsDiff(t0);
+  let prev2F = null; // the sample before prevF, for local-minimum detection
   for (let t = t0 + stepMs; prevT < t1; t += stepMs) {
     if (t > t1) t = t1;
     const f = jsDiff(t);
@@ -119,11 +136,19 @@ export function conjunctionsBetween(startDate, endDate, opts = {}) {
     // degrees per step, while the opposition wrap jumps by ~360°.
     if ((prevF === 0 || prevF * f < 0) && Math.abs(f - prevF) < 90) {
       hits.push(bisectCrossing(prevT, t, prevF));
+    } else if (prev2F !== null && Math.abs(prevF) < 3
+      && Math.abs(prevF) <= Math.abs(prev2F) && Math.abs(prevF) <= Math.abs(f)
+      && Math.abs(f - prevF) < 90 && Math.abs(prevF - prev2F) < 90) {
+      // same-sign local minimum under 3° at prevT: a possible grazing double
+      // crossing hides between the neighbours — probe the bracket finely.
+      fineScan(prevT - stepMs, t);
     }
-    prevT = t; prevF = f;
+    prev2F = prevF; prevT = t; prevF = f;
     if (t === t1) break;
   }
-  return hits;
+  hits.sort((a, b) => a.date - b.date);
+  // the fine probe may re-find a crossing the coarse branch already caught
+  return hits.filter((h, i) => !i || h.date.getTime() - hits[i - 1].date.getTime() > 36 * HOUR_MS);
 }
 
 function bisectCrossing(aMs, bMs, fa) {

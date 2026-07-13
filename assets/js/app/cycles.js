@@ -117,8 +117,11 @@ async function runScan() {
     for (let y = fromY; y <= toY; y += 120) {
       if (token !== scanToken) return;                       // superseded
       const yEnd = Math.min(y + 120, toY + 1);
-      status.textContent = `scanning ${y}…${yEnd}`;
-      const chunk = conjunctionsBetween(utcDate(y, 1, 1, 0), utcDate(yEnd, 1, 1, 0));
+      status.textContent = `scanning ${y}…${Math.min(yEnd, YEAR_MAX)}`;
+      // the era guard refuses year 3001, so a scan ending AT the max year
+      // closes on 3000-12-31 rather than 3001-01-01
+      const chunkEnd = yEnd > YEAR_MAX ? utcDate(YEAR_MAX, 12, 31, 23) : utcDate(yEnd, 1, 1, 0);
+      const chunk = conjunctionsBetween(utcDate(y, 1, 1, 0), chunkEnd);
       for (const c of chunk) {
         const prev = hits[hits.length - 1];
         if (!prev || Math.abs(c.date - prev.date) > 2 * 86400000) hits.push(c); // dedupe chunk seams

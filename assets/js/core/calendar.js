@@ -143,15 +143,21 @@ export function deltaTSeconds(year) {
 }
 
 // 1-σ ΔT uncertainty in seconds. Morrison & Stephenson (2004) parabola for
-// the pre-telescopic era; conservative published-table figures afterwards
-// (their Table 1 reaches ~20 s at 1500; telescopic/modern eras are seconds).
+// the pre-telescopic era (floored at the 1500s table value so σ never dips
+// BELOW a later, better-observed era on the way back); conservative
+// published-table figures for the telescopic/modern eras; and for years
+// beyond the observation-constrained present the same quadratic growth law
+// is applied forward from ~2035 as an EXTRAPOLATION HEURISTIC (there is no
+// future data — ΔT forecasts decades out are genuinely uncertain).
 export function deltaTSigmaSeconds(year) {
-  if (year < 1500) { const t = (year - 1820) / 100; return 0.8 * t * t; }
+  if (year < 1500) { const t = (year - 1820) / 100; return Math.max(0.8 * t * t, 20); }
   if (year < 1600) return 20;
   if (year < 1700) return 10;
   if (year < 1800) return 5;
   if (year < 1900) return 2;
-  return 1;
+  if (year <= 2035) return 1;
+  const u = (year - 2035) / 100;
+  return 1 + 0.8 * u * u;
 }
 
 // --- era-accuracy tiers -----------------------------------------------------
@@ -185,7 +191,8 @@ export function eraAccuracy(year) {
     return {
       ...base, grade: 'study', label: 'study-grade',
       showArcminutes: true, moonWholeDegrees: false,
-      note: 'Positions good to a few arcminutes; ΔT uncertainty under ~1 minute of time (Morrison & Stephenson 2004). '
+      note: 'Positions good to a few arcminutes; ΔT uncertain by seconds to minutes of time at this epoch '
+        + '(Morrison & Stephenson 2004 for the past; extrapolated growth for the far future). '
         + 'Sign and degree are reliable; treat arcminutes as approximate.'
     };
   }

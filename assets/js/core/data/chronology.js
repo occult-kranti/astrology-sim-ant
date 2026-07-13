@@ -87,7 +87,7 @@ export const CHRONOLOGY_ENTRIES = [
   {
     era: 'antiquity', dateText: 'c. 1st c. CE', sortYear: -50,
     title: '“Hermes Trismegistus” takes shape',
-    body: 'The Greek god Hermes fuses with the Egyptian Thoth into a single legendary sage credited with primordial wisdom. Plutarch already refers to “Hermes Trismegistus” in the first century CE.',
+    body: 'The Greek god Hermes fuses with the Egyptian Thoth into a single legendary sage credited with primordial wisdom. The epithet “thrice-greatest” is attested as early as 172 BCE in the minutes of an Egyptian ibis-cult association; its first datable Greek literary occurrences are Philo of Byblos and Athenagoras (1st–2nd c. CE). Plutarch, in the first century CE, already mentions “the books of Hermes”.',
     label: 'documented',
     sources: ['Copenhaver, Hermetica (1992)', 'van Bladel, The Arabic Hermes (2009).'],
   },
@@ -370,11 +370,11 @@ export const CHRONOLOGY_ENTRIES = [
     sources: ['Burns (2010)', 'University of Cambridge / RCP.'],
   },
   {
-    era: 'contemporary', dateText: '1994', sortYear: 1994,
+    era: 'contemporary', dateText: '1978', sortYear: 1978,
     title: "Laycock's sceptical analysis of Enochian",
     body: 'The linguist Donald Laycock concludes that Dee and Kelley’s “angelic language” lacks the features of a natural language and patterns more like glossolalia — undercutting claims of a supernatural origin.',
     label: 'documented',
-    sources: ['Laycock, The Complete Enochian Dictionary (1994).'],
+    sources: ['Laycock, The Complete Enochian Dictionary (1978; repr. Weiser 1994).'],
   },
   {
     era: 'contemporary', dateText: '1979 · 1999', sortYear: 1999,
@@ -388,7 +388,7 @@ export const CHRONOLOGY_ENTRIES = [
     title: 'Hermetic motifs absorbed into conspiracy culture',
     body: 'Occult and Hermetic imagery — the all-seeing eye, “Illuminati” symbolism — is recycled into modern theories about secret world control. These “bloodline” and “New World Order” narratives have no evidentiary basis and descend from a documented chain of fabrication, distinct from the historical Hermetic tradition itself.',
     label: 'conspiracy',
-    sources: ['Shown as discourse', 'see method note.'],
+    sources: ['Barkun, A Culture of Conspiracy (2003)', 'Cohn, Warrant for Genocide (1967) — the Protocols fabrication', 'shown as discourse; see method note.'],
   },
 ];
 
