@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn astrology &amp; the mathematics behind it — a step-by-step curriculum | The Astrologer's Workbench</title>
+<meta name="description" content="A complete step-by-step curriculum from zero to every wing of the Workbench, with the mathematics made first-class: the honest frame, the celestial sphere and Local Sidereal Time, the chart (signs, planets, houses, aspects), ephemeris interpolation and proportional logarithms, house-cusp trigonometry, ΔT and calendars, the judgement grammars (dignity → horary → election → nativities), the sidereal zodiac and its ayanāṁśa arithmetic, the symbol systems (kameas' magic squares, Kabbalah's gematria, the oracles' probability), and the research layer (Jung's null experiment, the cycles engine, the scanners). Each math-bearing lesson states the actual formula; progress is saved on your device. Described, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  /* Learn curriculum — all selectors scoped .learn-* (style.css is owned by another agent). */
+  .learn-progress { position: sticky; top: var(--sticky-top, 4.5rem); z-index: 5; background: var(--card); border: 1px solid var(--rule);
+    border-radius: 12px; padding: .7rem 1rem; margin: 1.1rem 0 1.4rem; box-shadow: 0 1px 3px rgba(40,30,10,.06); }
+  .learn-module, .learn-node { scroll-margin-top: calc(var(--sticky-top, 4.5rem) + .6rem); }
+  .learn-progress-top { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; justify-content: space-between; }
+  .learn-progress-label { font-family: var(--sans); font-weight: 700; font-size: .9rem; color: var(--ink); }
+  .learn-bar { height: .5rem; background: var(--parchment-2); border-radius: 999px; overflow: hidden; margin-top: .55rem; }
+  .learn-bar-fill { height: 100%; width: 0; background: var(--gold); border-radius: 999px; transition: width .25s ease; }
+  .learn-reset { font-family: var(--sans); font-size: .74rem; color: var(--link); background: none;
+    border: 1px solid var(--rule); border-radius: 6px; padding: .28rem .65rem; cursor: pointer; }
+  .learn-reset:hover { border-color: var(--gold); }
+
+  .learn-toc { columns: 2; column-gap: 2rem; font-size: .9rem; margin: .5rem 0 0; }
+  .learn-toc li { break-inside: avoid; margin: .1rem 0; }
+
+  .learn-mathnote { border-left: 4px solid var(--gold); background: #fbf4e2; padding: .8rem 1rem;
+    border-radius: 0 8px 8px 0; margin: 1rem 0; }
+  .learn-mathnote blockquote { margin: .4rem 0; padding-left: .9rem; border-left: 2px solid var(--gold-2);
+    font-style: italic; color: var(--ink); }
+  .learn-mathnote cite { display: block; font-style: normal; font-size: .8rem; color: var(--muted); margin-top: .2rem; }
+
+  .learn-module { margin: 2.4rem 0 0; }
+  .learn-modhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem .9rem;
+    border-bottom: 2px solid var(--gold); padding-bottom: .3rem; }
+  .learn-modhead h2 { margin: 0; }
+  .learn-modcount { font-family: var(--sans); font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--muted); background: #f0e8d4; border-radius: 999px; padding: .16rem .6rem; }
+  .learn-modintro { color: var(--muted); font-size: .96rem; margin: .55rem 0 1.2rem; max-width: 72ch; }
+
+  .learn-node { display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 0 0 1.5rem; position: relative; }
+  .learn-medallion { grid-row: 1 / 99; align-self: start; width: 2.7rem; height: 2.7rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-weight: 700;
+    font-size: .8rem; color: var(--gold); background: var(--card); border: 2px solid var(--gold); position: relative; z-index: 1; }
+  .learn-node::before { content: ""; position: absolute; left: 1.35rem; top: 2.7rem; bottom: 0; width: 2px; background: var(--rule); }
+  .learn-node:last-of-type::before { display: none; }
+  .learn-node.is-done .learn-medallion { background: var(--gold); color: #fffdf8; }
+  .learn-node.is-done .learn-medallion::after { content: "✓"; position: absolute; font-size: 1rem; }
+  .learn-node.is-done .learn-medallion span { display: none; }
+  .learn-body { min-width: 0; }
+  .learn-body h3 { margin: .25rem 0 .4rem; }
+  .learn-body p { max-width: 72ch; }
+  .learn-meta { display: flex; flex-wrap: wrap; gap: .35rem .5rem; align-items: center; margin-bottom: .45rem; }
+  .learn-prereq { font-family: var(--sans); font-size: .67rem; color: #2b4a6b; background: #e7eef7;
+    border-radius: 999px; padding: .12rem .55rem; }
+  .learn-prereq a { color: #2b4a6b; text-decoration: underline; }
+  .learn-time { font-family: var(--sans); font-size: .67rem; color: var(--muted); }
+  .chip.learn-mathchip { background: #efe6d2; color: #6b4d0c; }
+
+  .learn-math { border-left: 3px solid var(--gold); background: #fbf4e2; border-radius: 0 8px 8px 0;
+    padding: .55rem .85rem; margin: .6rem 0; font-size: .93rem; max-width: 72ch; }
+  .learn-math code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .92em; }
+  .learn-math-label { display: block; font-family: var(--sans); font-size: .6rem; letter-spacing: .14em;
+    text-transform: uppercase; font-weight: 700; color: var(--gold); margin-bottom: .25rem; }
+
+  .learn-pair { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .5rem; margin: .6rem 0 .2rem; }
+  .learn-pair-label { font-family: var(--sans); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+    font-weight: 700; color: var(--muted); margin-right: .1rem; }
+  .learn-pair .chip { text-decoration: none; }
+
+  .learn-checkbox { margin: .5rem 0 .1rem; }
+  .learn-checkbox > summary { font-family: var(--sans); font-size: .78rem; font-weight: 700; color: var(--link); cursor: pointer; }
+  .learn-checkbox ul, .learn-checkbox ol { margin: .4rem 0 .3rem 1.1rem; font-size: .9rem; }
+
+  .learn-mark { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--sans);
+    font-size: .82rem; margin-top: .55rem; cursor: pointer; color: var(--ink); }
+  .learn-check { width: 1.05rem; height: 1.05rem; accent-color: var(--gold); cursor: pointer; }
+
+  .learn-milestone { display: flex; align-items: center; gap: .75rem; background: #d8efd6; border: 1px solid var(--benefic);
+    border-left: 6px solid var(--benefic); border-radius: 8px; padding: .7rem 1rem; margin: .2rem 0 1.8rem; color: #1f5e1d; }
+  .learn-milestone .learn-ms-glyph { font-size: 1.5rem; line-height: 1; }
+  .learn-milestone b { font-family: var(--sans); }
+
+  @media (prefers-reduced-motion: reduce) { .learn-bar-fill { transition: none; } }
+  @media (max-width: 560px) {
+    .learn-toc { columns: 1; }
+    .learn-node { gap: .7rem; }
+    .learn-medallion { width: 2.3rem; height: 2.3rem; font-size: .72rem; }
+    .learn-node::before { left: 1.15rem; top: 2.3rem; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › Learn</p>
+  <h1>Learn astrology &amp; the mathematics behind it</h1>
+  <p class="lede">A <b>step-by-step curriculum</b> — from zero to every wing of this Workbench. Eight modules,
+    each a short numbered path of lessons: read the page, drive the tool, check yourself, tick it off. The
+    <b>mathematics is first-class throughout</b>: every calculation-bearing lesson states the actual formula or
+    arithmetic, pulled from this site's own engine and verified against its pages. Your progress is saved
+    <em>on this device only</em>.</p>
+
+  <div class="callout science"><span class="label">Read this first — the honest frame is lesson one</span>
+    Astrology has <strong>no demonstrated predictive validity</strong> and is classed by science as a pseudoscience
+    (see <a href="about/index.html">Sources &amp; Science</a>). This curriculum teaches you to <em>compute and read</em>
+    a historical tradition — what astrologers and magicians believed and how they reasoned. The <b>astronomy and the
+    arithmetic are real and reproducible</b>; the <em>interpretations</em> are the tradition's, <b>described, never
+    prescribed</b>. Magical and ritual material is recorded as history only, never as instruction.</div>
+
+  <div class="learn-mathnote"><span class="label" style="font-family:var(--sans);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold);display:block;margin-bottom:.25rem">✶ Why the math comes first</span>
+    In 1570 John Dee prefaced the first English <i>Euclid</i> with a case that the whole art rests on number. He filed
+    astrology itself under the mathematical arts:
+    <blockquote>"Astrologie is an Arte Mathematicall, which reasonably demonstrateth the operations and effectes of the
+      naturall beames of light, and secrete influence of the Sterres and Planets…"</blockquote>
+    <blockquote>"O comfortable allurement, O ravishing perswasion, to deale with a Science whose Subiect is so
+      Auncient, so pure, so excellent, so surmounting all creatures…"</blockquote>
+    <cite>— John Dee, <i>Mathematicall Praeface</i> to Billingsley's Euclid (London, 1570); public domain,
+      Project Gutenberg #22062.</cite>
+    <p class="small" style="margin:.5rem 0 0">Dee's frame is our starting point with one honest correction: the site
+      keeps only the <b>astronomy and arithmetic</b> as demonstrably real. The step from a true map of the sky to a
+      claim about a life is the interpretive move, and it has never been shown to work. Learn the mathematics for the
+      craft and the history; keep the honesty about what it can and cannot tell you.</p>
+  </div>
+
+  <div class="learn-progress">
+    <div class="learn-progress-top">
+      <div class="learn-bar" role="progressbar" aria-label="Overall curriculum progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="flex:1 1 240px;order:2">
+        <div class="learn-bar-fill" id="learn-bar-fill"></div>
+      </div>
+      <span class="learn-progress-label" id="learn-progress-label" role="status" aria-live="polite" style="order:1">Loading your progress…</span>
+      <button type="button" class="learn-reset" id="learn-reset" style="order:3">Reset progress</button>
+    </div>
+    <p class="small muted" style="margin:.5rem 0 0">Tick a lesson to mark it done — the tick is remembered in this
+      browser's <code>localStorage</code>; nothing leaves your device, and the page works fully with JavaScript off.</p>
+  </div>
+
+  <nav class="callout" aria-label="The eight modules" style="background:#0e1426;border-color:#2a3350">
+    <span class="label">The path — eight modules</span>
+    <ol class="learn-toc clean">
+      <li><a href="#m1">M1 · Orientation</a> — the honest frame &amp; how the site works</li>
+      <li><a href="#m2">M2 · The sky &amp; the math I</a> — the sphere, the zodiac, sidereal time</li>
+      <li><a href="#m3">M3 · The chart</a> — signs, planets, houses, aspects</li>
+      <li><a href="#m4">M4 · The math II</a> — ephemerides, logarithms, house trig, ΔT</li>
+      <li><a href="#m5">M5 · Judgement grammars</a> — dignity → horary → election → nativities</li>
+      <li><a href="#m6">M6 · The other zodiac</a> — sidereal math &amp; the Vedic wing</li>
+      <li><a href="#m7">M7 · The symbol systems</a> — kameas, gematria, the oracles</li>
+      <li><a href="#m8">M8 · The research layer</a> — Jung, cycles, the scanners, going deeper</li>
+    </ol>
+  </nav>
+
+  <!-- ================= MODULE 1 ================= -->
+  <section class="learn-module" id="m1">
+    <div class="learn-modhead">
+      <h2>M1 · Orientation</h2>
+      <span class="learn-modcount" data-modcount="m1">0 / 3 done</span>
+    </div>
+    <p class="learn-modintro">Before a single chart: what this tradition is and isn't, why the honesty is the spine of
+      the whole site, and how the Workbench is laid out so you can find anything.</p>
+
+    <div class="learn-node" id="m1l1" data-module="m1">
+      <div class="learn-medallion" aria-hidden="true"><span>1.1</span></div>
+      <div class="learn-body">
+        <h3>What astrology is — and what it isn't</h3>
+        <div class="learn-meta"><span class="learn-time">~15 min</span></div>
+        <p>Start with the verdict of science: astrology has no demonstrated predictive validity, and this site says so
+          on every page. Learn the three-part frame you will carry everywhere — the <b>astronomy is verified</b>, the
+          <b>doctrine is historical</b>, and the <b>predictive claim is unsupported</b> — so that everything after is
+          study, not belief.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="about/index.html">read: Sources &amp; Science</a>
+          <a class="chip tool" href="basics.html">read: The Basics (honest note)</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>State the three parts of the honest frame in your own words.</li>
+            <li>Which one part of astrology is genuinely reproducible?</li>
+            <li>What does "described, never prescribed" mean for the magical material?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m1" data-lesson="m1l1" aria-label="Mark lesson 1.1, What astrology is and isn't, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m1l2" data-module="m1">
+      <div class="learn-medallion" aria-hidden="true"><span>1.2</span></div>
+      <div class="learn-body">
+        <h3>How this Workbench works</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m1l1">1.1</a></span><span class="learn-time">~20 min</span></div>
+        <p>Every result on the site is computed from a verified astronomical engine (≈ 1 arc-minute) and then judged by
+          the tradition's own rules, with each number linked to its method and glossary entry. Meet the three layers you
+          will keep returning to: <b>The Basics</b> (what each concept means), <b>How it's calculated</b> (the exact
+          method), and <b>Reading your results</b> (what the output panels say).</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="how-it-works.html">read: How it's calculated</a>
+          <a class="chip tool" href="interpret.html">read: Reading your results</a>
+          <a class="chip tool" href="tools.html">browse: every tool</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Which page gives the step-by-step arithmetic of a calculation?</li>
+            <li>To how many arc-minutes does the engine claim accuracy?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m1" data-lesson="m1l2" aria-label="Mark lesson 1.2, How this Workbench works, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m1l3" data-module="m1">
+      <div class="learn-medallion" aria-hidden="true"><span>1.3</span></div>
+      <div class="learn-body">
+        <h3>The map of the whole site</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m1l2">1.2</a></span><span class="learn-time">~10 min</span></div>
+        <p>Get the lay of the land before you dive in: the Master Index lists every page, and the Chapter Map ties each
+          chapter of Lilly's three books to the tool that computes it and a worked example. Skim both so the later
+          modules feel like filling in a map you have already seen.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="contents.html">browse: Master Index</a>
+          <a class="chip tool" href="workflow.html">read: Chapter Map &amp; Workflows</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Name the three "core workflows" the Chapter Map opens with.</li>
+            <li>Where would you look up the definition of any unfamiliar term?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m1" data-lesson="m1l3" aria-label="Mark lesson 1.3, The map of the whole site, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 2 ================= -->
+  <section class="learn-module" id="m2">
+    <div class="learn-modhead">
+      <h2>M2 · The sky &amp; the math I</h2>
+      <span class="learn-modcount" data-modcount="m2">0 / 3 done</span>
+    </div>
+    <p class="learn-modintro">The real, reproducible foundation: the geometry of the sky the chart is a snapshot of,
+      the zodiac laid along it, and the sidereal clock that turns a birth time into a rising degree.</p>
+
+    <div class="learn-node" id="m2l1" data-module="m2">
+      <div class="learn-medallion" aria-hidden="true"><span>2.1</span></div>
+      <div class="learn-body">
+        <h3>The celestial sphere, the ecliptic &amp; the zodiac</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m1l2">1.2</a></span><span class="learn-time">~20 min</span></div>
+        <p>A chart is a map of the sky for one moment seen from one place. The Sun's yearly path is the <b>ecliptic</b>,
+          and the band of sky along it is divided into the twelve signs. Learn why Lilly's <b>tropical</b> zodiac is
+          pinned to the seasons, not the stars.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          The ecliptic is cut into <b>12 signs of 30° each</b>: <code>12 × 30° = 360°</code>. In the tropical zodiac,
+          <code>0° Aries</code> is fixed to the spring equinox — the point the Sun crosses going north — not to any star.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="basics.html#chart">read: The chart &amp; the zodiac</a>
+          <a class="chip tool" href="how-it-works.html">read: How it's calculated</a>
+          <a class="chip tool" href="workbench.html">drive: cast a chart, watch the wheel</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>How many degrees wide is one sign, and why 12 of them?</li>
+            <li>What is 0° Aries pinned to in the tropical zodiac?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m2" data-lesson="m2l1" aria-label="Mark lesson 2.1, The celestial sphere, ecliptic and zodiac, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m2l2" data-module="m2">
+      <div class="learn-medallion" aria-hidden="true"><span>2.2</span></div>
+      <div class="learn-body">
+        <h3>Coordinates &amp; Local Sidereal Time</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m2l1">2.1</a></span><span class="learn-time">~30 min</span></div>
+        <p>The single hardest number in casting a chart is the <b>Local Sidereal Time</b> — the sky's own clock at your
+          longitude, which fixes what degree is rising. Work it by hand at Station 2 of the hand-calc tool, which checks
+          your arithmetic against the exact engine and shows the delta.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          <code>LST = ST@prior-midnight + UT-interval + acceleration + longitude ÷ 15</code> (East adds, West
+          subtracts), reduced below 24h. Sidereal time gains ≈ <b>3m 56.6s</b> on the Sun each day; the hand-book rule
+          is <b>10 s per hour</b> of interval — <code>(h × 10 + m ÷ 6)</code> seconds — beside the exact mean rate
+          <b>9.8565 s/hour</b>.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="handcalc.html">drive: Cast a chart by hand (Station 2)</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Which four terms sum to the LST?</li>
+            <li>By roughly how much does sidereal time gain on solar time each day?</li>
+            <li>How many degrees of longitude equal one hour of time?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m2" data-lesson="m2l2" aria-label="Mark lesson 2.2, Coordinates and Local Sidereal Time, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m2l3" data-module="m2">
+      <div class="learn-medallion" aria-hidden="true"><span>2.3</span></div>
+      <div class="learn-body">
+        <h3>Reading the wheel &amp; the positions</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m2l2">2.2</a></span><span class="learn-time">~15 min</span></div>
+        <p>Now turn the numbers into a picture. The Ascendant is the degree rising on the eastern horizon (the cusp of
+          the 1st house); the Midheaven is the degree culminating overhead. Learn to read the summary line, the
+          positions table and the chart wheel the engine draws.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="interpret.html">read: The figure &amp; the positions</a>
+          <a class="chip tool" href="workbench.html">drive: the Master Tool</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>What does the Ascendant mark on the horizon?</li>
+            <li>What symbol in the positions table means a planet is retrograde?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m2" data-lesson="m2l3" aria-label="Mark lesson 2.3, Reading the wheel and the positions, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+  </section>
+
+  <div class="learn-milestone"><span class="learn-ms-glyph" aria-hidden="true">✶</span>
+    <span><b>Milestone.</b> You understand the sky the chart is a snapshot of, and can turn a moment and place into a
+      rising degree. Now populate that frame with the alphabet of the art.</span></div>
+
+  <!-- ================= MODULE 3 ================= -->
+  <section class="learn-module" id="m3">
+    <div class="learn-modhead">
+      <h2>M3 · The chart</h2>
+      <span class="learn-modcount" data-modcount="m3">0 / 4 done</span>
+    </div>
+    <p class="learn-modintro">The alphabet Lilly's Book I builds: the signs and the seven planets, the twelve houses,
+      and the aspects by which planets act on one another — then cast your own first figure.</p>
+
+    <div class="learn-node" id="m3l1" data-module="m3">
+      <div class="learn-medallion" aria-hidden="true"><span>3.1</span></div>
+      <div class="learn-body">
+        <h3>The signs &amp; the seven planets</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m2l1">2.1</a></span><span class="learn-time">~25 min</span></div>
+        <p>Traditional astrology uses seven planets — the two luminaries (Sun, Moon) and five wandering stars — plus the
+          Moon's two nodes, each with a nature and a set of significations. The twelve signs carry an element
+          (fire/earth/air/water) and a mode (movable/fixed/common) that colour how a planet there behaves.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="basics.html#planets">read: The planets &amp; the lights</a>
+          <a class="chip tool" href="book1/reference.html#signs">reference: signs &amp; planets</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Name the seven traditional planets and the two luminaries among them.</li>
+            <li>Which two planets are the benefics, and which two the malefics?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m3" data-lesson="m3l1" aria-label="Mark lesson 3.1, The signs and the seven planets, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m3l2" data-module="m3">
+      <div class="learn-medallion" aria-hidden="true"><span>3.2</span></div>
+      <div class="learn-body">
+        <h3>The twelve houses</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m3l1">3.1</a></span><span class="learn-time">~20 min</span></div>
+        <p>The houses are the twelve segments of the local sky, fixed to the horizon, each governing a department of
+          life — the 1st the self, the 7th marriage and open enemies, the 10th honour and career. Learn the angular /
+          succedent / cadent strength ranking, which feeds a planet's accidental dignity later.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="basics.html#houses">read: The twelve houses</a>
+          <a class="chip tool" href="book2/houses.html">reference: questions house by house</a>
+          <a class="chip tool" href="book1/master.html">drive: see each planet's house</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Which four houses are the angular (strongest) ones?</li>
+            <li>What life-topic does the 7th house govern?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m3" data-lesson="m3l2" aria-label="Mark lesson 3.2, The twelve houses, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m3l3" data-module="m3">
+      <div class="learn-medallion" aria-hidden="true"><span>3.3</span></div>
+      <div class="learn-body">
+        <h3>Aspects &amp; reception</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m3l1">3.1</a></span><span class="learn-time">~25 min</span></div>
+        <p>An aspect is a meaningful angle by which two planets "see" and act on one another; whether it is
+          <b>applying</b> (coming about) or <b>separating</b> (past) is the heart of horary timing. <b>Reception</b> —
+          a planet sitting in another's dignity — softens even a hard aspect.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          Five Ptolemaic angles: conjunction <code>0°</code>, sextile <code>60°</code>, square <code>90°</code>,
+          trine <code>120°</code>, opposition <code>180°</code>. Orbs belong to the <em>planets</em> (Saturn 9°,
+          Jupiter 9°, Mars 7°, Sun 15°, Venus 7°, Mercury 7°, Moon 12°); the two half-orbs (<b>moieties</b>) add, and
+          bodies are in aspect when <code>|separation − angle| ≤ moiety(A) + moiety(B)</code>.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="basics.html#aspects">read: Aspects &amp; reception</a>
+          <a class="chip tool" href="how-it-works.html#hiw-aspects">method: aspects, orbs &amp; perfection</a>
+          <a class="chip tool" href="book2/horary.html">drive: see the aspects list</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Give the exact angle of a trine and of a square.</li>
+            <li>Two planets are in aspect when the orb is within the sum of what?</li>
+            <li>Which is the "coming about" state — applying or separating?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m3" data-lesson="m3l3" aria-label="Mark lesson 3.3, Aspects and reception, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m3l4" data-module="m3">
+      <div class="learn-medallion" aria-hidden="true"><span>3.4</span></div>
+      <div class="learn-body">
+        <h3>Cast your first chart</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m3l2">3.2</a>, <a href="#m3l3">3.3</a></span><span class="learn-time">~20 min</span></div>
+        <p>Put it together: open the Book I Master Tool, press <b>Now</b>, and compute. Find the Ascendant and Midheaven,
+          locate each planet by sign and house, and read one or two aspects between them. This is the figure every later
+          module judges.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Drive it</span>
+          <a class="chip tool" href="book1/master.html">drive: Book I Master Tool</a>
+          <a class="chip tool" href="workbench.html">drive: the full Workbench</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>What sign and degree is your Ascendant right now?</li>
+            <li>Which house is the Moon in, and is she applying to any planet?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m3" data-lesson="m3l4" aria-label="Mark lesson 3.4, Cast your first chart, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+  </section>
+
+  <div class="learn-milestone"><span class="learn-ms-glyph" aria-hidden="true">✶</span>
+    <span><b>Milestone.</b> You can now cast a figure and read its planets, houses and aspects. Next, look under the
+      hood at the arithmetic that produced every number.</span></div>
+
+  <!-- ================= MODULE 4 ================= -->
+  <section class="learn-module" id="m4">
+    <div class="learn-modhead">
+      <h2>M4 · The math II</h2>
+      <span class="learn-modcount" data-modcount="m4">0 / 4 done</span>
+    </div>
+    <p class="learn-modintro">The deep arithmetic under a cast chart, taught at the hand-calc bench where every step is
+      checked against the engine: interpolating an ephemeris, the proportional logarithm, house-cusp trigonometry, and
+      the calendar/ΔT corrections that keep historical dates honest.</p>
+
+    <div class="learn-node" id="m4l1" data-module="m4">
+      <div class="learn-medallion" aria-hidden="true"><span>4.1</span></div>
+      <div class="learn-body">
+        <h3>Ephemerides &amp; interpolation</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m2l2">2.2</a></span><span class="learn-time">~20 min</span></div>
+        <p>An ephemeris prints each planet's place at midnight; to find it at the birth moment you <b>interpolate</b>
+          between the day's endpoints. This is the "simple proportion" every hand-cast chart needs.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          <code>position = midnight-position + daily-motion × (interval ÷ 24h)</code>. A planet at 10° moving 1°/day,
+          six hours after midnight, sits at <code>10° + 1° × 6/24 = 10°15′</code>.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="handcalc.html">drive: hand-calc, Station 3</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>A planet moves 2°/day; where is it 12 hours after midnight if it began at 5°?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m4" data-lesson="m4l1" aria-label="Mark lesson 4.1, Ephemerides and interpolation, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m4l2" data-module="m4">
+      <div class="learn-medallion" aria-hidden="true"><span>4.2</span></div>
+      <div class="learn-body">
+        <h3>Proportional logarithms</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m4l1">4.1</a></span><span class="learn-time">~25 min</span></div>
+        <p>The classical labour-saver: the <b>proportional logarithm</b> turns the interpolation multiplication into
+          the addition of two table look-ups. It is a computational shortcut, not an accuracy gain — both routes give
+          the same answer, and both inherit the same one-day error (negligible for the Sun, ~2.7′ for the fast Moon).</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          <code>plog(x) = log₁₀(1440 ÷ x-in-minutes)</code>. Because motion = daily-motion × interval ÷ 1440 min,
+          <code>plog(daily-motion) + plog(interval) = plog(the motion)</code>. DeVore's table:
+          <code>plog 14°27′ = .22034</code>, <code>plog 7h35m = .50035</code>, sum <code>.72069 → 4°34′</code>.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="handcalc.html">drive: hand-calc, Station 3</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Does the proportional logarithm make the answer more accurate, or just faster to compute?</li>
+            <li>Why is the Moon's interpolation the one worth ~2.7′ of error?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m4" data-lesson="m4l2" aria-label="Mark lesson 4.2, Proportional logarithms, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m4l3" data-module="m4">
+      <div class="learn-medallion" aria-hidden="true"><span>4.3</span></div>
+      <div class="learn-body">
+        <h3>House cusps by trigonometry</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m2l2">2.2</a></span><span class="learn-time">~25 min</span></div>
+        <p>The Ascendant and Midheaven — and every cusp — come from spherical trigonometry of your sidereal time,
+          latitude and the ecliptic's tilt. By hand you read a <b>Book of Tables</b> and interpolate <em>twice</em>;
+          the Ascendant needs the latitude step, the Midheaven does not.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          The Book of Tables steps <b>one row per 4 minutes of sidereal time</b> — exactly <code>1°</code> of right
+          ascension of the Midheaven — down the rows, and one column per degree of latitude. You interpolate
+          <b>bilinearly</b> between the four surrounding cells; the double-interpolated Ascendant lands ~0.05′ from the
+          engine's exact value.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="handcalc.html">drive: hand-calc, Station 4</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>How much sidereal time equals one row (1° of MC right ascension) in the tables?</li>
+            <li>Which point needs the extra latitude interpolation — the MC or the Ascendant?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m4" data-lesson="m4l3" aria-label="Mark lesson 4.3, House cusps by trigonometry, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m4l4" data-module="m4">
+      <div class="learn-medallion" aria-hidden="true"><span>4.4</span></div>
+      <div class="learn-body">
+        <h3>ΔT, calendars &amp; era accuracy</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m2l2">2.2</a></span><span class="learn-time">~20 min</span></div>
+        <p>To cast a <em>historical</em> moment you need three corrections the software handles quietly: the clock/Earth
+          mismatch <b>ΔT</b>, the <b>Julian→Gregorian</b> calendar shift before 1582, and the slow drift of the equinox
+          by <b>precession</b>. The Cycles engine tags each historical moment with an accuracy tier for exactly this
+          reason.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          Universal Time and the uniform Terrestrial Time the ephemeris runs on differ by <code>ΔT</code> (≈ +69 s in
+          the 2020s, growing to hours millennia ago). Dates before <b>1582</b> need the Julian→Gregorian shift, and the
+          equinox itself creeps westward by precession <code>≈ 50.29″ per year</code> (a full 360° circuit in ~25,800
+          years).
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="cycles.html">drive: Cycles of History (era tiers)</a>
+          <a class="chip tool" href="chronology/index.html">read: the Chronology (Julian→Gregorian)</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>What does ΔT measure, and roughly how big is it today?</li>
+            <li>In which year does the Julian→Gregorian correction begin to matter?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m4" data-lesson="m4l4" aria-label="Mark lesson 4.4, Delta-T, calendars and era accuracy, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 5 ================= -->
+  <section class="learn-module" id="m5">
+    <div class="learn-modhead">
+      <h2>M5 · Judgement grammars</h2>
+      <span class="learn-modcount" data-modcount="m5">0 / 6 done</span>
+    </div>
+    <p class="learn-modintro">The tradition's rulebooks, in the order they build on each other: measure a planet's
+      strength (dignity), answer a single question (horary), choose a fit moment (election), then read a whole life
+      (nativities) — each with the master tool that runs it.</p>
+
+    <div class="learn-node" id="m5l1" data-module="m5">
+      <div class="learn-medallion" aria-hidden="true"><span>5.1</span></div>
+      <div class="learn-body">
+        <h3>Essential dignity &amp; the almuten</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m3l1">3.1</a></span><span class="learn-time">~25 min</span></div>
+        <p>Essential dignity scores how "at home" a planet is by the sign and degree it occupies. The <b>almuten</b> of
+          a degree is its rightful lord — the planet with the most dignity there — which can differ from the simple
+          domicile ruler.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          Five rulerships score by sign/degree: domicile <code>+5</code>, exaltation <code>+4</code>, triplicity
+          <code>+3</code>, term <code>+2</code>, face <code>+1</code>; against them detriment <code>−5</code>, fall
+          <code>−4</code>, and (dignified nowhere it stands) peregrine <code>−5</code>. The almuten is the planet with
+          the highest sum of the positive points at that degree.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="how-it-works.html#hiw-dignity">method: dignity &amp; the almuten</a>
+          <a class="chip tool" href="book1/dignities.html">drive: the Dignity Calculator</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>List the five essential dignities and their point values.</li>
+            <li>What is a peregrine planet, and what does it score?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m5" data-lesson="m5l1" aria-label="Mark lesson 5.1, Essential dignity and the almuten, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m5l2" data-module="m5">
+      <div class="learn-medallion" aria-hidden="true"><span>5.2</span></div>
+      <div class="learn-body">
+        <h3>Accidental dignity &amp; the chart-health verdict</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m5l1">5.1</a></span><span class="learn-time">~25 min</span></div>
+        <p>Where essential dignity asks "strong by sign?", <b>accidental</b> dignity asks "well-placed in <em>this</em>
+          chart?" — by house, speed, direction and nearness to the Sun. The green/amber/red badge distils those
+          afflictions into one traffic-light verdict for the gravity of a judgement.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          Scored by situation — e.g. angular 1st/10th <code>+5</code>, retrograde <code>−5</code> vs direct
+          <code>+4</code>, <b>cazimi</b> (within 0°17′ of the Sun) <code>+5</code>, <b>combust</b> (within 8°30′)
+          <code>−5</code>, under the beams (within 17°) <code>−4</code>. The verdict then counts flags:
+          <b>RED</b> if bad ≥ 1 or cautions ≥ 3; <b>AMBER</b> if cautions ≥ 1; else <b>GREEN</b>.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="how-it-works.html#hiw-accidental">method: accidental dignity &amp; the verdict</a>
+          <a class="chip tool" href="book1/master.html">drive: the cautions &amp; chart-health panel</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>What is cazimi, and how close to the Sun must a planet be?</li>
+            <li>How many cautions push a figure from amber to red?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m5" data-lesson="m5l2" aria-label="Mark lesson 5.2, Accidental dignity and the chart-health verdict, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m5l3" data-module="m5">
+      <div class="learn-medallion" aria-hidden="true"><span>5.3</span></div>
+      <div class="learn-body">
+        <h3>Planetary hours &amp; the Part of Fortune</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m3l2">3.2</a></span><span class="learn-time">~20 min</span></div>
+        <p>Two computed extras the tradition leans on: the ruler of the present <b>planetary hour</b> (the backbone of
+          election and talismanic timing) and the <b>Part of Fortune</b>, a point that carries the Moon–Sun
+          relationship forward from the Ascendant.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          The planetary day starts at <b>sunrise</b>; each of the 12 day-hours lasts <code>(sunset − sunrise) ÷ 12</code>
+          and rulers cycle in the <b>Chaldean order</b> (Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon). The Part of
+          Fortune is <code>Asc + Moon − Sun</code> (mod 360).
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="how-it-works.html#hiw-hours">method: planetary hours</a>
+          <a class="chip tool" href="how-it-works.html#hiw-fortune">method: Part of Fortune &amp; antiscia</a>
+          <a class="chip tool" href="book1/planetary-hours.html">drive: the Planetary Hours tool</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>At what event does the planetary day begin — midnight or sunrise?</li>
+            <li>Write the Part of Fortune formula from memory.</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m5" data-lesson="m5l3" aria-label="Mark lesson 5.3, Planetary hours and the Part of Fortune, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m5l4" data-module="m5">
+      <div class="learn-medallion" aria-hidden="true"><span>5.4</span></div>
+      <div class="learn-body">
+        <h3>Horary — answering a single question</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m3l3">3.3</a>, <a href="#m5l1">5.1</a></span><span class="learn-time">~35 min</span></div>
+        <p>Horary (Lilly's Book II) answers a specific question from the chart of the moment it is understood. Assign the
+          <b>significators</b> (querent = 1st + Moon; quesited = the matter's house), test radicality, then find whether
+          and how the matter <b>perfects</b> — by direct aspect, translation, collection or reception, or fails by
+          prohibition or refranation.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="basics.html#horary">read: Horary explained</a>
+          <a class="chip tool" href="book2/considerations.html">read: the considerations</a>
+          <a class="chip tool" href="book2/examples.html">read: Lilly's worked charts</a>
+          <a class="chip tool" href="book2/horary.html">drive: the Horary Calculator</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Who are the querent's two significators?</li>
+            <li>Name two modes of perfection and one way a matter fails.</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m5" data-lesson="m5l4" aria-label="Mark lesson 5.4, Horary, answering a single question, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m5l5" data-module="m5">
+      <div class="learn-medallion" aria-hidden="true"><span>5.5</span></div>
+      <div class="learn-body">
+        <h3>Election — the fit moment</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m5l2">5.2</a>, <a href="#m5l3">5.3</a></span><span class="learn-time">~25 min</span></div>
+        <p>Election reverses horary: instead of judging a given moment, you <b>search</b> for one fit for a chosen aim,
+          weighing dignity, the planetary hour, the Moon's condition and mansion, the faces and star contacts. The
+          Election Engine ranks any moment and scans for the best upcoming windows — historical practice only.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="how-it-works.html#hiw-election">method: election scoring</a>
+          <a class="chip tool" href="picatrix/election.html">drive: the Election Engine</a>
+          <a class="chip tool" href="now.html">drive: what's fit right now</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>What is a "gating" requirement that keeps a verdict off green however high the score?</li>
+            <li>Which lunar afflictions weigh most heavily in an election?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m5" data-lesson="m5l5" aria-label="Mark lesson 5.5, Election, the fit moment, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m5l6" data-module="m5">
+      <div class="learn-medallion" aria-hidden="true"><span>5.6</span></div>
+      <div class="learn-body">
+        <h3>Nativities — reading a whole life</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m5l1">5.1</a>, <a href="#m3l4">3.4</a></span><span class="learn-time">~35 min</span></div>
+        <p>Natal astrology (Book III) reads a birth chart: the <b>Lord of the Geniture</b> and temperament describe the
+          native, then predictive techniques time the life. Learn <b>profections</b> (the Lord of the Year), primary
+          <b>directions</b> and the <b>solar return</b>.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          Annual profection advances one sign per year: <code>profected sign = (natal-Asc sign + age) mod 12</code>,
+          the activated house is <code>(age mod 12) + 1</code>, and that sign's ruler is the Lord of the Year. Primary
+          directions convert an arc to years with the <b>Naibod key</b>, <code>0.985647° per year</code> (≈ 1°/yr).
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="basics.html#nativities">read: Nativities explained</a>
+          <a class="chip tool" href="how-it-works.html#hiw-profections">method: profections</a>
+          <a class="chip tool" href="book3/master.html">drive: Book III Master Tool</a>
+          <a class="chip tool" href="trajectory.html">drive: the Life Trajectory</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>At age 12, which house is activated by profection, and why?</li>
+            <li>How many degrees of arc equal one year under the Naibod key?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m5" data-lesson="m5l6" aria-label="Mark lesson 5.6, Nativities, reading a whole life, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+  </section>
+
+  <div class="learn-milestone"><span class="learn-ms-glyph" aria-hidden="true">✶</span>
+    <span><b>Milestone.</b> You can now judge a figure by all three of Lilly's books — Book I strength, Book II
+      questions, Book III lives — and elect a moment. Now cross into the second tradition and the symbol systems.</span></div>
+
+  <!-- ================= MODULE 6 ================= -->
+  <section class="learn-module" id="m6">
+    <div class="learn-modhead">
+      <h2>M6 · The other zodiac</h2>
+      <span class="learn-modcount" data-modcount="m6">0 / 3 done</span>
+    </div>
+    <p class="learn-modintro">The site computes a second, independent system on the <em>sidereal</em> frame — the Vedic
+      (Jyotiṣa) horoscope — shown side by side with Lilly's, compared but never merged. It starts with one piece of
+      arithmetic: the ayanāṁśa.</p>
+
+    <div class="learn-node" id="m6l1" data-module="m6">
+      <div class="learn-medallion" aria-hidden="true"><span>6.1</span></div>
+      <div class="learn-body">
+        <h3>Tropical vs sidereal — the ayanāṁśa arithmetic</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m2l1">2.1</a>, <a href="#m4l4">4.4</a></span><span class="learn-time">~20 min</span></div>
+        <p>The single difference that splits the two zodiacs: Lilly measures from the equinox (tropical), Jyotiṣa from
+          the fixed stars (sidereal). The gap between them is the <b>ayanāṁśa</b>, and it is pure subtraction.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          <code>sidereal longitude = tropical longitude − ayanāṁśa</code>. The ayanāṁśa grows with precession
+          <code>≈ 50.29″ per year</code>, so the two zodiacs drift about <b>1° apart every ~72 years</b> — roughly
+          <b>24° today</b> (Lahiri). A planet at 24° Taurus tropical sits near 0° Taurus sidereally.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="basics.html#vedic">read: the Vedic system</a>
+          <a class="chip tool" href="vedic/index.html">drive: Jagannath Hora (sidereal)</a>
+          <a class="chip tool" href="workbench.html">drive: toggle the 🕉 Vedic view</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Write the sidereal-longitude formula.</li>
+            <li>Roughly how large is the Lahiri ayanāṁśa today?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m6" data-lesson="m6l1" aria-label="Mark lesson 6.1, Tropical vs sidereal, the ayanamsa arithmetic, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m6l2" data-module="m6">
+      <div class="learn-medallion" aria-hidden="true"><span>6.2</span></div>
+      <div class="learn-body">
+        <h3>The Vedic chart — grahas, nakṣatras &amp; daśā</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m6l1">6.1</a></span><span class="learn-time">~30 min</span></div>
+        <p>Tour the Jyotiṣa apparatus: the nine <b>grahas</b> (seven planets + the nodes Rāhu &amp; Ketu), whole-sign
+          <b>bhāvas</b>, the 27 lunar mansions (<b>nakṣatras</b>), the almanac (<b>pañcāṅga</b>), and the timing cycle
+          (<b>Vimśottarī daśā</b>) apportioned from the birth Moon.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          The 27 nakṣatras each span <code>13°20′</code> (<code>27 × 13°20′ = 360°</code>); the Moon's nakṣatra seeds
+          the <b>Vimśottarī daśā</b>, a <b>120-year</b> cycle of planetary periods (mahā) and sub-periods (antar).
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="interpret.html">read: reading the 🕉 panel</a>
+          <a class="chip tool" href="vedic/index.html">drive: the Vedic chart</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>How wide is one nakṣatra, and how many fill the circle?</li>
+            <li>Over how many years does the Vimśottarī daśā run?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m6" data-lesson="m6l2" aria-label="Mark lesson 6.2, The Vedic chart, grahas, nakshatras and dasha, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m6l3" data-module="m6">
+      <div class="learn-medallion" aria-hidden="true"><span>6.3</span></div>
+      <div class="learn-body">
+        <h3>The Indian mirror — praśna, muhūrta &amp; tājika</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m6l2">6.2</a>, <a href="#m5l4">5.4</a></span><span class="learn-time">~30 min</span></div>
+        <p>The Jyotiṣa counterparts of horary, election and the solar return — the same sky under a second rulebook.
+          <b>Praśna</b> (with the KP 249 sub-lords) mirrors horary; <b>muhūrta</b> mirrors election; <b>tājika
+          varṣaphala</b> mirrors the annual chart; the Moment Scanner lays every rulebook's verdict on one timeline.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Drive them</span>
+          <a class="chip tool" href="prasna.html">drive: Praśna &amp; KP sub-lords</a>
+          <a class="chip tool" href="muhurta.html">drive: Muhūrta</a>
+          <a class="chip tool" href="tajika.html">drive: Tājika varṣaphala</a>
+          <a class="chip tool" href="moments.html">drive: the Moment Scanner</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Which Western engine does each of praśna, muhūrta and tājika mirror?</li>
+            <li>What does "compared, never merged" warn against reading into an agreement?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m6" data-lesson="m6l3" aria-label="Mark lesson 6.3, The Indian mirror, prasna, muhurta and tajika, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 7 ================= -->
+  <section class="learn-module" id="m7">
+    <div class="learn-modhead">
+      <h2>M7 · The symbol systems</h2>
+      <span class="learn-modcount" data-modcount="m7">0 / 4 done</span>
+    </div>
+    <p class="learn-modintro">The magical and divinatory wings that share the chart's machinery — each with its own
+      mathematics: the astral magic of the <i>Picatrix</i>, the magic-square arithmetic of the kameas, the letter-sum
+      arithmetic of gematria, and the probability under every oracle's cast. Historical practice only.</p>
+
+    <div class="learn-node" id="m7l1" data-module="m7">
+      <div class="learn-medallion" aria-hidden="true"><span>7.1</span></div>
+      <div class="learn-body">
+        <h3>The Picatrix — astral magic</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m5l5">5.5</a></span><span class="learn-time">~30 min</span></div>
+        <p>The great medieval handbook of talismanic magic shares Lilly's machinery and adds a doctrine of <em>when</em>
+          and <em>how</em> to act: the 28 lunar mansions, the 36 decan faces, the 15 Behenian fixed stars (precessed
+          live), the planetary correspondences, and the talisman workflow. Recorded strictly as history — described,
+          never prescribed.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="picatrix/index.html">browse: the Picatrix hub</a>
+          <a class="chip tool" href="picatrix/mansions.html">drive: 28 Mansions</a>
+          <a class="chip tool" href="picatrix/faces.html">drive: 36 Faces</a>
+          <a class="chip tool" href="picatrix/stars.html">drive: 15 Behenian stars</a>
+          <a class="chip tool" href="picatrix/talisman.html">drive: the Talisman Workshop</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>How many lunar mansions, decan faces and Behenian stars does the tradition count?</li>
+            <li>Why are the Behenian star longitudes recomputed each year?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m7" data-lesson="m7l1" aria-label="Mark lesson 7.1, The Picatrix, astral magic, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m7l2" data-module="m7">
+      <div class="learn-medallion" aria-hidden="true"><span>7.2</span></div>
+      <div class="learn-body">
+        <h3>The magic squares (kameas)</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m7l1">7.1</a></span><span class="learn-time">~25 min</span></div>
+        <p>The seven planetary <b>kameas</b> (Agrippa II.22) are genuine magic squares — every row, column and diagonal
+          summing to the same constant — and the site verifies each grid live. Their Indian sibling, the navagraha
+          yantras, uses the same mathematics with the opposite planetary logic.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          A magic square of order <code>n</code> on the numbers 1…n² has magic constant
+          <code>M = n(n² + 1) ÷ 2</code>: the <b>3×3</b> (Saturn / Sūrya) sums to <b>15</b>, the 4×4 (Jupiter) to
+          <b>34</b>, the 5×5 (Mars) to 65, up to the 9×9 Moon at 369. The nine navagraha squares together total
+          <b>729</b>.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Drive them</span>
+          <a class="chip tool" href="picatrix/kameas.html">drive: Kameas &amp; sigils</a>
+          <a class="chip tool" href="rasa.html">drive: the navagraha yantras</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>Use <code>M = n(n²+1)/2</code> to get the 3×3 and 4×4 constants.</li>
+            <li>What does the engine check to prove a square is genuine?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m7" data-lesson="m7l2" aria-label="Mark lesson 7.2, The magic squares, kameas, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m7l3" data-module="m7">
+      <div class="learn-medallion" aria-hidden="true"><span>7.3</span></div>
+      <div class="learn-body">
+        <h3>Kabbalah &amp; gematria</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m1l1">1.1</a></span><span class="learn-time">~25 min</span></div>
+        <p>The Tree of Life (Kircher layout, 1652–54) joins ten sephiroth by twenty-two paths, one per Hebrew letter.
+          Its arithmetic engine is <b>gematria</b>: every letter carries a number, so every word carries a sum. The
+          explorer computes it live over the 22-letter alphabet.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          Gematria is pure addition: each letter has a value (aleph <code>1</code>, bet <code>2</code>, … yod
+          <code>10</code>, … qof <code>100</code>, resh <code>200</code>, shin <code>300</code>, tav <code>400</code>),
+          and a word's value is their <b>sum</b>. The mispar-gadol variant gives the five final forms their own higher
+          values (<code>500–900</code>).
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="kabbalah.html">drive: the Tree of Life &amp; gematria</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>How many sephiroth and how many paths on the Tree?</li>
+            <li>What is the numerical value of the letter resh?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m7" data-lesson="m7l3" aria-label="Mark lesson 7.3, Kabbalah and gematria, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m7l4" data-module="m7">
+      <div class="learn-medallion" aria-hidden="true"><span>7.4</span></div>
+      <div class="learn-body">
+        <h3>The oracles &amp; their probability</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m1l1">1.1</a></span><span class="learn-time">~30 min</span></div>
+        <p>Four divinatory arts with computable engines — geomancy, tarot, the I Ching and the runes — each honest about
+          the odds of its cast. Learn the probability behind the I Ching's changing lines, the combinatorics of the
+          geomantic figures, and the deck of tarot.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          The I Ching's three fair coins (tails 2, heads 3) give per line: <code>P(6 old yin) = P(9 old yang) = 1/8</code>,
+          <code>P(7) = P(8) = 3/8</code>, so any line moves with probability <code>1/4</code>. (The older yarrow-stalk
+          method is asymmetric: <code>1/16, 5/16, 7/16, 3/16</code> — old yang <b>3/16</b>.) Geomancy's four Mothers
+          each set 4 binary lines → <code>2⁴ = 16</code> figures; tarot draws from <b>78</b> cards.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Drive them</span>
+          <a class="chip tool" href="geomancy.html">drive: Geomancy</a>
+          <a class="chip tool" href="tarot.html">drive: Tarot</a>
+          <a class="chip tool" href="iching.html">drive: I Ching</a>
+          <a class="chip tool" href="runes.html">drive: Runes</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>With three coins, what is the probability that a given line is a moving line?</li>
+            <li>Why are there exactly 16 geomantic figures?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m7" data-lesson="m7l4" aria-label="Mark lesson 7.4, The oracles and their probability, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 8 ================= -->
+  <section class="learn-module" id="m8">
+    <div class="learn-modhead">
+      <h2>M8 · The research layer</h2>
+      <span class="learn-modcount" data-modcount="m8">0 / 4 done</span>
+    </div>
+    <p class="learn-modintro">Where the curriculum closes on the honest evidence: Jung's clinical use and his own null
+      experiment, the astronomical cycles of history, the cross-system scanners, and the Library for going deeper — the
+      falsification demo is the last word.</p>
+
+    <div class="learn-node" id="m8l1" data-module="m8">
+      <div class="learn-medallion" aria-hidden="true"><span>8.1</span></div>
+      <div class="learn-body">
+        <h3>Jung &amp; the null experiment</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m1l1">1.1</a></span><span class="learn-time">~30 min</span></div>
+        <p>The modern hinge: Jung used horoscopes clinically, read astrology as projected psychology, and tested it
+          statistically — publishing the <b>null</b> result. Re-run his 1952 marriage experiment live and watch chance
+          alone reproduce his "significant" rates.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          Jung's test paired <b>483</b> marriages and counted <b>50</b> cross-aspects at an <b>8° orb</b>. A
+          Monte-Carlo null — random pairings — reproduces his "significant" ~10% top-aspect rates, exactly the artefact
+          the Fierz correction exposed.
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="jung/index.html">read: the Jung wing</a>
+          <a class="chip tool" href="jung/experiment.html">drive: the experiment, re-run</a>
+          <a class="chip tool" href="jung/tool.html">drive: the Jung chart tool</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>What orb did Jung use, and what did the null model show about his "significant" rates?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m8" data-lesson="m8l1" aria-label="Mark lesson 8.1, Jung and the null experiment, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m8l2" data-module="m8">
+      <div class="learn-medallion" aria-hidden="true"><span>8.2</span></div>
+      <div class="learn-body">
+        <h3>The cycles of history</h3>
+        <div class="learn-meta"><span class="chip learn-mathchip">math</span><span class="learn-prereq">needs: <a href="#m4l4">4.4</a></span><span class="learn-time">~25 min</span></div>
+        <p>Real astronomy on a historical scale: the Jupiter–Saturn great conjunctions and their trigon shifts, and an
+          honest eclipse finder that answers "was an eclipse possible?" two ways. The mathematics is exact; the
+          <em>meaning</em> mundane astrology read into it is the doctrine.</p>
+        <div class="learn-math"><span class="learn-math-label">the arithmetic</span>
+          Jupiter and Saturn conjoin about every <b>19.86 years</b>, each meeting stepping ~117° on so the point stays
+          in one triplicity for ~200 years before the <b>trigon shift</b>. An eclipse needs the Moon near a node —
+          inside the ecliptic limits at syzygy (new or full Moon).
+        </div>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="cycles.html">drive: Cycles of History</a>
+          <a class="chip tool" href="chronology/index.html">read: the Hermetic Chronology</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>About how often do Jupiter and Saturn conjoin?</li>
+            <li>What must be true of the Moon for an eclipse to be possible?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m8" data-lesson="m8l2" aria-label="Mark lesson 8.2, The cycles of history, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m8l3" data-module="m8">
+      <div class="learn-medallion" aria-hidden="true"><span>8.3</span></div>
+      <div class="learn-body">
+        <h3>The cross-system scanners &amp; the Orchestrator</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m5l5">5.5</a>, <a href="#m6l3">6.3</a></span><span class="learn-time">~25 min</span></div>
+        <p>The tools that run the whole engine at once: the <b>Moment Scanner</b> shows every tradition's verdict on the
+          same sky side by side; <b>Right Now</b> is the live dashboard; and the <b>Grand Orchestrator</b> lets Claude
+          drive every engine as a tool from a single prompt, each call shown as an auditable line.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Drive them</span>
+          <a class="chip tool" href="moments.html">drive: the Moment Scanner</a>
+          <a class="chip tool" href="now.html">drive: Right Now</a>
+          <a class="chip tool" href="autopilot.html">drive: the Grand Orchestrator</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>What does the Moment Scanner say an <em>agreement</em> between rulebooks means?</li>
+            <li>How does the Orchestrator keep its engine calls auditable?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m8" data-lesson="m8l3" aria-label="Mark lesson 8.3, The cross-system scanners and the Orchestrator, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+
+    <div class="learn-node" id="m8l4" data-module="m8">
+      <div class="learn-medallion" aria-hidden="true"><span>8.4</span></div>
+      <div class="learn-body">
+        <h3>Going deeper — the Library &amp; the honest close</h3>
+        <div class="learn-meta"><span class="learn-prereq">needs: <a href="#m8l1">8.1</a></span><span class="learn-time">~25 min</span></div>
+        <p>Where to go once the map is filled in: the Practitioners' Library catalogs the people and books behind every
+          method, and the honest-science explorers show the structure the rules are built on. End where the curriculum
+          began — at the falsification demo: permute a moment and watch the fitness score scatter into a null
+          distribution.</p>
+        <div class="learn-pair"><span class="learn-pair-label">Read &amp; drive</span>
+          <a class="chip tool" href="library/index.html">browse: the Practitioners' Library</a>
+          <a class="chip tool" href="structure.html">read: Structure &amp; patterns</a>
+          <a class="chip tool" href="experiment.html">drive: the falsification demo</a>
+        </div>
+        <details class="learn-checkbox"><summary>Check yourself</summary>
+          <ul><li>In the falsification demo, what happens to the verdict when you shift the moment by a few minutes?</li>
+            <li>Where does that leave the interpretive claim of astrology?</li></ul>
+        </details>
+        <label class="learn-mark"><input type="checkbox" class="learn-check" data-module="m8" data-lesson="m8l4" aria-label="Mark lesson 8.4, Going deeper, the Library and the honest close, complete"> Mark this lesson done</label>
+      </div>
+    </div>
+  </section>
+
+  <div class="learn-milestone"><span class="learn-ms-glyph" aria-hidden="true">✶</span>
+    <span><b>The honest close.</b> You have walked from the celestial sphere to every wing of the Workbench, with the
+      mathematics first-class the whole way. The astronomy is real and reproducible; the interpretation is the
+      tradition's, described never prescribed — and the evidence for its predictive power stands where it began: at
+      zero.</span></div>
+
+  <hr class="fancy">
+  <p class="small muted">Keep going: the <a href="glossary.html">Glossary &amp; Dictionary</a> defines every term, the
+    <a href="read.html">original texts</a> are here chapter by chapter, the <a href="roadmap.html">roadmap</a> shows
+    what's next, and every calculator sits on the <a href="tools.html">Tools</a> hub. The honest frame, in full, is on
+    <a href="about/index.html">Sources &amp; Science</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('learn');
+  import { initLearn } from '../assets/js/app/learn.js';
+  initLearn();
+</script>
+</body>
+</html>

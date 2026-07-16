@@ -170,11 +170,61 @@ export function downloadText(text, filename, mime = 'text/plain') {
 }
 
 // --- DOM: SVG / PNG export of the chart wheel -------------------------------
+// The chart wheel is drawn with classed elements (.wheel-ring, .planet-glyph,
+// .aspect-line …) styled by style.css. That stylesheet does NOT travel with a
+// downloaded .svg/.png, so exports used to come out unstyled. We inline a
+// self-contained copy of the `.chart-wheel` rule subset (var()s resolved to the
+// literal token values) as a <style> element inside the serialized clone, so the
+// downloaded file renders identically to the on-page wheel and stays editable by
+// hand (classes preserved). Kept here as a string constant — no runtime DOM read,
+// so the module stays import-safe in Node.
+const WHEEL_EXPORT_CSS = `
+.chart-wheel{display:block;margin:0 auto;font-family:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif}
+.wheel-ring{fill:#fffdf6;stroke:#cbbd9c;stroke-width:1}
+.wheel-ring:first-of-type{fill:#fbf4e3}
+.sign-div{stroke:#cbbd9c;stroke-width:1}
+.cusp{stroke:#c2b48f;stroke-width:1;stroke-dasharray:3 3}
+.cusp-angle{stroke:#8a6a2a;stroke-width:1.8}
+.sign-glyph{font-size:17px}
+.elem-fire{fill:#c0432b}.elem-earth{fill:#6c7a32}.elem-air{fill:#2f7ca8}.elem-water{fill:#4a55a8}
+.house-num{font-size:11px;fill:#9b8e6e;font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif}
+.angle-label{font-size:10px;fill:#6b5a2a;font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;font-weight:700;letter-spacing:.05em}
+.planet-tick{stroke:#c7b88f;stroke-width:.8}
+.planet-glyph{font-size:19px;fill:#2a2419}
+.planet-deg{font-size:9px;fill:#6b6354;font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif}
+.planet.benefic .planet-glyph{fill:#2f7d4f}
+.planet.malefic .planet-glyph{fill:#b23b2e}
+.planet.lum .planet-glyph{fill:#b8862b}
+.planet.neutral .planet-glyph{fill:#6a5aa0}
+.planet.point .planet-glyph{fill:#7b6f8f;font-size:16px}
+.aspect-line{stroke-width:1.1;opacity:.6;fill:none}
+.aspect-line.asp-soft{stroke:#2f7d4f}
+.aspect-line.asp-hard{stroke:#b23b2e}
+.aspect-line.asp-conj{stroke:#8a6a2a}
+.aspect-line.separating{stroke-dasharray:4 4;opacity:.4}
+`;
+
+// True only for the chart wheel (root carries `.chart-wheel`, or contains one) —
+// so we never touch non-wheel SVGs (kameas, yantras) that also round-trip here.
+function isChartWheel(svgEl) {
+  try {
+    return !!(svgEl && ((svgEl.classList && svgEl.classList.contains('chart-wheel')) ||
+      (svgEl.querySelector && svgEl.querySelector('.chart-wheel'))));
+  } catch { return false; }
+}
+
 // Serialize an <svg> element to a standalone SVG string (with the xmlns added).
+// For the chart wheel, the wheel stylesheet is embedded so the file is portable.
 export function svgToString(svgEl) {
   const clone = svgEl.cloneNode(true);
   if (!clone.getAttribute('xmlns')) clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
   if (!clone.getAttribute('xmlns:xlink')) clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+  if (isChartWheel(svgEl)) {
+    const doc = svgEl.ownerDocument || document;
+    const styleEl = doc.createElementNS('http://www.w3.org/2000/svg', 'style');
+    styleEl.textContent = WHEEL_EXPORT_CSS;
+    clone.insertBefore(styleEl, clone.firstChild);
+  }
   return new XMLSerializer().serializeToString(clone);
 }
 
@@ -202,7 +252,7 @@ export function svgToPNG(svgEl, filename = 'chart.png', scale = 2) {
           const canvas = document.createElement('canvas');
           canvas.width = w * scale; canvas.height = h * scale;
           const ctx = canvas.getContext('2d');
-          ctx.fillStyle = '#0f1320'; ctx.fillRect(0, 0, canvas.width, canvas.height); // match page bg
+          ctx.fillStyle = '#fffdf8'; ctx.fillRect(0, 0, canvas.width, canvas.height); // parchment ground (--paper-0), matches the wheel
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           URL.revokeObjectURL(url);
           canvas.toBlob(b => { if (b) { downloadBlob(b, filename); resolve(); } else reject(new Error('toBlob failed')); }, 'image/png');

@@ -102,17 +102,17 @@ function histogramSVG(sorted, chosenScore, mean) {
   const x = v => pad + ((v - lo) / span) * (W - 2 * pad);
   const bars = bins.map((c, i) => {
     const h = (c / maxB) * (H - 2 * pad);
-    return `<rect x="${(pad + i * bw).toFixed(1)}" y="${(H - pad - h).toFixed(1)}" width="${(bw - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="#7a3b1e" opacity="0.7"/>`;
+    return `<rect x="${(pad + i * bw).toFixed(1)}" y="${(H - pad - h).toFixed(1)}" width="${(bw - 1).toFixed(1)}" height="${h.toFixed(1)}" fill="var(--info, #2f7ca8)" opacity="0.7"/>`;
   }).join('');
   const chosenX = x(chosenScore), meanX = x(mean);
   return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto" role="img" aria-label="Histogram of fitness scores over random moments">
-    <rect x="0" y="0" width="${W}" height="${H}" fill="#fffdf8" stroke="#d8cbac"/>
+    <rect x="0" y="0" width="${W}" height="${H}" fill="var(--dg-fill, #fffdf8)" stroke="var(--dg-frame, #cbbd9c)"/>
     ${bars}
-    <line x1="${meanX.toFixed(1)}" y1="${pad}" x2="${meanX.toFixed(1)}" y2="${H - pad}" stroke="#6b6354" stroke-dasharray="3 3"/>
-    <line x1="${chosenX.toFixed(1)}" y1="${pad - 6}" x2="${chosenX.toFixed(1)}" y2="${H - pad}" stroke="#b23b2e" stroke-width="2"/>
-    <text x="${chosenX.toFixed(1)}" y="${pad - 8}" font-size="10" text-anchor="middle" fill="#b23b2e">your moment</text>
-    <text x="${pad}" y="${H - 8}" font-size="10" fill="#6b6354">score ${lo}</text>
-    <text x="${W - pad}" y="${H - 8}" font-size="10" text-anchor="end" fill="#6b6354">${hi}</text>
-    <text x="${meanX.toFixed(1)}" y="${H - 8}" font-size="10" text-anchor="middle" fill="#6b6354">mean ${mean.toFixed(0)}</text>
+    <line x1="${meanX.toFixed(1)}" y1="${pad}" x2="${meanX.toFixed(1)}" y2="${H - pad}" stroke="var(--dg-strong, #8a6a2a)" stroke-dasharray="3 3"/>
+    <line x1="${chosenX.toFixed(1)}" y1="${pad - 6}" x2="${chosenX.toFixed(1)}" y2="${H - pad}" stroke="var(--bad, #b23b2e)" stroke-width="2"/>
+    <text x="${chosenX.toFixed(1)}" y="${pad - 8}" font-size="10" text-anchor="middle" fill="var(--bad, #b23b2e)">your moment</text>
+    <text x="${pad}" y="${H - 8}" font-size="10" fill="var(--dg-label, #9b8e6e)">score ${lo}</text>
+    <text x="${W - pad}" y="${H - 8}" font-size="10" text-anchor="end" fill="var(--dg-label, #9b8e6e)">${hi}</text>
+    <text x="${meanX.toFixed(1)}" y="${H - 8}" font-size="10" text-anchor="middle" fill="var(--dg-strong, #8a6a2a)">mean ${mean.toFixed(0)}</text>
   </svg>`;
 }

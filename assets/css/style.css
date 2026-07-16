@@ -448,3 +448,414 @@ header.site a:focus-visible, header.site button:focus-visible { outline-color: #
 .chron-swatch { display: inline-block; width: .85em; height: .85em; border-radius: 50%;
   border: 1px solid rgba(0,0,0,.25); vertical-align: baseline; margin-right: .35rem; }
 /* --- end Chronology wing (R15) --------------------------------------------- */
+
+/* ===========================================================================
+   DESIGN SYSTEM 2.0 — additive token + component layer (Revamp WP1).
+   Everything below is ADDED, never rewired: every existing custom property and
+   class above is byte-for-byte untouched, so NO page changes appearance until a
+   later sweep opts a component in. Tokens map the site's already-shipped
+   hardcoded values onto named scales (aliasing, never shifting colours); new
+   component classes are all namespaced and inert until markup adopts them.
+   Order: TOKENS 2.0 · DS2 PRIMITIVES · DS2 COMPONENTS · MOTION · PRINT ADDENDUM.
+   (Custom properties resolve regardless of :root position, so this block lives
+   at the file tail to keep the locked head untouched — see plan §1.8 / P1.)
+   =========================================================================== */
+
+/* ---------- TOKENS 2.0 (plan §1.2) ------------------------------------------ */
+:root {
+  /* -- night scale (dark surfaces) -- */
+  --night-900:#090d20;   /* hero vignette base, PNG export bg      */
+  --night-800:#0e1430;   /* = --night                              */
+  --night-700:#161d42;   /* = --night-2                            */
+  --night-600:#1e2756;   /* hover/raised surface on dark           */
+  /* -- paper scale (light surfaces) -- */
+  --paper-0:#fffdf8;     /* = --card                               */
+  --paper-50:#fbf7ee;    /* zebra rows / panel wash (already used) */
+  --paper-100:#f6efe0;   /* = --parchment                          */
+  --paper-200:#efe6d2;   /* = --parchment-2                        */
+  --paper-300:#e6dabf;   /* pressed/active surface                 */
+  /* -- gold scale -- */
+  --gold-700:#8a6420;    /* gold-as-TEXT on parchment (AA >= 4.5)  */
+  --gold-500:#b8862b;    /* = --gold                               */
+  --gold-300:#d9b15a;    /* = --gold-2                             */
+  --gold-100:#f7ecce;    /* gold wash bg                           */
+  /* -- ink & neutrals -- */
+  --ink-900:#20242e;     /* = --ink                                */
+  --ink-700:#494334;     /* .lede colour, tokenised                */
+  --ink-500:#6b6354;     /* = --muted                              */
+  --ink-300:#9b8e6e;     /* faint labels (house numbers etc.)      */
+  --rule-300:#d8cbac;    /* = --rule                               */
+  --rule-500:#c2b48f;    /* strong rules (already used ad hoc)     */
+
+  /* -- semantic aliases: components reference ONLY these -- */
+  --surface-page:var(--paper-100);    --surface-card:var(--paper-0);
+  --surface-wash:var(--paper-50);     --surface-inset:var(--paper-200);
+  --surface-inverse:var(--night-800); --surface-inverse-2:var(--night-700);
+  --text:var(--ink-900);              --text-soft:var(--ink-700);
+  --text-muted:var(--ink-500);        --text-faint:var(--ink-300);
+  --text-inverse:#e9e3d2;             --text-inverse-muted:#b9b29a;
+  --border:var(--rule-300);           --border-strong:var(--rule-500);
+  --border-inverse:rgba(217,177,90,.5);
+  --accent:var(--gold-500);           --accent-strong:var(--gold-700);
+  --accent-soft:var(--gold-300);      --accent-wash:var(--gold-100);
+  --focus:var(--gold-300);            --focus-on-dark:#f0d28a;
+  --link-hover:#a85a2e;               /* --link stays defined in the head */
+
+  /* -- verdict triads (traffic-light gravity — tokenise what exists) -- */
+  --ok:#2f7d4f;    --ok-wash:#d8efd6;   --ok-ink:#1f5e1d;    /* = benefic family */
+  --warn:#b8862b;  --warn-wash:#faedcb; --warn-ink:#7a5a06;  /* = gold family    */
+  --bad:#b23b2e;   --bad-wash:#f6d9d9;  --bad-ink:#7a1d1d;    /* = malefic family */
+  --info:#2f7ca8;  --info-wash:#eef5fa; --info-ink:#2b4a6b;   /* = air family     */
+
+  /* -- epistemic-label triads — promoted site-wide; --chron-* stay equal aliases -- */
+  --ep-doc:var(--gold-500);  --ep-doc-wash:#f7ecce;  --ep-doc-ink:#6b4d0c;   /* documented */
+  --ep-disp:#4a68a8;         --ep-disp-wash:#e7eef7; --ep-disp-ink:#2b4a6b;  /* disputed   */
+  --ep-deb:#b23b2e;          --ep-deb-wash:#f6d9d9;  --ep-deb-ink:#7a1d1d;   /* debunked   */
+  --ep-con:#b06f1f;          --ep-con-wash:#f8e8d0;  --ep-con-ink:#7a4a06;   /* conspiracy */
+
+  /* -- spacing / radius / shadow / z-index -- */
+  --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
+  --sp-6:2rem;   --sp-7:3rem;  --sp-8:4rem;
+  --rad-1:4px; --rad-2:8px; --rad-3:12px; --rad-pill:999px;
+  --shadow-1:0 1px 3px rgba(40,30,10,.06);
+  --shadow-2:0 6px 20px rgba(40,30,10,.12);
+  --shadow-3:0 12px 34px rgba(0,0,0,.45);
+  --z-sticky:40; --z-header:50; --z-menu:60; --z-toast:100;
+  --sticky-top:4.5rem;   /* shared sticky offset (rail/filterbar/workrail) */
+
+  /* -- typography scale (fluid, serif-first — identity keeps its Iowan voice) -- */
+  --font-serif:var(--serif); --font-sans:var(--sans);
+  --font-mono:ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --font-deva:'Nirmala UI','Noto Sans Devanagari','Mangal',sans-serif;
+  --font-hebr:'Segoe UI','Noto Sans Hebrew','David',sans-serif;
+  --fs--1:.86rem;
+  --fs-0:clamp(1rem, .97rem + .25vw, 1.06rem);
+  --fs-1:clamp(1.12rem, 1.05rem + .3vw, 1.2rem);
+  --fs-2:clamp(1.32rem, 1.2rem + .6vw, 1.55rem);
+  --fs-3:clamp(1.65rem, 1.4rem + 1.2vw, 2.15rem);
+  --fs-4:clamp(2rem, 1.6rem + 2vw, 2.75rem);
+  --fs-label:.74rem; --fs-badge:.68rem;
+  --lh-body:1.65; --lh-tight:1.2; --lh-loose:1.75; --measure:72ch;
+
+  /* -- diagram tokens (the one SVG family) -- */
+  --dg-fill:#fffdf6;   --dg-fill-2:#fbf4e3;
+  --dg-frame:#cbbd9c;  --dg-grid:#c2b48f;
+  --dg-strong:#8a6a2a; --dg-label:#9b8e6e;  --dg-ink:#2a2419;
+  --dg-hot:var(--link); --dg-sel:var(--gold-500); --dg-tick:#b3a37e;
+
+  /* -- chat surface tokens (extracted from #wb-asst-log, tokenised) -- */
+  --chat-surface:#0d1430;
+  --chat-user-bg:rgba(217,177,90,.16); --chat-user-bd:rgba(217,177,90,.38);
+  --chat-bot-bg:rgba(120,150,210,.13); --chat-bot-bd:rgba(120,150,210,.34);
+
+  /* -- motion (reduced-motion-first: these only apply where a rule opts in) -- */
+  --t-fast:120ms; --t-med:180ms; --t-slow:240ms; --ease:cubic-bezier(.2,.7,.3,1);
+}
+
+/* ---------- DS2 PRIMITIVES --------------------------------------------------- */
+
+/* Global anchor offset so deep links clear the sticky header (Quick Win 2).
+   `:where()` keeps specificity 0 so the existing .gloss-card / .ys-sutra
+   scroll-margins still win where they already set one. */
+:where(h2, h3, section, [id]) { scroll-margin-top: 5rem; }
+
+/* Right-aligned tabular numerals for score/degree columns (Quick Win 9).
+   The table-scoped rule out-specifies table.data td's centring. */
+.num { font-family: var(--font-sans); font-variant-numeric: tabular-nums; text-align: right; }
+table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Scrollable table wrapper + sticky header (Quick Win 1). Sticky is scoped to
+   the wrapper ONLY (never global table.data thead) so it can't double-stick
+   inside the legacy max-width:680px scroll hack — see plan WP1 risk note. */
+.table-scroll { max-height: 70vh; overflow: auto; border: 1px solid var(--border);
+  border-radius: var(--rad-2); -webkit-overflow-scrolling: touch; }
+.table-scroll table.data { margin: 0; border: 0; }
+.table-scroll thead th { position: sticky; top: 0; z-index: 1; }
+
+/* ---------- DS2 COMPONENTS --------------------------------------------------- */
+
+/* -- Badges & chips: ONE system (plan §1.3.5). Aliases for the five legacy
+      badge families are listed in the DEPRECATION LEDGER below; existing markup
+      keeps its own rules until a sweep swaps class names. -- */
+.badge { display: inline-block; font-family: var(--font-sans); font-size: var(--fs-badge);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: .1rem .45rem;
+  border-radius: var(--rad-1); border: 1px solid var(--border); background: var(--surface-inset);
+  color: var(--text-muted); vertical-align: middle; white-space: nowrap; }
+.badge--ok   { color: var(--ok-ink);   background: var(--ok-wash);   border-color: var(--ok); }
+.badge--warn { color: var(--warn-ink); background: var(--warn-wash); border-color: var(--warn); }
+.badge--bad  { color: var(--bad-ink);  background: var(--bad-wash);  border-color: var(--bad); }
+.badge--info { color: var(--info-ink); background: var(--info-wash); border-color: var(--info); }
+.badge--doc  { color: var(--ep-doc-ink);  background: var(--ep-doc-wash);  border-color: var(--ep-doc); }
+.badge--disp { color: var(--ep-disp-ink); background: var(--ep-disp-wash); border-color: var(--ep-disp); }
+.badge--deb  { color: var(--ep-deb-ink);  background: var(--ep-deb-wash);  border-color: var(--ep-deb); }
+.badge--con  { color: var(--ep-con-ink);  background: var(--ep-con-wash);  border-color: var(--ep-con); }
+.badge--plain { color: var(--text-muted); background: var(--surface-inset); border-color: var(--border); }
+
+.chip-toggle { display: inline-block; font-family: var(--font-sans); font-size: var(--fs-badge);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: .3rem .7rem;
+  border-radius: var(--rad-pill); border: 1px solid var(--border); background: var(--surface-inset);
+  color: var(--text-muted); cursor: pointer; transition: background var(--t-fast) var(--ease); }
+.chip-toggle[aria-pressed="false"] { opacity: .55; text-decoration: line-through; }
+
+/* -- Button hierarchy (plan §1.3.2 / Quick Win 4). One gold .btn per form;
+      secondary + quiet de-emphasise everything else. -- */
+.btn-secondary { display: inline-block; font-family: var(--font-sans); font-weight: 600;
+  font-size: .92rem; background: var(--surface-inset); color: var(--text); text-decoration: none;
+  padding: .6rem 1.1rem; border-radius: var(--rad-2); border: 1px solid var(--border-strong);
+  cursor: pointer; transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
+.btn-secondary:hover { background: var(--paper-300); color: var(--text); }
+.btn-secondary.sm { padding: .35rem .7rem; font-size: .82rem; }
+.btn-quiet { display: inline-block; font-family: var(--font-sans); font-weight: 600; font-size: .92rem;
+  background: transparent; color: var(--link); border: 0; padding: .5rem .6rem; cursor: pointer; text-decoration: none; }
+.btn-quiet:hover { text-decoration: underline; color: var(--link-hover); }
+.btn-quiet.sm { padding: .3rem .4rem; font-size: .82rem; }
+.btn:active { transform: none; }
+/* Busy state: the ONLY spinner on the site, capped at task duration and only
+   animated where motion is welcome (plan §1.5). */
+.btn-busy { position: relative; pointer-events: none; color: transparent !important; }
+.btn-busy::after { content: ''; position: absolute; top: 50%; left: 50%; width: 1.1em; height: 1.1em;
+  margin: -.55em 0 0 -.55em; border-radius: 50%; color: var(--gold-700);
+  background: conic-gradient(from 0deg, transparent, currentColor);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 0);
+          mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 0); }
+@media (prefers-reduced-motion: no-preference) {
+  .btn-busy::after { animation: ds-spin .8s linear infinite; }
+  @keyframes ds-spin { to { transform: rotate(1turn); } }
+}
+
+/* -- Result panel + panel header (plan §1.3.7). section.panel is the same box
+      as section.card; add it ALONGSIDE .card, never replacing it. -- */
+.panel { background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--rad-3);
+  padding: var(--sp-4) var(--sp-5); box-shadow: var(--shadow-1); }
+.panel-head { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+  column-gap: var(--sp-3); row-gap: var(--sp-1); margin-bottom: var(--sp-3); }
+.panel-status { grid-column: 1; grid-row: 1; align-self: center; }
+.panel-title  { grid-column: 2; grid-row: 1; margin: 0; font-size: var(--fs-2); }
+.panel-meta   { grid-column: 2; grid-row: 2; font-size: var(--fs--1); color: var(--text-muted); }
+.panel-anchor { grid-column: 3; grid-row: 1; opacity: 0; text-decoration: none; color: var(--accent);
+  font-weight: 700; transition: opacity var(--t-fast) var(--ease); }
+.panel-head:hover .panel-anchor, .panel-anchor:focus-visible { opacity: 1; }
+
+/* -- Verdict banner (plan §1.3.9): the first thing after a compute. -- */
+.verdict-banner { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4); border-radius: var(--rad-2); border: 1px solid var(--border);
+  border-left: 6px solid var(--border-strong); background: var(--surface-wash); margin: var(--sp-4) 0; }
+.verdict-banner--ok   { background: var(--ok-wash);   border-color: var(--ok); }
+.verdict-banner--warn { background: var(--warn-wash); border-color: var(--warn); }
+.verdict-banner--bad  { background: var(--bad-wash);  border-color: var(--bad); }
+.verdict-banner .vb-reason { flex: 1 1 16rem; color: var(--text-soft); }
+.verdict-banner .vb-link { white-space: nowrap; }
+
+/* -- Epistemic strip: three fixed chips under a tool's h1 (plan §1.3.4). -- */
+.ep-strip { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; margin: var(--sp-2) 0 var(--sp-4); }
+.ep-strip a { text-decoration: none; }
+
+/* -- Filter toolbar (plan §1.3.10 — generalises .ys-toolbar). -- */
+.filterbar { position: sticky; top: 0; z-index: var(--z-sticky); display: flex; flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4); align-items: center; padding: var(--sp-3) var(--sp-1);
+  margin: 0 0 var(--sp-4); background: var(--surface-page); border-bottom: 1px solid var(--border); }
+.filter-input { flex: 1 1 16rem; min-width: 12rem; padding: .45rem .7rem; font: inherit;
+  border: 1px solid var(--border); border-radius: var(--rad-2); background: var(--surface-card); color: var(--text); }
+.filter-input:focus { outline: 2px solid var(--focus); outline-offset: 1px; }
+.filter-count { font-family: var(--font-sans); font-size: var(--fs--1); color: var(--text-muted); white-space: nowrap; }
+
+/* -- Segmented control (plan §1.3.11 — generalises .ys-numbering). -- */
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: var(--rad-2); overflow: hidden; }
+.seg button, .seg a { font-family: var(--font-sans); font-size: .78rem; padding: .4rem .7rem; border: 0;
+  cursor: pointer; background: var(--surface-card); color: var(--text-muted);
+  border-left: 1px solid var(--border); text-decoration: none; }
+.seg button:first-child, .seg a:first-child { border-left: 0; }
+.seg .active, .seg button.active, .seg [aria-current="page"], .seg [aria-pressed="true"] {
+  background: var(--accent); color: #fff; font-weight: 700; }
+
+/* -- Accordion (plan §1.3.6 — promotes .ys-bhashya, the best <details> style). -- */
+.acc { margin: var(--sp-2) 0; padding: .5rem .75rem; border: 1px dashed var(--border);
+  border-radius: var(--rad-2); background: var(--surface-wash); }
+.acc > summary { font-family: var(--font-sans); font-size: .74rem; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--accent-strong); cursor: pointer; list-style: none; }
+.acc > summary::-webkit-details-marker { display: none; }
+.acc > summary::before { content: '\25B8 '; color: var(--accent); }
+.acc[open] > summary::before { content: '\25BE '; }
+.acc > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.acc > summary h2, .acc > summary h3 { display: inline; margin: 0; font-size: inherit; color: inherit; }
+.acc-body { margin-top: .5rem; }
+
+/* -- Record card (plan §T6 canonical layering: one sutra / mansion / face). -- */
+.record { border: 1px solid var(--border); border-radius: var(--rad-3); background: var(--surface-card);
+  padding: var(--sp-4) var(--sp-5); margin: 0 0 var(--sp-4); box-shadow: var(--shadow-1);
+  scroll-margin-top: var(--sticky-top); }
+.record:target { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.record-head { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: baseline; margin-bottom: var(--sp-2); }
+.record-num { font-family: var(--font-sans); font-weight: 700; color: var(--accent-strong);
+  text-decoration: none; letter-spacing: .02em; }
+.record-num:hover { text-decoration: underline; }
+.record-src { margin-top: var(--sp-3); padding-top: var(--sp-2); border-top: 1px dashed var(--border);
+  font-size: var(--fs--1); color: var(--text-muted); }
+
+/* -- Prev/next pager (plan §T6). -- */
+.pager { display: flex; justify-content: space-between; gap: var(--sp-3); margin: var(--sp-4) 0;
+  font-family: var(--font-sans); font-size: .9rem; }
+.pager a { display: inline-flex; align-items: center; gap: .3rem; text-decoration: none; color: var(--link);
+  padding: .4rem .7rem; border: 1px solid var(--border); border-radius: var(--rad-2); background: var(--surface-card); }
+.pager a:hover { border-color: var(--accent); color: var(--link-hover); }
+.pager .pager-next { margin-left: auto; }
+
+/* -- Stat tiles (plan §1.3.13). -- */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: var(--sp-4); margin: var(--sp-4) 0; }
+.stat { background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--rad-3); padding: var(--sp-3) var(--sp-4); }
+.stat-num { font-family: var(--font-serif); font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem); line-height: 1.1;
+  font-variant-numeric: tabular-nums; color: var(--text); }
+.stat-label { font-family: var(--font-sans); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); }
+
+/* -- Toast / status line (plan §1.3.14). Fade only, and only under motion. -- */
+.toast { position: fixed; left: 50%; bottom: 1.4rem; transform: translateX(-50%); z-index: var(--z-toast);
+  background: var(--surface-card); color: var(--text); border: 1px solid var(--border); border-radius: var(--rad-2);
+  box-shadow: var(--shadow-2); padding: var(--sp-3) var(--sp-4); font-family: var(--font-sans); font-size: .9rem;
+  max-width: min(90vw, 28rem); }
+.toast[hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .toast { animation: ds-toast-in var(--t-med) var(--ease); }
+  @keyframes ds-toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+}
+
+/* -- Figure wrapper for every diagram (plan §3.7 family contract). -- */
+.fig { margin: var(--sp-4) 0; }
+.fig-body { display: flex; justify-content: center; }
+.fig-caption { margin-top: var(--sp-2); text-align: center; font-family: var(--font-sans);
+  font-size: var(--fs--1); color: var(--text-muted); }
+
+/* -- Legend grid (plan §1.3.9 — promotes .chron-legend). -- */
+.legend-grid { display: grid; gap: var(--sp-3); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin: var(--sp-4) 0; }
+.legend-grid > * { background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--rad-2); padding: .55rem .7rem; font-size: .88rem; }
+
+/* -- Results rail: in-page nav for long tool pages (plan §1.3.8). CSS only in
+      WP1; the opt-in rail.js module lands with the sweeps. -- */
+.rail { font-family: var(--font-sans); font-size: .86rem; }
+.rail ol, .rail ul { list-style: none; margin: 0; padding: 0; }
+.rail a { display: block; padding: .3rem .5rem; border-left: 2px solid var(--border); color: var(--text-muted);
+  text-decoration: none; border-radius: 0 var(--rad-1) var(--rad-1) 0; }
+.rail a:hover { color: var(--text); background: var(--surface-wash); }
+.rail a.is-here { color: var(--accent-strong); border-left-color: var(--accent); font-weight: 700; }
+@media (min-width: 1100px) {
+  main.with-rail { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: var(--sp-6); align-items: start; }
+  main.with-rail > .span-all { grid-column: 1 / -1; }
+  main.with-rail > .rail { grid-column: 2; }
+  .rail { position: sticky; top: var(--sticky-top); align-self: start;
+    max-height: calc(100vh - var(--sticky-top) - 1rem); overflow: auto; }
+}
+@media (max-width: 1099px) {
+  .rail { position: sticky; top: 0; z-index: var(--z-sticky); display: flex; gap: .3rem; overflow-x: auto;
+    background: var(--surface-page); border-bottom: 1px solid var(--border); padding: .4rem 0; }
+  .rail a { border-left: 0; border-bottom: 2px solid transparent; white-space: nowrap; }
+  .rail a.is-here { border-left: 0; border-bottom-color: var(--accent); }
+}
+
+/* -- Work-scope rail for the future Great Works reading room (plan §5.2). -- */
+.workrail { font-family: var(--font-sans); font-size: .86rem; }
+.workrail .wr-title { font-weight: 700; color: var(--text); margin-bottom: var(--sp-2); }
+.workrail ol { list-style: none; margin: 0; padding: 0; }
+.workrail a { display: block; padding: .3rem .5rem; color: var(--text-muted); text-decoration: none; border-left: 2px solid var(--border); }
+.workrail a[aria-current="page"] { color: var(--accent-strong); border-left-color: var(--accent); font-weight: 700; }
+@media (min-width: 1100px) { .workrail { position: sticky; top: var(--sticky-top); } }
+
+/* -- Wing hero for hub pages: parchment band + glyph watermark (plan §1.3.12). -- */
+.wing-hero { position: relative; overflow: hidden; background: var(--surface-page);
+  border-bottom: 1px solid var(--border); padding: var(--sp-6) 0 var(--sp-5); margin-bottom: var(--sp-5); }
+.wing-hero .wh-glyph { position: absolute; right: 2%; top: 50%; transform: translateY(-50%);
+  font-size: 12rem; line-height: 1; color: var(--accent); opacity: .06; pointer-events: none; }
+.wing-hero h1 { margin: .1em 0 .2em; }
+
+/* -- Casting stage: the oracle "night-sky stage" (plan §T3). Reduced-motion-
+      first: figures are visible by default; the staged reveal is an enhancement
+      only where motion is welcome, and short-circuits to the final state. -- */
+.casting-stage { position: relative; background: linear-gradient(180deg, var(--surface-inverse), var(--surface-inverse-2));
+  color: var(--text-inverse); border: 1px solid var(--border-inverse); border-radius: var(--rad-3);
+  padding: var(--sp-5); box-shadow: var(--shadow-3); }
+.casting-stage h2, .casting-stage h3 { color: var(--text-inverse); }
+.casting-stage a { color: var(--focus-on-dark); }
+.casting-stage-controls { margin-top: var(--sp-3); }
+.stage-figure { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .casting-stage.is-staged .stage-figure { opacity: 0; transform: translateY(8px);
+    animation: ds-stage-rise var(--t-slow) var(--ease) forwards; animation-delay: calc(var(--stage-i, 0) * 90ms); }
+  @keyframes ds-stage-rise { to { opacity: 1; transform: none; } }
+}
+
+/* -- Lesson-path spine for the future Learn curriculum (plan §5.3). -- */
+.path { margin: var(--sp-5) 0; }
+.path-node { display: grid; grid-template-columns: 2.4rem 1fr; gap: var(--sp-3); position: relative; padding-bottom: var(--sp-5); }
+.path-node::before { content: ''; position: absolute; left: 1.2rem; top: 2.4rem; bottom: 0; width: 2px;
+  background: var(--border); transform: translateX(-1px); }
+.path-node:last-child::before { display: none; }
+.path-medallion { width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--accent); color: #2a2008;
+  display: grid; place-items: center; font-family: var(--font-sans); font-weight: 700; }
+.path-node.is-done .path-medallion { background: var(--gold-700); color: #fff; }
+.path-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-2) 0; }
+.path-milestone { background: var(--ok-wash); border: 1px solid var(--ok); border-radius: var(--rad-2);
+  padding: var(--sp-3) var(--sp-4); margin: var(--sp-4) 0; }
+
+/* -- Chat component: one AI-transcript surface (plan §4.4 — extracted from the
+      id-scoped #wb-asst-log rules and tokenised; the legacy .wb-chat-* rules in
+      the head stay for existing markup). -- */
+.chat { color: #eef1f8; background: var(--chat-surface); font-size: .92rem; display: flex;
+  flex-direction: column; gap: .55rem; line-height: 1.6; border-radius: var(--rad-2); }
+.chat-turn { border-radius: .55rem; padding: .55rem .7rem .6rem; max-width: 100%; border: 1px solid transparent; }
+.chat-role { font-family: var(--font-sans); font-size: .66rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; margin-bottom: .25rem; display: flex; align-items: center; gap: .35rem; }
+.chat-body { white-space: pre-wrap; word-break: break-word; color: #f3f5fb; }
+.chat-user { background: var(--chat-user-bg); border-color: var(--chat-user-bd); border-left: 3px solid var(--gold-300); align-self: flex-end; }
+.chat-user .chat-role { color: #eccf8f; }
+.chat-bot { background: var(--chat-bot-bg); border-color: var(--chat-bot-bd); border-left: 3px solid #7e9bd8; align-self: flex-start; }
+.chat-bot .chat-role { color: #a9c2f0; }
+.chat-note { align-self: flex-start; font-size: .8rem; color: #aeb8d4; margin-left: .6rem; }
+.chat a, .chat-turn a { color: var(--focus-on-dark); }
+.chat code { background: rgba(255,255,255,.1); color: #eaeefb; }
+
+/* -- Footer diet hook (plan §4.5). The footer TEMPLATE change is shared.js (WP4);
+      WP1 only ships the class so WP4 can slim the ~35-link column. -- */
+footer.site.footer-diet .footer-overflow { display: none !important; }
+footer.site.footer-diet .wrap { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* ---------- MOTION: reduced-motion inversion (plan §1.5 / Quick Win 3) --------
+   Default = no motion. This retro-covers the un-gated glosshi keyframe, the nav
+   caret spin and the hover transforms that currently animate unconditionally. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ---------- PRINT ADDENDUM (plan §1.6) --------------------------------------- */
+@media print {
+  .rail, .workrail, .toast, .menu-btn, .ep-strip, .casting-stage-controls, .filterbar,
+  .btn-secondary, .btn-quiet { display: none !important; }
+  section.panel, .panel, .record { break-inside: avoid; page-break-inside: avoid; }
+  .casting-stage { background: #fff !important; color: #000 !important; border: 1px solid #999 !important; box-shadow: none !important; }
+  .casting-stage h2, .casting-stage h3, .casting-stage a { color: #000 !important; }
+  .badge { border: 1px solid #000 !important; color: #000 !important; background: #fff !important; }
+  .chat { background: #fff !important; color: #000 !important; }
+  .gloss-link { border-bottom: none !important; }
+}
+
+/* ---------- DEPRECATION LEDGER (plan §1.8) ----------------------------------
+   Legacy name -> DS2 name. Ledger names are NEVER deleted while any page still
+   uses them; both render identically until a sweep swaps the class in markup.
+   No existing class is restyled here — this is documentation for the sweeps.
+     .pill                         -> .badge--plain
+     .chip / .chip.done/tool/soon  -> .badge--plain / .badge--ok/info/warn
+     .chron-badge                  -> .badge
+       .chron-doc/disp/deb/con     -> .badge--doc/disp/deb/con
+     .cy-status (cycles page)      -> .badge--doc/disp/deb/con
+     .ys-badge (yoga wing)         -> .badge--*
+     .ys-toolbar                   -> .filterbar
+     .ys-numbering                 -> .seg
+     .ys-bhashya                   -> .acc
+     .ys-sutra                     -> .record
+     .chron-legend                 -> .legend-grid
+     .chron-item / markers         -> .rail / .tl-* (WP3/T8)
+     #wb-asst-log / .wb-chat-*     -> .chat / .chat-*
+     --chron-doc/disp/deb/con      -> --ep-doc/disp/deb/con  (equal values)
+   ---------------------------------------------------------------------------- */

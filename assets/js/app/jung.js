@@ -82,7 +82,7 @@ function runSimulation() {
   const bars = bins.map((n, i) => {
     const x = PAD + (i / BINS) * (W - 2 * PAD), bw = (W - 2 * PAD) / BINS - 2;
     const h = (n / peak) * (H - 2 * PAD);
-    return `<rect x="${x.toFixed(1)}" y="${(H - PAD - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" fill="var(--air)" opacity="0.75"/>`;
+    return `<rect x="${x.toFixed(1)}" y="${(H - PAD - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" fill="var(--info, #2f7ca8)" opacity="0.7"/>`;
   }).join('');
   const jungX = PAD + ((jungMax - lo) / (hi - lo)) * (W - 2 * PAD);
   const perAspect = expectedRate(orb) * 100;                     // ~4.4% per single directional aspect
@@ -94,13 +94,13 @@ function runSimulation() {
       batch's <b>best-scoring aspect</b> — exactly the statistic his "significant" ~10% maxima report:</p>
     <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Histogram of best-of-fifty aspect rates in simulated chance batches" style="width:100%;max-width:${W}px">
       ${bars}
-      <line x1="${expX.toFixed(1)}" y1="${PAD / 2}" x2="${expX.toFixed(1)}" y2="${H - PAD}" stroke="var(--earth)" stroke-dasharray="4 3"/>
-      <text x="${expX.toFixed(1)}" y="${PAD / 2 - 2}" font-size="11" text-anchor="middle" fill="var(--earth)">one aspect's chance rate ${perAspect.toFixed(1)}%</text>
-      <line x1="${jungX.toFixed(1)}" y1="${PAD / 2}" x2="${jungX.toFixed(1)}" y2="${H - PAD}" stroke="var(--fire)" stroke-width="2"/>
-      <text x="${jungX.toFixed(1)}" y="${H - PAD + 14}" font-size="11" text-anchor="middle" fill="var(--fire)">Jung's best batch ${jungMax}%</text>
-      <line x1="${PAD}" y1="${H - PAD}" x2="${W - PAD}" y2="${H - PAD}" stroke="var(--rule)"/>
-      <text x="${PAD}" y="${H - PAD + 14}" font-size="11" fill="var(--muted)">${lo.toFixed(0)}%</text>
-      <text x="${W - PAD}" y="${H - PAD + 14}" font-size="11" text-anchor="end" fill="var(--muted)">${hi.toFixed(0)}%</text>
+      <line x1="${expX.toFixed(1)}" y1="${PAD / 2}" x2="${expX.toFixed(1)}" y2="${H - PAD}" stroke="var(--dg-strong, #8a6a2a)" stroke-dasharray="4 3"/>
+      <text x="${expX.toFixed(1)}" y="${PAD / 2 - 2}" font-size="11" text-anchor="middle" fill="var(--dg-strong, #8a6a2a)">one aspect's chance rate ${perAspect.toFixed(1)}%</text>
+      <line x1="${jungX.toFixed(1)}" y1="${PAD / 2}" x2="${jungX.toFixed(1)}" y2="${H - PAD}" stroke="var(--bad, #b23b2e)" stroke-width="2"/>
+      <text x="${jungX.toFixed(1)}" y="${H - PAD + 14}" font-size="11" text-anchor="middle" fill="var(--bad, #b23b2e)">Jung's best batch ${jungMax}%</text>
+      <line x1="${PAD}" y1="${H - PAD}" x2="${W - PAD}" y2="${H - PAD}" stroke="var(--dg-grid, #c2b48f)"/>
+      <text x="${PAD}" y="${H - PAD + 14}" font-size="11" fill="var(--dg-label, #9b8e6e)">${lo.toFixed(0)}%</text>
+      <text x="${W - PAD}" y="${H - PAD + 14}" font-size="11" text-anchor="end" fill="var(--dg-label, #9b8e6e)">${hi.toFixed(0)}%</text>
     </svg>
     <p class="small"><b>Result:</b> the median chance batch's best aspect scored <b>${median.toFixed(1)}%</b>, and
       <b>${pct}%</b> of pure-chance batches reached a best of <b>${jungMax}% or more</b> — Jung's strongest observation.

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kūṭa matching — the aṣṭakūṭa (36 guṇa) &amp; the ten porutham | The Astrologer's Workbench</title>
+<meta name="description" content="Kūṭa matching: the North-Indian aṣṭakūṭa (36-guṇa milāpa — varṇa, vaśya, tārā, yoni, graha-maitrī, gaṇa, bhakūṭa, nāḍī) and the South-Indian ten porutham (dina, gaṇa, mahendra, strī-dīrgha, yoni, rāśi, rāśyādhipati, vaśya, rajju, vedhā) scored between two nativities' sidereal Moons. Every rule cited; contested values (the varṇa air/earth swap, the graha-maitrī and gaṇa grids, the nāḍī exempt lists, the North/South 5-9 contradiction) are shown as disputes, never resolved. SENSITIVE DOMAIN: what the tradition computes, never advice about a real relationship — no demonstrated validity, described never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Kūṭa matching</p>
+  <h1>Kūṭa matching — the aṣṭakūṭa &amp; the ten porutham</h1>
+
+  <div class="callout science" style="border-width:2px"><span class="label">Please read first — a sensitive domain</span>
+    This tool reproduces a cultural <b>matching custom</b>: the North-Indian <b>aṣṭakūṭa</b> (36-guṇa milāpa) and the
+    South-Indian <b>ten porutham</b>, scored from two people's Moon positions. It reports <b>only what the tradition
+    computes</b> — it does <b>NOT</b> measure compatibility, does <b>NOT</b> predict a marriage, and is <b>NOT advice
+    about any real relationship</b>. The gendered "groom/bride" roles and the traditional "consequences" of a rajju or
+    nāḍī match are recorded as <em>the tradition's own claims</em>, presented as belief, never as fact about people.
+    Like all astrology it has <b>no demonstrated validity</b>. Described, never prescribed. If you are making a real
+    decision about a relationship, nothing here should inform it. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="lede">Guṇa-milāpa compares the two <b>Moons</b>: from each Moon's <b>nakṣatra</b> and <b>rāśi</b> the North
+    scores eight <b>kūṭas</b> to a total of 36 (varṇa 1, vaśya 2, tārā 3, yoni 4, graha-maitrī 5, gaṇa 6, bhakūṭa 7,
+    nāḍī 8), while the Tamil South checks ten <b>poruthams</b> with rajju and vedhā as vetoes. This lays both out with
+    <b>every rule cited</b> and every genuine source-disagreement flagged (<b>⚑</b>) rather than silently resolved —
+    including the one place the two systems flatly <b>contradict</b> each other (the 5/9 rāśi relation).</p>
+
+  <form id="ku-form" class="calc">
+    <div class="grid cols-2">
+      <div>
+        <p class="small" style="margin:.2rem 0 .4rem"><b>Partner 1 — read as the groom (boy)</b></p>
+        <div class="field-row">
+          <div class="field" style="flex:1 1 160px"><label for="ka-city">Birthplace</label><select id="ka-city"></select></div>
+          <div class="field"><label for="ka-lat">Lat °N</label><input id="ka-lat" type="number" step="0.0001" value="28.6139" style="width:6.5rem"></div>
+          <div class="field"><label for="ka-lon">Lon °E</label><input id="ka-lon" type="number" step="0.0001" value="77.2090" style="width:6.5rem"></div>
+        </div>
+        <div class="field-row" style="margin-top:.4rem">
+          <div class="field"><label for="ka-date">Birth date</label><input id="ka-date" type="date" value="1986-03-14"></div>
+          <div class="field"><label for="ka-time">Time (local)</label><input id="ka-time" type="time" value="10:20"></div>
+          <div class="field"><label for="ka-offset">UTC offset</label><input id="ka-offset" type="number" step="0.25" value="5.5" style="width:5.5rem"></div>
+        </div>
+        <div id="ka-picker-anchor"></div>
+      </div>
+      <div>
+        <p class="small" style="margin:.2rem 0 .4rem"><b>Partner 2 — read as the bride (girl)</b></p>
+        <div class="field-row">
+          <div class="field" style="flex:1 1 160px"><label for="kb-city">Birthplace</label><select id="kb-city"></select></div>
+          <div class="field"><label for="kb-lat">Lat °N</label><input id="kb-lat" type="number" step="0.0001" value="19.0760" style="width:6.5rem"></div>
+          <div class="field"><label for="kb-lon">Lon °E</label><input id="kb-lon" type="number" step="0.0001" value="72.8777" style="width:6.5rem"></div>
+        </div>
+        <div class="field-row" style="margin-top:.4rem">
+          <div class="field"><label for="kb-date">Birth date</label><input id="kb-date" type="date" value="1989-11-02"></div>
+          <div class="field"><label for="kb-time">Time (local)</label><input id="kb-time" type="time" value="16:45"></div>
+          <div class="field"><label for="kb-offset">UTC offset</label><input id="kb-offset" type="number" step="0.25" value="5.5" style="width:5.5rem"></div>
+        </div>
+        <div id="kb-picker-anchor"></div>
+      </div>
+    </div>
+    <div class="field-row" style="margin-top:.9rem">
+      <div class="field"><label for="ku-variant">Table variant set</label>
+        <select id="ku-variant">
+          <option value="saravali" selected>saravali (cited default)</option>
+          <option value="common">common (AstroSage-family)</option>
+        </select></div>
+      <button type="submit" class="btn">✶ Compute the match</button>
+      <span id="ku-status" class="small muted"></span>
+    </div>
+    <p class="small muted" style="margin:.4rem 0 0">The variant set selects the contested grids (varṇa air/earth · the
+      graha-maitrī point-grid · the gaṇa grid) — both are honest; the choice is shown, not hidden. Nothing you enter
+      leaves this page.</p>
+  </form>
+
+  <section class="card" id="ku-moons-card"><h2 style="margin-top:0">The two Moons</h2>
+    <div id="ku-moons"><p class="muted small">Enter both birth moments above and compute.</p></div></section>
+
+  <section class="card" id="ku-ashtakuta-card"><h2 style="margin-top:0">Aṣṭakūṭa — the 36 guṇa (North)</h2>
+    <div id="ku-ashtakuta"><p class="muted small">Enter both birth moments above and compute.</p></div></section>
+
+  <section class="card" id="ku-porutham-card"><h2 style="margin-top:0">The ten porutham (South) <span class="small muted">— with the rajju/vedhā vetoes</span></h2>
+    <div id="ku-porutham"><p class="muted small">Enter both birth moments above and compute.</p></div></section>
+
+  <section class="card" id="hiw-kuta">
+    <h2 style="margin-top:0">How this works — the kūṭas, step by step</h2>
+
+    <h3>Everything is read from the two Moons</h3>
+    <p class="small">Each birth chart is cast on the site's engine and the <b>sidereal</b> Moon taken (tropical − Lahiri
+      ayanāṁśa); its <b>nakṣatra</b> (1–27, via <code>nakshatraOf</code>) and <b>rāśi</b> (⌊sid/30⌋) drive every kūṭa.
+      No other planet is used. Boy = groom, girl = bride, because the classical matrices are keyed that way (the yoni,
+      vaśya and gaṇa grids are asymmetric — the orientation is pinned to saravali, whose tables head the bride down the
+      side).</p>
+
+    <h3>The eight kūṭas</h3>
+    <p class="small"><b>Varṇa</b> (1) — the Moon-rāśi caste, groom's rank ≥ bride's. <b>Vaśya</b> (2) — the five-class
+      control grid. <b>Tārā/Dina</b> (3) — the star-count mod 9, both ways, penalising the Vipat/Pratyari/Vadha tārās.
+      <b>Yoni</b> (4) — the 27→14 animal table and its 14×14 matrix (the seven sworn-enemy pairs score 0). <b>Graha-
+      maitrī</b> (5) — the two rāśi lords' <em>naisargika</em> friendship (BPHS 3.55–57, reused from the Vedic engine —
+      aṣṭakūṭa ignores temporal friendship). <b>Gaṇa</b> (6) — deva/manuṣya/rākṣasa temperament. <b>Bhakūṭa</b> (7) —
+      the mutual moon-sign counts, zeroed on 2/12, 5/9 or 6/8 (bhakūṭa-doṣa). <b>Nāḍī</b> (8) — the three pulse-groups;
+      the same nāḍī scores 0 (nāḍī-doṣa, the heaviest single kūṭa).</p>
+
+    <h3>Where the sources disagree — flagged, never resolved</h3>
+    <p class="small">Several cells are genuinely contested, and the tool keeps <em>both</em> readings: the <b>varṇa</b>
+      air/earth swap (saravali gives the air signs Vaiśya, the common table gives them Śūdra); the <b>graha-maitrī</b>
+      friend+enemy / neutral+enemy values (saravali 2/1 vs the common 1/0.5); the <b>gaṇa</b> grid orientation and
+      spread (saravali's asymmetric 6/5/1 cells vs the common symmetric 5s and 0s); the <b>bhakūṭa</b> cancellation
+      (same or friendly lords lift the doṣa — but whether the 7 points are <em>restored</em> is itself split, so we keep
+      0 by software convention and say so); and the <b>nāḍī</b> exempt-star lists (two distinct lists circulate even
+      within one source — both are shown). Saravali's vaśya table genuinely <b>omits Sagittarius</b>; a flagged
+      completion (Sag 1st half = Mānava, 2nd half = Catuṣpada, per the stevehora/classical scheme) lets a Sagittarius
+      Moon be scored — and with that completion disabled the engine <b>refuses to score rather than guess</b>.</p>
+
+    <h3>The ten porutham, and the contradiction</h3>
+    <p class="small">The Tamil South checks ten poruthams counted <b>girl → boy</b>. Its <b>dina</b> is a count-list, NOT
+      the northern tārā (so count 10 passes the tārā but fails the Tamil dina — a divergence the tool reports).
+      <b>Rajju</b> (the five body-groups) and <b>vedhā</b> (the twelve afflicting pairs + the {Mṛgaśīrṣa, Citrā,
+      Dhaniṣṭhā} triple) are <b>hard vetoes</b>. And the two systems flatly contradict on one relation: a <b>5/9</b>
+      moon-sign count is a 0-point <b>bhakūṭa-doṣa</b> in the North but a <b>good rāśi porutham</b> (the 5th/9th) in the
+      South. The tool shows <b>both verdicts side by side</b> and resolves neither.</p>
+
+    <p class="small muted">Sources: saravali.github.io koota pages (transcribed verbatim); prokerala, epanchang and
+      astroved porutham pages; B. V. Raman, "Muhurtha"; the friendship table from BPHS 3.55–57 (vedic-data.js).
+      Classical anchors: Muhūrta Cintāmaṇi (aṣṭakūṭa) and the Tamil pañcāṅga / Kālaprakāśikā (porutham — the latter
+      cited but unverified as the source, flagged).</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    A high score here is not a good match and a low one is not a bad one — the numbers measure conformity to a symbolic
+    custom of <b>no demonstrated validity</b>, not anything about two people. It is offered as cultural history and
+    structure, with every rule cited and every dispute left open. Interesting, never guidance. See
+    <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">Related: <a href="synastry.html">Western synastry</a> (and its null
+    Jung experiment) · <a href="vedic/index.html">the Vedic horoscope</a> · <a href="tithi-pravesha.html">Tithi-praveśa</a> ·
+    <a href="glossary.html">glossary</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('kuta');
+  import { initKuta } from '../assets/js/app/kuta.js';
+  initKuta();
+</script>
+</body>
+</html>

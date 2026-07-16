@@ -23,7 +23,9 @@
   .geo-verdict-figs .geo-figure { min-width:8rem; }
   .geo-tier { margin:.8rem 0; }
   .geo-tier h3 { margin:.2rem 0 .5rem; font-size:1rem; }
-  .geo-houses { display:grid; grid-template-columns:repeat(auto-fill, minmax(8.5rem, 1fr)); gap:.6rem; }
+  /* traditional 4x3 house arrangement (Quick Win 5) — the container is #geo-houses
+     (id, no class), so the grid must target the id, not the .geo-houses class. */
+  #geo-houses { display:grid; grid-template-columns:repeat(4, 1fr); gap:.6rem; }
   .geo-house { border:1px solid var(--rule); border-radius:.5rem; padding:.5rem; text-align:center; background:var(--card);
     display:flex; flex-direction:column; align-items:center; gap:.3rem; }
   .geo-house-n { font-size:.72rem; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); }
@@ -40,7 +42,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Geomancy</p>
+  <p class="crumb"><a href="../index.html">Home</a> › Oracles › Geomancy</p>
   <h1>Geomancy — the Shield Chart, cast &amp; judged</h1>
   <p class="lede">Geomancy — <i>ʿilm al-raml</i>, "the science of the sand" — is the divinatory art Agrippa called the
     <b>daughter of astrology</b>. You strike four hasty rows of marks to raise the <b>four Mothers</b>; from them the
@@ -112,7 +114,7 @@
 </main>
 <script type="module">
   import { mountChrome } from '../assets/js/app/shared.js';
-  mountChrome('tools');
+  mountChrome('oracles');
   import { initGeomancy } from '../assets/js/app/geomancy.js';
   initGeomancy();
 </script>

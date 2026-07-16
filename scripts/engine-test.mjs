@@ -1587,5 +1587,92 @@ ok(/Dummett/.test(plVocab) && /Kaplan/.test(plVocab) && plNote.includes('2026-07
 ok(plDomains.every(d => Array.isArray(plByDomain[d]) && plByDomain[d].length),
    'library: PRACTITIONERS_BY_DOMAIN index built for every domain');
 
+// --- The Great Works wing (greatworks.js) ----------------------------------
+// (existsSync + resolve are already imported above from node:fs / node:path.)
+import { GREAT_WORKS as gwData, GW_CITATION as gwCite, GW_METHOD_NOTE as gwMethod } from '../assets/js/core/data/greatworks.js';
+const gwAuthors = gwData.authors;
+const gwWorks = gwAuthors.flatMap(a => a.works);
+const gwChapters = gwWorks.flatMap(w => (w.chapters || []).map(c => ({ w, c })));
+ok(gwAuthors.length >= 6, `Great Works: >=6 authors (got ${gwAuthors.length})`);
+const gwHall = gwAuthors.find(a => a.id === 'hall');
+const gwStoaa = gwHall && gwHall.works.find(w => w.id === 'stoaa');
+ok(gwStoaa && gwStoaa.chapters.length === 45, `Great Works: Hall STOAA has 45 chapters (got ${gwStoaa ? gwStoaa.chapters.length : 'n/a'})`);
+const gwCorpus = gwAuthors.find(a => a.id === 'hermetica').works.find(w => w.id === 'corpus-hermeticum');
+ok((gwCorpus.flags || []).some(f => /\bXV\b/.test(f) && /gap/i.test(f)), 'Great Works: Corpus Hermeticum carries the CH XV numbering-gap flag');
+ok((gwCorpus.chapters || []).some(c => /no treatise xv/i.test(c.title)) && !gwCorpus.chapters.some(c => c.ref === 'CH XV'), 'Great Works: CH XV shown as a gap, never renumbered');
+ok(gwWorks.every(w => typeof w.pdStatus === 'string' && w.pdStatus), `Great Works: every work (${gwWorks.length}) has a pdStatus`);
+ok(gwAuthors.every(a => Array.isArray(a.studyPath) && a.studyPath.length >= 4), 'Great Works: every author has a studyPath with >=4 steps');
+let gwMap = 0, gwBad = 0;
+for (const { c } of gwChapters) for (const sm of (c.siteMapping || [])) { gwMap++; if (!existsSync(resolve(process.cwd(), 'pages', sm.path))) gwBad++; }
+for (const a of gwAuthors) { for (const l of (a.siteLinks || [])) { gwMap++; if (!existsSync(resolve(process.cwd(), 'pages', l.path))) gwBad++; } for (const s of a.studyPath) for (const t of (s.tools || [])) { gwMap++; if (!existsSync(resolve(process.cwd(), 'pages', t.path))) gwBad++; } }
+ok(gwBad === 0, `Great Works: every siteMapping/studyPath link resolves (${gwMap} checked, ${gwBad} broken)`);
+const gwBlob = JSON.stringify(gwData);
+ok(!/chronology\/field-guide\.html/.test(gwBlob), 'Great Works: refuted field-guide.html mapping absent');
+ok(!/solar cycles engine/i.test(gwBlob) && !/II\.39[–-]44/.test(gwBlob), 'Great Works: refuted "solar cycles engine" + off-by-one II.39–44 absent');
+const gwEmerald = gwAuthors.find(a => a.id === 'hermetica').works.find(w => w.id === 'emerald-tablet');
+ok(!gwEmerald.chapters.some(c => (c.siteMapping || []).some(sm => sm.path === 'chronology/alchemy.html')), 'Great Works: Emerald Tablet not mapped to alchemy.html');
+const gwThoth = gwAuthors.find(a => a.id === 'crowley').works.find(w => w.id === 'crowley-book-of-thoth');
+const gwReg = gwAuthors.find(a => a.id === 'regardie').works.find(w => w.id === 'the-golden-dawn');
+ok(gwThoth.quoteSafe === false && gwReg.quoteSafe === false, 'Great Works: Book of Thoth + Regardie are cite-only (quoteSafe:false)');
+const gwFourth = gwAuthors.find(a => a.id === 'agrippa').works.find(w => w.id === 'fourth-book');
+ok(gwFourth.spurious === true && (gwFourth.flags || []).some(f => /NOT by Agrippa/i.test(f)), 'Great Works: Fourth Book flagged spurious');
+ok(typeof gwCite === 'string' && /Verified 2026-07-16/.test(gwCite) && typeof gwMethod === 'string' && gwMethod.length > 200, 'Great Works: GW_CITATION + GW_METHOD_NOTE present');
+
+// --- Vedic stubs: Tithi-praveśa + Kūṭa matching (verified vectors) ----------
+import { tithiPravesha as tpAnnual, natalTithiData, siderealSunSignWindow, elongationMatchesBetween } from '../assets/js/core/tithi-pravesha.js';
+import { ashtakuta, porutham10, yoniMatrixInvariants } from '../assets/js/core/kuta.js';
+import * as KUTA_DATA from '../assets/js/core/data/kuta-data.js';
+{
+  const ARC = 360 / 27, midOf = n => (n - 1) * ARC + ARC / 2;
+  // TP — golden case: 1984-09-24 03:30 UT, Delhi
+  const natalTP = castChart(new Date('1984-09-24T03:30:00Z'), 28.6139, 77.2090, 'whole');
+  const nd = natalTithiData(natalTP);
+  ok(Math.abs(nd.elongation - 345.8722) < 0.001, `TP natal E0 = ${nd.elongation} (expect 345.8722)`);
+  ok(nd.tithi.num === 29 && nd.solarSign === 'Virgo', `TP natal tithi 29 + Sun sidereal Virgo (got ${nd.tithi.num}, ${nd.solarSign})`);
+  const win = siderealSunSignWindow(natalTP, 2026);
+  const cands = elongationMatchesBetween(natalTP, win.ingress, win.egress);
+  ok(cands.length === 1, `TP 2026 solar window has exactly 1 match (got ${cands.length})`);
+  const tp = tpAnnual(natalTP, 2026);
+  ok(Math.abs(tp.match.instant - new Date('2026-10-09T11:56:17Z')) < 2 * 3600000, `TP 2026 = ${tp.match.instant.toISOString()} (within 2h of 2026-10-09 11:56 UT)`);
+  ok(tp.match.tithi.num === 29 && tp.match.siderealSunSign === 'Virgo' && tp.ambiguity.flag === false, 'TP 2026 tithi 29, Sun Virgo, unambiguous');
+  const tp25 = tpAnnual(natalTP, 2025);
+  ok(Math.abs(tp25.match.instant - new Date('2025-09-20T14:22:53Z')) < 2 * 3600000, `TP 2025 = ${tp25.match.instant.toISOString()} (within 2h of 2025-09-20 14:23 UT)`);
+  const wide = elongationMatchesBetween(natalTP, new Date('2026-08-15T00:00:00Z'), new Date('2026-10-20T00:00:00Z'));
+  const sep = wide.find(m => m.instant < win.ingress);
+  ok(wide.length === 2 && sep && sep.siderealSunSign === 'Leo', 'TP ~2026-09-10 match is in Leo (correctly excluded from the solar window)');
+  ok(/no classical BPHS/i.test(tp.anchorNote), 'TP anchor note flags the missing classical anchor');
+
+  // KŪṬA — vector A (both Rohiṇī / Taurus) → 28, nāḍī-doṣa both Antya
+  const ku = ashtakuta(midOf(4), midOf(4));
+  const aBy = Object.fromEntries(ku.kutas.map(k => [k.key, k.points]));
+  ok(aBy.varna === 1 && aBy.vashya === 2 && aBy.tara === 3 && aBy.yoni === 4 && aBy.grahaMaitri === 5 && aBy.gana === 6 && aBy.bhakuta === 7 && aBy.nadi === 0 && ku.total === 28,
+    `kūṭa A = [${ku.kutas.map(k => k.points).join(',')}] total ${ku.total} (expect 1,2,3,4,5,6,7,0 = 28)`);
+  ok(/Antya/.test(ku.kutas.find(k => k.key === 'nadi').detail), 'kūṭa A nāḍī note = Antya');
+  // vector B (Bharaṇī × Revatī) → 25.0 saravali / 24.0 common, bhakūṭa 0 cancelled
+  const B = ashtakuta(midOf(2), midOf(27), { variantSet: 'saravali' });
+  const bBy = Object.fromEntries(B.kutas.map(k => [k.key, k.points]));
+  ok(bBy.varna === 0 && bBy.vashya === 0.5 && bBy.tara === 1.5 && bBy.yoni === 4 && bBy.grahaMaitri === 5 && bBy.gana === 6 && bBy.bhakuta === 0 && bBy.nadi === 8 && B.total === 25,
+    `kūṭa B saravali total ${B.total} (expect 25.0)`);
+  ok(B.kutas.find(k => k.key === 'bhakuta').cancellations.length > 0, 'kūṭa B bhakūṭa-doṣa cancellation noted (points stay 0)');
+  ok(ashtakuta(midOf(2), midOf(27), { variantSet: 'common' }).total === 24, 'kūṭa B common total = 24.0');
+  // vector C (Hasta × Rohiṇī) porutham → rajju veto + 5/9 contradiction
+  const C = porutham10(midOf(13), midOf(4));
+  ok(C.poruthams.find(p => p.key === 'rajju').status === 'fail' && C.vetoed, 'porutham C rajju VETO (both Kaṇṭha)');
+  const cr = C.poruthams.find(p => p.key === 'rasi');
+  ok(cr.contradiction && /5th/.test(cr.contradiction.south) && /bhakūṭa/.test(cr.contradiction.north), 'porutham C rāśi 5/9 contradiction shown both ways');
+  ok(C.poruthams.find(p => p.key === 'dina').status === 'fail' && C.poruthams.find(p => p.key === 'mahendra').status === 'pass', 'porutham C dina fail (Tamil) + mahendra pass');
+  // yoni matrix invariants
+  const inv = yoniMatrixInvariants();
+  ok(inv.diagonalAll4 && inv.enemyZeros && inv.asymmetricPairs === 2, `yoni invariants: diagonal 4s, 7 enemy pairs 0, ${inv.asymmetricPairs} asymmetric (expect 2)`);
+  // Sagittarius vaśya completion + the throw
+  let sagOK = false, sagThrew = false;
+  try { sagOK = typeof ashtakuta(midOf(4), 245).total === 'number'; } catch { sagOK = false; }
+  try { ashtakuta(midOf(4), 245, { vashyaSagCompletion: false }); } catch (e) { sagThrew = /Sagittarius/i.test(e.message); }
+  ok(sagOK && sagThrew, 'kūṭa Sagittarius scores via the flagged completion AND throws with it disabled');
+  // every data record carries a .cite
+  ok([KUTA_DATA.VARNA, KUTA_DATA.VASHYA, KUTA_DATA.TARA, KUTA_DATA.YONI, KUTA_DATA.GRAHA_MAITRI, KUTA_DATA.GANA, KUTA_DATA.BHAKUTA, KUTA_DATA.NADI, KUTA_DATA.DINA_TAMIL, KUTA_DATA.MAHENDRA, KUTA_DATA.STRI_DIRGHA, KUTA_DATA.RASI_SOUTH, KUTA_DATA.RASYADHIPATI, KUTA_DATA.RAJJU, KUTA_DATA.VEDHA].every(t => typeof t.cite === 'string' && t.cite.length > 5) && ku.kutas.every(k => k.cite),
+    'kuta-data: every table record + every per-kūṭa result carries a .cite');
+}
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

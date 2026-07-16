@@ -545,10 +545,54 @@ an accuracy promotion — built in parallel and integrated together. Verified: e
   Chromium drives: a yoga pāda page's Vyāsa-bhāṣya `<details>` opens with text (51 blocks, 458-char gist), and
   `library/western.html` renders its 38 practitioner cards — both pass, 0 console errors.
 
+### R25 — The revamp (WP1+WP2), the Great Works, the Learn curriculum & the first roadmap stubs ✅ **SHIPPED (2026-07-16)**
+*(five parallel deliverables — two site-wide craft passes and three new wings — built by separate work-packages and
+integrated together via three manifests. Verified: engine-test all passed · audit Problems: 0 · real-Chromium sweep of
+every page, 0 errors.)*
+
+- **(a) Design System 2.0** (`assets/css/*` token + component layer, the export path): a **token layer**
+  (colour / space / type / radius / `--sticky-top`) and a reusable **component layer** landed *under* the existing look
+  with **zero visual drift**, plus the **chart/reading export-styling fix** (exports now carry the site's own CSS
+  instead of rendering bare) and a sweep of quick wins. Purely additive — every prior page renders identically, so the
+  85-page Chromium baseline stayed green.
+- **(b) The chart-wheel beauty pass** (`app/chart.js` + the SVG diagram family): the wheel renderer gained **cluster
+  fans** (stacked planets fan out instead of overprinting), **orb-weighted aspect lines** (a tighter orb draws a
+  stronger stroke), **conjunction brackets**, **degree ticks** and an **elemental wash** behind the signs — and the
+  same visual grammar was carried across the diagram family, so every chart on the site now reads as one system.
+- **(c) The Great Works wing** (`core/data/greatworks.js`, `app/greatworks.js`, `pages/greatworks/*` — 7 pages):
+  author→book→chapter study guides for the primary texts behind the esoteric wings — **9 authors · 23 works · 145
+  chapters/treatises · 126 chapter cross-links · 71 study-path links** — each chapter mapped to the tool that *computes*
+  what it describes. Public-domain status decided **per record** under the US 95-year rule (PD editions quoted &
+  edition-cited; copyrighted editions cite-only), contested/spurious material flagged (the Corpus Hermeticum **XV**
+  numbering gap shown, never renumbered; the spurious Fourth Book kept apart). A `callable:false` registry entry + an
+  engine-test section that asserts **every** siteMapping/studyPath link resolves and the refuted mappings stay absent.
+  Described, never prescribed.
+- **(d) Learn — astrology & the mathematics** (`pages/learn.html`, `app/learn.js`): a step-by-step curriculum — **8
+  modules · 31 numbered lessons · 4 milestones** — from the honest frame to every wing, with the **mathematics made
+  first-class** (each lesson states the real formula, verified) and **localStorage progress** ticks (per-module counts,
+  an aria-live progress bar, reset). Works fully with JS disabled (progressive enhancement); promoted to the **gold
+  flagship of the home "Start here" band**.
+- **(e) Tithi-praveśa + Kūṭa matching** (`core/tithi-pravesha.js`, `core/kuta.js` + `data/kuta-data.js`, two pages): the
+  first two **planned Vedic roadmap stubs shipped**. *Tithi-praveśa* — the annual/monthly tithi return (the Moon
+  regaining its exact natal elongation in its natal sidereal sign), **verified to the second** against JHora
+  (2026 ⇒ 2026-10-09 11:56 UT); a modern-lineage technique with **no classical BPHS anchor** (flagged), the
+  solar/soli-lunar month fork shown honestly. *Kūṭa matching* — the North's aṣṭakūṭa (36 guṇa) + the Tamil South's ten
+  porutham, **every table cited**, contested values flagged and never resolved (the varṇa air/earth swap, the nāḍī
+  exempt lists, the bhakūṭa points-restoration dispute, and the **North/South 5-9 contradiction shown both ways**). A
+  sensitive-domain custom: what the tradition computes, never advice. Two `callable:false` registry entries + a
+  20-assertion engine-test section on the verified vectors.
+- **Verify gate** (all green, conda `astro-workbench` node): `engine-test.mjs` → **all passed** · `audit.mjs` →
+  **Problems: 0** (95 HTML, 146 JS) · `browser-verify.mjs` real-Chromium sweep → **95 pages, 0 errors**; the mega-menu
+  drive re-run after the four new nav items (Learn · Great Works · Tithi-praveśa · Kūṭa Matching) — all appear, no group
+  overflow.
+
 ### FURTHER ROADMAP (after R21, in rough value order)
 1. **Runes (Elder Futhark)** — a 24-stave oracle on the shared diviner engine (medium fit).
 2. **Streaming-markdown AI replies** with copy/regenerate.
 3. Numerology beyond gematria remains a *weak* engine fit.
+4. **Tithi-praveśa + Nakṣatra porutham (kūṭa matching)** — ✅ **SHIPPED (R25, 2026-07-16)**: the two Vedic
+   returns-&-compatibility roadmap stubs are now live (`pages/tithi-pravesha.html`, `pages/kuta.html`), both flagged
+   for their contested tables and modern-lineage/sensitive-domain framing.
 
 ---
 

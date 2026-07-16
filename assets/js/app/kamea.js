@@ -44,8 +44,8 @@ function drawSquare(k, sigil) {
   let g = '';
   for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
     const [x, y] = [PAD + c * cell, PAD + r * cell];
-    g += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" fill="var(--card)" stroke="var(--rule)"/>`;
-    g += `<text x="${x + cell / 2}" y="${y + cell / 2}" font-size="${Math.max(10, cell * 0.34)}" text-anchor="middle" dominant-baseline="central" fill="var(--muted)">${k.rows[r][c]}</text>`;
+    g += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" fill="var(--dg-fill, var(--card))" stroke="var(--dg-grid, var(--rule))"/>`;
+    g += `<text x="${x + cell / 2}" y="${y + cell / 2}" font-size="${Math.max(10, cell * 0.34)}" text-anchor="middle" dominant-baseline="central" fill="var(--dg-label, var(--muted))">${k.rows[r][c]}</text>`;
   }
   let trace = '';
   if (sigil && sigil.steps.length) {

@@ -58,13 +58,13 @@
     </details>
     <div class="field-row" style="margin-top:.8rem">
       <button type="submit" class="btn">Compute the reading</button>
-      <button type="button" class="btn sm" id="wb-copy">Copy shareable link</button>
-      <button type="button" class="btn sm" id="wb-json">Download JSON</button>
-      <button type="button" class="btn sm" id="wb-md">Download summary (MD)</button>
-      <button type="button" class="btn sm" id="wb-svg">Download chart (SVG)</button>
-      <button type="button" class="btn sm" id="wb-png">Download chart (PNG)</button>
-      <button type="button" class="btn sm" id="wb-print">Print</button>
-      <span id="wb-status" class="small muted"></span>
+      <button type="button" class="btn-secondary sm" id="wb-copy">Copy shareable link</button>
+      <button type="button" class="btn-secondary sm" id="wb-json">Download JSON</button>
+      <button type="button" class="btn-secondary sm" id="wb-md">Download summary (MD)</button>
+      <button type="button" class="btn-secondary sm" id="wb-svg">Download chart (SVG)</button>
+      <button type="button" class="btn-secondary sm" id="wb-png">Download chart (PNG)</button>
+      <button type="button" class="btn-secondary sm" id="wb-print">Print</button>
+      <span id="wb-status" class="small muted" role="status" aria-live="polite"></span>
     </div>
     <details id="wb-saved-details" style="margin-top:.6rem">
       <summary class="small"><b>Saved readings (on this device)</b></summary>
@@ -76,7 +76,7 @@
     </details>
   </form>
 
-  <p id="wb-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+  <p id="wb-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem" role="status" aria-live="polite"></p>
 
   <section class="card"><h2 style="margin-top:0">The figure <span class="small muted" id="wb-moment-cite"></span></h2>
     <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start">

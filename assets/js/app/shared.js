@@ -23,6 +23,7 @@ const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
     ['index.html', 'Home', 'home'],
     ['pages/basics.html', 'The Basics — every concept', 'basics'],
+    ['pages/learn.html', 'Learn — astrology & the math', 'learn'],
     ['pages/interpret.html', 'How to read results', 'interpret'],
     ['pages/how-it-works.html', "How it's calculated", 'howitworks'],
     ['pages/workflow.html', 'Chapter map & workflows', 'workflow'],
@@ -55,12 +56,15 @@ const NAV_GROUPS = [
     ['pages/prasna.html', 'Praśna & KP sub-lords', 'prasna'],
     ['pages/muhurta.html', 'Muhūrta — Indian election', 'muhurta'],
     ['pages/tajika.html', 'Tājika varṣaphala', 'tajika'],
+    ['pages/tithi-pravesha.html', 'Tithi-praveśa', 'tithipravesha'],
+    ['pages/kuta.html', 'Kūṭa Matching', 'kuta'],
     ['pages/rasa.html', 'Rasaśāstra & Yantras', 'rasa'],
     ['pages/abhichara/index.html', 'Abhicāra — ritual magic', 'abhichara'],
     ['pages/kabbalah.html', 'Kabbalah — Tree of Life', 'kabbalah'],
     ['pages/jung/index.html', 'Jung & astrology', 'jung'],
     ['pages/chronology/index.html', 'The Hermetic Chronology', 'chronology'],
     ['pages/yoga/index.html', 'The Yoga Sūtras', 'yoga'],
+    ['pages/greatworks/index.html', 'Great Works', 'greatworks'],
   ] },
   { label: 'Oracles', key: 'oracles', items: [
     ['pages/geomancy.html', 'Geomancy — the Shield', 'geomancy'],
@@ -107,10 +111,13 @@ function currentSection() {
   if (m(/\/pages\/jung\//)) return 'jung';
   if (m(/\/pages\/chronology\//)) return 'chronology';
   if (m(/\/pages\/yoga\//)) return 'yoga';
+  if (m(/\/pages\/greatworks\//)) return 'greatworks';
   if (m(/\/pages\/abhichara\//)) return 'abhichara';
   if (m(/\/pages\/prasna\.html$/)) return 'prasna';
   if (m(/\/pages\/muhurta\.html$/)) return 'muhurta';
   if (m(/\/pages\/tajika\.html$/)) return 'tajika';
+  if (m(/\/pages\/tithi-pravesha\.html$/)) return 'tithipravesha';
+  if (m(/\/pages\/kuta\.html$/)) return 'kuta';
   if (m(/\/pages\/rasa\.html$/)) return 'rasa';
   if (m(/\/pages\/kabbalah\.html$/)) return 'kabbalah';
 
@@ -134,6 +141,7 @@ function currentSection() {
 
   // Start.
   if (m(/\/pages\/basics\.html$/)) return 'basics';
+  if (m(/\/pages\/learn\.html$/)) return 'learn';
   if (m(/\/pages\/interpret\.html$/)) return 'interpret';
   if (m(/\/pages\/how-it-works\.html$/)) return 'howitworks';
   if (m(/\/pages\/workflow\.html$/)) return 'workflow';
@@ -261,6 +269,7 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/chronology/index.html')}">The Hermetic Chronology — as above, so below</a></li>
         <li><a href="${R('pages/abhichara/index.html')}">Abhicāra — the Indian ritual-magic traditions, described</a></li>
         <li><a href="${R('pages/yoga/index.html')}">The Yoga Sūtras of Patañjali — the study wing</a></li>
+        <li><a href="${R('pages/greatworks/index.html')}">The Great Works — author→book→chapter study guides</a></li>
         <li><a href="${R('pages/library/index.html')}">The Practitioners' Library — the people &amp; the books</a></li>
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
@@ -277,6 +286,7 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/book3/master.html')}">Book III Master Tool</a></li>
         <li><a href="${R('pages/tools.html')}">All Tools &amp; Calculators</a></li>
         <li><a href="${R('pages/basics.html')}">The Basics — every concept explained</a></li>
+        <li><a href="${R('pages/learn.html')}">Learn — astrology &amp; the mathematics</a></li>
         <li><a href="${R('pages/interpret.html')}">Reading your results (a reference)</a></li>
         <li><a href="${R('pages/structure.html')}">Structure &amp; patterns (the hidden symmetry)</a></li>
         <li><a href="${R('pages/experiment.html')}">Test it yourself (the falsification demo)</a></li>
@@ -290,6 +300,8 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/rasa.html')}">Rasaśāstra &amp; yantras — Indian mercury-alchemy &amp; the magic squares</a></li>
         <li><a href="${R('pages/moments.html')}">Cross-system moment scanner — every rulebook, one timeline</a></li>
         <li><a href="${R('pages/tajika.html')}">Tājika varṣaphala — the Indo-Persian annual chart</a></li>
+        <li><a href="${R('pages/tithi-pravesha.html')}">Tithi-praveśa — the Vedic annual &amp; monthly tithi return</a></li>
+        <li><a href="${R('pages/kuta.html')}">Kūṭa matching — the aṣṭakūṭa &amp; the ten porutham</a></li>
         <li><a href="${R('pages/how-it-works.html')}">How it's calculated (step by step)</a></li>
         <li><a href="${R('pages/handcalc.html')}">Cast a chart by hand — the ephemeris &amp; tables method</a></li>
         <li><a href="${R('pages/workflow.html')}">Chapter Map &amp; Workflows</a></li>

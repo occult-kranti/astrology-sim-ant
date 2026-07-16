@@ -112,20 +112,26 @@
   <h3>Returns &amp; compatibility</h3>
   <div class="grid cols-2">
     <div class="card">
-      <span class="chip soon">planned</span>
-      <h4>Tithi-praveśa — the monthly return</h4>
-      <p>The chart cast for each return of the natal tithi (lunar day) — the Indian monthly-return technique, the
-        sidereal cousin of the solar revolution already built for the Western side.</p>
-      <p class="small muted">Reuses <code>core/vedic.js</code> (pañcāṅga) · <code>core/solar-return.js</code>
-        (the bracket-and-bisect instant finder).</p>
+      <span class="chip done">shipped</span>
+      <h4><a href="tithi-pravesha.html">Tithi-praveśa — the annual &amp; monthly return</a></h4>
+      <p>The chart cast when the Moon regains its exact natal elongation from the Sun (same tithi + tithi-fraction) while
+        the Sun is back in its natal sidereal sign — the Indian annual/monthly-return technique, the sidereal cousin of
+        the solar revolution. A modern-lineage technique with no classical BPHS anchor (flagged), the solar/soli-lunar
+        month fork shown honestly.</p>
+      <p class="small muted">Built on <code>core/tithi-pravesha.js</code> (pure) · reuses <code>core/astro.js</code>
+        (bodyPosition, the bracket-and-bisect finder) · <code>core/vedic.js</code> (castVedic) ·
+        <code>core/planetary-hours.js</code> (the horā "lord of the year"). <b>→ <a href="tithi-pravesha.html">Open the
+        tool</a></b></p>
     </div>
     <div class="card">
-      <span class="chip soon">planned</span>
-      <h4>Nakṣatra porutham — the match grid</h4>
-      <p>The ten (or twelve) kūṭa compatibility factors scored between two charts from the Moon's nakṣatra and rāśi —
-        described as a cultural matching custom, with every factor's rule cited.</p>
-      <p class="small muted">Reuses <code>core/vedic.js</code> · <code>data/vedic-data.js</code> (nakṣatra table) —
-        a scoring grid over two existing charts.</p>
+      <span class="chip done">shipped</span>
+      <h4><a href="kuta.html">Kūṭa matching — the aṣṭakūṭa &amp; the ten porutham</a></h4>
+      <p>The North's aṣṭakūṭa (36 guṇa) and the Tamil South's ten porutham scored between two nativities' Moons —
+        a cultural matching custom (what the tradition computes, never advice), with every factor's rule cited, every
+        source-disagreement flagged, and the North/South 5-9 contradiction shown both ways.</p>
+      <p class="small muted">Built on <code>core/kuta.js</code> + <code>data/kuta-data.js</code> (all tables cited) ·
+        reuses <code>data/vedic-data.js</code> (nakṣatra + NATURAL_RELATION friendship). <b>→ <a href="kuta.html">Open
+        the tool</a></b></p>
     </div>
   </div>
 
