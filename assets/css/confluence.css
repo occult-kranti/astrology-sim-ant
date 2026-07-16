@@ -1,0 +1,303 @@
+/* ============================================================================
+   confluence.css — presentation for THE GREAT CONFLUENCE atlas
+   (pages/confluence.html · R27). Loaded AFTER style.css; built ONLY on the
+   shipped Design System 2.0 tokens (--paper/--night surfaces, --ep-* epistemic
+   palette, --dg-* diagram family, --fs-* fluid type, --t-*/--ease motion,
+   radius/shadow/z tokens). style.css is LOCKED and untouched.
+
+   The eight lane-accent tokens (design §10.1) live HERE, scoped to .cfl-page.
+   The site is single-theme parchment (§10.3): lane hues + --ep-* washes are
+   validated for the paper surfaces ONLY and are never used on a dark surface —
+   so there is no dark-theme block; identity on dark would fall back to glyph +
+   label. A print addendum keeps the map legible on paper.
+
+   Reduced-motion-first: every default state below IS the final resting state.
+   All animation lives inside @media (prefers-reduced-motion: no-preference).
+   ============================================================================ */
+
+/* ---------- LANE ACCENT TOKENS (design §10.1) ------------------------------- */
+.cfl-page {
+  --lane-chr:#3a6cb0;  --lane-chr-wash:rgba(58,108,176,.06);   /* christian    — steel azure */
+  --lane-alc:#9a5526;  --lane-alc-wash:rgba(154,85,38,.06);    /* alchemy-west — sienna      */
+  --lane-kab:#6a4aa0;  --lane-kab-wash:rgba(106,74,160,.06);   /* kabbalah     — violet      */
+  --lane-isl:#00939c;  --lane-isl-wash:rgba(0,147,156,.06);    /* islamic      — cyan-teal   */
+  --lane-yog:#84831c;  --lane-yog-wash:rgba(132,131,28,.06);   /* yoga-vedanta — olive       */
+  --lane-tan:#b83f88;  --lane-tan-wash:rgba(184,63,136,.06);   /* tantra-rasa  — magenta     */
+  --lane-bud:#8a4a22;  --lane-bud-wash:rgba(138,74,34,.06);    /* buddhist     — russet      */
+  --lane-dao:#2f7ca8;  --lane-dao-wash:rgba(47,124,168,.06);   /* daoist       — = --air     */
+
+  /* diagram-family additions (join the --dg-* set, chart.js convention) */
+  --dg-edge:var(--rule-500);         /* rest-state arc ink              */
+  --dg-edge-hot:var(--accent-strong);/* highlighted arc / thread trunk */
+  --dg-band:rgba(194,180,143,.28);   /* date-certainty bands            */
+  --dg-era:var(--paper-200);         /* era zebra stripe                */
+
+  /* two more named script stacks (design §10.4) */
+  --font-arab:'Segoe UI','Noto Naskh Arabic',serif;
+  --font-cjk:'Segoe UI','Noto Sans SC',sans-serif;
+
+  --cfl-toolbar-h:3.1rem;   /* used by the sticky era readout / drawer offset  */
+  --cfl-gutter:64px;        /* ruler gutter width (mirrors the engine constant) */
+}
+
+/* resolve one lane's hue/wash from its data-lane, for dots, washes, underlines */
+.cfl-page [data-lane="christian"]    { --lane:var(--lane-chr); --lane-wash:var(--lane-chr-wash); }
+.cfl-page [data-lane="alchemy-west"] { --lane:var(--lane-alc); --lane-wash:var(--lane-alc-wash); }
+.cfl-page [data-lane="kabbalah"]     { --lane:var(--lane-kab); --lane-wash:var(--lane-kab-wash); }
+.cfl-page [data-lane="islamic"]      { --lane:var(--lane-isl); --lane-wash:var(--lane-isl-wash); }
+.cfl-page [data-lane="yoga-vedanta"] { --lane:var(--lane-yog); --lane-wash:var(--lane-yog-wash); }
+.cfl-page [data-lane="tantra-rasa"]  { --lane:var(--lane-tan); --lane-wash:var(--lane-tan-wash); }
+.cfl-page [data-lane="buddhist"]     { --lane:var(--lane-bud); --lane-wash:var(--lane-bud-wash); }
+.cfl-page [data-lane="daoist"]       { --lane:var(--lane-dao); --lane-wash:var(--lane-dao-wash); }
+.cfl-page [data-lane="confluence"]   { --lane:var(--accent-soft); --lane-wash:var(--surface-wash); }
+
+/* ---------- utility --------------------------------------------------------- */
+.cfl-vh { position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* ---------- how-to-read legend --------------------------------------------- */
+.cfl-legend .cfl-key-title { font-family:var(--font-sans); font-size:var(--fs-label);
+  font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-strong);
+  margin:0 0 .3rem; }
+.cfl-legend .cfl-dot { display:inline-block; width:.7em; height:.7em; border-radius:50%;
+  background:var(--lane, var(--accent)); vertical-align:baseline; margin-right:.3rem; }
+.cfl-lane-legend { display:flex; flex-wrap:wrap; gap:.3rem .8rem; }
+.cfl-lane-legend span { white-space:nowrap; font-size:.82rem; }
+
+/* ---------- the atlas toolbar ---------------------------------------------- */
+.cfl-toolbar { gap:var(--sp-2) var(--sp-3); }
+.cfl-toolbar .cfl-group { display:flex; flex-wrap:wrap; gap:.35rem; align-items:center; }
+.cfl-toolbar .cfl-group-label { font-family:var(--font-sans); font-size:var(--fs-label);
+  text-transform:uppercase; letter-spacing:.06em; color:var(--text-faint); margin-right:.15rem; }
+.cfl-toolbar select { font:inherit; font-size:.82rem; padding:.25rem .4rem; border:1px solid var(--border);
+  border-radius:var(--rad-1); background:var(--surface-card); color:var(--text); }
+.cfl-toolbar .cfl-era-current { font-family:var(--font-sans); font-size:var(--fs--1);
+  color:var(--accent-strong); font-weight:700; white-space:nowrap; }
+
+/* the lane chip carries an 8px lane-hue dot */
+.chip-toggle .cfl-dot { display:inline-block; width:.6em; height:.6em; border-radius:50%;
+  background:var(--lane, var(--accent)); margin-right:.35rem; vertical-align:baseline; }
+.chip-toggle .cfl-kglyph { margin-right:.25rem; }
+
+.cfl-zoom { display:inline-flex; align-items:center; gap:.3rem; }
+.cfl-zoom .cfl-zoom-label { font-family:var(--font-sans); font-size:var(--fs--1);
+  color:var(--text-muted); min-width:2.6rem; text-align:center; font-variant-numeric:tabular-nums; }
+
+/* skip link — visible on focus */
+.cfl-skip { position:absolute; left:var(--sp-2); top:-3rem; z-index:var(--z-toast);
+  background:var(--surface-card); border:1px solid var(--accent); border-radius:var(--rad-2);
+  padding:.4rem .7rem; color:var(--link); text-decoration:none; transition:top var(--t-fast) var(--ease); }
+.cfl-skip:focus { top:var(--sp-2); }
+
+/* ---------- atlas frame ---------------------------------------------------- */
+.cfl-scroll { overflow-x:auto; overflow-y:visible; -webkit-overflow-scrolling:touch; }
+
+.cfl-atlas { position:relative; margin:0 auto; }
+.cfl-under { position:absolute; inset:0; width:100%; height:100%; display:block; }
+.cfl-over  { position:absolute; inset:0; }
+
+/* ---------- SVG underlay classes (WHEEL_STYLE convention: var(--dg-*, hex)) - */
+.cfl-era-band     { fill:var(--dg-era, #efe6d2); }
+.cfl-lane-wash    { fill:var(--lane-wash, transparent); }
+.cfl-lane-rule    { stroke:var(--border, #d8cbac); stroke-width:1; }
+.cfl-spine-rule   { stroke:var(--accent-soft, #d9b15a); stroke-width:1; opacity:.7; }
+.cfl-tick         { stroke:var(--dg-tick, #b3a37e); stroke-width:1; opacity:.28; }
+.cfl-tick-major   { opacity:.5; }
+.cfl-tick-label   { fill:var(--dg-label, #9b8e6e); font-family:var(--font-sans); font-size:11px;
+  font-variant-numeric:tabular-nums; }
+
+.cfl-cert-band    { fill:var(--dg-band, rgba(194,180,143,.28)); }
+.cfl-cert-capsule { fill:var(--lane, #b8862b); opacity:.35; }
+.cfl-cert-ring    { fill:none; stroke:var(--dg-band, rgba(194,180,143,.5)); stroke-width:1;
+  stroke-dasharray:1 2; }
+
+/* ---------- edges (the point of the page) ---------------------------------- */
+.cfl-edge-hit  { fill:none; stroke:transparent; stroke-width:8; pointer-events:stroke; cursor:pointer; }
+.cfl-edge-line { fill:none; stroke:var(--dg-edge, #c2b48f); stroke-width:1.3; opacity:.55;
+  stroke-linecap:round; pointer-events:none; }
+.cfl-edge-bead { fill:var(--dg-edge, #c2b48f); opacity:.55; pointer-events:none; }
+/* kind → dash + weight (colour stays reserved for lanes + epistemics) */
+.cfl-edge[data-kind="translation"] .cfl-edge-line { stroke-width:1.8; }
+.cfl-edge[data-kind="influence"]   .cfl-edge-line { stroke-width:1.2; }
+.cfl-edge[data-kind="commentary"]  .cfl-edge-line { stroke-width:1.2; stroke-dasharray:5 3; }
+.cfl-edge[data-kind="synthesis"]   .cfl-edge-line { stroke-width:1.8; }
+.cfl-edge[data-kind="adaptation"]  .cfl-edge-line { stroke-width:1.4; stroke-dasharray:9 3; }
+.cfl-edge[data-kind="refutation"]  .cfl-edge-line { stroke-width:1.2; stroke-dasharray:2 3; }
+/* hover / focus / thread states — colour + opacity toggles only (motion-safe) */
+.cfl-edge.edge-hot .cfl-edge-line { stroke:var(--dg-edge-hot, #8a6420); stroke-width:2.4; opacity:1; }
+.cfl-edge.edge-hot .cfl-edge-bead { fill:var(--dg-edge-hot, #8a6420); opacity:1; }
+.cfl-edges.has-hot .cfl-edge:not(.edge-hot) .cfl-edge-line,
+.cfl-edges.has-hot .cfl-edge:not(.edge-hot) .cfl-edge-bead { opacity:.12; }
+.cfl-edge[hidden] { display:none; }
+
+/* ---------- nodes: HTML buttons over the SVG ------------------------------- */
+.cfl-over { --cfl-lane-w:120px; }
+.cfl-node { position:absolute; width:24px; height:24px; margin:0; padding:0; border:0;
+  background:none; cursor:pointer; display:grid; place-items:center; }
+.cfl-node[hidden] { display:none; }
+.cfl-node:focus-visible { outline:2px solid var(--focus); outline-offset:2px; border-radius:4px; }
+.cfl-mark { width:14px; height:14px; display:block; pointer-events:none; }
+.cfl-mark svg { width:14px; height:14px; display:block; overflow:visible; }
+/* two orthogonal channels: SHAPE = kind (the svg), COLOUR = epistemic label */
+.cfl-node .cfl-shape { fill:var(--ep-doc-wash, #f7ecce); stroke:var(--ep-doc, #b8862b); stroke-width:2; }
+.cfl-node[data-label="documented"] .cfl-shape { fill:var(--ep-doc-wash);  stroke:var(--ep-doc); }
+.cfl-node[data-label="disputed"]   .cfl-shape { fill:var(--ep-disp-wash); stroke:var(--ep-disp); }
+.cfl-node[data-label="debunked"]   .cfl-shape { fill:var(--ep-deb-wash);  stroke:var(--ep-deb); }
+.cfl-node[data-label="conspiracy"] .cfl-shape { fill:var(--ep-con-wash);  stroke:var(--ep-con); }
+/* recessive but findable: debunked / conspiracy drawn faint + dashed, never hidden */
+.cfl-node[data-label="debunked"], .cfl-node[data-label="conspiracy"] { opacity:.6; }
+.cfl-node[data-label="debunked"] .cfl-shape,
+.cfl-node[data-label="conspiracy"] .cfl-shape { stroke-dasharray:2 2; }
+/* uncertainty must LOOK uncertain: century / contested soften the mark stroke */
+.cfl-node[data-cert="century"] .cfl-shape { stroke-dasharray:3 2; }
+
+.cfl-label { position:absolute; left:26px; top:50%; transform:translateY(-50%);
+  width:calc(var(--cfl-lane-w) - 30px); font-family:var(--font-sans); font-size:.66rem;
+  line-height:1.15; color:var(--text-soft); text-align:left; text-wrap:balance;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  pointer-events:none; }
+.cfl-node.is-flip .cfl-label { left:auto; right:26px; text-align:right; }
+.cfl-node.is-quiet .cfl-label { opacity:0; }
+.cfl-node:hover .cfl-label, .cfl-node:focus-visible .cfl-label,
+.cfl-node.is-selected .cfl-label { opacity:1; }
+.cfl-flag { color:var(--ep-disp); cursor:help; margin-left:.15rem; }
+
+/* related / selected rings + numbered thread medallions */
+.cfl-node.is-related::before, .cfl-node.is-selected::before, .cfl-node.is-threaded::before {
+  content:''; position:absolute; inset:-3px; border-radius:50%; pointer-events:none; }
+.cfl-node.is-related::before  { box-shadow:0 0 0 2px var(--accent-soft); }
+.cfl-node.is-selected::before { box-shadow:0 0 0 2px var(--accent); }
+.cfl-node.is-threaded::before { box-shadow:0 0 0 2px var(--dg-edge-hot); }
+.cfl-medallion { position:absolute; top:-8px; right:-8px; min-width:14px; height:14px; padding:0 2px;
+  border-radius:99px; background:var(--accent); color:#2a2008; font-family:var(--font-sans);
+  font-size:9px; font-weight:700; line-height:14px; text-align:center; pointer-events:none; }
+/* thread mode: everything not on the chain recedes */
+.cfl-over.is-threading .cfl-node:not(.is-threaded) { opacity:.35; }
+
+/* ---------- era headers + lane headers (over layer) ------------------------ */
+.cfl-era-head { position:absolute; left:0; font-family:var(--font-sans); font-size:var(--fs-label);
+  letter-spacing:.04em; text-transform:uppercase; color:var(--text-soft);
+  padding:.2rem var(--sp-3); border-top:1px solid var(--border); pointer-events:none; }
+.cfl-era-head .cfl-era-scale { color:var(--text-faint); text-transform:none; letter-spacing:0; }
+.cfl-lane-head { position:absolute; top:0; display:flex; flex-direction:column; align-items:center;
+  gap:.05rem; text-align:center; padding:.25rem 2px; cursor:pointer; background:var(--surface-page);
+  border-bottom:3px solid var(--lane, var(--accent)); }
+.cfl-lane-head .cfl-lane-glyph { font-size:1rem; line-height:1; color:var(--lane, var(--accent)); }
+.cfl-lane-head .cfl-lane-name  { font-family:var(--font-sans); font-size:.72rem; line-height:1.1; color:var(--text); }
+.cfl-lane-head .cfl-lane-count { font-family:var(--font-sans); font-size:.62rem; color:var(--text-faint);
+  font-variant-numeric:tabular-nums; }
+.cfl-lane-head[aria-pressed="false"] { opacity:.5; }
+
+/* ---------- tooltip -------------------------------------------------------- */
+.cfl-tip { position:fixed; z-index:var(--z-menu); max-width:18rem; pointer-events:none;
+  background:var(--surface-card); border:1px solid var(--border); border-radius:var(--rad-2);
+  box-shadow:var(--shadow-2); padding:.4rem .55rem; font-family:var(--font-sans); font-size:.78rem;
+  color:var(--text); line-height:1.35; }
+.cfl-tip[hidden] { display:none; }
+.cfl-tip .cfl-tip-meta { color:var(--text-muted); }
+
+/* ---------- detail drawer -------------------------------------------------- */
+.cfl-scrim { position:fixed; inset:0; z-index:calc(var(--z-menu) - 1); background:rgba(9,13,32,.35); }
+.cfl-scrim[hidden] { display:none; }
+.cfl-drawer { position:sticky; top:var(--sticky-top); align-self:start;
+  max-height:calc(100vh - var(--sticky-top) - 1rem); overflow:auto; }
+.cfl-drawer[hidden] { display:none; }
+.cfl-drawer-close { float:right; border:0; background:none; cursor:pointer; font-size:1.2rem;
+  line-height:1; color:var(--text-muted); padding:.2rem .4rem; }
+.cfl-drawer-close:focus-visible { outline:2px solid var(--focus); outline-offset:2px; }
+.cfl-drawer .cfl-script { font-size:var(--fs-1); color:var(--text-soft); margin:.15rem 0 .4rem; }
+.cfl-drawer [lang][dir="rtl"] { font-family:var(--font-arab); }
+.cfl-lanechip { display:inline-flex; align-items:center; gap:.3rem; font-family:var(--font-sans);
+  font-size:var(--fs-badge); font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+  padding:.1rem .45rem; border-radius:var(--rad-1); border:1px solid var(--lane, var(--border));
+  color:var(--text-muted); background:var(--surface-inset); }
+.cfl-tech { border:1px dashed var(--border); border-radius:var(--rad-2); background:var(--surface-wash);
+  padding:.5rem .7rem; margin:var(--sp-3) 0; }
+.cfl-tech .cfl-tech-head { font-family:var(--font-sans); font-size:var(--fs-label); font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--accent-strong); }
+.cfl-journeys { list-style:none; margin:var(--sp-2) 0; padding:0; }
+.cfl-journeys li { padding:.35rem 0; border-bottom:1px dashed var(--border); font-size:.9rem; }
+.cfl-journeys .cfl-jkind { font-family:var(--font-sans); font-size:.7rem; text-transform:uppercase;
+  letter-spacing:.04em; color:var(--text-muted); }
+.cfl-jlink { font-family:var(--font-serif); color:var(--link); }
+.cfl-jlink:hover { color:var(--link-hover); }
+.cfl-follow { margin-left:.4rem; }
+.cfl-contested { margin:var(--sp-3) 0; }
+.cfl-contested .cfl-pos { margin:.4rem 0; padding-left:.6rem; border-left:2px solid var(--ep-disp); }
+.cfl-contested .cfl-pos cite { display:block; font-size:var(--fs--1); color:var(--text-muted); font-style:normal; }
+.cfl-drawer .cfl-src { margin-top:var(--sp-3); padding-top:var(--sp-2); border-top:1px dashed var(--border);
+  font-size:var(--fs--1); color:var(--text-muted); }
+.cfl-cta { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin-top:var(--sp-3); }
+
+/* thread panel inside the drawer */
+.cfl-thread-stops { list-style:none; margin:var(--sp-2) 0; padding:0; counter-reset:stop; }
+.cfl-thread-stops li { padding:.3rem 0; border-bottom:1px dashed var(--border); }
+.cfl-thread-stops li.is-current { font-weight:700; }
+.cfl-thread-nav { display:flex; gap:.5rem; margin-top:var(--sp-2); }
+
+/* ---------- desktop dock: atlas + drawer share a grid ---------------------- */
+@media (min-width:1100px) {
+  .cfl-stage { display:grid; grid-template-columns:minmax(0,1fr) 0; gap:var(--sp-4); align-items:start;
+    transition:grid-template-columns var(--t-med) var(--ease); }
+  .cfl-stage.drawer-open { grid-template-columns:minmax(0,1fr) 23rem; }
+  .cfl-drawer { grid-column:2; }
+  .cfl-scrim { display:none !important; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .cfl-stage { transition:none; }
+}
+
+/* ---------- mobile drawer = bottom sheet ----------------------------------- */
+@media (max-width:1099px) {
+  .cfl-drawer { position:fixed; inset:auto 0 0 0; z-index:var(--z-menu); max-height:82vh;
+    border-radius:var(--rad-3) var(--rad-3) 0 0; box-shadow:var(--shadow-3);
+    background:var(--surface-card); }
+  .cfl-sheet-handle { width:2.4rem; height:.28rem; border-radius:99px; background:var(--border);
+    margin:.4rem auto .2rem; }
+}
+.cfl-sheet-handle { display:none; }
+@media (max-width:1099px) { .cfl-sheet-handle { display:block; } }
+
+/* ---------- the Ledger (single-column; forced <720px, offered everywhere) --- */
+.cfl-ledger[hidden] { display:none; }
+.cfl-ledger-era { position:sticky; top:var(--cfl-toolbar-h); z-index:1; background:var(--surface-page);
+  font-family:var(--font-sans); font-size:var(--fs-label); text-transform:uppercase; letter-spacing:.04em;
+  color:var(--text-soft); padding:.35rem 0; border-bottom:1px solid var(--border); margin-top:var(--sp-3); }
+.cfl-ledger-era .cfl-era-scale { color:var(--text-faint); text-transform:none; letter-spacing:0; }
+.cfl-row { display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem; width:100%; text-align:left;
+  padding:.5rem .3rem; border:0; border-bottom:1px dashed var(--border); background:none; cursor:pointer;
+  border-radius:var(--rad-1); }
+.cfl-row:hover { background:var(--surface-wash); }
+.cfl-row:focus-visible { outline:2px solid var(--focus); outline-offset:-2px; }
+/* dateText can run to a full clause ("core divination text, Western Zhou, c. 9th
+   c. BCE; ..."): it must WRAP, never widen the row — nowrap overflowed 390px. */
+.cfl-row .cfl-row-date { font-family:var(--font-sans); font-size:var(--fs--1); color:var(--text-muted);
+  font-variant-numeric:tabular-nums; flex:0 1 auto; min-width:6.5rem; max-width:100%; }
+.cfl-row .cfl-row-title { font-family:var(--font-serif); flex:1 1 auto; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; }
+.cfl-row .cfl-mark { flex:0 0 auto; }
+
+/* ---------- entrance / selection motion — GATED (design §7) ---------------- */
+@media (prefers-reduced-motion:no-preference) {
+  .cfl-atlas.is-entering .cfl-node { opacity:0; transform:translateY(8px);
+    animation:cfl-rise var(--t-slow, 240ms) var(--ease) forwards;
+    animation-delay:calc(var(--era-i, 0) * 60ms); }
+  @keyframes cfl-rise { to { opacity:1; transform:none; } }
+  .cfl-atlas.is-entering .cfl-edge-line { stroke-dasharray:1; stroke-dashoffset:1;
+    animation:cfl-draw 400ms var(--ease) 240ms forwards; }
+  @keyframes cfl-draw { to { stroke-dashoffset:0; } }
+  .cfl-node.is-pulsing::after { content:''; position:absolute; inset:-3px; border-radius:50%;
+    box-shadow:0 0 0 2px var(--accent); animation:cfl-pulse 300ms var(--ease) forwards; pointer-events:none; }
+  @keyframes cfl-pulse { from { transform:scale(1); opacity:1; } to { transform:scale(1.4); opacity:0; } }
+}
+
+/* ---------- print addendum (design §10.3) ---------------------------------- */
+@media print {
+  .cfl-toolbar, .cfl-tip, .cfl-scrim, .cfl-skip, .cfl-zoom { display:none !important; }
+  .cfl-under { display:none !important; }          /* the SVG lattice can't print legibly */
+  .cfl-atlas { display:none !important; }
+  .cfl-ledger { display:block !important; }         /* the ledger IS the print view */
+  .cfl-node .cfl-shape { fill:#fff !important; stroke:#000 !important; }
+  .cfl-edge-line { stroke:#666 !important; }
+  .cfl-cert-ring { stroke:#999 !important; }
+}

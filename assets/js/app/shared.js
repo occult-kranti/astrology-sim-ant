@@ -63,6 +63,7 @@ const NAV_GROUPS = [
     ['pages/kabbalah.html', 'Kabbalah — Tree of Life', 'kabbalah'],
     ['pages/jung/index.html', 'Jung & astrology', 'jung'],
     ['pages/chronology/index.html', 'The Hermetic Chronology', 'chronology'],
+    ['pages/confluence.html', 'The Great Confluence — atlas', 'confluence'],
     ['pages/yoga/index.html', 'The Yoga Sūtras', 'yoga'],
     ['pages/greatworks/index.html', 'Great Works', 'greatworks'],
   ] },
@@ -110,6 +111,7 @@ function currentSection() {
   if (m(/\/pages\/vedic\//)) return 'vedic';
   if (m(/\/pages\/jung\//)) return 'jung';
   if (m(/\/pages\/chronology\//)) return 'chronology';
+  if (m(/\/pages\/confluence\.html$/)) return 'confluence';
   if (m(/\/pages\/yoga\//)) return 'yoga';
   if (m(/\/pages\/greatworks\//)) return 'greatworks';
   if (m(/\/pages\/abhichara\//)) return 'abhichara';

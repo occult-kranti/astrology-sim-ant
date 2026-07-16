@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Great Confluence — a map of books and their journeys | The Astrologer's Workbench</title>
+<meta name="description" content="The Great Confluence: nine traditions — Christian contemplation, Hermetica &amp; alchemy, Kabbalah, Sufi Islam, Yoga &amp; Vedānta, Tantra &amp; Rasaśāstra, Buddhist lineages and Daoist China — laid out as parallel lanes on one honest, era-warped time axis, with the documented journeys where books crossed languages, borders and religions drawn as directed arcs. Influence documented, never validated; every entry and arc epistemically labelled and cited, contested claims flagged with both positions verbatim.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/confluence.css">
+</head>
+<body>
+<main class="wrap cfl-page">
+  <p class="crumb"><a href="../index.html">Home</a> › The Great Confluence</p>
+
+  <div class="wing-hero">
+    <span class="wh-glyph" aria-hidden="true">✶</span>
+    <h1>The Great Confluence — <i>a map of books and their journeys</i></h1>
+    <p class="lede">Nine traditions, thirty-five centuries, one time axis. Every mark is a text, a person, an event, a
+      translation or an institution; every arc is a documented journey — a book carried over a border, put into a new
+      language, argued with, absorbed. This map plots <b>influence, never validity</b>: it shows that the
+      <i>Picatrix</i> reached Latin, not that its talismans work; that the Upaniṣads reached Persian, not that Vedānta
+      is physics. Who read whom is real history — and it is astonishing enough. <em>Prefer the story told in order?
+      <a href="chronology/index.html">Read the Hermetic Chronology</a>.</em></p>
+    <div class="ep-strip">
+      <a class="badge badge--doc" href="about/index.html">Documented transmission · labelled</a>
+      <a class="badge badge--bad" href="about/index.html">No demonstrated validity</a>
+    </div>
+  </div>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Every entry and every arc carries an <b>epistemic label</b>: <i>documented</i> transmission is kept visibly
+    distinct from <i>disputed</i> readings, <i>debunked</i> claims, and <i>conspiracy</i> narratives — which stay on
+    the map, drawn faint, because the record of what people falsely believed is also history. Dates for ancient texts
+    are scholarly estimates; the map draws that uncertainty as soft bands, not sharp points, and the timeline's scale
+    <b>stretches as it nears the present</b> — each era band says by how much. The arcs mean “demonstrably
+    read, rendered or answered,” per the citation on each — <b>influence is the claim, and the only claim</b>.</div>
+
+  <details class="acc cfl-legend-acc" open>
+    <summary><h2 style="margin:0">How to read this map</h2></summary>
+    <div class="acc-body">
+      <div class="legend-grid cfl-legend">
+        <div>
+          <p class="cfl-key-title">Lanes = traditions</p>
+          <p class="small">Columns run west of the spine to east. The gold-framed centre lane is the
+            <b>confluence</b> — moments that belong to more than one tradition. A lane's colour is a finding aid; the
+            label is the fact.</p>
+          <div class="cfl-lane-legend" id="cfl-lane-legend"></div>
+        </div>
+        <div>
+          <p class="cfl-key-title">Shapes = kind</p>
+          <p class="small">▮ text · ● person · ◆ event · ◎ translation · ⌂ institution. Shape carries the kind;
+            colour carries the epistemic label — two separate channels, each also written in the drawer.</p>
+        </div>
+        <div>
+          <p class="cfl-key-title">Marks = certainty</p>
+          <p class="small">A crisp mark is dated to the year. A soft band behind it means a decade or a century of
+            scholarly estimate; a long capsule means composed over a span (the mark sits at the start); ⚑ means the
+            sources disagree — hover to read both sides.</p>
+        </div>
+        <div>
+          <p class="cfl-key-title">Arcs = journeys</p>
+          <p class="small">Arcs flow down the page, with time: solid = translation or influence, dashed = commentary
+            or adaptation, dotted = refutation, a bead = synthesis. Hover any book to light up its travels; press
+            <b>t</b> to follow a thread. <b>Debunked</b> and <b>conspiracy</b> entries are drawn faint on purpose —
+            present, labelled, and never dressed as the documented record. Use the label chips to isolate them.</p>
+        </div>
+        <div>
+          <p class="cfl-key-title">The four labels</p>
+          <p class="small">
+            <span class="badge badge--doc">documented</span> established by primary texts or peer-reviewed scholarship ·
+            <span class="badge badge--disp">disputed</span> contested or unsettled ·
+            <span class="badge badge--deb">debunked</span> disproven by evidence ·
+            <span class="badge badge--con">conspiracy</span> no evidentiary basis, shown as discourse.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <div class="filterbar cfl-toolbar" id="cfl-toolbar" role="region" aria-label="Atlas controls">
+    <div class="cfl-group">
+      <span class="cfl-group-label">View</span>
+      <div class="seg" id="cfl-mode" role="group" aria-label="Atlas or Ledger view">
+        <button type="button" data-mode="atlas" aria-pressed="true">Atlas</button>
+        <button type="button" data-mode="ledger" aria-pressed="false">Ledger</button>
+      </div>
+    </div>
+    <div class="cfl-group" id="cfl-lanes" role="group" aria-label="Filter by tradition (lane)"></div>
+    <div class="cfl-group" id="cfl-kinds" role="group" aria-label="Filter by kind"></div>
+    <div class="cfl-group" id="cfl-labels" role="group" aria-label="Filter by epistemic label"></div>
+    <div class="cfl-group">
+      <span class="cfl-group-label">From</span>
+      <select id="cfl-from" aria-label="Earliest century shown"></select>
+      <span class="cfl-group-label">To</span>
+      <select id="cfl-to" aria-label="Latest century shown"></select>
+    </div>
+    <div class="cfl-group">
+      <button type="button" class="chip-toggle" id="cfl-crossings" aria-pressed="false">Crossings only</button>
+    </div>
+    <div class="cfl-group cfl-zoom" role="group" aria-label="Zoom the time axis">
+      <button type="button" class="btn-secondary sm" id="cfl-zoom-out" aria-label="Zoom out (compact)">−</button>
+      <span class="cfl-zoom-label" id="cfl-zoom-label">100%</span>
+      <button type="button" class="btn-secondary sm" id="cfl-zoom-in" aria-label="Zoom in (close)">+</button>
+    </div>
+    <div class="cfl-group">
+      <span class="cfl-group-label">Jump to</span>
+      <select id="cfl-era-jump" aria-label="Jump to an era"></select>
+    </div>
+    <button type="button" class="btn sm" id="cfl-reset">Reset</button>
+    <span class="filter-count cfl-era-current" id="cfl-era-current" aria-hidden="true"></span>
+    <span class="filter-count" id="cfl-count" role="status" aria-live="polite"></span>
+  </div>
+
+  <div class="cfl-stage" id="cfl-stage">
+    <div class="cfl-stage-main">
+      <a class="cfl-skip" href="#cfl-ledger">Skip the map — jump to the ledger view</a>
+      <p id="cfl-instructions" class="cfl-vh">The atlas is a grid of entries you can walk with the keyboard. Arrow
+        up and down move to the previous or next entry in the same tradition; arrow left and right move to the nearest
+        entry in the neighbouring tradition. Home and End jump to the first and last entry; Page Up and Page Down jump
+        between eras. Press Enter to open an entry's detail; Escape to close it. Press t to follow a transmission
+        thread, then n and p to step through its stops.</p>
+      <div class="cfl-scroll" id="cfl-scroll">
+        <div class="cfl-atlas" id="cfl-atlas">
+          <svg class="cfl-under" id="cfl-under" aria-hidden="true" focusable="false"></svg>
+          <div class="cfl-over" id="cfl-over" role="group" tabindex="-1"
+            aria-label="The atlas — arrow keys move between entries" aria-describedby="cfl-instructions"></div>
+        </div>
+      </div>
+      <section class="cfl-ledger" id="cfl-ledger" hidden aria-label="Ledger — every entry in chronological order"></section>
+      <noscript><p class="muted" style="margin-top:1rem">This atlas is drawn in your browser from a cited dataset and
+        needs JavaScript to render. Without it, read the same history as a narrative in
+        <a href="chronology/index.html">the Hermetic Chronology</a>, or browse the
+        <a href="about/index.html">sources</a>.</p></noscript>
+    </div>
+    <aside class="cfl-drawer panel" id="cfl-drawer" hidden role="complementary" aria-label="Entry detail"></aside>
+  </div>
+  <div class="cfl-scrim" id="cfl-scrim" hidden></div>
+  <div class="cfl-tip" id="cfl-tip" hidden aria-hidden="true"></div>
+  <div class="toast" id="cfl-toast" hidden role="status"></div>
+
+  <div class="callout science" style="margin-top:1.4rem"><span class="label">Method note</span>
+    A curated overview, not an exhaustive register. Lane order and the era-warped scale are editorial choices made for
+    legibility and disclosed on the map itself — each era band states its own scale, and the arrows mean
+    “demonstrably read, rendered or answered,” per the citation on each arc. <b>Influence is the claim, and the only
+    claim</b>; none of these systems has any demonstrated predictive validity. Techniques named in an entry are
+    <b>described, never prescribed</b>, and where a source records a genuine hazard (an alchemical or rasa elixir's
+    toxicity) that note is kept. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <h2>Explore from here</h2>
+  <div class="grid cols-2">
+    <a class="card" href="chronology/index.html">
+      <span class="tag">Sister wing — read the story</span>
+      <h3>The Hermetic Chronology</h3>
+      <p>The same history told in order, top to bottom, for one tradition — from the Hellenistic Hermetica through
+        Arabic transmission and the Renaissance to the modern revival. <b>Chronology reads the story; Confluence sees
+        the map.</b></p>
+    </a>
+    <a class="card" href="greatworks/index.html">
+      <span class="tag">The primary texts</span>
+      <h3>The Great Works</h3>
+      <p>Author→book→chapter study guides for the books on this map, each chapter mapped to the tool that computes
+        what it describes.</p>
+    </a>
+    <a class="card" href="library/index.html">
+      <span class="tag">Verified &amp; reviewed</span>
+      <h3>The Library</h3>
+      <p>The tiered bibliography behind the wings — books, peer-reviewed journals and reputable archives, tagged by
+        reliability.</p>
+    </a>
+    <a class="card" href="about/index.html">
+      <span class="tag">The covenant</span>
+      <h3>Sources &amp; Science</h3>
+      <p>Why every wing is described and never prescribed, how the epistemic labels are assigned, and the scholarship
+        the atlas is compiled from.</p>
+    </a>
+  </div>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('confluence');
+  import { initConfluence } from '../assets/js/app/confluence.js';
+  initConfluence();
+</script>
+</body>
+</html>

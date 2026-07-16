@@ -51,6 +51,8 @@ import { firdaria, currentFirdaria } from './firdaria.js';
 import { zodiacalReleasing, currentReleasing } from './releasing.js';
 import { computeLots } from './lots.js';
 import { castFromDraws as castRunesFromDraws } from './runes.js';
+import { filterEntries as cflFilter, entryBySlug as cflEntry, confluenceStats as cflStats } from './confluence.js';
+import { CONFLUENCE_EDGES as CFL_EDGES, CONFLUENCE_LANES as CFL_LANES } from './data/confluence.js';
 
 const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
@@ -427,6 +429,20 @@ export function buildToolSchema() {
       parameters: { type: 'object', properties: { count: { type: 'number', enum: [1, 3], description: '1 (single) or 3 (spread); default 3' }, methodId: { type: 'string', enum: ['tacitus', 'three', 'single'], description: 'optional casting method for 3 staves (default three)' }, seedDraws: { type: 'array', items: { type: 'number' }, description: 'optional: distinct stave indices 0–23 to reproduce a cast' } }, required: [] },
     },
   });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'confluence_atlas',
+      description: 'THE GREAT CONFLUENCE atlas: query the cross-tradition influence map — filter its 188 cited entries (texts, people, events, translations, institutions across nine traditions) by century range, tradition lane, epistemic label and/or free text, and get back the matching entries WITH the documented transmission edges among them. Use for "what crossed traditions in the 12th century?", "show the kabbalah lane", "how did the Upaniṣads reach Persian?". The map plots INFLUENCE (who demonstrably read/rendered/answered/absorbed whom), NEVER doctrinal validity.',
+      parameters: { type: 'object', properties: {
+        yearFrom: { type: 'number', description: 'earliest year to include (BCE negative, e.g. -300)' },
+        yearTo: { type: 'number', description: 'latest year to include' },
+        lane: { type: 'string', enum: ['christian', 'alchemy-west', 'kabbalah', 'islamic', 'confluence', 'yoga-vedanta', 'tantra-rasa', 'buddhist', 'daoist'], description: 'restrict to one tradition lane' },
+        label: { type: 'string', enum: ['documented', 'disputed', 'debunked', 'conspiracy'], description: 'epistemic label filter' },
+        q: { type: 'string', description: 'free-text search across title/body/place/sources' },
+      }, required: [] },
+    },
+  });
   return schema;
 }
 
@@ -436,7 +452,7 @@ export function toolNames() {
     'castGeomancy', 'drawTarot', 'castIChing', 'defineTerm',
     // the orchestrator tools
     'listCapabilities', 'fullChart', 'vedicChart', 'transitHits', 'synastryPair', 'annualChart',
-    'prasnaNow', 'muhurtaDay', 'momentScan', 'greatConjunctions', 'timelords', 'castRunes'];
+    'prasnaNow', 'muhurtaDay', 'momentScan', 'greatConjunctions', 'timelords', 'castRunes', 'confluence_atlas'];
 }
 
 // The live tool's public locations — given to the model so it can point a user
@@ -1082,6 +1098,25 @@ export function runTool(name, args = {}, ctx = {}) {
         note: r.note,
       }, (Array.isArray(r.cite) ? r.cite[0] : r.cite) || 'Tacitus, Germania 10; the medieval rune poems (runes.js).');
     }
+    case 'confluence_atlas': {
+      const state = {};
+      if (args.yearFrom != null) state.yearFrom = Number(args.yearFrom);
+      if (args.yearTo != null) state.yearTo = Number(args.yearTo);
+      if (args.lane) state.lanes = [String(args.lane)];
+      if (args.label) state.labels = [String(args.label)];
+      if (args.q) state.q = String(args.q);
+      const slugs = cflFilter(state);
+      const shown = new Set(slugs);
+      const st = cflStats();
+      return withCite({
+        query: state,
+        count: slugs.length,
+        entries: slugs.slice(0, 40).map(s => { const e = cflEntry(s); return { slug: e.slug, lane: e.lane, title: e.title, dateText: e.dateText, kind: e.kind, label: e.label }; }),
+        edges: CFL_EDGES.filter(g => shown.has(g.from) && shown.has(g.to)).slice(0, 60).map(g => ({ from: g.from, to: g.to, kind: g.kind })),
+        totals: { entries: st.entries, edges: st.edges, crossLaneEdges: st.crossLaneEdges, byLane: st.byLane },
+        note: 'The atlas plots documented INFLUENCE (who read/rendered/answered whom), never doctrinal validity. Each entry & edge carries its own citation in-data (assets/js/core/data/confluence.js); cite entries by slug.',
+      }, 'The Great Confluence — nine adversarially-verified research domains, 109 corrections logged; bodies/sources/contested verbatim (confluence.js).');
+    }
     default: throw new Error(`unknown tool: ${name}`);
   }
 }
@@ -1624,6 +1659,77 @@ export function tajikaDataBlock(x) {
     sahams: (x.sahams && x.sahams.sahams || []).map(s => `${s.name}:${s.sign} ${Number(s.degInSign).toFixed(1)}${s.correctionApplied ? '+30' : ''}`),
   };
   return '\n\nCOMPUTED VARṢAPHALA (JSON — interpret THESE, never invent):\n' + JSON.stringify(dig);
+}
+
+// ===========================================================================
+//  THE GREAT CONFLUENCE — a historian-of-transmission bridge over the atlas.
+//  x = currentConfluenceReport() (app/confluence.js): { focus, thread, filters,
+//  visibleCount, stats }. INFLUENCE documented, never validity — the honest
+//  frame first, contested points kept unresolved.
+// ===========================================================================
+export const CONFLUENCE_PREAMBLE =
+  '\n\nVOICE: speak as a historian of textual transmission and comparative religion — at home with the ' +
+  'Graeco-Arabic translation movement, the Toledo translators, al-Bīrūnī and Dārā Shikōh, Ficino’s Hermetic ' +
+  'renaissance, and the Theosophical and academic rediscoveries of Asian scripture, AND with the philology that ' +
+  'dated them all. ONE discipline, never blurred: the atlas records who demonstrably READ, RENDERED, ANSWERED or ' +
+  'ABSORBED whom — INFLUENCE, with a citation on every link. It says the Picatrix reached Latin, NOT that its ' +
+  'talismans work; that the Upaniṣads reached Persian, NOT that Vedānta is physics. Documented transmission is kept ' +
+  'visibly distinct from disputed readings, debunked claims and conspiracy narratives (which stay on the map, drawn ' +
+  'faint, because what people falsely believed is also history). Dates for ancient texts are scholarly estimates; ' +
+  'where the sources disagree, present BOTH positions and never resolve them. Ground every claim in the numbered ' +
+  'facts; cite entries by their slug; never invent a journey the record does not support.';
+
+export function buildConfluenceContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  const yr = y => y == null ? '?' : (y < 0 ? `${-y} BCE` : `${y} CE`);
+  const laneName = id => (CFL_LANES.find(l => l.id === id) || {}).name || id;
+  const st = x.stats || cflStats();
+  add(`The Great Confluence atlas holds ${st.entries} cited entries across nine traditions and ${st.edges} documented transmission edges (${st.crossLaneEdges} of them cross between traditions), spanning ${yr(st.yearMin)}–${yr(st.yearMax)}.`, 'nine adversarially-verified research domains (confluence.js)');
+  add('The atlas plots INFLUENCE — who demonstrably read, translated, answered or absorbed whom — and NEVER validity: an arc means a book crossed a border or a language, per its own citation, not that any doctrine works.', 'the honest frame (locked, site-wide)');
+  if (x.filters && Object.keys(x.filters).length) add(`The current view is filtered (${JSON.stringify(x.filters)}) and shows ${x.visibleCount ?? '?'} of ${st.entries} entries.`, 'the atlas filter state');
+  if (x.focus) {
+    const e = x.focus;
+    add(`FOCUS — ${e.title}${e.titleOriginal ? ` (${e.titleOriginal})` : ''}: a ${e.kind} in the ${laneName(e.lane)} lane, ${e.dateText}${e.place ? `, ${e.place}` : ''}, labelled ${e.label}. ${e.body}`, (e.sources || [])[0] || 'confluence.js');
+    if (e.technique) add(`Technique (DESCRIBED as historical practice, never prescribed): ${e.technique}`, (e.sources || [])[0] || 'confluence.js');
+    if (e.contested) add(`The sources disagree on ${e.contested.flag}. Position A: ${e.contested.positions[0].value} [${e.contested.positions[0].source}]. Position B: ${e.contested.positions[1].value} [${e.contested.positions[1].source}]. Kept unresolved.`, 'contested — both positions verbatim');
+  }
+  if (x.thread && x.thread.stops && x.thread.stops.length > 1) {
+    const chain = x.thread.stops.map(s => { const e = cflEntry(s.slug); return e ? e.title : s.slug; });
+    add(`A transmission thread of ${x.thread.stops.length} stops: ${chain.join(' → ')}.`, 'threadFrom — the chronological chain of crossings');
+    for (const s of x.thread.stops) if (s.via) add(`→ ${s.via.kind}: ${s.via.body}`, (s.via.sources || [])[0] || 'confluence.js');
+  }
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Confluence']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'THE GREAT CONFLUENCE (influence-map selection)', CONFLUENCE_PREAMBLE), facts: trimmed, glossary };
+}
+
+export function buildConfluenceInterpretPrompt() {
+  return (
+    'Read this selection from the Great Confluence atlas as a historian of textual transmission would, FROM THE ' +
+    'NUMBERED FACTS ONLY: (1) THE FRAME — FIRST, in two plain sentences: the atlas maps documented INFLUENCE (who ' +
+    'demonstrably read, translated, answered or absorbed whom), never doctrinal validity; debunked and conspiracy ' +
+    'claims stay on the map, drawn faint, because false belief is also history. (2) THE SELECTION — what this view ' +
+    'holds: which traditions and centuries are in play and the balance of epistemic labels. (3) THE FOCUS — if a ' +
+    'focus entry is present, what it is (text/person/event/translation/institution), when and where, and its place ' +
+    'in the record; if its sources disagree, present BOTH positions and DO NOT resolve them. (4) THE THREAD — if a ' +
+    'transmission thread is present, walk it stop by stop as a chain of crossings, naming each edge ' +
+    '(translation/influence/commentary/synthesis/refutation/adaptation) and citing it; say what each crossing ' +
+    'demonstrably was, never what it proves. (5) ONE synthesis — what this corner of the map shows about how ideas ' +
+    'actually travelled between traditions. Close with one honest sentence: the atlas plots influence documented, ' +
+    'never validity — who read whom is real history; whether any doctrine works is not a claim the map makes.'
+  );
+}
+
+export function confluenceDataBlock(x) {
+  const dig = {
+    filters: x.filters || null,
+    visible: x.visibleCount ?? null,
+    focus: x.focus ? { slug: x.focus.slug, lane: x.focus.lane, title: x.focus.title, dateText: x.focus.dateText, kind: x.focus.kind, label: x.focus.label, contested: x.focus.contested ? x.focus.contested.positions.map(p => ({ source: p.source, value: p.value })) : null } : null,
+    thread: x.thread && x.thread.stops ? x.thread.stops.map(s => ({ slug: s.slug, via: s.via ? { kind: s.via.kind, from: s.via.from, to: s.via.to } : null })) : null,
+    stats: x.stats ? { entries: x.stats.entries, edges: x.stats.edges, crossLaneEdges: x.stats.crossLaneEdges, byLane: x.stats.byLane } : null,
+  };
+  return '\n\nATLAS SELECTION DATA (JSON — interpret THESE, never invent):\n' + JSON.stringify(dig);
 }
 
 // ===========================================================================

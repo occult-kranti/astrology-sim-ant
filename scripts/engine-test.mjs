@@ -1674,5 +1674,53 @@ import * as KUTA_DATA from '../assets/js/core/data/kuta-data.js';
     'kuta-data: every table record + every per-kūṭa result carries a .cite');
 }
 
+// --- R27: the Great Confluence ---------------------------------------------
+// (existsSync + resolve are already imported above from node:fs / node:path.)
+import { CONFLUENCE_LANES as cfLanes, CONFLUENCE_ENTRIES as cfEntries, CONFLUENCE_EDGES as cfEdges } from '../assets/js/core/data/confluence.js';
+import { timeScale as cfTimeScale, layoutConfluence as cfLayout, filterEntries as cfFilter, entryBySlug as cfBySlug, threadFrom as cfThread, confluenceStats as cfStats } from '../assets/js/core/confluence.js';
+{
+  const CFL_LANE_IDS = ['christian', 'alchemy-west', 'kabbalah', 'islamic', 'confluence', 'yoga-vedanta', 'tantra-rasa', 'buddhist', 'daoist'];
+  const CFL_KINDS = new Set(['text', 'person', 'event', 'translation', 'institution']);
+  const CFL_LABELS = new Set(['documented', 'disputed', 'debunked', 'conspiracy']);
+
+  ok(cfEntries.length === 188, `Confluence: 188 entries (got ${cfEntries.length})`);
+  ok(cfLanes.length === 9 && cfLanes.every((l, i) => l.id === CFL_LANE_IDS[i]), 'Confluence: 9 lanes in the exact fixed order/ids');
+  const cfSlugs = new Set(cfEntries.map(e => e.slug));
+  ok(cfSlugs.size === cfEntries.length, 'Confluence: all entry slugs unique');
+  ok(cfEdges.every(g => cfSlugs.has(g.from) && cfSlugs.has(g.to)), 'Confluence: every edge endpoint resolves to a real slug (no dangling)');
+  ok(cfEntries.every(e => CFL_LANE_IDS.includes(e.lane) && CFL_KINDS.has(e.kind) && CFL_LABELS.has(e.label)), 'Confluence: every entry lane/kind/label is in its enum');
+  ok(cfEntries.every(e => e.sortYearEnd == null || e.sortYearEnd >= e.sortYear), 'Confluence: sortYearEnd >= sortYear wherever present');
+  ok(cfEntries.filter(e => e.contested).every(e => Array.isArray(e.contested.positions) && e.contested.positions.length >= 2), 'Confluence: every contested entry carries >=2 positions');
+  let cfBadLink = 0;
+  for (const e of cfEntries) if (e.siteLink && e.siteLink.href && !existsSync(resolve(process.cwd(), 'pages', e.siteLink.href.split('#')[0]))) cfBadLink++;
+  ok(cfBadLink === 0, `Confluence: every siteLink href exists on disk (${cfBadLink} missing)`);
+
+  const cfTs = cfTimeScale(1);
+  let cfMono = true, cfPrev = -Infinity;
+  for (let y = -1600; y <= 2030; y += 50) { const p = cfTs.yearToPx(y); if (p < cfPrev - 1e-9) cfMono = false; cfPrev = p; }
+  ok(cfMono, 'Confluence: timeScale(1) monotonic across [-1600, 2030] (sampled every 50y)');
+  ok(cfTs.totalHeight > 3000, `Confluence: timeScale(1) totalHeight > 3000 (got ${Math.round(cfTs.totalHeight)})`);
+
+  const cfL1 = cfLayout({ zoom: 1, width: 1280 }), cfL2 = cfLayout({ zoom: 1, width: 1280 });
+  ok(JSON.stringify(cfL1) === JSON.stringify(cfL2), 'Confluence: layoutConfluence deterministic (two calls deep-equal)');
+  let cfOverlap = false; const cfRows = {};
+  for (const n of cfL1.nodes) { const k = n.laneId + '|' + n.row; (cfRows[k] || (cfRows[k] = [])).forEach(y => { if (Math.abs(y - n.y) < n.h) cfOverlap = true; }); cfRows[k].push(n.y); }
+  ok(!cfOverlap, 'Confluence: no two same-lane same-row nodes overlap in y');
+  ok(cfL1.nodes.length === cfEntries.length && cfL1.edges.length === cfEdges.length, 'Confluence: layout places every node and every edge');
+
+  const cfCross = cfFilter({ crossingsOnly: true });
+  ok(cfCross.length > 0 && cfCross.every(s => cfSlugs.has(s)), `Confluence: filterEntries({crossingsOnly}) non-empty subset of all slugs (${cfCross.length})`);
+  ok(cfFilter({}).length === 188, 'Confluence: filterEntries({}) returns all 188 slugs');
+  const cfThr = cfThread('sirr-i-akbar');
+  ok(cfThr.stops.some(s => s.slug === 'oupnekhat'), 'Confluence: threadFrom("sirr-i-akbar") reaches "oupnekhat"');
+  ok(cfBySlug('picatrix') && cfBySlug('nope') === null, 'Confluence: entryBySlug hydrates a real slug and returns null otherwise');
+
+  const cfSt = cfStats();
+  let cfLaneSum = 0; for (const id of CFL_LANE_IDS) cfLaneSum += cfSt.byLane[id] || 0;
+  const cfRawCross = cfEdges.filter(g => cfBySlug(g.from).lane !== cfBySlug(g.to).lane).length;
+  ok(cfSt.entries === cfEntries.length && cfSt.edges === cfEdges.length && cfLaneSum === cfEntries.length && cfSt.crossLaneEdges === cfRawCross,
+    'Confluence: confluenceStats totals match the raw entry/edge/lane/cross-lane counts');
+}
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

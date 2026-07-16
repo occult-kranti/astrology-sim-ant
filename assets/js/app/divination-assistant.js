@@ -24,6 +24,7 @@ import {
   buildPrasnaContext, buildPrasnaInterpretPrompt, prasnaDataBlock,
   buildMuhurtaContext, buildMuhurtaInterpretPrompt, muhurtaDataBlock,
   buildTajikaContext, buildTajikaInterpretPrompt, tajikaDataBlock,
+  buildConfluenceContext, buildConfluenceInterpretPrompt, confluenceDataBlock,
 } from '../core/llm-context.js';
 import { PROVIDERS, PROV_ORDER, streamChat, factBudget, isFreeKind, openrouterHeaders } from './llm-core.js';
 import { LOCAL_DEFAULTS } from './local-config.js';
@@ -56,17 +57,17 @@ const prefillKey = () => lsGet(keyStore()) || (provName() === LOCAL_DEFAULTS.pro
 const CTX = { geomancy: buildGeomancyContext, tarot: buildTarotContext, iching: buildIchingContext, jung: buildJungContext,
   runes: buildRunesContext,
   cycles: buildCyclesContext, timelords: buildTimelordsContext,
-  prasna: buildPrasnaContext, muhurta: buildMuhurtaContext, tajika: buildTajikaContext };
+  prasna: buildPrasnaContext, muhurta: buildMuhurtaContext, tajika: buildTajikaContext, confluence: buildConfluenceContext };
 const PROMPT = { geomancy: buildGeomancyInterpretPrompt, tarot: buildTarotInterpretPrompt, iching: buildIchingInterpretPrompt, jung: buildJungInterpretPrompt,
   runes: buildRunesInterpretPrompt,
   cycles: buildCyclesInterpretPrompt, timelords: buildTimelordsInterpretPrompt,
-  prasna: buildPrasnaInterpretPrompt, muhurta: buildMuhurtaInterpretPrompt, tajika: buildTajikaInterpretPrompt };
+  prasna: buildPrasnaInterpretPrompt, muhurta: buildMuhurtaInterpretPrompt, tajika: buildTajikaInterpretPrompt, confluence: buildConfluenceInterpretPrompt };
 const DATABLOCK = { geomancy: geomancyDataBlock, tarot: tarotDataBlock, iching: ichingDataBlock, jung: jungDataBlock,
   runes: runesDataBlock,
   cycles: cyclesDataBlock, timelords: timelordsDataBlock,
-  prasna: prasnaDataBlock, muhurta: muhurtaDataBlock, tajika: tajikaDataBlock };
+  prasna: prasnaDataBlock, muhurta: muhurtaDataBlock, tajika: tajikaDataBlock, confluence: confluenceDataBlock };
 const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast', jung: 'report', runes: 'cast', cycles: 'sweep', timelords: 'periods',
-  prasna: 'judgement', muhurta: 'day', tajika: 'year chart' };
+  prasna: 'judgement', muhurta: 'day', tajika: 'year chart', confluence: 'the influence-map selection' };
 // per-tool copy overrides (a tool may pass api.copy to re-skin the panel, e.g.
 // the Jung tool makes it speak in Jung's own first-person voice).
 const cp = (k, d) => (api && api.copy && api.copy[k] != null) ? api.copy[k] : d;

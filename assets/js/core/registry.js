@@ -984,6 +984,25 @@ export const REGISTRY = [
     howItWorks: 'pages/greatworks/index.html',
     glossaryTerms: [],
   },
+  {
+    id: 'confluence-atlas', title: 'The Great Confluence — cross-tradition atlas',
+    module: 'assets/js/core/confluence.js', exportName: 'layoutConfluence',
+    exports: ['timeScale', 'filterEntries', 'entryBySlug', 'threadFrom', 'confluenceStats'],
+    computes: 'The Great Confluence wing’s geometry & query engine over 188 cited entries (texts, people, events, translations, institutions) across nine traditions on one era-warped vertical time axis, plus their documented transmission edges. layoutConfluence positions lanes, collision-stacks nodes into sub-track rows and builds vertical-tangent Bézier edge paths; timeScale is the piecewise-linear era-warp (30→380 px/century, disclosed on the map); filterEntries selects visible slugs by lane/kind/label/century/text/crossings-only; threadFrom walks a deterministic chronological chain of transmissions; entryBySlug hydrates a record; confluenceStats aggregates. The atlas plots INFLUENCE (who demonstrably read/rendered/answered/absorbed whom) — never doctrinal validity; contested points keep both positions, never resolved.',
+    inputs: [
+      { name: 'yearFrom', type: 'number', desc: 'earliest year to include (BCE negative, e.g. -300)' },
+      { name: 'yearTo', type: 'number', desc: 'latest year to include' },
+      { name: 'lane', type: 'enum', values: ['christian', 'alchemy-west', 'kabbalah', 'islamic', 'confluence', 'yoga-vedanta', 'tantra-rasa', 'buddhist', 'daoist'], desc: 'restrict to one tradition lane' },
+      { name: 'label', type: 'enum', values: ['documented', 'disputed', 'debunked', 'conspiracy'], desc: 'epistemic label filter' },
+      { name: 'q', type: 'string', desc: 'free-text search across title/body/place/sources' },
+    ],
+    outputShape: '{ entries:[{slug,lane,title,dateText,sortYear,kind,label}], edges:[{from,to,kind}], stats:{entries,edges,crossLaneEdges,byLane} } — via filterEntries + entryBySlug hydration + confluenceStats',
+    callable: true,
+    book: 'Confluence', chapter: 'The Great Confluence — the cross-tradition atlas',
+    citation: 'Compiled from nine adversarially-verified research domains (kabbalah, yoga-vedānta, tantra-rasa, Buddhist, Daoist, Western alchemy/Hermetica, Abrahamic mysticism, and two confluence sets), with 109 corrections logged in verification; bodies, sources and contested blocks reproduced verbatim, provenance per entry in-data; four synthesis entries cited to the same standard.',
+    pages: ['pages/confluence.html'], howItWorks: 'pages/how-it-works.html#hiw-confluence',
+    glossaryTerms: ['Transmission (textual)', 'Prisca theologia', 'Neidan (internal alchemy)', 'Dhikr', 'Hesychasm', 'Lectio divina', 'Vipassanā', 'Era-warped scale'],
+  },
 ];
 
 // --- helpers ---------------------------------------------------------------

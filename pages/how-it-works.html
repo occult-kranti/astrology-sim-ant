@@ -579,6 +579,34 @@
     <p class="small"><a href="picatrix/talisman.html">Open the tool that does this →</a></p>
   </section>
 
+  <h2 id="grp-confluence">The wings — cross-tradition atlas</h2>
+  <section class="card" id="hiw-confluence">
+    <h3 style="margin-top:0">The Great Confluence — the era-warped atlas &amp; its transmission map</h3>
+    <div class="meaning"><p>The Great Confluence plots nine wisdom traditions as parallel lanes on one vertical time axis and draws, as directed arcs, the <b>documented transmissions</b> between them — a book put into a new language, a commentary, an answer, a fusion. It maps <b>influence, never validity</b>: an arc says the Picatrix reached Latin, not that its talismans work; that the Upaniṣads reached Persian, not that Vedānta is physics. Two honest problems have visible, disclosed solutions: how to draw 3,500 years when most entries fall after 1500 CE, and how to keep fabricated "journeys" from ever looking like documented ones.</p></div>
+
+    <h4>The era-warped scale (why the timeline stretches, and how it says so)</h4>
+    <div class="meaning"><p>A linear axis makes modernity an unreadable smear; a logarithmic one lies quietly. The atlas instead uses a <b>piecewise-linear, era-warped</b> scale: <em>within</em> each era band the mapping year&nbsp;→&nbsp;pixel is exactly linear (local distances are truthful), and the pixels-per-century constant <b>steps up at explicit era boundaries</b> chosen where history hinges and the data thins — not to equalise band heights. The warp is <b>disclosed, never hidden</b>: every band prints its own scale on the map, one century-bracket samples that scale physically in the ruler gutter, and the tick spacing visibly widens down the page. It is the same covenant as the Julian/Gregorian double-dates elsewhere on the site.</p></div>
+    <table class="tbl">
+      <thead><tr><th>Era band</th><th>Years</th><th>px / century</th><th>Band height</th></tr></thead>
+      <tbody>
+        <tr><td>Deep antiquity</td><td>1500 BCE – 300 BCE</td><td>30</td><td>360 px</td></tr>
+        <tr><td>Classical &amp; late antiquity</td><td>300 BCE – 600 CE</td><td>70</td><td>630 px</td></tr>
+        <tr><td>The transmission age</td><td>600 – 1200</td><td>110</td><td>660 px</td></tr>
+        <tr><td>Scholastic &amp; vernacular</td><td>1200 – 1500</td><td>160</td><td>480 px</td></tr>
+        <tr><td>Early modern</td><td>1500 – 1800</td><td>220</td><td>660 px</td></tr>
+        <tr><td>The global exchange</td><td>1800 – 2020</td><td>380</td><td>836 px</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted">Total atlas height ≈ 3,626 px at standard zoom (×0.6 compact, ×1.6 close). <code>timeScale(year)</code> sums the full heights of the bands above <code>year</code>, then adds <code>(year − bandStart) / 100 × pxPerCentury</code> — a pure, monotonic function whose inverse re-anchors the year under your eye when you zoom.</p>
+
+    <h4>The layout algorithm</h4>
+    <div class="meaning"><p>The nine lanes sit in a fixed left-to-right order chosen once, at design time, to <b>minimise expected arc crossings</b> — the two historically heaviest bridges (Sufi Islam and Yoga &amp; Vedānta) flank a neutral central "confluence" spine, so most long arcs travel through the middle, which is exactly the story. Every node’s vertical position is <code>timeScale(sortYear)</code> and is <b>never moved in time</b>; where several entries in one lane crowd the same instant, a deterministic greedy pass stacks them onto sub-track rows (centre first, then outward), each row an offset column within the lane, so two marks on one row can never overlap. Transmission edges are drawn as <b>cubic Béziers with vertical tangents</b> — each arc leaves its source downward and arrives at its (later) target downward, so every journey visibly flows <em>with</em> time. Uncertainty is drawn as uncertainty: a decade or century of scholarly estimate becomes a soft band behind the mark, a composition-range becomes a capsule, and a &#9873; flags a point where the sources disagree.</p></div>
+
+    <h4>The data &amp; its provenance</h4>
+    <div class="meaning"><p>The atlas’s 188 entries and 151 transmission edges were compiled from <b>nine independent research domains</b> (kabbalah, yoga-vedānta, tantra-rasaśāstra, Buddhist, Daoist, Western alchemy/Hermetica, Abrahamic mysticism, and two cross-tradition "confluence" sets), each <b>adversarially verified</b> — a pass that logged <b>109 corrections</b> across the domains before merge. Every body, source and contested block is reproduced <b>verbatim</b>; four synthesis entries (Jung, the Corpus Hermeticum, the Picatrix, the Yijing) were authored to resolve cross-domain references and are cited to the same standard. Each entry carries an epistemic label — <b>documented / disputed / debunked / conspiracy</b> — and <b>debunked and conspiracy material stays on the map</b>, drawn faint, because the record of what people falsely believed is also history. Where sources disagree, <b>both positions are shown with their citations and never resolved</b> — the site’s standing rule.</p></div>
+    <p class="small">Runs <a href="confluence.html">The Great Confluence</a>. Prefer the story told in order? Read <a href="chronology/index.html">The Hermetic Chronology</a>. See also <a href="about/index.html">Sources &amp; Science</a>.</p>
+  </section>
+
   <p class="small muted">Sources are cited per section; the data tables and their provenance are in the
     <a href="glossary.html">Glossary</a> and the project's research notes.</p>
 </main>
