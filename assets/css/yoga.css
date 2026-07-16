@@ -1,0 +1,95 @@
+/* ============================================================================
+   yoga.css — presentation for the Yoga-sūtra study wing (pages/yoga/*).
+   Loaded AFTER style.css; reuses the site's parchment palette variables.
+   Kept out of the locked style.css so the wing can style its own components.
+   ============================================================================ */
+
+/* — the counts-by-edition table total row — */
+.ys-total td { border-top: 2px solid var(--rule); }
+
+/* — the site-wide search box (index) — */
+#ys-q {
+  width: 100%; max-width: 34rem; padding: .55rem .8rem; font: inherit;
+  border: 1px solid var(--rule); border-radius: .5rem; background: var(--card);
+  color: var(--ink);
+}
+#ys-q:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.ys-hits { margin: .4rem 0 0; }
+.ys-hits li { padding: .3rem 0; border-bottom: 1px dashed var(--rule); }
+.ys-hits a { font-family: var(--sans); }
+.ys-hit-iast { margin: 0 .5rem; font-style: italic; }
+.ys-hit-tr { display: block; }
+
+/* — the per-pāda browser toolbar (filter + numbering toggle) — */
+.ys-toolbar {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; flex-wrap: wrap; gap: .6rem .9rem; align-items: center;
+  padding: .6rem .2rem; margin: 0 0 1rem;
+  background: var(--parchment); border-bottom: 1px solid var(--rule);
+}
+#ys-filter {
+  flex: 1 1 16rem; min-width: 12rem; padding: .45rem .7rem; font: inherit;
+  border: 1px solid var(--rule); border-radius: .5rem; background: var(--card); color: var(--ink);
+}
+#ys-filter:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+#ys-filter-count { font-family: var(--sans); font-size: .78rem; color: var(--muted); white-space: nowrap; }
+
+.ys-numbering { display: inline-flex; border: 1px solid var(--rule); border-radius: .5rem; overflow: hidden; }
+.ys-numbering button {
+  font-family: var(--sans); font-size: .78rem; padding: .4rem .7rem; border: 0; cursor: pointer;
+  background: var(--card); color: var(--muted); border-left: 1px solid var(--rule);
+}
+.ys-numbering button:first-child { border-left: 0; }
+.ys-numbering button.active { background: var(--gold); color: #fff; font-weight: 700; }
+
+/* — one sūtra record — */
+.ys-sutra {
+  border: 1px solid var(--rule); border-radius: 12px; background: var(--card);
+  padding: 1rem 1.1rem; margin: 0 0 1rem; scroll-margin-top: 4.5rem;
+}
+.ys-sutra:target { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(184,134,43,.35); }
+.ys-head { display: flex; flex-wrap: wrap; gap: .5rem; align-items: baseline; margin-bottom: .3rem; }
+.ys-num {
+  font-family: var(--sans); font-weight: 700; font-size: .95rem; color: var(--gold);
+  text-decoration: none; letter-spacing: .02em;
+}
+.ys-num:hover { text-decoration: underline; }
+
+.ys-badge {
+  font-family: var(--sans); font-size: .68rem; letter-spacing: .02em; padding: .1rem .45rem;
+  border-radius: .4rem; border: 1px solid; white-space: normal;
+}
+.ys-badge-variant { color: var(--malefic); border-color: var(--malefic); background: #fbeceb; }
+.ys-badge-bhoja { color: var(--air); border-color: var(--air); background: #eef5fa; }
+
+.ys-dev {
+  font-size: 1.55rem; line-height: 1.7; margin: .2rem 0 .1rem; color: var(--ink);
+  /* system Devanāgarī fonts only — no webfont is loaded */
+}
+.ys-iast { margin: 0 0 .6rem; color: var(--link); font-size: 1.02rem; }
+
+table.ys-words { width: auto; min-width: 16rem; margin: 0 0 .6rem; }
+table.ys-words th { font-family: var(--sans); font-size: .7rem; }
+.ys-sa { font-style: italic; white-space: nowrap; }
+
+.ys-tr { margin: .2rem 0 .4rem; font-size: 1.02rem; }
+.ys-note { margin: .3rem 0; color: var(--ink); }
+.ys-note-label {
+  font-family: var(--sans); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 700; color: var(--gold); margin-right: .3rem;
+}
+.ys-src { margin: .4rem 0 0; padding-top: .4rem; border-top: 1px dashed var(--rule); }
+
+/* — the theory page: āsana diagram grid — */
+.ys-asana-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.ys-asana { border: 1px solid var(--rule); border-radius: 10px; background: var(--card); padding: .7rem; text-align: center; }
+.ys-asana svg { width: 100%; height: auto; max-width: 120px; }
+.ys-asana svg path, .ys-asana svg line, .ys-asana svg circle, .ys-asana svg polyline {
+  fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
+}
+.ys-asana h4 { margin: .4rem 0 .1rem; font-size: 1rem; }
+.ys-asana .ys-asana-iast { font-style: italic; color: var(--link); font-size: .85rem; }
+.ys-asana .ys-cap { font-size: .68rem; color: var(--muted); margin: .35rem 0 0; line-height: 1.35; }
+
+/* — the aṣṭāṅga limb map — */
+.ys-limb-num { color: var(--gold); font-weight: 700; font-family: var(--sans); }

@@ -23,6 +23,7 @@ const NAV_GROUPS = [
   { label: 'Tools', items: [
     ['pages/now.html', 'Now', 'now'],
     ['pages/workbench.html', 'Master Tool', 'workbench'],
+    ['pages/autopilot.html', 'Orchestrator', 'autopilot'],
     ['pages/trajectory.html', 'Trajectory', 'trajectory'],
     ['pages/timelords.html', 'Time-lords', 'timelords'],
     ['pages/cycles.html', 'Cycles', 'cycles'],
@@ -38,6 +39,7 @@ const NAV_GROUPS = [
     ['pages/vedic/index.html', 'Vedic', 'vedic'],
     ['pages/jung/index.html', 'Jung', 'jung'],
     ['pages/chronology/index.html', 'Chronology', 'chronology'],
+    ['pages/yoga/index.html', 'Yoga Sūtras', 'yoga'],
   ] },
   { label: 'Reference', items: [
     ['pages/glossary.html', 'Glossary', 'glossary'],
@@ -57,11 +59,14 @@ function currentSection() {
   if (/\/pages\/vedic\//.test(p)) return 'vedic';
   if (/\/pages\/jung\//.test(p)) return 'jung';
   if (/\/pages\/chronology\//.test(p)) return 'chronology';
+  if (/\/pages\/yoga\//.test(p)) return 'yoga';
+  if (/\/pages\/abhichara\//.test(p)) return 'tools';
   if (/\/pages\/about\//.test(p)) return 'about';
   if (/\/pages\/basics\.html$/.test(p)) return 'basics';
   if (/\/pages\/interpret\.html$/.test(p)) return 'basics';
   if (/\/pages\/now\.html$/.test(p)) return 'now';
   if (/\/pages\/workbench\.html$/.test(p)) return 'workbench';
+  if (/\/pages\/autopilot\.html$/.test(p)) return 'autopilot';
   if (/\/pages\/master\.html$/.test(p)) return 'master';
   if (/\/pages\/trajectory\.html$/.test(p)) return 'trajectory';
   if (/\/pages\/timelords\.html$/.test(p)) return 'timelords';
@@ -125,10 +130,13 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/vedic/index.html')}">Jagannath Hora — Vedic (sidereal)</a></li>
         <li><a href="${R('pages/jung/index.html')}">Jung &amp; astrology — the psychologist among the horoscopes</a></li>
         <li><a href="${R('pages/chronology/index.html')}">The Hermetic Chronology — as above, so below</a></li>
+        <li><a href="${R('pages/abhichara/index.html')}">Abhicāra — the Indian ritual-magic traditions, described</a></li>
+        <li><a href="${R('pages/yoga/index.html')}">The Yoga Sūtras of Patañjali — the study wing</a></li>
       </ul></div>
     <div><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
         <li><a href="${R('pages/workbench.html')}">The Master Tool (Workbench) — every calculation in one place</a></li>
+        <li><a href="${R('pages/autopilot.html')}">The Grand Orchestrator — one prompt, every engine (agentic AI)</a></li>
         <li><a href="${R('pages/trajectory.html')}">Life Trajectory (birth chart anywhere)</a></li>
         <li><a href="${R('pages/timelords.html')}">Time-lords &amp; progressions — firdaria · zodiacal releasing</a></li>
         <li><a href="${R('pages/cycles.html')}">Cycles of History — great conjunctions &amp; eclipses</a></li>

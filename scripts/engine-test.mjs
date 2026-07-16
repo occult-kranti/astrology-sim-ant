@@ -1438,5 +1438,111 @@ ok(syr.count === 13, `returns: natal-anchored year has exactly 13 lunar returns 
 const satR = syPlanetReturns(natal, 'Saturn', new Date(natal.date.getTime() + 28 * 365.25 * 86400000), new Date(natal.date.getTime() + 30.5 * 365.25 * 86400000));
 ok(satR.passCount === 1 || satR.passCount === 3, `returns: Saturn return pass count 1 or 3 (got ${satR.passCount})`);
 
+// --- The Grand Orchestrator — the agentic "one prompt, every engine" surface ---
+import {
+  toAnthropicTools as apAnthropicTools, toolNames as apToolNames, runTool as apRunTool,
+  buildOrchestratorPrompt as apBuildPrompt, ORCHESTRATOR_PREAMBLE as apPreamble, TOOL_CAVEAT as apCaveat,
+} from '../assets/js/core/llm-context.js';
+{
+  const apNew = ['listCapabilities', 'fullChart', 'vedicChart', 'transitHits', 'synastryPair', 'annualChart',
+    'prasnaNow', 'muhurtaDay', 'momentScan', 'greatConjunctions', 'timelords', 'castRunes'];
+  const apNames = new Set(apAnthropicTools().map(t => t.name));
+  ok(apNew.every(n => apNames.has(n)), 'orchestrator: toAnthropicTools() exposes every new tool');
+  ok(apNew.every(n => apToolNames().includes(n)), 'orchestrator: toolNames() lists every new tool');
+
+  const apLon = { lat: 51.5074, lon: -0.1278 };
+  const apBirth = '1990-05-15T08:30:00Z';
+  let apSeed = 7 >>> 0; const apRand = n => { apSeed = (Math.imul(apSeed, 1103515245) + 12345) >>> 0; return (apSeed >>> 16) % n; };
+
+  const apCaps = apRunTool('listCapabilities', {});
+  ok(Array.isArray(apCaps) && apCaps.length >= 40, `orchestrator: listCapabilities returns >=40 entries (got ${apCaps.length})`);
+
+  const apCases = [
+    ['fullChart', { dateISO: '2026-07-15T12:00:00Z', ...apLon, quesitedHouse: 7 }, {}],
+    ['vedicChart', { dateISO: '2026-07-15T12:00:00Z', ...apLon }, {}],
+    ['transitHits', { birthISO: apBirth, ...apLon, fromISO: '2026-07-15T00:00:00Z', months: 6 }, {}],
+    ['synastryPair', { aISO: apBirth, aLat: 51.5, aLon: -0.13, bISO: '1988-11-02T14:15:00Z', bLat: 40.71, bLon: -74.0 }, {}],
+    ['annualChart', { birthISO: apBirth, ...apLon, year: 2026 }, {}],
+    ['prasnaNow', { dateISO: '2026-07-15T12:00:00Z', ...apLon, quesitedHouse: 7 }, {}],
+    ['muhurtaDay', { dateISO: '2026-07-15T12:00:00Z', ...apLon }, {}],
+    ['momentScan', { fromISO: '2026-07-15T00:00:00Z', hours: 24, ...apLon, aim: 'love' }, {}],
+    ['greatConjunctions', { fromYear: 1600, toYear: 1700 }, {}],
+    ['timelords', { birthISO: apBirth, ...apLon, ageYears: 36.2 }, {}],
+    ['castRunes', { count: 3 }, { rand: apRand }],
+  ];
+  for (const [n, a, c] of apCases) {
+    let out, threw = false; try { out = apRunTool(n, a, c); } catch { threw = true; }
+    let ser = true; try { JSON.parse(JSON.stringify(out)); } catch { ser = false; }
+    ok(!threw && ser && out && out.citation && out.caveat, `orchestrator: runTool(${n}) → serializable + citation + caveat`);
+  }
+
+  // castRunes is PURE: deterministic under an identical rand stub; refuses without one
+  const mk = () => { let s = 99 >>> 0; return n => { s = (Math.imul(s, 1103515245) + 12345) >>> 0; return (s >>> 16) % n; }; };
+  ok(JSON.stringify(apRunTool('castRunes', { count: 3 }, { rand: mk() }).staves)
+     === JSON.stringify(apRunTool('castRunes', { count: 3 }, { rand: mk() }).staves), 'orchestrator: castRunes deterministic under identical ctx.rand');
+  let apRunesThrew = false; try { apRunTool('castRunes', { count: 3 }, {}); } catch { apRunesThrew = true; }
+  ok(apRunesThrew, 'orchestrator: castRunes refuses without ctx.rand or seedDraws (purity)');
+
+  const apP = apBuildPrompt('what does my year ahead look like?');
+  ok(/honest frame/i.test(apP) && /FIRST/i.test(apP), 'orchestrator: prompt puts the honest frame FIRST');
+  ok(/never a real prediction/i.test(apP), "orchestrator: prompt contains 'never a real prediction'");
+  ok(/PLAN/.test(apP) && /listCapabilities/.test(apP) && /COMPUTE/.test(apP), 'orchestrator: prompt gives the tool-PLAN instructions');
+  ok(/In plain words/i.test(apP), 'orchestrator: prompt embeds the PLAIN coda');
+  ok(/whole Astrologer|Grand Orchestrator|one voice/i.test(apPreamble) && /no demonstrated validity/i.test(apCaveat), 'orchestrator: persona + caveat honest');
+}
+
+// --- Abhicāra / ṣaṭkarman timing screen ------------------------------------
+import { shatkarmanScreen as abScreen, SHATKARMAN_CAVEAT as AB_CAVEAT } from '../assets/js/core/abhichara.js';
+import {
+  SHATKARMAN as AB_ACTS, LIST_VARIANTS as AB_VARIANTS, APPARATUS_SCHEMA as AB_SCHEMA,
+  CORRESPONDENCES as AB_CORR, DIRECTIONS_DEITIES as AB_DIRDEI, ATHARVAN as AB_ATH,
+  TEXTS as AB_TEXTS, RITU_BY_RASHI as AB_RITU,
+} from '../assets/js/core/data/abhichara-data.js';
+
+ok(AB_ACTS.length === 6 && AB_ACTS.map(a => a.key).join(',') === 'santi,vasya,stambhana,vidvesana,uccatana,marana',
+  'abhichara: six acts in canonical MMU order');
+ok(AB_VARIANTS.some(v => v.bodyItems && v.bodyItems.length === 7) && AB_VARIANTS.some(v => /Tantras/.test(v.label)),
+  'abhichara: list-variants incl. Sivadatta 7-body + Tantrasārasaṃgraha');
+ok(!!AB_CORR.seasons.schemeA && !!AB_CORR.seasons.schemeB && AB_CORR.seasons.conflict === true
+  && !!AB_CORR.seasons.schemeB.bpk && !!AB_CORR.seasons.schemeB.u128,
+  'abhichara: both season schemes present (BPK 3.6-7 + U 1.28), conflict:true');
+ok(/unverified/.test(AB_DIRDEI.status) && AB_DIRDEI.value === null && AB_DIRDEI.candidates.length === 6,
+  'abhichara: DIRECTIONS_DEITIES flagged unverified, value null, 6 candidates');
+ok(AB_SCHEMA.items.length === 19 && typeof AB_SCHEMA.cite === 'string', 'abhichara: 19-item apparatus schema + cite');
+const abHasCite = arr => arr.every(r => typeof r.cite === 'string' && r.cite.length > 5);
+ok(abHasCite(AB_ACTS) && abHasCite(AB_VARIANTS) && abHasCite(AB_ATH.hostile) && abHasCite(AB_ATH.counter) && abHasCite(AB_TEXTS),
+  'abhichara: every act/variant/hymn/text record has .cite');
+ok(AB_RITU[9] === 'sisira' && AB_RITU[11] === 'vasanta' && AB_RITU[0] === 'vasanta',
+  'abhichara: RITU_BY_RASHI Makara→śiśira, Mīna & Meṣa→vasanta (Vasanta-at-Mīna convention)');
+const abScr = abScreen(new Date(Date.UTC(2026, 0, 15, 12, 0)), 28.6139, 77.209, 'marana');
+ok(abScr.prescriptions && Array.isArray(abScr.matches) && abScr.matches.length === 4
+  && typeof abScr.conflictNote === 'string' && abScr.caveat === AB_CAVEAT,
+  'abhichara: screen returns prescriptions + 4 matches + conflictNote + caveat');
+ok(abScr.prescriptions.season.key === 'sarad' && /dark/.test(abScr.prescriptions.fortnight) && /sword/i.test(abScr.prescriptions.mudra),
+  'abhichara: māraṇa → śarad season, dark fortnight, sword mudrā');
+ok(abScr.currentMoment.ritu.key === 'sisira', 'abhichara: mid-January ṛtu = śiśira (sidereal-solar convention)');
+const abJul = abScreen(new Date(Date.UTC(2026, 6, 15, 12, 0)), 28.6139, 77.209, 'santi');
+ok(['grisma', 'varsa'].includes(abJul.currentMoment.ritu.key), 'abhichara: mid-July ṛtu = grīṣma/varṣā (consistent)');
+ok(!/\b(perform|recite|kill|slay|burn|write|chant)\b/i.test(JSON.stringify({ p: abScr.prescriptions, m: abScr.matches }))
+  && /changes nothing in the world/.test(AB_CAVEAT),
+  'abhichara: no imperative procedural language in a screen; caveat states it changes nothing real');
+
+// --- The Yoga Sūtras study wing --------------------------------------------
+import { ALL_SUTRAS as ysAll, sutraByRef as ysByRef, searchSutras as ysSearch, counts as ysCounts, YS_CITATION as ysCite } from '../assets/js/core/yogasutra.js';
+const ysc = ysCounts();
+ok(ysAll.length === 196, `YS: ALL_SUTRAS length 196 (got ${ysAll.length})`);
+ok(ysc.perPada[0].count === 51 && ysc.perPada[1].count === 55, 'YS: Books I/II = 51/55');
+ok(ysc.perPada[2].inclusive === 56 && ysc.perPada[2].vulgate === 55 && ysc.perPada[2].variant === 1, 'YS: Book III = 56/55, one variant');
+ok(ysc.perPada[3].vulgate === 34 && ysc.perPada[3].bhoja === 33, 'YS: Book IV = 34 / 33 (Bhoja)');
+ok(ysc.editions.inclusive === 196 && ysc.editions.vulgate === 195 && ysc.editions.bhoja === 194, `YS: edition totals 196/195/194 (got ${ysc.editions.inclusive}/${ysc.editions.vulgate}/${ysc.editions.bhoja})`);
+ok(ysByRef('I.2').iast.includes('yogaś'), "YS: sutraByRef('I.2').iast contains 'yogaś'");
+ok(ysByRef('II.29').translation.endsWith('eight aids.'), "YS: sutraByRef('II.29') ends 'eight aids.'");
+ok(ysSearch('kaivalya').length >= 3, `YS: searchSutras('kaivalya') >= 3 (got ${ysSearch('kaivalya').length})`);
+ok(ysAll.filter(s => s.variant).length === 1 && ysAll.find(s => s.variant).num === null, 'YS: exactly one variant record, num null');
+ok(ysAll.filter(s => s.pada === 4 && s.bhojaNum != null).length === 33, 'YS: Book IV keeps 33 in Bhoja');
+ok(ysAll.every(s => s.src && s.src.trim()), 'YS: every record has a non-empty src');
+ok(ysAll.every(s => !/[॒॑]/.test(s.devanagari)), 'YS: no Vedic accents in any record');
+ok(typeof ysCite === 'string' && ysCite.includes('Woods'), 'YS: YS_CITATION present');
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

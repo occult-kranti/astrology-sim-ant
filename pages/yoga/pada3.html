@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vibhūti-pāda (Book III) — the powers, with dual numbering | The Astrologer's Workbench</title>
+<meta name="description" content="Book III of the Yoga Sūtras, the Vibhūti-pāda ('the powers'): saṃyama and the catalogue of siddhis, word-by-word. Dual numbering (195 vulgate ↔ 196 inclusive) with a toggle, and the disputed variant sūtra 'etena śabdādyantardhānam uktam' badged where it sits. The text's own counterweight (III.37: the powers are obstacles to samādhi) is kept in view.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/yoga.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Yoga Sūtras</a> › Book III</p>
+  <h1>Vibhūti-pāda — Book III, the powers <span class="small muted">(55 / 56 sūtras)</span></h1>
+  <p class="lede">The third book completes the eight limbs — <i>dhāraṇā</i>, <i>dhyāna</i>, <i>samādhi</i> (III.1–3) —
+    and fuses the three into <b>saṃyama</b> (III.4), the instrument of every <b>vibhūti</b> (power) that follows: from
+    knowledge of past and future, of the cries of all beings, of others' minds, through invisibility, foreknowledge of
+    death, mastery of the elements and the senses, up to omniscience. Then the pivot: <b>III.37</b> declares that these
+    powers are <em>obstacles</em> to concentration — perfections only from the standpoint of the outgoing mind — and
+    the book ends turning toward <b>kaivalya</b>. The siddhis are the text's own claims, described never prescribed.</p>
+
+  <div class="callout"><span class="label">Dual numbering — read this</span>
+    Book III is the one book whose sūtra count is disputed. The inclusive editions (Taimni, Satchidananda, Iyengar)
+    count a sūtra <b>"etena śabdādyantardhānam uktam"</b> ("by this the disappearance of sound &amp; the rest is
+    explained") after the invisibility sūtra, giving <b>56</b> sūtras and the whole text 196. The Vyāsa-bhāṣya vulgate
+    — sanskritdocuments, Woods (1914), Rama Prasada (1912), Bhoja — <b>omits</b> it, giving <b>55</b> and 195. Below,
+    that record is <b>badged as the variant</b>, and the offset it causes (every later sūtra shifts by one) is why the
+    two numbering schemes diverge from it onward. Use the toggle to switch the displayed numbers; the record itself
+    never moves.</p>
+  </div>
+
+  <div class="ys-toolbar">
+    <input id="ys-filter" type="search" placeholder="filter these sūtras — e.g. samyama, invisibility, moon…" autocomplete="off" aria-label="Filter Book III sūtras">
+    <span id="ys-filter-count"></span>
+    <div class="ys-numbering" id="ys-numbering" role="group" aria-label="Numbering scheme">
+      <button type="button" data-mode="196" class="active">196 · inclusive</button>
+      <button type="button" data-mode="195">195 · vulgate</button>
+    </div>
+  </div>
+  <div id="ys-list"></div>
+
+  <p class="small muted">Glosses after Rama Prasada (1912, SBH IV, mapped by content — his Book III has 54 numbered
+    sūtras); translations after J. H. Woods (1914, HOS 17); Devanāgarī from sanskritdocuments.org with the Vedic
+    accents stripped. See <a href="sources.html">Sources</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { initYoga } from '../../assets/js/app/yoga.js';
+  mountChrome('yoga');
+  initYoga('pada3');
+</script>
+</body>
+</html>

@@ -17,7 +17,7 @@
 //  demonstrated predictive validity; the assistant describes a tradition, it
 //  does not advise or predict.
 // ============================================================================
-import { HONEST_FRAMING } from './reading.js';
+import { HONEST_FRAMING, fullReading } from './reading.js';
 import { REGISTRY, toToolSchema, callableEntries } from './registry.js';
 import { GLOSSARY } from './data/glossary.js';
 // engine functions for runTool (the agentic mode)
@@ -37,8 +37,32 @@ import { castFromTallies, geomanticJudgement } from './geomancy.js';
 import { tarotReading, SPREADS } from './tarot.js';
 import { DECK_IDS } from './data/tarot-deck.js';
 import { linesFromThrows, castReading as castIchingReading } from './iching.js';
+// THE ORCHESTRATOR — the fuller engine surface the "one prompt, every engine"
+// agentic tools wrap (thin, pure; each matches the engine's real signature).
+import { transitTimeline } from './transits.js';
+import { synastryGrid } from './synastry.js';
+import { varshaphala } from './tajika.js';
+import { prasnaJudgement } from './prasna.js';
+import { muhurtaReport } from './muhurta.js';
+import { scanMoments } from './moments.js';
+import { conjunctionsBetween } from './cycles.js';
+import { progressedPositions } from './progressions.js';
+import { firdaria, currentFirdaria } from './firdaria.js';
+import { zodiacalReleasing, currentReleasing } from './releasing.js';
+import { computeLots } from './lots.js';
+import { castFromDraws as castRunesFromDraws } from './runes.js';
 
 const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+
+// The short caveat every orchestrator tool result carries (so the model can
+// never present a computed figure as a real prediction). It is the same honest
+// spine as HONEST_FRAMING, condensed for a tool payload — and it makes the
+// past/future framing explicit: the astronomy is real; the meanings are the
+// tradition's, described never prescribed.
+export const TOOL_CAVEAT =
+  'Historical symbolic system of NO demonstrated validity — described, never prescribed. The astronomy is real ' +
+  '(computed); the meanings are the tradition’s. For a FUTURE date this is what the sky will actually do and what the ' +
+  'tradition WOULD say — never a real prediction; for a PAST date, what the tradition WOULD have said.';
 
 // ---------------------------------------------------------------------------
 //  The locked guardrail. Prepended (and not removable) as the model's system
@@ -297,13 +321,122 @@ export function buildToolSchema() {
       parameters: { type: 'object', properties: { planet: { type: 'string', enum: ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'] } }, required: ['planet'] },
     },
   });
+  // === THE ORCHESTRATOR TOOLS ===============================================
+  // The higher-order engines the "one prompt, every engine" agentic page drives:
+  // whole readings, the Vedic mirror, transits, synastry, the annual chart, the
+  // two Indian horary/electional clocks, the cross-system scan, the great
+  // conjunctions, the time-lord clocks, the runes — plus listCapabilities, the
+  // discovery surface. Each output is CONDENSED (the model reads it) and carries
+  // its own citation + the honest caveat. See "ADDING A FUTURE TOOL" below.
+  const ISO = { type: 'string', description: 'ISO datetime, UTC (e.g. "2026-07-15T14:30:00Z")' };
+  const LAT = { type: 'number', description: 'latitude ° (N positive)' };
+  const LON = { type: 'number', description: 'longitude ° (E positive)' };
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'listCapabilities',
+      description: 'DISCOVERY: list EVERY capability this Workbench can compute — the whole registry index (id, title, a one-line "computes", the callable tool name if any, and the primary page). Call this FIRST whenever you are unsure which tool answers a question.',
+      parameters: { type: 'object', properties: {}, required: [] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'fullChart',
+      description: 'The UNIFIED Western reading for a moment & place: the figure & planetary hour, the dignity ledger & Lord of the Geniture, chart health, aspects, the Lots, the Picatrix election (ranked aims) & talisman, AND the Vedic (sidereal) mirror — one condensed object. Use for "my birth chart", "read this moment". Add quesitedHouse for a horary question.',
+      parameters: { type: 'object', properties: { dateISO: ISO, lat: LAT, lon: LON, quesitedHouse: { type: 'number', description: 'house 1–12 for a horary question (optional)' }, operationKey: { type: 'string', description: 'an election aim (optional)' } }, required: ['dateISO', 'lat', 'lon'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'vedicChart',
+      description: 'The VEDIC (Jyotiṣa / sidereal, Jagannath Hora) horoscope for a moment & place: Lagna & 9 grahas (nakṣatra, bhāva, dignity), the pañcāṅga, the running Vimśottarī daśā, the yogas, the Sarvāṣṭakavarga and the six-fold Ṣaḍbala. A SEPARATE system from the Western chart — compared, never merged.',
+      parameters: { type: 'object', properties: { dateISO: ISO, lat: LAT, lon: LON }, required: ['dateISO', 'lat', 'lon'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'transitHits',
+      description: 'The exact-hit transits to a NATAL chart across a window (≤~2 years): the transiting planet, the natal point, the Ptolemaic aspect, the exact instant, retrograde passes, plus stations and the profection (time-lord) overlay. Give the birth data, a start date and a number of months.',
+      parameters: { type: 'object', properties: { birthISO: ISO, lat: LAT, lon: LON, fromISO: { ...ISO, description: 'window start (ISO UTC); defaults to now' }, months: { type: 'number', description: 'window length in months (1–23; default 12)' } }, required: ['birthISO', 'lat', 'lon'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'synastryPair',
+      description: 'The synastry (chart-to-chart) aspect grid between TWO nativities: the inter-aspects (with orb & applying/separating), the classical luminary contacts, and the house overlays both ways. Give both births (date + place).',
+      parameters: { type: 'object', properties: { aISO: { ...ISO, description: 'person A birth (ISO UTC)' }, aLat: LAT, aLon: LON, bISO: { ...ISO, description: 'person B birth (ISO UTC)' }, bLat: LAT, bLon: LON }, required: ['aISO', 'aLat', 'aLon', 'bISO', 'bLat', 'bLon'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'annualChart',
+      description: 'The Tājika varṣaphala (Indo-Persian ANNUAL chart) for a nativity and a target year: the sidereal solar-return instant, the annual lagna, the munthā, the varṣeśvara (year-lord), the itthaśāla/īsarāpha configurations, the year-yogas and the sahams (lots of the year).',
+      parameters: { type: 'object', properties: { birthISO: ISO, lat: LAT, lon: LON, year: { type: 'number', description: 'the calendar year of the varṣa-praveśa (≥ birth year)' } }, required: ['birthISO', 'lat', 'lon', 'year'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'prasnaNow',
+      description: 'A PRAŚNA (Indian horary) judgement of a question from the sidereal chart of its moment: the praśna lagna, the Moon, the fired testimonies (for/against, each with its verse) and the tally/leaning, plus the KP layer. A tally of historical rules, never an answer. HISTORICAL divination of no demonstrated validity — narrate as such.',
+      parameters: { type: 'object', properties: { dateISO: ISO, lat: LAT, lon: LON, quesitedHouse: { type: 'number', description: 'the bhāva the question is about (default 7)' }, question: { type: 'string', description: 'the question (optional)' }, kpNumber: { type: 'number', description: 'optional KP horary number 1–249' } }, required: ['dateISO', 'lat', 'lon'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'muhurtaDay',
+      description: 'The MUHŪRTA day-clock for a date & place: the vāra, the CURRENT muhūrta & its grading, the Abhijit window, the three avoided kālas (Rāhu/Yama/Gulika) and the pañcāṅga quality screens. The Indian electional rulebook. A historical selection ritual with no demonstrated effect on outcomes.',
+      parameters: { type: 'object', properties: { dateISO: ISO, lat: LAT, lon: LON }, required: ['dateISO', 'lat', 'lon'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'momentScan',
+      description: 'THE CROSS-SYSTEM SCAN: over a coming time-range, each tradition’s verdict on the SAME sky, side by side — the Lilly/Picatrix election verdict for an aim, the Chaldean planetary hour, the Indian muhūrta & kālas, and the pañcāṅga screens. Separate rulebooks, compared — never merged; agreement is only a coincidence of conventions. Use for "scan next week for a good moment, every tradition".',
+      parameters: { type: 'object', properties: { fromISO: { ...ISO, description: 'the start of the scan' }, hours: { type: 'number', description: 'length in hours (capped at 168 = one week)' }, lat: LAT, lon: LON, aim: { type: 'string', enum: OPERATIONS.map(o => o.key), description: 'the election aim for the Lilly/Picatrix column' } }, required: ['fromISO', 'hours', 'lat', 'lon'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'greatConjunctions',
+      description: 'The great Jupiter–Saturn conjunctions between two YEARS (real astronomy: dates, ecliptic longitude, triplicity/trigon, minimum separation, triple passes). Use for "when were the great conjunctions of the 1600s?". The mundane MEANINGS the tradition attached (dynasties, religions, plagues) are documented beliefs of no demonstrated validity. Range −1999…3000.',
+      parameters: { type: 'object', properties: { fromYear: { type: 'number' }, toYear: { type: 'number' } }, required: ['fromYear', 'toYear'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'timelords',
+      description: 'The three classical TIME-LORD clocks over a nativity at a given age: secondary progressions (progressed Sun/Moon & angles), the Persian firdaria (current major & sub lord) and Valens’s zodiacal releasing from Spirit (career/action) and Fortune (the body). Historical timing conventions with no demonstrated validity.',
+      parameters: { type: 'object', properties: { birthISO: ISO, lat: LAT, lon: LON, ageYears: { type: 'number', description: 'age in tropical years' } }, required: ['birthISO', 'lat', 'lon', 'ageYears'] },
+    },
+  });
+  schema.push({
+    type: 'function',
+    function: {
+      name: 'castRunes',
+      description: 'Cast Elder Futhark runes (the USER’S BROWSER supplies the randomness at their request — you never choose the staves): each drawn stave with its ATTESTED medieval rune-poem gist ABOVE its flagged MODERN keyword (kept rigorously separate). count 1 = a single draw, 3 = a three-rune spread. Optionally pass seedDraws (distinct indices 0–23) to reproduce a cast. HISTORICAL divination of no demonstrated validity — narrate as such.',
+      parameters: { type: 'object', properties: { count: { type: 'number', enum: [1, 3], description: '1 (single) or 3 (spread); default 3' }, methodId: { type: 'string', enum: ['tacitus', 'three', 'single'], description: 'optional casting method for 3 staves (default three)' }, seedDraws: { type: 'array', items: { type: 'number' }, description: 'optional: distinct stave indices 0–23 to reproduce a cast' } }, required: [] },
+    },
+  });
   return schema;
 }
 
 // The set of tool names the dispatcher accepts (callable exports + the extras).
 export function toolNames() {
   return [...callableEntries().map(e => e.exportName), 'rankNow', 'findNextElection', 'castVedic', 'vedicPractice', 'picatrixPrayer',
-    'castGeomancy', 'drawTarot', 'castIChing', 'defineTerm'];
+    'castGeomancy', 'drawTarot', 'castIChing', 'defineTerm',
+    // the orchestrator tools
+    'listCapabilities', 'fullChart', 'vedicChart', 'transitHits', 'synastryPair', 'annualChart',
+    'prasnaNow', 'muhurtaDay', 'momentScan', 'greatConjunctions', 'timelords', 'castRunes'];
 }
 
 // The live tool's public locations — given to the model so it can point a user
@@ -322,6 +455,87 @@ export function toAnthropicTools() {
     description: t.function.description,
     input_schema: t.function.parameters,
   }));
+}
+
+// ===========================================================================
+//  THE GRAND ORCHESTRATOR — one prompt, every engine.
+//
+//  The persona + the codebooked meta-prompt for the agentic "autopilot" page:
+//  the user types ANY question (simple → advanced; past or future date) and the
+//  model AGENTICALLY drives the whole tool surface above (fullChart, vedicChart,
+//  transitHits, synastryPair, annualChart, prasnaNow, muhurtaDay, momentScan,
+//  greatConjunctions, timelords, castRunes, the oracles, defineTerm, …) —
+//  computing whatever it needs, then explaining it codebooked (book meaning →
+//  plain terms), honest frame FIRST, each tradition kept separate.
+// ---------------------------------------------------------------------------
+//  ADDING A FUTURE TOOL — the 3-step pattern (so a NEW engine joins the
+//  orchestrator automatically, with nothing else to touch):
+//    1. Add the capability to core/registry.js (id/title/module/exportName/
+//       computes/inputs/pages…). listCapabilities reads REGISTRY, so the model
+//       DISCOVERS it for free — no edit here for discovery.
+//    2. Add ONE tool schema (schema.push in buildToolSchema, above) AND ONE
+//       runTool case here (a thin PURE wrapper: import the engine, call it with
+//       its real signature, CONDENSE the output, return it through withCite so
+//       it carries a citation + the honest caveat). Add the name to toolNames().
+//    3. Nothing else. toAnthropicTools() re-maps the schema; the autopilot page
+//       passes every tool to the model; buildOrchestratorPrompt is generic.
+//  Keep wrappers pure: randomness comes from ctx.rand (mirror castRunes /
+//  castGeomancy), never from this module and never from the model.
+// ---------------------------------------------------------------------------
+
+// The persona: the WHOLE Workbench speaking — a learned, honest guide with every
+// engine at hand. Layered on HONEST_SYSTEM_PREAMBLE (which locks the framing).
+export const ORCHESTRATOR_PREAMBLE =
+  '\n\nVOICE — THE GRAND ORCHESTRATOR: you are the whole Astrologer\'s Workbench speaking with one voice — a learned, ' +
+  'plain-spoken, scrupulously honest guide with EVERY engine of the site at your fingertips as callable tools. You ' +
+  'do not guess numbers: you COMPUTE them, by calling the tools, and then you translate what they mean. You know ' +
+  'the Latin West (Lilly, the Picatrix, Agrippa), the Hellenistic and Persian timing arts, Jyotiṣa and the Tājika, ' +
+  'the mundane cycles, and the divinatory oracles — and you keep every tradition SEPARATE, comparing, never merging. ' +
+  'You may drive as many tools as the question needs (a dozen if it calls for it), in any order, and you call ' +
+  'listCapabilities whenever you are unsure which engine answers a question.\n' +
+  'ABSOLUTE FRAME: everything here is a HISTORICAL SYMBOLIC SYSTEM of no demonstrated validity. The astronomy the ' +
+  'tools compute is real and verifiable; the meanings are the traditions\' own, described as history and never ' +
+  'prescribed. For a FUTURE date the tools give what the sky will really do and what the tradition WOULD say — NEVER ' +
+  'a real prediction; for a PAST date, what the tradition WOULD have said. You never advise, never foretell, never ' +
+  'present a verdict as fact; if asked to, you decline gently and restate the frame. Ground every computed claim in a ' +
+  'tool result (cite it); if you draw on general knowledge of a tradition, say so plainly.';
+
+// buildOrchestratorPrompt(question) — the codebooked meta-prompt wrapped around
+// the user's free-form question. Honest frame FIRST, then PLAN → COMPUTE →
+// EXPLAIN (book meaning → plain words) → SYNTHESIS + the five-part plain coda →
+// honest close. The tools are supplied by the app (toAnthropicTools).
+export function buildOrchestratorPrompt(question) {
+  const q = String(question == null ? '' : question).trim();
+  return (
+    `THE USER ASKS: "${q}"\n\n` +
+    'Answer it end-to-end by DRIVING THE WORKBENCH\'S ENGINES AS TOOLS — compute first, then explain, codebooked ' +
+    '(book meaning → plain, real-life words), honest frame FIRST. Proceed in these numbered steps:\n\n' +
+    '**0. The honest frame — FIRST, before anything else.** Two or three plain sentences: astrology and divination are ' +
+    'historical symbolic systems with no demonstrated predictive validity. Everything below is computed faithfully and ' +
+    'read as the tradition read it. For a FUTURE date the tools give what the sky will genuinely do (real astronomy) ' +
+    'and what the tradition WOULD say — this is NEVER a real prediction; for a PAST date, what the tradition WOULD have ' +
+    'said. Described, never prescribed.\n' +
+    '**1. PLAN.** Restate the question in your own words, then list WHICH TOOLS will answer it and why (e.g. a birth ' +
+    'chart → fullChart + vedicChart; a year ahead → annualChart / transitHits / timelords; "a good moment" → ' +
+    'momentScan / muhurtaDay; historical conjunctions → greatConjunctions; a comparison of two people → synastryPair; ' +
+    'an oracle → castRunes / drawTarot / castIChing / castGeomancy). If you are unsure which engine fits, call ' +
+    '`listCapabilities` and choose from it.\n' +
+    '**2. COMPUTE.** Call the tools with correct arguments. Dates are ISO UTC. If the user gives no place, default to ' +
+    'London (51.51, −0.13) and SAY SO as a caveat in your reply (ask them to give a place for a precise reading). ' +
+    'Never invent a position, a date or a verdict — if you need a number, a tool has it.\n' +
+    '**3. EXPLAIN each result, codebooked.** For every tool result, give (a) the BOOK MEANING — what the tradition ' +
+    'says this measures — then (b) the PLAIN-WORDS translation of what it says HERE, grounding each computed claim on ' +
+    'the tool output (tag it, e.g. "[fullChart]" / "[greatConjunctions]"). Keep each tradition SEPARATE — compare the ' +
+    'Western and Vedic (or Lilly and praśna, tropical and sidereal) readings, and where they disagree by design, say ' +
+    'so honestly rather than forcing agreement.\n' +
+    '**4. SYNTHESIS + PLAIN WORDS.** Draw the threads together: what the computed picture, read across the tools, most ' +
+    'strongly emphasises — and where the testimonies conflict. Then close the body with the five-part plain coda ' +
+    'below.\n' +
+    '**5. The honest close.** One sentence: these are historical, pseudoscientific arts computed faithfully for study — ' +
+    'a structured mirror for reflection, never a prediction, a diagnosis, or advice; described, never prescribed.\n\n' +
+    'Throughout, use the five-part structure when you walk a computed panel in depth:\n' + PLAIN_STRUCTURE +
+    PLAIN_CODA
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -624,6 +838,9 @@ export function runTool(name, args = {}, ctx = {}) {
     shadbala: { strongest: v.shadbala.strongest, weakest: v.shadbala.weakest, order: v.shadbala.order, rupas: Object.fromEntries(Object.entries(v.shadbala.perGraha).map(([k, s]) => [k, s.totalRupa])) },
     note: 'A SEPARATE sidereal system from the Western chart; do not conflate the two zodiacs.',
   });
+  // Stamp every ORCHESTRATOR tool result with its citation + the honest caveat.
+  const withCite = (obj, cite) => ({ ...obj, citation: cite || '', caveat: TOOL_CAVEAT });
+  const safeLots = chart => { try { return (computeLots(chart).lots) || []; } catch { return []; } };
 
   switch (name) {
     case 'castChart': return slimChart(castChart(new Date(need('date')), need('lat'), need('lon'), args.system || 'regiomontanus'));
@@ -696,6 +913,174 @@ export function runTool(name, args = {}, ctx = {}) {
         guidance: r.guidance,
         note: 'Coins thrown by the user’s browser RNG. Historical divination of no demonstrated validity — described, never prescribed.',
       };
+    }
+    // === THE ORCHESTRATOR TOOLS ===========================================
+    // Thin, PURE wrappers over the fuller engine surface. Each output is
+    // condensed for the model and stamped with its citation + the honest
+    // caveat via withCite. See the schemas above and "ADDING A FUTURE TOOL".
+    case 'listCapabilities':
+      return REGISTRY.map(e => ({
+        id: e.id, title: e.title,
+        computes: String(e.computes || '').split('. ')[0].slice(0, 180),
+        tool: e.callable ? e.exportName : null,
+        page: (e.pages || [])[0] || null,
+      }));
+    case 'fullChart': {
+      const chart = castChart(new Date(need('dateISO')), need('lat'), need('lon'), args.system || 'regiomontanus');
+      const r = fullReading(chart, { quesitedHouse: args.quesitedHouse, operationKey: args.operationKey, vedicCurrentDate: new Date() });
+      return withCite(buildDataDigest(r), 'Composes Lilly CA Bk I–III + the Picatrix + the Vedic mirror (reading.js).');
+    }
+    case 'vedicChart': {
+      const chart = castChart(new Date(need('dateISO')), need('lat'), need('lon'), 'whole');
+      return withCite(slimVedic(castVedic(chart, { currentDate: new Date() })), 'Parāśara BPHS / Jagannath Hora (vedic.js) — a SEPARATE sidereal system, compared never merged.');
+    }
+    case 'transitHits': {
+      const natal = castChart(new Date(need('birthISO')), need('lat'), need('lon'), 'regiomontanus');
+      const from = args.fromISO ? new Date(args.fromISO) : new Date();
+      const months = Math.min(23, Math.max(1, Number(args.months) || 12));
+      const to = new Date(from.getTime() + Math.min(720, months * 30.44) * 86400000);
+      const tl = transitTimeline(natal, from, to);
+      return withCite({
+        window: { from: tl.window.startISO.slice(0, 10), to: tl.window.endISO.slice(0, 10), days: tl.window.days },
+        eventCount: tl.events.length,
+        events: tl.events.slice(0, 24).map(e => ({ transit: e.transitingBody, to: e.natalPoint, aspect: e.aspect, exact: e.exactISO.slice(0, 16), orb: +Number(e.orb).toFixed(2), motion: e.motion, pass: e.passNote, timeLordActivated: !!e.timeLordActivated })),
+        stations: tl.stations.slice(0, 8).map(s => ({ body: s.body, station: s.station, at: s.instantISO.slice(0, 10), position: s.label })),
+        profections: (tl.profectionsInWindow || []).map(p => ({ age: p.age, sign: p.profectedSign, lordOfYear: p.lordOfYear })),
+      }, tl.citation);
+    }
+    case 'synastryPair': {
+      const A = castChart(new Date(need('aISO')), need('aLat'), need('aLon'), 'regiomontanus');
+      const B = castChart(new Date(need('bISO')), need('bLat'), need('bLon'), 'regiomontanus');
+      const g = synastryGrid(A, B);
+      return withCite({
+        hits: g.hits.slice(0, 20).map(h => ({ a: h.bodyA, b: h.bodyB, aspect: h.aspect, orb: h.orb != null ? +Number(h.orb).toFixed(2) : null, applying: h.applying })),
+        luminaryContacts: g.luminaryContacts.map(h => `${h.bodyA} ${h.aspect} ${h.bodyB}`),
+        counts: g.counts,
+        houseOverlay: { aPlanetsInBHouses: g.houseOverlay.aInB.byHouse, bPlanetsInAHouses: g.houseOverlay.bInA.byHouse },
+        orbNote: g.orbNote,
+      }, g.citation);
+    }
+    case 'annualChart': {
+      const natal = castChart(new Date(need('birthISO')), need('lat'), need('lon'), 'whole');
+      const v = varshaphala(natal, need('year'), { lat: args.lat, lon: args.lon });
+      return withCite({
+        year: v.meta.targetYear,
+        varshaPravesha: v.varshaPravesha.instantISO ? v.varshaPravesha.instantISO.slice(0, 16) : null,
+        driftMinutes: v.varshaPravesha.driftMinutes != null ? Math.round(v.varshaPravesha.driftMinutes) : null,
+        annualLagna: v.annual.lagna.rashi,
+        muntha: v.muntha ? `${v.muntha.rashi} (house ${v.muntha.house})` : null,
+        varsheshvara: v.varsheshvara ? { yearLord: v.varsheshvara.chosen.planet, viaDispute: !!v.varsheshvara.viaDispute } : null,
+        keyPairs: (v.aspects.pairs || []).filter(p => p.verdict === 'itthasala' || p.verdict === 'isarapha').slice(0, 8).map(p => `${p.faster}-${p.slower}: ${p.verdict}${p.carveOut ? ' (carve-out)' : ''}`),
+        yogas: v.yogas ? { ikkavala: !!v.yogas.ikkavala, induvara: !!v.yogas.induvara, itthasala: v.yogas.itthasalaCount, isarapha: v.yogas.isaraphaCount } : null,
+        sahams: (v.sahams.sahams || []).slice(0, 8).map(s => `${s.name}: ${s.sign} ${Number(s.degInSign).toFixed(1)}°${s.correctionApplied ? ' [+30° contested]' : ''}`),
+      }, (v.citations || [])[0] || 'Balabhadra, Hāyanaratna (tajika.js).');
+    }
+    case 'prasnaNow': {
+      const chart = castChart(new Date(need('dateISO')), need('lat'), need('lon'), 'whole');
+      const v = castVedic(chart);
+      const j = prasnaJudgement(v, { quesitedHouse: args.quesitedHouse || 7, kpNumber: args.kpNumber, question: args.question });
+      return withCite({
+        question: j.question || '', quesitedHouse: j.quesitedHouse,
+        lagna: `${j.lagna.sign}${j.lagna.nakshatra ? ', ' + j.lagna.nakshatra.name : ''}`,
+        moon: { house: j.moon.house, sign: j.moon.sign },
+        testimonies: (j.testimonies || []).map(t => ({ rule: t.rule, verdict: t.verdict })),
+        tally: j.counts, leaning: j.leaning, kpNumber: j.kpNumber,
+        outOfScope: (j.outOfScope || []).map(o => o.layer),
+        note: 'A tally of historical rules, never an answer to the question.',
+      }, (j.citations || [])[0] || 'Ṣaṭpañcāśikā / Praśna Mārga (prasna.js).');
+    }
+    case 'muhurtaDay': {
+      const r = muhurtaReport(new Date(need('dateISO')), need('lat'), need('lon'));
+      if (r.error) return withCite({ error: r.error }, 'muhurta.js');
+      const hm = d => { try { return new Date(d).toISOString().slice(11, 16); } catch { return null; } };
+      return withCite({
+        vara: r.vara.name,
+        currentMuhurta: r.current ? { num: r.current.num, name: r.current.name, quality: r.current.quality, contested: !!r.current.contested } : null,
+        abhijit: r.abhijit ? [hm(r.abhijit.start), hm(r.abhijit.end)] : null,
+        kalas: r.kalas ? { rahu: [hm(r.kalas.rahu.start), hm(r.kalas.rahu.end)], yama: [hm(r.kalas.yama.start), hm(r.kalas.yama.end)], gulika: [hm(r.kalas.gulika.start), hm(r.kalas.gulika.end)] } : null,
+        screens: r.screens ? Object.fromEntries(Object.entries(r.screens).map(([k, s]) => [k, s && `${s.value}: ${s.verdict}`])) : null,
+      }, (r.citations || [])[0] || 'Muhūrta Cintāmaṇi tradition (muhurta.js).');
+    }
+    case 'momentScan': {
+      const scan = scanMoments(new Date(need('fromISO')), Math.min(168, Math.max(1, Number(need('hours')) || 24)), need('lat'), need('lon'),
+        (args.aim ? { operationKey: args.aim } : {}));
+      const rows = []; let prev = null;
+      for (const r of scan.rows) {
+        const key = `${r.lilly.verdict}|${r.hour ? r.hour.ruler : ''}|${r.muhurta ? r.muhurta.name : ''}|${r.kala || ''}`;
+        if (key !== prev) {
+          rows.push({
+            time: r.time.toISOString().slice(0, 16), lilly: `${r.lilly.verdict} (${r.lilly.score})`,
+            hour: r.hour ? r.hour.ruler : null, muhurta: r.muhurta ? `${r.muhurta.name} (${r.muhurta.quality})` : null,
+            kala: r.kala, panchanga: r.panchanga.yogaVerdicts.summary,
+          });
+          prev = key;
+        }
+        if (rows.length >= 20) break;
+      }
+      return withCite({ operation: scan.meta.operation, from: scan.meta.from.toISOString().slice(0, 16), to: scan.meta.to.toISOString().slice(0, 16), rowCount: rows.length, rows, note: scan.meta.caveat },
+        'Composes election.js / planetary-hours.js / muhurta.js / vedic.js (moments.js) — separate rulebooks, compared never merged; agreement is only a coincidence of conventions.');
+    }
+    case 'greatConjunctions': {
+      let fromY = Math.round(Number(need('fromYear'))), toY = Math.round(Number(need('toYear')));
+      if (fromY > toY) { const t = fromY; fromY = toY; toY = t; }
+      if (fromY < -1999) fromY = -1999;
+      if (toY > 3000) toY = 3000;
+      const start = new Date(0); start.setUTCFullYear(fromY, 0, 1); start.setUTCHours(0, 0, 0, 0);
+      const end = new Date(0); end.setUTCFullYear(toY, 11, 31); end.setUTCHours(23, 59, 0, 0);
+      const hits = conjunctionsBetween(start, end);
+      return withCite({
+        range: [fromY, toY], count: hits.length,
+        conjunctions: hits.slice(0, 30).map(c => ({
+          date: new Date(c.date).toISOString().slice(0, 10), position: c.label || formatLon(c.lon),
+          triplicity: c.triplicity, sepArcmin: c.sep, bothRetrograde: !!(c.jupiterRetrograde && c.saturnRetrograde),
+        })),
+      }, 'Abū Maʿshar on the great conjunctions; engine-verified astronomy (cycles.js). The mundane meanings are documented beliefs of no demonstrated validity.');
+    }
+    case 'timelords': {
+      const birth = new Date(need('birthISO'));
+      const lat = need('lat'), lon = need('lon');
+      const chart = castChart(birth, lat, lon, 'regiomontanus');
+      const ageYears = Number(need('ageYears'));
+      const prog = progressedPositions(birth, lat, lon, ageYears);
+      const fd = firdaria(birth, chart.isDay);
+      const cf = currentFirdaria(fd.majors, ageYears);
+      const lotsOut = safeLots(chart);
+      const spiritLot = lotsOut.find(l => l.key === 'spirit') || lotsOut.find(l => /spirit/i.test(l.name));
+      const fortuneLot = lotsOut.find(l => l.key === 'fortune');
+      const onDate = new Date(birth.getTime() + ageYears * 365.2422 * 86400000);
+      const relFrom = lotP => {
+        if (!lotP) return null;
+        const idx = Math.floor((((lotP.lon % 360) + 360) % 360) / 30);
+        const zr = zodiacalReleasing(idx, birth, { maxYears: Math.max(100, Math.ceil(ageYears) + 5) });
+        const cur = currentReleasing(zr, birth, onDate);
+        return { fromSign: zr.lotSign, l1: cur.l1 ? `${cur.l1.sign} (${cur.l1.years}y)` : null, l2: cur.l2 ? `${cur.l2.sign}${cur.l2.loosed ? ' [loosing of the bond]' : ''}` : null };
+      };
+      return withCite({
+        ageYears: +ageYears.toFixed(2), sect: chart.isDay ? 'day' : 'night',
+        progressions: { progressedDate: prog.progressedDate.toISOString().slice(0, 10), sun: formatLon(prog.planets.Sun.lon), moon: formatLon(prog.planets.Moon.lon), progressedAsc: formatLon(prog.progressedAsc), progressedMC: formatLon(prog.progressedMC) },
+        firdaria: cf.major ? { major: cf.major.lord, sub: cf.sub ? cf.sub.lord : null } : null,
+        releasing: { fromSpirit: relFrom(spiritLot), fromFortune: relFrom(fortuneLot) },
+      }, 'Valens (progressions IX.3, releasing IV.4–10) + Abū Maʿshar (firdaria) — progressions.js / firdaria.js / releasing.js.');
+    }
+    case 'castRunes': {
+      const count = Number(args.count) === 1 ? 1 : 3;
+      const methodId = count === 1 ? 'single' : (args.methodId === 'tacitus' ? 'tacitus' : 'three');
+      let indices;
+      if (Array.isArray(args.seedDraws) && args.seedDraws.length === count) {
+        indices = args.seedDraws.map(n => n | 0);
+      } else if (typeof ctx.rand === 'function') {
+        const pool = Array.from({ length: 24 }, (_, i) => i);
+        for (let i = pool.length - 1; i > 0; i--) { const k = ctx.rand(i + 1); [pool[i], pool[k]] = [pool[k], pool[i]]; }
+        indices = pool.slice(0, count);
+      } else {
+        throw new Error('castRunes: supply seedDraws (distinct indices 0–23), or run where the app provides the random draw');
+      }
+      const r = castRunesFromDraws(indices, methodId);
+      return withCite({
+        method: r.method.label,
+        staves: r.staves.map(s => ({ position: s.positionLabel, name: s.name, rune: s.char, translit: s.translit, aett: s.aett, attested: s.poems && s.poems.oe ? s.poems.oe.stanzaGist : null, modernKeyword: s.modernMeaning })),
+        note: r.note,
+      }, (Array.isArray(r.cite) ? r.cite[0] : r.cite) || 'Tacitus, Germania 10; the medieval rune poems (runes.js).');
     }
     default: throw new Error(`unknown tool: ${name}`);
   }

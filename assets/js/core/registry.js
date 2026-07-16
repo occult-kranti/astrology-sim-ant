@@ -738,6 +738,24 @@ export const REGISTRY = [
     glossaryTerms: ['Muhūrta', 'Abhijit muhūrta', 'Brāhma muhūrta', 'Rāhu-kāla', 'Pañcāṅga'],
   },
   {
+    id: 'shatkarman', title: 'Ṣaṭkarman timing screen (abhicāra)',
+    module: 'assets/js/core/abhichara.js', exportName: 'shatkarmanScreen',
+    exports: ['shatkarmanScreen', 'SHATKARMAN_CAVEAT'],
+    computes: 'For one of the six acts and a moment/place: the calendar season (ṛtu, from the Sun’s sidereal rāśi — two solar months per ṛtu), the ghaṭikā-cycle block (scheme A) and day-part (scheme B) from sunrise, and the lunar fortnight (pañcāṅga paksha), then checks whether the moment matches what the abhicāra tradition prescribed for that act. Read-only calendar arithmetic; DESCRIBED, never prescribed — no demonstrated validity, no operational output. Contested season/time schemes are flagged, never resolved.',
+    inputs: [
+      { name: 'date', type: 'string', desc: 'ISO datetime (UTC)', required: true },
+      { name: 'lat', type: 'number', desc: 'latitude °', required: true },
+      { name: 'lon', type: 'number', desc: 'longitude °', required: true },
+      { name: 'act', type: 'enum', values: ['santi', 'vasya', 'stambhana', 'vidvesana', 'uccatana', 'marana'], desc: 'one of the six acts', required: true },
+    ],
+    outputShape: '{ act, actLabel, actClass, prescriptions:{season,dayPartBPK,dayPartU128,fortnight,color,matUddisha,matBhairava,mudra,rosary,finger,hand,…cites}, currentMoment:{ritu,ghatikaSeason,dayPart,fortnight,sunrise,sunset,nextSunrise,sunRashi,ayanamsa}, matches:[{slot,prescribed,current,match,cite}], conflictNote, caveat }',
+    callable: false,
+    book: 'Abhicāra', chapter: 'The ṣaṭkarman (Mantramahodadhi 25; Uḍḍīśatantra; Bhairavapadmāvatīkalpa)',
+    citation: 'Bühnemann, "The Six Rites of Magic" (Tantra in Practice, Princeton 2000); Uḍḍīśatantra 1.16-17/1.28 & Bhairavapadmāvatīkalpa 3.6-9 via Ullrey, Grim Grimoires (UCSB 2016); ṛtu = 2 solar months by sidereal rāśi (Vasanta-at-Mīna convention). Described, never prescribed; no demonstrated validity.',
+    pages: ['pages/abhichara/six-acts.html'], howItWorks: 'pages/abhichara/six-acts.html#hiw-abhichara',
+    glossaryTerms: ['Abhicāra', 'Ṣaṭkarman', 'Vaśīkaraṇa', 'Stambhana', 'Uccāṭana', 'Māraṇa'],
+  },
+  {
     id: 'tajika-varshaphala', title: 'Tājika varṣaphala (the Indo-Persian annual chart)',
     module: 'assets/js/core/tajika.js', exportName: 'varshaphala',
     exports: ['munthaSign', 'muntha', 'tajikaTriplicityLord', 'tajikaAspect', 'deeptamsaOrb', 'tajikaPair',
@@ -888,6 +906,21 @@ export const REGISTRY = [
     citation: 'Dorotheus, Carmen IV; Abū Maʿshar, Revolutions (Dykes, Persian Nativities IV, 2019 — monthly method, CONTESTED); Ptolemy, Tetrabiblos IV.10 (ages) for the Saturn-return framing (modern emphasis).',
     pages: ['pages/transits.html'], howItWorks: 'pages/transits.html#hiw-transits',
     glossaryTerms: ['Lunar return'],
+  },
+  {
+    id: 'yoga-sutras', title: 'The Yoga Sūtras of Patañjali (study wing)',
+    module: 'assets/js/core/yogasutra.js', exportName: 'sutraByRef',
+    exports: ['searchSutras', 'counts', 'ALL_SUTRAS'],
+    computes: 'Reference: the Pātañjala Yoga-sūtra rendered word-by-word across all four pādas (196 records — Devanāgarī with Vedic accents stripped, IAST, Sanskrit→gloss tables after Rama Prasada 1912, translations after Woods 1914). sutraByRef resolves a vulgate reference (e.g. "II.29"); searchSutras searches IAST + translation + glosses; counts derives the per-pāda and 194/195/196 by-edition totals live from the data. Book III carries dual numbering (195↔196) and the disputed variant sūtra; Book IV carries Bhoja\'s numbering. A historical text, described never prescribed.',
+    inputs: [
+      { name: 'ref', type: 'string', desc: 'a vulgate sūtra reference, e.g. "II.29" or "IV.34"', required: true },
+    ],
+    outputShape: '{ pada, roman, num, num196?, variant?, bhojaNum?, anchor, ref, devanagari, iast, words:[{sa,gloss}], translation, note, src }',
+    callable: false,
+    book: 'Yoga Sūtras', chapter: 'Pātañjala Yoga-sūtra I–IV',
+    citation: 'Pātañjala Yoga-sūtra — Devanāgarī: sanskritdocuments.org (accents stripped); word-glosses: Rama Prasada (SBH IV, 1912); translations: J. H. Woods (HOS 17, 1914). (= YS_CITATION)',
+    pages: ['pages/yoga/index.html', 'pages/yoga/theory.html'], howItWorks: 'pages/yoga/theory.html#hiw-yoga',
+    glossaryTerms: ['Yoga Sūtras', 'Aṣṭāṅga (eight limbs)', 'Yama & Niyama', 'Āsana (in the YS)', 'Samādhi', 'Kaivalya', 'Vibhūti'],
   },
 ];
 

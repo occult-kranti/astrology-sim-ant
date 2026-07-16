@@ -473,6 +473,41 @@ real-Chromium sweep 68 pages, 0 errors.)*
   `buildRunesInterpretPrompt` / `runesDataBlock`) narrates the cast — cite-bound, the honest close, the five-part
   plain-words coda.
 
+### R23 — The Grand Orchestrator, the abhicāra wing & the Yoga Sūtras ✅ **SHIPPED** (2026-07-16)
+*(three deliverables built in parallel — a meta AI layer over every engine + two self-contained study wings —
+then integrated together. Verified: engine-test all passed · audit Problems: 0 (80 HTML, 136 JS) · real-Chromium
+sweep 80 pages, 0 errors.)*
+
+- **The Grand Orchestrator** (`pages/autopilot.html`, `app/autopilot.js`; additive edits to `core/llm-context.js`):
+  one prompt, every engine. The user pastes their own **Claude** key (browser-direct, the shared `wb-llm-key-anthropic`
+  store) and asks *any* question — simple→advanced, past or future date — and Claude drives **12 agentic tools** over
+  the whole site (`listCapabilities` · `fullChart` · `vedicChart` · `transitHits` · `synastryPair` · `annualChart` ·
+  `prasnaNow` · `muhurtaDay` · `momentScan` · `greatConjunctions` · `timelords` · `castRunes`), computing the real
+  figures then explaining them **codebooked** — honest frame FIRST, each tradition kept separate. A self-contained
+  12-round tool loop renders each call as an auditable `⚙ toolName(args)` note; the wrappers are **pure** (randomness
+  from `ctx.rand`, mirroring the oracles). It adds **no new astrology** — it's the meta layer over the registry, so a
+  **3-step future-tool recipe** (registry row → one tool schema + one `runTool` case → nothing else) makes any new
+  engine join automatically. Skips a registry entry deliberately (double-counting the meta layer).
+- **The abhicāra / ṣaṭkarman wing** (`pages/abhichara/*`, `core/abhichara.js`, `data/abhichara-data.js`): the Indian
+  ritual-magic tradition as scholarship treats it — the Vedic **abhicāra** of the Atharvaveda and its tantric
+  systematization into the **six acts** (śānti, vaśīkaraṇa, stambhana, vidveṣaṇa, uccāṭana, māraṇa), with every
+  verified correspondence table (colours, mudrās, rosaries, finger-holds, the left-hand rule, the dark-fortnight
+  timing) and the two **conflicting season/time schemes shown side by side (⚑)** — the texts' own disputes flagged,
+  never resolved — plus Mahīdhara's 19-item apparatus schema and the Atharvan hostile/counter-charm layer. A pure,
+  read-only **ṣaṭkarman timing screen** (ṛtu from the sidereal Sun · ghaṭikā-cycle block & day-part from sunrise ·
+  pañcāṅga fortnight · a "does now match the prescription?" check, every row cited). **Described, never prescribed;**
+  no operational output, no demonstrated validity — the eastern mirror of the Picatrix magic.
+- **The Yoga Sūtras study wing** (`pages/yoga/*`, `core/yogasutra.js` + 4 data modules): all **196 sūtras** of the
+  Pātañjala Yoga-sūtra rendered **word-by-word** across the four pādas — Devanāgarī (Vedic accents stripped), IAST,
+  Sanskrit→gloss tables after Rama Prasada (1912) and whole-sūtra translations after Woods (1914) — with a live
+  **dual-numbering** counts-by-edition table (194/195/196; Book III's disputed variant sūtra, Book IV's Bhoja
+  numbering), a cross-book search, the aṣṭāṅga (eight-limb) map, and an **honest āsana layer** (the YS defines āsana
+  only as *sthira-sukham āsanam* and names NO posture — the familiar postures are later haṭha/commentary layers) with
+  5 inline SVG diagrams. Dating/authorship follow Maas (c. 325–425 CE); the siddhi (vibhūti) claims are the text's
+  own, described never prescribed.
+- **Verify gate** (all green, run with the conda `astro-workbench` node): `engine-test.mjs` → **all passed** ·
+  `audit.mjs` → **Problems: 0** (80 HTML, 136 JS) · `browser-verify.mjs` real-Chromium sweep → **80 pages, 0 errors**.
+
 ### FURTHER ROADMAP (after R21, in rough value order)
 1. **Runes (Elder Futhark)** — a 24-stave oracle on the shared diviner engine (medium fit).
 2. **Streaming-markdown AI replies** with copy/regenerate.

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Grand Orchestrator — one prompt, every engine | The Astrologer's Workbench</title>
+<meta name="description" content="One prompt, every engine. Paste your own Claude API key, type any question — simple or advanced, about a past date or a future one — and Claude agentically drives all of the site's engines as tools: it computes the real charts, transits, synastry, the Indian and Persian clocks, the great conjunctions and the oracles, then explains them codebooked (book meaning → plain terms), honest frame first. Historical symbolic systems of no demonstrated validity — described, never prescribed; for a future date, what the sky will really do and what the tradition would say, never a real prediction.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%9C%8D%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › The Grand Orchestrator</p>
+  <h1>The Grand Orchestrator <span aria-hidden="true">🜍</span></h1>
+  <p class="lede"><b>One prompt, every engine.</b> Paste your own <b>Claude</b> API key, type <b>any</b> question —
+    simple or advanced, about a date in the past or one in the future — and Claude drives <b>all</b> of this site's
+    engines <b>as tools</b>: it works out which charts to cast, <b>computes the real numbers</b> (the figure, the
+    dignities, transits, synastry, the Indian &amp; Persian clocks, the great conjunctions, the oracles…), then
+    explains them <b>codebooked</b> — book meaning → plain words — with the honest frame first and each tradition kept
+    separate. It is the whole Workbench, speaking with one voice.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Everything here is a <b>historical symbolic system of no demonstrated predictive validity</b>, regarded by science
+    as a pseudoscience. The astronomy the engines compute is real and reproducible; the meanings are the traditions'
+    own, reproduced faithfully <b>for study — described, never prescribed</b>. For a <b>future date</b>, the tools give
+    what the sky will genuinely do and what the tradition <em>would</em> say — this is <b>never a real prediction</b>;
+    for a <b>past date</b>, what the tradition <em>would have</em> said. The AI runs entirely on <b>your own key</b>,
+    called <b>directly from your browser</b> — nothing is proxied and no key is ever bundled.</div>
+
+  <section class="card" style="margin-top:1rem"><div id="ap-app">
+    <p class="muted">Loading the Orchestrator… <span class="small">(if this stays, your browser may be blocking
+      JavaScript modules; every calculation here runs locally in the page).</span></p>
+  </div></section>
+
+  <div class="callout"><span class="label">Prefer to drive it yourself?</span>
+    The <a href="workbench.html">Master Tool (Workbench)</a> computes one full reading and has its own assistant with
+    the same agentic tools plus one-click <b>🗣 Plain words</b>, <b>🎯 Auspicious moment</b> and <b>📜 Codex</b> flows,
+    and a <b>free Groq tier</b> for the non-agentic narrations. The single-system deep dives live under
+    <a href="tools.html">All Tools</a>. The Orchestrator is the <b>one box</b> that reaches all of them at once.</div>
+
+  <section class="card" id="hiw-autopilot">
+    <h2 style="margin-top:0">How this works</h2>
+    <p class="small">The Orchestrator adds <b>no new astrology</b>. It hands Claude the <b>same engine functions</b> the
+      rest of the site runs — as a set of callable <b>tools</b> — and lets the model decide which to run for your
+      question:</p>
+    <ul class="small">
+      <li><b>Your key, your browser.</b> The request goes straight from this page to Anthropic's endpoint with the key
+        you paste (Claude only — the free Groq tier can't drive tools). Nothing is proxied; a key you saved on the
+        <a href="workbench.html">Master Tool</a> is reused here (same private store on your device).</li>
+      <li><b>Plan → compute → explain.</b> Claude first restates the question and plans <em>which</em> engines answer it
+        (calling <code>listCapabilities</code> — the registry index — when unsure), then <b>calls the tools</b> to
+        compute the real figures (never inventing a number), then translates each result: the <b>book meaning</b>, then
+        the <b>plain-words</b> reading, grounded on the tool output.</li>
+      <li><b>The tools.</b> <code>fullChart</code> (the unified Western reading + the Vedic mirror), <code>vedicChart</code>,
+        <code>transitHits</code>, <code>synastryPair</code>, <code>annualChart</code> (Tājika varṣaphala),
+        <code>prasnaNow</code> &amp; <code>muhurtaDay</code> (the Indian horary &amp; electional clocks),
+        <code>momentScan</code> (every rulebook, one timeline), <code>greatConjunctions</code>, <code>timelords</code>
+        (progressions · firdaria · zodiacal releasing), the oracles (<code>castRunes</code>, <code>drawTarot</code>,
+        <code>castIChing</code>, <code>castGeomancy</code>) and <code>defineTerm</code> — a dozen engines and more, each
+        result <b>condensed and cited</b>, carrying the honest caveat.</li>
+      <li><b>Auditable.</b> Every engine Claude runs shows in the log as a collapsible <code>⚙ toolName(args)</code>
+        line with the computed result, so you can check every figure the reading rests on. Randomness for the oracles
+        is thrown by <b>your browser</b> (crypto), never by the model.</li>
+      <li><b>New engines join automatically.</b> When a future tool is added to the registry and the tool surface, the
+        Orchestrator discovers and uses it with nothing else to change — the same extension pattern the whole site is
+        built on.</li>
+    </ul>
+    <p class="small muted">Surface composed: <code>core/llm-context.js</code> (toAnthropicTools · runTool ·
+      buildOrchestratorPrompt) over every engine module; transport <code>app/llm-core.js</code> (the Anthropic
+      Messages API). Each engine carries its own citations on its own page.</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or measures anything in the real world. Where two traditions agree, that agreement means
+    nothing more than a coincidence of conventions; where they disagree (the usual case), that is by design, not a
+    contradiction to resolve. The Orchestrator's worth is as a <b>structured mirror for study and reflection</b> —
+    described, never prescribed. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="workbench.html">Master Tool</a>,
+    the <a href="moments.html">Moment Scanner</a>, the <a href="cycles.html">Cycles of History</a>, and
+    <a href="tools.html">All Tools</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  import { initAutopilot } from '../assets/js/app/autopilot.js';
+  mountChrome('autopilot');
+  initAutopilot();
+</script>
+</body>
+</html>
