@@ -17,17 +17,8 @@
   .cy-event.rev { color:var(--muted); font-weight:600; }
   .cy-retro { color:var(--malefic); font-weight:700; }
   .cy-hist { border-left:4px solid var(--gold); }
-  .cy-status { display:inline-block; font-family:var(--sans); font-size:.66rem; font-weight:700; letter-spacing:.06em;
-    text-transform:uppercase; padding:.12rem .5rem; border-radius:4px; margin-bottom:.3rem; }
-  .cy-status.belief { background:#faedcb; color:#7a5a06; }
-  .cy-status.debunked { background:#f6d9d9; color:#7a1d1d; }
-  .cy-status.disputed { background:#e7e2f2; color:#4a3f77; }
-  .cy-status.astronomy { background:#d8efd6; color:#1f5e1d; }
-  .cy-verdict { display:inline-block; font-family:var(--sans); font-size:.74rem; font-weight:700; letter-spacing:.04em;
-    text-transform:uppercase; padding:.15rem .6rem; border-radius:99px; border:1px solid var(--rule); }
-  .cy-verdict.certain { background:#d8efd6; color:#1f5e1d; border-color:var(--benefic); }
-  .cy-verdict.possible { background:#faedcb; color:#7a5a06; border-color:var(--gold); }
-  .cy-verdict.impossible { background:#f6d9d9; color:#7a1d1d; border-color:var(--malefic); }
+  /* epistemic status labels (.cy-status) and the eclipse verdict (.cy-verdict)
+     migrated to the site-wide .badge system (plan §1.2.4 / DEPRECATION LEDGER). */
   .cy-syzygy { border:1px solid var(--rule); border-radius:.6rem; padding: .7rem .9rem; background:var(--card); }
   .cy-syzygy h3 { margin-top:0; }
   .cy-cite { font-size:.78rem; color:var(--muted); margin-top:.4rem; }
@@ -71,7 +62,9 @@
       before the 1582 reform, historical sources record <em>Julian</em> dates up to ~10 days later.</p>
   </form>
   <div id="cy-era-badge"></div>
-  <section class="card"><h2 style="margin-top:0">The conjunction timeline</h2>
+  <section class="card panel" id="cy-conj-card">
+    <div class="panel-head"><h2 class="panel-title">The conjunction timeline</h2>
+      <a class="panel-anchor" href="#cy-conj-card" aria-label="Link to this section">¶</a></div>
     <div id="cy-conj-out"><p class="muted small">Scanning…</p></div></section>
 
   <h2>2 · Conjunctions that made history</h2>
@@ -93,13 +86,15 @@
       search</b> as ground truth. Every verdict is global — “somewhere on Earth” — never a claim about local
       visibility. (The browser's date field starts at 1 CE; the engine itself supports −1999…3000.)</p>
   </form>
-  <section class="card"><h2 style="margin-top:0">The two syzygies</h2>
+  <section class="card panel" id="cy-eclipse-card">
+    <div class="panel-head"><h2 class="panel-title">The two syzygies</h2>
+      <a class="panel-anchor" href="#cy-eclipse-card" aria-label="Link to this section">¶</a></div>
     <div id="cy-eclipse-out"><p class="muted small">Pick a date and check.</p></div></section>
 
   <h2>4 · Where eclipse divination began — Babylon</h2>
   <div id="cy-babylon" class="grid cols-3"></div>
 
-  <section class="card" id="hiw-cycles">
+  <section class="card panel" id="hiw-cycles">
     <h2 style="margin-top:0">How this works</h2>
     <h3>Finding the conjunctions</h3>
     <p class="small">The engine samples the signed difference <code>lon(Jupiter) − lon(Saturn)</code> in ~20-day steps
@@ -142,7 +137,7 @@
       tier badge above the results.</p>
   </section>
 
-  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+  <section class="card panel" id="dv-assistant-card"><div id="dv-assistant"></div></section>
 
   <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
     Nothing on this page predicts or determines anything. The conjunctions and eclipses are real, computable astronomy;

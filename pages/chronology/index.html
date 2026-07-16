@@ -7,15 +7,36 @@
 <meta name="description" content="A sourced timeline tracing Hermetic philosophy and magic from the Hellenistic Hermetica through Arabic transmission, Renaissance translation, John Dee, the grimoire tradition, and the modern occult revival — with documented history and conspiracy claims clearly labelled, and day-datable moments castable in the Workbench.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../../assets/css/style.css">
+<style>
+  /* Diagram-family polish for the timeline rail (WP3 · plan §T8): the epistemic
+     marker + label colours are re-pointed at the DS2 --ep-* tokens (equal
+     values — zero visual drift, now token-aligned), and the rail's structural
+     stroke at the --dg-* diagram tokens. Scoped here because style.css is locked
+     to WP1; the --chron-* vars stay the aliases the deprecation ledger names. */
+  main {
+    --chron-doc: var(--ep-doc);
+    --chron-disp: var(--ep-disp);
+    --chron-deb: var(--ep-deb);
+    --chron-con: var(--ep-con);
+  }
+  .chron-item { border-left-color: var(--dg-grid); }
+</style>
 </head>
 <body>
 <main class="wrap">
   <p class="crumb"><a href="../../index.html">Home</a> › The Hermetic Chronology</p>
+  <div class="wing-hero">
+  <span class="wh-glyph" aria-hidden="true">☿</span>
   <h1>The Hermetic Chronology — <i>as above, so below</i></h1>
   <p class="lede">The maxim above, paraphrased from the <b>Emerald Tablet</b>, became the signature of a tradition that
     crossed languages and empires — from the star-priests of Babylon and the scribes of Egypt, through Roman Alexandria
     and the Arabic translators of Harran, to Ficino's Florence, John Dee's angelic tables, and the magical orders of the
     modern age. This timeline follows that documented thread, and marks where popular history shades into conspiracy.</p>
+  <div class="ep-strip">
+    <a class="badge badge--doc" href="../about/index.html">Documented history · labelled</a>
+    <a class="badge badge--bad" href="../about/index.html">No demonstrated validity</a>
+  </div>
+  </div>
 
   <div class="callout science"><span class="label">Honest note — please read</span>
     This wing is <b>the history of ideas, not an endorsement</b>: Hermetic philosophy, alchemy and ritual magic are

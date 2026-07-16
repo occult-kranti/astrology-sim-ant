@@ -87,8 +87,8 @@ function render() {
       ${EXAMPLES.map((q, i) => `<button type="button" class="btn sm ap-ex" data-i="${i}">${esc(q.replace(/\.$/, ''))}</button>`).join('')}
     </div>
 
-    <div id="ap-log" class="small" style="max-height:30rem;overflow:auto;border:1px solid #2a3350;border-radius:.4rem;padding:.6rem;background:#0c0f1a">
-      <p class="muted" style="margin:.2rem">Ask anything — simple or advanced, about a past date or a future one. Claude will
+    <div id="ap-log" class="chat small" style="max-height:30rem;overflow:auto;padding:.7rem">
+      <p class="chat-note" style="margin:.2rem">Ask anything — simple or advanced, about a past date or a future one. Claude will
         plan which engines to run, compute the real figures, then explain them plainly (book meaning → plain words), honest
         frame first, each tradition kept separate.</p></div>
 
@@ -139,12 +139,12 @@ function appRand(n) {
 function appendMsg(role, text) {
   const log = el('ap-log');
   const turn = document.createElement('div');
-  turn.className = `wb-chat-turn ${role === 'user' ? 'wb-chat-user' : 'wb-chat-bot'}`;
+  turn.className = `chat-turn ${role === 'user' ? 'chat-user' : 'chat-bot'}`;
   const label = document.createElement('div');
-  label.className = 'wb-chat-role';
+  label.className = 'chat-role';
   label.innerHTML = `<span aria-hidden="true">${role === 'user' ? '🜨' : '🜍'}</span> ${role === 'user' ? 'You' : 'The Orchestrator (Claude)'}`;
   const body = document.createElement('div');
-  body.className = 'wb-chat-body';
+  body.className = 'chat-body';
   body.textContent = text;
   turn.appendChild(label); turn.appendChild(body);
   log.appendChild(turn); log.scrollTop = log.scrollHeight;
@@ -154,7 +154,7 @@ function appendMsg(role, text) {
 function appendToolNote(name, args, result) {
   const log = el('ap-log');
   const d = document.createElement('details');
-  d.className = 'wb-chat-note';
+  d.className = 'chat-note';
   d.style.margin = '.25rem 0';
   const ok = !(result && result.error);
   const argStr = (() => { try { return JSON.stringify(args || {}); } catch { return '{…}'; } })();
@@ -168,9 +168,9 @@ const scrollLog = () => { const l = el('ap-log'); if (l) l.scrollTop = l.scrollH
 
 function addSaveLink(bodyEl, text) {
   if (!bodyEl || !text) return;
-  const turn = bodyEl.closest('.wb-chat-turn') || bodyEl.parentElement; if (!turn) return;
+  const turn = bodyEl.closest('.chat-turn') || bodyEl.parentElement; if (!turn) return;
   const a = document.createElement('a');
-  a.href = '#'; a.className = 'wb-chat-save'; a.style.display = 'inline-block'; a.style.marginTop = '.4rem';
+  a.href = '#'; a.className = 'chat-save'; a.style.display = 'inline-block'; a.style.marginTop = '.4rem';
   a.textContent = '⤓ save this reply';
   a.addEventListener('click', e => { e.preventDefault(); downloadText(text, 'orchestrator-reply.md', 'text/markdown;charset=utf-8'); });
   turn.appendChild(a);

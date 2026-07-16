@@ -54,7 +54,7 @@ function renderTexts() {
     </tr>`;
   }).join('');
   $('ry-texts').innerHTML = `
-    <div style="overflow-x:auto"><table class="data">
+    <div class="table-scroll"><table class="data">
       <thead><tr><th class="l">Text</th><th class="l">Date</th><th class="l">Role &amp; dispute</th><th class="l">Source</th></tr></thead>
       <tbody>${rows}</tbody></table></div>
     <p class="small muted" style="margin:.5rem 0 0">${esc(TEXTS_NOTE)}</p>
@@ -66,16 +66,16 @@ function renderTexts() {
 function renderSamskaras() {
   const groupLabel = { 'aṣṭa': 'aṣṭasaṃskāra (1–8: fit for medicine)', 'jāraṇa': 'jāraṇa group (mica/metal "digestion")', 'vedha': 'toward vedha (transmutation)' };
   const rows = SAMSKARAS.map(s => {
-    const cls = s.group === 'aṣṭa' ? 'ry-ok' : s.group === 'vedha' ? 'ry-bad' : '';
+    const cls = s.group === 'aṣṭa' ? 'badge--ok' : s.group === 'vedha' ? 'badge--bad' : 'badge--plain';
     return `<tr${s.n === 8 ? ' style="border-bottom:2px solid var(--gold)"' : ''}>
       <td>${s.n}</td>
       <td class="l"><b>${esc(s.iast)}</b> <span class="small muted">${esc(s.en)}</span></td>
       <td class="l small">${esc(s.fn)}</td>
-      <td class="l"><span class="ry-badge ${cls}">${esc(s.group)}</span></td>
+      <td class="l"><span class="badge ${cls}">${esc(s.group)}</span></td>
     </tr>`;
   }).join('');
   $('ry-samskaras').innerHTML = `
-    <div style="overflow-x:auto"><table class="data">
+    <div class="table-scroll"><table class="data">
       <thead><tr><th>#</th><th class="l">Saṃskāra</th><th class="l">Function (historical record)</th><th class="l">Class</th></tr></thead>
       <tbody>${rows}</tbody></table></div>
     <p class="small muted" style="margin:.5rem 0 0">Groups: ${Object.values(groupLabel).map(esc).join(' · ')}.
@@ -90,7 +90,7 @@ function renderApparatus() {
     <td class="l small">${esc(a.ref)}</td>
     <td class="l small">${esc(a.fn)}</td></tr>`).join('');
   $('ry-apparatus').innerHTML = `
-    <div style="overflow-x:auto"><table class="data">
+    <div class="table-scroll"><table class="data">
       <thead><tr><th class="l">Yantra</th><th class="l">Verse ref</th><th class="l">Function</th></tr></thead>
       <tbody>${rows}</tbody></table></div>
     <p class="small muted" style="margin:.5rem 0 0"><b>Source:</b> ${esc(APPARATUS[0].cite)}</p>`;
@@ -112,14 +112,14 @@ function renderNavagraha() {
   $('ry-navagraha').innerHTML = NAVAGRAHA_YANTRAS.map(y => {
     const v = validateYantra(y.grid);
     const badge = v.ok
-      ? `<span class="ry-badge ry-ok" title="rows ${v.lines.rows} · columns ${v.lines.cols} · diagonals ${v.lines.diagonals}, all = ${v.constant}">✓ verified: rows/cols/diagonals all = ${v.constant}</span>`
-      : `<span class="ry-badge ry-bad">✗ INVALID: ${esc(v.errors[0] || '')}</span>`;
+      ? `<span class="badge badge--ok" title="rows ${v.lines.rows} · columns ${v.lines.cols} · diagonals ${v.lines.diagonals}, all = ${v.constant}">✓ verified: rows/cols/diagonals all = ${v.constant}</span>`
+      : `<span class="badge badge--bad">✗ INVALID: ${esc(v.errors[0] || '')}</span>`;
     return `<div class="ry-card">
       <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;margin-bottom:.4rem">
         <b>${esc(y.graha)}</b><span class="small muted">${esc(y.en)} · total ${y.total}</span></div>
       ${gridHTML(y.grid)}
       <div style="margin-top:.4rem">${badge}</div>
-      <div class="small" style="margin-top:.3rem"><span class="ry-badge ry-prov-modern" title="${esc(y.provenance)}">modern printed tradition</span></div>
+      <div class="small" style="margin-top:.3rem"><span class="badge badge--disp" title="${esc(y.provenance)}">modern printed tradition</span></div>
     </div>`;
   }).join('');
   $('ry-navagraha-note').innerHTML = `${esc(NAVAGRAHA_NOTE)} <span class="muted">Source: ${esc(NAVAGRAHA_YANTRAS[0].cite)}</span>`;
@@ -128,7 +128,6 @@ function renderNavagraha() {
 // --- 5. the dated classical squares -----------------------------------------
 function renderClassical() {
   $('ry-classical').innerHTML = CLASSICAL_SQUARES.map(s => {
-    const provClass = 'ry-prov-classical';
     const dispute = s.contested ? ` ${flag(s.contested.flag + ' — ' + s.contested.detail)}` : '';
     let gridBlock, checkBlock;
     if (s.grid) {
@@ -136,22 +135,22 @@ function renderClassical() {
       if (s.mostPerfect) {
         const mp = validateMostPerfect(s.grid);
         checkBlock = mp.ok
-          ? `<span class="ry-badge ry-ok" title="magic lines ${mp.checks.magic} · broken diagonals ${mp.checks.brokenDiagonals} · 2×2 blocks ${mp.checks.blocks2x2} · corner quads ${mp.checks.cornerQuads}">✓ most-perfect: rows·cols·diagonals·broken-diagonals·2×2-blocks·corner-quads all = ${mp.constant}</span>`
-          : `<span class="ry-badge ry-bad">✗ ${esc(mp.errors[0] || '')}</span>`;
+          ? `<span class="badge badge--ok" title="magic lines ${mp.checks.magic} · broken diagonals ${mp.checks.brokenDiagonals} · 2×2 blocks ${mp.checks.blocks2x2} · corner quads ${mp.checks.cornerQuads}">✓ most-perfect: rows·cols·diagonals·broken-diagonals·2×2-blocks·corner-quads all = ${mp.constant}</span>`
+          : `<span class="badge badge--bad">✗ ${esc(mp.errors[0] || '')}</span>`;
       } else {
         const v = validateYantra(s.grid);
         checkBlock = v.ok
-          ? `<span class="ry-badge ry-ok">✓ verified: rows/cols/diagonals all = ${v.constant}</span>`
-          : `<span class="ry-badge ry-bad">✗ ${esc(v.errors[0] || '')}</span>`;
+          ? `<span class="badge badge--ok">✓ verified: rows/cols/diagonals all = ${v.constant}</span>`
+          : `<span class="badge badge--bad">✗ ${esc(v.errors[0] || '')}</span>`;
       }
     } else {
       gridBlock = `<p class="small muted" style="margin:0">No single cell arrangement is asserted by the source — the method and constant (${s.constant}) are recorded, not a fabricated grid.</p>`;
-      checkBlock = `<span class="ry-badge" title="method/constant only">constant ${s.constant} (no asserted grid)</span>`;
+      checkBlock = `<span class="badge badge--plain" title="method/constant only">constant ${s.constant} (no asserted grid)</span>`;
     }
     return `<div class="ry-card" style="margin-bottom:.8rem">
       <div style="display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem">
         <b>${esc(s.name)}</b>
-        <span class="small"><span class="ry-badge ${provClass}">classical · ${esc(s.date)}</span>${dispute}</span></div>
+        <span class="small"><span class="badge badge--doc">classical · ${esc(s.date)}</span>${dispute}</span></div>
       <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start">
         <div>${gridBlock}</div>
         <div style="flex:1 1 260px;min-width:240px">

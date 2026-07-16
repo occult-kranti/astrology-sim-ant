@@ -251,7 +251,14 @@ export function mountChrome(activeKey = '') {
   document.addEventListener('click', e => { if (!e.target.closest('.nav-group')) closeMenus(null); });
 
   const footer = document.createElement('footer');
-  footer.className = 'site';
+  // Footer diet (plan §4.5): the mega-menu now names every destination, so the
+  // ~35-link "Tools & Study" dump is redundant on all 95 pages. The `.footer-diet`
+  // class (WP1 CSS) slims the grid and hides the `.footer-overflow` column, and a
+  // compact "Explore" column of the five nav-group hub links takes its visible
+  // place. The full list stays in the DOM (hidden) so no destination is dropped;
+  // reachability is guaranteed by the mega-menu, which stays as-is. The brand
+  // blurb, the Study-the-Books column and the disclaimer are unchanged.
+  footer.className = 'site footer-diet';
   footer.innerHTML = `<div class="wrap">
     <div><b style="color:#e9dfc4">The Astrologer's Workbench</b><br>
       A scientifically-honest study &amp; calculation edition of the Western tradition
@@ -272,7 +279,16 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/greatworks/index.html')}">The Great Works — author→book→chapter study guides</a></li>
         <li><a href="${R('pages/library/index.html')}">The Practitioners' Library — the people &amp; the books</a></li>
       </ul></div>
-    <div><b style="color:#e9dfc4">Tools & Study</b>
+    <div><b style="color:#e9dfc4">Explore</b>
+      <ul class="clean small">
+        <li><a href="${R('pages/basics.html')}">Start — the Basics &amp; the path</a></li>
+        <li><a href="${R('pages/workbench.html')}">Cast — the Workbench (master tool)</a></li>
+        <li><a href="${R('pages/contents.html')}">Traditions — the Master Index</a></li>
+        <li><a href="${R('pages/geomancy.html')}">Oracles — geomancy, tarot &amp; more</a></li>
+        <li><a href="${R('pages/about/index.html')}">Reference — Sources &amp; Science</a></li>
+      </ul>
+      <p class="small" style="color:#8f8973;margin:.5rem 0 0">Every page is named in the menu at the top.</p></div>
+    <div class="footer-overflow"><b style="color:#e9dfc4">Tools & Study</b>
       <ul class="clean small">
         <li><a href="${R('pages/workbench.html')}">The Master Tool (Workbench) — every calculation in one place</a></li>
         <li><a href="${R('pages/autopilot.html')}">The Grand Orchestrator — one prompt, every engine (agentic AI)</a></li>

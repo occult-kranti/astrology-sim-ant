@@ -57,6 +57,16 @@ function compute() {
   const cau = chartCautions(chart, { hourRuler: ph ? ph.ruler : null });
   $('m-verdict').innerHTML = `<span class="verdict ${cau.verdict}">${cau.verdict === 'green' ? 'Clean' : cau.verdict === 'amber' ? 'Cautions' : 'Impeded'}</span>`;
   $('m-verdict').title = cau.label;
+  // Chart-health verdict, lifted to a full-width banner (plan §1.3.9).
+  const banner = $('m-verdict-banner');
+  if (banner) {
+    const mod = cau.verdict === 'green' ? 'ok' : cau.verdict === 'amber' ? 'warn' : 'bad';
+    banner.className = 'verdict-banner verdict-banner--' + mod;
+    banner.hidden = false;
+    banner.innerHTML = `<span class="verdict ${cau.verdict}">${cau.verdict === 'green' ? 'Clean' : cau.verdict === 'amber' ? 'Cautions' : 'Impeded'}</span>
+      <span class="vb-reason">${cau.label}</span>
+      <a class="vb-link" href="#m-p-health">see the evidence ↓</a>`;
+  }
   $('m-cautions').innerHTML = cau.global.map(a =>
     `<li class="adv-${a.severity}">${a.text}</li>`).join('');
   // The next more-auspicious time (the electional habit of waiting for a better hour).
@@ -88,9 +98,9 @@ function compute() {
       <td class="l">${formatLon(p.lon)}${p.retrograde ? ' ℞' : ''}</td>
       <td>${p.house}</td>
       <td class="l small">${ed.rows.map(r => `<span class="${r.score >= 0 ? 'pos' : 'neg'}">${r.kind}</span>`).join(', ')}</td>
-      <td class="${ed.total >= 0 ? 'pos' : 'neg'}">${ed.total >= 0 ? '+' : ''}${ed.total}</td>
-      <td class="${ad.total >= 0 ? 'pos' : 'neg'}">${ad.total >= 0 ? '+' : ''}${ad.total}</td>
-      <td class="${(ed.total + ad.total) >= 0 ? 'pos' : 'neg'}"><b>${(ed.total + ad.total) >= 0 ? '+' : ''}${ed.total + ad.total}</b></td>
+      <td class="num ${ed.total >= 0 ? 'pos' : 'neg'}">${ed.total >= 0 ? '+' : ''}${ed.total}</td>
+      <td class="num ${ad.total >= 0 ? 'pos' : 'neg'}">${ad.total >= 0 ? '+' : ''}${ad.total}</td>
+      <td class="num ${(ed.total + ad.total) >= 0 ? 'pos' : 'neg'}"><b>${(ed.total + ad.total) >= 0 ? '+' : ''}${ed.total + ad.total}</b></td>
       <td>${G(ed.dispositor)}</td>
     </tr>`;
   }

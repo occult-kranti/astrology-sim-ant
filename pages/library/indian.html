@@ -26,19 +26,17 @@
     Goel).</p></div>
 
   <p class="small" style="margin:.4rem 0">
-    <span class="chip" style="background:#efe0bd;color:#5a4410">Canon</span> historical sources ·
-    <span class="chip" style="background:#e7eef7;color:#2b4a6b">Respected modern</span> the teachers read today ·
-    <span class="chip" style="background:#f0e8d4;color:#7a5a06">Niche</span> genuine lesser-known voices ·
-    <span class="chip" style="background:#d8efd6;color:#1f5e1d">Academic</span> scholarship, not practice.
+    <span class="badge badge--doc">Canon</span> historical sources ·
+    <span class="badge badge--disp">Respected modern</span> the teachers read today ·
+    <span class="badge badge--con">Niche</span> genuine lesser-known voices ·
+    <span class="badge badge--ok">Academic</span> scholarship, not practice.
     <a class="small" href="index.html">What the tiers mean →</a></p>
 
-  <div class="calc" id="lib-controls">
-    <div class="field-row">
-      <div class="field" style="flex:1 1 260px"><label for="lib-search">Filter by name, practice or work</label>
-        <input id="lib-search" type="search" placeholder="e.g. Rao, tājika, nakṣatra, BPHS…"></div>
-      <button class="btn sm" id="lib-reset" type="button">Reset</button>
-      <span class="small muted" id="lib-count" role="status" aria-live="polite"></span>
-    </div>
+  <div class="filterbar" id="lib-controls">
+    <label for="lib-search" class="small muted" style="flex:0 0 auto">Filter by name, practice or work</label>
+    <input id="lib-search" class="filter-input" type="search" placeholder="e.g. Rao, tājika, nakṣatra, BPHS…">
+    <button class="btn-quiet sm" id="lib-reset" type="button">Reset</button>
+    <span class="filter-count" id="lib-count" role="status" aria-live="polite"></span>
   </div>
 
   <div id="lib-catalog" style="margin-top:.6rem"></div>

@@ -53,30 +53,39 @@
     </div>
   </form>
 
-  <p id="e-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+  <div id="e-summary" role="status" aria-live="polite"></div>
 
   <div id="e-detail"></div>
 
-  <h2>Why — the cited testimonies</h2>
-  <p class="sev-legend">
-    <span class="pos">✓ favourable</span>
-    <span style="color:#2b6da3">ℹ note</span>
-    <span style="color:#b8860b">⚠ caution</span>
-    <span class="neg">✕ serious affliction</span>
-  </p>
-  <ul class="advisories" id="e-reasons"></ul>
+  <section class="card panel" id="e-reasons-card">
+    <div class="panel-head"><h2 class="panel-title">Why — the cited testimonies</h2>
+      <a class="panel-anchor" href="#e-reasons-card" aria-label="Link to this section">¶</a></div>
+    <p class="sev-legend">
+      <span class="pos">✓ favourable</span>
+      <span style="color:#2b6da3">ℹ note</span>
+      <span style="color:#b8860b">⚠ caution</span>
+      <span class="neg">✕ serious affliction</span>
+    </p>
+    <ul class="advisories" id="e-reasons"></ul>
+  </section>
 
-  <h2>Best upcoming windows (next 72 hours)</h2>
-  <div id="e-windows"></div>
+  <section class="card panel" id="e-windows-card">
+    <div class="panel-head"><h2 class="panel-title">Best upcoming windows (next 72 hours)</h2>
+      <a class="panel-anchor" href="#e-windows-card" aria-label="Link to this section">¶</a></div>
+    <div id="e-windows"></div>
+  </section>
 
-  <h2>The week at a glance — an election heat-map</h2>
-  <p class="small muted">Every hour of the next seven days scored for this aim. Watch the <b>weekly rhythm</b>
-    emerge: the planetary day &amp; hour of the aim's ruler recur on a 7-day beat, so the favourable cells fall in a
-    repeating diagonal — a visible consequence of the planetary-hour arithmetic, not a hidden force. Green = fit,
-    amber = mixed, red = unfit. (Reuses the same cited scorer.)</p>
-  <p><button type="button" class="btn sm" id="e-heatmap-btn">Show the 7-day heat-map</button>
-    <span id="e-heatmap-status" class="small muted" style="margin-left:.5rem"></span></p>
-  <div id="e-heatmap" style="overflow-x:auto"></div>
+  <section class="card panel" id="e-heatmap-card">
+    <div class="panel-head"><h2 class="panel-title">The week at a glance — an election heat-map</h2>
+      <a class="panel-anchor" href="#e-heatmap-card" aria-label="Link to this section">¶</a></div>
+    <p class="small muted">Every hour of the next seven days scored for this aim. Watch the <b>weekly rhythm</b>
+      emerge: the planetary day &amp; hour of the aim's ruler recur on a 7-day beat, so the favourable cells fall in a
+      repeating diagonal — a visible consequence of the planetary-hour arithmetic, not a hidden force. Green = fit,
+      amber = mixed, red = unfit. (Reuses the same cited scorer.)</p>
+    <p><button type="button" class="btn sm" id="e-heatmap-btn">Show the 7-day heat-map</button>
+      <span id="e-heatmap-status" class="small muted" style="margin-left:.5rem"></span></p>
+    <div id="e-heatmap" style="overflow-x:auto"></div>
+  </section>
 </main>
 <script type="module">
   import { mountChrome } from '../../assets/js/app/shared.js';

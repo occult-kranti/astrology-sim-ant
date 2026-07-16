@@ -35,10 +35,11 @@
     </div>
   </form>
 
-  <p id="m-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+  <p id="m-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem" role="status" aria-live="polite"></p>
+  <div id="m-verdict-banner" class="verdict-banner" role="status" aria-live="polite" hidden></div>
 
-  <section class="card" style="margin:.6rem 0 1.2rem">
-    <h2 style="margin-top:0;display:flex;align-items:center;gap:.6rem">Cautions &amp; chart health <span id="m-verdict"></span></h2>
+  <section class="card panel" id="m-p-health" data-rail="Chart health" style="margin:.6rem 0 1.2rem">
+    <h2 class="panel-title" style="margin-top:0;display:flex;align-items:center;gap:.6rem">Cautions &amp; chart health <span id="m-verdict"></span></h2>
     <p class="small muted" style="margin:.1rem 0 .5rem">Lilly's <a href="../book2/considerations.html">considerations before judgement</a>,
       the Moon's condition (the electional tradition weighs her above all), and the accidental afflictions of every planet —
       gathered in one place. These are <em>flags for reflection</em>, never automatic bars to judgement.</p>
@@ -69,22 +70,30 @@
     </div>
   </div>
 
-  <h2>Dignity &amp; debility — every planet</h2>
-  <table class="data"><thead><tr>
-    <th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th class="l">Essential dignities</th>
-    <th>Ess.</th><th>Acc.</th><th>Net</th><th>Disp.</th></tr></thead>
-    <tbody id="m-dignities"></tbody></table>
+  <section class="card panel" id="m-p-dignities" data-rail="Dignity ledger">
+    <div class="panel-head"><h2 class="panel-title">Dignity &amp; debility — every planet</h2>
+      <a class="panel-anchor" href="#m-p-dignities" aria-label="Link to this section">¶</a></div>
+    <div class="table-scroll"><table class="data"><thead><tr>
+      <th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th class="l">Essential dignities</th>
+      <th class="num">Ess.</th><th class="num">Acc.</th><th class="num">Net</th><th>Disp.</th></tr></thead>
+      <tbody id="m-dignities"></tbody></table></div>
+  </section>
 
-  <div class="grid cols-2">
-    <div><h2>Aspects</h2><ul class="clean" id="m-aspects"></ul></div>
-    <div><h2>Antiscia contacts</h2><ul class="clean" id="m-contacts"></ul></div>
-  </div>
+  <section class="card panel" id="m-p-aspects" data-rail="Aspects &amp; contacts">
+    <div class="grid cols-2">
+      <div><h2 style="margin-top:0">Aspects</h2><ul class="clean" id="m-aspects"></ul></div>
+      <div><h2 style="margin-top:0">Antiscia contacts</h2><ul class="clean" id="m-contacts"></ul></div>
+    </div>
+  </section>
 
-  <h2>Antiscia table</h2>
-  <table class="data" style="max-width:560px"><thead><tr><th class="l">Planet</th><th class="l">Antiscion</th><th class="l">Contra-antiscion</th></tr></thead>
-    <tbody id="m-antiscia"></tbody></table>
-  <p class="small muted">Antiscia are reflections across the solstitial (0° Cancer–0° Capricorn) axis — hidden
-    bonds that act like a soft aspect (antiscion) or a hard one (contra-antiscion).</p>
+  <section class="card panel" id="m-p-antiscia" data-rail="Antiscia table">
+    <div class="panel-head"><h2 class="panel-title">Antiscia table</h2>
+      <a class="panel-anchor" href="#m-p-antiscia" aria-label="Link to this section">¶</a></div>
+    <div class="table-scroll" style="max-width:560px"><table class="data"><thead><tr><th class="l">Planet</th><th class="l">Antiscion</th><th class="l">Contra-antiscion</th></tr></thead>
+      <tbody id="m-antiscia"></tbody></table></div>
+    <p class="small muted">Antiscia are reflections across the solstitial (0° Cancer–0° Capricorn) axis — hidden
+      bonds that act like a soft aspect (antiscion) or a hard one (contra-antiscion).</p>
+  </section>
 
   <div class="callout"><span class="label">Next</span> The Book II and Book III master tools build on this same
     engine; the eventual unified <em>master tool</em> will integrate all three with the electional and Picatrix
@@ -93,8 +102,10 @@
 <script type="module">
   import { mountChrome } from '../../assets/js/app/shared.js';
   import { initMaster } from '../../assets/js/app/book1-master.js';
+  import { mountRail } from '../../assets/js/app/rail.js';
   mountChrome('book1');
   initMaster();
+  mountRail({ label: 'On this figure' });
 </script>
 </body>
 </html>

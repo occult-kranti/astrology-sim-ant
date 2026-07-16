@@ -30,6 +30,18 @@
   .ich-mline.yang { border-left:4px solid var(--ink); } .ich-mline.yin { border-left:4px solid var(--rule); }
   .ich-mline.old { border-color:var(--gold); }
   .ich-explain { margin-top:.2rem; }
+  /* --- casting-stage (WP3): the hexagram is drawn on the night stage. The bars are
+     var(--ink) (invisible on the dark surface), so within the cast figure they are
+     re-inked light; the six lines build BOTTOM-UP via the DS2 .stage-figure rise
+     (--stage-i keyed to each line's height). The reference grids keep their dark
+     bars on parchment (they are outside #ich-figure). Reduced-motion is instant. */
+  .stage-verdict { font-family: var(--sans); font-size: .82rem; letter-spacing: .03em; margin: .1rem 0 .7rem; min-height: 1em; }
+  #ich-stage .stage-verdict { color: var(--text-inverse-muted); }
+  #ich-figure .hx-bar { background: var(--text-inverse); }
+  #ich-figure .hx-changing .hx-bar { background: var(--gold-300); }
+  #ich-figure .hx-mark { color: var(--gold-300); }
+  #ich-figure .muted { color: var(--text-inverse-muted); }
+  #ich-figure .hx-name b { color: var(--text-inverse); }
 </style>
 </head>
 <body>
@@ -72,8 +84,10 @@
     </details>
   </form>
 
-  <section class="card"><h2 style="margin-top:0">The hexagram</h2>
-    <div id="ich-figure"></div></section>
+  <section class="casting-stage" id="ich-stage"><h2 style="margin-top:0">The hexagram</h2>
+    <p class="stage-verdict" id="ich-stage-verdict" aria-live="polite"></p>
+    <div id="ich-figure"></div>
+    <div class="casting-stage-controls"><button type="button" class="btn-quiet" id="ich-reveal">Reveal instantly</button></div></section>
 
   <section class="card"><h2 style="margin-top:0">The reading</h2>
     <div id="ich-out"></div>

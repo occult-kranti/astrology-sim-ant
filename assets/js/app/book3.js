@@ -57,8 +57,8 @@ function compute() {
     const ad = accidentalDignity(name, chart);
     totals[name] = ed.total + ad.total;
     rows += `<tr><td>${G(name)} ${name}</td><td class="l">${formatLon(p.lon)}${p.retrograde ? ' ℞' : ''}</td>
-      <td>${p.house}</td><td class="${ed.total >= 0 ? 'pos' : 'neg'}">${ed.total >= 0 ? '+' : ''}${ed.total}</td>
-      <td class="${ad.total >= 0 ? 'pos' : 'neg'}">${ad.total >= 0 ? '+' : ''}${ad.total}</td></tr>`;
+      <td>${p.house}</td><td class="num ${ed.total >= 0 ? 'pos' : 'neg'}">${ed.total >= 0 ? '+' : ''}${ed.total}</td>
+      <td class="num ${ad.total >= 0 ? 'pos' : 'neg'}">${ad.total >= 0 ? '+' : ''}${ad.total}</td></tr>`;
   }
   $('n-planets').innerHTML = rows;
 

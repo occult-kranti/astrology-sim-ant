@@ -230,6 +230,11 @@ table.data tr:nth-child(even) td { background: #fbf7ee; }
 .field input, .field select { font-family: var(--sans); font-size: .95rem; padding: .45rem .55rem;
   border: 1px solid var(--rule); border-radius: 7px; background: #fff; color: var(--ink); }
 .field input:focus, .field select:focus { outline: 2px solid var(--gold-2); border-color: var(--gold); }
+/* Fieldsets default to min-inline-size:min-content, so a wide child (e.g. a <select>
+   with a long option label) can push the whole fieldset past a narrow viewport. Let
+   fieldsets and the fields nested in them shrink so form panels never overflow on mobile. */
+fieldset { min-width: 0; }
+fieldset .field { min-width: 0; }
 
 /* ---- Chart wheel SVG ---- */
 .chart-wheel { display:block; margin: 0 auto; }
@@ -859,3 +864,35 @@ footer.site.footer-diet .wrap { grid-template-columns: repeat(auto-fit, minmax(2
      #wb-asst-log / .wb-chat-*     -> .chat / .chat-*
      --chron-doc/disp/deb/con      -> --ep-doc/disp/deb/con  (equal values)
    ---------------------------------------------------------------------------- */
+
+/* ===========================================================================
+   DS2 · WP3 CHROME ADDENDUM (revamp WP3 sweep 1). The visible layer WP1 shipped
+   as tokens but deferred applying: the fluid heading scale, the honest-frame
+   seal, and the blockquote ornament. Strictly ADDITIVE — no head rule is
+   rewritten. These later, equal-or-higher-specificity rules simply adopt the
+   already-shipped DS2 tokens, so desktop sizes match today's within ~1px while
+   320–768px stops crowding. Copy is never touched here — style only.
+   =========================================================================== */
+
+/* -- Fluid heading scale (plan §1.2.6): adopt the clamp tokens on the display
+      headings. Cascade position lets these win over the locked head rules
+      (h1/h2 font-size 2.1/1.5rem, .hero h1 2.7rem) without editing them. -- */
+h1 { font-size: var(--fs-3); }
+h2 { font-size: var(--fs-2); }
+.hero h1 { font-size: var(--fs-4); }
+
+/* -- The honest-frame seal (plan §1.3.4 / §4.1): the science/covenant callout
+      keeps its --info left rule (set in the head); a gold ✶ seal precedes the
+      label, and the body is capped to the reading measure so the covenant reads
+      as measure-set serif. The framing copy inside is byte-for-byte unchanged. */
+.callout.science { max-width: var(--measure); }
+.callout.science .label::before { content: '\2736\2009'; color: var(--accent); }
+
+/* -- blockquote.lilly hanging-quote ornament (plan §1.3.4): a faded gilt opening
+      quotation mark hung above the quotation. Purely decorative — the italic
+      quote text paints over it and stays legible; hidden from AT (aria not
+      needed: generated content is already ignored for the accessible name). -- */
+blockquote.lilly { position: relative; }
+blockquote.lilly::before { content: '\201C'; position: absolute; left: -.05rem; top: -.9rem;
+  font-family: var(--font-serif); font-size: 2.2rem; line-height: 1; color: var(--accent-soft);
+  opacity: .6; pointer-events: none; }

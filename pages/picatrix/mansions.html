@@ -28,10 +28,10 @@
   <div class="card" id="moon-now"><p class="small">Computing the Moon's current mansion…</p></div>
 
   <h2>The 28 mansions</h2>
-  <table class="data">
+  <div class="table-scroll"><table class="data">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col" class="num">#</th>
         <th scope="col" class="l">Longitude span</th>
         <th scope="col" class="l">Name</th>
         <th scope="col" class="l">Indicator star</th>
@@ -40,7 +40,7 @@
       </tr>
     </thead>
     <tbody id="mansions-body"></tbody>
-  </table>
+  </table></div>
 
   <h2>Sources &amp; caveat</h2>
   <p class="small" id="mansions-sources"></p>
@@ -80,7 +80,7 @@
     const img = mansionImage(m.num);
     const imgCell = img ? `${esc(img.image)} <span class="muted">— ${esc(img.purpose)}</span>` : '<small>—</small>';
     return `<tr>` +
-      `<td>${m.num}</td>` +
+      `<td class="num">${m.num}</td>` +
       `<td class="l">${esc(m.signSpan)}</td>` +
       `<td class="l">${esc(m.name)}${aliases}</td>` +
       `<td class="l">${esc(m.indicator) || '<small>—</small>'}</td>` +

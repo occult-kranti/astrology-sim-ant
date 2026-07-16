@@ -166,7 +166,7 @@ function renderConjunctions(hits, fromY, toY) {
       <td class="l">${esc(formatLon(c.lon))}</td>
       <td>${triTag(c.triplicity)}</td>
       <td>${retroMarks(c)}</td>
-      <td>${c.sep}′</td>
+      <td class="num">${c.sep}′</td>
       <td class="l">${ev}</td></tr>`;
   }).join('');
 
@@ -177,10 +177,11 @@ function renderConjunctions(hits, fromY, toY) {
       (highlighted). Runs of three passes within ~7 months are <b>triple conjunctions</b>, born of retrogradation
       (℞). “Min sep” is the closest the two planets actually came (great-circle, latitude included) — they pass
       near each other, never through.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Great-conjunction timeline (scrollable)">
     <table class="data"><thead><tr>
       <th class="l">Longitude crossing</th><th class="l">Position (of date)</th><th>Trigon</th>
-      <th>Motion</th><th>Min sep</th><th class="l">Trigon event</th></tr></thead>
-      <tbody>${rows || '<tr><td colspan="6">No conjunctions in this range.</td></tr>'}</tbody></table>
+      <th>Motion</th><th class="num">Min sep</th><th class="l">Trigon event</th></tr></thead>
+      <tbody>${rows || '<tr><td colspan="6">No conjunctions in this range.</td></tr>'}</tbody></table></div>
     ${meanHTML}
     <p class="cy-cite">Verified against ${esc(GOLDEN_CONJUNCTIONS[1].cite)}</p>`;
   const mean = $('cy-mean-out');
@@ -226,9 +227,12 @@ function castLink(dateIso, time, lat, lon, place, year) {
     <span class="pill" title="${esc(acc.note)}">${esc(acc.label)}</span></p>`;
 }
 
+// epistemic status label → the promoted site-wide badge triad (plan §1.2.4):
+// belief→conspiracy wash, debunked→debunked, disputed→disputed, astronomy→ok.
+const HIST_BADGE = { belief: 'con', debunked: 'deb', disputed: 'disp', astronomy: 'ok' };
 function histCard(status, statusClass, title, bodyHTML, cite, footerHTML = '') {
   return `<article class="card cy-hist">
-    <span class="cy-status ${statusClass}">${esc(status)}</span>
+    <span class="badge badge--${HIST_BADGE[statusClass] || 'plain'}">${esc(status)}</span>
     <h3>${esc(title)}</h3>
     ${bodyHTML}
     <p class="cy-cite">${esc(cite)}</p>
@@ -296,7 +300,9 @@ function renderHistory() {
 // ---------------------------------------------------------------------------
 //  Section 3 — the eclipse finder (global claims only)
 // ---------------------------------------------------------------------------
-const V = v => `<span class="cy-verdict ${esc(v)}">${esc(v)}</span>`;
+// eclipse-possibility verdict → the site-wide verdict badge triad (gravity scale).
+const V_BADGE = { certain: 'ok', possible: 'warn', impossible: 'bad' };
+const V = v => `<span class="badge badge--${V_BADGE[v] || 'plain'}">${esc(v)}</span>`;
 
 function solarSentence(r) {
   const L = ECLIPSE_LIMITS.solar;

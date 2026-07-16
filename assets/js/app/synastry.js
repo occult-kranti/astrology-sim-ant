@@ -112,7 +112,7 @@ function renderGrid(g) {
       cell is the aspect glyph and orb (<b>a</b> = applying, <b>s</b> = separating), Lilly's moieties. A
       <b>(sign)</b> cell is a whole-sign aspect that is out of degree-orb. <b>${g.counts.aspects}</b> aspects in orb.
       Sun/Moon ↔ Sun/Moon cells are highlighted — the classical core (Ptolemy IV.5).</p>
-    <div style="overflow-x:auto"><table class="data synastry-grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Cross-aspect grid (scrollable)"><table class="data synastry-grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>
     <p class="small muted">${esc(g.orbNote)}</p>`;
 }
 
@@ -124,7 +124,7 @@ function renderClassical(g) {
     <td class="l">${G(h.bodyA)} ${esc(nice(h.bodyA))} <span class="muted">(A)</span></td>
     <td class="l">${esc(h.glyph)} ${esc(h.aspect)}</td>
     <td class="l">${G(h.bodyB)} ${esc(nice(h.bodyB))} <span class="muted">(B)</span></td>
-    <td class="l">${Number(h.orb).toFixed(2)}°</td>
+    <td class="num">${Number(h.orb).toFixed(2)}°</td>
     <td>${h.applying ? '<span class="verdict amber">applying</span>' : '<span class="verdict green">separating</span>'}</td>
     <td class="l small">${h.wholeSign ? esc(h.wholeSign) : '—'}</td></tr>`).join('');
   $('sy-classical').innerHTML = `
@@ -135,7 +135,7 @@ function renderClassical(g) {
     ${lum.length ? `<ul class="clean small">${lum.map(h => `<li><b>${G(h.bodyA)} ${esc(h.bodyA)} (A) ${esc(h.glyph)} ${esc(h.aspect)} ${G(h.bodyB)} ${esc(h.bodyB)} (B)</b> — orb ${Number(h.orb).toFixed(2)}°${(h.aspect === 'Trine' || h.aspect === 'Sextile') ? ' <span class="verdict green">harmonious</span>' : ''}</li>`).join('')}</ul>`
       : '<p class="small muted">No luminary interaspect within orb between the two charts — by the Ptolemaic rule this pairing shows no marital-harmony testimony from the lights (as most chance pairings do not).</p>'}
     <h3>All cross-aspects, closest first</h3>
-    ${hitRows ? `<table class="data"><thead><tr><th class="l">Person A</th><th class="l">Aspect</th><th class="l">Person B</th><th class="l">Orb</th><th>Phase</th><th class="l">Whole-sign</th></tr></thead><tbody>${hitRows}</tbody></table>` : '<p class="small muted">No cross-aspects within orb.</p>'}`;
+    ${hitRows ? `<table class="data"><thead><tr><th class="l">Person A</th><th class="l">Aspect</th><th class="l">Person B</th><th class="num">Orb</th><th>Phase</th><th class="l">Whole-sign</th></tr></thead><tbody>${hitRows}</tbody></table>` : '<p class="small muted">No cross-aspects within orb.</p>'}`;
 }
 
 // --- house overlays both ways ------------------------------------------------

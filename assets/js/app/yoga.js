@@ -169,7 +169,7 @@ function renderSutra(r, mode196) {
   }
 
   const words = (r.words || []).map(w =>
-    `<tr><td class="l ys-sa">${esc(w.sa)}</td><td class="l">${esc(w.gloss)}</td></tr>`).join('');
+    `<tr><td class="l ys-sa" lang="sa">${esc(w.sa)}</td><td class="l">${esc(w.gloss)}</td></tr>`).join('');
 
   const note = r.note
     ? `<p class="ys-note small"><span class="ys-note-label">Note</span> ${esc(r.note)}</p>` : '';
@@ -189,7 +189,7 @@ function renderSutra(r, mode196) {
       <a class="ys-num" href="#s${r.anchor}">${esc(numLabel)}</a>${badge}
     </div>
     <p class="ys-dev" lang="sa">${esc(r.devanagari)}</p>
-    <p class="ys-iast"><i>${esc(r.iast)}</i></p>
+    <p class="ys-iast" lang="sa-Latn"><i>${esc(r.iast)}</i></p>
     <div style="overflow-x:auto"><table class="data ys-words">
       <thead><tr><th class="l">Sanskrit</th><th class="l">Gloss</th></tr></thead>
       <tbody>${words}</tbody>

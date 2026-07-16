@@ -102,18 +102,22 @@ function renderHead(chart, ph, now, lat, lon) {
       hour: '2-digit', minute: '2-digit'
     });
     const where = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
-    let hourLine;
-    if (ph) {
-      hourLine = `Planetary <b>hour of ${esc(ph.ruler)}</b> (hour ${esc(ph.hourNumber)} of 24,
-        ${ph.isNight ? 'night' : 'day'}) · <b>day of ${esc(ph.dayRuler)}</b>`;
-    } else {
-      hourLine = `<span class="adv-note">Planetary hour unavailable at this latitude/date
-        (no sunrise or sunset returned).</span>`;
-    }
+    const moonSign = signOf(chart.planets.Moon.lon);
+    // Dashboard stat tiles for the present moment (plan §T4): the planetary hour,
+    // the day ruler and the Moon's sign, glanceable at the top of the board.
+    const stats = ph ? `
+      <div class="stat-row" style="margin:.5rem 0 0">
+        <div class="stat"><div class="stat-num">${esc(ph.ruler)}</div><div class="stat-label">Planetary hour</div></div>
+        <div class="stat"><div class="stat-num">${esc(ph.dayRuler)}</div><div class="stat-label">Day ruler</div></div>
+        <div class="stat"><div class="stat-num">${esc(ph.hourNumber)}<span style="font-size:.5em"> / 24 ${ph.isNight ? 'night' : 'day'}</span></div><div class="stat-label">Hour of the day</div></div>
+        <div class="stat"><div class="stat-num">${esc(moonSign.glyph)} ${esc(moonSign.name)}</div><div class="stat-label">Moon's sign</div></div>
+      </div>`
+      : `<p style="margin:.4rem 0 0"><span class="adv-note">Planetary hour unavailable at this latitude/date
+        (no sunrise or sunset returned).</span></p>`;
     $('n-head').innerHTML = `
       <p style="margin:.1rem 0"><b>${esc(when)}</b></p>
       <p class="small" style="margin:.1rem 0">at ${esc(where)}</p>
-      <p style="margin:.4rem 0 0">${hourLine}</p>`;
+      ${stats}`;
   } catch (e) {
     $('n-head').innerHTML = `<p class="adv-bad">Header failed: ${esc(e.message)}</p>`;
   }
@@ -218,10 +222,12 @@ function renderCautions(chart, ph) {
       ? '<p class="small adv-good">The chart-health is already clear right now.</p>'
       : `<p><button type="button" class="btn sm" id="n-next-ausp">Find the next clearer hour →</button>
           <span id="n-next-ausp-out" class="small muted"></span></p>`;
+    const vmod = cau.verdict === 'green' ? 'ok' : cau.verdict === 'amber' ? 'warn' : 'bad';
     $('n-cautions').innerHTML = `
       <h2>Cautions now</h2>
-      <p><span class="verdict ${esc(cau.verdict)}">${cau.verdict === 'green' ? 'Clean' : cau.verdict === 'amber' ? 'Cautions' : 'Impeded'}</span>
-        ${esc(cau.label)}</p>
+      <div class="verdict-banner verdict-banner--${vmod}" role="status" aria-live="polite">
+        <span class="verdict ${esc(cau.verdict)}">${cau.verdict === 'green' ? 'Clean' : cau.verdict === 'amber' ? 'Cautions' : 'Impeded'}</span>
+        <span class="vb-reason">${esc(cau.label)}</span></div>
       <ul class="advisories">${items || '<li class="adv-good">No global cautions stand right now.</li>'}</ul>
       ${nextBtn}
       ${VERDICT_LEGEND}

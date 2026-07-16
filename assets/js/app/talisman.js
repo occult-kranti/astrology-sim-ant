@@ -16,6 +16,8 @@ const $ = id => document.getElementById(id);
 const G = p => PLANET_GLYPHS[p] || p;
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const VW = v => v === 'green' ? 'favourable' : v === 'amber' ? 'mixed' : 'unfavourable';
+// the election traffic-light → the promoted .verdict-banner triad (plan §1.3.9).
+const VB_CLASS = { green: 'ok', amber: 'warn', red: 'bad' };
 
 export function initTalisman() {
   $('t-op').innerHTML = OPERATIONS.map(o => `<option value="${esc(o.key)}">${esc(o.label)}</option>`).join('');
@@ -49,8 +51,12 @@ function build() {
       : `No clearly favourable window in the next 72 h — the tradition would wait.`;
     const starTxt = r.star ? `${G(r.star.planet)} ${esc(r.star.planet)} ∠ ${esc(r.star.star)} (${r.star.sep.toFixed(1)}°)` : 'none conjunct a planet now';
     $('t-card').innerHTML = `
+      <div class="verdict-banner verdict-banner--${VB_CLASS[r.verdict] || 'warn'}" role="status" aria-live="polite">
+        <span class="verdict ${esc(r.verdict)}">${VW(r.verdict)}</span>
+        <span class="vb-reason">the elected moment for <b>${esc(r.aim)}</b> ranks <b>${VW(r.verdict)}</b> by weighted testimony (score ${r.score}) — a gravity scale for the election, not the talisman's ritual colour.</span>
+      </div>
       <div class="card" style="border:2px solid var(--gold,#b9912f)">
-        <h2 style="margin-top:0">Recipe — ${esc(r.aim)} <span class="verdict ${esc(r.verdict)}">${VW(r.verdict)}</span></h2>
+        <h2 style="margin-top:0">Recipe — ${esc(r.aim)}</h2>
         <p class="small muted">${esc(r.disclaimer)}</p>
         <table class="data">
           <tbody>

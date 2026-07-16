@@ -73,16 +73,19 @@ function run() {
 }
 
 function matchChip(m) {
-  if (m.match === true) return '<span class="ab-m ab-m-yes">matches</span>';
-  if (m.match === false) return '<span class="ab-m ab-m-no">differs</span>';
-  return '<span class="ab-m ab-m-na">no rule</span>';
+  if (m.match === true) return '<span class="badge badge--ok">matches</span>';
+  if (m.match === false) return '<span class="badge badge--bad">differs</span>';
+  return '<span class="badge badge--plain">no rule</span>';
 }
+
+// act class → verdict-triad badge (benign = ok, hostile/adjacent = warn, māraṇa = bad)
+const CLASS_BADGE = { benign: 'badge--ok', hostile: 'badge--warn', marana: 'badge--bad', 'abhicāra-adjacent': 'badge--warn' };
 
 function renderSummary(scr, off) {
   const cm = scr.currentMoment;
   const clsLabel = { benign: 'benign (śānti-class)', hostile: 'hostile', marana: 'māraṇa-class', 'abhicāra-adjacent': 'abhicāra-adjacent' };
   $('ab-summary').innerHTML = `
-    <p><b>The act:</b> ${esc(scr.actLabel)} <span class="ab-cls ab-cls-${esc(scr.actClass)}">${esc(clsLabel[scr.actClass] || scr.actClass)}</span></p>
+    <p><b>The act:</b> ${esc(scr.actLabel)} <span class="badge ${CLASS_BADGE[scr.actClass] || 'badge--plain'}">${esc(clsLabel[scr.actClass] || scr.actClass)}</span></p>
     <ul class="clean small">
       <li><b>Calendar season (ṛtu):</b> ${esc(cm.ritu.translit)} <span class="muted">(${esc(cm.ritu.gloss)})</span> — Sun in sidereal <b>${esc(cm.sunRashi)}</b> (Lahiri ayanāṁśa ${esc(cm.ayanamsa)}°)</li>
       <li><b>Ghaṭikā-cycle block (scheme A):</b> ${esc(cm.ghatikaSeason.translit)} <span class="muted">(ghaṭikā ${cm.ghatikaSeason.ghatikaNumber} after sunrise)</span></li>
@@ -101,7 +104,7 @@ function renderMatches(scr) {
     <td class="l small muted">${esc(m.cite)}</td>
   </tr>`).join('');
   $('ab-matches').innerHTML = `
-    <div style="overflow-x:auto"><table class="data">
+    <div class="table-scroll"><table class="data">
       <thead><tr><th class="l">Slot</th><th class="l">Prescribed for this act</th><th class="l">At this moment</th><th>Match</th><th class="l">Source</th></tr></thead>
       <tbody>${rows}</tbody>
     </table></div>
@@ -125,7 +128,7 @@ function renderPrescriptions(scr) {
     row('Hand', p.hand, p.handCite),
   ].join('');
   $('ab-prescriptions').innerHTML = `
-    <div style="overflow-x:auto"><table class="data">
+    <div class="table-scroll"><table class="data">
       <thead><tr><th class="l">Correspondence</th><th class="l">The tradition prescribed</th><th class="l">Source</th></tr></thead>
       <tbody>${rows}</tbody>
     </table></div>

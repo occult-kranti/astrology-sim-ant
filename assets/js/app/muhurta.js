@@ -90,16 +90,16 @@ function run() {
 
 // ---------------------------------------------------------------------------
 function qualityChip(m) {
-  const cls = m.quality === 'auspicious' ? 'mu-q-ausp' : m.quality === 'inauspicious' ? 'mu-q-inausp' : 'mu-q-mixed';
+  const cls = m.quality === 'auspicious' ? 'badge--ok' : m.quality === 'inauspicious' ? 'badge--bad' : 'badge--warn';
   const flag = m.contested
     ? ` <span class="mu-flag" title="${esc(m.contested.flag + ' ' + m.contested.positions.map(p => `${p.source}: ${p.value}`).join(' | '))}">⚑</span>`
     : '';
-  return `<span class="mu-q ${cls}">${esc(m.quality)}</span>${flag}`;
+  return `<span class="badge ${cls}">${esc(m.quality)}</span>${flag}`;
 }
 
 function verdictChip(v) {
-  const cls = v === 'avoid' ? 'mu-q-inausp' : v === 'favourable' ? 'mu-q-ausp' : 'mu-q-mixed';
-  return `<span class="mu-q ${cls}">${esc(v)}</span>`;
+  const cls = v === 'avoid' ? 'badge--bad' : v === 'favourable' ? 'badge--ok' : 'badge--warn';
+  return `<span class="badge ${cls}">${esc(v)}</span>`;
 }
 
 function renderSummary(rep, off) {
@@ -132,12 +132,12 @@ function renderTimeline(rep, off) {
   const rows = rep.muhurtas.map(m => {
     const chips = KALAS
       .filter(([key]) => m.start < rep.kalas[key].end && rep.kalas[key].start < m.end)
-      .map(([, label]) => `<span class="mu-kala">${esc(label)}</span>`).join('');
+      .map(([, label]) => `<span class="badge badge--bad">${esc(label)}</span>`).join(' ');
     const star = m.isAbhijit ? ' ★ Abhijit' : m.isBrahma ? ' ★ Brāhma muhūrta' : '';
     const varTip = m.variants ? ` <span class="mu-flag muted" title="${esc(m.variants)}">*</span>` : '';
     const cond = m.condition ? `<div class="small muted">${esc(m.condition)}</div>` : '';
     return `<tr${m.isAbhijit || m.isBrahma ? ' class="mu-star"' : ''}>
-      <td>${m.num}</td>
+      <td class="num">${m.num}</td>
       <td class="l"><b>${esc(m.name)}</b>${varTip}${star ? `<b class="muted">${esc(star)}</b>` : ''}${cond}</td>
       <td>${m.isDay ? 'day' : 'night'}</td>
       <td>${fmtT(m.start, off)}</td>
@@ -147,8 +147,8 @@ function renderTimeline(rep, off) {
     </tr>`;
   }).join('');
   $('mu-timeline').innerHTML = `
-    <div style="overflow-x:auto"><table class="data">
-      <thead><tr><th>#</th><th class="l">Muhūrta</th><th>Arc</th><th>From</th><th>To</th><th>Classical quality</th><th class="l">Kāla overlap (avoid)</th></tr></thead>
+    <div class="table-scroll"><table class="data">
+      <thead><tr><th class="num">#</th><th class="l">Muhūrta</th><th>Arc</th><th>From</th><th>To</th><th>Classical quality</th><th class="l">Kāla overlap (avoid)</th></tr></thead>
       <tbody>${rows}</tbody>
     </table></div>
     <p class="small muted" style="margin:.5rem 0 0">⚑ = contested in the sources (hover for both positions, kept verbatim);
@@ -169,7 +169,7 @@ function renderScreens(rep) {
     </tr>`;
   }).join('');
   $('mu-screens').innerHTML = `
-    <div style="overflow-x:auto"><table class="data">
+    <div class="table-scroll"><table class="data">
       <thead><tr><th class="l">Limb</th><th class="l">At this moment</th><th class="l">Class</th><th>Classical verdict</th><th class="l">Source</th></tr></thead>
       <tbody>${rows}</tbody>
     </table></div>

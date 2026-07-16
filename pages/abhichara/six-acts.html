@@ -8,15 +8,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../../assets/css/style.css">
 <style>
-  .ab-cls { font-size:.7rem; border:1px solid var(--rule); border-radius:.4rem; padding:.05rem .4rem; white-space:nowrap; }
-  .ab-cls-benign { color:var(--benefic); border-color:var(--benefic); }
-  .ab-cls-hostile { color:var(--gold); border-color:var(--gold); }
-  .ab-cls-marana { color:var(--malefic); border-color:var(--malefic); }
-  .ab-m { font-size:.72rem; border-radius:.4rem; padding:.05rem .4rem; border:1px solid var(--rule); white-space:nowrap; }
-  .ab-m-yes { color:var(--benefic); border-color:var(--benefic); }
-  .ab-m-no { color:var(--malefic); border-color:var(--malefic); }
-  .ab-m-na { color:var(--muted); }
-  .ab-flag { color:var(--gold); cursor:help; }
+  /* Classification / match chips use the site-wide .badge system (§1.3.5). */
+  .ab-flag { color:var(--ep-disp, var(--gold)); cursor:help; }
   .ab-act-h { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
 </style>
 </head>
@@ -43,7 +36,7 @@
     text — a text's <b>index verse</b> will promise six while its <b>body</b> treats seven or eight. "Index verses
     differing from the actual contents is common, if not universal, in the magic tantras" (Ullrey). The site keeps
     every variant; it never silently picks one.</p>
-  <div style="overflow-x:auto"><table class="data">
+  <div class="table-scroll"><table class="data">
     <thead><tr><th class="l">List</th><th class="l">Items</th></tr></thead>
     <tbody>
       <tr><td class="l"><b>The canonical six</b><br><span class="small muted">Mahīdhara, MMU 25</span></td>
@@ -67,7 +60,7 @@
     <b>nineteen variables</b> a practitioner is told to match to the rite. This 19-slot table is the classical
     framework; the <a href="#screen">timing screen below</a> computes only the calendar/direction slots from it
     (season, day, fortnight, direction), which are read-only calendar arithmetic.</p>
-  <div style="overflow-x:auto"><table class="data">
+  <div class="table-scroll"><table class="data">
     <thead><tr><th>#</th><th class="l">Item (IAST)</th><th class="l">What it is</th></tr></thead>
     <tbody>
       <tr><td>1</td><td class="l">devatā</td><td class="l">the presiding deity of the rite</td></tr>
@@ -99,7 +92,7 @@
   <h2 id="seasons">When? — the season/time schemes disagree ⚑</h2>
   <p>The single sharpest contradiction in the corpus is <b>when</b> each act belongs. Three schemes are given, and
     they do not agree. This is the tradition's own disagreement, shown side by side and never resolved:</p>
-  <div style="overflow-x:auto"><table class="data">
+  <div class="table-scroll"><table class="data">
     <thead><tr>
       <th class="l">Act</th>
       <th class="l">Scheme A — season <span class="small muted">(Uḍḍīśatantra 1.16-17; MMU 25)</span></th>
@@ -133,7 +126,7 @@
   <h2 id="grid">The correspondence grid — colour, mat, gesture, rosary, finger</h2>
   <p>The remaining variables, all six acts in one grid. The two mat-symbol columns are <b>two different text
     traditions</b> (the Uḍḍīśatantra and the Jain Bhairavapadmāvatīkalpa) and are kept separate, never merged.</p>
-  <div style="overflow-x:auto"><table class="data">
+  <div class="table-scroll"><table class="data">
     <thead><tr>
       <th class="l">Act</th><th class="l">Colour</th><th class="l">Mudrā (gesture)</th><th class="l">Rosary (mālā)</th>
       <th class="l">Finger-hold</th><th class="l">Mat — Uḍḍīśatantra</th><th class="l">Mat — Bhairavapadmāvatīkalpa</th>
@@ -180,7 +173,7 @@
   <!-- ============================ ACT BY ACT ============================ -->
   <h2 id="acts">The six acts, one by one</h2>
 
-  <section class="card"><div class="ab-act-h"><h3 style="margin:0">1 · śānti / śāntika <span class="small muted">— pacification</span></h3><span class="ab-cls ab-cls-benign">benign</span></div>
+  <section class="card"><div class="ab-act-h"><h3 style="margin:0">1 · śānti / śāntika <span class="small muted">— pacification</span></h3><span class="badge badge--ok">benign</span></div>
     <p class="small">The one wholly benign act. Bühnemann renders the Mantramahodadhi's definition as "the
       destruction of diseases" — the appeasement of illness, planetary evil and hostile sorcery — and it carries the
       two positive sub-aims <b>rakṣā</b> (protection) and <b>puṣṭi</b> (prosperity, increase). White colour, the
@@ -188,33 +181,33 @@
       but the BPK puts it at <b>midnight</b> and U 1.28 at <b>day's end</b>. <span class="muted">MMU 25.1-3
       (Bühnemann p. 454).</span></p></section>
 
-  <section class="card"><div class="ab-act-h"><h3 style="margin:0">2 · vaśīkaraṇa / vaśya <span class="small muted">— subjugation</span></h3><span class="ab-cls ab-cls-hostile">coercive</span></div>
+  <section class="card"><div class="ab-act-h"><h3 style="margin:0">2 · vaśīkaraṇa / vaśya <span class="small muted">— subjugation</span></h3><span class="badge badge--warn">coercive</span></div>
     <p class="small">Bringing a person, animal or deity under one's will. Bühnemann's gloss of the MMU definition is
       stark — "the state of one who executes a command… especially seducing a woman against her will" — the
       erotic-domination sense is explicit in the text. It is the act singled out as performed with the <b>left</b>
       hand. Red colour, the noose (pāśa) gesture, coral/diamond beads; season <b>vasanta</b> (spring), day-part
       <b>forenoon</b>. <span class="muted">MMU 25.1-3; U 1.75; BPK 3.7.</span></p></section>
 
-  <section class="card"><div class="ab-act-h"><h3 style="margin:0">3 · stambhana <span class="small muted">— immobilization</span></h3><span class="ab-cls ab-cls-hostile">hostile</span></div>
+  <section class="card"><div class="ab-act-h"><h3 style="margin:0">3 · stambhana <span class="small muted">— immobilization</span></h3><span class="badge badge--warn">hostile</span></div>
     <p class="small">"The obstructing of an activity" (Bühnemann). To paralyse or arrest — armies, weapons, speech,
       water, bodily functions, a rival's mind. Yellow (turmeric) colour, the club (gadā) gesture; season
       <b>śiśira</b> (cool), grouped with māraṇa as suited to the dark fortnight. Its mat is "no mark" (vikaṭa) in the
       Uḍḍīśatantra, the axe/thunderbolt (kuliśa) in the BPK. <span class="muted">MMU 25.1-3; U 1.71-72; BPK
       3.9.</span></p></section>
 
-  <section class="card"><div class="ab-act-h"><h3 style="margin:0">4 · vidveṣaṇa / vidveṣa <span class="small muted">— causing discord</span></h3><span class="ab-cls ab-cls-hostile">hostile</span></div>
+  <section class="card"><div class="ab-act-h"><h3 style="margin:0">4 · vidveṣaṇa / vidveṣa <span class="small muted">— causing discord</span></h3><span class="badge badge--warn">hostile</span></div>
     <p class="small">"Dislike between two affectionate people" (Bühnemann) — breaking alliances and sowing enmity
       between allies, friends or spouses (<i>prīti-nāśana</i>, "destruction of affection"). Smoke-grey colour, the
       pestle (musala) gesture, a horse-tooth rosary strung on a thread of the victim's hair, the thumb-and-index
       hold; season <b>grīṣma</b> (summer), day-part <b>midday</b>. <span class="muted">MMU 25.1-3; U 1.103-113.</span></p></section>
 
-  <section class="card"><div class="ab-act-h"><h3 style="margin:0">5 · uccāṭana <span class="small muted">— eradication, driving-away</span></h3><span class="ab-cls ab-cls-hostile">hostile</span></div>
+  <section class="card"><div class="ab-act-h"><h3 style="margin:0">5 · uccāṭana <span class="small muted">— eradication, driving-away</span></h3><span class="badge badge--warn">hostile</span></div>
     <p class="small">"Deprivation from a place" (Bühnemann) — to force a target out of home, family, office or
       kingdom, to make them wander. Smoke-grey colour, the arrowhead/vajra gesture, the same horse-tooth rosary as
       vidveṣa; season <b>varṣā / prāvṛṭ</b> (the rains), day-part <b>afternoon</b>. Its Uḍḍīśatantra mat is the
       half-svastika. <span class="muted">MMU 25.1-3; U 1.71-113.</span></p></section>
 
-  <section class="card" style="outline:1px solid var(--malefic)"><div class="ab-act-h"><h3 style="margin:0">6 · māraṇa <span class="small muted">— slaying ("liquidation")</span></h3><span class="ab-cls ab-cls-marana">māraṇa-class</span></div>
+  <section class="card" style="outline:1px solid var(--malefic)"><div class="ab-act-h"><h3 style="margin:0">6 · māraṇa <span class="small muted">— slaying ("liquidation")</span></h3><span class="badge badge--bad">māraṇa-class</span></div>
     <div class="callout science" style="margin:.4rem 0"><span class="label">The strongest frame — read this</span>
       This entry records <b>only what the texts CLAIM</b>, and their symbolic correspondences, presented strictly as
       <b>religious history</b>. There is <b>no procedure</b> here: no method, no materials-of-harm, nothing that
@@ -251,9 +244,9 @@
     </div>
   </form>
 
-  <section class="card"><h3 style="margin-top:0">The moment</h3><div id="ab-summary"><p class="muted small">Pick an act, moment and place above.</p></div></section>
-  <section class="card"><h3 style="margin-top:0">Does the moment match the prescription?</h3><div id="ab-matches"></div></section>
-  <section class="card"><h3 style="margin-top:0">What the tradition prescribed for this act</h3><div id="ab-prescriptions"></div></section>
+  <section class="card panel"><h3 style="margin-top:0">The moment</h3><div id="ab-summary"><p class="muted small">Pick an act, moment and place above.</p></div></section>
+  <section class="card panel"><h3 style="margin-top:0">Does the moment match the prescription?</h3><div id="ab-matches"></div></section>
+  <section class="card panel"><h3 style="margin-top:0">What the tradition prescribed for this act</h3><div id="ab-prescriptions"></div></section>
 
   <!-- ============================ HOW IT WORKS ============================ -->
   <section class="card" id="hiw-abhichara">

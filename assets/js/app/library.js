@@ -24,13 +24,9 @@ const slug = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '
 
 const TIER_ORDER = ['canon', 'respected', 'niche', 'academic'];
 const TIER_LABEL = Object.fromEntries(TIER_DEFS.map(t => [t.key, t.label]));
-// Tier chips are inline-styled so no site CSS is touched.
-const TIER_CHIP = {
-  canon:     { bg: '#efe0bd', fg: '#5a4410' },
-  respected: { bg: '#e7eef7', fg: '#2b4a6b' },
-  niche:     { bg: '#f0e8d4', fg: '#7a5a06' },
-  academic:  { bg: '#d8efd6', fg: '#1f5e1d' },
-};
+// Tier chips use the DS2 epistemic badge triads (plan §1.2.4):
+// Canon→documented · Respected→disputed · Niche→conspiracy(-wash) · Academic→ok.
+const TIER_BADGE = { canon: 'doc', respected: 'disp', niche: 'con', academic: 'ok' };
 
 // Practice → the site's matching tool/wing page (hrefs relative to
 // pages/library/). Verified to exist against the repo's page tree.
@@ -64,8 +60,8 @@ const PRACTICE_LINKS = {
 };
 
 function tierChip(tier) {
-  const c = TIER_CHIP[tier] || TIER_CHIP.canon;
-  return `<span class="chip" style="background:${c.bg};color:${c.fg}">${esc(TIER_LABEL[tier] || tier)}</span>`;
+  const b = TIER_BADGE[tier] || 'doc';
+  return `<span class="badge badge--${b}">${esc(TIER_LABEL[tier] || tier)}</span>`;
 }
 
 function workLine(w) {
@@ -100,8 +96,8 @@ function card(p) {
   const tierNote = p.tierNote ? `<p class="small" style="margin:.15rem 0;color:#5a5340"><i>${esc(p.tierNote)}</i></p>` : '';
   const papers = p.papers && p.papers.length
     ? `<p class="small" style="margin:.4rem 0 .1rem"><b>Papers</b></p><ul class="clean small">${p.papers.map(paperLine).join('')}</ul>` : '';
-  return `<article class="card" id="${id}">
-    <h3 style="margin-bottom:.15rem">${esc(p.name)} ${tierChip(p.tier)}</h3>
+  return `<article class="record" id="${id}">
+    <div class="record-head"><h3 style="margin:0">${esc(p.name)}</h3> ${tierChip(p.tier)}</div>
     <p class="small" style="margin:.1rem 0 .4rem">${years}${years && p.school ? ' · ' : ''}${esc(p.school)}</p>
     ${tierNote}
     <p style="margin:.35rem 0">${esc(p.line)}</p>
@@ -110,7 +106,7 @@ function card(p) {
     ${papers}
     ${methodBlock(p)}
     ${flagBlock(p)}
-    <p class="small muted" style="margin-top:.5rem">✓ Verified: ${esc(p.verified)}<br>▸ ${esc(p.cite)}</p>
+    <p class="record-src small">✓ Verified: ${esc(p.verified)}<br>▸ ${esc(p.cite)}</p>
   </article>`;
 }
 

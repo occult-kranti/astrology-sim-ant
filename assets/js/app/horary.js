@@ -98,8 +98,8 @@ function compute() {
       <td class="l">${formatLon(p.lon)}${p.retrograde ? ' ℞' : ''}</td>
       <td>${p.house}</td>
       <td class="l small">${dig}</td>
-      <td class="${ed.total >= 0 ? 'pos' : 'neg'}">${ed.total >= 0 ? '+' : ''}${ed.total}</td>
-      <td class="${ad.total >= 0 ? 'pos' : 'neg'}">${ad.total >= 0 ? '+' : ''}${ad.total}</td>
+      <td class="num ${ed.total >= 0 ? 'pos' : 'neg'}">${ed.total >= 0 ? '+' : ''}${ed.total}</td>
+      <td class="num ${ad.total >= 0 ? 'pos' : 'neg'}">${ad.total >= 0 ? '+' : ''}${ad.total}</td>
     </tr>`;
   }
   // nodes + fortune
@@ -179,6 +179,14 @@ function compute() {
     mLines.push('No direct aspect, translation or collection between the significators within orb — read the Moon, or reconsider the quesited house.');
   $('h-perfection').innerHTML = mLines.map(l => `<li>${l}</li>`).join('');
 
+  // Verdict banner: does the matter perfect? (plan §T2 — the buried judgement,
+  // lifted to the top.) Perfection = shared significator, an applying direct
+  // aspect, translation or collection; else the void Moon denies, or it hangs.
+  renderVerdictBanner({
+    perfects: (lordAsc === lordQ) || !!(modes.direct && modes.direct.applying) || !!modes.translation || !!modes.collection,
+    best, modes, lordAsc, lordQ
+  });
+
   // --- aspects list ---
   $('h-aspects').innerHTML = asps.length
     ? asps.map(a => `<li>${PLANET_GLYPHS[a.from]} ${a.from} <b>${a.glyph} ${a.aspect}</b> ${PLANET_GLYPHS[a.to]} ${a.to}
@@ -200,6 +208,32 @@ function compute() {
   // auto-link glossary jargon in the freshly-rendered prose panels
   autolinkResultPanels(['h-significators', 'h-perfection']);
   try { writeStateToURL(hState()); } catch { /* non-fatal */ }
+}
+
+// The perfection verdict, lifted to a full-width banner right after the header
+// (plan §T2). green = perfects, amber = hangs (read the Moon), red = void Moon
+// denies. Links down to the modes-of-perfection panel for the reasoning.
+function renderVerdictBanner({ perfects, best, modes, lordAsc, lordQ }) {
+  const banner = $('h-verdict-banner'); if (!banner) return;
+  let mod, word, reason;
+  if (perfects) {
+    mod = 'ok'; word = 'perfects';
+    reason = lordAsc === lordQ ? 'Querent and quesited share one significator — a strong testimony.'
+      : (modes.direct && modes.direct.applying) ? 'The significators apply to a direct aspect — the matter comes to pass.'
+      : modes.translation ? 'Perfection by translation of light — a third party carries the matter.'
+      : modes.collection ? 'Perfection by collection of light — a weightier planet collects both.'
+      : 'The significators come together — the matter perfects.';
+  } else if (!best) {
+    mod = 'bad'; word = 'denied';
+    reason = 'The Moon is void of course — “nothing will come of the matter”.';
+  } else {
+    mod = 'warn'; word = 'unperfected';
+    reason = `No direct perfection within orb — read the Moon, who next applies to ${best.name}.`;
+  }
+  const pill = mod === 'ok' ? 'green' : mod === 'warn' ? 'amber' : 'red';
+  banner.className = 'verdict-banner verdict-banner--' + mod;
+  banner.hidden = false;
+  banner.innerHTML = `<span class="verdict ${pill}">${word}</span> <span class="vb-reason">${reason}</span> <a class="vb-link" href="#h-p-perfection">the modes of perfection ↓</a>`;
 }
 
 function ordinal(n) { return ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'][n]; }

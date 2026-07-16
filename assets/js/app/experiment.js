@@ -69,7 +69,12 @@ function run() {
 
     const opLabel = (OPERATIONS.find(o => o.key === op) || {}).label || op;
     $('x-out').innerHTML =
-      `<p style="font-size:1.05rem">Your moment scores <b>${chosen.score}</b>
+      `<div class="stat-row">
+         <div class="stat"><div class="stat-num">${chosen.score}</div><div class="stat-label">Your moment's score</div></div>
+         <div class="stat"><div class="stat-num">${pct}%</div><div class="stat-label">Percentile in the null distribution</div></div>
+         <div class="stat"><div class="stat-num">${N}</div><div class="stat-label">Random moments sampled</div></div>
+       </div>
+       <p style="font-size:1.05rem">Your moment scores <b>${chosen.score}</b>
          (<span class="verdict ${chosen.verdict}">${chosen.verdict}</span>) — higher than <b>${pct}%</b>
          of ${N} random moments ${esc(win.label)} at this place${pct >= 40 && pct <= 60 ? ' — i.e. close to an ordinary, middling moment.' : pct > 60 ? ' — a relatively favourable one, by the rule.' : ' — a relatively unfavourable one, by the rule.'}</p>
        ${histogramSVG(scores, chosen.score, mean)}

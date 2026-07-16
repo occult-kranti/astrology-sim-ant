@@ -216,16 +216,16 @@ function renderTimeline(traj) {
     const rows = tl.map(r => {
       const cls = r.current ? ' style="background:rgba(120,180,120,.18);font-weight:600"' : '';
       const mark = r.current ? ' ◀ now' : '';
-      return `<tr${cls}><td>${r.age}</td><td>${r.year}</td><td class="l">${esc(r.profectedSign)}</td>` +
-        `<td>${r.activatedHouse}${ord(r.activatedHouse)}</td>` +
+      return `<tr${cls}><td class="num">${r.age}</td><td class="num">${r.year}</td><td class="l">${esc(r.profectedSign)}</td>` +
+        `<td class="num">${r.activatedHouse}${ord(r.activatedHouse)}</td>` +
         `<td class="l">${G(r.lordOfYear)}</td>` +
         `<td>ess ${sgn(r.lordEssential)} · acc ${sgn(r.lordAccidental)}${mark}</td></tr>`;
     }).join('');
     $('tj-timeline').innerHTML =
       `<p class="small">Each year of life the Ascendant "profects" forward <b>one sign and one house</b>; the lord of
         that sign becomes the <b>Lord of the Year</b>. The highlighted row is the present year.</p>
-      <table class="data"><thead><tr><th>Age</th><th>Year</th><th class="l">Profected sign</th><th>House</th>
-        <th class="l">Lord of the Year</th><th>Its natal condition</th></tr></thead><tbody>${rows}</tbody></table>
+      <div class="table-scroll"><table class="data"><thead><tr><th class="num">Age</th><th class="num">Year</th><th class="l">Profected sign</th><th class="num">House</th>
+        <th class="l">Lord of the Year</th><th>Its natal condition</th></tr></thead><tbody>${rows}</tbody></table></div>
       <p class="small muted">Lilly, Christian Astrology Bk III — annual profections &amp; the Lord of the Year.</p>`;
   });
 }
@@ -236,12 +236,12 @@ function renderDirections(traj) {
     const dirs = traj.directions || [];
     if (!dirs.length) { $('tj-directions').innerHTML = '<p class="small muted">No directions to the angles fell within the studied span.</p>'; return; }
     const rows = dirs.slice(0, 16).map(d =>
-      `<tr><td class="l">${G(d.promissor)}</td><td>→ ${esc(d.significator)}</td><td>${Number(d.arc).toFixed(2)}°</td><td>≈ age ${Number(d.years).toFixed(1)}</td></tr>`
+      `<tr><td class="l">${G(d.promissor)}</td><td>→ ${esc(d.significator)}</td><td class="num">${Number(d.arc).toFixed(2)}°</td><td class="num">≈ age ${Number(d.years).toFixed(1)}</td></tr>`
     ).join('');
     $('tj-directions').innerHTML =
       `<p class="small">A significator is "directed" to the angles; the arc between them, read as years of life, dates an
         event. This table sorts the contacts by the age at which the tradition would time them.</p>
-      <table class="data"><thead><tr><th class="l">Promissor</th><th>to angle</th><th>Arc</th><th>≈ age of event</th></tr></thead><tbody>${rows}</tbody></table>
+      <div class="table-scroll"><table class="data"><thead><tr><th class="l">Promissor</th><th>to angle</th><th class="num">Arc</th><th class="num">≈ age of event</th></tr></thead><tbody>${rows}</tbody></table></div>
       <p class="small muted">Simplified <b>Naibod</b> directions in the zodiac (1° ≈ 1 year of mean solar motion); Lilly's
         rigorous mundane (Placidian) directions are a further refinement. Lilly, Christian Astrology Bk III.</p>`;
   });

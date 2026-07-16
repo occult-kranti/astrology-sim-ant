@@ -141,6 +141,7 @@ function run() {
   } catch { /* non-fatal */ }
 
   safe(() => renderSummary(reading));
+  safe(() => renderVerdictBanner(reading));
   safe(() => renderEraBadge(chart));
   safe(() => renderMoment(reading));
   safe(() => renderDignities(reading));
@@ -205,6 +206,21 @@ function renderSummary(r) {
   $('wb-moment-cite').textContent = '— positions from astronomy-engine (~1′); Regiomontanus houses';
 }
 
+// The chart-health verdict, lifted to a full-width banner right after the form
+// (plan §1.3.9). `role="status"` on the element makes the compute announce
+// itself; the banner links down to the Chart-health panel's evidence.
+function renderVerdictBanner(r) {
+  const banner = $('wb-verdict-banner'); if (!banner || !r || !r.cautions) return;
+  const c = r.cautions;
+  const mod = c.verdict === 'green' ? 'ok' : c.verdict === 'amber' ? 'warn' : 'bad';
+  const counts = `${c.counts.caution} caution${c.counts.caution === 1 ? '' : 's'}, ${c.counts.bad} grave`;
+  banner.className = 'verdict-banner verdict-banner--' + mod;
+  banner.hidden = false;
+  banner.innerHTML =
+    `${vbadge(c.verdict)} <span class="vb-reason">Chart health — ${esc(c.label)} <span class="muted">(${counts})</span></span>` +
+    `<a class="vb-link" href="#wb-p-health">see the evidence ↓</a>`;
+}
+
 // Historical-era honesty (R16): charts outside the casting-grade window carry
 // their accuracy tier and the ΔT line — the recorded-time and time-scale
 // uncertainty dwarfs the ephemeris there. Display policy, not a computation.
@@ -227,10 +243,10 @@ function renderMoment(r) {
     const dig = r.dignities.perPlanet[name];
     rows += `<tr><td>${G(name)} ${esc(name.replace('Node', ' Node'))}</td>
       <td class="l">${esc(p.label)}${p.retrograde ? ' ℞' : ''}</td><td>${p.house}</td>
-      <td class="r small">${p.speed != null ? p.speed.toFixed(2) : ''}</td>
-      <td class="${dig ? (dig.sumTotal >= 0 ? 'pos' : 'neg') : 'muted'}">${dig ? sgn(dig.sumTotal) : '·'}</td></tr>`;
+      <td class="num small">${p.speed != null ? p.speed.toFixed(2) : ''}</td>
+      <td class="num ${dig ? (dig.sumTotal >= 0 ? 'pos' : 'neg') : 'muted'}">${dig ? sgn(dig.sumTotal) : '·'}</td></tr>`;
   }
-  $('wb-moment').innerHTML = `<table class="data"><thead><tr><th>Body</th><th>Position</th><th>Ho.</th><th>Speed</th><th title="essential + accidental">Dignity</th></tr></thead><tbody>${rows}</tbody></table>`;
+  $('wb-moment').innerHTML = `<div class="table-scroll"><table class="data"><thead><tr><th>Body</th><th>Position</th><th>Ho.</th><th class="num">Speed</th><th class="num" title="essential + accidental">Dignity</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 function renderDignities(r) {
@@ -240,13 +256,13 @@ function renderDignities(r) {
     const d = r.dignities.perPlanet[name];
     const kinds = d.essential.rows.map(x => `<span class="${x.score >= 0 ? 'pos' : 'neg'}">${esc(x.kind)}</span>`).join(', ');
     rows += `<tr><td>${G(name)} ${name}</td><td class="l small">${kinds}</td>
-      <td class="${d.essential.total >= 0 ? 'pos' : 'neg'}">${sgn(d.essential.total)}</td>
-      <td class="${d.accidental.total >= 0 ? 'pos' : 'neg'}">${sgn(d.accidental.total)}</td>
-      <td class="${d.sumTotal >= 0 ? 'pos' : 'neg'}"><b>${sgn(d.sumTotal)}</b></td></tr>`;
+      <td class="num ${d.essential.total >= 0 ? 'pos' : 'neg'}">${sgn(d.essential.total)}</td>
+      <td class="num ${d.accidental.total >= 0 ? 'pos' : 'neg'}">${sgn(d.accidental.total)}</td>
+      <td class="num ${d.sumTotal >= 0 ? 'pos' : 'neg'}"><b>${sgn(d.sumTotal)}</b></td></tr>`;
   }
   const a = r.dignities.almutens, log = r.dignities.lordOfGeniture;
   $('wb-dignities').innerHTML =
-    `<table class="data"><thead><tr><th>Planet</th><th>Essential dignities</th><th>Ess.</th><th>Acc.</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table>
+    `<div class="table-scroll"><table class="data"><thead><tr><th>Planet</th><th>Essential dignities</th><th class="num">Ess.</th><th class="num">Acc.</th><th class="num">Total</th></tr></thead><tbody>${rows}</tbody></table></div>
      <p class="small">Almuten of the Ascendant: <b>${esc(a.ascendant.planet)}</b> (score ${a.ascendant.score}) · of the MC: <b>${esc(a.midheaven.planet)}</b> (${a.midheaven.score}).
        Lord of the Geniture (greatest total dignity): <b>${esc(log.planet)}</b> (${sgn(log.score)}).</p>`;
 }
@@ -279,11 +295,11 @@ function renderLots(r) {
     `<label class="small" style="display:inline-flex;align-items:center;gap:.3rem;margin-bottom:.4rem">
        <input type="checkbox" id="wb-lots-sect" ${L.sectAware ? 'checked' : ''}> sect-aware Lots (Ptolemy: reverse by night) — off = Lilly's both-sects ⊕</label>
      <p class="small muted" style="margin:.1rem 0 .5rem">The <b>seven Hermetic Lots</b> (Paulus): each a point Asc + A − B. <b>Fortune</b> is the body &amp; material life; <b>Spirit</b> its mirror (mind &amp; action); the five planetary Lots build from them.</p>
-     <table class="data"><caption class="small muted">The seven Hermetic Lots</caption><thead><tr><th scope="col" class="l">Lot</th><th scope="col" class="l">Position</th><th scope="col" class="l">Signifies</th></tr></thead><tbody>${hermetic.map(lotRow).join('')}</tbody></table>
+     <div class="table-scroll"><table class="data"><caption class="small muted">The seven Hermetic Lots</caption><thead><tr><th scope="col" class="l">Lot</th><th scope="col" class="l">Position</th><th scope="col" class="l">Signifies</th></tr></thead><tbody>${hermetic.map(lotRow).join('')}</tbody></table></div>
      ${topic.length ? `<p class="small" style="margin:.6rem 0 .2rem"><b>Natal topic Lots</b> <span class="muted">(formulas vary by author — Paulus shown)</span></p>
-       <table class="data"><tbody>${topic.map(lotRow).join('')}</tbody></table>` : ''}
+       <div class="table-scroll"><table class="data"><tbody>${topic.map(lotRow).join('')}</tbody></table></div>` : ''}
      <p class="small" style="margin:.7rem 0 .2rem"><b>Antiscia</b> (a point's solstitial shadow — a hidden contact)</p>
-     <table class="data"><thead><tr><th scope="col">Planet</th><th scope="col">Antiscion</th><th scope="col">Contra-antiscion</th></tr></thead><tbody>${anti}</tbody></table>`;
+     <div class="table-scroll"><table class="data"><thead><tr><th scope="col">Planet</th><th scope="col">Antiscion</th><th scope="col">Contra-antiscion</th></tr></thead><tbody>${anti}</tbody></table></div>`;
   const t = $('wb-lots-sect');
   if (t) t.addEventListener('change', () => { sectAwareFortune = t.checked; run(); });
 }
@@ -364,9 +380,9 @@ function renderElection(r) {
   const pz = r.natal && r.natal.personalization;
   const fitOf = key => pz && pz.aims ? (pz.aims.find(a => a.key === key) || {}).fit : null;
   const fitBadge = f => f === 'suits' ? '<span class="verdict green">suits you</span>' : f === 'caution' ? '<span class="verdict red">caution</span>' : f === 'neutral' ? '<span class="muted">neutral</span>' : '';
-  const rank = r.election.rankedNow.map(o => `<tr><td>${esc(o.label)}</td><td>${G(o.ruler)} ${o.ruler}</td><td>${vbadge(o.verdict)}</td><td class="r">${o.score}</td>${pz ? `<td>${fitBadge(fitOf(o.key))}</td>` : ''}</tr>`).join('');
+  const rank = r.election.rankedNow.map(o => `<tr><td>${esc(o.label)}</td><td>${G(o.ruler)} ${o.ruler}</td><td>${vbadge(o.verdict)}</td><td class="num">${o.score}</td>${pz ? `<td>${fitBadge(fitOf(o.key))}</td>` : ''}</tr>`).join('');
   html += `<p class="small"><b>All aims ranked for this moment${pz ? ', and tuned to the nativity' : ''}:</b></p>
-     <table class="data"><thead><tr><th scope="col">Aim</th><th scope="col">Ruler</th><th scope="col">Verdict (now)</th><th scope="col">Score</th>${pz ? '<th scope="col">For you</th>' : ''}</tr></thead><tbody>${rank}</tbody></table>`;
+     <div class="table-scroll"><table class="data"><thead><tr><th scope="col">Aim</th><th scope="col">Ruler</th><th scope="col">Verdict (now)</th><th scope="col" class="num">Score</th>${pz ? '<th scope="col">For you</th>' : ''}</tr></thead><tbody>${rank}</tbody></table></div>`;
   if (pz) html += personalizationHtml(pz, r.election.operationKey);
   // Picatrix correspondences of the moment (mansion / decan faces / Behenian stars)
   if (lastChart) {

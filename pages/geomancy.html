@@ -38,6 +38,23 @@
   .geo-mline { background:var(--card); border:1px solid var(--rule); border-radius:.3rem; padding:.3rem .8rem; cursor:pointer; min-width:3.4rem; }
   .geo-mline[aria-pressed="true"] { border-color:var(--gold); }
   .geo-explain { margin-top:.2rem; }
+  /* --- casting-stage (WP3): the Shield rendered on the night stage. The figure
+     cards keep their parchment faces; only the tier text + the live verdict line
+     need lightening on the dark surface, and the Judge lands with one gold-ring
+     pulse. Reduced-motion: no pulse, and (via the DS2 rule) an instant reveal. */
+  #geo-stage .geo-tier h3 { color: var(--text-inverse); }
+  #geo-stage .geo-tier h3 .muted, #geo-stage .stage-verdict { color: var(--text-inverse-muted); }
+  .stage-verdict { font-family: var(--sans); font-size: .82rem; letter-spacing: .03em; margin: .1rem 0 .7rem; min-height: 1em; }
+  .geo-figure.stage-judge { position: relative; }
+  @media (prefers-reduced-motion: no-preference) {
+    #geo-stage.is-staged .stage-judge::after {
+      content: ''; position: absolute; inset: -3px; border-radius: .6rem; pointer-events: none;
+      animation: geo-judge-pulse 1s var(--ease) 1500ms both; }
+    @keyframes geo-judge-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(217,177,90,0); }
+      35% { box-shadow: 0 0 0 4px rgba(217,177,90,.6); }
+      100% { box-shadow: 0 0 0 13px rgba(217,177,90,0); } }
+  }
 </style>
 </head>
 <body>
@@ -82,8 +99,10 @@
     </details>
   </form>
 
-  <section class="card"><h2 style="margin-top:0">The Shield</h2>
-    <div id="geo-shield"></div></section>
+  <section class="casting-stage" id="geo-stage"><h2 style="margin-top:0">The Shield</h2>
+    <p class="stage-verdict" id="geo-stage-verdict" aria-live="polite"></p>
+    <div id="geo-shield"></div>
+    <div class="casting-stage-controls"><button type="button" class="btn-quiet" id="geo-reveal">Reveal instantly</button></div></section>
 
   <section class="card"><h2 style="margin-top:0">The judgement</h2>
     <div id="geo-out"></div>

@@ -45,57 +45,57 @@
     </div>
   </form>
 
-  <p id="bm-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+  <p id="bm-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem" role="status" aria-live="polite"></p>
 
   <div class="grid cols-2">
-    <section class="card"><h2 style="margin-top:0">The figure</h2><svg id="bm-wheel" viewBox="0 0 540 540" style="width:100%;height:auto"></svg></section>
-    <section class="card"><h2 style="margin-top:0">Positions &amp; dignity</h2>
-      <table class="data"><thead><tr><th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th>Ess.</th><th>Acc.</th></tr></thead><tbody id="bm-planets"></tbody></table>
+    <section class="card panel" id="bm-p-figure" data-rail="The figure"><h2 style="margin-top:0">The figure</h2><svg id="bm-wheel" viewBox="0 0 540 540" style="width:100%;height:auto"></svg></section>
+    <section class="card panel" id="bm-p-positions" data-rail="Positions &amp; dignity"><h2 style="margin-top:0">Positions &amp; dignity</h2>
+      <div class="table-scroll"><table class="data"><thead><tr><th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th class="num">Ess.</th><th class="num">Acc.</th></tr></thead><tbody id="bm-planets"></tbody></table></div>
       <p class="small muted" style="margin-top:.4rem">Lilly, CA Book I (dignities), applied to the nativity.</p>
     </section>
   </div>
 
-  <section class="card"><h2 style="margin-top:0">Lord of the Geniture &amp; temperament <span class="small muted">— Lilly CA Bk III</span></h2>
+  <section class="card panel" id="bm-p-lord" data-rail="Lord &amp; temperament"><h2 style="margin-top:0">Lord of the Geniture &amp; temperament <span class="small muted">— Lilly CA Bk III</span></h2>
     <p id="bm-lord"></p><div id="bm-temperament"></div>
     <p class="small muted"><b>How to read it:</b> the Lord of the Geniture is the planet of greatest <em>total</em>
       dignity (essential + accidental) — Lilly takes it as the dominant note of the character and life. The
       temperament weighs the elemental qualities (hot/cold, dry/moist) of the Ascendant, the Moon, the Sun and that
       lord. <a href="../how-it-works.html#hiw-dignity">How it's computed →</a></p></section>
 
-  <section class="card"><h2 style="margin-top:0">Annual profection &amp; Lord of the Year <span class="small muted">— Bk III (time-lords)</span></h2>
+  <section class="card panel" id="bm-p-profection" data-rail="Profection"><h2 style="margin-top:0">Annual profection &amp; Lord of the Year <span class="small muted">— Bk III (time-lords)</span></h2>
     <div id="bm-profection"></div>
     <p class="small muted"><b>How to read it:</b> each year of life the Ascendant advances one whole sign (and one
       house); the ruler of that sign is the <em>Lord of the Year</em>, and the affairs of the activated house come to
       the fore. The lord's natal condition (its dignity) colours how the year is likely to go.
       <a href="../how-it-works.html#hiw-profections">How it's computed →</a></p></section>
 
-  <section class="card"><h2 style="margin-top:0">Hyleg &amp; Alcocoden <span class="small muted">— Bk III (contested)</span></h2>
+  <section class="card panel" id="bm-p-hyleg" data-rail="Hyleg &amp; alcocoden"><h2 style="margin-top:0">Hyleg &amp; Alcocoden <span class="small muted">— Bk III (contested)</span></h2>
     <div id="bm-hyleg"></div>
     <p class="small muted"><b>How to read it:</b> the hyleg ("giver of life") is the chart's vital point; the
       alcocoden ("giver of years") and its planetary-year figures are the tradition's length-of-life estimate. This is
       one of the most <em>contested</em> techniques in the literature — shown with its assumptions, <b>never as a
       prediction of lifespan.</b> <a href="../how-it-works.html#hiw-hyleg">How it's computed →</a></p></section>
 
-  <section class="card"><h2 style="margin-top:0">Primary directions to the angles <span class="small muted">— Bk III (Naibod)</span></h2>
+  <section class="card panel" id="bm-p-directions" data-rail="Primary directions"><h2 style="margin-top:0">Primary directions to the angles <span class="small muted">— Bk III (Naibod)</span></h2>
     <div id="bm-directions"></div>
     <p class="small muted"><b>How to read it:</b> each planet's ecliptic arc to the Ascendant or Midheaven is turned
       into a rough <em>age</em> by the Naibod key (≈ 1° of arc per year of life) — an approximate timing of when a
       matter "comes to" that angle, not a literal date. <a href="../how-it-works.html#hiw-directions">How it's computed →</a></p></section>
 
-  <section class="card"><h2 style="margin-top:0">Solar return (revolution) <span class="small muted">— Bk III</span></h2>
+  <section class="card panel" id="bm-p-return" data-rail="Solar return"><h2 style="margin-top:0">Solar return (revolution) <span class="small muted">— Bk III</span></h2>
     <div id="bm-return"></div>
     <p class="small muted"><b>How to read it:</b> the chart cast for the moment the Sun returns to its exact natal
       longitude is read as the keynote of the year ahead — always governed by, and read against, the natal radix.
       <a href="../how-it-works.html#hiw-solar">How it's computed →</a></p></section>
 
-  <section class="card"><h2 style="margin-top:0">The twelve topics, house by house <span class="small muted">— Bk III</span></h2>
+  <section class="card panel" id="bm-p-topics" data-rail="The twelve topics"><h2 style="margin-top:0">The twelve topics, house by house <span class="small muted">— Bk III</span></h2>
     <div id="bm-topics"></div>
     <p class="small muted"><b>How to read it:</b> for each topic (wealth, siblings, parents, children, marriage…) the
       reader weighs three testimonies together — the lord of the house, the natural significator of the matter, and
       the planets occupying the house — into a crude favourable / mixed / afflicted tone. The real art weighs the
       actual significators far beyond any tally; this is shown for study.</p></section>
 
-  <section class="card"><h2 style="margin-top:0">Rectification of the birth time <span class="small muted">— Bk III (contested)</span></h2>
+  <section class="card panel" id="bm-p-rectify" data-rail="Rectification"><h2 style="margin-top:0">Rectification of the birth time <span class="small muted">— Bk III (contested)</span></h2>
     <div id="bm-rectify"></div>
     <p class="small muted"><b>How to read it:</b> the <em>Animodar</em> of Ptolemy corrects the degree of an angle from
       the almuten of the pre-natal New/Full Moon; the <em>Trutine of Hermes</em> checks the birth Ascendant against the
@@ -109,7 +109,9 @@
   import { mountChrome } from '../../assets/js/app/shared.js';
   mountChrome('book3');
   import { initBook3Master } from '../../assets/js/app/book3-master.js';
+  import { mountRail } from '../../assets/js/app/rail.js';
   initBook3Master();
+  mountRail({ label: 'On this nativity' });
 </script>
 </body>
 </html>

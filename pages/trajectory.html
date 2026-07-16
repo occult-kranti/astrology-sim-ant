@@ -49,34 +49,34 @@
     <div class="field-row" style="margin-top:.8rem">
       <div class="field"><label for="tj-nlat">Reading-place Lat °N</label><input id="tj-nlat" type="number" step="0.0001" style="width:7rem"></div>
       <div class="field"><label for="tj-nlon">Reading-place Lon °E</label><input id="tj-nlon" type="number" step="0.0001" style="width:7rem"></div>
-      <button type="button" class="btn sm" id="tj-here">Use my location</button>
-      <span id="tj-here-status" class="small muted"></span>
+      <button type="button" class="btn-secondary sm" id="tj-here">Use my location</button>
+      <span id="tj-here-status" class="small muted" role="status" aria-live="polite"></span>
     </div>
     <div class="field-row" style="margin-top:.8rem">
       <button type="submit" class="btn">Read the trajectory</button>
-      <button type="button" class="btn sm" id="tj-copy">Copy shareable link</button>
-      <button type="button" class="btn sm" id="tj-print">Print</button>
-      <span id="tj-copy-status" class="small muted"></span>
+      <button type="button" class="btn-secondary sm" id="tj-copy">Copy shareable link</button>
+      <button type="button" class="btn-secondary sm" id="tj-print">Print</button>
+      <span id="tj-copy-status" class="small muted" role="status" aria-live="polite"></span>
     </div>
     <p class="small muted" style="margin:.5rem 0 0">The reading place defaults to the birth place. It is used only for
       the "best vs least advised right now" Picatrix election; nothing about your location leaves this page.</p>
   </form>
 
-  <p id="tj-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem"></p>
+  <p id="tj-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem" role="status" aria-live="polite"></p>
 
-  <section class="card" id="tj-natal-card"><h2 style="margin-top:0">1. Natal signatures <span class="small muted">— Lilly, Christian Astrology Bk I &amp; III</span></h2>
+  <section class="card panel" id="tj-natal-card" data-rail="Natal signatures"><h2 style="margin-top:0">1. Natal signatures <span class="small muted">— Lilly, Christian Astrology Bk I &amp; III</span></h2>
     <div id="tj-natal"></div></section>
 
-  <section class="card" id="tj-timeline-card"><h2 style="margin-top:0">2. The trajectory — annual profections <span class="small muted">— Bk III (time-lords)</span></h2>
+  <section class="card panel" id="tj-timeline-card" data-rail="The trajectory"><h2 style="margin-top:0">2. The trajectory — annual profections <span class="small muted">— Bk III (time-lords)</span></h2>
     <div id="tj-timeline"></div></section>
 
-  <section class="card" id="tj-directions-card"><h2 style="margin-top:0">3. Primary directions to the angles <span class="small muted">— Bk III (Naibod)</span></h2>
+  <section class="card panel" id="tj-directions-card" data-rail="Primary directions"><h2 style="margin-top:0">3. Primary directions to the angles <span class="small muted">— Bk III (Naibod)</span></h2>
     <div id="tj-directions"></div></section>
 
-  <section class="card" id="tj-year-card"><h2 style="margin-top:0">4. This year — Lord of the Year &amp; solar return <span class="small muted">— Bk III</span></h2>
+  <section class="card panel" id="tj-year-card" data-rail="This year"><h2 style="margin-top:0">4. This year — Lord of the Year &amp; solar return <span class="small muted">— Bk III</span></h2>
     <div id="tj-year"></div></section>
 
-  <section class="card" id="tj-picatrix-card"><h2 style="margin-top:0">5. Your Picatrix magic (personalised) <span class="small muted">— The Picatrix (Ghayat al-Hakim)</span></h2>
+  <section class="card panel" id="tj-picatrix-card" data-rail="Your Picatrix magic"><h2 style="margin-top:0">5. Your Picatrix magic (personalised) <span class="small muted">— The Picatrix (Ghayat al-Hakim)</span></h2>
     <div id="tj-picatrix"></div></section>
 
   <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
@@ -96,7 +96,9 @@
   import { mountChrome } from '../assets/js/app/shared.js';
   mountChrome('trajectory');
   import { initTrajectory } from '../assets/js/app/trajectory.js';
+  import { mountRail } from '../assets/js/app/rail.js';
   initTrajectory();
+  mountRail({ label: 'On this life' });
 </script>
 </body>
 </html>

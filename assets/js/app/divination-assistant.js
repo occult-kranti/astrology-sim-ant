@@ -131,7 +131,7 @@ function render() {
     <p class="small muted" style="margin:.1rem 0 .6rem">${cp('interpretHint', `First <b>cast above</b>; the button sends the <b>whole computed
       ${esc(subjectWord())} as data</b> so the model reads the real figures. Each reply has a <b>⤓ save</b> link.`)}</p>
 
-    <div id="dv-asst-log" class="small" style="max-height:24rem;overflow:auto;border:1px solid #2a3350;border-radius:.4rem;padding:.6rem;background:#0c0f1a"></div>
+    <div id="dv-asst-log" class="chat" style="max-height:24rem;overflow:auto;border:1px solid #2a3350;padding:.7rem"></div>
     <div class="field-row" style="margin-top:.5rem;gap:.4rem">
       <textarea id="dv-asst-input" rows="2" placeholder="${esc(cp('placeholder', `Ask about this ${subjectWord()}… (e.g. “what does the Judge mean here?”)`))}" style="flex:1 1 320px;min-width:240px"></textarea>
       <button type="button" class="btn" id="dv-asst-send">Send</button>
@@ -188,12 +188,12 @@ function refreshPreview() {
 function appendMsg(role, text) {
   const log = el('dv-asst-log');
   const turn = document.createElement('div');
-  turn.className = `wb-chat-turn ${role === 'user' ? 'wb-chat-user' : 'wb-chat-bot'}`;
+  turn.className = `chat-turn ${role === 'user' ? 'chat-user' : 'chat-bot'}`;
   const label = document.createElement('div');
-  label.className = 'wb-chat-role';
+  label.className = 'chat-role';
   label.innerHTML = `<span aria-hidden="true">${role === 'user' ? '🜨' : '✶'}</span> ${role === 'user' ? 'You' : cp('botLabel', provName() === 'anthropic' ? 'Claude' : 'The diviner')}`;
   const body = document.createElement('div');
-  body.className = 'wb-chat-body'; body.textContent = text;
+  body.className = 'chat-body'; body.textContent = text;
   turn.appendChild(label); turn.appendChild(body);
   log.appendChild(turn); log.scrollTop = log.scrollHeight;
   return body;
@@ -202,9 +202,9 @@ const scrollLog = () => { const l = el('dv-asst-log'); if (l) l.scrollTop = l.sc
 
 function addSaveLink(bodyEl, text, name) {
   if (!bodyEl || !text) return;
-  const turn = bodyEl.closest('.wb-chat-turn') || bodyEl.parentElement; if (!turn) return;
+  const turn = bodyEl.closest('.chat-turn') || bodyEl.parentElement; if (!turn) return;
   const a = document.createElement('a');
-  a.href = '#'; a.className = 'wb-chat-save'; a.style.display = 'inline-block'; a.style.marginTop = '.4rem';
+  a.href = '#'; a.className = 'chat-save'; a.style.display = 'inline-block'; a.style.marginTop = '.4rem';
   a.textContent = '⤓ save this reply';
   a.addEventListener('click', e => { e.preventDefault(); downloadText(text, `${api.kind}-${name || 'reply'}.md`, 'text/markdown;charset=utf-8'); });
   turn.appendChild(a);

@@ -84,6 +84,11 @@ export function initRunes() {
   if (shareBtn) shareBtn.addEventListener('click', () => copyShareLink($('rn-share-status'), shareState()));
   if (mdBtn) mdBtn.addEventListener('click', () => downloadText(toMarkdown(), 'runes-reading.md', 'text/markdown;charset=utf-8'));
 
+  // "Reveal instantly" skip affordance: drop the staged flag so every stave snaps
+  // to its final state (the DS2 .stage-figure default is opacity 1).
+  const revealBtn = $('rn-reveal');
+  if (revealBtn) revealBtn.addEventListener('click', () => { const s = $('rn-stage'); if (s) s.classList.remove('is-staged'); });
+
   // the AI diviner panel: kind 'runes' (buildRunesContext/…InterpretPrompt/…DataBlock
   // wired in core/llm-context.js + app/divination-assistant.js). Mount only if the
   // page provides the placeholder.
@@ -185,8 +190,14 @@ function explainChip(text) { return `<button type="button" class="btn sm rn-expl
 
 function render() {
   $('rn-method-note').innerHTML = methodNoteHtml(reading.method);
-  $('rn-cards').innerHTML = reading.staves.map(staveCard).join('');
+  $('rn-cards').innerHTML = reading.staves.map((s, i) => staveCard(s, i)).join('');
   $('rn-out').innerHTML = outHtml();
+  // arm the staged reveal (idempotent; DS2 CSS is instant under reduced-motion)
+  // and announce the drawn staves on the live region.
+  const stage = $('rn-stage');
+  if (stage) stage.classList.add('is-staged');
+  const sv = $('rn-stage-verdict');
+  if (sv) sv.textContent = `${reading.method.label}: ${reading.staves.map(s => `${s.char} ${s.name}`).join(' · ')}.`;
   try { autolinkResultPanels(['rn-out']); } catch { /* non-fatal */ }
 }
 
@@ -200,7 +211,7 @@ function methodNoteHtml(m) {
   return `<p class="small muted">${esc(reading.methodNote)}</p>`;
 }
 
-function staveCard(s) {
+function staveCard(s, si = null) {
   const aett = AETTIR.find(a => a.num === s.aett);
   const attested = [`OE ${esc(s.attestedNames.oe)}`, s.attestedNames.no ? `ON ${esc(s.attestedNames.no)}` : null].filter(Boolean).join(' · ');
   const poems = [
@@ -215,7 +226,9 @@ function staveCard(s) {
   const variants = s.displayVariants
     ? `<div class="small muted rn-sub">Display variant: ${s.displayVariants.map(v => esc(v.char)).join(' ')} <span title="${esc(s.variantNote)}" style="cursor:help">ⓘ</span></div>` : '';
   const chipText = `Explain the Elder Futhark rune ${s.name} (${s.char}, transliteration ${s.translit}) drawn in the ${s.positionLabel} position of this cast — its attested rune-poem stanzas and what the modern oracle reads in it. Describe as history, never predict.`;
-  return `<div class="rn-card">
+  const stageCls = si == null ? '' : ' stage-figure';
+  const stageAttr = si == null ? '' : ` style="--stage-i:${si}"`;
+  return `<div class="rn-card${stageCls}"${stageAttr}>
     <div class="rn-card-head">
       <div class="rn-char" aria-hidden="true">${s.char}</div>
       <div>

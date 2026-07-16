@@ -50,8 +50,14 @@ function figureDots(f) {
   return `<div class="geo-dots" aria-hidden="true">${f.rows.map(r =>
     `<div class="geo-row">${r === 2 ? '<i class="geo-dot"></i><i class="geo-dot"></i>' : '<i class="geo-dot"></i>'}</div>`).join('')}</div>`;
 }
-function figureCard(f, label, extra = '') {
-  return `<div class="geo-figure geo-${esc(f.nature)}">
+// The shield is the page's ritual moment: each figure carries a `stage-figure`
+// class + a `--stage-i` index so the DS2 casting-stage reveals them one by one in
+// DERIVATION order (Mothers→Daughters→Nieces→Witnesses→Judge). `si` is that index
+// (null = no staging); `cls` marks the Judge for its landing pulse.
+function figureCard(f, label, extra = '', si = null, cls = '') {
+  const stageCls = si == null ? '' : ` stage-figure${cls ? ' ' + cls : ''}`;
+  const stageAttr = si == null ? '' : ` style="--stage-i:${si}"`;
+  return `<div class="geo-figure geo-${esc(f.nature)}${stageCls}"${stageAttr}>
     ${label ? `<div class="geo-slot">${esc(label)}</div>` : ''}
     ${figureDots(f)}
     <div class="geo-fname">${esc(f.english)}<br><span class="muted small">${esc(f.latin)} · ${esc(f.points)}pt</span></div>
@@ -72,6 +78,11 @@ export function initGeomancy() {
   $('geo-form').addEventListener('submit', e => { e.preventDefault(); castRandom(); });
   $('geo-topic').addEventListener('change', () => { if (shield) recompute(); });
   $('geo-manual-read').addEventListener('click', () => castManual());
+
+  // "Reveal instantly" skip affordance: drop the staged flag so every figure
+  // snaps to its final state (the DS2 .stage-figure default is opacity 1).
+  const revealBtn = $('geo-reveal');
+  if (revealBtn) revealBtn.addEventListener('click', () => { const s = $('geo-stage'); if (s) s.classList.remove('is-staged'); });
 
   // delegated per-figure explain
   document.addEventListener('click', e => {
@@ -174,18 +185,25 @@ function render() {
   // the shield tiers
   $('geo-shield').innerHTML = `
     <div class="geo-tier"><h3>The four Mothers <span class="muted small">(struck at random)</span></h3>
-      <div class="geo-row-figs">${shield.mothers.map((f, i) => figureCard(f, `Mother ${i + 1}`)).join('')}</div></div>
+      <div class="geo-row-figs">${shield.mothers.map((f, i) => figureCard(f, `Mother ${i + 1}`, '', i)).join('')}</div></div>
     <div class="geo-tier"><h3>The four Daughters <span class="muted small">(by transposition)</span></h3>
-      <div class="geo-row-figs">${shield.daughters.map((f, i) => figureCard(f, `Daughter ${i + 1}`)).join('')}</div></div>
+      <div class="geo-row-figs">${shield.daughters.map((f, i) => figureCard(f, `Daughter ${i + 1}`, '', 4 + i)).join('')}</div></div>
     <div class="geo-tier"><h3>The four Nieces <span class="muted small">(mother+mother, daughter+daughter)</span></h3>
-      <div class="geo-row-figs">${shield.nieces.map((f, i) => figureCard(f, `Niece ${i + 1}`)).join('')}</div></div>
+      <div class="geo-row-figs">${shield.nieces.map((f, i) => figureCard(f, `Niece ${i + 1}`, '', 8 + i)).join('')}</div></div>
     <div class="geo-tier"><h3>Witnesses, Judge &amp; Reconciler</h3>
       <div class="geo-row-figs geo-verdict-figs">
-        ${figureCard(shield.witnesses.right, 'Right Witness', explainChip('Explain the Right Witness ' + shield.witnesses.right.english + ' (the querent’s side / the past) in this cast — what the tradition read here. Describe, never predict.'))}
-        ${figureCard(shield.witnesses.left, 'Left Witness', explainChip('Explain the Left Witness ' + shield.witnesses.left.english + ' (the quesited’s side / what follows) in this cast — what the tradition read here. Describe, never predict.'))}
-        ${figureCard(shield.judge, 'THE JUDGE', explainChip('Explain the Judge of this shield, ' + shield.judge.english + ' (' + shield.judge.latin + '), as the figure that passes sentence on the question — how the tradition read a Judge of this nature. Ground only in the computed shield; describe, never predict.'))}
-        ${figureCard(shield.reconciler, 'Reconciler')}
+        ${figureCard(shield.witnesses.right, 'Right Witness', explainChip('Explain the Right Witness ' + shield.witnesses.right.english + ' (the querent’s side / the past) in this cast — what the tradition read here. Describe, never predict.'), 12)}
+        ${figureCard(shield.witnesses.left, 'Left Witness', explainChip('Explain the Left Witness ' + shield.witnesses.left.english + ' (the quesited’s side / what follows) in this cast — what the tradition read here. Describe, never predict.'), 13)}
+        ${figureCard(shield.judge, 'THE JUDGE', explainChip('Explain the Judge of this shield, ' + shield.judge.english + ' (' + shield.judge.latin + '), as the figure that passes sentence on the question — how the tradition read a Judge of this nature. Ground only in the computed shield; describe, never predict.'), 14, 'stage-judge')}
+        ${figureCard(shield.reconciler, 'Reconciler', '', 15)}
       </div></div>`;
+
+  // arm the staged reveal (idempotent; DS2 CSS short-circuits to instant under
+  // prefers-reduced-motion) and announce the Judge on the live region.
+  const stage = $('geo-stage');
+  if (stage) stage.classList.add('is-staged');
+  const sv = $('geo-stage-verdict');
+  if (sv) sv.textContent = `Judge: ${shield.judge.english} (${shield.judge.latin}) — the tradition reads the matter ${j.tone}.`;
 
   // judgement
   $('geo-out').innerHTML =

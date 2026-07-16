@@ -76,7 +76,7 @@
       const faces = bySign[s].slice().sort((a, b) => a.decan - b.decan);
       const sign = faces[0].sign;
       html += `<section><h3>${esc(SIGN_GLYPHS[s])} ${esc(sign)}</h3>`
-        + `<table class="data"><thead><tr>`
+        + `<div class="table-scroll"><table class="data"><thead><tr>`
         + `<th class="l" scope="col">Face</th>`
         + `<th class="l" scope="col">Ruler</th>`
         + `<th class="l" scope="col">Image (Agrippa II.37)</th>`
@@ -95,7 +95,7 @@
           + `<td class="l">${esc(f.keywords)}</td>`
           + `</tr>`;
       }
-      html += `</tbody></table></section>`;
+      html += `</tbody></table></div></section>`;
     }
     root.innerHTML = html;
   })();

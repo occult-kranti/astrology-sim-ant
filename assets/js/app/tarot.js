@@ -50,6 +50,11 @@ export function initTarot() {
   $('tarot-reversals').addEventListener('change', () => { reversalsOn = $('tarot-reversals').checked; });
   $('tarot-spread-desc').textContent = SPREADS.three.description;
 
+  // "Reveal instantly" skip affordance: drop the staged flag so every card snaps
+  // to its final state (the DS2 .stage-figure default is opacity 1).
+  const revealBtn = $('tarot-reveal');
+  if (revealBtn) revealBtn.addEventListener('click', () => { const s = $('tarot-stage'); if (s) s.classList.remove('is-staged'); });
+
   document.addEventListener('click', e => {
     const chip = e.target.closest && e.target.closest('.tarot-explain');
     if (chip && divAssistant) divAssistant.prefill(chip.getAttribute('data-q'));
@@ -149,13 +154,24 @@ function render() {
   const r = reading;
   // the laid-out board
   const tall = spreadKey === 'celticCross' ? 30 : (spreadKey === 'horseshoe' ? 22 : 17);
+  // Each slot is absolutely positioned (its own translate centres it); the card +
+  // label ride an inner `.stage-figure` so the DS2 casting-stage can reveal them in
+  // reading order (`--stage-i` = position index) without disturbing that centring.
   const board = r.cards.map(c => {
     const style = `style="position:absolute; left:${(c.x * 100).toFixed(1)}%; top:${(c.y * 100).toFixed(1)}%; transform:translate(-50%,-50%);"`;
     return `<div class="tarot-slot" ${style}>
-      <div class="tarot-pos small muted">${esc(c.n)}. ${esc(c.position)}</div>
-      ${cardFace(c, { rotated: c.rotated })}</div>`;
+      <div class="stage-figure" style="--stage-i:${c.n - 1}">
+        <div class="tarot-pos small muted">${esc(c.n)}. ${esc(c.position)}</div>
+        ${cardFace(c, { rotated: c.rotated })}</div></div>`;
   }).join('');
   $('tarot-board').innerHTML = `<div class="tarot-board" style="height:${tall}rem">${board}</div>`;
+
+  // arm the staged reveal (idempotent; DS2 CSS is instant under reduced-motion)
+  // and announce the keynote card on the live region.
+  const stage = $('tarot-stage');
+  if (stage) stage.classList.add('is-staged');
+  const sv = $('tarot-stage-verdict');
+  if (sv && r.cards[0]) sv.textContent = `${r.spread.name} laid — ${r.cards[0].position}: ${r.cards[0].card.name}${r.cards[0].reversed ? ' (reversed)' : ''}.`;
 
   // per-position reading
   $('tarot-out').innerHTML = `

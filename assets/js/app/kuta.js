@@ -103,6 +103,10 @@ function renderAshtakuta(ak) {
       ${nadiExempt.exempt.listB ? '<span class="verdict amber">a star here IS on list B</span>' : ''}.
       <br><span class="small muted">${esc(nadiExempt.exempt.note)}</span></div>` : '';
   $('ku-ashtakuta').innerHTML = `
+    <div class="stat-row"><div class="stat">
+      <div class="stat-num">${ak.total} / ${ak.max}</div>
+      <div class="stat-label">Aṣṭakūṭa guṇa — what the tradition computes (not a compatibility measure)</div>
+    </div></div>
     <p class="small">The eight kūṭas (guṇas) summed to 36. Rows carrying <b>⚑</b> are values the sources dispute — hover
       for the disagreement; the contested cells (varṇa · graha-maitrī · gaṇa) follow the <b>variant set</b> chosen above
       (currently <b>${esc(ak.variantSet)}</b>). Boy = groom, girl = bride.</p>
@@ -137,6 +141,10 @@ function renderPorutham(po) {
       in the strict Tamil rule a rajju (or vedhā) match rejects the pairing regardless of the other poruthams. Recorded
       as the tradition's rule, never as a statement about people.</p>` : '';
   $('ku-porutham').innerHTML = `
+    <div class="stat-row"><div class="stat">
+      <div class="stat-num">${po.passCount} / ${po.total}</div>
+      <div class="stat-label">Porutham present (South) — the tradition's tally, never advice</div>
+    </div></div>
     <p class="small">The ten South-Indian poruthams as pass / marginal / fail, counted <b>girl → boy</b> per the Tamil
       convention. <b>${po.passCount}</b> of ${po.total} present. Rajju and vedhā are hard vetoes.</p>
     ${vetoBanner}

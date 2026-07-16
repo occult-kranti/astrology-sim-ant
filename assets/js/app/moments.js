@@ -146,7 +146,7 @@ function renderScan(res, off, ms) {
       ${esc(String(m.stepMinutes))}-min steps)</span>. <b>${res.rows.length}</b> steps scanned,
       <b>${shown.length}</b> state-changes shown <span class="muted">(runs where nothing changes are compressed;
       a row holds until the next)</span> — computed in ${ms.toFixed(0)} ms.</p>
-    <div style="overflow-x:auto"><table class="data">
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Moment timeline (scrollable)"><table class="data">
       <thead><tr><th class="l">From (local)</th><th>Lilly election</th><th>Planetary hour</th>
         <th class="l">Muhūrta</th><th>Kāla</th><th class="l">Pañcāṅga screens</th></tr></thead>
       <tbody>${body}</tbody>

@@ -159,14 +159,14 @@ function renderSnapshot(snap) {
     <td class="l">${G(c.transitingBody)} ${esc(c.transitingBody)}${c.retrograde ? ' ℞' : ''}</td>
     <td class="l">${esc(c.glyph)} ${esc(c.aspect)}</td>
     <td class="l">${G(c.natalPoint)} ${esc(nice(c.natalPoint))}</td>
-    <td class="l">${c.orb.toFixed(2)}°</td>
+    <td class="num">${c.orb.toFixed(2)}°</td>
     <td>${c.applying ? '<span class="verdict amber">applying</span>' : '<span class="verdict green">separating</span>'}</td>
     <td class="l small">${c.timeLordActivated ? `<b>◀ ${esc(c.timeLordReason)}</b>` : ''}</td></tr>`).join('');
   $('tx-snapshot').innerHTML = `
     <p class="small">Transiting aspects <b>in orb</b> at <b>${esc(snap.dateISO.slice(0, 16).replace('T', ' '))} UT</b>
       ${snap.profection ? `— profection age ${snap.profection.age}, Lord of the Year <b>${G(snap.profection.lordOfYear)} ${esc(snap.profection.lordOfYear)}</b>` : ''}.
       <span class="muted">Orbs are Lilly's moieties; applying vs separating is the state an exact-hit list cannot show.</span></p>
-    <table class="data"><thead><tr><th class="l">Transiting</th><th class="l">Aspect</th><th class="l">Natal point</th><th class="l">Orb</th><th>Phase</th><th class="l">Time-lord</th></tr></thead>
+    <table class="data"><thead><tr><th class="l">Transiting</th><th class="l">Aspect</th><th class="l">Natal point</th><th class="num">Orb</th><th>Phase</th><th class="l">Time-lord</th></tr></thead>
       <tbody>${rows}</tbody></table>
     <p class="small muted">${esc(snap.note)}</p>`;
 }
@@ -186,8 +186,9 @@ function renderTimeline(tl) {
     <p class="small">${tl.events.length} exact perfections, earliest first. <b>℞</b> = the transiting planet is retrograde at the hit;
       a retrograde loop over a natal point gives the classic <b>1-or-3 pass</b> structure. Highlighted rows are
       <b>time-lord activated</b> (a transit BY the Lord of the Year, or TO the Lord of the Year / the profected sign).</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Exact-hit transit timeline (scrollable)">
     <table class="data"><thead><tr><th class="l">Exact (UT)</th><th class="l">Transiting</th><th class="l">Aspect</th><th class="l">Natal point</th><th class="l">At</th><th class="l">Pass</th><th class="l">Time-lord</th></tr></thead>
-      <tbody>${rows}</tbody></table>`;
+      <tbody>${rows}</tbody></table></div>`;
 }
 
 // --- stations & ingresses (the "Dates + Degrees" context) --------------------

@@ -43,8 +43,17 @@ const GW_CSS = `
 .gw-legend { display:grid; gap:.6rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
 .gw-author { margin:2rem 0; }
 .gw-author > h2 .gw-glyph { color:var(--gold); margin-right:.35rem; }
-.gw-filter { margin:.8rem 0; }
-.gw-filter input { width:100%; max-width:420px; font:inherit; padding:.45rem .6rem; border:1px solid var(--rule); border-radius:7px; background:#fff; color:var(--ink); }
+/* Author-drill layout: content column + a sticky .workrail (DS2) on the right at
+   desktop widths; the rail is a desktop enhancement (hidden on narrow screens). */
+.gw-main { min-width:0; }
+.gw-layout .workrail { display:none; }
+.gw-layout .workrail .wr-author > a { border-left:0; padding-left:0; color:var(--ink); font-weight:700; }
+.gw-layout .workrail ol ol { padding-left:.7rem; margin:.15rem 0 .5rem; }
+.gw-layout .workrail ol ol a { font-size:.82rem; }
+@media (min-width:1100px) {
+  .gw-layout { display:grid; grid-template-columns:minmax(0,1fr) 14rem; gap:2rem; align-items:start; }
+  .gw-layout .workrail { display:block; }
+}
 details.gw-work { border:1px solid var(--rule); border-radius:10px; background:var(--card); margin:.7rem 0; padding:0 .9rem; }
 details.gw-work[open] { padding-bottom:.9rem; }
 details.gw-work > summary { cursor:pointer; padding:.75rem .1rem; font-family:var(--serif); font-size:1.08rem; font-weight:700; color:var(--link); list-style:none; }
@@ -194,15 +203,15 @@ function renderIndex(root) {
 
   <h3>What we quote, and what we only cite</h3>
   <div class="gw-legend">
-    <div class="card"><span class="chip done">PD · quote-safe</span>
+    <div class="card"><span class="badge badge--ok">PD · quote-safe</span>
       <p class="small" style="margin:.4rem 0 0">The cited edition is <b>US public domain</b> (verified under the 95-year
         rule + renewal evidence). Short quotation is permitted, always edition-cited — e.g. Hall’s <i>Secret Teachings</i>
         (1928), Mead’s Hermetica (1906), the 1651 Agrippa, Waite’s Lévi (1896), Newton’s Emerald Tablet.</p></div>
-    <div class="card"><span class="chip" style="background:#f6dcd6;color:#8a2f1c">Cite-only</span>
+    <div class="card"><span class="badge badge--bad">Cite-only</span>
       <p class="small" style="margin:.4rem 0 0">The standard edition is <b>in copyright</b>: described and page-cited,
         <b>never quoted</b>, no images — Crowley’s <i>Book of Thoth</i> (1944, PD 2040), Regardie’s <i>Golden Dawn</i>
         (renewal unverified), Josten’s Monas, Copenhaver’s Hermetica, Kaske &amp; Clark’s Ficino.</p></div>
-    <div class="card"><span class="chip" style="background:#f3d2b0;color:#7a3d06">Contested / spurious</span>
+    <div class="card"><span class="badge badge--con">Contested / spurious</span>
       <p class="small" style="margin:.4rem 0 0">Legendary, fringe or misattributed material is <b>flagged in-data and
         never resolved</b> — Hall’s Atlantis (his claim), the Corpus Hermeticum <b>XV</b> numbering gap (shown, not
         renumbered), the <b>spurious Fourth Book</b> of Agrippa.</p></div>
@@ -223,15 +232,41 @@ function renderIndex(root) {
 // ---------------------------------------------------------------------------
 //  Per-author page + the single client-side filter
 // ---------------------------------------------------------------------------
+// The .workrail author-drill (plan §5.2): jump-links to every author and work on
+// the page, sticky beside the reading column at desktop widths.
+function workRail(authors) {
+  const items = authors.map(a => {
+    const works = a.works.map(w =>
+      `<li><a href="#gw-w-${esc(slug(w.id))}">${esc(w.title)}</a></li>`).join('');
+    return `<li class="wr-author"><a href="#gw-a-${esc(a.id)}">${esc(a.name)}</a><ol>${works}</ol></li>`;
+  }).join('');
+  return `<nav class="workrail" aria-label="The works on this page">
+    <p class="wr-title">On this page</p><ol>${items}</ol></nav>`;
+}
+
 function renderAuthors(root, ids) {
   const authors = ids.map(id => GREAT_WORKS.authors.find(a => a.id === id)).filter(Boolean);
-  const filter = `<div class="gw-filter">
-    <label for="gw-search" class="small muted">Filter chapters by title or subject</label><br>
-    <input id="gw-search" type="search" placeholder="e.g. tarot, sephiroth, decan, geomancy, alchemy…" autocomplete="off">
-    <span id="gw-count" class="small muted" role="status" aria-live="polite" style="margin-left:.5rem"></span>
+  const filter = `<div class="filterbar">
+    <label for="gw-search" class="small muted" style="flex:0 0 auto">Filter chapters by title or subject</label>
+    <input id="gw-search" class="filter-input" type="search" placeholder="e.g. tarot, sephiroth, decan, geomancy, alchemy…" autocomplete="off">
+    <span id="gw-count" class="filter-count" role="status" aria-live="polite"></span>
   </div>`;
-  root.innerHTML = filter + authors.map(authorSection).join('');
+  root.innerHTML = `<div class="gw-layout">
+    <div class="gw-main">${filter}${authors.map(authorSection).join('')}</div>
+    ${workRail(authors)}
+  </div>`;
   wireFilter(root);
+  wireRail(root);
+}
+
+// Clicking a work in the rail expands its chapter table on arrival.
+function wireRail(root) {
+  root.querySelectorAll('.workrail a[href^="#gw-w-"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const el = document.getElementById(link.getAttribute('href').slice(1));
+      if (el && el.tagName === 'DETAILS') el.open = true;
+    });
+  });
 }
 
 function wireFilter(root) {

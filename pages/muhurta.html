@@ -8,20 +8,20 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
 <style>
-  .mu-q { padding:.08rem .45rem; border-radius:.4rem; font-size:.75rem; white-space:nowrap; border:1px solid var(--rule); }
-  .mu-q-ausp { color:var(--benefic); border-color:var(--benefic); }
-  .mu-q-inausp { color:var(--malefic); border-color:var(--malefic); }
-  .mu-q-mixed { color:var(--gold); border-color:var(--gold); }
-  .mu-kala { font-size:.7rem; border:1px solid var(--malefic); color:var(--malefic); border-radius:.4rem;
-    padding:.05rem .35rem; margin-right:.25rem; white-space:nowrap; display:inline-block; }
+  /* Quality / kāla / verdict chips use the site-wide .badge system (set in JS). */
   .mu-star td { background:var(--card); outline:1px solid var(--gold); }
-  .mu-flag { cursor:help; color:var(--gold); }
+  .mu-flag { cursor:help; color:var(--ep-disp, var(--gold)); }
 </style>
 </head>
 <body>
 <main class="wrap">
   <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Muhūrta</p>
   <h1>Muhūrta — the Indian election of the moment</h1>
+  <div class="ep-strip">
+    <a class="badge badge--ok" href="about/index.html">Astronomy — verified</a>
+    <a class="badge badge--doc" href="about/index.html">Doctrine — historical</a>
+    <a class="badge badge--bad" href="about/index.html">Predictive validity — none demonstrated</a>
+  </div>
   <p class="lede">Muhūrta is Indian astrology's <b>electional</b> art — the doctrine of <em>choosing the moment</em>.
     The day from sunrise to the next sunrise is cut into <b>30 muhūrtas</b> (15 by day, 15 by night, each ≈48
     minutes), each named and graded by the tradition — from inauspicious <b>Rudra</b> at sunrise to <b>Samudra</b>
@@ -55,13 +55,13 @@
     </div>
   </form>
 
-  <section class="card"><h2 style="margin-top:0">The day at a glance</h2>
+  <section class="card panel"><h2 style="margin-top:0">The day at a glance</h2>
     <div id="mu-summary"><p class="muted small">Pick a moment and place above.</p></div></section>
 
-  <section class="card"><h2 style="margin-top:0">The thirty muhūrtas <span class="small muted">(the day's timeline, kālas overlaid)</span></h2>
+  <section class="card panel"><h2 style="margin-top:0">The thirty muhūrtas <span class="small muted">(the day's timeline, kālas overlaid)</span></h2>
     <div id="mu-timeline"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">The pañcāṅga screens <span class="small muted">(at the chosen moment)</span></h2>
+  <section class="card panel"><h2 style="margin-top:0">The pañcāṅga screens <span class="small muted">(at the chosen moment)</span></h2>
     <div id="mu-screens"></div></section>
 
   <div class="callout"><span class="label">Two traditions, two rulebooks, same sky</span>

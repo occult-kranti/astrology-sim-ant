@@ -116,8 +116,8 @@ function renderReturn(r) {
       in the <b>${ORD(mu.house)} house</b> of the annual chart; munthā lord ${G(mu.lord)} ${esc(mu.lord)}.
       <span class="muted">It progresses ≈2.5°/month within the year (house extent ÷ 12 — Tājikamuktāvali, as quoted
       by Balabhadra).</span></p>
-    <table class="data"><thead><tr><th class="l">Graha</th><th class="l">Sidereal position</th><th class="l">House</th></tr></thead>
-      <tbody>${rows}</tbody></table>
+    <div class="table-scroll"><table class="data"><thead><tr><th class="l">Graha</th><th class="l">Sidereal position</th><th class="l">House</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
     <p class="small muted">${esc(vp.cite)} ${esc(mu.cite)}</p>`;
 }
 
@@ -130,7 +130,7 @@ function renderYearLord(r) {
       <td class="l">${G(c.planet)} ${esc(c.planet)} <span class="muted small">in ${esc(c.planetSign)}</span></td>
       <td class="l">${c.aspectsLagna ? `${esc(c.aspect.name)} <span class="muted small">(strength ${c.aspect.strength})</span>` : '<span class="muted">no aspect</span>'}</td>
       <td class="l">${c.strengthRatio != null ? `${c.strengthRatio}× required` : '—'}</td>
-      <td class="l">${c.chosen ? '✓ varṣeśvara' : ''}</td>
+      <td class="l">${c.chosen ? '<span class="badge badge--ok">✓ varṣeśvara</span>' : ''}</td>
     </tr>`).join('');
   const dispute = !y.viaDispute ? '' : `
     <div class="callout science" style="margin-top:.6rem"><span class="label">The no-aspect dispute — shown, not silently resolved</span>
@@ -142,9 +142,9 @@ function renderYearLord(r) {
     <p class="small">"${esc(y.aspectPrecondition.quote)}" — ${esc(y.aspectPrecondition.by)}. The aspect to the annual
       lagna is the <b>precondition</b>; ties run down the Tājikakaustubha chain:
       ${y.tieChain.chain.map(esc).join(' → ')}.</p>
-    <table class="data"><thead><tr><th class="l">Candidate (office)</th><th class="l">Planet</th>
+    <div class="table-scroll"><table class="data"><thead><tr><th class="l">Candidate (office)</th><th class="l">Planet</th>
       <th class="l">Aspects the annual lagna?</th><th class="l">Ṣaḍbala strength</th><th class="l">Chosen</th></tr></thead>
-      <tbody>${rows}</tbody></table>
+      <tbody>${rows}</tbody></table></div>
     <p class="small"><b>Varṣeśvara: ${G(y.chosen.planet)} ${esc(y.chosen.planet)}</b>
       (${y.chosen.roles.map(esc).join(' + ')}) — selected by: ${esc(y.tieBreakUsed)}.</p>
     ${dispute}
@@ -165,7 +165,7 @@ function renderAspects(r) {
       <td class="l">${G(p.a)} ${esc(p.a)} – ${G(p.b)} ${esc(p.b)}</td>
       <td class="l">${esc(p.aspect.name)}${p.aspect.friendly === true ? ' <span class="muted small">friendly</span>' : p.aspect.friendly === false ? ' <span class="muted small">inimical</span>' : ''}</td>
       <td class="l">${G(p.faster)} ${esc(p.faster)}</td>
-      <td class="l">${p.gap.toFixed(2)}°</td>
+      <td class="num">${p.gap.toFixed(2)}°</td>
       <td class="l small">${p.withinOwnOrbs ? 'own orbs' : p.withinTwelve ? '≤12°' : '—'}${p.withinHalfSum ? '' : ' <span class="muted">(fails half-sum)</span>'}</td>
       <td class="l">${verdict}${p.bhavishyat ? ' <span class="muted small" title="the swifter planet in the last degree of its sign, about to apply across the boundary — bhaviṣyat (delayed result)">▸bhaviṣyat</span>' : ''}</td>
     </tr>`;
@@ -190,9 +190,9 @@ function renderAspects(r) {
       Combining rule — the text's own: <i>"within their own orbs of light, or within twelve degrees"</i>; the modern
       half-sum convention is unverified in the sources (though mathematically identical to this site's Lilly moiety
       rule) and is shown only as a comparison flag.</p>
-    <table class="data"><thead><tr><th class="l">Pair</th><th class="l">Tājika aspect (sign-counted)</th>
-      <th class="l">Swifter</th><th class="l">Gap (deg-in-sign)</th><th class="l">Within orb</th><th class="l">Verdict</th></tr></thead>
-      <tbody>${rows}</tbody></table>
+    <div class="table-scroll"><table class="data"><thead><tr><th class="l">Pair</th><th class="l">Tājika aspect (sign-counted)</th>
+      <th class="l">Swifter</th><th class="num">Gap (deg-in-sign)</th><th class="l">Within orb</th><th class="l">Verdict</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
     <p class="small muted">No Tājika aspect (2/6/8/12 sign relations): ${noAspect || '—'}.
       <b>†</b> = past exactness by under 1° — <i>still itthaśāla</i> per "the ancient commentator" (Hāyanaratna ch.3 §4);
       for that sliver the Western applying flag of this site's <code>aspects.js</code> reads separating. Both verdicts
@@ -222,9 +222,9 @@ function renderSahams(r) {
       varṣa-praveśa — ${s.isDay ? 'day formulas in force' : 'minuend and subtrahend swapped where the text reverses'}).
       The between-check point is the Lagna except where the text says otherwise (Venus for Mitra; Sun/Moon for Gaurava).
       Annual-lagna lord for Sāmarthya: ${G(s.lagnaLord)} ${esc(s.lagnaLord)}.</p>
-    <table class="data"><thead><tr><th class="l">Saham</th><th class="l">Formula (as applied)</th>
+    <div class="table-scroll"><table class="data"><thead><tr><th class="l">Saham</th><th class="l">Formula (as applied)</th>
       <th class="l">Position (sidereal)</th><th class="l">House</th><th class="l">+30° correction</th></tr></thead>
-      <tbody>${rows}</tbody></table>
+      <tbody>${rows}</tbody></table></div>
     <div class="callout science" style="margin-top:.6rem"><span class="label">The +30° correction is contested inside the tradition</span>
       ${esc(s.correction.contested.visvanatha.note)}<br>
       <span class="small muted">${esc(s.correction.contested.visvanatha.cite)}</span></div>

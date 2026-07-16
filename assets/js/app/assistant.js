@@ -161,7 +161,7 @@ function render() {
       <div id="wb-asst-op-recent" class="small" style="margin-top:.35rem"></div>
     </fieldset>
 
-    <div id="wb-asst-log" class="small" style="max-height:24rem;overflow:auto;border:1px solid #2a3350;border-radius:.4rem;padding:.6rem;background:#0c0f1a"></div>
+    <div id="wb-asst-log" class="small chat" style="max-height:24rem;overflow:auto;border:1px solid #2a3350;border-radius:.4rem;padding:.6rem;background:#0c0f1a"></div>
     <div class="field-row" style="margin-top:.5rem;gap:.4rem">
       <textarea id="wb-asst-input" rows="2" placeholder="Ask about this reading… (e.g. “explain the chart-health verdict”)" style="flex:1 1 320px;min-width:240px"></textarea>
       <button type="button" class="btn" id="wb-asst-send">Send</button>
@@ -236,12 +236,12 @@ function refreshPreview() {
 function appendMsg(role, text) {
   const log = el('wb-asst-log');
   const turn = document.createElement('div');
-  turn.className = `wb-chat-turn ${role === 'user' ? 'wb-chat-user' : 'wb-chat-bot'}`;
+  turn.className = `wb-chat-turn chat-turn ${role === 'user' ? 'wb-chat-user chat-user' : 'wb-chat-bot chat-bot'}`;
   const label = document.createElement('div');
-  label.className = 'wb-chat-role';
+  label.className = 'wb-chat-role chat-role';
   label.innerHTML = `<span aria-hidden="true">${role === 'user' ? '🜨' : '✶'}</span> ${role === 'user' ? 'You' : provName() === 'anthropic' ? 'Claude' : 'AI'}`;
   const body = document.createElement('div');
-  body.className = 'wb-chat-body';
+  body.className = 'wb-chat-body chat-body';
   body.textContent = text;
   turn.appendChild(label); turn.appendChild(body);
   log.appendChild(turn); log.scrollTop = log.scrollHeight;
@@ -250,7 +250,7 @@ function appendMsg(role, text) {
 function appendToolNote(name, args, result) {
   const log = el('wb-asst-log');
   const div = document.createElement('div');
-  div.className = 'wb-chat-note';
+  div.className = 'wb-chat-note chat-note';
   const ok = !(result && result.error);
   div.innerHTML = `↳ ran <code>${esc(name)}</code>(${esc(JSON.stringify(args || {}))}) → ${ok ? 'computed' : 'error: ' + esc(result.error)}`;
   log.appendChild(div); log.scrollTop = log.scrollHeight;

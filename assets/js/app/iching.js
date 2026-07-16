@@ -36,13 +36,18 @@ const castThrows = () => Array.from({ length: 6 }, () => coin() + coin() + coin(
 // A figure (hexagram of 6 lines, or trigram of 3) drawn TOP line to BOTTOM.
 // Yang = one solid bar; yin = two bars with a gap. A changing line is marked.
 // Accepts a hexagram/trigram object (with .lines) or a raw lines array.
-function hexFigure(hexOrLines, changing) {
+// `stageStart` (null on the reference grids) turns on the casting-stage reveal:
+// each line carries `stage-figure` + a `--stage-i` keyed to its height from the
+// bottom, so the six lines BUILD BOTTOM-UP in the DS2 stage.
+function hexFigure(hexOrLines, changing, stageStart = null) {
   const lines = Array.isArray(hexOrLines) ? hexOrLines : hexOrLines.lines;
   const rows = lines.map((_, i) => i).reverse().map(i => {
     const yang = lines[i] === 1;
     const ch = changing && changing[i];
     const bar = yang ? '<span class="hx-bar"></span>' : '<span class="hx-bar hx-half"></span><span class="hx-gap"></span><span class="hx-bar hx-half"></span>';
-    return `<div class="hx-line${ch ? ' hx-changing' : ''}">${bar}${ch ? `<span class="hx-mark" aria-hidden="true">${yang ? '○' : '×'}</span>` : ''}</div>`;
+    const stageCls = stageStart == null ? '' : ' stage-figure';
+    const stageAttr = stageStart == null ? '' : ` style="--stage-i:${stageStart + i}"`;
+    return `<div class="hx-line${ch ? ' hx-changing' : ''}${stageCls}"${stageAttr}>${bar}${ch ? `<span class="hx-mark" aria-hidden="true">${yang ? '○' : '×'}</span>` : ''}</div>`;
   }).join('');
   return `<div class="hx-figure" aria-hidden="true">${rows}</div>`;
 }
@@ -54,6 +59,10 @@ export function initIching() {
   buildManualPad();
   $('ich-form').addEventListener('submit', e => { e.preventDefault(); castCoins(); });
   $('ich-manual-read').addEventListener('click', () => castManual());
+  // "Reveal instantly" skip affordance: drop the staged flag so every line snaps
+  // to its final state (the DS2 .stage-figure default is opacity 1).
+  const revealBtn = $('ich-reveal');
+  if (revealBtn) revealBtn.addEventListener('click', () => { const s = $('ich-stage'); if (s) s.classList.remove('is-staged'); });
   document.addEventListener('click', e => {
     const chip = e.target.closest && e.target.closest('.ich-explain');
     if (chip && divAssistant) divAssistant.prefill(chip.getAttribute('data-q'));
@@ -147,18 +156,25 @@ function render() {
     <div class="hx-pair">
       <div class="hx-col">
         <div class="small muted">Primary</div>
-        ${hexFigure(r.primary, r.changing)}
+        ${hexFigure(r.primary, r.changing, 0)}
         <div class="hx-name"><b>${r.primary.num}. ${esc(r.primary.name)}</b><br><span class="muted small">${esc(r.primary.pinyin)} · ${esc(r.trigrams.upper.name)} over ${esc(r.trigrams.lower.name)}</span></div>
         ${explainChip('Explain the primary hexagram ' + r.primary.num + '. ' + r.primary.name + ' (' + r.trigrams.upper.name + ' over ' + r.trigrams.lower.name + ') in this cast — its Judgment and Image and what situation the tradition reads in it. Describe as history, never predict.')}
       </div>
       ${r.relating ? `<div class="hx-arrow" aria-hidden="true">→</div>
       <div class="hx-col">
         <div class="small muted">Relating (where it tends)</div>
-        ${hexFigure(r.relating, null)}
+        ${hexFigure(r.relating, null, 6)}
         <div class="hx-name"><b>${r.relating.num}. ${esc(r.relating.name)}</b><br><span class="muted small">${esc(r.relating.pinyin)}</span></div>
         ${explainChip('Explain the relating hexagram ' + r.relating.num + '. ' + r.relating.name + ' as the direction this cast tends toward. Describe as history, never predict.')}
       </div>` : ''}
     </div>`;
+
+  // arm the staged reveal (idempotent; DS2 CSS is instant under reduced-motion)
+  // and announce the primary hexagram and where it tends on the live region.
+  const stage = $('ich-stage');
+  if (stage) stage.classList.add('is-staged');
+  const sv = $('ich-stage-verdict');
+  if (sv) sv.textContent = `Primary: ${r.primary.num}. ${r.primary.name}${r.moving.length ? ` — ${r.moving.length} moving line${r.moving.length > 1 ? 's' : ''}` : ' — no moving lines'}${r.relating ? `, tending to ${r.relating.num}. ${r.relating.name}` : ''}.`;
 
   $('ich-out').innerHTML = `
     <p style="font-size:1.05rem">${r.primary.num}. ${esc(r.primary.name)} <span class="muted">(${esc(r.primary.pinyin)})</span></p>

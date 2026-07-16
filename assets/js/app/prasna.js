@@ -31,9 +31,9 @@ function dmsInSign(absDeg, signIndex) {
 }
 const arcLabel = e => `${dmsInSign(e.fromDeg, e.signIndex)}–${dmsInSign(e.toDeg, e.signIndex)} ${e.sign}`;
 const sidLabel = lon => { const si = Math.floor(((lon % 360) + 360) % 360 / 30); return `${dmsInSign(((lon % 360) + 360) % 360, si)} ${['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'][si]}`; };
-const verdictSpan = l => l === 'for' || l === 'favourable' ? `<span class="verdict green">${l}</span>`
-  : l === 'against' || l === 'unfavourable' ? `<span class="verdict red">${l}</span>`
-  : `<span class="verdict amber">${l}</span>`;
+const verdictSpan = l => l === 'for' || l === 'favourable' ? `<span class="badge badge--ok">${l}</span>`
+  : l === 'against' || l === 'unfavourable' ? `<span class="badge badge--bad">${l}</span>`
+  : `<span class="badge badge--warn">${l}</span>`;
 
 // The last computed report, for the AI panel (wired separately). Subscribers
 // get pinged on every recompute.
@@ -160,8 +160,8 @@ function renderJudgement(j) {
       &nbsp;·&nbsp; <b>Quesited:</b> house ${j.quesitedHouse}, ${esc(j.quesited.name)} — ${esc(j.quesited.sign)} (${esc(j.quesited.sanskrit)}), lord ${esc(j.quesited.lord)}</p>
     <p>The testimonies lean ${verdictSpan(j.leaning)} — ${j.counts.for} for · ${j.counts.against} against · ${j.counts.neutral} neutral.
       <span class="small muted">A crude count of cited testimonies, not a prediction.</span></p>
-    <table class="data"><thead><tr><th class="l">Rule</th><th class="l">Testimony</th><th>Leaning</th><th class="l">Source</th></tr></thead>
-      <tbody>${rows}</tbody></table>
+    <div class="table-scroll"><table class="data"><thead><tr><th class="l">Rule</th><th class="l">Testimony</th><th>Leaning</th><th class="l">Source</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
     <p class="small muted" style="margin-top:.5rem"><b>Classification used:</b> benefics ${esc(j.classification.benefics.join(', '))};
       malefics ${esc(j.classification.malefics.join(', '))} (+ Rāhu/Ketu under the flagged Phaladīpikā extension); Moon ${esc(j.classification.paksha)}.
       <span class="muted">${esc(j.classification.cite)}</span></p>
@@ -175,7 +175,7 @@ function renderJudgement(j) {
 // --- the KP layer ---------------------------------------------------------------
 function renderKp(v, kp) {
   const cuspRows = kp.cusps.map(c => `<tr>
-    <td>${c.house}</td><td class="l">${esc(c.sign)} (${esc(c.signSanskrit)})</td>
+    <td class="num">${c.house}</td><td class="l">${esc(c.sign)} (${esc(c.signSanskrit)})</td>
     <td class="l">${esc(sidLabel(c.lon))}</td>
     <td>${esc(c.starLord)}</td><td><b>${esc(c.subLord)}</b></td></tr>`).join('');
   const planetRows = kp.planets.map(p => `<tr>
@@ -187,11 +187,11 @@ function renderKp(v, kp) {
     <p class="small muted">In KP doctrine the cuspal sub-lord is the claimed “final judge” of a house’s matter — sign lord sets context, star lord the flow, sub-lord the verdict. Reported as Krishnamurti’s method, never as a working truth.</p>
     <div class="grid cols-2">
       <div><h3>The 12 cusp sub-lords</h3>
-        <table class="data"><thead><tr><th>House</th><th class="l">Sign</th><th class="l">Cusp</th><th>Star lord</th><th>Sub-lord</th></tr></thead>
-        <tbody>${cuspRows}</tbody></table></div>
+        <div class="table-scroll"><table class="data"><thead><tr><th class="num">House</th><th class="l">Sign</th><th class="l">Cusp</th><th>Star lord</th><th>Sub-lord</th></tr></thead>
+        <tbody>${cuspRows}</tbody></table></div></div>
       <div><h3>Graha star- &amp; sub-lords</h3>
-        <table class="data"><thead><tr><th class="l">Graha</th><th class="l">Position</th><th class="l">Nakṣatra</th><th>Star lord</th><th>Sub-lord</th></tr></thead>
-        <tbody>${planetRows}</tbody></table></div>
+        <div class="table-scroll"><table class="data"><thead><tr><th class="l">Graha</th><th class="l">Position</th><th class="l">Nakṣatra</th><th>Star lord</th><th>Sub-lord</th></tr></thead>
+        <tbody>${planetRows}</tbody></table></div></div>
     </div>
     <details class="small" style="margin-top:.5rem"><summary><b>KP flags</b> (conventions &amp; discrepancies stored in-data)</summary>
       <ul class="clean small">${KP_FLAGS.map(f => `<li>${esc(f)}</li>`).join('')}</ul></details>

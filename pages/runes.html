@@ -33,6 +33,14 @@
   .rn-ref-cell.rn-has-flag { border-color:var(--gold); }
   .rn-aett { margin:.5rem 0; }
   .rn-aett h3 { margin:.2rem 0; }
+  /* --- casting-stage (WP3): the lots are scattered onto the night stage. Each drawn
+     stave card keeps its parchment face and its attested/modern TWO LAYERS intact;
+     only the method note + the live cast line sit on the dark surface and are
+     lightened. The staves settle into place in draw order via the DS2 .stage-figure
+     rise; reduced-motion renders instantly. */
+  .stage-verdict { font-family: var(--sans); font-size: .82rem; letter-spacing: .03em; margin: .1rem 0 .7rem; min-height: 1em; }
+  #rn-stage .stage-verdict { color: var(--text-inverse-muted); }
+  #rn-stage #rn-method-note, #rn-stage #rn-method-note .muted, #rn-stage #rn-method-note blockquote { color: var(--text-inverse-muted); }
 </style>
 </head>
 <body>
@@ -73,9 +81,11 @@
     </div>
   </form>
 
-  <section class="card"><h2 style="margin-top:0">The cast</h2>
+  <section class="casting-stage" id="rn-stage"><h2 style="margin-top:0">The cast</h2>
     <div id="rn-method-note" class="small muted"></div>
-    <div id="rn-cards" class="rn-cards"></div></section>
+    <p class="stage-verdict" id="rn-stage-verdict" aria-live="polite"></p>
+    <div id="rn-cards" class="rn-cards"></div>
+    <div class="casting-stage-controls"><button type="button" class="btn-quiet" id="rn-reveal">Reveal instantly</button></div></section>
 
   <section class="card"><h2 style="margin-top:0">The reading</h2>
     <div id="rn-out"></div>

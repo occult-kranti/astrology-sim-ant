@@ -29,6 +29,14 @@
   .tarot-ref-card { border:1px solid var(--rule); border-left:4px solid var(--gold); border-radius:.4rem; padding:.4rem .6rem; background:var(--card); }
   .tarot-ref-card.tarot-el-fire { border-left-color:var(--fire); } .tarot-ref-card.tarot-el-water { border-left-color:var(--water); }
   .tarot-ref-card.tarot-el-air { border-left-color:var(--air); } .tarot-ref-card.tarot-el-earth { border-left-color:var(--earth); }
+  /* --- casting-stage (WP3): the spread is laid on the night stage. The board keeps
+     its own parchment cloth (so the cards read normally); only the h2 and the live
+     verdict line sit on the dark surface. Cards flip up in reading order via the
+     DS2 .stage-figure rise (an inner wrapper, so the slot's centring transform is
+     untouched); reduced-motion renders instantly. */
+  .stage-verdict { font-family: var(--sans); font-size: .82rem; letter-spacing: .03em; margin: .1rem 0 .7rem; min-height: 1em; }
+  #tarot-stage .stage-verdict { color: var(--text-inverse-muted); }
+  #tarot-stage .tarot-board { box-shadow: 0 6px 20px rgba(0,0,0,.4); }
 </style>
 </head>
 <body>
@@ -65,8 +73,10 @@
     <p id="tarot-spread-desc" class="small muted" style="margin:.4rem 0 0"></p>
   </form>
 
-  <section class="card"><h2 style="margin-top:0">The spread</h2>
-    <div id="tarot-board"></div></section>
+  <section class="casting-stage" id="tarot-stage"><h2 style="margin-top:0">The spread</h2>
+    <p class="stage-verdict" id="tarot-stage-verdict" aria-live="polite"></p>
+    <div id="tarot-board"></div>
+    <div class="casting-stage-controls"><button type="button" class="btn-quiet" id="tarot-reveal">Reveal instantly</button></div></section>
 
   <section class="card"><h2 style="margin-top:0">The reading</h2>
     <div id="tarot-out"></div>

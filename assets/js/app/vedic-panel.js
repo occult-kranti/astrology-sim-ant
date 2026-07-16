@@ -70,7 +70,7 @@ export function renderVedicPanel(body, chart, opts = {}) {
       nakṣatra <b>${esc(v.lagna.nakshatra.name)}</b> pada ${v.lagna.nakshatra.pada}.</p>
 
     <h3 class="small" style="margin:.6rem 0 .2rem">Grahas (sidereal)</h3>
-    <table class="data"><thead><tr><th>Graha</th><th>Position</th><th>Bhāva</th><th>Nakṣatra</th><th>Dignity</th></tr></thead><tbody>${grahaRows}</tbody></table>
+    <div class="table-scroll"><table class="data"><thead><tr><th>Graha</th><th>Position</th><th>Bhāva</th><th>Nakṣatra</th><th>Dignity</th></tr></thead><tbody>${grahaRows}</tbody></table></div>
 
     <h3 class="small" style="margin:.7rem 0 .2rem">Pañcāṅga</h3>
     <p class="small">Tithi <b>${esc(v.panchanga.tithi.name)}</b> (${esc(v.panchanga.tithi.paksha)}) · Vāra <b>${esc(v.panchanga.vara.name)}</b> (${esc(v.panchanga.vara.lord)}) ·
@@ -89,7 +89,7 @@ export function renderVedicPanel(body, chart, opts = {}) {
     ${yogas.length ? `<h3 class="small" style="margin:.7rem 0 .2rem">Yogas</h3><ul class="clean small">${yogas.map(y => `<li><b>${esc(y.name)}</b> — ${esc(y.detail)}</li>`).join('')}</ul>` : ''}
 
     <h3 class="small" style="margin:.8rem 0 .2rem">Ṣaḍbala (six-fold strength)</h3>
-    <table class="data"><thead><tr><th>Graha</th><th class="r">Rūpas</th><th class="r">Req.</th><th class="r">Strength</th><th class="r" title="Iṣṭa / Kaṣṭa phala">Iṣṭa/Kaṣṭa</th></tr></thead><tbody>${sbRows}</tbody></table>
+    <div class="table-scroll"><table class="data"><thead><tr><th>Graha</th><th class="r">Rūpas</th><th class="r">Req.</th><th class="r">Strength</th><th class="r" title="Iṣṭa / Kaṣṭa phala">Iṣṭa/Kaṣṭa</th></tr></thead><tbody>${sbRows}</tbody></table></div>
     <p class="small muted">Strongest <b>${esc(sb.strongest)}</b>, weakest <b>${esc(sb.weakest)}</b> (the remedial focus). Ratio ≥ 1× = meets the BPHS minimum.</p>
 
     ${practiceHtml}

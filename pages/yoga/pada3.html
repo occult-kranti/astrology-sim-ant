@@ -30,15 +30,25 @@
     never moves.</p>
   </div>
 
-  <div class="ys-toolbar">
-    <input id="ys-filter" type="search" placeholder="filter these sūtras — e.g. samyama, invisibility, moon…" autocomplete="off" aria-label="Filter Book III sūtras">
-    <span id="ys-filter-count"></span>
-    <div class="ys-numbering" id="ys-numbering" role="group" aria-label="Numbering scheme">
+  <nav class="pager" aria-label="The four books of the Yoga Sūtras">
+    <a class="pager-prev" href="pada2.html">← Book II · Sādhana-pāda</a>
+    <a class="pager-next" href="pada4.html">Book IV · Kaivalya-pāda →</a>
+  </nav>
+
+  <div class="filterbar">
+    <input id="ys-filter" class="filter-input" type="search" placeholder="filter these sūtras — e.g. samyama, invisibility, moon…" autocomplete="off" aria-label="Filter Book III sūtras">
+    <span id="ys-filter-count" class="filter-count"></span>
+    <div class="seg" id="ys-numbering" role="group" aria-label="Numbering scheme">
       <button type="button" data-mode="196" class="active">196 · inclusive</button>
       <button type="button" data-mode="195">195 · vulgate</button>
     </div>
   </div>
   <div id="ys-list"></div>
+
+  <nav class="pager" aria-label="The four books of the Yoga Sūtras">
+    <a class="pager-prev" href="pada2.html">← Book II · Sādhana-pāda</a>
+    <a class="pager-next" href="pada4.html">Book IV · Kaivalya-pāda →</a>
+  </nav>
 
   <p class="small muted">Glosses after Rama Prasada (1912, SBH IV, mapped by content — his Book III has 54 numbered
     sūtras); translations after J. H. Woods (1914, HOS 17); Devanāgarī from sanskritdocuments.org with the Vedic

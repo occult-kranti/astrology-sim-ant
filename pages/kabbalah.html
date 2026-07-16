@@ -8,30 +8,31 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
 <style>
+  /* Tree-of-Life SVG follows the diagram family (plan §3.7): colours resolve to
+     the --dg-* tokens, with the legacy hexes as fallbacks so the diagram is
+     unchanged if a token is ever absent. Selected = gold, hover = sienna. */
   .kb-wrap { display:flex; flex-wrap:wrap; gap:1.2rem; align-items:flex-start; }
   .kb-treebox { flex:1 1 340px; max-width:520px; }
   .kb-treebox svg { width:100%; height:auto; display:block; }
-  .kb-inspector { flex:1 1 300px; min-width:270px; }
+  .kb-inspector { flex:1 1 300px; min-width:270px; align-self:stretch; }
   .kb-seph { cursor:pointer; }
-  .kb-seph circle { fill:var(--card); stroke:var(--ink); stroke-width:1.6; }
+  .kb-seph circle { fill:var(--dg-fill, var(--card)); stroke:var(--dg-strong, var(--ink)); stroke-width:1.6; }
   .kb-seph.planetary circle { stroke-width:2.2; }
-  .kb-seph.sel circle, .kb-path.sel .kb-edge { stroke:var(--gold); stroke-width:3; }
-  .kb-seph:hover circle, .kb-seph:focus circle { stroke:var(--link); }
+  .kb-seph.sel circle, .kb-path.sel .kb-edge { stroke:var(--dg-sel, var(--gold)); stroke-width:3; }
+  .kb-seph:hover circle, .kb-seph:focus circle { stroke:var(--dg-hot, var(--link)); }
   .kb-path { cursor:pointer; }
-  .kb-edge { stroke:var(--ink); stroke-width:1.4; opacity:.75; }
-  .kb-path:hover .kb-edge, .kb-path:focus .kb-edge { stroke:var(--link); opacity:1; }
-  .kb-glyph circle { fill:var(--card); stroke:var(--rule); stroke-width:1; }
-  .kb-path:hover .kb-glyph circle, .kb-path.sel .kb-glyph circle { stroke:var(--gold); }
-  .kb-daath circle { fill:none; stroke:var(--rule); stroke-width:1.4; stroke-dasharray:5 4; }
+  .kb-edge { stroke:var(--dg-grid, var(--ink)); stroke-width:1.4; opacity:.85; }
+  .kb-path:hover .kb-edge, .kb-path:focus .kb-edge { stroke:var(--dg-hot, var(--link)); opacity:1; }
+  .kb-glyph circle { fill:var(--dg-fill, var(--card)); stroke:var(--dg-frame, var(--rule)); stroke-width:1; }
+  .kb-path:hover .kb-glyph circle, .kb-path.sel .kb-glyph circle { stroke:var(--dg-sel, var(--gold)); }
+  .kb-daath circle { fill:none; stroke:var(--dg-frame, var(--rule)); stroke-width:1.4; stroke-dasharray:5 4; }
   .kb-daath { cursor:pointer; }
-  .kb-svgtext { fill:var(--ink); pointer-events:none; }
+  .kb-svgtext { fill:var(--dg-ink, var(--ink)); pointer-events:none; }
   .kb-key { min-width:2.4rem; padding:.3rem .45rem; font-size:1.05rem; line-height:1; }
   .kb-keys { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.4rem; }
-  .kb-total { font-size:1.9rem; font-weight:700; }
   .kb-breakdown span { display:inline-block; border:1px solid var(--rule); border-radius:.35rem; background:var(--card); padding:.15rem .45rem; margin:.15rem .15rem 0 0; }
-  .kb-flag { border-left:3px solid var(--gold); padding-left:.6rem; }
+  .kb-flag { border-left:3px solid var(--ep-disp, var(--gold)); padding-left:.6rem; }
   #kb-word { font-size:1.4rem; }
-  @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
 </style>
 </head>
 <body>
@@ -57,8 +58,11 @@
 
   <section class="card"><h2 style="margin-top:0">The Tree <span class="small muted">(Kircher layout, 1652–54)</span></h2>
     <div class="kb-wrap">
-      <div class="kb-treebox" id="kb-tree"></div>
-      <div class="kb-inspector" id="kb-inspector"></div>
+      <figure class="fig kb-treebox" style="margin:0">
+        <div id="kb-tree"></div>
+        <figcaption class="fig-caption">The Tree of Life · Kircher's layout, 1652–54 · click any sphere or path to inspect it</figcaption>
+      </figure>
+      <div class="kb-inspector panel" id="kb-inspector"></div>
     </div>
     <p class="small muted" id="kb-orientation" style="margin-bottom:0"></p></section>
 

@@ -100,9 +100,14 @@ function markSel(sel) { const n = document.querySelector('#kb-tree ' + sel); if 
 
 // --- inspector panels ----------------------------------------------------------
 function showIntro() {
-  $('kb-inspector').innerHTML = `<p class="small muted">Click a <b>sephira</b> (circle) or a <b>path</b> (letter glyph)
-    to open its record. The seven planetary sephiroth link to their kameas; every path links to its Golden Dawn trump.
-    The dashed circle is <b>Daath</b> — not one of the ten (click it to see why).</p>`;
+  $('kb-inspector').innerHTML = `<h3 style="margin:0 0 .4rem">How to read this diagram</h3>
+    <p class="small" style="margin:.2rem 0">Click a <b>sephira</b> (numbered circle) or a <b>path</b> (letter glyph) to
+    open its record here. The seven planetary sephiroth link to their kameas; every path links to its Golden Dawn trump.
+    The dashed circle is <b>Daath</b> — not one of the ten (click it to see why).</p>
+    <ul class="clean small" style="margin:.4rem 0">
+      <li><span class="badge badge--plain">keyboard</span> Tab to a sphere or path, then press <b>Enter</b> or <b>Space</b> to inspect it.</li>
+      <li><span class="badge badge--disp">contested</span> where an assignment is disputed between recensions, it is <b>flagged and never resolved</b>.</li>
+    </ul>`;
 }
 
 function sephChip(num) { const s = sephiraByNum(num); return `<button type="button" class="btn sm" data-kb-seph="${num}">${num} ${esc(s.name)}</button>`; }
@@ -110,7 +115,7 @@ function pathChip(num) { const p = pathByNum(num); return `<button type="button"
 function disputeBox(id) {
   const d = disputeById(id);
   if (!d) return '';
-  return `<div class="callout kb-flag" style="margin-top:.6rem"><span class="label">Contested — flagged, never resolved</span>
+  return `<div class="callout kb-flag" style="margin-top:.6rem"><span class="badge badge--disp">Contested — never resolved</span>
     <span class="small">${esc(d.what)}</span><br><span class="small muted">Cite: ${esc(d.cite)}</span></div>`;
 }
 
@@ -129,7 +134,7 @@ function showSephira(num) {
       <li><b>Divine name:</b> ${esc(s.godName)} · <b>Archangel:</b> ${esc(s.archangel)} · <b>Choir:</b> ${esc(s.choir)}</li>
       <li><b>Queen-scale colour:</b> ${esc(s.queenColor)}</li>
     </ul>
-    ${s.variants ? `<div class="callout kb-flag"><span class="label">Flagged</span><span class="small">${esc(s.variants)}</span></div>` : ''}
+    ${s.variants ? `<div class="callout kb-flag"><span class="badge badge--warn">Flagged</span> <span class="small">${esc(s.variants)}</span></div>` : ''}
     <p class="small" style="margin:.5rem 0 .2rem"><b>Paths meeting here:</b> ${pathsAt(num).map(p => pathChip(p.num)).join(' ')}</p>
     <p class="small muted">Cite: ${esc(s.cite)}</p>`;
 }
@@ -171,7 +176,7 @@ function shortLabel(key) {
 function showDaath() {
   $('kb-inspector').innerHTML = `
     <h3 style="margin:0">Daath <span lang="he">${DAATH.hebrew}</span> <span class="small muted">— “${esc(DAATH.translation)}”</span></h3>
-    <div class="callout kb-flag" style="margin-top:.5rem"><span class="label">Not a sephirah</span>
+    <div class="callout kb-flag" style="margin-top:.5rem"><span class="badge badge--warn">Not a sephirah</span>
       <span class="small">${esc(DAATH.note)}</span></div>
     <p class="small muted">Cite: ${esc(DAATH.cite)}</p>`;
 }
@@ -220,8 +225,8 @@ function runCalc() {
     ? '<p class="small muted">This word contains final forms — standard counting values them as medials; flip the method to see the mispar-gadol VARIANT (flagged, never the default).</p>' : '';
   const cell9 = kameaCellFor(g.total, 9);
   $('kb-result').innerHTML = `
-    <p style="margin:.4rem 0"><span class="kb-total">${g.total}</span>
-      <span class="small muted">— ${esc(GEMATRIA_METHODS[g.method].label)}</span></p>
+    <span class="stat" style="display:inline-block;margin:.4rem 0"><span class="stat-num">${g.total}</span>
+      <span class="stat-label">${esc(GEMATRIA_METHODS[g.method].label)}</span></span>
     <p class="kb-breakdown small">${chips}</p>
     ${finalsHint}
     <p class="small muted">Sigil-tracer join: the aiq-bekar power-of-ten collapse lands ${g.total} on cell <b>${cell9}</b>
@@ -257,7 +262,7 @@ function renderRecensions() {
       <span class="muted">— ${esc(q.source)}</span></blockquote>`).join('');
   $('kb-recensions').innerHTML = `
     <ul class="clean small">${versions}</ul>
-    <div class="callout kb-flag"><span class="label">Dating — an unresolved range</span>
+    <div class="callout kb-flag"><span class="badge badge--disp">Dating — unresolved</span>
       <span class="small">${esc(SY_RECENSIONS.dating.range)}</span><br>
       <span class="small muted">Cite: ${esc(SY_RECENSIONS.dating.cite)}</span></div>
     <p class="small" style="margin:.6rem 0 .2rem">${esc(SY_RECENSIONS.belimahNote)}</p>

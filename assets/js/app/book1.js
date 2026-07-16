@@ -68,9 +68,9 @@ function runDignity() {
   const al = almuten(lon, isDay);
   $('d-result').innerHTML = `
     <p class="lede">${G(planet)} <b>${planet}</b> at <b>${formatLon(lon)}</b> (${isDay ? 'day' : 'night'} chart)</p>
-    <table class="data" style="max-width:480px"><thead><tr><th class="l">Dignity / debility</th><th>Points</th></tr></thead>
-    <tbody>${ed.rows.map(r => `<tr><td class="l">${r.kind}</td><td class="${r.score >= 0 ? 'pos' : 'neg'}">${r.score >= 0 ? '+' : ''}${r.score}</td></tr>`).join('')}
-      <tr><td class="l"><b>Net essential score</b></td><td class="${ed.total >= 0 ? 'pos' : 'neg'}"><b>${ed.total >= 0 ? '+' : ''}${ed.total}</b></td></tr>
+    <table class="data" style="max-width:480px"><thead><tr><th class="l">Dignity / debility</th><th class="num">Points</th></tr></thead>
+    <tbody>${ed.rows.map(r => `<tr><td class="l">${r.kind}</td><td class="${r.score >= 0 ? 'pos' : 'neg'} num">${r.score >= 0 ? '+' : ''}${r.score}</td></tr>`).join('')}
+      <tr><td class="l"><b>Net essential score</b></td><td class="${ed.total >= 0 ? 'pos' : 'neg'} num"><b>${ed.total >= 0 ? '+' : ''}${ed.total}</b></td></tr>
     </tbody></table>
     <p class="small muted">Dispositor (lord of the sign): ${G(ed.dispositor)} ${ed.dispositor}.
       Almuten of this degree (planet with most dignity here): <b>${G(al.planet)} ${al.planet}</b> (score ${al.score}).</p>`;
@@ -104,11 +104,11 @@ function runHours() {
   let rows = '';
   for (const r of tbl.rows) {
     rows += `<tr${r.ruler === tbl.dayRuler && r.hour === 1 ? ' style="font-weight:600"' : ''}>
-      <td>${r.hour}</td><td>${r.night ? 'Night' : 'Day'}</td><td class="l">${fmt(r.start)}</td><td>${G(r.ruler)} ${r.ruler}</td></tr>`;
+      <td class="num">${r.hour}</td><td>${r.night ? 'Night' : 'Day'}</td><td class="l">${fmt(r.start)}</td><td>${G(r.ruler)} ${r.ruler}</td></tr>`;
   }
   $('ph-result').innerHTML = `<p class="small muted">Day ruler: <b>${G(tbl.dayRuler)} ${tbl.dayRuler}</b> ·
     sunrise ${fmt(tbl.sunrise)} · sunset ${fmt(tbl.sunset)} (times in UTC)</p>
-    <table class="data" style="max-width:520px"><thead><tr><th>Hour</th><th>Part</th><th class="l">Begins</th><th>Ruler</th></tr></thead><tbody>${rows}</tbody></table>`;
+    <table class="data" style="max-width:520px"><thead><tr><th class="num">Hour</th><th>Part</th><th class="l">Begins</th><th>Ruler</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 // ---------------------------------------------------------------------------

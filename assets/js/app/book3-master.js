@@ -71,7 +71,7 @@ function compute() {
       const p = chart.planets[name];
       const ed = essentialDignity(name, p.lon, isDay), ad = accidentalDignity(name, chart);
       totals[name] = ed.total + ad.total;
-      rows += `<tr><td>${G(name)} ${name}</td><td class="l">${formatLon(p.lon)}${p.retrograde ? ' ℞' : ''}</td><td>${p.house}</td><td class="${ed.total >= 0 ? 'pos' : 'neg'}">${sgn(ed.total)}</td><td class="${ad.total >= 0 ? 'pos' : 'neg'}">${sgn(ad.total)}</td></tr>`;
+      rows += `<tr><td>${G(name)} ${name}</td><td class="l">${formatLon(p.lon)}${p.retrograde ? ' ℞' : ''}</td><td>${p.house}</td><td class="num ${ed.total >= 0 ? 'pos' : 'neg'}">${sgn(ed.total)}</td><td class="num ${ad.total >= 0 ? 'pos' : 'neg'}">${sgn(ad.total)}</td></tr>`;
     }
     $('bm-planets').innerHTML = rows;
   });
@@ -102,14 +102,14 @@ function compute() {
     const al = alcocoden(chart, hy);
     const cand = (hy.candidatesExamined || []).map(c => `<tr><td>${esc(c.name)}</td><td class="l">${c.lon != null ? formatLon(c.lon) : '—'}</td><td>${c.house ?? '—'}</td><td>${c.hylegiacal ? 'yes' : 'no'}</td><td>${c.dignified ? 'yes' : 'no'}</td></tr>`).join('');
     const years = al.years ? ` giving <b>${al.years.mean}</b> mean years (greatest ${al.years.greatest}, least ${al.years.least})` : '';
-    $('bm-hyleg').innerHTML = `<p>The <b>hyleg</b> (giver of life) is <b>${esc(hy.hyleg || 'none found')}</b>${hy.house ? ` in the ${hy.house}${ord(hy.house)} house` : ''}. The <b>alcocoden</b> (giver of years) is <b>${esc(al.alcocoden || 'none')}</b>${years}.</p><p class="small">${esc(hy.reason || '')}</p><table class="data"><thead><tr><th class="l">Candidate</th><th class="l">Position</th><th>House</th><th>Aphetic place?</th><th>Dignified?</th></tr></thead><tbody>${cand}</tbody></table><p class="small muted">${esc(hy.assumptions || '')} The hyleg/alcocoden is one of the most disputed techniques in the literature — shown for study, not as a prediction of lifespan.</p>`;
+    $('bm-hyleg').innerHTML = `<p>The <b>hyleg</b> (giver of life) is <b>${esc(hy.hyleg || 'none found')}</b>${hy.house ? ` in the ${hy.house}${ord(hy.house)} house` : ''}. The <b>alcocoden</b> (giver of years) is <b>${esc(al.alcocoden || 'none')}</b>${years}.</p><p class="small">${esc(hy.reason || '')}</p><div class="table-scroll"><table class="data"><thead><tr><th class="l">Candidate</th><th class="l">Position</th><th>House</th><th>Aphetic place?</th><th>Dignified?</th></tr></thead><tbody>${cand}</tbody></table></div><p class="small muted">${esc(hy.assumptions || '')} The hyleg/alcocoden is one of the most disputed techniques in the literature — shown for study, not as a prediction of lifespan.</p>`;
   });
 
   // 5. primary directions to the angles (Naibod)
   safe($('bm-directions'), () => {
     const dirs = directionsToAngles(chart, { maxYears: 90 });
-    const rows = dirs.slice(0, 14).map(d => `<tr><td>${G(d.promissor)} ${d.promissor}</td><td>→ ${d.significator}</td><td>${d.arc.toFixed(2)}°</td><td>≈ ${d.years.toFixed(1)} yr</td></tr>`).join('');
-    $('bm-directions').innerHTML = `<table class="data"><thead><tr><th class="l">Promissor</th><th>to angle</th><th>Arc</th><th>≈ age of event</th></tr></thead><tbody>${rows}</tbody></table><p class="small muted">Simplified <b>Naibod</b> directions in the zodiac (1° ≈ 1 year of mean solar motion). Lilly's rigorous mundane (Placidian) directions are a further refinement.</p>`;
+    const rows = dirs.slice(0, 14).map(d => `<tr><td>${G(d.promissor)} ${d.promissor}</td><td>→ ${d.significator}</td><td class="num">${d.arc.toFixed(2)}°</td><td class="num">≈ ${d.years.toFixed(1)} yr</td></tr>`).join('');
+    $('bm-directions').innerHTML = `<div class="table-scroll"><table class="data"><thead><tr><th class="l">Promissor</th><th>to angle</th><th class="num">Arc</th><th class="num">≈ age of event</th></tr></thead><tbody>${rows}</tbody></table></div><p class="small muted">Simplified <b>Naibod</b> directions in the zodiac (1° ≈ 1 year of mean solar motion). Lilly's rigorous mundane (Placidian) directions are a further refinement.</p>`;
   });
 
   // 6. solar return

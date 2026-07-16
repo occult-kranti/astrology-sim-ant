@@ -76,9 +76,13 @@
     </details>
   </form>
 
+  <div id="wb-verdict-banner" class="verdict-banner" role="status" aria-live="polite" hidden></div>
   <p id="wb-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem" role="status" aria-live="polite"></p>
 
-  <section class="card"><h2 style="margin-top:0">The figure <span class="small muted" id="wb-moment-cite"></span></h2>
+  <section class="card panel" id="wb-p-figure" data-rail="The figure">
+    <div class="panel-head"><h2 class="panel-title">The figure</h2>
+      <span class="panel-meta small muted" id="wb-moment-cite"></span>
+      <a class="panel-anchor" href="#wb-p-figure" aria-label="Link to this section">¶</a></div>
     <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start">
       <div id="wb-wheel" style="flex:0 0 auto"></div>
       <div id="wb-moment" style="flex:1 1 320px;min-width:280px"></div>
@@ -86,43 +90,72 @@
 
   <!-- The 🕉 Vedic (Jagannath Hora) side-by-side toggle is injected here (before #wb-horary-card), near the top. -->
 
-  <section class="card" id="wb-horary-card"><h2 style="margin-top:0">Book II — horary significators <span class="small muted" id="wb-horary-links"></span></h2>
+  <section class="card panel" id="wb-horary-card" data-rail="Horary">
+    <div class="panel-head"><h2 class="panel-title">Book II — horary significators</h2>
+      <span class="panel-meta small muted" id="wb-horary-links"></span>
+      <a class="panel-anchor" href="#wb-horary-card" aria-label="Link to this section">¶</a></div>
     <div class="field-row" style="gap:.5rem;align-items:center;margin:0 0 .5rem">
       <label class="small" for="wb-horary-house">For a specific question, the house it is about:</label>
       <select id="wb-horary-house" style="max-width:20rem"></select>
     </div>
     <div id="wb-horary"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">Book I — the dignity ledger <span class="small muted" id="wb-dignities-links"></span></h2>
+  <section class="card panel" id="wb-p-dignities" data-rail="Dignity ledger">
+    <div class="panel-head"><h2 class="panel-title">Book I — the dignity ledger</h2>
+      <span class="panel-meta small muted" id="wb-dignities-links"></span>
+      <a class="panel-anchor" href="#wb-p-dignities" aria-label="Link to this section">¶</a></div>
     <div id="wb-dignities"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">Aspects &amp; reception <span class="small muted" id="wb-aspects-links"></span></h2>
+  <section class="card panel" id="wb-p-aspects" data-rail="Aspects">
+    <div class="panel-head"><h2 class="panel-title">Aspects &amp; reception</h2>
+      <span class="panel-meta small muted" id="wb-aspects-links"></span>
+      <a class="panel-anchor" href="#wb-p-aspects" aria-label="Link to this section">¶</a></div>
     <div id="wb-aspects"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">Lots &amp; antiscia <span class="small muted" id="wb-lots-links"></span></h2>
+  <section class="card panel" id="wb-p-lots" data-rail="Lots &amp; antiscia">
+    <div class="panel-head"><h2 class="panel-title">Lots &amp; antiscia</h2>
+      <span class="panel-meta small muted" id="wb-lots-links"></span>
+      <a class="panel-anchor" href="#wb-p-lots" aria-label="Link to this section">¶</a></div>
     <div id="wb-lots"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">Chart health <span class="small muted" id="wb-cautions-links"></span></h2>
+  <section class="card panel" id="wb-p-health" data-rail="Chart health">
+    <div class="panel-head"><h2 class="panel-title">Chart health</h2>
+      <span class="panel-meta small muted" id="wb-cautions-links"></span>
+      <a class="panel-anchor" href="#wb-p-health" aria-label="Link to this section">¶</a></div>
     <div id="wb-cautions"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">Picatrix — election <span class="small muted" id="wb-election-links"></span></h2>
+  <section class="card panel" id="wb-p-election" data-rail="Election">
+    <div class="panel-head"><h2 class="panel-title">Picatrix — election</h2>
+      <span class="panel-meta small muted" id="wb-election-links"></span>
+      <a class="panel-anchor" href="#wb-p-election" aria-label="Link to this section">¶</a></div>
     <div id="wb-election"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">Picatrix — talisman recipe <span class="small muted" id="wb-talisman-links"></span></h2>
+  <section class="card panel" id="wb-p-talisman" data-rail="Talisman">
+    <div class="panel-head"><h2 class="panel-title">Picatrix — talisman recipe</h2>
+      <span class="panel-meta small muted" id="wb-talisman-links"></span>
+      <a class="panel-anchor" href="#wb-p-talisman" aria-label="Link to this section">¶</a></div>
     <div id="wb-talisman"></div></section>
 
-  <section class="card" id="wb-natal-card"><h2 style="margin-top:0">Book III — the life trajectory <span class="small muted" id="wb-natal-links"></span></h2>
+  <section class="card panel" id="wb-natal-card" data-rail="Life trajectory">
+    <div class="panel-head"><h2 class="panel-title">Book III — the life trajectory</h2>
+      <span class="panel-meta small muted" id="wb-natal-links"></span>
+      <a class="panel-anchor" href="#wb-natal-card" aria-label="Link to this section">¶</a></div>
     <div id="wb-natal"></div></section>
 
-  <section class="card" id="wb-assistant-card"><h2 style="margin-top:0">Ask the Workbench — AI assistant (Groq free tier or Claude)</h2>
+  <section class="card panel" id="wb-assistant-card" data-rail="Ask the AI">
+    <div class="panel-head"><h2 class="panel-title">Ask the Workbench — AI assistant (Groq free tier or Claude)</h2>
+      <a class="panel-anchor" href="#wb-assistant-card" aria-label="Link to this section">¶</a></div>
     <div id="wb-assistant"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">Reference index — every function &amp; datum <span class="small muted">(the capability registry)</span></h2>
+  <section class="card panel" id="wb-p-reference" data-rail="Reference index">
+    <div class="panel-head"><h2 class="panel-title">Reference index — every function &amp; datum</h2>
+      <span class="panel-meta small muted">(the capability registry)</span>
+      <a class="panel-anchor" href="#wb-p-reference" aria-label="Link to this section">¶</a></div>
     <p class="small muted">This map is generated from <code>core/registry.js</code>; a test asserts every link below
       resolves to a real export, page, explanation and glossary term — so it can never drift from the code.</p>
     <div id="wb-reference"></div>
-    <details style="margin-top:1rem"><summary class="small">Show the raw reading object (JSON)</summary>
-      <pre id="wb-json-view" class="small" style="overflow:auto;max-height:24rem;white-space:pre-wrap"></pre></details>
+    <details class="acc" style="margin-top:1rem"><summary>Show the raw reading object (JSON)</summary>
+      <pre id="wb-json-view" class="small acc-body" style="overflow:auto;max-height:24rem;white-space:pre-wrap"></pre></details>
   </section>
 
   <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
@@ -145,6 +178,8 @@
   initWorkbench();
   import { initAssistant } from '../assets/js/app/assistant.js';
   initAssistant({ getReading, getContext, subscribeReading });
+  import { mountRail } from '../assets/js/app/rail.js';
+  mountRail({ label: 'On this reading' });
 </script>
 </body>
 </html>

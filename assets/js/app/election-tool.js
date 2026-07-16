@@ -58,7 +58,7 @@ function judge() {
   const system = $('e-system').value;
 
   if (isNaN(lat) || isNaN(lon)) {
-    $('e-summary').innerHTML = '<span class="muted">Enter a valid latitude and longitude.</span>';
+    summaryMessage('Enter a valid latitude and longitude.');
     return;
   }
 
@@ -69,8 +69,7 @@ function judge() {
     try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
     e = electionScore(chart, op);
   } catch (err) {
-    $('e-summary').innerHTML =
-      '<span class="muted">This moment could not be computed in this browser. Try the “Now” button or a different date.</span>';
+    summaryMessage('This moment could not be computed in this browser. Try the “Now” button or a different date.');
     $('e-detail').innerHTML = '';
     $('e-reasons').innerHTML = '';
     $('e-windows').innerHTML = '';
@@ -84,11 +83,22 @@ function judge() {
 }
 
 // ---------------------------------------------------------------------------
+// the traffic-light verdict → the promoted .verdict-banner triad (plan §1.3.9);
+// the green/amber/red gravity scale is unchanged — only its presentation is.
+const VB_CLASS = { green: 'ok', amber: 'warn', red: 'bad' };
 function renderSummary(e) {
-  $('e-summary').innerHTML =
-    `<span class="verdict ${esc(e.verdict)}">${esc(verdictWord(e.verdict))}</span> ` +
-    `for <b>${esc(e.operation.label)}</b> — ${esc(e.label)} ` +
-    `<span class="small">(score ${esc(e.score)})</span>`;
+  const el = $('e-summary');
+  el.className = 'verdict-banner verdict-banner--' + (VB_CLASS[e.verdict] || 'warn');
+  el.innerHTML =
+    `<span class="verdict ${esc(e.verdict)}">${esc(verdictWord(e.verdict))}</span>` +
+    `<span class="vb-reason">for <b>${esc(e.operation.label)}</b> — ${esc(e.label)} ` +
+    `<span class="small">(score ${esc(e.score)})</span></span>` +
+    `<a class="vb-link" href="#e-reasons-card">see the cited testimonies ↓</a>`;
+}
+function summaryMessage(msg) {
+  const el = $('e-summary');
+  el.className = '';
+  el.innerHTML = `<span class="muted">${esc(msg)}</span>`;
 }
 
 function verdictWord(v) {
@@ -191,7 +201,7 @@ function renderWindows(op, when, lat, lon) {
       return `<tr>
         <td class="l">${esc(w.start.toLocaleString())} – ${esc(w.end.toLocaleString())}</td>
         <td><span class="verdict ${esc(verdict)}">${esc(verdictWord(verdict))}</span></td>
-        <td>${esc(w.best)}</td>
+        <td class="num">${esc(w.best)}</td>
       </tr>`;
     }).join('');
     box.innerHTML =
@@ -199,7 +209,7 @@ function renderWindows(op, when, lat, lon) {
         <thead><tr>
           <th scope="col" class="l">Window (start – end, local)</th>
           <th scope="col">Best verdict</th>
-          <th scope="col">Best score</th>
+          <th scope="col" class="num">Best score</th>
         </tr></thead>
         <tbody>${rows}</tbody>
       </table>

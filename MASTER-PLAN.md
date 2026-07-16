@@ -586,6 +586,17 @@ every page, 0 errors.)*
   drive re-run after the four new nav items (Learn · Great Works · Tithi-praveśa · Kūṭa Matching) — all appear, no group
   overflow.
 
+### R26 — The revamp, phase 3: the page sweeps ✅ **SHIPPED (2026-07-16)**
+*(six parallel page-sweeps over the DS2 token/component layer, integrated in one working tree and verified whole-site.)*
+
+- **(a) Chrome & footer diet + hero** — the shared header/mega-menu tightened, the footer put on a `footer-diet`, and the home hero reworked so the top of every page reads as one system.
+- **(b) The mega-calculators** — a sticky **results-rail** (`app/rail.js`, opt-in per `section.panel[id]`) + **verdict banners** across Workbench, the Book I/III masters, Kūṭa, transits & the rest, so a long tool page navigates itself and states its bottom line up top.
+- **(c) The scanners** — **filterbars** + **sticky `.table-scroll` tables** on Cycles, Moments & the Library, so big result sets stay scannable.
+- **(d) The oracles** — a **staged casting reveal** (reduced-motion-first: colour/opacity only, instant-reveal escape) + the **unified `.chat`** diviner panel shared across Geomancy, Runes, Tarot & the I Ching.
+- **(e) The reading-room study wings** — the Yoga, Great Works & Library wings gained the in-page **workrail** and a consistent reading column.
+- **(f) The explorers** — **diagram-token + badge migrations** across Kabbalah, Chronology & Jung, so every diagram and status chip draws from the shared DS2 tokens.
+- **Verify gate** (conda `astro-workbench` node): `engine-test.mjs` → **all passed** · `audit.mjs` → **Problems: 0** (95 HTML, 147 JS) · `browser-verify.mjs` real-Chromium sweep → **95 pages, 0 errors** (Book III master re-checked ×6 for the mid-flight `insertBefore` race — clean); the mega-menu drive + eight interaction spot-drives all pass. Mobile sanity at 390 px greened Home/Workbench/Yoga (two scoped fixes: yoga IAST/Devanāgarī `overflow-wrap`, and a `fieldset` shrink guard for the AI-connect panels); the Geomancy 12-house shield grid flagged as a known residual.
+
 ### FURTHER ROADMAP (after R21, in rough value order)
 1. **Runes (Elder Futhark)** — a 24-stave oracle on the shared diviner engine (medium fit).
 2. **Streaming-markdown AI replies** with copy/regenerate.
