@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transits to a natal chart — the timing timeline | The Astrologer's Workbench</title>
+<meta name="description" content="Transits to a nativity: for a birth chart and a date range, the exact-hit dates when a transiting planet perfects a Ptolemaic aspect (conjunction, sextile, square, trine, opposition) to a natal point — applying/separating, retrograde 1-or-3 passes, stations & ingresses, and the profection overlay (transits BY / TO the Lord of the Year highlighted), plus the lunar (monthly) returns. Cited to Dorotheus, Valens, Abū Maʿshar, Ptolemy and Lilly; the time-lord amplification labelled a modern reconstruction. A historical timing art of no demonstrated validity — described, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Transits to a natal chart</p>
+  <h1>Transits to a natal chart</h1>
+  <p class="lede">A <b>transit</b> is where a planet is <em>right now</em> (or on any date) measured against a <b>birth
+    chart</b>: the timing layer both contemporary traditional astrologers — Catherine Urban's "dates &amp; degrees"
+    calendars, Patrick Watson's transit work — lean on daily. For a nativity and a window, this finds the <b>exact
+    instants</b> a transiting planet perfects a Ptolemaic aspect to a natal point (conjunction, sextile, square, trine,
+    opposition), with <b>applying/separating</b>, the retrograde <b>1-or-3 pass</b> structure, the planets' <b>stations
+    &amp; ingresses</b>, and — the classical join — the <b>profection overlay</b>: transits <em>by</em> the Lord of the
+    Year, or <em>to</em> the Lord of the Year or the profected sign, are highlighted.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Transits have <b>no demonstrated predictive validity</b>. The astronomy is real and reproducible — the hit-dates run
+    on the same verified engine as every other tool, and each is solved to under a hundredth of a degree — but the
+    <em>meaning</em> assigned to a transit is a historical symbolic convention, not a forecast. The rules are cited to
+    <b>Dorotheus</b> (Carmen IV.1), <b>Valens</b> (Anthologies IV), <b>Abū Maʿshar</b> (Revolutions), <b>Ptolemy</b>
+    (Tetrabiblos IV.10) and <b>Lilly</b> (Christian Astrology Bk III). The "time-lord activated" amplification — that a
+    transit counts fully only when its planet is a current time-lord — is a <b>modern-Hellenistic reconstruction</b>
+    (Brennan, 2017), labelled as such. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="tx-form" class="calc">
+    <p class="small" style="margin:.2rem 0 .4rem"><b>1 · The nativity</b> — whose chart the transits strike.</p>
+    <div class="field-row">
+      <div class="field" style="flex:1 1 180px"><label for="tx-city">Birthplace (preset)</label><select id="tx-city"></select></div>
+      <div class="field"><label for="tx-lat">Lat °N</label><input id="tx-lat" type="number" step="0.0001" value="51.5074" style="width:7rem"></div>
+      <div class="field"><label for="tx-lon">Lon °E</label><input id="tx-lon" type="number" step="0.0001" value="-0.1278" style="width:7rem"></div>
+      <div class="field"><label for="tx-date">Birth date</label><input id="tx-date" type="date" value="1990-05-15"></div>
+      <div class="field"><label for="tx-time">Birth time (local)</label><input id="tx-time" type="time" value="12:00"></div>
+      <div class="field"><label for="tx-offset">UTC offset</label><input id="tx-offset" type="number" step="0.5" value="0" style="width:6rem"></div>
+    </div>
+    <div id="tx-picker-anchor"></div>
+
+    <p class="small" style="margin:.8rem 0 .4rem"><b>2 · The window</b> — capped at ~2 years.</p>
+    <div class="field-row">
+      <div class="field"><label for="tx-from">From</label><input id="tx-from" type="date"></div>
+      <div class="field"><label for="tx-to">To</label><input id="tx-to" type="date"></div>
+    </div>
+
+    <p class="small" style="margin:.8rem 0 .3rem"><b>3 · Transiting planets</b> <span class="muted">(the Moon is off by default — too fast for a daily timeline)</span></p>
+    <div id="tx-bodies" style="line-height:2"></div>
+    <div id="tx-moon-wrap" style="line-height:2;margin-top:.2rem"></div>
+    <p class="small" style="margin:.8rem 0 .3rem"><b>4 · Natal points struck</b></p>
+    <div id="tx-points" style="line-height:2"></div>
+    <p class="small" style="margin:.8rem 0 .3rem"><b>5 · Aspects</b></p>
+    <div id="tx-aspects" style="line-height:2"></div>
+
+    <div class="field-row" style="margin-top:.9rem">
+      <button type="submit" class="btn">✶ Compute the transit timeline</button>
+      <span id="tx-status" class="small muted"></span>
+    </div>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The nativity &amp; the window</h2><div id="tx-summary"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Transits in force <span class="small muted">(the snapshot — applying/separating)</span></h2>
+    <div id="tx-snapshot"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The exact-hit timeline</h2><div id="tx-timeline"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Stations &amp; ingresses <span class="small muted">(the "dates + degrees" context)</span></h2>
+    <div id="tx-stations"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">Lunar (monthly) returns</h2><div id="tx-returns"></div></section>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <section class="card" id="hiw-transits">
+    <h2 style="margin-top:0">How this works</h2>
+    <h3>Finding an exact hit — a bisected zero-crossing</h3>
+    <p class="small">For each transiting planet, natal point and aspect the engine forms the signed offset
+      <code>d(t) = (transit longitude − natal longitude − aspect angle)</code>, wrapped to ±180°. An exact aspect is a
+      <b>zero-crossing</b> of that function. A light single-vector longitude (the same
+      geocentric apparent true-equinox-of-date path the rest of the site uses, ≈1 arc-minute) is sampled day by day
+      across the window; each sign change of <code>d</code> — guarding the ±180° wrap — is <b>bisected to the second</b>
+      (the reported offset re-computes to under a hundredth of a degree). The transiting <b>Moon is excluded by
+      default</b>: at ~13°/day it perfects dozens of exact aspects a month and would drown the timeline; its rhythm is
+      the lunar returns below, or tick it on to add it (then a 6-hour sub-step resolves its hits).</p>
+    <h3>Retrograde 1-or-3 passes</h3>
+    <p class="small">A slower planet crossing a natal degree, then <b>retrograding</b> back over it, then turning direct
+      and crossing a third time, gives the classic <b>three passes</b> of one aspect (Saturn's return, an outer-planet
+      transit). Consecutive crossings of the same target within one retrograde loop are numbered <b>pass 1 / 2 / 3</b>
+      (the middle pass retrograde); crossings a whole orbital lap apart are separate single passes, never merged.</p>
+    <h3>The profection overlay — the classical join, honestly labelled</h3>
+    <p class="small">The nativity's <b>annual profection</b> advances the Ascendant one whole sign per year of life; the
+      domicile ruler of the profected sign is the <b>Lord of the Year</b> (Valens, Anthologies IV.11; Dorotheus, Carmen
+      IV.1). The tradition judges the year from the profected sign, its lord, and the transits to/from these places
+      (Dorotheus IV.1; Ptolemy, Tetrabiblos IV.10 — "the ingresses which are made to the places of the times"). A
+      transit is <b>time-lord activated</b> here when the transiting planet <em>is</em> the Lord of the Year, when the
+      natal point struck <em>is</em> the Lord of the Year, or when the natal point sits in the <em>profected sign</em>.
+      The stronger claim — that a transit "counts" fully <em>only</em> when its planet is a current time-lord — is the
+      <b>modern-Hellenistic reconstruction</b> of Chris Brennan (2017), reported as reconstruction, not asserted as
+      ancient. A window can straddle a birthday, so more than one Lord of the Year may govern it; each event is judged by
+      the profection in force at its own instant.</p>
+    <h3>What is honestly out of scope</h3>
+    <p class="small">This lists <em>when</em> aspects perfect and flags the time-lord join; it does not <em>interpret</em>
+      them. The tradition weighs each transiting planet's natal and revolutional condition, its sect, reception and
+      dignity, the solar-revolution chart, and the direction/profection/revolution hierarchy above the transit (Abū
+      Maʿshar, in Dykes, <i>Persian Nativities</i> IV, 2019) — layers of judgement no timeline can settle. The orbs of
+      the snapshot are Lilly's planetary moieties; natal angles carry no moiety and are judged by the transiting
+      planet's orb alone (flagged). None of it is evidence of anything.</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything. The transit dates are exact astronomy; the timing <em>doctrine</em> is
+    a faithful reconstruction of how the tradition read a life against the moving sky — cited source by source, with the
+    modern reconstruction of the "time-lord activated" filter labelled rather than smuggled in. Interesting history, not
+    guidance. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="synastry.html">Synastry grid</a> (two charts
+    compared), the <a href="timelords.html">Time-lords &amp; progressions</a> (profections, firdaria, zodiacal
+    releasing), the <a href="trajectory.html">Life Trajectory</a> (the whole natal arc), and the
+    <a href="cycles.html">Cycles of History</a> (mundane great conjunctions &amp; eclipses).</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('transits');
+  import { initTransits } from '../assets/js/app/transits.js';
+  initTransits();
+</script>
+</body>
+</html>

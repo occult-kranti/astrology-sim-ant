@@ -1225,5 +1225,218 @@ ok([SEPHIROTH, PATHS, HEBREW_LETTERS, DISPUTES, TRANSMISSION, QUOTES].every(arr 
    !!DAATH.cite && !!ORIENTATION.cite && !!SY_PLANET_SPREAD.cite,
   'every kabbalah record carries .cite');
 
+// --- Elder Futhark runes ---------------------------------------------------
+import { RUNES as rnRunes, AETTIR as rnAettir, CASTING_METHODS as rnMethods, FRAMING as rnFraming } from '../assets/js/core/data/runes-data.js';
+import { castFromDraws as rnCast, poemCoverageOf as rnCoverage, contestedStaves as rnContested, DECK_SIZE as rnDeck } from '../assets/js/core/runes.js';
+
+ok(rnRunes.length === 24 && rnDeck === 24, `24 staves, no blank rune (got ${rnRunes.length}/${rnDeck})`);
+ok(new Set(rnRunes.map(r => r.id)).size === 24, '24 unique rune ids');
+const rnExpectT = ['f','u','þ','a','r','k','g','w','h','n','i','j','ï','p','z','s','t','b','e','m','l','ŋ','d','o'];
+ok(rnRunes.map(r => r.translit).join('') === rnExpectT.join(''), 'transliteration bijection {f,u,þ,a,r,k,g,w,h,n,i,j,ï,p,z,s,t,b,e,m,l,ŋ,d,o} in futhark order');
+const rnCps = rnRunes.map(r => r.codepoint);
+ok(new Set(rnCps).size === 24 && rnCps.every(c => c >= 0x16A0 && c <= 0x16FF), '24 unique codepoints, all within U+16A0..16FF');
+ok(rnRunes.find(r => r.id === 'gebo').codepoint === 0x16B7, 'gebo codepoint is U+16B7 (not the futhorc CEN)');
+const rnAllCps = [...rnCps, ...rnRunes.flatMap(r => (r.displayVariants || []).map(v => v.codepoint))];
+ok(!rnAllCps.includes(0x16B3), 'no U+16B3 (futhorc CEN) anywhere — primary or variant');
+ok(rnRunes.every(r => r.char.codePointAt(0) === r.codepoint), 'every rune char matches its codepoint');
+ok(rnRunes.filter(r => r.displayVariants).map(r => r.position).join(',') === '9,16,22', 'display variants only on positions 9,16,22 (ᚺ/ᚻ, ᛊ/ᛋ, ᛜ/ᛝ)');
+ok(rnAettir.length === 3 && rnAettir.every(a => a.staves.length === 8), '3 ættir × 8 staves');
+ok(rnRunes.every(r => r.aett === Math.floor((r.position - 1) / 8) + 1), 'aett formula floor((pos-1)/8)+1 holds for all 24');
+const rnCov = rnCoverage();
+ok(rnCov.oe === 24 && rnCov.norse === 16 && rnCov.noPoem === 0, `poem coverage OE 24/24, Norse 16, none without a poem (got OE ${rnCov.oe}, Norse ${rnCov.norse}, none-less ${rnCov.noPoem})`);
+ok(rnCov.oeOnly === 8 && JSON.stringify([...rnCov.oeOnlyStaves].sort()) === JSON.stringify(['algiz','dagaz','ehwaz','gebo','ingwaz','othala','pertho','wunjo']), 'OE-only staves are exactly {gebo,wunjo,perþo,algiz,ehwaz,ingwaz,dagaz,oþala}');
+ok(rnContested().length >= 7, `>=7 contested staves (got ${rnContested().length})`);
+ok(rnRunes.some(r => r.contested && /#13\/#14 \(ï\/p\) order/.test(r.contested.note)) && rnRunes.some(r => r.contested && /final pair/.test(r.contested.note)), 'both order flags present (ï/p and dagaz/oþala)');
+const rnR = rnCast([0, 6, 23], 'tacitus');
+ok(rnR.staves.length === 3 && rnR.staves[0].id === 'fehu' && rnR.staves[0].positionLabel === 'first lot', 'castFromDraws tacitus → 3 labelled staves');
+ok(rnCast([5], 'single').method.modern === true && rnCast([1,2,3], 'three').method.modern === true, 'single & three-rune methods flagged modern');
+let rnThrew = 0; for (const bad of [[[0,0,1],'tacitus'],[[0,1,24],'tacitus'],[[0,1],'tacitus'],[[0,1,2],'single'],[[0,1,2],'nope'],[[0,1,1.5],'tacitus']]) { try { rnCast(bad[0], bad[1]); } catch { rnThrew++; } }
+ok(rnThrew === 6, 'castFromDraws rejects dupes, out-of-range, wrong counts, unknown method & non-integers');
+ok(/Blum/.test(JSON.stringify(rnFraming)) && /Caesar/.test(JSON.stringify(rnFraming)) && /only DETAILED/.test(JSON.stringify(rnFraming)), "FRAMING mentions Blum + Caesar + 'only detailed'");
+
+// --- AI: the runes diviner kind (cite-bound, plain coda) --------------------
+import { buildRunesContext, buildRunesInterpretPrompt, runesDataBlock } from '../assets/js/core/llm-context.js';
+{
+  const rnRead = { kind: 'runes', question: 'a test', ...rnCast([0, 6, 23], 'tacitus') };
+  const rnCtx = buildRunesContext(rnRead);
+  ok(/\[F1\]/.test(rnCtx.system) && /OUTPUT CONTRACT/i.test(rnCtx.system), 'AI runes: the grounded context is cite-bound');
+  ok(/ATTESTED/i.test(rnCtx.system) && /MODERN/i.test(rnCtx.system) && /Tacitus/i.test(rnCtx.system), 'AI runes: the context keeps the attested/modern split + the Tacitus prototype frame');
+  const rnPrompt = buildRunesInterpretPrompt(rnRead);
+  ok(/no demonstrated validity/i.test(rnPrompt) && /To reflect on/.test(rnPrompt) && /never prescribed/i.test(rnPrompt) && /20th-century/i.test(rnPrompt),
+    'AI runes: the interpret prompt carries the honest close + the plain-words coda');
+  ok(/interpret THESE staves/i.test(runesDataBlock(rnRead)), 'AI runes: the data block is well-formed');
+}
+
+// --- Rasaśāstra yantra-mathematics (core/yantra.js + data/rasa-data.js) ------
+import {
+  validateYantra as ryValidateYantra, validateMostPerfect as ryValidateMostPerfect,
+  yantraForGraha as ryYantraForGraha, katapayadiDecode as ryDecode, katapayadiEncode as ryEncode,
+  buildSarvatobhadra as ryBuildSBC, sarvatobhadraVedha as ryVedha,
+} from '../assets/js/core/yantra.js';
+import {
+  TEXTS as ryTEXTS, SAMSKARAS as rySAMSKARAS, APPARATUS as ryAPPARATUS,
+  NAVAGRAHA_YANTRAS as ryNAVA, NAVAGRAHA_GRANDTOTAL as ryGRAND,
+  CLASSICAL_SQUARES as ryCLASS, KATAPAYADI as ryKAT, SARVATOBHADRA as rySBCDATA,
+} from '../assets/js/core/data/rasa-data.js';
+
+const ryConstants = [15, 18, 21, 24, 27, 30, 33, 36, 39];
+let ryGrandCheck = 0, ryAllMagic = true;
+ryNAVA.forEach((y, i) => {
+  const v = ryValidateYantra(y.grid);
+  if (!(v.ok && v.constant === ryConstants[i] && v.constant === y.constant && v.total === y.total)) ryAllMagic = false;
+  ryGrandCheck += v.total;
+});
+ok(ryAllMagic, 'yantra: all 9 navagraha squares magic, constants 15..39 step 3');
+ok(ryGrandCheck === 729 && ryGrandCheck === ryGRAND, `yantra: navagraha grand total 729 (got ${ryGrandCheck})`);
+
+const ryChautisa = ryCLASS.find(s => s.key === 'chautisa');
+const ryMP = ryValidateMostPerfect(ryChautisa.grid);
+ok(ryMP.ok && ryMP.constant === 34, 'yantra: Chautisa most-perfect — rows/cols/diags + broken diagonals + 2×2 blocks + corner quads all = 34');
+
+const ryVM = ryValidateYantra(ryCLASS.find(s => s.key === 'varahamihira').grid);
+ok(ryVM.ok && ryVM.constant === 18, 'yantra: Varāhamihira square rows/cols/diagonals = 18');
+
+ok(ryYantraForGraha('Sun').constant === 15 && ryYantraForGraha('Śani').constant === 33 && ryYantraForGraha('nope') === null,
+  'yantra: yantraForGraha resolves English & Sanskrit, unknown → null');
+
+let ryKatOk = true;
+ryKAT.examples.forEach(ex => { if (ryDecode(ex.input).value !== ex.value) ryKatOk = false; });
+ok(ryKatOk, 'kaṭapayādi: verified vectors decode (Dhīraśaṅkarābharaṇam→29, Mechakalyāṇī→65, π verse→314159265358979324)');
+ok([29, 65, 108, 2080].every(n => Number(ryDecode(ryEncode(n).syllables).value) === n), 'kaṭapayādi: encode→decode round-trips');
+
+const rySBC = ryBuildSBC();
+ok(rySBC.counts.total === 81 && rySBC.counts.nakshatras === 28 && rySBC.counts.vowels === 16 &&
+   rySBC.counts.consonants === 20 && rySBC.counts.rashis === 12 && rySBC.counts.tithiVara === 5,
+  'Sarvatobhadra: 81 cells — 28 nakṣatras + 16 vowels + 20 consonants + 12 rāśis + 5 tithi/vāra');
+ok(rySBC.cells.filter(c => c && c.type === 'vowel').every(c => c.col === c.row || c.col === rySBC.size - 1 - c.row),
+  'Sarvatobhadra: all 16 vowels lie on the two main diagonals');
+const ryAshvini = rySBC.byNakshatraNum.get(1);
+ok(ryAshvini && ryAshvini.row === 0 && ryAshvini.col === 6, 'Sarvatobhadra: Aśvinī is the 6th cell of the top row');
+ok(rySBC.grid[4][4].tithiGroup === 'Pūrṇā' && rySBC.grid[4][4].weekdays.includes('Sat'), 'Sarvatobhadra: centre = Pūrṇā + Saturday');
+const ryAllTithi = rySBCDATA.tithiGroups.flatMap(g => g.tithis).sort((a, b) => a - b);
+ok(ryAllTithi.length === 30 && ryAllTithi.every((v, i) => v === i + 1), 'Sarvatobhadra: tithi pentads partition 1..30 exactly');
+const ryVed = ryVedha(3, rySBC);
+ok(ryVed && ryVed.front && ryVed.diagonals.length >= 2, 'Sarvatobhadra: vedha lookup returns front + two diagonals');
+
+ok([ryTEXTS, rySAMSKARAS, ryAPPARATUS, ryNAVA, ryCLASS].every(a => a.every(r => typeof r.cite === 'string' && r.cite.length > 10)) &&
+   typeof ryKAT.cite === 'string' && typeof rySBCDATA.cite === 'string',
+  'rasa-data: every record carries .cite');
+ok(!!ryTEXTS.find(t => t.contested && /ghost/i.test(t.contested.flag)), 'rasa-data: Nāgārjuna "alchemical ghost" dispute flagged');
+ok(ryNAVA.every(y => /MODERN PRINTED/i.test(y.provenance)), 'rasa-data: navagraha grids flagged as the modern printed tradition');
+ok(/FLAGGED/i.test(rySBCDATA.accuracyFlags.ring2) && !!rySBCDATA.vedha.luminariesNodes.flag && !!rySBCDATA.vedha.sourceDispute.flag,
+  'rasa-data: Sarvatobhadra ring-2 accuracy flag + contested vedha rules recorded');
+
+// --- Cast a chart by hand (ephemeris + tables method) -----------------------
+import {
+  lstHand, lstExact, ramcExact, siderealTimeAtMidnight, intervalHoursOf,
+  plog, plogInverse, interpolateBody, miniEphemeris, tableOfHousesDemo,
+  formatHMS, formatZodiac, stSecondsBetween, dailyMotionBetween, HANDCALC_BODIES,
+} from '../assets/js/core/handcalc.js';
+import { DEVORE_PLOG_CHECK, ACCEL_CONSTANTS } from '../assets/js/core/data/handcalc-data.js';
+import { bodyPosition as hcBodyPosition } from '../assets/js/core/astro.js';
+
+// Birth for Vectors A/B/D: 1990-06-15 08:30 EDT (UT 12:30), New York 40°45'N 73°57'W
+const hcBirth = new Date(Date.UTC(1990, 5, 15, 12, 30));
+const hcLon = -73.95, hcLat = 40.75;
+
+// Vector A — Local Sidereal Time
+const hcST0 = siderealTimeAtMidnight(hcBirth);
+const hcInterval = intervalHoursOf(hcBirth);
+const hcEngLST = lstExact(hcBirth, hcLon);
+const hcBook = lstHand(hcBirth, hcST0, hcInterval, hcLon, { rate: 10 });
+const hcExact = lstHand(hcBirth, hcST0, hcInterval, hcLon, { rate: 9.8565 });
+ok(Math.abs(hcST0 - (17 + 32 / 60 + 4.5 / 3600)) < 0.001, `hand-calc Vector A: ST@midnight ~17h32m04.5s (got ${formatHMS(hcST0)})`);
+ok(hcInterval === 12.5, 'hand-calc Vector A: UT interval = 12h30m');
+ok(Math.abs(stSecondsBetween(hcExact.lstHours, hcEngLST)) < 0.2, 'hand-calc Vector A: 9.8565 rule reproduces engine LST to ~0.0s');
+ok(Math.abs(stSecondsBetween(hcBook.lstHours, hcEngLST) - 1.8) < 0.3, 'hand-calc Vector A: 10s book rule = +1.8s vs engine');
+
+// Proportional logarithms — DeVore's printed values + the table-top constant
+ok(Math.abs(plog(DEVORE_PLOG_CHECK.motion.minutes) - 0.22034) < 5e-5 &&
+   Math.abs(plog(DEVORE_PLOG_CHECK.interval.minutes) - 0.50035) < 5e-5, 'hand-calc: plog reproduces DeVore .22034 / .50035');
+ok(Math.abs(plog(1) - 3.1584) < 5e-4, 'hand-calc: table-top plog(1 min) = 3.1584');
+ok(Math.round(plogInverse(plog(867) + plog(455))) === 274, "hand-calc: DeVore sum -> 4°33'57\" (~4°34')");
+
+// Vector B — Moon & Sun interpolation
+const hcMoon = interpolateBody('Moon', hcBirth, hcInterval);
+ok(Math.abs(Math.abs(hcMoon.linear.errorMin) - 2.67) < 0.4, `hand-calc Vector B: Moon linear-interp error ~2.67' (got ${hcMoon.linear.errorMin.toFixed(2)}')`);
+ok(Math.abs(hcMoon.routesAgreeMin) < 0.05, 'hand-calc Vector B: Moon prop-log ~= linear (a shortcut, not an accuracy gain)');
+const hcSun = interpolateBody('Sun', hcBirth, hcInterval);
+ok(Math.abs(hcSun.linear.errorMin) < 0.05, `hand-calc Vector B: Sun linear-interp error < 0.05' (got ${hcSun.linear.errorMin.toFixed(3)}')`);
+
+// Mini-ephemeris midnight positions reproduce bodyPosition directly
+const hcME = miniEphemeris(hcBirth, 2);
+const hcMid = new Date(Date.UTC(1990, 5, 15));
+ok(hcME.rows.length === 2 &&
+   HANDCALC_BODIES.every(n => Math.abs(dailyMotionBetween(hcME.rows[0].bodies[n].lon, hcBodyPosition(n, hcMid).lon)) < 1e-9),
+   'hand-calc: mini-ephemeris midnight positions == bodyPosition at 0h UT');
+
+// Vector D — house cusps by double interpolation (Placidus)
+const hcRamc = ramcExact(hcBirth, hcLon);
+const hcTH = tableOfHousesDemo(hcRamc, hcLat, hcBirth, { system: 'placidus' });
+ok(hcTH.grid.rowLoRamc === 17 && hcTH.grid.rowHiRamc === 18 && hcTH.grid.latLo === 40 && hcTH.grid.latHi === 41,
+   'hand-calc Vector D: grid brackets = ST rows 17°/18° RAMC × lat 40/41');
+ok(Math.abs(hcTH.delta.ascMin) < 0.5, `hand-calc Vector D: double-interp ASC within 0.5' of engine (got ${hcTH.delta.ascMin.toFixed(3)}')`);
+ok(formatZodiac(hcTH.exact.asc).startsWith('2°38') && /Leo/.test(formatZodiac(hcTH.exact.asc)), "hand-calc Vector D: engine ASC ~2°38' Leo");
+ok(formatZodiac(hcTH.exact.mc).startsWith('18°31') && /Aries/.test(formatZodiac(hcTH.exact.mc)), "hand-calc Vector D: engine MC ~18°31' Aries");
+
+// Every cited acceleration constant is flagged as specified
+ok(ACCEL_CONSTANTS.find(a => a.rate === 10).verdict === 'teach' &&
+   ACCEL_CONSTANTS.find(a => a.rate === 9.8565).verdict === 'exact' &&
+   ACCEL_CONSTANTS.find(a => a.rate === 9.8333).verdict === 'flag',
+   'hand-calc: acceleration constants flagged (10 teach · 9.8565 exact · 9.8333 imprecise)');
+
+// --- Practitioner-gap: transits.js + synastry.js + returns.js --------------
+import { transitTimeline as txTimeline } from '../assets/js/core/transits.js';
+import { synastryGrid as syGrid } from '../assets/js/core/synastry.js';
+import { lunarReturnsBetween as syLunar, planetReturns as syPlanetReturns } from '../assets/js/core/returns.js';
+import { bodyPosition as bpos } from '../assets/js/core/astro.js';
+const txWrap = x => ((x % 360) + 540) % 360 - 180;
+
+// J2000 London nativity (the task's transit vector fixture)
+const txNatal = castChart(new Date(Date.UTC(2000, 0, 1, 12, 0)), 51.5074, -0.1278, 'regiomontanus');
+const txSun = txNatal.planets.Sun.lon;
+// independent fine-scan: transiting Saturn conjunct natal Sun in 2018..2020
+let txFine = null, pf = null, ptt = null;
+for (let t = Date.UTC(2018, 0, 1); t <= Date.UTC(2020, 0, 1); t += 86400000) {
+  const f = txWrap(bpos('Saturn', new Date(t)).lon - txSun);
+  if (pf !== null && (pf === 0 || pf * f < 0) && Math.abs(f - pf) < 90) {
+    let a = ptt, b = t, fa = pf;
+    for (let i = 0; i < 48 && b - a > 1000; i++) { const m = (a + b) / 2, fm = txWrap(bpos('Saturn', new Date(m)).lon - txSun); if (fa * fm < 0) b = m; else { a = m; fa = fm; } }
+    txFine = new Date(Math.round((a + b) / 2)); break;
+  }
+  pf = f; ptt = t;
+}
+const tx = txTimeline(txNatal, new Date(txFine.getTime() - 90 * 86400000), new Date(txFine.getTime() + 90 * 86400000), { natalPoints: ['Sun'], aspects: [0] });
+ok(tx.events.some(e => e.transitingBody === 'Saturn' && e.aspect === 'Conjunction' && Math.abs(e.exactInstant - txFine) < 1.001 * 86400000),
+  `transits: Saturn conj natal Sun found within +/-1 day of the fine-scan (${txFine.toISOString().slice(0, 10)})`);
+const tx2 = txTimeline(txNatal, new Date(Date.UTC(2018, 0, 1)), new Date(Date.UTC(2019, 11, 31)));
+let txMaxOrb = 0; for (const e of tx2.events) { const off = Math.abs(txWrap(bpos(e.transitingBody, e.exactInstant).lon - e.natalPointLon - e.target)); if (off > txMaxOrb) txMaxOrb = off; }
+ok(tx2.events.length > 0 && txMaxOrb < 0.01, `transits: all ${tx2.events.length} rows recompute to offset < 0.01° (max ${txMaxOrb.toExponential(2)})`);
+ok(tx2.events.some(e => e.passCount === 3), 'transits: a retrograde triple-pass (passCount===3) is detected');
+ok(!tx2.bodies.includes('Moon'), 'transits: the transiting Moon is excluded by default');
+let txCap = false; try { txTimeline(txNatal, new Date(Date.UTC(2020, 0, 1)), new Date(Date.UTC(2023, 0, 1))); } catch { txCap = true; }
+ok(txCap, 'transits: a window > ~2 years is refused');
+
+// synastry: pure-math T7/T8 + symmetry + count + overlay
+function txSynth(pl) { const P = {}; for (const [n, l] of Object.entries(pl)) P[n] = { lon: ((l % 360) + 360) % 360, speed: 0 }; for (const n of ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn']) if (!P[n]) P[n] = { lon: 0, speed: 0 }; return { planets: P, asc: 0, mc: 270, cusps: Array.from({ length: 13 }, (_, i) => i === 0 ? 0 : ((i - 1) * 30) % 360) }; }
+const syT = syGrid(txSynth({ Sun: 10, Venus: 45 }), txSynth({ Moon: 192, Mars: 105 }));
+const syOpp = syT.hits.find(h => h.bodyA === 'Sun' && h.bodyB === 'Moon');
+ok(syOpp && syOpp.aspect === 'Opposition' && Math.abs(syOpp.orb - 2) < 1e-6, 'synastry T7: A.Sun 10° / B.Moon 192° = Opposition orb 2.0');
+const sySx = syT.hits.find(h => h.bodyA === 'Venus' && h.bodyB === 'Mars');
+ok(sySx && sySx.aspect === 'Sextile' && Math.abs(sySx.orb) < 1e-6, 'synastry T8: A.Venus 45° / B.Mars 105° = Sextile orb 0.0');
+const syB = castChart(new Date(Date.UTC(1985, 6, 20, 8, 30)), 40.7128, -74.006, 'regiomontanus');
+const sy = syGrid(natal, syB), syBA = syGrid(syB, natal);
+let sySym = true; for (let i = 0; i < sy.rows.length; i++) for (let j = 0; j < sy.cols.length; j++) { const a = sy.cells[i][j], b = syBA.cells[j][i]; if ((a && a.aspect) !== (b && b.aspect)) sySym = false; }
+ok(sySym, 'synastry grid symmetric under chart swap (A×B transpose == B×A)');
+let syDbl = 0; for (const a of ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn']) for (const b of ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn']) if (aspectBetween(a, natal.planets[a], b, syB.planets[b])) syDbl++;
+ok(sy.counts.aspects === syDbl, `synastry aspect count (${sy.counts.aspects}) matches direct double-loop (${syDbl})`);
+ok(sy.houseOverlay.aInB.total === 7 && sy.houseOverlay.bInA.total === 7, 'synastry house overlays sum to 7 planets each way');
+
+// returns: 13 lunar returns natal-anchored; Saturn return pass 1 or 3
+const syr = syLunar(natal, natal.date, new Date(natal.date.getTime() + 365.25 * 86400000));
+ok(syr.count === 13, `returns: natal-anchored year has exactly 13 lunar returns (got ${syr.count})`);
+const satR = syPlanetReturns(natal, 'Saturn', new Date(natal.date.getTime() + 28 * 365.25 * 86400000), new Date(natal.date.getTime() + 30.5 * 365.25 * 86400000));
+ok(satR.passCount === 1 || satR.passCount === 3, `returns: Saturn return pass count 1 or 3 (got ${satR.passCount})`);
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

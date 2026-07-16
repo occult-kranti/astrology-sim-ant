@@ -867,6 +867,77 @@ export function ichingDataBlock(x) {
   return '\n\nCOMPUTED I CHING CAST (JSON — interpret THIS hexagram, never invent):\n' + JSON.stringify(dig);
 }
 
+// ---- Runes (Elder Futhark) -------------------------------------------------
+//  x = { kind:'runes', question, method, staves, methodNote, coverage, framing,
+//        note, cite }  (app/runes.js currentRunesReading — see the runes manifest §h).
+//  Two layers are kept RIGOROUSLY apart: the ATTESTED medieval rune-poem stanzas
+//  come first, the flagged MODERN 20th-c. keyword second — never blended. The
+//  Tacitus lot-cast is framed as a PROTOTYPE only (and disputed).
+export function buildRunesContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 80;
+  const facts = []; const add = (s, c) => s && facts.push({ text: s, cite: c || '' });
+  const m = x.method || {};
+  if (x.question) add(`The question: "${x.question}".`, 'the querent');
+  add(`Cast method: ${m.label}${m.modern ? ' — a MODERN method (a single or three-rune draw), with no ancient warrant' : ' — the Tacitus lot-cast prototype (Germania 10)'}; ${m.drawCount} distinct ${m.drawCount === 1 ? 'stave' : 'staves'}.`, m.cite || 'the casting method');
+  if (m.quote) add(`Tacitus, Germania 10 — the ONLY detailed ancient description, and a PROTOTYPE only (whether the scattered marks were runes at all is DISPUTED and probably unanswerable): "${m.quote}". Key phrase: ${m.latinKey}. The dispute: ${m.dispute}`, m.quoteCite || 'Tacitus, Germania 10');
+  for (const s of (x.staves || [])) {
+    const attested = [
+      s.poems && s.poems.oe ? `Old English (${s.poems.oe.name}): ${s.poems.oe.stanzaGist}` : '',
+      s.poems && s.poems.no ? `Old Norwegian (${s.poems.no.name}): ${s.poems.no.stanzaGist}` : '',
+      s.poems && s.poems.is ? `Old Icelandic (${s.poems.is.name}): ${s.poems.is.stanzaGist}` : '',
+      (!s.hasNorse && s.norseNote) ? s.norseNote : '',
+    ].filter(Boolean).join(' | ');
+    add(`${s.positionLabel}: ${s.name} ${s.char} (${s.translit}, ætt ${s.aett}). ATTESTED — the medieval rune poems: ${attested}`, (s.poems && s.poems.oe && s.poems.oe.cite) || s.cite || 'the rune poems (Dickins 1915)');
+    add(`${s.name} — MODERN keyword (a 20th-century construction, flagged, NEVER to be blended with the attested layer above): ${s.modernMeaning}.`, 'Blum, The Book of Runes (1982) — the modern per-rune oracle');
+    if (s.contested) add(`⚑ ${s.name} — flagged dispute (${s.contested.type}): ${s.contested.note}`, s.contested.cite || 'in-data flag');
+  }
+  const fr = x.framing || {};
+  if (fr.noMeaningTable) add(fr.noMeaningTable.text, fr.noMeaningTable.cite);
+  if (fr.tacitus) add(fr.tacitus.text, fr.tacitus.cite);
+  if (fr.blankRune) add(fr.blankRune.text, fr.blankRune.cite);
+  if (x.note) add(x.note, x.cite);
+  const trimmed = facts.slice(0, max);
+  const glossary = divinationGlossary(['Runes']).slice(0, opts.maxGlossary ?? 99);
+  return { system: assembleSystem(trimmed, glossary, 'ELDER FUTHARK RUNE-CAST'), facts: trimmed, glossary };
+}
+
+export function buildRunesInterpretPrompt(x) {
+  return (
+    'Read this Elder Futhark rune-cast as a learned historian of the runic tradition would, FROM THE COMPUTED ' +
+    'STAVES ONLY. Keep the two layers RIGOROUSLY separate and always in this order for every stave — the ATTESTED ' +
+    'medieval rune-poem material FIRST, the MODERN keyword second, clearly labelled and never blended. In clear prose: ' +
+    '(1) name the CAST METHOD and its honest frame — the Tacitus lot-cast (Germania 10) is the ONE detailed ancient ' +
+    'description and a PROTOTYPE only (whether the scattered marks were runes at all is disputed and probably ' +
+    'unanswerable); a single or three-rune draw is frankly modern. ' +
+    '(2) go stave by stave in the order drawn — for each, name the rune, its ætt and reconstructed name, then read ' +
+    'FIRST the ATTESTED layer (its Old English rune-poem stanza, and the Norse stanza where one exists — say plainly ' +
+    'when a stave has NO Norse poem), and only THEN, clearly set apart, the MODERN 20th-century keyword; voice any ' +
+    'contested flag (⚑) the stave carries. ' +
+    '(3) synthesise what the whole cast, read together, most strongly reflects — as the tradition’s symbolism and a ' +
+    'mirror for reflection, never a forecast or real-world advice. Close with one honest sentence: rune divination is ' +
+    'a 20th-century practice laid over medieval material — the Elder Futhark was first a writing system and no ancient ' +
+    'rune-by-rune meaning table survives — a historical art of no demonstrated validity, described for study, never ' +
+    'prescribed.' + PLAIN_CODA
+  );
+}
+export function runesDataBlock(x) {
+  const dig = {
+    question: x.question || '',
+    method: x.method ? { id: x.method.id, label: x.method.label, modern: !!x.method.modern, historicity: x.method.historicity } : null,
+    staves: (x.staves || []).map(s => ({
+      position: s.positionLabel, name: s.name, char: s.char, translit: s.translit, aett: s.aett,
+      attested: {
+        oe: s.poems && s.poems.oe ? s.poems.oe.stanzaGist : null,
+        no: s.poems && s.poems.no ? s.poems.no.stanzaGist : null,
+        is: s.poems && s.poems.is ? s.poems.is.stanzaGist : null,
+      },
+      modernKeyword: s.modernMeaning,
+      contested: s.contested ? s.contested.note : null,
+    })),
+  };
+  return '\n\nCOMPUTED RUNE-CAST (JSON — interpret THESE staves, never invent; keep the attested and modern layers separate):\n' + JSON.stringify(dig);
+}
+
 // ---- Cycles of History ------------------------------------------------------
 //  x = { kind:'cycles', scan: { fromY, toY, conjunctions[], runs[] } | null,
 //        eclipse: eclipseNear() result | null }  (app/cycles.js currentCyclesReport)

@@ -18,6 +18,7 @@ import {
   buildGeomancyContext, buildTarotContext, buildIchingContext, buildJungContext,
   buildGeomancyInterpretPrompt, buildTarotInterpretPrompt, buildIchingInterpretPrompt, buildJungInterpretPrompt,
   geomancyDataBlock, tarotDataBlock, ichingDataBlock, jungDataBlock, SITE_URLS,
+  buildRunesContext, buildRunesInterpretPrompt, runesDataBlock,
   buildCyclesContext, buildCyclesInterpretPrompt, cyclesDataBlock,
   buildTimelordsContext, buildTimelordsInterpretPrompt, timelordsDataBlock,
   buildPrasnaContext, buildPrasnaInterpretPrompt, prasnaDataBlock,
@@ -53,15 +54,18 @@ const prefillKey = () => lsGet(keyStore()) || (provName() === LOCAL_DEFAULTS.pro
 // get a much leaner fact set and a trimmed glossary (and drop the JSON data block
 // below) to keep a grounded interpret request under the cap.
 const CTX = { geomancy: buildGeomancyContext, tarot: buildTarotContext, iching: buildIchingContext, jung: buildJungContext,
+  runes: buildRunesContext,
   cycles: buildCyclesContext, timelords: buildTimelordsContext,
   prasna: buildPrasnaContext, muhurta: buildMuhurtaContext, tajika: buildTajikaContext };
 const PROMPT = { geomancy: buildGeomancyInterpretPrompt, tarot: buildTarotInterpretPrompt, iching: buildIchingInterpretPrompt, jung: buildJungInterpretPrompt,
+  runes: buildRunesInterpretPrompt,
   cycles: buildCyclesInterpretPrompt, timelords: buildTimelordsInterpretPrompt,
   prasna: buildPrasnaInterpretPrompt, muhurta: buildMuhurtaInterpretPrompt, tajika: buildTajikaInterpretPrompt };
 const DATABLOCK = { geomancy: geomancyDataBlock, tarot: tarotDataBlock, iching: ichingDataBlock, jung: jungDataBlock,
+  runes: runesDataBlock,
   cycles: cyclesDataBlock, timelords: timelordsDataBlock,
   prasna: prasnaDataBlock, muhurta: muhurtaDataBlock, tajika: tajikaDataBlock };
-const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast', jung: 'report', cycles: 'sweep', timelords: 'periods',
+const SUBJECT = { geomancy: 'shield', tarot: 'spread', iching: 'cast', jung: 'report', runes: 'cast', cycles: 'sweep', timelords: 'periods',
   prasna: 'judgement', muhurta: 'day', tajika: 'year chart' };
 // per-tool copy overrides (a tool may pass api.copy to re-skin the panel, e.g.
 // the Jung tool makes it speak in Jung's own first-person voice).

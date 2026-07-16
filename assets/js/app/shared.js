@@ -68,7 +68,7 @@ function currentSection() {
   if (/\/pages\/cycles\.html$/.test(p)) return 'cycles';
   if (/\/pages\/workflow\.html$/.test(p)) return 'workflow';
   if (/\/pages\/tools\.html$/.test(p)) return 'tools';
-  if (/\/pages\/(experiment|structure|geomancy|tarot|iching|prasna|muhurta|tajika|moments|kabbalah)\.html$/.test(p)) return 'tools';
+  if (/\/pages\/(experiment|structure|geomancy|tarot|iching|prasna|muhurta|tajika|moments|kabbalah|runes|rasa|handcalc|transits|synastry)\.html$/.test(p)) return 'tools';
   if (/\/pages\/glossary\.html$/.test(p)) return 'glossary';
   if (/(\/index\.html$|\/$)/.test(p)) return 'home';
   return '';
@@ -132,6 +132,8 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/trajectory.html')}">Life Trajectory (birth chart anywhere)</a></li>
         <li><a href="${R('pages/timelords.html')}">Time-lords &amp; progressions — firdaria · zodiacal releasing</a></li>
         <li><a href="${R('pages/cycles.html')}">Cycles of History — great conjunctions &amp; eclipses</a></li>
+        <li><a href="${R('pages/transits.html')}">Transits to a natal chart — the timing timeline &amp; profection overlay</a></li>
+        <li><a href="${R('pages/synastry.html')}">Synastry — the chart-to-chart aspect grid &amp; house overlays</a></li>
         <li><a href="${R('pages/now.html')}">Right Now — live sky</a></li>
         <li><a href="${R('pages/picatrix/election.html')}">Election — choose the moment</a></li>
         <li><a href="${R('pages/book3/master.html')}">Book III Master Tool</a></li>
@@ -143,12 +145,15 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/geomancy.html')}">Geomancy — the Shield Chart</a></li>
         <li><a href="${R('pages/tarot.html')}">Tarot — the spread, laid &amp; read</a></li>
         <li><a href="${R('pages/iching.html')}">I Ching — the Book of Changes</a></li>
+        <li><a href="${R('pages/runes.html')}">Runes — the Elder Futhark, cast &amp; read</a></li>
         <li><a href="${R('pages/kabbalah.html')}">Kabbalah — the Tree of Life explorer &amp; gematria</a></li>
         <li><a href="${R('pages/prasna.html')}">Praśna — Indian horary &amp; the KP sub-lords</a></li>
         <li><a href="${R('pages/muhurta.html')}">Muhūrta — the Indian election of the moment</a></li>
+        <li><a href="${R('pages/rasa.html')}">Rasaśāstra &amp; yantras — Indian mercury-alchemy &amp; the magic squares</a></li>
         <li><a href="${R('pages/moments.html')}">Cross-system moment scanner — every rulebook, one timeline</a></li>
         <li><a href="${R('pages/tajika.html')}">Tājika varṣaphala — the Indo-Persian annual chart</a></li>
         <li><a href="${R('pages/how-it-works.html')}">How it's calculated (step by step)</a></li>
+        <li><a href="${R('pages/handcalc.html')}">Cast a chart by hand — the ephemeris &amp; tables method</a></li>
         <li><a href="${R('pages/workflow.html')}">Chapter Map &amp; Workflows</a></li>
         <li><a href="${R('pages/book1/master.html')}">Book I Master Tool</a></li>
         <li><a href="${R('pages/book2/horary.html')}">Horary Chart Calculator</a></li>

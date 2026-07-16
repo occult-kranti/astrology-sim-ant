@@ -145,6 +145,40 @@
       <p>See which tool answers which chapter of each book, with a worked example and the step-by-step method
         for horary and nativities.</p>
     </a>
+    <a class="card tool-card" href="handcalc.html">
+      <span class="glyph-badge">✶</span><span class="chip tool">Foundations</span><span class="chip done">by hand</span>
+      <h3>Cast a Chart by Hand</h3>
+      <p>The classic manual workflow — <b>ephemeris + atlas + book of tables</b> — in five stations, exactly as
+        Catherine Urban's workshop and <i>The Astrology Podcast</i> ep. 396 teach it: clock time → UT, Local Sidereal
+        Time (the <b>10 s/hour</b> book rule beside the exact <b>9.8565 s/h</b> rate), planetary positions by linear
+        interpolation <b>and</b> proportional logarithms, and house cusps by <b>double interpolation</b> — with
+        <b>every hand step checked live against the engine and the delta shown</b>.</p>
+      <p class="what"><b>Computes:</b> UT from offset + the atlas-honesty pitfalls · LST by hand (book &amp; exact rates,
+        each Δ vs engine) · a live mini-ephemeris (midnight positions + daily motion) · linear &amp; proportional-log
+        interpolation per planet with the Moon's ~2.7′ caveat · the Book-of-Tables double interpolation (Placidus,
+        4-min ST rows × 1° latitude) vs the exact ASC/MC · the finished chart &amp; total accumulated error.</p>
+    </a>
+    <a class="card tool-card" href="transits.html">
+      <span class="glyph-badge">☄</span><span class="chip tool">Traditional</span><span class="chip done">timing</span>
+      <h3>Transits to a Natal Chart</h3>
+      <p>For a nativity and a date window (capped at ~2 years), the <b>exact-hit dates</b> a transiting planet perfects a
+        Ptolemaic aspect to a natal point — applying/separating, the retrograde <b>1-or-3 passes</b>, stations &amp;
+        ingresses — with the <b>profection overlay</b>: transits <em>by</em> the Lord of the Year, or <em>to</em> the Lord
+        of the Year / the profected sign, highlighted (the "time-lord activated" filter, labelled a modern reconstruction).</p>
+      <p class="what"><b>Computes:</b> exact aspect perfections (conj/sext/sq/trine/opp) to natal points · retrograde
+        pass n/m · a "transits in force" snapshot with applying/separating · stations &amp; sign ingresses ·
+        the Lord-of-the-Year activation overlay · the lunar (monthly) returns.</p>
+    </a>
+    <a class="card tool-card" href="synastry.html">
+      <span class="glyph-badge">⚭</span><span class="chip tool">Traditional</span><span class="chip done">two charts</span>
+      <h3>Synastry — the Aspect Grid</h3>
+      <p>Two nativities compared: the full <b>cross-aspect grid</b> (A's planets × B's), Lilly's moieties, applying/
+        separating and the whole-sign aspect, plus the <b>house overlays both ways</b>. The classical core is Ptolemy's
+        luminary rule (Tetrabiblos IV.5); the full grid is flagged modern, with Jung's <b>null</b> 1952 marriage
+        experiment as the honest bridge.</p>
+      <p class="what"><b>Computes:</b> the 7×7 chart-to-chart aspect matrix (reuses aspects.js) · the Ptolemaic
+        luminary-interaspect core · applying/separating &amp; whole-sign per cell · A-in-B and B-in-A house overlays.</p>
+    </a>
   </div>
 
   <h2 id="s-picatrix">Picatrix — astrological magic</h2>
@@ -232,6 +266,15 @@
       <p class="what"><b>Computes:</b> the 64 hexagrams &amp; 8 trigrams · the coin cast · moving lines · nuclear &amp;
         relating hexagrams · the guidance.</p>
     </a>
+    <a class="card tool-card" href="runes.html">
+      <span class="glyph-badge">ᚱ</span><span class="chip tool">Runes</span><span class="chip done">24 staves</span>
+      <h3>Elder Futhark Runes — cast &amp; read</h3>
+      <p>Scatter the lots in the <b>Tacitus</b> manner (<i>Germania</i> 10), or draw a single rune or a three-rune
+        spread; the engine reads each stave's <b>attested</b> medieval rune-poem stanza <em>above</em> its clearly-flagged
+        <b>modern</b> keyword — the two never blended — with an AI diviner to narrate it.</p>
+      <p class="what"><b>Computes:</b> the 24 staves in 3 ættir · verified Unicode codepoints · the Tacitus / single /
+        three-rune casts · attested OE + Norse rune-poem stanzas vs the flagged modern keyword · in-data disputes (⚑).</p>
+    </a>
   </div>
 
   <div class="grid cols-2">
@@ -306,6 +349,22 @@
         election verdict + score (electionScore) · the hour ruler (planetaryHour) · the muhūrta slot &amp;
         grading (muhurtasOf, cached per sunrise-day) · Rāhu/Yama/Gulika overlap (kalas) · the four pañcāṅga
         screen verdicts (castVedic + panchangaScreens, per step) — all from the existing engines, no new data.</p>
+    </a>
+    <a class="card tool-card" href="rasa.html">
+      <span class="glyph-badge">☿</span>
+      <span class="chip tool">Vedic</span><span class="chip done">alchemy &amp; yantras</span>
+      <h3>Rasaśāstra &amp; yantra-mathematics</h3>
+      <p>The Indian alchemy of <b>mercury</b> and its magic-square mathematics: the dated textual chain (with the
+        Wujastyk <b>"alchemical ghost"</b> dispute flagged), the <b>18 saṃskāras</b> and the rasaśālā apparatus
+        (history of chemistry only — mercury is <b>toxic</b>, described never prescribed), the <b>nine navagraha
+        squares</b> verified live (flagged as the modern printed tradition) beside the dated classical squares
+        (Varāhamihira's sum-18, the Khajuraho <b>Chautisa</b> most-perfect square), a <b>kaṭapayādi</b>
+        encoder/decoder, and the 81-cell <b>Sarvatobhadra Chakra</b> cast for any date. The Indian sibling of the
+        Picatrix <a href="picatrix/kameas.html">kameas</a> — same mathematics, opposite planetary logic.</p>
+      <p class="what"><b>Computes:</b> the 9 navagraha 3×3 squares (constants 15–39, grand total 729) with live
+        <code>validateYantra</code> badges · the Chautisa most-perfect checks (broken diagonals + 2×2 blocks + corner
+        quads = 34) · kaṭapayādi decode/encode (Dhīraśaṅkarābharaṇam→29, the π verse→18 digits) · the 81-cell
+        Sarvatobhadra Chakra joined to the pañcāṅga, with the Moon's vedha lines.</p>
     </a>
   </div>
 

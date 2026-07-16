@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synastry — the chart-to-chart aspect grid | The Astrologer's Workbench</title>
+<meta name="description" content="Synastry: the aspect grid BETWEEN two nativities — every cross-aspect (conjunction, sextile, square, trine, opposition) of person A's planets to person B's, with Lilly's moieties, applying/separating and the whole-sign aspect, plus the house overlays both ways (A's planets in B's houses, and vice versa). The classical core is Ptolemy's luminary-interaspect rule (Tetrabiblos IV.5); the full grid is flagged a modern convention, with Jung's null 1952 marriage experiment as the honest bridge. A historical art of no demonstrated validity — described, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Synastry (two charts)</p>
+  <h1>Synastry — the chart-to-chart aspect grid</h1>
+  <p class="lede"><b>Synastry</b> compares two nativities: the aspects one person's planets make to the other's, and where
+    each person's planets fall in the other's houses. Both Catherine Urban (multi-chart "family dynamics" work) and
+    Patrick Watson (who tutors synastry) practise it. This lays the full <b>cross-aspect grid</b> — person A down the
+    side, person B across the top — with Lilly's moieties, applying/separating and the whole-sign aspect, then the
+    <b>house overlays both ways</b>. The classical kernel is Ptolemy's rule that the two charts' <em>luminaries</em> in
+    harmonious aspect make a lasting marriage; the full planet-by-planet grid is a modern convention, flagged as such.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Synastry has <b>no demonstrated validity</b>. The arithmetic is real — the same aspect engine, orbs and house cusps
+    as every other tool — but the <em>meaning</em> read into a cross-aspect is a symbolic convention, not a measure of
+    any relationship. The one cited classical rule is <b>Ptolemy, Tetrabiblos IV.5</b> (marriage lasting when both
+    genitures' luminaries are in harmonious aspect, "particularly… by exchange") and Dorotheus' marriage significations
+    (Carmen Bk II); the full grid is modern. The honest bridge is <b>Jung's 1952 marriage experiment</b>, which tallied
+    cross-aspects between spouses and <b>found nothing statistically significant</b> — our own wing re-runs it and shows
+    that <a href="jung/experiment.html">null result</a>. See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="sy-form" class="calc">
+    <div class="grid cols-2">
+      <div>
+        <p class="small" style="margin:.2rem 0 .4rem"><b>Person A</b></p>
+        <div class="field-row">
+          <div class="field" style="flex:1 1 160px"><label for="sa-city">Birthplace</label><select id="sa-city"></select></div>
+          <div class="field"><label for="sa-lat">Lat °N</label><input id="sa-lat" type="number" step="0.0001" value="51.5074" style="width:6.5rem"></div>
+          <div class="field"><label for="sa-lon">Lon °E</label><input id="sa-lon" type="number" step="0.0001" value="-0.1278" style="width:6.5rem"></div>
+        </div>
+        <div class="field-row" style="margin-top:.4rem">
+          <div class="field"><label for="sa-date">Birth date</label><input id="sa-date" type="date" value="1990-05-15"></div>
+          <div class="field"><label for="sa-time">Time (local)</label><input id="sa-time" type="time" value="12:00"></div>
+          <div class="field"><label for="sa-offset">UTC offset</label><input id="sa-offset" type="number" step="0.5" value="0" style="width:5.5rem"></div>
+        </div>
+        <div id="sa-picker-anchor"></div>
+      </div>
+      <div>
+        <p class="small" style="margin:.2rem 0 .4rem"><b>Person B</b></p>
+        <div class="field-row">
+          <div class="field" style="flex:1 1 160px"><label for="sb-city">Birthplace</label><select id="sb-city"></select></div>
+          <div class="field"><label for="sb-lat">Lat °N</label><input id="sb-lat" type="number" step="0.0001" value="40.7128" style="width:6.5rem"></div>
+          <div class="field"><label for="sb-lon">Lon °E</label><input id="sb-lon" type="number" step="0.0001" value="-74.006" style="width:6.5rem"></div>
+        </div>
+        <div class="field-row" style="margin-top:.4rem">
+          <div class="field"><label for="sb-date">Birth date</label><input id="sb-date" type="date" value="1988-11-22"></div>
+          <div class="field"><label for="sb-time">Time (local)</label><input id="sb-time" type="time" value="08:30"></div>
+          <div class="field"><label for="sb-offset">UTC offset</label><input id="sb-offset" type="number" step="0.5" value="-5" style="width:5.5rem"></div>
+        </div>
+        <div id="sb-picker-anchor"></div>
+      </div>
+    </div>
+    <div class="field-row" style="margin-top:.9rem">
+      <button type="submit" class="btn">✶ Compute the synastry grid</button>
+      <span id="sy-status" class="small muted"></span>
+    </div>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The cross-aspect grid <span class="small muted">(A ↓ · B →)</span></h2>
+    <div id="sy-grid"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The classical core &amp; the cross-aspects</h2>
+    <div id="sy-classical"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">House overlays <span class="small muted">(each person's planets in the other's houses)</span></h2>
+    <div id="sy-overlays"></div></section>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <section class="card" id="hiw-synastry">
+    <h2 style="margin-top:0">How this works</h2>
+    <h3>The grid — one aspect engine, reused</h3>
+    <p class="small">For every pairing of one of person A's seven planets with one of person B's, the engine calls the
+      <em>same</em> <code>aspectBetween</code> the single-chart tools use (core/aspects.js): the angular separation is
+      tested against the five Ptolemaic aspects, "in orb" when it is within the <b>sum of the two planets' moieties</b>
+      (half-orbs) — Lilly assigns orbs to planets, not to aspects. No orb table is duplicated. Each cell also carries the
+      <b>whole-sign aspect</b> (sign-to-sign, degree-independent) and whether it is <b>applying or separating</b>. The
+      grid is symmetric: swapping A and B transposes it and preserves every aspect and orb.</p>
+    <h3>The orbs, stated plainly</h3>
+    <p class="small">The moieties used are Lilly's primary set (Sun 15°, Moon 12°, Jupiter/Saturn 9°, Mars/Mercury/Venus
+      7° — halved and summed for the allowance). This is generous by modern lights: contemporary synastry typically uses
+      tighter <em>aspect</em>-based orbs (≈8° conjunction, 6° square/trine, 4° sextile). Both readings are honest; the
+      choice is stated rather than hidden, and the whole-sign column is orb-free. Natal <b>angles</b> carry no moiety, so
+      the default grid is the seven planets.</p>
+    <h3>The classical core vs the modern grid</h3>
+    <p class="small">Only one synastry rule is genuinely classical and citable: <b>Ptolemy, Tetrabiblos IV.5</b> —
+      "Marriages… are lasting when in both the genitures the luminaries happen to be in harmonious aspect, that is, in
+      trine or in sextile with one another, and particularly when this comes about by exchange." So the <b>luminary
+      interaspects</b> (each chart's Sun/Moon to the other's) are surfaced as the cited kernel, highlighted in the grid.
+      The <b>full planet-by-planet matrix is a modern convention</b>; it is provided but labelled modern. Dorotheus,
+      Carmen Bk II treats marriage significations. The historical bridge between the classical luminary rule and the
+      modern grid is <b>C. G. Jung's 1952 marriage experiment</b> (CW 8 §§872–915), which tallied cross-aspects between
+      spouses — and found <b>no statistical significance</b>. Our Jung wing <a href="jung/experiment.html">re-runs that
+      experiment honestly</a> and shows the null result: finding a striking cross-aspect here is what chance looks like,
+      not a verdict on any relationship.</p>
+    <h3>House overlays</h3>
+    <p class="small">Each person's seven planets are dropped into the <em>other's</em> Regiomontanus houses (the house a
+      longitude falls in, by the same <code>houseOf</code> the natal tools use) — traditionally, the areas of the host's
+      life the guest's planet animates. Each set of seven sums to seven placements, both directions.</p>
+    <h3>What is honestly out of scope</h3>
+    <p class="small">The grid does not compute the <b>composite</b> or <b>Davison</b> midpoint charts, weight aspects by
+      reception or dignity, or read the <b>7th-house</b> and its lord across the two figures — the layers a traditional
+      marriage judgement (Dorotheus II; Lilly Bk III) would demand. And no cross-aspect count means anything: it is a
+      symbolic comparison of no demonstrated validity.</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this measures compatibility or predicts a relationship. The grid is exact geometry inside a symbolic
+    convention that has been <em>tested and found null</em> — Jung's own marriage experiment, re-run in
+    <a href="jung/experiment.html">our Jung wing</a>, shows it. It is offered as history and structure, cited to Ptolemy
+    for its one classical rule and labelled modern for the rest. Interesting, not guidance.
+    See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="transits.html">Transits to a natal chart</a>
+    (timing against one chart), the <a href="jung/tool.html">Jung marriage-experiment synastry</a> (the five-point
+    cross-aspects and their chance-rate), and the <a href="jung/experiment.html">experiment re-run honestly</a> (the null
+    result).</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('synastry');
+  import { initSynastry } from '../assets/js/app/synastry.js';
+  initSynastry();
+</script>
+</body>
+</html>

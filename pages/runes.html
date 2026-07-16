@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elder Futhark Runes — cast &amp; read | The Astrologer's Workbench</title>
+<meta name="description" content="The Elder Futhark: 24 staves in three ættir of eight. Scatter the lots in the Tacitus manner (Germania 10) or draw a single rune or a three-rune spread; the engine reads each stave's attested medieval rune-poem stanza above its flagged modern keyword, with an AI diviner to narrate it. Historical study only — a divinatory art of no demonstrated validity. The runes were a WRITING system; the per-rune meaning table is 20th-century. Stanza gists are original paraphrases after Dickins 1915 (public domain). No blank rune.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E1%9A%A0%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .rn-methods { display:flex; gap:.5rem; flex-wrap:wrap; }
+  .rn-method { border:1px solid var(--rule); border-radius:.5rem; padding:.45rem .7rem; background:var(--card); cursor:pointer; display:flex; gap:.4rem; align-items:center; }
+  .rn-method input { margin:0; }
+  .rn-method.sel { border-color:var(--gold); box-shadow:0 0 0 1px var(--gold) inset; }
+  .rn-method .rn-flag { font-size:.72rem; }
+  .rn-cards { display:flex; gap:.9rem; flex-wrap:wrap; margin-top:.3rem; }
+  .rn-card { flex:1 1 15rem; min-width:14rem; border:1px solid var(--rule); border-radius:.6rem; padding:.7rem .8rem; background:var(--card); }
+  .rn-card-head { display:flex; gap:.7rem; align-items:flex-start; }
+  .rn-char { font-size:3.2rem; line-height:1; color:var(--ink); font-family:"Segoe UI Historic","Noto Sans Runic","Segoe UI Symbol",serif; }
+  .rn-slot { font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); }
+  .rn-name { font-size:1.05rem; line-height:1.2; }
+  .rn-sub { font-size:.8rem; }
+  .rn-layer { margin-top:.55rem; padding-top:.5rem; border-top:1px dashed var(--rule); }
+  .rn-layer-label { font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); margin-bottom:.15rem; }
+  .rn-layer.rn-modern .rn-layer-label { color:var(--link); }
+  .rn-poem { margin:.18rem 0; }
+  .rn-poem b { font-variant:small-caps; }
+  .rn-nonorse { font-style:italic; }
+  .rn-contested { margin-top:.5rem; border-left:3px solid var(--gold); padding:.25rem .5rem; background:rgba(180,150,60,.08); border-radius:.25rem; }
+  .rn-ref-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(6.4rem, 1fr)); gap:.4rem; }
+  .rn-ref-cell { border:1px solid var(--rule); border-radius:.45rem; padding:.4rem; background:var(--card); text-align:center; }
+  .rn-ref-cell .rn-ref-char { font-size:2rem; line-height:1.1; font-family:"Segoe UI Historic","Noto Sans Runic","Segoe UI Symbol",serif; }
+  .rn-ref-cell.rn-has-flag { border-color:var(--gold); }
+  .rn-aett { margin:.5rem 0; }
+  .rn-aett h3 { margin:.2rem 0; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Runes</p>
+  <h1>Elder Futhark Runes — cast &amp; read</h1>
+  <p class="lede">The <b>Elder Futhark</b> is the oldest runic alphabet — <b>24 staves</b> in three groups of eight
+    (the <b>ættir</b>), used to write the Germanic languages roughly <b>c. 150–700 CE</b>. Here the tradition's
+    lot-casting is reproduced for study: scatter the lots in the manner <b>Tacitus</b> described, or draw a single
+    rune or a three-rune spread. Each stave shows its <b>attested</b> medieval rune-poem stanza <em>above</em> its
+    clearly-flagged <b>modern</b> keyword — never blended.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    The Elder Futhark was first of all a <b>writing system</b>. Magical use is attested in inscriptions (charm-words
+    like <i>alu</i> and <i>laukaz</i>), but <b>no ancient or medieval source gives a rune-by-rune divinatory meaning
+    table</b> — the neat "each rune = one meaning" oracle is a <b>20th-century construction</b> (Ralph Blum, 1982).
+    The three rune poems <em>are</em> attested; the stanza gists here are <b>original paraphrases after Bruce Dickins
+    (1915, public domain)</b>, not a copyrighted modern translation. A historical divinatory art of <b>no demonstrated
+    validity</b>. The lots are drawn by your browser's random generator; nothing leaves the page. <b>No blank rune</b>
+    ships here (see the framing note below).</div>
+
+  <div id="cast-hour"></div>
+
+  <form id="rn-form" class="calc">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 100%"><label for="rn-question">Your question (optional)</label>
+        <input id="rn-question" type="text" placeholder="e.g. what should I understand about this situation?" style="width:100%"></div>
+    </div>
+    <div class="field-row" style="margin-top:.6rem;flex-direction:column;align-items:flex-start;gap:.4rem">
+      <label class="small">Casting method</label>
+      <div id="rn-methods" class="rn-methods"></div>
+    </div>
+    <div class="field-row" style="margin-top:.7rem">
+      <button type="submit" class="btn" id="rn-cast">ᛦ Cast the lots</button>
+      <button type="button" class="btn sm" id="rn-share">Copy shareable link</button>
+      <button type="button" class="btn sm" id="rn-md">⤓ Download reading (MD)</button>
+      <span id="rn-share-status" class="small muted"></span>
+    </div>
+  </form>
+
+  <section class="card"><h2 style="margin-top:0">The cast</h2>
+    <div id="rn-method-note" class="small muted"></div>
+    <div id="rn-cards" class="rn-cards"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The reading</h2>
+    <div id="rn-out"></div>
+    <div class="callout" style="margin-top:.6rem"><span class="label">A mirror, not a verdict</span> The runes offer
+      images to reflect on. This has no demonstrated predictive validity; it is structured reflection over the attested
+      rune-poem material for study. The <b>modern keyword</b> layer is a 20th-century construction, kept clearly apart
+      from the poems.</div></section>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The 24 staves <span class="small muted">(the three ættir)</span></h2>
+    <p class="small muted">The three-fold division is attested (Vadstena &amp; Grumpan bracteates, c. 500 CE); the ætt
+      <em>names</em> "Freyr's / Hagall's / Týr's" are a later Icelandic tradition. Every Proto-Germanic name is
+      <b>reconstructed</b> (asterisked) — no Elder-period rune name is directly attested. A ⚑ marks a stave with a
+      flagged dispute.</p>
+    <div id="rn-aettir"></div></section>
+
+  <section class="card"><h2 style="margin-top:0">The three rune poems <span class="small muted">(what is attested)</span></h2>
+    <div id="rn-poems"></div></section>
+
+  <section class="card" id="hiw-runes"><h2 style="margin-top:0">How the cast is computed</h2>
+    <ol class="small">
+      <li>The 24 staves are a fixed, cited dataset (<code>core/data/runes-data.js</code>): each with its verified Unicode
+        codepoint, transliteration, ætt, reconstructed name, attested rune-poem stanzas and a flagged modern keyword.</li>
+      <li>The app scatters the lots with <b>crypto.getRandomValues</b> and draws the required number of <b>distinct</b>
+        staves (1 for a single draw, 3 for the Tacitus cast and the three-rune spread).</li>
+      <li>The <b>pure</b> engine (<code>core/runes.js</code> — no randomness, no DOM) validates the draws and assembles
+        the reading: the drawn staves, each poem stanza above the modern keyword, the method note, and the framing.</li>
+      <li>Nothing is predicted. The output reproduces a 20th-century practice over medieval poem material — described,
+        never prescribed.</li>
+    </ol></section>
+
+  <div class="callout science" id="rn-framing" style="margin-top:1.2rem"><span class="label">The honest framing (read this)</span>
+    <div id="rn-framing-body"></div></div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="iching.html">I Ching</a> cast, the
+    <a href="geomancy.html">Geomancy</a> shield, the <a href="tarot.html">Tarot</a> reader, and the
+    <a href="workbench.html">Master Tool</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('tools');
+  import { initRunes } from '../assets/js/app/runes.js';
+  initRunes();
+</script>
+</body>
+</html>

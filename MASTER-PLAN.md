@@ -440,6 +440,39 @@ workflow before encoding — the R15–R18 discipline: primary sources fetched, 
   never merged), plus the per-tool deep codebooks rolled out everywhere: every testimony explained as
   *book meaning → literal real-life translation → implications*, the pattern the 🎯 prompt establishes.
 
+### R22 — The by-hand layer, the Indian alchemy wing, practitioner tools & the runes ✅ **SHIPPED** (2026-07-15)
+*(four tools built in parallel — each engine module pure/headless, cited per record, contested values flagged
+in-data — then integrated together. Verified: engine-test all passed · audit Problems: 0 (68 HTML, 125 JS) ·
+real-Chromium sweep 68 pages, 0 errors.)*
+
+- **Rasaśāstra & the yantra-mathematics** (`pages/rasa.html`, `core/yantra.js`, `data/rasa-data.js`): the Indian
+  mercury-alchemy as history of chemistry only (18 saṃskāras + the rasaśālā apparatus; the Wujastyk "alchemical
+  ghost" dispute flagged; mercury toxic, described never prescribed) beside the *provable* magic-square mathematics
+  — the 9 navagraha 3×3 squares verified live (constants 15–39, grand total 729; flagged the modern printed
+  tradition), Varāhamihira's sum-18 and the Khajuraho **Chautisa** most-perfect square, a **kaṭapayādi**
+  encoder/decoder, and the 81-cell **Sarvatobhadra Chakra** cast for any date. The Indian sibling of the Picatrix
+  kameas — the same mathematics with the opposite planetary logic (Sūrya, not Saturn, takes the 3×3).
+- **Cast a chart by hand** (`pages/handcalc.html`, `core/handcalc.js`, `data/handcalc-data.js`): the classic
+  ephemeris + atlas + book-of-tables workflow in five stations (per *The Astrology Podcast* ep. 396 / *Simply Math*
+  2005), each hand step checked LIVE against the engine with the delta shown — clock→UT, Local Sidereal Time (the
+  10 s/h book rule beside the exact 9.8565 s/h rate), planetary positions by linear interpolation AND proportional
+  logarithms, and house cusps by double interpolation (Placidus). DeVore's printed plog values reproduced to 5 dp.
+- **Practitioner-gap tools: transits · synastry · returns** (`core/transits.js`, `core/synastry.js`,
+  `core/returns.js`; `pages/transits.html`, `pages/synastry.html`): the transit-to-natal timeline (exact-hit aspect
+  perfections, retrograde 1-or-3 passes, stations & ingresses) with the profection overlay (the modern-Hellenistic
+  "time-lord activated" filter, flagged); the chart-to-chart synastry aspect grid (Ptolemaic luminary core,
+  *Tetrabiblos* IV.5; the full grid flagged modern, Jung's null 1952 experiment as the bridge) plus the house
+  overlays both ways; and the lunar (monthly) / Saturn returns generalizing Lilly's solar revolution. Surfaced
+  because Catherine Urban & Patrick Watson publicly attest their continued use — only the classical techniques and
+  their primary sources are reproduced.
+- **Elder Futhark runes** (`pages/runes.html`, `core/runes.js`, `data/runes-data.js`): the 24-stave oracle on the
+  shared diviner engine — the Tacitus scatter-cast (*Germania* 10, framed a disputed PROTOTYPE only) or a single /
+  three-rune draw, each drawn stave reading its ATTESTED medieval rune-poem stanza (Old English for all 24, Norse
+  for exactly 16) ABOVE its flagged MODERN 20th-c. keyword, the two never blended; verified Unicode codepoints
+  (gebo = U+16B7, no futhorc CEN), in-data disputes (⚑), no blank rune. The AI diviner (`buildRunesContext` /
+  `buildRunesInterpretPrompt` / `runesDataBlock`) narrates the cast — cite-bound, the honest close, the five-part
+  plain-words coda.
+
 ### FURTHER ROADMAP (after R21, in rough value order)
 1. **Runes (Elder Futhark)** — a 24-stave oracle on the shared diviner engine (medium fit).
 2. **Streaming-markdown AI replies** with copy/regenerate.
