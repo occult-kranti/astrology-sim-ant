@@ -38,6 +38,8 @@ export const PADA2 = [
     ],
     translation: "Self-castigation and study and devotion to the Īśvara are the Yoga of action.",
     note: "The three practices — tapas, svādhyāya and īśvara-praṇidhāna — form the kriyā-yoga (yoga of action) triad.",
+    bhashya: "Yoga is not perfected in one who is not self-castigated; tapas alone thins the beginningless impurity bred of the hindrances and of karma. Study (svādhyāya) is the repetition of purifying formulae such as the sacred syllable Om or the reading of books on liberation, and devotion to the Īśvara is the offering up of all one's actions to the Supreme Teacher and the renouncing of their fruit.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -54,6 +56,8 @@ export const PADA2 = [
     ],
     translation: "For the cultivation of concentration and for the attenuation of the hindrances.",
     note: "States the twofold purpose of kriyā-yoga: to foster samādhi and to thin the kleśas.",
+    bhashya: "Given earnest attention, the yoga of action cultivates concentration and thins the hindrances to the point where, like seeds burned by the fire of Elevation, they can no longer germinate. The subtle insight that discriminates the sattva from the Self, no longer touched by them, then stands ready, its task done, for inverse-propagation.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -70,6 +74,8 @@ export const PADA2 = [
     ],
     translation: "Undifferentiated-consciousness (avidyā) and the feeling-of-personality and passion and aversion and the will-to-live are the five hindrances.",
     note: "Names the five kleśas (afflictions).",
+    bhashya: "The so-called hindrances are the five misconceptions; flowing out, they stiffen the sway of the guṇas, make mutation more fixed, and swell the stream of cause and effect. Interdependent and aiding one another, they bring about the fruition of karma.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -87,6 +93,8 @@ export const PADA2 = [
     ],
     translation: "Undifferentiated-consciousness (avidyā) is the field for the others whether they be dormant or attenuated or intercepted or sustained.",
     note: "Avidyā is the field or seed-bed of the remaining four kleśas.",
+    bhashya: "Avidyā is the field or propagative soil of the other four, which occur in four states — dormant (a mere seed in the mind, roused by its object, yet burned to sterility in one who has reached Elevation), attenuated (overpowered by cultivating their opposites), intercepted (one suppressed while another is active, as anger is unfelt while love is felt), and sustained (fixed full upon its object). All are varieties of avidyā, which pervades them; when it dwindles, they dwindle too.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -107,6 +115,8 @@ export const PADA2 = [
     ],
     translation: "The recognition of the permanent, of the pure, of pleasure, and of a self in what is impermanent, impure, pain, and not-self is undifferentiated-consciousness.",
     note: "Defines avidyā as mistaking the impermanent, impure, painful and not-self for their opposites.",
+    bhashya: "Avidyā is fourfold: taking the impermanent (earth, moon, stars, the gods) for permanent, the impure and repulsive body for pure, pain for pleasure, and the not-self — outer aids, body and mind — for the self. It is the root of the whole unbroken series of hindrances and karma; and, like the words 'foe' or 'trackless forest,' it is no mere absence of knowledge but a positive thing, a kind of thinking that is the reverse of knowledge.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -123,6 +133,8 @@ export const PADA2 = [
     ],
     translation: "When the power of seeing and the power by which one sees have the appearance (iva) of being a single-self, [this is] the feeling-of-personality.",
     note: "Defines asmitā (the feeling-of-personality).",
+    bhashya: "The Self is the power of seeing and the thinking-substance the power by which one sees; the feeling-of-personality is the seeming fusion of these two utterly distinct powers into a single essence. So long as the enjoyer is not distinguished from the enjoyed, worldly experience is at hand; when each recovers its own nature, there is Isolation.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -136,6 +148,8 @@ export const PADA2 = [
     ],
     translation: "Passion is that which dwells upon pleasure.",
     note: "",
+    bhashya: "Passion is the greed, thirst, or desire that, in one who has known pleasure, follows on the memory of it and reaches out for that pleasure or for the means of gaining it.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -149,6 +163,8 @@ export const PADA2 = [
     ],
     translation: "Aversion is that which dwells upon pain.",
     note: "",
+    bhashya: "Aversion is the repulsion, wrath, or anger that, in one who has known pain, follows on the memory of it and is directed against that pain or against whatever leads to it.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -166,6 +182,8 @@ export const PADA2 = [
     ],
     translation: "The will-to-live (abhiniveśa) sweeping on [by the force of] its own nature exists in this form even in the wise.",
     note: "Abhiniveśa (the will-to-live) clings on even in the wise.",
+    bhashya: "In every living being the craving 'May I not cease to be! May I live!' rises ceaselessly, and it could only come from having already undergone death in former births. This fear of death, sweeping on by its own force and not learnt in this life through perception, inference, or teaching, is found alike in the most witless worm and in the wise.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -180,6 +198,8 @@ export const PADA2 = [
     ],
     translation: "These [hindrances] [when they have become] subtile are to be escaped by the inverse-propagation.",
     note: "",
+    bhashya: "When the five hindrances have become like burned seeds, they come to rest together with the mind-stuff as it is resolved back into its own cause, primary matter.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -194,6 +214,8 @@ export const PADA2 = [
     ],
     translation: "The fluctuations of these should be escaped by means of contemplation.",
     note: "",
+    bhashya: "The coarse active fluctuations of the hindrances, once thinned by the yoga of action, are to be got rid of by Elevated contemplation until they are subtilized into burned seeds — just as a coarse stain on cloth is first shaken off and the finer stain then removed with effort and by proper means.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -212,6 +234,8 @@ export const PADA2 = [
     ],
     translation: "The latent-deposit of karma has its root in the hindrances and may be felt in a birth seen or in a birth unseen.",
     note: "The karmāśaya (deposit of karma) is rooted in the kleśas.",
+    bhashya: "The deposit of karma, meritorious or demeritorious, springs from lust, greed, infatuation, or anger, and may be felt in a birth seen or in one unseen. Karma of keen intensity — from sacred formulae, self-castigation, and worship, or from repeated contempt shown to the helpless — ripens swiftly, as when Nandīśvara was raised to godhood and Nahuṣa cast down into a beast.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -229,6 +253,8 @@ export const PADA2 = [
     ],
     translation: "So long as the root exists, there will be fruition from it [that is] birth [and] length-of-life [and] kind-of-experience.",
     note: "Its threefold fruition is jāti (birth), āyus (life-span) and bhoga (experience).",
+    bhashya: "So long as the hindrances remain as its root, the karma-deposit bears fruit, but not once that root is cut — just as unhusked, unburned rice-grains germinate while winnowed chaff or scorched seed cannot. This fruition is threefold — birth, length of life, and kind of experience — the accumulated karma of a lifetime being compacted at death into a single new existence.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -246,6 +272,8 @@ export const PADA2 = [
     ],
     translation: "These [fruitions] have joy or extreme anguish as results in accordance with the quality of their causes whether merit or demerit.",
     note: "",
+    bhashya: "Birth, length of life, and kind of experience yield pleasure when their cause is merit and pain when their cause is demerit. And because pleasure itself is counteractive, for the yogin even a moment of pleasure in an object is nothing but pain.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -268,6 +296,8 @@ export const PADA2 = [
     ],
     translation: "As being the pains which are mutations and anxieties and subliminal-impressions, and by reason of the opposition of the fluctuations of the aspects (guṇa),—to the discriminating all is nothing but pain.",
     note: "'All is pain to the discriminating' — the pains of change, anxiety and habituation.",
+    bhashya: "To the discriminating all is pain — through the pain of mutation (pleasure breeds passion and never quenches thirst but only inflames it), the pain of anxiety, and the pain of subliminal-impressions (each pleasure or pain deposits a trace that renews the endless stream), and through the ceaseless mutual opposition of the guṇas that keeps the mind in flux. Sensitive as an eyeball, the yogin alone feels this and takes refuge in focused insight; and the system, like medicine, has four parts — the round of rebirth, its cause, release, and the means of release.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -281,6 +311,8 @@ export const PADA2 = [
     ],
     translation: "That which is to be escaped is pain yet to come.",
     note: "Only pain not-yet-come can be avoided.",
+    bhashya: "Past pain is gone beyond experience and present pain is already being felt, so neither can be avoided; only pain not yet come — which afflicts the yogin, sensitive as an eyeball — can still be so altered that it may be escaped.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -296,6 +328,8 @@ export const PADA2 = [
     ],
     translation: "The correlation of the Seer and the object-of-sight is the cause of that which is to be escaped.",
     note: "",
+    bhashya: "The Seer is the Self made conscious by reflection of the thinking-substance, and the objects-of-sight are all the aspects that strike its sattva and, like a magnet acting by mere nearness, become the property of the Self whose nature is seeing. The beginningless correlation of these two powers is the cause of pain; and, as with knowing thorn, scratch, and sandal, once its cause is understood the pain can be prevented.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -317,6 +351,8 @@ export const PADA2 = [
     ],
     translation: "With a disposition to brightness and to activity and to inertia, and with the elements and the organs as its essence, and with its purpose the experience and the liberation [of the Self],—[this is] the object-of-sight.",
     note: "Describes the dṛśya (object-of-sight): the guṇas, elements and organs, serving experience and liberation.",
+    bhashya: "Sattva is disposed to brightness, rajas to activity, tamas to inertia; these guṇas together are the primary-cause, the object-of-sight, which mutates into the elements (earth and the rest, gross and subtle) and the organs. It works only for the Self's sake, serving two ends — experience (the ascertaining of desirable and undesirable things) and liberation (the ascertaining of the enjoyer himself) — and bondage and release, though really of the thinking-substance, are ascribed to the Self as victory or defeat is ascribed to a commander.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -333,6 +369,8 @@ export const PADA2 = [
     ],
     translation: "The particularized and the unparticularized [forms] and the resoluble only [into primary matter] and irresoluble-primary-matter—are the divisions of the aspects (guṇa).",
     note: "The four stages (parvan) of the guṇas.",
+    bhashya: "The four stages of the guṇas: the particularized forms are the five gross elements and the eleven organs, evolved from the six unparticularized forms — the five subtle elements (tanmātra) and the feeling-of-personality; these rest on the resoluble Great Substance (mahat), which rests on the irresoluble, unmanifest primary-cause. The unmanifest, effected by no purpose of the Self, is permanent, while the other three stages, produced for the Self's sake, are impermanent.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -349,6 +387,8 @@ export const PADA2 = [
     ],
     translation: "The Seer, who is nothing but [the power of] seeing, although undefiled (śuddha), looks upon the presented-idea.",
     note: "",
+    bhashya: "The Seer is nothing but the pure power of seeing, untouched by qualifications, who becomes conscious by reflection of the thinking-substance — neither wholly the same as it nor wholly other. The thinking-substance mutates (its object now known, now not) and exists for another's sake, whereas the Self does not mutate and always knows its object; yet, pure though he is, he beholds the presented-ideas and so seems to be what he is not.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -363,6 +403,8 @@ export const PADA2 = [
     ],
     translation: "The being (ātman) of the object-of-sight is only for the sake of it [the Self].",
     note: "",
+    bhashya: "The object-of-sight exists only for the Self's sake, as that on which his seeing acts; once it has accomplished the Self's purposes of experience and liberation, it is no longer seen by him. Thus it ceases as far as that Self is concerned, yet does not utterly cease to be.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -381,6 +423,8 @@ export const PADA2 = [
     ],
     translation: "Though it has ceased [to be seen] in the case of one whose purpose is accomplished, it has not ceased to be, since it is common to others [besides himself].",
     note: "",
+    bhashya: "The object-of-sight ceases only for the one Self whose purpose is accomplished; it does not cease to be, since it is common to all the other, unliberated Selves, for whom it remains something to be seen. Both powers being permanent, their conjunction is said to be beginningless.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -398,6 +442,8 @@ export const PADA2 = [
     ],
     translation: "The reason for the apperception of what the power of the property and of what the power of the proprietor are is correlation.",
     note: "",
+    bhashya: "Correlation is the Self, as proprietor, joined for the sake of sight with the object-of-sight as his property; the resulting apperception of the object is experience, and the apperception of the Seer himself is liberation. Since correlation lasts until right sight arises, sight is the cause of discorrelation and non-sight (avidyā) the instrumental cause of correlation — after which the bhāṣya surveys eight theories of what this non-sight may be.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -411,6 +457,8 @@ export const PADA2 = [
     ],
     translation: "The reason for this [correlation] is undifferentiated-consciousness (avidyā).",
     note: "Avidyā is the cause of the saṃyoga (correlation).",
+    bhashya: "The cause of the correlation is avidyā, the subliminal trace of erroneous thinking; a thinking-substance steeped in such traces never reaches the discernment of the Self and returns again with its task unfinished, whereas one that ends in that discernment, its work done and non-sight suppressed, does not return, since the cause of bondage is gone. Answering a scoffer's tale of the impotent man, the bhāṣya holds that release is the ceasing of the thinking-substance once its purpose is served.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -428,6 +476,8 @@ export const PADA2 = [
     ],
     translation: "Since this [non-sight] does not exist, there is no correlation. This is the escape, the Isolation of the Seer.",
     note: "Kaivalya (Isolation) is the cessation of correlation once avidyā is gone.",
+    bhashya: "When non-sight no longer exists there is no correlation of thinking-substance and Self, and bondage ends completely; this ending is the escape, the Isolation of the Seer — the Self's unmixed state, never again joined to the guṇas, established in his own self.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -443,6 +493,8 @@ export const PADA2 = [
     ],
     translation: "The means of attaining escape is unwavering discriminative discernment.",
     note: "Viveka-khyāti (unwavering discriminative discernment) is the means of escape.",
+    bhashya: "The means of escape is the discernment of the difference between the sattva and the Self; while erroneous perception is unrepressed this discernment wavers, but once that perception is burned to a seed that cannot sprout, the stream of discriminating ideas — in a sattva cleansed of the rajas of the hindrances — flows stainless, and this unwavering discernment is the path to release.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -457,6 +509,8 @@ export const PADA2 = [
     ],
     translation: "For him [there is] insight seven-fold and advancing in stages to the highest.",
     note: "The insight (prajñā) is sevenfold, rising by stages.",
+    bhashya: "For the yogin in whom discernment has arisen the insight is sevenfold — a fourfold release of insight (the thing to be escaped is understood, its causes have dwindled, the escape is directly seen in restriction, and the means has been cultivated, none needing to be done again) and a threefold release of the mind-stuff (the thinking-substance's task is ended; the guṇas, like boulders fallen from a peak, sink of themselves toward dissolution; and the Self, cut off from them and lit by himself alone, stands stainless and isolated).",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -477,6 +531,8 @@ export const PADA2 = [
     ],
     translation: "After the aids to yoga have been followed up, when the impurity has dwindled, there is an enlightenment of perception reaching up to the discriminative discernment.",
     note: "Introduces the eight aids (aṣṭāṅga) whose practice destroys impurity.",
+    bhashya: "Practised, the eight aids to yoga wear away the fivefold misconception, and as the impurity dwindles the light of perception grows until it reaches the discriminative discernment that distinguishes the guṇas from the Self. This practice works like an axe that severs impurity and, like right conduct producing happiness, as the cause that attains discernment; the bhāṣya adds a scheme of the nine kinds of cause.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -497,6 +553,8 @@ export const PADA2 = [
     ],
     translation: "Abstentions and observances and postures and regulations-of-the-breath and withdrawal-of-the-senses and fixed attention and contemplation and concentration are the eight aids.",
     note: "Lists the eight limbs (aṣṭāṅga): yama, niyama, āsana, prāṇāyāma, pratyāhāra, dhāraṇā, dhyāna, samādhi.",
+    bhashya: "The eight aids are to be followed up in due succession, each to be described in what follows.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -513,6 +571,8 @@ export const PADA2 = [
     ],
     translation: "Abstinence from injury and from falsehood and from theft and from incontinence and from acceptance of gifts are the abstentions.",
     note: "Names the five yamas: ahiṃsā, satya, asteya, brahmacarya, aparigraha.",
+    bhashya: "Non-injury is abstaining from malice toward all creatures in every way and at all times, and the other abstentions are rooted in it, serving to perfect it. Truthfulness is speech and thought that match the thing and serve all beings without ruining them; non-theft is refusing the unauthorized taking of others' valuables; continence is control of the generative organ; and non-acceptance-of-gifts is refusing possessions, seeing the harm in getting, keeping, losing, or clinging to them.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -530,6 +590,8 @@ export const PADA2 = [
     ],
     translation: "When they are unqualified by species or place or time or exigency and when [covering] all [these] classes—[under these circumstances exists] the Great Course-of-conduct.",
     note: "The yamas kept universally, unconditioned by birth, place, time or circumstance, are the mahāvrata (great vow).",
+    bhashya: "The abstentions may be limited by species (a fisherman harms only fish), by place ('not in a holy spot'), by time ('not on a sacred day'), or by exigency (the warrior's 'only in battle'); but kept universally, unqualified by any of these and covering every case, they become the Great Vow.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -546,6 +608,8 @@ export const PADA2 = [
     ],
     translation: "Cleanliness and contentment and self-castigation and study and devotion to the Īśvara are the observances.",
     note: "Names the five niyamas: śauca, santoṣa, tapas, svādhyāya, īśvara-praṇidhāna.",
+    bhashya: "Cleanliness is outer (by earth, water, and pure food) and inner (the washing away of the mind's blemishes); contentment is not coveting beyond the means at hand; self-castigation is enduring extremes such as hunger, cold, and heat and observing fasts and penances; study is reciting books on release and repeating the sacred syllable; and devotion to the Īśvara is the offering up of all one's actions to the Supreme Teacher.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -560,6 +624,8 @@ export const PADA2 = [
     ],
     translation: "If there be inhibition by perverse-considerations (vitarka), there should be cultivation of the opposites.",
     note: "Prescribes pratipakṣa-bhāvanā — cultivating the contrary thought.",
+    bhashya: "When perverse thoughts such as 'I will kill, lie, or steal from him who wrongs me' inflame the mind, the yogin should cultivate their opposites — reflecting that, baked on the coals of rebirth, he had taken refuge in yoga by protecting every creature, and that to return to such thoughts is to go back like a dog to its own vomit.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -589,6 +655,8 @@ export const PADA2 = [
     ],
     translation: "Since perverse-considerations such as injuries, whether done or caused to be done or approved, whether ensuing upon greed or anger or infatuation, whether mild or moderate or vehement, find their unending consequences in pain and in lack of thinking, there should be the cultivation of their opposites.",
     note: "",
+    bhashya: "Perverse-considerations like injury are done, caused, or approved; spring from greed, anger, or infatuation; and are mild, moderate, or vehement — so twenty-seven kinds, subdivided to eighty-one and beyond number, and likewise for falsehood and the rest. Because they end without fail in pain and unwisdom — the injurer himself reaping weakened powers, torment in hells and beast-births, and a life ever at the point of death — one should cultivate their opposites.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -604,6 +672,8 @@ export const PADA2 = [
     ],
     translation: "As soon as he is grounded in abstinence from injury, his presence begets a suspension of enmity.",
     note: "Siddhi of ahiṃsā: hostility ceases in the yogin's presence.",
+    bhashya: "The suspension of enmity is on the part of all living creatures: in the presence of one grounded in non-injury, even creatures of naturally hostile kinds give up their hostility.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -619,6 +689,8 @@ export const PADA2 = [
     ],
     translation: "As soon as he is grounded in abstinence from falsehood, actions and consequences depend upon him.",
     note: "Siddhi of satya.",
+    bhashya: "When he is grounded in truthfulness his word governs act and consequence: if he tells a man 'Be righteous,' the man becomes righteous, and if he says 'Attain heaven,' the man attains it — whatever he says comes true.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -634,6 +706,8 @@ export const PADA2 = [
     ],
     translation: "As soon as he is grounded in abstinence from theft, all jewels approach him.",
     note: "Siddhi of asteya.",
+    bhashya: "When he is grounded in non-stealing, jewels approach him from every direction to become his.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -648,6 +722,8 @@ export const PADA2 = [
     ],
     translation: "As soon as he is grounded in abstinence from incontinence, he acquires energy.",
     note: "Siddhi of brahmacarya.",
+    bhashya: "When he is grounded in continence the yogin gains energy (vīrya), by which his unhindered powers increase; and once perfected he is able to transmit his knowledge to his pupils.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -662,6 +738,8 @@ export const PADA2 = [
     ],
     translation: "As soon as he is established in abstinence-from-acceptance-of-gifts, a thorough illumination upon the conditions of birth [becomes his].",
     note: "Siddhi of aparigraha; Woods' comment supplies '[becomes his]' to complete the sūtra.",
+    bhashya: "When established in non-acceptance-of-gifts, a full illumination of the conditions of birth becomes his: the desire to know 'Who was I? How was I? What shall I become, and how?' — his own state in past, future, and intervening times — is of itself fulfilled.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -677,6 +755,8 @@ export const PADA2 = [
     ],
     translation: "As a result of cleanliness there is disgust at one's own body and no intercourse with others.",
     note: "Siddhi of śauca (outer purity).",
+    bhashya: "As a result of cleanliness the yogin, seeing his body's offensiveness, grows disgusted with it, ceases to be attached, and becomes an ascetic; and perceiving its true nature and finding no purity even in his own washed body, he shrinks from bodily intercourse with others.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -697,6 +777,8 @@ export const PADA2 = [
     ],
     translation: "Purity of sattva and gentleness and singleness-of-intent and subjugation of the senses and fitness for the sight of the self [arise].",
     note: "Siddhi of śauca (inner); Woods notes the verb '[arise]' completes the sūtra.",
+    bhashya: "From inner cleanliness there arise, in sequence, purity of sattva, then gentleness, then singleness of intent, then mastery of the senses, and finally the thinking-substance's fitness for the sight of the self.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -711,6 +793,8 @@ export const PADA2 = [
     ],
     translation: "As a result of contentment there is an acquisition of superlative pleasure.",
     note: "Siddhi of santoṣa.",
+    bhashya: "From contentment comes an unsurpassed happiness; as the saying goes, neither the pleasure of love in this world nor the supreme pleasure of heaven is worth a sixteenth part of the joy that comes when craving has dwindled away.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -727,6 +811,8 @@ export const PADA2 = [
     ],
     translation: "Perfection in the body and in the organs after impurity has dwindled as a result of self-castigation.",
     note: "Siddhi of tapas.",
+    bhashya: "Self-castigation, as it perfects itself, destroys the defilement that veils in impurity, and from its removal come perfection of the body — powers such as shrinking to atomic size — and perfection of the organs, such as hearing and seeing at a distance.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -740,6 +826,8 @@ export const PADA2 = [
     ],
     translation: "As a result of study there is communion with the chosen deity.",
     note: "Siddhi of svādhyāya.",
+    bhashya: "As a result of study the chosen deity is brought near: gods, sages, and perfected beings come within the yogin's sight and lend their aid to his work.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -753,6 +841,8 @@ export const PADA2 = [
     ],
     translation: "Perfection of concentration as a result of devotion to the Īśvara.",
     note: "Siddhi of īśvara-praṇidhāna: perfection of samādhi.",
+    bhashya: "One who surrenders his whole being to the Īśvara attains perfection of concentration, by which he knows, exactly as it is, whatever he wishes to know in other places, bodies, and times; thereafter his insight sees things as they truly are.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -766,6 +856,8 @@ export const PADA2 = [
     ],
     translation: "Stable-and-easy posture.",
     note: "The sūtra names no posture; Vyāsa's bhāṣya lists about eleven (padmāsana, vīrāsana, etc.) — see the wing's theory page. sanskritdocuments prints 'स्थिरसुखम् आसनम्' with a space, kept here.",
+    bhashya: "The sūtra names no single posture; the bhāṣya offers examples — the lotus-posture (padmāsana), the hero-posture (vīrāsana), the auspicious-posture, the staff-posture, the seated curlew, elephant, and camel, the even arrangement, and 'others of the same kind' — any seat that is steady and easy.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -780,6 +872,8 @@ export const PADA2 = [
     ],
     translation: "By relaxation of effort or by a [mental] state-of-balance with reference to Ananta [a posture results].",
     note: "The means of steadying āsana; Woods' comment supplies '[a posture results]'.",
+    bhashya: "The posture is perfected when effort is relaxed, so that the body is no longer agitated, or when the mind-stuff enters a state of balance fixed upon Ananta, the endless serpent who upholds the earth upon his hoods.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -793,6 +887,8 @@ export const PADA2 = [
     ],
     translation: "Thereafter he is unassailed by extremes.",
     note: "",
+    bhashya: "Once the postures are mastered the yogin is no longer overcome by the pairs of opposites — cold and heat and the rest.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -810,6 +906,8 @@ export const PADA2 = [
     ],
     translation: "When there is this [stability of posture], the restraint of breath cutting off the flow of inspiration and expiration [follows].",
     note: "Defines prāṇāyāma as the cutting-off of the flow of in- and out-breath.",
+    bhashya: "When posture is secured, breath-restraint follows: inspiration is the drawing in of the outer air and expiration the expelling of the inner air, and prāṇāyāma is the cutting off of the flow of both.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -830,6 +928,8 @@ export const PADA2 = [
     ],
     translation: "External or internal or suppressed in fluctuation and is regulated in place and time and number and is protracted and subtile.",
     note: "The three regulated forms (external, internal, suppressed), measured by place, time and number.",
+    bhashya: "Breath-restraint takes three forms — external (no flow after expiration), internal (no flow after inspiration), and the suppressed (both stopped at once by a single effort, like water vanishing on a scorching stone); each is regulated by place, time, and number, and so becomes protracted and subtle.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -845,6 +945,8 @@ export const PADA2 = [
     ],
     translation: "The fourth [restraint of the breath] transcends the external and the internal object.",
     note: "The fourth prāṇāyāma, transcending external and internal objects.",
+    bhashya: "The fourth breath-restraint transcends both the external and the internal object: having, through gradual mastery of the stages, made out the spheres of expiration and inspiration, it passes beyond both and rests without flow. It differs from the third (the suppressed), which comes by a single effort with no regard to objects, whereas the fourth is reached by many efforts after attending to place, time, and number.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -859,6 +961,8 @@ export const PADA2 = [
     ],
     translation: "As a result of this the covering of the light dwindles away.",
     note: "",
+    bhashya: "By the practice of breath-restraint the karma that veils discriminative thinking is made powerless and dwindles moment by moment; as it is said, there is no austerity higher than prāṇāyāma, for from it come purity from defilement and the clear shining of thought.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -873,6 +977,8 @@ export const PADA2 = [
     ],
     translation: "For fixed attentions also the central organ becomes fit.",
     note: "Prāṇāyāma fits the mind for dhāraṇā (fixed attention).",
+    bhashya: "By the mere practice of breath-restraint the mind becomes fit for the fixed attentions, in keeping with the earlier teaching that steadiness may be gained by the expulsion and retention of breath.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -892,6 +998,8 @@ export const PADA2 = [
     ],
     translation: "The withdrawal of the senses is as it were the imitation of the mind-stuff itself on the part of the organs by disjoining themselves from their objects.",
     note: "Defines pratyāhāra (withdrawal of the senses).",
+    bhashya: "When the senses cease contact with their objects and, as it were, imitate the mind-stuff itself, they become restricted along with it, needing no separate effort — just as bees fly up and settle down after the king-bee. This following of the restricted mind-stuff by the organs is the withdrawal of the senses.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   },
   {
@@ -906,6 +1014,8 @@ export const PADA2 = [
     ],
     translation: "As a result of this [withdrawal] there is complete mastery of the organs.",
     note: "Result of pratyāhāra: complete mastery of the senses.",
+    bhashya: "The bhāṣya reviews several views of mastery of the senses — absence of desire for objects, taking only what is unforbidden, contact with objects at will, or freedom from passion and aversion — but endorses Jaigīṣavya's: through the mind-stuff's singleness of intent the organs cease to engage objects, so that when the mind is restricted they are restricted with it, needing no further effort; and this singleness of intent is the complete mastery.",
+    bhashyaSrc: 'after the Vyāsa-bhāṣya, trans. Woods (1914)',
     src: SRC
   }
 ];

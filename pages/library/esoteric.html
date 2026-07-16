@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divination &amp; esoteric systems — the practitioners | The Astrologer's Workbench</title>
+<meta name="description" content="The expert catalog of the divination and esoteric arts: tarot, geomancy, I Ching, runes, Kabbalah, Western alchemy and Jung & divination. Each practice pairs a history shelf (Dummett, Rutt, Page, Scholem, Principe, Charmasson) with a practice shelf (Waite, Greer's 21 Ways, Greer, Karcher, Thorsson, DuQuette) — verified works, methods as taught, and cautionary exhibits of invented systems clearly labelled.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">The Practitioners' Library</a> ›
+    Esoteric</p>
+  <h1>Divination &amp; esoteric systems — the practitioners</h1>
+  <p class="lede">The people behind the Workbench's oracle wings, grouped by practice: <b>tarot</b>, <b>geomancy</b>,
+    <b>I Ching</b>, <b>runes</b>, <b>Kabbalah</b>, <b>alchemy</b>, and <b>Jung &amp; divination</b>. Each practice pairs a
+    <b>history shelf</b> — the scholars who show what a system actually was — with a <b>practice shelf</b> of the
+    teachers who read it today, and quarantines the famous <b>invented systems</b> as clearly-labelled exhibits.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    The methods are catalogued <b>as taught</b>, in reportive voice — described, never prescribed, with no validity
+    claimed. Belief context (Druid, Heathen, Thelemic, Jungian) is flagged (⚑), and cautionary exhibits of pure
+    invention — Ralph Blum's blank rune, Les Cross's Astrogem, the Egyptian-origin tarot myth — are labelled as
+    exhibits of how new systems get made, not as tradition.</p></div>
+
+  <p class="small" style="margin:.4rem 0">
+    <span class="chip" style="background:#efe0bd;color:#5a4410">Canon</span> historical sources ·
+    <span class="chip" style="background:#e7eef7;color:#2b4a6b">Respected modern</span> the teachers read today ·
+    <span class="chip" style="background:#f0e8d4;color:#7a5a06">Niche</span> genuine lesser-known voices ·
+    <span class="chip" style="background:#d8efd6;color:#1f5e1d">Academic</span> the history shelf.
+    <a class="small" href="index.html">What the tiers mean →</a></p>
+
+  <div class="calc" id="lib-controls">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 260px"><label for="lib-search">Filter by name, practice or work</label>
+        <input id="lib-search" type="search" placeholder="e.g. Greer, geomancy, Zohar, Dummett…"></div>
+      <button class="btn sm" id="lib-reset" type="button">Reset</button>
+      <span class="small muted" id="lib-count" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
+  <div id="lib-catalog" style="margin-top:.6rem"></div>
+
+  <h2>Journals &amp; resources</h2>
+  <div id="lib-journals"></div>
+
+  <p class="small muted" style="margin-top:1rem">Other wings: <a href="western.html">Western</a> ·
+    <a href="indian.html">Indian systems</a> · back to <a href="index.html">the Library</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { initLibrary } from '../../assets/js/app/library.js';
+  initLibrary('esoteric');
+  mountChrome('library');
+</script>
+</body>
+</html>

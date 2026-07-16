@@ -508,6 +508,43 @@ sweep 80 pages, 0 errors.)*
 - **Verify gate** (all green, run with the conda `astro-workbench` node): `engine-test.mjs` → **all passed** ·
   `audit.mjs` → **Problems: 0** (80 HTML, 136 JS) · `browser-verify.mjs` real-Chromium sweep → **80 pages, 0 errors**.
 
+### R24 — The expert library, the mega-menu, the bhāṣya layer & the verified directions ✅ **SHIPPED** (2026-07-16)
+*(four deliverables — a new reference wing, a site-wide navigation overhaul, a content layer over an existing wing, and
+an accuracy promotion — built in parallel and integrated together. Verified: engine-test all passed · audit Problems: 0
+(85 HTML, 138 JS) · real-Chromium sweep 85 pages, 0 errors.)*
+
+- **(a) The Practitioners' Library** (`pages/library/*`, `core/data/practitioners.js`, `app/library.js`): the expert
+  catalog of the people and books behind every practice on the site — **133 verified records** across three wings
+  (Western 38 · Indian 42 · esoteric 53), grouped by practice and graded by a **practitioner-recognition tier**
+  (canon / respected / niche / academic; a `TIER_DEFS` + `TIER_VOCAB_NOTE` vocabulary, Dummett/Kaplan-anchored). Each
+  record carries verified works `{title, year, publisher}`, optional journal papers, the **step-by-step method as its
+  author teaches it** (never prescribed), honest-framing/belief flags and where the person↔work pairing was verified.
+  Built by a **two-pass adversarial method** — an expert catalog compiled from named sources, then an independent
+  re-check of every pairing against publisher/ISBN records and the figures' own sites, **hunting for invented people or
+  books**: confirmed corrections applied, unverifiable entries dropped (e.g. a "Bruce Robertson" with no traceable
+  works). A `callable:false` data-module registry entry; ~15 engine-test asserts; described never prescribed, no
+  validity claimed.
+- **(b) The mega-menu navigation overhaul** (`app/shared.js`): the flat grouped bar became a **five-group mega-menu**
+  (Start · Cast · Traditions · Oracles · Reference) — desktop dropdown panels (wide groups in two columns), a mobile
+  accordion drawer — that lists **47+ destinations BY NAME**, so nothing hides behind an "All Tools" page; the active
+  page and its group light up via `currentSection()`. Paired with a new **roadmap page** (`pages/roadmap.html`) that
+  names the planned subsections. Accessible: disclosure buttons with `aria-expanded`, arrow-key entry, Escape-to-close,
+  focus management.
+- **(c) The Yoga Sūtras bhāṣya layer** (`core/yogasutra.js` flatten + the 4 data modules, `app/yoga.js`, `yoga.css`):
+  every sūtra now carries a **one-to-three-sentence gist of the classical Vyāsa-bhāṣya** — an original paraphrase
+  *after the Vyāsa-bhāṣya, trans. Woods (1914)* — shown in a **collapsible block beneath the translation** (**196
+  gists**; the one disputed variant sūtra has none, which is exactly why the vulgate omits it — a one-line note says
+  so). Threaded through the ALL_SUTRAS flatten so `sutraByRef`/search carry it too; 4 new engine-test invariants
+  (bhashyaSrc XOR variant-null; exactly one null; every non-variant non-empty; the exact source string).
+- **(d) The abhicāra DIRECTIONS_DEITIES promotion** (`core/data/abhichara-data.js`): the six-acts directional
+  deity/quarter rows (§6) were **promoted from candidates to VERIFIED** against two independent full-text sources —
+  Bühnemann's Tables 26.1–26.2 ("The Six Rites of Magic", in White ed., *Tantra in Practice*) and M. Ullrey's UCSB
+  dissertation — the accuracy-check discipline applied to a previously provisional table.
+- **Verify gate** (all green, conda `astro-workbench` node): `engine-test.mjs` → **all passed** · `audit.mjs` →
+  **Problems: 0** (85 HTML, 138 JS) · `browser-verify.mjs` real-Chromium sweep → **85 pages, 0 errors**. Two extra
+  Chromium drives: a yoga pāda page's Vyāsa-bhāṣya `<details>` opens with text (51 blocks, 458-char gist), and
+  `library/western.html` renders its 38 practitioner cards — both pass, 0 console errors.
+
 ### FURTHER ROADMAP (after R21, in rough value order)
 1. **Runes (Elder Futhark)** — a 24-stave oracle on the shared diviner engine (medium fit).
 2. **Streaming-markdown AI replies** with copy/regenerate.

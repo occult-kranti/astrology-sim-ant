@@ -70,6 +70,8 @@ export const PADA3 = [
     ],
     translation: "Binding the mind-stuff to a place is fixed-attention.",
     note: "Definition sūtra 1 of 3: DHĀRAṆĀ (fixed-attention), the first of the three inner limbs whose combination becomes saṃyama in III.4.",
+    bhashya: "Fixed-attention (dhāraṇā) is the binding of the mind-stuff — only in so far as it is a fluctuation — to a place: the navel, the heart-lotus, the light within the head, the tip of the nose or of the tongue, other such spots, or some external object.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -84,6 +86,8 @@ export const PADA3 = [
     ],
     translation: "Focusedness of the presented idea upon that [place] is contemplation.",
     note: "Definition sūtra 2 of 3: DHYĀNA (contemplation), the uninterrupted flow of one idea toward the fixed place.",
+    bhashya: "Contemplation is the focusedness of the presented-idea upon the object in that place — an unbroken stream of like-quality ideas undisturbed by any other idea.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -101,6 +105,8 @@ export const PADA3 = [
     ],
     translation: "This same [contemplation], shining forth [in consciousness] as the intended object and nothing more, and, as it were, emptied of itself, is concentration.",
     note: "Definition sūtra 3 of 3: SAMĀDHI (concentration), the contemplation shining forth as the object only, as if void of itself.",
+    bhashya: "When the contemplation shines forth only in the form of the object contemplated and is, as it were, emptied of itself — fusing with the nature of that object — it is called concentration.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -114,6 +120,8 @@ export const PADA3 = [
     ],
     translation: "The three in one are constraint.",
     note: "The key technical term of the pāda: SAṂYAMA — the three inner limbs practised together on a single object. It is the instrument of every power (vibhūti) named hereafter.",
+    bhashya: "When the three means (fixed-attention, contemplation, concentration) bear on a single object they are called constraint; this is the technical term the system lays down for the three taken together.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -128,6 +136,8 @@ export const PADA3 = [
     ],
     translation: "As a result of mastering this constraint, there follows the shining forth of insight.",
     note: "Mastery of saṃyama yields the shining-forth of prajñā (insight).",
+    bhashya: "As this constraint is mastered, concentrated insight (prajñā) shines forth; in the very proportion that constraint enters the stable state, the insight grows clear.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -141,6 +151,8 @@ export const PADA3 = [
     ],
     translation: "Its application is by stages.",
     note: "Saṃyama is applied by graded stages (bhūmi); one does not skip levels.",
+    bhashya: "Constraint is applied only to the stage next above the one already mastered; a yogin who overleaps the lower stage does not gain constraint in the higher, and yoga itself is the only guide that shows which stage comes next.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -154,6 +166,8 @@ export const PADA3 = [
     ],
     translation: "The three are direct aids in comparison with the previous [five].",
     note: "The three of saṃyama are inner (direct) aids relative to the earlier five limbs of yoga (yama … pratyāhāra).",
+    bhashya: "The three of constraint are direct (inner) aids to conscious concentration, as compared with the previous five limbs beginning with the abstentions, which are only indirect aids.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -168,6 +182,8 @@ export const PADA3 = [
     ],
     translation: "Even these [three] are indirect aids to seedless [concentration].",
     note: "Yet even saṃyama is an OUTER aid relative to seedless (nirbīja) samādhi — the counter-relativising of III.7.",
+    bhashya: "Yet even these three direct aids are indirect with respect to seedless (nirbīja) concentration, since that latter occurs even when they are absent.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -188,6 +204,8 @@ export const PADA3 = [
     ],
     translation: "When there is a becoming invisible of the subliminal-impression of emergence and a becoming visible of the subliminal-impression of restriction, the mutation of restriction is inseparably connected with mind-stuff in its period of restriction.",
     note: "First of the three mutations of the mind-stuff: NIRODHA-PARIṆĀMA (the restriction-mutation).",
+    bhashya: "The subliminal-impressions of emergence and of restriction are both external-aspects of the one mind-stuff; the restriction-mutation is the periodic vanishing of the emergent impression and appearing of the restrictive one in a mind that then holds nothing but subliminal-impressions.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -202,6 +220,8 @@ export const PADA3 = [
     ],
     translation: "This [mind-stuff] flows peacefully by reason of the subliminal-impression.",
     note: "The restricted mind then flows on peacefully (praśānta-vāhitā) by force of the restrictive saṃskāra.",
+    bhashya: "By force of the restrictive subliminal-impression the mind-stuff flows on peacefully — a flow requiring dexterity in applying those impressions; when they grow weak, the restrictive impression is overwhelmed once more by the emergent one.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -218,6 +238,8 @@ export const PADA3 = [
     ],
     translation: "The mutation of concentration is the dwindling of dispersiveness and the uprisal of singleness-of-intent belonging to the mind-stuff.",
     note: "Second mutation: SAMĀDHI-PARIṆĀMA — dispersiveness dwindles, one-pointedness rises.",
+    bhashya: "Dispersiveness and singleness-of-intent are both external-aspects of the mind-stuff; the concentration-mutation is the dwindling of the one and the uprisal of the other in a mind inseparably connected with both.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -234,6 +256,8 @@ export const PADA3 = [
     ],
     translation: "Then again when the quiescent and the uprisen presented-ideas are similar [in respect of having a single object], the mind-stuff has a mutation single-in-intent.",
     note: "Third mutation: EKĀGRATĀ-PARIṆĀMA — the quiescent and the risen ideas becoming alike, single-in-intent.",
+    bhashya: "In a concentrated mind the quiescent (past) and the uprisen (present) presented-ideas become alike in their single object; this single-in-intent mutation lasts until the concentration itself breaks down.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -252,6 +276,8 @@ export const PADA3 = [
     ],
     translation: "Thus with regard to elements and to organs, mutations of external-aspect and of time-variation and of intensity have been enumerated.",
     note: "The three mutations extend to elements (bhūta) and organs (indriya): of dharma (aspect), lakṣaṇa (time), and avasthā (intensity/condition).",
+    bhashya: "The three mutations already described for mind-stuff — of external-aspect (dharma), of time-variation (lakṣaṇa), and of intensity (avasthā) — are to be understood as holding likewise for the elements and the organs; yet in the strict sense all three reduce to one mutation of the persisting substance.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -268,6 +294,8 @@ export const PADA3 = [
     ],
     translation: "A substance conforms itself to quiescent and uprisen and indeterminable external-aspects.",
     note: "The persisting substrate (dharmin) underlies its quiescent, risen, and indeterminable characteristics.",
+    bhashya: "The persisting substrate (dharmin) conforms itself to its three kinds of external-aspect — quiescent (past), uprisen (present), and indeterminable (future or latent); an aspect is but a power of the substance, its reality inferred from the kind of effect it generates.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -283,6 +311,8 @@ export const PADA3 = [
     ],
     translation: "The order of the sequence is the reason for the order of the mutations.",
     note: "Difference in the order of sequence (krama) is the cause of difference in the mutations.",
+    bhashya: "Difference in the order of the sequence (krama) is the cause of difference in the order of the mutations — as clay passes in fixed order from dust to lump to jar to potsherds — one aspect standing in sequence wherever it is immediately contiguous to another.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -298,6 +328,8 @@ export const PADA3 = [
     ],
     translation: "As a result of constraint upon the three mutations [there follows] the knowledge of the past and the future.",
     note: "The powers begin: saṃyama on the three mutations yields knowledge of past and future.",
+    bhashya: "By constraint upon the three mutations (of aspect, time, and intensity), directly experiencing them, the yogin gains knowledge of the past and the future embedded within them.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -319,6 +351,8 @@ export const PADA3 = [
     ],
     translation: "Word and intended-object and presented-idea are confused because they are erroneously identified with each other. By constraint upon the distinctions between them [there arises the intuitive] knowledge of the cries of all living beings.",
     note: "Saṃyama on the distinction of word, object, and idea yields understanding of the cries/speech of all beings.",
+    bhashya: "Word, intended-object, and presented-idea are ordinarily fused by conventional usage into a mutual erroneous identification, though in truth each changes in its own way; by constraint upon their distinction the yogin gains knowledge of the cries of all creatures.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -333,6 +367,8 @@ export const PADA3 = [
     ],
     translation: "As a result of direct perception of subliminal-impressions there is [intuitive] knowledge of previous births.",
     note: "Direct perception of one's saṃskāras yields knowledge of former births.",
+    bhashya: "The subliminal-impressions — of two kinds, the causes of memory and hindrance and the causes of fruition (right- and wrong-living) — are unperceived aspects of mind-stuff laid down in former births; directly perceiving them together with their place, time, and cause yields knowledge of previous births, one's own and others', as the tale of Jaigīṣavya illustrates.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -346,6 +382,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon a presented-idea [there arises intuitive] knowledge of the mind-stuff of another.",
     note: "Saṃyama on a presented-idea yields knowledge of another's mind (para-citta-jñāna).",
+    bhashya: "By constraint upon a presented-idea, through directly perceiving that idea, there arises knowledge of another's mind-stuff in general.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -362,6 +400,8 @@ export const PADA3 = [
     ],
     translation: "But [the intuitive knowledge of the mind-stuff of another] does not have that [idea] together with that upon which it depends [as its object], since that [upon which it depends] is not-in-the-field [of consciousness].",
     note: "The counterweight to III.19: such knowledge grasps the other's idea but NOT the object that idea rests on. NUMBERING/GLOSS NOTE — Rama Prasada does not number this half-sūtra separately (he folds it into his III.19), which is why his Book III has 54 sūtras; the Woods/sanskritdocuments vulgate keeps it distinct as III.20. Glosses here are standard dictionary senses.",
+    bhashya: "This knowledge grasps only the other's presented-idea, not the object that idea rests upon, since that object has not become an object in the yogin's own field.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC_20,
   },
   {
@@ -380,6 +420,8 @@ export const PADA3 = [
     ],
     translation: "As a result of constraint upon the [outer] form of the body, when its power to be known is stopped, then as a consequence of the disjunction of the light and of the eye there follows indiscernibility [of the yogin's body].",
     note: "The invisibility power (ANTARDHĀNA): saṃyama on the body's form suspends its perceptibility, breaking contact between light and the observer's eye. In the inclusive tradition, the variant sūtra (num196 22) follows, generalising this to sound and the other sense-objects.",
+    bhashya: "By constraint upon the body's form the yogin stops its power to be perceived, so that with the observer's light and eye disjoined the body becomes indiscernible; in the same way, the bhāṣya adds, indiscernibility to sound and the other sense-objects has been described.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
 
@@ -396,7 +438,8 @@ export const PADA3 = [
       { sa: "uktam", gloss: "is said; has been explained" },
     ],
     translation: "By this the disappearance of sound and the rest is explained (variant sūtra — absent from the Vyāsa/Bhoja editions).",
-    note: "THE DISPUTED SŪTRA. Taimni, Satchidananda and Iyengar count this as III.22 (extending the invisibility of III.21 from sight to sound and the other tanmātras), giving Book III 56 sūtras and the whole text 196. The Vyāsa/Bhoja vulgate — sanskritdocuments, Woods (1914), Rama Prasada (1912) — OMITS it (Taimni: because its point is already inferable from the previous sūtra), giving Book III 55 and the text 195. Its inclusion is what shifts every later sūtra by +1 (num196 = num195 + 1 from here on). Glosses: standard senses — sūtra absent from Prasada/Woods.",
+    note: "THE DISPUTED SŪTRA. Taimni, Satchidananda and Iyengar count this as III.22 (extending the invisibility of III.21 from sight to sound and the other tanmātras), giving Book III 56 sūtras and the whole text 196. The Vyāsa/Bhoja vulgate — sanskritdocuments, Woods (1914), Rama Prasada (1912) — OMITS it (Taimni: because its point is already inferable from the previous sūtra), giving Book III 55 and the text 195. Its inclusion is what shifts every later sūtra by +1 (num196 = num195 + 1 from here on). Glosses: standard senses — sūtra absent from Prasada/Woods. NO VYĀSA-BHĀṢYA exists for this variant: the vulgate omits it precisely because Vyāsa never comments on it — its point, the indiscernibility of sound and the other sense-objects, is already covered in the bhāṣya on III.21 — which is why bhashya is null here.",
+    bhashya: null,
     src: SRC_VAR,
   },
 
@@ -419,6 +462,8 @@ export const PADA3 = [
     ],
     translation: "Advancing and not-advancing is karma; as a result of constraint upon this [two-fold karma] or from the signs of death [there arises an intuitive] knowledge of the latter end.",
     note: "Foreknowledge of death (aparānta-jñāna): saṃyama on fast- and slow-fruiting karma — or reading the portents (ariṣṭa). (This is Woods iii.22; the −1 offset from the vulgate begins here.)",
+    bhashya: "Karma that fixes the length of life is of two kinds — fast-fruiting (advancing) and slow-fruiting (not-advancing), like a spread cloth that dries quickly versus one rolled up; constraint upon this two-fold karma, or the reading of the three kinds of death-portent (ariṣṭa — of self, of creatures, of divine beings), yields foreknowledge of death.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -432,6 +477,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon friendliness and other [sentiments there arise] powers [of friendliness].",
     note: "Saṃyama on the brahma-vihāra sentiments — maitrī, karuṇā, muditā — yields their corresponding powers.",
+    bhashya: "Constraint upon the sentiments — friendliness toward the happy, compassion toward the suffering, gladness toward the meritorious — yields their corresponding powers; indifference toward the evil-disposed is not a cultivated sentiment and so yields no power.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -446,6 +493,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon powers [there arise] powers like those of an elephant.",
     note: "Saṃyama on [particular] strengths yields strengths such as an elephant's.",
+    bhashya: "Constraint upon a given strength confers that very strength — an elephant's, the Garuḍa-bird Vainateya's, the wind's, and so on.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -463,6 +512,8 @@ export const PADA3 = [
     ],
     translation: "As a result of casting the light of a sense-activity [there arises the intuitive] knowledge of the subtile and the concealed and the obscure.",
     note: "Directing the light of higher sense-activity yields knowledge of the subtle, the veiled, and the remote.",
+    bhashya: "By casting the luminous light of the higher sense-activity of the central organ upon an object, the yogin gains access to what is subtle, concealed, or obscure.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -476,6 +527,8 @@ export const PADA3 = [
     ],
     translation: "As a result of constraint upon the sun [there arises the intuitive] knowledge of the cosmic-spaces.",
     note: "Saṃyama on the sun yields knowledge of the cosmic regions (bhuvana).",
+    bhashya: "Constraint upon the sun (the door of the sun) yields direct perception of the cosmic regions; the bhāṣya lays out in full the seven worlds, from the hells below Sumeru up through the earth, the intermediate space, and the graded worlds of Brahmā.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -490,6 +543,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon the moon [there arises the intuitive] knowledge of the arrangement of the stars.",
     note: "Saṃyama on the moon yields knowledge of the arrangement of the stars.",
+    bhashya: "By performing constraint upon the moon the yogin discerns the arrangement of the stars.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -504,6 +559,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon the pole-star [there arises the intuitive] knowledge of their movements.",
     note: "Saṃyama on the pole-star (Dhruva) yields knowledge of the stars' movements.",
+    bhashya: "By performing constraint upon the pole-star the yogin knows the movements of the stars.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -519,6 +576,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon the wheel of the navel [there arises the intuitive] knowledge of the arrangement of the body.",
     note: "Saṃyama on the navel-plexus (nābhi-cakra) yields knowledge of the body's arrangement.",
+    bhashya: "By constraint upon the navel-wheel the yogin discerns the arrangement of the body — its three humours (wind, bile, phlegm) and its seven constituents (skin, blood, flesh, sinew, bone, marrow, semen).",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -534,6 +593,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon the well of the throat [there follows] the cessation of hunger and thirst.",
     note: "Saṃyama on the pit of the throat stills hunger and thirst.",
+    bhashya: "Below the tongue is a cord, below it the throat, below that the well; concentration upon this pit of the throat stills the torment of hunger and thirst.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -546,6 +607,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon the tortoise-tube [there follows] motionlessness of the mind-stuff.",
     note: "Saṃyama on the 'tortoise-tube' (kūrma-nāḍī) yields steadiness / motionlessness.",
+    bhashya: "Below the well, within the chest, is a tube shaped like a tortoise; by constraint upon this tortoise-tube the yogin gains a motionless state like that of a serpent or a lizard.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -560,6 +623,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon the radiance in the head [there follows] the sight of the Siddhas.",
     note: "Saṃyama on the coronal light (mūrdha-jyoti) yields vision of the Siddhas (the perfected ones).",
+    bhashya: "Within an aperture of the skull is a resplendent radiance; constraint upon it yields the sight of the Siddhas roving in the spaces between sky and earth.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -573,6 +638,8 @@ export const PADA3 = [
     ],
     translation: "Or as a result of vividness the yogin discerns all.",
     note: "Or, through prātibha (spontaneous flash of insight), the yogin knows all — a power arising without a specific object of saṃyama.",
+    bhashya: "Vividness (prātibha) is the deliverer (tāraka), the preliminary form of the knowledge born of discrimination — as the dawn-light precedes the sun; at its rise the yogin discerns all.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -586,6 +653,8 @@ export const PADA3 = [
     ],
     translation: "[As a result of constraint] upon the heart [there arises] a consciousness of the mind-stuff.",
     note: "Saṃyama on the heart yields awareness of the mind-stuff (citta-saṃvit).",
+    bhashya: "In the citadel of Brahmā is the tiny heart-lotus, the dwelling of the mind-stuff; by constraint upon it there arises a consciousness of the mind-stuff with its own fluctuations.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -605,6 +674,8 @@ export const PADA3 = [
     ],
     translation: "Experience is a presented-idea which fails to distinguish the sattva and the Self, which are absolutely uncommingled [in the presented-idea]. Since the sattva exists as object for another, the [intuitive] knowledge of the Self arises as the result of constraint upon that which exists for its own sake.",
     note: "The turn toward liberation: saṃyama on that-which-exists-for-its-own-sake (the puruṣa) yields knowledge of the Self, distinguishing it from sattva.",
+    bhashya: "Experience is a presented-idea that fails to distinguish the bright but mutable sattva from the Self, though the two are wholly uncommingled; since the sattva exists for another's sake, constraint upon that-which-exists-for-its-own-sake (the Self) yields insight into the Self — which, as the Discerner, is never itself discerned.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -623,6 +694,8 @@ export const PADA3 = [
     ],
     translation: "As a result of this [constraint upon that which exists for its own sake], there arise vividness and the organ-of-[supernal]-hearing and the organ-of-[supernal]-touch and the organ-of-[supernal]-sight and the organ-of-[supernal]-taste and the organ-of-[supernal]-smell.",
     note: "From that saṃyama arise the prātibha powers — the five supernal sense-perceptions.",
+    bhashya: "From that constraint arise vividness — knowledge of the subtle, concealed, remote, past, or future — and the five supernal sense-perceptions of hearing, touch, sight, taste, and smell, which arise unceasingly.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -638,6 +711,8 @@ export const PADA3 = [
     ],
     translation: "In concentration these [supernal activities] are obstacles; in the emergent state they are perfections (siddhi).",
     note: "THE TEXT'S OWN COUNTERWEIGHT: the supernormal powers of this pāda are OBSTACLES (upasarga) to samādhi — perfections (siddhi) only from the standpoint of the outgoing mind. Patañjali frames the whole catalogue of siddhis as an impediment to the higher goal of kaivalya.",
+    bhashya: "Arising in a concentrated mind, these powers — vividness and the rest — are obstacles to the concentration itself, running counter to its sight; only in the emergent (outgoing) mind are they reckoned perfections (siddhi).",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -656,6 +731,8 @@ export const PADA3 = [
     ],
     translation: "As a result of slackening the causes of bondage and as a result of the knowledge of the procedure [of the mind-stuff], the mind-stuff penetrates into the body of another.",
     note: "Loosening the cause of bondage and knowing the mind's channels, the yogin's mind-stuff enters another's body (para-śarīra-āveśa).",
+    bhashya: "The mind's fixation in one body by the karmic deposit is bondage; slackening that cause through concentration and knowing the mind's channels of passage, the yogin withdraws his mind-stuff and deposits it in another body — the organs flying after it as the bees follow the king-bee.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -675,6 +752,8 @@ export const PADA3 = [
     ],
     translation: "As a result of mastering the Udana there is no adhesion to water or mud or thorns or similar objects, and [at death] the upward flight.",
     note: "Mastery of the udāna breath yields non-adhesion to water, mud, thorns, and the upward exit at death.",
+    bhashya: "The five-fold activity of the vital-force (prāṇa, samāna, apāna, udāna, vyāna) is life; since the udāna leads upward to the head, mastering it frees the yogin from clinging to water, mud, and thorns, and grants the upward flight at death.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -688,6 +767,8 @@ export const PADA3 = [
     ],
     translation: "As a result of mastering the Samana [there arises] a radiance.",
     note: "Mastery of the samāna breath yields effulgence (jvalana).",
+    bhashya: "By subjugating the samāna breath the yogin makes the bodily flame pulsate and so becomes radiant.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -704,6 +785,8 @@ export const PADA3 = [
     ],
     translation: "As a result of constraint upon the relation between the organ-of-hearing and the air, [there arises] the supernal-organ-of-hearing.",
     note: "Saṃyama on the relation of ear and ākāśa yields the divine ear (divya-śrotra).",
+    bhashya: "Space (ākāśa) is the physical basis of every organ-of-hearing and of every sound; by constraint upon the relation between the ear and space the supernal ear begins.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -722,6 +805,8 @@ export const PADA3 = [
     ],
     translation: "Either as a result of constraint upon the relation between the body and the air, or as a result of the balanced-state of lightness, such as that of cotton-fibre, there follows the passing through air.",
     note: "Saṃyama on the relation of body and ākāśa — or samāpatti on the lightness of cotton — yields passage through space.",
+    bhashya: "Wherever the body is, space gives it room; by constraint upon the body-space relation, or by a balanced-state upon the lightness of cotton-fibre, the yogin becomes light — walking first on water, then a spider's thread, then sunbeams, and finally coursing through the air at will.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -740,6 +825,8 @@ export const PADA3 = [
     ],
     translation: "An outwardly unadjusted fluctuation is the Great Discarnate; as a result of this the dwindling of the covering to the brightness.",
     note: "The 'Great Discarnate' (mahā-videhā): an unimagined fluctuation outside the body, whereby the covering over the inner light dwindles.",
+    bhashya: "A fluctuation of the central-organ outside the body is the Discarnate fixed-attention — merely imagined (adjusted) while it still abides in the body, but truly externalized (unadjusted) as the Great Discarnate; through it yogins enter other bodies, and as a result of it the covering over the sattva's inner light dwindles away.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -757,6 +844,8 @@ export const PADA3 = [
     ],
     translation: "As a result of constraint upon the coarse and the essential-attribute and the subtile and the inherence and purposiveness, there is a mastery of the elements.",
     note: "BHŪTA-JAYA: saṃyama on the five aspects of the elements (gross, essential, subtle, conjunction, purposiveness) yields mastery over them.",
+    bhashya: "By constraint upon the elements in their five forms — coarse, essential-attribute (generic form), subtle, inherence (the guṇas), and purposiveness — the yogin masters the elements, so that their evolving-causes follow the commands of his will as calves follow the cow.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -774,6 +863,8 @@ export const PADA3 = [
     ],
     translation: "As a result of this, atomization and the other [perfections] come about, [there is] perfection of body; and there is no obstruction by the properties of these [elements].",
     note: "From bhūta-jaya arise aṇimā and the other classical siddhis, perfection of body, and immunity to the elements' properties.",
+    bhashya: "From mastery of the elements arise the eight powers — atomization (aṇimā), levitation, magnification, extension, efficacy, mastery, sovereignty, and fulfilment-of-will — together with perfection of body and immunity from the elements' properties, so that rock does not stop him, water does not wet, nor fire burn.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -789,6 +880,8 @@ export const PADA3 = [
     ],
     translation: "Beauty and grace and power and compactness of the thunderbolt—[this is] perfection of body.",
     note: "Kāya-sampat (perfection of body) defined: beauty, grace, strength, and thunderbolt-like hardness.",
+    bhashya: "Perfection of body is defined: the perfect body is handsome and alluring, unexcelled in power, and compact as the thunderbolt.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -806,6 +899,8 @@ export const PADA3 = [
     ],
     translation: "As a result of constraint upon the process-of-knowing and the essential-attribute and the feeling-of-personality and the inherence and the purposiveness, [there follows] the subjugation of the organs.",
     note: "INDRIYA-JAYA: saṃyama on the five aspects of the sense-organs (grasping, essence, egoism, conjunction, purposiveness) yields mastery over them.",
+    bhashya: "By constraint, one after another, upon the five forms of the sense-organs — the process-of-knowing (grasping), the essential-attribute, the feeling-of-personality (asmitā), the inherence (guṇas), and the purposiveness of the Self — the yogin gains subjugation of the organs.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -821,6 +916,8 @@ export const PADA3 = [
     ],
     translation: "As a result of this [there follows] speed [great as that] of the central-organ, action of the instruments [of knowledge] disjunct [from the body], and the subjugation of the primary-cause.",
     note: "From indriya-jaya: mind-like swiftness, perception without the bodily organs, and mastery of pradhāna (primal matter).",
+    bhashya: "From subjugation of the organs come three perfections, called the Honey-Faced: mind-swift motion of the body, action of the organs disjoined from the body (reaching any desired place, time, or object), and subjugation of the primary-cause (pradhāna) — mastery over all evolving causes and evolved effects.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -836,6 +933,8 @@ export const PADA3 = [
     ],
     translation: "He who has only the full discernment into the difference between the sattva and the Self is one who has authority over all states-of-existence and is one who knows all.",
     note: "The height of discriminative knowledge: authority over all states and omniscience for one who discerns sattva from puruṣa.",
+    bhashya: "One grounded solely in the full discernment of the difference between the sattva and the Self, his thinking-substance cleansed of the defilement of rajas and tamas, holds authority over all states-of-being and is one who knows all — for the guṇas, the essence of all things, present themselves to him in their totality, whether quiescent, uprisen, or indeterminable.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -851,6 +950,8 @@ export const PADA3 = [
     ],
     translation: "As a result of passionlessness even with regard to these [perfections] there follows, after the dwindling of the seeds of the defects, Isolation.",
     note: "The pivot to liberation: renouncing even omniscience, the seed of defect dwindles and KAIVALYA (Isolation) follows.",
+    bhashya: "When even the discriminative discernment is renounced as merely an external-aspect of the sattva, a thing to be escaped, the hindrance-seeds become incapable of sprouting and dissolve with the mind into the primary-cause; the Self, no longer correlated with the guṇas, attains Isolation as the Energy of Intellect grounded in itself.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -868,6 +969,8 @@ export const PADA3 = [
     ],
     translation: "In case of invitations from those-in-high-places, these should arouse no attachment or pride, for undesired consequences recur.",
     note: "A caution against the seductions of the powers: the yogin must feel neither attachment nor pride at the invitations of celestial beings.",
+    bhashya: "When those-in-high-places (the gods) tempt the yogin with celestial pleasures, he must ponder the defects of pleasure and yield neither attachment nor pride, for pride would let heedlessness reopen the hindrances and the undesired round-of-rebirth recur; only the unattached and unproud yogin holds fast to his cultivated goal. The bhāṣya sets this within a scheme of four classes of yogin, the temptation falling to the second (the honey-stage adept).",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -883,6 +986,8 @@ export const PADA3 = [
     ],
     translation: "As a result of constraint upon moments and their sequence [there arises the intuitive] knowledge proceeding from discrimination.",
     note: "Saṃyama on the moment (kṣaṇa) and its sequence yields VIVEKAJA-JÑĀNA, the knowledge born of discrimination.",
+    bhashya: "The moment (kṣaṇa) is the minimal limit of time as the atom is of matter, and the uninterrupted flow of moments is the sequence; time itself is only a construction of the mind, but the moment is real and rests on the sequence. By constraint upon moments and their sequence, directly perceiving both, the knowledge born of discrimination arises.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -900,6 +1005,8 @@ export const PADA3 = [
     ],
     translation: "As a result of this there arises the deeper-knowledge of two equivalent things which cannot be distinctly qualified in species or characteristic-mark or point-of-space.",
     note: "From vivekaja-jñāna, discernment of two things otherwise indistinguishable by class, mark, or place.",
+    bhashya: "Ordinarily two things are told apart by difference of species, of characteristic-mark, or of point-of-space; but when even these are equivalent — as with two identical myrobolan-fruits whose positions are switched while the observer looks away — only the knowledge born of discrimination distinguishes them, by directly perceiving the distinct moment coincident with each thing's own point-of-space.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -918,6 +1025,8 @@ export const PADA3 = [
     ],
     translation: "The [intuitive] knowledge proceeding from discrimination is a deliverer, has all things as its object, and has all times for its object, and is an [inclusive whole] without sequence.",
     note: "The full character of vivekaja-jñāna (tāraka): the deliverer — comprehending all objects and all times, without succession.",
+    bhashya: "The knowledge born of discrimination is the deliverer (tāraka), arising of its own vivid light: it has all things and all times — past, present, and future — for its object and grasps the whole at a single moment, without sequence; even conscious concentration, the lamp of yoga, is but a part of it.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
   {
@@ -932,6 +1041,8 @@ export const PADA3 = [
     ],
     translation: "When the purity of the sattva and of the Self are equal there is Isolation.",
     note: "The culmination of the Vibhūti-pāda: when sattva and puruṣa are equal in purity, KAIVALYA — the goal beyond every power catalogued above.",
+    bhashya: "When the sattva, cleansed of rajas and tamas and its hindrance-seeds burned, has no task left but the presented-idea of its difference from the Self, it reaches a purity equal to the Self's; then the experience falsely attributed to the Self ceases, and the Self, its light within itself, stands undefiled and isolated — this is Kaivalya.",
+    bhashyaSrc: "after the Vyāsa-bhāṣya, trans. Woods (1914)",
     src: SRC,
   },
 ];

@@ -78,6 +78,22 @@ table.ys-words th { font-family: var(--sans); font-size: .7rem; }
   font-family: var(--sans); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
   font-weight: 700; color: var(--gold); margin-right: .3rem;
 }
+/* — the Vyāsa-bhāṣya gist (a collapsible block after the translation) — */
+.ys-bhashya {
+  margin: .3rem 0 .4rem; padding: .5rem .75rem;
+  border: 1px dashed var(--rule); border-radius: 8px; background: var(--parchment);
+}
+.ys-bhashya > summary {
+  font-family: var(--sans); font-size: .74rem; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--gold); cursor: pointer; list-style: none;
+}
+.ys-bhashya > summary::-webkit-details-marker { display: none; }
+.ys-bhashya > summary::before { content: '▸ '; color: var(--gold); }
+.ys-bhashya[open] > summary::before { content: '▾ '; }
+.ys-bhashya > summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.ys-bhashya p { margin: .5rem 0 0; }
+.ys-bhashya-none { margin: .3rem 0 .4rem; font-style: italic; }
+
 .ys-src { margin: .4rem 0 0; padding-top: .4rem; border-top: 1px dashed var(--rule); }
 
 /* — the theory page: āsana diagram grid — */

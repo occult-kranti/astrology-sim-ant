@@ -1506,8 +1506,11 @@ ok(AB_VARIANTS.some(v => v.bodyItems && v.bodyItems.length === 7) && AB_VARIANTS
 ok(!!AB_CORR.seasons.schemeA && !!AB_CORR.seasons.schemeB && AB_CORR.seasons.conflict === true
   && !!AB_CORR.seasons.schemeB.bpk && !!AB_CORR.seasons.schemeB.u128,
   'abhichara: both season schemes present (BPK 3.6-7 + U 1.28), conflict:true');
-ok(/unverified/.test(AB_DIRDEI.status) && AB_DIRDEI.value === null && AB_DIRDEI.candidates.length === 6,
-  'abhichara: DIRECTIONS_DEITIES flagged unverified, value null, 6 candidates');
+ok(AB_DIRDEI.verified === true && /verified/.test(AB_DIRDEI.status) && !/unverified/.test(AB_DIRDEI.status)
+  && Array.isArray(AB_DIRDEI.value) && AB_DIRDEI.value.length === 6
+  && AB_DIRDEI.value.every(r => r.act && r.direction && r.deity && r.verified === true)
+  && AB_DIRDEI.candidates.length === 6 && Array.isArray(AB_DIRDEI.sources) && AB_DIRDEI.sources.length >= 2,
+  'abhichara: DIRECTIONS_DEITIES promoted to VERIFIED — 6 rows (act→direction+deity), 2 sources, candidates retained');
 ok(AB_SCHEMA.items.length === 19 && typeof AB_SCHEMA.cite === 'string', 'abhichara: 19-item apparatus schema + cite');
 const abHasCite = arr => arr.every(r => typeof r.cite === 'string' && r.cite.length > 5);
 ok(abHasCite(AB_ACTS) && abHasCite(AB_VARIANTS) && abHasCite(AB_ATH.hostile) && abHasCite(AB_ATH.counter) && abHasCite(AB_TEXTS),
@@ -1543,6 +1546,46 @@ ok(ysAll.filter(s => s.pada === 4 && s.bhojaNum != null).length === 33, 'YS: Boo
 ok(ysAll.every(s => s.src && s.src.trim()), 'YS: every record has a non-empty src');
 ok(ysAll.every(s => !/[॒॑]/.test(s.devanagari)), 'YS: no Vedic accents in any record');
 ok(typeof ysCite === 'string' && ysCite.includes('Woods'), 'YS: YS_CITATION present');
+// The Vyāsa-bhāṣya layer (R24) — the gists threaded through the flatten.
+ok(ysAll.every(s => (!!s.bhashyaSrc) !== (!!(s.variant && s.bhashya === null))),
+   'YS: every record has bhashyaSrc XOR (variant && bhashya===null)');
+ok(ysAll.filter(s => s.bhashya === null).length === 1, 'YS: exactly one bhashya===null (the variant)');
+ok(ysAll.filter(s => !s.variant).every(s => typeof s.bhashya === 'string' && s.bhashya.trim()),
+   'YS: every non-variant record has a non-empty bhashya');
+ok(ysAll.filter(s => s.bhashyaSrc != null).every(s => s.bhashyaSrc === 'after the Vyāsa-bhāṣya, trans. Woods (1914)'),
+   "YS: every bhashyaSrc is exactly 'after the Vyāsa-bhāṣya, trans. Woods (1914)'");
+
+// --- The Practitioners' Library (expert catalog) ---------------------------
+import { PRACTITIONERS as pl, TIER_DEFS as plTiers, JOURNALS as plJournals,
+  TIER_VOCAB_NOTE as plVocab, LIBRARY_METHOD_NOTE as plNote, PRACTITIONERS_BY_DOMAIN as plByDomain } from '../assets/js/core/data/practitioners.js';
+const plTierKeys = ['canon', 'respected', 'niche', 'academic'];
+const plDomains = ['western', 'indian', 'esoteric'];
+ok(pl.length >= 60, `PRACTITIONERS >= 60 (got ${pl.length})`);
+ok(plDomains.every(d => pl.some(p => p.domain === d)), 'library: all three domains present');
+ok(pl.every(p => p.name && plTierKeys.includes(p.tier)
+   && Array.isArray(p.works) && p.works.some(w => w.title && w.year != null && w.year !== '')),
+   'library: every record has name + tier + >=1 work with {title, year}');
+ok(pl.every(p => p.verified && p.cite), 'library: every record has verified + cite');
+ok(pl.filter(p => p.methodSteps !== undefined).every(p =>
+   Array.isArray(p.methodSteps) && p.methodSteps.length && p.methodSource),
+   'library: every methodSteps present is a non-empty ordered list with a methodSource');
+ok(!pl.some(p => p.name === 'Bruce Robertson'), "library: omits 'Bruce Robertson'");
+const plGreer = pl.find(p => p.name === 'Mary K. Greer');
+ok(plGreer && plGreer.methodSteps.some(s => s.includes('Synthesis')), "library: Greer's 21 Ways include 'Synthesis'");
+const plDummett = pl.find(p => p.name === 'Michael Dummett');
+ok(plDummett && plDummett.tierNote, 'library: the Dummett record carries a tierNote');
+const plDuq = pl.find(p => p.name.startsWith('Lon Milo DuQuette'));
+ok(plDuq && plDuq.flags.some(f => /pseudepigraphic|Rabbi/i.test(f))
+   && !JSON.stringify(plDuq).includes('I made this all up'),
+   'library: DuQuette flags describe the pseudepigraphic framing, no fabricated quote');
+ok(plTiers.some(t => t.key === 'niche' && /practitioner-recognition/i.test(t.def)),
+   'library: TIER_DEFS carries the practitioner-recognition definition');
+ok(plDomains.every(d => Array.isArray(plJournals[d]) && plJournals[d].length),
+   'library: JOURNALS present for every domain');
+ok(/Dummett/.test(plVocab) && /Kaplan/.test(plVocab) && plNote.includes('2026-07-16'),
+   'library: TIER_VOCAB_NOTE (Dummett/Kaplan) + method note dated 2026-07-16');
+ok(plDomains.every(d => Array.isArray(plByDomain[d]) && plByDomain[d].length),
+   'library: PRACTITIONERS_BY_DOMAIN index built for every domain');
 
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

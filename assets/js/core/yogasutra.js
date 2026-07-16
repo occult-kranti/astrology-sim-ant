@@ -9,7 +9,9 @@
 //  Every record in ALL_SUTRAS has the SAME shape:
 //
 //    { pada, roman, num, num196?, variant?, bhojaNum?, anchor, ref,
-//      devanagari, iast, words:[{sa,gloss}], translation, note, src }
+//      devanagari, iast, words:[{sa,gloss}], translation, note, src,
+//      bhashya, bhashyaSrc }   ← the Vyāsa-bhāṣya gist (bhashya null on the
+//                                one variant record; bhashyaSrc absent there)
 //
 //  • `num`  is the VULGATE number (the 195-count of Woods 1914 / Rama Prasada
 //           1912 / sanskritdocuments / the Vyāsa-bhāṣya tradition):
@@ -53,6 +55,11 @@ function base(r, pada, num) {
     pada, roman: ROMAN[pada], num,
     devanagari: r.devanagari, iast: r.iast,
     words: r.words, translation: r.translation, note: r.note, src: r.src,
+    // The Vyāsa-bhāṣya gist (an original paraphrase after Woods 1914) + its
+    // provenance. `bhashya` is null on the one disputed variant record (which
+    // has no classical comment — the reason the vulgate omits it), and
+    // `bhashyaSrc` is then absent; every other record carries both.
+    bhashya: r.bhashya, bhashyaSrc: r.bhashyaSrc,
   };
 }
 

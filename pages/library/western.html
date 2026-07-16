@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Western traditional astrology — the practitioners | The Astrologer's Workbench</title>
+<meta name="description" content="The expert catalog of Western traditional astrology: horary, electional, natal (Hellenistic/medieval/Renaissance), mundane and astrological magic (Picatrix). Lilly, Bonatti and the Arabic-era sources through Barclay, Frawley, Houlding, Dunn, Dykes, Brennan, George, Hand, Zoller, Coppock, Campion and Warnock — each with verified works and the step-by-step method as taught, described never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">The Practitioners' Library</a> ›
+    Western</p>
+  <h1>Western traditional astrology — the practitioners</h1>
+  <p class="lede">The people behind the Workbench's Lilly and Picatrix engines, grouped by what they practise:
+    <b>horary</b>, <b>electional</b>, <b>natal</b> (Hellenistic, medieval and Renaissance), <b>mundane</b>, and
+    <b>astrological magic</b>. Each practice runs canon sources first, then the respected modern teachers and the
+    genuine niche voices; every card links out to the site's matching tool.</p>
+
+  <div class="callout science"><span class="label">Honest note</span>
+    These are the people and the books; the methods are <b>theirs, described</b> — never prescribed, with no claim of
+    validity. Figures who personally assert efficacy (talismans work, elections produce outcomes, horary predictions
+    verified against results) carry a ⚑ flag.</p></div>
+
+  <p class="small" style="margin:.4rem 0">
+    <span class="chip" style="background:#efe0bd;color:#5a4410">Canon</span> historical sources ·
+    <span class="chip" style="background:#e7eef7;color:#2b4a6b">Respected modern</span> the teachers read today ·
+    <span class="chip" style="background:#f0e8d4;color:#7a5a06">Niche</span> genuine lesser-known voices ·
+    <span class="chip" style="background:#d8efd6;color:#1f5e1d">Academic</span> scholarship, not practice.
+    <a class="small" href="index.html">What the tiers mean →</a></p>
+
+  <div class="calc" id="lib-controls">
+    <div class="field-row">
+      <div class="field" style="flex:1 1 260px"><label for="lib-search">Filter by name, practice or work</label>
+        <input id="lib-search" type="search" placeholder="e.g. Frawley, horary, dignities…"></div>
+      <button class="btn sm" id="lib-reset" type="button">Reset</button>
+      <span class="small muted" id="lib-count" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+
+  <div id="lib-catalog" style="margin-top:.6rem"></div>
+
+  <h2>Journals &amp; resources</h2>
+  <div id="lib-journals"></div>
+
+  <p class="small muted" style="margin-top:1rem">Other wings: <a href="indian.html">Indian systems</a> ·
+    <a href="esoteric.html">Divination &amp; esoteric</a> · back to <a href="index.html">the Library</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { initLibrary } from '../../assets/js/app/library.js';
+  initLibrary('western');
+  mountChrome('library');
+</script>
+</body>
+</html>

@@ -19,9 +19,11 @@
 //  Bloomfield SBE 42 1897; Caland, Altindisches Zauberritual 1900; Ullrey's
 //  UCSB dissertation; Bühnemann's chapter in Tantra in Practice), 2026-07-16.
 //
-//  ONE OPEN DATA GAP, honoured below: the per-act DIRECTION (dik) + presiding
-//  DEITY rows are stored as CANDIDATES ONLY (value:null, status 'unverified'),
-//  pending an accuracy-check pass before any hardcoding as fact.
+//  FORMER DATA GAP, now CLOSED: the per-act DIRECTION (dik) + presiding DEITY
+//  rows (§6, DIRECTIONS_DEITIES) were promoted from candidates to VERIFIED on
+//  2026-07-16 after an accuracy-check pass confirmed every row against two
+//  independent full-text sources (Bühnemann Tables 26.1-26.2 + Ullrey's
+//  Uḍḍīśatantra 1.13-15 translation). See that record's .cite / .sources.
 // ============================================================================
 
 // --- shared citation strings -------------------------------------------------
@@ -406,17 +408,41 @@ export const CORRESPONDENCES = {
 };
 
 // ---------------------------------------------------------------------------
-//  6. DIRECTIONS & PRESIDING DEITIES — the ONE open data gap.
-//     STORED AS CANDIDATES ONLY (value:null, status 'unverified'). The original
-//     research could not retrieve these rows online; adversarial re-verification
-//     (2026-07-16) DID retrieve them from a full-text copy of Bühnemann’s
-//     chapter — recorded below as candidates, NOT encoded as fact, pending an
-//     accuracy-check pass against the print editions per project discipline.
+//  6. DIRECTIONS & PRESIDING DEITIES — PROMOTED TO VERIFIED (2026-07-16).
+//     Formerly the one open data gap (candidates only). An accuracy-check pass
+//     confirmed EVERY row — both act→direction AND act→deity — verbatim against
+//     TWO INDEPENDENT authoritative FULL-TEXT sources:
+//       (1) Bühnemann, "The Six Rites of Magic", Tantra in Practice pp. 448-449,
+//           Table 26.1 (Rites by Goddess & Colour) + Table 26.2 (Rites by Season
+//           & Direction) — the Mantramahodadhi 25 scheme; with the explicit prose
+//           "Omitting south and west, the two remaining cardinal and the four
+//           intermediate directions are of significance" (p. 449);
+//       (2) Ullrey, Grim Grimoires — an INDEPENDENT translation of a DIFFERENT
+//           base text, the Uḍḍīśatantra 1.13-15 (diss. appendix pp. 649-650),
+//           giving the identical act→direction and act→deity mapping.
+//     The colour + season columns were confirmed in the same Bühnemann tables as
+//     a bonus. Shape kept backward-compatible: `candidates` is retained unchanged;
+//     `value` now carries the verified rows and `verified:true` is set.
 // ---------------------------------------------------------------------------
+const DIR_DEI_ROWS = [
+  { act: 'santi', deity: 'Rati', direction: 'northeast', color: 'white', season: 'hemanta (winter)', verified: true },
+  { act: 'vasya', deity: 'Vāṇī (Sarasvatī)', direction: 'north', color: 'red', season: 'vasanta (spring)', verified: true },
+  { act: 'stambhana', deity: 'Ramā', direction: 'east', color: 'yellow', season: 'śiśira (cool)', verified: true },
+  { act: 'vidvesana', deity: 'Jyeṣṭhā', direction: 'southwest', color: 'variegated (citra)', season: 'grīṣma (summer)', verified: true },
+  { act: 'uccatana', deity: 'Durgā', direction: 'northwest', color: 'dark', season: 'varṣā (rains)', verified: true },
+  { act: 'marana', deity: 'Kālī', direction: 'southeast', color: 'gray', season: 'śarad (autumn)', verified: true },
+];
+
 export const DIRECTIONS_DEITIES = {
-  value: null,
-  status: 'unverified — requires an accuracy-check pass / print check of Bühnemann pp. 448-449, 454-455 (MMU 25.6-10ab) before any hardcoding as fact',
-  note: 'The per-act direction (dik) and presiding-deity rows of the Śāradātilaka 23 / Mantramahodadhi 25 chart. Provided as candidates only. In the six-direction scheme, SOUTH and WEST are omitted; the deity-colour pairing is the MMU 25 goddess scheme (distinct from the BPK colours above — do not merge).',
+  verified: true,
+  status: 'verified — every row (act→direction AND act→deity) confirmed verbatim against two independent authoritative full-text sources (2026-07-16): Bühnemann, Tantra in Practice pp. 448-449 (MMU 25, Tables 26.1-26.2), AND Ullrey\'s translation of the Uḍḍīśatantra 1.13-15 (a different base text). See .cite / .sources.',
+  value: DIR_DEI_ROWS,
+  note: 'The per-act direction (dik) and presiding-deity rows of the Mantramahodadhi 25 / Śāradātilaka 23 six-rites chart. In the six-direction scheme SOUTH and WEST are omitted — "the two remaining cardinal and the four intermediate directions are of significance" (Bühnemann p. 449); the Uḍḍīśatantra 1.15 Sanskrit names only five (NE, N, SW, NW, SE) and its Hindi commentary supplies the sixth (East). This is the direction the practitioner FACES during the rite (MMU 25.9cd-10ab / U 1.15); it is DISTINCT from the FIRE-PIT orientation (MMU 25.60-61ab / U 1.82-83, 1.118), which Bühnemann notes differs for two rites (appeasement and liquidation). The deity-colour pairing is the MMU 25 goddess scheme, matching the contested MMU colours recorded under CORRESPONDENCES.colors above (do not merge with the BPK colours).',
+  sources: [
+    { source: 'Bühnemann, Tantra in Practice pp. 448-449 (MMU 25.6-10ab; Table 26.1 goddess+colour, Table 26.2 season+direction)', agrees: true },
+    { source: 'Ullrey, Grim Grimoires — Uḍḍīśatantra 1.13-15 (diss. appendix pp. 649-650)', agrees: true },
+  ],
+  // `candidates` retained verbatim for backward-compatibility (== the promoted rows).
   candidates: [
     { act: 'santi', deity: 'Rati', direction: 'northeast', color: 'white', season: 'hemanta (winter)' },
     { act: 'vasya', deity: 'Vāṇī (Sarasvatī)', direction: 'north', color: 'red', season: 'vasanta (spring)' },
@@ -425,7 +451,7 @@ export const DIRECTIONS_DEITIES = {
     { act: 'uccatana', deity: 'Durgā', direction: 'northwest', color: 'dark', season: 'varṣā (rains)' },
     { act: 'marana', deity: 'Kālī', direction: 'southeast', color: 'gray', season: 'śarad (autumn)' },
   ],
-  cite: BUHNEMANN + ' pp. 448-449, 454-455 (MMU 25.6-10ab, Tables 26.1-26.2) — CANDIDATE values retrieved 2026-07-16, NOT yet accuracy-checked; cross-confirm against Türstig (WZKS 1985) and ' + GOUDRIAAN,
+  cite: BUHNEMANN + ' pp. 448-449 (MMU 25.6-10ab, Tables 26.1 & 26.2; "Omitting south and west, the two remaining cardinal and the four intermediate directions are of significance", p. 449); cross-confirmed by ' + ULLREY + ' Uḍḍīśatantra 1.13-15 — a DIFFERENT base text (deities rati/vāṇī/ramā/jyeṣṭhā/durgā/kālī at 1.14; directions śānti-NE, vaśya-N, stambhana-E, vidveṣaṇa-SW, uccāṭana-NW, māraṇa-SE at 1.15 + commentary). Both independent sources give the identical act→direction and act→deity mapping; five of the six goddess-names are verbatim-identical, and Bühnemann\'s Table 26.1 confirms the vaśya goddess as Vāṇī/Sarasvatī. Verified verbatim 2026-07-16.',
 };
 
 // ---------------------------------------------------------------------------

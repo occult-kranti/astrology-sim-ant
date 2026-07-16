@@ -174,6 +174,16 @@ function renderSutra(r, mode196) {
   const note = r.note
     ? `<p class="ys-note small"><span class="ys-note-label">Note</span> ${esc(r.note)}</p>` : '';
 
+  // The Vyāsa-bhāṣya gist (a collapsible block after the translation). It is
+  // rendered only when a comment exists; the one disputed variant sūtra has
+  // bhashya === null — that it has no classical comment is exactly why the
+  // vulgate omits it, so we say so in a one-line note instead.
+  const bhashya = r.bhashya != null
+    ? `<details class="ys-bhashya"><summary>Vyāsa-bhāṣya — the classical comment (gist)</summary><p>${esc(r.bhashya)}</p><p class="small muted">${esc(r.bhashyaSrc)}</p></details>`
+    : (r.variant
+        ? `<p class="ys-bhashya-none small muted">No Vyāsa-bhāṣya exists for this sūtra — the classical commentary does not gloss it, which is why the Vyāsa/Bhoja vulgate omits it.</p>`
+        : '');
+
   return `<article class="ys-sutra" id="s${r.anchor}"${dataAttrs} data-hay="${esc(hay)}">
     <div class="ys-head">
       <a class="ys-num" href="#s${r.anchor}">${esc(numLabel)}</a>${badge}
@@ -185,6 +195,7 @@ function renderSutra(r, mode196) {
       <tbody>${words}</tbody>
     </table></div>
     <p class="ys-tr">${esc(r.translation)}</p>
+    ${bhashya}
     ${note}
     <p class="ys-src small muted">${esc(r.src)}</p>
   </article>`;

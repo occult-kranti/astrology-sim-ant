@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Roadmap — planned tools &amp; wings | The Astrologer's Workbench</title>
+<meta name="description" content="What comes next for The Astrologer's Workbench: the planned tools and study wings — Western depth (full primary directions, decumbiture, heliacal star phases, the Arabic-parts catalog), Vedic depth (tithi-praveśa, nakṣatra porutham, aṣṭakavarga transits, Jaimini), further oracles and esoterica, and the practice layers. Each item is a titled stub with the engines it will reuse — a plan laid out as real sections for future rounds to fill.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › The Roadmap</p>
+  <h1>The Roadmap — planned tools &amp; wings</h1>
+  <p class="lede">Where the Workbench is going next. Every item below is a <b>plan, not a promise</b> — a titled stub
+    with a two-line brief, a <span class="chip soon">planned</span> marker, and a note of the engines it will
+    <b>reuse rather than re-implement</b>. The sections already exist so future rounds simply fill them; nothing
+    here links to a page that isn't built yet.</p>
+
+  <div class="callout science"><span class="label">Read this first — the same honest footing</span>
+    A roadmap is not a claim of validity. Everything planned here inherits the site's rule: the <b>mathematics is
+    real and verifiable</b>; the <em>interpretations</em> are historical doctrine, <b>described for study, never
+    prescribed</b>. Items marked with a question mark are <em>candidates</em> — they ship only if they can be framed
+    honestly as history. See <a href="about/index.html">Sources &amp; Science</a> for the standing assessment.</div>
+
+  <p class="small muted">Already shipped and looking for what exists today? The <a href="tools.html">All&nbsp;Tools
+    table</a> lists every current calculator and the <a href="contents.html">Master Index</a> maps the whole site.
+    This page is only the <em>future</em> plan.</p>
+
+  <hr class="fancy">
+
+  <!-- ==================================================================== -->
+  <h2>1 · Western astrology — depth</h2>
+  <p>Finishing the classical apparatus of Lilly and his sources: the timing techniques, the fixed-star and
+    lot machinery, and the last steps toward judgement that is <em>weighted like a real astrologer's</em>.</p>
+
+  <h3>Directions &amp; timing</h3>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Placidian mundane primary directions</h4>
+      <p>The rigorous semi-arc directions (promissor to significator through the mundane houses), replacing today's
+        self-flagged in-zodiac Naibod approximation with casting-grade arcs.</p>
+      <p class="small muted">Reuses <code>core/directions.js</code> · <code>core/astro.js</code> (oblique ascension,
+        semi-arcs) · surfaces on <code>book3/master.html</code>.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Decumbiture mode</h4>
+      <p>The 6th-house chart of the moment of falling ill: the sixteen critical days by the Moon's motion, the
+        crises, and the physician's significators — Lilly's medical horary, laid out as its own reader.</p>
+      <p class="small muted">Reuses <code>core/horary-judge.js</code> · <code>core/aspects.js</code> ·
+        <code>core/considerations.js</code> (the Moon's condition).</p>
+    </div>
+  </div>
+
+  <h3>Stars, parts &amp; points</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Fixed-star heliacal phases</h4>
+      <p>Brady-style risings and settings: when a star first appears before dawn or last vanishes at dusk, computed
+        from its arcus visionis — the oldest layer of star astrology, done astronomically.</p>
+      <p class="small muted">Reuses <code>core/astro.js</code> (rise/set, altitude) ·
+        <code>data/behenian-stars.js</code> (with live precession).</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>The full Arabic-parts catalog</h4>
+      <p>Beyond Fortune &amp; Spirit: the seven Hermetic lots (Eros, Necessity, Victory, Basis, Courage, Nemesis) and
+        the topic lots, each with a <b>sect-aware</b> day/night formula and its source.</p>
+      <p class="small muted">Reuses <code>core/astro.js</code> <code>lot()</code> · <code>core/reading.js</code>
+        (<code>reading.lots</code>) — the affine math already exists, half-wired.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Midpoints &amp; Uranian points</h4>
+      <p>The midpoint tree and the eight hypothetical Uranian planets — included strictly as a <b>flagged-modern</b>
+        20th-century system, clearly separated from Lilly's traditional doctrine.</p>
+      <p class="small muted">Reuses <code>core/astro.js</code> · <code>core/aspects.js</code> (the 90°-dial
+        harmonics) — labelled MODERN in-data throughout.</p>
+    </div>
+  </div>
+
+  <h3>Judgement fidelity</h3>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Significator-weighted chart health</h4>
+      <p>Weight each caution by whether it actually touches the querent's or quesited's significators, not a flat
+        count — the single most-cited fidelity fix, bringing the verdict closer to Lilly's real method.</p>
+      <p class="small muted">Reuses <code>core/cautions.js</code> · <code>core/horary-judge.js</code> ·
+        <code>core/perfection.js</code> — reweighting, not new astronomy.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Antiscia woven into judgement</h4>
+      <p>Treat antiscia and contra-antiscia as <em>hidden contacts</em> inside the perfection and aspect search, as
+        Lilly does — today they are computed and displayed but not used in the verdict.</p>
+      <p class="small muted">Reuses <code>core/aspects.js</code> · <code>core/perfection.js</code> ·
+        <code>core/astro.js</code> (<code>antiscion</code>/<code>contraAntiscion</code>).</p>
+    </div>
+  </div>
+
+  <hr class="fancy">
+
+  <!-- ==================================================================== -->
+  <h2>2 · Vedic (Jyotiṣa) — depth</h2>
+  <p>The second, independent system already computes the chart, the daśās, the vargas, the Aṣṭakavarga and the full
+    Ṣaḍbala. These extend it toward returns, compatibility, transits and the advanced schools.</p>
+
+  <h3>Returns &amp; compatibility</h3>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Tithi-praveśa — the monthly return</h4>
+      <p>The chart cast for each return of the natal tithi (lunar day) — the Indian monthly-return technique, the
+        sidereal cousin of the solar revolution already built for the Western side.</p>
+      <p class="small muted">Reuses <code>core/vedic.js</code> (pañcāṅga) · <code>core/solar-return.js</code>
+        (the bracket-and-bisect instant finder).</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Nakṣatra porutham — the match grid</h4>
+      <p>The ten (or twelve) kūṭa compatibility factors scored between two charts from the Moon's nakṣatra and rāśi —
+        described as a cultural matching custom, with every factor's rule cited.</p>
+      <p class="small muted">Reuses <code>core/vedic.js</code> · <code>data/vedic-data.js</code> (nakṣatra table) —
+        a scoring grid over two existing charts.</p>
+    </div>
+  </div>
+
+  <h3>Transits &amp; the advanced schools</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Aṣṭakavarga transit overlay</h4>
+      <p>Gochara read through the bindus: overlay the current transiting grahas on the natal BAV/SAV so the
+        strong-and-weak transit houses emerge from the bindu counts already computed.</p>
+      <p class="small muted">Reuses <code>core/vedic.js</code> (BAV/SAV, checksum-verified) + the transits timeline
+        pattern from <code>transits.html</code>.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Jaimini basics</h4>
+      <p>The chara kārakas (the seven significators by longitude), the Ārūḍha lagna, and chara daśā — the second
+        great Indian school, kept clearly distinct from the Parāśarī default.</p>
+      <p class="small muted">Reuses <code>core/vedic.js</code> · <code>data/vedic-data.js</code> — a longitude sort
+        and the sign-based daśā over the existing chart.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Alternate daśā systems</h4>
+      <p>Yoginī (8-fold) and a Kālacakra sketch alongside the built Vimśottarī, so the daśā panel can show more than
+        one timeline of rulership — each with its span and source flagged.</p>
+      <p class="small muted">Reuses <code>core/vedic.js</code> (the Vimśottarī daśā scaffold) — new period tables,
+        same balance-from-Moon machinery.</p>
+    </div>
+  </div>
+
+  <hr class="fancy">
+
+  <!-- ==================================================================== -->
+  <h2>3 · The oracles &amp; esoterica</h2>
+  <p>Geomancy, tarot, the I&nbsp;Ching, the runes and the Kabbalah tree are built. These add further oracles (only
+    where they can be framed honestly as history) and deepen the ones already here.</p>
+
+  <h3>Candidate new oracles</h3>
+  <div class="grid cols-3">
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Ogham — the tree alphabet</h4>
+      <p>The twenty (later twenty-five) fews cast and read, with the medieval word-oghams — presented as Irish
+        manuscript tradition, its modern divinatory use clearly labelled as a revival.</p>
+      <p class="small muted">Reuses the shared diviner pattern (a pure deal/draw core + an AI narrator), as
+        <code>core/runes.js</code> already does for the Futhark.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Playing-card cartomancy</h4>
+      <p>The history of reading with a 52-card deck (the Lenormand and piquet traditions) plus a computable cast —
+        the folk cousin of the tarot, sourced and dated.</p>
+      <p class="small muted">Reuses <code>core/tarot.js</code> (the shuffle / draw / spread core) with a
+        playing-card correspondence table.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Enochian chess?</h4>
+      <p>The Golden Dawn's four elemental boards — a <em>candidate</em> only, and only if it can be presented as
+        cipher-and-history rather than as a working practice. May not ship.</p>
+      <p class="small muted">Reuses generic board / draw utilities; framing to be settled before any build.</p>
+    </div>
+  </div>
+
+  <h3>Deepening the built oracles</h3>
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>The yarrow-stalk probabilities explainer</h4>
+      <p>Why the ancient yarrow-stalk method and the three-coin method give <b>different odds</b> for the moving
+        lines — an honest probability sidebar on the I&nbsp;Ching, computed and charted.</p>
+      <p class="small muted">Reuses <code>core/iching.js</code> (the line-generation core) — an added probability
+        model, no change to the cast.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Numerology beyond gematria</h4>
+      <p>The name/number reduction systems (Pythagorean, Chaldean) as a small cultural add-on to the Kabbalah
+        gematria — flagged a <b>weak engine fit</b>, so it stays reference-level.</p>
+      <p class="small muted">Reuses the gematria core behind <code>kabbalah.html</code> — letter-value maps only.</p>
+    </div>
+  </div>
+
+  <hr class="fancy">
+
+  <!-- ==================================================================== -->
+  <h2>4 · Practice &amp; platform layers</h2>
+  <p>Not new traditions but better <em>use</em> of the ones here — the AI, the reading room, and the worked
+    examples that turn each engine into a teacher.</p>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Streaming-markdown AI replies</h4>
+      <p>The grounded assistant streams its answer token-by-token as formatted markdown, with copy and regenerate —
+        replacing the current wait-then-render reply for a live, readable transcript.</p>
+      <p class="small muted">Reuses <code>app/assistant.js</code> · <code>core/llm-context.js</code>
+        (<code>buildContext</code>/<code>runTool</code>) — a rendering change over the same grounded context.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>The practitioners' library wing</h4>
+      <p>A cross-tradition reading room gathering the sourced primary texts and scholarship in one browsable place —
+        seeded by the <a href="chronology/library.html">Hermetic library</a> already in the chronology wing.</p>
+      <p class="small muted">Reuses the chronology library shell + the citation data already carried per record
+        across the data modules.</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Per-tool worked-example galleries</h4>
+      <p>Every calculator gets a small gallery of famous, dated charts read end-to-end — extending the live
+        Lilly worked-charts pattern to the nativity, election, Vedic and oracle tools.</p>
+      <p class="small muted">Reuses <code>core/chart-from-positions.js</code> · <code>data/worked-charts.js</code>
+        (the cast-a-printed-figure path built for Book&nbsp;II).</p>
+    </div>
+    <div class="card">
+      <span class="chip soon">planned</span>
+      <h4>Planetary seals &amp; sigils</h4>
+      <p>A sigil-generation layer over the existing <a href="picatrix/kameas.html">kāmeas</a>: trace a name or number
+        across the magic square to draw its seal — flagged clearly as Agrippa (II.22), not strictly Picatrix.</p>
+      <p class="small muted">Reuses <code>picatrix/kameas.html</code> (the built magic squares) ·
+        <code>data/planetary-magic.js</code> (the correspondences).</p>
+    </div>
+  </div>
+
+  <hr class="fancy">
+
+  <p class="small muted" style="margin-top:1.4rem">This plan draws on the ranked gap list and further-roadmap in the
+    project's MASTER-PLAN. Priorities shift as rounds ship; the honest framing does not. For what exists now, see the
+    <a href="tools.html">All&nbsp;Tools table</a>, the <a href="contents.html">Master Index</a>, and
+    <a href="about/index.html">Sources &amp; Science</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  mountChrome('roadmap');
+</script>
+</body>
+</html>

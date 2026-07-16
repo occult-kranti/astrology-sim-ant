@@ -915,12 +915,26 @@ export const REGISTRY = [
     inputs: [
       { name: 'ref', type: 'string', desc: 'a vulgate sūtra reference, e.g. "II.29" or "IV.34"', required: true },
     ],
-    outputShape: '{ pada, roman, num, num196?, variant?, bhojaNum?, anchor, ref, devanagari, iast, words:[{sa,gloss}], translation, note, src }',
+    outputShape: '{ pada, roman, num, num196?, variant?, bhojaNum?, anchor, ref, devanagari, iast, words:[{sa,gloss}], translation, note, src, bhashya, bhashyaSrc }',
     callable: false,
     book: 'Yoga Sūtras', chapter: 'Pātañjala Yoga-sūtra I–IV',
     citation: 'Pātañjala Yoga-sūtra — Devanāgarī: sanskritdocuments.org (accents stripped); word-glosses: Rama Prasada (SBH IV, 1912); translations: J. H. Woods (HOS 17, 1914). (= YS_CITATION)',
     pages: ['pages/yoga/index.html', 'pages/yoga/theory.html'], howItWorks: 'pages/yoga/theory.html#hiw-yoga',
     glossaryTerms: ['Yoga Sūtras', 'Aṣṭāṅga (eight limbs)', 'Yama & Niyama', 'Āsana (in the YS)', 'Samādhi', 'Kaivalya', 'Vibhūti'],
+  },
+  {
+    id: 'practitioners-library', title: "The Practitioners' Library (expert catalog)",
+    module: 'assets/js/core/data/practitioners.js', exportName: 'PRACTITIONERS',
+    exports: ['TIER_DEFS', 'TIER_VOCAB_NOTE', 'JOURNALS', 'PRACTITIONERS_BY_DOMAIN', 'LIBRARY_CITATION', 'LIBRARY_METHOD_NOTE'],
+    computes: "The Practitioners' Library wing's data: 133 verified practitioner/source records across three domains (western, indian, esoteric), grouped by practice and graded by a practitioner-recognition tier (canon/respected/niche/academic). Each record carries verified works {title,year,publisher}, optional journal papers, the step-by-step method as its author teaches it, honest-framing/belief flags, and where the pairing was verified. Built by live web-verification + an adversarial fabrication check (2026-07-16); described never prescribed, no validity claimed.",
+    inputs: [],
+    outputShape: '[{ domain, practice, name, years, tier, tierNote?, school, line, works:[{title,year,publisher}], papers?:[{title,journal,year}], methodSource?, methodSteps?:[…], flags?:[…], verified, cite }]',
+    callable: false,
+    book: 'Library', chapter: "The Practitioners' Library — the expert catalog",
+    citation: 'Verified 2026-07-16 against publisher/ISBN records, practitioner sites and scholarly catalogs (Brill, Chicago, Princeton, Stanford, Routledge, OUP, HSSA); adversarially fact-checked for fabrication, corrections applied, unverifiable entries dropped.',
+    pages: ['pages/library/index.html', 'pages/library/western.html', 'pages/library/indian.html', 'pages/library/esoteric.html'],
+    howItWorks: 'pages/library/index.html',
+    glossaryTerms: [],
   },
 ];
 
