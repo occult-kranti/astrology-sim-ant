@@ -9,8 +9,12 @@ import { allAspects } from '../core/aspects.js';
 import { renderChart } from '../core/chart.js';
 import { SIGNS } from '../core/data/signs.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
-import { toUTC, nowLocalFields } from './shared.js';
+import { toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
+import { fullReading } from '../core/reading.js';
+import { renderExplainBlock, ensureExplainMount } from './explain-block.js';
+import { explainNativity } from '../core/explain/nativity.js';
+import { initGlosstip } from './glosstip.js';
 
 const $ = id => document.getElementById(id);
 const PL = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -30,6 +34,7 @@ export async function initNativity() {
   $('n-lat').value = 51.5074; $('n-lon').value = -0.1278;
   $('n-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
   await mountEnh();
+  try { initGlosstip(); } catch { /* non-fatal */ }
   compute();
 }
 
@@ -124,6 +129,17 @@ function compute() {
     }).join('')}</ul>
     <p class="small muted">This is a simplified rendering of Lilly's temperament method, which also weighs the
       planets aspecting the Ascendant, the Moon's phase, and the season — see Book III.</p>`;
+
+  // The "In plain words" block, mounted under the summary banner: what Book III's
+  // apparatus makes of the figure (Lord of the Geniture + temperament), in the
+  // attributed voice (chart-ux §7.4). Reuses the verified reading spine + the
+  // temperament tally just computed above.
+  try {
+    const reading = fullReading(chart, { includeVedic: false });
+    const mount = ensureExplainMount($('n-summary'), 'n-explain-mount');
+    if (mount) renderExplainBlock(mount, explainNativity(reading, { temperament: { hot, dry, dominant } }), { textId: 'n-explain-text' });
+    autolinkResultPanels(['n-explain-text', 'n-lord', 'n-temperament']);
+  } catch { /* non-fatal: the panels below still render */ }
 }
 
 function renderWheel(container, chart, asps) {

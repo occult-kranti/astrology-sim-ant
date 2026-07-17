@@ -25,6 +25,9 @@ import { planetImage } from '../core/data/planet-images.js';
 import { attachVedicPanel } from './vedic-panel.js';
 import { attachPersonPicker } from './person.js';
 import { eraAccuracy } from '../core/calendar.js';
+import { renderExplainBlock, ensureExplainMount } from './explain-block.js';
+import { explainWorkbench } from '../core/explain/workbench.js';
+import { initGlosstip } from './glosstip.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -93,7 +96,17 @@ export async function initWorkbench() {
   if (s.bdate) $('wb-birth-details').open = true;
 
   renderAssistantPlaceholder();
+  try { initGlosstip(); } catch { /* non-fatal: popovers degrade to plain gloss-links */ }
   run();
+}
+
+// The flagship "In plain words" block: a computed, attributed synthesis of the
+// whole reading, mounted directly under the chart-health verdict banner (chart-ux
+// §7.2). Pure text model (core/explain/workbench.js) → app renderer.
+function renderExplain(r) {
+  const mount = ensureExplainMount($('wb-summary'), 'wb-explain-mount');
+  if (!mount) return;
+  renderExplainBlock(mount, explainWorkbench(r), { textId: 'wb-explain-text' });
 }
 
 // The UI3 compute choreography: btn-busy → compute → focus+scroll the verdict banner
@@ -254,6 +267,7 @@ function run() {
 
   safe(() => renderSummary(reading));
   safe(() => renderVerdictBanner(reading));
+  safe(() => renderExplain(reading));
   safe(() => renderEraBadge(chart));
   safe(() => renderMoment(reading));
   safe(() => renderDignities(reading));
@@ -270,7 +284,7 @@ function run() {
 
   // P1-2: auto-link unexplained jargon in the freshly-rendered prose panels
   // (the static autolinker at mount can't reach DOM injected by a compute).
-  safe(() => autolinkResultPanels(['wb-summary', 'wb-lots', 'wb-aspects', 'wb-cautions',
+  safe(() => autolinkResultPanels(['wb-explain-text', 'wb-summary', 'wb-lots', 'wb-aspects', 'wb-cautions',
     'wb-horary', 'wb-election', 'wb-talisman', 'wb-natal']));
 
   writeStateToURL(currentState());
@@ -394,7 +408,11 @@ function renderMoment(r) {
       <td class="num small">${p.speed != null ? p.speed.toFixed(2) : ''}</td>
       <td class="num ${dig ? (dig.sumTotal >= 0 ? 'pos' : 'neg') : 'muted'}">${dig ? sgn(dig.sumTotal) : '·'}</td></tr>`;
   }
-  $('wb-moment').innerHTML = `<div class="table-scroll"><table class="data"><thead><tr><th>Body</th><th>Position</th><th>Ho.</th><th class="num">Speed</th><th class="num" title="essential + accidental">Dignity</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  // F-TITLE-ONLY sweep: the cryptic column heads carried their meaning in a
+  // native `title=` (touch/SR-invisible). Surface it as visible text + a glosstip
+  // ⓘ chip (chart-ux §1.2, §5.3).
+  const thChip = (term, slug, label) => `<button type="button" class="term-chip" data-term="${esc(term)}" data-slug="${slug}" aria-label="Glossary: ${esc(label)}"><span class="tc-i" aria-hidden="true">ⓘ</span></button>`;
+  $('wb-moment').innerHTML = `<div class="table-scroll"><table class="data"><thead><tr><th>Body</th><th>Position</th><th>Ho. ${thChip('Angular / Succedent / Cadent', 'angular-succedent-cadent', 'House (Ho.)')}</th><th class="num">Speed <span class="small muted">(°/day)</span></th><th class="num">Dignity <span class="small muted">(ess.+acc.)</span> ${thChip('Essential Dignity', 'essential-dignity', 'Dignity — essential plus accidental')}</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 function renderDignities(r) {

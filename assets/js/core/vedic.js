@@ -186,7 +186,9 @@ function drishtiValue(A) {
 
 // Compound (pañcadhā-maitrī) friendship → Saptavargaja tier virūpas, computed once
 // between each pair of the 7 grahas (natural + temporary friendship from D1).
-function compoundRelations(grahas) {
+// (Renamed from `compoundRelations` in R28 to free that name for the exported,
+// richer SURFACING view below; shadbala's output is byte-identical — pin-tested.)
+function maitriMatrix(grahas) {
   const T = SAPTAVARGA_TIER, out = {};
   for (const a of SEVEN) {
     out[a] = {};
@@ -207,7 +209,7 @@ function compoundRelations(grahas) {
 function shadbala(chart, sid, grahas, lagnaLon, ph) {
   const eps = chart.obliquity != null ? chart.obliquity : 23.4367;
   const ramc = chart.ramc;
-  const compound = compoundRelations(grahas);
+  const compound = maitriMatrix(grahas);
 
   // shared temporal quantities (Kāla bala)
   let noonDist = null;                                    // 0 at local noon, 180 at midnight
@@ -308,6 +310,96 @@ function shadbala(chart, sid, grahas, lagnaLon, ph) {
     timeLords: { yearLord, monthLord, varaLord, horaLord, tribhagaLord },
     units: 'virūpas (1 rūpa = 60 virūpas); required minimums in rūpas',
     note: 'Full six-fold Ṣaḍbala (Sthāna, Dig, Kāla, Ceṣṭā, Naisargika, Dṛk) per BPHS Ch.27, in virūpas. Faithful to Jagannath Hora with documented simplifications: Ceṣṭā via the eight motional-states (speed) mapping; declination via the β≈0 approximation; the Abda/Māsa year/month lords from the Sun’s sidereal position (~1-day); Mercury counted benefic for Pakṣa/Dṛk. It reproduces the tradition’s own strength ranking — astrology has no demonstrated predictive validity.',
+  };
+}
+
+// ===========================================================================
+//  R28 SURFACING EXPORTS — three engines that were previously internal to
+//  shadbala()/castVedic are exposed here for the R28 Vedic tools page. They
+//  READ a castVedic() reading (its `grahas` map) and recompute NOTHING that
+//  touches shadbala; the ṣaḍbala output is byte-identical before/after (pinned
+//  in scripts/tests/r28-vedic-core.mjs). Described, never prescribed.
+// ===========================================================================
+
+// --- Combustion (asta) arcs. The classical set carried by the Sūrya-Siddhānta /
+// Phaladīpikā line; the retrograde Mercury/Venus variants are CONTESTED. --------
+const COMBUSTION_ARCS = {
+  Moon: { direct: 12 }, Mars: { direct: 17 }, Mercury: { direct: 14, retro: 12 },
+  Jupiter: { direct: 11 }, Venus: { direct: 10, retro: 8 }, Saturn: { direct: 15 },
+};
+const COMBUSTION_CITE = 'Classical combustion (asta) arcs — Sūrya-Siddhānta 9.6–9 as carried in the Phaladīpikā/Jyotiṣa line (Moon 12°, Mars 17°, Mercury 14°/12° retro, Jupiter 11°, Venus 10°/8° retro, Saturn 15°). The retrograde Mercury/Venus arcs are CONTESTED across sources (Venus 8°–9°); the Sun is the source and is never combust; Rāhu/Ketu (shadowy) are excluded.';
+
+// pancadhā-maitrī — the compound-friendship view (BPHS 3.55–60), with the
+// natural + temporary + compound labels AND the saptavargaja tier virūpa.
+export function compoundRelations(reading) {
+  const grahas = (reading && reading.grahas) || reading;
+  const T = SAPTAVARGA_TIER, matrix = {};
+  const tierKey = { 'great friend': 'greatFriend', friend: 'friend', neutral: 'neutral', enemy: 'enemy', 'great enemy': 'greatEnemy' };
+  for (const a of SEVEN) {
+    matrix[a] = {};
+    const nat = NATURAL_RELATION[a];
+    for (const b of SEVEN) {
+      if (a === b) { matrix[a][b] = null; continue; }
+      const natural = nat.friend.includes(b) ? 'friend' : nat.enemy.includes(b) ? 'enemy' : 'neutral';
+      const dist = ((grahas[b].rashiIndex - grahas[a].rashiIndex + 12) % 12) + 1;
+      const tempFriend = [2, 3, 4, 10, 11, 12].includes(dist);
+      const temporary = tempFriend ? 'friend' : 'enemy';
+      const compound = natural === 'friend' ? (tempFriend ? 'great friend' : 'neutral')
+        : natural === 'neutral' ? (tempFriend ? 'friend' : 'enemy')
+          : (tempFriend ? 'neutral' : 'great enemy');
+      matrix[a][b] = { natural, temporary, compound, tierVirupa: T[tierKey[compound]] };
+    }
+  }
+  return {
+    grahas: SEVEN.slice(), matrix,
+    cite: 'BPHS 3.55–60 — naisargika (natural) friendship compounded with tātkālika (temporary, by the 2/3/4/10/11/12 count) into the pañcadhā (five-fold) maitrī; the same matrix ṣaḍbala scores as saptavargaja bala.',
+    note: 'Historical relational scheme, described — never prescribed.',
+  };
+}
+
+// graha-dṛṣṭi grid — whole-sign (taught/popular) full & special aspects PLUS the
+// BPHS Ch.26 degree-graded (sphuṭa) virūpa value. Both modes shipped (CONTESTED
+// presentation choice). Special aspects: Mars 4/8, Jupiter 5/9, Saturn 3/10.
+export function grahaDrishti(reading) {
+  const grahas = (reading && reading.grahas) || reading;
+  const list = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+  const grid = {};
+  for (const a of list) {
+    grid[a] = {};
+    for (const b of list) {
+      if (a === b) { grid[a][b] = null; continue; }
+      const houseDist = ((grahas[b].rashiIndex - grahas[a].rashiIndex + 12) % 12) + 1;
+      const special = !!(SPECIAL_ASPECTS[a] && SPECIAL_ASPECTS[a].includes(houseDist) && houseDist !== 7);
+      const full = houseDist === 7 || special;
+      let sphuta;
+      if (a === 'Rahu' || a === 'Ketu') sphuta = full ? 60 : 0;   // nodes: whole-sign only (contested)
+      else { let v = drishtiValue(norm360(grahas[b].lon - grahas[a].lon)); if (full) v = 60; sphuta = r2(v); }
+      grid[a][b] = { houseDist, full, special, type: special ? 'special' : (houseDist === 7 ? 'full' : 'partial'), sphuta };
+    }
+  }
+  return {
+    grahas: list, grid, modes: ['whole-sign', 'sphuta'],
+    cite: 'BPHS Ch. 26 — graha dṛṣṭi. Popular teaching uses whole-sign full/special aspects (Mars 4/8, Jupiter 5/9, Saturn 3/10, all grahas the 7th); BPHS also gives the degree-graded sphuṭa-dṛṣṭi virūpa scheme (shown alongside). Nodal aspects are contested; shown whole-sign only.',
+    note: 'The whole-sign vs sphuṭa presentation is a genuine CONTESTED choice; both are shipped. Described, never prescribed.',
+  };
+}
+
+// combustion (asta) — per-graha flag with the classical (contested) arcs.
+export function combustion(reading) {
+  const grahas = (reading && reading.grahas) || reading;
+  const sunLon = grahas.Sun.lon;
+  const perGraha = {};
+  for (const p of ['Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn']) {
+    const arc = COMBUSTION_ARCS[p];
+    const retro = !!(grahas[p] && grahas[p].retrograde);
+    const limit = retro && arc.retro != null ? arc.retro : arc.direct;
+    const sep = fold180(grahas[p].lon - sunLon);
+    perGraha[p] = { is: sep < limit, sep: r2(sep), arc: limit, retrograde: retro, usingRetroArc: retro && arc.retro != null };
+  }
+  return {
+    perGraha, notApplicable: ['Sun', 'Rahu', 'Ketu'],
+    contested: true, cite: COMBUSTION_CITE,
+    note: 'Combustion is by ecliptic separation from the Sun (ayanāṁśa cancels, so sidereal/tropical agree). Historical doctrine, described — never prescribed.',
   };
 }
 

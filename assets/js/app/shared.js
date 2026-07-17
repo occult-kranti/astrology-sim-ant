@@ -65,6 +65,8 @@ export const NAV_GROUPS = [
     ['pages/muhurta.html', 'Muhūrta — Indian election', 'muhurta'],
     ['pages/tajika.html', 'Tājika varṣaphala', 'tajika'],
     ['pages/tithi-pravesha.html', 'Tithi-praveśa', 'tithipravesha'],
+    ['pages/vedic/yogas.html', 'Vedic yogas — detector', 'vedicyogas'],
+    ['pages/vedic/delineation.html', 'Bhāva delineations — browser', 'vedicdelineation'],
     ['pages/kuta.html', 'Kūṭa Matching', 'kuta'],
     ['pages/rasa.html', 'Rasaśāstra & Yantras', 'rasa'],
     ['pages/abhichara/index.html', 'Abhicāra — ritual magic', 'abhichara'],
@@ -116,6 +118,8 @@ export function currentSection() {
   if (m(/\/pages\/book2\//)) return 'book2';
   if (m(/\/pages\/book3\//)) return 'book3';
   if (m(/\/pages\/picatrix\//)) return 'picatrix';
+  if (m(/\/pages\/vedic\/yogas\.html$/)) return 'vedicyogas';
+  if (m(/\/pages\/vedic\/delineation\.html$/)) return 'vedicdelineation';
   if (m(/\/pages\/vedic\//)) return 'vedic';
   if (m(/\/pages\/jung\//)) return 'jung';
   if (m(/\/pages\/chronology\//)) return 'chronology';
@@ -384,6 +388,14 @@ export function mountChrome(activeKey = '') {
       if (typeof mount === 'function') { try { mount(); } catch (e) { /* non-fatal */ } }
     }).catch(() => { /* next-up absent — no dead-end band this build */ });
   }
+
+  // ---- R28 P: register the offline service worker (PWA). Guarded dynamic
+  // import — absent/failed registration never touches the page; the worker
+  // no-ops on localhost so dev + the verify gate are unaffected. ------------
+  import('./sw-register.js').then(m => {
+    const reg = m.registerServiceWorker || m.default;
+    if (typeof reg === 'function') { try { reg(); } catch (e) { /* non-fatal */ } }
+  }).catch(() => { /* sw-register absent — the site works online-only */ });
 
   // a11y: ensure every data-table header cell carries a `scope` — now (static
   // tables) and as result panels render (a light observer on <main>). One pass

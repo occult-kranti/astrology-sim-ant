@@ -29,6 +29,8 @@ import { talismanRecipe } from './talisman.js';
 import { annualProfection } from './profections.js';
 import { lifeTrajectory } from './trajectory.js';
 import { castVedic } from './vedic.js';
+import { detectYogas } from './yogas.js';
+import { bhavaPhala } from './data/bhava-phala.js';
 import { mansionOf } from './data/lunar-mansions.js';
 import { faceOf } from './data/decan-faces.js';
 import { prayerFor, PERFECT_NATURE } from './data/picatrix-prayers.js';
@@ -873,6 +875,27 @@ export function runTool(name, args = {}, ctx = {}) {
     case 'findNextElection': return findNextElection(need('operationKey'), args.date ? new Date(args.date) : (ctx.chart ? ctx.chart.date : new Date()), args.lat ?? (ctx.chart && ctx.chart.latitude), args.lon ?? (ctx.chart && ctx.chart.longitude), { hoursAhead: args.hoursAhead || 72 }).map(w => ({ start: w.start, end: w.end, bestScore: w.best, bestVerdict: w.bestVerdict }));
     case 'castVedic': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return slimVedic(v); }
     case 'vedicPractice': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return v.practice; }
+    case 'detectYogas': {
+      const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() });
+      const found = detectYogas(v, { kendraAlsoFromMoon: !!args.kendraAlsoFromMoon })
+        .filter(y => y.status === 'met' || y.status === 'conditional')
+        .map(y => ({ id: y.id, name: y.name, family: y.family, status: y.status,
+          conditions: (y.conditionResults || []).map(c => ({ met: c.met, detail: c.detail })),
+          contested: y.contestedNote || null,
+          positions: (y.positions || []).map(p => ({ label: p.label, outcome: p.outcome, detail: p.detail })) }));
+      return withCite({ lagna: `${v.lagna.label} (lord ${v.lagna.lord})`, yogas: found,
+        note: 'A contested yoga is reported "conditional" with EVERY position surfaced and none resolved — never a bare boolean.' },
+        'Yoga rules per record (BPHS/Phaladīpikā/Sārāvalī/JP/UK/LP); Kāla-Sarpa flagged modern.');
+    }
+    case 'bhavaPhala': {
+      const rec = bhavaPhala(need('graha'), Number(need('bhava')));
+      if (!rec) throw new Error(`tool ${name}: no delineation for ${args.graha} in bhāva ${args.bhava}`);
+      return withCite({ graha: rec.graha, bhava: rec.bhava,
+        phaladipika: rec.phaladipika, saravali: rec.saravali, agreement: rec.agreement,
+        contradictionNote: rec.contradictionNote || null, sensitiveNote: rec.sensitiveNote || null,
+        note: 'Two witnesses kept side by side and NEVER merged; harsh judgments reproduced unsoftened for fidelity. Describes no actual person.' },
+        (rec.sources || []).join('; '));
+    }
     case 'picatrixPrayer': { const pr = prayerFor(need('planet')); if (!pr) throw new Error(`no Picatrix prayer for ${args.planet}`); return { planet: args.planet, prayerExcerpt: pr.prayerExcerpt, address: pr.address, names: pr.names, prayerAngel: pr.prayerAngel, spirit: pr.spirit.master, directions: pr.spirit.directions, motion: pr.spirit.motion, citation: pr.citation, flag: pr.flag || null, note: 'Historical text (Picatrix Bk III) recorded for study — described, never prescribed; never an instruction.' }; }
     // --- the divination oracles. The randomness comes from the CALLER (the
     // app injects ctx.rand, a crypto n→[0,n) function) or from explicit args —
@@ -1565,6 +1588,90 @@ export function prasnaDataBlock(x) {
     horaryNumber: x.horaryNumber && x.horaryNumber.number,
   };
   return '\n\nCOMPUTED PRAŚNA (JSON — interpret THESE, never invent):\n' + JSON.stringify(dig);
+}
+
+//  x = currentVedicYogasReport() (app/vedic-yogas.js) — the data-driven yoga detector.
+export function buildVedicYogasContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 90;
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  const glossary = divinationGlossary(['Jyotiṣa']).slice(0, opts.maxGlossary ?? 99);
+  if (!x) return { system: assembleSystem([], glossary, 'YOGA DETECTOR', JYOTISHI_PREAMBLE), facts: [], glossary };
+  add(`The sidereal chart, cast for ${String(x.momentUTC).replace('T', ' ').slice(0, 16)} UT${x.place ? ` at ${x.place.lat}°, ${x.place.lon}°` : ''}, ayanāṃśa ${x.ayanamsaName || x.ayanamsa}.`, 'castVedic (sidereal / Jagannath Hora)');
+  if (x.lagna) add(`The lagna: ${x.lagna.sign}${x.lagna.sanskrit ? ` (${x.lagna.sanskrit})` : ''}, lord ${x.lagna.lord}.`, 'the ascendant of the moment');
+  if (x.counts) add(`Of ${x.counts.total} classical yoga rules tested: ${x.counts.met} MET, ${x.counts.conditional} CONDITIONAL (contested — every position surfaced, none resolved), ${x.counts.notMet} not met. A contested yoga is NEVER reduced to a single boolean.`, 'a data-driven detector reading the rules as data');
+  for (const y of (x.yogas || [])) {
+    if (y.status === 'not-met') continue;
+    const conds = (y.conditions || []).map(c => `${c.met ? '✓' : '✗'} ${c.detail}`).filter(Boolean).join('; ');
+    add(`${y.name} (${y.family}) — ${String(y.status).toUpperCase()}${y.contested ? ', CONTESTED' : ''}${conds ? `: ${conds}` : ''}${y.fruit ? ` → the texts promise: ${y.fruit}` : ''}`, (y.sources || []).join('; '));
+    if (y.contested && Array.isArray(y.contestedPositions)) for (const p of y.contestedPositions) add(`  ↳ ${y.name} — a position: ${typeof p === 'string' ? p : (p.text || p.view || JSON.stringify(p))}`, 'a genuine textual disagreement, shown never resolved');
+  }
+  const trimmed = facts.slice(0, max);
+  return { system: assembleSystem(trimmed, glossary, 'YOGA DETECTOR', JYOTISHI_PREAMBLE), facts: trimmed, glossary };
+}
+export function buildVedicYogasInterpretPrompt() {
+  return (
+    'Read this yoga report as a historian of Jyotiṣa would, FROM THE NUMBERED FACTS ONLY: ' +
+    '(1) WHAT A YOGA IS — a named planetary combination the texts single out, and how a data-driven detector ' +
+    'checks each rule\'s literal conditions against the sidereal chart; (2) THE YOGAS PRESENT — walk each MET yoga, ' +
+    'translating its conditions (a planet in its own sign in a kendra, Jupiter angular from the Moon, the two ' +
+    'trik-lords in exchange) into plain terms and naming what the text counted it to signify; (3) THE CONTESTED ONES ' +
+    '— for every CONDITIONAL yoga, state plainly that the texts genuinely disagree, lay the positions side by side, ' +
+    'and resolve NONE of them (Gaja-Kesarī bare vs conditioned, Kāla-Sarpa as a modern doctrine with no classical ' +
+    'locus, Nīca-bhaṅga across its three recensions); (4) THE HONEST LIMIT — these are historical claims of fortune ' +
+    'from a symbolic system, describing no actual person and predicting nothing. Close with one sentence: the yoga ' +
+    'doctrine is historical, of no demonstrated validity — described, never prescribed.' + PLAIN_CODA
+  );
+}
+export function vedicYogasDataBlock(x) {
+  if (!x) return '';
+  const dig = {
+    lagna: x.lagna && { sign: x.lagna.sign, lord: x.lagna.lord },
+    counts: x.counts || null,
+    yogas: (x.yogas || []).filter(y => y.status !== 'not-met').map(y => ({
+      name: y.name, family: y.family, status: y.status, contested: !!y.contested,
+      conditions: (y.conditions || []).map(c => ({ met: !!c.met, detail: c.detail })),
+      positions: y.contested ? (y.contestedPositions || null) : undefined,
+    })),
+  };
+  return '\n\nCOMPUTED YOGAS (JSON — interpret THESE, never invent; a contested yoga stays contested):\n' + JSON.stringify(dig);
+}
+
+//  x = currentVedicDelineationReport() (app/vedic-delineation.js) — planet-in-house, two witnesses.
+export function buildVedicDelineationContext(x, opts = {}) {
+  const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
+  const glossary = divinationGlossary(['Jyotiṣa']).slice(0, opts.maxGlossary ?? 99);
+  if (!x) return { system: assembleSystem([], glossary, 'BHĀVA DELINEATION', JYOTISHI_PREAMBLE), facts: [], glossary };
+  add(`The delineation of ${x.graha} in the ${x.bhava}${x.bhavaName ? `th bhāva (${x.bhavaName})` : 'th bhāva'} — read from TWO independent witnesses, kept apart on purpose and never merged. Their agreement class here: ${x.agreement}.`, 'the planet-in-house corpus');
+  if (x.phaladipika) add(`Phaladīpikā (${x.phaladipika.locus}): ${x.phaladipika.summary}`, 'Mantreśvara, Phaladīpikā ch. 8 (Sareen/Sastri)');
+  if (x.saravali && x.saravali.absent) add(`Sārāvalī: ${x.saravali.note || 'records no delineation here'} — this record is single-witness.`, 'Sārāvalī ch. 30 does not treat the nodes in houses');
+  else if (x.saravali) add(`Sārāvalī (${x.saravali.locus}): ${x.saravali.summary}`, 'Kalyāṇavarman, Sārāvalī ch. 30 (Santhanam 1983)');
+  if (x.contradictionNote) add(`Where they diverge: ${x.contradictionNote}`, 'both positions shown, neither resolved — the site\'s standing rule');
+  if (x.sensitiveNote) add(`A harsh deterministic claim, reproduced unsoftened for fidelity: ${x.sensitiveNote} — it describes NO actual person.`, 'the tradition\'s words, not the site\'s counsel');
+  if (Array.isArray(x.fromChart)) add(`This cell is one of a specific chart\'s nine placements; the full set: ${x.fromChart.map(p => `${p.graha}→bhāva ${p.bhava}`).join(', ')}.`, 'the reader\'s own chart, in "from a chart" mode');
+  const trimmed = facts.slice(0, opts.maxFacts ?? 60);
+  return { system: assembleSystem(trimmed, glossary, 'BHĀVA DELINEATION', JYOTISHI_PREAMBLE), facts: trimmed, glossary };
+}
+export function buildVedicDelineationInterpretPrompt() {
+  return (
+    'Read this planet-in-house delineation as a historian of Jyotiṣa would, FROM THE NUMBERED FACTS ONLY: ' +
+    '(1) WHAT A BHĀVA-PHALA IS — the classical claim that a graha in a house colours that house\'s affairs, and why ' +
+    'this browser keeps TWO witnesses (Phaladīpikā and Sārāvalī) side by side; (2) EACH WITNESS — render what each ' +
+    'text literally says, in plain words, keeping them distinct; (3) THE AGREEMENT — state whether they agree, ' +
+    'partly agree, or contradict, and where a single witness stands alone (the nodes in Sārāvalī), say so; NEVER ' +
+    'merge the two into one "meaning"; (4) THE HARSH LINES — where a claim is deterministic or grim, name it as the ' +
+    'text\'s historical rhetoric, reproduced for fidelity, describing no actual person and predicting nothing. Close ' +
+    'with one sentence: this is historical doctrine of no demonstrated validity — described, never prescribed.' + PLAIN_CODA
+  );
+}
+export function vedicDelineationDataBlock(x) {
+  if (!x) return '';
+  const dig = {
+    graha: x.graha, bhava: x.bhava, bhavaName: x.bhavaName, agreement: x.agreement,
+    phaladipika: x.phaladipika || null,
+    saravali: x.saravali && x.saravali.absent ? { absent: true, note: x.saravali.note } : (x.saravali || null),
+    contradictionNote: x.contradictionNote || null, sensitiveNote: x.sensitiveNote || null,
+  };
+  return '\n\nCOMPUTED DELINEATION (JSON — interpret THESE two witnesses, never merge, never invent):\n' + JSON.stringify(dig);
 }
 
 //  x = currentMuhurtaReport() (app/muhurta.js)

@@ -120,6 +120,59 @@ function scoreOne(q, l) {
 }
 
 // ===========================================================================
+//  THE THIRD TIER — full-text "On this site" results (R28 P). The nav + registry
+//  + alias rows above are the fast wayfinding index; this tier searches the
+//  actual page prose via assets/search-index.json (built by
+//  scripts/build-search-index.mjs). The index is lazy-loaded on the FIRST palette
+//  open — never at page load — and this whole tier degrades to nothing if the
+//  fetch fails (offline before the SW has cached it, say).
+// ===========================================================================
+let FT_DOCS = null;           // the loaded docs array (or [] on failure)
+let ftPromise = null;         // in-flight/settled load promise (load-once)
+
+export function loadSearchIndex(fetchImpl) {
+  if (ftPromise) return ftPromise;
+  const f = fetchImpl || (typeof fetch === 'function' ? fetch : null);
+  if (!f) { FT_DOCS = []; return (ftPromise = Promise.resolve(FT_DOCS)); }
+  ftPromise = f(R('assets/search-index.json'))
+    .then(res => (res && res.ok ? res.json() : null))
+    .then(json => { FT_DOCS = (json && Array.isArray(json.docs)) ? json.docs : []; return FT_DOCS; })
+    .catch(() => { FT_DOCS = []; return FT_DOCS; });
+  return ftPromise;
+}
+
+// searchFullText(q, docs, limit) — PURE, engine-tested. Requires every query
+// term to appear (AND) somewhere in title/headings/body; ranks title > headings
+// > body, deterministic tie-break by title length then url. Returns palette rows
+// shaped like the other tiers: { label, href, kind:'On this site', hint }.
+export function searchFullText(q, docs, limit = 6) {
+  const query = String(q || '').trim().toLowerCase();
+  if (query.length < 2 || !Array.isArray(docs)) return [];
+  const terms = query.split(/\s+/).filter(Boolean);
+  const scored = [];
+  for (const d of docs) {
+    const t = (d.t || '').toLowerCase(), h = (d.h || '').toLowerCase(), b = (d.b || '').toLowerCase();
+    let s = 0, ok = true;
+    for (const term of terms) {
+      let hit = 0;
+      if (t.includes(term)) hit += 100;
+      if (h.includes(term)) hit += 30;
+      if (b.includes(term)) hit += 10;
+      if (!hit) { ok = false; break; }
+      s += hit;
+    }
+    if (ok) scored.push({ d, s });
+  }
+  scored.sort((a, b) => b.s - a.s || (a.d.t || '').length - (b.d.t || '').length || (a.d.u || '').localeCompare(b.d.u || ''));
+  return scored.slice(0, limit).map(x => ({
+    label: x.d.t || x.d.u,
+    href: x.d.u,
+    kind: 'On this site',
+    hint: (x.d.h ? x.d.h.split(' · ')[0] : pathHint(x.d.u)),
+  }));
+}
+
+// ===========================================================================
 //  mountPalette — the <dialog> UI. Returns { open, close, el }. shared.js
 //  mounts this on every page (dynamic import) and points the header 🔍 button
 //  at .open(). No transition (reduced-motion parity is trivial — none needed).
@@ -146,7 +199,16 @@ export function mountPalette() {
   let index = [], results = [], active = 0;
 
   const render = () => {
-    results = searchIndex(input.value, index, 9);
+    const primary = searchIndex(input.value, index, 9);
+    // Third tier: full-text page hits, appended BELOW the nav+registry rows and
+    // deduped against them. Only once the lazy index has loaded (open() triggers
+    // the load); absent, the palette behaves exactly as before.
+    let ft = [];
+    if (Array.isArray(FT_DOCS) && FT_DOCS.length) {
+      const have = new Set(primary.map(r => r.href));
+      ft = searchFullText(input.value, FT_DOCS, 6).filter(r => !have.has(r.href));
+    }
+    results = primary.concat(ft);
     active = 0;
     list.innerHTML = results.map((r, i) => `
       <li id="cmdk-opt-${i}" role="option" class="cmdk-row${i === 0 ? ' is-active' : ''}" aria-selected="${i === 0}">
@@ -179,6 +241,9 @@ export function mountPalette() {
     index = buildIndex();
     input.value = '';
     render();
+    // Lazy-load the full-text index on FIRST open (never at page load); re-render
+    // once it arrives so the "On this site" tier appears without reopening.
+    loadSearchIndex().then(() => { if (dialog.open) render(); }).catch(() => {});
     try { dialog.showModal(); } catch (e) { dialog.setAttribute('open', ''); }
     input.focus();
   }

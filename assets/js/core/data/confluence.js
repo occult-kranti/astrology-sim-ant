@@ -1,8 +1,9 @@
 // ============================================================================
 //  data/confluence.js  ·  The Great Confluence — cross-tradition atlas data
-//  (R27 "The Great Confluence"). PURE DATA. No DOM, no network, no Date, no
-//  randomness. Consumed by core/confluence.js (geometry engine) and painted by
-//  app/confluence.js. One source of truth for the atlas and the mobile ledger.
+//  (R27 "The Great Confluence"; R28 edge epistemic-label pass). PURE DATA. No
+//  DOM, no network, no Date, no randomness. Consumed by core/confluence.js
+//  (geometry engine) and painted by app/confluence.js. One source of truth for
+//  the atlas and the mobile ledger.
 //
 //  PROVENANCE. Compiled from NINE adversarially-verified research domains
 //  (kabbalah, yoga-vedanta, tantra-rasa, buddhist, daoist, alchemy-west,
@@ -13,10 +14,21 @@
 //  to the same standard. Bodies, sources and contested blocks are reproduced
 //  VERBATIM from the verified files — this module rewords nothing.
 //
+//  R28 EDGE LABELS. Each of the 151 edges now carries an epistemic
+//  `label` grading the TRANSMISSION CLAIM itself (not the doctrine): the act of
+//  reading / rendering / answering / absorbing is 141 documented,
+//  9 disputed, 1 debunked (corpus-hermeticum→kybalion). Each edge
+//  also carries `bestCitation` (the single best witness for the claim) and a
+//  `note` (why it grades as it does). Merged VERBATIM from the verified
+//  r28data/edge-labels.json by (from,to,kind); a bijection is asserted (every
+//  edge labeled, every label row consumed). See scratchpad/r28build/gen-data.mjs.
+//
 //  HONESTY RULES (locked, site-wide).
 //   • The atlas plots INFLUENCE, never validity: an edge means "demonstrably
 //     read / rendered / answered / absorbed," per its own citation — nothing
-//     about whether any doctrine works.
+//     about whether any doctrine works. The edge `label` grades that claim of
+//     transmission: a disputed edge is drawn faded; the debunked edge is drawn
+//     faint + struck, never hidden.
 //   • Every entry carries an epistemic `label`: documented | disputed |
 //     debunked | conspiracy. Debunked / conspiracy material STAYS in the record,
 //     drawn recessive, never dressed as documented fact.
@@ -35,7 +47,9 @@
 //     Sorted by (sortYear, slug).
 //   CONFLUENCE_EDGES (151), each:
 //     { from, to, kind:'translation'|'influence'|'commentary'|'synthesis'
-//       |'refutation'|'adaptation', body, sources:[...] }
+//       |'refutation'|'adaptation', body, sources:[...],
+//       label:'documented'|'disputed'|'debunked'|'conspiracy',
+//       bestCitation:string, note:string }
 //     from = the earlier work / source of the act; to = where it landed.
 //     Sorted by (from, to, kind); deduped on that triple (kept the richer sources).
 //
@@ -47,9 +61,9 @@
 //  edges deduped on (from,to,kind); the Pico text↔event pair was already linked
 //  (event-pico-1486→pico-conclusions) so no synthetic edge was added.
 //  Assertions passed: no dangling endpoints; entry total 188; 29 of
-//  151 edges cross traditions.
+//  151 edges cross traditions; all 151 edges label-matched (bijection).
 //
-//  DO NOT hand-edit — regenerate via scratchpad/r27/gen-data.mjs.
+//  DO NOT hand-edit — regenerate via scratchpad/r28build/gen-data.mjs.
 // ============================================================================
 
 export const CONFLUENCE_LANES = [
@@ -4992,7 +5006,10 @@ export const CONFLUENCE_EDGES = [
     "body": "The Dattatreyayogasastra's core physical trio — mahamudra, mahabandha and mahavedha — is the practice set first taught in the Buddhist Amrtasiddhi, transposed into a Vaishnava frame; Mallinson documents the Amrtasiddhi as the source of these techniques in the later hatha corpus.",
     "sources": [
       "James Mallinson, 'The Amṛtasiddhi: Haṭhayoga's Tantric Buddhist Source Text', in Śaivism and the Tantric Traditions (Brill, 2020)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "James Mallinson, 'The Amṛtasiddhi: Haṭhayoga's Tantric Buddhist Source Text', in Śaivism and the Tantric Traditions (Brill, 2020)",
+    "note": "Mallinson documents the DYS mahamudra/mahabandha/mahavedha trio as Amrtasiddhi-derived — text-critical evidence."
   },
   {
     "from": "amrtasiddhi",
@@ -5003,7 +5020,10 @@ export const CONFLUENCE_EDGES = [
       "James Mallinson & Péter-Dániel Szántó, The Amṛtasiddhi and Amṛtasiddhimūla (2021)",
       "James Mallinson, 'The Amṛtasiddhi: Haṭhayoga's Tantric Buddhist Source Text' (Brill, 2020)",
       "Jason Birch, 'The Amaraughaprabodha: New Evidence on the Manuscript Transmission of an Early Work on Haṭha- and Rājayoga' (Journal of Indian Philosophy, 2019)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "James Mallinson & Péter-Dániel Szántó, The Amṛtasiddhi and Amṛtasiddhimūla (2021)",
+    "note": "Unattributed verse borrowings identified in Mallinson & Szanto’s critical edition; Birch supplies the likely intermediary."
   },
   {
     "from": "amrtasiddhi",
@@ -5013,7 +5033,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "James Mallinson, 'The Amṛtasiddhi: Haṭhayoga's Tantric Buddhist Source Text' (Brill, 2020)",
       "James Mallinson, The Shiva Samhita: A Critical Edition (2007)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "James Mallinson, 'The Amṛtasiddhi: Haṭhayoga's Tantric Buddhist Source Text' (Brill, 2020)",
+    "note": "Thirty-four shared verses identified by Mallinson — one of the clearest documented transfers in the hatha corpus."
   },
   {
     "from": "anapanasati-sutta",
@@ -5022,7 +5045,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Visuddhimagga chapter VIII gives the most detailed classical exposition of mindfulness of breathing, treating the sutta's sixteen steps as one of the forty kammaṭṭhāna and the one recommended for all temperaments.",
     "sources": [
       "Bhikkhu Ñāṇamoli (tr.), The Path of Purification, 1956, ch. VIII"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Bhikkhu Ñāṇamoli (tr.), The Path of Purification, 1956, ch. VIII",
+    "note": "Visuddhimagga ch. VIII expounds the sutta’s sixteen steps directly — commentary relation is internal to the text."
   },
   {
     "from": "baopuzi",
@@ -5032,7 +5058,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Ho Ping-Yü and Joseph Needham, 'Elixir Poisoning in Mediaeval China', Janus 48, 1959",
       "Joseph Needham et al., Science and Civilisation in China, vol. 5 pt. 3, 1976"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Ho Ping-Yü and Joseph Needham, 'Elixir Poisoning in Mediaeval China', Janus 48, 1959",
+    "note": "Ho & Needham document Tang court elixirs following the cinnabar-and-gold doctrine the Baopuzi codified."
   },
   {
     "from": "bardo-thodol",
@@ -5042,7 +5071,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Donald S. Lopez Jr., Prisoners of Shangri-La, 1998",
       "Bryan J. Cuevas, The Hidden History of the Tibetan Book of the Dead, 2003"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Bryan J. Cuevas, The Hidden History of the Tibetan Book of the Dead, 2003",
+    "note": "Named translator (Kazi Dawa Samdup) and editor (Evans-Wentz), 1927 Oxford publication — fully documented translation event."
   },
   {
     "from": "bayt-al-hikma",
@@ -5052,7 +5084,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Charles Burnett, 'The Coherence of the Arabic-Latin Translation Program in Toledo', Science in Context 14 (2001)",
       "Dimitri Gutas, Greek Thought, Arabic Culture (1998)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Charles Burnett, 'The Coherence of the Arabic-Latin Translation Program in Toledo', Science in Context 14 (2001)",
+    "note": "Burnett and Gutas document the Toledo corpus as Latin renderings of Abbasid-era Arabic versions."
   },
   {
     "from": "bayt-al-hikma",
@@ -5062,7 +5097,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Paul Kraus, Jābir ibn Ḥayyān: Contribution à l'histoire des idées scientifiques dans l'Islam, vol. II (Cairo, 1942)",
       "Dimitri Gutas, Greek Thought, Arabic Culture (1998)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Paul Kraus, Jābir ibn Ḥayyān: Contribution à l'histoire des idées scientifiques dans l'Islam, vol. II (Cairo, 1942)",
+    "note": "Kraus traced the corpus’s systematic debts to the Graeco-Arabic translations; the dependence stands whatever the corpus’s contested date."
   },
   {
     "from": "bhagavad-gita",
@@ -5072,7 +5110,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Charles Wilkins, The Bhăgvăt-Gēētā (1785)",
       "Richard H. Davis, The Bhagavad Gita: A Biography (2014)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Charles Wilkins, The Bhăgvăt-Gēētā (1785)",
+    "note": "Named translator, printed 1785 — the translation event is the primary source itself."
   },
   {
     "from": "brhadaranyaka-upanisad",
@@ -5082,7 +5123,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Supriya Gandhi, The Emperor Who Never Was (2020)",
       "Urs App, The Birth of Orientalism (2010)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Supriya Gandhi, The Emperor Who Never Was (2020)",
+    "note": "Dara Shikoh’s 1657 Persian rendering of fifty Upanishads is documented by Gandhi and App from Mughal sources."
   },
   {
     "from": "cantong-qi",
@@ -5091,7 +5135,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Zhang Boduan wrote the Wuzhen pian in the Cantong qi's emblematic language of trigrams, lead, and mercury, and the neidan tradition paired the two as its ancestral and classic scriptures.",
     "sources": [
       "Fabrizio Pregadio, Awakening to Reality, Golden Elixir Press, 2009"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Fabrizio Pregadio, Awakening to Reality, Golden Elixir Press, 2009",
+    "note": "Pregadio documents the Wuzhen pian’s use of Cantong qi emblematic language and the tradition’s own pairing of the two."
   },
   {
     "from": "cassian-conferences",
@@ -5101,7 +5148,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "John Main, Word into Silence (Darton, Longman & Todd, 1980)",
       "WCCM, 'John Main OSB' (wccm.org biography)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "John Main, Word into Silence (Darton, Longman & Todd, 1980)",
+    "note": "John Main’s own published grounding of his method in Cassian’s tenth Conference — a self-declared modern adaptation."
   },
   {
     "from": "cloud-of-unknowing",
@@ -5111,7 +5161,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Contemplative Outreach, 'The History of Centering Prayer' (contemplativeoutreach.org)",
       "Thomas Keating, Open Mind, Open Heart (Amity House, 1986)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Contemplative Outreach, 'The History of Centering Prayer' (contemplativeoutreach.org)",
+    "note": "Meninger’s and Contemplative Outreach’s own accounts name the Cloud as the method’s principal source."
   },
   {
     "from": "compound-of-alchymie",
@@ -5121,7 +5174,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "William R. Newman, Newton the Alchemist, 2019",
       "Jennifer M. Rampling, The Experimental Fire, 2020"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "William R. Newman, Newton the Alchemist, 2019",
+    "note": "Newman documents Newton’s decades of copying, indexing and glossing Ripley in the Keynes manuscripts."
   },
   {
     "from": "confucius-sinarum-philosophus",
@@ -5131,7 +5187,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Franklin Perkins, Leibniz and China (2004)",
       "D. E. Mungello, Curious Land (1985)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Franklin Perkins, Leibniz and China (2004)",
+    "note": "Perkins documents Leibniz’s engagement with Jesuit sinology (Couplet, Bouvet correspondence) leading to the 1703 memoire."
   },
   {
     "from": "corpus-hermeticum",
@@ -5141,7 +5200,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Anthony Grafton, JWCI 46 (1983)",
       "Frances Yates, Giordano Bruno and the Hermetic Tradition (1964), ch. 21"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Anthony Grafton, JWCI 46 (1983)",
+    "note": "Casaubon’s 1614 philological redating is a published primary act; Grafton is the standard study."
   },
   {
     "from": "corpus-hermeticum",
@@ -5151,7 +5213,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Brian Copenhaver, Hermetica (1992), introduction",
       "Sebastiano Gentile & Carlos Gilly, Marsilio Ficino e il ritorno di Ermete Trismegisto (1999)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Brian Copenhaver, Hermetica (1992), introduction",
+    "note": "Named translator, dated manuscript, 1471 printing — among the best-documented translation events in the atlas."
   },
   {
     "from": "corpus-hermeticum",
@@ -5160,7 +5225,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Arabic authors report that the Harranian 'Sabians' claimed Hermes as their prophet and Hermetic books as their scripture — the accommodation by which Hermes became a Qur'anically legitimate prophet of science in Islam. Van Bladel treats the reports critically, tracing how the Arabic Hermes legend was constructed.",
     "sources": [
       "Kevin van Bladel, The Arabic Hermes (Oxford, 2009), ch. 3"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "Kevin van Bladel, The Arabic Hermes (Oxford, 2009), ch. 3",
+    "note": "Arabic reports of Harranians claiming Hermes as prophet are attested, but van Bladel finds no extant Hermetic text connectable to Harran — adoption of the Corpus as scripture is undemonstrated (web-verified this pass)."
   },
   {
     "from": "corpus-hermeticum",
@@ -5170,7 +5238,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Philip Deslippe (ed.), The Kybalion: The Definitive Edition (2011)",
       "Mitch Horowitz, Occult America (2009)"
-    ]
+    ],
+    "label": "debunked",
+    "bestCitation": "Philip Deslippe (ed.), The Kybalion: The Definitive Edition (2011)",
+    "note": "The Kybalion’s claimed ancient Hermetic source does not exist: Deslippe shows the content is Atkinson’s New Thought; only the name and figurehead are borrowed (web-verified this pass)."
   },
   {
     "from": "corpus-hermeticum",
@@ -5180,7 +5251,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Daniel Stolzenberg, Egyptian Oedipus (2013)",
       "Frances Yates, Giordano Bruno and the Hermetic Tradition (1964)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Daniel Stolzenberg, Egyptian Oedipus (2013)",
+    "note": "Stolzenberg documents Kircher’s Hermetic reading of the hieroglyphs post-Casaubon."
   },
   {
     "from": "corpus-hermeticum",
@@ -5190,7 +5264,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Frances Yates, Giordano Bruno and the Hermetic Tradition (1964)",
       "Brian Copenhaver, Hermetica (1992), introduction"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Frances Yates, Giordano Bruno and the Hermetic Tradition (1964)",
+    "note": "Yates’s book is itself the act — a published historical study of the Hermetica’s reception."
   },
   {
     "from": "daodejing",
@@ -5199,7 +5276,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Pregadio's analysis identifies Daoist (Daodejing/Huang-Lao) cosmology as one of the three subject-strands the Cantong qi 'seals into one' alongside Yijing emblems and alchemy.",
     "sources": [
       "Fabrizio Pregadio, The Seal of the Unity of the Three, Golden Elixir Press, 2011"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Fabrizio Pregadio, The Seal of the Unity of the Three, Golden Elixir Press, 2011",
+    "note": "Pregadio identifies Daodejing/Huang-Lao cosmology as one of the three strands the Cantong qi seals together."
   },
   {
     "from": "dattatreyayogasastra",
@@ -5209,7 +5289,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "James Mallinson & Mark Singleton, Roots of Yoga (2017)",
       "Wikipedia, 'Hatha Yoga Pradipika' (accessed 2026)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "James Mallinson & Mark Singleton, Roots of Yoga (2017)",
+    "note": "The Hathapradipika’s compilatory absorption of DYS teachings is documented by Mallinson & Singleton (citation upgraded: Wikipedia dropped)."
   },
   {
     "from": "de-arte-cabalistica",
@@ -5219,7 +5302,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Vittoria Perrone Compagni (ed.), De occulta philosophia libri tres (Brill, 1992)",
       "'Heinrich Cornelius Agrippa von Nettesheim', Stanford Encyclopedia of Philosophy"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Vittoria Perrone Compagni (ed.), De occulta philosophia libri tres (Brill, 1992)",
+    "note": "Perrone Compagni’s critical apparatus documents Reuchlin among Agrippa’s principal sources."
   },
   {
     "from": "dobrotolubiye",
@@ -5229,7 +5315,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Aleksei Pentkovsky (ed.), The Pilgrim's Tale (Paulist CWS, 1999)",
       "R.M. French (trans.), The Way of a Pilgrim (Philip Allan, 1930)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Aleksei Pentkovsky (ed.), The Pilgrim's Tale (Paulist CWS, 1999)",
+    "note": "The pilgrim narrative itself carries and reads the Dobrotolubiye — the dependence is internal to the text."
   },
   {
     "from": "dogme-et-rituel",
@@ -5239,7 +5328,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Ronald Decker & Michael Dummett, A History of the Occult Tarot (2002)",
       "R. A. Gilbert, The Golden Dawn Scrapbook (1997)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Ronald Decker & Michael Dummett, A History of the Occult Tarot (2002)",
+    "note": "Decker & Dummett document Levi’s tarot–Kabbalah correspondences as structural in the Golden Dawn synthesis."
   },
   {
     "from": "dogme-et-rituel",
@@ -5249,7 +5341,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "W. E. Coleman, \"The Sources of Madame Blavatsky's Writings\" (1895)",
       "Joscelyn Godwin, The Theosophical Enlightenment (1994)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "W. E. Coleman, \"The Sources of Madame Blavatsky's Writings\" (1895)",
+    "note": "Coleman’s 1895 source analysis documents Blavatsky’s extensive uncredited borrowing from Levi (web-verified this pass)."
   },
   {
     "from": "eliade-yoga",
@@ -5259,7 +5354,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Mallinson & Singleton, Roots of Yoga (2017), introduction",
       "Mark Singleton, Yoga Body (2010)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Mallinson & Singleton, Roots of Yoga (2017), introduction",
+    "note": "Mallinson & Singleton’s introduction explicitly positions the sourcebook against the Eliade-era picture — a published refutation."
   },
   {
     "from": "emerald-tablet",
@@ -5269,7 +5367,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Peter Zirnis, The Kitab Ustuqus al-uss of Jabir ibn Hayyan (diss.), 1979",
       "Paul Kraus, Jābir ibn Ḥayyān, 1942–1943"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Peter Zirnis, The Kitab Ustuqus al-uss of Jabir ibn Hayyan (diss.), 1979",
+    "note": "An early recension is physically embedded in the Jabirian Kitab ustuqus al-uss — one of its two oldest witnesses (Zirnis; Kraus)."
   },
   {
     "from": "essays-in-zen-buddhism",
@@ -5278,7 +5379,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Suzuki's presentation of Zen and satori strongly shaped Jung's engagement with Buddhism; Jung wrote the foreword to the 1939 German edition of Suzuki's Introduction to Zen Buddhism, interpreting satori psychologically.",
     "sources": [
       "C. G. Jung, foreword to D. T. Suzuki, Die grosse Befreiung: Einführung in den Zen-Buddhismus, 1939 (Collected Works 11)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "C. G. Jung, foreword to D. T. Suzuki, Die grosse Befreiung: Einführung in den Zen-Buddhismus, 1939 (Collected Works 11)",
+    "note": "Jung’s 1939 foreword (CW 11) documents the engagement; note it prefaces Suzuki’s Introduction to Zen Buddhism — the node stands for Suzuki’s oeuvre."
   },
   {
     "from": "etz-hayyim",
@@ -5287,7 +5391,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Nathan of Gaza, an expert Lurianic kabbalist, articulated Sabbatai Zevi's messiahship in Lurianic terms; Scholem argued the movement's spread rode on Lurianic messianism.",
     "sources": [
       "Gershom Scholem, Sabbatai Ṣevi: The Mystical Messiah (1973)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Gershom Scholem, Sabbatai Ṣevi: The Mystical Messiah (1973)",
+    "note": "Nathan of Gaza’s Lurianic articulation of Zevi’s messiahship is documented (Scholem 1973); Scholem’s broader diffusion thesis is disputed (Idel 1993) but the core transmission stands (web-verified this pass)."
   },
   {
     "from": "etz-hayyim",
@@ -5297,7 +5404,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Gershom Scholem, Major Trends in Jewish Mysticism (1941), lecture 9",
       "Moshe Idel, Hasidism: Between Ecstasy and Magic (1995)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Gershom Scholem, Major Trends in Jewish Mysticism (1941), lecture 9",
+    "note": "Hasidism’s popularizing redirection of Lurianic language is documented by both Scholem and Idel, who differ on mechanism, not on the borrowing."
   },
   {
     "from": "event-alexandria-fusion",
@@ -5307,7 +5417,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Garth Fowden, The Egyptian Hermes (1986)",
       "Brian Copenhaver, Hermetica (1992), introduction"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Garth Fowden, The Egyptian Hermes (1986)",
+    "note": "Fowden’s standard account: the philosophical Hermetica are products of the Greco-Egyptian fusion milieu."
   },
   {
     "from": "event-alexandria-fusion",
@@ -5316,7 +5429,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Plessner showed the Turba Philosophorum (Arabic, c. 900) to be a planned attempt to put Greek alchemy into Arabic and adapt it to Islamic science: pre-Socratic philosophers — Anaximenes, Empedocles, Pythagoras — speak under Arabicised names, drawn from a lost Greek doxography.",
     "sources": [
       "Martin Plessner, 'The Place of the Turba Philosophorum in the Development of Alchemy', Isis 45 (1954)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Martin Plessner, 'The Place of the Turba Philosophorum in the Development of Alchemy', Isis 45 (1954)",
+    "note": "Plessner showed the Turba to be a planned Arabic adaptation of Greek alchemy from a lost Greek doxography."
   },
   {
     "from": "event-asiatic-society-1784",
@@ -5326,7 +5442,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Richard H. Davis, The Bhagavad Gita: A Biography (2014)",
       "Michael J. Franklin, 'Orientalist Jones' (2011)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Richard H. Davis, The Bhagavad Gita: A Biography (2014)",
+    "note": "Wilkins was a founding member; the Hastings–Jones–Wilkins milieu financed the translation (Davis 2014)."
   },
   {
     "from": "event-casaubon-1614",
@@ -5336,7 +5455,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Frances Yates, Giordano Bruno and the Hermetic Tradition (1964), ch. 21",
       "Anthony Grafton, JWCI 46 (1983)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Frances Yates, Giordano Bruno and the Hermetic Tradition (1964), ch. 21",
+    "note": "Yates made the 1614 redating the hinge of her own narrative — the dependence is stated in her ch. 21."
   },
   {
     "from": "event-chicago-1893",
@@ -5346,7 +5468,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Elizabeth De Michelis, A History of Modern Yoga (2004)",
       "Philip Goldberg, American Veda (2010)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Elizabeth De Michelis, A History of Modern Yoga (2004)",
+    "note": "Goldberg and De Michelis document Vivekananda’s 1893 breakthrough as the model for Yogananda’s 1920 mission (web-verified this pass)."
   },
   {
     "from": "event-chicago-1893",
@@ -5356,7 +5481,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Wikipedia, 'Raja Yoga (book)' (accessed 2026)",
       "Elizabeth De Michelis, A History of Modern Yoga (2004)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Elizabeth De Michelis, A History of Modern Yoga (2004)",
+    "note": "De Michelis documents Raja Yoga’s compilation from the New York classes the Parliament celebrity created (citation upgraded: Wikipedia dropped)."
   },
   {
     "from": "event-chicago-1893",
@@ -5366,7 +5494,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Rick Fields, How the Swans Came to the Lake (1981)",
       "Alan Watts, The Way of Zen (1957), preface"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Rick Fields, How the Swans Came to the Lake (1981)",
+    "note": "Chain Shaku Soen (1893) → D. T. Suzuki → Watts is documented by Fields; Watts’s own preface credits Suzuki."
   },
   {
     "from": "event-eranos",
@@ -5376,7 +5507,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Steven Wasserstrom, Religion after Religion (1999)",
       "Mircea Eliade, Yoga: Immortality and Freedom (Bollingen Series LVI, 1958)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Steven Wasserstrom, Religion after Religion (1999)",
+    "note": "Wasserstrom documents Eliade’s Eranos lectures and Bollingen publication of the yoga synthesis."
   },
   {
     "from": "event-ficino-1463",
@@ -5386,7 +5520,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Vittoria Perrone Compagni (ed.), De occulta philosophia libri tres (Brill, 1992)",
       "'Heinrich Cornelius Agrippa von Nettesheim', Stanford Encyclopedia of Philosophy"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Vittoria Perrone Compagni (ed.), De occulta philosophia libri tres (Brill, 1992)",
+    "note": "Perrone Compagni’s apparatus documents Agrippa’s use of Ficino’s Latin Hermetica."
   },
   {
     "from": "event-golden-dawn-1888",
@@ -5396,7 +5533,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Richard Kaczynski, Perdurabo (2010)",
       "Alex Owen, The Place of Enchantment (2004)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Richard Kaczynski, Perdurabo (2010)",
+    "note": "Crowley’s 1898 initiation and doctrinal dependence on the GD synthesis are documented (Kaczynski)."
   },
   {
     "from": "event-golden-flower-1929",
@@ -5406,7 +5546,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "C. G. Jung, Memories, Dreams, Reflections (1962)",
       "C. G. Jung, Psychology and Alchemy, CW 12, prefatory material"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "C. G. Jung, Memories, Dreams, Reflections (1962)",
+    "note": "Jung’s own account (MDR; CW 12 prefaces): Wilhelm’s text turned him to alchemy, worked out in the 1935–36 Eranos lectures."
   },
   {
     "from": "event-golden-flower-1929",
@@ -5416,7 +5559,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "C. G. Jung, commentary in The Secret of the Golden Flower, 1929/1931",
       "C. G. Jung, Memories, Dreams, Reflections, 1962"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "C. G. Jung, commentary in The Secret of the Golden Flower, 1929/1931",
+    "note": "The transmission (Jung read Wilhelm’s text at a decisive moment) is documented in Jung’s own words; his interpretive claims are the disputed layer carried on the entries, not this edge."
   },
   {
     "from": "event-harran-sabians",
@@ -5426,7 +5572,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Roshdi Rashed (ed.), Thābit ibn Qurra: Science and Philosophy in Ninth-Century Baghdad (de Gruyter, 2009)",
       "Kevin van Bladel, The Arabic Hermes (2009)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Roshdi Rashed (ed.), Thābit ibn Qurra: Science and Philosophy in Ninth-Century Baghdad (de Gruyter, 2009)",
+    "note": "Thabit ibn Qurra’s recruitment from Harran and his Greek-to-Arabic translations are documented (Rashed ed. 2009)."
   },
   {
     "from": "event-harran-sabians",
@@ -5435,7 +5584,10 @@ export const CONFLUENCE_EDGES = [
     "body": "The Ghayat al-Hakim's planetary rituals include prayers and rites it explicitly ascribes to the Sabians of Harran; Pingree traced this Sabian material among the compilation's identifiable sources.",
     "sources": [
       "David Pingree, 'Some of the Sources of the Ghāyat al-hakīm', Journal of the Warburg and Courtauld Institutes 43 (1980)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "David Pingree, 'Some of the Sources of the Ghāyat al-hakīm', Journal of the Warburg and Courtauld Institutes 43 (1980)",
+    "note": "Pingree traced the Ghaya’s explicitly ascribed Sabian planetary rites among its identifiable sources."
   },
   {
     "from": "event-mahatma-letters",
@@ -5445,7 +5597,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "H. P. Blavatsky, The Secret Doctrine (1888), introductory",
       "K. Paul Johnson, The Masters Revealed (1994)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "H. P. Blavatsky, The Secret Doctrine (1888), introductory",
+    "note": "Blavatsky demonstrably presented the SD as the Masters’ teaching (SD introductory); the Masters’ reality is the debunked layer carried on the entries, not this edge."
   },
   {
     "from": "event-picatrix-translation",
@@ -5454,7 +5609,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Agrippa used the Latin Picatrix among the sources of his astral and talismanic material; Perrone Compagni's critical edition documents the borrowings in its apparatus of sources.",
     "sources": [
       "Vittoria Perrone Compagni (ed.), Cornelius Agrippa: De occulta philosophia libri tres (Brill, 1992)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Vittoria Perrone Compagni (ed.), Cornelius Agrippa: De occulta philosophia libri tres (Brill, 1992)",
+    "note": "Agrippa’s borrowings from the Latin Picatrix are documented in Perrone Compagni’s apparatus of sources."
   },
   {
     "from": "event-pico-1486",
@@ -5464,7 +5622,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Charles Zika, 'Reuchlin's De Verbo Mirifico and the Magic Debate of the Late Fifteenth Century', JWCI 39 (1976)",
       "M. & S. Goodman, introduction to Reuchlin, On the Art of the Kabbalah (1983)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Charles Zika, 'Reuchlin's De Verbo Mirifico and the Magic Debate of the Late Fifteenth Century', JWCI 39 (1976)",
+    "note": "Reuchlin’s explicit continuation of Pico’s kabbalistic program is documented (Zika; Goodman intro)."
   },
   {
     "from": "event-pico-1486",
@@ -5474,7 +5635,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Chaim Wirszubski, Pico della Mirandola's Encounter with Jewish Mysticism (1989)",
       "S. A. Farmer, Syncretism in the West (1998)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Chaim Wirszubski, Pico della Mirandola's Encounter with Jewish Mysticism (1989)",
+    "note": "Event and text are the same publication act of 7 Dec 1486; Wirszubski documents the Mithridates translations beneath it."
   },
   {
     "from": "event-plethon-florence",
@@ -5484,7 +5648,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Marsilio Ficino, preface to the Plotinus translation (1492)",
       "James Hankins, 'Cosimo de' Medici and the \"Platonic Academy\"', JWCI 53 (1990)"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "James Hankins, ‘Cosimo de’ Medici and the \"Platonic Academy\"’, JWCI 53 (1990)",
+    "note": "Ficino’s 1492 preface asserts the Plethon–Cosimo inspiration, but Hankins shows it is retrospective myth-making with no independent evidence of contact (web-verified this pass)."
   },
   {
     "from": "event-rishikesh-1968",
@@ -5494,7 +5661,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Wallace, Benson & Wilson, American Journal of Physiology 221 (1971)",
       "Herbert Benson, The Relaxation Response (1975)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Wallace, Benson & Wilson, American Journal of Physiology 221 (1971)",
+    "note": "Wallace & Benson’s 1971 physiology paper studied the TM practitioner cohort; Benson’s generalization is his own 1975 book."
   },
   {
     "from": "event-shangqing-revelations",
@@ -5504,7 +5674,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Isabelle Robinet, Taoist Meditation, SUNY Press, 1993",
       "Paul W. Kroll, 'Body Gods and Inner Vision', in Religions of China in Practice, 1996"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Isabelle Robinet, Taoist Meditation, SUNY Press, 1993",
+    "note": "Robinet’s standard account: the Inner version was produced and canonized in the Shangqing milieu; Inner/Outer priority details remain debated in specialist literature — not re-verified this round."
   },
   {
     "from": "event-shangqing-revelations",
@@ -5514,7 +5687,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Michel Strickmann, 'The Mao Shan Revelations', T'oung Pao 63, 1977",
       "Thomas E. Smith, Declarations of the Perfected, Part One, Three Pines Press, 2013"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Michel Strickmann, 'The Mao Shan Revelations', T'oung Pao 63, 1977",
+    "note": "Tao Hongjing’s recovery and annotation of Yang Xi’s autographs c. 499 is documented (Strickmann)."
   },
   {
     "from": "event-sindhind-transmission",
@@ -5524,7 +5700,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "David Pingree, 'The Fragments of the Works of al-Fazārī', JNES 29 (1970)",
       "Dimitri Gutas, Greek Thought, Arabic Culture (1998)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "David Pingree, 'The Fragments of the Works of al-Fazārī', JNES 29 (1970)",
+    "note": "Pingree documents al-Fazari’s Zij al-Sindhind and al-Khwarizmi’s dependence on the Sind embassy’s tradition."
   },
   {
     "from": "event-sindhind-transmission",
@@ -5534,7 +5713,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Otto Neugebauer, The Astronomical Tables of al-Khwārizmī (1962)",
       "H. Suter (ed.), Die astronomischen Tafeln des Muhammed ibn Mūsā al-Khwārizmī (1914)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Otto Neugebauer, The Astronomical Tables of al-Khwārizmī (1962)",
+    "note": "Neugebauer’s edition documents the 1126 Latin version of al-Majriti’s revision — the chain is philologically established."
   },
   {
     "from": "event-tang-elixir-deaths",
@@ -5544,7 +5726,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Joseph Needham et al., Science and Civilisation in China, vol. 5 pt. 3, 1976",
       "Fabrizio Pregadio, The Way of the Golden Elixir, Golden Elixir Press, 2012"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "Joseph Needham et al., Science and Civilisation in China, vol. 5 pt. 3, 1976",
+    "note": "The poisoning-as-driver hypothesis is a standard account (Ho & Needham; Pregadio) but contested — Kato Chie and others show neidan’s rise predates and exceeds the poisoning story; the shift is multi-causal (web-verified this pass)."
   },
   {
     "from": "event-toledo-translations",
@@ -5553,7 +5738,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Michael Scot's first dated work, the Latin translation of al-Bitruji's On the Motions of the Heavens, was completed at Toledo in 1217; Burnett traces how Scot carried the Toledan Arabic-Latin craft onward to Bologna and to Frederick II's Sicilian court.",
     "sources": [
       "Charles Burnett, 'Michael Scot and the Transmission of Scientific Culture from Toledo to Bologna via the Court of Frederick II Hohenstaufen', Micrologus 2 (1994), 101–126"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Charles Burnett, 'Michael Scot and the Transmission of Scientific Culture from Toledo to Bologna via the Court of Frederick II Hohenstaufen', Micrologus 2 (1994), 101–126",
+    "note": "Scot’s 1217 Toledo translation of al-Bitruji is dated and signed; Burnett traces his onward career."
   },
   {
     "from": "event-waidan-neidan-shift",
@@ -5563,7 +5751,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Fabrizio Pregadio, The Way of the Golden Elixir, Golden Elixir Press, 2012",
       "Farzeen Baldrian-Hussein, 'Neidan', in The Encyclopedia of Taoism, Routledge, 2008"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Fabrizio Pregadio, The Way of the Golden Elixir, Golden Elixir Press, 2012",
+    "note": "Pregadio and Baldrian-Hussein document the Wuzhen pian as the classic crystallization of post-Tang neidan."
   },
   {
     "from": "fama-fraternitatis",
@@ -5573,7 +5764,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Hereward Tilton, The Quest for the Phoenix, 2003",
       "Frances A. Yates, The Rosicrucian Enlightenment, 1972"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Hereward Tilton, The Quest for the Phoenix, 2003",
+    "note": "Maier demonstrably read and answered the Fama (Silentium post clamores, 1617); influence on Atalanta itself is contextual — same author, year and press ambit (Tilton; web-verified this pass)."
   },
   {
     "from": "fama-fraternitatis",
@@ -5583,7 +5777,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "John Warwick Montgomery, Cross and Crucible, 1973",
       "Frances A. Yates, The Rosicrucian Enlightenment, 1972"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "John Warwick Montgomery, Cross and Crucible, 1973",
+    "note": "The romance adopts the Fama’s founder as its pilgrim-hero — the textual dependence is on the page."
   },
   {
     "from": "fama-fraternitatis",
@@ -5593,7 +5790,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Frances A. Yates, The Rosicrucian Enlightenment, 1972",
       "Christopher McIntosh, The Rosicrucians, 1997"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Frances A. Yates, The Rosicrucian Enlightenment, 1972",
+    "note": "The Confessio presents itself as the Fama’s promised sequel — self-declared dependence."
   },
   {
     "from": "guhyasamaja-tantra",
@@ -5602,7 +5802,10 @@ export const CONFLUENCE_EDGES = [
     "body": "The six dharmas associated with Nāropa are completion-stage yogas drawing on the highest-yoga-tantra systems including the Guhyasamāja; Tsongkhapa's commentary on the six yogas treats Guhyasamāja materials as a principal source.",
     "sources": [
       "Glenn H. Mullin, Tsongkhapa's Six Yogas of Naropa, 1996"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Glenn H. Mullin, Tsongkhapa's Six Yogas of Naropa, 1996",
+    "note": "Doctrinal dependence of the six dharmas on Guhyasamaja materials is documented via Tsongkhapa’s commentary (Mullin); the Naropa attribution itself is traditional — not re-verified this round."
   },
   {
     "from": "hekhalot-literature",
@@ -5612,7 +5815,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Gershom Scholem, Major Trends in Jewish Mysticism (1941), lecture 3",
       "Encyclopaedia Judaica, 'Eleazar ben Judah of Worms'"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Gershom Scholem, Major Trends in Jewish Mysticism (1941), lecture 3",
+    "note": "Scholem documents the Ashkenazi Hasidim’s preservation of Merkabah/Hekhalot materials; Eleazar’s Sodei Razayya draws on them."
   },
   {
     "from": "ibn-umayl-silvery-water",
@@ -5622,7 +5828,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "C. G. Jung, Psychologie und Alchemie, 1944",
       "Theodor Abt & Wilferd Madelung (eds.), Corpus Alchemicum Arabicum I, 2003"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "C. G. Jung, Psychologie und Alchemie, 1944",
+    "note": "Jung cites ‘Senior’ throughout CW 12–14, and his school sponsored the Corpus Alchemicum Arabicum editions."
   },
   {
     "from": "jabir-corpus",
@@ -5632,7 +5841,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "William R. Newman, The Summa Perfectionis of Pseudo-Geber, 1991",
       "Lawrence M. Principe, The Secrets of Alchemy, 2013"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "William R. Newman, The Summa Perfectionis of Pseudo-Geber, 1991",
+    "note": "Newman’s edition documents the Summa’s dependence on translated Jabirian material and its Latin authorship."
   },
   {
     "from": "kabbala-denudata",
@@ -5642,7 +5854,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "S. L. MacGregor Mathers, The Kabbalah Unveiled (1887)",
       "R. A. Gilbert, The Golden Dawn Scrapbook (1997)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "S. L. MacGregor Mathers, The Kabbalah Unveiled (1887)",
+    "note": "Mathers translated Knorr in 1887 and co-created the GD curriculum in 1888 — dependence documented by Gilbert."
   },
   {
     "from": "kabbala-denudata",
@@ -5652,7 +5867,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "S. L. MacGregor Mathers, The Kabbalah Unveiled (London: George Redway, 1887), title page",
       "Wellcome Collection catalogue record"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "S. L. MacGregor Mathers, The Kabbalah Unveiled (London: George Redway, 1887), title page",
+    "note": "Named translator, 1887 title page states the Latin source — definitive."
   },
   {
     "from": "katha-upanisad",
@@ -5662,7 +5880,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "R. C. Zaehner, The Bhagavad-Gītā (OUP, 1969), notes on 2.19–20",
       "Wikipedia, 'Bhagavad Gita' (accessed 2026)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "R. C. Zaehner, The Bhagavad-Gītā (OUP, 1969), notes on 2.19–20",
+    "note": "BhG 2.19–20 reproduce KU 1.2.18–19 nearly verbatim — textual borrowing noted by commentators ancient and modern (citation upgraded: Wikipedia dropped)."
   },
   {
     "from": "miracle-of-mindfulness",
@@ -5672,7 +5893,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Jon Kabat-Zinn, Full Catastrophe Living, 1990 (preface by Thich Nhat Hanh)",
       "Jon Kabat-Zinn, 'Some reflections on the origins of MBSR', Contemporary Buddhism 12(1), 2011"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Jon Kabat-Zinn, Full Catastrophe Living, 1990 (preface by Thich Nhat Hanh)",
+    "note": "Kabat-Zinn’s own writings name Nhat Hanh among his teachers; Nhat Hanh prefaced Full Catastrophe Living."
   },
   {
     "from": "mohe-zhiguan",
@@ -5681,7 +5905,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Dōgen trained first as a Tendai monk on Mount Hiei, where Zhiyi's calming-and-contemplation curriculum defined meditation; Bielefeldt situates Dōgen's zazen manuals against this Tiantai/Tendai and Chinese Chan background.",
     "sources": [
       "Carl Bielefeldt, Dōgen's Manuals of Zen Meditation, 1988"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Carl Bielefeldt, Dōgen's Manuals of Zen Meditation, 1988",
+    "note": "Dogen’s Tendai formation on Mt. Hiei is documented; Bielefeldt situates his zazen manuals against that background while showing the proximate model was Zongze’s Chan manual (web-verified this pass)."
   },
   {
     "from": "monas-hieroglyphica",
@@ -5691,7 +5918,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Nicholas Clulee, John Dee's Natural Philosophy (Routledge, 1988)",
       "Deborah Harkness, John Dee's Conversations with Angels (1999)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Nicholas Clulee, John Dee's Natural Philosophy (Routledge, 1988)",
+    "note": "Continuity of Dee’s search for a divinely warranted symbolic language is the documented scholarly reading of Clulee and Harkness — one man’s successive projects, both extant."
   },
   {
     "from": "mystical-theology",
@@ -5701,7 +5931,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Phyllis Hodgson (ed.), Deonise Hid Diuinite, EETS 231 (1955)",
       "A.C. Spearing (trans.), The Cloud of Unknowing and Other Works (Penguin, 2001)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Phyllis Hodgson (ed.), Deonise Hid Diuinite, EETS 231 (1955)",
+    "note": "The Cloud author also produced the first English rendering of the Mystical Theology (Deonise Hid Diuinite) — direct textual contact proven."
   },
   {
     "from": "needham-scc-vol5",
@@ -5711,7 +5944,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Ho Ping-Yü and Joseph Needham, 'Elixir Poisoning in Mediaeval China', Janus 48, 1959",
       "Joseph Needham et al., Science and Civilisation in China, vol. 5 pt. 3, 1976"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Ho Ping-Yü and Joseph Needham, 'Elixir Poisoning in Mediaeval China', Janus 48, 1959",
+    "note": "Ho & Needham’s 1959 study is itself the act — the medical identification anchoring modern accounts."
   },
   {
     "from": "neiye",
@@ -5720,7 +5956,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Roth argues the Daodejing emerged from the same 'inner cultivation' lineage whose earliest expression is the Neiye, which he dates earlier than the received Laozi.",
     "sources": [
       "Harold D. Roth, Original Tao, Columbia University Press, 1999"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "Harold D. Roth, Original Tao, Columbia University Press, 1999",
+    "note": "Roth’s relative dating of the Neiye before the received Laozi is a contested single-scholar thesis, not consensus; critics also say he over-reads breath practice into the text (web-verified this pass)."
   },
   {
     "from": "neiye",
@@ -5729,7 +5968,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Roth identifies the Neiye's breath-meditation and inner-cultivation vocabulary as the practical basis underlying the Zhuangzi's meditative passages (xinzhai, zuowang).",
     "sources": [
       "Harold D. Roth, Original Tao, Columbia University Press, 1999"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "Harold D. Roth, Original Tao, Columbia University Press, 1999",
+    "note": "Vocabulary parallels (xinzhai, zuowang) are documented, but the priority/direction claim is Roth’s hypothesis and contested (web-verified this pass)."
   },
   {
     "from": "oupnekhat",
@@ -5739,7 +5981,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "F. Max Müller, SBE vol. 1 (1879), introduction",
       "Urs App, The Birth of Orientalism (2010)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "F. Max Müller, SBE vol. 1 (1879), introduction",
+    "note": "Müller’s own SBE vol. 1 introduction reviews the Dara Shikoh–Anquetil transmission he supersedes."
   },
   {
     "from": "pardes-rimmonim",
@@ -5748,7 +5993,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Luria studied briefly with Cordovero at Safed before his death in 1570, then developed a mythological system that superseded Cordovero's rationalizing scheme.",
     "sources": [
       "Lawrence Fine, Physician of the Soul, Healer of the Cosmos (2003)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Lawrence Fine, Physician of the Soul, Healer of the Cosmos (2003)",
+    "note": "Luria’s brief study with Cordovero at Safed in 1570, in the months before Cordovero’s death that June, is documented by Fine (verifier-corrected: was 'before 1570'; Fine dates Luria’s arrival to early 1570)."
   },
   {
     "from": "person-abulafia",
@@ -5758,7 +6006,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Gershom Scholem, Kabbalah (1974)",
       "Encyclopaedia Judaica, 'Gikatilla, Joseph'"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Gershom Scholem, Kabbalah (1974)",
+    "note": "Gikatilla studied under Abulafia c. 1272–74, who called him his most successful student (web-verified this pass)."
   },
   {
     "from": "person-baal-shem-tov",
@@ -5767,7 +6018,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Nachman was the Baal Shem Tov's great-grandson and framed his own leadership within, and against, the Hasidic movement his ancestor founded.",
     "sources": [
       "Arthur Green, Tormented Master (1979)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Arthur Green, Tormented Master (1979)",
+    "note": "Great-grandson framing his leadership within the movement — genealogy and self-positioning documented by Green."
   },
   {
     "from": "person-bodhidharma",
@@ -5777,7 +6031,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Philip B. Yampolsky, The Platform Sutra of the Sixth Patriarch, 1967",
       "John R. McRae, Seeing Through Zen, 2003"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Philip B. Yampolsky, The Platform Sutra of the Sixth Patriarch, 1967",
+    "note": "The text demonstrably deploys the Bodhidharma lineage as its charter; the historical lineage is legend (McRae) — the edge claims the charter, not the biology."
   },
   {
     "from": "person-ge-hong",
@@ -5787,7 +6044,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Robert Ford Campany, To Live as Long as Heaven and Earth, University of California Press, 2002",
       "Fabrizio Pregadio, The Seal of the Unity of the Three, Golden Elixir Press, 2011"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "Fabrizio Pregadio, The Seal of the Unity of the Three, Golden Elixir Press, 2011",
+    "note": "The Shenxian zhuan Wei Boyang account is first fully attested only in the Taiping guangji (978); Pregadio doubts Ge Hong knew the Cantong qi at all — the Baopuzi never mentions it (web-verified this pass)."
   },
   {
     "from": "person-gorakhnath",
@@ -5797,7 +6057,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "David Gordon White, The Alchemical Body (University of Chicago Press, 1996)",
       "University of Chicago Press catalogue entry"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "David Gordon White, The Alchemical Body (University of Chicago Press, 1996)",
+    "note": "White’s 1996 study is itself the act — a published scholarly reconstruction of the Nath tradition."
   },
   {
     "from": "person-isaac-luria",
@@ -5807,7 +6070,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Encyclopaedia Britannica, 'Etz hayyim (work by Vital)'",
       "Lawrence Fine, Physician of the Soul, Healer of the Cosmos (2003)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Encyclopaedia Britannica, 'Etz hayyim (work by Vital)'",
+    "note": "Etz Hayyim is Vital’s redaction of Luria’s oral teaching — the standard documented account (Fine)."
   },
   {
     "from": "person-isaac-luria",
@@ -5817,7 +6083,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Encyclopaedia Judaica, 'Knorr von Rosenroth, Christian'",
       "'Christian Knorr von Rosenroth's Translation of a Lurianic Dissertation: Liber Druschim', Aschkenas (2024)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Encyclopaedia Judaica, 'Knorr von Rosenroth, Christian'",
+    "note": "Knorr’s Latin renderings of Lurianic texts (Liber Druschim etc.) are bibliographically documented."
   },
   {
     "from": "person-junayd",
@@ -5827,7 +6096,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "W. Montgomery Watt (trans.), The Faith and Practice of al-Ghazali (Allen & Unwin, 1953)",
       "Frank Griffel, Al-Ghazali's Philosophical Theology (OUP, 2009)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "W. Montgomery Watt (trans.), The Faith and Practice of al-Ghazali (Allen & Unwin, 1953)",
+    "note": "Al-Ghazali names Junayd among his exemplary Sufi masters; the Baghdad-school continuity is standard scholarship (Watt; Griffel)."
   },
   {
     "from": "person-jung",
@@ -5837,7 +6109,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Richard Wilhelm and C. G. Jung, Das Geheimnis der Goldenen Blüte, 1929",
       "Cary F. Baynes (trans.), The Secret of the Golden Flower, 1931"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Richard Wilhelm and C. G. Jung, Das Geheimnis der Goldenen Blüte, 1929",
+    "note": "Jung’s commentary is printed in the 1929 volume itself — definitive."
   },
   {
     "from": "person-krishnamacharya",
@@ -5847,7 +6122,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Mark Singleton, Yoga Body (OUP, 2010)",
       "Wikipedia, 'Light on Yoga' and 'Tirumalai Krishnamacharya' (accessed 2026)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Mark Singleton, Yoga Body (OUP, 2010)",
+    "note": "Iyengar’s Mysore training under Krishnamacharya in the 1930s is documented by Singleton (citation upgraded: Wikipedia dropped)."
   },
   {
     "from": "person-ledi-sayadaw",
@@ -5857,7 +6135,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Erik Braun, The Birth of Insight, 2013",
       "Gustaaf Houtman, Traditions of Buddhist Practice in Burma, 1990"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Erik Braun, The Birth of Insight, 2013",
+    "note": "The chain via lay teacher Saya Thetgyi, trained and authorized by Ledi, is documented by Braun and Houtman (web-verified this pass)."
   },
   {
     "from": "person-mahasi-sayadaw",
@@ -5867,7 +6148,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Jon Kabat-Zinn, 'Some reflections on the origins of MBSR', Contemporary Buddhism 12(1), 2011",
       "Jeff Wilson, Mindful America, 2014"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Jon Kabat-Zinn, 'Some reflections on the origins of MBSR', Contemporary Buddhism 12(1), 2011",
+    "note": "Kabat-Zinn’s own 2011 account documents his IMS vipassana training in Burmese-derived lineages feeding MBSR."
   },
   {
     "from": "person-maria-jewess",
@@ -5877,7 +6161,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Raphael Patai, The Jewish Alchemists, 1994",
       "Michèle Mertens, Les alchimistes grecs IV.1, 1995"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Raphael Patai, The Jewish Alchemists, 1994",
+    "note": "Zosimos’s own citations of Maria are the only witness and the transmission itself — internal, definitive."
   },
   {
     "from": "person-matsyendranatha",
@@ -5887,7 +6174,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "P. C. Bagchi (ed.), Kaulajnana-nirnaya (Calcutta Sanskrit Series, 1934)",
       "Satkari Mukhopadhyaya & Stella Dupuis, The Kaulajnananirnaya (2012)"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "P. C. Bagchi (ed.), Kaulajnana-nirnaya (Calcutta Sanskrit Series, 1934)",
+    "note": "The attribution is the tradition’s own claim preserved in the Nepalese MSS; authorship remains unsettled in scholarship (web-verified this pass)."
   },
   {
     "from": "person-matsyendranatha",
@@ -5897,7 +6187,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "George Weston Briggs, Gorakhnath and the Kanphata Yogis (1938)",
       "David Gordon White, The Alchemical Body (1996)"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "David Gordon White, The Alchemical Body (1996)",
+    "note": "The guru–disciple pairing is Nath legend; the two figures’ contested dates make a historical meeting undemonstrable (the edge body itself concedes this)."
   },
   {
     "from": "person-matsyendranatha",
@@ -5907,7 +6200,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "John R. Dupuche, Abhinavagupta: The Kula Ritual as Elaborated in Chapter 29 of the Tantrāloka (2003)",
       "P. C. Bagchi, Kaulajñāna-nirṇaya (1934)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "John R. Dupuche, Abhinavagupta: The Kula Ritual as Elaborated in Chapter 29 of the Tantrāloka (2003)",
+    "note": "The Tantraloka’s opening salute to Macchanda and its ch. 29 Kaula lineage claim are textual facts (Dupuche)."
   },
   {
     "from": "person-nagarjuna",
@@ -5917,7 +6213,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Tsongkhapa, The Great Treatise on the Stages of the Path, vol. 3, tr. Lamrim Chenmo Translation Committee, 2002",
       "Guy Newland, introduction to vol. 3, 2002"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Tsongkhapa, The Great Treatise on the Stages of the Path, vol. 3, tr. Lamrim Chenmo Translation Committee, 2002",
+    "note": "The Lamrim’s insight section expounds Nagarjuna via Candrakirti explicitly — dependence on the page."
   },
   {
     "from": "person-nagarjuna",
@@ -5926,7 +6225,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Zhiyi's Tiantai system, including the threefold-truth contemplation at the heart of the Mohe Zhiguan, develops Nāgārjuna's Madhyamaka as received through Kumārajīva's translations; Tiantai lineage lists honour Nāgārjuna as a patriarch.",
     "sources": [
       "Paul L. Swanson, Foundations of T'ien-T'ai Philosophy, 1989"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Paul L. Swanson, Foundations of T'ien-T'ai Philosophy, 1989",
+    "note": "Doctrinal dependence via Kumarajiva’s translations is documented (Swanson); the ‘patriarch’ status is retrospective lineage-building — not re-verified this round."
   },
   {
     "from": "person-paracelsus",
@@ -5936,7 +6238,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Frances A. Yates, The Rosicrucian Enlightenment, 1972",
       "Christopher McIntosh, The Rosicrucians, 1997"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Frances A. Yates, The Rosicrucian Enlightenment, 1972",
+    "note": "The Fama names Paracelsus approvingly — the reception is on the page; Paracelsian saturation documented by Yates/McIntosh."
   },
   {
     "from": "person-shankara",
@@ -5946,7 +6251,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Hajime Nakamura, A History of Early Vedānta Philosophy (1983)",
       "Encyclopaedia Britannica, 'Bhagavad Gita'"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Hajime Nakamura, A History of Early Vedānta Philosophy (1983)",
+    "note": "The Gitabhasya is extant — earliest surviving full Gita commentary; reception history documented by Nakamura."
   },
   {
     "from": "person-shankara",
@@ -5956,7 +6264,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Hajime Nakamura, A History of Early Vedānta Philosophy (1983)",
       "Encyclopaedia Britannica, 'Shankara'"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Hajime Nakamura, A History of Early Vedānta Philosophy (1983)",
+    "note": "Shankara’s Brhadaranyaka commentary is extant and his longest — the act itself survives."
   },
   {
     "from": "person-thomas-merton",
@@ -5966,7 +6277,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Contemplative Outreach, 'The History of Centering Prayer' (contemplativeoutreach.org)",
       "Basil Pennington, Centering Prayer: Renewing an Ancient Christian Prayer Form (Doubleday, 1980)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Contemplative Outreach, 'The History of Centering Prayer' (contemplativeoutreach.org)",
+    "note": "The movement’s own founders cite Merton’s phrase and writings as proximate inspiration — self-documented."
   },
   {
     "from": "person-u-ba-khin",
@@ -5976,7 +6290,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Daniel M. Stuart, S. N. Goenka: Emissary of Insight, 2020",
       "Vipassana Research Institute / dhamma.org, 'The Chain of Teachers'"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Daniel M. Stuart, S. N. Goenka: Emissary of Insight, 2020",
+    "note": "Goenka’s training (1955) and authorization under U Ba Khin are documented by Stuart and the tradition’s own records."
   },
   {
     "from": "person-wang-chongyang",
@@ -5986,7 +6303,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Louis Komjathy, Cultivating Perfection, Brill, 2007",
       "Stephen Eskildsen, The Teachings and Practices of the Early Quanzhen Taoist Masters, SUNY Press, 2004"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Louis Komjathy, Cultivating Perfection, Brill, 2007",
+    "note": "Founding of Quanzhen in 1167 and training of the Seven Perfected are documented (Komjathy; Eskildsen)."
   },
   {
     "from": "philokalia",
@@ -5996,7 +6316,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Kallistos Ware, 'St Nikodimos and the Philokalia', in Bingaman & Nassif (eds.), The Philokalia (OUP, 2012)",
       "Palmer, Sherrard & Ware, The Philokalia, vol. 1, introduction (Faber, 1979)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Kallistos Ware, 'St Nikodimos and the Philokalia', in Bingaman & Nassif (eds.), The Philokalia (OUP, 2012)",
+    "note": "Named translator (Paisius Velichkovsky), dated 1793 Moscow printing of the 1782 Venice Greek — definitive."
   },
   {
     "from": "physika-kai-mystika",
@@ -6006,7 +6329,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Robert Halleux, Les alchimistes grecs I, 1981",
       "Matteo Martelli, The Four Books of Pseudo-Democritus, 2013"
-    ]
+    ],
+    "label": "disputed",
+    "bestCitation": "Matteo Martelli, The Four Books of Pseudo-Democritus, 2013",
+    "note": "Close recipe parallels demonstrate a shared Greco-Egyptian recipe literature, not a directed borrowing — the edge’s own body says ‘common source’; the influence kind overstates (web-verified this pass)."
   },
   {
     "from": "physika-kai-mystika",
@@ -6016,7 +6342,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Matteo Martelli, The Four Books of Pseudo-Democritus, 2013",
       "Michèle Mertens, Les alchimistes grecs IV.1, 1995"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Matteo Martelli, The Four Books of Pseudo-Democritus, 2013",
+    "note": "Zosimos treats ‘Democritus’ as founding authority and quotes the books repeatedly — quotation is the proof."
   },
   {
     "from": "picatrix",
@@ -6026,7 +6355,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "David Pingree (ed.), Picatrix: The Latin Version of the Ghāyat al-Hakīm (Warburg Institute, 1986)",
       "Dan Attrell & David Porreca, Picatrix: A Medieval Treatise on Astral Magic (2019)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "David Pingree (ed.), Picatrix: The Latin Version of the Ghāyat al-Hakīm (Warburg Institute, 1986)",
+    "note": "Alfonso X’s dated commission and the Latin version’s derivation are established in Pingree’s edition."
   },
   {
     "from": "pico-conclusions",
@@ -6036,7 +6368,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Stanford Encyclopedia of Philosophy, 'Giovanni Pico della Mirandola'",
       "Martin & Sarah Goodman, introduction to On the Art of the Kabbalah (1983)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Stanford Encyclopedia of Philosophy, 'Giovanni Pico della Mirandola'",
+    "note": "Reuchlin’s explicit continuation of Pico’s project is documented (SEP; Goodman intro)."
   },
   {
     "from": "praktikos",
@@ -6046,7 +6381,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Columba Stewart, Cassian the Monk (OUP, 1998)",
       "Owen Chadwick, John Cassian (2nd ed., CUP, 1968)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Columba Stewart, Cassian the Monk (OUP, 1998)",
+    "note": "Cassian’s Latin carry-over of the Evagrian eight thoughts (unnamed) is documented by Stewart and Chadwick."
   },
   {
     "from": "praktikos",
@@ -6056,7 +6394,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Kallistos Ware, introduction to John Climacus: The Ladder of Divine Ascent (Paulist CWS, 1982)",
       "John Chryssavgis, John Climacus: From the Egyptian Desert to the Sinaite Mountain (Ashgate, 2004)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Kallistos Ware, introduction to John Climacus: The Ladder of Divine Ascent (Paulist CWS, 1982)",
+    "note": "Climacus’s debt to Evagrian ascetic psychology via Gaza/Sinai is documented in Ware’s standard introduction."
   },
   {
     "from": "praktikos",
@@ -6066,7 +6407,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "G.E.H. Palmer, P. Sherrard & K. Ware (trans.), The Philokalia, vol. 1 (Faber, 1979)",
       "Brock Bingaman & Bradley Nassif (eds.), The Philokalia (OUP, 2012)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "G.E.H. Palmer, P. Sherrard & K. Ware (trans.), The Philokalia, vol. 1 (Faber, 1979)",
+    "note": "The Philokalia prints Evagrius’s texts (some under ‘Neilos’) — inclusion is the act itself."
   },
   {
     "from": "pseudo-lull-corpus",
@@ -6076,7 +6420,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Jennifer M. Rampling, The Experimental Fire, 2020",
       "Michela Pereira, The Alchemical Corpus Attributed to Raymond Lull, 1989"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Jennifer M. Rampling, The Experimental Fire, 2020",
+    "note": "Ripley’s repeated invocation of ‘Raymond’ and pseudo-Lullian doctrine is documented by Rampling and Pereira."
   },
   {
     "from": "quanzhen",
@@ -6085,7 +6432,10 @@ export const CONFLUENCE_EDGES = [
     "body": "The Taiyi jinhua zongzhi arose in a Qing spirit-writing cult of Lü Dongbin and was transmitted in editions tied to the Longmen branch of Quanzhen, whose neidan idiom it condenses.",
     "sources": [
       "Mori Yuria, 'Identity and Lineage', in Daoist Identity, University of Hawai'i Press, 2002"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Mori Yuria, 'Identity and Lineage', in Daoist Identity, University of Hawai'i Press, 2002",
+    "note": "Qing spirit-writing origin and Longmen-linked transmission documented by Mori (and Esposito) from the editions themselves (web-verified this pass)."
   },
   {
     "from": "raja-yoga-1896",
@@ -6095,7 +6445,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Elizabeth De Michelis, A History of Modern Yoga (2004)",
       "Mark Singleton, Yoga Body (OUP, 2010)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Elizabeth De Michelis, A History of Modern Yoga (2004)",
+    "note": "Vivekananda’s printed disparagement of hatha texts is in Raja Yoga itself; its reception effect documented by De Michelis and Singleton."
   },
   {
     "from": "rasahrdaya-tantra",
@@ -6105,7 +6458,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "G. J. Meulenbeld, A History of Indian Medical Literature (1999–2002)",
       "'Critical Review of Rasaratna Samuccaya', Ancient Science of Life 36.1 (2016) / PMC"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "G. J. Meulenbeld, A History of Indian Medical Literature (1999–2002)",
+    "note": "The RRS’s compilatory dependence on earlier rasashastra classics is standard (Meulenbeld), but the specific borrowing was not re-verified this round."
   },
   {
     "from": "rasarnava",
@@ -6115,7 +6471,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "David Gordon White, The Alchemical Body (1996)",
       "David Gordon White, 'The Ocean of Mercury: An Eleventh-Century Alchemical Text', in Donald S. Lopez Jr. (ed.), Religions of India in Practice (Princeton, 1995)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "David Gordon White, The Alchemical Body (1996)",
+    "note": "White’s study takes the Rasarnava as its central primary source — the commentary act is the book itself."
   },
   {
     "from": "rasarnava",
@@ -6125,7 +6484,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "G. J. Meulenbeld, A History of Indian Medical Literature (1999–2002)",
       "David Gordon White, The Alchemical Body (1996)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "G. J. Meulenbeld, A History of Indian Medical Literature (1999–2002)",
+    "note": "Absorption of Rasarnava procedures into the RRS is standard rasashastra history (Meulenbeld; White), but not re-verified at passage level this round."
   },
   {
     "from": "rigveda",
@@ -6135,7 +6497,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Patrick Olivelle, The Early Upanishads (OUP, 1998)",
       "Michael Witzel, 'Vedas and Upaniṣads', Blackwell Companion to Hinduism (2003)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Patrick Olivelle, The Early Upanishads (OUP, 1998)",
+    "note": "Canonical transmission runs through the Shatapatha Brahmana of the White Yajurveda; the Rigveda node is corpus-level shorthand, as the body itself frames it (Olivelle; Witzel)."
   },
   {
     "from": "roots-of-yoga",
@@ -6144,7 +6509,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Roots of Yoga presents translated excerpts of the Amrtasiddhi among its hundred-plus sources, bringing the Buddhist source text of hatha yoga to a general readership ahead of Mallinson and Szántó's 2021 critical edition.",
     "sources": [
       "James Mallinson & Mark Singleton, Roots of Yoga (Penguin Classics, 2017)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "James Mallinson & Mark Singleton, Roots of Yoga (Penguin Classics, 2017)",
+    "note": "The translated excerpts are printed in the 2017 volume — the act itself."
   },
   {
     "from": "roots-of-yoga",
@@ -6154,7 +6522,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "James Mallinson & Mark Singleton, Roots of Yoga (2017)",
       "James Mallinson, 'Translation of the Dattātreyayogaśāstra' (2013)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "James Mallinson & Mark Singleton, Roots of Yoga (2017)",
+    "note": "Translated passages printed in the 2017 volume, building on Mallinson’s 2013 translation — definitive."
   },
   {
     "from": "satipatthana-sutta",
@@ -6164,7 +6535,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Jon Kabat-Zinn, 'Some reflections on the origins of MBSR', Contemporary Buddhism 12(1), 2011",
       "Jeff Wilson, Mindful America, 2014"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Jon Kabat-Zinn, 'Some reflections on the origins of MBSR', Contemporary Buddhism 12(1), 2011",
+    "note": "Kabat-Zinn’s own 2011 paper describes MBSR as recontextualized dharma — self-documented adaptation."
   },
   {
     "from": "satipatthana-sutta",
@@ -6174,7 +6548,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Mahasi Sayadaw, Manual of Insight, tr. 2016",
       "Erik Braun, The Birth of Insight, 2013"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Mahasi Sayadaw, Manual of Insight, tr. 2016",
+    "note": "Mahasi presented his method explicitly as applied Satipatthana Sutta — self-declared, documented by Braun."
   },
   {
     "from": "satipatthana-sutta",
@@ -6184,7 +6561,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Bhikkhu Ñāṇamoli (tr.), The Path of Purification, 1956 (introduction)",
       "Oskar von Hinüber, A Handbook of Pāli Literature, 1996"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Bhikkhu Ñāṇamoli (tr.), The Path of Purification, 1956 (introduction)",
+    "note": "Buddhaghosa’s systematization of the canonical contemplations is the manual’s own stated program."
   },
   {
     "from": "secret-of-the-golden-flower",
@@ -6194,7 +6574,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Richard Wilhelm, Das Geheimnis der Goldenen Blüte, Dornverlag, 1929",
       "Catherine Despeux and Livia Kohn (identification of the 1834 Daozang xubian base edition)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Richard Wilhelm, Das Geheimnis der Goldenen Blüte, Dornverlag, 1929",
+    "note": "Named translator, 1929 German publication, base edition identified (Despeux/Kohn) — definitive translation event."
   },
   {
     "from": "secrets-of-alchemy",
@@ -6204,7 +6587,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Lawrence M. Principe & William R. Newman, 'Some Problems with the Historiography of Alchemy', 2001",
       "Lawrence M. Principe, The Secrets of Alchemy, 2013"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Lawrence M. Principe & William R. Newman, 'Some Problems with the Historiography of Alchemy', 2001",
+    "note": "Principe & Newman’s published critique of the Jungian reading is the act; the Jungian counter-position stays CONTESTED on the entry."
   },
   {
     "from": "sefer-ha-bahir",
@@ -6213,7 +6599,10 @@ export const CONFLUENCE_EDGES = [
     "body": "The Zohar elaborates the sefirotic symbolism — cosmic tree, divine feminine — that first surfaced in the Bahir a century earlier.",
     "sources": [
       "Gershom Scholem, Major Trends in Jewish Mysticism (1941), lectures 5–6"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Gershom Scholem, Major Trends in Jewish Mysticism (1941), lectures 5–6",
+    "note": "The Zohar’s elaboration of Bahir sefirotic symbolism is standard documented scholarship (Scholem)."
   },
   {
     "from": "sefer-yetzirah",
@@ -6222,7 +6611,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Abulafia wrote commentaries on Sefer Yetzirah (Gan Na'ul, Otzar Eden Ganuz) and built his letter-combination method on its alphabet mysticism.",
     "sources": [
       "Moshe Idel, The Mystical Experience in Abraham Abulafia (1988)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Moshe Idel, The Mystical Experience in Abraham Abulafia (1988)",
+    "note": "Abulafia’s SY commentaries (Gan Na’ul, Otzar Eden Ganuz) are extant — the act survives (Idel)."
   },
   {
     "from": "sefer-yetzirah",
@@ -6231,7 +6623,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Eleazar wrote a commentary on Sefer Yetzirah, included in Sodei Razayya, later associated with golem-making legends.",
     "sources": [
       "Encyclopaedia Judaica, 'Eleazar ben Judah of Worms'"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Encyclopaedia Judaica, 'Eleazar ben Judah of Worms'",
+    "note": "Eleazar’s SY commentary within Sodei Razayya is extant and documented (EJ)."
   },
   {
     "from": "sefer-yetzirah",
@@ -6240,7 +6635,10 @@ export const CONFLUENCE_EDGES = [
     "body": "The Bahir reworks Sefer Yetzirah's ten sefirot, transforming them from primordial numbers into dynamic divine powers — the founding move of theosophic Kabbalah.",
     "sources": [
       "Gershom Scholem, Origins of the Kabbalah (1987)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Gershom Scholem, Origins of the Kabbalah (1987)",
+    "note": "The Bahir’s reworking of SY’s ten sefirot is documented by Scholem’s Origins — the founding move of theosophic Kabbalah."
   },
   {
     "from": "serpent-power",
@@ -6250,7 +6648,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Sonu Shamdasani (ed.), The Psychology of Kundalini Yoga: Notes of the Seminar Given in 1932 by C. G. Jung (Princeton, 1996)",
       "Kathleen Taylor, Sir John Woodroffe, Tantra and Bengal (2001)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Sonu Shamdasani (ed.), The Psychology of Kundalini Yoga: Notes of the Seminar Given in 1932 by C. G. Jung (Princeton, 1996)",
+    "note": "Jung’s 1932 kundalini seminars took Avalon’s book as textual basis — documented in Shamdasani’s edition of the seminar notes."
   },
   {
     "from": "shaarei-orah",
@@ -6260,7 +6661,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Gershom Scholem, Kabbalah (1974)",
       "Bonhams sale record: Ricius (trans.), Portae Lucis (Augsburg: Johannes Miller, 1516)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Gershom Scholem, Kabbalah (1974)",
+    "note": "Reuchlin studied Gikatilla in MS and via Ricius’s Portae Lucis (1516), sent to him and used in the 1517 work (web-verified this pass; auction-record source superseded by Scholem/Goodman)."
   },
   {
     "from": "shatchakranirupana",
@@ -6270,7 +6674,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Arthur Avalon, The Serpent Power (Luzac & Co., 1919)",
       "Kathleen Taylor, Sir John Woodroffe, Tantra and Bengal (2001)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Arthur Avalon, The Serpent Power (Luzac & Co., 1919)",
+    "note": "Named translator, 1919 title page states the Sanskrit source — definitive."
   },
   {
     "from": "sirr-i-akbar",
@@ -6280,7 +6687,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "A. H. Anquetil-Duperron, Oupnek'hat (1801–02)",
       "Urs App, The Birth of Orientalism (2010)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "A. H. Anquetil-Duperron, Oupnek'hat (1801–02)",
+    "note": "Named translator, dated 1801–02 Latin publication from the Persian — definitive."
   },
   {
     "from": "tibetan-book-of-the-dead",
@@ -6290,7 +6700,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "W. Y. Evans-Wentz (ed.), The Tibetan Book of the Dead, 3rd ed. (1957)",
       "C. G. Jung, CW 11"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "W. Y. Evans-Wentz (ed.), The Tibetan Book of the Dead, 3rd ed. (1957)",
+    "note": "Jung’s commissioned commentary (Rascher, 1935) is documented; its assignment to the Eranos node is atlas semantics (the Jung circle), not a specific Eranos act — not independently re-verified."
   },
   {
     "from": "tibetan-book-of-the-dead",
@@ -6300,7 +6713,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "C. G. Jung, 'Psychological Commentary on The Tibetan Book of the Dead', Collected Works 11 (orig. German 1935; English 1957)",
       "Donald S. Lopez Jr., The Tibetan Book of the Dead: A Biography, 2011"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "C. G. Jung, 'Psychological Commentary on The Tibetan Book of the Dead', Collected Works 11 (orig. German 1935; English 1957)",
+    "note": "The 1935 German edition with Jung’s psychological commentary (Rascher Verlag) is documented; English in the 1957 3rd ed. and CW 11 (web-verified this pass)."
   },
   {
     "from": "triads",
@@ -6310,7 +6726,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "John Meyendorff (ed.), Gregory Palamas: The Triads (Paulist CWS, 1983)",
       "John Meyendorff, A Study of Gregory Palamas (Faith Press, 1964)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "John Meyendorff (ed.), Gregory Palamas: The Triads (Paulist CWS, 1983)",
+    "note": "The Triads answer Barlaam point by point; the 1341 council outcome is documented (Meyendorff)."
   },
   {
     "from": "turba-philosophorum",
@@ -6320,7 +6739,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Martin Plessner, 'The Place of the Turba Philosophorum in the Development of Alchemy', Isis 45, 1954",
       "Julius Ruska, Turba Philosophorum, 1931"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Martin Plessner, 'The Place of the Turba Philosophorum in the Development of Alchemy', Isis 45, 1954",
+    "note": "Ibn Umayl is the earliest text known to quote the Turba — quotation anchors Plessner’s dating."
   },
   {
     "from": "vijnanabhairava-tantra",
@@ -6330,7 +6752,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Jaideva Singh, Vijñānabhairava or Divine Consciousness (1979), introduction",
       "John R. Dupuche, Abhinavagupta: The Kula Ritual (2003)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Jaideva Singh, Vijñānabhairava or Divine Consciousness (1979), introduction",
+    "note": "Abhinavagupta’s esteem and use are documented; Jayaratha’s commentary quotes the VBh repeatedly."
   },
   {
     "from": "visuddhimagga",
@@ -6340,7 +6765,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Mahasi Sayadaw, Manual of Insight, tr. 2016 (translators' introduction)",
       "Ingrid Jordt, Burma's Mass Lay Meditation Movement, 2007"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Mahasi Sayadaw, Manual of Insight, tr. 2016 (translators' introduction)",
+    "note": "Mahasi’s Burmese nissaya of the Visuddhimagga is extant; his insight map follows Buddhaghosa’s sequence."
   },
   {
     "from": "wuzhen-pian",
@@ -6350,7 +6778,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Fabrizio Pregadio (ed.), The Encyclopedia of Taoism ('Nanzong'), Routledge, 2008",
       "Louis Komjathy, Cultivating Perfection, Brill, 2007"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Fabrizio Pregadio (ed.), The Encyclopedia of Taoism ('Nanzong'), Routledge, 2008",
+    "note": "The Yuan-era merger of the Nanzong into Quanzhen is documented institutional history (Pregadio ed.; Komjathy)."
   },
   {
     "from": "yates-1964",
@@ -6360,7 +6791,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Wouter Hanegraaff, \"Beyond the Yates Paradigm\", Aries 1:1 (2001)",
       "Wouter Hanegraaff, Esotericism and the Academy (2012)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Wouter Hanegraaff, \"Beyond the Yates Paradigm\", Aries 1:1 (2001)",
+    "note": "Hanegraaff’s critique of the Yates paradigm is the published act itself (Aries 2001; 2012 monograph)."
   },
   {
     "from": "yijing",
@@ -6370,7 +6804,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "G. W. Leibniz, \"Explication de l'arithmétique binaire\" (1703)",
       "Franklin Perkins, Leibniz and China (2004)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "G. W. Leibniz, \"Explication de l'arithmétique binaire\" (1703)",
+    "note": "Leibniz’s own 1703 memoire announces the hexagram–binary mapping — primary source."
   },
   {
     "from": "yoga-bhasya",
@@ -6380,7 +6817,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Philipp A. Maas, 'A Concise Historiography of Classical Yoga Philosophy' (2013)",
       "Internet Encyclopedia of Philosophy, 'The Yoga Sutras of Patanjali'"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Philipp A. Maas, 'A Concise Historiography of Classical Yoga Philosophy' (2013)",
+    "note": "Earliest extant commentary, canonical interpretation — documented; Maas’s joint-composition thesis is noted on the entry (edge direction runs commentary→base text, an atlas data quirk)."
   },
   {
     "from": "yoga-body",
@@ -6389,7 +6829,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Singleton's Yoga Body demonstrates that the modern postural canon was forged between the mid-19th century and the Second World War from gymnastics, physical culture and nationalism, directly refuting the claim of an unbroken 5,000-year-old postural practice.",
     "sources": [
       "Mark Singleton, Yoga Body: The Origins of Modern Posture Practice (OUP, 2010)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Mark Singleton, Yoga Body: The Origins of Modern Posture Practice (OUP, 2010)",
+    "note": "Singleton’s monograph is the published refutation itself — the edge records a documented act of refutation."
   },
   {
     "from": "yoga-sutras",
@@ -6399,7 +6842,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "James Mallinson, 'Translation of the Dattātreyayogaśāstra' (2013)",
       "James Mallinson & Mark Singleton, Roots of Yoga (2017)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "James Mallinson, 'Translation of the Dattātreyayogaśāstra' (2013)",
+    "note": "The DYS’s astanga matches Patanjali’s limbs though the text credits Yajnavalkya; the combination is documented by Mallinson (web-verified this pass)."
   },
   {
     "from": "yoga-sutras",
@@ -6409,7 +6855,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Mircea Eliade, Yoga: Immortality and Freedom (1958)",
       "David Gordon White, The Yoga Sutra of Patanjali: A Biography (2014)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Mircea Eliade, Yoga: Immortality and Freedom (1958)",
+    "note": "Eliade’s study centers on Patanjali by its own design — dependence on the page."
   },
   {
     "from": "yoga-sutras",
@@ -6419,7 +6868,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Shlomo Pines & Tuvia Gelblum, 'Al-Bīrūnī's Arabic Version of Patañjali's Yogasūtra', BSOAS 29 (1966)",
       "Mario Kozah (ed.), The Yoga Sutras of Patañjali by Abū Rayḥān al-Bīrūnī (NYU Press, 2020)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Shlomo Pines & Tuvia Gelblum, 'Al-Bīrūnī's Arabic Version of Patañjali's Yogasūtra', BSOAS 29 (1966)",
+    "note": "Al-Biruni’s Arabic version is extant; Pines & Gelblum characterize the paraphrase precisely — definitive."
   },
   {
     "from": "yoga-sutras",
@@ -6429,7 +6881,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Swami Vivekananda, Raja Yoga (1896)",
       "Elizabeth De Michelis, A History of Modern Yoga (2004)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Swami Vivekananda, Raja Yoga (1896)",
+    "note": "Raja Yoga’s second half is Vivekananda’s own free translation of the sutras — the act is in the book."
   },
   {
     "from": "zohar",
@@ -6439,7 +6894,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Encyclopaedia Judaica, 'Knorr von Rosenroth, Christian'",
       "Zutot 22:1 (2025)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Encyclopaedia Judaica, 'Knorr von Rosenroth, Christian'",
+    "note": "Knorr’s Latin renderings of named Zoharic tractates are bibliographically documented (EJ)."
   },
   {
     "from": "zohar",
@@ -6448,7 +6906,10 @@ export const CONFLUENCE_EDGES = [
     "body": "Major Trends devotes two lectures to the Zohar, presenting Scholem's philological case that Moses de Leon composed it in 1280s Castile.",
     "sources": [
       "Gershom Scholem, Major Trends in Jewish Mysticism (1941), lectures 5–6"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Gershom Scholem, Major Trends in Jewish Mysticism (1941), lectures 5–6",
+    "note": "Scholem’s two Zohar lectures are the act itself — published commentary with the de Leon thesis."
   },
   {
     "from": "zohar",
@@ -6458,7 +6919,10 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Encyclopaedia Judaica, 'Cordovero, Moses'",
       "Eugene D. Matanky, IMAGES 15 (2022)"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Encyclopaedia Judaica, 'Cordovero, Moses'",
+    "note": "Cordovero’s systematization of Zoharic Kabbalah (plus Or Yakar) is documented (EJ)."
   },
   {
     "from": "zosimos-corpus",
@@ -6468,6 +6932,9 @@ export const CONFLUENCE_EDGES = [
     "sources": [
       "Theodor Abt & Wilferd Madelung (eds.), Corpus Alchemicum Arabicum I, 2003",
       "H. E. Stapleton & M. H. Husain, Memoirs of the Asiatic Society of Bengal, 1933"
-    ]
+    ],
+    "label": "documented",
+    "bestCitation": "Theodor Abt & Wilferd Madelung (eds.), Corpus Alchemicum Arabicum I, 2003",
+    "note": "Ibn Umayl’s citations of Zosimos and the Arabic Zosimos circulation are documented (Abt & Madelung; Stapleton)."
   }
 ];

@@ -13,6 +13,10 @@ import { HOUSES } from '../core/data/houses.js';
 import { toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
 import { downloadSVG, svgToPNG, copyShareLink, writeStateToURL, readStateFromURL } from './state.js';
+import { fullReading } from '../core/reading.js';
+import { renderExplainBlock, ensureExplainMount } from './explain-block.js';
+import { explainHorary } from '../core/explain/horary.js';
+import { initGlosstip } from './glosstip.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
@@ -35,6 +39,7 @@ export async function initHorary() {
   $('h-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
 
   await mountEnhancers();
+  try { initGlosstip(); } catch { /* non-fatal */ }
 
   // restore inputs from a shared link, if present
   const s = readStateFromURL(['date', 'time', 'offset', 'lat', 'lon', 'system', 'quesited']);
@@ -233,6 +238,15 @@ function compute() {
     best, modes, lordAsc, lordQ
   });
 
+  // The "In plain words" judgement block, mounted under the verdict banner: the
+  // buried answer stated as one attributed sentence, with testimonies for/against
+  // (chart-ux §7.3). Reuses the verified reading spine (no re-derivation).
+  try {
+    const reading = fullReading(chart, { quesitedHouse: quesited, includeVedic: false });
+    const mount = ensureExplainMount($('h-verdict-banner'), 'h-explain-mount');
+    if (mount) renderExplainBlock(mount, explainHorary(reading), { textId: 'h-explain-text' });
+  } catch { /* non-fatal: the detailed panels below still render */ }
+
   // --- aspects list ---
   $('h-aspects').innerHTML = asps.length
     ? asps.map(a => `<li>${PLANET_GLYPHS[a.from]} ${a.from} <b>${a.glyph} ${a.aspect}</b> ${PLANET_GLYPHS[a.to]} ${a.to}
@@ -252,7 +266,7 @@ function compute() {
   $('h-almuten').textContent = `Almuten of the Ascendant degree: ${al.planet} (essential score ${al.score}).`;
 
   // auto-link glossary jargon in the freshly-rendered prose panels
-  autolinkResultPanels(['h-significators', 'h-perfection']);
+  autolinkResultPanels(['h-explain-text', 'h-significators', 'h-perfection']);
   try { writeStateToURL(hState()); } catch { /* non-fatal */ }
   try { picker && picker.commitRecent && picker.commitRecent(); } catch { /* */ }
   try { bar && bar.show && bar.show(); } catch { /* */ }

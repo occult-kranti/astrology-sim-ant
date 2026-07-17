@@ -2,7 +2,7 @@
    confluence.css — presentation for THE GREAT CONFLUENCE atlas
    (pages/confluence.html · R27). Loaded AFTER style.css; built ONLY on the
    shipped Design System 2.0 tokens (--paper/--night surfaces, --ep-* epistemic
-   palette, --dg-* diagram family, --fs-* fluid type, --t-*/--ease motion,
+   palette, --dg-* diagram family, --fs-* fluid type, --t-* and --ease motion,
    radius/shadow/z tokens). style.css is LOCKED and untouched.
 
    The eight lane-accent tokens (design §10.1) live HERE, scoped to .cfl-page.
@@ -65,7 +65,13 @@
 .cfl-lane-legend span { white-space:nowrap; font-size:.82rem; }
 
 /* ---------- the atlas toolbar ---------------------------------------------- */
-.cfl-toolbar { gap:var(--sp-2) var(--sp-3); }
+/* The base .filterbar sticks at top:0 — but the site header (header.site) is
+   itself sticky at top:0 with a higher z-index, so a top:0 toolbar slides UNDER
+   it and its first chip row is occluded. Offset the toolbar by the shared header
+   height token (--sticky-top, the same offset the drawer + rail already use) so
+   the whole toolbar clears the chrome. Keep the ledger's sticky era strip in the
+   same chain (see .cfl-ledger-era below). */
+.cfl-toolbar { gap:var(--sp-2) var(--sp-3); top:var(--sticky-top); z-index:var(--z-sticky); }
 .cfl-toolbar .cfl-group { display:flex; flex-wrap:wrap; gap:.35rem; align-items:center; }
 .cfl-toolbar .cfl-group-label { font-family:var(--font-sans); font-size:var(--fs-label);
   text-transform:uppercase; letter-spacing:.06em; color:var(--text-faint); margin-right:.15rem; }
@@ -260,7 +266,12 @@
 
 /* ---------- the Ledger (single-column; forced <720px, offered everywhere) --- */
 .cfl-ledger[hidden] { display:none; }
-.cfl-ledger-era { position:sticky; top:var(--cfl-toolbar-h); z-index:1; background:var(--surface-page);
+/* the ledger's era strip is sticky within the PAGE scroll, so it must clear the
+   sticky site header AND the sticky atlas toolbar above it — the same chain as
+   .cfl-toolbar (which sits at --sticky-top). --cfl-toolbar-h is published live by
+   the app as the toolbar's measured height (the 3.1rem token is only a fallback
+   for a no-JS render). */
+.cfl-ledger-era { position:sticky; top:calc(var(--sticky-top) + var(--cfl-toolbar-h)); z-index:1; background:var(--surface-page);
   font-family:var(--font-sans); font-size:var(--fs-label); text-transform:uppercase; letter-spacing:.04em;
   color:var(--text-soft); padding:.35rem 0; border-bottom:1px solid var(--border); margin-top:var(--sp-3); }
 .cfl-ledger-era .cfl-era-scale { color:var(--text-faint); text-transform:none; letter-spacing:0; }
@@ -456,4 +467,47 @@
 }
 @media (prefers-reduced-motion:reduce) {
   .cfl-viewport { scroll-behavior:auto; }
+}
+
+/* ============================================================================
+   EDGE EPISTEMIC LABELS (R28 · atlas-ui WP-3d). The edge label grades the
+   TRANSMISSION CLAIM, not the doctrine: an edge means "demonstrably read /
+   rendered / answered / absorbed". A disputed claim is drawn faded with a ⚑
+   affordance; the one debunked claim (corpus-hermeticum→kybalion) is drawn
+   faint + struck — never hidden. Colour draws only on the shipped --ep-* set
+   (documented gold / disputed azure / debunked red), the same three-way
+   grammar as the node marks. Static by default; hover/thread restores full ink.
+   ============================================================================ */
+.cfl-edge[data-label="disputed"]   .cfl-edge-line { opacity:.35; }
+.cfl-edge[data-label="debunked"]   .cfl-edge-line,
+.cfl-edge[data-label="conspiracy"] .cfl-edge-line { opacity:.22; }
+.cfl-edge[data-label="disputed"]   .cfl-edge-line { stroke:var(--ep-disp, #4a68a8); }
+.cfl-edge[data-label="debunked"]   .cfl-edge-line,
+.cfl-edge[data-label="conspiracy"] .cfl-edge-line { stroke:var(--ep-deb, #b23b2e); }
+.cfl-edge-flag   { fill:var(--ep-disp, #4a68a8); font-family:var(--font-sans); font-size:11px;
+  opacity:.8; pointer-events:none; }
+.cfl-edge-strike { stroke:var(--ep-deb, #b23b2e); stroke-width:1.8; opacity:.85;
+  stroke-linecap:round; pointer-events:none; }
+/* hover / thread wins — a graded edge under inspection returns to full ink */
+.cfl-edge.edge-hot .cfl-edge-line { opacity:1; }
+.cfl-edge.edge-hot .cfl-edge-flag { opacity:1; }
+.cfl-edge.edge-hot .cfl-edge-strike { opacity:1; }
+.cfl-edges.has-hot .cfl-edge:not(.edge-hot) .cfl-edge-flag,
+.cfl-edges.has-hot .cfl-edge:not(.edge-hot) .cfl-edge-strike { opacity:.12; }
+
+/* edge hover-card label row + best-citation line */
+.cfl-card-label { display:flex; align-items:center; gap:.4rem; flex-wrap:wrap; margin:.3rem 0 0; }
+.cfl-card-labelnote { font-family:var(--font-sans); font-size:.68rem; color:var(--text-faint);
+  text-transform:uppercase; letter-spacing:.04em; }
+.cfl-card-cite { margin:.35rem 0 0; font-size:.72rem; color:var(--text-muted); line-height:1.35; }
+.cfl-card-cite b { color:var(--text-soft); }
+
+/* drawer / ledger Journeys — each line carries its epistemic badge + witness */
+.cfl-journeys .cfl-jbadge { vertical-align:baseline; margin:0 .1rem; }
+.cfl-journeys .cfl-jcite { font-family:var(--font-sans); font-size:var(--fs--1); color:var(--text-faint);
+  margin-top:.15rem; }
+
+@media print {
+  /* the ledger is the print view; keep the journey badge legible on paper */
+  .cfl-journeys .cfl-jbadge { border:1px solid #000 !important; }
 }

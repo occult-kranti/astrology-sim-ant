@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bhāva delineations — the two-witness browser | The Astrologer's Workbench</title>
+<meta name="description" content="Browse the classical planet-in-house (graha-in-bhāva) delineations of Jyotiṣa, two witnesses side by side and never merged: Mantreśvara's Phaladīpikā (ch. 8) and Kalyāṇavarman's Sārāvalī (ch. 30), each summary original prose reporting exactly what the cited verse says. A 12×9 keyboard-navigable grid of the 9 grahas across the 12 bhāvas; agreement flagged where the texts concur, and every genuine contradiction shown as a contradiction — never smoothed into one meaning. Rāhu/Ketu are recorded as single-witness with an honest absence note. A historical symbolic system with no demonstrated validity — described, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/vedic-tools.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="../contents.html">Traditions</a> ›
+    <a href="index.html">Jagannath Hora (Vedic)</a> › Bhāva delineations — the browser</p>
+
+  <header class="wing-hero">
+    <span class="wh-glyph" aria-hidden="true">🕉</span>
+    <h1>Bhāva delineations — the two-witness browser</h1>
+    <p class="lede">The largest body of Jyotiṣa doctrine is the <b>graha-in-bhāva</b> literature: what a planet is held to
+      signify in each of the twelve houses. This browser holds <b>108 cited records</b> — the nine grahas across the twelve
+      bhāvas — with <b>two witnesses side by side and never merged</b>: Mantreśvara's <b>Phaladīpikā</b> (ch. 8) and
+      Kalyāṇavarman's <b>Sārāvalī</b> (ch. 30). Where they agree it is marked; where they genuinely <b>clash</b>, the clash
+      is shown as a clash, not smoothed into one "meaning". Pick any cell of the 12×9 grid, or read your own chart's nine
+      placements.</p>
+    <div class="ep-strip">
+      <a class="badge badge--ok" href="../about/index.html">Astronomy — verified</a>
+      <a class="badge badge--doc" href="../about/index.html">Doctrine — historical</a>
+      <a class="badge badge--bad" href="../about/index.html">Predictive validity — none demonstrated</a>
+    </div>
+  </header>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Every delineation below is a <b>historical doctrinal claim</b> with <b>no demonstrated validity</b>. The summaries are
+    original prose reporting exactly what the cited verse says — including its harsh, deterministic judgments, reproduced
+    unsoftened for fidelity, describing <b>nothing</b> about any actual person. The two texts are kept apart on purpose:
+    their disagreement is a feature of the tradition to be shown, not a problem to be resolved. <b>Sārāvalī</b> has no
+    Rāhu/Ketu house verses; those records are single-witness with the absence noted honestly. See
+    <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="vd-form" class="calc" style="margin-bottom:1rem">
+    <div class="field-row" style="align-items:center;gap:.8rem;flex-wrap:wrap">
+      <div class="seg" role="group" aria-label="Browse mode">
+        <button type="button" class="seg-btn" data-mode="browse" aria-pressed="true">Browse freely</button>
+        <button type="button" class="seg-btn" data-mode="chart" aria-pressed="false">From a birth chart</button>
+      </div>
+      <span id="vd-status" class="small muted" role="status"></span>
+    </div>
+    <!-- moment-picker (birth) — only shown in "from a chart" mode -->
+    <div id="vd-chart-fields" hidden style="margin-top:.6rem">
+      <div id="vd-picker"></div>
+      <input type="hidden" id="vd-lat"><input type="hidden" id="vd-lon">
+      <input type="hidden" id="vd-date"><input type="hidden" id="vd-time"><input type="hidden" id="vd-offset">
+      <div class="field-row" style="margin-top:.6rem">
+        <button type="submit" class="btn"><span aria-hidden="true">✶</span> Read my chart's nine placements</button>
+      </div>
+    </div>
+  </form>
+
+  <section class="card panel">
+    <h2 style="margin-top:0">The grid <span class="small muted">(9 grahas × 12 bhāvas — arrow keys to rove, Enter to open)</span></h2>
+    <div class="vt-delin-layout">
+      <div>
+        <div id="vd-grid" class="vt-grid-wrap"></div>
+        <p class="small muted" id="vd-legend" style="margin-top:.4rem">Cell marks: <b>=</b> the two texts agree ·
+          <b>~</b> partial overlap · <b>✕</b> a genuine contradiction · <b>·</b> single witness (Rāhu/Ketu). In
+          "from a chart" mode, <b>•</b> rings the nine cells your chart actually occupies.</p>
+      </div>
+      <div id="vd-record" class="vt-record" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+
+  <section class="card">
+    <h2 style="margin-top:0">How to read the two witnesses</h2>
+    <p class="small">Each record shows both texts in full, in their own column, with the exact verse locus. When they broadly
+      concur the record is badged <b>agree</b>; when they overlap but diverge, <b>partial</b>; when they truly conflict —
+      the eleventh-house Sun glowing as a sorrowless king in Phaladīpikā and soured into an affectionless servant in
+      Sārāvalī, for instance — the record is badged <b>contradiction</b> and a callout states the clash. Nothing is merged
+      into a single verdict, because the tradition itself holds both.</p>
+    <p class="small muted">Editions: Mantreśvara, <i>Phaladīpikā</i> ch. 8 (S.S. Sareen trans.; verse numbering per the
+      Subrahmanya Sastri / wisdomlib scheme, cross-checked against G.S. Kapoor); Kalyāṇavarman, <i>Sārāvalī</i> ch. 30
+      (R. Santhanam trans., Ranjan Publications 1983). Full citations sit on every record. Described, never prescribed.</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything about anyone. These are faithful, cited summaries of a medieval doctrinal
+    literature, with its internal disagreements preserved. Interesting history, not guidance. See
+    <a href="../about/index.html">Sources &amp; Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also: <a href="index.html">the full Jagannath Hora reading</a> ·
+    <a href="yogas.html">the yoga detector</a> · <a href="../library/indian.html">the Indian library</a>.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  mountChrome('vedicdelineation');
+  import { initVedicDelineation } from '../../assets/js/app/vedic-delineation.js';
+  initVedicDelineation();
+</script>
+</body>
+</html>

@@ -117,6 +117,63 @@ export async function run() {
     ok(overlap === 0, `atlas/cluster: no two painted same-lane marks overlap ≤4px at L=1 (${overlap})`);
   }
 
+  // ---- 3b. LABEL PLACEMENT: side flip (DEFECT 2) + de-conflict (DEFECT 3) ---
+  // Every painted mark carries a deterministic labelSide + labelDy; no two
+  // VISIBLE (non-quiet) same-lane label boxes overlap at zoom 1. The box
+  // convention mirrors the layout + the CSS: chars*6.2 wide (capped to the
+  // lane) × 22 tall, anchored 14px from the mark centre on its side.
+  {
+    const W = 1280, RULER_W = 64, LABEL_H = 24, LABEL_CW = 6.2, LABEL_INSET = 14;
+    const laneW = (W - RULER_W) / CONFLUENCE_LANES.length;
+    const lo = layoutConfluence({ zoom: 1, width: W });
+    const byS = new Map(CONFLUENCE_ENTRIES.map(e => [e.slug, e]));
+    const painted = lo.nodes.filter(n => !n.clusterOf);
+    ok(painted.every(n => n.labelSide === 'left' || n.labelSide === 'right'),
+      'atlas/label: every painted mark has a labelSide ∈ {left,right}');
+    ok(painted.every(n => typeof n.labelDy === 'number' && n.labelDy >= 0),
+      'atlas/label: every painted mark has a numeric labelDy ≥ 0');
+    // DEFECT 2 — no RIGHT-side label overruns the world's right frame edge
+    const boxOf = n => {
+      const e = byS.get(n.slug); const chars = e ? e.title.length : 8;
+      const w = Math.min(chars * LABEL_CW, Math.max(20, laneW - 30));
+      const xL = n.labelSide === 'left' ? n.x - LABEL_INSET - w : n.x + LABEL_INSET;
+      const xR = n.labelSide === 'left' ? n.x - LABEL_INSET : n.x + LABEL_INSET + w;
+      const cy = n.y + (n.labelDy || 0);
+      return { xL, xR, yT: cy - LABEL_H / 2, yB: cy + LABEL_H / 2 };
+    };
+    const quiet = lo.labelQuiet instanceof Set ? lo.labelQuiet : new Set(lo.labelQuiet || []);
+    let rightSpill = 0;
+    for (const n of painted) { if (n.labelSide === 'right' && boxOf(n).xR > W) rightSpill++; }
+    ok(rightSpill === 0, `atlas/label: no right-side label overruns the frame edge (${rightSpill})`);
+    // DEFECT 3 — no two VISIBLE same-lane label boxes overlap
+    const visByLane = {};
+    for (const n of painted) { if (quiet.has(n.slug)) continue; (visByLane[n.laneId] = visByLane[n.laneId] || []).push(boxOf(n)); }
+    let overlaps = 0, worst = null;
+    for (const k in visByLane) {
+      const a = visByLane[k];
+      for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) {
+        const A = a[i], B = a[j];
+        const ox = Math.min(A.xR, B.xR) - Math.max(A.xL, B.xL);
+        const oy = Math.min(A.yB, B.yB) - Math.max(A.yT, B.yT);
+        if (ox > 1 && oy > 1) { overlaps++; if (!worst) worst = { k, ox: +ox.toFixed(1), oy: +oy.toFixed(1) }; }
+      }
+    }
+    ok(overlaps === 0, `atlas/label: no two visible same-lane label boxes overlap at z1 (${overlaps}${worst ? ' e.g. ' + JSON.stringify(worst) : ''})`);
+    // the two named collisions from the bug report are resolved (not both visible + overlapping)
+    const katha = lo.nodes.find(n => n.slug === 'katha-upanisad');
+    const shvet = lo.nodes.find(n => n.slug === 'shvetashvatara-upanisad');
+    if (katha && shvet && !katha.clusterOf && !shvet.clusterOf) {
+      const A = boxOf(katha), B = boxOf(shvet);
+      const overlapping = !quiet.has(katha.slug) && !quiet.has(shvet.slug) &&
+        (Math.min(A.xR, B.xR) - Math.max(A.xL, B.xL) > 1) && (Math.min(A.yB, B.yB) - Math.max(A.yT, B.yT) > 1);
+      ok(!overlapping, 'atlas/label: katha ✕ shvetashvatara upaniṣad labels no longer overlap');
+    }
+    // determinism of the new fields
+    const lo2 = layoutConfluence({ zoom: 1, width: W });
+    ok(JSON.stringify(lo.nodes.map(n => [n.labelSide, n.labelDy])) === JSON.stringify(lo2.nodes.map(n => [n.labelSide, n.labelDy])),
+      'atlas/label: labelSide + labelDy byte-deterministic');
+  }
+
   // ---- 4. MINIMAP MODEL (§6.2) ---------------------------------------------
   {
     const lo = layoutConfluence({ zoom: 1, width: 1280 });

@@ -24,7 +24,7 @@ export function renderVedicPanel(body, chart, opts = {}) {
     <td class="l">${esc(g.label)}${g.retrograde && p !== 'Rahu' && p !== 'Ketu' ? ' ℞' : ''}</td>
     <td>${g.house}</td>
     <td class="l small">${esc(g.nakshatra.name)} <span class="muted">p${g.nakshatra.pada}</span></td>
-    <td class="${digClass(g.dignity.state)} small">${esc(g.dignity.state)}</td></tr>`).join('');
+    <td class="${digClass(g.dignity.state)} small">${esc(g.dignity.state)} <span class="vt-asta" data-asta="${esc(p)}" hidden>☀ asta</span></td></tr>`).join('');
 
   const dz = v.vimshottari;
   const mahaList = dz.maha.slice(0, 6).map(m => `<span class="${m.current ? 'pos' : 'muted'}">${esc(m.lord)} (${fmtDate(m.start)}${m.current ? ' ◀' : ''})</span>`).join(' · ');
@@ -73,6 +73,13 @@ export function renderVedicPanel(body, chart, opts = {}) {
 
     <h3 class="small" style="margin:.6rem 0 .2rem">Grahas (sidereal)</h3>
     <div class="table-scroll"><table class="data"><thead><tr><th>Graha</th><th>Position</th><th>Bhāva</th><th>Nakṣatra</th><th>Dignity</th></tr></thead><tbody>${grahaRows}</tbody></table></div>
+    <p class="small muted" data-asta-note hidden>☀ asta = combust (too near the Sun to be seen). The classical arcs differ between texts; the flagged distances are the working set, contested where the editions disagree.</p>
+
+    <h3 class="small" style="margin:.7rem 0 .2rem">Compound friendship — pañcadhā maitrī <span class="muted small">(natural + temporary, BPHS 3.58–60)</span></h3>
+    <div class="v-fig-relmatrix"></div>
+
+    <h3 class="small" style="margin:.7rem 0 .2rem">Graha dṛṣṭi — aspects <span class="muted small">(BPHS Ch. 26; the graded virūpa scheme)</span></h3>
+    <div class="v-fig-drishti"></div>
 
     <h3 class="small" style="margin:.7rem 0 .2rem">Pañcāṅga</h3>
     <p class="small">Tithi <b>${esc(v.panchanga.tithi.name)}</b> (${esc(v.panchanga.tithi.paksha)}) · Vāra <b>${esc(v.panchanga.vara.name)}</b> (${esc(v.panchanga.vara.lord)}) ·
@@ -112,6 +119,12 @@ export function renderVedicPanel(body, chart, opts = {}) {
   // as the accessible/print text form). If the B2 viz kit is absent, the tables
   // simply remain. Never let a figure failure blank the reading.
   try { mountVedicFigures(body, v, opts); } catch { /* non-fatal — tables are the covenant's text form */ }
+
+  // The R28 relation panels consume V1's surfaced vedic.js exports
+  // (compoundRelations / grahaDrishti / combustion). They are dynamically
+  // imported + guarded: if V1's surfacing refactor is not present the panels
+  // simply stay empty and the tables above remain the reading's text form.
+  try { mountVedicRelations(body, v, chart); } catch { /* non-fatal */ }
 }
 
 // Aries…Pisces short labels for the compact navamsa line.
@@ -348,4 +361,177 @@ export function attachVedicPanel(opts = {}) {
   if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(panel.card, anchor);
   else if (main) main.appendChild(panel.card);
   return panel.update;
+}
+
+// ===========================================================================
+//  R28 relation panels — friendship matrix + graha-dṛṣṭi grid + combustion
+//  flags. These consume V1's SURFACED vedic.js exports (compoundRelations,
+//  grahaDrishti, combustion). Because those return shapes are not fully frozen
+//  in the V1↔V2 contract, every consumer here NORMALISES defensively and the
+//  whole block degrades to nothing when the exports are absent.
+// ===========================================================================
+const num = x => (x == null || x === '' || isNaN(Number(x))) ? null : +Number(x).toFixed(2);
+
+// Call `fn` with each candidate argument in turn; the first call that returns a
+// non-empty object wins. Covers the plausible V1 signatures — fn(vedicResult),
+// fn(westernChart), fn(grahas) — without depending on which one V1 shipped.
+function tryCall(fn, candidates) {
+  if (typeof fn !== 'function') return null;
+  for (const a of candidates) {
+    if (a == null) continue;
+    try { const r = fn(a); if (r && typeof r === 'object' && Object.keys(r).length) return r; } catch { /* try next */ }
+  }
+  return null;
+}
+
+// A relation/aspect grid may arrive as a flat {a:{b:cell}} map OR as V1's
+// surfaced wrapper { grahas:[...], matrix|grid:{a:{b:cell}}, cite, note }.
+// unwrapGrid returns { grahas, cells } from either shape. Pure.
+function unwrapGrid(raw) {
+  if (!raw || typeof raw !== 'object') return null;
+  const cells = (raw.matrix && typeof raw.matrix === 'object') ? raw.matrix
+    : (raw.grid && typeof raw.grid === 'object') ? raw.grid : raw;
+  let grahas = Array.isArray(raw.grahas) ? raw.grahas.slice()
+    : Object.keys(cells).filter(g => cells[g] && typeof cells[g] === 'object');
+  grahas = grahas.filter(g => cells[g] && typeof cells[g] === 'object');
+  if (!grahas.length) return null;
+  return { grahas, cells };
+}
+
+// combustion(...) → { graha: { combust, arc, cite, contested } }. Accepts V1's
+// { perGraha:{p:{is,sep,arc,...}}, contested, cite }, a boolean/object map, or
+// an array of per-graha records.
+export function normalizeCombustion(raw) {
+  const out = {};
+  if (!raw || typeof raw !== 'object') return out;
+  const topCite = raw.cite || raw.citation || null;
+  const topContested = !!raw.contested;
+  const map = (raw.perGraha && typeof raw.perGraha === 'object') ? raw.perGraha : raw;
+  const put = (g, val) => {
+    if (g == null || val == null) return;
+    if (typeof val === 'boolean') { out[g] = { combust: val, arc: null, cite: topCite, contested: topContested }; return; }
+    if (typeof val === 'object' && !Array.isArray(val)) {
+      const combust = !!(val.is ?? val.combust ?? val.asta ?? val.burnt ?? val.combustion);
+      out[g] = {
+        combust,
+        arc: num(val.arc ?? val.deg ?? val.orb ?? val.distance ?? val.sep),
+        cite: val.cite || val.source || val.citation || topCite,
+        contested: (val.contested != null ? !!val.contested : topContested),
+      };
+    }
+  };
+  if (Array.isArray(map)) { for (const e of map) if (e && e.graha) put(e.graha, e); }
+  else for (const [g, val] of Object.entries(map)) put(g, val);
+  return out;
+}
+
+// compoundRelations(...) → a heatTable model over the shared grahas. The cell
+// value is the pañcadhā-maitrī virūpa (V1's `tierVirupa`); the diagonal is
+// left blank ('·').
+export function relationHeatModel(raw) {
+  const g = unwrapGrid(raw);
+  if (!g) return null;
+  const { grahas, cells } = g;
+  const virupaOf = cell => {
+    if (cell == null) return null;
+    if (typeof cell === 'number') return cell;
+    if (typeof cell === 'object') return num(cell.tierVirupa ?? cell.virupa ?? cell.value ?? cell.v ?? cell.score);
+    return null;
+  };
+  const cols = grahas.map(x => ({ id: 'rel-' + x, label: GL[x] || x.slice(0, 3) }));
+  const rows = grahas.map(a => ({
+    id: 'rel-' + a, label: (GL[a] || '') + ' ' + a,
+    cells: grahas.map(b => {
+      if (a === b) return { v: '·', el: `rel-${a}-${b}` };
+      const val = virupaOf(cells[a] && cells[a][b]);
+      return { v: val == null ? '·' : val, el: `rel-${a}-${b}` };
+    }),
+  }));
+  return {
+    cols, rows, scale: { min: 0, max: 22.5, steps: 4 },
+    caption: 'Pañcadhā-maitrī (compound friendship) in virūpas — higher is friendlier (great-friend 22.5 … great-enemy 1.875); a graha with itself is left blank. BPHS 3.55–60. A classical relation model, describing nothing about anyone.',
+  };
+}
+
+// grahaDrishti(...) → { grahas, matrix:{a:{b:{virupa,full}|null}} }. Reads V1's
+// `sphuta` virūpa + `full` flag; falls back to a plain number cell. Pure.
+export function drishtiModel(raw) {
+  const g = unwrapGrid(raw);
+  if (!g) return null;
+  const { grahas, cells } = g;
+  const matrix = {};
+  for (const a of grahas) {
+    matrix[a] = {};
+    for (const b of grahas) {
+      if (a === b) { matrix[a][b] = null; continue; }
+      const cell = cells[a] && cells[a][b];
+      let virupa = null, full = false;
+      if (typeof cell === 'number') { virupa = cell; full = cell >= 60; }
+      else if (cell && typeof cell === 'object') {
+        virupa = num(cell.sphuta ?? cell.virupa ?? cell.value ?? cell.v ?? cell.score);
+        full = !!(cell.full ?? cell.special ?? (virupa != null && virupa >= 60));
+      }
+      matrix[a][b] = virupa == null ? null : { virupa, full };
+    }
+  }
+  return { grahas, matrix };
+}
+
+function drishtiGridHtml(raw) {
+  const m = drishtiModel(raw);
+  if (!m) return '';
+  const head = `<tr><th class="l" scope="col">from ↓ / to →</th>${m.grahas.map(b => `<th scope="col">${GL[b] || esc(b.slice(0, 2))}</th>`).join('')}</tr>`;
+  const rows = m.grahas.map(a => `<tr><th class="l" scope="row">${GL[a] || ''} ${esc(a.slice(0, 3))}</th>${m.grahas.map(b => {
+    if (a === b) return '<td class="vt-self">·</td>';
+    const c = m.matrix[a][b];
+    if (!c) return '<td class="muted">·</td>';
+    return `<td class="${c.full ? 'is-full' : ''}" title="${esc(a)} aspects ${esc(b)} — ${c.virupa} virūpa${c.full ? ' (full/special aspect)' : ''}">${c.virupa}</td>`;
+  }).join('')}</tr>`).join('');
+  return `<div class="table-scroll"><table class="data vt-drishti"><thead>${head}</thead><tbody>${rows}</tbody></table></div>
+    <p class="small muted">Graha-dṛṣṭi in virūpas (BPHS Ch. 26 graded scheme): every graha casts the 7th-house full aspect (60 virūpas); Mars additionally aspects the 4th/8th, Jupiter the 5th/9th, Saturn the 3rd/10th — a full/special aspect is boxed. The whole-sign (popular) vs graded (sphuṭa) presentation is itself contested; this shows the graded virūpas.</p>`;
+}
+
+async function mountVedicRelations(body, v, chart) {
+  const vmod = await import('../core/vedic.js').catch(() => null);
+  if (!vmod) return;
+  const cands = [v, chart, v && v.grahas];
+
+  // -- combustion (asta) flags on the graha table ----------------------------
+  try {
+    const comb = normalizeCombustion(tryCall(vmod.combustion, cands));
+    let any = false;
+    for (const [p, info] of Object.entries(comb)) {
+      if (info && info.combust) {
+        any = true;
+        const span = body.querySelector(`.vt-asta[data-asta="${p}"]`);
+        if (span) {
+          span.hidden = false;
+          span.textContent = '☀ asta' + (info.arc != null ? ` (${info.arc}°)` : '');
+          if (info.cite) span.title = info.cite + (info.contested ? ' — arc contested' : '');
+        }
+      }
+    }
+    if (any) { const note = body.querySelector('[data-asta-note]'); if (note) note.hidden = false; }
+  } catch { /* non-fatal */ }
+
+  // -- friendship matrix via the shared heatTable ----------------------------
+  const relHost = body.querySelector('.v-fig-relmatrix');
+  if (relHost) {
+    try {
+      const model = relationHeatModel(tryCall(vmod.compoundRelations, cands));
+      if (model) {
+        const htMod = await import('../core/viz/heat-table.js').catch(() => null);
+        if (htMod && htMod.heatTable) relHost.innerHTML = `<div class="vt-relmatrix">${htMod.heatTable(model).html}</div>`;
+      }
+    } catch { /* non-fatal */ }
+  }
+
+  // -- graha-dṛṣṭi grid ------------------------------------------------------
+  const drHost = body.querySelector('.v-fig-drishti');
+  if (drHost) {
+    try {
+      const html = drishtiGridHtml(tryCall(vmod.grahaDrishti, cands));
+      if (html) drHost.innerHTML = html;
+    } catch { /* non-fatal */ }
+  }
 }

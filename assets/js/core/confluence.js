@@ -115,7 +115,15 @@ const MARK = 14;      // node mark w/h (px)
 const MIN_GAP = 22;   // min vertical centre-to-centre gap for same sub-track
 const SUB_D_FRAC = 0.28; // sub-track offset as a fraction of lane width
 const CLUSTER_SPAN = 28;  // px window that collapses into a "+N" pill (atlas §7.1)
-const LABEL_QUIET_GAP = 14; // px y-distance below which a painted label is quieted
+// ---- painted-label geometry (atlas label-side flip + same-lane de-conflict) --
+// The box convention is shared with the engine test: a label is chars*LABEL_CW
+// wide (capped to the lane) × LABEL_H tall, anchored LABEL_INSET px from the mark
+// centre on whichever side it takes (mirrors the CSS: .cfl-label sits 26px from
+// the 24px node's left → 14px from the mark centre, clamped to --cfl-lane-w−30).
+const LABEL_H = 24;      // label box height (px) — two wrapped lines at .66rem/1.15 (measured)
+const LABEL_CW = 6.2;    // per-character width estimate (px)
+const LABEL_INSET = 14;  // near-edge offset of the label box from the mark centre
+const LABEL_EDGE_PAD = 2; // slack before a box is judged to overrun a frame edge
 
 export const entryBySlug = slug => ENTRY_BY_SLUG.get(slug) || null;
 
@@ -207,7 +215,7 @@ export function layoutConfluence(opts = {}) {
     // cubic point at t=0.5
     const midX = 0.125 * x1 + 0.375 * c1x + 0.375 * c2x + 0.125 * x2;
     const midY = 0.125 * y1 + 0.375 * c1y + 0.375 * c2y + 0.125 * y2;
-    edges.push({ from: g.from, to: g.to, kind: g.kind, x1, y1, x2, y2, c1x, c1y, c2x, c2y, midX, midY });
+    edges.push({ from: g.from, to: g.to, kind: g.kind, label: g.label || 'documented', x1, y1, x2, y2, c1x, c1y, c2x, c2y, midX, midY });
   }
 
   // ---- semantic-zoom clustering (atlas §7.1) --------------------------------
@@ -219,6 +227,25 @@ export function layoutConfluence(opts = {}) {
   const labelQuiet = new Set();
   const byLane = new Map();
   for (const n of nodes) { if (!byLane.has(n.laneId)) byLane.set(n.laneId, []); byLane.get(n.laneId).push(n); }
+
+  // ---- painted-label placement: side flip (DEFECT 2) + de-conflict (DEFECT 3)
+  // For a mark at world-x `x` carrying a label estimated `w` wide:
+  //   • a RIGHT label spans [x+LABEL_INSET , x+LABEL_INSET+w]  → overruns the
+  //     frame when its right edge passes `width`;
+  //   • a LEFT  label spans [x−LABEL_INSET−w , x−LABEL_INSET]  → overruns the
+  //     ruler gutter when its left edge passes RULER_W.
+  const labelW = slug => { const e = ENTRY_BY_SLUG.get(slug); const chars = e ? e.title.length : 8;
+    return Math.min(chars * LABEL_CW, Math.max(20, laneW - 30)); };
+  const spillsRight = (x, w) => x + LABEL_INSET + w > width - LABEL_EDGE_PAD;
+  const spillsLeft = (x, w) => x - LABEL_INSET - w < RULER_W + LABEL_EDGE_PAD;
+  // the label box for a mark at (x,y) on `side`, nudged down by `dy`
+  const boxFor = (x, y, side, dy, w) => ({
+    xL: side === 'left' ? x - LABEL_INSET - w : x + LABEL_INSET,
+    xR: side === 'left' ? x - LABEL_INSET : x + LABEL_INSET + w,
+    yT: y + dy - LABEL_H / 2, yB: y + dy + LABEL_H / 2,
+  });
+  const boxHit = (a, b) => (Math.min(a.xR, b.xR) - Math.max(a.xL, b.xL) > 0) && (Math.min(a.yB, b.yB) - Math.max(a.yT, b.yT) > 0);
+
   for (const lane of lanes) {
     const arr = (byLane.get(lane.id) || []).slice().sort((a, b) => a.y - b.y || a.x - b.x);
     let i = 0;
@@ -240,10 +267,42 @@ export function layoutConfluence(opts = {}) {
       }
       i = j;
     }
-    // label anti-collision for the painted (non-clustered) survivors
+    // painted (non-clustered) survivors, top-to-bottom, get a deterministic
+    // label side + optional downward nudge, else are quieted (mark+hover only).
     const painted = arr.filter(n => !n.clusterOf);
-    for (let k = 1; k < painted.length; k++) {
-      if (painted[k].y - painted[k - 1].y < LABEL_QUIET_GAP) labelQuiet.add(painted[k].slug);
+    const kept = [];   // boxes actually painted in this lane, tested geometrically
+    // minimum downward nudge that clears every already-kept box a candidate hits
+    const clearDy = (x, y, side, w) => {
+      const base = boxFor(x, y, side, 0, w);
+      let bottom = base.yT;
+      for (const b of kept) { if ((Math.min(b.xR, base.xR) - Math.max(b.xL, base.xL) > 0) && b.yB > bottom) bottom = b.yB; }
+      return Math.ceil(Math.max(0, bottom - base.yT));
+    };
+    for (let k = 0; k < painted.length; k++) {
+      const n = painted[k];
+      const w = labelW(n.slug);
+      const canRight = !spillsRight(n.x, w), canLeft = !spillsLeft(n.x, w);
+      const nextY = k + 1 < painted.length ? painted[k + 1].y : Infinity;
+      const maxDy = nextY - LABEL_H - n.y;    // stay clear of the next mark's own label row
+      // ordered candidates: DEFECT 2 keeps RIGHT the default; LEFT is the flip /
+      // alternate; a bounded downward nudge (DEFECT 3b) is the last resort before
+      // quieting. A candidate that overruns its frame edge is dropped up front.
+      const cands = [];
+      if (canRight) cands.push(['right', 0]);
+      if (canLeft) cands.push(['left', 0]);
+      if (canRight) { const dy = clearDy(n.x, n.y, 'right', w); if (dy > 0 && dy <= maxDy) cands.push(['right', dy]); }
+      if (canLeft) { const dy = clearDy(n.x, n.y, 'left', w); if (dy > 0 && dy <= maxDy) cands.push(['left', dy]); }
+      let placed = null;
+      for (const [side, dy] of cands) {
+        const box = boxFor(n.x, n.y, side, dy, w);
+        if (!kept.some(b => boxHit(b, box))) { placed = { side, dy, box }; break; }
+      }
+      if (placed) {
+        n.labelSide = placed.side; n.labelDy = placed.dy; kept.push(placed.box);
+      } else {
+        // (c) nowhere clear → quiet the later label (mark + hover only survive)
+        n.labelSide = canRight ? 'right' : 'left'; n.labelDy = 0; labelQuiet.add(n.slug);
+      }
     }
   }
 

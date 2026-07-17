@@ -1,0 +1,254 @@
+/* ============================================================================
+ *  vedic-tools.css — page-scoped styles for the two R28 Vedic tool pages
+ *  (the yoga detector + the bhāva-delineation browser) and the three new
+ *  vedic-panel sub-panels (friendship matrix, graha-dṛṣṭi grid, combustion
+ *  flags). DS2/DS3 tokens ONLY — no raw colours; style.css stays untouched.
+ *
+ *  Reduced-motion-first: nothing here animates. All state changes (selection,
+ *  filter hide) are instant, class-driven, and colour-blind-redundant (every
+ *  cue carries a glyph or text label, never colour alone).
+ * ========================================================================== */
+
+/* ── shared: a self-contained screen-reader-only helper ─────────────────── */
+.vt-sr {
+  position: absolute;
+  clip-path: inset(50%);
+  width: 1px; height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ── shared: filter bar ─────────────────────────────────────────────────── */
+.vt-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  align-items: flex-end;
+  margin: var(--sp-3) 0;
+}
+.vt-filters .field { margin: 0; }
+.vt-filter-note { flex: 1 1 100%; margin: 0; }
+
+/* ── shared: honest standing frame under the first result block ─────────── */
+.vt-standing { margin: var(--sp-3) 0; }
+
+/* ========================================================================== *
+ *  YOGA DETECTOR — records grouped by family
+ * ========================================================================== */
+.vt-family {
+  margin: var(--sp-5) 0 var(--sp-3);
+}
+.vt-family-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--sp-1);
+}
+.vt-family-head h3 { margin: 0; }
+.vt-family-desc { margin: 0; }
+
+.vt-yoga {
+  border: 1px solid var(--border);
+  border-radius: var(--rad-2);
+  background: var(--surface-card);
+  padding: var(--sp-3) var(--sp-4);
+  margin: var(--sp-3) 0;
+}
+.vt-yoga.is-hidden { display: none; }
+.vt-yoga-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.vt-yoga-head h4 { margin: 0; font-size: var(--fs-1); }
+.vt-yoga-iast { color: var(--text-muted); font-style: italic; }
+.vt-yoga-spacer { flex: 1 1 auto; }
+
+/* status badges — glyph-redundant, so colour is never the only channel */
+.vt-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .25em;
+  border-radius: var(--rad-pill);
+  padding: .1em .6em;
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.vt-status--met        { background: var(--ok-wash);  color: var(--ok-ink);  border: 1px solid var(--ok); }
+.vt-status--not-met    { background: var(--surface-inset); color: var(--text-muted); border: 1px solid var(--border); }
+.vt-status--conditional{ background: var(--warn-wash, var(--accent-wash)); color: var(--warn-ink, var(--accent-strong)); border: 1px solid var(--accent); }
+
+/* the condition rows: ✓ / ✗ + detail */
+.vt-conditions { list-style: none; margin: var(--sp-2) 0; padding: 0; }
+.vt-cond {
+  display: flex;
+  gap: var(--sp-2);
+  padding: var(--sp-1) 0;
+  border-top: 1px dotted var(--border);
+}
+.vt-cond-mark { flex: 0 0 1.4em; font-weight: 700; text-align: center; }
+.vt-cond--met .vt-cond-mark     { color: var(--ok-ink); }
+.vt-cond--unmet .vt-cond-mark   { color: var(--text-muted); }
+.vt-cond-detail { flex: 1 1 auto; }
+
+.vt-fruit { margin: var(--sp-2) 0; }
+.vt-yoga-sources { color: var(--text-muted); }
+
+.vt-taught {
+  display: inline-block;
+  font-size: var(--fs-badge);
+  border: 1px solid var(--accent);
+  color: var(--accent-strong);
+  border-radius: var(--rad-pill);
+  padding: .05em .5em;
+}
+
+/* the ⚑ CONTESTED panel — positions verbatim, both/all sides shown */
+.vt-contested {
+  border: 1px solid var(--ep-disp, var(--accent));
+  background: var(--ep-disp-wash, var(--accent-wash));
+  border-radius: var(--rad-2);
+  padding: var(--sp-2) var(--sp-3);
+  margin: var(--sp-2) 0 0;
+}
+.vt-contested > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ep-disp-ink, var(--accent-strong));
+}
+.vt-contested-topic { margin: var(--sp-1) 0; }
+.vt-positions { margin: var(--sp-1) 0 0; padding-left: 1.2em; }
+.vt-positions li { margin: var(--sp-1) 0; }
+
+/* sensitive-note: tradition-not-advice callout */
+.vt-sensitive {
+  border-left: 3px solid var(--bad);
+  background: var(--bad-wash);
+  color: var(--bad-ink);
+  border-radius: var(--rad-1);
+  padding: var(--sp-2) var(--sp-3);
+  margin: var(--sp-2) 0 0;
+}
+
+/* ========================================================================== *
+ *  DELINEATION BROWSER — 12×9 keyboard-rovable picker + two witness columns
+ * ========================================================================== */
+.vt-delin-layout {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 60rem) {
+  .vt-delin-layout { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+}
+
+.vt-grid-wrap { overflow-x: auto; }
+table.vt-grid { border-collapse: collapse; }
+table.vt-grid th, table.vt-grid td {
+  border: 1px solid var(--border);
+  text-align: center;
+  padding: 0;
+}
+table.vt-grid thead th, table.vt-grid tbody th {
+  background: var(--surface-inset);
+  color: var(--text-soft);
+  font-size: var(--fs--1);
+  padding: .25em .45em;
+  white-space: nowrap;
+}
+.vt-cell {
+  width: 2.2em;
+  height: 2.2em;
+  cursor: pointer;
+  background: var(--surface-card);
+  color: var(--text-soft);
+  font-size: var(--fs--1);
+  line-height: 2.2em;
+  user-select: none;
+}
+.vt-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.vt-cell.is-selected {
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+  box-shadow: inset 0 0 0 2px var(--accent);
+  font-weight: 700;
+}
+/* a chart placement — glyph-redundant dot + ring, not colour alone */
+.vt-cell.is-placed { background: var(--ok-wash); color: var(--ok-ink); font-weight: 700; }
+.vt-cell.is-placed::after { content: "•"; }
+.vt-cell.is-placed.is-selected { box-shadow: inset 0 0 0 2px var(--accent); }
+.vt-cell.is-absent { color: var(--text-faint); } /* Rahu/Ketu single-witness rows still selectable */
+
+/* the record — two witnesses side by side, NEVER merged */
+.vt-record { min-width: 0; }
+.vt-record-head { display: flex; align-items: baseline; gap: var(--sp-2); flex-wrap: wrap; }
+.vt-record-head h3 { margin: 0; }
+
+.vt-witnesses {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: minmax(0, 1fr);
+  margin: var(--sp-3) 0;
+}
+@media (min-width: 40rem) {
+  .vt-witnesses { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+.vt-witness {
+  border: 1px solid var(--border);
+  border-radius: var(--rad-2);
+  background: var(--surface-card);
+  padding: var(--sp-3);
+}
+.vt-witness h4 { margin: 0 0 var(--sp-1); }
+.vt-witness-locus { color: var(--text-muted); font-size: var(--fs--1); }
+.vt-witness-absent { color: var(--text-muted); font-style: italic; }
+
+/* agreement badge */
+.vt-agree {
+  display: inline-flex; align-items: center; gap: .25em;
+  border-radius: var(--rad-pill); padding: .1em .6em;
+  font-size: var(--fs-badge); font-weight: 600;
+}
+.vt-agree--agree      { background: var(--ok-wash); color: var(--ok-ink); border: 1px solid var(--ok); }
+.vt-agree--partial    { background: var(--accent-wash); color: var(--accent-strong); border: 1px solid var(--accent); }
+.vt-agree--contradict { background: var(--ep-disp-wash, var(--bad-wash)); color: var(--ep-disp-ink, var(--bad-ink)); border: 1px solid var(--ep-disp, var(--bad)); }
+.vt-agree--single     { background: var(--surface-inset); color: var(--text-muted); border: 1px solid var(--border); }
+
+.vt-contradiction {
+  border-left: 3px solid var(--ep-disp, var(--accent));
+  background: var(--ep-disp-wash, var(--accent-wash));
+  border-radius: var(--rad-1);
+  padding: var(--sp-2) var(--sp-3);
+  margin: var(--sp-2) 0;
+}
+
+/* ========================================================================== *
+ *  VEDIC PANEL add-ons: friendship matrix + graha-dṛṣṭi grid heat cells
+ *  (these ride the shared .heat-table look; only the semantic tint differs)
+ * ========================================================================== */
+.vt-relmatrix td, .vt-drishti td { text-align: center; }
+.vt-rel {
+  display: inline-block; min-width: 2.4em;
+  border-radius: var(--rad-1); font-size: var(--fs--1);
+}
+.vt-rel--greatFriend { background: var(--ok-wash); color: var(--ok-ink); }
+.vt-rel--friend      { background: var(--ok-wash); color: var(--ok-ink); }
+.vt-rel--neutral     { background: var(--surface-inset); color: var(--text-soft); }
+.vt-rel--enemy       { background: var(--bad-wash); color: var(--bad-ink); }
+.vt-rel--greatEnemy  { background: var(--bad-wash); color: var(--bad-ink); }
+.vt-self { color: var(--text-faint); }
+
+/* combustion (asta) flag on the graha table */
+.vt-asta {
+  display: inline-flex; align-items: center; gap: .2em;
+  font-size: var(--fs-badge); font-weight: 600;
+  color: var(--bad-ink);
+}
+.vt-asta[hidden] { display: none; }
+
+/* full/special aspect emphasis in the dṛṣṭi grid */
+.vt-drishti td.is-full { font-weight: 700; box-shadow: inset 0 0 0 2px var(--accent); }

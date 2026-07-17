@@ -125,6 +125,14 @@ function measureWidth() {
   const sc = $('cfl-scroll');
   return Math.max(360, Math.round(sc ? sc.clientWidth : 1280));
 }
+// Publish the sticky toolbar's real height into --cfl-toolbar-h so the ledger's
+// sticky era strip pins just below the header + toolbar chain (it wraps to a
+// different height per width, so a fixed token can't track it). No-JS renders
+// keep the 3.1rem fallback in the CSS.
+function syncToolbarHeight() {
+  const tb = $('cfl-toolbar'), page = document.querySelector('.cfl-page');
+  if (tb && page) page.style.setProperty('--cfl-toolbar-h', tb.offsetHeight + 'px');
+}
 function getLayout() {
   const width = measureWidth();
   const key = `${state.zoom}|${width}`;
@@ -229,12 +237,24 @@ function buildEdges(lo) {
   for (const ed of lo.edges) {
     const d = `M ${ed.x1} ${ed.y1} C ${ed.c1x} ${ed.c1y} ${ed.c2x} ${ed.c2y} ${ed.x2} ${ed.y2}`;
     const marker = MARKER_FOR[ed.kind] || 'chev';
+    const label = ed.label || 'documented';
     const bead = ed.kind === 'synthesis' && ed.midX != null
       ? `<circle class="cfl-edge-bead" cx="${ed.midX}" cy="${ed.midY}" r="3"/>` : '';
-    out += `<g class="cfl-edge" data-from="${esc(ed.from)}" data-to="${esc(ed.to)}" data-kind="${esc(ed.kind)}">`
+    // epistemic texture: the label grades the TRANSMISSION CLAIM (atlas WP-3d).
+    // disputed → a ⚑ affordance at mid-path (edge itself faded via CSS);
+    // debunked/conspiracy → a strike-motif crossbar (faint via CSS), never hidden.
+    let mark = '';
+    if (ed.midX != null) {
+      if (label === 'disputed') {
+        mark = `<text class="cfl-edge-flag" x="${ed.midX.toFixed(1)}" y="${(ed.midY + 4).toFixed(1)}" text-anchor="middle" aria-hidden="true">⚑</text>`;
+      } else if (label === 'debunked' || label === 'conspiracy') {
+        mark = `<line class="cfl-edge-strike" x1="${(ed.midX - 8).toFixed(1)}" y1="${ed.midY.toFixed(1)}" x2="${(ed.midX + 8).toFixed(1)}" y2="${ed.midY.toFixed(1)}"/>`;
+      }
+    }
+    out += `<g class="cfl-edge" data-from="${esc(ed.from)}" data-to="${esc(ed.to)}" data-kind="${esc(ed.kind)}" data-label="${esc(label)}">`
       + `<path class="cfl-edge-hit" d="${d}"/>`
       + `<path class="cfl-edge-line" pathLength="1" d="${d}" marker-end="url(#cfl-m-${marker})"/>`
-      + bead + `</g>`;
+      + bead + mark + `</g>`;
   }
   return out;
 }
@@ -260,8 +280,13 @@ function buildOver(lo) {
   for (const n of lo.nodes) {
     if (n.clusterOf) continue;
     const e = getEntry(n.slug); if (!e) continue;
+    // label side + downward nudge are decided by the pure layout (DEFECT 2/3):
+    // labelSide 'left' flips the label off the frame edge; labelDy de-conflicts
+    // stacked same-lane labels. Fall back to the old sub-track heuristic only if
+    // an older layout without these fields is ever handed in.
     const L = laneMap.get(n.laneId);
-    const flip = L && n.x > L.cx + 4;
+    const flip = n.labelSide ? n.labelSide === 'left' : (L && n.x > L.cx + 4);
+    const labelStyle = n.labelDy ? ` style="top:calc(50% + ${n.labelDy}px)"` : '';
     const eraI = bandIndexForPx(n.y);
     const contested = !!e.contested;
     const flag = contested ? ` <span class="cfl-flag" title="${esc(disputeNote(e))}">⚑</span>` : '';
@@ -271,7 +296,7 @@ function buildOver(lo) {
       + ` style="left:${n.x - 12}px;top:${n.y - 12}px;--era-i:${eraI}"`
       + ` aria-label="${esc(nodeAria(e))}">`
       + `<span class="cfl-mark" aria-hidden="true">${markSvg(e.kind)}</span>`
-      + `<span class="cfl-label">${esc(e.title)}${flag}</span></button>`;
+      + `<span class="cfl-label"${labelStyle}>${esc(e.title)}${flag}</span></button>`;
   }
   // cluster pills (a "+N" per collapsed run; opens a list of its members)
   for (const c of (lo.clusters || [])) {
@@ -524,10 +549,14 @@ function edgeTip(g) {
   const ed = edgeObj(g);
   const a = getEntry(g.dataset.from), b = getEntry(g.dataset.to);
   const kind = g.dataset.kind === 'refutation' ? 'argued against' : g.dataset.kind;
+  const label = (ed && ed.label) || g.dataset.label || 'documented';
+  const cite = ed && ed.bestCitation ? `<div class="cfl-card-cite"><b>Cited.</b> ${esc(ed.bestCitation)}</div>` : '';
   return pinBtn()
     + `<div class="cfl-card-title">${esc(a ? a.title : g.dataset.from)} <span class="cfl-card-kind">—${esc(kind)}→</span> ${esc(b ? b.title : g.dataset.to)}</div>`
-    + `<div class="cfl-card-label"></div>`
-    + (ed && ed.body ? `<p class="cfl-card-excerpt">${esc(excerpt(ed.body, 140))}</p>` : '');
+    + `<div class="cfl-card-label"><span class="badge badge--${LABEL_CSS[label]}">${esc(label)}</span>`
+    + `<span class="cfl-card-labelnote">the transmission claim</span></div>`
+    + (ed && ed.body ? `<p class="cfl-card-excerpt">${esc(excerpt(ed.body, 140))}</p>` : '')
+    + cite;
 }
 function clusterTip(c) {
   const lane = (LANE_META.get(c.laneId) || {}).name || c.laneId;
@@ -589,9 +618,12 @@ function journeyLine(ed, slug) {
   const out = ed.from === slug;
   const partner = getEntry(out ? ed.to : ed.from);
   const arrow = out ? '→' : '←';
-  return `<li><span class="cfl-jkind">${arrow} ${esc(ed.kind)} ${arrow}</span>
+  const label = ed.label || 'documented';
+  const badge = `<span class="badge badge--${LABEL_CSS[label]} cfl-jbadge" title="the transmission claim is ${esc(label)}">${esc(label)}</span>`;
+  const cite = ed.bestCitation ? `<div class="cfl-jcite">${esc(ed.bestCitation)}</div>` : '';
+  return `<li><span class="cfl-jkind">${arrow} ${esc(ed.kind)} ${arrow}</span> ${badge}
     <a href="#${esc(out ? ed.to : ed.from)}" class="cfl-jlink" data-slug="${esc(out ? ed.to : ed.from)}">${esc(partner ? partner.title : (out ? ed.to : ed.from))}</a>
-    ${ed.body ? `<div class="small muted">${esc(ed.body)}</div>` : ''}</li>`;
+    ${ed.body ? `<div class="small muted">${esc(ed.body)}</div>` : ''}${cite}</li>`;
 }
 function contestedPanel(c) {
   const pos = (c.positions || []).map(p =>
@@ -1227,6 +1259,7 @@ export function initConfluence() {
   wireToolbar();
   renderAtlas();
   populateEraJump();
+  syncToolbarHeight();
 
   // the physics / navigation state machine (imports app/motion.js). The nav
   // owns pan, the zoom bridge and flyTo; the app hands it the elements + a small
@@ -1268,6 +1301,7 @@ export function initConfluence() {
         const year = nav ? nav.centerYear() : null;
         if (Math.abs(w - lastW) > 2) { lastW = w; renderAtlas(); if (nav) { nav.resync(); if (year != null) nav.flyTo({ year }, { source: 'coldload' }); } }
         renderMinimap();
+        syncToolbarHeight();
       }, 150);
     });
   }
