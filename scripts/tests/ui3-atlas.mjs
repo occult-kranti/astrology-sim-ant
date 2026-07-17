@@ -233,7 +233,7 @@ export async function run() {
     const CFL_LANE_IDS = ['christian', 'alchemy-west', 'kabbalah', 'islamic', 'confluence', 'yoga-vedanta', 'tantra-rasa', 'buddhist', 'daoist'];
     const KINDS = new Set(['text', 'person', 'event', 'translation', 'institution']);
     const LABELS = new Set(['documented', 'disputed', 'debunked', 'conspiracy']);
-    ok(CONFLUENCE_ENTRIES.length === 188, 'confluence(18): 188 entries');
+    ok(CONFLUENCE_ENTRIES.length === 190, 'confluence(18): 190 entries');
     ok(CONFLUENCE_LANES.length === 9 && CONFLUENCE_LANES.every((l, i) => l.id === CFL_LANE_IDS[i]), 'confluence(18): 9 lanes in fixed order');
     const slugs = new Set(CONFLUENCE_ENTRIES.map(e => e.slug));
     ok(slugs.size === CONFLUENCE_ENTRIES.length, 'confluence(18): slugs unique');
@@ -254,10 +254,10 @@ export async function run() {
     let overlap = false; const rows = {};
     for (const n of l1.nodes) { const k = n.laneId + '|' + n.row; (rows[k] || (rows[k] = [])).forEach(y => { if (Math.abs(y - n.y) < n.h) overlap = true; }); rows[k].push(n.y); }
     ok(!overlap, 'confluence(18): no same-lane same-row y overlap');
-    ok(l1.nodes.length === CONFLUENCE_ENTRIES.length && l1.edges.length === CONFLUENCE_EDGES.length, 'confluence(18): places every node + edge (188 nodes kept incl. absorbed)');
+    ok(l1.nodes.length === CONFLUENCE_ENTRIES.length && l1.edges.length === CONFLUENCE_EDGES.length, 'confluence(18): places every node + edge (190 nodes kept incl. absorbed)');
     const cross = filterEntries({ crossingsOnly: true });
     ok(cross.length > 0 && cross.every(s => slugs.has(s)), 'confluence(18): crossingsOnly subset');
-    ok(filterEntries({}).length === 188, 'confluence(18): filterEntries({}) = 188');
+    ok(filterEntries({}).length === 190, 'confluence(18): filterEntries({}) = 190');
     ok(threadFrom('sirr-i-akbar').stops.some(s => s.slug === 'oupnekhat'), 'confluence(18): threadFrom reaches oupnekhat');
     ok(entryBySlug('picatrix') && entryBySlug('nope') === null, 'confluence(18): entryBySlug hydrates/null');
     const stx = confluenceStats();

@@ -1683,7 +1683,7 @@ import { timeScale as cfTimeScale, layoutConfluence as cfLayout, filterEntries a
   const CFL_KINDS = new Set(['text', 'person', 'event', 'translation', 'institution']);
   const CFL_LABELS = new Set(['documented', 'disputed', 'debunked', 'conspiracy']);
 
-  ok(cfEntries.length === 188, `Confluence: 188 entries (got ${cfEntries.length})`);
+  ok(cfEntries.length === 190, `Confluence: 190 entries (got ${cfEntries.length})`);
   ok(cfLanes.length === 9 && cfLanes.every((l, i) => l.id === CFL_LANE_IDS[i]), 'Confluence: 9 lanes in the exact fixed order/ids');
   const cfSlugs = new Set(cfEntries.map(e => e.slug));
   ok(cfSlugs.size === cfEntries.length, 'Confluence: all entry slugs unique');
@@ -1710,7 +1710,7 @@ import { timeScale as cfTimeScale, layoutConfluence as cfLayout, filterEntries a
 
   const cfCross = cfFilter({ crossingsOnly: true });
   ok(cfCross.length > 0 && cfCross.every(s => cfSlugs.has(s)), `Confluence: filterEntries({crossingsOnly}) non-empty subset of all slugs (${cfCross.length})`);
-  ok(cfFilter({}).length === 188, 'Confluence: filterEntries({}) returns all 188 slugs');
+  ok(cfFilter({}).length === 190, 'Confluence: filterEntries({}) returns all 190 slugs');
   const cfThr = cfThread('sirr-i-akbar');
   ok(cfThr.stops.some(s => s.slug === 'oupnekhat'), 'Confluence: threadFrom("sirr-i-akbar") reaches "oupnekhat"');
   ok(cfBySlug('picatrix') && cfBySlug('nope') === null, 'Confluence: entryBySlug hydrates a real slug and returns null otherwise');
@@ -1730,7 +1730,7 @@ import { timeScale as cfTimeScale, layoutConfluence as cfLayout, filterEntries a
 // one poisons another's headless assertions. They are green standalone; run each
 // in an isolated child process (the same environment as their standalone smoke).
 import { execFileSync } from 'node:child_process';
-for (const modName of ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search', 'r29-vedic-course', 'r29-narrate', 'r29-thelemic', 'r30-buddhist-core', 'r30-buddhist-ui', 'r30-compare', 'r31-practices-core', 'r31-practices-ui', 'r31-dhammapada']) {
+for (const modName of ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search', 'r29-vedic-course', 'r29-narrate', 'r29-thelemic', 'r30-buddhist-core', 'r30-buddhist-ui', 'r30-compare', 'r31-practices-core', 'r31-practices-ui', 'r31-dhammapada', 'r32-atlas-east', 'r32-east-core', 'r32-east-ui']) {
   const child = `import('./scripts/tests/${modName}.mjs').then(m=>m.run()).then(r=>{if(!r.pass){console.error(JSON.stringify((r.failures||[]).slice(0,8)));process.exit(1)}process.exit(0)}).catch(e=>{console.error(JSON.stringify([e.message]));process.exit(1)})`;
   let res = { pass: true, failures: [] };
   try { execFileSync(process.execPath, ['--input-type=module', '-e', child], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] }); }

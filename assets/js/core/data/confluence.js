@@ -1,6 +1,7 @@
 // ============================================================================
 //  data/confluence.js  ·  The Great Confluence — cross-tradition atlas data
-//  (R27 "The Great Confluence"; R28 edge epistemic-label pass). PURE DATA. No
+//  (R27 "The Great Confluence"; R28 edge epistemic-label pass; R32 Eastern
+//  Greats append). PURE DATA. No
 //  DOM, no network, no Date, no randomness. Consumed by core/confluence.js
 //  (geometry engine) and painted by app/confluence.js. One source of truth for
 //  the atlas and the mobile ledger.
@@ -38,14 +39,14 @@
 //
 //  SCHEMA.
 //   CONFLUENCE_LANES:  { id, name, glyph, side:'west'|'spine'|'east' }  (9, fixed order)
-//   CONFLUENCE_ENTRIES (188), each:
+//   CONFLUENCE_ENTRIES (190; 188 R27/R28 + 2 R32), each:
 //     { slug, lane, title, titleOriginal|null, dateText, sortYear (BCE negative),
 //       sortYearEnd|null, dateCertainty:'year'|'decade'|'century'|'range'|'contested',
 //       kind:'text'|'person'|'event'|'translation'|'institution', place|null,
 //       body, technique:string|null, label, sources:[...],
 //       contested:null|{flag, positions:[{source,value},...]}, siteLink:null|{href,label} }
 //     Sorted by (sortYear, slug).
-//   CONFLUENCE_EDGES (151), each:
+//   CONFLUENCE_EDGES (155; 151 R27/R28 + 4 R32), each:
 //     { from, to, kind:'translation'|'influence'|'commentary'|'synthesis'
 //       |'refutation'|'adaptation', body, sources:[...],
 //       label:'documented'|'disputed'|'debunked'|'conspiracy',
@@ -62,6 +63,17 @@
 //  (event-pico-1486→pico-conclusions) so no synthetic edge was added.
 //  Assertions passed: no dangling endpoints; entry total 188; 29 of
 //  151 edges cross traditions; all 151 edges label-matched (bijection).
+//
+//  R32 EASTERN GREATS APPEND (hand-appended for the Eastern Greats wing, not via
+//  the regenerator). Two yoga-vedanta modern figures added — person-vivekananda
+//  (1863–1902) and person-yogananda (1893–1952) — plus four documented edges:
+//  person-vivekananda→{event-chicago-1893 (influence), raja-yoga-1896 (influence),
+//  yoga-sutras (commentary)} and person-yogananda→autobiography-of-a-yogi
+//  (influence). All four are `documented`; they carry the R28 edge fields
+//  (label/bestCitation/note) but are NOT in the R28 edge-labels.json bijection
+//  (that bijection remains the original 151). Entry/edge sort order preserved.
+//  Sources reproduced from the R32 verified files (r32data/{vivekananda,
+//  yogananda}.json + verify-eastern-e1.md).
 //
 //  DO NOT hand-edit — regenerate via scratchpad/r28build/gen-data.mjs.
 // ============================================================================
@@ -3896,6 +3908,31 @@ export const CONFLUENCE_ENTRIES = [
     "siteLink": null
   },
   {
+    "slug": "person-vivekananda",
+    "lane": "yoga-vedanta",
+    "title": "Swami Vivekananda",
+    "titleOriginal": null,
+    "dateText": "1863–1902",
+    "sortYear": 1863,
+    "sortYearEnd": 1902,
+    "dateCertainty": "year",
+    "kind": "person",
+    "place": "Calcutta, Bengal / New York",
+    "body": "Bengali monk, born Narendranath Datta and a disciple of Ramakrishna, who at the World's Parliament of Religions in Chicago (September 1893) made Vedanta a public presence in the United States and, in Raja Yoga (1896), recast Patanjali's Yoga Sutras as a rational 'science of the mind' for Western readers. His rendering fixed the template through which Anglophone readers met Patanjali for half a century. Whether that yoga was a faithful transmission or, as De Michelis argues, a modern fusion of Patanjali with Neo-Vedanta and Western esotericism, is debated and left unresolved here.",
+    "technique": null,
+    "label": "documented",
+    "sources": [
+      "Elizabeth De Michelis, A History of Modern Yoga: Patañjali and Western Esotericism (Continuum, 2004)",
+      "Richard Hughes Seager, The World's Parliament of Religions: The East/West Encounter, Chicago 1893 (1995)",
+      "Swami Vivekananda, Raja Yoga (New York, 1896)"
+    ],
+    "contested": null,
+    "siteLink": {
+      "href": "greatworks/vivekananda.html",
+      "label": "Vivekananda in the Great Works wing"
+    }
+  },
+  {
     "slug": "person-woodroffe",
     "lane": "tantra-rasa",
     "title": "Sir John Woodroffe (Arthur Avalon)",
@@ -4148,6 +4185,31 @@ export const CONFLUENCE_ENTRIES = [
     "siteLink": {
       "href": "yoga/index.html",
       "label": "Yoga wing"
+    }
+  },
+  {
+    "slug": "person-yogananda",
+    "lane": "yoga-vedanta",
+    "title": "Paramahansa Yogananda",
+    "titleOriginal": null,
+    "dateText": "1893–1952",
+    "sortYear": 1893,
+    "sortYearEnd": 1952,
+    "dateCertainty": "year",
+    "kind": "person",
+    "place": "Gorakhpur, India / Los Angeles, USA",
+    "body": "Bengali-born teacher (Mukunda Lal Ghosh) of the Yukteswar–Lahiri Mahasaya lineage who came to the United States in 1920, founded the Self-Realization Fellowship, and in December 1946 published Autobiography of a Yogi. He popularized 'Kriya Yoga', a lineage pranayama technique the tradition traces to Babaji and Lahiri Mahasaya — not to be confused with Patanjali's kriya-yoga of Yoga Sutra II.1 (tapas, svadhyaya, isvarapranidhana), a different practice that merely shares the name. The book's miracle narratives are recorded here as its own claims, offered as testimony and never endorsed.",
+    "technique": null,
+    "label": "documented",
+    "sources": [
+      "Paramhansa Yogananda, Autobiography of a Yogi (New York: Philosophical Library, 1946)",
+      "Philip Goldberg, American Veda (2010)",
+      "Self-Realization Fellowship Church v. Ananda Church of Self-Realization, 206 F.3d 1322 (9th Cir. 2000)"
+    ],
+    "contested": null,
+    "siteLink": {
+      "href": "greatworks/yogananda.html",
+      "label": "Yogananda in the Great Works wing"
     }
   },
   {
@@ -6296,6 +6358,45 @@ export const CONFLUENCE_EDGES = [
     "note": "Goenka’s training (1955) and authorization under U Ba Khin are documented by Stuart and the tradition’s own records."
   },
   {
+    "from": "person-vivekananda",
+    "to": "event-chicago-1893",
+    "kind": "influence",
+    "body": "Swami Vivekananda delivered the addresses at the World's Parliament of Religions in Chicago in September 1893 whose reception made Vedanta a public presence in the United States and established the travelling Indian teacher as a durable institution.",
+    "sources": [
+      "Richard Hughes Seager, The World's Parliament of Religions: The East/West Encounter, Chicago 1893 (1995)",
+      "J. H. Barrows (ed.), The World's Parliament of Religions (Chicago, 1893)"
+    ],
+    "label": "documented",
+    "bestCitation": "Richard Hughes Seager, The World's Parliament of Religions: The East/West Encounter, Chicago 1893 (1995)",
+    "note": "Vivekananda's participation in the 1893 Parliament is documented in Barrows's official proceedings and the standard scholarship — a documented historical event."
+  },
+  {
+    "from": "person-vivekananda",
+    "to": "raja-yoga-1896",
+    "kind": "influence",
+    "body": "Raja Yoga (New York, 1896) collects the lectures Vivekananda delivered in 1895–96 together with his free translation of and commentary on Patanjali's sutras; the book is his own composition and recast yoga as a rational 'science of the mind'.",
+    "sources": [
+      "Swami Vivekananda, Raja Yoga (New York, 1896)",
+      "Elizabeth De Michelis, A History of Modern Yoga: Patañjali and Western Esotericism (Continuum, 2004)"
+    ],
+    "label": "documented",
+    "bestCitation": "Swami Vivekananda, Raja Yoga (New York, 1896)",
+    "note": "Authorship is documented: the book is Vivekananda's own 1895–96 New York lectures plus his translation and commentary."
+  },
+  {
+    "from": "person-vivekananda",
+    "to": "yoga-sutras",
+    "kind": "commentary",
+    "body": "Part II of Raja Yoga is Vivekananda's self-described 'rather free translation' of and commentary on Patanjali's Yoga Sutras — the rendering through which most Anglophone readers first met the text, offered as his interpretation, not as the sutra text itself.",
+    "sources": [
+      "Swami Vivekananda, Raja Yoga (New York, 1896), Part II 'Patanjali's Yoga Aphorisms'",
+      "Elizabeth De Michelis, A History of Modern Yoga: Patañjali and Western Esotericism (Continuum, 2004)"
+    ],
+    "label": "documented",
+    "bestCitation": "Swami Vivekananda, Raja Yoga (New York, 1896), Part II 'Patanjali's Yoga Aphorisms'",
+    "note": "A documented act of rendering; Vivekananda calls it a 'rather free translation' with commentary — labelled his interpretation, not the base text. Edge direction runs commentary→base text, the atlas's data quirk."
+  },
+  {
     "from": "person-wang-chongyang",
     "to": "quanzhen",
     "kind": "influence",
@@ -6307,6 +6408,19 @@ export const CONFLUENCE_EDGES = [
     "label": "documented",
     "bestCitation": "Louis Komjathy, Cultivating Perfection, Brill, 2007",
     "note": "Founding of Quanzhen in 1167 and training of the Seven Perfected are documented (Komjathy; Eskildsen)."
+  },
+  {
+    "from": "person-yogananda",
+    "to": "autobiography-of-a-yogi",
+    "kind": "influence",
+    "body": "Yogananda wrote Autobiography of a Yogi (Philosophical Library, New York, 1946), mixing memoir, hagiography and apologetics; its miracle narratives are offered as the author's testimony and are recorded here as the book's claims, never endorsed.",
+    "sources": [
+      "Paramhansa Yogananda, Autobiography of a Yogi (New York: Philosophical Library, 1946)",
+      "Philip Goldberg, American Veda (2010)"
+    ],
+    "label": "documented",
+    "bestCitation": "Paramhansa Yogananda, Autobiography of a Yogi (New York: Philosophical Library, 1946)",
+    "note": "Authorship is documented; the book's supernatural episodes are its own claims, offered as testimony not evidence, and are never endorsed here."
   },
   {
     "from": "philokalia",

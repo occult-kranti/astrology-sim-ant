@@ -4,13 +4,16 @@
 //  DRIVES[]. Wired into scripts/engine-test.mjs by the integrator.
 //  Deterministic, dependency-free, DOM-free.
 //
-//  Covers the R28 WP-3d edge-label pass: all 151 edges labeled; the label enum
+//  Covers the R28 WP-3d edge-label pass: all edges labeled; the label enum
 //  is legal; every edge carries bestCitation + note; the label distribution
-//  (141 documented / 9 disputed / 1 debunked) is exact; the one debunked edge is
+//  (145 documented / 9 disputed / 1 debunked) is exact; the one debunked edge is
 //  corpus-hermeticum→kybalion; the labels bijection with the verified
-//  r28data/edge-labels.json holds; the layout passes each edge's label through;
-//  layout determinism is preserved; and the 18 shipped confluence engine-test
-//  asserts remain green after this round's data regeneration.
+//  r28data/edge-labels.json holds (still 151 rows); the layout passes each edge's
+//  label through; layout determinism is preserved; and the 18 shipped confluence
+//  engine-test asserts remain green after this round's data regeneration.
+//  R32 (Eastern Greats): 4 documented yoga-vedanta edges appended → 155 edges /
+//  190 entries; the R28 edge-labels.json bijection stays the original 151 rows
+//  (the 4 R32 edges label-check dynamically but are outside that json).
 // ============================================================================
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
@@ -28,7 +31,8 @@ export async function run() {
   const ok = (cond, msg) => { if (!cond) failures.push(msg); };
 
   // ---- 1. EVERY EDGE LABELED, ENUM LEGAL -----------------------------------
-  ok(CONFLUENCE_EDGES.length === 151, `labels: 151 edges (${CONFLUENCE_EDGES.length})`);
+  // R32: 151 R27/R28 edges + 4 documented R32 Eastern-Greats edges = 155.
+  ok(CONFLUENCE_EDGES.length === 155, `labels: 155 edges (${CONFLUENCE_EDGES.length})`);
   ok(CONFLUENCE_EDGES.every(g => LABEL_ENUM.has(g.label)), 'labels: every edge label ∈ {documented,disputed,debunked,conspiracy}');
   ok(CONFLUENCE_EDGES.every(g => typeof g.bestCitation === 'string' && g.bestCitation.trim().length > 0),
     'labels: every edge carries a non-empty bestCitation');
@@ -42,7 +46,7 @@ export async function run() {
   // ---- 2. LABEL DISTRIBUTION (exact) ---------------------------------------
   const dist = { documented: 0, disputed: 0, debunked: 0, conspiracy: 0 };
   for (const g of CONFLUENCE_EDGES) dist[g.label]++;
-  ok(dist.documented === 141, `labels: 141 documented (${dist.documented})`);
+  ok(dist.documented === 145, `labels: 145 documented (141 R27/R28 + 4 R32) (${dist.documented})`);
   ok(dist.disputed === 9, `labels: 9 disputed (${dist.disputed})`);
   ok(dist.debunked === 1, `labels: 1 debunked (${dist.debunked})`);
   ok(dist.conspiracy === 0, `labels: 0 conspiracy edges (${dist.conspiracy})`);
@@ -110,7 +114,7 @@ export async function run() {
     const CFL_LANE_IDS = ['christian', 'alchemy-west', 'kabbalah', 'islamic', 'confluence', 'yoga-vedanta', 'tantra-rasa', 'buddhist', 'daoist'];
     const KINDS_E = new Set(['text', 'person', 'event', 'translation', 'institution']);
     const LABELS = new Set(['documented', 'disputed', 'debunked', 'conspiracy']);
-    ok(CONFLUENCE_ENTRIES.length === 188, 'confluence(18): 188 entries');
+    ok(CONFLUENCE_ENTRIES.length === 190, 'confluence(18): 190 entries');
     ok(CONFLUENCE_LANES.length === 9 && CONFLUENCE_LANES.every((l, i) => l.id === CFL_LANE_IDS[i]), 'confluence(18): 9 lanes in fixed order');
     const slugs = new Set(CONFLUENCE_ENTRIES.map(e => e.slug));
     ok(slugs.size === CONFLUENCE_ENTRIES.length, 'confluence(18): slugs unique');
@@ -134,7 +138,7 @@ export async function run() {
     ok(l1.nodes.length === CONFLUENCE_ENTRIES.length && l1.edges.length === CONFLUENCE_EDGES.length, 'confluence(18): places every node + edge');
     const cross = filterEntries({ crossingsOnly: true });
     ok(cross.length > 0 && cross.every(s => slugs.has(s)), 'confluence(18): crossingsOnly subset');
-    ok(filterEntries({}).length === 188, 'confluence(18): filterEntries({}) = 188');
+    ok(filterEntries({}).length === 190, 'confluence(18): filterEntries({}) = 190');
     ok(threadFrom('sirr-i-akbar').stops.some(s => s.slug === 'oupnekhat'), 'confluence(18): threadFrom reaches oupnekhat');
     ok(entryBySlug('picatrix') && entryBySlug('nope') === null, 'confluence(18): entryBySlug hydrates/null');
     const stx = confluenceStats();

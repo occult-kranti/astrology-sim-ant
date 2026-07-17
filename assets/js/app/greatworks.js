@@ -84,7 +84,7 @@ a.gw-chip:hover { background:#d6e6f6; border-color:#2b4a6b; }
 tr.gw-gap td { background:#f4ecd6 !important; color:#6b6450; font-style:italic; }
 `;
 
-function injectCss() {
+export function injectCss() {
   if (document.getElementById('gw-css')) return;
   const s = document.createElement('style');
   s.id = 'gw-css';
@@ -117,7 +117,7 @@ function chapterRow(chapter) {
 
 function pdSourceList(work) {
   const items = (work.pdSources || []).map(s =>
-    `<li class="gw-src"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></li>`).join('');
+    `<li class="gw-src"><a href="${esc(s.path)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></li>`).join('');
   return items ? `<p class="small muted" style="margin:.5rem 0 .2rem">Read the source (external, opens a new tab):</p><ul class="clean">${items}</ul>` : '';
 }
 
@@ -158,7 +158,7 @@ function studyPathBlock(author) {
     <ol>${steps}</ol></div>`;
 }
 
-function authorSection(author) {
+export function authorSection(author) {
   const links = (author.siteLinks || []).map(l =>
     `<a class="gw-chip" href="${esc(href(l.path))}">${esc(l.label)} ↗</a>`).join('');
   const works = author.works.map(workBlock).join('');
@@ -234,7 +234,7 @@ function renderIndex(root) {
 // ---------------------------------------------------------------------------
 // The .workrail author-drill (plan §5.2): jump-links to every author and work on
 // the page, sticky beside the reading column at desktop widths.
-function workRail(authors) {
+export function workRail(authors) {
   const items = authors.map(a => {
     const works = a.works.map(w =>
       `<li><a href="#gw-w-${esc(slug(w.id))}">${esc(w.title)}</a></li>`).join('');
@@ -260,7 +260,7 @@ function renderAuthors(root, ids) {
 }
 
 // Clicking a work in the rail expands its chapter table on arrival.
-function wireRail(root) {
+export function wireRail(root) {
   root.querySelectorAll('.workrail a[href^="#gw-w-"]').forEach(link => {
     link.addEventListener('click', () => {
       const el = document.getElementById(link.getAttribute('href').slice(1));
@@ -269,7 +269,7 @@ function wireRail(root) {
   });
 }
 
-function wireFilter(root) {
+export function wireFilter(root) {
   const input = $('gw-search');
   const countEl = $('gw-count');
   if (!input) return;
