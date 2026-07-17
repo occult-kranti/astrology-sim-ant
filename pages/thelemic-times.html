@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thelemic times — Era Legis &amp; Liber Resh | The Astrologer's Workbench</title>
+<meta name="description" content="Two zero-data museum tools on the site's astronomy engine. ERA LEGIS: the Thelemic 'Anno' date-stamp Aleister Crowley used — the {docosade}{year} Roman-numeral notation counted from the 1904 vernal equinox, with the ☉/☽ sign stamp, and the contested year-start (exact equinox vs March 20) shown both ways. LIBER RESH: the four solar stations (sunrise/noon/sunset/midnight) at which the 1911 text directs its adorations of the Sun — presented as historical rubric, cited to public-domain witnesses, with the standing no-validity note. Described, never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%98%89%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/thelemic.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="contents.html">Traditions</a> › Thelemic times</p>
+  <h1>Thelemic times — <span class="tt-mono">Era Legis</span> &amp; Liber Resh</h1>
+  <div class="ep-strip">
+    <a class="badge badge--ok" href="about/index.html">Astronomy — verified</a>
+    <a class="badge badge--doc" href="about/index.html">Notation — historical</a>
+    <a class="badge badge--bad" href="about/index.html">Predictive validity — none demonstrated</a>
+  </div>
+  <p class="lede">Two small, exact tools built entirely on the site's astronomy engine — no doctrine, no interpretation.
+    One reads a moment back in <b>Aleister Crowley's Thelemic calendar</b> (the "Anno" date-stamp he wrote in his
+    diaries); the other lists the <b>four solar moments</b> that <i>Liber Resh vel Helios</i> (1911) marks with its
+    adorations of the Sun. Both are <b>described as history</b> — the tradition's own conventions, computed, cited,
+    and framed honestly: a calendar and some plain astronomy, nothing that predicts or determines anything.</p>
+
+  <div class="callout science"><span class="label">Honest note — please read</span>
+    Everything below is <b>historical description</b>, not instruction. The Thelemic date-stamp is a <em>calendar
+    notation</em> Crowley used; the four Liber Resh times are ordinary <em>astronomy</em> (two horizon crossings and the
+    two solar culminations). Neither carries any demonstrated astrological or magical validity — this page reproduces
+    the tradition's practice for study, never as guidance. The witnesses quoted are pre-1931 public domain
+    (<i>Liber Resh vel Helios</i>, <i>The Equinox</i> I(6), 1911; the calendrical framing of <i>Liber AL vel Legis</i>,
+    1904/1909). See <a href="about/index.html">Sources &amp; Science</a>.</div>
+
+  <form id="tt-form" class="calc">
+    <!-- The one moment-picker (UI3 Phase B). Writes through to the hidden legacy
+         ids below, so the compute path reads ordinary hidden inputs. -->
+    <div id="tt-picker"></div>
+    <input type="hidden" id="tt-lat"><input type="hidden" id="tt-lon">
+    <input type="hidden" id="tt-date"><input type="hidden" id="tt-time"><input type="hidden" id="tt-offset">
+
+    <fieldset class="tt-mode">
+      <span class="tt-mode-label" id="tt-mode-lbl">Thelemic year begins at:</span>
+      <label><input type="radio" name="tt-mode" value="exact" checked> the exact vernal-equinox instant <span class="small muted">(as Crowley dated)</span></label>
+      <label><input type="radio" name="tt-mode" value="march20"> the conventional March 20 <span class="small muted">(later simplification)</span></label>
+    </fieldset>
+
+    <div class="field-row" style="margin-top:.8rem">
+      <button type="submit" id="tt-compute" class="btn"><span aria-hidden="true">☉</span> Compute both</button>
+      <span id="tt-status" class="small muted" role="status"></span>
+    </div>
+    <p class="small muted" style="margin:.6rem 0 0">Defaults to <b>here &amp; now</b>. The Era Legis stamp depends only
+      on the date &amp; time; the Liber Resh stations also depend on your <b>place</b> (the Sun rises, culminates and
+      sets at different clock times by latitude and longitude).</p>
+  </form>
+
+  <div id="tt-actionbar"></div>
+
+  <div class="tt-panels">
+    <section class="card panel" id="tt-eralegis-card"><h2 style="margin-top:0">Era Legis — the Anno date-stamp</h2>
+      <div id="tt-eralegis"></div></section>
+
+    <section class="card panel" id="tt-resh-card"><h2 style="margin-top:0">Liber Resh — the four solar stations</h2>
+      <div id="tt-resh"></div></section>
+  </div>
+
+  <section class="card" id="hiw-thelemic">
+    <h2 style="margin-top:0">How this works</h2>
+    <h3>The Era Legis notation — counted from the 1904 equinox</h3>
+    <p class="small">The Thelemic calendar counts years from the northern <b>vernal equinox of 1904</b> (the New Aeon
+      epoch; the year <i>Liber AL vel Legis</i> was received). Years are gathered into 22-year cycles Crowley called
+      <b>docosades</b>. A date is written as two Roman numerals — the <b>docosade</b> (upper-case) and the <b>year within
+      it</b> 0–21 (lower-case) — so the letter-case alone distinguishes them (e.g. <span class="tt-mono">Vxii</span> is
+      docosade 5, year 12). The epoch year 1904 is year 0 and renders <span class="tt-mono">00</span> (there is no Roman
+      zero). The full stamp adds the Sun's and Moon's zodiacal longitudes at the moment
+      (<span class="tt-mono">☉ in … : ☽ in …</span>, computed on the same engine every chart on this site uses) and the
+      Latin day-name (<i>dies Solis</i> … <i>dies Saturni</i>). This is reproduced as Crowley's <em>calendrical
+      practice</em>, cited to his diaries and <i>The Equinox</i> — a notation, not an astrological claim.</p>
+    <h3>The contested year-start — shown both ways</h3>
+    <p class="small">When exactly does the Thelemic year turn? Crowley's own dating followed the <b>true vernal-equinox
+      instant</b> (a moment that drifts a little year to year); a fixed <b>March 20</b> boundary is a later
+      simplification some modern Thelemites use. The two agree except for the few hours between March 20 00:00 and the
+      true equinox — and for a moment in that window the tool <b>shows both answers and resolves neither</b> (the
+      default is the exact-equinox convention). This is the same both-ways discipline the rest of the site applies to
+      every contested rule.</p>
+    <h3>The Liber Resh stations — astronomy the text names</h3>
+    <p class="small"><i>Liber Resh vel Helios</i> (1911) has the aspirant salute the Sun at four times of the day —
+      dawn, noon, sunset and midnight — under the classical names <b>Ra</b>, <b>Ahathoor</b>, <b>Tum</b> and
+      <b>Khephra</b> (the sun rising, at its height, setting, and beneath the earth). What this page computes is only the
+      <b>astronomy</b> those names mark: <b>sunrise</b> and <b>sunset</b> (the Sun crossing the horizon — reused from the
+      site's planetary-hours engine), <b>solar noon</b> (the Sun's upper culmination on the meridian) and <b>solar
+      midnight</b> (its lower culmination, beneath the earth). The adoration names are recorded as a <em>cited
+      historical datum</em> from the public-domain text; the page describes <em>that</em> the tradition performs these
+      adorations, never that anyone should. Every station is honestly labelled with the astronomy it is.</p>
+  </section>
+
+  <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
+    None of this predicts or determines anything. The Era Legis stamp is a calendar convention with a fixed epoch and a
+    22-year cycle; the Liber Resh times are the same rise/culmination astronomy the site computes everywhere else. Both
+    are reproduced as the Thelemic tradition's own practice — interesting history, cited to its public-domain sources —
+    and neither has any demonstrated astrological or magical validity. See <a href="about/index.html">Sources &amp;
+    Science</a>.</div>
+
+  <p class="small muted" style="margin-top:1rem">See also the <a href="book1/planetary-hours.html">Planetary Hours</a>
+    (the same sunrise/sunset engine), the <a href="now.html">live sky dashboard</a>, and the
+    <a href="kabbalah.html">Kabbalah Tree of Life</a> for the surrounding Western esoteric material.</p>
+</main>
+<script type="module">
+  import { initThelemicTimes } from '../assets/js/app/thelemic-times.js';
+  initThelemicTimes();
+</script>
+</body>
+</html>

@@ -1730,7 +1730,7 @@ import { timeScale as cfTimeScale, layoutConfluence as cfLayout, filterEntries a
 // one poisons another's headless assertions. They are green standalone; run each
 // in an isolated child process (the same environment as their standalone smoke).
 import { execFileSync } from 'node:child_process';
-for (const modName of ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search']) {
+for (const modName of ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search', 'r29-vedic-course', 'r29-narrate', 'r29-thelemic']) {
   const child = `import('./scripts/tests/${modName}.mjs').then(m=>m.run()).then(r=>{if(!r.pass){console.error(JSON.stringify((r.failures||[]).slice(0,8)));process.exit(1)}process.exit(0)}).catch(e=>{console.error(JSON.stringify([e.message]));process.exit(1)})`;
   let res = { pass: true, failures: [] };
   try { execFileSync(process.execPath, ['--input-type=module', '-e', child], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] }); }

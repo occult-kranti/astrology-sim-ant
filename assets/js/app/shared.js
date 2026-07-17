@@ -67,10 +67,12 @@ export const NAV_GROUPS = [
     ['pages/tithi-pravesha.html', 'Tithi-praveśa', 'tithipravesha'],
     ['pages/vedic/yogas.html', 'Vedic yogas — detector', 'vedicyogas'],
     ['pages/vedic/delineation.html', 'Bhāva delineations — browser', 'vedicdelineation'],
+    ['pages/vedic/course.html', 'Vedic course — theory', 'vediccourse'],
     ['pages/kuta.html', 'Kūṭa Matching', 'kuta'],
     ['pages/rasa.html', 'Rasaśāstra & Yantras', 'rasa'],
     ['pages/abhichara/index.html', 'Abhicāra — ritual magic', 'abhichara'],
     ['pages/kabbalah.html', 'Kabbalah — Tree of Life', 'kabbalah'],
+    ['pages/thelemic-times.html', 'Thelemic times — era legis & Liber Resh', 'thelemictimes'],
     ['pages/jung/index.html', 'Jung & astrology', 'jung'],
     ['pages/chronology/index.html', 'The Hermetic Chronology', 'chronology'],
     ['pages/confluence.html', 'The Great Confluence — atlas', 'confluence'],
@@ -120,6 +122,7 @@ export function currentSection() {
   if (m(/\/pages\/picatrix\//)) return 'picatrix';
   if (m(/\/pages\/vedic\/yogas\.html$/)) return 'vedicyogas';
   if (m(/\/pages\/vedic\/delineation\.html$/)) return 'vedicdelineation';
+  if (m(/\/pages\/vedic\/course\.html$/)) return 'vediccourse';
   if (m(/\/pages\/vedic\//)) return 'vedic';
   if (m(/\/pages\/jung\//)) return 'jung';
   if (m(/\/pages\/chronology\//)) return 'chronology';
@@ -134,6 +137,7 @@ export function currentSection() {
   if (m(/\/pages\/kuta\.html$/)) return 'kuta';
   if (m(/\/pages\/rasa\.html$/)) return 'rasa';
   if (m(/\/pages\/kabbalah\.html$/)) return 'kabbalah';
+  if (m(/\/pages\/thelemic-times\.html$/)) return 'thelemictimes';
 
   // Cast (top-level tool pages).
   if (m(/\/pages\/workbench\.html$/) || m(/\/pages\/master\.html$/)) return 'workbench';

@@ -27,6 +27,8 @@ import { attachPersonPicker } from './person.js';
 import { eraAccuracy } from '../core/calendar.js';
 import { renderExplainBlock, ensureExplainMount } from './explain-block.js';
 import { explainWorkbench } from '../core/explain/workbench.js';
+import { narrateChart } from '../core/explain/narrate.js';
+import { renderNarrate } from './narrate.js';
 import { initGlosstip } from './glosstip.js';
 
 const $ = id => document.getElementById(id);
@@ -107,6 +109,16 @@ function renderExplain(r) {
   const mount = ensureExplainMount($('wb-summary'), 'wb-explain-mount');
   if (!mount) return;
   renderExplainBlock(mount, explainWorkbench(r), { textId: 'wb-explain-text' });
+}
+
+// "Read this chart aloud" — the guided-reading rail mounted directly under the
+// wheel. Steps light the wheel via its data-el stamps (chart-ux §6). The step
+// array is the same one serialized onto the reading for the AI/export.
+function renderNarrateBlock(r) {
+  const wheelEl = $('wb-wheel');
+  const mount = ensureExplainMount(wheelEl, 'wb-narrate-mount');
+  if (!mount) return;
+  renderNarrate(mount, r.narrative || narrateChart(r), { wheelEl });
 }
 
 // The UI3 compute choreography: btn-busy → compute → focus+scroll the verdict banner
@@ -256,6 +268,10 @@ function run() {
 
   const chart = castChart(date, lat, lon, system);
   const reading = fullReading(chart, { operationKey, quesitedHouse, birth, sectAwareFortune, generatedAt: new Date().toISOString() });
+  // The 'read this chart aloud' narrative order (chart-ux §6): serialize the step
+  // list onto the reading so the AI assistant, the JSON export and the Markdown
+  // export inherit the site's canonical reading order for free.
+  try { reading.narrative = narrateChart(reading); } catch { reading.narrative = []; }
   lastReading = reading; lastChart = chart; lastBirthChart = birth ? birth.chart : null;
   try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ before: '#wb-horary-card' }); vedicUpdate(chart); } catch { /* non-fatal */ }
 
@@ -265,6 +281,7 @@ function run() {
     renderWheel($('wb-wheel'), chart, allAspects(bodies), reading);
   } catch { /* non-fatal */ }
 
+  safe(() => renderNarrateBlock(reading));
   safe(() => renderSummary(reading));
   safe(() => renderVerdictBanner(reading));
   safe(() => renderExplain(reading));

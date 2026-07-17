@@ -1,0 +1,111 @@
+/* ============================================================================
+   thelemic.css — page-scoped styles for pages/thelemic-times.html.
+   DS2/DS3 tokens ONLY (no new hex; style.css is do-not-touch). Reduced-motion
+   is the default posture — there are no transitions or animations here.
+   ============================================================================ */
+
+/* the two panels sit in a responsive grid; single column below ~720px */
+.tt-panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+@media (min-width: 720px) {
+  .tt-panels { grid-template-columns: 1fr 1fr; }
+}
+/* grid items must be allowed to shrink below their content's min-content width,
+   or a wide table / long numeral forces the track (and the body) to overflow;
+   the table then scrolls inside its own .table-scroll wrapper. */
+.tt-panels > section { min-width: 0; }
+.tt-panels > section .table-scroll { max-width: 100%; }
+
+/* the year-start convention toggle */
+.tt-mode {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  align-items: baseline;
+  margin-top: var(--sp-3);
+}
+.tt-mode > .tt-mode-label { font-weight: 600; }
+.tt-mode label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-1);
+  font-size: var(--fs--1);
+}
+
+/* Era Legis hero: the big Anno numeral + the stamp beside it */
+.tt-anno-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+  background: var(--surface-wash);
+  border: 1px solid var(--border);
+  border-radius: var(--rad-2);
+}
+.tt-anno {
+  font-size: var(--fs-4);
+  line-height: 1;
+  color: var(--gold-500);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.tt-anno-doc { font-weight: 700; }
+.tt-anno-yr { font-weight: 500; }
+.tt-anno-meta { min-width: 0; }
+.tt-stamp {
+  font-size: var(--fs-1);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.tt-reading { margin: var(--sp-4) 0 var(--sp-3); }
+
+/* the contested-window flag */
+.tt-contested {
+  background: var(--warn-wash);
+  border-left: 3px solid var(--warn);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--rad-1);
+  font-size: var(--fs--1);
+  margin: var(--sp-3) 0;
+}
+.tt-flag {
+  display: inline-block;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: var(--warn-ink);
+  margin-right: var(--sp-2);
+}
+
+/* the historical-description note under each panel */
+.tt-note-hist {
+  background: var(--surface-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--rad-1);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs--1);
+  color: var(--text-soft);
+  margin: var(--sp-3) 0;
+}
+.tt-mono, .tt-stamp { font-variant-numeric: tabular-nums; }
+
+/* the standing no-validity note */
+.tt-noval {
+  font-size: var(--fs--1);
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border);
+  padding-top: var(--sp-3);
+  margin: var(--sp-3) 0 0;
+}
+
+/* Liber Resh station table */
+.tt-resh-table { width: 100%; }
+.tt-resh-time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tt-resh-name { white-space: nowrap; }
+.tt-deity { color: var(--gold-500); }
+.tt-resh-astro { overflow-wrap: anywhere; }

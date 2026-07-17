@@ -55,6 +55,7 @@ import { computeLots } from './lots.js';
 import { castFromDraws as castRunesFromDraws } from './runes.js';
 import { filterEntries as cflFilter, entryBySlug as cflEntry, confluenceStats as cflStats } from './confluence.js';
 import { CONFLUENCE_EDGES as CFL_EDGES, CONFLUENCE_LANES as CFL_LANES } from './data/confluence.js';
+import { eraLegis, solarStations, ERA_LEGIS_CITATION, RESH_CITATION } from './thelemic.js';
 
 const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
@@ -862,6 +863,8 @@ export function runTool(name, args = {}, ctx = {}) {
 
   switch (name) {
     case 'castChart': return slimChart(castChart(new Date(need('date')), need('lat'), need('lon'), args.system || 'regiomontanus'));
+    case 'eraLegis': return withCite(eraLegis(new Date(need('date')), { mode: args.mode }), ERA_LEGIS_CITATION);
+    case 'solarStations': return withCite(solarStations(new Date(need('date')), need('lat'), need('lon')), RESH_CITATION);
     case 'planetaryHour': return planetaryHour(new Date(need('date')), need('lat'), need('lon'));
     case 'essentialDignity': return essentialDignity(need('planet'), need('lon'), !!args.isDay);
     case 'almuten': return almuten(need('lon'), !!args.isDay);

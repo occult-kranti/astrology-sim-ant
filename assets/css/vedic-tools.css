@@ -143,10 +143,14 @@
   grid-template-columns: minmax(0, 1fr);
 }
 @media (min-width: 60rem) {
-  .vt-delin-layout { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+  /* The grid track must be able to SHRINK (minmax(0,max-content) + the wrap's
+     own overflow-x scroll), and the record track must keep a real minimum —
+     a bare `auto` first track expanded to full width and starved the record
+     column to 0px, collapsing both witness cards to ~1 char and overlapping. */
+  .vt-delin-layout { grid-template-columns: minmax(0, max-content) minmax(22rem, 1fr); align-items: start; }
 }
 
-.vt-grid-wrap { overflow-x: auto; }
+.vt-grid-wrap { overflow-x: auto; min-width: 0; }
 table.vt-grid { border-collapse: collapse; }
 table.vt-grid th, table.vt-grid td {
   border: 1px solid var(--border);
@@ -252,3 +256,137 @@ table.vt-grid thead th, table.vt-grid tbody th {
 
 /* full/special aspect emphasis in the dṛṣṭi grid */
 .vt-drishti td.is-full { font-weight: 700; box-shadow: inset 0 0 0 2px var(--accent); }
+
+/* ========================================================================== *
+ *  R29 APPEND (B-COURSE) — the Parāśarī course teaching page
+ *  pages/vedic/course.html + app/vedic-course.js. Page-scoped .vt-course-* /
+ *  .vt-unit / .vt-cite / .vt-frame / .vt-chips / .vt-editions selectors.
+ *  DS2 tokens ONLY; reduced-motion-safe (no transitions/keyframes — the active
+ *  in-page-nav state is a class toggle, colour-blind-redundant via a border +
+ *  bold weight, never colour alone).
+ * ========================================================================== */
+
+/* the sticky in-page unit navigator (horizontal, wraps on narrow screens) */
+.vt-course-nav {
+  position: sticky;
+  top: var(--sticky-top, 4.5rem);
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--rad-2);
+  padding: var(--sp-2) var(--sp-3);
+  margin: var(--sp-4) 0;
+}
+.vt-course-nav a {
+  font-size: var(--fs--1);
+  text-decoration: none;
+  color: var(--text-soft);
+  border: 1px solid transparent;
+  border-radius: var(--rad-pill);
+  padding: .15em .6em;
+}
+.vt-course-nav a:hover { color: var(--accent-strong); }
+.vt-course-nav a[aria-current="true"] {
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+.vt-course-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* each unit card offsets its scroll anchor under the two sticky bars */
+.vt-unit { scroll-margin-top: calc(var(--sticky-top, 4.5rem) + 3.6rem); }
+.vt-unit-num {
+  display: inline-block;
+  font-size: var(--fs--1);
+  color: var(--accent-strong);
+  border: 1px solid var(--accent);
+  border-radius: var(--rad-pill);
+  padding: .05em .55em;
+  margin-right: var(--sp-2);
+}
+
+/* the classical-citation block under each unit's concept prose */
+.vt-cite {
+  border-left: 3px solid var(--border);
+  background: var(--surface-inset);
+  border-radius: var(--rad-1);
+  padding: var(--sp-2) var(--sp-3);
+  margin: var(--sp-3) 0;
+  font-size: var(--fs--1);
+}
+.vt-cite-label,
+.vt-frame-label,
+.vt-chips-label {
+  display: block;
+  font-weight: 700;
+  font-size: var(--fs-badge);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: var(--sp-1);
+}
+.vt-cite-label { color: var(--text-muted); }
+.vt-cite ul { margin: var(--sp-1) 0 0; padding-left: 1.2em; }
+.vt-cite li { margin: .2em 0; }
+
+/* the per-unit honest-frame note (one per unit, varied not boilerplate) */
+.vt-frame {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-wash);
+  border-radius: var(--rad-1);
+  padding: var(--sp-2) var(--sp-3);
+  margin: var(--sp-3) 0;
+}
+.vt-frame-label { color: var(--accent-strong); }
+/* the strongest frame — the māraka death-timing doctrine unit */
+.vt-frame--strong {
+  border-left-color: var(--bad);
+  background: var(--bad-wash);
+}
+.vt-frame--strong .vt-frame-label { color: var(--bad-ink); }
+
+/* the tool-chip row ("drive:" links to the computing tool) */
+.vt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+  margin: var(--sp-3) 0 0;
+}
+.vt-chips-label { display: inline; margin: 0; color: var(--text-muted); }
+
+/* an inline CONTESTED chip used within prose */
+.vt-contested-chip {
+  display: inline-block;
+  font-size: var(--fs-badge);
+  font-weight: 700;
+  color: var(--ep-disp-ink, var(--accent-strong));
+  background: var(--ep-disp-wash, var(--accent-wash));
+  border: 1px solid var(--ep-disp, var(--accent));
+  border-radius: var(--rad-pill);
+  padding: .02em .5em;
+  white-space: nowrap;
+}
+
+/* the canonical-editions table (Sources & method section) */
+.vt-editions-wrap { overflow-x: auto; }
+.vt-editions {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs--1);
+  margin: var(--sp-3) 0;
+}
+.vt-editions th, .vt-editions td {
+  border: 1px solid var(--border);
+  padding: var(--sp-2);
+  text-align: left;
+  vertical-align: top;
+}
+.vt-editions thead th { background: var(--surface-inset); color: var(--text-soft); }
+
+/* the CONTESTED register list */
+.vt-register { margin: var(--sp-2) 0 0; padding-left: 1.2em; }
+.vt-register li { margin: var(--sp-2) 0; }

@@ -69,7 +69,7 @@ for (const rel of pages) {
 // are executed; prose drives are page-loaded (already covered above) and
 // counted as documented descriptors.
 // ---------------------------------------------------------------------------
-const MODULES = ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search'];
+const MODULES = ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search', 'r29-vedic-course', 'r29-narrate', 'r29-thelemic'];
 const isStructured = d => (Array.isArray(d.actions) && d.actions.every(a => typeof a === 'object'))
   && (!d.asserts || d.asserts.every(a => typeof a === 'object'));
 
