@@ -1,0 +1,182 @@
+/* ============================================================================
+   buddhist.css — presentation for the Buddhist scriptures reading-room wing
+   (pages/buddhist/*). Loaded AFTER style.css; page-scoped so style.css stays
+   untouched. Mirrors the yoga wing's grammar (card / word-table / filterbar)
+   on the site's DS tokens — NO raw hex, so light/dark themes both follow the
+   token palette. Reduced-motion-first: no @keyframes, no transitions.
+   ============================================================================ */
+
+/* — the wing home: live-counts + canon map —————————————————————————— */
+.bud-counts { width: auto; min-width: 18rem; margin: .4rem 0 0; }
+.bud-counts th { font-family: var(--sans); font-size: .72rem; }
+.bud-counts .r { text-align: right; font-variant-numeric: tabular-nums; }
+.bud-counts .bud-total td { border-top: 2px solid var(--rule); font-weight: 700; }
+
+.bud-tradition { font-family: var(--sans); font-size: .66rem; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); }
+
+/* — the site-wide word search on the hub —————————————————————————— */
+#bud-q {
+  width: 100%; max-width: 34rem; padding: .55rem .8rem; font: inherit;
+  border: 1px solid var(--rule); border-radius: .5rem; background: var(--card); color: var(--ink);
+}
+#bud-q:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.bud-hits { margin: .4rem 0 0; }
+.bud-hits li { padding: .3rem 0; border-bottom: 1px dashed var(--rule); }
+.bud-hits a { font-family: var(--sans); }
+.bud-hit-line { margin: 0 .5rem; font-style: italic; }
+.bud-hit-tr { display: block; }
+
+/* — one segment record ————————————————————————————————————————————— */
+.bud-seg {
+  border: 1px solid var(--rule); border-radius: 12px; background: var(--card);
+  padding: 1rem 1.1rem; margin: 0 0 1rem; scroll-margin-top: 4.5rem;
+}
+.bud-seg:target { border-color: var(--gold); box-shadow: 0 0 0 2px var(--ok-wash); }
+.bud-head { display: flex; flex-wrap: wrap; gap: .5rem; align-items: baseline; margin-bottom: .3rem; }
+.bud-ref {
+  font-family: var(--sans); font-weight: 700; font-size: .9rem; color: var(--gold);
+  text-decoration: none; letter-spacing: .02em;
+}
+.bud-ref:hover { text-decoration: underline; }
+.bud-section {
+  font-family: var(--sans); font-size: .72rem; letter-spacing: .03em; color: var(--muted);
+}
+
+/* a section divider heading in the segment stream */
+.bud-section-head {
+  font-family: var(--sans); font-size: .78rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--link); margin: 1.6rem 0 .6rem;
+  padding-bottom: .25rem; border-bottom: 1px solid var(--rule); scroll-margin-top: 4.5rem;
+}
+
+/* — the primary text line: Pāli / Sanskrit in IAST, words interactive ——— */
+.bud-line {
+  font-size: 1.14rem; line-height: var(--lh-loose); margin: .2rem 0 .5rem;
+  color: var(--ink); overflow-wrap: anywhere; max-width: var(--measure);
+}
+/* each word is a button styled as inline text with a dotted underline cue */
+.bud-w {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0 .02em; margin: 0;
+  cursor: help; border-bottom: 1px dotted var(--muted);
+  border-radius: 2px; -webkit-appearance: none; appearance: none;
+}
+.bud-w:hover, .bud-w:focus-visible { color: var(--link); border-bottom-color: var(--link); }
+.bud-w:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.bud-w[aria-expanded="true"] { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* — the always-reachable word-by-word table (AT parity, no-JS path) ——— */
+.bud-words { margin: 0 0 .5rem; }
+.bud-words > summary {
+  font-family: var(--sans); font-size: .72rem; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); cursor: pointer; list-style: none;
+  padding: .15rem 0;
+}
+.bud-words > summary::-webkit-details-marker { display: none; }
+.bud-words > summary::before { content: '▸ '; color: var(--muted); }
+.bud-words[open] > summary::before { content: '▾ '; }
+.bud-words > summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+table.bud-wtab { width: auto; min-width: 18rem; margin: .3rem 0 .2rem; }
+table.bud-wtab th { font-family: var(--sans); font-size: .68rem; }
+table.bud-wtab .bud-wt-w { font-style: italic; white-space: nowrap; }
+table.bud-wtab .bud-wt-gram { font-family: var(--sans); font-size: .74rem; color: var(--muted); }
+table.bud-wtab .bud-wt-ped { font-family: var(--sans); font-size: .72rem; color: var(--muted); white-space: nowrap; }
+
+/* — the verbatim translation ————————————————————————————————————— */
+.bud-tr { margin: .2rem 0 .3rem; font-size: 1.02rem; max-width: var(--measure); }
+.bud-tr-src { font-family: var(--sans); font-size: .68rem; color: var(--muted); }
+.bud-tr-null {
+  margin: .2rem 0 .3rem; font-style: italic; color: var(--muted); max-width: var(--measure);
+}
+
+/* — per-record note (variants / cruxes stated, never resolved) ————— */
+.bud-note { margin: .3rem 0; color: var(--ink); max-width: var(--measure); }
+.bud-note-label {
+  font-family: var(--sans); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 700; color: var(--gold); margin-right: .3rem;
+}
+
+/* — the src footer + licence chips ——————————————————————————————— */
+.bud-foot { margin: .5rem 0 0; padding-top: .45rem; border-top: 1px dashed var(--rule);
+  display: flex; flex-wrap: wrap; gap: .4rem .6rem; align-items: baseline; }
+.bud-src { font-family: var(--sans); font-size: .68rem; color: var(--muted); flex: 1 1 16rem; }
+.bud-lic {
+  font-family: var(--sans); font-size: .62rem; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; padding: .08rem .4rem; border-radius: var(--rad-1);
+  border: 1px solid var(--border); color: var(--text-muted); background: var(--surface-inset);
+  white-space: nowrap;
+}
+.bud-lic-cc0 { color: var(--ok-ink); background: var(--ok-wash); border-color: var(--ok); }
+.bud-lic-pd  { color: var(--ep-doc-ink); background: var(--ep-doc-wash); border-color: var(--ep-doc); }
+.bud-lic-original { color: var(--info-ink); background: var(--info-wash); border-color: var(--info); }
+
+/* — CONTESTED cruxes: ⚑ both-positions panel ——————————————————————— */
+.bud-crux {
+  border: 1px solid var(--malefic); border-left-width: 4px; border-radius: 8px;
+  background: var(--surface-inset); padding: .75rem .9rem; margin: 1rem 0;
+}
+.bud-crux > h3, .bud-crux > .bud-crux-title {
+  font-size: .96rem; margin: 0 0 .5rem; color: var(--malefic);
+}
+.bud-crux-title::before { content: '⚑ '; }
+.bud-crux-pos { margin: .5rem 0; padding-left: .7rem; border-left: 2px solid var(--rule); }
+.bud-crux-pos b { font-family: var(--sans); font-size: .82rem; }
+.bud-crux-src { font-family: var(--sans); font-size: .68rem; color: var(--muted); display: block; margin-top: .2rem; }
+
+/* — MN 118 refrains (peyyāla): glossed once, then reused ——————————— */
+.bud-refrain {
+  border: 1px solid var(--air); border-left-width: 4px; border-radius: 8px;
+  background: var(--surface-inset); padding: .75rem .9rem; margin: 0 0 1rem; scroll-margin-top: 4.5rem;
+}
+.bud-refrain-label { font-family: var(--sans); font-size: .8rem; font-weight: 700; color: var(--air); margin: 0 0 .2rem; }
+.bud-refrain-label::before { content: '⟲ '; }
+.bud-refrain-desc { font-size: .92rem; color: var(--text-soft); margin: .2rem 0 .5rem; max-width: var(--measure); }
+
+/* a refrain-USE in the body: collapsed by default, expandable to the full gloss */
+.bud-ruse { border-style: dashed; }
+.bud-ruse-tag {
+  font-family: var(--sans); font-size: .68rem; letter-spacing: .03em; color: var(--air);
+}
+.bud-ruse-tag::before { content: '⟲ '; }
+.bud-expand { margin: .3rem 0 0; }
+.bud-expand > summary {
+  font-family: var(--sans); font-size: .72rem; font-weight: 700; color: var(--air);
+  cursor: pointer; list-style: none; padding: .15rem 0;
+}
+.bud-expand > summary::-webkit-details-marker { display: none; }
+.bud-expand > summary::before { content: '▸ show the full refrain, word by word'; }
+.bud-expand[open] > summary::before { content: '▾ hide the refrain'; }
+.bud-expand > summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.bud-refrain-link { font-family: var(--sans); font-size: .68rem; }
+
+/* — the section nav rail (MN 118) ————————————————————————————————— */
+.bud-rail { font-family: var(--sans); font-size: .82rem; margin: .5rem 0 1rem; }
+.bud-rail summary { font-weight: 700; cursor: pointer; color: var(--link); padding: .2rem 0; }
+.bud-rail ul { margin: .3rem 0 0; padding-left: 1.1rem; columns: 2; column-gap: 1.4rem; }
+.bud-rail li { padding: .12rem 0; break-inside: avoid; }
+@media (max-width: 560px) { .bud-rail ul { columns: 1; } }
+
+/* — the word-gloss popover (mirrors app/glosstip.js mechanics) ————————
+   position:fixed to escape any table/overflow clip; reused single element. */
+.bud-pop {
+  position: fixed; z-index: 9999; max-width: 40ch; margin: 0;
+  background: var(--surface-card); color: var(--text);
+  border: 1px solid var(--border-strong); border-radius: var(--rad-2);
+  box-shadow: var(--shadow-2); padding: var(--sp-3); font-size: var(--fs--1); line-height: 1.45;
+}
+.bud-pop[hidden] { display: none; }
+.bud-pop .bp-w { font-weight: 700; font-style: italic; }
+.bud-pop .bp-gram { font-family: var(--sans); font-size: .72rem; color: var(--text-muted);
+  display: block; margin: .15rem 0 .3rem; }
+.bud-pop .bp-gloss { margin: .2rem 0; color: var(--text-soft); }
+.bud-pop .bp-ped { font-family: var(--sans); font-size: .68rem; color: var(--text-muted); margin: .3rem 0 0; }
+@media print { .bud-pop { display: none !important; } }
+
+/* — sources / licensing ledger table ————————————————————————————— */
+.bud-ledger th { font-family: var(--sans); font-size: .72rem; }
+.bud-ledger .bud-ledger-safe { color: var(--ok-ink); font-weight: 700; }
+.bud-ledger .bud-ledger-cite { color: var(--malefic); font-weight: 700; }
+.bud-quote {
+  margin: .6rem 0; padding: .5rem .8rem; border-left: 3px solid var(--rule);
+  background: var(--surface-inset); font-style: italic; color: var(--text-soft); max-width: var(--measure);
+}

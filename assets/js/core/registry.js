@@ -957,6 +957,22 @@ export const REGISTRY = [
     glossaryTerms: ['Yoga Sūtras', 'Aṣṭāṅga (eight limbs)', 'Yama & Niyama', 'Āsana (in the YS)', 'Samādhi', 'Kaivalya', 'Vibhūti'],
   },
   {
+    id: 'buddhist-canon', title: 'The Buddhist Scriptures (study wing)',
+    module: 'assets/js/core/buddhist.js', exportName: 'textById',
+    exports: ['recordsFor', 'expandRefrain', 'reconstruct', 'buddhistStats', 'searchBuddhist', 'BUDDHIST_TEXTS'],
+    computes: 'Reference: a curated Buddhist canon rendered word-by-word in the manner of the Yoga-sūtra wing — the Metta Sutta (Snp 1.8, 43 segments), the shorter Heart Sūtra (Prajñāpāramitāhṛdaya, 16 segments, Sanskrit), and the Ānāpānassati Sutta (MN 118, 154 segments = 105 full + 49 refrain-uses over 6 refrains, the peyyāla model). textById returns a text\'s metadata; recordsFor returns its segment records ({ref, pali|sanskrit, words:[{w,gloss,gram,ped}], translation:{text,source}|null, notes}); expandRefrain expands a MN 118 refrain-use into its full glossed word table; reconstruct rebuilds the root string from the words (the live reconstruction invariant); buddhistStats derives segment/word/peyyāla/licence totals from the data; searchBuddhist is a diacritic-folded search. Pāli translations are Bhikkhu Sujato (CC0) verbatim; the Heart Sūtra is Müller SBE 49 (1894, PD) verbatim; word-glosses are original prose after the PD PED (1921–25) and Monier-Williams (1899), cited per word. Historical texts, described never prescribed.',
+    inputs: [
+      { name: 'id', type: 'enum', values: ['metta', 'heart', 'mn118'], desc: 'a text id', required: true },
+    ],
+    outputShape: '{ id, title, titleOriginal, lang:"pi"|"sa", tradition, translationSource, licence:{root,translation,glosses}, segments, words, contested:[…], meta } — via textById; recordsFor(id) → [{ref, pali|sanskrit, words:[{w,gloss,gram,ped}], translation:{text,source}|null, notes, …}]',
+    callable: false,
+    book: 'Buddhist canon', chapter: 'The Buddhist Scriptures — Metta / Heart / Ānāpānassati',
+    citation: 'Pāli root: Mahāsaṅgīti Tipiṭaka Buddhavasse 2500 (Dhamma Society, 2005), via SuttaCentral (declared PD). Pāli translations: Bhikkhu Sujato (SuttaCentral, CC0), verbatim. Heart Sūtra: F. Max Müller, SBE 49 (1894; US-PD), verbatim. Word-glosses: original after PED (1921–25, PD) & Monier-Williams (1899, PD), cited per word. (= BUDDHIST_CITATION)',
+    pages: ['pages/buddhist/index.html', 'pages/buddhist/metta.html', 'pages/buddhist/heart.html', 'pages/buddhist/mn118.html', 'pages/buddhist/sources.html'],
+    howItWorks: 'pages/buddhist/sources.html#hiw-buddhist',
+    glossaryTerms: ['Sutta', 'Gāthā', 'Mettā', 'Sati', 'Ānāpāna', 'Peyyāla', 'Prajñāpāramitā', 'Śūnyatā', 'Dhāraṇā', 'Bhāvanā'],
+  },
+  {
     id: 'practitioners-library', title: "The Practitioners' Library (expert catalog)",
     module: 'assets/js/core/data/practitioners.js', exportName: 'PRACTITIONERS',
     exports: ['TIER_DEFS', 'TIER_VOCAB_NOTE', 'JOURNALS', 'PRACTITIONERS_BY_DOMAIN', 'LIBRARY_CITATION', 'LIBRARY_METHOD_NOTE'],
@@ -1230,6 +1246,22 @@ export const REGISTRY = [
     citation: 'BPHS 3.55–60 (maitrī); BPHS Ch. 26 (graha dṛṣṭi & the sphuṭa scheme); combustion arcs per the Sūrya-Siddhānta / Phaladīpikā line (retrograde arcs contested).',
     pages: ['pages/vedic/index.html'], howItWorks: 'pages/vedic/index.html',
     glossaryTerms: ['Pañcadhā Maitrī', 'Graha Dṛṣṭi', 'Asta (combustion)'],
+  },
+  {
+    id: 'comparison', title: 'The honest comparison (landscape survey)',
+    module: 'assets/js/core/data/competitors.js', exportName: 'compareTools',
+    exports: ['COMPETITORS', 'FEATURE_MATRIX', 'NOVELTY_CLAIMS', 'SURVEY_STAMP', 'MATRIX_COLUMNS', 'competitorById'],
+    computes: 'Reference: the surveyed landscape of astrology/divination software — ~30 products (astro.com, Astro-Seek, Solar Fire, JHora, Delphic Oracle, Co-Star…), each dated & sourced with the three honesty axes and a mandatory "what it does better than this site" list; the honest feature matrix; and the 11 verifiable novelty claims. Every fact carries its survey date; quote it.',
+    inputs: [
+      { name: 'id', type: 'string', desc: 'a competitor id (e.g. "solar-fire"); omit for the survey summary', required: false },
+      { name: 'category', type: 'enum', values: ['western', 'vedic', 'traditional', 'oracle', 'kabbalah', 'teaching', 'atlas', 'ai'], desc: 'list one category' },
+    ],
+    outputShape: '{id}→a competitor record; {category}→that category’s products; {}→the survey summary (stamp, counts, honesty gap, novelty claims, what-others-do-better)',
+    callable: true,
+    book: 'Reference', chapter: 'Landscape survey (comparison.md)',
+    citation: 'Vendor pages & repositories as linked per record; surveyed 2026-07.',
+    pages: ['pages/compare.html'], howItWorks: 'pages/compare.html#method',
+    glossaryTerms: ['Swiss Ephemeris', 'Ephemeris'],
   },
 ];
 

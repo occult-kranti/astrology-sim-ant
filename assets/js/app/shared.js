@@ -77,6 +77,7 @@ export const NAV_GROUPS = [
     ['pages/chronology/index.html', 'The Hermetic Chronology', 'chronology'],
     ['pages/confluence.html', 'The Great Confluence — atlas', 'confluence'],
     ['pages/yoga/index.html', 'The Yoga Sūtras', 'yoga'],
+    ['pages/buddhist/index.html', 'Buddhist scriptures — word by word', 'buddhist'],
     ['pages/greatworks/index.html', 'Great Works', 'greatworks'],
   ] },
   { label: 'Oracles', key: 'oracles', items: [
@@ -87,6 +88,7 @@ export const NAV_GROUPS = [
   ] },
   { label: 'Reference', key: 'reference', items: [
     ['pages/glossary.html', 'Glossary & Dictionary', 'glossary'],
+    ['pages/compare.html', 'Compare — this site vs others', 'compare'],
     ['pages/tools.html', 'Compare the tools', 'tools'],
     ['pages/library/index.html', 'The Library', 'library'],
     ['pages/about/index.html', 'Sources & Science', 'about'],
@@ -128,6 +130,7 @@ export function currentSection() {
   if (m(/\/pages\/chronology\//)) return 'chronology';
   if (m(/\/pages\/confluence\.html$/)) return 'confluence';
   if (m(/\/pages\/yoga\//)) return 'yoga';
+  if (m(/\/pages\/buddhist\//)) return 'buddhist';
   if (m(/\/pages\/greatworks\//)) return 'greatworks';
   if (m(/\/pages\/abhichara\//)) return 'abhichara';
   if (m(/\/pages\/prasna\.html$/)) return 'prasna';
@@ -167,6 +170,7 @@ export function currentSection() {
 
   // Reference.
   if (m(/\/pages\/glossary\.html$/)) return 'glossary';
+  if (m(/\/pages\/compare\.html$/)) return 'compare';
   if (m(/\/pages\/tools\.html$/)) return 'tools';
   if (m(/\/pages\/library\//)) return 'library';
   if (m(/\/pages\/about\//)) return 'about';
@@ -302,6 +306,7 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/chronology/index.html')}">The Hermetic Chronology — as above, so below</a></li>
         <li><a href="${R('pages/abhichara/index.html')}">Abhicāra — the Indian ritual-magic traditions, described</a></li>
         <li><a href="${R('pages/yoga/index.html')}">The Yoga Sūtras of Patañjali — the study wing</a></li>
+        <li><a href="${R('pages/buddhist/index.html')}">The Buddhist scriptures — a curated canon, word by word</a></li>
         <li><a href="${R('pages/greatworks/index.html')}">The Great Works — author→book→chapter study guides</a></li>
         <li><a href="${R('pages/library/index.html')}">The Practitioners' Library — the people &amp; the books</a></li>
       </ul></div>

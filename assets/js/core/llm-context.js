@@ -56,6 +56,7 @@ import { castFromDraws as castRunesFromDraws } from './runes.js';
 import { filterEntries as cflFilter, entryBySlug as cflEntry, confluenceStats as cflStats } from './confluence.js';
 import { CONFLUENCE_EDGES as CFL_EDGES, CONFLUENCE_LANES as CFL_LANES } from './data/confluence.js';
 import { eraLegis, solarStations, ERA_LEGIS_CITATION, RESH_CITATION } from './thelemic.js';
+import { compareTools } from './data/competitors.js';
 
 const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
@@ -903,6 +904,12 @@ export function runTool(name, args = {}, ctx = {}) {
     // --- the divination oracles. The randomness comes from the CALLER (the
     // app injects ctx.rand, a crypto n→[0,n) function) or from explicit args —
     // never from this pure module, and never from the model itself.
+    case 'compareTools': {
+      // The honest landscape survey — answered from the SURVEYED data, never
+      // the model's memory. {id}→a record; {category}→that category; {}→summary.
+      // The caveat carries the survey date the model must quote.
+      return compareTools({ id: args.id, category: args.category });
+    }
     case 'defineTerm': {
       const q = String(need('term')).toLowerCase().trim();
       const hits = GLOSSARY.filter(g => g.term.toLowerCase().includes(q) || q.includes(g.term.toLowerCase()))
