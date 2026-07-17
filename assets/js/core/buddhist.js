@@ -34,6 +34,7 @@ import {
   METTA_META, METTA_RECORDS,
   HEART_META, HEART_RECORDS,
   MN118_META, MN118_RECORDS, MN118_REFRAINS, MN118_SUBSTITUTION_GLOSSES,
+  DHAMMAPADA_META, DHAMMAPADA_RECORDS,
 } from './data/buddhist/index.js';
 
 export {
@@ -41,13 +42,19 @@ export {
   METTA_META, METTA_RECORDS,
   HEART_META, HEART_RECORDS,
   MN118_META, MN118_RECORDS, MN118_REFRAINS, MN118_SUBSTITUTION_GLOSSES,
+  DHAMMAPADA_META, DHAMMAPADA_RECORDS,
 };
 
 // ── records-by-id map (private) ─────────────────────────────────────────────
+// R31 extends the reader with the Dhammapada (vaggas 1–5, Dhp 1–75). Its
+// records use the verse-text shape ({ref, pali, words, translation, notes} +
+// a derived `section`), so every existing helper — recordsFor, reconstruct,
+// searchBuddhist, buddhistStats — handles it with no special-casing.
 const RECORDS_BY_ID = {
   metta: METTA_RECORDS,
   heart: HEART_RECORDS,
   mn118: MN118_RECORDS,
+  dhammapada: DHAMMAPADA_RECORDS,
 };
 
 // ── textById('mn118') ───────────────────────────────────────────────────────

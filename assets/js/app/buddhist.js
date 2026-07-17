@@ -36,7 +36,7 @@ const slug = s => String(s ?? '').toLowerCase().normalize('NFD').replace(/[̀-ͯ
   .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
 // text id → its reading-room page filename.
-const PAGE_OF = { metta: 'metta.html', heart: 'heart.html', mn118: 'mn118.html' };
+const PAGE_OF = { metta: 'metta.html', heart: 'heart.html', mn118: 'mn118.html', dhammapada: 'dhammapada.html' };
 
 // ── Tolerant accessors — code to the FROZEN contract but survive the small
 //    shape differences between the verse texts ({translation:{text,source}})
@@ -319,9 +319,10 @@ function initRoom(id) {
     return head + renderSegment(r, text);
   }).join('');
 
-  // MN 118 section nav rail (jump to any section).
+  // Section nav rail (jump to any section): MN 118's prose sections, or the
+  // Dhammapada's vaggas — any sectioned text gets the rail.
   let railHTML = '';
-  if (id === 'mn118') {
+  if (id === 'mn118' || id === 'dhammapada') {
     const secs = [];
     const seen = new Set();
     for (const r of records) if (r.section && !seen.has(r.section)) { seen.add(r.section); secs.push(r.section); }
@@ -425,6 +426,7 @@ export function initBuddhist(page) {
     case 'metta': return initRoom('metta');
     case 'heart': return initRoom('heart');
     case 'mn118': return initRoom('mn118');
+    case 'dhammapada': return initRoom('dhammapada');
     default: return;   // sources.html is static prose
   }
 }

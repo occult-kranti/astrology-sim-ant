@@ -1,0 +1,134 @@
+/* ============================================================================
+   practices.css — presentation for the Practices wing (pages/practices/*).
+   Loaded AFTER style.css; page-scoped so style.css stays untouched. Uses the
+   site DS tokens only — NO raw hex — so light/dark themes both follow the token
+   palette. Reduced-motion-first: no @keyframes, no transitions.
+   ============================================================================ */
+
+/* — the hub: live stats + the 8-group taxonomy ————————————————————————— */
+.pr-statline { display: flex; flex-wrap: wrap; gap: .4rem .9rem; margin: .3rem 0 0; }
+.pr-stat { font-family: var(--sans); font-size: .82rem; color: var(--muted); }
+.pr-stat b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.pr-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1rem; margin: 1rem 0; }
+.pr-group { border: 1px solid var(--rule); border-radius: 12px; background: var(--card);
+  padding: .9rem 1rem; display: flex; flex-direction: column; }
+.pr-group--built { border-color: var(--ok); border-left-width: 4px; }
+.pr-group-hd { display: flex; align-items: baseline; gap: .5rem; }
+.pr-gglyph { font-size: 1.2rem; line-height: 1; color: var(--gold); }
+.pr-group h3 { margin: 0; font-size: 1.02rem; }
+.pr-gstatus { font-family: var(--sans); font-size: .62rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; align-self: flex-start; margin: .4rem 0 0;
+  padding: .08rem .45rem; border-radius: var(--rad-1); border: 1px solid var(--border); }
+.pr-gstatus--ok { color: var(--ok-ink); background: var(--ok-wash); border-color: var(--ok); }
+.pr-gstatus--doc { color: var(--ep-doc-ink); background: var(--ep-doc-wash); border-color: var(--ep-doc); }
+.pr-gstatus--warn { color: var(--warn-ink); background: var(--warn-wash); border-color: var(--warn); }
+.pr-gstatus--info { color: var(--info-ink); background: var(--info-wash); border-color: var(--info); }
+.pr-gcount { font-family: var(--sans); font-size: .68rem; color: var(--muted); margin: .3rem 0 0; }
+.pr-glede { margin: .5rem 0 .6rem; font-size: .9rem; color: var(--text-soft); }
+.pr-glinks { margin-top: auto; display: flex; flex-direction: column; gap: .2rem; }
+.pr-xlink { font-family: var(--sans); font-size: .78rem; }
+
+/* — the catalog filter bar (DS .seg segmented source + harm toggle) —————— */
+.pr-controls { display: flex; flex-wrap: wrap; gap: .6rem 1rem; align-items: center; margin: .4rem 0 1rem; }
+.pr-controls .seg button:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.pr-harm-toggle { font-family: var(--sans); font-size: .8rem; color: var(--ink);
+  display: inline-flex; align-items: center; gap: .35rem; cursor: pointer; }
+.pr-ctl-label { font-family: var(--sans); font-size: .68rem; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); }
+
+/* — one museum-record card ————————————————————————————————————————————— */
+.pr-src-head { margin: 1.6rem 0 .8rem; font-size: 1.1rem; padding-bottom: .25rem;
+  border-bottom: 1px solid var(--rule); scroll-margin-top: 4.5rem; }
+.pr-src-count { font-family: var(--sans); font-size: .74rem; font-weight: 400; color: var(--muted); }
+
+.pr-card { border: 1px solid var(--rule); border-radius: 12px; background: var(--card);
+  padding: 1rem 1.1rem; margin: 0 0 1.2rem; scroll-margin-top: 4.5rem; }
+.pr-card:target { border-color: var(--gold); box-shadow: 0 0 0 2px var(--ok-wash); }
+.pr-card-hd { margin-bottom: .5rem; }
+.pr-name { margin: 0; font-size: 1.15rem; }
+.pr-deva { font-weight: 400; font-size: .95rem; color: var(--muted); }
+.pr-iast { margin: .05rem 0 .3rem; font-style: italic; color: var(--link); font-size: .9rem; }
+.pr-meta { display: flex; flex-wrap: wrap; gap: .4rem .6rem; align-items: baseline; }
+.pr-badge { font-family: var(--sans); font-size: .64rem; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; padding: .1rem .45rem; border-radius: var(--rad-1); border: 1px solid var(--border); }
+.pr-badge--gs { color: var(--ep-doc-ink); background: var(--ep-doc-wash); border-color: var(--ep-doc); }
+.pr-badge--hyp { color: var(--info-ink); background: var(--info-wash); border-color: var(--info); }
+.pr-locus { font-family: var(--sans); font-size: .72rem; color: var(--muted); }
+
+/* the card body: harm (full width) → figure + prose (side by side) → source */
+.pr-card-body { display: flex; flex-wrap: wrap; gap: .6rem 1.1rem; }
+.pr-harm { flex: 1 1 100%; border: 1px solid var(--bad); border-left-width: 4px; border-radius: 8px;
+  background: var(--bad-wash); padding: .7rem .9rem; }
+.pr-harm-label { display: block; font-family: var(--sans); font-size: .66rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--bad-ink); margin-bottom: .25rem; }
+.pr-harm p { margin: 0; color: var(--bad-ink); font-size: .92rem; }
+
+.pr-fig-wrap { flex: 0 0 130px; }
+.pr-prose { flex: 1 1 16rem; min-width: 0; }
+.pr-src { flex: 1 1 100%; margin-top: .3rem; padding-top: .45rem; border-top: 1px dashed var(--rule);
+  font-family: var(--sans); font-size: .66rem; color: var(--muted); }
+
+.pr-field { display: block; font-family: var(--sans); font-size: .6rem; letter-spacing: .1em;
+  text-transform: uppercase; font-weight: 700; color: var(--gold); }
+.pr-field--warn { color: var(--warn-ink); }
+.pr-desc, .pr-purpose, .pr-caution { margin: 0 0 .6rem; max-width: var(--measure); }
+.pr-caution { font-size: .9rem; color: var(--text-soft); }
+
+.pr-xwalk-chips { display: flex; flex-wrap: wrap; gap: .35rem; align-items: baseline; margin: .3rem 0 .5rem; }
+.pr-chips-label { font-family: var(--sans); font-size: .6rem; letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 700; color: var(--muted); }
+.pr-chip { font-family: var(--sans); font-size: .74rem; text-decoration: none;
+  padding: .1rem .5rem; border-radius: 999px; border: 1px solid var(--rule); color: var(--link); background: var(--surface-inset); }
+.pr-chip:hover, .pr-chip:focus-visible { border-color: var(--link); }
+.pr-chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+
+/* ⚑ CONTESTED both-positions panel (mirrors the buddhist wing's crux) */
+.pr-crux { border: 1px solid var(--malefic); border-left-width: 4px; border-radius: 8px;
+  background: var(--surface-inset); padding: .7rem .9rem; margin: .4rem 0 .3rem; max-width: var(--measure); }
+.pr-crux-title { font-family: var(--sans); font-size: .82rem; font-weight: 700; color: var(--malefic); margin: 0 0 .4rem; }
+.pr-crux-title::before { content: '⚑ '; }
+.pr-crux-pos { margin: .4rem 0; padding-left: .7rem; border-left: 2px solid var(--rule); }
+.pr-crux-pos b { font-weight: 400; }
+.pr-crux-src { font-family: var(--sans); font-size: .68rem; color: var(--muted); display: block; margin-top: .15rem; }
+
+.pr-empty { color: var(--muted); }
+.pr-reset { font: inherit; font-family: var(--sans); font-size: .82rem; color: var(--link);
+  background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0; }
+.pr-reset:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* — the generated schematic figures ———————————————————————————————————— */
+.pr-fig { margin: 0; text-align: center; }
+.pr-fig svg { width: 100%; height: auto; max-width: 120px; }
+.pr-fig svg path, .pr-fig svg line, .pr-fig svg circle, .pr-fig svg rect, .pr-fig svg polyline {
+  fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.pr-fig svg .pr-dash path, .pr-fig svg path.pr-dash, .pr-fig svg .pr-dash {
+  stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 3 3; }
+.pr-fig svg .pr-water { stroke: var(--air); stroke-width: 1.8; }
+.pr-fig svg .pr-elem * { stroke: var(--link); stroke-width: 1.9; }
+.pr-cap { font-size: .64rem; color: var(--muted); margin: .35rem 0 0; line-height: 1.35; }
+.pr-fig--none .pr-noart { display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 100%; max-width: 120px; height: 96px; margin: 0 auto; border: 1px dashed var(--rule); border-radius: 8px;
+  background: var(--surface-inset); }
+.pr-noart-mark { font-size: 1.6rem; color: var(--muted); line-height: 1; }
+.pr-noart-txt { font-family: var(--sans); font-size: .64rem; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); margin-top: .2rem; }
+
+/* — the GS↔HYP crosswalk table ————————————————————————————————————————— */
+.pr-xwtab { width: 100%; border-collapse: collapse; margin: .5rem 0; }
+.pr-xwcap { caption-side: top; text-align: left; font-size: .88rem; color: var(--text-soft);
+  margin-bottom: .6rem; max-width: var(--measure); }
+.pr-xwtab th, .pr-xwtab td { text-align: left; padding: .4rem .6rem; border-bottom: 1px solid var(--rule);
+  vertical-align: top; font-size: .88rem; }
+.pr-xwtab thead th { font-family: var(--sans); font-size: .72rem; letter-spacing: .03em;
+  text-transform: uppercase; color: var(--muted); }
+.pr-xwtab tbody th { font-weight: 700; }
+.pr-xw-note { font-size: .82rem; color: var(--text-soft); }
+
+/* — narrow screens: figure and prose stack; table scrolls ————————————————— */
+@media (max-width: 520px) {
+  .pr-fig-wrap { flex: 1 1 100%; }
+  .pr-fig svg, .pr-fig--none .pr-noart { max-width: 108px; }
+}
+.pr-xw-scroll { overflow-x: auto; }

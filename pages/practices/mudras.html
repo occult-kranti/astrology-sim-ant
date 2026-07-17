@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The mudrā catalog — the seals, text by text | The Astrologer's Workbench</title>
+<meta name="description" content="The haṭha-yoga mudrās as cited museum records: the Gheraṇḍa Saṁhitā's 25 seals (Vasu 1895) and the Haṭhayogapradīpikā's 10 (Sinh 1914), kept as separate per-source records and joined by a crosswalk. Each carries a generated schematic figure, the description in the text's historical voice, the claimed purpose, the text's own cautions, a prominent harm flag where the instruction is dangerous, and a ⚑ contested panel for same-name divergences (khecarī's frenum-cutting; vajrolī vs. vajroṇī). A historical practice, described never prescribed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/practices.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="../contents.html">Traditions</a> › <a href="index.html">Practices</a> › The mudrā catalog</p>
+  <h1>The mudrā catalog <span class="small muted">— the seals, text by text</span></h1>
+  <p class="lede">The whole-body "seals" (<i lang="sa-Latn">mudrā</i>) of haṭha yoga — locks, inversions, tongue and
+    gaze seals, breath-work — as catalogued by the two classical manuals that define them: the <b>Gheraṇḍa
+    Saṁhitā</b> (chapter 3, twenty-five seals) and the <b>Haṭhayogapradīpikā</b> (chapter 3, ten). Nine of the ten HYP
+    names recur in the Gheraṇḍa; the literature routinely conflates the two sets, and this catalog will <b>not</b> —
+    each text's own description is kept as a separate record, joined by a crosswalk.</p>
+
+  <div class="callout science"><span class="label">The standing note — museum record, described never prescribed</span>
+    Every card below is a <b>historical description of what the cited text instructs its own practitioner</b>, of
+    <b>no demonstrated supernatural validity</b>. The purpose lines report only what the tradition <i>claims</i>. Some
+    of these seals are genuinely dangerous as the texts describe them — <b>khecarī</b> instructs progressively
+    <b>cutting the tongue's frenulum</b> over months; <b>vajrolī</b> is a genito-urinary practice; several are held
+    under forced breath-retention. Those records carry a red <b>harm flag</b>, presented as textual history and named
+    as danger. This is <b>not</b> health, medical, or spiritual advice, and nothing here is anything to attempt.</div>
+
+  <nav class="pager" aria-label="The Practices wing">
+    <a class="pager-prev" href="index.html">← The wing hub</a>
+    <a class="pager-next" href="#crosswalk">The GS↔HYP crosswalk ↓</a>
+  </nav>
+
+  <div class="filterbar">
+    <input id="pr-filter" class="filter-input" type="search" placeholder="filter the seals — e.g. khecarī, lock, tongue, death…" autocomplete="off" aria-label="Filter the mudrā records">
+    <span id="pr-filter-count" class="filter-count"></span>
+  </div>
+  <div class="pr-controls">
+    <span class="pr-ctl-label">Text</span>
+    <div id="pr-source" class="seg" role="group" aria-label="Filter by source text">
+      <button type="button" data-source="all" aria-pressed="true">All 35</button>
+      <button type="button" data-source="gheranda" aria-pressed="false">Gheraṇḍa · 25</button>
+      <button type="button" data-source="hyp" aria-pressed="false">HYP · 10</button>
+    </div>
+    <label class="pr-harm-toggle"><input type="checkbox" id="pr-harm"> Only harm-flagged</label>
+  </div>
+
+  <div id="pr-catalog"></div>
+
+  <h2 id="crosswalk">The crosswalk — the seals named in both texts</h2>
+  <p>Nine of the ten Haṭhayogapradīpikā seals share a name with one of the Gheraṇḍa's twenty-five. They are kept as
+    separate per-source records above; this table joins them. Two rows deserve a close look: <b>khecarī</b> (both texts
+    instruct cutting the frenulum — the plan's claim that the Gheraṇḍa omits the cutting is corrected in the data), and
+    <b>vajrolī / vajroṇī</b>, where a single name covers two entirely different practices.</p>
+  <div class="pr-xw-scroll">
+    <div id="pr-crosswalk"></div>
+  </div>
+
+  <nav class="pager" aria-label="The Practices wing">
+    <a class="pager-prev" href="index.html">← The wing hub</a>
+    <a class="pager-next" href="../yoga/index.html">The Yoga Sūtras wing →</a>
+  </nav>
+
+  <p class="small muted">Sources: Gheraṇḍa Saṁhitā, tr. Śrīśa Chandra Vasu, Bombay 1895 (US public domain; same
+    translation reissued as Sacred Books of the Hindus XV pt. 2, 1914–15). Haṭhayogapradīpikā, tr. Pañcham Sinh,
+    Allahabad 1914 (US public domain). Verse loci verified against those editions; the schematic figures are generated
+    for this site — not from the source texts. See the <a href="index.html#hiw-practices">how-it-works</a> note.</p>
+</main>
+<script type="module">
+  import { mountChrome } from '../../assets/js/app/shared.js';
+  import { initPractices } from '../../assets/js/app/practices.js';
+  mountChrome('practices');
+  initPractices('mudras');
+</script>
+</body>
+</html>

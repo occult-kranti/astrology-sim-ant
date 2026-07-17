@@ -34,35 +34,39 @@ export async function run() {
   const ok = (cond, msg) => { if (!cond) failures.push(msg); };
 
   // ---- 1. wing shape / counts --------------------------------------------
-  ok(BUDDHIST_TEXTS.length === 3, `3 texts (got ${BUDDHIST_TEXTS.length})`);
-  ok(BUDDHIST_TEXTS.map(t => t.id).join(',') === 'metta,heart,mn118', 'text ids metta,heart,mn118 in order');
-  const metta = textById('metta'), heart = textById('heart'), mn = textById('mn118');
+  // R31 added the Dhammapada (vaggas 1–5, Dhp 1–75) as a 4th text.
+  ok(BUDDHIST_TEXTS.length === 4, `4 texts (got ${BUDDHIST_TEXTS.length})`);
+  ok(BUDDHIST_TEXTS.map(t => t.id).join(',') === 'metta,heart,mn118,dhammapada', 'text ids metta,heart,mn118,dhammapada in order');
+  const metta = textById('metta'), heart = textById('heart'), mn = textById('mn118'), dhp = textById('dhammapada');
   ok(metta && metta.segments === 43 && metta.words === 138, `metta 43 segments / 138 words (got ${metta && metta.segments}/${metta && metta.words})`);
   ok(heart && heart.segments === 16 && heart.words === 132, `heart 16 segments / 132 words (got ${heart && heart.segments}/${heart && heart.words})`);
   ok(mn && mn.segments === 154 && mn.words === 1184, `mn118 154 segments / 1184 full-record words (got ${mn && mn.segments}/${mn && mn.words})`);
   ok(mn.fullRecords === 105 && mn.refrainUseRecords === 49 && mn.refrains === 6, `mn118 105 full + 49 refrain-use / 6 refrains (got ${mn.fullRecords}+${mn.refrainUseRecords}/${mn.refrains})`);
-  ok(metta.lang === 'pi' && heart.lang === 'sa' && mn.lang === 'pi', 'lang pi/sa/pi');
+  ok(dhp && dhp.segments === 395 && dhp.words === 957, `dhammapada 395 segments / 957 words (got ${dhp && dhp.segments}/${dhp && dhp.words})`);
+  ok(metta.lang === 'pi' && heart.lang === 'sa' && mn.lang === 'pi' && dhp.lang === 'pi', 'lang pi/sa/pi/pi');
   ok(textById('nope') === undefined, 'textById unknown id → undefined');
-  ok(recordsFor('metta').length === 43 && recordsFor('nope').length === 0, 'recordsFor resolves / [] for unknown');
+  ok(recordsFor('metta').length === 43 && recordsFor('dhammapada').length === 395 && recordsFor('nope').length === 0, 'recordsFor resolves / [] for unknown');
 
   // ---- 2. buddhistStats (live) -------------------------------------------
   const st = buddhistStats();
-  ok(st.texts === 3 && st.segments === 43 + 16 + 154, `stats: 3 texts / ${43 + 16 + 154} segments (got ${st.segments})`);
-  ok(st.glossedWords === 138 + 132 + 1184, `stats: glossedWords ${138 + 132 + 1184} (got ${st.glossedWords})`);
+  ok(st.texts === 4 && st.segments === 43 + 16 + 154 + 395, `stats: 4 texts / ${43 + 16 + 154 + 395} segments (got ${st.segments})`);
+  ok(st.glossedWords === 138 + 132 + 1184 + 957, `stats: glossedWords ${138 + 132 + 1184 + 957} (got ${st.glossedWords})`);
   ok(st.refrains === 6 && st.refrainUseRecords === 49, 'stats: 6 refrains / 49 refrain-uses');
-  ok(st.byLicence.cc0 === 43 + 154 && st.byLicence['pd-age'] === 16, `stats byLicence cc0=${43 + 154}, pd-age=16 (got ${st.byLicence.cc0}/${st.byLicence['pd-age']})`);
+  ok(st.byLicence.cc0 === 43 + 154 + 395 && st.byLicence['pd-age'] === 16, `stats byLicence cc0=${43 + 154 + 395}, pd-age=16 (got ${st.byLicence.cc0}/${st.byLicence['pd-age']})`);
   ok(st.glossLicence === 'original', 'stats: glossLicence original');
   ok(JSON.stringify(st) === JSON.stringify(buddhistStats()), 'buddhistStats deterministic (two calls deep-equal)');
 
-  // ---- 3. THE RECONSTRUCTION INVARIANT — over all 213 records ------------
-  let reFail = 0, reFirst = '';
+  // ---- 3. THE RECONSTRUCTION INVARIANT — over all 608 records ------------
+  let reFail = 0, reFirst = '', reTotal = 0;
   for (const t of BUDDHIST_TEXTS) {
     for (const rec of recordsFor(t.id)) {
+      reTotal++;
       const surface = rec.pali ?? rec.sanskrit;
       if (reconstruct(rec) !== surface) { reFail++; if (!reFirst) reFirst = `${t.id} ${rec.ref}`; }
     }
   }
-  ok(reFail === 0, `reconstruction invariant holds on all 213 records (${reFail} fail; first: ${reFirst})`);
+  ok(reTotal === 43 + 16 + 154 + 395, `608 total records across the wing (got ${reTotal})`);
+  ok(reFail === 0, `reconstruction invariant holds on all 608 records (${reFail} fail; first: ${reFirst})`);
 
   // spot: a full record and a refrain-use, explicitly
   const mfull = MN118_RECORDS.find(r => r.ref === 'mn118:8.3');

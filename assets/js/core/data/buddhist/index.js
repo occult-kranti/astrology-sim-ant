@@ -1,8 +1,10 @@
 // ============================================================================
-//  core/data/buddhist/index.js  —  GENERATED, DO NOT HAND-EDIT.
-//  Regenerate: node r30build/gen-buddhist.cjs (reads r29data/*.json verbatim).
+//  core/data/buddhist/index.js  —  MOSTLY GENERATED (the R30 three texts by
+//  node r30build/gen-buddhist.cjs); the R31 Dhammapada entry is a minimal,
+//  reviewed hand-edit (B-BUDDHIST-DHP) — its data lives in the generated
+//  dhammapada.js (node r31build/gen-dhammapada.cjs).
 //
-//  The Buddhist wing data barrel: re-exports the three texts' records/refrains and
+//  The Buddhist wing data barrel: re-exports each text's records/refrains and
 //  builds BUDDHIST_TEXTS (per-text metadata; `segments` and `words` computed LIVE from
 //  the records so the counts can never drift). Consumed by core/buddhist.js. DOM-free.
 // ============================================================================
@@ -10,8 +12,9 @@
 import { METTA_META, METTA_RECORDS } from './metta.js';
 import { HEART_META, HEART_RECORDS } from './heart.js';
 import { MN118_META, MN118_RECORDS, MN118_REFRAINS, MN118_SUBSTITUTION_GLOSSES } from './mn118.js';
+import { DHAMMAPADA_META, DHAMMAPADA_RECORDS } from './dhammapada.js';
 
-export { METTA_META, METTA_RECORDS, HEART_META, HEART_RECORDS, MN118_META, MN118_RECORDS, MN118_REFRAINS, MN118_SUBSTITUTION_GLOSSES };
+export { METTA_META, METTA_RECORDS, HEART_META, HEART_RECORDS, MN118_META, MN118_RECORDS, MN118_REFRAINS, MN118_SUBSTITUTION_GLOSSES, DHAMMAPADA_META, DHAMMAPADA_RECORDS };
 
 // Live word-gloss count over a record set (refrain-use records carry no words[]).
 const wordCount = recs => recs.reduce((n, r) => n + (r.words ? r.words.length : 0), 0);
@@ -63,5 +66,21 @@ export const BUDDHIST_TEXTS = [
     fullRecords: MN118_RECORDS.filter(r => r.kind === 'full').length,
     contested: [],
     meta: MN118_META,
+  },
+  {
+    id: 'dhammapada',
+    title: 'The Dhammapada (vaggas 1–5)',
+    titleOriginal: 'Dhammapada',
+    lang: 'pi',
+    tradition: 'Theravāda — Pāli Canon (Khuddaka Nikāya; Dhp 1–75)',
+    translationSource: 'Bhikkhu Sujato, Sayings of the Dhamma (SuttaCentral, 2018–; CC0)',
+    licence: { root: 'cc0', translation: 'cc0', glosses: 'original' },
+    segments: DHAMMAPADA_RECORDS.length,
+    words: wordCount(DHAMMAPADA_RECORDS),
+    // Vaggas 1–5 of the traditional 26 are glossed word-by-word; the rest is
+    // catalogued (index.html). Famous cruxes live in per-record `notes` (like
+    // metta/mn118), so no structured `contested` blocks here.
+    contested: [],
+    meta: DHAMMAPADA_META,
   },
 ];

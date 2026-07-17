@@ -78,6 +78,7 @@ export const NAV_GROUPS = [
     ['pages/confluence.html', 'The Great Confluence — atlas', 'confluence'],
     ['pages/yoga/index.html', 'The Yoga Sūtras', 'yoga'],
     ['pages/buddhist/index.html', 'Buddhist scriptures — word by word', 'buddhist'],
+    ['pages/practices/index.html', 'Practices — the museum of methods', 'practices'],
     ['pages/greatworks/index.html', 'Great Works', 'greatworks'],
   ] },
   { label: 'Oracles', key: 'oracles', items: [
@@ -131,6 +132,7 @@ export function currentSection() {
   if (m(/\/pages\/confluence\.html$/)) return 'confluence';
   if (m(/\/pages\/yoga\//)) return 'yoga';
   if (m(/\/pages\/buddhist\//)) return 'buddhist';
+  if (m(/\/pages\/practices\//)) return 'practices';
   if (m(/\/pages\/greatworks\//)) return 'greatworks';
   if (m(/\/pages\/abhichara\//)) return 'abhichara';
   if (m(/\/pages\/prasna\.html$/)) return 'prasna';
