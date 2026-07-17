@@ -80,9 +80,7 @@ export function initRunes() {
     if (chip && divAssistant) divAssistant.prefill(chip.getAttribute('data-q'));
   });
 
-  const shareBtn = $('rn-share'), mdBtn = $('rn-md');
-  if (shareBtn) shareBtn.addEventListener('click', () => copyShareLink($('rn-share-status'), shareState()));
-  if (mdBtn) mdBtn.addEventListener('click', () => downloadText(toMarkdown(), 'runes-reading.md', 'text/markdown;charset=utf-8'));
+  mountOracleBar();   // the share/download actions now live on the sticky oracle bar
 
   // "Reveal instantly" skip affordance: drop the staged flag so every stave snaps
   // to its final state (the DS2 .stage-figure default is opacity 1).
@@ -102,6 +100,47 @@ export function initRunes() {
   }
 
   if (!restoreFromURL()) castNow(); // a shared cast, else a first cast on load (no network; pure compute)
+}
+
+// --- the oracle action bar (ui3-spec §8): [Cast again][Copy link][⤓ Download MD]
+// [✶ Ask the diviner]. The old in-form share/download buttons MOVED here (same
+// handlers — copyShareLink still writes the shareable link, restore is unchanged).
+let oracleBar = null;
+const oracleMotionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+async function mountOracleBar() {
+  const host = $('rn-actionbar');
+  if (!host) return;
+  const mod = await import('./action-bar.js').catch(() => null);
+  if (!mod || !mod.mountActionBar) return;
+  oracleBar = mod.mountActionBar(host, {
+    variant: 'oracle',
+    oracleActions: [
+      { id: 'rn-ab-recast', label: 'Cast again' },
+      { id: 'rn-ab-copylink', label: 'Copy link' },
+      { id: 'rn-ab-md', label: '⤓ Download MD' },
+      { id: 'rn-ab-diviner', label: '✶ Ask the diviner' },
+    ],
+    summary: () => ({ verdict: '', text: reading ? `${reading.method.label}.` : '' }),
+  });
+  const on = (id, fn) => { const b = document.getElementById(id); if (b) b.addEventListener('click', fn); };
+  on('rn-ab-recast', () => castNow());
+  on('rn-ab-copylink', () => copyShareLink($('rn-share-status'), shareState()));
+  on('rn-ab-md', () => downloadText(toMarkdown(), 'runes-reading.md', 'text/markdown;charset=utf-8'));
+  on('rn-ab-diviner', () => askDiviner());
+  promoteDivinerInput();
+  if (reading) oracleBar.show();   // an auto-cast already ran before the import resolved
+}
+// Move the diviner's "Connect an AI" settings fieldset below the ask box so the
+// textarea is the panel's primary/first control — and so the sticky action bar
+// reliably hides when the ask box takes focus at 390 px (the config inputs
+// otherwise precede the textarea in the DOM). Nodes keep their wired listeners.
+function promoteDivinerInput() {
+  try { const dv = document.getElementById('dv-assistant'); const fs = dv && dv.querySelector('fieldset'); if (dv && fs) dv.appendChild(fs); } catch { /* non-fatal */ }
+}
+function askDiviner() {
+  const c = $('dv-assistant-card'); if (!c) return;
+  try { c.scrollIntoView({ behavior: oracleMotionOK() ? 'smooth' : 'auto', block: 'start' }); } catch { /* */ }
+  const t = c.querySelector('textarea, input'); if (t) { try { t.focus(); } catch { /* */ } }
 }
 
 // --- the casting-method radios ----------------------------------------------
@@ -199,6 +238,7 @@ function render() {
   const sv = $('rn-stage-verdict');
   if (sv) sv.textContent = `${reading.method.label}: ${reading.staves.map(s => `${s.char} ${s.name}`).join(' · ')}.`;
   try { autolinkResultPanels(['rn-out']); } catch { /* non-fatal */ }
+  if (oracleBar) oracleBar.show();
 }
 
 function methodNoteHtml(m) {

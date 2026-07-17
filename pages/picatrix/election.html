@@ -10,7 +10,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Election</p>
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="../tools.html">Cast</a> › Election</p>
   <h1>Election — choosing the moment</h1>
   <p class="lede">Pick an <b>aim</b>, a <b>moment</b> and a <b>place</b>, and this tool auto-judges the
     moment for that work by William Lilly's essential and accidental dignities, the <b>planetary hour and
@@ -37,23 +37,21 @@
   <form id="e-form" class="calc">
     <div class="field-row">
       <div class="field" style="flex:1 1 220px"><label for="e-op">Aim of the work</label><select id="e-op"></select></div>
-      <div class="field" style="flex:1 1 200px"><label for="e-city">Place</label><select id="e-city"></select></div>
-      <div class="field"><label for="e-lat">Lat °N</label><input id="e-lat" type="number" step="0.0001" style="width:7rem"></div>
-      <div class="field"><label for="e-lon">Lon °E</label><input id="e-lon" type="number" step="0.0001" style="width:7rem"></div>
-    </div>
-    <div class="field-row" style="margin-top:.8rem">
-      <div class="field"><label for="e-date">Date</label><input id="e-date" type="date"></div>
-      <div class="field"><label for="e-time">Time (local)</label><input id="e-time" type="time"></div>
-      <div class="field"><label for="e-offset">UTC offset</label><input id="e-offset" type="number" step="0.5" style="width:6rem"></div>
       <div class="field"><label for="e-system">Houses</label><select id="e-system">
         <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
         <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
-      <button type="button" class="btn sm" id="e-now">Now</button>
+    </div>
+    <div id="e-picker" style="margin-top:.8rem"></div>
+    <!-- Legacy write-through: the moment-picker fills these hidden inputs by their historic ids. -->
+    <input type="hidden" id="e-lat"><input type="hidden" id="e-lon">
+    <input type="hidden" id="e-date"><input type="hidden" id="e-time"><input type="hidden" id="e-offset">
+    <div class="field-row" style="margin-top:.8rem">
       <button type="submit" class="btn">Judge this moment</button>
     </div>
   </form>
 
   <div id="e-summary" role="status" aria-live="polite"></div>
+  <div id="e-actionbar"></div>
 
   <div id="e-detail"></div>
 

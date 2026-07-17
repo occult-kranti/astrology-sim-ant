@@ -10,26 +10,17 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book II — Horary</a> › Horary Chart Calculator</p>
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="../tools.html">Cast</a> › Horary Chart Calculator</p>
   <h1>Horary Chart Calculator</h1>
   <p class="lede">A horary chart is cast for the <em>moment a question is understood</em>. This tool
     erects the figure in Lilly's Regiomontanus houses, finds the significators, scores every
     planet's dignity, lists the aspects by Lilly's orbs, and runs the considerations before judgement.</p>
 
   <form id="h-form" class="calc">
-    <div class="field-row">
-      <div class="field" style="flex:1 1 220px"><label for="h-city">Place (preset)</label>
-        <select id="h-city"></select></div>
-      <div class="field"><label for="h-lat">Latitude °N</label><input id="h-lat" type="number" step="0.0001" style="width:8rem"></div>
-      <div class="field"><label for="h-lon">Longitude °E</label><input id="h-lon" type="number" step="0.0001" style="width:8rem"></div>
-      <button type="button" class="btn sm ghost" id="h-geo" style="color:#7a3b1e;border-color:#b8862b">Use my location</button>
-    </div>
-    <div class="field-row" style="margin-top:.8rem">
-      <div class="field"><label for="h-date">Date</label><input id="h-date" type="date"></div>
-      <div class="field"><label for="h-time">Time (local)</label><input id="h-time" type="time"></div>
-      <div class="field"><label for="h-offset">UTC offset (h)</label><input id="h-offset" type="number" step="0.5" style="width:7rem"></div>
-      <button type="button" class="btn sm" id="h-now">Now</button>
-    </div>
+    <div id="h-picker"></div>
+    <!-- Legacy write-through: the moment-picker fills these hidden inputs by their historic ids. -->
+    <input type="hidden" id="h-lat"><input type="hidden" id="h-lon">
+    <input type="hidden" id="h-date"><input type="hidden" id="h-time"><input type="hidden" id="h-offset">
     <div class="field-row" style="margin-top:.8rem">
       <div class="field"><label for="h-system">House system</label>
         <select id="h-system">
@@ -40,22 +31,19 @@
         </select></div>
       <div class="field" style="flex:1 1 260px"><label for="h-quesited">The quesited — house of the matter asked about</label>
         <select id="h-quesited"></select></div>
-      <button type="submit" class="btn">Cast the chart</button>
+      <button type="submit" class="btn">Judge the chart</button>
     </div>
     <p class="small muted" style="margin:.7rem 0 0">Tip: choose the house that signifies your question — e.g. marriage &amp; theft are the 7th, money the 2nd, career the 10th, sickness the 6th. The full guide is in <a href="houses.html">Book II, house by house</a>.</p>
   </form>
 
   <p id="h-summary" style="margin:1.2rem 0 .4rem; font-size:1.05rem" role="status" aria-live="polite"></p>
   <div id="h-verdict-banner" class="verdict-banner" role="status" aria-live="polite" hidden></div>
+  <div id="h-actionbar"></div>
 
   <div class="chart-layout">
     <div>
       <div id="h-wheel" class="card" style="padding:.6rem"></div>
-      <p class="center" style="margin:.4rem 0 0">
-        <button type="button" class="btn-secondary sm" id="h-svg">⤓ SVG</button>
-        <button type="button" class="btn-secondary sm" id="h-png">⤓ PNG</button>
-        <button type="button" class="btn-secondary sm" id="h-share">🔗 Copy link</button>
-        <span id="h-export-status" class="small muted" style="margin-left:.4rem" role="status" aria-live="polite"></span></p>
+      <p class="center small muted" style="margin:.4rem 0 0"><span id="h-export-status" role="status" aria-live="polite"></span></p>
       <p id="h-almuten" class="small muted center" style="margin-top:.5rem"></p>
     </div>
     <div>

@@ -14,7 +14,7 @@
 //  Presented as HISTORICAL practice — astrology has no demonstrated validity.
 // ============================================================================
 import { castChart, formatLon, signOf } from '../core/astro.js';
-import { planetaryHour } from '../core/planetary-hours.js';
+import { planetaryHour, hoursTable } from '../core/planetary-hours.js';
 import { chartCautions } from '../core/cautions.js';
 import { rankNow, moonPhase, moonDispositor, isViaCombusta, nextAuspiciousTime } from '../core/election.js';
 import { mansionOf } from '../core/data/lunar-mansions.js';
@@ -87,6 +87,7 @@ function render() {
   try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ currentDate: now }); vedicUpdate(chart); } catch { /* non-fatal */ }
 
   renderHead(chart, ph, now, lat, lon);
+  renderDial(now, lat, lon);
   renderMoon(chart, now);
   renderOps(chart);
   renderCautions(chart, ph);
@@ -150,8 +151,15 @@ function renderMoon(chart, now) {
     const spd = Math.abs(moon.speed);
     const dispText = disp.planet ? esc(disp.planet) : '—';
 
+    // illuminated fraction & waxing sense, for the engraved moon instrument
+    const sunLon = chart.planets.Sun.lon;
+    const elong = phase.elongation;                                   // 0..180 from the Sun
+    const frac = (1 - Math.cos(elong * Math.PI / 180)) / 2;           // illuminated fraction 0..1
+    const waxing = ((moon.lon - sunLon + 360) % 360) < 180;
+
     $('n-moon').innerHTML = `
       <h2>The Moon now</h2>
+      <div class="sky-inset moon-inset"></div>
       <ul class="advisories">
         <li class="adv-note"><b>${s.glyph} ${esc(s.name)}</b> — ${esc(formatLon(moon.lon))}</li>
         <li class="adv-note">Phase: <b>${esc(phase.label)}</b> · elongation ${esc(phase.elongation.toFixed(1))}° from the Sun</li>
@@ -164,9 +172,79 @@ function renderMoon(chart, now) {
         <li class="adv-note">Her decan face (${esc(face.sign)} face ${esc(face.decan)}, ruled by ${esc(face.ruler)}):
           <span class="small">${esc(face.image)}</span></li>
       </ul>`;
+    mountMoonInset($('n-moon').querySelector('.moon-inset'), frac, waxing, `The Moon, ${phase.label}`);
   } catch (e) {
     $('n-moon').innerHTML = `<h2>The Moon now</h2><p class="adv-bad">This section failed: ${esc(e.message)}</p>`;
   }
+}
+
+// The engraved Moon instrument (art §7.1) on a small Dome inset with a seeded
+// starfield behind the disc. Progressive enhancement: absent skyart → the
+// advisory list above is the complete, accessible reading.
+async function mountMoonInset(host, frac, waxing, label) {
+  if (!host) return;
+  const sky = await import('../core/skyart.js').catch(() => null);
+  if (!sky || !sky.moonPhaseSVG) return;
+  const stars = sky.starfieldSVG ? sky.starfieldSVG({ w: 220, h: 150, seed: 271828 }) : '';
+  host.innerHTML = `<div class="sky-inset-stars" aria-hidden="true">${stars}</div>` +
+    `<div class="sky-inset-disc">${sky.moonPhaseSVG({ frac, waxing, r: 44, label })}</div>`;
+}
+
+// The planetary-hours dial (art §7.2): the instrument portrait of the day's 24
+// unequal hours, above its complete accessible source — the 24-row hours table.
+function renderDial(now, lat, lon) {
+  const host = $('n-dial');
+  if (!host) return;
+  let table;
+  try { table = hoursTable(now, lat, lon); } catch { table = null; }
+  // Day-rollback (mirror planetaryHour's logic, planetary-hours.js §24): the
+  // planetary day begins at SUNRISE, not midnight. Before today's sunrise the
+  // present instant belongs to the PREVIOUS planetary day's night — but
+  // hoursTable(now) always starts at TODAY's sunrise, so `now` would fall before
+  // row 0 (no hl-row, and the marker/caption would wrongly read today's first
+  // day-hour). Rebuild from the previous day so the dial, caption, hl-row and the
+  // planetaryHour() stat tile always agree. (planetaryHour rolls back the same way.)
+  if (table && now < table.sunrise) {
+    try {
+      const prev = hoursTable(new Date(now.getTime() - 24 * 3600000), lat, lon);
+      if (prev && now >= prev.sunrise && now < prev.nextRise) table = prev;
+    } catch { /* keep today's table */ }
+  }
+  if (!table) {
+    host.innerHTML = '<h2>The planetary hours of today</h2><p class="adv-note">No sunrise or sunset was returned at this latitude and date, so unequal hours cannot be drawn.</p>';
+    return;
+  }
+  // Adapt hoursTable rows → the dial's {start,end,planet,isDay} shape.
+  const rows = table.rows;
+  const hours = rows.map((r, i) => ({
+    start: r.start,
+    end: (i + 1 < rows.length ? rows[i + 1].start : table.nextRise),
+    planet: r.ruler, isDay: !r.night,
+  }));
+  const cur = hours.find(h => now >= h.start && now < h.end) || hours[0];
+  const rowsHtml = rows.map((r, i) => {
+    const end = i + 1 < rows.length ? rows[i + 1].start : table.nextRise;
+    const isNow = now >= r.start && now < end;
+    const t = d => new Date(d).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+    return `<tr${isNow ? ' class="hl-row"' : ''}><td class="num">${r.hour}</td>
+      <td>${r.night ? 'night' : 'day'}</td><td><b>${esc(r.ruler)}</b></td>
+      <td class="l small">${esc(t(r.start))}–${esc(t(end))}</td></tr>`;
+  }).join('');
+  host.innerHTML = `<h2>The planetary hours of today</h2>
+    <div class="n-dial-fig"></div>
+    <p class="small">The day and night are each divided into twelve <b>unequal</b> hours between sunrise and sunset; the
+      dial makes that asymmetry visible. The gilt hand marks the present hour, ruled by <b>${esc(cur.planet)}</b>.</p>
+    <details class="small"><summary>The 24 hours as a table (the complete source)</summary>
+      <div class="table-scroll"><table class="data"><thead><tr><th class="num">#</th><th>Half</th><th>Ruler</th><th class="l">Span (local)</th></tr></thead>
+        <tbody>${rowsHtml}</tbody></table></div></details>`;
+  mountHourDial(host.querySelector('.n-dial-fig'), hours, now);
+}
+
+async function mountHourDial(figHost, hours, now) {
+  if (!figHost) return;
+  const sky = await import('../core/skyart.js').catch(() => null);
+  if (!sky || !sky.hourDialSVG) return;
+  try { figHost.innerHTML = sky.hourDialSVG({ hours, now, r: 120 }); } catch { /* non-fatal */ }
 }
 
 // 3) Best vs least advised now — every operation ranked for this place & time.

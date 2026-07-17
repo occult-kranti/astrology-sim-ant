@@ -41,9 +41,24 @@ export function initMoments() {
     $('mo-date').value = n.date; $('mo-time').value = n.time; $('mo-offset').value = n.offset;
     run();
   });
-  $('mo-form').addEventListener('submit', e => { e.preventDefault(); run(); });
+  $('mo-form').addEventListener('submit', e => { e.preventDefault(); doRun(); });
 
+  mountMoEnh();
   run();                                       // auto-run so the page is never empty
+}
+
+const ENH = {}; let mobar = null;
+async function mountMoEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.ab = await L('./action-bar.js');
+  if (ENH.ab && ENH.ab.mountActionBar && $('mo-actionbar')) {
+    try { mobar = ENH.ab.mountActionBar($('mo-actionbar'), { variant: 'tool', exports: [], askAI: null, summary: () => ({ verdict: '', text: 'Moments scanned.' }) }); } catch { mobar = null; }
+  }
+}
+function doRun() {
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf($('mo-form').querySelector('button[type="submit"]'), $('mo-status'), () => run(), { firstPanel: $('mo-timeline-card') }); return; } catch { /* */ } }
+  run();
 }
 
 function run() {
@@ -67,6 +82,7 @@ function run() {
   const ms = performance.now() - t0;
   renderScan(res, off, ms);
   autolinkResultPanels(['mo-out']);
+  try { mobar && mobar.show && mobar.show(); } catch { /* */ }
 }
 
 // ---------------------------------------------------------------------------

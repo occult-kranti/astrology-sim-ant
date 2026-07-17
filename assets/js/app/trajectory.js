@@ -20,12 +20,14 @@
 // ============================================================================
 import { castChart, formatLon, signOf, PLANET_GLYPHS } from '../core/astro.js';
 import { lifeTrajectory } from '../core/trajectory.js';
-import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { toUTC, nowLocalFields } from './shared.js';
 import { attachGeolocate, nearestCity } from './location.js';
 import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
 let vedicUpdate = null;
+const ENH = {}; let bar = null, picker = null, lastSummary = '';
 const G = p => (p && PLANET_GLYPHS[p]) ? `${PLANET_GLYPHS[p]} ${p}` : (p || '—');
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const sgn = n => (n == null ? '—' : (n >= 0 ? '+' : '') + n);
@@ -49,32 +51,60 @@ export function initTrajectory() {
   $('tj-nlat').value = 51.5074;
   $('tj-nlon').value = -0.1278;
 
-  // City preset fills birth lat/lon/offset; also mirror the chosen name + the
-  // reading place when it still matches the birth place.
-  wireCitySelect($('tj-city'), $('tj-lat'), $('tj-lon'), $('tj-offset'));
-  $('tj-city').addEventListener('change', () => {
-    const opt = $('tj-city').options[$('tj-city').selectedIndex];
-    if (opt && opt.value !== '') {
-      try { $('tj-name').value = opt.textContent; } catch { /* non-fatal */ }
-      // keep the reading place tracking the birth place until the user overrides it
-      try { $('tj-nlat').value = $('tj-lat').value; $('tj-nlon').value = $('tj-lon').value; } catch { /* non-fatal */ }
-    }
-  });
-
   // "Use my location" — fills the READING place (not the birth place).
   attachGeolocate($('tj-here'), $('tj-nlat'), $('tj-nlon'), $('tj-here-status'), ({ lat, lon }) => {
     try { const near = nearestCity(lat, lon); if (near) $('tj-here-status').textContent = `Reading place set — near ${near.name}`; } catch { /* non-fatal */ }
   });
 
-  $('tj-form').addEventListener('submit', e => { e.preventDefault(); run(); });
-  $('tj-print').addEventListener('click', () => { try { window.print(); } catch { /* non-fatal */ } });
-  $('tj-copy').addEventListener('click', copyLink);
+  $('tj-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
 
-  // Read shared params back so a link reproduces the reading.
-  try { readParams(); } catch { /* non-fatal — defaults already set */ }
+  mountEnh().then(() => {
+    // Read shared params back so a link reproduces the reading.
+    try { readParams(); } catch { /* non-fatal — defaults already set */ }
+    run();
+  });
+}
 
-  // Auto-run once on load.
+async function mountEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.mp = await L('./moment-picker.js'); ENH.ab = await L('./action-bar.js');
+  ENH.ts = await L('../core/viz/timeline-svg.js'); ENH.fig = await L('./viz/figure.js'); ENH.brush = await L('./viz/brush.js');
+  try { const i = await L('./viz/inspect.js'); i && i.initInspect && i.initInspect(); } catch { /* */ }
+  const ids = { lat: 'tj-lat', lon: 'tj-lon', date: 'tj-date', time: 'tj-time', offset: 'tj-offset' };
+  if (ENH.mp && ENH.mp.mountMomentPicker) {
+    try { picker = ENH.mp.mountMomentPicker($('tj-picker'), { mode: 'birth', label: 'Birth moment & place', persist: 'wb', ids, onChange: () => { try { $('tj-nlat').value = $('tj-lat').value; $('tj-nlon').value = $('tj-lon').value; } catch { /* */ } run(); } }); }
+    catch { pickerFallback('tj-picker', ids); }
+  } else pickerFallback('tj-picker', ids);
+  // person sub-block: a saved-people picker for the birth moment
+  try { const { attachPersonPicker } = await import('./person.js'); attachPersonPicker($('tj-picker'), { bdate: $('tj-date'), btime: $('tj-time'), boffset: $('tj-offset'), blat: $('tj-lat'), blon: $('tj-lon') }, { onSelect: () => run() }); } catch { /* non-fatal */ }
+  const exportsMenu = [{ id: 'tj-print', label: 'Print' }];
+  if (ENH.ab && ENH.ab.mountActionBar) { try { bar = ENH.ab.mountActionBar($('tj-actionbar'), { variant: 'tool', exports: exportsMenu, copyLinkId: 'tj-copy', askAI: null, summary: () => ({ verdict: '', text: lastSummary }) }); } catch { bar = null; } }
+  if (!bar) injectFallbackBar($('tj-actionbar'), exportsMenu, 'tj-copy');
+  const on = (id, fn) => { const el = $(id); if (el && !el.dataset.tjw) { el.dataset.tjw = '1'; el.addEventListener('click', fn); } };
+  on('tj-print', () => { try { window.print(); } catch { /* */ } });
+  on('tj-copy', copyLink);
+}
+
+function doCompute() {
+  const btn = $('tj-form').querySelector('button[type="submit"]');
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf(btn, $('tj-copy-status'), () => run(), { banner: $('tj-summary'), firstPanel: $('tj-natal-card') }); return; } catch { /* */ } }
   run();
+  try { const s = $('tj-summary'); s.tabIndex = -1; s.focus({ preventScroll: true }); s.scrollIntoView({ block: 'start', behavior: motionOK() ? 'smooth' : 'auto' }); } catch { /* */ }
+}
+function pickerFallback(boxId, ids) {
+  const box = document.getElementById(boxId); if (!box || box.dataset.fb) return; box.dataset.fb = '1';
+  const M = { lat: ['number', 'Birth Lat °N', '0.0001'], lon: ['number', 'Birth Lon °E', '0.0001'], date: ['date', 'Birth date'], time: ['time', 'Time (local)'], offset: ['number', 'UTC offset', '0.5'] };
+  const row = document.createElement('div'); row.className = 'field-row';
+  for (const k of Object.keys(ids)) { const inp = $(ids[k]); if (!inp) continue; const [t, l, s] = M[k] || ['text', k]; inp.type = t; if (s) inp.step = s; inp.style.width = t === 'number' ? '7rem' : ''; const fd = document.createElement('div'); fd.className = 'field'; const lb = document.createElement('label'); lb.htmlFor = ids[k]; lb.textContent = l; fd.append(lb, inp); row.appendChild(fd); }
+  box.appendChild(row);
+}
+function injectFallbackBar(box, items, copyId) {
+  if (!box) return; const row = document.createElement('div'); row.className = 'field-row'; row.style.marginTop = '.4rem';
+  const mk = (id, label) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn-secondary sm'; b.id = id; b.textContent = label; return b; };
+  if (copyId) row.appendChild(mk(copyId, 'Copy shareable link'));
+  for (const it of items) row.appendChild(mk(it.id, it.label));
+  box.appendChild(row);
 }
 
 // ---------------------------------------------------------------------------
@@ -174,6 +204,10 @@ function run() {
   renderYear(traj, { nlat, nlon });
   renderPicatrix(traj, { nlat, nlon });
   renderCitations(traj);
+
+  lastSummary = `${fLon(traj.natal.asc)} rising · age ${traj.ageNow}`;
+  try { picker && picker.commitRecent && picker.commitRecent(); } catch { /* */ }
+  try { bar && bar.show && bar.show(); } catch { /* */ }
 }
 
 // --- 1. Natal signatures ----------------------------------------------------
@@ -227,6 +261,19 @@ function renderTimeline(traj) {
       <div class="table-scroll"><table class="data"><thead><tr><th class="num">Age</th><th class="num">Year</th><th class="l">Profected sign</th><th class="num">House</th>
         <th class="l">Lord of the Year</th><th>Its natal condition</th></tr></thead><tbody>${rows}</tbody></table></div>
       <p class="small muted">Lilly, Christian Astrology Bk III — annual profections &amp; the Lord of the Year.</p>`;
+    // Profection year strip (1 lane, 12-year cycle washes by year-lord) above the table.
+    try {
+      if (ENH.ts && ENH.ts.periodStrip && tl.length) {
+        const segs = tl.map(r => ({ start: Date.UTC(r.year, 0, 1), end: Date.UTC(r.year + 1, 0, 1), id: 'prof-' + r.age, lord: r.lordOfYear, label: `Age ${r.age} · ${r.profectedSign} · ${r.lordOfYear}`, short: String(r.age), current: !!r.current }));
+        const cur = tl.find(r => r.current);
+        const model = { domain: [segs[0].start, segs[segs.length - 1].end], now: cur ? Date.UTC(cur.year, 6, 1) : null, lanes: [{ id: 'prof', label: 'Profection', segments: segs }], markers: [] };
+        const { svg } = ENH.ts.periodStrip(model, { ariaLabel: 'Annual profection timeline' });
+        const host = document.createElement('div');
+        if (ENH.fig && ENH.fig.mountFigure) ENH.fig.mountFigure(host, { svg, ariaLabel: 'Annual profection timeline', caption: 'One sign per year — colour marks the Lord of the Year.' }); else host.innerHTML = svg;
+        $('tj-timeline').prepend(host);
+        try { ENH.brush && ENH.brush.initBrush && ENH.brush.initBrush(host); } catch { /* */ }
+      }
+    } catch { /* strip is additive */ }
   });
 }
 

@@ -10,51 +10,96 @@ import { considerations } from '../core/considerations.js';
 import { modesOfPerfection, timeToPerfection } from '../core/perfection.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
 import { HOUSES } from '../core/data/houses.js';
-import { wireCitySelect, toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
+import { toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
 import { downloadSVG, svgToPNG, copyShareLink, writeStateToURL, readStateFromURL } from './state.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
 let vedicUpdate = null;
+const ENH = {};
+let bar = null, picker = null, lastChart = null, lastAsps = null;
 
-export function initHorary() {
+export async function initHorary() {
   // pre-fill "now" + London
   const n = nowLocalFields();
   $('h-date').value = n.date; $('h-time').value = n.time; $('h-offset').value = 0;
   $('h-lat').value = 51.5074; $('h-lon').value = -0.1278;
-  wireCitySelect($('h-city'), $('h-lat'), $('h-lon'), $('h-offset'),
-    { dateIn: $('h-date'), timeIn: $('h-time'), afterGeo: () => compute() });
 
   // quesited house dropdown
   $('h-quesited').innerHTML = HOUSES.map(h =>
     `<option value="${h.n}">${h.n} — ${h.signifies.split(';')[0]}</option>`).join('');
   $('h-quesited').value = 7;
+  $('h-quesited').addEventListener('change', () => compute());
+  $('h-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
 
-  $('h-now').addEventListener('click', () => {
-    const f = nowLocalFields(); $('h-date').value = f.date; $('h-time').value = f.time; $('h-offset').value = f.offset;
-  });
-  $('h-geo').addEventListener('click', () => {
-    if (!navigator.geolocation) return;
-    navigator.geolocation.getCurrentPosition(p => {
-      $('h-lat').value = p.coords.latitude.toFixed(4);
-      $('h-lon').value = p.coords.longitude.toFixed(4);
-    });
-  });
-  $('h-form').addEventListener('submit', e => { e.preventDefault(); compute(); });
+  await mountEnhancers();
 
-  // export + share the chart (reuses state.js, like the Workbench)
-  const wheelSvg = () => $('h-wheel').querySelector('svg');
-  const estat = $('h-export-status');
-  $('h-svg').addEventListener('click', () => downloadSVG(wheelSvg(), 'horary-chart.svg'));
-  $('h-png').addEventListener('click', () => svgToPNG(wheelSvg(), 'horary-chart.png').catch(() => { if (estat) estat.textContent = 'Could not export PNG.'; }));
-  $('h-share').addEventListener('click', () => copyShareLink(estat, hState()));
   // restore inputs from a shared link, if present
   const s = readStateFromURL(['date', 'time', 'offset', 'lat', 'lon', 'system', 'quesited']);
   for (const [k, id] of [['date', 'h-date'], ['time', 'h-time'], ['offset', 'h-offset'], ['lat', 'h-lat'], ['lon', 'h-lon'], ['system', 'h-system'], ['quesited', 'h-quesited']])
     if (s[k] != null && s[k] !== '') $(id).value = s[k];
 
   compute();
+}
+
+async function mountEnhancers() {
+  const load = async p => { try { return await import(p); } catch { return null; } };
+  ENH.mp = await load('./moment-picker.js'); ENH.ab = await load('./action-bar.js');
+  ENH.fig = await load('./viz/figure.js'); ENH.wi = await load('./viz/wheel-interact.js');
+  ENH.wr = await load('./wheel-rotate.js');
+  try { const insp = await load('./viz/inspect.js'); insp && insp.initInspect && insp.initInspect(); } catch { /* */ }
+
+  const ids = { lat: 'h-lat', lon: 'h-lon', date: 'h-date', time: 'h-time', offset: 'h-offset' };
+  if (ENH.mp && ENH.mp.mountMomentPicker) {
+    try { picker = ENH.mp.mountMomentPicker($('h-picker'), { mode: 'question', label: 'The moment & place', persist: 'wb', ids, onChange: () => compute() }); }
+    catch { revealPickerFallback('h-picker', Object.values(ids)); }
+  } else revealPickerFallback('h-picker', Object.values(ids));
+
+  const estat = $('h-export-status');
+  const exportsMenu = [{ id: 'h-svg', label: 'Chart SVG' }, { id: 'h-png', label: 'Chart PNG' }];
+  if (ENH.ab && ENH.ab.mountActionBar) {
+    try { bar = ENH.ab.mountActionBar($('h-actionbar'), { variant: 'tool', exports: exportsMenu, copyLinkId: 'h-share', askAI: null, summary: () => barSummary() }); }
+    catch { bar = null; }
+  }
+  if (!bar) injectFallbackExportBar($('h-actionbar'), exportsMenu, 'h-share');
+
+  const wheelSvg = () => $('h-wheel').querySelector('svg');
+  const on = (id, fn) => { const el = $(id); if (el && !el.dataset.hwired) { el.dataset.hwired = '1'; el.addEventListener('click', fn); } };
+  on('h-svg', () => downloadSVG(wheelSvg(), 'horary-chart.svg'));
+  on('h-png', () => svgToPNG(wheelSvg(), 'horary-chart.png').catch(() => { if (estat) estat.textContent = 'Could not export PNG.'; }));
+  on('h-share', () => copyShareLink(estat, hState()));
+}
+
+function barSummary() {
+  const b = $('h-verdict-banner');
+  const v = b && b.querySelector('.verdict');
+  return { verdict: v ? v.textContent : '', text: b && !b.hidden ? (b.querySelector('.vb-reason') || {}).textContent || '' : '' };
+}
+
+function doCompute() {
+  const banner = $('h-verdict-banner'), status = $('h-export-status');
+  const btn = $('h-form').querySelector('button[type="submit"]');
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf(btn, status, () => compute(), { banner, firstPanel: $('h-p-perfection') }); return; } catch { /* */ } }
+  compute();
+  if (banner && !banner.hidden) { try { banner.tabIndex = -1; banner.focus({ preventScroll: true }); banner.scrollIntoView({ block: 'start', behavior: motionOK() ? 'smooth' : 'auto' }); } catch { /* */ } }
+}
+
+function revealPickerFallback(boxId, ids) {
+  const box = document.getElementById(boxId); if (!box || box.dataset.fb) return; box.dataset.fb = '1';
+  const meta = { 'h-lat': ['number', 'Lat °N', '0.0001'], 'h-lon': ['number', 'Lon °E', '0.0001'], 'h-date': ['date', 'Date'], 'h-time': ['time', 'Time (local)'], 'h-offset': ['number', 'UTC offset', '0.5'] };
+  const row = document.createElement('div'); row.className = 'field-row';
+  for (const id of ids) { const input = $(id); if (!input) continue; const [t, l, st] = meta[id] || ['text', id]; input.type = t; if (st) input.step = st; input.style.width = t === 'number' ? '7rem' : ''; const f = document.createElement('div'); f.className = 'field'; const lab = document.createElement('label'); lab.htmlFor = id; lab.textContent = l; f.append(lab, input); row.appendChild(f); }
+  box.appendChild(row);
+}
+function injectFallbackExportBar(box, items, copyId) {
+  if (!box) return; const row = document.createElement('div'); row.className = 'field-row'; row.style.marginTop = '.4rem';
+  const mk = (id, label) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn-secondary sm'; b.id = id; b.textContent = label; return b; };
+  for (const it of items) row.appendChild(mk(it.id, it.label));
+  if (copyId) row.appendChild(mk(copyId, 'Copy link'));
+  box.appendChild(row);
 }
 
 function hState() {
@@ -74,10 +119,11 @@ function compute() {
   const isDay = chart.isDay;
   try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
 
-  // --- chart wheel ---
+  // --- chart wheel (through mountFigure + wireWheel + attachWheelRotate) ---
   const bodies = {}; for (const p of PLANETS7) bodies[p] = chart.planets[p];
   const asps = allAspects(bodies);
-  renderChart($('h-wheel'), chart, asps, { size: 540 });
+  lastChart = chart; lastAsps = asps;
+  renderWheel($('h-wheel'), chart, asps);
 
   // --- header line ---
   $('h-summary').innerHTML =
@@ -208,6 +254,24 @@ function compute() {
   // auto-link glossary jargon in the freshly-rendered prose panels
   autolinkResultPanels(['h-significators', 'h-perfection']);
   try { writeStateToURL(hState()); } catch { /* non-fatal */ }
+  try { picker && picker.commitRecent && picker.commitRecent(); } catch { /* */ }
+  try { bar && bar.show && bar.show(); } catch { /* */ }
+}
+
+// Render the wheel through B2's figure/interaction pipeline; fall back to plain DOM.
+function renderWheel(container, chart, asps) {
+  if (ENH.fig && ENH.fig.mountFigure) {
+    try {
+      const svgEl = renderChart(document.createElement('div'), chart, asps, { size: 540 });
+      container.innerHTML = '';
+      ENH.fig.mountFigure(container, { svg: svgEl.outerHTML, ariaLabel: 'Horary chart wheel — planets are buttons', caption: '' });
+      const mounted = container.querySelector('svg');
+      try { ENH.wi && ENH.wi.wireWheel && ENH.wi.wireWheel(mounted, chart, asps); } catch { /* */ }
+      try { ENH.wr && ENH.wr.attachWheelRotate && ENH.wr.attachWheelRotate(container, chart); } catch { /* */ }
+      return;
+    } catch { /* fall through */ }
+  }
+  renderChart(container, chart, asps, { size: 540 });
 }
 
 // The perfection verdict, lifted to a full-width banner right after the header

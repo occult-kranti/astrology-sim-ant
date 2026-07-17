@@ -10,31 +10,27 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book III</a> › Nativity Calculator</p>
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="../tools.html">Cast</a> › Nativity Calculator</p>
   <h1>Nativity Calculator</h1>
   <p class="lede">A birth chart is the foundation of Lilly's natal method. This tool casts the figure, scores
     each planet's dignity, finds the <em>Lord of the Geniture</em>, and estimates the humoral
     <em>temperament</em> — the starting points for judging a nativity.</p>
 
   <form id="n-form" class="calc">
-    <div class="field-row">
-      <div class="field" style="flex:1 1 200px"><label for="n-city">Place of birth</label><select id="n-city"></select></div>
-      <div class="field"><label for="n-lat">Lat °N</label><input id="n-lat" type="number" step="0.0001" style="width:7rem"></div>
-      <div class="field"><label for="n-lon">Lon °E</label><input id="n-lon" type="number" step="0.0001" style="width:7rem"></div>
-    </div>
+    <div id="n-picker"></div>
+    <!-- Legacy write-through: the moment-picker fills these hidden inputs by their historic ids. -->
+    <input type="hidden" id="n-lat"><input type="hidden" id="n-lon">
+    <input type="hidden" id="n-date"><input type="hidden" id="n-time"><input type="hidden" id="n-offset">
     <div class="field-row" style="margin-top:.8rem">
-      <div class="field"><label for="n-date">Date of birth</label><input id="n-date" type="date"></div>
-      <div class="field"><label for="n-time">Time</label><input id="n-time" type="time"></div>
-      <div class="field"><label for="n-offset">UTC offset</label><input id="n-offset" type="number" step="0.5" style="width:6rem"></div>
       <div class="field"><label for="n-system">Houses</label><select id="n-system">
         <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
         <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
-      <button type="button" class="btn sm" id="n-now">Now</button>
       <button type="submit" class="btn">Cast nativity</button>
     </div>
   </form>
 
   <p id="n-summary" style="margin:1.1rem 0 .3rem; font-size:1.05rem" role="status" aria-live="polite"></p>
+  <div id="n-actionbar"></div>
   <div class="chart-layout">
     <div id="n-wheel" class="card" style="padding:.6rem"></div>
     <div>

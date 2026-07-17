@@ -40,6 +40,36 @@ function moonOf(prefix) {
   return toSidereal(chart.planets.Moon.lon, date);
 }
 
+// Pure heat-strip model for the 8 kūṭas (heatTable spec §3.7, reused). NEUTRAL by
+// design: the --viz-heat ramp is the gold family, never a red/green traffic light
+// (kūṭa points are "the tradition's counting convention, not a compatibility
+// measure"). Deterministic, DOM-free.
+export function kutaHeatModel(ak) {
+  const kutas = ak.kutas || [];
+  return {
+    cols: kutas.map(k => ({ id: 'k-' + (k.key || k.name), label: String(k.name).slice(0, 4) })),
+    rows: [{
+      id: 'guna', label: 'Guṇa',
+      cells: kutas.map(k => ({ v: k.points, el: 'kuta-' + (k.key || k.name) })),
+    }],
+    scale: { min: 0, max: 8, steps: 4 },
+    caption: `${ak.total} of ${ak.max} guṇa — the tradition's counting convention, not a compatibility measure.`,
+  };
+}
+
+async function mountKutaHeat(ak) {
+  const host = document.querySelector('#ku-ashtakuta .ku-heat');
+  if (!host) return;
+  const [htMod, figMod] = await Promise.all([
+    import('../core/viz/heat-table.js'), import('./viz/figure.js'),
+  ]).catch(() => [null, null]);
+  if (!htMod || !figMod || !htMod.heatTable) return;   // graceful: the table below remains
+  try {
+    const out = htMod.heatTable(kutaHeatModel(ak));
+    figMod.mountFigure(host, { html: out.html, textModel: out.textModel, ariaLabel: 'Aṣṭakūṭa guṇa heat strip' });
+  } catch { /* non-fatal */ }
+}
+
 export function initKuta() {
   for (const p of ['ka', 'kb']) {
     wireCitySelect($(p + '-city'), $(p + '-lat'), $(p + '-lon'), $(p + '-offset'));
@@ -63,6 +93,7 @@ function compute() {
   renderMoons(ak, boy, girl);
   renderAshtakuta(ak);
   renderPorutham(po);
+  mountKutaHeat(ak);
   $('ku-ashtakuta').dataset.ready = '1';
 }
 
@@ -110,6 +141,7 @@ function renderAshtakuta(ak) {
     <p class="small">The eight kūṭas (guṇas) summed to 36. Rows carrying <b>⚑</b> are values the sources dispute — hover
       for the disagreement; the contested cells (varṇa · graha-maitrī · gaṇa) follow the <b>variant set</b> chosen above
       (currently <b>${esc(ak.variantSet)}</b>). Boy = groom, girl = bride.</p>
+    <div class="ku-heat"></div>
     <table class="data"><thead><tr><th class="l">Kūṭa</th><th class="l">Points</th><th class="l">What the tradition computes</th></tr></thead>
       <tbody>${rows}
         <tr style="${HL}"><td class="l"><b>Total</b></td><td class="l"><b>${ak.total}</b> / ${ak.max}</td>

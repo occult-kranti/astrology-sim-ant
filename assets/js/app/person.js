@@ -27,7 +27,7 @@ export function attachPersonPicker(anchorEl, fields, opts = {}) {
         <select class="person-sel"><option value="">— none —</option>${persons.map(p =>
           `<option value="${esc(p.id)}"${p.id === selId ? ' selected' : ''}>${esc(p.name)}${p.bdate ? ' · ' + esc(p.bdate) : ''}</option>`).join('')}</select></label>
        <span style="margin-left:.6rem;white-space:nowrap"><input class="person-name" type="text" placeholder="name to save as" style="width:9rem">
-         <button type="button" class="btn sm person-save">Save this birth moment</button></span>
+         <button type="button" class="btn-secondary sm person-save">Save this birth moment</button></span>
        ${selId ? '<a href="#" class="person-remove" style="margin-left:.5rem">remove</a>' : ''}
        <span class="person-status muted" style="margin-left:.5rem"></span>`;
 

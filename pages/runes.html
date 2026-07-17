@@ -45,7 +45,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › Oracles › Runes</p>
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html#divination">Oracles</a> › Runes</p>
   <h1>Elder Futhark Runes — cast &amp; read</h1>
   <p class="lede">The <b>Elder Futhark</b> is the oldest runic alphabet — <b>24 staves</b> in three groups of eight
     (the <b>ættir</b>), used to write the Germanic languages roughly <b>c. 150–700 CE</b>. Here the tradition's
@@ -62,8 +62,6 @@
     validity</b>. The lots are drawn by your browser's random generator; nothing leaves the page. <b>No blank rune</b>
     ships here (see the framing note below).</div>
 
-  <div id="cast-hour"></div>
-
   <form id="rn-form" class="calc">
     <div class="field-row">
       <div class="field" style="flex:1 1 100%"><label for="rn-question">Your question (optional)</label>
@@ -75,8 +73,6 @@
     </div>
     <div class="field-row" style="margin-top:.7rem">
       <button type="submit" class="btn" id="rn-cast">ᛦ Cast the lots</button>
-      <button type="button" class="btn sm" id="rn-share">Copy shareable link</button>
-      <button type="button" class="btn sm" id="rn-md">⤓ Download reading (MD)</button>
       <span id="rn-share-status" class="small muted"></span>
     </div>
   </form>
@@ -94,17 +90,21 @@
       rune-poem material for study. The <b>modern keyword</b> layer is a 20th-century construction, kept clearly apart
       from the poems.</div></section>
 
-  <section class="card" id="dv-assistant-card"><div id="dv-assistant"></div></section>
+  <section class="card" id="dv-assistant-card">
+    <p class="small muted">The computed reading above is complete without a key — the assistant only narrates it.</p>
+    <div id="dv-assistant"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">The 24 staves <span class="small muted">(the three ættir)</span></h2>
+  <div id="cast-hour"></div>
+
+  <details class="acc card" id="rn-aettir-acc"><summary><h2 style="margin:0;display:inline">The 24 staves <span class="small muted">(the three ættir)</span></h2></summary>
     <p class="small muted">The three-fold division is attested (Vadstena &amp; Grumpan bracteates, c. 500 CE); the ætt
       <em>names</em> "Freyr's / Hagall's / Týr's" are a later Icelandic tradition. Every Proto-Germanic name is
       <b>reconstructed</b> (asterisked) — no Elder-period rune name is directly attested. A ⚑ marks a stave with a
       flagged dispute.</p>
-    <div id="rn-aettir"></div></section>
+    <div id="rn-aettir"></div></details>
 
-  <section class="card"><h2 style="margin-top:0">The three rune poems <span class="small muted">(what is attested)</span></h2>
-    <div id="rn-poems"></div></section>
+  <details class="acc card" id="rn-poems-acc"><summary><h2 style="margin:0;display:inline">The three rune poems <span class="small muted">(what is attested)</span></h2></summary>
+    <div id="rn-poems"></div></details>
 
   <section class="card" id="hiw-runes"><h2 style="margin-top:0">How the cast is computed</h2>
     <ol class="small">
@@ -124,6 +124,8 @@
   <p class="small muted" style="margin-top:1rem">See also the <a href="iching.html">I Ching</a> cast, the
     <a href="geomancy.html">Geomancy</a> shield, the <a href="tarot.html">Tarot</a> reader, and the
     <a href="workbench.html">Master Tool</a>.</p>
+
+  <div id="rn-actionbar"></div>
 </main>
 <script type="module">
   import { mountChrome } from '../assets/js/app/shared.js';

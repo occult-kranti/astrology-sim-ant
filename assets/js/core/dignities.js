@@ -114,6 +114,18 @@ function ordinal(n) {
   return { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', 5: '5th', 6: '6th', 7: '7th', 8: '8th', 9: '9th', 10: '10th', 11: '11th', 12: '12th' }[n];
 }
 
+// --- Derived score domain for the essential-dignity score bar (dataviz §3.6) --
+// The theoretical [min, max] of an essential-dignity total, summed straight from
+// Lilly's own point table so the bar's endpoints are never guessed. Max = every
+// positive dignity (domicile+exaltation+triplicity+term+face); min = the two
+// debilities of place (detriment+fall). Peregrine (−5) falls inside the range.
+export function dignityScoreDomain() {
+  const S = DIGNITY_SCORES;
+  const max = S.domicile + S.exaltation + S.triplicity + S.term + S.face;
+  const min = S.detriment + S.fall;
+  return [min, max];
+}
+
 // --- The five dignity rulers at a longitude (for reception tests) ---
 export function dignityRulersAt(lon, isDay) {
   const s = signOf(lon), si = s.index, d = s.degInSign;

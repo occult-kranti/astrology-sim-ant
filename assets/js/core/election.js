@@ -111,6 +111,36 @@ export function moonDispositor(chart) {
 }
 
 // ---------------------------------------------------------------------------
+//  Score envelope for the election verdict bar (dataviz §3.6). The theoretical
+//  reach of electionScore's additive `add(delta,…)` weights, taken as the max
+//  positive and max negative testimony per mutually-exclusive category below.
+//  The categories mirror the blocks inside electionScore; the derivation lives
+//  here beside the weights so the bar's endpoints are never guessed. The verdict
+//  thresholds (green ≥ +5, red ≤ −2) are the named anchors the host places.
+// ---------------------------------------------------------------------------
+export const ELECTION_SCORE_EXTREMA = [
+  { cat: 'hour & day of the ruler', pos: 3, neg: -1 },
+  { cat: "ruler's essential dignity", pos: 3, neg: -3 },
+  { cat: "ruler's affliction flags", pos: 1, neg: -3 },
+  { cat: "the Moon's phase", pos: 2, neg: -1 },
+  { cat: "the Moon's speed", pos: 1, neg: -1 },
+  { cat: 'void of course', pos: 0, neg: -3 },
+  { cat: 'via combusta', pos: 0, neg: -2 },
+  { cat: "beams / eclipse / applying to a malefic", pos: 0, neg: -3 },
+  { cat: "the Moon's mansion", pos: 2, neg: -1 },
+  { cat: "the Moon's dispositor", pos: 1, neg: -1 },
+  { cat: 'malefic on an angle', pos: 0, neg: -2 },
+  { cat: 'benefic on an angle', pos: 2, neg: 0 },
+  { cat: 'fixed-star contact', pos: 1, neg: 0 },
+];
+export const ELECTION_VERDICT_THRESHOLDS = { green: 5, red: -2 };
+export function electionScoreDomain() {
+  const pos = ELECTION_SCORE_EXTREMA.reduce((a, e) => a + e.pos, 0);
+  const neg = ELECTION_SCORE_EXTREMA.reduce((a, e) => a + e.neg, 0);
+  return [neg, pos];
+}
+
+// ---------------------------------------------------------------------------
 //  electionScore — the headline. Auto-calculates the full testimony for one
 //  operation at the moment/place of `chart`. Returns a verdict + cited reasons.
 // ---------------------------------------------------------------------------

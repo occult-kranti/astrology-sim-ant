@@ -30,6 +30,7 @@ const HL = 'background:var(--parchment-2);outline:1px solid var(--gold-2)';
 
 // the last computed report, exposed for the AI panel.
 let lastReport = null;
+let lastFig = null;   // the raw inputs the period-strip figures re-render from
 const reportSubs = [];
 const notifyReport = () => { for (const cb of reportSubs) { try { cb(lastReport); } catch { /* ignore */ } } };
 export function currentTimelordsReport() { return lastReport; }
@@ -41,7 +42,7 @@ export function initTimelords() {
     blat: $('tl-lat'), blon: $('tl-lon'),
   });
   $('tl-asof').value = nowLocalFields().date;                 // "as of" defaults to today
-  $('tl-form').addEventListener('submit', e => { e.preventDefault(); compute(); });
+  $('tl-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
   document.querySelectorAll('input[name="tl-nodes"]').forEach(r =>
     r.addEventListener('change', () => { if (lastReport) compute(); }));
 
@@ -54,6 +55,25 @@ export function initTimelords() {
       copy: { emptyText: 'Compute the time-lord periods above first.' },
     });
   }
+  mountTlEnh();
+}
+
+const ENH = {}; let tlbar = null;
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+async function mountTlEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.ab = await L('./action-bar.js');
+  ENH.ts = await L('../core/viz/timeline-svg.js'); ENH.fig = await L('./viz/figure.js'); ENH.brush = await L('./viz/brush.js');
+  // If a compute already ran before the viz kit finished importing, draw the strips now.
+  try { if (lastReport && lastFig) mountTlStrips(lastFig.fird, lastFig.curF, lastFig.rel, lastFig.birth, lastFig.asOf); } catch { /* non-fatal */ }
+  if (ENH.ab && ENH.ab.mountActionBar && $('tl-actionbar')) {
+    try { tlbar = ENH.ab.mountActionBar($('tl-actionbar'), { variant: 'tool', exports: [], askAI: $('dv-assistant') ? () => { const a = $('dv-assistant'); a.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto' }); const t = a.querySelector('textarea, input'); t && t.focus(); } : null, summary: () => ({ verdict: '', text: 'Time-lord periods computed.' }) }); } catch { tlbar = null; }
+  }
+}
+function doCompute() {
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf($('tl-form').querySelector('button[type="submit"]'), null, () => compute(), { banner: $('tl-summary'), firstPanel: $('tl-summary') }); return; } catch { /* */ } }
+  compute();
 }
 
 function nodeChoice() {
@@ -103,6 +123,12 @@ function compute() {
   renderFirdaria(chart, fird, curF, ageYears);
   renderReleasing(chart, lots, { zrS, zrF, curS, curFo }, birth, asOf);
   try { autolinkResultPanels(['tl-prog', 'tl-fird', 'tl-zr']); } catch { /* non-fatal */ }
+  try { tlbar && tlbar.show && tlbar.show(); } catch { /* */ }
+
+  // The interactive period-strip figures (firdāriā + zodiacal releasing) — they
+  // AUGMENT the tables above, never replace them. [ui3-spec §8 timelords row]
+  lastFig = { fird, curF, rel: { zrS, zrF, curS, curFo }, birth, asOf };
+  try { mountTlStrips(fird, curF, { zrS, zrF, curS, curFo }, birth, asOf); } catch { /* non-fatal */ }
 
   lastReport = {
     kind: 'timelords',
@@ -224,3 +250,111 @@ function renderReleasing(chart, lots, r, birth, asOf) {
     <p class="small muted">${esc(r.zrS.citation)}</p>`;
 }
 const zrNote = zr => zr.notes.swapRule;
+
+// ===========================================================================
+//  Interactive period-strip figures (firdāriā + zodiacal releasing).
+//  Rendered through B2's core/viz/timeline-svg → app/viz/figure → app/viz/brush
+//  pipeline: periodStrip → mountFigure (adds .fig-scroll) → initBrush (drag-
+//  brush + keyboard +/−/Home + crosshair opt-in) + a persistent zoombar. The
+//  HOST re-renders on viz:zoom (semantic zoom) by mutating the SAME <svg> node
+//  in place — this keeps the brush's listeners + domainOrig intact and updates
+//  data-domain so keyboard "+" shrinks the visible span. [dataviz §3.3, §4.2–4.3]
+// ===========================================================================
+function ensureFigBox(id, beforeEl) {
+  let box = document.getElementById(id);
+  if (!box) {
+    box = document.createElement('div');
+    box.id = id;
+    box.style.margin = '.2rem 0 .8rem';
+    if (beforeEl && beforeEl.parentNode) beforeEl.parentNode.insertBefore(box, beforeEl);
+  }
+  return box;
+}
+
+// A persistent zoombar (mirrors app/viz/brush.js's on-zoom bar so the two never
+// duplicate — brush's syncZoombar finds this one by class and only updates it).
+function addZoombar(fig, svg) {
+  if (fig.querySelector('.viz-zoombar')) return;
+  const bar = document.createElement('div');
+  bar.className = 'viz-zoombar';
+  bar.innerHTML = `<button type="button" class="btn-secondary sm zb-out" aria-label="Zoom out"><span aria-hidden="true">−</span> out</button>`
+    + `<button type="button" class="btn-secondary sm zb-reset" aria-label="Reset zoom"><span aria-hidden="true">⟲</span> reset</button>`
+    + `<button type="button" class="btn-secondary sm zb-in" aria-label="Zoom in"><span aria-hidden="true">+</span> in</button>`
+    + `<span class="zb-readout"></span>`;
+  const body = fig.querySelector('.fig-body') || fig.firstChild;
+  (body || fig).insertAdjacentElement('afterend', bar);
+  const zoom = f => {
+    const dom = (svg.getAttribute('data-domain') || '0,1').split(',').map(Number);
+    const orig = (svg.dataset.domainOrig || svg.getAttribute('data-domain') || '0,1').split(',').map(Number);
+    const span = dom[1] - dom[0], mid = (dom[0] + dom[1]) / 2;
+    const ns = f === 0 ? (orig[1] - orig[0]) : span * f;
+    let a = f === 0 ? orig[0] : mid - ns / 2, b = f === 0 ? orig[1] : mid + ns / 2;
+    a = Math.max(orig[0], a); b = Math.min(orig[1], b);
+    fig.dispatchEvent(new CustomEvent('viz:zoom', { detail: { t0: a, t1: b }, bubbles: true }));
+  };
+  bar.querySelector('.zb-in').addEventListener('click', () => zoom(0.5));
+  bar.querySelector('.zb-out').addEventListener('click', () => zoom(2));
+  bar.querySelector('.zb-reset').addEventListener('click', () => zoom(0));
+}
+
+// Mount ONE strip model into a container and wire brush + zoombar + in-place
+// semantic-zoom re-render. Returns the .fig element (or null if the kit is absent).
+function mountStrip(box, model, ariaLabel, opts = {}) {
+  if (!(ENH.ts && ENH.ts.periodStrip && ENH.fig && ENH.fig.mountFigure)) return null;
+  const width = 960;
+  const out = ENH.ts.periodStrip(model, { width, ariaLabel });
+  const fig = ENH.fig.mountFigure(box, { svg: out.svg, textModel: out.textModel, ariaLabel, scroll: 'auto' });
+  const svg = fig.querySelector('svg[data-viz="period-strip"]');
+  if (svg && opts.crosshair) svg.setAttribute('data-crosshair', '');
+  try { ENH.brush && ENH.brush.initBrush && ENH.brush.initBrush(fig); } catch { /* */ }
+  if (svg) addZoombar(fig, svg);
+  fig.addEventListener('viz:zoom', e => {
+    const s = fig.querySelector('svg[data-viz="period-strip"]');
+    if (!s || !ENH.ts) return;
+    const re = ENH.ts.periodStrip({ ...model, domain: [e.detail.t0, e.detail.t1] }, { width, ariaLabel });
+    const tmp = document.createElement('div'); tmp.innerHTML = re.svg;
+    const nn = tmp.querySelector('svg'); if (!nn) return;
+    s.setAttribute('viewBox', nn.getAttribute('viewBox'));
+    s.setAttribute('data-domain', nn.getAttribute('data-domain'));
+    s.innerHTML = nn.innerHTML;
+    if (opts.crosshair) s.setAttribute('data-crosshair', '');
+    if (typeof opts.onZoom === 'function') { try { opts.onZoom(e.detail.t0, e.detail.t1); } catch { /* */ } }
+  });
+  return fig;
+}
+
+function firdariaStripModel(fird, curF, asOf) {
+  const majors = fird.majors;
+  const domain = [majors[0].startDate.getTime(), majors[majors.length - 1].endDate.getTime()];
+  const segments = majors.map((m, i) => ({
+    id: `fird-${i}-${m.lord}`, label: nice(m.lord), short: G(m.lord), lord: m.lord,
+    start: m.startDate.getTime(), end: m.endDate.getTime(), current: curF.major === m,
+  }));
+  return { domain, now: asOf.getTime(), lanes: [{ id: 'firdaria', label: 'Firdārīa', segments }], markers: [] };
+}
+
+function zrStripModel(rel, asOf) {
+  const laneOf = (zr, cur, label) => ({
+    id: label, label,
+    segments: zr.l1.map((p, i) => ({
+      id: `zr-${label}-${i}`, label: p.sign, short: SIGN_GLYPHS[p.signIndex],
+      start: p.startDate.getTime(), end: p.endDate.getTime(), current: cur.l1 === p,
+    })),
+  });
+  const starts = [rel.zrS.l1[0].startDate.getTime(), rel.zrF.l1[0].startDate.getTime()];
+  const endsS = rel.zrS.l1[rel.zrS.l1.length - 1].endDate.getTime();
+  const endsF = rel.zrF.l1[rel.zrF.l1.length - 1].endDate.getTime();
+  const domain = [Math.min(...starts), Math.max(endsS, endsF)];
+  return {
+    domain, now: asOf.getTime(),
+    lanes: [laneOf(rel.zrS, rel.curS, 'Spirit'), laneOf(rel.zrF, rel.curFo, 'Fortune')], markers: [],
+  };
+}
+
+function mountTlStrips(fird, curF, rel, birth, asOf) {
+  if (!(ENH.ts && ENH.fig && ENH.brush)) return;
+  const firdBox = ensureFigBox('tl-fird-fig', $('tl-fird'));
+  const zrBox = ensureFigBox('tl-zr-fig', $('tl-zr'));
+  try { mountStrip(firdBox, firdariaStripModel(fird, curF, asOf), 'Firdārīa periods over the life'); } catch { /* */ }
+  try { mountStrip(zrBox, zrStripModel(rel, asOf), 'Zodiacal releasing (L1) from Spirit and Fortune'); } catch { /* */ }
+}

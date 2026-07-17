@@ -20,7 +20,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Moment Scanner</p>
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Cast</a> › Moment Scanner</p>
   <h1>The Moment Scanner — every rulebook, one timeline</h1>
   <p class="lede">Several traditions on this site claim to grade <em>the same moment</em> — each by its own,
     incompatible rulebook. This tool scans a time range once and lays their verdicts <b>side by side</b>: the
@@ -57,10 +57,11 @@
       <div class="field" style="flex:1 1 220px"><label for="mo-aim">Aim (for the Lilly/Picatrix column)</label>
         <select id="mo-aim"></select></div>
       <button type="submit" class="btn">Scan the range</button>
-      <button type="button" class="btn sm" id="mo-now">Now</button>
+      <button type="button" class="btn-secondary sm" id="mo-now">Now</button>
       <span id="mo-status" class="small muted"></span>
     </div>
   </form>
+  <div id="mo-actionbar"></div>
 
   <section class="card panel" id="mo-timeline-card">
     <div class="panel-head"><h2 class="panel-title">The timeline <span class="small muted">(a row whenever any

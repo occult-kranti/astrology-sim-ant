@@ -46,7 +46,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › Oracles › I Ching</p>
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html#divination">Oracles</a> › I Ching</p>
   <h1>I Ching — the Book of Changes, cast &amp; read</h1>
   <p class="lede">The <i>Yijing</i> — the Book of Changes — answers a question by a <b>hexagram</b> cast at the moment of
     asking. Six lines are thrown (each young or old, yin or yang); the static lines give the <b>primary hexagram</b>
@@ -61,8 +61,6 @@
     after James Legge</b> (1899, public domain), not the copyrighted Wilhelm–Baynes translation. The coins are thrown
     by your browser's random generator; nothing leaves the page.</div>
 
-  <div id="cast-hour"></div>
-
   <form id="ich-form" class="calc">
     <div class="field-row">
       <div class="field" style="flex:1 1 100%"><label for="ich-question">Your question (optional)</label>
@@ -70,8 +68,6 @@
     </div>
     <div class="field-row" style="margin-top:.6rem">
       <button type="submit" class="btn" id="ich-cast">☯ Cast the coins</button>
-      <button type="button" class="btn sm" id="ich-share">Copy shareable link</button>
-      <button type="button" class="btn sm" id="ich-md">⤓ Download reading (MD)</button>
       <span id="ich-share-status" class="small muted"></span>
     </div>
     <details style="margin-top:.7rem">
@@ -96,13 +92,16 @@
       this is structured reflection for study.</div></section>
 
   <section class="card" id="dv-assistant-card"><h2 style="margin-top:0">Ask the diviner — AI interpretation (Groq or Claude)</h2>
+    <p class="small muted">The computed reading above is complete without a key — the assistant only narrates it.</p>
     <div id="dv-assistant"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">The eight trigrams <span class="small muted">(the building blocks)</span></h2>
-    <div id="ich-trigrams" class="ich-ref-grid"></div></section>
+  <div id="cast-hour"></div>
 
-  <section class="card"><h2 style="margin-top:0">The 64 hexagrams <span class="small muted">(King Wen sequence)</span></h2>
-    <div id="ich-hexes" class="ich-hex-grid"></div></section>
+  <details class="acc card" id="ich-trigrams-acc"><summary><h2 style="margin:0;display:inline">The eight trigrams <span class="small muted">(the building blocks)</span></h2></summary>
+    <div id="ich-trigrams" class="ich-ref-grid"></div></details>
+
+  <details class="acc card" id="ich-hexes-acc"><summary><h2 style="margin:0;display:inline">The 64 hexagrams <span class="small muted">(King Wen sequence)</span></h2></summary>
+    <div id="ich-hexes" class="ich-hex-grid"></div></details>
 
   <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
     None of this predicts or determines anything in the real world. The I Ching is a book of images and a method of
@@ -112,6 +111,8 @@
 
   <p class="small muted" style="margin-top:1rem">See also the <a href="geomancy.html">Geomancy</a> shield, the
     <a href="tarot.html">Tarot</a> reader, and the <a href="workbench.html">Master Tool</a>.</p>
+
+  <div id="ich-actionbar"></div>
 </main>
 <script type="module">
   import { mountChrome } from '../assets/js/app/shared.js';

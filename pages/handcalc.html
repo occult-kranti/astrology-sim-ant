@@ -24,12 +24,14 @@
   .hc-quote { border-left: 3px solid var(--rule); padding: .2rem 0 .2rem .8rem; margin: .6rem 0; }
   .hc-rate-btn[aria-pressed="true"] { border-color: var(--gold); background: var(--parchment-2); }
   .hc-scroll { overflow-x: auto; }
+  /* long source URLs/citations must wrap, not push the page wide at 390px */
+  #hc-ut, #hc-sources, .hc-pitfall, .hc-quote { overflow-wrap: anywhere; }
   .hc-terms { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: .5rem; margin: .5rem 0; }
 </style>
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Cast a chart by hand</p>
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Cast</a> › Cast a chart by hand</p>
   <h1>Cast a chart by hand — the ephemeris &amp; tables method</h1>
   <p class="lede">Before the software, an astrologer cast a chart with three books on the desk — a <b>midnight
     ephemeris</b>, an <b>atlas</b> of time-zone history, and a <b>book of house tables</b> — and a page of

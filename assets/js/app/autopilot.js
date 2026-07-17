@@ -66,6 +66,7 @@ function render() {
 
     <fieldset style="border:1px solid #2a3350;border-radius:.5rem;padding:.7rem .8rem;margin:.6rem 0">
       <legend class="small" style="padding:0 .4rem">Connect Claude (your own key)</legend>
+      <p class="small muted" style="margin:.1rem 0 .5rem">Needs your own Claude key — nothing works without one, and nothing is sent anywhere else.</p>
       <div class="field-row" style="align-items:flex-end;flex-wrap:wrap;gap:.6rem">
         <div class="field" style="flex:1 1 320px"><label for="ap-key">Claude API key</label>
           <input id="ap-key" type="password" autocomplete="off" spellcheck="false" placeholder="${esc(PROV.keyHint)}" style="width:100%"></div>

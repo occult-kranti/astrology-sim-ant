@@ -18,22 +18,66 @@ import { nextAuspiciousTime } from '../core/election.js';
 import { SIGNS } from '../core/data/signs.js';
 import { DOMICILE } from '../core/data/dignities-data.js';
 import { genderOfDegree, qualityOfDegree, isFortunateDegree, bodyPartOf, TABLE_USE } from '../core/data/degree-tables.js';
-import { wireCitySelect, toUTC, nowLocalFields, VERDICT_LEGEND } from './shared.js';
+import { toUTC, nowLocalFields, VERDICT_LEGEND } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
 const PL = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
 const G = p => PLANET_GLYPHS[p] || p;
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
 let vedicUpdate = null;
+const ENH = {}; let bar = null, picker = null;
 
-export function initMaster() {
+export async function initMaster() {
   const n = nowLocalFields();
   $('m-date').value = n.date; $('m-time').value = n.time; $('m-offset').value = 0;
   $('m-lat').value = 51.5074; $('m-lon').value = -0.1278;
-  wireCitySelect($('m-city'), $('m-lat'), $('m-lon'), $('m-offset'));
-  $('m-now').addEventListener('click', () => { const f = nowLocalFields(); $('m-date').value = f.date; $('m-time').value = f.time; $('m-offset').value = f.offset; });
-  $('m-form').addEventListener('submit', e => { e.preventDefault(); compute(); });
+  $('m-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
+  await mountEnh();
   compute();
+}
+
+async function mountEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.mp = await L('./moment-picker.js'); ENH.ab = await L('./action-bar.js');
+  ENH.fig = await L('./viz/figure.js'); ENH.wi = await L('./viz/wheel-interact.js'); ENH.wr = await L('./wheel-rotate.js');
+  try { const i = await L('./viz/inspect.js'); i && i.initInspect && i.initInspect(); } catch { /* */ }
+  const ids = { lat: 'm-lat', lon: 'm-lon', date: 'm-date', time: 'm-time', offset: 'm-offset' };
+  if (ENH.mp && ENH.mp.mountMomentPicker) { try { picker = ENH.mp.mountMomentPicker($('m-picker'), { mode: 'question', label: 'The moment & place', persist: 'wb', ids, onChange: () => compute() }); } catch { pickerFallback('m-picker', ids); } } else pickerFallback('m-picker', ids);
+  if (ENH.ab && ENH.ab.mountActionBar) { try { bar = ENH.ab.mountActionBar($('m-actionbar'), { variant: 'tool', exports: [], askAI: null, summary: () => barSummary() }); } catch { bar = null; } }
+}
+
+function barSummary() {
+  const b = $('m-verdict-banner'); const v = b && b.querySelector('.verdict');
+  return { verdict: v ? v.textContent : '', text: b && !b.hidden ? (b.querySelector('.vb-reason') || {}).textContent || '' : '' };
+}
+function doCompute() {
+  const banner = $('m-verdict-banner'), btn = $('m-form').querySelector('button[type="submit"]');
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf(btn, $('m-summary'), () => compute(), { banner, firstPanel: $('m-p-health') }); return; } catch { /* */ } }
+  compute();
+  if (banner && !banner.hidden) { try { banner.tabIndex = -1; banner.focus({ preventScroll: true }); banner.scrollIntoView({ block: 'start', behavior: motionOK() ? 'smooth' : 'auto' }); } catch { /* */ } }
+}
+function pickerFallback(boxId, ids) {
+  const box = document.getElementById(boxId); if (!box || box.dataset.fb) return; box.dataset.fb = '1';
+  const M = { lat: ['number', 'Lat °N', '0.0001'], lon: ['number', 'Lon °E', '0.0001'], date: ['date', 'Date'], time: ['time', 'Time (local)'], offset: ['number', 'UTC offset', '0.5'] };
+  const row = document.createElement('div'); row.className = 'field-row';
+  for (const k of Object.keys(ids)) { const inp = $(ids[k]); if (!inp) continue; const [t, l, s] = M[k] || ['text', k]; inp.type = t; if (s) inp.step = s; inp.style.width = t === 'number' ? '7rem' : ''; const fd = document.createElement('div'); fd.className = 'field'; const lb = document.createElement('label'); lb.htmlFor = ids[k]; lb.textContent = l; fd.append(lb, inp); row.appendChild(fd); }
+  box.appendChild(row);
+}
+function renderWheel(container, chart, asps) {
+  if (ENH.fig && ENH.fig.mountFigure) {
+    try {
+      const svgEl = renderChart(document.createElement('div'), chart, asps, { size: 540 });
+      container.innerHTML = '';
+      ENH.fig.mountFigure(container, { svg: svgEl.outerHTML, ariaLabel: 'Chart wheel — planets are buttons', caption: '' });
+      const m = container.querySelector('svg');
+      try { ENH.wi && ENH.wi.wireWheel && ENH.wi.wireWheel(m, chart, asps); } catch { /* */ }
+      try { ENH.wr && ENH.wr.attachWheelRotate && ENH.wr.attachWheelRotate(container, chart); } catch { /* */ }
+      return;
+    } catch { /* */ }
+  }
+  renderChart(container, chart, asps, { size: 540 });
 }
 
 function compute() {
@@ -47,7 +91,7 @@ function compute() {
 
   const bodies = {}; for (const p of PL) bodies[p] = chart.planets[p];
   const asps = allAspects(bodies);
-  renderChart($('m-wheel'), chart, asps, { size: 540 });
+  renderWheel($('m-wheel'), chart, asps);
 
   $('m-summary').innerHTML = `<strong>${formatLon(chart.asc)}</strong> ascending · MC
     <strong>${formatLon(chart.mc)}</strong> · ${isDay ? 'day' : 'night'} chart
@@ -166,4 +210,6 @@ function compute() {
     return `<li>${G(name)} ${name} in ${SIGNS[s.index].glyph} ${s.name} → rules the <b>${(part || '').toLowerCase()}</b>
       <span class="muted small">(${gender}, ${quality} degree${fort ? ', <b class="pos">fortunate</b>' : ''})</span></li>`;
   }).join('');
+  try { picker && picker.commitRecent && picker.commitRecent(); } catch { /* */ }
+  try { bar && bar.show && bar.show(); } catch { /* */ }
 }

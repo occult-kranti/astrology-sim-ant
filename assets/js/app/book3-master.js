@@ -19,13 +19,15 @@ import { directionsToAngles } from '../core/directions.js';
 import { solarReturn } from '../core/solar-return.js';
 import { natalTopicReading } from '../core/natal-topics.js';
 import { rectify } from '../core/rectification.js';
-import { wireCitySelect, toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
+import { toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
 
 const $ = id => document.getElementById(id);
 const PL = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
 const G = p => PLANET_GLYPHS[p] || p;
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
 let vedicUpdate = null;
+const ENH = {}; let bar = null, picker = null, lastSummary = '';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const sgn = n => (n >= 0 ? '+' : '') + n;
 const QUALITY = {
@@ -34,15 +36,51 @@ const QUALITY = {
 };
 const safe = (el, fn) => { try { fn(); } catch (e) { if (el) el.innerHTML = `<p class="small muted">Could not compute this section: ${esc(e.message)}</p>`; } };
 
-export function initBook3Master() {
-  const f = nowLocalFields();
+export async function initBook3Master() {
   $('bm-date').value = '1990-01-01'; $('bm-time').value = '12:00'; $('bm-offset').value = 0;
   $('bm-lat').value = 51.5074; $('bm-lon').value = -0.1278;
   $('bm-age').value = 30; $('bm-ryear').value = new Date().getFullYear();
-  wireCitySelect($('bm-city'), $('bm-lat'), $('bm-lon'), $('bm-offset'));
-  $('bm-now').addEventListener('click', () => { const n = nowLocalFields(); $('bm-date').value = n.date; $('bm-time').value = n.time; $('bm-offset').value = n.offset; });
-  $('bm-form').addEventListener('submit', e => { e.preventDefault(); compute(); });
+  $('bm-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
+  await mountEnh();
   compute();
+}
+
+async function mountEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.mp = await L('./moment-picker.js'); ENH.ab = await L('./action-bar.js');
+  ENH.fig = await L('./viz/figure.js'); ENH.wi = await L('./viz/wheel-interact.js'); ENH.wr = await L('./wheel-rotate.js');
+  try { const i = await L('./viz/inspect.js'); i && i.initInspect && i.initInspect(); } catch { /* */ }
+  const ids = { lat: 'bm-lat', lon: 'bm-lon', date: 'bm-date', time: 'bm-time', offset: 'bm-offset' };
+  if (ENH.mp && ENH.mp.mountMomentPicker) { try { picker = ENH.mp.mountMomentPicker($('bm-picker'), { mode: 'birth', label: 'Birth moment & place', persist: 'wb', ids, onChange: () => compute() }); } catch { pickerFallback('bm-picker', ids); } } else pickerFallback('bm-picker', ids);
+  if (ENH.ab && ENH.ab.mountActionBar) { try { bar = ENH.ab.mountActionBar($('bm-actionbar'), { variant: 'tool', exports: [], askAI: null, summary: () => ({ verdict: '', text: lastSummary }) }); } catch { bar = null; } }
+}
+function doCompute() {
+  const btn = $('bm-form').querySelector('button[type="submit"]');
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf(btn, $('bm-summary'), () => compute(), { banner: $('bm-summary'), firstPanel: $('bm-p-figure') }); return; } catch { /* */ } }
+  compute();
+  try { const s = $('bm-summary'); s.tabIndex = -1; s.focus({ preventScroll: true }); s.scrollIntoView({ block: 'start', behavior: motionOK() ? 'smooth' : 'auto' }); } catch { /* */ }
+}
+function pickerFallback(boxId, ids) {
+  const box = document.getElementById(boxId); if (!box || box.dataset.fb) return; box.dataset.fb = '1';
+  const M = { lat: ['number', 'Lat °N', '0.0001'], lon: ['number', 'Lon °E', '0.0001'], date: ['date', 'Date'], time: ['time', 'Time (local)'], offset: ['number', 'UTC offset', '0.5'] };
+  const row = document.createElement('div'); row.className = 'field-row';
+  for (const k of Object.keys(ids)) { const inp = $(ids[k]); if (!inp) continue; const [t, l, s] = M[k] || ['text', k]; inp.type = t; if (s) inp.step = s; inp.style.width = t === 'number' ? '7rem' : ''; const fd = document.createElement('div'); fd.className = 'field'; const lb = document.createElement('label'); lb.htmlFor = ids[k]; lb.textContent = l; fd.append(lb, inp); row.appendChild(fd); }
+  box.appendChild(row);
+}
+function renderWheel(container, chart, asps) {
+  if (ENH.fig && ENH.fig.mountFigure) {
+    try {
+      const svgEl = renderChart(document.createElement('div'), chart, asps, { size: 540 });
+      container.innerHTML = '';
+      ENH.fig.mountFigure(container, { svg: svgEl.outerHTML, ariaLabel: 'Nativity chart wheel — planets are buttons', caption: '' });
+      const m = container.querySelector('svg');
+      try { ENH.wi && ENH.wi.wireWheel && ENH.wi.wireWheel(m, chart, asps); } catch { /* */ }
+      try { ENH.wr && ENH.wr.attachWheelRotate && ENH.wr.attachWheelRotate(container, chart); } catch { /* */ }
+      return;
+    } catch { /* */ }
+  }
+  renderChart(container, chart, asps, { size: 540 });
 }
 
 function compute() {
@@ -59,9 +97,12 @@ function compute() {
   // 1. wheel + positions
   safe($('bm-wheel'), () => {
     const bodies = {}; for (const p of PL) bodies[p] = chart.planets[p];
-    renderChart($('bm-wheel'), chart, allAspects(bodies), { size: 540 });
+    renderWheel($('bm-wheel'), chart, allAspects(bodies));
   });
   $('bm-summary').innerHTML = `<strong>${formatLon(chart.asc)}</strong> ascending · MC <strong>${formatLon(chart.mc)}</strong> · ${isDay ? 'day' : 'night'} birth`;
+  lastSummary = `${formatLon(chart.asc)} rising · ${isDay ? 'day' : 'night'} birth`;
+  try { picker && picker.commitRecent && picker.commitRecent(); } catch { /* */ }
+  try { bar && bar.show && bar.show(); } catch { /* */ }
 
   // 2. dignities + Lord of the Geniture + temperament
   const totals = {};

@@ -10,7 +10,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Picatrix</a> › Talisman Workflow</p>
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="../tools.html">Cast</a> › Talisman Workflow</p>
   <h1>The Talisman Workflow</h1>
   <p class="lede">Choose an aim and a moment; this guided flow <b>elects the time</b>, gathers the
     <b>historical correspondences</b>, sets the <b>Moon's mansion</b> and the <b>decan image</b>, and assembles the
@@ -37,18 +37,16 @@
   <form id="t-form" class="calc">
     <div class="field-row">
       <div class="field" style="flex:1 1 220px"><label for="t-op">Aim</label><select id="t-op"></select></div>
-      <div class="field" style="flex:1 1 200px"><label for="t-city">Place</label><select id="t-city"></select></div>
-      <div class="field"><label for="t-lat">Lat °N</label><input id="t-lat" type="number" step="0.0001" style="width:7rem"></div>
-      <div class="field"><label for="t-lon">Lon °E</label><input id="t-lon" type="number" step="0.0001" style="width:7rem"></div>
     </div>
+    <div id="t-picker" style="margin-top:.8rem"></div>
+    <!-- Legacy write-through: the moment-picker fills these hidden inputs by their historic ids. -->
+    <input type="hidden" id="t-lat"><input type="hidden" id="t-lon">
+    <input type="hidden" id="t-date"><input type="hidden" id="t-time"><input type="hidden" id="t-offset">
     <div class="field-row" style="margin-top:.8rem">
-      <div class="field"><label for="t-date">Date</label><input id="t-date" type="date"></div>
-      <div class="field"><label for="t-time">Time (local)</label><input id="t-time" type="time"></div>
-      <div class="field"><label for="t-offset">UTC offset</label><input id="t-offset" type="number" step="0.5" style="width:6rem"></div>
-      <button type="button" class="btn sm" id="t-now">Now</button>
-      <button type="submit" class="btn">Build the recipe</button>
+      <button type="submit" class="btn">Cast the talisman</button>
     </div>
   </form>
+  <div id="t-actionbar"></div>
 
   <h2>2 — The working, step by step</h2>
   <div id="t-steps"></div>

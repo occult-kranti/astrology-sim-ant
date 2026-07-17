@@ -41,7 +41,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › Oracles › Tarot</p>
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html#divination">Oracles</a> › Tarot</p>
   <h1>Tarot — the spread, laid &amp; read</h1>
   <p class="lede">The Tarot's <b>78 cards</b> — 22 <b>Major Arcana</b> and the four suits of the <b>Minor Arcana</b>
     (Wands/Fire, Cups/Water, Swords/Air, Pentacles/Earth) — read in the <b>Rider–Waite–Smith</b> and <b>Golden Dawn</b>
@@ -55,8 +55,6 @@
     a symbolic grammar, not a fact about the world. The cards are shuffled by your browser's random generator; the
     reading is the tradition's, reproduced for study — never a prediction or advice.</div>
 
-  <div id="cast-hour"></div>
-
   <form id="tarot-form" class="calc">
     <div class="field-row">
       <div class="field" style="flex:1 1 100%"><label for="tarot-question">Your question (optional)</label>
@@ -66,8 +64,6 @@
       <div class="field" style="flex:1 1 260px"><label for="tarot-spread">Spread</label><select id="tarot-spread"></select></div>
       <label class="small" style="display:flex;align-items:center;gap:.3rem"><input type="checkbox" id="tarot-reversals" checked> include reversals</label>
       <button type="submit" class="btn" id="tarot-draw">🔀 Shuffle &amp; draw</button>
-      <button type="button" class="btn sm" id="tarot-share">Copy shareable link</button>
-      <button type="button" class="btn sm" id="tarot-md">⤓ Download reading (MD)</button>
       <span id="tarot-share-status" class="small muted"></span>
     </div>
     <p id="tarot-spread-desc" class="small muted" style="margin:.4rem 0 0"></p>
@@ -85,10 +81,13 @@
       neighbours agree. Tarot has no demonstrated predictive validity; this is structured reflection for study.</div></section>
 
   <section class="card" id="dv-assistant-card"><h2 style="margin-top:0">Ask the diviner — AI interpretation (Claude or a free provider)</h2>
+    <p class="small muted">The computed reading above is complete without a key — the assistant only narrates it.</p>
     <div id="dv-assistant"></div></section>
 
-  <section class="card"><h2 style="margin-top:0">The 78 cards <span class="small muted">(reference)</span></h2>
-    <div id="tarot-reference"></div></section>
+  <div id="cast-hour"></div>
+
+  <details class="acc card" id="tarot-reference-acc"><summary><h2 style="margin:0;display:inline">The 78 cards <span class="small muted">(reference)</span></h2></summary>
+    <div id="tarot-reference"></div></details>
 
   <div class="callout science" style="margin-top:1.2rem"><span class="label">A strong, honest caveat</span>
     None of this predicts or determines anything in the real world. The Tarot is a deck of symbolic images; the meanings
@@ -98,6 +97,8 @@
 
   <p class="small muted" style="margin-top:1rem">See also the <a href="geomancy.html">Geomancy</a> shield, the
     <a href="workbench.html">Master Tool</a>, and the <a href="picatrix/index.html">Picatrix</a> magical layer.</p>
+
+  <div id="tarot-actionbar"></div>
 </main>
 <script type="module">
   import { mountChrome } from '../assets/js/app/shared.js';

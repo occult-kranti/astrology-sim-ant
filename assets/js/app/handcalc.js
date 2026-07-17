@@ -122,23 +122,23 @@ function renderLST(f, birthUT) {
 
   // the term-by-term breakdown for the selected rate
   const terms = `
-    <table class="data hc-scroll"><tbody>
+    <div class="table-scroll"><table class="data"><tbody>
       <tr><td>Sidereal time at prior midnight (0h UT)</td><td class="hc-num hc-mono">${formatHMS(st0)}</td><td class="small muted">from the ephemeris page (our engine's GAST at 0h)</td></tr>
       <tr><td>+ UT interval since midnight</td><td class="hc-num hc-mono">${formatHMS(interval)}</td><td class="small muted">Station 1's UT, minus 0h</td></tr>
       <tr class="hc-hand"><td>+ Acceleration @ ${handSel.rate} s/h</td><td class="hc-num hc-mono">+${handSel.accelSeconds.toFixed(1)} s</td><td class="small muted">${esc(accelExplain)}</td></tr>
       <tr><td>${lonDeg < 0 ? '−' : '+'} Longitude ÷ 15</td><td class="hc-num hc-mono">${handSel.parts.longitude}</td><td class="small muted">${esc(formatDMS(Math.abs(lonDeg)))} ÷ 15 (${lonDir})</td></tr>
       <tr style="border-top:2px solid var(--rule)"><td><b>= Local Sidereal Time (by hand)</b></td><td class="hc-num hc-mono"><b>${formatHMS(handSel.lstHours)}</b></td><td class="small muted">${handSel.wrapped ? 'reduced below 24h' : ''}</td></tr>
       <tr><td>Engine LST = RAMC ÷ 15</td><td class="hc-num hc-mono">${formatHMS(eng)}</td><td class="small muted">RAMC ${ramc.toFixed(3)}° = GAST + longitude</td></tr>
-    </tbody></table>`;
+    </tbody></table></div>`;
 
   const dB = stSecondsBetween(handBook.lstHours, eng);
   const dE = stSecondsBetween(handExact.lstHours, eng);
   const compare = `
-    <table class="data"><thead><tr><th>Acceleration rule</th><th class="hc-num">on interval</th><th class="hc-num">hand LST</th><th class="hc-num">Δ vs engine</th></tr></thead>
+    <div class="table-scroll"><table class="data"><thead><tr><th>Acceleration rule</th><th class="hc-num">on interval</th><th class="hc-num">hand LST</th><th class="hc-num">Δ vs engine</th></tr></thead>
     <tbody>
       <tr${f.rate === 10 ? ' class="hc-hand"' : ''}><td>10 s/hour — the book rule</td><td class="hc-num hc-mono">+${handBook.accelSeconds.toFixed(1)} s</td><td class="hc-num hc-mono">${formatHMS(handBook.lstHours)}</td><td class="hc-num">${dSec(dB)}</td></tr>
       <tr${f.rate === 9.8565 ? ' class="hc-hand"' : ''}><td>9.8565 s/hour — exact mean</td><td class="hc-num hc-mono">+${handExact.accelSeconds.toFixed(1)} s</td><td class="hc-num hc-mono">${formatHMS(handExact.lstHours)}</td><td class="hc-num">${dSec(dE)}</td></tr>
-    </tbody></table>`;
+    </tbody></table></div>`;
 
   const reconcile = ACCEL_CONSTANTS.map(a => `<li><b>${esc(a.label)}</b> — ${esc(a.note)} <span class="muted">(${esc(a.source)})</span></li>`).join('');
 
@@ -268,11 +268,11 @@ function renderHouses(f, birthUT) {
     ${grid}
     <p class="small">Interpolate across the rows by ${(g.rowFrac * 100).toFixed(1)}% and across the latitudes by
       ${(g.latFrac * 100).toFixed(1)}%:</p>
-    <table class="data"><thead><tr><th>Angle</th><th class="hc-num">double-interpolated (by hand)</th><th class="hc-num">engine exact</th><th class="hc-num">Δ</th></tr></thead>
+    <div class="table-scroll"><table class="data"><thead><tr><th>Angle</th><th class="hc-num">double-interpolated (by hand)</th><th class="hc-num">engine exact</th><th class="hc-num">Δ</th></tr></thead>
     <tbody>
       <tr><td>Ascendant</td><td class="hc-num hc-mono">${z(th.interpolated.asc)}</td><td class="hc-num hc-mono">${z(th.exact.asc)}</td><td class="hc-num">${dMin(th.delta.ascMin)}</td></tr>
       <tr><td>Midheaven <span class="muted small">(latitude-independent)</span></td><td class="hc-num hc-mono">${z(th.interpolated.mc)}</td><td class="hc-num hc-mono">${z(th.exact.mc)}</td><td class="hc-num">${dMin(th.delta.mcMin)}</td></tr>
-    </tbody></table>
+    </tbody></table></div>
     <p class="small muted">${esc(th.rowCaveat)}</p>
     <p class="small muted">${esc(CAVEATS.find(c => c.id === 'koch-not-implemented').text)}</p>`;
 

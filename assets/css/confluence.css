@@ -301,3 +301,159 @@
   .cfl-edge-line { stroke:#666 !important; }
   .cfl-cert-ring { stroke:#999 !important; }
 }
+
+/* ============================================================================
+   DS3 · ATLAS INSTRUMENT LAYER (UI3 · Builder 6). An additive block appended to
+   confluence.css (style.css is untouched). Everything reads through DS2 tokens
+   or the scoped --cfl-* additions below, so a future theme swaps tokens without
+   touching this layer. Reduced-motion-first: the default state IS the resting
+   state; every animation lives inside prefers-reduced-motion: no-preference.
+   ============================================================================ */
+.cfl-page {
+  --cfl-minimap-w: 56px;
+  --cfl-wash-1: .03; --cfl-wash-2: .06; --cfl-wash-3: .09; --cfl-wash-4: .12;  /* lane density */
+  --cfl-glow: 0 0 5px;                       /* node glow radius shorthand      */
+  --cfl-lens: var(--accent);                 /* minimap lens                    */
+  --cfl-mm-ink: var(--dg-strong, #6b5a34);   /* minimap density ink             */
+}
+
+/* ---------- the instrument frame (§1) -------------------------------------- */
+.cfl-instrument { display:grid; grid-template-columns: var(--cfl-minimap-w, 56px) minmax(0, 1fr);
+  gap: var(--sp-2); align-items:stretch; }
+.cfl-instrument[hidden] { display:none; }
+.cfl-viewport { position:relative; overflow:auto; overscroll-behavior:contain;
+  height: clamp(480px, 78vh, calc(100vh - 11rem));
+  border:1px solid var(--border); border-radius:var(--rad-2); background:var(--surface-page);
+  touch-action: pan-x pan-y; }
+.cfl-viewport:focus-visible { outline:2px solid var(--focus); outline-offset:-2px; }
+.cfl-viewport.is-dragging { cursor:grabbing; user-select:none; }
+.cfl-canvas { position:relative; }             /* width/height set by JS = layout × s */
+.cfl-world  { position:relative; transform-origin:0 0; will-change:transform; }
+.cfl-world.is-resting { will-change:auto; }    /* drop the layer at rest → sticky honest */
+
+/* sticky lane strip (top) + sticky ruler (left) — zero-height flow boxes whose
+   absolutely-positioned children overflow and therefore "stick" without moving
+   the atlas origin (WP-10.1 / 10.2 for free). */
+.cfl-lane-strip { position:sticky; top:0; left:0; z-index:3; height:0; pointer-events:none; }
+.cfl-lane-strip .cfl-lane-head { pointer-events:auto; }
+.cfl-ruler { position:sticky; left:0; z-index:2; width:0; height:0; pointer-events:none; }
+.cfl-ruler-label { position:absolute; left:0; width:var(--cfl-gutter, 64px); transform:translateY(-50%);
+  text-align:right; padding-right:6px; font-family:var(--font-sans); font-size:11px;
+  font-variant-numeric:tabular-nums; color:var(--dg-label, #9b8e6e); white-space:nowrap; }
+.cfl-century-bracket { position:absolute; left:2px; width:8px; border-left:1px solid var(--dg-tick, #b3a37e);
+  border-top:1px solid var(--dg-tick, #b3a37e); border-bottom:1px solid var(--dg-tick, #b3a37e); opacity:.5; }
+.cfl-century-label { position:absolute; left:10px; top:50%; transform:translateY(-50%) rotate(-90deg);
+  transform-origin:left center; font-family:var(--font-sans); font-size:8px; letter-spacing:.04em;
+  color:var(--dg-label, #9b8e6e); white-space:nowrap; }
+@media (max-width:1139.9px) {
+  .cfl-minimap { display:none; }
+  .cfl-instrument { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- lane density wash (§9.1) — alpha by quartile ------------------- */
+.cfl-lane-wash.cfl-wash-1 { fill:var(--lane, #c2b48f); fill-opacity:var(--cfl-wash-1); }
+.cfl-lane-wash.cfl-wash-2 { fill:var(--lane, #c2b48f); fill-opacity:var(--cfl-wash-2); }
+.cfl-lane-wash.cfl-wash-3 { fill:var(--lane, #c2b48f); fill-opacity:var(--cfl-wash-3); }
+.cfl-lane-wash.cfl-wash-4 { fill:var(--lane, #c2b48f); fill-opacity:var(--cfl-wash-4); }
+.cfl-spine-rule-2 { opacity:.45; }              /* the framed gold spine (§9.2) */
+
+/* ---------- node glow states (§9.4 — static, no motion) -------------------- */
+.cfl-node:hover .cfl-mark svg, .cfl-node:focus-visible .cfl-mark svg {
+  filter: drop-shadow(var(--cfl-glow) var(--accent-soft)); }
+.cfl-node.is-selected .cfl-mark svg { filter: drop-shadow(0 0 7px var(--accent)); }
+.cfl-shape { shape-rendering:geometricPrecision; }
+.cfl-era-whisper { position:absolute; left:0; text-align:center; font-family:var(--font-sans);
+  font-size:var(--fs-label); letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint);
+  pointer-events:none; }
+
+/* ---------- cluster pills (§7.2) ------------------------------------------- */
+.cfl-cluster { position:absolute; display:inline-flex; align-items:center; gap:.15rem;
+  min-height:22px; min-width:34px; padding:.05rem .35rem; border:1px solid var(--accent-soft);
+  border-radius:var(--rad-pill, 99px); background:var(--surface-card); cursor:pointer;
+  font-family:var(--font-sans); font-size:var(--fs-badge); color:var(--text); line-height:1; }
+.cfl-cluster::after { content:''; position:absolute; inset:-11px; }   /* 44 px hit target */
+.cfl-cluster:focus-visible { outline:2px solid var(--focus); outline-offset:2px; }
+.cfl-cluster .cfl-cluster-n { font-weight:700; }
+.cfl-cluster .cfl-cluster-c { color:var(--ep-disp); font-size:.9em; }
+.cfl-cluster.is-selected { box-shadow:0 0 0 2px var(--accent); }
+.cfl-cluster[hidden] { display:none; }
+
+/* ---------- the minimap (§6) ---------------------------------------------- */
+.cfl-minimap { position:relative; border:1px solid var(--border); border-radius:var(--rad-2);
+  background:var(--surface-inset); overflow:hidden; cursor:pointer; }
+.cfl-minimap svg { display:block; width:100%; height:100%; }
+.cfl-mm-era { fill:var(--dg-era, #efe6d2); opacity:.5; }
+.cfl-mm-era-label { fill:var(--dg-label, #9b8e6e); font-family:var(--font-sans); font-size:8px; }
+.cfl-mm-cell { fill:var(--cfl-mm-ink); }
+.cfl-mm-lens { fill:var(--cfl-lens); fill-opacity:.06; stroke:var(--cfl-lens); stroke-width:1.5; cursor:grab; }
+
+/* ---------- the hover CARD (§8) — an upgrade of .cfl-tip ------------------- */
+.cfl-tip.cfl-card { max-width:20rem; padding:.6rem .7rem; background:var(--surface-card);
+  box-shadow:var(--shadow-2); border:1px solid var(--border); border-radius:var(--rad-2);
+  max-height:40vh; overflow:hidden; pointer-events:auto; }   /* shown-card is interactive (the ⌖ pin) */
+.cfl-card.cfl-card-wide { max-width:22rem; }
+.cfl-card.is-pinned { box-shadow:var(--shadow-3); border-color:var(--accent-soft); }
+.cfl-card-pin { position:absolute; top:.3rem; right:.3rem; width:24px; height:24px; border:0;
+  background:none; cursor:pointer; color:var(--text-muted); font-size:1rem; line-height:1; border-radius:var(--rad-1); }
+.cfl-card-pin:hover { color:var(--accent-strong); background:var(--surface-wash); }
+.cfl-card-title { font-family:var(--font-serif); font-size:var(--fs-1); font-weight:700; padding-right:1.4rem; }
+.cfl-card-kind { font-family:var(--font-sans); font-size:.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:.03em; }
+.cfl-card-orig { display:block; font-family:var(--font-serif); color:var(--text-soft); font-size:var(--fs-0); }
+.cfl-card-meta { font-family:var(--font-sans); font-size:var(--fs--1); color:var(--text-muted); margin:.15rem 0; }
+.cfl-spark { display:block; margin:.3rem 0 0; }
+.cfl-spark-axis { stroke:var(--dg-grid, #d8cbac); stroke-width:1; }
+.cfl-spark-self { stroke:var(--accent); stroke-width:3; }
+.cfl-spark-out, .cfl-spark-in { stroke:var(--dg-edge, #c2b48f); stroke-width:2; }
+.cfl-spark-more { fill:var(--text-faint); font-family:var(--font-sans); font-size:8px; }
+.cfl-spark-cap { display:block; font-family:var(--font-sans); font-size:8px; color:var(--dg-label, #9b8e6e); letter-spacing:.02em; }
+.cfl-card-excerpt { margin:.35rem 0 0; font-size:.86rem; color:var(--text); line-height:1.4; }
+.cfl-card-journeys { margin:.3rem 0 0; font-family:var(--font-sans); font-size:.74rem; color:var(--text-muted); }
+.cfl-card-foot { display:flex; align-items:center; gap:.4rem; margin-top:.4rem; flex-wrap:wrap; }
+.cfl-card-hint { font-size:.7rem; color:var(--text-faint); }
+@media (pointer:coarse) { .cfl-card-hint { display:none; } }
+.cfl-card-list { list-style:none; margin:.3rem 0 0; padding:0; font-size:.84rem; }
+.cfl-card-list li { padding:.12rem 0; font-family:var(--font-serif); border-bottom:1px dashed var(--border); }
+
+/* ---------- edge dash-flow (§8.5) — motion only --------------------------- */
+@media (prefers-reduced-motion:no-preference) {
+  .cfl-edges:not(.no-flow) .cfl-edge.edge-hot .cfl-edge-line {
+    stroke-dasharray:6 10; animation:cfl-flow 900ms linear infinite; }
+  @keyframes cfl-flow { to { stroke-dashoffset:-16; } }
+  .cfl-over .is-materializing { animation:cfl-mat 140ms var(--ease); }
+  @keyframes cfl-mat { from { opacity:0; } }
+}
+
+/* ---------- the ambient era pill (§9.6) ----------------------------------- */
+.cfl-era-current { display:inline-flex; align-items:center; gap:.4rem; padding:.15rem .5rem;
+  background:var(--surface-inset); border:1px solid var(--border); border-radius:var(--rad-pill, 99px); }
+.cfl-era-current .cfl-era-name { font-family:var(--font-sans); font-size:var(--fs-label);
+  text-transform:uppercase; letter-spacing:.05em; color:var(--accent-strong); font-weight:700; white-space:nowrap; }
+.cfl-era-dots { display:inline-flex; gap:3px; }
+.cfl-era-dot { width:5px; height:5px; border-radius:50%; background:var(--border); }
+.cfl-era-dot.is-on { background:var(--accent); }
+@media (max-width:899.9px) { .cfl-era-current .cfl-era-dots { display:none; } }
+
+/* ---------- search (§10) --------------------------------------------------- */
+.cfl-search-group { position:relative; }
+.cfl-search-wrap { position:relative; }
+.cfl-search { font:inherit; font-size:.82rem; padding:.3rem .5rem; min-height:2.1rem; min-width:11rem;
+  border:1px solid var(--border); border-radius:var(--rad-1); background:var(--surface-card); color:var(--text); }
+.cfl-search:focus-visible { outline:2px solid var(--focus); outline-offset:1px; }
+.cfl-search-list { position:absolute; top:calc(100% + 2px); left:0; z-index:var(--z-menu); margin:0; padding:.2rem;
+  list-style:none; min-width:18rem; max-width:24rem; max-height:60vh; overflow:auto;
+  background:var(--surface-card); border:1px solid var(--border); border-radius:var(--rad-2); box-shadow:var(--shadow-2); }
+.cfl-search-list[hidden] { display:none; }
+.cfl-search-row { display:flex; align-items:center; gap:.5rem; padding:.3rem .4rem; border-radius:var(--rad-1); cursor:pointer; }
+.cfl-search-row .cfl-sr-title { font-family:var(--font-serif); flex:1 1 auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cfl-search-row .cfl-sr-date { font-family:var(--font-sans); font-size:var(--fs--1); color:var(--text-muted); white-space:nowrap; }
+.cfl-search-row .cfl-dot { width:.6em; height:.6em; border-radius:50%; background:var(--lane, var(--accent)); flex:0 0 auto; }
+.cfl-search-row.is-active, .cfl-search-row:hover { background:var(--surface-wash); }
+.cfl-cluster-rows { display:block; }
+
+/* ---------- print + reduced-motion housekeeping --------------------------- */
+@media print {
+  .cfl-instrument, .cfl-minimap, .cfl-search-group, .cfl-card, .cfl-era-current { display:none !important; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .cfl-viewport { scroll-behavior:auto; }
+}

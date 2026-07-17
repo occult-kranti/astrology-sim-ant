@@ -23,6 +23,27 @@ import { initDivinationAssistant } from './divination-assistant.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+const ENH = {}; let jbar = null;
+
+async function mountJungEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.fig = await L('./viz/figure.js'); ENH.wi = await L('./viz/wheel-interact.js'); ENH.wr = await L('./wheel-rotate.js'); ENH.ab = await L('./action-bar.js');
+  try { const i = await L('./viz/inspect.js'); i && i.initInspect && i.initInspect(); } catch { /* */ }
+  if (ENH.ab && ENH.ab.mountActionBar && $('jt-actionbar')) {
+    try { jbar = ENH.ab.mountActionBar($('jt-actionbar'), { variant: 'tool', exports: [], askAI: () => { const a = $('dv-assistant'); if (a) { a.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto' }); const t = a.querySelector('textarea, input'); t && t.focus(); } }, summary: () => ({ verdict: '', text: 'Psychological horoscope computed.' }) }); } catch { jbar = null; }
+  }
+}
+
+// jt-wheel already sits inside a .fig wrapper, so render directly (no mountFigure
+// nesting) and wire the interaction/rotation onto the svg.
+function renderJungWheel(container, chart, asps) {
+  container.innerHTML = '';
+  renderChart(container, chart, asps, { size: 340 });
+  const m = container.querySelector('svg');
+  try { ENH.wi && ENH.wi.wireWheel && ENH.wi.wireWheel(m, chart, asps); } catch { /* */ }
+  try { ENH.wr && ENH.wr.attachWheelRotate && ENH.wr.attachWheelRotate(container, chart); } catch { /* */ }
+}
 const G = p => PLANET_GLYPHS[p] || '';
 
 // the last computed psychological horoscope, exposed to the "Jung reads it
@@ -63,6 +84,7 @@ export function initJungTool() {
   $('jt-synastry-run').addEventListener('click', () => runSynastry());
   renderAeon();
   mountJungAssistant();
+  mountJungEnh();
 }
 
 // The "Jung reads it himself" AI panel — the shared divination assistant,
@@ -102,7 +124,8 @@ function runHoroscope() {
   let r;
   try { r = jungianReading(chart); } catch (e) { $('jt-reading').innerHTML = `<p class="muted">Could not compute (${esc(e.message)}).</p>`; return; }
 
-  try { $('jt-wheel').innerHTML = ''; renderChart($('jt-wheel'), chart, allAspects(chart.planets), { size: 340 }); } catch { /* wheel is optional */ }
+  try { renderJungWheel($('jt-wheel'), chart, allAspects(chart.planets)); } catch { /* wheel is optional */ }
+  try { jbar && jbar.show && jbar.show(); } catch { /* */ }
 
   const isJung = $('ja-date').value === JUNG_BIRTH.date && $('ja-time').value === JUNG_BIRTH.time
     && Math.abs(parseFloat($('ja-lat').value) - JUNG_BIRTH.lat) < 0.01 && Math.abs(parseFloat($('ja-lon').value) - JUNG_BIRTH.lon) < 0.01;

@@ -237,7 +237,7 @@ fieldset { min-width: 0; }
 fieldset .field { min-width: 0; }
 
 /* ---- Chart wheel SVG ---- */
-.chart-wheel { display:block; margin: 0 auto; }
+.chart-wheel { display:block; margin: 0 auto; max-width: 100%; height: auto; }
 .wheel-ring { fill: #fffdf6; stroke: #cbbd9c; stroke-width: 1; }
 .wheel-ring:first-of-type { fill: #fbf4e3; }
 .sign-div { stroke: #cbbd9c; stroke-width: 1; }
@@ -896,3 +896,502 @@ blockquote.lilly { position: relative; }
 blockquote.lilly::before { content: '\201C'; position: absolute; left: -.05rem; top: -.9rem;
   font-family: var(--font-serif); font-size: 2.2rem; line-height: 1; color: var(--accent-soft);
   opacity: .6; pointer-events: none; }
+
+/* ###########################################################################
+   ##  DS3 — THE INTERACTION + BEAUTY LAYER (UI3 revamp). ONE additive append.
+   ##  Four banners in order: MOTION · INTERACTION · ART · DATAVIZ. Nothing
+   ##  above this line changes. Every colour is a var() or a documented token
+   ##  in these blocks; no color-mix(); reduced-motion-first throughout.
+   ########################################################################### */
+
+/* =========================================================================
+   DS3 · MOTION LAYER (physics §3, verbatim minus the cut .btn--magnet rule).
+   Physics constants live in app/motion.js (SPRINGS); these tokens carry the
+   derived CSS-side personality + the micro-interaction rules.
+   ========================================================================= */
+:root {
+  /* JS boot (motionOK() only) overwrites these with springLinear() strings.
+     Declared here as safe fallbacks so CSS never depends on JS. */
+  --ease-spring-snappy: var(--ease);
+  --ease-spring-gentle: var(--ease);
+  --ease-spring-molasses: var(--ease);
+  --press-scale: .98;
+  --dial-size: 8.5rem;          /* >=136px => the knob itself is a 44px+ target */
+}
+
+/* -- press-down: every real button acknowledges the finger (physics §5.1) -- */
+@media (prefers-reduced-motion: no-preference) {
+  .btn:active, .btn-secondary:active, .seg button:active, .chip-toggle:active,
+  .dial-knob:active { transform: scale(var(--press-scale)); }
+  .btn, .btn-secondary, .seg button, .chip-toggle {
+    transition: transform 90ms var(--ease-spring-snappy), background var(--t-fast) var(--ease); }
+}
+/* note: the DS2 head rule `.btn:active { transform:none }` is out-specified by
+   the @media block above only under no-preference — the reduced-motion default
+   keeps the head rule byte-identical. */
+
+/* -- segmented control thumb (physics §4.7) -- */
+.seg { position: relative; }
+.seg-thumb { position: absolute; z-index: 0; top: 0; left: 0; height: 100%;
+  background: var(--accent); border-radius: inherit; pointer-events: none;
+  transform-origin: left center; will-change: auto; }
+.seg.has-thumb button, .seg.has-thumb a { position: relative; z-index: 1; background: transparent; }
+.seg.has-thumb .active, .seg.has-thumb [aria-pressed="true"] { background: transparent; }
+
+/* -- dial / knob input (physics §4.6) -- */
+.dial { display: inline-grid; grid-template-columns: var(--dial-size) auto;
+  gap: var(--sp-3); align-items: center; }
+.dial-face { width: var(--dial-size); height: var(--dial-size); border-radius: 50%;
+  background: var(--surface-card); border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-1); position: relative; touch-action: none;
+  contain: layout paint; cursor: grab; }
+.dial-face:active { cursor: grabbing; }
+.dial-tick { stroke: var(--dg-tick); stroke-width: 1; }
+.dial-tick--major { stroke: var(--dg-strong); stroke-width: 1.5; }
+.dial-tick.is-hit { stroke: var(--accent); stroke-width: 2.5; } /* 120ms flash, JS-removed */
+.dial-needle { stroke: var(--accent-strong); stroke-width: 2; stroke-linecap: round; }
+.dial-readout { font-family: var(--font-sans); font-variant-numeric: tabular-nums; }
+.dial input[type="number"] { width: 6.5rem; }  /* type-to-enter is ALWAYS present */
+@media (max-width: 420px) { .dial { grid-template-columns: 1fr; } }
+
+/* -- wheel rotate-to-inspect (physics §4.4 / D4) -- */
+.wheel-stage { contain: layout paint; }
+.wheel-stage .wheel-rotor { transform-origin: center; }   /* set on chart.js group */
+.wheel-stage.is-dragging { cursor: grabbing; }
+.wheel-rotate-toggle[aria-pressed="true"] { background: var(--accent); color: #fff; }
+
+/* =========================================================================
+   DS3 · INTERACTION LAYER (flow §8; the .reveal-seq stagger is cut, C6).
+   Components for B1's moment-picker / action-bar / palette / next-up +
+   the home doors and the mega-menu Cast kickers. Nothing restyled.
+   ========================================================================= */
+:root {
+  --z-actionbar: 40;            /* below the header's 50 */
+  --mp-field-h: 2.75rem;        /* 44px touch height */
+  --door-rule: 3px;
+}
+
+/* disabled state for the primary/secondary buttons (was unstyled) */
+.btn[disabled], .btn-secondary[disabled] { opacity: .45; cursor: not-allowed; }
+
+/* -- the moment-picker (flow §2.2) -- */
+.mp { border: 1px solid var(--border); border-radius: var(--rad-3);
+  background: var(--surface-card); padding: var(--sp-4); margin: 0 0 var(--sp-4); }
+.mp > legend { font-family: var(--font-sans); font-size: var(--fs-label); font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--accent-strong); padding: 0 .4rem; }
+.mp-group { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-3);
+  margin: var(--sp-2) 0; }
+.mp-group > label { font-family: var(--font-sans); font-size: var(--fs-label);
+  font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted);
+  min-width: 3.4rem; }
+.mp input, .mp select { min-height: var(--mp-field-h); }
+.mp-chip { display: inline-flex; align-items: center; gap: .3rem; min-height: 44px;
+  padding: .25rem .6rem; font-family: var(--font-sans); font-size: .82rem;
+  background: var(--surface-inset); color: var(--text); border: 1px solid var(--border);
+  border-radius: var(--rad-pill); cursor: pointer; }
+.mp-chip:hover { border-color: var(--accent); }
+.mp-chip .mp-chip-x { color: var(--text-muted); font-weight: 700; }
+.mp-hint { font-family: var(--font-sans); font-size: var(--fs--1); color: var(--warn-ink);
+  margin: .2rem 0 0; }
+.mp-error { font-family: var(--font-sans); font-size: var(--fs--1); color: var(--bad-ink);
+  font-weight: 600; margin: .2rem 0 0; }
+.is-invalid { border-color: var(--bad) !important; outline-color: var(--bad); }
+
+/* -- the sticky action bar (flow §2.4) -- */
+html { scroll-padding-bottom: 64px; }
+.action-bar { position: sticky; bottom: 0; z-index: var(--z-actionbar);
+  display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+  min-height: 56px; padding: .4rem .8rem; margin-top: var(--sp-4);
+  background: var(--surface-page); border-top: 1px solid var(--border);
+  box-shadow: var(--shadow-2); }
+.action-bar .ab-summary { flex: 1 1 12rem; min-width: 0; color: var(--text-muted);
+  font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.action-bar .ab-spacer { flex: 1 1 auto; }
+.action-bar.is-hushed { display: none; }   /* hidden while an assistant textarea is focused */
+.ab-menu { position: relative; }
+.ab-menu [role="menu"] { position: absolute; bottom: calc(100% + .3rem); right: 0;
+  min-width: 12rem; background: var(--surface-card); border: 1px solid var(--border);
+  border-radius: var(--rad-2); box-shadow: var(--shadow-2); padding: .3rem; z-index: var(--z-menu); }
+.ab-menu [role="menuitem"] { display: block; width: 100%; text-align: left;
+  padding: .4rem .6rem; border: 0; background: transparent; border-radius: var(--rad-1);
+  font: inherit; color: var(--text); cursor: pointer; }
+.ab-menu [role="menuitem"]:hover, .ab-menu [role="menuitem"]:focus { background: var(--surface-inset); }
+
+/* -- the command palette (flow §2.6) -- */
+.cmdk { width: min(560px, 92vw); max-width: 560px; margin: 12vh auto auto; padding: 0;
+  border: 1px solid var(--border-strong); border-radius: var(--rad-3);
+  background: var(--surface-card); box-shadow: var(--shadow-3); color: var(--text); }
+.cmdk::backdrop { background: rgba(20, 15, 6, .38); }
+.cmdk input[type="search"], .cmdk .cmdk-input { width: 100%; box-sizing: border-box;
+  font-family: var(--font-serif); font-size: 1.1rem; padding: .8rem 1rem;
+  border: 0; border-bottom: 1px solid var(--border); background: transparent; color: var(--text); }
+.cmdk [role="listbox"] { list-style: none; margin: 0; padding: .3rem; max-height: 52vh; overflow: auto; }
+.cmdk-row { display: flex; align-items: center; gap: .6rem; padding: .5rem .7rem;
+  border-radius: var(--rad-2); cursor: pointer; text-decoration: none; color: var(--text); }
+.cmdk-row[aria-selected="true"], .cmdk-row:hover { background: var(--surface-inset); }
+.cmdk-row .cmdk-label { font-weight: 600; }
+.cmdk-row .cmdk-path { margin-left: auto; font-family: var(--font-sans); font-size: var(--fs--1);
+  color: var(--text-faint); }
+.cmdk-kicker { display: inline-block; font-family: var(--font-sans); font-size: var(--fs-badge);
+  font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-strong);
+  background: var(--accent-wash); border-radius: var(--rad-pill); padding: .1rem .5rem; }
+
+/* -- the header command-palette button (shared.js; flow §2.6, D10). Sits just
+      after the brand at every width — the discoverable path to Ctrl-K. -- */
+.cmdk-btn { display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem;
+  background: transparent; border: 1px solid rgba(217,177,90,.45); border-radius: var(--rad-2);
+  color: #e9e3d2; cursor: pointer; }
+.cmdk-btn:hover { background: rgba(217,177,90,.18); color: #fff; }
+.cmdk-btn .icon { width: 1.15em; height: 1.15em; margin: 0; }
+
+/* -- the home three doors (flow §3.1) -- */
+.doors .door { border-top: var(--door-rule) solid var(--accent); }
+.door .door-kicker { display: block; font: 700 var(--fs-label) var(--font-sans);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--accent-strong);
+  margin-bottom: .2rem; }
+.door ul { list-style: none; margin: .4rem 0 0; padding: 0; }
+.door ul li { margin: .2rem 0; }
+.door .door-whisper { font-family: var(--font-sans); font-size: var(--fs--1); color: var(--text-faint); }
+
+/* -- "where next" band (flow §3.3) -- */
+.next-up { border-top: 1px solid var(--border); margin-top: var(--sp-6); padding-top: var(--sp-5); }
+.next-up-kicker { display: block; font: 700 var(--fs-label) var(--font-sans);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--sp-3); }
+
+/* -- mega-menu Cast-panel kickers (flow §4; CSS-only grouping) -- */
+.nav-menu-kicker { display: block; font-family: var(--font-sans); font-size: .64rem;
+  font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-2);
+  opacity: .8; padding: .5rem .7rem .15rem; margin: 0; }
+.nav-menu-kicker:first-child { padding-top: .1rem; }
+
+/* =========================================================================
+   DS3 · ART LAYER — The Illuminated Observatory (art §2–§8; cuts C3 folio,
+   C4 twinkle, C8 sealMark; D7 ::before gilt strip). Additive atmosphere.
+   ========================================================================= */
+:root {
+  /* -- paper textures (all data-URI SVG, rasterized once by the browser) -- */
+  --tx-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 .13 0 0 0 0 .11 0 0 0 0 .07 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+  --tx-stardust: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 .97 0 0 0 0 .88 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23s)'/%3E%3C/svg%3E");
+  /* -- vignettes (edge shading; ellipse keeps corners soft, no banding) -- */
+  --tx-vignette-paper: radial-gradient(120% 90% at 50% 30%, transparent 62%, rgba(50,40,16,.06) 100%);
+  --tx-vignette-night: radial-gradient(130% 100% at 50% 20%, transparent 55%, rgba(0,0,0,.38) 100%);
+  /* -- the aurora: the AI's voice-surface wash (Dome only) -- */
+  --grad-aurora: radial-gradient(120% 80% at 85% -10%, rgba(126,155,216,.20), transparent 60%),
+                 radial-gradient(90% 60% at 8% 110%, rgba(217,177,90,.10), transparent 55%);
+  /* -- gilt rules & frames -- */
+  --grad-gilt-rule: linear-gradient(90deg, transparent, var(--gold-300) 18%, var(--gold-500) 50%, var(--gold-300) 82%, transparent);
+  --frame-gilt: 0 0 0 1px var(--gold-300);
+  --frame-gilt-2: 0 0 0 1px var(--gold-300), inset 0 0 0 3px var(--surface-card), inset 0 0 0 4px rgba(217,177,90,.55);
+  /* -- ornament strokes (engraving grammar, art §4.2) -- */
+  --orn-stroke: var(--dg-frame);
+  --orn-stroke-strong: var(--dg-strong);
+  --orn-gold: var(--gold-500);
+  --orn-opacity: .85;
+  /* -- epistemic texture fills for HTML surfaces (art §6; fixed rgba, no color-mix) -- */
+  --tex-disp: repeating-linear-gradient(45deg, transparent 0 3px, rgba(74,104,168,.18) 3px 4px);
+  --tex-con:  radial-gradient(rgba(176,111,31,.38) .8px, transparent .9px);
+  --tex-deb-strike: linear-gradient(178deg, transparent 47%, rgba(178,59,46,.55) 47%, rgba(178,59,46,.55) 53%, transparent 53%);
+  /* -- celestial instrument colours (also fallbacks for core/skyart.js) -- */
+  --sky-disc: #0b102a;
+  --sky-lit:  #fdf9ec;
+  --sky-star: #fff7dd;
+  --sky-halo: rgba(240,210,138,.22);
+}
+
+/* -- body grain (art §3.1): re-declare the background adding grain as a third
+      layer. The two head layers (gold glow, dot-grid) are copied byte-identical;
+      grain slots between them. Cascade-override — the head rule is untouched. -- */
+body {
+  background-image:
+    radial-gradient(circle at 50% -10%, rgba(184,134,43,.10), transparent 45%),
+    var(--tx-grain),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Ccircle cx='20' cy='20' r='.6' fill='%23d8cbac' opacity='.4'/%3E%3C/svg%3E");
+}
+
+/* -- Dome dust + vignette (art §3.2) -- */
+.hero, .casting-stage, footer.site { background-blend-mode: normal; }
+.casting-stage::before, .hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: var(--tx-vignette-night), var(--tx-stardust); border-radius: inherit; }
+.casting-stage > * { position: relative; z-index: 1; }
+
+/* -- the aurora + gilt top strip on AI surfaces (art §3.3; D7 ::before strip) -- */
+.chat, #wb-asst-log { background-image: var(--grad-aurora); }
+.chat { position: relative; }
+.chat::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-gilt-rule); pointer-events: none; }
+
+/* -- deckled register-transition rule (art §3.4) -- */
+.deckle-rule { height: 12px; margin: -6px 0; overflow: hidden; line-height: 0; pointer-events: none; }
+.deckle-rule svg { display: block; width: 100%; height: 12px; }
+
+/* -- panel plate vignette (art §3.5) -- */
+.plate { background-image: var(--tx-vignette-paper); }
+
+/* -- wing-hero frontispiece (art §4.3) -- */
+.wing-hero .fp { position: absolute; right: 2%; top: 50%; transform: translateY(-50%);
+  width: clamp(200px, 30vw, 340px); height: auto; opacity: var(--orn-opacity); pointer-events: none; }
+@media (max-width: 560px) { .wing-hero .fp { display: none; } }
+
+/* -- ceremonial card corner ornaments (art §4.5) -- */
+.card--plate { position: relative; }
+.plate-corners { position: absolute; inset: 0; pointer-events: none; }
+.plate-corner { position: absolute; width: 12px; height: 12px; }
+.plate-corner svg { display: block; width: 12px; height: 12px; }
+.pc-tl { top: 6px; left: 6px; }
+.pc-tr { top: 6px; right: 6px; transform: rotate(90deg); }
+.pc-br { bottom: 6px; right: 6px; transform: rotate(180deg); }
+.pc-bl { bottom: 6px; left: 6px; transform: rotate(270deg); }
+
+/* -- drop caps (art §4.5): a clean gilt versal, never on framing callouts -- */
+.dropcap::first-letter { font-family: var(--font-serif); font-weight: 600; color: var(--gold-700);
+  float: left; font-size: 3.2em; line-height: .82; padding: .04em .08em 0 0; }
+@supports (initial-letter: 3) {
+  .dropcap::first-letter { float: none; padding: 0; initial-letter: 3; margin-right: .12em; }
+}
+@media (max-width: 480px) { .dropcap::first-letter { font-size: 2.6em; } }
+
+/* -- icon sprite sizing (art §5.1) -- */
+.icon { width: 1em; height: 1em; vertical-align: -.125em; }
+.icon use { color: inherit; }
+button .icon, a .icon { margin-right: .35em; }
+.icon--lg { width: 1.4em; height: 1.4em; }
+
+/* -- epistemics as texture (art §6): texture ACCOMPANIES the text badge, never
+      replaces it; content contrast is unaffected. -- */
+.badge--disp { background-image: var(--tex-disp); }
+.badge--con { background-image: var(--tex-con); background-size: 6px 6px; border-style: dashed; }
+.tex-deb { position: relative; }
+.tex-deb::after { content: ''; position: absolute; inset: 0; background: var(--tex-deb-strike); pointer-events: none; }
+.chron-l-disp::before { background-image: var(--tex-disp); }
+.chron-l-con::before { background-image: var(--tex-con); background-size: 6px 6px; }
+.chron-l-deb::before { background-image: var(--tex-deb-strike); }
+
+/* -- the Dome inset for celestial instruments (art §7.1) -- */
+.sky-inset { position: relative; overflow: hidden; border-radius: var(--rad-3);
+  background: linear-gradient(180deg, var(--night-800), var(--night-700)); }
+.sky-inset .starfield { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sky-inset > svg.sa-moon { position: relative; z-index: 1; }
+
+/* =========================================================================
+   DS3 · DATAVIZ ADDENDUM (dataviz §5; D6 pre-mixed tokens, no color-mix).
+   Components for B2's figures — nothing restyled.
+   ========================================================================= */
+:root {
+  /* heat ramp (gold family, AA vs --ink-900 text at every step) */
+  --viz-heat-0: transparent; --viz-heat-1: #f7f1de; --viz-heat-2: #f3e6bf;
+  --viz-heat-3: #ecd79a;      --viz-heat-4: #e0c274;
+  --viz-now: var(--gold-700);
+  /* period-strip lord washes (existing ok/bad/gold/neutral family, pre-mixed for SVG) */
+  --viz-seg-lum: #f2e2bb; --viz-seg-ben: #d8efd6; --viz-seg-mal: #f6d9d9;
+  --viz-seg-neu: #e6e0f2; --viz-seg-node: #e4e0ea;
+  /* D6: pre-mixed aspect-grid softs (replace color-mix) */
+  --viz-ok-soft: #eaf6e8; --viz-bad-soft: #fbeaea; --viz-acc-soft: #fbf5e4;
+}
+
+/* -- tip + pin card (dataviz §2) -- */
+.viz-tip { position: fixed; z-index: var(--z-toast); max-width: 34ch; pointer-events: none;
+  font-family: var(--font-sans); font-size: var(--fs--1); line-height: 1.35;
+  background: var(--surface-card); color: var(--text); border: 1px solid var(--border-strong);
+  border-radius: var(--rad-2); box-shadow: var(--shadow-2); padding: .4rem .55rem; }
+.viz-pin-card { position: fixed; z-index: var(--z-toast); width: min(320px, 90vw);
+  background: var(--surface-card); color: var(--text); border: 1px solid var(--border-strong);
+  border-radius: var(--rad-3); box-shadow: var(--shadow-3); padding: var(--sp-3) var(--sp-4);
+  font-size: .92rem; }
+.viz-pin-card--inline { position: static; width: 100%; margin: var(--sp-3) 0; box-shadow: var(--shadow-1); }
+.viz-pin-card .viz-pin-x { position: absolute; top: .3rem; right: .4rem; border: 0; background: transparent;
+  font-size: 1.1rem; line-height: 1; color: var(--text-muted); cursor: pointer; }
+
+/* -- brush + zoombar + rotate readout -- */
+.viz-brush { position: absolute; top: 0; height: 100%; pointer-events: none;
+  background: var(--accent-wash); opacity: .45; border-left: 1px solid var(--accent-strong);
+  border-right: 1px solid var(--accent-strong); }
+.viz-zoombar { display: flex; align-items: center; gap: var(--sp-2); margin: var(--sp-2) 0;
+  font-family: var(--font-sans); font-size: var(--fs--1); color: var(--text-muted); }
+.viz-rotate-readout { display: inline-block; font-family: var(--font-sans); font-size: var(--fs--1);
+  font-weight: 600; color: var(--accent-strong); background: var(--accent-wash);
+  border-radius: var(--rad-pill); padding: .2rem .7rem; }
+
+/* -- figure scroll wrapper + hidden print list (dataviz §4.1) -- */
+.fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+.fig-print-list { position: absolute; clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
+.figure-legend { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-3); margin-top: var(--sp-2);
+  font-family: var(--font-sans); font-size: var(--fs--1); color: var(--text-muted); }
+.figure-legend > * { display: inline-flex; align-items: center; gap: .35rem; }
+.figure-legend .swatch { width: 1em; height: 1em; border-radius: 3px; display: inline-block; }
+
+/* -- hover/focus state on any data figure (dataviz §2; opacity-only, RM-safe) -- */
+.chart-wheel.has-focus .aspect-line:not(.is-hot),
+.chart-wheel.has-focus .asp-conj-bracket:not(.is-hot) { opacity: .12; }
+.chart-wheel.has-focus .planet:not(.is-hot) { opacity: .35; }
+.chart-wheel .aspect-line.is-hot { opacity: .95; }
+[data-el].is-hot { outline: none; }
+table.has-focus .grid-cell:not(.is-hot) { opacity: .45; }
+
+/* -- heat scale (dataviz §3.7) -- */
+.heat-0 { background: var(--viz-heat-0); }
+.heat-1 { background: var(--viz-heat-1); }
+.heat-2 { background: var(--viz-heat-2); }
+.heat-3 { background: var(--viz-heat-3); }
+.heat-4 { background: var(--viz-heat-4); }
+.heat-hi { box-shadow: inset 0 0 0 2px var(--accent-strong); font-weight: 700; }
+
+/* -- aspect-grid heat cells (dataviz §3.5; number is always printed → colour is
+      redundant, colour-blind-safe. Pre-mixed tokens, never color-mix). -- */
+.grid-cell { text-align: center; }
+.grid-cell.is-hot { outline: 2px solid var(--accent); outline-offset: -2px; }
+th.is-hot { background: var(--accent-wash); }
+.grid-cell.asp-soft.orb-partile { background: var(--ok-wash); font-weight: 700; }
+.grid-cell.asp-soft.orb-tight   { background: var(--viz-ok-soft); }
+.grid-cell.asp-hard.orb-partile { background: var(--bad-wash); font-weight: 700; }
+.grid-cell.asp-hard.orb-tight   { background: var(--viz-bad-soft); }
+.grid-cell.asp-conj.orb-partile { background: var(--accent-wash); font-weight: 700; }
+.grid-cell.asp-conj.orb-tight   { background: var(--viz-acc-soft); }
+
+/* one appearance nicety only, motion-gated (dataviz §5) */
+@media (prefers-reduced-motion: no-preference) {
+  .viz-tip { animation: ds-viz-tip 120ms var(--ease) both; }
+  @keyframes ds-viz-tip { from { opacity: 0; } }
+}
+
+/* =========================================================================
+   DS3 · INTEGRATOR RECONCILIATION — structural sub-class rules the component
+   builders emit beyond the spec §5 named selectors. Applied by the integrator
+   per manifest step 2, crediting the requester (B1 moment-picker/action-bar/
+   palette/next-up/dial; B2 pin-card/legend/wheel-toolbar/detent; B5 seg-btn/
+   sky-inset children/hl-row). Token-consistent with the blocks above.
+   ========================================================================= */
+
+/* -- B1 moment-picker sub-structure (manifest-b1 §2) -- */
+.mp-place, .mp-when { margin: var(--sp-2) 0; }
+.mp-label { font-family: var(--font-sans); font-size: var(--fs-label); font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+.mp-place-row, .mp-when-row, .mp-coords-row { display: flex; flex-wrap: wrap;
+  align-items: center; gap: var(--sp-2) var(--sp-3); }
+.mp-combo { position: relative; flex: 1 1 12rem; min-width: 0; }
+.mp-city { width: 100%; box-sizing: border-box; min-height: var(--mp-field-h); }
+.mp-listbox { position: absolute; z-index: var(--z-menu); left: 0; right: 0; top: calc(100% + 2px);
+  list-style: none; margin: 0; padding: .2rem; max-height: 15rem; overflow: auto;
+  background: var(--surface-card); border: 1px solid var(--border-strong);
+  border-radius: var(--rad-2); box-shadow: var(--shadow-2); }
+.mp-opt { display: flex; align-items: center; gap: .5rem; padding: .4rem .6rem;
+  border-radius: var(--rad-1); cursor: pointer; color: var(--text); }
+.mp-opt.is-active, .mp-opt:hover { background: var(--surface-inset); }
+.mp-opt--recent { color: var(--accent-strong); }
+.mp-opt--city, .mp-opt--coords { color: var(--text); }
+.mp-opt-badge { margin-left: auto; font-family: var(--font-sans); font-size: var(--fs-badge);
+  color: var(--text-faint); }
+.mp-geo { display: inline-flex; align-items: center; gap: .3rem; }
+.mp-geo-status { font-family: var(--font-sans); font-size: var(--fs--1); color: var(--text-muted); }
+.mp-chips { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); margin: var(--sp-2) 0; }
+.mp-chips-label { font-family: var(--font-sans); font-size: var(--fs-label); font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
+.mp-chip-pick { cursor: pointer; }
+.mp-coords { margin: var(--sp-2) 0; }
+.mp-now { white-space: nowrap; }
+
+/* -- B1 action-bar sub-structure (manifest-b1 §2) -- */
+.ab-chip { display: inline-flex; align-items: center; gap: .3rem; font-family: var(--font-sans);
+  font-weight: 700; font-size: var(--fs--1); border-radius: var(--rad-pill); padding: .15rem .6rem;
+  background: var(--surface-inset); color: var(--text); }
+.ab-sum { flex: 1 1 12rem; min-width: 0; color: var(--text-muted); font-size: .9rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ab-menu-wrap { position: relative; }
+.ab-menu-btn { font: inherit; }
+.ab-menu-item { display: block; width: 100%; text-align: left; padding: .4rem .6rem; border: 0;
+  background: transparent; border-radius: var(--rad-1); font: inherit; color: var(--text); cursor: pointer; }
+.ab-menu-item:hover, .ab-menu-item:focus { background: var(--surface-inset); }
+.ab-ai { white-space: nowrap; }
+.ab-top { margin-left: .2rem; }
+.action-bar.ab-typing, .ab-typing { display: none; }   /* hidden while an assistant textarea has focus */
+
+/* -- B1 palette sub-structure (manifest-b1 §2) -- */
+.cmdk-form { margin: 0; }
+.cmdk-list { list-style: none; margin: 0; padding: .3rem; max-height: 52vh; overflow: auto; }
+.cmdk-row.is-active { background: var(--surface-inset); }
+.cmdk-foot { display: flex; gap: var(--sp-3); padding: .5rem .8rem; border-top: 1px solid var(--border);
+  font-family: var(--font-sans); font-size: var(--fs--1); color: var(--text-faint); }
+.cmdk-empty { padding: 1rem; text-align: center; color: var(--text-muted); font-family: var(--font-sans); }
+
+/* -- B1 next-up sub-structure (manifest-b1 §2) -- */
+.next-up-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: var(--sp-3); }
+.next-up-card { display: block; padding: var(--sp-3); border: 1px solid var(--border);
+  border-radius: var(--rad-2); background: var(--surface-card); color: var(--text);
+  text-decoration: none; }
+.next-up-card:hover { border-color: var(--accent); }
+
+/* -- B1 dial SVG element class (manifest-b1 §2; set via setAttribute) -- */
+.dial-svg { display: block; }
+
+/* -- 390 px acceptance (§10.2): the mountFigure wheel containers are flex items
+      (flex:0 0 auto, min-width:auto) so they won't shrink below the wheel SVG's
+      434 px min-content, overflowing the page. min-width:0 lets them shrink; the
+      .chart-wheel{max-width:100%;height:auto} rule (viewBox) then scales the SVG. -- */
+[id$="-wheel"] { min-width: 0; max-width: 100%; }
+/* a <select> with long option text (e.g. horary #h-quesited) grows to its widest
+   option and overflows narrow viewports; clamp to the container site-wide (§10.2). */
+select { max-width: 100%; box-sizing: border-box; }
+/* .field is a flex item with the default min-width:auto, so a wide control (select)
+   keeps it from shrinking on narrow viewports; min-width:0 lets it clamp (§10.2). */
+.field { min-width: 0; }
+
+/* -- B2 pin-card internals (manifest-b2 §2) -- */
+.vpc-close { position: absolute; top: .3rem; right: .4rem; border: 0; background: transparent;
+  font-size: 1.1rem; line-height: 1; color: var(--text-muted); cursor: pointer; }
+.vpc-title { font-family: var(--font-serif); font-weight: 700; margin: 0 1.4rem .3rem 0; }
+.vpc-row { display: flex; gap: var(--sp-2); margin: .15rem 0; }
+.vpc-k { color: var(--text-muted); min-width: 5rem; }
+.vpc-v { color: var(--text); font-weight: 600; }
+.vpc-plain { color: var(--text); margin: .3rem 0; }
+.vpc-gloss { color: var(--text-muted); font-size: var(--fs--1); margin: .2rem 0; }
+.vpc-foot { margin-top: var(--sp-2); }
+.vpc-ask { margin-top: var(--sp-2); }
+
+/* -- B2 figure-legend internals (manifest-b2 §2) -- */
+.figure-legend-item { display: inline-flex; align-items: center; gap: .35rem; }
+.lg-swatch { width: 1em; height: 1em; border-radius: 3px; display: inline-block; }
+.lg-glyph { font-weight: 700; }
+.lg-label { color: var(--text-muted); }
+.lg-soft { background: var(--viz-ok-soft); }
+.lg-hard { background: var(--viz-bad-soft); }
+.lg-conj { background: var(--viz-acc-soft); }
+
+/* -- B2 wheel toolbar + detent flash (manifest-b2 §2) -- */
+.wheel-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-3);
+  margin: var(--sp-2) 0; }
+.wheel-steppers { display: inline-flex; align-items: center; gap: var(--sp-2); }
+.is-pinned { outline: 2px solid var(--accent); outline-offset: 1px; }
+.is-detent { stroke: var(--accent-strong); }
+@media (prefers-reduced-motion: no-preference) {
+  .is-detent { animation: ds-detent-flash 120ms var(--ease) both; }
+  @keyframes ds-detent-flash { from { stroke: var(--accent-strong); } to { stroke: var(--accent-strong); } }
+}
+/* -- B2 brush crosshair + live region (inline-styled; rules for the grep law) -- */
+.viz-crosshair { position: absolute; top: 0; width: 1px; height: 100%; pointer-events: none;
+  background: var(--accent-strong); }
+.viz-live { position: absolute; clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
+
+/* -- B5 vedic seg toggle button + now.html moon inset children + hours highlight (manifest-b5 §2) -- */
+.seg-btn { font: inherit; border: 0; background: transparent; padding: .3rem .7rem; cursor: pointer;
+  color: var(--text-muted); border-radius: var(--rad-1); }
+.seg-btn[aria-pressed="true"] { background: var(--surface-card); color: var(--text); font-weight: 600; }
+.sky-inset-stars { position: absolute; inset: 0; }
+.sky-inset-disc { position: relative; }
+.hl-row { background: var(--accent-wash); }
+
+/* =========================================================================
+   DS3 · PRINT ADDENDUM (art §8 + dataviz §5). Atmosphere off; line art prints.
+   ========================================================================= */
+@media print {
+  body { background-image: none !important; }
+  .hero::before, .casting-stage::before, .chat { background-image: none !important; }
+  .chat::before { display: none !important; }
+  .sky-inset { background: #fff !important; }
+  .sky-inset svg .st { fill: #999 !important; }
+  .action-bar, .cmdk, .viz-tip, .viz-pin-card, .viz-brush, .viz-zoombar,
+  .viz-rotate-readout { display: none !important; }
+  .fig-print-list { position: static; clip-path: none; width: auto; height: auto; font-size: .8rem; color: #000; }
+  .period-strip .lbl-quiet { display: none; }
+  /* engravings, the dial, the moon and the epistemic hatches are MADE for print — they stay. */
+}

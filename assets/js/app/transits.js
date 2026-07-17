@@ -61,7 +61,7 @@ export function initTransits() {
   $('tx-aspects').innerHTML = ASPECT_OPTS.map(a =>
     `<label class="pill"><input type="checkbox" name="tx-aspect" value="${a.angle}" checked> ${esc(a.label)}</label>`).join(' ');
 
-  $('tx-form').addEventListener('submit', e => { e.preventDefault(); compute(); });
+  $('tx-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
 
   if ($('dv-assistant')) {
     initDivinationAssistant({
@@ -71,6 +71,26 @@ export function initTransits() {
       copy: { emptyText: 'Compute a transit timeline above first.' },
     });
   }
+  mountTxEnh();
+}
+
+const ENH = {}; let txbar = null; let lastTL = null;
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+async function mountTxEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.ab = await L('./action-bar.js');
+  ENH.ts = await L('../core/viz/timeline-svg.js'); ENH.fig = await L('./viz/figure.js');
+  ENH.brush = await L('./viz/brush.js'); ENH.heat = await L('../core/viz/heat-table.js');
+  if (ENH.ab && ENH.ab.mountActionBar && $('tx-actionbar')) {
+    try { txbar = ENH.ab.mountActionBar($('tx-actionbar'), { variant: 'tool', exports: [], askAI: $('dv-assistant') ? () => { const a = $('dv-assistant'); a.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto' }); const t = a.querySelector('textarea, input'); t && t.focus(); } : null, summary: () => ({ verdict: '', text: 'Transit timeline computed.' }) }); } catch { txbar = null; }
+  }
+  // draw the figures now if a compute already ran before the viz kit imported
+  try { if (lastTL) mountTxFigures(lastTL); } catch { /* non-fatal */ }
+}
+function doCompute() {
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf($('tx-form').querySelector('button[type="submit"]'), $('tx-status'), () => compute(), { firstPanel: $('tx-summary-card') }); return; } catch { /* */ } }
+  compute();
 }
 
 function checkedValues(name) {
@@ -118,6 +138,12 @@ function compute() {
   renderStations(tl);
   renderReturns(lr);
   try { autolinkResultPanels(['tx-summary', 'tx-snapshot', 'tx-timeline', 'tx-stations', 'tx-returns']); } catch { /* non-fatal */ }
+  try { txbar && txbar.show && txbar.show(); } catch { /* */ }
+
+  // The hit-density strip (crosshair) + the weekly heat table — AUGMENTING the
+  // exact-hit table above, never replacing it. [ui3-spec §8 transits row]
+  lastTL = tl;
+  try { mountTxFigures(tl); } catch { /* non-fatal */ }
 
   lastReport = {
     kind: 'transits',
@@ -174,7 +200,7 @@ function renderSnapshot(snap) {
 // --- the exact-hit timeline --------------------------------------------------
 function renderTimeline(tl) {
   if (!tl.events.length) { $('tx-timeline').innerHTML = '<p class="small muted">No exact hits in this window for the chosen planets, points and aspects.</p>'; return; }
-  const rows = tl.events.map(e => `<tr${e.timeLordActivated ? ` style="${HL}"` : ''}>
+  const rows = tl.events.map(e => `<tr data-t="${esc(e.exactInstant.toISOString())}"${e.timeLordActivated ? ` style="${HL}"` : ''}>
     <td class="l small">${esc(fmtDT(e.exactInstant))}</td>
     <td class="l">${G(e.transitingBody)} ${esc(e.transitingBody)}</td>
     <td class="l">${esc(e.glyph)} ${esc(e.aspect)}</td>
@@ -218,4 +244,121 @@ function renderReturns(lr) {
     ${rows ? `<table class="data"><thead><tr><th>#</th><th class="l">Return (UT)</th><th class="l">Moon at</th></tr></thead><tbody>${rows}</tbody></table>` : '<p class="small muted">No lunar returns in the window.</p>'}
     <div class="callout science" style="margin-top:.6rem"><span class="label">Contested definition, kept honest</span>
       ${esc(lr.contested)}</div>`;
+}
+
+// ===========================================================================
+//  Interactive figures: the transit hit-density STRIP (a crosshair over the
+//  exact-hit dates) + the weekly HEAT TABLE. Rendered through B2's viz kit:
+//  core/viz/timeline-svg (periodStrip) + core/viz/heat-table + app/viz/figure +
+//  app/viz/brush. A drag-brush on the strip narrows the window and HIDES the
+//  out-of-window rows of the exact-hit table (brushed-window row filtering).
+//  [ui3-spec §8 transits row; dataviz §3.3, §3.7, §4.2–4.3]
+// ===========================================================================
+function ensureFigBox(id, beforeEl) {
+  let box = document.getElementById(id);
+  if (!box) {
+    box = document.createElement('div');
+    box.id = id;
+    box.style.margin = '.2rem 0 .8rem';
+    if (beforeEl && beforeEl.parentNode) beforeEl.parentNode.insertBefore(box, beforeEl);
+  }
+  return box;
+}
+
+function addZoombar(fig, svg) {
+  if (fig.querySelector('.viz-zoombar')) return;
+  const bar = document.createElement('div');
+  bar.className = 'viz-zoombar';
+  bar.innerHTML = `<button type="button" class="btn-secondary sm zb-out" aria-label="Zoom out"><span aria-hidden="true">−</span> out</button>`
+    + `<button type="button" class="btn-secondary sm zb-reset" aria-label="Reset zoom"><span aria-hidden="true">⟲</span> reset</button>`
+    + `<button type="button" class="btn-secondary sm zb-in" aria-label="Zoom in"><span aria-hidden="true">+</span> in</button>`
+    + `<span class="zb-readout"></span>`;
+  const body = fig.querySelector('.fig-body') || fig.firstChild;
+  (body || fig).insertAdjacentElement('afterend', bar);
+  const zoom = f => {
+    const dom = (svg.getAttribute('data-domain') || '0,1').split(',').map(Number);
+    const orig = (svg.dataset.domainOrig || svg.getAttribute('data-domain') || '0,1').split(',').map(Number);
+    const span = dom[1] - dom[0], mid = (dom[0] + dom[1]) / 2;
+    const ns = f === 0 ? (orig[1] - orig[0]) : span * f;
+    let a = f === 0 ? orig[0] : mid - ns / 2, b = f === 0 ? orig[1] : mid + ns / 2;
+    a = Math.max(orig[0], a); b = Math.min(orig[1], b);
+    fig.dispatchEvent(new CustomEvent('viz:zoom', { detail: { t0: a, t1: b }, bubbles: true }));
+  };
+  bar.querySelector('.zb-in').addEventListener('click', () => zoom(0.5));
+  bar.querySelector('.zb-out').addEventListener('click', () => zoom(2));
+  bar.querySelector('.zb-reset').addEventListener('click', () => zoom(0));
+}
+
+// hide the exact-hit table rows whose date falls outside [t0,t1]; a full-domain
+// window shows every row again.
+function filterTimelineRows(t0, t1) {
+  const body = document.querySelector('#tx-timeline table.data tbody');
+  if (!body) return;
+  for (const tr of body.querySelectorAll('tr[data-t]')) {
+    const t = Date.parse(tr.getAttribute('data-t'));
+    tr.hidden = !(t >= t0 && t <= t1);
+  }
+}
+
+function hitStripModel(tl) {
+  const t0 = Date.parse(tl.window.startISO), t1 = Date.parse(tl.window.endISO);
+  const markers = tl.events.map((e, i) => ({
+    t: e.exactInstant.getTime(), kind: 'hit', id: `txhit-${i}`,
+    label: `${e.transitingBody} ${e.aspect} ${nice(e.natalPoint)} — ${e.exactInstant.toISOString().slice(0, 10)}`,
+  }));
+  // stations & ingresses as ingress-class markers (context on the same axis)
+  for (let i = 0; i < tl.ingresses.length; i++) {
+    const g = tl.ingresses[i];
+    markers.push({ t: g.instant.getTime(), kind: 'ingress', id: `txing-${i}`, label: `${g.body} enters ${g.sign} — ${g.instant.toISOString().slice(0, 10)}` });
+  }
+  const now = Date.now();
+  return { domain: [t0, t1], now: (now >= t0 && now <= t1) ? now : null, lanes: [], markers };
+}
+
+function weeklyHeatModel(tl) {
+  const t0 = Date.parse(tl.window.startISO), t1 = Date.parse(tl.window.endISO);
+  const nWeeks = Math.max(1, Math.ceil((t1 - t0) / (7 * 86400000)));
+  const bodies = (tl.bodies || []).slice();
+  const counts = {}; bodies.forEach(b => { counts[b] = new Array(nWeeks).fill(0); });
+  let maxV = 1;
+  for (const e of tl.events) {
+    const wi = Math.max(0, Math.min(nWeeks - 1, Math.floor((e.exactInstant.getTime() - t0) / (7 * 86400000))));
+    if (counts[e.transitingBody]) { counts[e.transitingBody][wi]++; maxV = Math.max(maxV, counts[e.transitingBody][wi]); }
+  }
+  const cols = Array.from({ length: nWeeks }, (_, i) => ({ id: `w${i + 1}`, label: `W${i + 1}` }));
+  const rows = bodies.map(b => ({ id: b, label: `${G(b)} ${b}`, cells: counts[b].map(v => ({ v })) }));
+  return { cols, rows, scale: { min: 0, max: maxV, steps: 4 }, caption: 'Exact transit hits per week of the window (colour is redundant — every cell prints its count)' };
+}
+
+function mountTxFigures(tl) {
+  if (!(ENH.ts && ENH.ts.periodStrip && ENH.fig && ENH.fig.mountFigure)) return;
+  // --- the hit-density strip with crosshair -------------------------------
+  const stripBox = ensureFigBox('tx-strip-fig', $('tx-timeline'));
+  const model = hitStripModel(tl);
+  const width = 960, ariaLabel = 'Transit hit-density strip with crosshair';
+  const out = ENH.ts.periodStrip(model, { width, ariaLabel });
+  const fig = ENH.fig.mountFigure(stripBox, { svg: out.svg, textModel: out.textModel, ariaLabel, scroll: 'auto' });
+  const svg = fig.querySelector('svg[data-viz="period-strip"]');
+  if (svg) svg.setAttribute('data-crosshair', '');
+  try { ENH.brush && ENH.brush.initBrush && ENH.brush.initBrush(fig); } catch { /* */ }
+  if (svg) addZoombar(fig, svg);
+  fig.addEventListener('viz:zoom', e => {
+    const s = fig.querySelector('svg[data-viz="period-strip"]');
+    if (s && ENH.ts) {
+      const re = ENH.ts.periodStrip({ ...model, domain: [e.detail.t0, e.detail.t1] }, { width, ariaLabel });
+      const tmp = document.createElement('div'); tmp.innerHTML = re.svg;
+      const nn = tmp.querySelector('svg');
+      if (nn) { s.setAttribute('viewBox', nn.getAttribute('viewBox')); s.setAttribute('data-domain', nn.getAttribute('data-domain')); s.innerHTML = nn.innerHTML; s.setAttribute('data-crosshair', ''); }
+    }
+    filterTimelineRows(e.detail.t0, e.detail.t1);
+  });
+
+  // --- the weekly heat table ----------------------------------------------
+  if (ENH.heat && ENH.heat.heatTable) {
+    const heatBox = ensureFigBox('tx-heat-fig', $('tx-stations'));
+    try {
+      const h = ENH.heat.heatTable(weeklyHeatModel(tl));
+      heatBox.innerHTML = `<h3 style="margin:.2rem 0 .3rem;font-size:1rem">Weekly hit-count heat table</h3>${h.html}`;
+    } catch { /* non-fatal */ }
+  }
 }

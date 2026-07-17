@@ -10,7 +10,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../../index.html">Home</a> › <a href="index.html">Book III</a> › Master Tool</p>
+  <p class="crumb"><a href="../../index.html">Home</a> › <a href="../tools.html">Cast</a> › Master Tool</p>
   <h1>Book III Master Tool — the Nativity</h1>
   <p class="lede">One birth, read through Lilly's whole natal apparatus: the chart and its dignities, the
     <b>Lord of the Geniture</b> and <b>temperament</b>, the <b>annual profection</b> and <b>Lord of the Year</b>,
@@ -24,31 +24,25 @@
     <a href="../about/index.html">Sources &amp; Science</a>.</div>
 
   <form id="bm-form" class="calc">
-    <div class="field-row">
-      <div class="field" style="flex:1 1 200px"><label for="bm-city">Place</label><select id="bm-city"></select></div>
-      <div class="field"><label for="bm-lat">Lat °N</label><input id="bm-lat" type="number" step="0.0001" style="width:7rem"></div>
-      <div class="field"><label for="bm-lon">Lon °E</label><input id="bm-lon" type="number" step="0.0001" style="width:7rem"></div>
-    </div>
+    <div id="bm-picker"></div>
+    <!-- Legacy write-through: the moment-picker fills these hidden inputs by their historic ids. -->
+    <input type="hidden" id="bm-lat"><input type="hidden" id="bm-lon">
+    <input type="hidden" id="bm-date"><input type="hidden" id="bm-time"><input type="hidden" id="bm-offset">
     <div class="field-row" style="margin-top:.8rem">
-      <div class="field"><label for="bm-date">Birth date</label><input id="bm-date" type="date"></div>
-      <div class="field"><label for="bm-time">Time (local)</label><input id="bm-time" type="time"></div>
-      <div class="field"><label for="bm-offset">UTC offset</label><input id="bm-offset" type="number" step="0.5" style="width:6rem"></div>
       <div class="field"><label for="bm-system">Houses</label><select id="bm-system">
         <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
         <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
-    </div>
-    <div class="field-row" style="margin-top:.8rem">
       <div class="field"><label for="bm-age">Age now (years)</label><input id="bm-age" type="number" min="0" step="1" style="width:6rem"></div>
       <div class="field"><label for="bm-ryear">Solar-return year</label><input id="bm-ryear" type="number" step="1" style="width:7rem"></div>
-      <button type="button" class="btn sm" id="bm-now">Now</button>
-      <button type="submit" class="btn">Read the nativity</button>
+      <button type="submit" class="btn">Cast the nativity</button>
     </div>
   </form>
 
   <p id="bm-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem" role="status" aria-live="polite"></p>
+  <div id="bm-actionbar"></div>
 
   <div class="grid cols-2">
-    <section class="card panel" id="bm-p-figure" data-rail="The figure"><h2 style="margin-top:0">The figure</h2><svg id="bm-wheel" viewBox="0 0 540 540" style="width:100%;height:auto"></svg></section>
+    <section class="card panel" id="bm-p-figure" data-rail="The figure"><h2 style="margin-top:0">The figure</h2><div id="bm-wheel"></div></section>
     <section class="card panel" id="bm-p-positions" data-rail="Positions &amp; dignity"><h2 style="margin-top:0">Positions &amp; dignity</h2>
       <div class="table-scroll"><table class="data"><thead><tr><th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th class="num">Ess.</th><th class="num">Acc.</th></tr></thead><tbody id="bm-planets"></tbody></table></div>
       <p class="small muted" style="margin-top:.4rem">Lilly, CA Book I (dignities), applied to the nativity.</p>

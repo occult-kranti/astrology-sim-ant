@@ -11,6 +11,8 @@ const R = p => `${ROOT}/${p.replace(/^\//, '')}`;
 
 import { autolinkGlossary, autolinkResults } from './autolink.js';
 import { attachGeolocate, nearestCity } from './location.js';
+import { injectIcons } from './art/icons.js';
+import { adoptArt } from './art/adopt.js';
 
 // Grouped navigation — a MEGA-MENU. Five groups (Start · Cast · Traditions ·
 // Oracles · Reference); each group is a dropdown that lists EVERY destination BY
@@ -19,7 +21,9 @@ import { attachGeolocate, nearestCity } from './location.js';
 // mobile the same groups become accordion sections in the hamburger drawer.
 // Each item is [href, label, key]; `key` matches a value returned by
 // currentSection() so the active page (and its group) light up.
-const NAV_GROUPS = [
+// Exported so B1's palette.js / next-up.js can index destinations without
+// duplicating the catalogue (read-only imports; the array itself is not mutated).
+export const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
     ['index.html', 'Home', 'home'],
     ['pages/basics.html', 'The Basics — every concept', 'basics'],
@@ -29,23 +33,27 @@ const NAV_GROUPS = [
     ['pages/workflow.html', 'Chapter map & workflows', 'workflow'],
     ['pages/contents.html', 'Master Index', 'contents'],
   ] },
+  // The Cast panel is split into three labelled column-groups (flow §4). The
+  // 4th tuple slot is an optional `.nav-menu-kicker` label rendered before that
+  // item — CSS-only grouping, same links, no key changes; items are reordered
+  // into their subgroups but nothing is added or removed.
   { label: 'Cast', key: 'cast', wide: true, items: [
-    ['pages/workbench.html', 'The Workbench — Master Tool', 'workbench'],
-    ['pages/autopilot.html', 'Grand Orchestrator (AI)', 'autopilot'],
+    ['pages/workbench.html', 'The Workbench — Master Tool', 'workbench', 'This moment'],
     ['pages/now.html', 'Right Now — live sky', 'now'],
-    ['pages/trajectory.html', 'Life Trajectory', 'trajectory'],
     ['pages/book2/horary.html', 'Horary — a question', 'horary'],
-    ['pages/book3/nativity.html', 'Nativity — a birth chart', 'nativity'],
-    ['pages/book1/dignities.html', 'Essential Dignities', 'dignities'],
-    ['pages/book1/planetary-hours.html', 'Planetary Hours', 'phours'],
-    ['pages/handcalc.html', 'Cast a chart by hand', 'handcalc'],
+    ['pages/picatrix/election.html', 'Election — choose a moment', 'election'],
+    ['pages/moments.html', 'Moment Scanner', 'moments'],
+    ['pages/cycles.html', 'Cycles of History', 'cycles'],
+    ['pages/book3/nativity.html', 'Nativity — a birth chart', 'nativity', 'A person'],
+    ['pages/trajectory.html', 'Life Trajectory', 'trajectory'],
     ['pages/transits.html', 'Transits to a natal', 'transits'],
     ['pages/synastry.html', 'Synastry — chart to chart', 'synastry'],
     ['pages/timelords.html', 'Time-lords & progressions', 'timelords'],
-    ['pages/cycles.html', 'Cycles of History', 'cycles'],
-    ['pages/moments.html', 'Moment Scanner', 'moments'],
-    ['pages/picatrix/election.html', 'Election — choose a moment', 'election'],
+    ['pages/handcalc.html', 'Cast a chart by hand', 'handcalc', 'By hand & meta'],
+    ['pages/book1/dignities.html', 'Essential Dignities', 'dignities'],
+    ['pages/book1/planetary-hours.html', 'Planetary Hours', 'phours'],
     ['pages/picatrix/talisman.html', 'Talisman Workshop', 'talisman'],
+    ['pages/autopilot.html', 'Grand Orchestrator (AI)', 'autopilot'],
   ] },
   { label: 'Traditions', key: 'traditions', wide: true, items: [
     ['pages/book1/index.html', 'Book I — Introduction', 'book1'],
@@ -75,7 +83,7 @@ const NAV_GROUPS = [
   ] },
   { label: 'Reference', key: 'reference', items: [
     ['pages/glossary.html', 'Glossary & Dictionary', 'glossary'],
-    ['pages/tools.html', 'All Tools — the table', 'tools'],
+    ['pages/tools.html', 'Compare the tools', 'tools'],
     ['pages/library/index.html', 'The Library', 'library'],
     ['pages/about/index.html', 'Sources & Science', 'about'],
     ['pages/roadmap.html', 'The Roadmap — planned', 'roadmap'],
@@ -91,7 +99,7 @@ const NAV_GROUPS = [
 // hub, EXCEPT the few tool pages that live inside a book/picatrix folder but
 // belong (by name) to the Cast group — those resolve to their Cast item so the
 // Cast group lights up when you are actually using that tool.
-function currentSection() {
+export function currentSection() {
   const p = location.pathname;
   const m = re => re.test(p);
 
@@ -187,12 +195,14 @@ export function mountChrome(activeKey = '') {
       <span class="mark" aria-hidden="true">✶</span>
       <span><b>The Astrologer's Workbench</b><small>Lilly · Picatrix · Jyotiṣa · the oracles — computed honestly, for study</small></span>
     </a>
+    <button class="cmdk-btn" type="button" aria-label="Search the site (Ctrl-K)"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></button>
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-bars" aria-hidden="true"></span></button>
     <nav id="site-nav" class="main" aria-label="Primary">${NAV_GROUPS.map(g =>
       `<div class="nav-group${g.key === activeGroup ? ' has-current' : ''}" data-group="${g.key}">` +
         `<button type="button" class="nav-group-btn" id="navbtn-${g.key}" aria-haspopup="true" aria-expanded="false" aria-controls="navmenu-${g.key}">` +
           `${g.label}<span class="nav-caret" aria-hidden="true">▾</span></button>` +
-        `<div class="nav-menu${g.wide ? ' wide' : ''}" id="navmenu-${g.key}" aria-label="${g.label}">${g.items.map(([href, label, key]) =>
+        `<div class="nav-menu${g.wide ? ' wide' : ''}" id="navmenu-${g.key}" aria-label="${g.label}">${g.items.map(([href, label, key, kicker]) =>
+          (kicker ? `<b class="nav-menu-kicker">${kicker}</b>` : '') +
           `<a href="${R(href)}"${key === active ? ' class="active" aria-current="page"' : ''}>${label}</a>`).join('')}</div>` +
       `</div>`).join('')}
     </nav></div>`;
@@ -212,7 +222,13 @@ export function mountChrome(activeKey = '') {
   });
 
   if (navToggle && navEl) {
-    const setDrawer = open => { navEl.classList.toggle('open', open); navToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); if (!open) closeMenus(null); };
+    const setDrawer = open => {
+      navEl.classList.toggle('open', open); navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); if (!open) closeMenus(null);
+      // DS3: spring the drawer in AFTER the state flip (truth first). Guarded by a
+      // dynamic motion.js import — degrades to the instant open when absent/RM.
+      if (open) import('./motion.js').then(m => { if (m.motionOK && m.motionOK()) m.animatePresence(navEl, 'in', m.SPRINGS.gentle, 'y', 8); }).catch(() => {});
+    };
     navToggle.addEventListener('click', () => setDrawer(!navEl.classList.contains('open')));
     navEl.addEventListener('click', e => { if (e.target.closest('a')) setDrawer(false); });   // collapse after picking a destination
     navToggle._setDrawer = setDrawer;
@@ -340,6 +356,35 @@ export function mountChrome(activeKey = '') {
   </div>`;
   document.body.appendChild(footer);
 
+  // ---- DS3 art layer: inject the icon sprite (so every <use href="#i-*"> and
+  // the epistemic <pattern> refs resolve) and swap wing-hero emoji watermarks
+  // for their engraved frontispieces + gild any .card--plate corners. -------
+  try { injectIcons(document); } catch (e) { /* non-fatal */ }
+  try { adoptArt(document); } catch (e) { /* non-fatal */ }
+
+  // ---- DS3 chrome: the command palette + the "where next" band. D18 — both
+  // mount via dynamic import().catch() so shared.js works in a worktree where
+  // B1's modules are absent, and degrades gracefully if one fails offline. ---
+  const searchBtn = header.querySelector('.cmdk-btn');
+  import('./palette.js').then(m => {
+    const mount = m.mountPalette || m.initPalette || m.default;
+    let api = null;
+    if (typeof mount === 'function') { try { api = mount({ navGroups: NAV_GROUPS, current: active }); } catch (e) { /* non-fatal */ } }
+    const open = m.openPalette || (api && api.open);
+    if (searchBtn) searchBtn.addEventListener('click', e => {
+      e.preventDefault();
+      if (typeof open === 'function') { try { open(); return; } catch (e2) { /* fall through */ } }
+      document.dispatchEvent(new CustomEvent('ui3:open-palette'));
+    });
+  }).catch(() => { /* palette absent — the mega-menu + 🔍 button stay inert but present */ });
+
+  if (!document.querySelector('meta[name="no-next-up"]')) {
+    import('./next-up.js').then(m => {
+      const mount = m.mountNextUp || m.initNextUp || m.default;
+      if (typeof mount === 'function') { try { mount(); } catch (e) { /* non-fatal */ } }
+    }).catch(() => { /* next-up absent — no dead-end band this build */ });
+  }
+
   // a11y: ensure every data-table header cell carries a `scope` — now (static
   // tables) and as result panels render (a light observer on <main>). One pass
   // covers the whole site instead of per-table edits.
@@ -441,7 +486,7 @@ export function wireCitySelect(sel, latIn, lonIn, offIn, timeFields = null) {
     if (sel.dataset && sel.dataset.geoWired) return;
     if (sel.dataset) sel.dataset.geoWired = '1';
     const btn = document.createElement('button');
-    btn.type = 'button'; btn.className = 'btn sm geo-btn';
+    btn.type = 'button'; btn.className = 'btn-secondary sm geo-btn';
     btn.textContent = timeFields ? '📍 Use my location & time' : '📍 Use my location';
     const status = document.createElement('span');
     status.className = 'small muted geo-status'; status.style.marginLeft = '.5rem';

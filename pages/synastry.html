@@ -10,7 +10,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Synastry (two charts)</p>
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Cast</a> › Synastry (two charts)</p>
   <h1>Synastry — the chart-to-chart aspect grid</h1>
   <p class="lede"><b>Synastry</b> compares two nativities: the aspects one person's planets make to the other's, and where
     each person's planets fall in the other's houses. Both Catherine Urban (multi-chart "family dynamics" work) and
@@ -60,10 +60,12 @@
       </div>
     </div>
     <div class="field-row" style="margin-top:.9rem">
-      <button type="submit" class="btn">✶ Compute the synastry grid</button>
+      <button type="submit" class="btn"><span aria-hidden="true">✶ </span>Compute the synastry grid</button>
+      <button type="button" class="btn-quiet sm" id="sy-swap" title="Transpose A and B (the grid is symmetric)">Swap A ↔ B</button>
       <span id="sy-status" class="small muted"></span>
     </div>
   </form>
+  <div id="sy-actionbar"></div>
 
   <section class="card panel" id="sy-grid-card"><h2 style="margin-top:0">The cross-aspect grid <span class="small muted">(A ↓ · B →)</span></h2>
     <div id="sy-grid"></div></section>

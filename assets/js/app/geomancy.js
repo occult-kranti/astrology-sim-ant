@@ -90,10 +90,8 @@ export function initGeomancy() {
     if (chip && divAssistant) divAssistant.prefill(chip.getAttribute('data-q'));
   });
 
-  // share / export
-  const shareBtn = $('geo-share'), mdBtn = $('geo-md');
-  if (shareBtn) shareBtn.addEventListener('click', () => copyShareLink($('geo-share-status'), shareState()));
-  if (mdBtn) mdBtn.addEventListener('click', () => downloadText(toMarkdown(), 'geomancy-reading.md', 'text/markdown;charset=utf-8'));
+  // share / export — the actions now live on the sticky oracle action bar
+  mountOracleBar();
 
   // AI panel
   divAssistant = initDivinationAssistant({
@@ -103,6 +101,47 @@ export function initGeomancy() {
   });
 
   if (!restoreFromURL()) castRandom(); // a shared cast, else a first cast on load (no network; pure compute)
+}
+
+// --- the oracle action bar (ui3-spec §8): [Cast again][Copy link][⤓ Download MD]
+// [✶ Ask the diviner]. The old in-form share/download buttons MOVED here (same
+// handlers — copyShareLink still writes the shareable link, restore is unchanged).
+let oracleBar = null;
+const oracleMotionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+async function mountOracleBar() {
+  const host = $('geo-actionbar');
+  if (!host) return;
+  const mod = await import('./action-bar.js').catch(() => null);
+  if (!mod || !mod.mountActionBar) return;
+  oracleBar = mod.mountActionBar(host, {
+    variant: 'oracle',
+    oracleActions: [
+      { id: 'geo-ab-recast', label: 'Cast again' },
+      { id: 'geo-ab-copylink', label: 'Copy link' },
+      { id: 'geo-ab-md', label: '⤓ Download MD' },
+      { id: 'geo-ab-diviner', label: '✶ Ask the diviner' },
+    ],
+    summary: () => ({ verdict: '', text: judgement ? `The tradition reads the matter ${judgement.tone}.` : '' }),
+  });
+  const on = (id, fn) => { const b = document.getElementById(id); if (b) b.addEventListener('click', fn); };
+  on('geo-ab-recast', () => castRandom());
+  on('geo-ab-copylink', () => copyShareLink($('geo-share-status'), shareState()));
+  on('geo-ab-md', () => downloadText(toMarkdown(), 'geomancy-reading.md', 'text/markdown;charset=utf-8'));
+  on('geo-ab-diviner', () => askDiviner());
+  promoteDivinerInput();
+  if (shield) oracleBar.show();   // an auto-cast already ran before the import resolved
+}
+// Move the diviner's "Connect an AI" settings fieldset below the ask box so the
+// textarea is the panel's primary/first control — and so the sticky action bar
+// reliably hides when the ask box takes focus at 390 px (the config inputs
+// otherwise precede the textarea in the DOM). Nodes keep their wired listeners.
+function promoteDivinerInput() {
+  try { const dv = document.getElementById('dv-assistant'); const fs = dv && dv.querySelector('fieldset'); if (dv && fs) dv.appendChild(fs); } catch { /* non-fatal */ }
+}
+function askDiviner() {
+  const c = $('dv-assistant-card'); if (!c) return;
+  try { c.scrollIntoView({ behavior: oracleMotionOK() ? 'smooth' : 'auto', block: 'start' }); } catch { /* */ }
+  const t = c.querySelector('textarea, input'); if (t) { try { t.focus(); } catch { /* */ } }
 }
 
 // --- share & export -----------------------------------------------------------
@@ -224,6 +263,7 @@ function render() {
   }).join('');
 
   try { autolinkResultPanels(['geo-out']); } catch { /* non-fatal */ }
+  if (oracleBar) oracleBar.show();
 }
 
 function renderReference() {

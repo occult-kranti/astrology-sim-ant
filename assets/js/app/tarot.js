@@ -66,11 +66,50 @@ export function initTarot() {
     subscribeReading: cb => subscribers.push(cb),
   });
 
-  const shareBtn = $('tarot-share'), mdBtn = $('tarot-md');
-  if (shareBtn) shareBtn.addEventListener('click', () => copyShareLink($('tarot-share-status'), shareState()));
-  if (mdBtn) mdBtn.addEventListener('click', () => downloadText(toMarkdown(), 'tarot-reading.md', 'text/markdown;charset=utf-8'));
+  mountOracleBar();   // the share/download actions now live on the sticky oracle bar
 
   if (!restoreFromURL()) draw(); // a shared spread, else a first draw on load (pure compute, no network)
+}
+
+// --- the oracle action bar (ui3-spec §8): [Cast again][Copy link][⤓ Download MD]
+// [✶ Ask the diviner]. The old in-form share/download buttons MOVED here (same
+// handlers — copyShareLink still writes the shareable link, restore is unchanged).
+let oracleBar = null;
+const oracleMotionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+async function mountOracleBar() {
+  const host = $('tarot-actionbar');
+  if (!host) return;
+  const mod = await import('./action-bar.js').catch(() => null);
+  if (!mod || !mod.mountActionBar) return;
+  oracleBar = mod.mountActionBar(host, {
+    variant: 'oracle',
+    oracleActions: [
+      { id: 'tarot-ab-recast', label: 'Cast again' },
+      { id: 'tarot-ab-copylink', label: 'Copy link' },
+      { id: 'tarot-ab-md', label: '⤓ Download MD' },
+      { id: 'tarot-ab-diviner', label: '✶ Ask the diviner' },
+    ],
+    summary: () => ({ verdict: '', text: reading ? `${reading.spread.name} laid.` : '' }),
+  });
+  const on = (id, fn) => { const b = document.getElementById(id); if (b) b.addEventListener('click', fn); };
+  on('tarot-ab-recast', () => draw());
+  on('tarot-ab-copylink', () => copyShareLink($('tarot-share-status'), shareState()));
+  on('tarot-ab-md', () => downloadText(toMarkdown(), 'tarot-reading.md', 'text/markdown;charset=utf-8'));
+  on('tarot-ab-diviner', () => askDiviner());
+  promoteDivinerInput();
+  if (reading) oracleBar.show();   // an auto-draw already ran before the import resolved
+}
+// Move the diviner's "Connect an AI" settings fieldset below the ask box so the
+// textarea is the panel's primary/first control — and so the sticky action bar
+// reliably hides when the ask box takes focus at 390 px (the config inputs
+// otherwise precede the textarea in the DOM). Nodes keep their wired listeners.
+function promoteDivinerInput() {
+  try { const dv = document.getElementById('dv-assistant'); const fs = dv && dv.querySelector('fieldset'); if (dv && fs) dv.appendChild(fs); } catch { /* non-fatal */ }
+}
+function askDiviner() {
+  const c = $('dv-assistant-card'); if (!c) return;
+  try { c.scrollIntoView({ behavior: oracleMotionOK() ? 'smooth' : 'auto', block: 'start' }); } catch { /* */ }
+  const t = c.querySelector('textarea, input'); if (t) { try { t.focus(); } catch { /* */ } }
 }
 
 // --- share & export -----------------------------------------------------------
@@ -190,6 +229,7 @@ function render() {
     <p class="small muted"><b>How a reading works:</b> ${esc(r.note)} <span class="muted">— ${esc(r.cite)}</span></p>`;
 
   try { autolinkResultPanels(['tarot-out']); } catch { /* non-fatal */ }
+  if (oracleBar) oracleBar.show();
 }
 
 function renderReference() {

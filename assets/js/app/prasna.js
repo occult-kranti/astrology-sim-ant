@@ -12,7 +12,7 @@
 //  demonstrated validity — every testimony rendered carries its citation;
 //  described, never prescribed.
 // ============================================================================
-import { wireCitySelect, toUTC, autolinkResultPanels, nowLocalFields } from './shared.js';
+import { toUTC, autolinkResultPanels, nowLocalFields } from './shared.js';
 import { initDivinationAssistant } from './divination-assistant.js';
 import { castChart } from '../core/astro.js';
 import { castVedic } from '../core/vedic.js';
@@ -43,17 +43,36 @@ const notifyReport = () => { for (const cb of reportSubs) { try { cb(lastReport)
 export function currentPrasnaReport() { return lastReport; }
 export function subscribePrasnaReport(cb) { reportSubs.push(cb); }
 
+// The one moment-picker (UI3 Phase B), mounted defensively: if the module is
+// absent the hidden legacy inputs keep their defaults and the page still
+// computes (praśna defaults to here & now).
+let picker = null;
+async function mountPicker() {
+  const host = document.getElementById('pr-picker');
+  if (!host) return;
+  const mod = await import('./moment-picker.js').catch(() => null);
+  if (!mod || !mod.mountMomentPicker) return;
+  try {
+    picker = mod.mountMomentPicker(host, {
+      mode: 'question',
+      ids: { lat: 'pr-lat', lon: 'pr-lon', date: 'pr-date', time: 'pr-time', offset: 'pr-offset' },
+      label: 'The moment & place',
+      persist: 'wb',
+      onChange: () => {},
+    });
+  } catch { /* mountMomentPicker throws on a missing legacy id — non-fatal */ }
+}
+
 export function initPrasna() {
   // the quesited-house select — 12 bhāvas with meanings (7th = default)
   $('pr-house').innerHTML = QUESITED_HOUSES.map(h =>
     `<option value="${h.house}"${h.house === 7 ? ' selected' : ''}>${h.house} · ${esc(h.name)} — ${esc(h.meaning)}</option>`).join('');
 
-  // the moment defaults to NOW, the place to London (adjust or use geolocation)
+  // the moment defaults to NOW, the place to London (adjust via the moment-picker)
   const f = nowLocalFields();
   $('pr-date').value = f.date; $('pr-time').value = f.time; $('pr-offset').value = f.offset;
   $('pr-lat').value = 51.5074; $('pr-lon').value = -0.1278;
-  wireCitySelect($('pr-city'), $('pr-lat'), $('pr-lon'), $('pr-offset'),
-    { dateIn: $('pr-date'), timeIn: $('pr-time'), afterGeo: () => run() });
+  mountPicker();
 
   $('pr-form').addEventListener('submit', e => { e.preventDefault(); run(); });
 
@@ -114,6 +133,7 @@ function run() {
   };
   notifyReport();
   try { autolinkResultPanels(['pr-chart', 'pr-judgement', 'pr-kp']); } catch { /* non-fatal */ }
+  if (picker && picker.commitRecent) { try { picker.commitRecent(); } catch { /* non-fatal */ } }
 }
 
 // --- the sidereal praśna chart summary --------------------------------------
@@ -122,14 +142,14 @@ function renderChart(v, j, date) {
   const lagnaNote = j.lagna.overriddenByKpNumber
     ? `<p class="small"><b>Note:</b> the lagna below is FIXED by the KP horary number ${j.kpNumber} (the querent’s chosen sub-arc), not by the horizon at the moment — the KP Reader VI convention. The grahas stand for the moment of judgment.</p>` : '';
   $('pr-chart').innerHTML = `${lagnaNote}
-    <table class="data"><tbody>
+    <div class="table-scroll"><table class="data"><tbody>
       <tr><th class="l">Moment (UTC)</th><td class="l">${esc(date.toISOString().replace('T', ' ').slice(0, 16))} UT</td></tr>
       <tr><th class="l">Praśna lagna</th><td class="l">${esc(sidLabel(j.lagna.lon))} — ${esc(j.lagna.sanskrit)} (${esc(j.lagna.sign)}), lord ${esc(j.lagna.lord)}; nakṣatra ${esc(j.lagna.nakshatra.sanskrit)} (pada ${j.lagna.nakshatra.pada})${j.lagna.shirshodaya ? ' · śīrṣodaya' : ''}</td></tr>
       <tr><th class="l">Moon (the querent’s mind)</th><td class="l">${esc(sidLabel(v.grahas.Moon.lon))} in ${esc(v.grahas.Moon.rashiSanskrit)} — house ${j.moon.house}; nakṣatra ${esc(j.moon.nakshatra.sanskrit)} (pada ${j.moon.nakshatra.pada})</td></tr>
       <tr><th class="l">Tithi &amp; pakṣa</th><td class="l">${esc(p.tithi.name)} (tithi ${p.tithi.num}) — ${esc(p.tithi.paksha)}</td></tr>
       <tr><th class="l">Vāra · yoga · karaṇa</th><td class="l">${esc(p.vara.name)} (lord ${esc(p.vara.lord)}) · ${esc(p.yoga.name)} · ${esc(p.karana.name)}</td></tr>
       <tr><th class="l">Ayanāṁśa</th><td class="l">${v.ayanamsa}° — ${esc(v.ayanamsaName)}</td></tr>
-    </tbody></table>
+    </tbody></table></div>
     <p class="small muted">Sidereal (tropical − Lahiri ayanāṁśa), whole-sign bhāvas, mean node — the conventions of this site’s Vedic wing. The Moon’s nakṣatra at the query moment is praśna’s own data layer, with no Western analogue.</p>`;
 }
 

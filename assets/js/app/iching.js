@@ -72,10 +72,49 @@ export function initIching() {
     getReading: () => currentReading(),
     subscribeReading: cb => subscribers.push(cb),
   });
-  const shareBtn = $('ich-share'), mdBtn = $('ich-md');
-  if (shareBtn) shareBtn.addEventListener('click', () => copyShareLink($('ich-share-status'), shareState()));
-  if (mdBtn) mdBtn.addEventListener('click', () => downloadText(toMarkdown(), 'iching-reading.md', 'text/markdown;charset=utf-8'));
+  mountOracleBar();   // the share/download actions now live on the sticky oracle bar
   if (!restoreFromURL()) castCoins(); // a shared cast, else a first cast on load (pure compute, no network)
+}
+
+// --- the oracle action bar (ui3-spec §8): [Cast again][Copy link][⤓ Download MD]
+// [✶ Ask the diviner]. The old in-form share/download buttons MOVED here (same
+// handlers — copyShareLink still writes the shareable link, restore is unchanged).
+let oracleBar = null;
+const oracleMotionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+async function mountOracleBar() {
+  const host = $('ich-actionbar');
+  if (!host) return;
+  const mod = await import('./action-bar.js').catch(() => null);
+  if (!mod || !mod.mountActionBar) return;
+  oracleBar = mod.mountActionBar(host, {
+    variant: 'oracle',
+    oracleActions: [
+      { id: 'ich-ab-recast', label: 'Cast again' },
+      { id: 'ich-ab-copylink', label: 'Copy link' },
+      { id: 'ich-ab-md', label: '⤓ Download MD' },
+      { id: 'ich-ab-diviner', label: '✶ Ask the diviner' },
+    ],
+    summary: () => ({ verdict: '', text: reading ? `${reading.primary.num}. ${reading.primary.name}.` : '' }),
+  });
+  const on = (id, fn) => { const b = document.getElementById(id); if (b) b.addEventListener('click', fn); };
+  on('ich-ab-recast', () => castCoins());
+  on('ich-ab-copylink', () => copyShareLink($('ich-share-status'), shareState()));
+  on('ich-ab-md', () => downloadText(toMarkdown(), 'iching-reading.md', 'text/markdown;charset=utf-8'));
+  on('ich-ab-diviner', () => askDiviner());
+  promoteDivinerInput();
+  if (reading) oracleBar.show();   // an auto-cast already ran before the import resolved
+}
+// Move the diviner's "Connect an AI" settings fieldset below the ask box so the
+// textarea is the panel's primary/first control — and so the sticky action bar
+// reliably hides when the ask box takes focus at 390 px (the config inputs
+// otherwise precede the textarea in the DOM). Nodes keep their wired listeners.
+function promoteDivinerInput() {
+  try { const dv = document.getElementById('dv-assistant'); const fs = dv && dv.querySelector('fieldset'); if (dv && fs) dv.appendChild(fs); } catch { /* non-fatal */ }
+}
+function askDiviner() {
+  const c = $('dv-assistant-card'); if (!c) return;
+  try { c.scrollIntoView({ behavior: oracleMotionOK() ? 'smooth' : 'auto', block: 'start' }); } catch { /* */ }
+  const t = c.querySelector('textarea, input'); if (t) { try { t.focus(); } catch { /* */ } }
 }
 
 function currentReading() { return reading ? { kind: 'iching', question, reading } : null; }
@@ -188,6 +227,7 @@ function render() {
     <p class="small muted"><b>How the I Ching answers:</b> ${esc(r.note)} <span class="muted">— ${esc(r.cite)}</span></p>`;
 
   try { autolinkResultPanels(['ich-out']); } catch { /* non-fatal */ }
+  if (oracleBar) oracleBar.show();
 }
 
 function renderReference() {

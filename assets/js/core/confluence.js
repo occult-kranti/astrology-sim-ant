@@ -114,8 +114,47 @@ const RULER_W = 64;
 const MARK = 14;      // node mark w/h (px)
 const MIN_GAP = 22;   // min vertical centre-to-centre gap for same sub-track
 const SUB_D_FRAC = 0.28; // sub-track offset as a fraction of lane width
+const CLUSTER_SPAN = 28;  // px window that collapses into a "+N" pill (atlas §7.1)
+const LABEL_QUIET_GAP = 14; // px y-distance below which a painted label is quieted
 
 export const entryBySlug = slug => ENTRY_BY_SLUG.get(slug) || null;
+
+// ============================================================================
+//  ATLAS PHYSICS PURE MATH (UI3 · atlas §2, §4 — the app imports app/motion.js
+//  for the spring solver; ONLY the atlas-specific pure math lives here, so the
+//  zoom bridge, minimap, clustering, cards and search are engine-testable.)
+// ============================================================================
+
+// The three discrete layout levels the atlas renders at. `v` (continuous zoom)
+// always settles to one of these; the world displays at s = v / L.
+export const ZOOM_LEVELS = [0.6, 1, 1.6];
+export const ZOOM_RANGE = { min: 0.5, max: 1.8 };       // hard clamp on v (no rubber)
+// hysteresis for the mid-gesture rebase (atlas §4.4): re-render when the applied
+// scale drifts past these bounds and input has been quiet for `quietMs`.
+export const ZOOM_REBASE = { hi: 1.30, lo: 0.77, quietMs: 90 };
+
+// nearest of ZOOM_LEVELS to v, measured in LOG space (perceptual midpoints).
+// Midpoints: √0.6≈0.7746 between 0.6|1 ; √1.6≈1.2649 between 1|1.6.
+export function nearestLevel(v) {
+  const x = Math.log(v <= 0 ? ZOOM_RANGE.min : v);
+  let best = ZOOM_LEVELS[0], bd = Infinity;
+  for (const L of ZOOM_LEVELS) { const d = Math.abs(Math.log(L) - x); if (d < bd - 1e-12) { bd = d; best = L; } }
+  return best;
+}
+
+// Zoom around an anchor with transform-origin 0 0 → pure scroll compensation
+// (atlas §4.3). worldW/worldH are the UNSCALED layout dimensions; the applied
+// content box is worldW*sNew × worldH*sNew. Deterministic + clamped.
+export function zoomAnchor({ scrollLeft, scrollTop, px, py, sOld, sNew, worldW, worldH, vw, vh }) {
+  const wx = (scrollLeft + px) / sOld;   // world point under the anchor (unscaled px)
+  const wy = (scrollTop + py) / sOld;
+  const maxL = Math.max(0, worldW * sNew - vw);
+  const maxT = Math.max(0, worldH * sNew - vh);
+  return {
+    scrollLeft: clamp(wx * sNew - px, 0, maxL),
+    scrollTop: clamp(wy * sNew - py, 0, maxT),
+  };
+}
 
 // ---- layout: lanes → nodes → edges (deterministic, serialisable) -----------
 export function layoutConfluence(opts = {}) {
@@ -171,7 +210,44 @@ export function layoutConfluence(opts = {}) {
     edges.push({ from: g.from, to: g.to, kind: g.kind, x1, y1, x2, y2, c1x, c1y, c2x, c2y, midX, midY });
   }
 
-  return { scale, lanes, nodes, edges, width, height: scale.totalHeight };
+  // ---- semantic-zoom clustering (atlas §7.1) --------------------------------
+  // A function of the render level L (= zoom): near-cotemporal same-lane marks
+  // collapse into a single "+N" pill so a marks-only view stays legible. Absorbed
+  // nodes STAY in `nodes` (carry `clusterOf`) but are not painted by the app.
+  const span = CLUSTER_SPAN * (zoom <= 0.6 ? 1.2 : 1); // eager at the compact level
+  const clusters = [];
+  const labelQuiet = new Set();
+  const byLane = new Map();
+  for (const n of nodes) { if (!byLane.has(n.laneId)) byLane.set(n.laneId, []); byLane.get(n.laneId).push(n); }
+  for (const lane of lanes) {
+    const arr = (byLane.get(lane.id) || []).slice().sort((a, b) => a.y - b.y || a.x - b.x);
+    let i = 0;
+    while (i < arr.length) {
+      const group = [arr[i]];
+      let j = i + 1;
+      while (j < arr.length && arr[j].y - group[0].y < span) { group.push(arr[j]); j++; }
+      if (group.length >= 3) {
+        const sumY = group.reduce((s, g) => s + g.y, 0);
+        const cy = Math.round(sumY / group.length);
+        const id = `c-${lane.id}-${Math.round(group[0].y)}`;
+        let contestedCount = 0;
+        for (const g of group) { g.clusterOf = id; const e = ENTRY_BY_SLUG.get(g.slug); if (e && e.contested) contestedCount++; }
+        clusters.push({
+          id, laneId: lane.id, x: Math.round(lane.cx), y: cy,
+          members: group.map(g => g.slug), count: group.length,
+          contestedCount, label: '+' + group.length,
+        });
+      }
+      i = j;
+    }
+    // label anti-collision for the painted (non-clustered) survivors
+    const painted = arr.filter(n => !n.clusterOf);
+    for (let k = 1; k < painted.length; k++) {
+      if (painted[k].y - painted[k - 1].y < LABEL_QUIET_GAP) labelQuiet.add(painted[k].slug);
+    }
+  }
+
+  return { scale, lanes, nodes, edges, clusters, labelQuiet, width, height: scale.totalHeight };
 }
 
 // ---- filtering (pure; returns visible slugs) -------------------------------
@@ -239,4 +315,144 @@ export function confluenceStats() {
     entries: CONFLUENCE_ENTRIES.length, edges: CONFLUENCE_EDGES.length,
     byLane, byKind, byLabel, yearMin, yearMax, crossLaneEdges,
   };
+}
+
+// ============================================================================
+//  MINIMAP MODEL (atlas §6.2 — pure, normalised 0..1, engine-tested)
+// ============================================================================
+// Two-letter era codes, in band order (atlas §6.1).
+const ERA_CODE = { antiquity: 'DA', classical: 'CL', transmission: 'TR', scholastic: 'SC', earlymodern: 'EM', global: 'GL' };
+// density → alpha tiers (atlas §6.1: .08/.16/.28/.45 by visible-entry count).
+const MM_ALPHA = [0.08, 0.16, 0.28, 0.45];
+const tierOf = (count, tiers) => count <= 0 ? -1 : count === 1 ? 0 : count === 2 ? 1 : count === 3 ? 2 : 3;
+
+export function minimapModel(layout, visibleSlugs, opts = {}) {
+  const rows = opts.rows || 48;
+  const H = layout.height || 1;
+  const vis = visibleSlugs instanceof Set ? visibleSlugs : new Set(visibleSlugs || []);
+  const bands = layout.scale.bands.map(b => ({
+    y: b.topPx / H, h: b.heightPx / H, label: ERA_CODE[b.id] || b.id.slice(0, 2).toUpperCase(),
+  }));
+  const laneIndex = new Map(layout.lanes.map((l, i) => [l.id, i]));
+  // count visible entries per (lane, row)
+  const counts = new Map(); // key `${laneIdx}|${row}` → count
+  for (const n of layout.nodes) {
+    if (!vis.has(n.slug)) continue;
+    const li = laneIndex.get(n.laneId); if (li == null) continue;
+    let row = Math.floor((n.y / H) * rows);
+    if (row < 0) row = 0; if (row >= rows) row = rows - 1;
+    const key = li + '|' + row;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  const cells = [];
+  for (const [key, count] of counts) {
+    const [li, row] = key.split('|').map(Number);
+    const tier = tierOf(count, MM_ALPHA);
+    cells.push({ laneIdx: li, row, y: row / rows, h: 1 / rows, count, alpha: MM_ALPHA[tier] });
+  }
+  cells.sort((a, b) => a.laneIdx - b.laneIdx || a.row - b.row);
+  return { bands, cells, height: 1 };
+}
+
+// ============================================================================
+//  LANE DENSITY WASH (atlas §9.1 — per lane×band quartile alpha in [.03,.12])
+// ============================================================================
+const WASH_ALPHA = [0.03, 0.06, 0.09, 0.12];
+
+export function laneDensity(layout, visibleSlugs) {
+  const vis = visibleSlugs instanceof Set ? visibleSlugs : new Set(visibleSlugs || (layout.nodes.map(n => n.slug)));
+  const bands = layout.scale.bands;
+  const counts = new Map(); // `${laneId}|${bandIdx}` → count
+  const yearOf = new Map(CONFLUENCE_ENTRIES.map(e => [e.slug, e.sortYear]));
+  for (const n of layout.nodes) {
+    if (!vis.has(n.slug)) continue;
+    const yr = yearOf.get(n.slug);
+    let bi = bands.findIndex(b => yr >= b.fromYear && yr < b.toYear);
+    if (bi < 0) bi = yr < bands[0].fromYear ? 0 : bands.length - 1;
+    const key = n.laneId + '|' + bi;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  const out = [];
+  for (const lane of layout.lanes) {
+    for (let bi = 0; bi < bands.length; bi++) {
+      const c = counts.get(lane.id + '|' + bi) || 0;
+      if (c === 0) continue;
+      const tier = tierOf(c, WASH_ALPHA);
+      out.push({
+        laneId: lane.id, bandIndex: bi, x0: lane.x0, x1: lane.x1,
+        y: bands[bi].topPx, h: bands[bi].heightPx, count: c, tier, alpha: WASH_ALPHA[tier],
+      });
+    }
+  }
+  return out;
+}
+
+// ============================================================================
+//  CARD BUILDERS (atlas §8 — pure; render-only truncation of locked prose)
+// ============================================================================
+// Sentence-boundary truncation of a body string; never splits a word; ≤ max.
+export function excerpt(body, max = 140) {
+  const s = String(body == null ? '' : body).trim();
+  if (s.length <= max) return s;
+  const window = s.slice(0, max + 1);
+  // prefer the last sentence boundary within the window
+  const mEnd = window.match(/[.!?][»”"')\]]?\s/g);
+  if (mEnd) {
+    const idx = window.lastIndexOf(mEnd[mEnd.length - 1]);
+    const end = idx + mEnd[mEnd.length - 1].length - 1; // include the punctuation, drop the space
+    if (end >= 40) return s.slice(0, end).trim();
+  }
+  // else cut at the last word boundary and add an ellipsis (stays ≤ max)
+  let cut = s.lastIndexOf(' ', max - 1);
+  if (cut < 40) cut = max - 1;
+  return s.slice(0, cut).trim() + '…';
+}
+
+// incident edges per slug (both directions) for the journeys mini-timeline
+const INCIDENT = (() => {
+  const m = new Map();
+  for (const g of CONFLUENCE_EDGES) {
+    if (!m.has(g.from)) m.set(g.from, []);
+    if (!m.has(g.to)) m.set(g.to, []);
+    m.get(g.from).push({ partner: g.to, dir: 'out', kind: g.kind });
+    m.get(g.to).push({ partner: g.from, dir: 'in', kind: g.kind });
+  }
+  return m;
+})();
+const SPARK_MIN = -1500, SPARK_MAX = 2020;
+const sparkX = year => clamp((clampYear(year) - SPARK_MIN) / (SPARK_MAX - SPARK_MIN), 0, 1);
+
+// {self:x, ticks:[{x,dir}]} — a 0..1 linear-time strip of a node + its partners.
+export function edgeSparkline(slug) {
+  const e = ENTRY_BY_SLUG.get(slug);
+  const self = e ? sparkX(e.sortYear) : 0;
+  const inc = INCIDENT.get(slug) || [];
+  const ticks = inc.map(x => {
+    const pe = ENTRY_BY_SLUG.get(x.partner);
+    return { x: pe ? sparkX(pe.sortYear) : 0, dir: x.dir, partner: x.partner };
+  }).sort((a, b) => a.x - b.x || (a.partner < b.partner ? -1 : 1));
+  return { self, ticks };
+}
+
+// ============================================================================
+//  SEARCH (atlas §10 — pure ranked query; title-prefix > title-substring > body)
+// ============================================================================
+export function searchEntries(q, limit = 12) {
+  const query = String(q == null ? '' : q).toLowerCase().trim();
+  if (!query) return [];
+  const scored = [];
+  for (const e of CONFLUENCE_ENTRIES) {
+    const title = e.title.toLowerCase();
+    const orig = (e.titleOriginal || '').toLowerCase();
+    let rank;
+    if (title.startsWith(query) || orig.startsWith(query)) rank = 0;
+    else if (title.includes(query) || orig.includes(query)) rank = 1;
+    else {
+      const hay = `${e.body} ${e.dateText} ${e.place || ''} ${(e.sources || []).join(' ')}`.toLowerCase();
+      if (hay.includes(query)) rank = 2; else continue;
+    }
+    scored.push({ e, rank });
+  }
+  scored.sort((a, b) => a.rank - b.rank || a.e.sortYear - b.e.sortYear || (a.e.slug < b.e.slug ? -1 : a.e.slug > b.e.slug ? 1 : 0));
+  return scored.slice(0, limit).map(s => s.e);
 }

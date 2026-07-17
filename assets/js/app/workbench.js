@@ -6,7 +6,7 @@
 //  reads the SAME object. Cross-links are generated from core/registry.js, so
 //  "where each number comes from" stays in sync with the code.
 // ============================================================================
-import { wireCitySelect, toUTC, nowLocalFields, VERDICT_LEGEND, autolinkResultPanels } from './shared.js';
+import { toUTC, nowLocalFields, VERDICT_LEGEND, autolinkResultPanels } from './shared.js';
 import { writeStateToURL, readStateFromURL, copyShareLink, downloadJSON, downloadSVG, svgToPNG,
   downloadMarkdown, saveReadingEntry, listSavedReadings, removeSavedReading } from './state.js';
 import { castChart, PLANET_GLYPHS } from '../core/astro.js';
@@ -36,6 +36,13 @@ const sgn = n => (n >= 0 ? '+' : '') + n;
 const vbadge = v => `<span class="verdict ${v}">${v}</span>`;
 const rel = p => String(p).replace(/^pages\//, '');           // path from inside pages/
 
+// --- UI3 enhancers (moment-picker, action-bar, wheel/score-bar figures) ------
+//  Loaded lazily and defensively so a worktree missing the parallel-built
+//  B1/B2 modules degrades to a plain-input fallback instead of a broken page.
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+const ENH = {};
+let bar = null, pickerMain = null, pickerBirth = null;
+
 // --- last computed reading + a tiny subscription, for the assistant ---------
 let lastReading = null, lastChart = null, lastBirthChart = null, wheelSvg = null, vedicUpdate = null;
 let sectAwareFortune = false;   // Lots toggle: Lilly's both-sects ⊕ (default) vs Ptolemaic night-reversal
@@ -55,20 +62,10 @@ function regLinks(id) {
   return parts.length ? '— ' + parts.join(' · ') : '';
 }
 
-export function initWorkbench() {
+export async function initWorkbench() {
   const f = nowLocalFields();
   $('wb-date').value = f.date; $('wb-time').value = f.time; $('wb-offset').value = f.offset;
   $('wb-lat').value = 51.5074; $('wb-lon').value = -0.1278;
-  wireCitySelect($('wb-city'), $('wb-lat'), $('wb-lon'), $('wb-offset'),
-    { dateIn: $('wb-date'), timeIn: $('wb-time'), afterGeo: () => run() });
-
-  // "Tuned to a specific person": a saved-people picker on the birth section.
-  try {
-    const summary = document.querySelector('#wb-birth-details summary');
-    attachPersonPicker(summary,
-      { bdate: $('wb-bdate'), btime: $('wb-btime'), boffset: $('wb-boffset'), blat: $('wb-blat'), blon: $('wb-blon') },
-      { onSelect: () => { $('wb-birth-details').open = true; run(); } });
-  } catch (e) { /* non-fatal */ }
 
   $('wb-op').innerHTML = OPERATIONS.map(o => `<option value="${o.key}">${esc(o.label)} (${o.ruler})</option>`).join('');
   // The horary house picker lives IN the horary card now (the main form no longer
@@ -77,13 +74,12 @@ export function initWorkbench() {
     HOUSES.map(h => `<option value="${h.n}">${h.n} — ${esc(h.signifies.split(';')[0])}</option>`).join('');
   $('wb-horary-house').addEventListener('change', () => run());
 
-  $('wb-form').addEventListener('submit', e => { e.preventDefault(); run(); });
-  $('wb-copy').addEventListener('click', () => copyShareLink($('wb-status'), currentState()));
-  $('wb-json').addEventListener('click', () => { if (lastReading) downloadJSON(lastReading, 'workbench-reading.json'); });
-  $('wb-md').addEventListener('click', () => { if (lastReading) downloadMarkdown(lastReading, 'workbench-reading.md'); });
-  $('wb-svg').addEventListener('click', () => downloadSVG(wheelSvg, 'chart.svg'));
-  $('wb-png').addEventListener('click', () => { svgToPNG(wheelSvg, 'chart.png').catch(() => { $('wb-status').textContent = 'Could not export PNG.'; }); });
-  $('wb-print').addEventListener('click', () => window.print());
+  $('wb-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
+  $('wb-reset').addEventListener('click', () => resetForm());
+
+  // Mount the moment-pickers + action bar (writes through to the legacy hidden ids),
+  // then wire the export handlers onto whatever the bar (or fallback) rendered.
+  await mountEnhancers();
 
   renderSaved();   // the on-device saved-readings list (auto-saved each compute)
 
@@ -98,6 +94,123 @@ export function initWorkbench() {
 
   renderAssistantPlaceholder();
   run();
+}
+
+// The UI3 compute choreography: btn-busy → compute → focus+scroll the verdict banner
+// → reveal the action bar. Uses B1's computeFlow where present, else a minimal inline path.
+function doCompute() {
+  const banner = $('wb-verdict-banner'), status = $('wb-status');
+  const btn = $('wb-form').querySelector('button[type="submit"]');
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf(btn, status, () => run(), { banner, firstPanel: $('wb-p-figure') }); return; } catch { /* fall through */ } }
+  run();
+  if (banner && !banner.hidden) {
+    try { banner.tabIndex = -1; banner.focus({ preventScroll: true });
+      banner.scrollIntoView({ block: 'start', behavior: motionOK() ? 'smooth' : 'auto' }); } catch { /* ignore */ }
+  }
+}
+
+function resetForm() {
+  const f = nowLocalFields();
+  $('wb-date').value = f.date; $('wb-time').value = f.time; $('wb-offset').value = f.offset;
+  $('wb-lat').value = 51.5074; $('wb-lon').value = -0.1278;
+  for (const id of ['wb-blat', 'wb-blon', 'wb-bdate', 'wb-btime', 'wb-boffset']) { const e = $(id); if (e) e.value = ''; }
+  run();
+}
+
+async function mountEnhancers() {
+  const load = async p => { try { return await import(p); } catch { return null; } };
+  ENH.mp = await load('./moment-picker.js');
+  ENH.ab = await load('./action-bar.js');
+  ENH.fig = await load('./viz/figure.js');
+  ENH.wi = await load('./viz/wheel-interact.js');
+  ENH.wr = await load('./wheel-rotate.js');
+  ENH.sb = await load('../core/viz/score-bar.js');
+  ENH.dg = await load('../core/dignities.js');
+  try { const insp = await load('./viz/inspect.js'); insp && insp.initInspect && insp.initInspect(); } catch { /* non-fatal */ }
+
+  // --- moment pickers (legacy-id write-through) ---
+  const mount = (boxId, mode, ids) => {
+    if (ENH.mp && ENH.mp.mountMomentPicker) {
+      try {
+        return ENH.mp.mountMomentPicker($(boxId), { mode, label: mode === 'birth' ? 'Birth moment & place' : 'The moment & place', persist: 'wb', ids, onChange: () => run() });
+      } catch { /* fall through to fallback */ }
+    }
+    revealPickerFallback(boxId, Object.values(ids)); return null;
+  };
+  pickerMain = mount('wb-picker', 'question', { lat: 'wb-lat', lon: 'wb-lon', date: 'wb-date', time: 'wb-time', offset: 'wb-offset' });
+  pickerBirth = mount('wb-bpicker', 'birth', { lat: 'wb-blat', lon: 'wb-blon', date: 'wb-bdate', time: 'wb-btime', offset: 'wb-boffset' });
+
+  // "Tuned to a specific person": the saved-people picker on the birth section (unchanged).
+  try {
+    const summary = document.querySelector('#wb-birth-details summary');
+    attachPersonPicker(summary,
+      { bdate: $('wb-bdate'), btime: $('wb-btime'), boffset: $('wb-boffset'), blat: $('wb-blat'), blon: $('wb-blon') },
+      { onSelect: () => { $('wb-birth-details').open = true; run(); } });
+  } catch { /* non-fatal */ }
+
+  // --- action bar: Export ▾ (the six form buttons move here) + Copy link + Ask AI ---
+  const exportsMenu = [
+    { id: 'wb-json', label: 'Download JSON' }, { id: 'wb-md', label: 'Download summary (MD)' },
+    { id: 'wb-svg', label: 'Download chart (SVG)' }, { id: 'wb-png', label: 'Download chart (PNG)' },
+    { id: 'wb-print', label: 'Print' },
+  ];
+  if (ENH.ab && ENH.ab.mountActionBar) {
+    try {
+      bar = ENH.ab.mountActionBar($('wb-actionbar'), {
+        variant: 'tool', exports: exportsMenu, copyLinkId: 'wb-copy',
+        askAI: () => { const a = $('wb-assistant-card'); if (a) { a.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto' }); const ta = a.querySelector('textarea, input'); ta && ta.focus(); } },
+        summary: r => barSummary(r),
+      });
+    } catch { bar = null; }
+  }
+  if (!bar) injectFallbackExportBar($('wb-actionbar'), exportsMenu);
+  wireExportHandlers();
+}
+
+function barSummary(r) {
+  if (!r || !r.cautions) return { verdict: '', text: '' };
+  const m = r.moment;
+  return { verdict: r.cautions.verdict, text: `${m.angles.asc.label} rising · chart health ${r.cautions.label}` };
+}
+
+function wireExportHandlers() {
+  const on = (id, fn) => { const el = $(id); if (el && !el.dataset.wbwired) { el.dataset.wbwired = '1'; el.addEventListener('click', fn); } };
+  on('wb-copy', () => copyShareLink($('wb-status'), currentState()));
+  on('wb-json', () => { if (lastReading) downloadJSON(lastReading, 'workbench-reading.json'); });
+  on('wb-md', () => { if (lastReading) downloadMarkdown(lastReading, 'workbench-reading.md'); });
+  on('wb-svg', () => downloadSVG(wheelSvg, 'chart.svg'));
+  on('wb-png', () => { svgToPNG(wheelSvg, 'chart.png').catch(() => { $('wb-status').textContent = 'Could not export PNG.'; }); });
+  on('wb-print', () => window.print());
+}
+
+// Fallbacks used only when the parallel-built modules are absent (worktree / offline failure).
+function revealPickerFallback(boxId, ids) {
+  const box = $(boxId); if (!box || box.dataset.fb) return; box.dataset.fb = '1';
+  const meta = {
+    lat: ['number', 'Lat °N', '0.0001'], lon: ['number', 'Lon °E', '0.0001'], date: ['date', 'Date'],
+    time: ['time', 'Time (local)'], offset: ['number', 'UTC offset', '0.5'],
+    blat: ['number', 'Birth Lat °N', '0.0001'], blon: ['number', 'Birth Lon °E', '0.0001'], bdate: ['date', 'Birth date'],
+    btime: ['time', 'Birth time (local)'], boffset: ['number', 'Birth UTC offset', '0.5'],
+  };
+  const row = document.createElement('div'); row.className = 'field-row';
+  for (const id of ids) {
+    const input = $(id); if (!input) continue;
+    const [type, label, step] = meta[id.replace(/^wb-/, '')] || ['text', id];
+    input.type = type; if (step) input.step = step; input.style.width = type === 'number' ? '7rem' : '';
+    const field = document.createElement('div'); field.className = 'field';
+    const lab = document.createElement('label'); lab.setAttribute('for', id); lab.textContent = label;
+    field.append(lab, input); row.appendChild(field);
+  }
+  box.appendChild(row);
+}
+function injectFallbackExportBar(box, items) {
+  if (!box) return;
+  const row = document.createElement('div'); row.className = 'field-row'; row.style.marginTop = '.6rem';
+  const mk = (id, label) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn-secondary sm'; b.id = id; b.textContent = label; return b; };
+  row.appendChild(mk('wb-copy', 'Copy shareable link'));
+  for (const it of items) row.appendChild(mk(it.id, it.label));
+  box.appendChild(row);
 }
 
 function currentState() {
@@ -133,11 +246,10 @@ function run() {
   lastReading = reading; lastChart = chart; lastBirthChart = birth ? birth.chart : null;
   try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ before: '#wb-horary-card' }); vedicUpdate(chart); } catch { /* non-fatal */ }
 
-  // chart wheel (reuse the shared renderer)
+  // chart wheel — through mountFigure + wireWheel + attachWheelRotate (with a plain fallback)
   try {
     const bodies = {}; for (const p of PLANETS7) bodies[p] = chart.planets[p];
-    renderChart($('wb-wheel'), chart, allAspects(bodies), { size: 520 });
-    wheelSvg = $('wb-wheel').querySelector('svg');
+    renderWheel($('wb-wheel'), chart, allAspects(bodies), reading);
   } catch { /* non-fatal */ }
 
   safe(() => renderSummary(reading));
@@ -164,7 +276,43 @@ function run() {
   writeStateToURL(currentState());
   $('wb-status').textContent = '';
   try { autoSave(reading); } catch { /* non-fatal: saving never blocks the reading */ }
+  try { pickerMain && pickerMain.commitRecent && pickerMain.commitRecent(); } catch { /* non-fatal */ }
+  try { pickerBirth && pickerBirth.commitRecent && $('wb-blat').value && pickerBirth.commitRecent(); } catch { /* non-fatal */ }
+  try { bar && bar.show && bar.show(reading); } catch { /* non-fatal */ }
   for (const cb of readingSubs) { try { cb(reading); } catch { /* ignore */ } }
+}
+
+// Render the wheel through B2's figure/interaction pipeline; fall back to the plain
+// DOM renderer when those modules aren't present. The wheel modules (wireWheel /
+// attachWheelRotate) consume the RAW chart shape ({asc, planets, aspects[]}) exactly
+// as horary does — never the fullReading. We hand them a small adapter that carries
+// the raw chart, the drawn aspects ARRAY (so aspect-line hover's `.find` works, and
+// the rotor's `chart.asc` is a number, not NaN), and a per-planet essential-dignity
+// map so the pin card can print Lilly's −5…+5 essential-total line. [ui3-spec §10.2]
+function wheelReadingAdapter(chart, aspects, reading) {
+  let dignities;
+  try {
+    const pp = reading && reading.dignities && reading.dignities.perPlanet;
+    if (pp) dignities = Object.fromEntries(PLANETS7.filter(n => pp[n] && pp[n].essential).map(n => [n, pp[n].essential]));
+  } catch { /* dignity line is optional */ }
+  return { chart, aspects, dignities };
+}
+function renderWheel(container, chart, aspects, reading) {
+  const rd = wheelReadingAdapter(chart, aspects, reading);
+  if (ENH.fig && ENH.fig.mountFigure) {
+    try {
+      const svgEl = renderChart(document.createElement('div'), chart, aspects, { size: 520 });
+      container.innerHTML = '';
+      ENH.fig.mountFigure(container, { svg: svgEl.outerHTML, ariaLabel: 'Chart wheel — planets are buttons', caption: '' });
+      const mounted = container.querySelector('svg');
+      wheelSvg = mounted;
+      try { ENH.wi && ENH.wi.wireWheel && ENH.wi.wireWheel(mounted, rd, aspects); } catch { /* non-fatal */ }
+      try { ENH.wr && ENH.wr.attachWheelRotate && ENH.wr.attachWheelRotate(container, rd); } catch { /* non-fatal */ }
+      return;
+    } catch { /* fall through */ }
+  }
+  renderChart(container, chart, aspects, { size: 520 });
+  wheelSvg = container.querySelector('svg');
 }
 
 // --- save / publish ---------------------------------------------------------
@@ -263,15 +411,30 @@ function renderDignities(r) {
   const a = r.dignities.almutens, log = r.dignities.lordOfGeniture;
   $('wb-dignities').innerHTML =
     `<div class="table-scroll"><table class="data"><thead><tr><th>Planet</th><th>Essential dignities</th><th class="num">Ess.</th><th class="num">Acc.</th><th class="num">Total</th></tr></thead><tbody>${rows}</tbody></table></div>
+     ${dignityBars(r)}
      <p class="small">Almuten of the Ascendant: <b>${esc(a.ascendant.planet)}</b> (score ${a.ascendant.score}) · of the MC: <b>${esc(a.midheaven.planet)}</b> (${a.midheaven.score}).
        Lord of the Geniture (greatest total dignity): <b>${esc(log.planet)}</b> (${sgn(log.score)}).</p>`;
+}
+
+// Anchored essential-dignity score bars, one per planet, sorted strongest-first.
+function dignityBars(r) {
+  try {
+    if (!(ENH.sb && ENH.sb.scoreBar && ENH.dg && ENH.dg.dignityScoreDomain)) return '';
+    const domain = ENH.dg.dignityScoreDomain();
+    const items = PLANETS7.map(name => ({ name, total: r.dignities.perPlanet[name].essential.total })).sort((x, y) => y.total - x.total);
+    const bars = items.map(it => {
+      const { svg } = ENH.sb.scoreBar({ value: it.total, domain, anchors: [{ v: 5, label: 'domicile +5' }, { v: -5, label: 'detriment −5' }], zero: 0, label: `${it.name} essential`, tone: null });
+      return `<div class="wb-dig-bar" style="display:flex;align-items:center;gap:.5rem"><span style="width:5.5rem" class="small">${G(it.name)} ${it.name}</span>${svg}</div>`;
+    }).join('');
+    return `<div class="wb-dig-bars" style="margin-top:.7rem;display:grid;gap:.25rem">${bars}</div>`;
+  } catch { return ''; }
 }
 
 function renderAspects(r) {
   $('wb-aspects-links').innerHTML = regLinks('aspects');
   const list = r.aspects.list;
   const asp = list.length
-    ? '<ul class="clean">' + list.map(a => `<li>${G(a.from)} ${a.from} <b>${a.glyph} ${a.aspect}</b> ${G(a.to)} ${a.to} — <span class="${a.applying ? 'pos' : 'muted'}">${a.applying ? 'applying' : 'separating'}</span>, orb ${a.orb.toFixed(1)}°${a.partile ? ' <b>(partile)</b>' : ''}</li>`).join('') + '</ul>'
+    ? '<ul class="clean">' + list.map(a => `<li data-el="aspect-${esc(a.from)}-${esc(a.to)}-${esc(a.aspect)}" data-pair="${esc(a.from)},${esc(a.to)}">${G(a.from)} ${a.from} <b>${a.glyph} ${a.aspect}</b> ${G(a.to)} ${a.to} — <span class="${a.applying ? 'pos' : 'muted'}">${a.applying ? 'applying' : 'separating'}</span>, orb ${a.orb.toFixed(1)}°${a.partile ? ' <b>(partile)</b>' : ''}</li>`).join('') + '</ul>'
     : '<p class="muted">No aspects within orb.</p>';
   const rec = r.aspects.receptions.length
     ? '<p class="small"><b>Reception:</b> ' + r.aspects.receptions.map(x => `${x.a}↔${x.b} (${x.a} in ${x.b}’s ${x.byA.join('/')}; ${x.b} in ${x.a}’s ${x.byB.join('/')})`).join('; ') + '</p>'

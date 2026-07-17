@@ -10,7 +10,7 @@
 </head>
 <body>
 <main class="wrap">
-  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Life Trajectory</p>
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Cast</a> › Life Trajectory</p>
   <h1>Life Trajectory — one nativity, the whole arc of a life</h1>
   <p class="lede">Enter a birth moment and place — anywhere in the world — and read it through Lilly's whole
     natal apparatus at once: the <b>natal signatures</b>, the year-by-year <b>profection timeline</b> and
@@ -32,16 +32,12 @@
     <a href="about/index.html">Sources &amp; Science</a>.</div>
 
   <form id="tj-form" class="calc">
-    <div class="field-row">
-      <div class="field" style="flex:1 1 200px"><label for="tj-city">Birth place (optional preset)</label><select id="tj-city"></select></div>
-      <div class="field"><label for="tj-lat">Birth Lat °N</label><input id="tj-lat" type="number" step="0.0001" style="width:7rem"></div>
-      <div class="field"><label for="tj-lon">Birth Lon °E</label><input id="tj-lon" type="number" step="0.0001" style="width:7rem"></div>
-    </div>
+    <div id="tj-picker"></div>
+    <!-- Legacy write-through: the moment-picker fills these hidden inputs by their historic ids. -->
+    <input type="hidden" id="tj-lat"><input type="hidden" id="tj-lon">
+    <input type="hidden" id="tj-date"><input type="hidden" id="tj-time"><input type="hidden" id="tj-offset">
     <div class="field-row" style="margin-top:.8rem">
       <div class="field"><label for="tj-name">Place name (optional)</label><input id="tj-name" type="text" placeholder="e.g. London, UK" style="width:12rem"></div>
-      <div class="field"><label for="tj-date">Birth date</label><input id="tj-date" type="date"></div>
-      <div class="field"><label for="tj-time">Time (local)</label><input id="tj-time" type="time"></div>
-      <div class="field"><label for="tj-offset">UTC offset</label><input id="tj-offset" type="number" step="0.5" style="width:6rem"></div>
       <div class="field"><label for="tj-system">Houses</label><select id="tj-system">
         <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
         <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
@@ -53,14 +49,13 @@
       <span id="tj-here-status" class="small muted" role="status" aria-live="polite"></span>
     </div>
     <div class="field-row" style="margin-top:.8rem">
-      <button type="submit" class="btn">Read the trajectory</button>
-      <button type="button" class="btn-secondary sm" id="tj-copy">Copy shareable link</button>
-      <button type="button" class="btn-secondary sm" id="tj-print">Print</button>
+      <button type="submit" class="btn">Compute the trajectory</button>
       <span id="tj-copy-status" class="small muted" role="status" aria-live="polite"></span>
     </div>
     <p class="small muted" style="margin:.5rem 0 0">The reading place defaults to the birth place. It is used only for
       the "best vs least advised right now" Picatrix election; nothing about your location leaves this page.</p>
   </form>
+  <div id="tj-actionbar"></div>
 
   <p id="tj-summary" style="margin:1.1rem 0 .3rem;font-size:1.05rem" role="status" aria-live="polite"></p>
 

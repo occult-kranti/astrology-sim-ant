@@ -1722,5 +1722,22 @@ import { timeScale as cfTimeScale, layoutConfluence as cfLayout, filterEntries a
     'Confluence: confluenceStats totals match the raw entry/edge/lane/cross-lane counts');
 }
 
+// --- UI3 round: the six builders' test modules (integrator-wired) -----------
+// Each exports async run() -> {pass, failures[]}; we surface each as one check
+// and print the first failures so a regression is diagnosable from the log.
+// Each module installs its own DOM/rAF mocks and motion.js caches motionOK() at
+// module scope — so running them in one process, a leaked window/matchMedia from
+// one poisons another's headless assertions. They are green standalone; run each
+// in an isolated child process (the same environment as their standalone smoke).
+import { execFileSync } from 'node:child_process';
+for (const modName of ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas']) {
+  const child = `import('./scripts/tests/${modName}.mjs').then(m=>m.run()).then(r=>{if(!r.pass){console.error(JSON.stringify((r.failures||[]).slice(0,8)));process.exit(1)}process.exit(0)}).catch(e=>{console.error(JSON.stringify([e.message]));process.exit(1)})`;
+  let res = { pass: true, failures: [] };
+  try { execFileSync(process.execPath, ['--input-type=module', '-e', child], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] }); }
+  catch (e) { let fs2 = []; try { fs2 = JSON.parse(String(e.stderr || '').trim().split('\n').pop()); } catch { fs2 = [String(e.stderr || e.message).slice(0, 120)]; } res = { pass: false, failures: fs2 }; }
+  ok(res.pass, `${modName}: ${res.pass ? 'PASS' : res.failures.length + ' failure(s)'}`);
+  if (!res.pass) for (const f of res.failures.slice(0, 8)) console.log('    · ' + f);
+}
+
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
 process.exit(fails ? 1 : 0);

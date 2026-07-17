@@ -148,9 +148,12 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
   const houseNumFs = Math.max(9, size * 0.0204).toFixed(1);
   const angleFs = Math.max(8, size * 0.0185).toFixed(1);
 
+  // Dynamic root aria-label (D4): names the ascendant, counts, and the affordance.
+  const nPlanets = Object.keys(chart.planets || {}).filter(n => chart.planets[n]).length;
+  const rootLabel = `Chart wheel: ${signOf(chart.asc).name} rising; ${nPlanets} planets, ${aspects.length} aspects. Interactive — planets are buttons.`;
   const svg = el('svg', {
     viewBox: `0 0 ${size} ${size}`, class: 'chart-wheel', role: 'img',
-    'data-density': density, 'aria-label': 'Astrological chart wheel'
+    'data-density': density, 'aria-label': rootLabel
   });
   svg.style.width = '100%'; svg.style.maxWidth = size + 'px'; svg.style.height = 'auto';
 
@@ -158,6 +161,13 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
   const style = el('style');
   style.textContent = WHEEL_STYLE;
   svg.appendChild(style);
+
+  // The rotor (D4): everything that turns under wheel-rotate lives here; the four
+  // ASC/MC/DSC/IC angle *labels* stay outside as the fixed cardinal frame. The
+  // group carries no transform, so the rendered figure is byte-identical at rest.
+  const rotor = el('g', { class: 'wheel-rotor', 'data-rot': '' });
+  svg.appendChild(rotor);
+  const paint = node => rotor.appendChild(node);
 
   // small arc helper: sampled points of the short arc between two longitudes
   const arcPts = (lonA, lonB, r) => {
@@ -170,14 +180,14 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
   const ptsAttr = arr => arr.map(([x, y]) => `${x.toFixed(2)},${y.toFixed(2)}`).join(' ');
 
   // --- concentric rings ---
-  for (const r of [rOuter, rZodInner, rHouse]) svg.appendChild(el('circle', { cx, cy, r, class: 'wheel-ring' }));
+  for (const r of [rOuter, rZodInner, rHouse]) paint(el('circle', { cx, cy, r, class: 'wheel-ring' }));
 
   // --- faint elemental wash per 30° wedge (orientation aid; hidden in print) ---
   for (let s = 0; s < 12; s++) {
     const lon = s * 30;
     const outerArc = arcPts(lon, lon + 30, rOuter);
     const innerArc = arcPts(lon + 30, lon, rZodInner);
-    svg.appendChild(el('polygon', {
+    paint(el('polygon', {
       points: ptsAttr(outerArc.concat(innerArc)),
       class: `elem-wash elem-${ELEMENTS[s % 4]}`, 'fill-opacity': '0.06'
     }));
@@ -191,7 +201,7 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
       const len = isTen ? 8 : isFive ? 5 : 2.5;
       const [x1, y1] = pt(d, ascLon, cx, cy, rZodInner);
       const [x2, y2] = pt(d, ascLon, cx, cy, rZodInner - len);
-      svg.appendChild(el('line', { x1, y1, x2, y2, class: `deg-tick${isTen ? ' t10' : isFive ? ' t5' : ''}` }));
+      paint(el('line', { x1, y1, x2, y2, class: `deg-tick${isTen ? ' t10' : isFive ? ' t5' : ''}` }));
     }
   }
 
@@ -200,14 +210,14 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
     const lon = s * 30;
     const [x1, y1] = pt(lon, ascLon, cx, cy, rZodInner);
     const [x2, y2] = pt(lon, ascLon, cx, cy, rOuter);
-    svg.appendChild(el('line', { x1, y1, x2, y2, class: 'sign-div' }));
+    paint(el('line', { x1, y1, x2, y2, class: 'sign-div' }));
     const [gx, gy] = pt(lon + 15, ascLon, cx, cy, (rZodInner + rOuter) / 2);
     const g = el('text', {
       x: gx, y: gy, class: `sign-glyph elem-${ELEMENTS[s % 4]}`, 'font-size': signFs,
       'text-anchor': 'middle', 'dominant-baseline': 'central'
     });
     g.textContent = SIGN_GLYPHS[s];
-    svg.appendChild(g);
+    paint(g);
   }
 
   // --- house cusps (lines now; numbers drawn later, atop the aspect lines) ---
@@ -217,7 +227,11 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
     const [x1, y1] = pt(lon, ascLon, cx, cy, rHouseNum);
     const [x2, y2] = pt(lon, ascLon, cx, cy, rHouse);
     const angular = (h === 1 || h === 4 || h === 7 || h === 10);
-    svg.appendChild(el('line', { x1, y1, x2, y2, class: angular ? 'cusp-angle' : 'cusp' }));
+    // cusp + a parallel 8px transparent hit-stroke, grouped & stamped (D4)
+    const cuspG = el('g', { class: 'cusp-group', 'data-el': `cusp-${h}` });
+    cuspG.appendChild(el('line', { x1, y1, x2, y2, class: 'cusp-hit', stroke: 'transparent', 'stroke-width': 8 }));
+    cuspG.appendChild(el('line', { x1, y1, x2, y2, class: angular ? 'cusp-angle' : 'cusp' }));
+    paint(cuspG);
     const next = chart.cusps[h === 12 ? 1 : h + 1];
     const mid = lon + norm360(next - lon) / 2;
     const [nx, ny] = pt(mid, ascLon, cx, cy, rHouseNum + 14);
@@ -225,7 +239,7 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
   }
 
   // --- faint aspect hub disc (sits under the crossing lines) ---
-  svg.appendChild(el('circle', { cx, cy, r: rHub, class: 'aspect-hub' }));
+  paint(el('circle', { cx, cy, r: rHub, class: 'aspect-hub' }));
 
   // --- planet display longitudes via the cluster fan ---
   const order = ['Saturn', 'Jupiter', 'Mars', 'Sun', 'Venus', 'Mercury', 'Moon', 'NorthNode', 'SouthNode', 'Fortune'];
@@ -240,17 +254,19 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
     if (a.aspect === 'Conjunction') {
       // a small arc bracket spanning the two glyphs' DISPLAY longitudes
       const la = fan.get(a.from) ?? pa.lon, lb = fan.get(a.to) ?? pb.lon;
-      aspectGroup.appendChild(el('polyline', { points: ptsAttr(arcPts(la, lb, rAspect)), class: 'asp-conj-bracket' }));
+      const cg = el('g', { class: 'asp-conj-group', 'data-el': `aspect-${a.from}-${a.to}-Conjunction`, 'data-pair': `${a.from},${a.to}` });
+      cg.appendChild(el('polyline', { points: ptsAttr(arcPts(la, lb, rAspect)), class: 'asp-conj-bracket' }));
       for (const lon of [la, lb]) { // bracket feet
         const [fx1, fy1] = pt(lon, ascLon, cx, cy, rAspect);
         const [fx2, fy2] = pt(lon, ascLon, cx, cy, rAspect + 5);
-        aspectGroup.appendChild(el('line', { x1: fx1, y1: fy1, x2: fx2, y2: fy2, class: 'asp-conj-bracket' }));
+        cg.appendChild(el('line', { x1: fx1, y1: fy1, x2: fx2, y2: fy2, class: 'asp-conj-bracket' }));
       }
+      aspectGroup.appendChild(cg);
       continue;
     }
     const [x1, y1] = pt(pa.lon, ascLon, cx, cy, rAspect);
     const [x2, y2] = pt(pb.lon, ascLon, cx, cy, rAspect);
-    const line = el('line', { x1, y1, x2, y2, class: `aspect-line ${ASPECT_CLASS[a.aspect] || ''} ${a.applying ? 'applying' : 'separating'}` });
+    const line = el('line', { x1, y1, x2, y2, class: `aspect-line ${ASPECT_CLASS[a.aspect] || ''} ${a.applying ? 'applying' : 'separating'}`, 'data-el': `aspect-${a.from}-${a.to}-${a.aspect}`, 'data-pair': `${a.from},${a.to}` });
     // width & opacity by tightness of the orb (inline → beats the stylesheet)
     const orb = typeof a.orb === 'number' ? a.orb : 3;
     const w = orb <= 1 ? 1.8 : orb <= 3 ? 1.2 : 0.8;
@@ -263,13 +279,13 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
       aspectGroup.appendChild(el('circle', { cx: (x1 + x2) / 2, cy: (y1 + y2) / 2, r: 2, class: 'aspect-dot' }));
     }
   }
-  svg.appendChild(aspectGroup);
+  paint(aspectGroup);
 
   // --- house numbers (on top of the aspect lines, so they stay legible) ---
   for (const [h, nx, ny] of houseNums) {
     const t = el('text', { x: nx, y: ny, class: 'house-num', 'font-size': houseNumFs, 'text-anchor': 'middle', 'dominant-baseline': 'central' });
     t.textContent = h;
-    svg.appendChild(t);
+    paint(t);
   }
 
   // --- angle marks (ASC / MC / DSC / IC): gold tick-triangle + small-caps label ---
@@ -278,8 +294,10 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
     const apex = pt(lon, ascLon, cx, cy, rOuter - 7);
     const bl = pt(lon - 1.4, ascLon, cx, cy, rOuter + 0.5);
     const br = pt(lon + 1.4, ascLon, cx, cy, rOuter + 0.5);
-    svg.appendChild(el('polygon', { points: ptsAttr([apex, bl, br]), class: 'angle-tri' }));
-    if (lbl === 'ASC') svg.appendChild(el('polyline', { points: ptsAttr(arcPts(lon - 2, lon + 2, rOuter)), class: 'asc-arc' }));
+    // triangles + arc rotate with the rotor; the labels stay outside as the
+    // fixed cardinal frame (D4: "ASC/MC labels stay outside").
+    paint(el('polygon', { points: ptsAttr([apex, bl, br]), class: 'angle-tri' }));
+    if (lbl === 'ASC') paint(el('polyline', { points: ptsAttr(arcPts(lon - 2, lon + 2, rOuter)), class: 'asc-arc' }));
     const [x, y] = pt(lon, ascLon, cx, cy, rOuter + 14);
     const t = el('text', { x, y, class: 'angle-label', 'font-size': angleFs, 'text-anchor': 'middle', 'dominant-baseline': 'central' });
     t.textContent = lbl;
@@ -297,10 +315,16 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
     const P1 = pt(p.lon, ascLon, cx, cy, rHouse);
     const P2 = pt(p.lon, ascLon, cx, cy, rPlanet - glyphR);
     const P3 = pt(dispLon, ascLon, cx, cy, rPlanet - glyphR);
-    svg.appendChild(el('polyline', { points: ptsAttr([P1, P2, P3]), class: 'planet-leader' }));
+    paint(el('polyline', { points: ptsAttr([P1, P2, P3]), class: 'planet-leader' }));
 
     const [x, y] = pt(dispLon, ascLon, cx, cy, rPlanet);
-    const g = el('g', { class: `planet ${PLANET_CLASS[name] || ''}` });
+    const sLbl = signOf(p.lon);
+    const g = el('g', {
+      class: `planet ${PLANET_CLASS[name] || ''}`,
+      'data-el': `planet-${name}`, 'data-lon': p.lon.toFixed(2),
+      tabindex: '0', role: 'button',
+      'aria-label': `${name} ${Math.floor(sLbl.degInSign)}° ${sLbl.name}${p.retrograde ? ', retrograde' : ''} — house ${p.house}`
+    });
     const glyph = el('text', { x, y, class: 'planet-glyph', 'font-size': isPoint ? pointFs : planetFs, 'text-anchor': 'middle', 'dominant-baseline': 'central' });
     glyph.textContent = PLANET_GLYPHS[name] || '?';
     g.appendChild(glyph);
@@ -319,7 +343,7 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
     const title = el('title');
     title.textContent = `${name} ${Math.floor(s.degInSign)}° ${s.name}${p.retrograde ? ' retrograde' : ''} — house ${p.house}`;
     g.appendChild(title);
-    svg.appendChild(g);
+    paint(g);
   }
 
   container.innerHTML = '';

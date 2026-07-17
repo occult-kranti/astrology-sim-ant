@@ -43,12 +43,17 @@ function chartFrom(prefix) {
   return castChart(date, lat, lon, 'regiomontanus');
 }
 
+const ENH = {}; let sbar = null;
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
+
 export function initSynastry() {
   for (const p of ['sa', 'sb']) {
     wireCitySelect($(p + '-city'), $(p + '-lat'), $(p + '-lon'), $(p + '-offset'));
     attachPersonPicker($(p + '-picker-anchor'), fieldsOf(p));
   }
-  $('sy-form').addEventListener('submit', e => { e.preventDefault(); compute(); });
+  $('sy-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
+  const swap = $('sy-swap'); if (swap) swap.addEventListener('click', () => { swapAB(); compute(); });
+  mountSynEnh();
 
   if ($('dv-assistant')) {
     initDivinationAssistant({
@@ -58,6 +63,30 @@ export function initSynastry() {
       copy: { emptyText: 'Compute a synastry grid for two charts above first.' },
     });
   }
+}
+
+async function mountSynEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.ab = await L('./action-bar.js'); ENH.gm = await L('../core/viz/grid-model.js');
+  try { const i = await L('./viz/inspect.js'); i && i.initInspect && i.initInspect(); } catch { /* */ }
+  if (ENH.ab && ENH.ab.mountActionBar && $('sy-actionbar')) {
+    try { sbar = ENH.ab.mountActionBar($('sy-actionbar'), { variant: 'tool', exports: [], askAI: () => { const a = $('dv-assistant'); if (a) { a.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto' }); const t = a.querySelector('textarea, input'); t && t.focus(); } }, summary: () => ({ verdict: '', text: 'Synastry grid computed.' }) }); } catch { sbar = null; }
+  }
+}
+
+// Swap-A↔B quiet button: transpose the two people's inputs (the grid is symmetric).
+function swapAB() {
+  for (const f of ['city', 'lat', 'lon', 'date', 'time', 'offset']) {
+    const a = $('sa-' + f), b = $('sb-' + f); if (!a || !b) continue;
+    const t = a.value; a.value = b.value; b.value = t;
+  }
+}
+
+function doCompute() {
+  const banner = null, btn = $('sy-form').querySelector('button[type="submit"]');
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf(btn, $('sy-status'), () => compute(), { firstPanel: $('sy-grid-card') }); return; } catch { /* */ } }
+  compute();
 }
 
 function compute() {
@@ -91,29 +120,80 @@ function compute() {
     citation: g.citation,
   };
   notifyReport();
+  try { sbar && sbar.show && sbar.show(); } catch { /* */ }
 }
 
 // --- the aspect grid (rows = A, cols = B) ------------------------------------
 function renderGrid(g) {
   const cols = g.cols;
-  const head = `<tr><th class="l">A ↓ / B →</th>${cols.map(c => `<th title="${esc(nice(c))} (B)">${G(c)}<br><span class="small">${esc(c.slice(0, 3))}</span></th>`).join('')}</tr>`;
+  const head = `<tr><th class="l">A ↓ / B →</th>${cols.map(c => `<th data-c="${esc(c)}" title="${esc(nice(c))} (B)">${G(c)}<br><span class="small">${esc(c.slice(0, 3))}</span></th>`).join('')}</tr>`;
+  const aspClass = a => /Conjunction/i.test(a) ? 'asp-conj' : /(Trine|Sextile)/i.test(a) ? 'asp-soft' : 'asp-hard';
+  const orbBand = o => o < 1 ? 'partile' : o <= 2 ? 'tight' : 'wide';
   const body = g.rows.map((r, i) => {
     const tds = g.cells[i].map(cell => {
       if (!cell) return '<td class="muted">·</td>';
       const lum = (cell.bodyA === 'Sun' || cell.bodyA === 'Moon') && (cell.bodyB === 'Sun' || cell.bodyB === 'Moon');
-      if (cell.wholeSignOnly) return `<td class="small muted" title="whole-sign ${esc(cell.wholeSign)} (out of orb)">(${esc(cell.wholeSign.slice(0, 3))})</td>`;
-      return `<td class="l small"${lum ? ` style="${HL}"` : ''} title="${esc(cell.bodyA)} ${esc(cell.aspect)} ${esc(cell.bodyB)} — orb ${Number(cell.orb).toFixed(2)}°, ${cell.applying ? 'applying' : 'separating'}${cell.wholeSign ? '; whole-sign ' + esc(cell.wholeSign) : ''}">
+      if (cell.wholeSignOnly) return `<td class="small muted" data-r="${esc(cell.bodyA)}" data-c="${esc(cell.bodyB)}" title="whole-sign ${esc(cell.wholeSign)} (out of orb)">(${esc(cell.wholeSign.slice(0, 3))})</td>`;
+      const cls = `grid-cell ${aspClass(cell.aspect)} orb-${orbBand(Number(cell.orb))}`;
+      return `<td class="l small ${cls}" data-el="cell-${esc(cell.bodyA)}-${esc(cell.bodyB)}" data-r="${esc(cell.bodyA)}" data-c="${esc(cell.bodyB)}" tabindex="0"${lum ? ` style="${HL}"` : ''} title="${esc(cell.bodyA)} ${esc(cell.aspect)} ${esc(cell.bodyB)} — orb ${Number(cell.orb).toFixed(2)}°, ${cell.applying ? 'applying' : 'separating'}${cell.wholeSign ? '; whole-sign ' + esc(cell.wholeSign) : ''}">
         ${esc(cell.glyph)}<br><span class="small">${Number(cell.orb).toFixed(1)}°${cell.applying ? '<b>a</b>' : 's'}</span></td>`;
     }).join('');
-    return `<tr><th class="l" title="${esc(nice(g.rows[i]))} (A)">${G(r)} ${esc(r.slice(0, 3))}</th>${tds}</tr>`;
+    return `<tr><th class="l" data-r="${esc(r)}" title="${esc(nice(g.rows[i]))} (A)">${G(r)} ${esc(r.slice(0, 3))}</th>${tds}</tr>`;
   }).join('');
   $('sy-grid').innerHTML = `
     <p class="small">Every aspect <b>between the two charts</b>: rows are <b>A</b>'s bodies, columns are <b>B</b>'s. Each
       cell is the aspect glyph and orb (<b>a</b> = applying, <b>s</b> = separating), Lilly's moieties. A
       <b>(sign)</b> cell is a whole-sign aspect that is out of degree-orb. <b>${g.counts.aspects}</b> aspects in orb.
-      Sun/Moon ↔ Sun/Moon cells are highlighted — the classical core (Ptolemy IV.5).</p>
-    <div class="table-scroll" tabindex="0" role="region" aria-label="Cross-aspect grid (scrollable)"><table class="data synastry-grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>
+      Sun/Moon ↔ Sun/Moon cells are highlighted — the classical core (Ptolemy IV.5).
+      <span class="muted">Hover or focus a cell to light its row &amp; column headers; arrow keys move between cells.</span></p>
+    <div class="table-scroll" data-fig-root tabindex="0" role="region" aria-label="Cross-aspect grid (scrollable)"><table class="data synastry-grid" role="grid" aria-label="Cross-aspect grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>
     <p class="small muted">${esc(g.orbNote)}</p>`;
+  wireGridRoving($('sy-grid').querySelector('table.synastry-grid'));
+}
+
+// Roving-tabindex keyboard navigation over the aspect cells: exactly one cell is
+// tab-reachable (tabindex 0), the rest are -1; arrow keys move focus cell-to-cell
+// (row for ←/→, column for ↑/↓), Home/End jump to the first/last cell. The cells
+// carry data-r/data-c so inspect.js cross-highlights the row & column headers.
+// [ui3-spec §10.2 synastry: arrow-key roving; a11y matrix #9]
+function wireGridRoving(table) {
+  if (!table) return;
+  const cells = [...table.querySelectorAll('td[data-el^="cell-"]')];
+  if (!cells.length) return;
+  cells.forEach((c, i) => c.setAttribute('tabindex', i === 0 ? '0' : '-1'));
+  const focusCell = t => { if (!t) return; cells.forEach(c => c.setAttribute('tabindex', c === t ? '0' : '-1')); try { t.focus(); } catch { /* */ } };
+  const inRow = (cur, dir) => {
+    const tr = cur.parentElement, col = cur.cellIndex;
+    const sib = [...tr.querySelectorAll('td[data-el^="cell-"]')];
+    const here = sib.indexOf(cur);
+    return sib[here + dir] || null;
+  };
+  const inCol = (cur, dir) => {
+    const col = cur.cellIndex, tr = cur.parentElement, rows = [...tr.parentElement.children];
+    let ri = rows.indexOf(tr);
+    for (ri += dir; ri >= 0 && ri < rows.length; ri += dir) {
+      const cand = rows[ri].cells[col];
+      if (cand && cand.matches && cand.matches('td[data-el^="cell-"]')) return cand;
+    }
+    return null;
+  };
+  table.addEventListener('keydown', e => {
+    const cur = e.target.closest && e.target.closest('td[data-el^="cell-"]');
+    if (!cur || cells.indexOf(cur) < 0) return;
+    const i = cells.indexOf(cur);
+    let t = null;
+    switch (e.key) {
+      case 'ArrowRight': t = inRow(cur, 1) || cells[Math.min(i + 1, cells.length - 1)]; break;
+      case 'ArrowLeft': t = inRow(cur, -1) || cells[Math.max(i - 1, 0)]; break;
+      case 'ArrowDown': t = inCol(cur, 1) || cells[Math.min(i + 1, cells.length - 1)]; break;
+      case 'ArrowUp': t = inCol(cur, -1) || cells[Math.max(i - 1, 0)]; break;
+      case 'Home': t = cells[0]; break;
+      case 'End': t = cells[cells.length - 1]; break;
+      default: return;
+    }
+    e.preventDefault();
+    if (t && t !== cur) focusCell(t);
+  });
 }
 
 // --- the classical (Ptolemaic) core + the hit list ---------------------------

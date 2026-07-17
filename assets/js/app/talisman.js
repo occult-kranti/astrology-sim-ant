@@ -8,9 +8,11 @@
 import { castChart, formatLon, signOf, PLANET_GLYPHS } from '../core/astro.js';
 import { OPERATIONS } from '../core/election.js';
 import { talismanRecipe } from '../core/talisman.js';
-import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { toUTC, nowLocalFields } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
 let vedicUpdate = null;
+const ENH = {}; let bar = null, picker = null, lastVerdict = { verdict: '', text: '' };
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
 
 const $ = id => document.getElementById(id);
 const G = p => PLANET_GLYPHS[p] || p;
@@ -19,16 +21,37 @@ const VW = v => v === 'green' ? 'favourable' : v === 'amber' ? 'mixed' : 'unfavo
 // the election traffic-light → the promoted .verdict-banner triad (plan §1.3.9).
 const VB_CLASS = { green: 'ok', amber: 'warn', red: 'bad' };
 
-export function initTalisman() {
+export async function initTalisman() {
   $('t-op').innerHTML = OPERATIONS.map(o => `<option value="${esc(o.key)}">${esc(o.label)}</option>`).join('');
   try { const w = new URLSearchParams(location.search).get('op'); if (w && OPERATIONS.some(o => o.key === w)) $('t-op').value = w; } catch { /* */ }
   const n = nowLocalFields();
   $('t-date').value = n.date; $('t-time').value = n.time; $('t-offset').value = 0;
   $('t-lat').value = 51.5074; $('t-lon').value = -0.1278;
-  wireCitySelect($('t-city'), $('t-lat'), $('t-lon'), $('t-offset'));
-  $('t-now').addEventListener('click', () => { const f = nowLocalFields(); $('t-date').value = f.date; $('t-time').value = f.time; $('t-offset').value = f.offset; });
-  $('t-form').addEventListener('submit', e => { e.preventDefault(); build(); });
+  $('t-op').addEventListener('change', () => build());
+  $('t-form').addEventListener('submit', e => { e.preventDefault(); doBuild(); });
+  await mountEnh();
   build();
+}
+
+async function mountEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.mp = await L('./moment-picker.js'); ENH.ab = await L('./action-bar.js');
+  const ids = { lat: 't-lat', lon: 't-lon', date: 't-date', time: 't-time', offset: 't-offset' };
+  if (ENH.mp && ENH.mp.mountMomentPicker) { try { picker = ENH.mp.mountMomentPicker($('t-picker'), { mode: 'now', label: 'The moment & place', persist: 'wb', ids, onChange: () => build() }); } catch { pickerFallback('t-picker', ids); } } else pickerFallback('t-picker', ids);
+  if (ENH.ab && ENH.ab.mountActionBar) { try { bar = ENH.ab.mountActionBar($('t-actionbar'), { variant: 'tool', exports: [], askAI: null, summary: () => lastVerdict }); } catch { bar = null; } }
+}
+function doBuild() {
+  const btn = $('t-form').querySelector('button[type="submit"]');
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf(btn, null, () => build(), { firstPanel: $('t-steps') }); return; } catch { /* */ } }
+  build();
+}
+function pickerFallback(boxId, ids) {
+  const box = document.getElementById(boxId); if (!box || box.dataset.fb) return; box.dataset.fb = '1';
+  const M = { lat: ['number', 'Lat °N', '0.0001'], lon: ['number', 'Lon °E', '0.0001'], date: ['date', 'Date'], time: ['time', 'Time (local)'], offset: ['number', 'UTC offset', '0.5'] };
+  const row = document.createElement('div'); row.className = 'field-row';
+  for (const k of Object.keys(ids)) { const inp = $(ids[k]); if (!inp) continue; const [t, l, s] = M[k] || ['text', k]; inp.type = t; if (s) inp.step = s; inp.style.width = t === 'number' ? '7rem' : ''; const fd = document.createElement('div'); fd.className = 'field'; const lb = document.createElement('label'); lb.htmlFor = ids[k]; lb.textContent = l; fd.append(lb, inp); row.appendChild(fd); }
+  box.appendChild(row);
 }
 
 function build() {
@@ -73,8 +96,11 @@ function build() {
             <tr><th class="l">Fixed star</th><td class="l">${starTxt}</td></tr>
           </tbody>
         </table>
-        <p class="small"><button type="button" class="btn sm" onclick="window.print()">Print this recipe</button></p>
+        <p class="small"><button type="button" class="btn-secondary sm" onclick="window.print()">Print this recipe</button></p>
       </div>`;
+    lastVerdict = { verdict: VW(r.verdict), text: `${r.aim} — ${VW(r.verdict)}` };
+    try { picker && picker.commitRecent && picker.commitRecent(); } catch { /* */ }
+    try { bar && bar.show && bar.show(); } catch { /* */ }
   } catch (e) {
     $('t-card').innerHTML = `<p class="adv-bad">Could not build the recipe: ${esc(e.message)}</p>`;
   }

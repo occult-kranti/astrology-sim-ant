@@ -6,16 +6,18 @@
 //  no demonstrated predictive validity.
 // ============================================================================
 import { castChart, formatLon } from '../core/astro.js';
-import { OPERATIONS, electionScore, findNextElection } from '../core/election.js';
-import { wireCitySelect, toUTC, nowLocalFields } from './shared.js';
+import { OPERATIONS, electionScore, findNextElection, electionScoreDomain } from '../core/election.js';
+import { toUTC, nowLocalFields } from './shared.js';
 import { attachVedicPanel } from './vedic-panel.js';
 let vedicUpdate = null;
+const ENH = {}; let bar = null, picker = null, lastVerdict = { verdict: '', text: '' };
+const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-export function initElection() {
+export async function initElection() {
   // 1) populate the operation select from the engine's catalogue
   const opSel = $('e-op');
   opSel.innerHTML = OPERATIONS.map(o =>
@@ -30,25 +32,44 @@ export function initElection() {
   const n = nowLocalFields();
   $('e-date').value = n.date; $('e-time').value = n.time; $('e-offset').value = 0;
   $('e-lat').value = 51.5074; $('e-lon').value = -0.1278;
-  wireCitySelect($('e-city'), $('e-lat'), $('e-lon'), $('e-offset'),
-    { dateIn: $('e-date'), timeIn: $('e-time'), afterGeo: () => judge() });
 
-  // 3) Now button refills the moment fields
-  $('e-now').addEventListener('click', () => {
-    const f = nowLocalFields();
-    $('e-date').value = f.date; $('e-time').value = f.time; $('e-offset').value = f.offset;
-  });
-
-  $('e-form').addEventListener('submit', e => { e.preventDefault(); judge(); });
-  // Live update: changing the aim or house system re-judges at once (no need to
-  // press "Judge"), so the readout always matches the selected aim.
+  $('e-form').addEventListener('submit', e => { e.preventDefault(); doJudge(); });
+  // Live update: changing the aim or house system re-judges at once.
   $('e-op').addEventListener('change', () => judge());
   $('e-system').addEventListener('change', () => judge());
   const hb = $('e-heatmap-btn');
   if (hb) hb.addEventListener('click', () => renderHeatmap());
 
+  await mountEnh();
   // 4) auto-run once so the page is never empty
   judge();
+}
+
+async function mountEnh() {
+  const L = async p => { try { return await import(p); } catch { return null; } };
+  ENH.mp = await L('./moment-picker.js'); ENH.ab = await L('./action-bar.js'); ENH.sb = await L('../core/viz/score-bar.js');
+  const ids = { lat: 'e-lat', lon: 'e-lon', date: 'e-date', time: 'e-time', offset: 'e-offset' };
+  if (ENH.mp && ENH.mp.mountMomentPicker) {
+    // election: onChange re-judges live (the spec's live re-judge wiring).
+    try { picker = ENH.mp.mountMomentPicker($('e-picker'), { mode: 'now', label: 'The moment & place', persist: 'wb', ids, onChange: () => judge() }); }
+    catch { pickerFallback('e-picker', ids); }
+  } else pickerFallback('e-picker', ids);
+  if (ENH.ab && ENH.ab.mountActionBar) { try { bar = ENH.ab.mountActionBar($('e-actionbar'), { variant: 'tool', exports: [], askAI: null, summary: () => lastVerdict }); } catch { bar = null; } }
+}
+
+function doJudge() {
+  const btn = $('e-form').querySelector('button[type="submit"]');
+  const cf = ENH.ab && ENH.ab.computeFlow;
+  if (cf) { try { cf(btn, null, () => judge(), { banner: $('e-summary'), firstPanel: $('e-reasons-card') }); return; } catch { /* */ } }
+  judge();
+  try { const s = $('e-summary'); s.tabIndex = -1; s.focus({ preventScroll: true }); s.scrollIntoView({ block: 'start', behavior: motionOK() ? 'smooth' : 'auto' }); } catch { /* */ }
+}
+function pickerFallback(boxId, ids) {
+  const box = document.getElementById(boxId); if (!box || box.dataset.fb) return; box.dataset.fb = '1';
+  const M = { lat: ['number', 'Lat °N', '0.0001'], lon: ['number', 'Lon °E', '0.0001'], date: ['date', 'Date'], time: ['time', 'Time (local)'], offset: ['number', 'UTC offset', '0.5'] };
+  const row = document.createElement('div'); row.className = 'field-row';
+  for (const k of Object.keys(ids)) { const inp = $(ids[k]); if (!inp) continue; const [t, l, s] = M[k] || ['text', k]; inp.type = t; if (s) inp.step = s; inp.style.width = t === 'number' ? '7rem' : ''; const fd = document.createElement('div'); fd.className = 'field'; const lb = document.createElement('label'); lb.htmlFor = ids[k]; lb.textContent = l; fd.append(lb, inp); row.appendChild(fd); }
+  box.appendChild(row);
 }
 
 function judge() {
@@ -80,6 +101,10 @@ function judge() {
   renderDetail(e);
   renderReasons(e);
   renderWindows(op, when, lat, lon);
+
+  lastVerdict = { verdict: verdictWord(e.verdict), text: `${e.operation.label} — ${e.label}` };
+  try { picker && picker.commitRecent && picker.commitRecent(); } catch { /* */ }
+  try { bar && bar.show && bar.show(); } catch { /* */ }
 }
 
 // ---------------------------------------------------------------------------
@@ -93,7 +118,18 @@ function renderSummary(e) {
     `<span class="verdict ${esc(e.verdict)}">${esc(verdictWord(e.verdict))}</span>` +
     `<span class="vb-reason">for <b>${esc(e.operation.label)}</b> — ${esc(e.label)} ` +
     `<span class="small">(score ${esc(e.score)})</span></span>` +
-    `<a class="vb-link" href="#e-reasons-card">see the cited testimonies ↓</a>`;
+    `<a class="vb-link" href="#e-reasons-card">see the cited testimonies ↓</a>` +
+    electionBar(e);
+}
+
+// The verdict score on an anchored bar (domain = the engine's own weight span).
+function electionBar(e) {
+  try {
+    if (!(ENH.sb && ENH.sb.scoreBar && typeof electionScoreDomain === 'function')) return '';
+    const domain = electionScoreDomain();
+    const { svg } = ENH.sb.scoreBar({ value: e.score, domain, anchors: [{ v: 0, label: 'threshold' }], zero: 0, label: 'Election score', tone: e.verdict === 'green' ? 'ok' : e.verdict === 'red' ? 'bad' : null });
+    return `<span class="vb-bar" style="display:inline-block;vertical-align:middle;margin-left:.6rem">${svg}</span>`;
+  } catch { return ''; }
 }
 function summaryMessage(msg) {
   const el = $('e-summary');
