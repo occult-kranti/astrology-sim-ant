@@ -17,7 +17,7 @@ edition-cited. It claims **no predictive or operative validity for any of it**, 
 
 Its oldest promise is four words: **described, never prescribed.**
 
-**What changed on 2026-07-17.** Until that date the site read "described, never prescribed" as a blanket ban
+**What changed on 2026-07-30.** Until that date the site read "described, never prescribed" as a blanket ban
 on reproducing any operative text at all: no rite, no recipe, no charm was ever quoted in its own words, in
 any language, from any edition. That reading has been replaced with a bounded one:
 
@@ -35,9 +35,11 @@ a transmission argument that can actually be checked — and that the new limits
 and far more machine-checkable than the old rule ever was. A document that opens by denying it changed
 anything cannot be trusted about what it changed.
 
-**Document history.** Drafted and adopted 2026-07-17. Subjected to an adversarial review on 2026-07-30;
-twenty-two findings, nineteen applied as binding amendments, four of them shipping blockers (§10). This file
-is the post-audit text. The working papers behind it — the precedent survey, the harm analysis and the
+**Document history.** Drafted, adversarially reviewed and adopted 2026-07-30 — twenty-two findings, nineteen
+applied as binding amendments, four of them shipping blockers (§10). This file is the post-audit text. Two
+questions were left open for the maintainer and were both ruled on the same day: the adoption date is
+2026-07-30, and **§7.6 (removal on request) ships**, routed through the repository's public issue tracker on
+the terms recorded in that section. The working papers behind it — the precedent survey, the harm analysis and the
 enforcement map — are cited where they carry weight; nothing in them overrides anything here.
 
 **One thing to keep if everything else is negotiated away:** §2.4, the no-original-diffusion-claim rule.
@@ -975,6 +977,28 @@ in the same commit:**
 
 **Absent those, §7.6 is cut entirely.** A site with no door does not get credit for saying it would open one.
 
+**DECISION (maintainer, 2026-07-30): §7.6 SHIPS.** The door is the public issue tracker of the site's own
+repository — `github.com/occult-kranti/astrology-sim-ant` — linked from the About page and from every wing
+footer. That route was chosen over an email address for four reasons: it needs no new infrastructure on a
+static site; it is permanent and public; it leaves an **auditable record of the request and the response**,
+which is what §7.6 is worth having; and it does not require publishing a private individual's address.
+
+The honest limits, stated on the page rather than hidden:
+
+- **It requires a GitHub account**, which is a real barrier for exactly the people the clause exists to serve.
+  A request is therefore accepted **from anyone acting on a community's behalf** — an institution, an
+  archivist, a scholar, a lawyer, a family member. Standing is not gatekept, and no proof of authority is
+  demanded before takedown.
+- **There is no staffed desk.** One maintainer reads the tracker. Material comes down **on receipt** — the
+  moment the request is seen, before any assessment — and the request is acknowledged **within seven days**.
+  That is a good-faith commitment by one person, not a service-level agreement, and it is described as such.
+- **Removals are logged, not silently absorbed.** Each takedown is recorded as an ejection with its date and
+  reason. If material ever returns, the reason for its return is logged too. A removal that leaves no trace
+  is indistinguishable from a removal that never happened.
+
+Precondition 3 (the tests) remains binding: `R1`/`R2` must ship in the same commit as the route, or the clause
+is deleted rather than promised.
+
 **7.7 A note on the gate we did not invent.** *Mantroddhāra* — transmit the text complete, encode the
 operative key — is the traditions' own solution to this exact problem, arrived at long before anyone here
 thought about it. The site's mechanism is a weaker version of theirs, and it is worth naming the debt.
@@ -1371,6 +1395,15 @@ A published contact route for removal requests on the About page, reachable in o
 footer, with a stated acknowledgement window and the commitment that material comes down **while** a request
 is considered. *New pins **R1/R2**: the contact string exists on the About page and the footer link resolves.*
 **If this is not built, §7.6 is deleted from this document rather than shipped as an unfulfillable promise.**
+
+**Resolved 2026-07-30 — the route is the repository's public issue tracker**
+(`https://github.com/occult-kranti/astrology-sim-ant/issues`). The About page carries the §7.6 text with its
+three stated limits (a GitHub account is needed; requests are accepted from anyone acting on a community's
+behalf, with no proof of standing demanded before takedown; one maintainer, no staffed desk — takedown on
+receipt, acknowledgement within seven days). Every wing footer carries a one-click link to that section.
+Removals are appended to a public ejection log with date and reason, and any restoration is logged with its
+reason. `R1` asserts the contact URL string on the About page; `R2` asserts the footer link resolves to the
+About-page anchor from a wing page.
 
 ### §9.18 — What does **not** change
 
