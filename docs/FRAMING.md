@@ -528,8 +528,9 @@ checked is decorative. Therefore:
 
 **Harm note must state:** heavy-metal toxicity is documented and current — Saper et al., *JAMA* 292:23 (2004)
 and the 2008 internet-products follow-up; CDC *MMWR* 61(33) (2012), six lead-poisoning cases in pregnant women
-in New York City, one product at 1.2% lead by weight; a bhasma assaying 19,400 mg/kg lead and 1,430 mg/kg
-arsenic (*J Occup Med Toxicol* 8:26). And the correction the site currently gets wrong: cinnabar (HgS) is
+in New York City (blood lead 16–64 µg/dL) traced to ten oral Ayurvedic medications with lead concentrations
+as high as 2.4%, several of which also contained mercury or arsenic; a bhasma assaying 19,400 mg/kg lead and
+1,430 mg/kg arsenic (*J Occup Med Toxicol* 8:26). And the correction the site currently gets wrong: cinnabar (HgS) is
 **not** methylmercury — oral absorption is around 0.2%, against roughly 95% for methylmercury — but the
 alchemical **processing** is precisely what liberates the toxic species. **The process is the hazard vector,
 not the mineral.** That is a better warning and a better story than the one now on `pages/rasa.html` (§9.7).
@@ -1214,8 +1215,8 @@ better warning. **Replace the callout body with:**
     <i>Dream Pool Essays</i> (1088) warns that heat-transformed cinnabar becomes "deadly poison." Modern
     products carry the harm forward: <i>JAMA</i> 292:23 (2004) found detectable lead, mercury or arsenic in
     20% of Ayurvedic products sampled, with rasa-śāstra products far worse; CDC <i>MMWR</i> 61(33) (2012)
-    reports six lead-poisoning cases in pregnant women in New York City, one product measuring 1.2% lead by
-    weight. Everything here is the <b>historical</b>
+    reports six lead-poisoning cases in pregnant women in New York City, traced to ten oral medications with
+    lead concentrations as high as 2.4% by weight. Everything here is the <b>historical</b>
 ```
 *(…continuing into the existing sentence.)*
 

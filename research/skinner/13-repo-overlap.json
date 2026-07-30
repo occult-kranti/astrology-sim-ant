@@ -1,0 +1,171 @@
+{
+  "slice": "13-repo-overlap",
+  "subject": "Stephen Skinner (b. 1948, living person) — map of everything the repo already covers that his work touches",
+  "date": "2026-07-30",
+  "method": "Repo-internal search only (no external research in this slice). Every row cites the exact file:line where the overlap lives and the shipped page + anchor that the Skinner page should link to.",
+  "anchorMechanics": {
+    "libraryCards": "assets/js/app/library.js:94 — every practitioner card gets id `x-<slug(name)>`; practice headings get `p-<slug(practice)>` (library.js:144). Stable, safe deep-link targets.",
+    "greatworks": "assets/js/app/greatworks.js:139,165 — works get `gw-w-<workId>`, author sections `gw-a-<authorId>`. Stable targets.",
+    "opgraph": "assets/js/app/opgraph.js:273-303 — the URL hash on pages/opgraph.html is a FILTER serialization (c=,t=,g=,l=,w=,harm=,na=), NOT a node anchor. Node anchors `#ogn-<id>` exist only in the DOM after render; a URL like opgraph.html#ogn-gw:ars-notoria is harmless (decodeFilter ignores it) but scroll-to-node at load is not guaranteed. Link the page plainly and NAME the record.",
+    "confluenceAtlas": "pages/confluence.html#<slug>. Exactly 200 slugs exist in assets/js/core/data/confluence.js. Relevant live slugs: picatrix, event-picatrix-translation, splendor-solis, event-dee-angelic-conversations, de-occulta-philosophia, monas-hieroglyphica."
+  },
+  "rows": [
+    {
+      "id": "R1",
+      "topic": "Skinner's existing practitioner card (geomancy)",
+      "repoLocus": "assets/js/core/data/practitioners.js:1762-1778",
+      "linkTarget": "pages/library/esoteric.html#x-stephen-skinner",
+      "whatRepoHasNow": "A full library card: domain esoteric / practice Geomancy, tier 'respected', school 'Historian-practitioner; the art's Arabic-to-Latin transmission'. Works: Terrestrial Astrology: Divination by Geomancy (RKP, 1980); Geomancy in Theory and Practice (expanded reissue, Golden Hoard, 2011). Flag: 'Historian-practitioner (both roles).' Verified: Cambridge Core review (Medical History); AbeBooks (Golden Hoard 2011).",
+      "verdict": "LINK-TO",
+      "action": "The Skinner page treats this card as the site's prior record of him and links it. Secondary EXTEND (one line only): the card could gain a see-also link to the new Skinner page once it exists. Do NOT duplicate the geomancy-historian capsule on the Skinner page — summarise in a clause and point here."
+    },
+    {
+      "id": "R2",
+      "topic": "The geomancy tool wing (shield chart, figures, houses)",
+      "repoLocus": "pages/geomancy.html; assets/js/core/geomancy.js:197 (engine cite: Agrippa II.48-53, Pietro d'Abano, Greer); assets/js/core/data/geomantic-figures.js",
+      "linkTarget": "pages/geomancy.html",
+      "whatRepoHasNow": "A working cast-and-judge geomancy engine with 'described, never prescribed' framing. Its in-engine citations are Agrippa, pseudo-Pietro d'Abano and Greer — Skinner is NOT cited in the engine or page; his citation lives on the practitioner card (R1), which is the right place.",
+      "verdict": "LINK-TO",
+      "action": "Link when the Skinner page mentions Terrestrial Astrology's subject. The Skinner page must NOT re-explain the sixteen figures, the shield algebra, or the house method — the wing does this with its own citations. No EXTEND needed: the wing's method sources predate Skinner and the history framing is already anchored on his card."
+    },
+    {
+      "id": "R3",
+      "topic": "Ars Notoria — Skinner & Clark 2019 English edition already recorded",
+      "repoLocus": "assets/js/core/data/opgraph.js:1010 (gw:ars-notoria, editions cite: 'English: Skinner & Clark 2019 (Version A); Castle 2023'); research/opgraph/slices/12-solomonic-western.json:205 (bestEdition, same wording)",
+      "linkTarget": "pages/opgraph.html (record gw:ars-notoria; in-page anchor #ogn-gw:ars-notoria after render)",
+      "whatRepoHasNow": "The shipped operative graph already carries Skinner & Clark 2019 as one of the modern English editions of Ars Notoria Version A, alongside Veronese's SISMEL 2007 critical Latin edition, cite-only.",
+      "verdict": "LINK-TO",
+      "action": "The Skinner page's bibliography row for this edition points at the graph record. It must not re-describe the Ars Notoria's structure or its witness problems (the Turner-omits-the-notae finding) — the graph record and slice carry that."
+    },
+    {
+      "id": "R4",
+      "topic": "Hygromanteia — Skinner's ancestry position is already a held, unresolved contest",
+      "repoLocus": "assets/js/core/data/opgraph.js:1020 (gw:hygromanteia, contested block); research/opgraph/slices/12-solomonic-western.json:84-91",
+      "linkTarget": "pages/opgraph.html (record gw:hygromanteia)",
+      "whatRepoHasNow": "Position 1 holder is 'Marathakis (2011) and Skinner, Sourceworks series' — direct ancestry of the Key of Solomon; position 2 is the shared-tradition/diffusionist reading (Torijano; Peterson). Resolution: 'NOT RESOLVED. No unqualified TRANSMITS_TO edge is asserted' (edge E-CONTESTED-01).",
+      "verdict": "LINK-TO",
+      "action": "The Skinner page reports his ancestry thesis AS HIS POSITION and links the contest. It must NOT adjudicate — the graph's refusal to draw the edge IS the site's stance and the Skinner page inherits it."
+    },
+    {
+      "id": "R5",
+      "topic": "Sepher Raziel / Liber Salomonis — Karr & Skinner edition in research, absent from shipped data",
+      "repoLocus": "research/opgraph/slices/12-solomonic-western.json:345 (bestEdition: 'Don Karr & Stephen Skinner, Sepher Raziel: Liber Salomonis (Sourceworks of Ceremonial Magic 6)'); assets/js/core/data/opgraph.js:2655-2657 (only a STRUCK edge note re sefer-ha-razim; no Raziel work node shipped)",
+      "linkTarget": "none shipped — research layer only",
+      "whatRepoHasNow": "The research slice names the Karr & Skinner Sourceworks 6 edition as best edition for the 1564 English MS (Sloane 3846); the shipped graph has no Sepher Raziel work node (the ha-Razim->Raziel edge was struck under blocker B10).",
+      "verdict": "NEW",
+      "action": "The Skinner page may carry this edition fact (it is already repo-verified at slice level), cited to the slice. If a later round ships the Raziel node, the row converts to LINK-TO. Describe at procedure-TYPE level only; transcribe nothing."
+    },
+    {
+      "id": "R6",
+      "topic": "Pseudo-Agrippa Fourth Book — Skinner's 1978 facsimile-introduction dissent already reported as a named position",
+      "repoLocus": "assets/js/core/data/greatworks.js:622 (flag on work id 'fourth-book')",
+      "linkTarget": "pages/greatworks/agrippa.html#gw-w-fourth-book",
+      "whatRepoHasNow": "The flag reads: spurious per Weyer c. 1563, 'a verdict rarely questioned since. Thomas Willard has proposed Jacques Gohory (1520-1576) as author; Stephen Skinner's 1978 facsimile introduction dissents.' Positions with named holders, unadjudicated — exactly the living-person discipline.",
+      "verdict": "LINK-TO",
+      "action": "The Skinner page links this as the site's existing treatment of his dissent. It must NOT re-argue Fourth Book authorship; the greatworks flag is the site's worked example of provenance flagging and already does it."
+    },
+    {
+      "id": "R7",
+      "topic": "Dee's angelic diaries — no Skinner/Rankine edition recorded anywhere in the repo",
+      "repoLocus": "assets/js/core/data/greatworks.js:481-495 (dee-true-faithful), 497+ (dee-enochian); assets/js/core/data/opgraph.js:1013-1014 (gw:dee-compiled-manuals, gw:dee-spiritual-diaries — editions: Whitby 1982, Peterson cite-only, Casaubon 1659)",
+      "linkTarget": "pages/greatworks/dee.html#gw-w-dee-true-faithful and pages/opgraph.html (records gw:dee-spiritual-diaries / gw:dee-compiled-manuals); atlas: pages/confluence.html#event-dee-angelic-conversations",
+      "whatRepoHasNow": "Full coverage of what the diaries ARE (record vs compiled-manual split, Sloane 3188/3189/3191, Casaubon 1659, Whitby thesis). No Skinner or Skinner-Rankine Dee edition appears anywhere in the repo.",
+      "verdict": "EXTEND (conditional)",
+      "action": "IF a sibling Skinner slice verifies Skinner/Skinner-Rankine Dee volumes from publisher or library records, the opgraph Dee editions cite (or the greatworks edition line) could gain a cite-only mention. Until verified, the Skinner page carries the bibliography itself (as NEW) and links here for everything about the diaries — it must NOT re-explain the record-vs-manual distinction."
+    },
+    {
+      "id": "R8",
+      "topic": "Goetia / Dr Rudd material — the catalogue already rules 'Skinner/Rankine cite-only'",
+      "repoLocus": "docs/plans/r29/esoteric-libraries.md:456 (T12); assets/js/core/data/opgraph.js:1009 (gw:ars-goetia, editions: Peterson after Sloane 3825)",
+      "linkTarget": "pages/opgraph.html (record gw:ars-goetia); internal ruling docs/plans/r29/esoteric-libraries.md T12",
+      "whatRepoHasNow": "T12 rules: 'The Rudd 72-quinance zodiac column folds in as a FLAGGED modern-attribution column (Harleian 6482 MS PD; Skinner/Rankine cite-only; attributions contested across schools — flag, don't resolve).' The shipped Goetia record cites Peterson only and carries the Weyer(69)->Scot(-Pruflas)->Goetia(72,+4) stemma.",
+      "verdict": "LINK-TO (ruling) + EXTEND (deferred to the T12 build)",
+      "action": "The Skinner page inherits T12's ruling: any mention of the Rudd edition is cite-only, no seals, no attribution tables, contests flagged never resolved. When T12 ships, gw:ars-goetia or the explorer gains the Skinner/Rankine cite; the Skinner page should not pre-build any of T12."
+    },
+    {
+      "id": "R9",
+      "topic": "Key of Solomon — history fully covered; no Skinner-Rankine edition recorded",
+      "repoLocus": "assets/js/core/data/opgraph.js:1021 (gw:key-of-solomon — Peterson collated digital edition, Mathers recension critique)",
+      "linkTarget": "pages/opgraph.html (record gw:key-of-solomon)",
+      "whatRepoHasNow": "Recension history, witness dates, Mathers's MS choices, six-stage completeness anchor. No Skinner-Rankine edition cited.",
+      "verdict": "EXTEND (conditional)",
+      "action": "Same rule as R7: only if a sibling slice verifies a Skinner-Rankine Key of Solomon edition does the editions cite gain a cite-only line. The Skinner page must NOT re-tell KOS recension history — the graph record is the authority."
+    },
+    {
+      "id": "R10",
+      "topic": "Splendor Solis 2019 study edition — already recorded with Skinner named",
+      "repoLocus": "assets/js/core/data/practitioners.js:2207-2209 ('Splendor Solis (study edition: Skinner, Prinke, Hedesan, Godwin)', Watkins 2019; verified ISBN 9781786782052)",
+      "linkTarget": "pages/library/esoteric.html#x-the-alchemical-classics; atlas: pages/confluence.html#splendor-solis",
+      "whatRepoHasNow": "The alchemical-classics library card lists the 2019 Watkins study edition with Skinner among four named contributors, ISBN-verified; the atlas has a splendor-solis entry.",
+      "verdict": "LINK-TO",
+      "action": "The Skinner page bibliography row links both targets; it must not re-describe the Splendor Solis or its alchemy context (library card + chronology/alchemy wing own that)."
+    },
+    {
+      "id": "R11",
+      "topic": "Picatrix wing — context only, zero Skinner presence",
+      "repoLocus": "pages/picatrix/*.html; assets/js/core/data/opgraph.js:1024 (gw:picatrix — Pingree 1986, Attrell & Porreca 2019)",
+      "linkTarget": "pages/picatrix/index.html; atlas: pages/confluence.html#picatrix and #event-picatrix-translation",
+      "whatRepoHasNow": "A full Picatrix wing (mansions, faces, stars, kameas, elections, prayers, correspondences) and a graded graph record. Skinner appears nowhere in it.",
+      "verdict": "LINK-TO",
+      "action": "If the Skinner page mentions astral-magic or correspondence-table context at all, one link suffices. It must NOT re-explain Picatrix content, and per the operative razor must not reproduce any correspondence tables of its own."
+    },
+    {
+      "id": "R12",
+      "topic": "What a grimoire is / the grimoire chronology",
+      "repoLocus": "assets/js/core/data/glossary.js:200 (term 'Grimoire'); assets/js/core/data/chronology.js:178-183 ('The grimoire tradition takes shape', cite Owen Davies 2009)",
+      "linkTarget": "pages/glossary.html and pages/chronology/index.html",
+      "whatRepoHasNow": "A glossary definition and a documented-label chronology entry covering the Sworn Book / Key of Solomon / Lemegeton manuscript tradition, cited to Davies.",
+      "verdict": "LINK-TO",
+      "action": "The Skinner page must not define 'grimoire' or re-narrate the manuscript-to-print history; link these instead."
+    },
+    {
+      "id": "R13",
+      "topic": "Feng shui and the 'geomancy' homonym — no repo wing exists",
+      "repoLocus": "research/rank/32-discourse-snapshot-notes.md:154-156 ('geomancy' flagged homonym-diluted: the Wikipedia-scope term includes feng shui; the Arabic-Latin sixteen-figure art is a subsection)",
+      "linkTarget": "none shipped (research note only); pages/geomancy.html for the Western art",
+      "whatRepoHasNow": "Feng shui appears in the repo ONLY as a homonym-dilution warning in a research note. There is no feng shui wing, page or practitioner card.",
+      "verdict": "NEW",
+      "action": "Skinner's feng shui corpus (a major part of his output) has no repo home — the Skinner page carries it, and should reuse the homonym disambiguation: 'geomancy' on this site means the Western sixteen-figure art (link pages/geomancy.html); feng shui is a distinct practice."
+    },
+    {
+      "id": "R14",
+      "topic": "Crowley wing — no diaries record, no Skinner",
+      "repoLocus": "assets/js/core/data/greatworks.js:309-440 (author 'crowley': 777, Liber AL, Book 4, MTP, Book of Thoth)",
+      "linkTarget": "pages/greatworks/crowley.html#gw-a-crowley",
+      "whatRepoHasNow": "Five Crowley works with edition/PD discipline. No diaries entry of any kind, hence no place a Skinner-edited diaries citation currently fits.",
+      "verdict": "NEW",
+      "action": "Any verified Skinner-edited Crowley-diaries material (sibling slices to verify) lives on the Skinner page, which links the wing for who Crowley is and what the site covers of him. EXTEND only becomes possible if the wing ever gains a diaries record — do not add one for Skinner's sake."
+    },
+    {
+      "id": "R15",
+      "topic": "PGM / Greco-Egyptian records — no Skinner citation, and none should be added",
+      "repoLocus": "assets/js/core/data/opgraph.js:1000-1003 (gem:pgm-* records; slice 11 sources are GEMF/Preisendanz-tier)",
+      "linkTarget": "pages/opgraph.html (gem:pgm-* records)",
+      "whatRepoHasNow": "PGM work and segment records graded on scholarly editions. Skinner appears nowhere in slice 11 or its shipped nodes.",
+      "verdict": "LINK-TO",
+      "action": "If sibling slices verify a Skinner volume on Graeco-Egyptian technique, it belongs in the Skinner page's OWN bibliography (NEW there), not in the PGM records' editions fields — the slice's sourceTier discipline holds those to critical-edition scholarship. Link the graph records for what the PGM is."
+    }
+  ],
+  "checkedClean": [
+    "pages/compare.html + assets/js/core/data/competitors.js — site-vs-landscape survey; the only geomancy content is a web-tools comparison card; no Skinner overlap, no row needed.",
+    "assets/js/core/data/confluence.js — zero Skinner mentions across all 200 atlas entries.",
+    "pages/tarot.html, pages/iching.html, pages/runes.html — no Skinner-relevant content.",
+    "docs/FRAMING.md and research/opgraph/gate.json — no Skinner mentions.",
+    "research/opgraph/notes/12-solomonic-western-notes.md — 'Sworn Book' appears only in a procedure-vocabulary note; no Skinner."
+  ],
+  "mustNotReExplain": [
+    "Geomantic method, the sixteen figures, shield algebra, house judgement (pages/geomancy.html + core data own it).",
+    "Solomonic textual histories — KOS recensions, Lemegeton stemma, Ars Notoria witness problems, Hygromanteia ancestry contest (opgraph records own them; the contests stay unresolved).",
+    "Fourth Book authorship (greatworks agrippa flag is the site's worked example; link, never re-argue).",
+    "What a grimoire is / grimoire chronology (glossary + chronology, cited to Davies).",
+    "Picatrix content and correspondence tables (Picatrix wing; operative razor forbids table reproduction anyway).",
+    "Dee's diaries structure — record vs compiled manual, Sloane shelfmarks (greatworks dee + opgraph split nodes).",
+    "Splendor Solis / alchemy background (library esoteric card + chronology/alchemy wing)."
+  ],
+  "risks": [
+    "DANGLING ATLAS LINKS (pre-existing repo defect, found incidentally): opgraph.js atlasSlug values for the Solomonic works do not exist in confluence.js — key-of-solomon, lemegeton, liber-juratus, abramelin, arbatel, heptameron-print, scot-discoverie, steganographia, weyer-pseudomonarchia, sefer-ha-razim all dangle, and gw:agrippa-three-books uses 'agrippa-occulta-philosophia' where the atlas slug is 'de-occulta-philosophia' (slug mismatch). The opgraph drawer renders confluence.html#<slug> links for these (app/opgraph.js:688) that scroll nowhere. The Skinner page must NOT copy atlasSlug values as link targets — link pages/opgraph.html and name records instead.",
+    "opgraph.html deep-linking: the hash is a filter serialization, so #ogn-<id> URLs are not guaranteed to scroll; treat node links as page-plus-named-record.",
+    "Two rows (R7, R9) are EXTEND only on condition that sibling slices verify the editions from publisher/library records — this slice deliberately asserts no external bibliography.",
+    "Living-person discipline: every repo record touching Skinner already conforms (positions with named holders, cite-only, verified fields); the Skinner page must keep that bar, and the two existing characterisations ('historian-practitioner', 'respected' tier) are the site's own editorial tiers, sourced at card level — reuse by link, not by restatement."
+  ]
+}

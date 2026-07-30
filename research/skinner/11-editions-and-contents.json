@@ -1,0 +1,590 @@
+{
+  "slice": "11-editions-and-contents",
+  "subject": "Stephen Skinner (b. 1948) — the grimoire editions and what they contain",
+  "compiled": "2026-07-30",
+  "discipline": {
+    "livingPerson": true,
+    "quoteSafe": false,
+    "operativeRazor": "Contents are described at procedure-TYPE / structural-anatomy / completeness level only. No operative text, no formulae, no divine-name strings, no drawable templates, no substance lists with quantities are transcribed anywhere in this file.",
+    "provenanceClasses": [
+      "library-catalogue (Wellcome Collection / WorldCat / Stanford SearchWorks records — strongest class: these transcribe the books' own title pages, which name the shelfmarks)",
+      "publisher-or-self-reported (sskinner.com, Golden Hoard blurbs, Amazon/Llewellyn copy — labelled as such throughout)",
+      "bookseller-listing (Weiser Antiquarian, Biblio, AbeBooks — transcribe title pages, intermediate reliability)",
+      "independent-review (Dan Harms, Esoteric Book Review, Preternature — the only class that supports reception claims)"
+    ],
+    "note": "Skinner's edition titles themselves are unusually checkable: Golden Hoard title pages conventionally name the exact shelfmarks transcribed. Library catalogue records reproduce those title pages, so most shelfmark claims below carry catalogue-level provenance."
+  },
+  "series": {
+    "name": "Sourceworks of Ceremonial Magic (SWCM)",
+    "publisher": "Golden Hoard Press (Skinner's own imprint; some volumes co-published/reissued by Llewellyn in the US)",
+    "publisherRelationship": "Self-published in the sense that Skinner founded Golden Hoard Press; this is a provenance fact about the editions, not a characterisation. Source: Wikipedia (en.wikipedia.org/wiki/Stephen_Skinner_(author)); sskinner.com.",
+    "phases": [
+      "Vols 1–6 (2004–2010) with David Rankine",
+      "Vols 7–8 (2011) with Don Karr (ed.) and Ioannis Marathakis (trans.), Skinner as series editor/foreword",
+      "Vol 9 (2018) with Rankine again",
+      "Vols 10–18 (2019–2026) with Daniel Clark"
+    ],
+    "numberingProblems": "See unresolved[]. The volume numbers are not consistently reported: sskinner.com's own bibliography assigns 'SWCM Vol. 4' both to the Psellus reissue and (via other listings) the Veritable Key; Antipalus Maleficiorum is 'Vol. 14' on sskinner.com and 'Vol. XV' on an Amazon listing; Summa Sacre Magice Books 1–2 is 'Vol. XV' on sskinner.com while Books 3–4 is 'Vol. 18'. Numbers below follow the preponderance of catalogue/bookseller evidence and each conflict is flagged in-record."
+  },
+  "editions": [
+    {
+      "id": "swcm-01-practical-angel-magic",
+      "seriesVolume": 1,
+      "title": "The Practical Angel Magic of Dr John Dee's Enochian Tables (Tabularum Bonorum Angelorum Invocationes)",
+      "editors": ["Stephen Skinner", "David Rankine"],
+      "publisher": "Golden Hoard Press",
+      "year": 2004,
+      "isbn": ["978-0-9547639-0-9 (Golden Hoard)", "978-0-7387-2351-8 (Llewellyn reissue)"],
+      "manuscripts": [
+        { "shelfmark": "British Library, Sloane MS 307", "role": "witness of Tabula Bonorum Angelorum Invocationes", "provenance": "library-catalogue (Wellcome Collection record dybm955y transcribing the title page)" },
+        { "shelfmark": "British Library, Sloane MS 3821", "role": "witness", "provenance": "library-catalogue (same record)" },
+        { "shelfmark": "Bodleian Library, MS Rawlinson D.1067", "role": "witness", "provenance": "library-catalogue (same record)" },
+        { "shelfmark": "Bodleian Library, MS Rawlinson D.1363", "role": "witness", "provenance": "library-catalogue (same record)" }
+      ],
+      "textEdited": "Tabula Bonorum Angelorum Invocationes — a seventeenth-century working system of invocations of the 'good angels' derived from John Dee's Enochian tables, previously unpublished.",
+      "operativeContents": {
+        "procedureTypes": ["invocation-of-angels (orations addressed to table-derived angels)", "name-derivation-from-tables (angel names extracted from Dee's tables of good angels)", "spirit-catalogue (ranked angel lists keyed to the tables)"],
+        "structuralAnatomy": "Sequences of orations/invocations organised by angelic rank and table position; a devotional-petitionary structure rather than a constraining evocation structure. Described at type level only.",
+        "completeness": "Marketed as a 'complete transcription' of the text across the four witnesses (title-page claim, catalogue-transcribed). The claim that only a fragment of this material reached the Golden Dawn and was 'suppressed' from Regardie's corpus is the editors' own framing (publisher copy) — self-reported, not independently verified here."
+      },
+      "relationToPriorEditions": [
+        "The text itself had no prior printed edition (title-page claim: 'previously unpublished manuscripts').",
+        "Adjacent corpus, not the same text: Dee's own angelic diaries were printed by Casaubon (A True & Faithful Relation, 1659) and Dee's Five Books of Mystery (BL Sloane 3188) edited by Joseph Peterson (2003). Skinner–Rankine's text is the later seventeenth-century practical redaction built on Dee's tables, which neither of those prints."
+      ],
+      "contested": [],
+      "sources": [
+        "https://wellcomecollection.org/works/dybm955y",
+        "https://www.amazon.com/Practical-Angel-Magic-Enochian-Tables/dp/0954763904",
+        "https://www.amazon.com/Practical-Angel-Magic-Enochian-Tables/dp/0738723517"
+      ]
+    },
+    {
+      "id": "swcm-02-keys-to-the-gateway",
+      "seriesVolume": 2,
+      "title": "The Keys to the Gateway of Magic: Summoning the Solomonic Archangels & Demon Princes",
+      "editors": ["Stephen Skinner", "David Rankine"],
+      "publisher": "Golden Hoard Press",
+      "year": 2005,
+      "isbn": ["978-0-9547639-1-6"],
+      "manuscripts": [
+        { "shelfmark": "British Library, Sloane MS 3825", "role": "primary transcription source (earliest witness; a review dates it early-to-mid 17th century); contains Janua Magica Reserata, the Nine Celestial Keys, and (in a different hand) a Tenth Key", "provenance": "library-catalogue (Wellcome record dnyxk7rj; WorldCat 636693298) + bookseller title-page transcription" },
+        { "shelfmark": "British Library, Harley MS 6482", "role": "second main witness (a Peter Smart copy, c. 1712–14, attributed to Dr Thomas Rudd)", "provenance": "library-catalogue (same records)" },
+        { "shelfmark": "British Library, Sloane MS 3821", "role": "pertinent discourses", "provenance": "library-catalogue" },
+        { "shelfmark": "British Library, Sloane MS 3824", "role": "pertinent discourses", "provenance": "library-catalogue" },
+        { "shelfmark": "British Library, Sloane MS 3628", "role": "pertinent discourses", "provenance": "library-catalogue" },
+        { "shelfmark": "Bodleian Library, MS Rawlinson D.1363", "role": "pertinent discourses", "provenance": "library-catalogue" }
+      ],
+      "textEdited": "Janua Magica Reserata ('The Magical Door Set Open'); Dr Rudd's Nine Hierarchies of Angels / Nine Celestial Keys; The Demon Princes.",
+      "operativeContents": {
+        "procedureTypes": ["theological-preamble/treatise (Janua's discursive doctrine of divine names and angelic hierarchies)", "invocation-of-angels (nine graded 'Keys', one per angelic order)", "evocation-of-demon-princes (conjurations of the demon princes as a distinct set)", "hierarchy-catalogue (orders of angels and their offices)"],
+        "structuralAnatomy": "Doctrinal treatise followed by a graded sequence of address-forms: each Key invokes one order of the celestial hierarchy; the demonic material mirrors the angelic structure. Type-level description only.",
+        "completeness": "Marketed as 'the complete unabridged version with variants' of the Nine Great Keys (bookseller/publisher claim transcribing the edition's framing)."
+      },
+      "relationToPriorEditions": ["No prior printed edition of Janua Magica Reserata or the Nine Keys is claimed or known to this slice; the edition's value-claim is first publication from manuscript."],
+      "contested": [
+        { "question": "Attribution of the 'Dr Rudd' material to the historical Thomas Rudd (d. 1656)", "positions": ["Skinner–Rankine present the material under Rudd's name as an early-17th-century corpus (edition framing)", "The surviving witnesses in Harley 6482–6486 are Peter Smart copies dated c. 1712, i.e. half a century after Rudd's death; the attribution rests on Smart's ascription (British Library dating; discussion summarised at esotericarchives.com/solomon/lemegeton.htm)"] }
+      ],
+      "sources": [
+        "https://wellcomecollection.org/works/dnyxk7rj",
+        "https://search.worldcat.org/title/636693298",
+        "https://biblio.co.uk/book/keys-gateway-magic-summoning-solomonic-archangels/d/1109155888"
+      ]
+    },
+    {
+      "id": "swcm-03-goetia-of-dr-rudd",
+      "seriesVolume": 3,
+      "title": "The Goetia of Dr Rudd: The Angels & Demons of Liber Malorum Spirituum seu Goetia (Lemegeton Clavicula Salomonis)",
+      "editors": ["Stephen Skinner", "David Rankine"],
+      "publisher": "Golden Hoard Press",
+      "year": 2007,
+      "isbn": ["978-0-9547639-2-3"],
+      "manuscripts": [
+        { "shelfmark": "British Library, Harley MS 6483", "role": "primary source — Dr Rudd's Lemegeton (Liber Malorum Spirituum seu Goetia, Theurgia-Goetia, Ars Paulina, Ars Almadel); BL dates the MS c. 1712, a Peter Smart copy", "provenance": "library-catalogue (WorldCat 637468388 transcribing title page) + bookseller listings" },
+        { "shelfmark": "British Library, Harley MS 6482", "role": "pertinent extracts", "provenance": "library-catalogue (same)" },
+        { "shelfmark": "British Library, Sloane MS 3824", "role": "pertinent extracts", "provenance": "library-catalogue (same)" },
+        { "shelfmark": "Wellcome Library, MS 3203", "role": "pertinent extracts", "provenance": "library-catalogue (same)" }
+      ],
+      "textEdited": "The four operative books of the Lemegeton in the 'Rudd' recension: Goetia, Theurgia-Goetia, Ars Paulina, Ars Almadel — with the distinguishing feature that the 72 Shem ha-Mephorash angels are paired against the 72 Goetic spirits as controlling counterparts.",
+      "operativeContents": {
+        "procedureTypes": ["spirit-catalogue (72 demons with seals and offices; directional spirit lists in Theurgia-Goetia; planetary-hour and zodiacal angel catalogues in Ars Paulina)", "evocation (constraining conjuration sequences)", "circle-construction (protective apparatus described in the tradition)", "consecration-of-instruments", "angelic-counter-control (the Shem angel pairing — the recension's signature structural feature)", "wax-tablet angel invocation (Ars Almadel's apparatus-based angelic working)"],
+        "structuralAnatomy": "Catalogue-plus-procedure form typical of the Lemegeton: an apparatus section (circle, instruments, seals), a graded series of conjuration formulae of escalating constraint, spirit catalogue entries giving rank/office/appearance, and closing dismissal. The Rudd recension interposes an angelic control layer over the demonic catalogue. Type-level description only.",
+        "completeness": "Covers four of the five books usually counted in the Lemegeton; the Ars Notoria is not part of this edition (Skinner later edited it separately as SWCM 11–12). The editors also claim to trace the component parts further back than prior editors (publisher/reviewer framing)."
+      },
+      "relationToPriorEditions": [
+        "Mathers–Crowley, The Goetia (1904): first book only, based on British Library Sloane manuscripts; no Shem-angel pairing. Skinner–Rankine's edition covers four books and a different witness.",
+        "Joseph H. Peterson, The Lesser Key of Solomon (Weiser, 2001): critical edition using Sloane MS 3825 (possibly 1641) as prime text, treating Harley 6483 as a late derivative witness. Skinner–Rankine deliberately edit the witness Peterson set aside, arguing the Rudd recension preserves an angel-magic context the Sloane line lacks.",
+        "The disagreement between the two editions is a genuine recension dispute: which witness family best represents the tradition (Peterson: earlier Sloane MSS; Skinner–Rankine: the Harley 'Rudd' line with its Shem-angel apparatus)."
+      ],
+      "contested": [
+        { "question": "Is Harley 6483 evidence of a 17th-century practice by Thomas Rudd, or an early-18th-century compilation under his name?", "positions": ["Skinner–Rankine: the text represents Dr Rudd's 17th-century angel-magic tradition (edition title and framing)", "Harleian Library dating and the Peter Smart copying context (c. 1712) place the physical witness ~56 years after Rudd's death; Peterson and others treat the attribution as Smart's (esotericarchives.com/solomon/lemegeton.htm)"] }
+      ],
+      "sources": [
+        "https://search.worldcat.org/title/637468388",
+        "https://www.biblio.com/book/goetia-dr-rudd-angels-demons-liber/d/1583445676",
+        "https://www.esotericarchives.com/solomon/lemegeton.htm",
+        "https://esotericbookreview.wordpress.com/2008/05/01/the-goetia-of-dr-rudd-by-stephen-skinner-david-rankine/"
+      ]
+    },
+    {
+      "id": "swcm-04-veritable-key-of-solomon",
+      "seriesVolume": 4,
+      "title": "The Veritable Key of Solomon: Three Different Texts from Those Translated by S.L. MacGregor Mathers",
+      "editors": ["Stephen Skinner", "David Rankine"],
+      "translator": "Paul Harry Barron (from the French)",
+      "publisher": "Golden Hoard Press (limited ed. 2008); Llewellyn (2008/2010 trade)",
+      "year": 2008,
+      "isbn": ["978-0-9547639-8-5 (Golden Hoard)", "978-0-7387-1453-0 (Llewellyn)"],
+      "manuscripts": [
+        { "shelfmark": "Wellcome Library, MS 4669", "role": "primary — French Key of Solomon copied 1796 by J. S. Fyot; the 'Morissoneau' French-from-Hebrew claim is the manuscript's own", "provenance": "library-catalogue (Stanford SearchWorks 13752883 transcribing title page; Wellcome record qcxnb9nj)" },
+        { "shelfmark": "Wellcome Library, MS 4670", "role": "primary — companion French manuscript, same scribe", "provenance": "library-catalogue (same)" },
+        { "shelfmark": "Wellcome Library, MS 4661", "role": "related Fyot manuscript noted by the editors; among the 'six other manuscripts' used as supplement", "provenance": "bookseller/review transcription (Weiser Antiquarian; Harms review)" }
+      ],
+      "textEdited": "Three distinct Keys bound in the Fyot manuscripts: The Keys of Rabbi Solomon; The Key of Solomon King of the Hebrews; The Universal Treatise of the Keys of Solomon — a different recension family from Mathers's base.",
+      "operativeContents": {
+        "procedureTypes": ["talismanic-work (large colored pentacle/talisman sets with construction-and-consecration procedure)", "consecration-of-instruments", "purification-regimen (operator preparation)", "circle-construction", "timing-election (planetary days/hours)", "categorised experiment lists (operations sorted by aim, in the tradition's own categories)"],
+        "structuralAnatomy": "Classic Clavicula anatomy: preparatory purification → consecration of instruments and materials → election of time → construction/deployment of pentacles → conjuration frame. The edition's distinguishing content is the unusually full and coloured talisman series. Type-level description only.",
+        "completeness": "The editors' claim (repeated in publisher copy) is that these are not the earliest but the most detailed witnesses, chosen after a survey of the extant manuscript corpus (the figure '144 extant manuscripts' is self-reported). Harms (independent review) confirms the production reproduces the full-colour pentacle series."
+      },
+      "relationToPriorEditions": [
+        "S.L. MacGregor Mathers, The Key of Solomon the King (1889): translated from a group of British Library manuscripts and omitted the operative 'experiments' he disapproved of. The Skinner–Rankine edition's own title positions it as 'three different texts from those translated by Mathers' — i.e. a different recension, not a re-edition.",
+        "Adds: first English translation of the Wellcome Fyot manuscripts; a colour talisman corpus absent from Mathers; editorial matter connecting the manuscript line to the 19th-century London occult milieu (the Bulwer-Lytton/Zanoni observation, which Harms credits, and a proposed John Denley connection, which Harms doubts)."
+      ],
+      "contested": [
+        { "question": "The proposed link from the Wellcome manuscripts to the occult bookseller John Denley", "positions": ["Skinner–Rankine propose the connection (edition introduction, as reported)", "Dan Harms (review, 2008): 'not as sanguine about the connection' — Bulwer-Lytton knew multiple occult figures, so the inference is underdetermined"] },
+        { "question": "The manuscripts' own claim of a Hebrew original translated by 'Professor Morissoneau'", "positions": ["Reported as the manuscript's claim (title-page transcription)", "No independent verification of a Hebrew exemplar; standard scholarship treats the Colorno/French recensions as compilations — the claim is a provenance statement inside the witness, not an editorial finding"] }
+      ],
+      "sources": [
+        "https://searchworks.stanford.edu/view/13752883",
+        "https://wellcomecollection.org/works/qcxnb9nj",
+        "https://danharms.wordpress.com/2008/12/05/on-the-shelf-review-the-veritable-key-of-solomon-part-1/",
+        "https://www.weiserantiquarian.com/pages/books/57130/stephen-skinner-david-rankine/the-veritable-key-of-solomon-being-a-translation-of-wellcome-ms-4669-and-wellcome-ms-4670"
+      ]
+    },
+    {
+      "id": "swcm-05-clavis-inferni-cyprian",
+      "seriesVolume": 5,
+      "title": "The Grimoire of St. Cyprian — Clavis Inferni (sive magia alba et nigra approbata Metratona)",
+      "editors": ["Stephen Skinner", "David Rankine"],
+      "translator": "Dr Peter Forshaw (Latin)",
+      "publisher": "Golden Hoard Press",
+      "year": 2009,
+      "isbn": ["978-0-9557387-1-5 (Golden Hoard)", "978-0-7387-2348-8 (Llewellyn)"],
+      "manuscripts": [
+        { "shelfmark": "Wellcome Library, MS 2000", "role": "unique source — a late-18th-century compact grimoire attributed to 'St Cyprian', in Latin, Greek, Hebrew, cipher and reversed Latin", "provenance": "library-catalogue (Wellcome record ubnsv47n transcribing title page)" }
+      ],
+      "textEdited": "Clavis Inferni / 'Key of Hell' — a short Cyprianic grimoire of the northern-European (not Iberian) type.",
+      "operativeContents": {
+        "procedureTypes": ["invocation-of-archangels (the four archangels)", "evocation-of-demon-kings (the four cardinal demon kings, depicted in animal and human forms with sigils)", "sigil-catalogue", "cryptographic-concealment (multiple scripts and reversed Latin as a withholding device — itself a procedure-type in the operative-graph vocabulary)"],
+        "structuralAnatomy": "A compact key-format text: paired angelic/demonic quaternities with images and sigils rather than a full operation manual; the multi-script encoding is structural, not decorative. Type-level description only.",
+        "completeness": "A short, self-contained illuminated manuscript — a 'key' rather than a complete working manual; the edition reproduces it in facsimile with translation (publisher/catalogue description). Its brevity is the point: it presumes, rather than supplies, the surrounding procedure."
+      },
+      "relationToPriorEditions": [
+        "No prior edition of Wellcome MS 2000.",
+        "Distinct from the Iberian Livro/Libro de São Cipriano tradition and from Jake Stratton-Kent's The Testament of Cyprian the Mage (Scarlet Imprint, 2014), which treats an Iberian Book of St Cyprian — a different text entirely; the shared saint's name is the only overlap."
+      ],
+      "contested": [
+        { "question": "Attribution to St Cyprian", "positions": ["The manuscript's own attribution (title)", "Universally treated as pseudepigraphic; grimoires were attributed to Cyprian of Antioch because of his legend as a converted magician (edition framing and general scholarship agree here — reported as consensus, not adjudicated)"] }
+      ],
+      "sources": [
+        "https://wellcomecollection.org/works/ubnsv47n",
+        "https://www.amazon.com/Grimoire-St-Cyprian-Sourceworks-Ceremonial/dp/0738723487",
+        "https://www.weiserantiquarian.com/pages/books/70707/stephen-skinner-david-rankine-latin-dr-peter-forshaw/the-grimoire-of-st-cyprian-clavis-inferni-sive-magia-alba-et-nigra-approbata-metratona-the-key-of"
+      ]
+    },
+    {
+      "id": "swcm-06-sepher-raziel",
+      "seriesVolume": 6,
+      "title": "Sepher Raziel, also known as Liber Salomonis: a 1564 English Grimoire from Sloane MS 3826",
+      "editors": ["Don Karr (transcription, annotation, introduction)", "Stephen Skinner (foreword and modern English version)"],
+      "publisher": "Golden Hoard Press",
+      "year": 2010,
+      "isbn": ["978-0-9557387-3-9"],
+      "manuscripts": [
+        { "shelfmark": "British Library, Sloane MS 3826", "role": "sole base — a 1564 English manuscript translated from Latin sources", "provenance": "library-catalogue (WorldCat 912464506; title page)" }
+      ],
+      "textEdited": "The English 'Sepher Raziel'/Liber Salomonis in seven treatises: Liber Clavis; Ala; Tractatus Thymiamatus; Treatise of Times; Treatise of Purity and of Abstinence; Samaim; Book of Virtues and Miracles.",
+      "operativeContents": {
+        "procedureTypes": ["timing-election (astrological times, hours, seasons — Treatise of Times)", "suffumigation-procedure (Tractatus Thymiamatus — incense correspondences as a class; no recipe transcribed here)", "purification-regimen (Treatise of Purity and Abstinence)", "correspondence-catalogue (virtues of herbs, stones, animals — Book of Virtues)", "angelology/cosmography catalogue (Samaim — heavens and their angels)", "name-magic (Liber Clavis/Ala frame)"],
+        "structuralAnatomy": "A compendium anatomy, not an operation anatomy: seven treatises supplying the supporting apparatus (times, purity, materials, names, cosmology) around a comparatively thin operative core. Notably NOT an evocation manual — closer to a natural-magic/angelological handbook of the medieval Latin Razielian tradition in English dress.",
+        "completeness": "Complete diplomatic transcription of the Sloane 3826 text plus a parallel modern-English version (double presentation is the edition's stated method; catalogue/review confirmed). Reviewed academically in Preternature 3.2 (2014), Project MUSE article 554996."
+      },
+      "relationToPriorEditions": [
+        "Not the same text as the Hebrew Sefer Raziel ha-Malakh (first printed Amsterdam 1701); the edition itself distinguishes the several Raziel traditions.",
+        "Don Karr had circulated studies of the Latin/English Liber Salomonis material online prior to this edition; this is the first full printed edition of Sloane 3826 (edition claim, unchallenged in the record examined).",
+        "Joseph Peterson's esotericarchives hosts related Razielian material; no prior complete print edition of this witness is known to this slice (flagged in unresolved[])."
+      ],
+      "contested": [],
+      "sources": [
+        "https://search.worldcat.org/title/912464506",
+        "https://muse.jhu.edu/article/554996",
+        "https://www.amazon.com/Sepher-Raziel-Salomonis-English-Grimoire/dp/0955738733"
+      ]
+    },
+    {
+      "id": "swcm-07-liber-lunae",
+      "seriesVolume": 7,
+      "title": "Liber Lunae — Book of the Moon (with Sepher ha-Levanah); 2nd ed. as The Book of the Moon – Liber Lunae: The Magic of the Mansions of the Moon",
+      "editors": ["Don Karr (ed.)", "Calanit Nachshon (trans. of Sepher ha-Levanah)", "Stephen Skinner (series editor/foreword)"],
+      "publisher": "Golden Hoard Press",
+      "year": 2011,
+      "secondEdition": 2017,
+      "isbn": ["978-0-9568285-2-1 (2011)", "978-1-912212-01-9 (2017)"],
+      "manuscripts": [
+        { "shelfmark": "British Library, Sloane MS 3826 (Liber Lunae portion)", "role": "base for the English Liber Lunae — same 16th-century manuscript as SWCM 6", "provenance": "publisher/retailer description (sskinner.com; bookstore listings); consistent with the Sloane 3826 contents" },
+        { "shelfmark": "(printed exemplar) A. W. Greenup's 1912 edition of Sepher ha-Levanah", "role": "facsimile included, with new English translation by Nachshon", "provenance": "retailer/publisher description" }
+      ],
+      "textEdited": "Liber Lunae (Latin-derived lunar magic in English) plus the Hebrew Sepher ha-Levanah as comparandum.",
+      "operativeContents": {
+        "procedureTypes": ["timing-election (28 lunar mansions; hours of day and night)", "image-magic/talismanic-work (figures of the planets; mansion images as a class)", "name-catalogue (lunar angel names)"],
+        "structuralAnatomy": "Election-plus-image anatomy: mansion-by-mansion catalogue pairing a time window with an image type and purpose class. Type-level description only.",
+        "completeness": "Transcription plus modernised English versions of the mansion, hours and planet-figure material (publisher description). Skinner's role here is series editor, not editor of record — attribution class differs from vols 1–5."
+      },
+      "relationToPriorEditions": ["Greenup's 1912 Sepher ha-Levanah was Hebrew text; the 2011 volume adds the first English translation alongside the English Liber Lunae (publisher claim)."],
+      "contested": [],
+      "sources": [
+        "https://www.amazon.com/Book-Moon-Mansions-Sourceworks-Ceremonial/dp/1912212013",
+        "https://www.sskinner.com/books2.htm"
+      ]
+    },
+    {
+      "id": "swcm-08-hygromanteia",
+      "seriesVolume": 8,
+      "title": "The Magical Treatise of Solomon, or Hygromanteia (also called the Apotelesmatike Pragmateia, Epistle to Rehoboam, Solomonike)",
+      "editors": ["Ioannis Marathakis (translation and edition)", "Stephen Skinner (foreword; series editor)"],
+      "publisher": "Golden Hoard Press",
+      "year": 2011,
+      "isbn": ["978-0-9568285-0-7"],
+      "manuscripts": [
+        { "shelfmark": "British Library, MS Harley 5596 ('Harleianus 5596', 15th c.)", "role": "principal Greek witness", "provenance": "bookseller title-page transcription (AbeBooks/Weiser)" },
+        { "shelfmark": "Bologna, Biblioteca Universitaria, MS 3632 ('Bononiensis 3632')", "role": "witness", "provenance": "same" },
+        { "shelfmark": "Athens, National Library, MS 1265 ('Atheniensis 1265')", "role": "witness", "provenance": "same" },
+        { "shelfmark": "Athens, Gennadius Library, MS 45 ('Gennadianus 45')", "role": "witness", "provenance": "same" },
+        { "shelfmark": "Athens, National Library, MS 115 ('Atheniensis 115')", "role": "witness", "provenance": "same" },
+        { "shelfmark": "Paris, BnF, MS grec 2419 ('Parisinus 2419')", "role": "witness", "provenance": "same" },
+        { "shelfmark": "Munich, Bayerische Staatsbibliothek, Cod. graec. 70 ('Monacensis Gr. 70')", "role": "witness", "provenance": "same" }
+      ],
+      "textEdited": "The Byzantine Greek Hygromanteia corpus — translations from (reportedly) 12+ Greek manuscripts of the Solomonic magical treatise.",
+      "operativeContents": {
+        "procedureTypes": ["timing-election (planetary hours/days with their angels and demons — the system later inherited by the Clavicula)", "prayer/conjuration sequences", "divination-procedure (the eponymous hygromanteia/lecanomancy class and related scrying)", "phylactery/talisman construction", "spirit-catalogue", "purification-regimen"],
+        "structuralAnatomy": "The fullest pre-Clavicula anatomy in the tradition: time-election tables, preparatory purity, consecrations, operative prayers and divination procedures in one treatise; Skinner's foreword and his Techniques of Solomonic Magic (2015) argue this is the direct ancestor of the Key of Solomon.",
+        "completeness": "First extensive English publication of the corpus (publisher claim: 'first time the full Greek original of the Key of Solomon appears in English'). Multiple recensions translated in parallel rather than one witness."
+      },
+      "relationToPriorEditions": [
+        "Armand Delatte, Anecdota Atheniensia I (1927): printed several Greek texts of the corpus — Greek only, no translation.",
+        "Pablo Torijano, Solomon the Esoteric King (Brill, 2002): English translation of one recension as an appendix.",
+        "Marathakis's edition adds a multi-witness English parallel presentation; the value-claim over Delatte/Torijano is breadth of witnesses plus translation (publisher framing, consistent with the prior editions' actual scope)."
+      ],
+      "contested": [
+        { "question": "Whether the Hygromanteia is 'the' ancestor of the Clavicula Salomonis", "positions": ["Skinner (foreword; PhD thesis, University of Newcastle 2014; Techniques of Solomonic Magic 2015): direct ancestry Graeco-Egyptian papyri → Hygromanteia → Clavicula", "Academic treatments (Torijano; R. Greenfield's work on Byzantine demonology) describe a more complex multi-recension relationship without a single line of descent — reported as positions, not resolved"] }
+      ],
+      "sources": [
+        "https://www.abebooks.com/Magical-Treatise-Solomon-Hygromanteia-called-Apotelesmatike/31789520904/bd",
+        "https://en.wikipedia.org/wiki/Magical_Treatise_of_Solomon",
+        "https://en.wikipedia.org/wiki/Stephen_Skinner_(author)"
+      ]
+    },
+    {
+      "id": "swcm-09-cunning-mans-grimoire",
+      "seriesVolume": 9,
+      "title": "A Cunning Man's Grimoire: The Secret of Secrets",
+      "editors": ["Stephen Skinner", "David Rankine"],
+      "publisher": "Golden Hoard Press (2018); Llewellyn (US)",
+      "year": 2018,
+      "isbn": ["978-1-912212-10-1 / 978-1-912212-11-8 (Golden Hoard)", "978-0-7387-6072-8 (Llewellyn)"],
+      "manuscripts": [
+        { "shelfmark": "Bodleian Library, MS Rawlinson D.253", "role": "sole base — a composite working manuscript used by successive cunning men", "provenance": "library-catalogue (WorldCat 1140980040; Stanford SearchWorks 13752379: 'being Rawlinson MS. D. 253')" }
+      ],
+      "textEdited": "'The Secret of Secrets' — a composite cunning-man's working book blending learned Solomonic material with village service-magic.",
+      "operativeContents": {
+        "procedureTypes": ["timing-election (its own astrological tables; 28 lunar mansions — unusual in Solomonic-adjacent English MSS, per the edition's framing)", "image-magic/talismanic-work", "spirit-conjuration (learned-magic layer)", "charm/experiment collection (cunning-craft service operations: theft, treasure, healing classes)", "divination-procedure"],
+        "structuralAnatomy": "Composite anatomy — a professional's accumulated handbook rather than a unified treatise: tables and elections up front, then heterogeneous operations from multiple exemplars. The blend of high-magic apparatus with service-magic aims is the edition's stated point.",
+        "completeness": "A complete transcription of one working manuscript (title-page claim); its interest is precisely that it is a used, composite witness rather than a fair copy."
+      },
+      "relationToPriorEditions": ["No prior edition of Rawlinson D.253 is claimed or found. Note: an early search-result description associating this title with Wellcome MS 4666 was NOT confirmed; the catalogue evidence is unambiguous for Rawlinson D.253."],
+      "contested": [],
+      "sources": [
+        "https://worldcat.org/oclc/1140980040",
+        "https://searchworks.stanford.edu/view/13752379",
+        "https://www.llewellyn.com/product.php?ean=9780738760728"
+      ]
+    },
+    {
+      "id": "swcm-10-clavis-sibley",
+      "seriesVolume": 10,
+      "title": "The Clavis or Key to Unlock the Mysteries of Magic (of Rabbi Solomon, translated by Ebenezer Sibley)",
+      "editors": ["Stephen Skinner", "Daniel Clark"],
+      "publisher": "Golden Hoard Press (2018/2019); Llewellyn (US)",
+      "year": 2019,
+      "isbn": ["978-1-912212-08-8 (Golden Hoard)", "978-0-7387-6206-7 (Llewellyn)"],
+      "manuscripts": [
+        { "shelfmark": "(private/unnamed 19th-century calligraphic manuscript of the Sibley Clavis)", "role": "base — a copy in the Sibley–Hockley Clavis line, stated by the editors to be substantially longer ('45% longer than other copies') than other witnesses; composition 1789 on 16th-century source material", "provenance": "publisher/self-reported (sskinner.com; Llewellyn copy). No public shelfmark established — flagged in unresolved[]" }
+      ],
+      "textEdited": "The English Clavis compiled by Ebenezer Sibley (1789) and augmented by later copyists including Frederick Hockley — the main 19th-century English channel of Key of Solomon material.",
+      "operativeContents": {
+        "procedureTypes": ["talismanic-work (full-colour pentacle and talisman plates — the tradition's signature)", "consecration-of-instruments", "purification-regimen", "timing-election", "experiment collections in later appended 'books' (crystal-scrying class among them)"],
+        "structuralAnatomy": "Clavicula anatomy filtered through Sibley's 18th-century English redaction, with later accreted books — an evolving compilation rather than a fixed text; the edition's added length versus other witnesses is its stated distinguishing feature.",
+        "completeness": "Editors' claim: the longest known witness of the Sibley Clavis line (self-reported; '45% longer'). Not independently verified here."
+      },
+      "relationToPriorEditions": [
+        "Joseph H. Peterson, The Clavis or Key to the Magic of Solomon: From an Original Talismanic Grimoire in Full Color by Ebenezer Sibley and Frederick Hockley (Ibis Press, 2012; ISBN 978-0-89254-159-1): a different witness of the same Sibley–Hockley tradition. The Skinner–Clark edition's value-claim against Peterson is a longer, differently-descended copy (self-reported).",
+        "Direct overlap case: this is the clearest instance in the corpus of Skinner and Peterson editing parallel witnesses of the same text within a few years of each other."
+      ],
+      "contested": [],
+      "sources": [
+        "https://www.amazon.com/Clavis-Key-Unlock-Mysteries-Magic/dp/0738762067",
+        "https://www.llewellyn.com/product.php?ean=9780738762067",
+        "https://www.amazon.com/Clavis-Key-Magic-Solomon-Talismanic/dp/0892541598",
+        "https://www.sskinner.com/books2.htm"
+      ]
+    },
+    {
+      "id": "swcm-11-ars-notoria-version-a",
+      "seriesVolume": 11,
+      "title": "Ars Notoria: The Grimoire of Rapid Learning by Magic (Version A)",
+      "editors": ["Stephen Skinner", "Daniel Clark (eds.)"],
+      "translator": "Robert Turner (1657 English translation, reset)",
+      "publisher": "Golden Hoard Press",
+      "year": 2019,
+      "isbn": ["978-1-912212-03-3"],
+      "manuscripts": [
+        { "shelfmark": "Yale University, Beinecke Library, Mellon MS 1", "role": "source of the notae figures (described by the publisher as the earliest known witness); 'five complete sets of notae' reproduced", "provenance": "publisher/self-reported (sskinner.com); Mellon MS 1 is a real, catalogued Ars Notoria manuscript at the Beinecke" }
+      ],
+      "textEdited": "The Ars Notoria (Version A) — the medieval notory art of accelerated learning through orations and figure-contemplation — in Turner's 1657 English, with manuscript notae restored.",
+      "operativeContents": {
+        "procedureTypes": ["oration-sequence (prayers keyed to disciplines of study)", "figure-contemplation (the notae — diagrammatic figures inspected at prescribed times; described as a class, none reproduced here)", "timing-election (lunar/ritual calendar for the orations)", "purification-regimen"],
+        "structuralAnatomy": "Oration-plus-nota anatomy: graded prayers in ritual sequence paired with inspection of discipline-specific figures under time rules. The 1657 print lacked the figures; the edition's stated contribution is reuniting Turner's text with a complete manuscript notae cycle.",
+        "completeness": "Turner's translation is of the shorter 'Version A' textual family; the glossed Version B is the subject of the companion volume (below)."
+      },
+      "relationToPriorEditions": [
+        "Robert Turner (1657): the prior English — printed without the notae figures.",
+        "Julien Véronèse, L'Ars notoria au Moyen Âge: introduction et édition critique (SISMEL, 2007): the modern critical Latin edition defining Versions A and B; cite-only, in copyright. Skinner–Clark's edition is a practitioner-market presentation of Turner plus figures, not a rival critical edition.",
+        "The Lemegeton connection: the Ars Notoria is the fifth book counted in some Lemegeton constructions and was excluded from SWCM 3."
+      ],
+      "contested": [],
+      "sources": [
+        "https://www.sskinner.com/books2.htm",
+        "https://www.amazon.com/Ars-Notoria-Method-Mediaeval-Angel/dp/0738770302"
+      ]
+    },
+    {
+      "id": "swcm-12-ars-notoria-version-b",
+      "seriesVolume": 12,
+      "title": "Ars Notoria: The Method — Version B (Mediaeval Angel Magic)",
+      "editors": ["Stephen Skinner (ed.)"],
+      "publisher": "Golden Hoard Press",
+      "year": 2021,
+      "isbn": ["978-1-912212-28-6", "978-0-7387-7030-7 (Llewellyn)"],
+      "manuscripts": [
+        { "shelfmark": "Paris, BnF, MS lat. 9336", "role": "base for the glossed Version B with its commentary", "provenance": "publisher/self-reported (sskinner.com: 'first English publication of Version B commentary')" }
+      ],
+      "textEdited": "The longer, glossed Version B of the Ars Notoria, whose commentary explains the method of use.",
+      "operativeContents": {
+        "procedureTypes": ["oration-sequence", "figure-contemplation", "method-commentary (the gloss layer — instructions ABOUT the procedure, the feature Version A lacks)", "timing-election"],
+        "structuralAnatomy": "Version A's anatomy plus an explanatory gloss stratum; the edition's claim is that the gloss makes the operative method legible for the first time in English (self-reported).",
+        "completeness": "First English of the Version B commentary (publisher claim; consistent with Véronèse's Latin-only critical edition being the prior publication of Version B)."
+      },
+      "relationToPriorEditions": ["Véronèse (2007) edited Version B in Latin; no prior English. Turner 1657 = Version A only."],
+      "contested": [],
+      "sources": [
+        "https://www.sskinner.com/books2.htm",
+        "https://www.amazon.com/Ars-Notoria-Method-Mediaeval-Angel/dp/0738770302"
+      ]
+    },
+    {
+      "id": "swcm-13-steganographia",
+      "seriesVolume": 13,
+      "title": "The Steganographia, Books I, II, III & IV (Johannes Trithemius)",
+      "editors": ["Stephen Skinner", "Daniel Clark (trans./eds.)"],
+      "publisher": "Golden Hoard Press",
+      "year": 2024,
+      "isbn": ["978-0-7387-7952-2 (US)", "978-1-912212-37-8 (UK)"],
+      "volumeNumberEvidence": "Weiser Antiquarian lists it as 'Volume XIII of the Sourceworks of Ceremonial Magic series'; sskinner.com's own list gives no number for it. Recorded as XIII on bookseller evidence.",
+      "manuscripts": [
+        { "shelfmark": "(printed exemplar) Steganographia, first printed Frankfurt 1606; circulated in MS from c. 1500", "role": "base is the printed textus receptus; the edition includes 76 tables", "provenance": "publisher/self-reported" }
+      ],
+      "textEdited": "Trithemius's Steganographia — spirit-conjuration form concealing (at least in part) cryptographic systems.",
+      "operativeContents": {
+        "procedureTypes": ["spirit-catalogue (regional and planetary spirit hierarchies with numerical attributes)", "conjuration-formulae (the surface layer)", "cryptographic-concealment (the demonstrated content of Books I–III in whole or part — the surface conjurations encode messages)", "timing/number tables"],
+        "structuralAnatomy": "Letter-transmission operations dressed as spirit-conjunction: name catalogue → conjuration text → numerical/tabular key. The dual reading (magic vs cryptography) IS the text's structure.",
+        "completeness": "Publisher claim: first complete English translation of all four books. Prior English existed only in partial/online forms."
+      },
+      "relationToPriorEditions": [
+        "Latin printings from 1606; Book III's cryptographic content demonstrated by Jim Reeds ('Solved: the ciphers in Book III of Trithemius's Steganographia', Cryptologia 22.4, 1998) and independently by Thomas Ernst (1996).",
+        "Partial English translations circulated online (e.g. at esotericarchives.com). Skinner–Clark's value-claim is completeness (self-reported)."
+      ],
+      "contested": [
+        { "question": "Is the Steganographia a grimoire, a cryptology treatise, or deliberately both?", "positions": ["Reeds (1998, Cryptologia, DOI 10.1080/0161-119891886948) and Ernst: Books I–III are cryptographic", "A long earlier tradition (and the demonological framing itself) read it as operative spirit magic; Trithemius's own defence was that it was cryptography", "Skinner–Clark present both layers (publisher framing)"] }
+      ],
+      "sources": [
+        "https://www.sskinner.com/books2.htm",
+        "https://www.weiserantiquarian.com/pages/books/73978/johannes-trithemius-dr-stephen-skinner-daniel-clark-golden-hoard-press/the-steganographia-books-i-ii-iii-iv-volume-xiii-of-the-sourceworks-of-ceremonial-magic-series"
+      ]
+    },
+    {
+      "id": "swcm-14-antipalus-maleficiorum",
+      "seriesVolume": 14,
+      "title": "Antipalus Maleficiorum (Johannes Trithemius)",
+      "editors": ["Stephen Skinner", "Daniel Clark (trans./eds.)"],
+      "publisher": "Golden Hoard Press",
+      "year": 2024,
+      "isbn": ["978-0-7387-8122-8 (US)", "978-1-912212-46-0 (UK)"],
+      "volumeNumberEvidence": "sskinner.com: 'SWCM Vol. 14'; an Amazon listing says 'Vol. XV'. Conflict recorded in unresolved[].",
+      "manuscripts": [
+        { "shelfmark": "(printed/manuscript exemplar of Trithemius's 1508 treatise — specific exemplar not established by this slice)", "role": "base", "provenance": "publisher/self-reported" }
+      ],
+      "textEdited": "Trithemius's Antipalus Maleficiorum (1508) — a treatise AGAINST maleficia containing his famous catalogue of magical books.",
+      "operativeContents": {
+        "procedureTypes": ["bibliography-of-grimoires (the catalogue of 103 magical texts — the historically load-bearing content)", "counter-magic/apologetic remedies (church-sanctioned responses to bewitchment, described as a class)"],
+        "structuralAnatomy": "Not an operative grimoire: a censorial/bibliographic treatise whose value to the operative graph is as a 1508 witness list — evidence for what circulated, not a procedure source.",
+        "completeness": "Publisher claim: first full English translation."
+      },
+      "relationToPriorEditions": ["Latin text known to scholarship (the book-catalogue portion often cited from Trithemius's works); no prior full English claimed by anyone else in the record examined."],
+      "contested": [],
+      "sources": [
+        "https://www.sskinner.com/books2.htm",
+        "https://www.amazon.com/Antipalus-Maleficiorum-Sourceworks-Ceremonial-Magic/dp/1912212463"
+      ]
+    },
+    {
+      "id": "swcm-15-summa-sacre-magice-1-2",
+      "seriesVolume": 15,
+      "title": "Summa Sacre Magice, Books 1 & 2 (Berengarius Ganellus / Berengar Ganell, 1346)",
+      "editors": ["Stephen Skinner", "Daniel Clark (trans./eds.)"],
+      "publisher": "Golden Hoard Press",
+      "year": 2024,
+      "isbn": ["978-0-7387-8123-5 (US, as listed)", "978-1-912212-48-4 (UK)"],
+      "manuscripts": [
+        { "shelfmark": "Kassel, Universitätsbibliothek – Landesbibliothek und Murhardsche Bibliothek, 4° Ms. astron. 3", "role": "the principal (Latin) manuscript, dated 1346; publisher adds the provenance claim that it was owned by Trithemius and John Dee (self-reported)", "provenance": "independent (Societas Magica / Veenstra working paper; Magic Ritual and Witchcraft article apparatus, Project MUSE 850624) + publisher" },
+        { "shelfmark": "Berlin, Staatsbibliothek Preußischer Kulturbesitz, Ms. germ. fol. 903", "role": "the only other witness — a complete German translation", "provenance": "independent (same scholarly apparatus)" }
+      ],
+      "textEdited": "Ganell's Summa Sacre Magice — the largest systematic medieval compendium of 'sacred magic', drawing together earlier traditions (including material related to the Liber Iuratus / Sworn Book of Honorius).",
+      "operativeContents": {
+        "procedureTypes": ["systematic-compendium: divine-name doctrine, invocation/evocation frameworks, characters and seals as classes, planetary and angelic hierarchies, ritual preparation regimens — a full-spectrum medieval system described at type level", "apologetic/theoretical treatise layers (Ganell theorises as well as compiles)"],
+        "structuralAnatomy": "Five-book summa architecture (Books 1–2 here): definitional and doctrinal scaffolding first, operative classes organised beneath — scholastic in form, which is precisely its historical interest.",
+        "completeness": "Books 1–2 of 5 in this volume; Books 3–4 followed Dec 2025; publisher claims first English publication ('in 700 years')."
+      },
+      "relationToPriorEditions": [
+        "Damaris Gehr produced the modern Latin text (doctoral dissertation) — previously the only access; cite-only.",
+        "Jan Veenstra published the principal studies of Ganell and the Summa's relation to the Liber Iuratus (Societas Magica paper, 2008).",
+        "A competing independent English edition exists: Bradley Sneddon & Andreas Erneus, Summa Sacre Magice Book 1: a transcription, critical edition & translation (2025) — the same text now has two rival modern English treatments."
+      ],
+      "contested": [],
+      "sources": [
+        "http://www.societasmagica.org/Mystical/VeenstraGanellHonoriusOctober08.doc",
+        "https://muse.jhu.edu/article/850624/figure/fig01",
+        "https://www.sskinner.com/books2.htm",
+        "https://medium.com/@danharms_29771/summa-sacre-magice-from-golden-hoard-deddd55093df",
+        "https://www.amazon.com/Summa-Sacre-Magice-transcription-translation/dp/B0GYJVTVD9"
+      ]
+    },
+    {
+      "id": "swcm-18-summa-sacre-magice-3-4",
+      "seriesVolume": 18,
+      "volumeNumberEvidence": "sskinner.com lists Books 3 & 4 as 'SWCM Vol. 18' (Dec 2025 cloth, Feb 2026 leather) — implying vols 16–17 exist or are planned but unidentified by this slice; recorded in unresolved[].",
+      "title": "Summa Sacre Magice, Books 3 & 4",
+      "editors": ["Stephen Skinner", "Daniel Clark"],
+      "publisher": "Golden Hoard Press",
+      "year": 2025,
+      "isbn": ["978-0-7387-8450-2 (US, as listed)", "978-1-912212-51-4 (UK cloth)", "978-1-912212-52-1 (leather)"],
+      "manuscripts": [
+        { "shelfmark": "Kassel, 4° Ms. astron. 3 (as above)", "role": "continuation of the same edition", "provenance": "publisher/self-reported + scholarly apparatus as above" }
+      ],
+      "textEdited": "Books 3–4 of the Summa Sacre Magice.",
+      "operativeContents": { "procedureTypes": ["continuation of the summa's operative classes"], "structuralAnatomy": "as swcm-15", "completeness": "Book 5 not yet published as of this slice's compilation date (2026-07-30) — status unverified." },
+      "relationToPriorEditions": ["as swcm-15"],
+      "contested": [],
+      "sources": ["https://www.sskinner.com/books2.htm"]
+    }
+  ],
+  "standaloneEditions": [
+    {
+      "id": "collection-of-magical-secrets",
+      "title": "A Collection of Magical Secrets & A Treatise of Mixed Cabalah",
+      "roles": ["Paul Harry Barron (translator)", "Stephen Skinner & David Rankine (introduction)"],
+      "publisher": "Avalonia (NOT Golden Hoard; not numbered in SWCM)",
+      "year": 2009,
+      "isbn": ["978-1-905297-20-7"],
+      "manuscripts": [
+        { "shelfmark": "Wellcome Library, MS 4669 (the non-Key portions)", "role": "source — the two treatises were bound in the same 1796 French manuscript as the Clavicule material used for the Veritable Key", "provenance": "title-page transcription in secondary copies ('Tr from Wellcome MS4669'); consistent with the Veritable Key's own manuscript base" }
+      ],
+      "textEdited": "Two late-18th-century French treatises: a collection of practical 'magical secrets' and a 'Treatise of Mixed Cabalah', drawing on pseudo-Abano and Agrippa.",
+      "operativeContents": {
+        "procedureTypes": ["experiment-collection (miscellaneous practical operations — the 'secrets' genre bridging learned and cunning magic)", "kabbalistic-angelic operations (Mixed Cabalah treatise, as a class)"],
+        "structuralAnatomy": "Recipe/secret list anatomy on the one side; name-and-invocation operations on the other. Type-level only.",
+        "completeness": "Completes the publication of the Wellcome 4669 codex begun in the Veritable Key — together the two books cover one physical manuscript's contents."
+      },
+      "relationToPriorEditions": ["No prior edition; companion volume to SWCM 4."],
+      "sources": [
+        "https://www.amazon.com/Collection-Magical-Secrets-Treatise-Cabalah/dp/1905297203"
+      ]
+    },
+    {
+      "id": "psellus-on-daimons",
+      "title": "Byzantine Magic: Michael Psellus On the Operation of Daimons",
+      "roles": ["Marcus Collisson (19th-century translator)", "Stephen Skinner (ed./introduction)"],
+      "publisher": "Golden Hoard Press",
+      "year": 2010,
+      "isbn": ["978-0-9557387-2-2"],
+      "manuscripts": [{ "shelfmark": "(printed exemplar: Collisson's 1843 English translation, reissued)", "role": "base", "provenance": "publisher description" }],
+      "textEdited": "Pseudo-/Psellus dialogue De operatione daemonum — a demonology TREATISE, not an operative grimoire.",
+      "operativeContents": { "procedureTypes": ["none — doctrinal demonology (classification of daimons); relevant to the operative graph only as context"], "structuralAnatomy": "dialogue form", "completeness": "reissue of a complete 1843 translation" },
+      "relationToPriorEditions": ["Collisson 1843 is the base; sskinner.com's own list labels this 'SWCM Vol. 4', which collides with the Veritable Key's Vol IV — recorded in unresolved[]."],
+      "sources": ["https://www.sskinner.com/books2.htm"]
+    },
+    {
+      "id": "dee-spiritual-diaries",
+      "title": "Dr John Dee's Spiritual Diaries (1583–1608)",
+      "roles": ["Stephen Skinner (ed.)"],
+      "publisher": "Golden Hoard Press (2011); 2nd ed. Golden Hoard/Llewellyn 2019",
+      "year": 2011,
+      "isbn": ["978-1-912212-13-2 (UK 2nd ed.)", "978-0-7387-6530-3 (US)"],
+      "manuscripts": [{ "shelfmark": "(printed exemplar: Meric Casaubon, A True & Faithful Relation…, 1659, itself from BL Cotton Appendix XLVI)", "role": "base — a reset of Casaubon with the Latin passages translated (publisher description: 'based on the original Meric Casaubon manuscript with all Latin passages translated')", "provenance": "publisher/self-reported" }],
+      "textEdited": "Dee's angelic sessions 1583–1608 as printed by Casaubon.",
+      "operativeContents": { "procedureTypes": ["procedure-as-session-record (séance/scrying session transcripts — records of operations, not instructions)", "scrying-crystallomancy (as the recorded practice class)"], "structuralAnatomy": "dated session records", "completeness": "Casaubon's 1659 selection, not Dee's full surviving corpus; the pre-1583 material (Sloane 3188, Peterson 2003) is outside it." },
+      "relationToPriorEditions": ["Casaubon 1659 (the base); Peterson's Five Books of Mystery (2003) covers the earlier diaries — complementary, not overlapping."],
+      "sources": ["https://www.sskinner.com/books2.htm"]
+    },
+    {
+      "id": "fourth-book-occult-philosophy",
+      "title": "The Fourth Book of Occult Philosophy (pseudo-Agrippa, with Heptameron etc.)",
+      "roles": ["Stephen Skinner (ed./introduction)"],
+      "publisher": "Askin (1978 facsimile); Ibis/Nicolas Hays (2005 reset)",
+      "year": 1978,
+      "isbn": ["978-0-89254-100-3 (2005)"],
+      "manuscripts": [{ "shelfmark": "(printed exemplar: Robert Turner's 1655 English translation)", "role": "base — facsimile then reset of the 1655 English collection (pseudo-Agrippa's Fourth Book, pseudo-Abano's Heptameron, and companion tracts)", "provenance": "publisher description (sskinner.com: 'only complete English edition')" }],
+      "textEdited": "The 1655 Turner collection: the key early-modern English channel for evocation frameworks and the Heptameron's day-by-day operations.",
+      "operativeContents": { "procedureTypes": ["evocation-framework (pseudo-Agrippa's theory-plus-practice of calling spirits)", "circle-construction and timing-election (Heptameron class)", "geomancy treatise (Gerard of Cremona / Agrippa-attributed tracts)"], "structuralAnatomy": "anthology of tracts", "completeness": "complete reissue of the 1655 print (publisher claim)" },
+      "relationToPriorEditions": ["Turner 1655 is the base; Skinner's is a facsimile/reset with introduction, not a new edition from manuscript. Peterson's esotericarchives also hosts the Fourth Book/Heptameron texts online; Donald Tyson later produced an annotated edition (Llewellyn 2009)."],
+      "sources": ["https://www.sskinner.com/books2.htm"]
+    }
+  ],
+  "explicitCorrections": [
+    {
+      "claim": "The Testament of Cyprian the Mage is a Stephen Skinner edition",
+      "verdict": "FALSE — it is Jake Stratton-Kent's work (Encyclopaedia Goetica vol. III, Scarlet Imprint, 2014; ISBN 978-0-9574492-5-1), treating an Iberian Book of St Cyprian and the Testament of Solomon. Skinner's only Cyprian item is the Clavis Inferni (Wellcome MS 2000), a different text. The task brief's inclusion of it under Skinner appears to be a conflation and must not be encoded as a Skinner edition.",
+      "sources": ["https://scarletimprint.com/publications/p/the-testament-of-cyprian-the-mage", "https://www.amazon.com/Testament-Cyprian-Mage-Encyclopaedia-Goetica/dp/0957449259"]
+    },
+    {
+      "claim": "A Cunning Man's Grimoire is edited from a Wellcome manuscript",
+      "verdict": "NOT SUPPORTED — catalogue records (WorldCat 1140980040; Stanford 13752379) give Bodleian Rawlinson MS D.253."
+    }
+  ],
+  "characterOfTheScholarship": {
+    "note": "Reported as positions, per discipline — not adjudicated.",
+    "positions": [
+      "What the editions demonstrably are (from title pages and catalogue records): transcriptions/translations of named single witnesses or small witness groups, with practitioner-oriented introductions, published through Skinner's own imprint — 'documentary editions' rather than critical editions with full apparatus.",
+      "Skinner's own framing (self-reported): recovery and publication of the primary sources of ceremonial magic, with historical argument about transmission (formalised in his 2014 Newcastle PhD and the two Techniques monographs).",
+      "Independent reviewers (Dan Harms, and academic reviews such as Preternature 3.2 on Sepher Raziel) engage the volumes seriously while contesting specific historical inferences (e.g. the Denley connection) — i.e. the shelfmark-level content is treated as reliable, the historical superstructure as arguable.",
+      "Where Skinner–Rankine and Peterson edit overlapping texts (Lemegeton, Sibley Clavis), the disagreements are witness-selection disagreements, stated by both sides in print; neither party disputes the other's shelfmarks."
+    ]
+  },
+  "unresolved": [
+    "SWCM volume numbering is internally inconsistent across Skinner's own site, Amazon and bookseller records (Psellus as 'Vol 4' vs Veritable Key as Vol IV; Antipalus as 14 vs XV; Summa 1–2 as XV with Summa 3–4 as 18; no identified vols 16–17). Needs the books' own title pages to settle.",
+    "The base manuscript of the Skinner–Clark Clavis (SWCM 10) has no public shelfmark in the record examined — apparently a private-collection manuscript; the '45% longer' claim is self-reported.",
+    "Whether any part of Sloane 3826's Liber Salomonis had been printed before 2010 (Peterson's online corpus hosts related Razielian texts; exact overlap not established).",
+    "Which exemplar (manuscript or print) underlies the Antipalus translation.",
+    "The Steganographia edition's claimed 'first complete English translation' not independently verified against all prior partial translations.",
+    "Practical Angel Magic's Golden Dawn 'suppression' narrative (Westcott/Bennett/Ayton transmission) rests on the edition's own account; no independent verification found in this pass.",
+    "Whether Summa Sacre Magice Book 5 has appeared (post-cutoff; not checked beyond July 2026 search results)."
+  ]
+}

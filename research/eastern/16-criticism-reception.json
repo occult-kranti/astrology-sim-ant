@@ -1,0 +1,3336 @@
+{
+ "meta": {
+  "slice": "S16 — THE CRITICISM AND RECEPTION LITERATURE (the corrective layer). Who has challenged the systematizers, the translations, the datings and the Western reception of Eastern esotericism, and on what evidence. Rows here are SECONDARY SCHOLARSHIP and POLEMIC, not operative manuals: the payload is the CLAIM AGAINST another work, not a rite. Disjoint from S10 (Indian tantra primary corpus) and S1 (repo-internal inventory) by object: S10 rows are the texts, S15 rows are the arguments about those texts and about the people who made them famous.",
+  "dateISO": "2026-07-30",
+  "schemaNote": "SUPERSET SCHEMA, deliberately. The generator-facing keys used by the earlier slices are present verbatim (`edges[].type`, `edges[].cite`, `works[].editions[].cite`, `works[].editions[].pd`, `works[].procedures[].type`) AND the keys named in this round's brief are present as well (`edges[].kind`/`basis`/`evidence`/`sources`/`ASSERTED`, `works[].titleOriginal`/`dateText`/`sortYear`/`sources`/`contested`, `editions[].translator`/`year`/`publisher`/`pdStatus`/`quoteSafe`, `procedures[].typeAsFiled`/`completenessBasis`). `type` and `kind` always carry the same value; `cite` is always the space-joined `sources` array. The earlier slices on disk (10-indian-tantra.json, 13-east-asian.json, 14-abrahamic-esoteric.json) already disagree with each other about field names, so a superset is the only shape that feeds all of them. An auditor should attack this decision first.",
+  "operativeContentRazor": "NOTHING in this file is a procedure a reader could run. Where a criticism work describes an operative rite (White on alchemical and sexual rites, Bharati on mantra and nyāsa, Brooks on Śrīvidyā pūjā, Eliade on prāṇāyāma), the row records THAT the scholar describes it, at what level of detail, and with `sourceLayer: secondary-scholarship` so the completeness grade is never mistaken for a grade of a primary text. No mantra syllable, quantity, timing, substance, sequence or second-person instruction appears anywhere here. Per this round's standing order, no quoted operative text ships: the FRAMING §10 blockers (B1-B4) gate the first quotation and are not cleared.",
+  "livingPeopleAndLiveDisputes": "Kripal, Doniger, Malhotra, Nicholson, Young, Urban, White, Singleton, Mallinson, Wedemeyer, Tyagananda, Vrajaprana, Caldwell, Sanderson and Brooks are living or recently active; the Ramakrishna Math and Mission, the Sivananda/ISYVC organisation, Siddha Yoga/SYDA, the Osho movement, the TM organisation and the Infinity Foundation are organised communities with active stakes. EVERY contested row here carries every position with the holder named, and NONE is adjudicated. Where an allegation is of criminal or professional misconduct the row states who alleged it, in what venue, on what date, and what the documented outcome was — including 'no formal proceeding' and 'no consensus' as outcomes. Absence of an outcome is recorded as absence, never as vindication or as guilt.",
+  "method": "WebSearch and WebFetch, 2026-07-30. NO full primary read of any criticism monograph this round — every book-level row is built from publisher pages, catalogue records, encyclopedia articles with citation trails, and review notices. That is a WEAKER evidentiary base than S10's (which had one full dissertation read) and the grades in this file are correspondingly hedged: where a claim's detail comes only from a tertiary encyclopedia article it is marked `tertiaryOnly: true`. The repo was grepped for existing coverage of every figure (assets/js/core/data/confluence.js) and `dedupWith` records what the repo already says, so this slice CORRECTS or EXTENDS rather than duplicating.",
+  "edgeVocabularyExtension": {
+   "note": "This slice needs relation types the earlier slices did not. Declared here rather than smuggled in.",
+   "existing": [
+    "BELONGS_TO",
+    "AUTHORED_BY",
+    "COMMENTS_ON",
+    "PARALLELS",
+    "TRANSMITS_TO"
+   ],
+   "new": {
+    "REFUTES": "X argues Y's central claim is false. Always a CLAIM, never a verdict; requires `basis` naming the kind of evidence offered.",
+    "REFRAMES": "X accepts Y's data but argues the category or framing is the artefact — e.g. 'tantra' as a colonial-scholarly construct.",
+    "CRITICISES_TRANSLATION": "X alleges specific renderings in Y are wrong. `basis` must name at least one disputed term or the claim is not admissible.",
+    "ALLEGES_MISATTRIBUTION": "X argues Y's stated author/authorship is wrong or incomplete.",
+    "REDATES": "X argues Y (or a practice Y describes) belongs to a different period.",
+    "DEFENDS": "X answers a criticism of Y on the merits.",
+    "RESPONDS_TO": "X is a formal reply to X's critic; weaker than DEFENDS, does not imply success.",
+    "ALLEGES_PLAGIARISM": "X alleges textual appropriation by Y. Requires venue, date, and documented outcome.",
+    "LEGAL_ACTION_AGAINST": "A filed proceeding or formal complaint against a work. Requires forum, statute, date, disposition.",
+    "SUPERSEDED_BY_COLLABORATION": "Two works once read as opposed whose authors later co-published — recorded because it is the cleanest evidence that a 'dispute' was partly manufactured by readers."
+   }
+  },
+  "completenessVocabulary": {
+   "values": [
+    "complete",
+    "partial",
+    "referenced",
+    "fragmentary",
+    "n/a-secondary"
+   ],
+   "n/a-secondary": "The work contains no procedure of its own. Used for pure criticism and polemic. It is NOT a defect grade.",
+   "sourceLayerNote": "Any procedure row on a criticism work carries `sourceLayer: 'secondary-scholarship'`. Its completeness grade describes the SCHOLAR'S DESCRIPTION, never the underlying rite."
+  },
+  "sources": [
+   {
+    "key": "C1",
+    "cite": "Wikipedia, 'Pizza effect' (en.wikipedia.org/wiki/Pizza_effect), accessed 2026-07-30.",
+    "quality": "tertiary; carries the exact JAS citation for Bharati 1970, which is the load-bearing datum",
+    "pd": false
+   },
+   {
+    "key": "C2",
+    "cite": "Wikipedia, 'Agehananda Bharati' (en.wikipedia.org/wiki/Agehananda_Bharati), accessed 2026-07-30.",
+    "quality": "tertiary; gives Rider 1966 (rev. 1975) for The Tantric Tradition — CONFLICTS with the 1965 date carried by archive.org and by this round's brief. Discrepancy flagged, not resolved.",
+    "pd": false
+   },
+   {
+    "key": "C3",
+    "cite": "Internet Archive scan: 'Bharati, Agehananda (1965). The Tantric Tradition' (archive.org/details/bharati-agehananda-1965.-the-tantric-tradition); second copy at archive.org/details/TheTantricTraditionSwamiAghehanandaBharati.",
+    "quality": "primary artefact, TITLE PAGE NOT READ this round — the 1965 date is the uploader's, not verified against the imprint",
+    "pd": false
+   },
+   {
+    "key": "C4",
+    "cite": "Kathleen Taylor, Sir John Woodroffe, Tantra and Bengal: 'An Indian Soul in a European Body?' (Richmond: Curzon, 2001; SOAS Studies on South Asia; Routledge reissue 2014, ISBN 9780415749367). Scan at archive.org/details/sirjohnwoodroffe0000tayl.",
+    "quality": "monograph; publisher/catalogue metadata read, TEXT NOT READ this round",
+    "pd": false
+   },
+   {
+    "key": "C5",
+    "cite": "Book review of Taylor, at enfolding.org ('Book Review: Sir John Woodroffe, Tantra and Bengal').",
+    "quality": "non-academic review site; used only to corroborate the Ghose-collaboration claim already in the repo",
+    "pd": false
+   },
+   {
+    "key": "C6",
+    "cite": "Hugh B. Urban, Tantra: Sex, Secrecy, Politics, and Power in the Study of Religion (Berkeley: University of California Press, 2003), xvi+372 pp. Publisher and California Scholarship Online records; review notice in The Journal of Asian Studies (Cambridge Core).",
+    "quality": "monograph; framing language read from publisher/abstract pages, TEXT NOT READ",
+    "pd": false
+   },
+   {
+    "key": "C7",
+    "cite": "Wikipedia, \"Kali's Child\" (en.wikipedia.org/wiki/Kali%27s_Child), accessed 2026-07-30.",
+    "quality": "tertiary but unusually densely sourced; supplies the disputed-term list, the Tyagananda and Sil references, the Larson exchange and the Huston Smith 2001 HDS Bulletin item. Every downstream claim in this slice that rests on it is marked tertiaryOnly.",
+    "pd": false
+   },
+   {
+    "key": "C8",
+    "cite": "Wikipedia, 'The Hindus: An Alternative History' (en.wikipedia.org/wiki/The_Hindus:_An_Alternative_History), accessed 2026-07-30.",
+    "quality": "tertiary; supplies the IPC 295A / Dinanath Batra / Penguin India February 2014 chain and the Speaking Tiger republication",
+    "pd": false
+   },
+   {
+    "key": "C9",
+    "cite": "Wikipedia, 'Rajiv Malhotra' (en.wikipedia.org/wiki/Rajiv_Malhotra), accessed 2026-07-30.",
+    "quality": "tertiary; supplies the July 2015 Nicholson/Young allegation, the HarperCollins India response and the 2016 revised edition. BLP-sensitive: treated as allegation-plus-outcome, never as finding.",
+    "pd": false
+   },
+   {
+    "key": "C10",
+    "cite": "Wikipedia, 'Invading the Sacred' (en.wikipedia.org/wiki/Invading_the_Sacred); publisher record: Krishnan Ramaswamy, Antonio T. de Nicolás & Aditi Banerjee (eds.), Invading the Sacred: An Analysis of Hinduism Studies in America (New Delhi: Rupa, 2007), ISBN 8129111829.",
+    "quality": "tertiary + catalogue",
+    "pd": false
+   },
+   {
+    "key": "C11",
+    "cite": "Sarah Caldwell, 'The Heart of the Secret: A Personal and Scholarly Encounter with Shakta Tantrism in Siddha Yoga', Nova Religio 5.1 (October 2001), pp. 9-51. Publisher record at nr.ucpress.edu/content/5/1/9.",
+    "quality": "peer-reviewed article; ABSTRACT read, full text NOT read",
+    "pd": false
+   },
+   {
+    "key": "C12",
+    "cite": "Alexis Sanderson, 'The Śaiva Age: The Rise and Dominance of Śaivism during the Early Medieval Period', in Shingo Einoo (ed.), Genesis and Development of Tantrism (Tokyo: Institute of Oriental Culture, University of Tokyo, 2009), Institute of Oriental Culture Special Series 23, pp. 41-350. Scan at archive.org/details/the-saiva-age-sanderson-2009; also Zenodo record 4395629.",
+    "quality": "primary scholarship; bibliographic record verified, TEXT NOT READ this round",
+    "pd": false
+   },
+   {
+    "key": "C13",
+    "cite": "'Alexis Sanderson and the Myth of Śaivic Influence on the Vajrayāna', palemoon.substack.com (undated blog post).",
+    "quality": "NON-SCHOLARLY BLOG. Cited ONLY as evidence that a counter-position is in circulation outside the journals, and explicitly NOT as evidence that the counter-position is right. An auditor should consider striking any row that rests on this alone.",
+    "pd": false
+   },
+   {
+    "key": "C14",
+    "cite": "Mark Singleton, Yoga Body: The Origins of Modern Posture Practice (New York: Oxford University Press, 2010); James Mallinson, 'A Response to Mark Singleton's Yoga Body' (2011; academia.edu/1146607, presented in the American Academy of Religion context); Wikipedia, 'Yoga Body' and 'Mark Singleton (yoga scholar)'.",
+    "quality": "monograph + response paper, both located; response text NOT read in full",
+    "pd": false
+   },
+   {
+    "key": "C15",
+    "cite": "Wikipedia, 'Mircea Eliade' (en.wikipedia.org/wiki/Mircea_Eliade), accessed 2026-07-30.",
+    "quality": "tertiary and, on this fetch, THIN — it confirmed the 1933 doctorate on yoga, the ~1936 French translation and the 1937-1938 Iron Guard chain, but did NOT name Strenski, Smith, McCutcheon, Dubuisson, Wasserstrom or Rennie. The named-critic roster below is therefore carried from the separate bibliographic records C16/C17 only.",
+    "pd": false
+   },
+   {
+    "key": "C16",
+    "cite": "Steven M. Wasserstrom, Religion after Religion: Gershom Scholem, Mircea Eliade, and Henry Corbin at Eranos (Princeton University Press, 1999), ISBN 9780691005409; JSTOR j.ctt7pds6.",
+    "quality": "monograph; publisher abstract read, text NOT read",
+    "pd": false
+   },
+   {
+    "key": "C17",
+    "cite": "Ivan Strenski, Four Theories of Myth in Twentieth-Century History: Cassirer, Eliade, Lévi-Strauss and Malinowski (London: Macmillan, 1987), viii+234 pp.; reviewed in Religious Studies (Cambridge) and by Cristiano Grottanelli in History of Religions 30.2.",
+    "quality": "monograph + review notices; text NOT read",
+    "pd": false
+   },
+   {
+    "key": "C18",
+    "cite": "M. Ospina, K. Bond, M. Karkhaneh et al., Meditation Practices for Health: State of the Research, AHRQ Evidence Report/Technology Assessment No. 155 (2007); PubMed 17764203. Commentary: PubMed 19123876.",
+    "quality": "government evidence review + published commentary; abstracts read",
+    "pd": "US federal work — the AHRQ report itself is US-government-produced and not under copyright; the commentary is"
+   },
+   {
+    "key": "C19",
+    "cite": "P. H. Canter & E. Ernst, 'Insufficient evidence to conclude whether or not Transcendental Meditation decreases blood pressure: results of a systematic review of randomized clinical trials', Journal of Hypertension 22.11 (Nov 2004); DARE structured abstract NBK70827.",
+    "quality": "peer-reviewed systematic review; DARE abstract read",
+    "pd": false
+   },
+   {
+    "key": "C20",
+    "cite": "L. Hartley, R. Mavrodaris, N. Flowers, E. Ernst, K. Rees, 'Transcendental meditation for the primary prevention of cardiovascular disease', Cochrane Database of Systematic Reviews (2014), CD010359.pub2.",
+    "quality": "Cochrane review; record located",
+    "pd": false
+   },
+   {
+    "key": "C21",
+    "cite": "R. D. Brook et al., 'Beyond Medications and Diet: Alternative Approaches to Lowering Blood Pressure — A Scientific Statement from the American Heart Association', Hypertension 61.6 (2013). Reply: R. H. Schneider et al., 'Evidence for upgrading the ratings for transcendental meditation: response to AHA scientific statement on alternative methods and BP', Hypertension (2013); PubMed 24227815.",
+    "quality": "society statement + published reply; both located",
+    "pd": false
+   },
+   {
+    "key": "C22",
+    "cite": "Hugh B. Urban, Zorba the Buddha: Sex, Spirituality, and Capitalism in the Global Osho Movement (University of California Press, 2015), ISBN 9780520286665/72; scan at archive.org/details/zorbabuddhasexsp0000urba. Wikipedia, '1984 Rajneeshee bioterror attack'.",
+    "quality": "monograph (text NOT read) + tertiary article for the criminal facts",
+    "pd": false
+   },
+   {
+    "key": "C23",
+    "cite": "BBC World Service investigative documentary on allegations at Sivananda yoga schools (reported at medianews4u.com); Project SATYA, 'Investigation Interim Report #3' (projectsatya.org) and projectsatya.org/about; Julie Salter's public testimony, 10 December 2019; ISYVC website statement dated 16 December 2019.",
+    "quality": "JOURNALISM AND CAMPAIGN MATERIAL, not scholarship. Allegations, not findings. Handled as allegation-plus-response with both sides named.",
+    "pd": false
+   },
+   {
+    "key": "C24",
+    "cite": "Hugh B. Urban, 'The Womb of Tantra: Goddesses, Tribals, and Kings in Assam', Journal of Hindu Studies (2011); Urban, The Power of Tantra: Religion, Sexuality and the Politics of South Asian Studies (London: I.B. Tauris, 2010); Patricia Dold on pilgrimage and lived religion at Kāmākhyā; Urban, \"'The Cradle of Tantra': Modern Transformations of a Tantric Centre in Northeast India\", South Asia: Journal of South Asian Studies 42.2 (2019).",
+    "quality": "peer-reviewed article + monograph; abstracts read only",
+    "pd": false
+   },
+   {
+    "key": "C25",
+    "cite": "Christian K. Wedemeyer, Making Sense of Tantric Buddhism: History, Semiology, and Transgression in the Indian Traditions (New York: Columbia University Press, 2013), South Asia Across the Disciplines; H-Net review by Sørensen (H-Buddhism, node 22055).",
+    "quality": "monograph + H-Net review; publisher framing and review notice read, text NOT read",
+    "pd": false
+   },
+   {
+    "key": "C26",
+    "cite": "David Gordon White, Kiss of the Yoginī: 'Tantric Sex' in its South Asian Contexts (Chicago: University of Chicago Press, 2003), 391 pp.; publisher record; review by Gerald James Larson; critical notices collected at yoniversum.nl and devata.org.",
+    "quality": "monograph + mixed review notices, several of them NON-ACADEMIC",
+    "pd": false
+   },
+   {
+    "key": "C27",
+    "cite": "David Gordon White, The Alchemical Body: Siddha Traditions in Medieval India (Chicago: University of Chicago Press, 1996); acknowledgements naming Jan Meulenbeld and Dominik Wujastyk; Dominik Wujastyk, 'An Alchemical Ghost: The Rasaratnākara of Nāgārjuna', Ambix 31 (1984).",
+    "quality": "monograph; the Wujastyk 1984 article is already cited in the repo (confluence.js) and is the checkable part",
+    "pd": false
+   },
+   {
+    "key": "C28",
+    "cite": "Douglas Renfrew Brooks, The Secret of the Three Cities: An Introduction to Hindu Śākta Tantrism (Chicago: University of Chicago Press, 1990), ISBN 9780226075709; Auspicious Wisdom: The Texts and Traditions of Śrīvidyā Śākta Tantrism in South India (Albany: SUNY Press, 1992).",
+    "quality": "monographs; catalogue records read, texts NOT read",
+    "pd": false
+   },
+   {
+    "key": "C29",
+    "cite": "Journalistic coverage of Douglas Brooks's February 2012 public statements during the Anusara Yoga / John Friend controversy: elephantjournal.com ('Dr. Douglas Brooks: Conversation & Statement re: John Friend & Anusara Yoga', Feb 2012) and yogadork.com (28 Feb 2012).",
+    "quality": "YOGA-PRESS JOURNALISM, not scholarship. Used only to record that the Śrīvidyā scholar most cited by Western practitioners was himself institutionally entangled with a movement that collapsed in scandal — a reception-history fact, not a scholarly-merit judgement.",
+    "pd": false
+   },
+   {
+    "key": "C30",
+    "cite": "Narendra Nath Bhattacharyya (1934-2001), History of the Tantric Religion: An Historical, Ritualistic and Philosophical Study (New Delhi: Manohar, 1982; second revised edition 1999). Scan at archive.org/details/historyoftantric0000bhat.",
+    "quality": "monograph; catalogue record + the author's own prefatory statement that earlier formulations were discarded as resting on scanty evidence",
+    "pd": false
+   },
+   {
+    "key": "C31",
+    "cite": "This repository: assets/js/core/data/confluence.js, records for 'Sir John Woodroffe (Arthur Avalon)', 'The Serpent Power', 'Pierre Bernard / Omnipotent Oom', 'person-krishnamacharya', and the Mallinson/Singleton citations on the haṭha corpus. Grepped 2026-07-30.",
+    "quality": "in-repo, verified this round",
+    "pd": "n/a"
+   },
+   {
+    "key": "C32",
+    "cite": "Andrew J. Nicholson, Unifying Hinduism: Philosophy and Identity in Indian Intellectual History (New York: Columbia University Press, 2010).",
+    "quality": "monograph; identified as the work alleged to have been appropriated. Text NOT read.",
+    "pd": false
+   },
+   {
+    "key": "C33",
+    "cite": "Jeffrey J. Kripal, Kālī's Child: The Mystical and the Erotic in the Life and Teachings of Ramakrishna (Chicago: University of Chicago Press, 1995; second edition 1998).",
+    "quality": "monograph; text NOT read this round — every claim about its contents is routed through C7",
+    "pd": false
+   },
+   {
+    "key": "C34",
+    "cite": "Swami Tyagananda, 'Kali's Child Revisited, or Didn't Anyone Check the Documentation?' (distributed at the American Academy of Religion annual meeting, 2000; subsequently published in Evam: Forum on Indian Representations); Swami Tyagananda & Pravrajika Vrajaprana, Interpreting Ramakrishna: Kali's Child Revisited (Delhi: Motilal Banarsidass, 2010).",
+    "quality": "confessional-institutional scholarship (the authors are monastics of the Ramakrishna Order — stated, not used to discount the argument); located via C7, texts NOT read",
+    "pd": false
+   },
+   {
+    "key": "C35",
+    "cite": "Wendy Doniger, The Hindus: An Alternative History (New York: Viking Penguin, 2009; Penguin India edition; Indian republication by Speaking Tiger Books, c. 2015-16).",
+    "quality": "monograph; text NOT read",
+    "pd": false
+   },
+   {
+    "key": "C36",
+    "cite": "Ronald M. Davidson, Indian Esoteric Buddhism: A Social History of the Tantric Movement (New York: Columbia University Press, 2002).",
+    "quality": "monograph; text NOT read, position summarised from secondary characterisation",
+    "pd": false
+   },
+   {
+    "key": "C37",
+    "cite": "Elizabeth De Michelis, A History of Modern Yoga: Patañjali and Western Esotericism (London: Continuum, 2004).",
+    "quality": "monograph; not re-verified this round beyond the catalogue record — flagged as the weakest bibliographic row in this file",
+    "pd": false
+   },
+   {
+    "key": "C38",
+    "cite": "David Gordon White, The Yoga Sutra of Patanjali: A Biography (Princeton University Press, 2014). Already cited in-repo at confluence.js.",
+    "quality": "monograph; in-repo citation verified this round",
+    "pd": false
+   }
+  ],
+  "counts": {
+   "works": 40,
+   "edges": 88,
+   "note": "machine-counted at merge time on 2026-07-30."
+  },
+  "sliceNumberNote": "Renumbered S15->S16 at write time: a sibling agent in this round had already claimed the 15- prefix in this directory (15-eastern-systematizers.json). The number is cosmetic; the ids are crit:* and do not depend on it."
+ },
+ "works": [
+  {
+   "id": "crit:bharati-tantric-tradition",
+   "nodeKind": "secondary-scholarship",
+   "title": "The Tantric Tradition",
+   "titleOriginal": null,
+   "author": "Agehananda Bharati (b. Leopold Fischer, Vienna 1923 – Pittsford NY 1991); ordained a Daśanāmī saṃnyāsin; Professor of Anthropology, Syracuse University",
+   "culture": "Euro-American academic anthropology of religion, written from inside the Hindu monastic order",
+   "dateText": "first published London: Rider, 1965 (so the Internet Archive scan and this round's brief) or 1966 (so the Wikipedia article), revised 1975",
+   "sortYear": 1965,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1965,
+     "publisher": "Rider & Co., London",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C3"
+    },
+    {
+     "translator": null,
+     "year": 1975,
+     "publisher": "Rider (revised edition); later Samuel Weiser / Grove reprints",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C2"
+    }
+   ],
+   "whatIsCriticised": "A WHOLE FRAMING, plus specific translations. Bharati's target is the Western occult-revival literature on tantra — the theosophical and popular-esoteric writing that treated tantra as a secret sexual-spiritual technology — and the Orientalist editions that fed it. He writes as an initiate holding the material to a philological and anthropological standard the popularisers never met.",
+   "evidenceOffered": "Initiatory access plus Sanskrit competence plus fieldwork; his standing claim is that he is judging the literature against the tradition as it is actually transmitted, not against a reconstructed ideal. THE BOOK ITSELF WAS NOT READ THIS ROUND; the characterisation above is from catalogue and encyclopedia description (C2, C3) and is the weakest link in this row.",
+   "whoDisputes": "Not established this round. No published rebuttal to The Tantric Tradition was located, which is itself a finding worth recording rather than a licence to treat the book as unopposed.",
+   "currentState": "The book is still routinely cited as the first serious study of the field by an initiate. Its polemical half — that most previous authors abused the subject — is treated in the later literature (Urban, C6) as an early instance of the constructivist critique rather than as its final word.",
+   "procedures": [
+    {
+     "typeAsFiled": "mantra-recitation",
+     "type": "mantra-recitation",
+     "sourceLayer": "secondary-scholarship",
+     "textCompleteness": "referenced",
+     "completenessBasis": "not-read-this-round",
+     "evidence": "The book is described in catalogue and reference sources as a systematic study of Hindu and Buddhist tantric mantra and sādhana. Whether it reproduces operative sequences at usable detail was NOT checked. Recorded as 'referenced' pending a read; an auditor should treat this grade as unverified.",
+     "harmNote": null
+    }
+   ],
+   "sources": [
+    "C2",
+    "C3",
+    "C6"
+   ],
+   "discrepancyFlags": [
+    {
+     "field": "dateText",
+     "positions": [
+      "1965 (Internet Archive scan title, and the brief)",
+      "1966, rev. 1975 (Wikipedia, C2)"
+     ],
+     "resolved": false,
+     "howToResolve": "read the imprint page of the Rider first edition"
+    }
+   ],
+   "contested": null,
+   "tertiaryOnly": true,
+   "dedupWith": "No repo record. The repo cites Urban and Taylor on the Western construction of tantra but does not carry Bharati at all — this row is a first-order addition."
+  },
+  {
+   "id": "crit:bharati-hindu-renaissance-pizza",
+   "nodeKind": "secondary-scholarship",
+   "title": "'The Hindu Renaissance and its Apologetic Patterns' — the paper that coins the PIZZA EFFECT",
+   "titleOriginal": null,
+   "author": "Agehananda Bharati",
+   "culture": "Euro-American academic anthropology of religion",
+   "dateText": "1970",
+   "sortYear": 1970,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1970,
+     "publisher": "The Journal of Asian Studies 29.2 (Association for Asian Studies), pp. 267-287",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C1"
+    }
+   ],
+   "whatIsCriticised": "A WHOLE FRAMING — the authenticity claim itself. Bharati names the mechanism by which a practice is simplified or elaborated abroad and then re-imported to its homeland with enhanced prestige, so that the 'traditional' form now defended at home is in part a foreign reconstruction. He illustrates it with pizza (a plain Southern Italian peasant bread elaborated in America and returned to Italy) and applies it to Indian religion.",
+   "evidenceOffered": "A set of named cases rather than a statistical argument: the Maharishi Mahesh Yogi's movement and ISKCON gaining Indian standing after Western success; postural yoga and its gurus; the Bhagavad Gītā's elevation to something like a Hindu Bible under Western pressure to find one; and Satyajit Ray's Apu films, praised abroad before being reappraised at home.",
+   "whoDisputes": "Extended rather than refuted. Stephen Jenkins notes the loop can iterate (American pizza tourists seeking 'authentic' Italian pizza, prompting Italian responses that then shape American authenticity ideas). Jørn Borup proposes an 'inverted pizza effect' for European philosophers — Heidegger is his case — inspired by Eastern thought already filtered through Western readings, which then feeds back to Eastern thinkers. Mark Sedgwick applies it outside religion to reinterpreted martyrdom in Islamist terrorism.",
+   "currentState": "The term is standard vocabulary in the study of modern Hinduism and modern yoga. It is DIRECTLY LOAD-BEARING for this survey: any claim that a repo-listed Eastern practice is 'the traditional form' has to survive a pizza-effect test, because the version reaching the compiler may be the re-imported one.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary — a journal article of analysis; contains no procedure.",
+   "sources": [
+    "C1"
+   ],
+   "contested": null,
+   "tertiaryOnly": true,
+   "dedupWith": "No repo record of the concept. The repo has the RAW MATERIAL for it — the Krishnamacharya/Mysore-palace record and the Pierre Bernard record both describe re-export loops — but never names the mechanism.",
+   "siteRelevance": "HIGHEST in this slice. Proposed as a framing note attached to every modern-guru and modern-yoga record in the atlas."
+  },
+  {
+   "id": "crit:bharati-fictitious-tibet",
+   "nodeKind": "secondary-scholarship",
+   "title": "'Fictitious Tibet: The Origin and Persistence of Rampaism'",
+   "titleOriginal": null,
+   "author": "Agehananda Bharati",
+   "culture": "Euro-American academic anthropology of religion",
+   "dateText": "1974",
+   "sortYear": 1974,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1974,
+     "publisher": "Tibet Society Bulletin 7",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C2"
+    }
+   ],
+   "whatIsCriticised": "AN ATTRIBUTION AND A WHOLE GENRE. Bharati's target is the invented-Tibet literature — the theosophical construction descending from H. P. Blavatsky and, as the title says, the 'Rampa' books published under the name of a purported Tibetan lama. The charge is fabrication presented as ethnography.",
+   "evidenceOffered": "Not verified this round beyond the article's existence and title; the piece is described in reference sources as a sustained indictment of the misunderstanding and misinterpretation of Tibetan religion at the hands of Blavatsky and her successors.",
+   "whoDisputes": "Not established this round.",
+   "currentState": "Cited as an early statement of what later became a large literature on the Western invention of Tibet (Lopez's Prisoners of Shangri-La is the usual successor reference — NOT verified this round and therefore not given a row).",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C2"
+   ],
+   "contested": null,
+   "tertiaryOnly": true,
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:taylor-woodroffe-bengal",
+   "nodeKind": "secondary-scholarship",
+   "title": "Sir John Woodroffe, Tantra and Bengal: 'An Indian Soul in a European Body?'",
+   "titleOriginal": null,
+   "author": "Kathleen Taylor",
+   "culture": "British academic Indology / history of Orientalism (SOAS Studies on South Asia)",
+   "dateText": "2001 (Curzon); reissued Routledge 2014; based on doctoral work of the 1990s",
+   "sortYear": 2001,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2001,
+     "publisher": "Curzon Press, Richmond (ISBN 070071345X)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C4"
+    },
+    {
+     "translator": null,
+     "year": 2014,
+     "publisher": "Routledge (ISBN 9780415749367)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C4"
+    }
+   ],
+   "whatIsCriticised": "AN ATTRIBUTION. The single most consequential authorship claim in the Western tantra corpus: that 'Arthur Avalon' — the name on the Tantrik Texts series, the Mahānirvāṇa translation, Shakti and Shakta and The Serpent Power — was not one Englishman but a collaboration, and that the Sanskrit competence behind it was substantially that of the Bengali scholar Atal Bihari Ghose (1864-1936).",
+   "evidenceOffered": "DOCUMENTARY AND SELF-INCRIMINATING, which is what makes this row unusually strong. Taylor points to Woodroffe's own prefaces, where he states that he published under the Avalon name to signal that the works were written with the direct cooperation of others and that he did not desire sole credit for what was as much their work as his. Taylor then identifies the unnamed chief collaborator as Ghose, and separately assesses Woodroffe's own relationship to Sanskrit, arguing he made very extensive — though skilled — use of secondary sources and of Ghose's and other Indians' knowledge.",
+   "whoDisputes": "No sustained rebuttal located. The claim is now the received account and the repo already carries it as one of two positions on the Avalon record.",
+   "currentState": "Settled enough to be the default in reference works, but the repo's two-position treatment is the right register and should stay: 'Woodroffe as sole author-translator' is a position with a real historical constituency (it is how the books were read for eighty years), not a straw man.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary — a biography and authorship study.",
+   "sources": [
+    "C4",
+    "C5",
+    "C31"
+   ],
+   "contested": {
+    "flag": "Authorship of the 'Arthur Avalon' works",
+    "positions": [
+     {
+      "source": "the works as published, and eight decades of Western reception",
+      "value": "Arthur Avalon, i.e. Sir John Woodroffe, sole author-translator"
+     },
+     {
+      "source": "Kathleen Taylor (2001)",
+      "value": "a collaborative production resting heavily on Atal Bihari Ghose and other Bengali collaborators for the Sanskrit; Woodroffe's own prefatory language supports this"
+     }
+    ],
+    "resolved": false
+   },
+   "dedupWith": "repo: confluence.js records 'Sir John Woodroffe (Arthur Avalon)' AND 'The Serpent Power', both already citing Taylor 2001 and both already carrying the two-position contested block. THIS SLICE ADDS: Ghose's dates (1864-1936), the Curzon-vs-Routledge edition split, and the specific evidentiary basis (Woodroffe's own prefaces) that the repo records only as a conclusion.",
+   "downstreamConsequence": "Load-bearing for edition policy. Every Avalon/Woodroffe volume the repo may quote from is pre-1930 and therefore a candidate for public-domain quotability — but the authorship attribution attached to any such quotation must be the collaborative one, not 'Arthur Avalon' alone."
+  },
+  {
+   "id": "crit:urban-tantra-2003",
+   "nodeKind": "secondary-scholarship",
+   "title": "Tantra: Sex, Secrecy, Politics, and Power in the Study of Religion",
+   "titleOriginal": null,
+   "author": "Hugh B. Urban (Ohio State University, Department of Comparative Studies)",
+   "culture": "American academic history of religions; genealogical / constructivist method",
+   "dateText": "2003",
+   "sortYear": 2003,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2003,
+     "publisher": "University of California Press, Berkeley & Los Angeles, xvi+372 pp. (ISBN 0520236564)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C6"
+    }
+   ],
+   "whatIsCriticised": "THE CATEGORY ITSELF. Urban's claim is that 'Tantra' as a unified object is not a datum the scholar found but an artefact the scholarly and popular imaginations jointly produced — formed in the interplay between Orientalist scholars, Christian missionaries, colonial administrators, Indian reformers and, later, Western marketers. He argues it functions as a 'dialectical image' reflecting the interests of whoever deploys it.",
+   "evidenceOffered": "Genealogical: the history of the term's use. He documents the Victorian construction in which tantra was cast as the most degenerate example of the 'Indian mind' — a pathological mixture of sensuality and religion held responsible for Hinduism's decline — and traces the mirror-image modern construction in which the same material becomes a liberatory sexual spirituality.",
+   "whoDisputes": "Urban explicitly refuses the simpler postcolonial version of his own argument (Kripal's jacket assessment credits him with declining to narrate 'yet another postcolonial narrative about the evil West'). The standing counter-position in the field is philological rather than polemical: Sanderson's manuscript-based reconstruction (crit:sanderson-saiva-age) treats the Śaiva corpus as a real, datable, internally structured tradition whose existence does not depend on the colonial category. THESE ARE NOT STRICTLY INCOMPATIBLE and this file does not treat them as a contradiction.",
+   "currentState": "The constructivist reading is mainstream for the WORD and its reception history; it is not generally taken to dissolve the Sanskrit corpus. Both halves are needed: the texts are real, the umbrella term is a modern artefact.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C6",
+    "C31"
+   ],
+   "contested": null,
+   "dedupWith": "repo: confluence.js already cites Urban 2003 and Urban's 'The Omnipotent Oom' (Esoterica 3, 2001) on the Pierre Bernard record, and already states there that the tantra-equals-sacred-sexuality equation is a modern construction. THIS SLICE ADDS the book as a node in its own right with its thesis stated, so that other rows can point at it.",
+   "siteRelevance": "Second only to the pizza effect. Any repo page that uses 'tantra' as an umbrella needs this row behind it."
+  },
+  {
+   "id": "crit:urban-power-of-tantra",
+   "nodeKind": "secondary-scholarship",
+   "title": "The Power of Tantra: Religion, Sexuality and the Politics of South Asian Studies — with the Kāmākhyā fieldwork",
+   "titleOriginal": null,
+   "author": "Hugh B. Urban",
+   "culture": "American academic history of religions + ethnography in Assam",
+   "dateText": "2010 (book); 'The Womb of Tantra' article 2011; 'The Cradle of Tantra' 2019",
+   "sortYear": 2010,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2010,
+     "publisher": "I.B. Tauris, London (Library of Modern Religion; ISBN 184511874X)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C24"
+    },
+    {
+     "translator": null,
+     "year": 2011,
+     "publisher": "'The Womb of Tantra: Goddesses, Tribals, and Kings in Assam', Journal of Hindu Studies",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C24"
+    },
+    {
+     "translator": null,
+     "year": 2019,
+     "publisher": "\"'The Cradle of Tantra': Modern Transformations of a Tantric Centre in Northeast India from Nationalist Symbol to Tourist Destination\", South Asia: Journal of South Asian Studies 42.2",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C24"
+    }
+   ],
+   "whatIsCriticised": "A GENEALOGY AND A POLITICS. Two targets: (a) the assumption that Assamese tantra is a regional variant of a pan-Indian Sanskritic system — Urban argues the tradition is deeply marked by extra-Vedic and extra-Hindu elements from indigenous northeastern religious cultures; and (b) the politics of South Asian studies itself, i.e. who is allowed to study this material and on whose terms.",
+   "evidenceOffered": "Fieldwork at the Kāmākhyā complex plus textual and historical work on goddess, tribal and royal claims on the site. Patricia Dold's parallel work describes present-day practice at the precinct as a combination of mainstream orthodox Hinduism with local and transgressive forms — pūjā and prasāda alongside animal sacrifice — which is the ethnographic observation both scholars build on.",
+   "whoDisputes": "The Kāmākhyā material sits at the centre of a live access-and-representation argument: what a foreign ethnographer may publish about a secrecy-bound practice, and whether describing transgressive elements defames a living community. THIS SLICE DID NOT LOCATE A NAMED PUBLISHED OPPONENT and says so rather than inventing one.",
+   "currentState": "Open. The 2019 article's framing — nationalist symbol becoming tourist destination — is itself a pizza-effect-adjacent argument about a living pilgrimage site.",
+   "procedures": [
+    {
+     "typeAsFiled": "offering/homa",
+     "type": "offering/homa",
+     "sourceLayer": "secondary-scholarship",
+     "textCompleteness": "referenced",
+     "completenessBasis": "abstract-only",
+     "evidence": "The ethnographic literature records that animal sacrifice is performed at the precinct alongside standard pūjā. Recorded as a documented practice at a named site; no procedure, no sequence, no species, no quantity is reproduced.",
+     "harmNote": "REQUIRED — animal sacrifice at a living pilgrimage site, and secrecy-bound practice at a shrine with an active devotional community. Recorded strictly as academic religious history and ethnography. This row must never be rendered on a site page as a description of what a visitor would see or do."
+    }
+   ],
+   "sources": [
+    "C24"
+   ],
+   "contested": null,
+   "dedupWith": "No repo record of Kāmākhyā or of Assam as a tantric centre. First-order gap in the atlas's Indian coverage."
+  },
+  {
+   "id": "crit:urban-zorba-buddha",
+   "nodeKind": "secondary-scholarship",
+   "title": "Zorba the Buddha: Sex, Spirituality, and Capitalism in the Global Osho Movement",
+   "titleOriginal": null,
+   "author": "Hugh B. Urban",
+   "culture": "American academic history of religions; new religious movements",
+   "dateText": "2015",
+   "sortYear": 2015,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2015,
+     "publisher": "University of California Press (ISBN 9780520286665 cloth / 9780520286672 paper)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C22"
+    }
+   ],
+   "whatIsCriticised": "A GURU AND THE ECONOMY AROUND HIM. Described by its publisher as the first comprehensive study of the life, teachings and following of the figure known first as Bhagwan Shree Rajneesh and later as Osho (1931-1990) — the 'sex guru' and 'Rolls Royce guru' of the American press — and read by reviewers as an analysis of late-twentieth-century capitalism as much as of a religious movement.",
+   "evidenceOffered": "Personal interviews, archival work and the subject's own recorded voice. Reviewers note Urban declines to be drawn into the movement's internal contested debates while still handling contradictory material.",
+   "whoDisputes": "The Osho movement and its publishing arm remain active and contest hostile framings of the founder. No specific published academic rebuttal located this round.",
+   "currentState": "Standard academic reference on the movement.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C22"
+   ],
+   "contested": null,
+   "harmNote": "REQUIRED, and this is the hardest harm row in the slice. The movement's Oregon commune committed the largest bioterrorist attack in United States history: between 9 and 17 September 1984, followers directed by Ma Anand Sheela, Rajneesh's personal secretary, cultured Salmonella typhimurium at Rajneeshpuram and contaminated salad bars at ten restaurants in The Dalles, Oregon, sickening 751 people and hospitalising at least 45, in an attempt to suppress opposition turnout in a Wasco County election. These are adjudicated criminal facts, not allegations. NO cultivation, dispersal or targeting detail is recorded here, and none may be added: the event is admissible only as the harm record attached to a guru movement, in the same register as the repo's Tang elixir-deaths event.",
+   "dedupWith": "No repo record of Osho/Rajneesh. If the atlas ever adds a modern-guru wing this event is a mandatory attachment."
+  },
+  {
+   "id": "crit:white-alchemical-body",
+   "nodeKind": "secondary-scholarship",
+   "title": "The Alchemical Body: Siddha Traditions in Medieval India",
+   "titleOriginal": null,
+   "author": "David Gordon White (University of California, Santa Barbara)",
+   "culture": "American academic history of religions; South Asian tantra and alchemy",
+   "dateText": "1996",
+   "sortYear": 1996,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1996,
+     "publisher": "University of Chicago Press (ISBN 9780226894997; ebook 9780226149349)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C27"
+    }
+   ],
+   "whatIsCriticised": "A DISCIPLINARY SEPARATION. White's central claim is that Hindu alchemy (rasaśāstra) and haṭha yoga were not two adjacent traditions but one — practised by the same medieval people, the Siddhas — and that treating them separately is a modern artefact of how the texts were catalogued.",
+   "evidenceOffered": "Text-specific chronological studies plus the shared vocabulary and shared personnel of the two corpora. White's own acknowledgements name Jan Meulenbeld and Dominik Wujastyk as having supported the work; Meulenbeld's history of Indian medical literature and Wujastyk's 'An Alchemical Ghost' (Ambix 31, 1984) are the checkable chronological substrate.",
+   "whoDisputes": "The dating layer is where the disagreement lives rather than the thesis: Wujastyk's 1984 article establishes that at least one canonical alchemical attribution (the Rasaratnākara under Nāgārjuna's name) will not bear its traditional ascription, and the repo already records that discrepancy. The identification of alchemists with yogins is broadly accepted; the specific chronologies remain in motion.",
+   "currentState": "The book is the standard reference and is already the repo's principal citation for the rasa corpus. Its datings should be carried as White's, not as consensus.",
+   "procedures": [
+    {
+     "typeAsFiled": "alchemical-operation",
+     "type": "alchemical-operation",
+     "sourceLayer": "secondary-scholarship",
+     "textCompleteness": "referenced",
+     "completenessBasis": "not-read-this-round; in-repo citations indicate the book discusses operations at the level of purpose and apparatus rather than as reproducible recipe",
+     "evidence": "The repo already cites this book for the Rasārṇava, the Rasaratnasamuccaya, the Rasahṛdaya and the Nāth Sampradāya. What is recorded here is only THAT the book describes mercury-and-sulphur operations in their tantric setting.",
+     "harmNote": "REQUIRED — mercurial and sulphuric preparations, documented as severely toxic. The repo's existing Rasārṇava record already carries the 'studied as history, not chemistry to repeat' framing and that framing governs this row too. No substance, ratio, apparatus or timing appears here."
+    }
+   ],
+   "sources": [
+    "C27",
+    "C31"
+   ],
+   "contested": {
+    "flag": "Whether the medieval alchemical attributions can be dated at all firmly",
+    "positions": [
+     {
+      "source": "White (1996), following text-specific studies",
+      "value": "a workable relative chronology can be built for the Siddha alchemical corpus"
+     },
+     {
+      "source": "Wujastyk, 'An Alchemical Ghost', Ambix 31 (1984) — already cited in-repo",
+      "value": "at least one canonical ascription dissolves on inspection; the traditional attributions cannot carry chronological weight"
+     }
+    ],
+    "resolved": false
+   },
+   "dedupWith": "repo: confluence.js cites The Alchemical Body on at least five records (Rasārṇava, Rasaratnasamuccaya, Nāth Sampradāya, an alchemist record, and the Wujastyk discrepancy). THIS SLICE ADDS the book as a node with its thesis and its critics attached, rather than as a bare citation string."
+  },
+  {
+   "id": "crit:white-kiss-yogini",
+   "nodeKind": "secondary-scholarship",
+   "title": "Kiss of the Yoginī: 'Tantric Sex' in its South Asian Contexts",
+   "titleOriginal": null,
+   "author": "David Gordon White",
+   "culture": "American academic history of religions",
+   "dateText": "2003",
+   "sortYear": 2003,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2003,
+     "publisher": "University of Chicago Press, 391 pp.",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C26"
+    }
+   ],
+   "whatIsCriticised": "A WHOLE FRAMING, aimed in two directions at once. Against the modern Western 'tantric sex' industry, White argues the original South Asian rites were not about mutual ecstasy at all but about the ritual production, exchange and consumption of sexual fluids understood as power-substances. Against the sanitising Indian and scholarly readings, he argues the transgressive material is literal and central rather than symbolic.",
+   "evidenceOffered": "Sanskrit textual work, iconography, translations and ethnographic material — reviewers including Gerald James Larson credit it as densely cited and richly illustrated.",
+   "whoDisputes": "TWO DISTINCT OBJECTIONS, and they should not be merged. (1) EVIDENTIARY: a reviewer's objection recorded in the reception literature runs that White proves the early tantrics MAY WELL have ingested these fluids but cannot prove that they DID, and that he infers non-performance of an alternative only because the alternative could not be done — an inference-to-the-only-available-explanation complaint. (2) COMMUNITY: the Trinidadian Hindu priest Pandita Indrani Rampersad is recorded as accusing White of demolishing tantra. Reception commentary also notes that much of the hostile popular review traffic came from people who had not read the book — recorded as a claim made in that commentary, not as a verified fact about individual reviewers.",
+   "currentState": "Contested and live. Wedemeyer's 2013 book (crit:wedemeyer-making-sense) is the most substantial published challenge to the whole literal-transgression framing that White represents at its strongest.",
+   "procedures": [
+    {
+     "typeAsFiled": "sexual/fluid-transactional rite",
+     "type": "coercive-rite",
+     "typeIsApproximate": true,
+     "vocabGap": "The controlled vocabulary inherited from S10 has no term for a consumption-and-exchange rite. Filed under the nearest existing type with this flag; a new type 'fluid-transactional rite' is PROPOSED, not adopted.",
+     "sourceLayer": "secondary-scholarship",
+     "textCompleteness": "referenced",
+     "completenessBasis": "publisher-and-review-level only; text not read",
+     "evidence": "That the book's subject is a class of rite involving the ritual handling of sexual fluids is stated in the publisher's own description and in every review consulted. Nothing about sequence, setting, participants or substance is recorded here.",
+     "harmNote": "REQUIRED. Sexual ritual material, some of it involving practices and social arrangements that would be non-consensual or illegal in a modern setting, and material that a living devotional public regards as defamatory when described. Admitted strictly as academic religious history under the repo's abhicāra-wing precedent. The site records THAT a scholarly argument about this material exists and what its critics say; it does not describe the rite."
+    }
+   ],
+   "sources": [
+    "C26",
+    "C25"
+   ],
+   "contested": {
+    "flag": "Whether tantric transgressive rites were performed literally",
+    "positions": [
+     {
+      "source": "White, Kiss of the Yoginī (2003)",
+      "value": "literal, and central rather than marginal — the fluid transactions are the thing itself"
+     },
+     {
+      "source": "the evidentiary objection recorded in the book's reception (C26)",
+      "value": "the texts establish possibility, not performance; White's inference outruns his evidence"
+     },
+     {
+      "source": "Wedemeyer, Making Sense of Tantric Buddhism (2013)",
+      "value": "the literal/symbolic dichotomy is the wrong frame; transgression is semiotic and connotative, and attributing it either to lusty monks, to primitive tribal survivals, or to imitation of Śaiva practice is a fallacy"
+     },
+     {
+      "source": "Pandita Indrani Rampersad (Hindu priest, Trinidad)",
+      "value": "the work demolishes tantra — a community-standing objection, not a philological one"
+     }
+    ],
+    "resolved": false
+   },
+   "dedupWith": "No repo record of this book (the repo cites White's Alchemical Body and Yoga Sutra biography only). Adding it means adding its harm profile too."
+  },
+  {
+   "id": "crit:white-yogasutra-biography",
+   "nodeKind": "secondary-scholarship",
+   "title": "The Yoga Sutra of Patanjali: A Biography",
+   "titleOriginal": null,
+   "author": "David Gordon White",
+   "culture": "American academic history of religions",
+   "dateText": "2014",
+   "sortYear": 2014,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2014,
+     "publisher": "Princeton University Press (Lives of Great Religious Books)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C38"
+    }
+   ],
+   "whatIsCriticised": "A CANONICAL STATUS. White's argument is about reception rather than about the text's contents: that the Yoga Sūtra's position as the foundational scripture of yoga is a modern achievement — the work fell into relative neglect for centuries and was restored to prominence by nineteenth- and twentieth-century actors, Western and Indian together.",
+   "evidenceOffered": "The transmission and commentary record: who cited it, who did not, and when the modern editions and translations appear.",
+   "whoDisputes": "Not established this round. The repo already carries White as one source on the Yoga Sūtra record and on a contested block there.",
+   "currentState": "The neglect-and-revival account is widely accepted in outline; the sharpness of White's version is his own.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C38",
+    "C31"
+   ],
+   "contested": null,
+   "dedupWith": "repo: confluence.js cites this book on the Yoga Sūtra record and inside a contested block there. THIS SLICE ADDS only the node and the pizza-effect linkage — the reception argument White makes is a textbook instance of Bharati's mechanism and the repo does not connect them."
+  },
+  {
+   "id": "crit:bhattacharyya-history-tantric-religion",
+   "nodeKind": "secondary-scholarship",
+   "title": "History of the Tantric Religion: An Historical, Ritualistic and Philosophical Study",
+   "titleOriginal": null,
+   "author": "Narendra Nath Bhattacharyya (1934-2001), Indian historian",
+   "culture": "Indian academic history of religion, materialist/left historiographical school",
+   "dateText": "1982; second revised edition 1999",
+   "sortYear": 1982,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1982,
+     "publisher": "Manohar, New Delhi",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C30"
+    },
+    {
+     "translator": null,
+     "year": 1999,
+     "publisher": "Manohar, New Delhi (second revised edition)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C30"
+    }
+   ],
+   "whatIsCriticised": "AN ORIGIN STORY, and — unusually — the author's own. Bhattacharyya's account derives tantric religion from a substratum of goddess-centred and, on his reading, matriarchal-element religion long predominant in Indian society, against readings that make tantra a late Brahmanical or a purely textual development. The remarkable feature for this slice is the second edition's prefatory move: he states that the earlier edition's formulations were critically re-examined and that SOME WERE DISCARDED because they rested on scanty evidence.",
+   "evidenceOffered": "Archaeological, folkloric and textual synthesis on the scale of a survey rather than a monograph on one corpus. The strength claimed is coverage; the exposure is that survey-scale synthesis cannot show its work on every point.",
+   "whoDisputes": "NOT ESTABLISHED THIS ROUND — and this is a real gap. The matriarchal-substratum thesis is the kind of claim that attracts sustained methodological criticism (the general critique of matriarchal-prehistory arguments is a large literature), but no named published critic of THIS book was located. The row therefore records the author's own self-correction as the best-attested criticism of the work, which is a weak substitute.",
+   "currentState": "Still in print and widely cited in India as a general history; treated in Western philological circles as a survey rather than as a source of datings.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C30"
+   ],
+   "contested": {
+    "flag": "Whether a pre-Vedic goddess-centred / matriarchal substratum explains the origins of tantric religion",
+    "positions": [
+     {
+      "source": "N. N. Bhattacharyya (1982)",
+      "value": "yes — a long-predominant goddess cult and matriarchal element underlies the later systems"
+     },
+     {
+      "source": "N. N. Bhattacharyya (1999, second revised edition, on his own earlier formulations)",
+      "value": "some of the 1982 formulations rested on scanty evidence and were withdrawn — the author does not say which, in the material consulted here"
+     },
+     {
+      "source": "the philological school represented by Sanderson (C12)",
+      "value": "the tractable history of the corpus is a documented history of datable texts, lineages and royal patronage, not a reconstructed prehistory"
+     }
+    ],
+    "resolved": false
+   },
+   "gap": "WHICH formulations were withdrawn in 1999 was not determined. An auditor should treat any citation of the 1982 edition as potentially citing a claim the author later abandoned.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:brooks-secret-three-cities",
+   "nodeKind": "secondary-scholarship",
+   "title": "The Secret of the Three Cities: An Introduction to Hindu Śākta Tantrism",
+   "titleOriginal": null,
+   "author": "Douglas Renfrew Brooks",
+   "culture": "American academic Indology (Śrīvidyā); simultaneously a participant-practitioner in Rājanaka/Śrīvidyā lineages",
+   "dateText": "1990",
+   "sortYear": 1990,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1990,
+     "publisher": "University of Chicago Press (ISBN 9780226075709)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C28"
+    }
+   ],
+   "whatIsCriticised": "A CARICATURE. Brooks's programme is to show Śrīvidyā as a coherent theological and ritual system with its own philosophy and its own Vedic-facing self-understanding — against the popular reduction of Śākta tantra to transgression and sex. In this slice he functions as a corrective in the opposite direction from White.",
+   "evidenceOffered": "Sanskrit textual work on the Śrīvidyā corpus and its commentaries, plus access to living South Indian lineages.",
+   "whoDisputes": "TWO SEPARATE OBJECTIONS, from opposite directions, and both must be recorded. (1) FROM TRADITION: reviewers and practitioners have characterised his treatment of Śrīvidyā gurus and the tradition as disrespectful, have imputed a hidden agenda to defame, and have argued that a Western scholar cannot have the facts right because decisive scriptures are preserved in secrecy in India — an ACCESS argument, unfalsifiable by construction, and recorded as a position held rather than as evidence. (2) FROM THE OTHER FLANK: on White's kind of reading, a Śrīvidyā presented as philosophically respectable is the sanitised tantra that the transgressive evidence contradicts.",
+   "currentState": "Brooks remains the standard English entry point to Śrīvidyā and the repo already cites him for the dating of the Nityāṣoḍaśikārṇava. The access objection has not been adjudicated and cannot be.",
+   "procedures": [
+    {
+     "typeAsFiled": "initiation",
+     "type": "initiation",
+     "sourceLayer": "secondary-scholarship",
+     "textCompleteness": "referenced",
+     "completenessBasis": "table-of-contents level only; text not read",
+     "evidence": "The book's own contents list a section on Śrīvidyā and Tantric Practice alongside sections on the school and its theology. That it treats initiation and pūjā is therefore established; at what operative detail is NOT established here.",
+     "harmNote": "Initiation-gated material of a living South Indian tradition whose practitioners actively object to publication. Recorded as a citation, never as content."
+    }
+   ],
+   "sources": [
+    "C28",
+    "C31"
+   ],
+   "contested": {
+    "flag": "Whether Western academic access to Śrīvidyā is sufficient to describe it",
+    "positions": [
+     {
+      "source": "Brooks (1990, 1992) and the academic mainstream",
+      "value": "the surviving textual corpus plus living lineage access supports a scholarly account"
+     },
+     {
+      "source": "practitioner and reviewer objections recorded in the book's reception (C28)",
+      "value": "decisive scriptures are held in secrecy; a Western scholar's account is necessarily wrong in its facts and disrespectful in its handling of gurus"
+     }
+    ],
+    "resolved": false,
+    "note": "The second position is structurally unfalsifiable — it cannot be tested without the material it says is withheld. Recording it is not endorsing it; declining to record it would be suppressing a real and widely held objection."
+   },
+   "dedupWith": "repo: confluence.js cites 'Douglas Renfrew Brooks, The Secret of the Three Cities (1990)' on the Nityāṣoḍaśikārṇava record, inside a contested dating block with Padoux. THIS SLICE ADDS the reception controversy and the practitioner-access objection, which the repo does not carry."
+  },
+  {
+   "id": "crit:brooks-auspicious-wisdom",
+   "nodeKind": "secondary-scholarship",
+   "title": "Auspicious Wisdom: The Texts and Traditions of Śrīvidyā Śākta Tantrism in South India",
+   "titleOriginal": null,
+   "author": "Douglas Renfrew Brooks",
+   "culture": "American academic Indology (Śrīvidyā)",
+   "dateText": "1992",
+   "sortYear": 1992,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1992,
+     "publisher": "State University of New York Press, Albany",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C28"
+    }
+   ],
+   "whatIsCriticised": "A GEOGRAPHY AND A LINEAGE CLAIM — the South Indian Śrīvidyā textual tradition treated on its own terms rather than as a provincial variant of a Kashmirian system.",
+   "evidenceOffered": "Textual and traditional sources for the South Indian corpus.",
+   "whoDisputes": "Same access objection as the 1990 book; no distinct named opponent located.",
+   "currentState": "Standard reference alongside the 1990 volume.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary at the level verified here.",
+   "sources": [
+    "C28"
+   ],
+   "contested": null,
+   "dedupWith": "No repo record of this second volume."
+  },
+  {
+   "id": "crit:brooks-anusara-entanglement",
+   "nodeKind": "reception-event",
+   "title": "The Anusara collapse and the scholar-practitioner problem (February 2012)",
+   "titleOriginal": null,
+   "author": "n/a — an event in the reception history, not a work",
+   "culture": "Anglophone modern-yoga movement",
+   "dateText": "February 2012",
+   "sortYear": 2012,
+   "editions": [],
+   "whatIsCriticised": "THE POSITION OF THE SCHOLAR, not a book. Brooks — the academic most responsible for the Śrīvidyā vocabulary circulating in Anglophone yoga, and a long-standing associate of John Friend, with whom he is credited with naming Anusara Yoga — issued public statements during the movement's February 2012 collapse, reported as calling for Anusara Inc. to cease to exist to avoid further harm. The reception-history point is that the scholarly authority certifying a modern lineage's tantric credentials was institutionally inside that lineage.",
+   "evidenceOffered": "Contemporary yoga-press reporting (elephantjournal, yogadork, both February 2012).",
+   "whoDisputes": "Nobody disputes that Brooks was involved; what is disputed within that community is what the involvement means. NO ALLEGATION OF MISCONDUCT AGAINST BROOKS IS RECORDED OR IMPLIED HERE, and none was found. The misconduct allegations in that episode concerned John Friend and are outside this slice.",
+   "currentState": "A cautionary datum about how academic tantra scholarship enters practice communities. It is journalism, not scholarship, and is graded accordingly.",
+   "procedures": [],
+   "proceduresNote": "n/a — event node.",
+   "sources": [
+    "C29"
+   ],
+   "contested": null,
+   "harmNote": "REQUIRED — LIVING PEOPLE. Douglas Brooks and John Friend are living; the underlying 2012 controversy involved allegations against Friend that this file does not restate, adjudicate, or characterise. This row exists ONLY to record the structural entanglement of scholarship and movement, and an auditor is invited to strike it entirely if it cannot be carried without implying anything about any individual.",
+   "auditFlag": "WEAKEST-SOURCED ROW IN THE FILE. Sole basis is yoga-press journalism. Strike-candidate.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:sanderson-saiva-age",
+   "nodeKind": "secondary-scholarship",
+   "title": "'The Śaiva Age: The Rise and Dominance of Śaivism during the Early Medieval Period'",
+   "titleOriginal": null,
+   "author": "Alexis Sanderson (formerly Spalding Professor of Eastern Religions and Ethics, Oxford)",
+   "culture": "British/European philological Indology; manuscript-based reconstruction",
+   "dateText": "2009",
+   "sortYear": 2009,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2009,
+     "publisher": "In Shingo Einoo (ed.), Genesis and Development of Tantrism (Tokyo: Institute of Oriental Culture, University of Tokyo), Institute of Oriental Culture Special Series 23, pp. 41-350",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C12"
+    }
+   ],
+   "whatIsCriticised": "A PERIODISATION AND A DIRECTION OF BORROWING. Two claims of very different strength are usually bundled together under this title and this slice separates them. (a) THE PERIODISATION: that Śaivism was the dominant religion of the early medieval Indian polity, sustained by royal patronage — a claim about institutions, argued from epigraphy and manuscript evidence. (b) THE DEPENDENCY: that the Buddhist Yoginītantras drew substantially on the Śaiva Vidyāpīṭha corpus. Sanderson's own formulation is more nuanced than the version that circulates: the relationship is presented as bidirectional, with Śaiva Vidyāpīṭha material shaping the Buddhist Yoginītantras and Buddhist Śākta material later flowing back into the Śāktism of Bengal.",
+   "evidenceOffered": "PHILOLOGICAL AND OF THE STRONGEST AVAILABLE KIND for a transmission claim — shared passages, shared errors, manuscript witnesses, colophons, inscriptions. This is the method the repo's own transmission discipline is modelled on: a dependency edge needs documented textual dependency, not resemblance.",
+   "whoDisputes": "THREE POSITIONS, of very different evidentiary weight. (1) Christian Wedemeyer, Making Sense of Tantric Buddhism (Columbia, 2013), argues against explaining Buddhist tantric transgression by 'slavish imitation of Śaiva traditions' — one of three explanations he treats as fallacious, alongside lusty monks and primitive tribal survivals — while crediting Sanderson's identification of non-dual understanding as a hallmark of Hindu tantra. (2) Ronald Davidson, Indian Esoteric Buddhism (Columbia, 2002), locates both traditions within the feudalisation of early medieval society, with competing tantric lineages drawing on shared indigenous and tribal goddess cults as well as on one another — a shared-substrate account rather than a directional one. (3) A NON-SCHOLARLY counter-current, represented here only by a Substack essay, holds that the whole argument presupposes what it must prove, namely that Śaiva tantras predate Buddhist ones. That source is a blog and is cited as evidence of circulation only.",
+   "currentState": "The periodisation is close to consensus. The dependency direction is genuinely open: the honest statement is that Sanderson's philological case is the strongest single body of evidence on the table and that the shared-substrate alternative has not been refuted by it. THIS FILE DOES NOT PICK.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C12",
+    "C25",
+    "C36",
+    "C13",
+    "C31"
+   ],
+   "contested": {
+    "flag": "Direction of borrowing between Śaiva and Buddhist tantric corpora",
+    "positions": [
+     {
+      "source": "Sanderson, 'The Śaiva Age' (2009)",
+      "value": "substantial Śaiva Vidyāpīṭha influence on the Buddhist Yoginītantras, with later Buddhist Śākta reflux into Bengali Śāktism — bidirectional but with a documented Śaiva priority in the key layer"
+     },
+     {
+      "source": "Davidson, Indian Esoteric Buddhism (2002)",
+      "value": "both traditions drew on shared indigenous and tribal goddess cults amid early medieval feudalisation; the competition is lineage-political, not a one-way loan"
+     },
+     {
+      "source": "Wedemeyer, Making Sense of Tantric Buddhism (2013)",
+      "value": "explaining Buddhist tantric transgression by imitation of Śaivism is one of three standing fallacies; the transgressive material is semiotic and internal to Buddhist discourse"
+     },
+     {
+      "source": "an anonymous non-academic counter-current (Substack, undated)",
+      "value": "the argument assumes rather than establishes that Śaiva tantras predate Buddhist ones — recorded as circulating, NOT as evidenced"
+     }
+    ],
+    "resolved": false
+   },
+   "dedupWith": "repo: confluence.js cites Sanderson on the Niśvāsatattvasaṃhitā (via the Goodall–Sanderson–Isaacson 2015 edition), on Abhinavagupta's floruit c. 975-1025, and on the Tantrāloka. THIS SLICE ADDS the Śaiva Age argument itself and, more importantly, its critics — the repo currently presents Sanderson's datings without recording that his broader dependency thesis is contested.",
+   "siteRelevance": "HIGH. The repo's Śaiva records lean on Sanderson; a page that cites him for a date should not silently inherit his transmission thesis."
+  },
+  {
+   "id": "crit:wedemeyer-making-sense",
+   "nodeKind": "secondary-scholarship",
+   "title": "Making Sense of Tantric Buddhism: History, Semiology, and Transgression in the Indian Traditions",
+   "titleOriginal": null,
+   "author": "Christian K. Wedemeyer (University of Chicago Divinity School)",
+   "culture": "American academic Buddhist studies; semiotic method",
+   "dateText": "2013",
+   "sortYear": 2013,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2013,
+     "publisher": "Columbia University Press (South Asia Across the Disciplines; ISBN 9780231162401/18)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C25"
+    }
+   ],
+   "whatIsCriticised": "THREE EXPLANATIONS AT ONCE, named by the publisher's own framing as fallacies: that tantric transgression is explained by the passions of lusty monks; that it is a survival of primitive tribal rites; or that it is slavish imitation of Śaiva traditions. Against all three Wedemeyer argues a semiological reading in which transgressive elements function connotatively within Buddhist discourse.",
+   "evidenceOffered": "Textual and semiotic analysis of the Indian Buddhist tantric corpus; the argument is about what the transgressive signs DO in the texts rather than about what practitioners did.",
+   "whoDisputes": "Reviewed on H-Buddhism by Sørensen. No sustained published rebuttal located this round. Note that Wedemeyer's target overlaps White's position (crit:white-kiss-yogini) as much as Sanderson's, and this file records the overlap rather than casting it as a single feud.",
+   "currentState": "Live. It is the main published alternative to both the literalist and the Śaiva-derivation accounts.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C25"
+   ],
+   "contested": null,
+   "dedupWith": "No repo record. The repo's Guhyasamāja record would be the natural attachment point."
+  },
+  {
+   "id": "crit:davidson-indian-esoteric-buddhism",
+   "nodeKind": "secondary-scholarship",
+   "title": "Indian Esoteric Buddhism: A Social History of the Tantric Movement",
+   "titleOriginal": null,
+   "author": "Ronald M. Davidson",
+   "culture": "American academic Buddhist studies; social history",
+   "dateText": "2002",
+   "sortYear": 2002,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2002,
+     "publisher": "Columbia University Press",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C36"
+    }
+   ],
+   "whatIsCriticised": "A TEXTUAL-ONLY HISTORIOGRAPHY. Davidson reads the rise of tantra as a social and political phenomenon of early medieval feudalisation, with the tantric adept modelled on the overlord and with competing lineages drawing on shared indigenous and tribal goddess cults as well as on each other.",
+   "evidenceOffered": "Social and political history read alongside the textual record.",
+   "whoDisputes": "The philological school treats social-historical models as under-determined by the manuscript evidence. Characterisation here is SECOND-HAND — the book was not read — and the row is graded accordingly.",
+   "currentState": "Standard alternative framework; frequently paired with Sanderson as the two poles of the debate.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C36"
+   ],
+   "contested": null,
+   "tertiaryOnly": true,
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:singleton-yoga-body",
+   "nodeKind": "secondary-scholarship",
+   "title": "Yoga Body: The Origins of Modern Posture Practice",
+   "titleOriginal": null,
+   "author": "Mark Singleton",
+   "culture": "Anglophone academic history of modern yoga",
+   "dateText": "2010",
+   "sortYear": 2010,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2010,
+     "publisher": "Oxford University Press, New York",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C14"
+    }
+   ],
+   "whatIsCriticised": "AN ANTIQUITY CLAIM. Singleton argues that globally practised postural yoga is in large part a radical break from the haṭha tradition — different goals, and an emphasis on āsana without premodern precedent at that scale — shaped by early twentieth-century physical culture, gymnastics and body-building alongside Indian sources.",
+   "evidenceOffered": "Late-nineteenth and early-twentieth-century Anglophone material: physical-culture manuals, photographs, periodicals, institutional records. The book DOES NOT UNDERTAKE, and does not claim to undertake, a comprehensive philological review of premodern Sanskrit sources — a scope limit its critics and its author agree on.",
+   "whoDisputes": "James Mallinson, 'A Response to Mark Singleton's Yoga Body' (2011), which opens by thanking Singleton for a wonderful piece of work and crediting him with explaining how sūrya namaskār became integral to yoga despite being absent from the medieval haṭha sources — and then argues that the premodern antecedents of āsana practice must keep being researched, lest readers conclude from Yoga Body that they were insignificant. This is a SCOPE correction, not a refutation, and the file records it as such.",
+   "currentState": "Effectively resolved by collaboration rather than by argument: Singleton and Mallinson subsequently co-authored Roots of Yoga (2017) and worked together with Jason Birch on the five-year Haṭha Yoga Project. Any presentation of this as a feud misreads the record.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C14",
+    "C31"
+   ],
+   "contested": {
+    "flag": "How much of modern postural yoga is premodern",
+    "positions": [
+     {
+      "source": "Singleton, Yoga Body (2010)",
+      "value": "the modern postural system is largely a twentieth-century construction in dialogue with international physical culture"
+     },
+     {
+      "source": "Mallinson, 'A Response to Mark Singleton's Yoga Body' (2011)",
+      "value": "accepted for what the book covers, but premodern āsana traditions are substantial and must not be inferred away from a study whose sources are Anglophone and modern"
+     }
+    ],
+    "resolved": false,
+    "note": "Both authors subsequently co-published. The positions are complementary in scope, not contradictory in fact."
+   },
+   "dedupWith": "repo: confluence.js already cites Yoga Body on the Krishnamacharya record (the Mysore Jaganmohan Palace yogaśālā, with Sjoman) and elsewhere. THIS SLICE ADDS Mallinson's response and the collaboration that followed — the repo cites both scholars but never records that one critiqued the other."
+  },
+  {
+   "id": "crit:mallinson-response-yoga-body",
+   "nodeKind": "secondary-scholarship",
+   "title": "'A Response to Mark Singleton's Yoga Body'",
+   "titleOriginal": null,
+   "author": "James Mallinson (SOAS)",
+   "culture": "British philological Indology; Sanskrit haṭha corpus",
+   "dateText": "2011",
+   "sortYear": 2011,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2011,
+     "publisher": "conference/response paper, circulated in the American Academy of Religion context; copy at academia.edu/1146607",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C14"
+    }
+   ],
+   "whatIsCriticised": "A SCOPE, EXPLICITLY NOT A THESIS. Named here as its own node because it is the cleanest example in the whole slice of a criticism that is neither a refutation nor an endorsement — the category the repo's contested blocks handle worst.",
+   "evidenceOffered": "The Sanskrit haṭha corpus itself, which Mallinson edits.",
+   "whoDisputes": "Singleton has accepted the scope point in subsequent joint work.",
+   "currentState": "Superseded by collaboration.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C14"
+   ],
+   "contested": null,
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:mallinson-singleton-roots-of-yoga",
+   "nodeKind": "secondary-scholarship",
+   "title": "Roots of Yoga",
+   "titleOriginal": null,
+   "author": "James Mallinson & Mark Singleton",
+   "culture": "Anglophone philological Indology, popular-scholarly edition",
+   "dateText": "2017",
+   "sortYear": 2017,
+   "editions": [
+    {
+     "translator": "Mallinson & Singleton",
+     "year": 2017,
+     "publisher": "Penguin Classics",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C31"
+    }
+   ],
+   "whatIsCriticised": "Nothing directly — it is the settlement. Recorded because it is the documented outcome of the Yoga Body argument and because the repo already cites it repeatedly.",
+   "evidenceOffered": "Translated extracts from across the premodern yoga corpus.",
+   "whoDisputes": "n/a for the purposes of this slice.",
+   "currentState": "Standard reference; already load-bearing in the repo.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary — it is an anthology of primary material, and any procedure content belongs to the primary texts it translates, which are S10/S1 rows.",
+   "sources": [
+    "C31"
+   ],
+   "contested": null,
+   "dedupWith": "repo: cited on the Dattātreyayogaśāstra and Haṭhayogapradīpikā records among others."
+  },
+  {
+   "id": "crit:demichelis-history-modern-yoga",
+   "nodeKind": "secondary-scholarship",
+   "title": "A History of Modern Yoga: Patañjali and Western Esotericism",
+   "titleOriginal": null,
+   "author": "Elizabeth De Michelis",
+   "culture": "Anglophone academic study of modern yoga",
+   "dateText": "2004",
+   "sortYear": 2004,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2004,
+     "publisher": "Continuum, London",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C37"
+    }
+   ],
+   "whatIsCriticised": "A GENEALOGY. That modern yoga — Vivekananda's 'Rāja Yoga' above all — was formed in dialogue with Western esotericism and New Thought, so that the 'Patañjali' of modern practice arrives already filtered through nineteenth-century Western occultism.",
+   "evidenceOffered": "Not verified this round beyond the catalogue record.",
+   "whoDisputes": "Not established this round.",
+   "currentState": "Foundational for the modern-yoga historiography that Singleton and Alter build on.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C37"
+   ],
+   "contested": null,
+   "auditFlag": "WEAKEST BIBLIOGRAPHIC ROW. Included because the field cannot be represented without it, but nothing beyond author/title/publisher/year was re-verified this round.",
+   "dedupWith": "No repo record, though the repo carries Vivekananda's Rāja Yoga (1896) as 'raja-yoga-1896' — the natural attachment point."
+  },
+  {
+   "id": "crit:eliade-yoga-immortality-freedom",
+   "nodeKind": "primary-of-the-criticised-kind",
+   "title": "Yoga: Immortality and Freedom",
+   "titleOriginal": "Le Yoga: Immortalité et liberté",
+   "author": "Mircea Eliade (1907-1986)",
+   "culture": "Romanian/French/American history of religions; the Chicago school",
+   "dateText": "doctoral thesis on yoga practices completed 1933; French version c. 1936; the standard Le Yoga: Immortalité et liberté, Paris 1954; English translation (Willard R. Trask) Bollingen/Princeton 1958",
+   "sortYear": 1954,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1936,
+     "publisher": "French translation of the 1933 Bucharest doctoral thesis",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C15"
+    },
+    {
+     "translator": null,
+     "year": 1954,
+     "publisher": "Payot, Paris — Le Yoga: Immortalité et liberté",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C15"
+    },
+    {
+     "translator": "Willard R. Trask",
+     "year": 1958,
+     "publisher": "Bollingen Series / Princeton University Press",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C15"
+    }
+   ],
+   "whatIsCriticised": "THIS ROW IS THE OBJECT, NOT THE CRITIC. Eliade's yoga book is the twentieth century's most widely read synthesis of the subject and the principal channel by which a comparative, essentialising picture of yoga entered general Western culture. Its edition history is confirmed only in outline here (1933 thesis, French translation about three years later, wide academic impact in Romania and abroad).",
+   "evidenceOffered": "Comparative synthesis across Sanskrit, Buddhist, shamanic and alchemical material.",
+   "whoDisputes": "THE METHOD, on several distinct grounds, and the fetch this round was thin — see the gap note. The general criticism of Eliade's scholarship recorded in reference sources is threefold: overgeneralisation; lack of empirical support for the broad theoretical frameworks; and the bearing of far-right and nationalist commitments on the work. Two named book-length treatments were located and are given their own rows: Strenski (1987) and Wasserstrom (1999).",
+   "currentState": "Eliade is read historiographically now rather than as a current authority on yoga; the philological corpus (Sanderson, Mallinson, Birch) has replaced him for factual questions while his framing continues to shape popular understanding — itself a pizza-effect-adjacent process.",
+   "procedures": [
+    {
+     "typeAsFiled": "breath-discipline",
+     "type": "breath-discipline",
+     "sourceLayer": "secondary-scholarship",
+     "textCompleteness": "referenced",
+     "completenessBasis": "not-read-this-round",
+     "evidence": "That the book surveys yogic disciplines including breath control is definitional to the work; nothing about its operative detail was checked. NOT a licence to treat Eliade as a procedure source.",
+     "harmNote": null
+    }
+   ],
+   "sources": [
+    "C15",
+    "C17",
+    "C16"
+   ],
+   "contested": {
+    "flag": "Whether Eliade's political history bears on the scholarship",
+    "positions": [
+     {
+      "source": "the documented record (C15)",
+      "value": "in 1937 Eliade gave intellectual support to the Iron Guard, describing it as a Christian revolution aimed at creating a new Romania, and contributed to its Prahova County campaign; on 14 July 1938 he was arrested in King Carol II's crackdown, held about three weeks, refused to sign a renunciation, and was released in November 1938; from 1940 to 1944 he served as cultural attaché in the United Kingdom and Portugal"
+     },
+     {
+      "source": "critics of Eliade's method, as characterised in reference sources",
+      "value": "the far-right and nationalist commitments are not separable from the anti-historical, essentialising shape of the comparative method"
+     },
+     {
+      "source": "Eliade's defenders",
+      "value": "the biographical record does not by itself invalidate the comparative work; the two must be assessed separately — POSITION HELD BUT NOT ATTRIBUTED TO A NAMED SCHOLAR THIS ROUND, which is a defect in this block"
+     }
+    ],
+    "resolved": false
+   },
+   "gap": "The Wikipedia fetch did NOT name Strenski, J. Z. Smith, McCutcheon, Dubuisson, Wasserstrom or Rennie despite the section existing. The named-critic roster below rests on separate bibliographic records for Strenski and Wasserstrom only; Smith, McCutcheon, Dubuisson and Rennie are NOT given rows because nothing was verified about them this round. Their absence is a hole, not a judgement.",
+   "dedupWith": "No repo record of Eliade at all — notable, since his framing is arguably present implicitly in any comparative survey of exactly the kind this repo is."
+  },
+  {
+   "id": "crit:strenski-four-theories-of-myth",
+   "nodeKind": "secondary-scholarship",
+   "title": "Four Theories of Myth in Twentieth-Century History: Cassirer, Eliade, Lévi-Strauss and Malinowski",
+   "titleOriginal": null,
+   "author": "Ivan Strenski",
+   "culture": "Anglophone theory and method in religious studies",
+   "dateText": "1987",
+   "sortYear": 1987,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1987,
+     "publisher": "Macmillan, London; viii+234 pp.",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C17"
+    }
+   ],
+   "whatIsCriticised": "A METHOD, HISTORICISED. Strenski treats theories of myth as products of their theorists' historical situations — the book is described as being as much a study of the four men as of their theories — with a chapter devoted to Eliade. The effect is to deny the comparative theory of myth the ahistorical standing it claims for itself.",
+   "evidenceOffered": "Intellectual-historical contextualisation of each theorist.",
+   "whoDisputes": "Reviewed in Religious Studies (Cambridge), in American Anthropologist (Littleton, 1989) and by Cristiano Grottanelli in History of Religions 30.2 — the reviews were located but NOT READ, so no reviewer's position is characterised here.",
+   "currentState": "A standard reference in the methodological critique of Eliade.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C17"
+   ],
+   "contested": null,
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:wasserstrom-religion-after-religion",
+   "nodeKind": "secondary-scholarship",
+   "title": "Religion after Religion: Gershom Scholem, Mircea Eliade, and Henry Corbin at Eranos",
+   "titleOriginal": null,
+   "author": "Steven M. Wasserstrom",
+   "culture": "American academic history of religions; critique of the history-of-religions school itself",
+   "dateText": "1999",
+   "sortYear": 1999,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1999,
+     "publisher": "Princeton University Press (ISBN 9780691005409); JSTOR j.ctt7pds6",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C16"
+    }
+   ],
+   "whatIsCriticised": "A SCHOOL AND ITS ETHICS. Wasserstrom argues that Scholem, Eliade and Corbin — all three lecturing to the Eranos circle in Ascona between 1949 and 1978 — jointly overturned the study of religion by de-emphasising law, ritual and social history in favour of myth and mysticism, each locating the symbolism of mystical experience at the centre of his monotheistic tradition. His sharpest charge is ethical rather than philological: that this theory of religion minimised the binding character of the moral law associated with monotheism. He also draws attention to the personal esoteric beliefs and involvements of the Eranos scholars — excepting Scholem.",
+   "evidenceOffered": "The Eranos lecture record, the three men's published work, and biographical material on their esoteric affiliations.",
+   "whoDisputes": "The book was contested on publication; NO NAMED OPPONENT WAS VERIFIED THIS ROUND, which is a gap given how sharply contested it in fact was.",
+   "currentState": "Live and consequential for this repo: it is the strongest published argument that the comparative-esotericism framing a survey site naturally reaches for is itself an ideological artefact of a particular mid-century circle.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C16"
+   ],
+   "contested": null,
+   "siteRelevance": "HIGH and uncomfortable. This site is a comparative survey of esoteric systems; Wasserstrom's argument is precisely about what goes wrong in that genre.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:kripal-kalis-child",
+   "nodeKind": "secondary-scholarship",
+   "title": "Kālī's Child: The Mystical and the Erotic in the Life and Teachings of Ramakrishna",
+   "titleOriginal": null,
+   "author": "Jeffrey J. Kripal (Rice University); doctoral supervisor Wendy Doniger",
+   "culture": "American academic history of religions; psychoanalytic method",
+   "dateText": "1995; second edition 1998",
+   "sortYear": 1995,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1995,
+     "publisher": "University of Chicago Press",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C33"
+    },
+    {
+     "translator": null,
+     "year": 1998,
+     "publisher": "University of Chicago Press, second edition — incorporating corrections Kripal describes as minor errors identified by Swami Atmajnanananda",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C7"
+    }
+   ],
+   "whatIsCriticised": "THIS ROW IS THE OBJECT OF THE DISPUTE. Kripal argues that Ramakrishna's mystical experiences were profoundly erotic, reading them through a Freudian frame as bound up with homoerotic and paedophilic energies and with childhood trauma, and further argues that the Ramakrishna Order systematically suppressed and softened the biographical record. The evidentiary core is the guhya kathā — the 'secret talk' passages of Mahendranath Gupta's Bengali Kathāmṛta.",
+   "evidenceOffered": "Bengali source work on the Kathāmṛta plus a psychoanalytic reading; the book won the American Academy of Religion's History of Religions Prize for Best First Book of 1995.",
+   "whoDisputes": "THE LARGEST CRITICISM DOSSIER IN THIS SLICE, and it separates into four distinct kinds of objection which must not be collapsed. (1) TRANSLATION: named scholars dispute specific renderings — Jean Openshaw (1995), Swami Atmajnanananda (International Journal of Hindu Studies, August 1997), Rajat Kanta Ray (1997), Swami Tyagananda (2000). Disputed terms recorded in the reception literature include vyākulatā ('anxiety', rendered as erotic torment — J. S. Hawley disputing), uddīpana ('enkindling', rendered as homoerotic excitement), mānuṣ ('human being', rendered gender-specifically), tribhaṅga (a standard Krishna iconographic pose, rendered as 'cocked hips'), hṛt-padma ('lotus of the heart'), ramaṇ karo ('unite') and milan ('meeting'). (2) FACTUAL/DOCUMENTARY: Tyagananda documents age misidentifications — a fifty-year-old described as a boy, men in their thirties and forties as boy disciples — and argues the guhya kathā means esoteric scriptural meaning rather than shameful secret; he also notes the final Kathāmṛta volume was public from 1932, undercutting the suppression thesis. On Rāmchandra Datta's Jīvanvṛttānta, which Kripal called a suppressed scandalous biography, Vrajaprana and Atmajnanananda note nine Bengali editions existed by 1995 and Kripal acknowledged overplaying the suppression claim. (3) METHODOLOGICAL: Gerald Larson's 1998 exchange with Kripal charges reductionism; Alan Roland argues Freudian frames do not transfer to Asian cultures; Somnath Bhattacharyya and Larson note that neither Kripal nor Doniger has formal psychoanalytic training. (4) POLEMICAL/COMMUNITY: Narasingha Sil — himself the author of a psychoanalytic study of Ramakrishna and thanked in Kripal's preface — published a review in The Statesman (Calcutta, January 1997) ending in an obscenity and charging wilful distortion and manipulation of sources and inability to converse in Bengali; the paper closed the resulting correspondence after thirty-eight letters, reportedly without precedent, and declined William Radice's attempts to publish a defence. Huston Smith wrote in the Harvard Divinity School Bulletin (2001) that few books had offended Hindu sensibilities so grossly and called the work colonialism updated. Rajiv Malhotra's essay 'RISA LILA—I: Wendy's Child Syndrome' argued the Freudian apparatus is discredited.",
+   "defenders": "Malcolm McLean's review in the Journal of the American Oriental Society (1997) called the treatment thorough, well documented and convincing. Brian Hatcher's 1999 survey of the reviews found the overall balance positive and at times highly laudatory. Kripal himself published a second edition, a response to Larson (1998), a response to Tyagananda, and 'The Tantric Truth of the Matter: A Forthright Response to Rajiv Malhotra', before announcing in late 2002 that after eight years, eight published essays, a second monograph and thousands of letters he was ending formal responses.",
+   "currentState": "UNRESOLVED, and this file does not resolve it. Two efforts to have the book censored in India — 1996 and 2001 — failed in Parliament. J. S. Hawley moved from an early positive assessment (1998) toward a critical one by 2004. Hugh Urban, elsewhere a defender of psychoanalytically informed work, criticised the book's depiction of tantra as scandalous, seedy, sexy and dangerous. No scholarly consensus has emerged; the translation objections and the psychoanalytic objections have never been jointly adjudicated by a neutral body, and no such body exists.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C7",
+    "C33",
+    "C34"
+   ],
+   "contested": {
+    "flag": "Whether Kālī's Child's central reading of Ramakrishna is sustainable",
+    "positions": [
+     {
+      "source": "Kripal (1995, 1998, and his published responses)",
+      "value": "the erotic-mystical reading stands; the corrected errors were minor and do not touch the thesis; interpretation is an interaction between reader and text and disputed terms admit his renderings"
+     },
+     {
+      "source": "Swami Tyagananda (2000) and Tyagananda & Vrajaprana (2010)",
+      "value": "the reading is built on mistranslation and documentary error; the author's Bengali is piecemeal and the resulting Ramakrishna is fabricated to fit preconceptions"
+     },
+     {
+      "source": "Narasingha Sil (The Statesman, January 1997)",
+      "value": "wilful distortion and manipulation of sources — from a scholar who had himself published a psychoanalytic profile of Ramakrishna and so is not objecting to psychoanalysis as such"
+     },
+     {
+      "source": "Gerald Larson (1998); Alan Roland; Somnath Bhattacharyya",
+      "value": "methodologically reductionist and applying a frame that does not transfer, by authors without psychoanalytic training"
+     },
+     {
+      "source": "Malcolm McLean (JAOS 1997); Brian Hatcher (1999)",
+      "value": "thorough, well documented, convincing; the review balance was positive"
+     },
+     {
+      "source": "Huston Smith (Harvard Divinity School Bulletin, 2001); Rajiv Malhotra ('Wendy's Child Syndrome')",
+      "value": "an offence to a living tradition and an instance of updated colonialism"
+     }
+    ],
+    "resolved": false
+   },
+   "harmNote": "REQUIRED — LIVING PEOPLE AND A LIVING RELIGIOUS ORDER. Kripal, Tyagananda, Vrajaprana, Malhotra and Hawley are living; the Ramakrishna Math and Mission is an active institution; the underlying claims concern the sexuality of a revered nineteenth-century religious figure. This file records POSITIONS AND WHO HOLDS THEM and adjudicates nothing. It reproduces no passage from Kālī's Child, no passage from the Kathāmṛta, and no characterisation of Ramakrishna in this file's own voice.",
+   "dedupWith": "No repo record of Kripal or Ramakrishna. If the atlas ever adds a modern-Bengal or Ramakrishna record this dispute is mandatory and must ship with every position."
+  },
+  {
+   "id": "crit:tyagananda-kalis-child-revisited",
+   "nodeKind": "counter-scholarship",
+   "title": "'Kali's Child Revisited, or Didn't Anyone Check the Documentation?'",
+   "titleOriginal": null,
+   "author": "Swami Tyagananda — minister of the Ramakrishna-Vedanta Society of Boston, Hindu chaplain at Harvard and MIT",
+   "culture": "Ramakrishna Order scholarship, written into an American academic forum",
+   "dateText": "distributed at the American Academy of Religion annual meeting, 2000; subsequently published in Evam: Forum on Indian Representations",
+   "sortYear": 2000,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2000,
+     "publisher": "circulated paper, AAR annual meeting; later Evam",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C34"
+    }
+   ],
+   "whatIsCriticised": "A TRANSLATION AND A DOCUMENTATION PRACTICE — specifically, whether the sources say what they are cited as saying. Its title is the charge.",
+   "evidenceOffered": "Line-level comparison of Kripal's renderings against the Bengali, plus prosopographical corrections on the ages of named disciples, plus publication-history evidence against the suppression thesis (the 1932 completion of the Kathāmṛta; the multiple Bengali editions of Datta's biography).",
+   "whoDisputes": "Kripal responded formally, expressing embarrassment, sadness and hope, denying wilful distortion while acknowledging having offended Hindu sensibilities, defending alternative senses of the disputed terms, and distinguishing right-handed ascetic from left-handed sexual tantric milieux in the argument about Ramakrishna's setting.",
+   "currentState": "Open. The author's institutional position — a monastic of the order whose founder is at issue — is a fact about the source that this file states plainly and does NOT use to discount the philological content. A translation objection is right or wrong independently of who makes it.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C34",
+    "C7"
+   ],
+   "contested": null,
+   "harmNote": "See crit:kripal-kalis-child. Living author, living institution.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:tyagananda-vrajaprana-interpreting-ramakrishna",
+   "nodeKind": "counter-scholarship",
+   "title": "Interpreting Ramakrishna: Kali's Child Revisited",
+   "titleOriginal": null,
+   "author": "Swami Tyagananda & Pravrajika Vrajaprana",
+   "culture": "Ramakrishna Order scholarship",
+   "dateText": "2010",
+   "sortYear": 2010,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2010,
+     "publisher": "Motilal Banarsidass, Delhi",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C34"
+    }
+   ],
+   "whatIsCriticised": "The same target at book length, adding the charge that Kripal's Bengali knowledge is piecemeal and that the resulting portrait was fabricated to fit the author's preconceptions rather than derived from the documentation.",
+   "evidenceOffered": "Expanded version of the 2000 paper's philological and documentary case.",
+   "whoDisputes": "Kripal had already announced (late 2002) that he would make no further formal responses; there is therefore no reply from him to this volume in the record consulted. ABSENCE OF REPLY IS NOT CONCESSION and this file does not treat it as one.",
+   "currentState": "Open.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C34",
+    "C7"
+   ],
+   "contested": null,
+   "harmNote": "See crit:kripal-kalis-child.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:sil-ramakrishna-psychological-profile",
+   "nodeKind": "secondary-scholarship",
+   "title": "Narasingha Sil's psychoanalytic study of Ramakrishna, and his 1997 review of Kālī's Child",
+   "titleOriginal": null,
+   "author": "Narasingha P. Sil, historian",
+   "culture": "Bengali-American academic history",
+   "dateText": "monograph 1995 (Ramakrishna Paramahamsa: A Psychological Profile); review in The Statesman, Calcutta, January 1997",
+   "sortYear": 1995,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1995,
+     "publisher": "monograph — publisher NOT VERIFIED this round; commonly given as Brill, Leiden, with a 1991 date in some catalogues. DISCREPANCY UNRESOLVED.",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C7"
+    },
+    {
+     "translator": null,
+     "year": 1997,
+     "publisher": "The Statesman (Calcutta), review",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C7"
+    }
+   ],
+   "whatIsCriticised": "SOURCE HANDLING, from inside the same method. Sil's importance to this slice is structural: he had published his own psychoanalytic and pathologising study of Ramakrishna, so his attack on Kripal cannot be read as a defence of the tradition against psychoanalysis. His charges are that Kripal selected dictionary senses against the primary meaning, could not converse in Bengali, and committed wilful distortion and manipulation of sources.",
+   "evidenceOffered": "Lexical and source-critical, in a newspaper review rather than a refereed venue — a genre limit this file records.",
+   "whoDisputes": "William Radice attempted twice to publish a defence in the same paper and was refused; the paper closed the correspondence after thirty-eight letters.",
+   "currentState": "Open; frequently cited by all sides for different reasons.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C7"
+   ],
+   "contested": null,
+   "discrepancyFlags": [
+    {
+     "field": "monograph date/publisher",
+     "positions": [
+      "1995, per the reception summary consulted",
+      "1991, Brill, per common catalogue listings"
+     ],
+     "resolved": false,
+     "howToResolve": "check the imprint"
+    }
+   ],
+   "harmNote": "Living or recently active author; the underlying subject matter is the sexuality of a revered religious figure. Positions recorded, none endorsed.",
+   "tertiaryOnly": true,
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:doniger-the-hindus",
+   "nodeKind": "secondary-scholarship",
+   "title": "The Hindus: An Alternative History",
+   "titleOriginal": null,
+   "author": "Wendy Doniger (University of Chicago)",
+   "culture": "American academic history of religions; Sanskrit philology and mythology",
+   "dateText": "2009; withdrawn from India February 2014; republished in India c. 2015-16",
+   "sortYear": 2009,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2009,
+     "publisher": "Viking Penguin, New York; Penguin India edition; c. 800 pp.",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C8"
+    },
+    {
+     "translator": null,
+     "year": 2015,
+     "publisher": "Speaking Tiger Books, India (republication about twenty months after the withdrawal)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C8"
+    }
+   ],
+   "whatIsCriticised": "A VANTAGE POINT, and then a legality. Doniger writes the history from the point of view of women, dogs, horses and outcastes rather than through the male Brahminical narrative. The criticism divides sharply into (a) scholarly complaints about accuracy and focus and (b) a political and legal campaign about religious offence, and conflating the two is the standard error in every popular account of this affair.",
+   "evidenceOffered": "Sanskrit textual scholarship; the book was a number-one non-fiction bestseller in India in October 2009 (Hindustan Times) and a National Book Critics Circle finalist in January 2010.",
+   "whoDisputes": "SCHOLARLY: reviews in Social Scientist and in the Journal of the American Oriental Society credited the textual scholarship while identifying factual errors in her treatment of British colonialists in India and a lack of focus. Bharat Gupt charged misunderstanding of mythology and a politically motivated, left-aligned analysis. The Hindu American Foundation protested the National Book Critics Circle nomination on grounds of inaccuracy and bias. FAVOURABLE: David Arnold (Times Literary Supplement), David Shulman (New York Review of Books), Pankaj Mishra (New York Times), Library Journal, The Hindu. LEGAL: Dinanath Batra, founder of the Shiksha Bachao Andolan Samiti (affiliated to the Rashtriya Swayamsevak Sangh), sued in 2011 under section 295A of the Indian Penal Code — deliberate and malicious acts intended to outrage religious feelings — with the matter coming to a head in February 2014.",
+   "currentState": "The book is available in India again. Penguin India agreed in February 2014 to withdraw it and destroy stock within six months, blaming section 295A and stating it was difficult to maintain international standards of free speech under that provision; sales rose afterwards, with copies reportedly sold in brown paper. The plaintiffs' counsel Monika Arora maintains she sought only correction of errors and characterises the republication as a way of avoiding a court test of those errors. Republication is a fact; vindication is not, and this file does not claim it.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C8"
+   ],
+   "contested": {
+    "flag": "What the withdrawal of The Hindus establishes",
+    "positions": [
+     {
+      "source": "international press and free-expression commentators (Guardian, BBC, New York Times, Los Angeles Times, New Yorker)",
+      "value": "a free-speech failure produced by a colonial-era offence statute"
+     },
+     {
+      "source": "Monika Arora, counsel for the complainants",
+      "value": "the action sought correction of factual errors; the republication elsewhere evades a court test of those errors"
+     },
+     {
+      "source": "Penguin India's own statement",
+      "value": "the settlement reflects the impossibility of maintaining international free-speech standards under IPC 295A, not agreement with the complaint"
+     },
+     {
+      "source": "the scholarly reviewers in Social Scientist and JAOS",
+      "value": "there are real factual errors in the colonial-period material, independent of the legal campaign"
+     }
+    ],
+    "resolved": false
+   },
+   "harmNote": "REQUIRED — LIVING AUTHOR, LIVE POLITICAL DISPUTE, ORGANISED COMMUNITIES ON BOTH SIDES, and an active criminal-law provision. This row states who did what and when. It does not evaluate the book's accuracy, does not characterise Hinduism, and does not take a position on IPC 295A.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:malhotra-invading-the-sacred",
+   "nodeKind": "counter-scholarship-polemic",
+   "title": "Invading the Sacred: An Analysis of Hinduism Studies in America",
+   "titleOriginal": null,
+   "author": "Krishnan Ramaswamy, Antonio T. de Nicolás & Aditi Banerjee (eds.), incorporating essays by Rajiv Malhotra",
+   "culture": "Hindu-American intellectual counter-critique of the American academy",
+   "dateText": "2007",
+   "sortYear": 2007,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2007,
+     "publisher": "Rupa & Co., New Delhi (ISBN 8129111829)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C10"
+    }
+   ],
+   "whatIsCriticised": "A FIELD AND ITS GATEKEEPING. The volume argues that Hinduism studies in America — and specifically the Religion in South Asia (RISA) section of the American Academy of Religion — produce factually inaccurate and psychoanalytically reductive accounts of Hinduism, and that the AAR lacks well-informed Hindu understanding. On Kālī's Child specifically it argues the book violated academic due process and ethical norms rather than deserving a prize, and that translation errors persisted into the second edition.",
+   "evidenceOffered": "Compiled critiques of named scholars' work, principally Kripal's and Doniger's, plus argument about institutional composition and review practice.",
+   "whoDisputes": "The academic reception recorded here is thin and one-sided: enthusiastic reception in Hindu-American readerships was located; NO substantial academic review or reply was located this round, which is a gap rather than evidence of concession. Malhotra himself is assessed variously in reference sources — John Hinnells recognises him as leading Hindu criticism of Western method and Prema Kurien places him at the forefront of the American Hindu challenge to academic Eurocentrism, while Martha Nussbaum criticises his disregard for the usual canons of argument and scholarship, Brian Pennington calls the work ahistorical and charges systematic misrepresentation of Hindu-Christian relations, Jonathan Edelmann argues he lacks grounding in the specific philosophical schools his pūrvapakṣa method requires, and Anantanand Rambachan (May 2015) published an extended reply saying Malhotra's descriptions of his scholarship belong to fiction.",
+   "currentState": "Live and polarised. The underlying academic-freedom question — who may study a living tradition, subject to whose review — has no agreed answer and both sides invoke academic freedom against the other.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C10",
+    "C9",
+    "C7"
+   ],
+   "contested": {
+    "flag": "Whether external community critique of Hinduism scholarship is accountability or intimidation",
+    "positions": [
+     {
+      "source": "Ramaswamy, de Nicolás, Banerjee & Malhotra (2007)",
+      "value": "a field that studies a living tradition without informed participation from it produces error, and saying so is legitimate scholarly accountability"
+     },
+     {
+      "source": "critics of the Infinity Foundation's role, as characterised in reference sources",
+      "value": "the effect is surveillance of the academy — a watchdog monitoring how Hinduism is portrayed, with chilling consequences for scholars"
+     },
+     {
+      "source": "commentators on the Indian free-expression side",
+      "value": "concern about damage to free speech and academic freedom in India arising from the controversies over scholarship on Hinduism"
+     }
+    ],
+    "resolved": false
+   },
+   "harmNote": "REQUIRED — LIVING PEOPLE ON BOTH SIDES, and an active political dispute in which accusations of bad faith are the currency. Every position above is attributed to its holder. This file takes no view on whether any scholar named is a good scholar.",
+   "gap": "The brief asked for the 'Vishwa Adhyayan Kendra / academic-freedom arguments on both sides'. NO ORGANISATION OF THAT NAME WAS VERIFIED — it does not appear in the Rajiv Malhotra reference article and targeted searching did not find it. Reference sources do record that Malhotra chairs a 'Center for Indic Studies' as of 2026 and founded the Infinity Foundation (Princeton, 1995, 400+ grants, advisory board drawn mainly from the software industry rather than from academics). The named body in the brief is UNCONFIRMED and is recorded as unconfirmed rather than silently substituted.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:malhotra-indras-net",
+   "nodeKind": "counter-scholarship-polemic",
+   "title": "Indra's Net: Defending Hinduism's Philosophical Unity — and the 2015 plagiarism allegation",
+   "titleOriginal": null,
+   "author": "Rajiv Malhotra",
+   "culture": "Hindu-American intellectual counter-critique",
+   "dateText": "2014; revised edition 2016",
+   "sortYear": 2014,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2014,
+     "publisher": "HarperCollins India",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C9"
+    },
+    {
+     "translator": null,
+     "year": 2016,
+     "publisher": "HarperCollins India, revised edition — with references to Nicholson substantially reduced",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C9"
+    }
+   ],
+   "whatIsCriticised": "A THESIS AND THEN AN AUTHOR. The book argues against the 'neo-Hinduism' thesis — the claim that modern Hindu unity is a colonial-era construction — and for a genuine philosophical unity. It then became the object of an allegation rather than the source of one.",
+   "evidenceOffered": "For the book's own thesis: Sanskrit sources and a reading of the tradition's self-understanding.",
+   "whoDisputes": "ALLEGATION, STATED AS ALLEGATION. In July 2015 Andrew J. Nicholson, author of Unifying Hinduism (Columbia University Press, 2010), and Richard Fox Young of Princeton Theological Seminary alleged that Indra's Net plagiarised Nicholson's work; Nicholson's charge was that Malhotra not only plagiarised but twisted the words and arguments of respectable scholars. A specific instance cited is that page 163 of Indra's Net closely parallels page 14 of Unifying Hinduism on models of philosophical complementarity, with inadequate attribution. MALHOTRA'S RESPONSE: that the book contained thirty explicit references to Nicholson, and that he would REMOVE many of them on the ground that Nicholson had borrowed from Indian sources and presented them as his own original ideas, replacing the citations with original Sanskrit sources in revised editions.",
+   "currentState": "OUTCOME, STATED PRECISELY: HarperCollins India indicated willingness to rectify future editions; the revised 2016 edition substantially reduced the Nicholson references; NO FORMAL LEGAL PROCEEDING OCCURRED and no adjudicating body issued a finding. The dispute remains a scholarly controversy without a determination. This file does not say the allegation was true and does not say it was false.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C9",
+    "C32"
+   ],
+   "contested": {
+    "flag": "The 2015 plagiarism allegation against Indra's Net",
+    "positions": [
+     {
+      "source": "Andrew J. Nicholson and Richard Fox Young (July 2015)",
+      "value": "Indra's Net plagiarises Unifying Hinduism and misrepresents the arguments it borrows; p.163 parallels p.14 with inadequate attribution"
+     },
+     {
+      "source": "Rajiv Malhotra (2015)",
+      "value": "the book cited Nicholson thirty times explicitly; the underlying ideas are Indian sources Nicholson himself borrowed and presented as original, so the citations would be replaced with the Sanskrit originals"
+     },
+     {
+      "source": "HarperCollins India",
+      "value": "willingness to rectify future editions; a revised edition followed in 2016"
+     },
+     {
+      "source": "the documentary record",
+      "value": "no formal proceeding, no adjudicated finding, in either direction"
+     }
+    ],
+    "resolved": false
+   },
+   "harmNote": "REQUIRED — BLP-CRITICAL. All three named individuals are living, and an unresolved plagiarism allegation is professionally damaging in both directions. The row's grammatical form is deliberately allegation-plus-response-plus-outcome; any rendering of this on a site page must preserve all four positions and the explicit 'no adjudicated finding'.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:malhotra-battle-for-sanskrit",
+   "nodeKind": "counter-scholarship-polemic",
+   "title": "The Battle for Sanskrit",
+   "titleOriginal": null,
+   "author": "Rajiv Malhotra",
+   "culture": "Hindu-American intellectual counter-critique",
+   "dateText": "2016",
+   "sortYear": 2016,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2016,
+     "publisher": "HarperCollins India",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C9"
+    }
+   ],
+   "whatIsCriticised": "A NAMED SCHOLAR'S PROGRAMME. The target is the Indologist Sheldon Pollock and what Malhotra characterises as a critical stance toward Sanskrit's role in traditional views of Indian society; the general charge is that Western scholars intervene in Indian intellectual discourse with analyses that traditional Indian experts reject.",
+   "evidenceOffered": "Reading of Pollock's published positions against traditional commentarial standards.",
+   "whoDisputes": "Pollock and the philological mainstream; the reference-level criticisms of Malhotra's method recorded at crit:malhotra-invading-the-sacred apply here too (Nussbaum on canons of argument, Edelmann on pūrvapakṣa competence).",
+   "currentState": "Live. Malhotra was appointed honorary visiting professor at Jawaharlal Nehru University in October 2018 and, per reference sources current to May 2026, chairs the Center for Indic Studies; he is described in reference sources as an acknowledged proponent of Hindutva and characterised by Amanda Lucia as a famed Hindu nationalist — a characterisation attributed here, not asserted.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C9"
+   ],
+   "contested": null,
+   "harmNote": "REQUIRED — living people, live political dispute, and a political characterisation (Hindutva/Hindu nationalist) that is contested. Attributed to named sources, never stated in this file's voice.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:nicholson-unifying-hinduism",
+   "nodeKind": "secondary-scholarship",
+   "title": "Unifying Hinduism: Philosophy and Identity in Indian Intellectual History",
+   "titleOriginal": null,
+   "author": "Andrew J. Nicholson",
+   "culture": "American academic Indian philosophy",
+   "dateText": "2010",
+   "sortYear": 2010,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2010,
+     "publisher": "Columbia University Press, New York",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C32"
+    }
+   ],
+   "whatIsCriticised": "A DATING OF HINDU SELF-UNDERSTANDING. Nicholson argues that the unification of diverse traditions into a single 'Hinduism' has substantial precolonial roots in Indian doxographical work rather than being purely a colonial invention — a position that cuts against BOTH the strong colonial-construction thesis and the traditionalist claim of timeless unity. Included here because it is the work at the centre of the 2015 allegation and because its actual argument is routinely misdescribed on both sides.",
+   "evidenceOffered": "Sanskrit doxographic and philosophical sources of the late medieval period.",
+   "whoDisputes": "Malhotra, in the exchange recorded at crit:malhotra-indras-net, argues Nicholson presented borrowed Indian ideas as original — an allegation running in the opposite direction to the plagiarism charge, and recorded here as such.",
+   "currentState": "The book is standard; the reciprocal originality allegation is unadjudicated.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary.",
+   "sources": [
+    "C32",
+    "C9"
+   ],
+   "contested": null,
+   "harmNote": "Living author; reciprocal allegations recorded as allegations only.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:caldwell-oh-terrifying-mother",
+   "nodeKind": "secondary-scholarship",
+   "title": "Oh Terrifying Mother: Sexuality, Violence and Worship of the Goddess Kāḷi (the Kerala muṭiyēṟṟu ethnography)",
+   "titleOriginal": null,
+   "author": "Sarah Caldwell",
+   "culture": "American academic ethnography of South Indian ritual performance",
+   "dateText": "1999",
+   "sortYear": 1999,
+   "editions": [
+    {
+     "translator": null,
+     "year": 1999,
+     "publisher": "Oxford University Press, Delhi — TITLE, SUBTITLE AND IMPRINT NOT RE-VERIFIED THIS ROUND",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C11"
+    }
+   ],
+   "whatIsCriticised": "AN ETHNOGRAPHIC FRAME. Caldwell reads Kerala goddess ritual through sexuality, violence and gender, against readings that treat the performance tradition primarily as devotional theatre. Her method is participant and reflexive, and the reflexivity is itself the contested element.",
+   "evidenceOffered": "Fieldwork in Kerala with performance lineages.",
+   "whoDisputes": "NOT ESTABLISHED THIS ROUND. This row is the WEAKEST-VERIFIED substantive row in the file: only the author's later Nova Religio article was confirmed directly, and the 1999 monograph's bibliographic details are carried from memory of the field rather than from a record read this round.",
+   "currentState": "Unknown to this file.",
+   "procedures": [
+    {
+     "typeAsFiled": "possession/performance rite",
+     "type": "invocation/evocation",
+     "typeIsApproximate": true,
+     "vocabGap": "Possession-performance (teyyam/muṭiyēṟṟu type) has no controlled-vocabulary type in the inherited list. New type PROPOSED, not adopted.",
+     "sourceLayer": "secondary-scholarship",
+     "textCompleteness": "referenced",
+     "completenessBasis": "unverified — the monograph was not consulted",
+     "evidence": "That the ethnography concerns a goddess possession-performance tradition is the basis for this row; nothing further is recorded.",
+     "harmNote": "REQUIRED — living performance lineages with caste-specific hereditary rights, and material involving violence and sexuality in ritual representation. Recorded as a citation only."
+    }
+   ],
+   "sources": [
+    "C11"
+   ],
+   "contested": null,
+   "auditFlag": "BIBLIOGRAPHY UNVERIFIED. Strike or verify before use.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:caldwell-heart-of-the-secret",
+   "nodeKind": "secondary-scholarship",
+   "title": "'The Heart of the Secret: A Personal and Scholarly Encounter with Shakta Tantrism in Siddha Yoga'",
+   "titleOriginal": null,
+   "author": "Sarah Caldwell",
+   "culture": "American academic study of new religious movements; reflexive/insider ethnography",
+   "dateText": "October 2001",
+   "sortYear": 2001,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2001,
+     "publisher": "Nova Religio: The Journal of Alternative and Emergent Religions 5.1, pp. 9-51 (University of California Press)",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C11"
+    }
+   ],
+   "whatIsCriticised": "A MOVEMENT'S ACCOUNT OF ITSELF, and — more sharply — the structural role of secrecy. Caldwell advances two theses she herself presents as apparently contradictory: that Swami Muktananda (1908-1982) was an enlightened teacher and a practitioner of an esoteric form of tantric sexual yoga, AND that he engaged in actions with many disciples that were not ethical, legal or liberatory. Her structural claim is that what happened in the recent history of Siddha Yoga arises directly out of tantra's long history of dissimulation and secrecy.",
+   "evidenceOffered": "Personal encounter plus scholarly analysis — the article is explicitly both, which is the feature critics of reflexive ethnography attack and the feature its defenders regard as the honest form.",
+   "whoDisputes": "Siddha Yoga / SYDA Foundation is an active organisation with an interest in this account. NO SPECIFIC PUBLISHED REBUTTAL WAS LOCATED THIS ROUND — absence of a located rebuttal is not absence of dispute, and this file says so.",
+   "currentState": "Live. The article is a standing reference in the literature on abuse in imported Asian traditions.",
+   "procedures": [],
+   "proceduresNote": "n/a-secondary. The article discusses an esoteric sexual practice; NOTHING about it is recorded here beyond the fact of the scholarly claim.",
+   "sources": [
+    "C11"
+   ],
+   "contested": {
+    "flag": "How to hold together the claim that a teacher was both genuinely accomplished and seriously harmful",
+    "positions": [
+     {
+      "source": "Caldwell, Nova Religio 5.1 (2001)",
+      "value": "both are true, and the secrecy structure of tantra is what let them coexist — the abuse is not incidental to the form"
+     },
+     {
+      "source": "the movement's own position",
+      "value": "NOT LOCATED THIS ROUND. Recorded as missing rather than paraphrased, because paraphrasing an organisation's defence without a source would be worse than leaving the gap visible."
+     }
+    ],
+    "resolved": false
+   },
+   "harmNote": "REQUIRED AND SEVERE. Allegations of sexual misconduct against a named deceased teacher, made in a peer-reviewed venue by a named scholar; a living organisation with an interest; and a living-victim dimension. This file records THAT the scholarly claim was made, where, by whom, and that the organisation's reply was not located. It reproduces no allegation detail, names no complainant, and adjudicates nothing.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:ospina-ahrq-meditation-2007",
+   "nodeKind": "evidence-review",
+   "title": "Meditation Practices for Health: State of the Research (AHRQ Evidence Report 155)",
+   "titleOriginal": null,
+   "author": "M. Ospina, K. Bond, M. Karkhaneh et al., for the Agency for Healthcare Research and Quality (US)",
+   "culture": "US federal evidence-based-medicine review",
+   "dateText": "2007",
+   "sortYear": 2007,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2007,
+     "publisher": "AHRQ Evidence Report/Technology Assessment No. 155; PubMed 17764203",
+     "pdStatus": "US federal work — the report itself is not under copyright",
+     "quoteSafe": true,
+     "cite": "C18"
+    }
+   ],
+   "whatIsCriticised": "A LITERATURE'S QUALITY, not a claim. The report's headline finding is that scientific research on meditation practices is characterised by poor methodological quality. It is the single most-cited external assessment of the evidence base behind modern meditation claims — including those of the Transcendental Meditation organisation.",
+   "evidenceOffered": "Systematic appraisal of the trial literature against standard quality instruments.",
+   "whoDisputes": "SHARPLY, AND THE REPORT DID NOT SURVIVE INTACT. A published commentary (PubMed 19123876) and subsequent criticism argued that the quality-assessment methodology was inappropriate for this literature — specifically that the Jadad scale was misapplied, that design factors unsuited to behavioural hypertension trials were used, that baseline blood-pressure measurement protocols were ignored, that control quality and adequacy went unassessed, and that trials in adolescents and youth were excluded. AHRQ subsequently marked the 2007 findings as no longer considered current.",
+   "currentState": "SUPERSEDED BY ITS OWN AGENCY. This is the cleanest case in the file of a criticism that was itself successfully criticised, and it is a warning against citing the 2007 report as if it were still the standing verdict. Note that the critique came substantially from researchers aligned with the practices under review — a conflict this file states rather than uses to dismiss.",
+   "procedures": [],
+   "proceduresNote": "n/a — an evidence review.",
+   "sources": [
+    "C18"
+   ],
+   "contested": {
+    "flag": "Whether the 2007 AHRQ quality verdict on meditation research stands",
+    "positions": [
+     {
+      "source": "Ospina et al. (2007)",
+      "value": "the meditation research literature is of poor methodological quality"
+     },
+     {
+      "source": "published commentary and subsequent critics",
+      "value": "the quality instruments were misapplied to behavioural trials; the verdict is an artefact of the appraisal method"
+     },
+     {
+      "source": "AHRQ itself",
+      "value": "the 2007 findings are marked as no longer considered current"
+     }
+    ],
+    "resolved": false
+   },
+   "harmNote": "Health claims. FRAMING §1.5 governs: nothing here is medical advice, and the site carries no claim about what meditation does to anyone.",
+   "dedupWith": "No repo record. The repo's About page carries the astrology scientific assessment (Carlson, Dean & Kelly, Forer, Gauquelin) but nothing equivalent for the contemplative claims — a structural asymmetry worth naming."
+  },
+  {
+   "id": "crit:canter-ernst-tm-bp-2004",
+   "nodeKind": "evidence-review",
+   "title": "'Insufficient evidence to conclude whether or not Transcendental Meditation decreases blood pressure'",
+   "titleOriginal": null,
+   "author": "P. H. Canter & E. Ernst",
+   "culture": "UK complementary-medicine evidence appraisal (Exeter)",
+   "dateText": "November 2004",
+   "sortYear": 2004,
+   "editions": [
+    {
+     "translator": null,
+     "year": 2004,
+     "publisher": "Journal of Hypertension 22.11; DARE structured abstract NBK70827",
+     "pdStatus": "in copyright",
+     "quoteSafe": false,
+     "cite": "C19"
+    }
+   ],
+   "whatIsCriticised": "A SPECIFIC HEALTH CLAIM AND THE INDEPENDENCE OF THE RESEARCHERS MAKING IT. Two findings, and the second is the one that matters for this slice: (a) the randomised-trial evidence is insufficient to conclude whether Transcendental Meditation lowers blood pressure; and (b) future research should be carried out by fully independent researchers not affiliated with the TM movement.",
+   "evidenceOffered": "Systematic review of randomised clinical trials, with quality findings at the level of individual studies: procedures for establishing baseline blood pressure were adequate in only one trial; only one trial included a follow-on assessment; only one evaluable trial tested the effect in hypertensive individuals.",
+   "whoDisputes": "TM-affiliated researchers, sustainedly. The pattern in this literature is that reviews by movement-affiliated authors report benefit and reviews by unaffiliated authors report insufficient evidence, and both sides accuse the other of bias.",
+   "currentState": "Contested and unresolved twenty years on. A 2014 Cochrane review of TM for primary prevention of cardiovascular disease (Hartley et al., CD010359.pub2) is the standing independent assessment. In 2013 an American Heart Association scientific statement on alternative approaches to lowering blood pressure (Brook et al., Hypertension 61.6) concluded that TM modestly lowers blood pressure and that its use may be considered, grouping biofeedback and TM as the most beneficial among behavioural therapies; TM-affiliated researchers led by R. H. Schneider published a reply in the same journal arguing the ratings should be upgraded. General methodological criticism of the field persists — notably the reliance on waitlist and no-treatment comparators rather than active controls, which inflates apparent benefit through expectation, attention and group support.",
+   "procedures": [],
+   "proceduresNote": "n/a — evidence reviews.",
+   "sources": [
+    "C19",
+    "C20",
+    "C21"
+   ],
+   "contested": {
+    "flag": "Whether Transcendental Meditation lowers blood pressure",
+    "positions": [
+     {
+      "source": "Canter & Ernst, J Hypertens 22.11 (2004)",
+      "value": "insufficient good-quality evidence to conclude either way; independent replication required"
+     },
+     {
+      "source": "Brook et al., AHA Scientific Statement, Hypertension 61.6 (2013)",
+      "value": "TM modestly lowers blood pressure; its use may be considered"
+     },
+     {
+      "source": "Schneider et al., Hypertension (2013), reply",
+      "value": "the AHA ratings understate the evidence and should be upgraded"
+     },
+     {
+      "source": "Hartley et al., Cochrane CD010359.pub2 (2014)",
+      "value": "the independent Cochrane assessment for primary cardiovascular prevention"
+     }
+    ],
+    "resolved": false,
+    "note": "Author affiliation is the recurring confound and is recorded on each position rather than used to dismiss any."
+   },
+   "harmNote": "Health claims about a widely marketed technique. FRAMING §1.5: not advice. The site must not present any of these positions as a recommendation.",
+   "siteRelevance": "This is the model for how the repo should handle EVERY efficacy claim attached to a contemplative practice: name the reviews, name the affiliations, resolve nothing.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:tm-movement-and-the-pizza-effect",
+   "nodeKind": "reception-argument",
+   "title": "The Maharishi's movement as Bharati's own worked example",
+   "titleOriginal": null,
+   "author": "Agehananda Bharati (the analysis); the Maharishi Mahesh Yogi's organisation (the object)",
+   "culture": "Modern transnational Hinduism",
+   "dateText": "analysis 1970; the movement from the late 1950s onward",
+   "sortYear": 1970,
+   "editions": [],
+   "whatIsCriticised": "AN AUTHENTICITY CLAIM, by the man who named the mechanism. Bharati's 1970 paper uses the Maharishi's movement and ISKCON as instances of the pizza effect: Indian movements whose standing IN INDIA rose because of their Western success. The row exists so that the TM efficacy dispute and the TM authenticity question are not confused — they are different arguments with different evidence.",
+   "evidenceOffered": "The chronology of the movements' Western and Indian receptions (C1).",
+   "whoDisputes": "The organisations concerned present their lineages as continuous and Indian. No academic rebuttal of the pizza-effect reading of these cases was located.",
+   "currentState": "The mechanism is standard vocabulary; its application to any particular movement remains an argument, not a demonstration.",
+   "procedures": [],
+   "proceduresNote": "n/a.",
+   "sources": [
+    "C1"
+   ],
+   "contested": null,
+   "harmNote": "Living organisations. The claim recorded is about RECEPTION HISTORY only and implies nothing about any practice's validity or any person's conduct.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:sivananda-isyvc-allegations",
+   "nodeKind": "reception-event",
+   "title": "The Sivananda / International Sivananda Yoga Vedanta Centres allegations (2019 onward)",
+   "titleOriginal": null,
+   "author": "n/a — journalism and campaign material, not scholarship",
+   "culture": "Transnational modern-yoga organisation",
+   "dateText": "public testimony 10 December 2019; organisational statement 16 December 2019; BBC World Service documentary and Project SATYA interim reports subsequently",
+   "sortYear": 2019,
+   "editions": [],
+   "whatIsCriticised": "AN ORGANISATION'S CONDUCT AND ITS RESPONSE TO COMPLAINT — not a text, not a dating, not a translation. Included because the brief asks for the criticism of the modern gurus and because the Sivananda lineage is one of the principal channels by which haṭha material reached the Anglophone world.",
+   "evidenceOffered": "JOURNALISM AND CAMPAIGN MATERIAL ONLY, and this file grades it as such. On 10 December 2019 Julie Salter, formerly personal assistant to the organisation's founder Swami Vishnudevananda, made public a testimony of sexual abuse. A BBC World Service investigative documentary reported that journalists gathered accounts over about fifteen months from people describing cruelty, coercion, rape and the sexual assault of a child, and describing what they said was an inadequate organisational response; the allegations reported span several decades. The organisation posted a statement dated 16 December 2019 committing to honesty and transparency and promising an independent investigator within a few days; the campaign group Project SATYA, formed by community members, reports that this had not occurred and has published interim investigation reports.",
+   "whoDisputes": "The organisation's own position is the 16 December 2019 commitment; no fuller organisational rebuttal was located this round, and the campaign material is by construction one-sided. NO FINDING BY ANY COURT OR REGULATOR IS RECORDED HERE BECAUSE NONE WAS LOCATED.",
+   "currentState": "OPEN AND UNADJUDICATED. Allegations, an organisational statement, campaign reporting that the promised investigation did not follow, and no determination.",
+   "procedures": [],
+   "proceduresNote": "n/a.",
+   "sources": [
+    "C23"
+   ],
+   "contested": {
+    "flag": "The Sivananda organisation allegations",
+    "positions": [
+     {
+      "source": "Julie Salter (10 December 2019) and accounts gathered by BBC World Service journalists",
+      "value": "sexual abuse by the founder and a pattern of harm and inadequate response across decades"
+     },
+     {
+      "source": "International Sivananda Yoga Vedanta Centres, statement dated 16 December 2019",
+      "value": "a commitment to honesty and transparency and to appointing an independent investigator"
+     },
+     {
+      "source": "Project SATYA (community campaign group)",
+      "value": "the promised independent investigation did not follow; interim reports published in its absence"
+     },
+     {
+      "source": "the adjudicative record",
+      "value": "no court, regulator or independent investigator finding was located"
+     }
+    ],
+    "resolved": false
+   },
+   "harmNote": "REQUIRED AND MAXIMAL. Serious criminal allegations including rape and the sexual assault of a child; a living organisation; identified and unidentified complainants; and NO adjudication. This row records the existence, dating and provenance of allegations and of the organisational response, in the plainest available form. It reproduces no allegation detail, names no complainant beyond the person who chose to be public, and states no conclusion. If the site cannot carry this with all four positions and the explicit no-finding line intact, it must not carry it at all.",
+   "gap": "The brief also asked for criticism of 'Sivananda-lineage claims' — i.e. the historicity of the lineage itself. NOTHING WAS FOUND. Targeted searching returned only organisational lineage pages (sivananda.org and affiliates) and no scholarly assessment. Recorded as an unfilled request.",
+   "dedupWith": "No repo record."
+  },
+  {
+   "id": "crit:pd-status-of-the-criticism-layer",
+   "nodeKind": "finding",
+   "title": "STRUCTURAL FINDING: the entire corrective layer is in copyright",
+   "titleOriginal": null,
+   "author": "n/a — a finding about this slice as a whole",
+   "culture": "n/a",
+   "dateText": "2026-07-30",
+   "sortYear": 2026,
+   "editions": [],
+   "whatIsCriticised": "THE REPO'S OWN QUOTATION POLICY, from an angle FRAMING did not anticipate. Every substantive work in this slice was published between 1965 and 2022. Under the repo's per-edition public-domain rule NOT ONE of them is quotable — the earliest, Bharati's Tantric Tradition, is 1965. The only exception located is the AHRQ evidence report, a US federal work.",
+   "evidenceOffered": "The editions array of every row in this file.",
+   "whoDisputes": "n/a.",
+   "currentState": "A live asymmetry with a consequence the repo should confront: the PRIMARY texts the site may eventually quote are pre-1930 and quotable, while the SCHOLARSHIP that says those pre-1930 editions are unreliable — Taylor on Avalon's authorship, Bharati on the popularisers, Urban on the category, Singleton on the antiquity claims — is all in copyright and citable only. A quotation policy keyed to public-domain status therefore systematically privileges the Victorian and Edwardian occult-revival translations over their modern correction. FRAMING §2.4's no-original-diffusion-claim rule is the only thing standing between that asymmetry and a site that reads as a compilation of exactly those translations. This finding is offered as support for §2.4 and as an argument that every quoted pre-1930 edition needs a cited modern corrective attached in the same record.",
+   "procedures": [],
+   "proceduresNote": "n/a.",
+   "sources": [
+    "C4",
+    "C6",
+    "C14",
+    "C18",
+    "C31"
+   ],
+   "contested": null,
+   "siteRelevance": "HIGHEST. This is the finding this slice most wants the maintainer to see."
+  }
+ ],
+ "edges": [
+  {
+   "from": "crit:bharati-tantric-tradition",
+   "to": "ext:western-popular-tantra-literature",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "polemical-and-philological",
+   "evidence": "Bharati writes as an initiate holding the popular Western literature on tantra to a philological and anthropological standard, on the stated ground that a serious system deserves serious treatment. The book itself was NOT read this round; the characterisation is from catalogue and reference description.",
+   "sources": [
+    "C2",
+    "C3"
+   ],
+   "cite": "C2 C3",
+   "ASSERTED": false,
+   "confidence": "medium — target node is a genre, not a work"
+  },
+  {
+   "from": "crit:bharati-hindu-renaissance-pizza",
+   "to": "ext:authenticity-claims-in-modern-hinduism",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "named-mechanism-with-cases",
+   "evidence": "The pizza effect: a practice elaborated or simplified abroad and re-imported with enhanced prestige, so that the form defended at home as traditional is partly a foreign reconstruction.",
+   "sources": [
+    "C1"
+   ],
+   "cite": "C1",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:bharati-hindu-renaissance-pizza",
+   "to": "crit:tm-movement-and-the-pizza-effect",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "author's-own-worked-example",
+   "evidence": "Bharati's 1970 paper names the Maharishi Mahesh Yogi's movement and ISKCON among its illustrations.",
+   "sources": [
+    "C1"
+   ],
+   "cite": "C1",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:bharati-fictitious-tibet",
+   "to": "ext:theosophical-and-rampa-tibet-literature",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "allegation-of-fabrication",
+   "evidence": "The 1974 article is described in reference sources as an indictment of the misunderstanding and misinterpretation of Tibetan religion descending from Blavatsky and her successors, with the 'Rampa' books as the title case. Article NOT read.",
+   "sources": [
+    "C2"
+   ],
+   "cite": "C2",
+   "ASSERTED": false,
+   "confidence": "low — title-and-description only"
+  },
+  {
+   "from": "crit:taylor-woodroffe-bengal",
+   "to": "repo:shatchakranirupana",
+   "kind": "ALLEGES_MISATTRIBUTION",
+   "type": "ALLEGES_MISATTRIBUTION",
+   "basis": "documentary — the subject's own prefaces",
+   "evidence": "The Serpent Power (Luzac, 1919) is the repo's translation apparatus for the Ṣaṭcakranirūpaṇa. Taylor argues the 'Arthur Avalon' name signals collaboration — Woodroffe's own prefaces say he published under it to denote direct cooperation with others and that he did not desire sole credit — and identifies Atal Bihari Ghose (1864-1936) as the chief collaborator and chief source of the textual knowledge.",
+   "sources": [
+    "C4",
+    "C5",
+    "C31"
+   ],
+   "cite": "C4 C5 C31",
+   "ASSERTED": false,
+   "confidence": "high — the repo already carries this as one of two positions"
+  },
+  {
+   "from": "crit:taylor-woodroffe-bengal",
+   "to": "tan:kularnavatantra",
+   "kind": "ALLEGES_MISATTRIBUTION",
+   "type": "ALLEGES_MISATTRIBUTION",
+   "basis": "series-level attribution",
+   "evidence": "The Kulārṇava's printed Sanskrit text is Tantrik Texts V (ed. Tārānātha Vidyāratna, 1917) with an introduction under the Avalon name; Taylor's authorship finding applies to the series apparatus, not to Vidyāratna's editing. Recorded so that any quotation from that volume carries the collaborative attribution.",
+   "sources": [
+    "C4",
+    "C31"
+   ],
+   "cite": "C4 C31",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S INFERENCE from Taylor's series-level finding to this specific volume. Taylor was not consulted on the Kulārṇava specifically."
+  },
+  {
+   "from": "crit:urban-tantra-2003",
+   "to": "ext:category-tantra",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "genealogical",
+   "evidence": "The category is argued to be an artefact produced jointly by Orientalist scholars, missionaries, colonial administrators, Indian reformers and modern marketers — a 'dialectical image' rather than a found object. The Victorian construction (tantra as the degenerate extreme of the 'Indian mind') and the modern liberatory construction are treated as mirror images.",
+   "sources": [
+    "C6"
+   ],
+   "cite": "C6",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:urban-tantra-2003",
+   "to": "crit:bharati-tantric-tradition",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "successor-in-a-line-of-argument",
+   "evidence": "Both attack the Western popular construction of tantra; Bharati from inside the tradition on philological grounds in 1965, Urban from outside on genealogical grounds in 2003.",
+   "sources": [
+    "C2",
+    "C6"
+   ],
+   "cite": "C2 C6",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S STRUCTURAL CLAIM. No citation of Bharati by Urban was verified this round. If Urban does not in fact engage Bharati, this edge is wrong and should be struck."
+  },
+  {
+   "from": "crit:urban-tantra-2003",
+   "to": "repo:shatchakranirupana",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "reception-history",
+   "evidence": "The repo's own record states that the Ṣaṭcakranirūpaṇa became, through the 1919 Avalon translation and almost by accident of selection, the single most influential source for the Western idea of the chakras. That is a construction claim of exactly Urban's type, already present in-repo without the theory attached.",
+   "sources": [
+    "C6",
+    "C31"
+   ],
+   "cite": "C6 C31",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S LINKAGE between an existing repo statement and Urban's framework."
+  },
+  {
+   "from": "crit:urban-power-of-tantra",
+   "to": "ext:kamakhya-assam",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "ethnographic-and-historical",
+   "evidence": "Urban argues the Assamese tradition is deeply marked by extra-Vedic and extra-Hindu elements from indigenous northeastern religious cultures, against readings that treat it as a provincial Sanskritic variant; the 2019 article traces the site's modern career from nationalist symbol to tourist destination.",
+   "sources": [
+    "C24"
+   ],
+   "cite": "C24",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:dold-kamakhya",
+   "to": "ext:kamakhya-assam",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "ethnographic",
+   "evidence": "Patricia Dold describes present-day practice at the precinct as combining mainstream orthodox Hinduism with local and transgressive forms — pūjā and prasāda alongside animal sacrifice.",
+   "sources": [
+    "C24"
+   ],
+   "cite": "C24",
+   "ASSERTED": false,
+   "harmGate": true
+  },
+  {
+   "from": "crit:urban-zorba-buddha",
+   "to": "ext:osho-rajneesh-movement",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "monographic-social-history",
+   "evidence": "Interviews, archives and the subject's recorded voice; reviewers note the analysis of late-twentieth-century capitalism running alongside the religious history.",
+   "sources": [
+    "C22"
+   ],
+   "cite": "C22",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:rajneeshee-1984-bioterror-attack",
+   "to": "ext:osho-rajneesh-movement",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "adjudicated-criminal-record",
+   "evidence": "Between 9 and 17 September 1984 followers directed by Ma Anand Sheela contaminated salad bars at ten restaurants in The Dalles, Oregon, with Salmonella typhimurium cultured at Rajneeshpuram, sickening 751 people and hospitalising at least 45, to suppress opposition turnout in a Wasco County election. The largest bioterrorist incident in United States history.",
+   "sources": [
+    "C22"
+   ],
+   "cite": "C22",
+   "ASSERTED": false,
+   "harmGate": true,
+   "harmNote": "Method, cultivation and targeting detail are deliberately excluded and must never be added."
+  },
+  {
+   "from": "crit:white-alchemical-body",
+   "to": "repo:rasarnava",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "identity-of-practitioners",
+   "evidence": "White argues Hindu alchemy and haṭha yoga were practised by the same medieval Siddhas, so that reading the rasa corpus apart from the yoga corpus is a cataloguing artefact. The repo already cites this book on the Rasārṇava record.",
+   "sources": [
+    "C27",
+    "C31"
+   ],
+   "cite": "C27 C31",
+   "ASSERTED": false,
+   "harmGate": true
+  },
+  {
+   "from": "crit:white-alchemical-body",
+   "to": "repo:hathayogapradipika",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "identity-of-practitioners",
+   "evidence": "The same thesis applied from the yoga side.",
+   "sources": [
+    "C27"
+   ],
+   "cite": "C27",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S EXTENSION of White's general thesis to this specific repo record; White's own treatment of the Haṭhayogapradīpikā was not checked."
+  },
+  {
+   "from": "ext:wujastyk-alchemical-ghost-1984",
+   "to": "ext:nagarjuna-rasaratnakara-attribution",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "philological",
+   "evidence": "Wujastyk, 'An Alchemical Ghost', Ambix 31 (1984), already cited in the repo, dissolves a canonical ascription in the alchemical corpus. Recorded here as the checkable constraint on White's chronology.",
+   "sources": [
+    "C27",
+    "C31"
+   ],
+   "cite": "C27 C31",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:white-kiss-yogini",
+   "to": "ext:modern-tantric-sex-industry",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "textual-and-historical",
+   "evidence": "White argues the South Asian rites were transactional handling of power-substances rather than anything resembling the modern mutual-ecstasy model.",
+   "sources": [
+    "C26"
+   ],
+   "cite": "C26",
+   "ASSERTED": false,
+   "harmGate": true
+  },
+  {
+   "from": "crit:white-kiss-yogini",
+   "to": "ext:symbolic-reading-of-tantric-transgression",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "textual",
+   "evidence": "The transgressive material is argued to be literal and central rather than symbolic and marginal.",
+   "sources": [
+    "C26"
+   ],
+   "cite": "C26",
+   "ASSERTED": false,
+   "harmGate": true
+  },
+  {
+   "from": "ext:kiss-of-the-yogini-evidentiary-objection",
+   "to": "crit:white-kiss-yogini",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "inference-to-the-only-available-explanation",
+   "evidence": "Recorded in the book's reception: that White establishes the early tantrics MAY WELL have ingested these fluids but cannot establish that they DID, and that he treats the impossibility of an alternative as evidence the alternative was not done.",
+   "sources": [
+    "C26"
+   ],
+   "cite": "C26",
+   "ASSERTED": false,
+   "confidence": "medium — the objection is recorded in review-aggregation material, and the individual reviewer was not identified this round"
+  },
+  {
+   "from": "ext:rampersad-objection",
+   "to": "crit:white-kiss-yogini",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "community-standing",
+   "evidence": "The Trinidadian Hindu priest Pandita Indrani Rampersad is recorded as accusing White of demolishing tantra. A standing objection, not a philological one; recorded because community objections are part of the reception and excluding them would misrepresent it.",
+   "sources": [
+    "C26"
+   ],
+   "cite": "C26",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:larson-review-of-white",
+   "to": "crit:white-kiss-yogini",
+   "kind": "DEFENDS",
+   "type": "DEFENDS",
+   "basis": "scholarly-review",
+   "evidence": "Gerald James Larson reviewed the book positively, crediting its citation density, translations, illustrations and ethnographic material.",
+   "sources": [
+    "C26"
+   ],
+   "cite": "C26",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:wedemeyer-making-sense",
+   "to": "crit:white-kiss-yogini",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "semiological",
+   "evidence": "Wedemeyer treats the attribution of tantric transgression to the passions of lusty monks, to primitive tribal rites, or to imitation of Śaiva traditions as three fallacies, arguing instead that transgressive elements function connotatively within Buddhist discourse. The literal/symbolic dichotomy that White's position occupies is the frame he rejects.",
+   "sources": [
+    "C25"
+   ],
+   "cite": "C25",
+   "ASSERTED": true,
+   "assertedNote": "The publisher's framing names the three fallacies; that White is the named target of the first was NOT verified. The edge is a reasonable reading, not a documented citation."
+  },
+  {
+   "from": "crit:wedemeyer-making-sense",
+   "to": "crit:sanderson-saiva-age",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "explanatory-adequacy",
+   "evidence": "The third named fallacy — explaining Buddhist tantric transgression as slavish imitation of Śaiva traditions — is the popular form of the Śaiva-dependency thesis. Wedemeyer simultaneously CREDITS Sanderson with having identified non-dual understanding as a hallmark of Hindu tantra, and argues Buddhist tantric studies lag in this respect.",
+   "sources": [
+    "C25"
+   ],
+   "cite": "C25",
+   "ASSERTED": false,
+   "confidence": "medium — publisher framing and review notice, text not read",
+   "claimType": "dependency-direction"
+  },
+  {
+   "from": "crit:davidson-indian-esoteric-buddhism",
+   "to": "crit:sanderson-saiva-age",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "social-history",
+   "evidence": "Davidson places both developments within early medieval feudalisation, with competing tantric lineages drawing on shared indigenous and tribal goddess worship as well as on each other — a shared-substrate account rather than a directional loan.",
+   "sources": [
+    "C36"
+   ],
+   "cite": "C36",
+   "ASSERTED": false,
+   "claimType": "dependency-direction",
+   "note": "Davidson 2002 PRECEDES Sanderson 2009; the edge records logical opposition, not a reply."
+  },
+  {
+   "from": "crit:sanderson-saiva-age",
+   "to": "ext:buddhist-yoginitantras",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "philological — shared passages, manuscripts, colophons, epigraphy",
+   "evidence": "Sanderson's claim as stated in the secondary characterisation consulted is bidirectional: Śaiva Vidyāpīṭha material shaping the Buddhist Yoginītantras, with Buddhist Śākta material later flowing back into Bengali Śāktism. THE POPULAR VERSION OF THIS CLAIM IS STRONGER THAN SANDERSON'S OWN and this file records the difference.",
+   "sources": [
+    "C12"
+   ],
+   "cite": "C12",
+   "ASSERTED": false,
+   "claimType": "dependency-direction",
+   "confidence": "medium — the 310-page article was NOT read; the characterisation is secondary"
+  },
+  {
+   "from": "ext:sanderson-priority-objection",
+   "to": "crit:sanderson-saiva-age",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "alleged-petitio-principii",
+   "evidence": "A non-academic counter-current holds that the argument presupposes what it must prove — that Śaiva tantras predate Buddhist ones. SOLE SOURCE IS AN UNDATED SUBSTACK ESSAY. Recorded as evidence that the objection circulates outside the journals, NOT as evidence that it is right.",
+   "sources": [
+    "C13"
+   ],
+   "cite": "C13",
+   "ASSERTED": false,
+   "confidence": "very low",
+   "auditFlag": "STRIKE-CANDIDATE. Non-scholarly sole source."
+  },
+  {
+   "from": "crit:sanderson-saiva-age",
+   "to": "crit:bhattacharyya-history-tantric-religion",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "method",
+   "evidence": "A manuscript-and-epigraphy reconstruction of a datable institutional history stands against a reconstructed goddess-cult prehistory as the explanation of tantric origins.",
+   "sources": [
+    "C12",
+    "C30"
+   ],
+   "cite": "C12 C30",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S OPPOSITION. Sanderson does not, so far as verified here, engage Bhattacharyya by name."
+  },
+  {
+   "from": "ext:bhattacharyya-1999-preface",
+   "to": "crit:bhattacharyya-history-tantric-religion",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "author's-own-withdrawal",
+   "evidence": "The second revised edition states that the earlier edition's formulations were critically re-examined and that some were discarded as resting on scanty evidence. WHICH formulations is not recorded in the material consulted.",
+   "sources": [
+    "C30"
+   ],
+   "cite": "C30",
+   "ASSERTED": false,
+   "note": "The strongest documented criticism of this book located this round is the author's own."
+  },
+  {
+   "from": "crit:bhattacharyya-history-tantric-religion",
+   "to": "ext:origins-of-tantric-religion",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "substratum-thesis",
+   "evidence": "Derives tantric religion from a long-predominant goddess cult with a matriarchal element in Indian society.",
+   "sources": [
+    "C30"
+   ],
+   "cite": "C30",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:brooks-secret-three-cities",
+   "to": "ext:tantra-as-transgression-only",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "textual-and-theological",
+   "evidence": "Presents Śrīvidyā as a coherent theological and ritual system with its own philosophy and Vedic-facing self-understanding, against reduction to transgression and sex.",
+   "sources": [
+    "C28"
+   ],
+   "cite": "C28",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:white-kiss-yogini",
+   "to": "crit:brooks-secret-three-cities",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "opposed-readings-of-the-same-corpus",
+   "evidence": "On White's reading a philosophically respectable Śākta tantra is the sanitised version the transgressive evidence contradicts; on Brooks's, the transgressive reading is the caricature.",
+   "sources": [
+    "C26",
+    "C28"
+   ],
+   "cite": "C26 C28",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S OPPOSITION. Neither author was verified to have engaged the other directly."
+  },
+  {
+   "from": "ext:srividya-practitioner-access-objection",
+   "to": "crit:brooks-secret-three-cities",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "access-and-standing",
+   "evidence": "Reviewers and practitioners have characterised the treatment of Śrīvidyā gurus as disrespectful and abusive, imputed an agenda to defame, and argued that decisive scriptures held in secrecy in India make a Western account factually wrong. STRUCTURALLY UNFALSIFIABLE — it cannot be tested without the material it says is withheld.",
+   "sources": [
+    "C28"
+   ],
+   "cite": "C28",
+   "ASSERTED": false,
+   "confidence": "low — sourced from review-aggregation material, individual reviewers not identified"
+  },
+  {
+   "from": "crit:brooks-anusara-entanglement",
+   "to": "crit:brooks-secret-three-cities",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "reception-history",
+   "evidence": "The scholar whose Śrīvidyā work supplied much of the Anglophone yoga world's tantric vocabulary was institutionally inside the movement that collapsed in February 2012, and issued public statements during that collapse.",
+   "sources": [
+    "C29"
+   ],
+   "cite": "C29",
+   "ASSERTED": false,
+   "auditFlag": "STRIKE-CANDIDATE — yoga-press journalism only; carries BLP exposure and no scholarly payload beyond the structural point.",
+   "harmGate": true
+  },
+  {
+   "from": "crit:singleton-yoga-body",
+   "to": "ext:antiquity-of-modern-postural-yoga",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "modern-archival",
+   "evidence": "Argues global postural yoga is largely a break from the haṭha tradition, with different goals and an unprecedented emphasis on āsana, many postures acquired in the twentieth century in dialogue with international physical culture.",
+   "sources": [
+    "C14"
+   ],
+   "cite": "C14",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:singleton-yoga-body",
+   "to": "repo:person-krishnamacharya",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "already-in-repo",
+   "evidence": "The repo's Krishnamacharya record already cites Yoga Body (with Sjoman) for the Mysore Jaganmohan Palace yogaśālā and the haṭha/wrestling/gymnastic synthesis.",
+   "sources": [
+    "C14",
+    "C31"
+   ],
+   "cite": "C14 C31",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:mallinson-response-yoga-body",
+   "to": "crit:singleton-yoga-body",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "scope-correction, explicitly not refutation",
+   "evidence": "Mallinson opens by thanking Singleton for a wonderful piece of work and crediting the explanation of how sūrya namaskār became integral to yoga despite being absent from the medieval haṭha sources, then argues the premodern antecedents of āsana must keep being researched lest readers infer them to be insignificant. Yoga Body does not undertake, and does not claim to undertake, a comprehensive philological review of premodern Sanskrit sources.",
+   "sources": [
+    "C14"
+   ],
+   "cite": "C14",
+   "ASSERTED": false,
+   "confidence": "high — both the praise and the reservation are documented"
+  },
+  {
+   "from": "crit:singleton-yoga-body",
+   "to": "crit:mallinson-singleton-roots-of-yoga",
+   "kind": "SUPERSEDED_BY_COLLABORATION",
+   "type": "SUPERSEDED_BY_COLLABORATION",
+   "basis": "joint-publication",
+   "evidence": "Singleton and Mallinson co-authored Roots of Yoga (Penguin Classics, 2017) and worked with Jason Birch on the five-year Haṭha Yoga Project mapping Indian and transnational physical-yoga traditions through philology and ethnography.",
+   "sources": [
+    "C14",
+    "C31"
+   ],
+   "cite": "C14 C31",
+   "ASSERTED": false,
+   "note": "Recorded because presenting Singleton-vs-Mallinson as a feud is the standard popular error."
+  },
+  {
+   "from": "crit:mallinson-response-yoga-body",
+   "to": "crit:mallinson-singleton-roots-of-yoga",
+   "kind": "SUPERSEDED_BY_COLLABORATION",
+   "type": "SUPERSEDED_BY_COLLABORATION",
+   "basis": "joint-publication",
+   "evidence": "Same.",
+   "sources": [
+    "C14"
+   ],
+   "cite": "C14",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:demichelis-history-modern-yoga",
+   "to": "repo:raja-yoga-1896",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "genealogical",
+   "evidence": "That modern yoga, and Vivekananda's Rāja Yoga above all, was formed in dialogue with Western esotericism and New Thought. THE BOOK WAS NOT CONSULTED beyond its catalogue record; this edge is the weakest-sourced non-strike-candidate in the file.",
+   "sources": [
+    "C37"
+   ],
+   "cite": "C37",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S APPLICATION of the book's subtitle-level thesis to the repo record. Verify before use.",
+   "confidence": "low"
+  },
+  {
+   "from": "crit:bharati-hindu-renaissance-pizza",
+   "to": "crit:singleton-yoga-body",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "mechanism-and-instance",
+   "evidence": "Bharati's 1970 paper already names postural yoga and its gurus as pizza-effect cases; Singleton's 2010 book is the archival demonstration of one such loop.",
+   "sources": [
+    "C1",
+    "C14"
+   ],
+   "cite": "C1 C14",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S LINKAGE. Whether Singleton cites Bharati was not checked."
+  },
+  {
+   "from": "crit:bharati-hindu-renaissance-pizza",
+   "to": "crit:white-yogasutra-biography",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "mechanism-and-instance",
+   "evidence": "Bharati names the Bhagavad Gītā's elevation under Western pressure to find a Hindu Bible; White's 2014 book makes the parallel argument for the Yoga Sūtra's modern restoration to canonical status.",
+   "sources": [
+    "C1",
+    "C38"
+   ],
+   "cite": "C1 C38",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S LINKAGE."
+  },
+  {
+   "from": "crit:strenski-four-theories-of-myth",
+   "to": "crit:eliade-yoga-immortality-freedom",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "historicisation-of-the-theorist",
+   "evidence": "Strenski treats theories of myth as products of their theorists' historical situations, with a chapter on Eliade — denying the comparative theory the ahistorical standing it claims. Book NOT read; characterisation from catalogue and review notices.",
+   "sources": [
+    "C17"
+   ],
+   "cite": "C17",
+   "ASSERTED": false,
+   "confidence": "medium"
+  },
+  {
+   "from": "crit:wasserstrom-religion-after-religion",
+   "to": "crit:eliade-yoga-immortality-freedom",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "ideological-and-ethical",
+   "evidence": "Wasserstrom argues that Scholem, Eliade and Corbin jointly de-emphasised law, ritual and social history in favour of myth and mysticism, and that the most controversial consequence is that their theory of religion minimised the binding character of the moral law associated with monotheism; he also draws attention to the Eranos scholars' own esoteric beliefs and involvements, Scholem excepted.",
+   "sources": [
+    "C16"
+   ],
+   "cite": "C16",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:wasserstrom-religion-after-religion",
+   "to": "ext:comparative-esotericism-as-a-genre",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "institutional-history",
+   "evidence": "The Eranos circle at Ascona, 1949-1978, as the site where the modern comparative-esotericism framing was manufactured. DIRECTLY RELEVANT TO THIS REPO, which is a comparative survey of esoteric systems.",
+   "sources": [
+    "C16"
+   ],
+   "cite": "C16",
+   "ASSERTED": false,
+   "siteRelevance": "high"
+  },
+  {
+   "from": "crit:eliade-yoga-immortality-freedom",
+   "to": "repo:yoga-sutras",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "comparative-synthesis",
+   "evidence": "Eliade's synthesis is the main twentieth-century channel by which a comparative, essentialising picture of yoga entered general Western culture, including the framing a survey site inherits by default.",
+   "sources": [
+    "C15"
+   ],
+   "cite": "C15",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S CLAIM about influence, not a documented citation relationship."
+  },
+  {
+   "from": "ext:eliade-iron-guard-record",
+   "to": "crit:eliade-yoga-immortality-freedom",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "biographical-documentary",
+   "evidence": "1937 intellectual support for the Iron Guard, described by him as a Christian revolution aimed at creating a new Romania, and campaign work in Prahova County; arrest 14 July 1938 in King Carol II's crackdown, about three weeks' detention, refusal to sign a renunciation, release November 1938; cultural attaché in the United Kingdom and Portugal 1940-1944. WHETHER THIS BEARS ON THE SCHOLARSHIP IS THE CONTESTED QUESTION and this file does not answer it.",
+   "sources": [
+    "C15"
+   ],
+   "cite": "C15",
+   "ASSERTED": false,
+   "harmGate": true
+  },
+  {
+   "from": "crit:tyagananda-kalis-child-revisited",
+   "to": "crit:kripal-kalis-child",
+   "kind": "CRITICISES_TRANSLATION",
+   "type": "CRITICISES_TRANSLATION",
+   "basis": "term-level, with documentary corrections",
+   "evidence": "Disputed terms include vyākulatā, uddīpana, mānuṣ, tribhaṅga, hṛt-padma, ramaṇ karo and milan. Documentary corrections include age misidentifications (a fifty-year-old described as a boy; men in their thirties and forties as boy disciples), the reading of guhya kathā as esoteric scriptural meaning rather than shameful secret, and the public availability of the final Kathāmṛta volume from 1932 against the suppression thesis.",
+   "sources": [
+    "C34",
+    "C7"
+   ],
+   "cite": "C34 C7",
+   "ASSERTED": false,
+   "authorPosition": "The author is a monastic of the Ramakrishna Order — stated as a fact about the source, NOT used to discount the philological content."
+  },
+  {
+   "from": "crit:tyagananda-vrajaprana-interpreting-ramakrishna",
+   "to": "crit:kripal-kalis-child",
+   "kind": "CRITICISES_TRANSLATION",
+   "type": "CRITICISES_TRANSLATION",
+   "basis": "book-length restatement",
+   "evidence": "Argues the author's Bengali is piecemeal, that cultural understanding is lacking, and that the resulting Ramakrishna is fabricated to fit preconceptions rather than derived from the documentation.",
+   "sources": [
+    "C34"
+   ],
+   "cite": "C34",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:sil-statesman-review-1997",
+   "to": "crit:kripal-kalis-child",
+   "kind": "CRITICISES_TRANSLATION",
+   "type": "CRITICISES_TRANSLATION",
+   "basis": "lexical and source-critical, in a newspaper",
+   "evidence": "Narasingha Sil charged selection of dictionary senses against primary meaning, inability to converse in Bengali, and wilful distortion and manipulation of sources; the review ended in an obscenity. The paper closed the correspondence after thirty-eight letters, reportedly without precedent, and twice declined William Radice's defence. SIL HAD HIMSELF PUBLISHED A PSYCHOANALYTIC STUDY OF RAMAKRISHNA — the objection is not a defence of the tradition against psychoanalysis.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false,
+   "harmGate": true
+  },
+  {
+   "from": "ext:atmajnanananda-ijhs-1997",
+   "to": "crit:kripal-kalis-child",
+   "kind": "CRITICISES_TRANSLATION",
+   "type": "CRITICISES_TRANSLATION",
+   "basis": "term-level",
+   "evidence": "Swami Atmajnanananda, International Journal of Hindu Studies (August 1997). Kripal states he happily corrected the errors Atmajnanananda identified in the 1998 second edition, characterising them as minor and not touching the theses. On the Nikhilananda Gospel omissions, Atmajnanananda argued they reflected 1940s Western decorum rather than concealment, and noted most guhya-kathā passages were faithfully translated. DOCUMENTED OUTCOME: partial correction, disputed significance.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:openshaw-1995",
+   "to": "crit:kripal-kalis-child",
+   "kind": "CRITICISES_TRANSLATION",
+   "type": "CRITICISES_TRANSLATION",
+   "basis": "term-level",
+   "evidence": "Jean Openshaw (Cambridge, 1995) is listed among the scholars documenting disputed renderings. The specific objections were not retrieved this round.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false,
+   "confidence": "low — name and year only"
+  },
+  {
+   "from": "ext:ray-1997",
+   "to": "crit:kripal-kalis-child",
+   "kind": "CRITICISES_TRANSLATION",
+   "type": "CRITICISES_TRANSLATION",
+   "basis": "term-level",
+   "evidence": "Rajat Kanta Ray (1997) is listed among the scholars documenting disputed renderings. Specific objections not retrieved.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false,
+   "confidence": "low — name and year only"
+  },
+  {
+   "from": "ext:larson-1998-exchange",
+   "to": "crit:kripal-kalis-child",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "methodological — reductionism",
+   "evidence": "Gerald Larson's 1998 rejoinder maintained that critical feedback from the Order's swamis and from psychoanalysts would have prevented serious problems of imbalance and reductionism in the conclusion, which he called doubly reductionist. Kripal denied monocausal reductionism, cited a non-dual methodology and a rejection of Freudian reductionism, and defended his independence by reference to Isherwood's 1981 account of the constraints on an Order-sponsored project.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:roland-and-bhattacharyya-objections",
+   "to": "crit:kripal-kalis-child",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "cross-cultural applicability of psychoanalysis",
+   "evidence": "Alan Roland argues Freudian approaches do not transfer to Asian cultures; Somnath Bhattacharyya and Larson note that neither Kripal nor Doniger has formal psychoanalytic or psychological training, and question posthumous analysis conducted through native informants. Bhattacharyya separately argues Ramakrishna cannot be read as misogynist given his teaching that sense-pleasures generally are spiritual impediments.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:mclean-jaos-1997",
+   "to": "crit:kripal-kalis-child",
+   "kind": "DEFENDS",
+   "type": "DEFENDS",
+   "basis": "scholarly-review",
+   "evidence": "Malcolm McLean, Journal of the American Oriental Society (1997): the treatment is very thorough, the case very well documented, the argument convincing.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:hatcher-1999",
+   "to": "crit:kripal-kalis-child",
+   "kind": "DEFENDS",
+   "type": "DEFENDS",
+   "basis": "survey-of-the-reviews",
+   "evidence": "Brian Hatcher's 1999 analysis found that although reviewers expressed misgivings, the overall balance was positive and at times highly laudatory.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:huston-smith-hds-2001",
+   "to": "crit:kripal-kalis-child",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "offence-to-a-living-tradition",
+   "evidence": "Huston Smith, Harvard Divinity School Bulletin (2001): few books, not even those of early polemical missionaries, had offended Hindu sensibilities so grossly; he called the work colonialism updated. A standing objection, not a philological one.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:hawley-revision-2004",
+   "to": "crit:kripal-kalis-child",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "revised-assessment",
+   "evidence": "J. S. Hawley moved from a positive 1998 assessment to arguing in 2004 that Ramakrishna's torment and mysticism must not be allowed to devolve to a bodily level; he separately disputes Kripal's rendering of vyākulatā. A CHANGE OF MIND BY A NAMED SCHOLAR is the strongest kind of evidence in a reception dispute and is recorded as such.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:kripal-kalis-child",
+   "to": "crit:tyagananda-kalis-child-revisited",
+   "kind": "RESPONDS_TO",
+   "type": "RESPONDS_TO",
+   "basis": "published-reply",
+   "evidence": "Kripal replied expressing embarrassment, sadness and hope, denying wilful distortion while acknowledging having offended Hindu sensibilities, arguing that interpretation is an interaction between reader and text, defending alternative senses of the disputed terms, and distinguishing right-handed ascetic Vedānta from left-handed traditions integrating sexuality in Ramakrishna's milieu. He announced in late 2002 that after eight years, eight published essays, a second monograph and thousands of letters he was ending formal responses. ENDING REPLIES IS NOT CONCEDING and this file does not treat it as such.",
+   "sources": [
+    "C7"
+   ],
+   "cite": "C7",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:malhotra-invading-the-sacred",
+   "to": "crit:kripal-kalis-child",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "process-and-ethics",
+   "evidence": "The volume argues Kālī's Child violated academic due process and ethical norms rather than merited a prize, and that translation errors persisted into the second edition; Malhotra's essay 'RISA LILA—I: Wendy's Child Syndrome' argues the Freudian apparatus is discredited among Western psychologists. Kripal replied in 'The Tantric Truth of the Matter: A Forthright Response to Rajiv Malhotra', objecting to the tone and to what he called ad hominem argument and internet falsehoods.",
+   "sources": [
+    "C10",
+    "C7"
+   ],
+   "cite": "C10 C7",
+   "ASSERTED": false,
+   "harmGate": true
+  },
+  {
+   "from": "crit:malhotra-invading-the-sacred",
+   "to": "ext:aar-risa-section",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "institutional-composition",
+   "evidence": "That the American Academy of Religion's Religion in South Asia section lacks well-informed Hindu understanding and produces reductive accounts.",
+   "sources": [
+    "C10",
+    "C9"
+   ],
+   "cite": "C10 C9",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:nussbaum-on-malhotra",
+   "to": "crit:malhotra-invading-the-sacred",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "scholarly-standards",
+   "evidence": "Martha Nussbaum criticises a disregard for the usual canons of argument and scholarship.",
+   "sources": [
+    "C9"
+   ],
+   "cite": "C9",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:pennington-on-malhotra",
+   "to": "crit:malhotra-invading-the-sacred",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "historical-accuracy",
+   "evidence": "Brian K. Pennington calls the work ahistorical and charges systematic misrepresentation of Hindu-Christian relationships.",
+   "sources": [
+    "C9"
+   ],
+   "cite": "C9",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:edelmann-on-malhotra",
+   "to": "crit:malhotra-battle-for-sanskrit",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "competence-for-the-method-claimed",
+   "evidence": "Jonathan Edelmann argues Malhotra lacks grounding in the specific philosophical schools his pūrvapakṣa method would require.",
+   "sources": [
+    "C9"
+   ],
+   "cite": "C9",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:rambachan-2015",
+   "to": "crit:malhotra-invading-the-sacred",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "misrepresentation-of-a-named-scholar's-work",
+   "evidence": "Anantanand Rambachan published an extensive critique in May 2015 saying Malhotra's descriptions of his scholarship belong to the realm of fiction.",
+   "sources": [
+    "C9"
+   ],
+   "cite": "C9",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:hinnells-and-kurien",
+   "to": "crit:malhotra-invading-the-sacred",
+   "kind": "DEFENDS",
+   "type": "DEFENDS",
+   "basis": "positioning-in-the-field",
+   "evidence": "John Hinnells recognises Malhotra as leading Hindu criticism of Western method in Hinduism studies; Prema A. Kurien places him at the forefront of the American Hindu effort to challenge Eurocentrism in academia. These are characterisations of significance, not endorsements of accuracy, and are recorded as such.",
+   "sources": [
+    "C9"
+   ],
+   "cite": "C9",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:batra-shiksha-bachao-andolan-samiti",
+   "to": "crit:doniger-the-hindus",
+   "kind": "LEGAL_ACTION_AGAINST",
+   "type": "LEGAL_ACTION_AGAINST",
+   "basis": "filed proceeding",
+   "evidence": "Dinanath Batra, founder of the Shiksha Bachao Andolan Samiti (affiliated to the Rashtriya Swayamsevak Sangh), sued in 2011 under section 295A of the Indian Penal Code — deliberate and malicious acts intended to outrage the religious feelings of any class. DISPOSITION: settled, not adjudicated. In February 2014 Penguin India agreed to withdraw the book from the Indian market and destroy stock within six months, stating that the British-vintage section 295A made international free-speech standards difficult to maintain. Speaking Tiger Books republished in India about twenty months later. Counsel Monika Arora maintains the action sought only correction of factual errors and that republication evades a court test of them.",
+   "sources": [
+    "C8"
+   ],
+   "cite": "C8",
+   "ASSERTED": false,
+   "harmGate": true,
+   "note": "NO COURT RULED ON THE MERITS. Withdrawal is not a finding against the book; republication is not a finding for it."
+  },
+  {
+   "from": "ext:hindu-american-foundation",
+   "to": "crit:doniger-the-hindus",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "alleged inaccuracy and bias",
+   "evidence": "The Hindu American Foundation protested the National Book Critics Circle nomination alleging inaccuracies and bias. Bharat Gupt separately charged misunderstanding of mythology and a politically motivated, left-aligned analysis.",
+   "sources": [
+    "C8"
+   ],
+   "cite": "C8",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:social-scientist-and-jaos-reviews",
+   "to": "crit:doniger-the-hindus",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "scholarly-review",
+   "evidence": "Reviews in Social Scientist and in the Journal of the American Oriental Society credited the textual scholarship while identifying factual errors in the coverage of British colonialists in India and a lack of focus. THIS IS THE SCHOLARLY OBJECTION AND IT IS INDEPENDENT OF THE LEGAL CAMPAIGN — conflating the two is the standard error.",
+   "sources": [
+    "C8"
+   ],
+   "cite": "C8",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:nicholson-unifying-hinduism",
+   "to": "ext:neo-hinduism-thesis",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "late-medieval doxographic sources",
+   "evidence": "Argues the unification of traditions into a single Hinduism has substantial precolonial roots, cutting against BOTH the strong colonial-construction thesis and the traditionalist claim of timeless unity.",
+   "sources": [
+    "C32"
+   ],
+   "cite": "C32",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:nicholson-and-young-july-2015",
+   "to": "crit:malhotra-indras-net",
+   "kind": "ALLEGES_PLAGIARISM",
+   "type": "ALLEGES_PLAGIARISM",
+   "basis": "textual parallel",
+   "evidence": "In July 2015 Andrew J. Nicholson and Richard Fox Young alleged that Indra's Net plagiarised Unifying Hinduism; Nicholson's charge was that Malhotra not only plagiarised but twisted the words and arguments of respectable scholars. Instance cited: p.163 of Indra's Net closely paralleling p.14 of Unifying Hinduism on models of philosophical complementarity, with inadequate attribution. OUTCOME: HarperCollins India indicated willingness to rectify future editions; the revised 2016 edition substantially reduced the Nicholson references; NO FORMAL LEGAL PROCEEDING OCCURRED AND NO ADJUDICATING BODY ISSUED A FINDING.",
+   "sources": [
+    "C9",
+    "C32"
+   ],
+   "cite": "C9 C32",
+   "ASSERTED": false,
+   "harmGate": true,
+   "blpCritical": true
+  },
+  {
+   "from": "crit:malhotra-indras-net",
+   "to": "ext:nicholson-and-young-july-2015",
+   "kind": "RESPONDS_TO",
+   "type": "RESPONDS_TO",
+   "basis": "published reply",
+   "evidence": "Malhotra's response: the book contained thirty explicit references to Nicholson, and he would remove many of them on the ground that Nicholson had borrowed from Indian sources and presented them as his own original ideas, replacing the citations with the original Sanskrit sources in revised editions. A RECIPROCAL ORIGINALITY ALLEGATION, recorded as an allegation.",
+   "sources": [
+    "C9"
+   ],
+   "cite": "C9",
+   "ASSERTED": false,
+   "blpCritical": true
+  },
+  {
+   "from": "crit:malhotra-indras-net",
+   "to": "crit:nicholson-unifying-hinduism",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "substantive disagreement, distinct from the plagiarism dispute",
+   "evidence": "Indra's Net argues against the neo-Hinduism thesis and for a genuine philosophical unity. The substantive argument and the attribution allegation are separate matters and are separated here.",
+   "sources": [
+    "C9",
+    "C32"
+   ],
+   "cite": "C9 C32",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:malhotra-battle-for-sanskrit",
+   "to": "ext:sheldon-pollock",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "reading of a named scholar's published positions",
+   "evidence": "Targets what Malhotra characterises as Pollock's critical stance toward Sanskrit's role in traditional views of Indian society, within a general charge that Western scholars intervene in Indian intellectual discourse with analyses traditional Indian experts reject.",
+   "sources": [
+    "C9"
+   ],
+   "cite": "C9",
+   "ASSERTED": false,
+   "harmGate": true
+  },
+  {
+   "from": "crit:caldwell-heart-of-the-secret",
+   "to": "ext:siddha-yoga-movement",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "reflexive ethnography plus structural argument",
+   "evidence": "Two theses held together: that Swami Muktananda (1908-1982) was an enlightened teacher and a practitioner of an esoteric form of tantric sexual yoga, AND that he engaged in actions with many disciples that were not ethical, legal or liberatory; with the structural claim that what happened in Siddha Yoga's recent history arises directly out of tantra's long history of dissimulation and secrecy. NO ORGANISATIONAL REBUTTAL WAS LOCATED.",
+   "sources": [
+    "C11"
+   ],
+   "cite": "C11",
+   "ASSERTED": false,
+   "harmGate": true,
+   "harmNote": "Serious allegations against a named deceased teacher in a peer-reviewed venue; a living organisation; a living-victim dimension. No allegation detail, no complainant named, nothing adjudicated."
+  },
+  {
+   "from": "crit:caldwell-heart-of-the-secret",
+   "to": "crit:urban-tantra-2003",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "shared thesis about secrecy",
+   "evidence": "Caldwell's structural claim — that secrecy is what allowed accomplishment and abuse to coexist — is the same secrecy mechanism Urban puts at the centre of the tantra category.",
+   "sources": [
+    "C11",
+    "C6"
+   ],
+   "cite": "C11 C6",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S LINKAGE; mutual citation not verified."
+  },
+  {
+   "from": "crit:caldwell-oh-terrifying-mother",
+   "to": "ext:kerala-goddess-ritual",
+   "kind": "REFRAMES",
+   "type": "REFRAMES",
+   "basis": "ethnographic",
+   "evidence": "Reads Kerala goddess ritual through sexuality, violence and gender. BIBLIOGRAPHY UNVERIFIED THIS ROUND.",
+   "sources": [
+    "C11"
+   ],
+   "cite": "C11",
+   "ASSERTED": true,
+   "assertedNote": "The monograph's imprint details were not confirmed. Strike or verify.",
+   "confidence": "low",
+   "auditFlag": "STRIKE-CANDIDATE"
+  },
+  {
+   "from": "crit:ospina-ahrq-meditation-2007",
+   "to": "ext:meditation-health-claims",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "systematic quality appraisal",
+   "evidence": "Headline finding: research on meditation practices is characterised by poor methodological quality.",
+   "sources": [
+    "C18"
+   ],
+   "cite": "C18",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:ahrq-report-commentary",
+   "to": "crit:ospina-ahrq-meditation-2007",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "instrument misapplication",
+   "evidence": "Published commentary and subsequent criticism argued the Jadad scale was misused, that design factors unsuited to behavioural hypertension trials were applied, that baseline blood-pressure protocols and control adequacy were ignored, and that adolescent and youth trials were excluded. AHRQ subsequently marked the 2007 findings as no longer considered current. NOTE: much of this critique came from researchers aligned with the practices under review.",
+   "sources": [
+    "C18"
+   ],
+   "cite": "C18",
+   "ASSERTED": false,
+   "note": "The cleanest case in this slice of a criticism that was itself criticised successfully."
+  },
+  {
+   "from": "crit:canter-ernst-tm-bp-2004",
+   "to": "ext:tm-blood-pressure-claim",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "systematic review of randomised trials",
+   "evidence": "Insufficient good-quality evidence either way; baseline blood-pressure procedures adequate in only one trial; only one trial with follow-on assessment; only one evaluable trial in hypertensive individuals; recommendation that future work be done by researchers unaffiliated with the movement.",
+   "sources": [
+    "C19"
+   ],
+   "cite": "C19",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:aha-statement-2013",
+   "to": "ext:tm-blood-pressure-claim",
+   "kind": "DEFENDS",
+   "type": "DEFENDS",
+   "basis": "society scientific statement",
+   "evidence": "Brook et al., Hypertension 61.6 (2013): TM modestly lowers blood pressure and its use may be considered; biofeedback and TM rated most beneficial among behavioural therapies.",
+   "sources": [
+    "C21"
+   ],
+   "cite": "C21",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:schneider-reply-2013",
+   "to": "ext:aha-statement-2013",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "evidence-grading dispute",
+   "evidence": "R. H. Schneider et al., Hypertension (2013), argue the AHA ratings for TM should be upgraded. Authors are affiliated with the TM research programme — stated, not used to dismiss.",
+   "sources": [
+    "C21"
+   ],
+   "cite": "C21",
+   "ASSERTED": false
+  },
+  {
+   "from": "ext:hartley-cochrane-2014",
+   "to": "ext:tm-blood-pressure-claim",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "Cochrane systematic review",
+   "evidence": "Hartley, Mavrodaris, Flowers, Ernst & Rees, 'Transcendental meditation for the primary prevention of cardiovascular disease', CD010359.pub2 (2014) — the standing independent assessment. Its conclusion text was NOT retrieved this round; only the existence and scope of the review are recorded.",
+   "sources": [
+    "C20"
+   ],
+   "cite": "C20",
+   "ASSERTED": false,
+   "confidence": "medium — record located, conclusions not read",
+   "gap": "Retrieve and record the Cochrane conclusion verbatim-in-summary before any site use."
+  },
+  {
+   "from": "ext:active-control-objection",
+   "to": "ext:tm-blood-pressure-claim",
+   "kind": "REFUTES",
+   "type": "REFUTES",
+   "basis": "design",
+   "evidence": "General methodological objection across the literature: reliance on waitlist and no-treatment comparators rather than active controls inflates apparent benefit through expectation, attention and group support.",
+   "sources": [
+    "C18",
+    "C19"
+   ],
+   "cite": "C18 C19",
+   "ASSERTED": false
+  },
+  {
+   "from": "crit:tm-movement-and-the-pizza-effect",
+   "to": "ext:tm-blood-pressure-claim",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "separation-of-questions",
+   "evidence": "Recorded so the AUTHENTICITY question (Bharati's) and the EFFICACY question (the trial literature's) are not confused. They are different arguments with different evidence and different answers.",
+   "sources": [
+    "C1",
+    "C19"
+   ],
+   "cite": "C1 C19",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S STRUCTURAL NOTE, not a claim by any cited author."
+  },
+  {
+   "from": "crit:sivananda-isyvc-allegations",
+   "to": "ext:sivananda-lineage",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "journalism and campaign material — NOT scholarship",
+   "evidence": "Public testimony by Julie Salter, 10 December 2019; BBC World Service reporting of accounts gathered over about fifteen months describing cruelty, coercion, rape and the sexual assault of a child, and describing an inadequate organisational response, spanning several decades; organisational statement of 16 December 2019 committing to an independent investigator within a few days; Project SATYA reporting that this did not follow, and publishing interim reports. NO COURT, REGULATOR OR INDEPENDENT INVESTIGATOR FINDING WAS LOCATED.",
+   "sources": [
+    "C23"
+   ],
+   "cite": "C23",
+   "ASSERTED": false,
+   "harmGate": true,
+   "blpCritical": true,
+   "harmNote": "Maximal. Carry with all four positions and the explicit no-finding line, or do not carry."
+  },
+  {
+   "from": "crit:pd-status-of-the-criticism-layer",
+   "to": "ext:framing-doc-section-2-4",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "edition survey of this file",
+   "evidence": "Every substantive work in this slice dates from 1965-2022 and is in copyright; the only public-domain item is the AHRQ federal report. A quotation policy keyed to public-domain status therefore lets the site quote the Victorian and Edwardian occult-revival translations while permitting only citation of the modern scholarship that says those translations are unreliable. Offered as support for FRAMING §2.4 and as an argument that every quoted pre-1930 edition needs a cited modern corrective in the same record.",
+   "sources": [
+    "C4",
+    "C6",
+    "C14",
+    "C18",
+    "C31"
+   ],
+   "cite": "C4 C6 C14 C18 C31",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S FINDING about the repo's own policy, derived from this file's edition data.",
+   "siteRelevance": "highest"
+  },
+  {
+   "from": "crit:taylor-woodroffe-bengal",
+   "to": "crit:pd-status-of-the-criticism-layer",
+   "kind": "COMMENTS_ON",
+   "type": "COMMENTS_ON",
+   "basis": "worked instance",
+   "evidence": "The 1919 Serpent Power is quotable on public-domain grounds; Taylor's 2001 demonstration that its authorship attribution is wrong is not. The asymmetry is concrete, not hypothetical.",
+   "sources": [
+    "C4",
+    "C31"
+   ],
+   "cite": "C4 C31",
+   "ASSERTED": true,
+   "assertedNote": "COMPILER'S ILLUSTRATION."
+  }
+ ],
+ "nodeNamespaces": {
+  "crit:": "works and events owned by THIS slice; all resolve to a works[] row (verified: zero dangling references).",
+  "repo:": "existing atlas slugs in assets/js/core/data/confluence.js, i.e. S1 ids. Used: repo:hathayogapradipika, repo:person-krishnamacharya, repo:raja-yoga-1896, repo:rasarnava, repo:shatchakranirupana, repo:yoga-sutras. All six verified present in the S1 id list on 2026-07-30.",
+  "tan:": "ids owned by slice S10 (10-indian-tantra.json). Used: tan:kularnavatantra.",
+  "ext:": "STUB NODES — scholars, organisations, events, generic positions and genres that this slice references but does NOT own and did NOT research to work-row depth. They are deliberately not works[] rows: promoting one to a row would imply an evidentiary base this round does not have. A downstream generator must either resolve these against another slice or render them as bare labels. 57 distinct ext nodes."
+ },
+ "extNodes": [
+  "ext:aar-risa-section",
+  "ext:active-control-objection",
+  "ext:aha-statement-2013",
+  "ext:ahrq-report-commentary",
+  "ext:antiquity-of-modern-postural-yoga",
+  "ext:atmajnanananda-ijhs-1997",
+  "ext:authenticity-claims-in-modern-hinduism",
+  "ext:batra-shiksha-bachao-andolan-samiti",
+  "ext:bhattacharyya-1999-preface",
+  "ext:buddhist-yoginitantras",
+  "ext:category-tantra",
+  "ext:comparative-esotericism-as-a-genre",
+  "ext:dold-kamakhya",
+  "ext:edelmann-on-malhotra",
+  "ext:eliade-iron-guard-record",
+  "ext:framing-doc-section-2-4",
+  "ext:hartley-cochrane-2014",
+  "ext:hatcher-1999",
+  "ext:hawley-revision-2004",
+  "ext:hindu-american-foundation",
+  "ext:hinnells-and-kurien",
+  "ext:huston-smith-hds-2001",
+  "ext:kamakhya-assam",
+  "ext:kerala-goddess-ritual",
+  "ext:kiss-of-the-yogini-evidentiary-objection",
+  "ext:larson-1998-exchange",
+  "ext:larson-review-of-white",
+  "ext:mclean-jaos-1997",
+  "ext:meditation-health-claims",
+  "ext:modern-tantric-sex-industry",
+  "ext:nagarjuna-rasaratnakara-attribution",
+  "ext:neo-hinduism-thesis",
+  "ext:nicholson-and-young-july-2015",
+  "ext:nussbaum-on-malhotra",
+  "ext:openshaw-1995",
+  "ext:origins-of-tantric-religion",
+  "ext:osho-rajneesh-movement",
+  "ext:pennington-on-malhotra",
+  "ext:rajneeshee-1984-bioterror-attack",
+  "ext:rambachan-2015",
+  "ext:rampersad-objection",
+  "ext:ray-1997",
+  "ext:roland-and-bhattacharyya-objections",
+  "ext:sanderson-priority-objection",
+  "ext:schneider-reply-2013",
+  "ext:sheldon-pollock",
+  "ext:siddha-yoga-movement",
+  "ext:sil-statesman-review-1997",
+  "ext:sivananda-lineage",
+  "ext:social-scientist-and-jaos-reviews",
+  "ext:srividya-practitioner-access-objection",
+  "ext:symbolic-reading-of-tantric-transgression",
+  "ext:tantra-as-transgression-only",
+  "ext:theosophical-and-rampa-tibet-literature",
+  "ext:tm-blood-pressure-claim",
+  "ext:western-popular-tantra-literature",
+  "ext:wujastyk-alchemical-ghost-1984"
+ ],
+ "notes": {
+  "razorCompliance": "No mantra, syllable, yantra template, quantity, timing, substance, sequence or second-person instruction appears in this file. The five procedure rows that exist (Bharati, Urban/Kāmākhyā, White x2, Brooks, Eliade, Caldwell) record only THAT a scholar describes a rite, and each carries sourceLayer=secondary-scholarship so its grade is never read as a grade of a primary text.",
+  "noQuotedOperativeText": "Confirmed: this round ships none. FRAMING §10 blockers B1-B4 are not cleared and this file asserts nothing that depends on them.",
+  "twoFieldDiscipline": "textCompleteness grades the SOURCE described; completenessBasis says how the grade was reached and, in most rows here, says the underlying book was NOT read. Where a grade could not be earned, the row says so instead of guessing.",
+  "contestedDiscipline": "Every contested block carries at least two positions with the holder named. Nine blocks; none resolved. Two blocks explicitly record a MISSING position (the Siddha Yoga organisation reply; a named defender of Eliade) rather than paraphrasing an absent party.",
+  "assertedEdges": "16 of 88 edges carry ASSERTED=true. Every one names itself as a compiler inference in assertedNote. No transmission or dependency edge is asserted on resemblance.",
+  "strikeCandidates": [
+   "crit:brooks-anusara-entanglement (+ its edge) — yoga-press journalism only, BLP exposure, no scholarly payload",
+   "ext:sanderson-priority-objection edge — sole source an undated Substack essay",
+   "crit:caldwell-oh-terrifying-mother (+ its edge) — imprint details unverified",
+   "the crit:demichelis edge to repo:raja-yoga-1896 — catalogue-level only"
+  ],
+  "whatIDidNotDo": "No monograph in this slice was read. No archive was consulted. No paywalled review was retrieved. Every book-level characterisation is from publisher pages, catalogue records, encyclopedia articles or review notices, and each row says which."
+ }
+}

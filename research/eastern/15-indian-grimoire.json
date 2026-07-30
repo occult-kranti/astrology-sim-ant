@@ -1,0 +1,2408 @@
+{
+  "meta": {
+    "slice": "S15 — THE INDIAN GRIMOIRE CORPUS: the operative manual literature as distinct from philosophical tantra. Uḍḍ-corpus (Uḍḍīśatantra, Uḍḍāmareśvaratantra, Kriyoḍḍīśa, Vīrabhadra); the Bhūtaḍāmaratantra in its Buddhist and Śaiva recensions; the Ḍāmara family; Siddhanāgārjunakakṣapuṭa; the Indrajāla literature and the 1915 Indrajālavidyāsaṃgraha; Kāmaratna; Dattātreyatantra; Ṣaṭkarmadīpikā; Rāvaṇa Saṃhitā; the Kerala paddhati/mantravāda corpus; and the printed-bazaar tantra-mantra trade.",
+    "dateISO": "2026-07-30",
+    "disjointness": "DISJOINT from S10 (Indian tantra) by CORPUS, not by method. S10 owns the philosophical/systematising mantraśāstra spine (Śāradātilaka, Mantramahodadhi, Kulārṇava, Śrīvidyā, Niśvāsa/Netra/Svacchanda). S15 owns what Ullrey calls the ENCYCLOPEDIC grimoires — first-order ritual catalogues. Exactly one id is shared with S10 (`tan:isanasivagurudevapaddhati`), deliberately reused rather than re-minted; the row here carries `dedupWith` and states what it ADDS and CORRECTS. The repo's shipped abhicāra wing (assets/js/core/data/abhichara-data.js TEXTS) overlaps on four titles; each such row carries `dedupWith` naming the repo record and what this slice corrects.",
+    "method": "ONE primary-scholarship full text was read this round: Ullrey's UCSB dissertation, from the pdftotext -layout extract cached in this session's scratchpad as `ullrey.txt` (35,317 lines, from escholarship qt4vt6f325). Sections read verbatim and end-to-end: 'Process and Telos' (pp. 144-155), 'What are the six results?' / 'What are the procedures in the six results?' (pp. 147-155), 'Systematic vs. Encyclopedia Verses' (pp. 156-159), 'Introduction to the Contents. The Three Uḍḍīśatantras' (pp. 181-189), 'What is the Uḍḍ-corpus?' (pp. 190-197), Ch. 7 'Organizing Strategies' / 'Prior Studies of the Bhūtaḍāmaratantra' / 'Textual Origins' (pp. 551-568), the aṣṭamahābhūtarajñā section (pp. 575-577), and 'Contemporary Magic' + Conclusion (pp. 630-634). Everything else is bibliographic verification against live edition records (archive.org, Wellcome, Cambridge Core, Brill/Springer listings, KSTS and TSS series records) done this round. Where a source could NOT be read, the row says so in the words 'NOT READ' and the claim is downgraded accordingly. Nothing here is graded 'complete' on a text nobody opened.",
+    "operativeContentRazor": "This file records THAT a text sets out a procedure — its type, its structural anatomy, how complete it is and on what evidence, its edition/PD situation, and its harm profile. It transcribes NO mantra syllables, NO seed-syllable strings, NO yantra as a usable template, NO ingredient, NO quantity, NO repetition-count, NO timing, NO target-naming formula, and contains NO second-person directive. Sources read for this slice DO print all of those things (Ullrey translates mantras, counts, substances and coercive sanctions in full, by explicit methodological choice at pp. 146 and 152); none of it is carried across. Where a structural feature can only be described by naming a slot — e.g. that hostile mantras carry a placeholder standing for the target's name — the slot is described and the tokens are withheld.",
+    "harmFraming": "The ṣaṭkarman includes māraṇa (killing) and vaśīkaraṇa (subjugation), and much of this corpus is organised AROUND them: two of the three Uḍḍīśatantra recensions open their body-text with murder, not with pacification. This is catalogued as academic religious history under the repo's abhicāra-wing precedent (see FRAMING; abhichara-data.js FRAMING.label/care). Efficacy is never asserted — the tradition CLAIMS, the text SAYS. Ullrey, the slice's principal source, states flatly at p. 633: 'Magic doesn't work.' Rites in this corpus target NAMED LIVING PERSONS by design; that is recorded as a fact about the texts and is the single largest reason no procedure detail crosses into this file.",
+    "livingPeopleNote": "Several actors here are living or recent and several disputes are current: the Hindi commentators Śivadatta Miśra (1998) and C.M. Śrīvāstava (2007); the translator Giri Ratna Mishra (2015); the bazaar-print compilers named on Bṛhat Indrajāla title pages (Rameshwar Mishra, Devcharan Awasthi, 'Ojha Baba'); the Kerala mantravāda ritual families; and the still-operating Khemraj Shrikrishnadas / Gita Press-adjacent trade. Judgements about their work are attributed to the scholar who made them and are never adopted as the slice's own. Ullrey's assessment that one 2015 English translation 'has little to do with the root text' is recorded AS ULLREY'S, with his footnote located.",
+    "assertedField": "Every edge carries `ASSERTED` as a boolean with a fixed meaning. `true` = this slice asserts the relation holds and `evidence` names the documentation. `false` = the edge is recorded as a CANDIDATE that this slice explicitly DECLINES to assert, and `basis` says why the declination stands. Resemblance edges — shared goddess-lists, shared result-vocabulary, shared genre — are recorded at ASSERTED:false unless a documented dependency exists. This is the field the auditor should attack first.",
+    "sources": [
+      {
+        "key": "U1",
+        "cite": "A.M. Ullrey, 'Grim Grimoires: Pragmatic Ritual in the Magic Tantras' (PhD diss., UC Santa Barbara, December 2016; committee D.G. White chair, V.A. Wallace, J.I. Cabezón; eScholarship qt4vt6f325).",
+        "accessed": "FULL TEXT, read this round from the cached pdftotext extract; page numbers below are the dissertation's own printed page numbers as they appear in the extract.",
+        "pd": false,
+        "openAccess": true
+      },
+      {
+        "key": "U2",
+        "cite": "T. Goudriaan & S. Gupta, Hindu Tantric and Śākta Literature (Wiesbaden: Harrassowitz, 1981).",
+        "accessed": "NOT READ — reached only through U1's quotation and page citations (U1 pp. 116-117, 123, 194 n.118).",
+        "pd": false
+      },
+      {
+        "key": "U3",
+        "cite": "T. Goudriaan, Māyā Divine and Human (Delhi: Motilal Banarsidass, 1978) — the ṣaṭkarman treatment at pp. 251-269 as paginated by U1.",
+        "accessed": "NOT READ — reached through U1 (pp. 111-120) and through the repo's SCHOLARSHIP list.",
+        "pd": false
+      },
+      {
+        "key": "U4",
+        "cite": "B. Bhattacharyya, 'The Cult of Bhūtaḍāmara', Proceedings of the Indian History Congress / (as cited by U1) 1933, pp. 349-370.",
+        "accessed": "NOT READ — reached through U1 pp. 548-557, which quotes it at pp. 350, 352-354, 356. U1 calls it 'oft-cited though copies remain difficult to acquire' and says it 'has yet to be surpassed'. VENUE UNVERIFIED — U1 gives the year and page numbers but the extract read did not yield the journal title; do not print a venue.",
+        "pd": "unresolved — a 1933 Indian publication; not verified"
+      },
+      {
+        "key": "U5",
+        "cite": "Chieko Yamano, 'The Yakṣiṇī-Sādhana in the Kakṣapuṭa-tantra: Introduction, Critical Edition, and Translation', Journal of the International College for Postgraduate Buddhist Studies XVII (2013).",
+        "accessed": "NOT READ in full — reached through U1 pp. 561-562 (which cites pp. 64, 66, 69-70) and through the NTU DLMBS bibliographic record.",
+        "pd": false,
+        "openAccess": "the ICPBS journal is freely distributed; not confirmed this round",
+        "discrepancy": "PAGE RANGE CONFLICT: U1's bibliography gives 61-118; the NTU Digital Library & Museum of Buddhist Studies catalogue record gives 61-99. Unresolved. Do not print a page range without saying which record it came from."
+      },
+      {
+        "key": "U6",
+        "cite": "G. Bühnemann, 'Buddhist Deities and Mantras in the Hindu Tantras: I. The Tantrasārasaṃgraha and the Īśānaśivagurudevapaddhati', Indo-Iranian Journal 42.4 (1999), pp. 303-334; and 'II. The Śrīvidyārṇavatantra and the Tantrasāra', IIJ 43 (2000), pp. 27-43.",
+        "accessed": "NOT READ — Brill's PDF endpoint returned HTTP 403 this round. Citation (volume, issue, year, page range) verified against the Brill and Springer article records and Bühnemann's own publication list.",
+        "pd": false
+      },
+      {
+        "key": "U7",
+        "cite": "A. Sanderson, 'The Śaiva Age: The Rise and Dominance of Śaivism during the Early Medieval Period', in Genesis and Development of Tantrism (Tokyo: Institute of Oriental Culture, 2009), pp. 41-350.",
+        "accessed": "NOT READ this round — reached through U1 pp. 553 n.4 and 565 n.29 (which quotes Sanderson 2009:124).",
+        "pd": false
+      },
+      {
+        "key": "U8",
+        "cite": "Indrajālavidyāsaṃgraha (Calcutta, 1915). archive.org item `dcfc_indrajala-vidya-sangraha-jibananda-vidyasagara-1915-jivananda-vidyasagar-calcutta`; scan released CC0 by the uploader.",
+        "accessed": "archive.org item record read this round; the volume itself NOT read.",
+        "pd": "PD by date — 1915 publication.",
+        "discrepancy": "ATTRIBUTION CONFLICT: the archive.org record files this under 'Jivananda Vidyasagar, Calcutta' (a collection label, 'Complete Works of Jibananda Vidyasagara'); web search surfaced the editors as Aśubodha Vidyābhūṣaṇa Bhaṭṭācārya and Nityabodha Vidyāratna Bhaṭṭācārya. U1 (pp. 116-117) names neither, and describes the volume only as 'uncritically edited' from eastern-Indian manuscripts. Editorship UNRESOLVED."
+      },
+      {
+        "key": "U9",
+        "cite": "Kāmaratnam, ed. Jvālāprasāda Miśra, Baṃbaī: Khemarāja Śrīkṛṣṇadāsa, 1899. Sanskrit text with Hindi translation and preface; 370 pp.; appendix of 27 pp. of yantra plates. Wellcome Library copy, archive.org item `b30095050`.",
+        "accessed": "archive.org/Wellcome item record read this round; the volume itself NOT read.",
+        "pd": "PD by date — 1899 publication.",
+        "note": "The item record describes the work as 'a Hindu tantric work on charms, magic, medicine, etc.' and records the attribution as variously to Nityanātha, Nāga Bhaṭṭa and others."
+      },
+      {
+        "key": "U10",
+        "cite": "Kāmaratna Tantra, ed. Pandit Hemchandra Goswami Tattvabhushan (Assam Civil Service, retd.), Shillong: Assam Government Press, 1928; 110 pp. + 20 pp. of diagrams.",
+        "accessed": "Bibliographic record read this round via the Journal of the Royal Asiatic Society review listing (Cambridge Core) and three archive.org scans; the volume itself NOT read.",
+        "pd": "PD by date — 1928 publication. This is the one edition in the slice that clears the repo's pre-1930 quotable bar, and the round still quotes nothing from it."
+      },
+      {
+        "key": "U11",
+        "cite": "Uḍḍāmareśvaratantra, ed. Pandit Jagaddhar Zadoo, Kashmir Series of Texts and Studies LXX (Srinagar: Research Department, 1947).",
+        "accessed": "archive.org item `SEoa_uddamareshvara-tantra-ksts-lxx-pandit-jagad-dhar-zadoo` record read this round; U1 quotes its index verses at 1.3-5, 1.11-12, 1.14-17 and 1.19-23 (U1 pp. 183 n.96, 196 n.121). Volume itself NOT read.",
+        "pd": "NOT PD. 1947 — a foreign publication restored by the URAA; presumed in US copyright. The archive.org uploader's CC0 tag is an UPLOADER CLAIM, not a rights determination, and must not be relied on. CITE-ONLY."
+      },
+      {
+        "key": "U12",
+        "cite": "Wikipedia, 'Sri Venkateswar Steam Press' (read 2026-07-30), citing R. Agrasenputra, The Marwari Leaders of India (1928).",
+        "accessed": "read this round.",
+        "pd": false,
+        "reliability": "TERTIARY. Used only for the press's founding chronology (Gangavishnu and Khemraj Bajaj of Churu, sons of Shrikrishnadas, arrive Mumbai 1868; small press at Moti Bazar 1871; Khetwadi and the formal Sri Venkateswar Steam Press by 1880; brothers separate 1893; Khemraj's descendants inherit, giving the Khemraj Shrikrishnadas imprint). Flagged as tertiary — this chronology deserves a print source."
+      },
+      {
+        "key": "U13",
+        "cite": "Ulrike Stark, An Empire of Books: The Naval Kishore Press and the Diffusion of the Printed Word in Colonial India (Ranikhet: Permanent Black, 2007).",
+        "accessed": "NOT READ. Cited as the standing monograph on the Lucknow press; no claim in this slice rests on its contents.",
+        "pd": false
+      },
+      {
+        "key": "U14",
+        "cite": "The Bhūtaḍāmara Tantra (Toh 747), tr. Dharmachakra Translation Committee (Wiesiek Mical from Sanskrit manuscripts; Thomas Doctor comparing the Degé Kangyur Tibetan), 84000: Translating the Words of the Buddha.",
+        "accessed": "Landing-page metadata only. The introduction, chapter list and text are behind client-side rendering and returned no body content to two fetch attempts this round — NOT READ. Publication year NOT VERIFIED. 84000's stated dating ('compiled anonymously around the seventh or eighth century CE') reached only via search-result summary, NOT from the page itself.",
+        "pd": false,
+        "licence": "84000 publishes under a CC BY-NC-ND-style licence — CITE-ONLY under this repo's rules regardless."
+      },
+      {
+        "key": "U15",
+        "cite": "wisdomlib.org reference entries: 'Bhutadamaratantra', 'Tantrasarasamgraha', 'Prayogamanjari', 'Kamaratna', and the hosted essay '19. Kerala Tantric Literature (A Study in Brief)'.",
+        "accessed": "read this round.",
+        "pd": false,
+        "reliability": "TERTIARY AGGREGATOR. Used only for manuscript-catalogue facts it reproduces from Aufrecht's Catalogus Catalogorum and Rājendralāla Mitra's Notices, and for chapter counts, each flagged in place. No completeness grade in this file rests on wisdomlib alone."
+      },
+      {
+        "key": "U16",
+        "cite": "Īśānaśivagurudevapaddhati, ed. T. Ganapati Sastri, Trivandrum Sanskrit Series; vol. 1 = TSS 69 (1920). Reprint: ed. T. Ganapati Sastri with N.P. Unni, 4 vols (Delhi/Varanasi: Bharatiya Vidya Prakashan, 1988-89).",
+        "accessed": "TSS-069 (1920) and the 1989 BVP vols III-IV verified this round via archive.org item records; volumes NOT read.",
+        "pd": "SPLIT, and this is load-bearing. The 1920s TSS Ganapati Sastri edition is PD by date. The 1988-89 Bharatiya Vidya Prakashan reprint — which is the edition actually in circulation and the one most citations point to — is a NEW edition with N.P. Unni and is NOT PD. TSS numbers for vols 2-4 (commonly given as 72, 77, 83) were NOT verified this round."
+      },
+      {
+        "key": "U17",
+        "cite": "Tantrasārasaṅgraha of Nārāyaṇa, with the Mantravimarśinī commentary of Svarṇagrāma Vāsudeva, ed. N.V.P. Unithiri, 2 vols (University of Calicut, 2002).",
+        "accessed": "Bibliographic record only; NOT READ.",
+        "pd": false
+      },
+      {
+        "key": "U18",
+        "cite": "T.S. Syamkumar, 'Expiatory Rites in Keralite Tantra' (2017), hosted at wisdomlib.org.",
+        "accessed": "Introduction only, read this round.",
+        "pd": false,
+        "note": "Supplies the corpus periodisation: a 'Pre-Tantrasamuccaya phase' emphasising philosophical and mythological dimensions, and a 'Post-Tantrasamuccaya phase' whose manuals 'mainly concentrate only on the practical side of Tantric rituals'; and Trivikrama as commentator on the Prayogamañjarī, Svarṇagrāma Vāsudeva on the Tantrasārasaṃgraha."
+      },
+      {
+        "key": "U19",
+        "cite": "REPO: assets/js/core/data/abhichara-data.js, TEXTS[] and SCHOLARSHIP[] and FRAMING (read this round at lines 520-617).",
+        "accessed": "read this round.",
+        "pd": "n/a — repo file"
+      },
+      {
+        "key": "U20",
+        "cite": "D. Wujastyk, 'An Alchemical Ghost: The Rasaratnākara by Nāgārjuna', Ambix 31.2 (1984), 70-83 — as already encoded in the repo at assets/js/core/data/rasa-data.js.",
+        "accessed": "via the repo's existing in-data flag, read this round.",
+        "pd": false
+      },
+      {
+        "key": "U21",
+        "cite": "Prayogamañjarī of Ravi — edition of Raman Nambiar & K. Achyutapothuval (Tripunithura Sanskrit College, 1953); a critical edition with Trivikrama's Pradyota commentary announced as in preparation by N.V.P. Unithiri and S.A.S. Sarma; Trivandrum manuscripts library shelfmarks L.530, L.674, T.20, 5439, C.1796A, C.693, C.730, T.413.",
+        "accessed": "via U15/U18 aggregation, read this round; NOT verified against a library catalogue.",
+        "pd": "1953 — not PD."
+      },
+      {
+        "key": "U22",
+        "cite": "Tantrasamuccaya of Nārāyaṇa with the Vimarśinī of Śaṅkara, ed. T. Ganapati Sastri, Trivandrum Sanskrit Series LXVII; modern 3-vol. reprint with Vimarśinī of Śaṅkara and Vivaraṇa of Nārāyaṇaśiṣya.",
+        "accessed": "bibliographic records only; NOT READ. TSS volume number LXVII from a search-result summary; YEAR NOT VERIFIED.",
+        "pd": "unresolved — depends on the unverified year."
+      },
+      {
+        "key": "U23",
+        "cite": "'Revisiting Tantrasamuccaya: A Fundamental Text for Kerala Tantra', IJFMR (2023), paper id 6670.",
+        "accessed": "FETCH ATTEMPTED AND FAILED — the PDF returned an unparseable compressed stream. Recorded so the auditor knows this line of evidence was tried, not skipped. No claim rests on it.",
+        "pd": false
+      },
+      {
+        "key": "U24",
+        "cite": "Retail and trade listings for Bṛhat Indrajāla / Bṛhad Indrajāl (Khemraj Prakashan ed. attrib. Pt. Devcharan Awasthi; DPB Publication ed. attrib. Pt. Rameshwar Mishra; Deep Prakashan 'Prāchīn Bṛhat Indrajāl' attrib. 'Ojha Baba'), read 2026-07-30.",
+        "accessed": "read this round.",
+        "pd": false,
+        "reliability": "COMMERCIAL LISTINGS, NOT SCHOLARSHIP. Used ONLY as evidence of the bazaar-print fact itself: that the title circulates in mutually independent modern compilations under different named compilers and publishers, with no critical edition and no scholarly treatment located. Nothing about the text's contents is graded from these."
+      }
+    ]
+  },
+  "authors": [
+    {
+      "id": "au:anonymous-udd",
+      "name": "anonymous (Uḍḍ-corpus)",
+      "note": "The corpus's texts are compilations without recoverable authors; named figures in the tradition are revelation-frame characters or modern editors."
+    },
+    {
+      "id": "au:ravana-pseudepigraphic",
+      "name": "Rāvaṇa (pseudepigraphic)",
+      "note": "Demon-lord of Laṅkā, addressee and sometimes ascribed author. Ullrey notes the traditional gloss of the name as 'Screamer', beside Rudra 'Howler' and the ḍam-/ḍī- title roots. LEGENDARY attribution; the repo already flags it."
+    },
+    {
+      "id": "au:dattatreya-pseudepigraphic",
+      "name": "Dattātreya (pseudepigraphic)",
+      "note": "Questioner-frame for the Dattātreyatantra and named on modern Bṛhat Indrajāla prints."
+    },
+    {
+      "id": "au:anonymous-buddhist-bhutadamara",
+      "name": "anonymous (Buddhist Bhūtaḍāmaratantra)",
+      "note": "Sanskrit, early medieval; Ullrey suspects a Northeast South Asian, likely Bengali, origin."
+    },
+    {
+      "id": "au:anonymous-saiva-bhutadamara",
+      "name": "anonymous (Śaiva Bhūtaḍāmaratantra)",
+      "note": "The recension is framed as Unmattabhairava speaking to his consort."
+    },
+    {
+      "id": "au:anonymous-indrajala",
+      "name": "anonymous (Indrajālaśāstra)"
+    },
+    {
+      "id": "au:anonymous-satkarmadipika",
+      "name": "anonymous (Ṣaṭkarmadīpikā)",
+      "note": "Unusually for the genre, the author cites his sources."
+    },
+    {
+      "id": "au:nagarjuna-siddha-attributed",
+      "name": "Nāgārjuna (Siddha) — ATTRIBUTED",
+      "note": "THREE-WAY CONFLATION ALERT. Distinct from au:nagarjuna-madhyamaka (2nd-c. philosopher) and not to be merged with the alchemical Siddha of the Rasendramaṅgala without argument; and distinct again from 'Nāgārjuna' as a 20th-21st-c. bazaar-print author-brand. The repo already carries the first two flags at confluence.js and rasa-data.js (Wujastyk 1984); this slice adds the third and merges none of them."
+    },
+    {
+      "id": "au:nagarjuna-madhyamaka",
+      "name": "Nāgārjuna (Madhyamaka philosopher)",
+      "note": "EXISTING repo node (confluence.js). Present here only as the endpoint of a DECLINED identity edge."
+    },
+    {
+      "id": "au:nityanatha-attributed",
+      "name": "Nityanātha / Nāga Bhaṭṭa / others — ATTRIBUTED (Kāmaratna)",
+      "note": "The 1899 Wellcome record gives the attribution as a set, not an author. Whether this 'Nityanātha' is Nityanātha Siddha of the Rasaratnākara was NOT established and must not be assumed."
+    },
+    {
+      "id": "au:cennas-narayanan-nambutiri",
+      "name": "Cennas Nārāyaṇan Nambūtiri",
+      "note": "Kerala, 15th c. (commonly 1427-28), under the Sāmūtiri polity. Author of the Tantrasamuccaya — a temple manual, not a grimoire."
+    },
+    {
+      "id": "au:ravi-kerala",
+      "name": "Ravi (Kerala)",
+      "note": "Author of the Prayogamañjarī, c. 11th c.; commentary Pradyota by Trivikrama."
+    },
+    {
+      "id": "au:isanasiva-gurudeva",
+      "name": "Īśānaśiva Gurudeva",
+      "note": "Kerala; author of the Īśānaśivagurudevapaddhati (Siddhāntasāra). SHARED NODE with S10."
+    },
+    {
+      "id": "au:narayana-sivapura",
+      "name": "Nārāyaṇa of Śivapura",
+      "note": "Kerala brahmin on the Nila river, 15th-16th c.; author of the Tantrasārasaṃgraha / Viṣanārāyaṇīya. Commentary Mantravimarśinī by Svarṇagrāma Vāsudeva. NOT to be confused with Melpathur Nārāyaṇa Bhaṭṭatiri or with Cennas Nārāyaṇan."
+    },
+    {
+      "id": "au:mallisena",
+      "name": "Malliṣeṇa",
+      "note": "CROSS-REFERENCE ONLY — repo node; Digambara Jain, Karnataka. No epigraphical evidence for him or for his commentator Bandhuṣeṇa; dating rests on Jhavery 1944."
+    },
+    {
+      "id": "au:bazaar-compilers",
+      "name": "modern bazaar-print compilers (collective)",
+      "note": "LIVING OR RECENT PEOPLE. Named on title pages: Pt. Devcharan Awasthi, Pt. Rameshwar Mishra, 'Ojha Baba', Sandīpa Guptā et al. No judgement is passed on any of them; only imprint facts are recorded."
+    },
+    {
+      "id": "au:various",
+      "name": "various / collective"
+    }
+  ],
+  "cultures": [
+    {
+      "id": "cul:saiva-operative",
+      "label": "Śaiva operative (magic-tantra) milieu",
+      "note": "Śaiva by frame, promiscuous in practice. Ullrey: 'Magic tantras demonstrate the fluidity of medieval religious boundaries: all manner of Hindu deities are found alongside ostensibly Buddhist, Jain, or amorphous yakṣa deities… Any effective deity, just like any effective technique, will be incorporated to get the job done' (p. 197)."
+    },
+    {
+      "id": "cul:buddhist-tantric-operative",
+      "label": "Buddhist tantric operative milieu",
+      "note": "The Bhūtaḍāmara's home. Ullrey stresses that here the tantra 'confers theurgic technology upon tantra sorcerers, hardly saints or siddhas' (p. 557)."
+    },
+    {
+      "id": "cul:jain-operative",
+      "label": "Digambara Jain operative milieu (Karnataka)",
+      "note": "Cross-reference only; the repo's abhicāra wing owns it."
+    },
+    {
+      "id": "cul:siddha-operative",
+      "label": "Siddha / alchemical-operative milieu"
+    },
+    {
+      "id": "cul:kerala-tantra",
+      "label": "Kerala tantra and mantravāda",
+      "note": "A corpus in which temple-liturgy paddhatis and operative manuals are BOTH called tantra and must be told apart by contents, not by title."
+    },
+    {
+      "id": "cul:bengali-assamese-operative",
+      "label": "Bengali / Assamese operative milieu (incl. the Kāmākhyā orbit)"
+    },
+    {
+      "id": "cul:hindi-bazaar-print",
+      "label": "Hindi/Sanskrit commercial bazaar print (1868-present)",
+      "note": "Not a religious culture but a PRODUCTION culture. It is included as a culture node because for most of this corpus it is the only transmission context that can actually be documented."
+    }
+  ],
+  "procedureVocabulary": [
+    {
+      "id": "proc:satkarman-six-results",
+      "label": "ṣaṭkarman — the six results",
+      "note": "A GENRE MARKER, not a fixed list. 'A six results list may contain 6, 9, or 99 constituents, but it is still a six results list' (U1 p. 113). Ullrey translates karman here as RESULT, not act, against Goudriaan and Türstig."
+    },
+    {
+      "id": "proc:maranam-lethal-sorcery",
+      "label": "māraṇa — murderous sorcery (with nāśana, destruction)",
+      "harmClass": "lethal",
+      "note": "The corpus's harm centre. Catalogued under the repo's abhicāra precedent."
+    },
+    {
+      "id": "proc:vasikarana-subjugation",
+      "label": "vaśīkaraṇa — subjugation",
+      "harmClass": "coercive; person-targeting",
+      "note": "Continuous with the corpus's erotic material; not cleanly separable from it."
+    },
+    {
+      "id": "proc:yaksini-sadhana-conjuring",
+      "label": "yakṣiṇī-/bhūtinī-sādhana — conjuring",
+      "harmClass": "coercive toward the conjured entity; servitor outcomes"
+    },
+    {
+      "id": "proc:cetaka-sadhana",
+      "label": "ceṭaka-sādhana — 'using as a slave'",
+      "harmClass": "servitor"
+    },
+    {
+      "id": "proc:indrajala-fantastic-feats",
+      "label": "indrajāla / kautuhalakarman — fantastic feats and enchanted items",
+      "note": "Also a siddhi in the Kakṣapuṭa. The corpus's accretion zone."
+    },
+    {
+      "id": "proc:mantroddhara-encoding",
+      "label": "mantroddhāra / mantrakośa — mantra encoding",
+      "note": "A WITHHOLDING DEVICE and a dating tool: encoding correlates with lateness."
+    },
+    {
+      "id": "proc:systematic-variable-tables",
+      "label": "systematic variable tables (second-order magic lore)"
+    },
+    {
+      "id": "proc:counter-sorcery",
+      "label": "counter-sorcery (kṣudra-dhvaṃsa; the Uḍḍīśa 'methods for counteracting magic')"
+    },
+    {
+      "id": "proc:visarjana-dismissal",
+      "label": "visarjana — dismissal / release of a summoned being",
+      "note": "Attested as a rule in the Jain BPK 3.24; NOT located inside the Bhūtaḍāmaratantra by any source read this round."
+    }
+  ],
+  "works": [
+    {
+      "id": "gri:udd-corpus",
+      "nodeKind": "corpus",
+      "title": "The Uḍḍ-corpus (the Uḍḍīśa cluster) — the core Indian grimoire family",
+      "titleOriginal": "Uḍḍīśatantra / Uḍḍāmeśvaratantra / Uḍḍāmareśvaratantra / Uḍḍāmaratantra / Vīrabhadratantra",
+      "author": "au:anonymous-udd",
+      "culture": "cul:saiva-operative",
+      "dateText": "no securable date; the family is post-medieval in its surviving witnesses, with older palm-leaf attestations in Maithili, Newari and Nandinagari script implying greater age for some members",
+      "sortYear": null,
+      "structuralNote": "The corpus term is Ullrey's own coinage ('Uḍḍ-corpus'; Goudriaan called the same body the 'Uḍḍīśa cluster'). Membership is NOT established by the title-syllable: Ullrey's stated criterion is a CLUSTER of characteristic opening verses PLUS exposition of the six results PLUS overt concern with pragmatic ritual — 'a cluster of these generic verses identifies an Uḍḍ-corpus text, merely containing a single one does not' (U1 p. 196). The family is held together by 'family resemblances' and explicitly NOT by a 'family tree' of textual development and branching recension (U1 p. 194).",
+      "editions": [],
+      "procedures": [
+        {
+          "typeAsFiled": "corpus-level: six-results catalogue (ṣaṭkarman) + fantastic feats/enchanted items (kautukakarman, indrajāla) + conjuring (yakṣiṇīsādhana)",
+          "textCompleteness": "n/a — corpus node",
+          "completenessBasis": "grading is done per member work below",
+          "evidence": "U1's three-part emic definition of Indian tantra magic (p. 185 n.99, restated p. 552): (1) the six acts, (2) conjuring goddesses, (3) fantastic feats and enchanted items. The Uḍḍ-corpus organises its material under all three, which is why it is the corpus's structural centre.",
+          "harmNote": "REQUIRED at corpus level — the six results include māraṇa (murderous sorcery) and its sub-class nāśana (destruction), and two of the three published Uḍḍīśatantra recensions open the body of the text with murder rather than with pacification (U1 pp. 184, 187)."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U2",
+        "U19"
+      ],
+      "contested": [
+        {
+          "flag": "Whether the corpus has a locatable ur-text or a derivational stemma.",
+          "positions": [
+            {
+              "holder": "Goudriaan (1981), as summarised at U1 p. 194 n.118",
+              "value": "the Uḍḍīśatantra is DERIVED from (1) the Uḍḍāmara/Uḍḍāmareśvara alias Mantracintāmaṇi, (2) the Uḍḍīśatantra alias Rāvaṇoḍḍīśa, (3) the Vīrabhadratantra alias Mantrakośa, and (4) the Kriyoḍḍīśatantra; and the dialogue partner distinguishes members (Śiva-Pārvatī in the Uḍḍāmara/Uḍḍāmareśvara, Śiva-Rāvaṇa in the Uḍḍīśa)."
+            },
+            {
+              "holder": "Ullrey (2016)",
+              "value": "'Frequent back-and-forth borrowing prohibitively complicates any search for an Uḍḍ-corpus ur-text… I have yet to encounter a single, early source that all Uḍḍ-corpus texts — or even most — stem from' (p. 194). And on Goudriaan's criterion: 'dialogue partners often switch in these texts making Goudriaan's argument not consistently valid' (p. 194 n.118)."
+            }
+          ],
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "id": "gri:uddisatantra",
+      "nodeKind": "work",
+      "title": "Uḍḍīśatantra",
+      "titleOriginal": "उड्डीशतन्त्र — 'The Leaping Lord Tantra' (Ullrey's rendering, from ut + √ḍī 'to fly')",
+      "author": "au:ravana-pseudepigraphic",
+      "culture": "cul:saiva-operative",
+      "dateText": "undated; survives in three mutually divergent modern printed recensions (1965, 1998, 2007) over root texts of unknown manuscript provenance",
+      "sortYear": null,
+      "dedupWith": "repo abhichara-data.js TEXTS[5] 'Uḍḍīśatantra'. The repo record is CORRECT as far as it goes (pseudepigraphic Rāvaṇa attribution flagged as legendary; three editions named). This row ADDS: the print lineage behind the Tripathī edition; the two-half structure; the index-verse/contents mismatch as a repeatable formal feature; and the fact that manuscript provenance is undetermined for all three.",
+      "attributionNote": "Attributed within the text to Śiva revealing to Rāvaṇa, demon-lord of Laṅkā. Ullrey notes the name Rāvaṇa is glossed in the tradition as 'Screamer' — the corpus's presiding etymological joke, alongside Rudra 'Howler' and the ḍam-/ḍī- title roots (U1 pp. 190-191). The attribution is a revelation-frame, not a historical claim, and the dialogue partners switch mid-text between Rāvaṇa and a goddess.",
+      "structuralNote": "ANATOMY, as evidenced from the Tripathī recension (U1 pp. 182-183): the text divides into a first half (pūrvārdha) and later half (uttarārdha). The first half itself has two parts — (i) SYSTEMATIC verses correlating variables to results, then (ii) an ENCYCLOPEDIC catalogue of six-result techniques, sixty-nine verses under eight headings. The later half carries results not classifiable under the six, plus a lore layer: remedies for procedural error, methods of counteracting magic, and recourse when results fail to appear. It closes with fantastic feats and enchanted items, magic slippers, alchemical concoctions and revivification. That closing block is where the text GROWS: 'New material can be easily added to the end of the manuscript' (U1 p. 184).",
+      "editions": [
+        {
+          "translator": "Śyāmasundaralāla Tripāṭhī (Sanskrit root text + original Hindi commentary)",
+          "year": 1965,
+          "publisher": "Gangāviṣṇu Śrīkṛṣṇadāsa, Kalyāṇ (Mahārāṣṭra)",
+          "pdStatus": "in copyright",
+          "quoteSafe": false,
+          "note": "Per its own introduction it REPRODUCES a prior Sanskrit publication issued by order of Seṭh Khemarāj Śrīkṛṣṇadās at the Bombay Veṅkaṭeśvara Steam Press; Ullrey had access to neither that earlier print nor its manuscript (U1 p. 182). Ullrey judges the commentary 'clear, faithful to the root text', with footnotes 'useful, though occasionally erroneous'."
+        },
+        {
+          "translator": "Śivadatta Miśra ('Śivadattī' Hindi commentary), edited from a single manuscript with Paṇḍit Śrī Hīrāmaṇi Miśra",
+          "year": 1998,
+          "publisher": "Kṛṣṇadāsa Akādamī, Vārāṇasī",
+          "pdStatus": "in copyright",
+          "quoteSafe": false,
+          "note": "Ullrey: 'carefully edited into clear, workaday Sanskrit', with a consistent chapter-and-verse numbering scheme, and an ornate purāṇic Sanskrit introduction setting the revelation on Kailāsa (U1 p. 184)."
+        },
+        {
+          "translator": "C.M. Śrīvāstava (Uḍḍīśa Taṃtra Sādhana Evaṃ Prayog — Hindi introductions, commentary, appendices and original chapters)",
+          "year": 2007,
+          "publisher": "Manoj Publications, New Delhi",
+          "pdStatus": "in copyright",
+          "quoteSafe": false,
+          "note": "The longest and most recent. Ullrey: the root Sanskrit is 'rough; some verses are unintelligible', riddled with spelling and sandhi errors 'consistent with manuscripts', and printed WITHOUT verse numbers — either reproducing a poor manuscript or copying poorly edited earlier prints (U1 pp. 186-187). Śrīvāstava is described as an AUTHOR rather than a glossator."
+        },
+        {
+          "translator": "Giri Ratna Mishra, 'Laṅkeśa Rāvaṇa's Uḍḍīśa Tantra, with Sarveshwari English Commentary & Introduction'",
+          "year": 2015,
+          "publisher": "n.p.",
+          "pdStatus": "in copyright",
+          "quoteSafe": false,
+          "note": "Ullrey's assessment, recorded as HIS: an English translation 'using overly philosophical language, and thus of little use', and 'This translation of the root text has little to do with the root text' (U1 p. 183 + n.94). A second 2015 English-language product ('Ravan sanhita: … kali kitab : black book : totke based on Ravana's Uddish mahatantra') is noted by Ullrey as unconsulted."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "six-results catalogue (ṣaṭkarman) — encyclopedic",
+          "textCompleteness": "complete",
+          "completenessBasis": "read-through of a scholar who translated the whole recension",
+          "evidence": "Ullrey translated Tripathī's Uḍḍīśatantra IN FULL as Appendix One of the dissertation (pp. 644-682), including the six-results catalogue at pp. 661-671. He states his method at p. 146: 'I translate mantras, deity names, ingredients, and procedures in full.' The individual rites therefore carry all three parts a working operation needs — ritual action, mantra, and declared result — and the encyclopedic composition strategy he names first is exactly 'three part discrete verses with mantra, thereby including ritual actions, mantra, and result' (p. 159). Grade 'complete' is asserted for the RITE-LEVEL entries in this recension only, and only because a full translation exists and was made from the printed root text.",
+          "harmNote": "REQUIRED. The catalogue's eight headings run pacification, subjugation, immobilization, bewildering, dissension, eradication, attraction, MURDER. Ullrey devotes pp. 318-357 to murderous sorcery (māraṇa) and destruction (nāśana) across the three recensions. Targets are human by default. No rite, mantra, substance, count or timing crosses into this file."
+        },
+        {
+          "typeAsFiled": "systematic variable-tables (second-order magic lore)",
+          "textCompleteness": "complete",
+          "completenessBasis": "verse range located and its variable-set enumerated by the reading scholar",
+          "evidence": "U1 p. 160 locates the systematic block at Tripathī 1.14-163 and enumerates the variable axes: directions faced, times of day, season, days of the week, astrological conjunctions and signs, elements, deity colours and stances, syllables and syllable placement, mantra-language gender, mat markings and materials, hand gestures, visualised deity actions, shape and orientation of offering pits, pot materials, rosary bead and thread materials, fingers used on the rosary, methods of repetition, oblation materials, flame names, and ladle shapes and lengths. The AXES are recorded here; none of their VALUES is.",
+          "harmNote": "The same variable tables serve hostile results; that is the point of a systematic tantra."
+        },
+        {
+          "typeAsFiled": "error-remedy and counter-magic lore (procedural failure handling)",
+          "textCompleteness": "partial",
+          "completenessBasis": "the section is located and characterised, but its internal completeness was not assessed by any source read",
+          "evidence": "U1 p. 157 n.32 places this in the later half, verses 2.1-89 — 'sequences of results to be performed if results are not apparent… signs of perfection (siddhilakṣaṇa), ranking of perfections, symptomatology of afflictions (doṣa) caused by magic… and lore for bestowing faults and gaining fruits.' Graded 'partial' because Ullrey characterises the topics but the dissertation does not test whether the section is internally step-complete, and this slice did not read the appendix translation of the later half.",
+          "harmNote": "Counter-magic (defensive) and affliction-symptomatology sit in the same block as the offensive lore — the corpus does not separate them."
+        },
+        {
+          "typeAsFiled": "fantastic feats and enchanted items (kautuhalakarman, indrajāla), including alchemical concoctions and revivification claims",
+          "textCompleteness": "referenced",
+          "completenessBasis": "named as present and as an accretion zone; contents not assessed",
+          "evidence": "U1 p. 183 lists the closing topics by name (magic slippers / pādukāsādhana, guṭikā and rasāyana concoctions, mṛtasañjīvanī-vidyā) and immediately characterises the block as the site of textual growth: 'Lists of fantastic feats and enchanted items are used by authors to expand texts.' A block whose function is to absorb accretion cannot be graded complete.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U1",
+        "U19"
+      ],
+      "contested": [
+        {
+          "flag": "The index-verse / contents mismatch — is it error or genre?",
+          "positions": [
+            {
+              "holder": "Ullrey (2016)",
+              "value": "It is a FORMAL FEATURE of the genre, not a defect: 'Index verses differing from actual contents of the text is common, if not universal, in magic tantras' (p. 183 n.95); 'Index lists, in fact, rarely present a text's contents accurately' (p. 148). All three recensions print a six-item index verse; Tripathī's body gives eight results, Śivadatta's and Śrīvāstava's give seven, in three different orders."
+            }
+          ],
+          "resolved": false,
+          "note": "Recorded as contested because no second scholar was read on it. It is the single most useful diagnostic in the slice: a text whose own table of contents does not match its body cannot be graded from its index verse."
+        },
+        {
+          "flag": "Manuscript provenance of the three printed recensions.",
+          "positions": [
+            {
+              "holder": "Ullrey (2016)",
+              "value": "'Manuscript provenance is undetermined; publishers, editors, and commentators leave unspecified — or they only elliptically describe — their sources. I have not identified manuscript attestations, though I have recognized verses from all three texts in Uḍḍ-corpus manuscripts' (p. 181). Śivadatta's and Śrīvāstava's sources are 'likely located in Varanasi'; Śrīvāstava 'may not have consulted manuscripts at all but copied poorly edited published editions' (p. 186)."
+            }
+          ],
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "id": "gri:uddamaresvaratantra",
+      "nodeKind": "work",
+      "title": "Uḍḍāmareśvaratantra",
+      "titleOriginal": "उड्डामरेश्वरतन्त्र — 'The Tantra of the Lord who Bellows' (from ut + √ḍam 'to sound, as a drum')",
+      "author": "au:anonymous-udd",
+      "culture": "cul:saiva-operative",
+      "dateText": "medieval by convention; no independent dating evidence located this round",
+      "sortYear": null,
+      "dedupWith": "repo abhichara-data.js TEXTS[6] 'Uḍḍāmareśvaratantra', which records only 'Zadoo ed. (Kashmir Series of Texts and Studies)'. This row ADDS the series number (LXX), place, publisher and year (Srinagar: Research Department, 1947), CORRECTS the implicit PD position (1947 is NOT public domain and the archive.org CC0 tag is an uploader claim), and supplies the text's own multiple, mutually inconsistent index verses.",
+      "structuralNote": "The chapter colophons name the text's own source as the Vīrabhadreśvaratantra — 'the mahātantra called Uḍḍāmareśvara is derived from the Vīrabhadreśvaratantra' is the standing colophon formula Ullrey reports for Zadoo ch. 1 (U1 p. 194 n.118). The text opens with SEVERAL index verses that do not agree with each other: a six-item list at 1.3 from which murder and the word ṣaṭkarman are both absent, a further request-list at 1.4-5, a distinct six-fold subjugation scheme at 1.11-12, and a long open-ended results list at 1.14-17 — yet murder is the FIRST topic to get its own heading in the body, in chapter one. Ullrey: 'The encyclopedic nature of this text is assured from its multiple organizing verses at the outset' (U1 p. 183 n.96).",
+      "editions": [
+        {
+          "translator": "Paṇḍit Jagaddhar Zadoo (Sanskrit text; Kashmiri editorial tradition)",
+          "year": 1947,
+          "publisher": "Research Department, Srinagar — Kashmir Series of Texts and Studies LXX",
+          "pdStatus": "NOT PD — presumed in US copyright (1947 foreign publication, URAA-restored). The archive.org scan carries an uploader-applied CC0 tag which is not a rights determination.",
+          "quoteSafe": false
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "six-results catalogue (ṣaṭkarman) — encyclopedic, with murder foregrounded",
+          "textCompleteness": "partial",
+          "completenessBasis": "the text's own index apparatus is self-inconsistent, and no reader of the whole edition was consulted",
+          "evidence": "Graded 'partial' on the text's own evidence rather than on a reader's report: its four opening organising passages disagree with one another and with the body (U1 p. 183 n.96), so the text does not describe its own contents. Ullrey read and quotes the opening but did not translate the volume; this slice did not open the 1947 edition. A 'complete' grade would be unsupported.",
+          "harmNote": "REQUIRED. Murder is the first headed topic in chapter one. The 1.14-17 results list Ullrey quotes runs through blinding, muting, deafening, weapon-spoiling, death, and the driving-mad of persons and animals, alongside neutral and beneficial results — the text makes no separation. Nothing operative is reproduced here."
+        },
+        {
+          "typeAsFiled": "conjuring / goddess-list sādhana (yakṣiṇī-type)",
+          "textCompleteness": "referenced",
+          "completenessBasis": "known only through a third party's comparative table",
+          "evidence": "Yamano correlates the goddess lists of the Kakṣapuṭa with those of Zadoo's Uḍḍāmareśvara and finds 'quite a few common names' (U1 pp. 561-562, citing Yamano pp. 69-70). That establishes that such lists are PRESENT; it establishes nothing about whether the accompanying procedures are step-complete.",
+          "harmNote": "Conjuring rites in this family characteristically end in a servitor relationship; see gri:bhutadamara-buddhist for the harm profile of the compelling logic."
+        },
+        {
+          "typeAsFiled": "body-entering and paranormal-transit claims (parakāyapraveśana, vetālapādukāsiddhi)",
+          "textCompleteness": "referenced",
+          "completenessBasis": "named in the text's own results list, no procedure examined",
+          "evidence": "These appear as items in the 1.14-17 results enumeration Ullrey quotes. Their presence is a genre marker (the 'fantastic feats' third category); no procedure was read.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U1",
+        "U11",
+        "U19"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:kriyoddisatantra",
+      "nodeKind": "work",
+      "title": "Kriyoḍḍīśatantra",
+      "titleOriginal": "क्रियोड्डीशतन्त्र",
+      "author": "au:anonymous-udd",
+      "culture": "cul:saiva-operative",
+      "dateText": "undated",
+      "sortYear": null,
+      "structuralNote": "An Uḍḍ-corpus ancillary framed as a Śiva–Pārvatī dialogue. Ullrey: it 'mirrors several other published versions and bears a number of manuscript attestations' (p. 182 n.93), and it is printed as section 5 of the modern Rāvaṇa Saṃhitā omnibus.",
+      "editions": [
+        {
+          "translator": "—",
+          "year": null,
+          "publisher": "circulates inside the Rāvaṇa Saṃhitā omnibus and in independent bazaar prints",
+          "pdStatus": "unresolved — no specific edition assessed",
+          "quoteSafe": false
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "six-results material (Uḍḍ-corpus type)",
+          "textCompleteness": "referenced",
+          "completenessBasis": "membership asserted by a scholar who saw manuscripts; contents not examined by any source read",
+          "evidence": "U1 p. 182 n.93 and p. 194 n.118 (Goudriaan counts it among the four texts from which the Uḍḍīśatantra derives). Neither Ullrey nor this slice examined its contents. Graded 'referenced' — the text is known to exist and to belong, and nothing more is claimed.",
+          "harmNote": "Presumed to share the family harm profile; NOT verified."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U2"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:virabhadratantra",
+      "nodeKind": "work",
+      "title": "Vīrabhadratantra (Vīrabhadreśvaratantra; alias Mantrakośa)",
+      "titleOriginal": "वीरभद्रतन्त्र — 'The Tantra of the Shining Hero'",
+      "author": "au:anonymous-udd",
+      "culture": "cul:saiva-operative",
+      "dateText": "undated; posited as anterior by the corpus's own colophons, which is a CLAIM the texts make and not a dating",
+      "sortYear": null,
+      "structuralNote": "The corpus's phantom parent. Ullrey: 'Almost every Uḍḍ-corpus text claims the Vīrabhadratantra as a source' (p. 194) — but the claiming is promiscuous: 'several chapters of an Uḍḍīśatantra will claim the Uḍḍāmareśvaratantra as a source and vice versa; this is especially apparent in manuscripts even though published editions have colophons edited for consistence' (p. 194). A source-claim in this corpus is a genre gesture, not a citation.",
+      "editions": [],
+      "procedures": [
+        {
+          "typeAsFiled": "unassessed — the work is known to this slice only as a cited source-name",
+          "textCompleteness": "referenced",
+          "completenessBasis": "no witness examined by any source read this round",
+          "evidence": "Named as source in Uḍḍ-corpus colophons (U1 p. 194 and n.118) and listed by Goudriaan as one of the four derivational parents. No edition, no manuscript and no contents description was located this round.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U1",
+        "U2"
+      ],
+      "contested": [
+        {
+          "flag": "Whether colophon source-claims in this corpus carry evidential weight.",
+          "positions": [
+            {
+              "holder": "Goudriaan (1981), as reported at U1 p. 194 n.118",
+              "value": "builds a derivation scheme in which the Vīrabhadratantra is one of the Uḍḍīśatantra's four sources."
+            },
+            {
+              "holder": "Ullrey (2016)",
+              "value": "the claims are mutually contradictory and the published colophons have been editorially normalised; 'The literary culture producing magic tantras did not place great importance on unique or consistent titles' (p. 194)."
+            }
+          ],
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "id": "gri:ravana-samhita",
+      "nodeKind": "work",
+      "title": "Rāvaṇa Saṃhitā (as it actually circulates: a modern omnibus, not a recovered text)",
+      "titleOriginal": "असली प्राचीन रावण संहिता — Asalī prācīna Rāvaṇa saṃhitā ('The Genuine Ancient Rāvaṇa Saṃhitā')",
+      "author": "au:ravana-pseudepigraphic",
+      "culture": "cul:hindi-bazaar-print",
+      "dateText": "the witness Ullrey describes carries NO publication date; WorldCat estimates the 1990s and Ullrey dates it no earlier than 1995 on internal evidence",
+      "sortYear": 1995,
+      "attributionNote": "Attributed to Rāvaṇa. The title functions as a marketing frame that gathers heterogeneous material under one demon-king brand; the 'asalī prācīna' ('genuine ancient') in the title is itself a trade signal that competing prints exist.",
+      "structuralNote": "ANATOMY OF A BAZAAR OMNIBUS, per U1 p. 182 n.93. Six sections: (1) an account of Rāvaṇa's life; (2) prognostication by planets and signs; (3) prognostication by stars and asterisms; (4) the Uḍḍīśatantra 'composed by Rāvaṇa'; (5) the Kriyoḍḍīśatantra as a Śiva–Pārvatī dialogue; (6) a discourse on male erotics ascribed to Rāvaṇa, closing with a Śiva hymn. Astrology, grimoire and sex manual bound as one commodity — the Indian counterpart of the composite chapbook. CRUCIAL FINDING: the Uḍḍīśatantra printed here 'is identical to Tripathī's Uḍḍīśatantra' (U1, same note). The omnibus is a re-wrapper of an existing print, not an independent witness.",
+      "editions": [
+        {
+          "translator": "Sandīpa Guptā et al. (compilers)",
+          "year": null,
+          "publisher": "Manoja Pôkeṭa Buksa (Manoj Pocket Books), Dillī",
+          "pdStatus": "in copyright",
+          "quoteSafe": false,
+          "note": "Undated on the title page. Ullrey's dating evidence is a marvel of bibliographic pragmatism and worth preserving: 'The general appearance, typeface, and advertisements suggest a publication date no earlier than 1995: an ad for a computer skills textbook lists the window 95 operating system in its curriculum' (U1 p. 182 n.93)."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "six-results catalogue (inherited wholesale from the Tripathī Uḍḍīśatantra)",
+          "textCompleteness": "complete",
+          "completenessBasis": "inherited grade — the contained text is identical to a recension that has been translated in full",
+          "evidence": "U1 p. 182 n.93: 'The Uḍḍīśatantra reproduced here is identical to Tripathī's Uḍḍīśatantra.' The completeness grade therefore transfers from gri:uddisatantra. This is a DERIVED grade and is flagged as such: nothing was independently assessed in the Manoj print.",
+          "harmNote": "REQUIRED — inherits the murder-inclusive catalogue in full, now in a mass-market pocket-book at pavement price."
+        },
+        {
+          "typeAsFiled": "genethlialogical prognostication (planets/signs; nakṣatras)",
+          "textCompleteness": "referenced",
+          "completenessBasis": "section titles only",
+          "evidence": "Sections 2 and 3 of the omnibus's contents list (U1 p. 182 n.93). Contents not examined.",
+          "harmNote": null
+        },
+        {
+          "typeAsFiled": "erotic/sexological material (arkaprakāśa-type)",
+          "textCompleteness": "referenced",
+          "completenessBasis": "section title only",
+          "evidence": "Section 6 of the contents list (U1 p. 182 n.93). Contents not examined.",
+          "harmNote": "Erotic-compulsion material in this corpus is continuous with vaśīkaraṇa (subjugation) and is not cleanly separable from it; recorded, not detailed."
+        }
+      ],
+      "sources": [
+        "U1"
+      ],
+      "contested": [
+        {
+          "flag": "Whether any 'Rāvaṇa Saṃhitā' corresponds to a pre-modern text.",
+          "positions": [
+            {
+              "holder": "This slice",
+              "value": "NO SCHOLARSHIP LOCATED. Searches this round returned only devotional retellings, retail listings and one Ayurvedic-journal article using a 'Tantrātmaka Rāvaṇa Saṃhitā' as a source. The only scholarly description of any Rāvaṇa Saṃhitā found is Ullrey's footnote description of the Manoj Pocket Books omnibus. The title should be treated as a PRINT-TRADE CATEGORY until a critical treatment surfaces."
+            },
+            {
+              "holder": "The tradition and the trade",
+              "value": "present it as Rāvaṇa's own compendium of astrology, mantra and tantra."
+            }
+          ],
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "id": "gri:bhutadamara-buddhist",
+      "nodeKind": "work",
+      "title": "Bhūtaḍāmaratantra — the BUDDHIST recension ('The Ghost-Hooligan Tantra')",
+      "titleOriginal": "भूतडामरतन्त्र; Tib. 'byung po 'dul byed kyi rgyud (Toh 747)",
+      "author": "au:anonymous-buddhist-bhutadamara",
+      "culture": "cul:buddhist-tantric-operative",
+      "dateText": "CONTESTED — see contested[]. Bhattacharyya: first part of the 7th c.; 84000's summary: 'around the seventh or eighth century CE'; Ullrey: 'far from secure'.",
+      "sortYear": 700,
+      "dedupWith": "repo abhichara-data.js TEXTS[8] 'Bhūtaḍāmaratantra', date 'early', edition '—', note 'A Buddhist conjuring source feeding the later Uḍḍīśa material.' This row CORRECTS that record on two counts: (1) it does not distinguish the Buddhist from the Śaiva recension, and the distinction is the whole story; (2) the phrase 'feeding the later Uḍḍīśa material' asserts a transmission the cited source does NOT support — see the ASSERTED:false edge gri:bhutadamara-buddhist → gri:udd-corpus. What Ullrey actually says is that goddess-lists are shared, and in the same breath he warns that goddess lists 'must be used with great care since they are not standard, contain both real and fanciful names, and often represent borrowed materials with no semantic value' (p. 562 + n.22).",
+      "attributionNote": "Anonymous. The title-word 'bhūtaḍāmara' is NOT the name of a deity in the text: 'The term bhūtaḍāmara is only found in titles, colophons, and opening narratives; it is not found in the main body of the text' (U1 p. 563). The presiding figure is Vajradhara/Vajrapāṇi/Mahākrodha. A Bhūtaḍāmara DEITY exists outside the tantra, in the Sādhanamālā, as a tantric form of Vajrapāṇi in Akṣobhya's clan (U1 pp. 563-564, citing Bhattacharyya 1968).",
+      "structuralNote": "ANATOMY. (1) A frame narrative in which Vajradhara/Vajrapāṇi subjugates Maheśvara, forcing the Śaiva god to convert and to protect those who practise the text's rites — the text's warrant for commanding what it commands. (2) Sequences of named female spirit-classes, each list headed by a chief entity, each list followed by its own corresponding mantras, hand-gestures and ritual exertions. (3) A discrete Vajradhara maṇḍala whose practice conjures and subjugates a wide range of beings. (4) A kiṃkara ('servitor') section that makes Hindu gods into slaves. (5) A closing discourse on multiple emptinesses (śūnya) with no doctrinal exposition attached. ORGANISING PRINCIPLE: not by result, as in the Uḍḍ-corpus, but by SPIRIT PANTHEON — 'techniques… are presented based on spirit pantheons in a loose, over-arching maṇḍala of being, ranging from dryads (yakṣiṇī) to demons (bhūtinī) to snakes (nāginī)' (U1 p. 552). Prose, not verse. Mantras written out plainly rather than encoded.",
+      "editions": [
+        {
+          "translator": "Aaron Michael Ullrey — 'somewhat-critical' partial edition from Nepali (Newari-script) manuscripts, Appendix Three of the 2016 dissertation",
+          "year": 2016,
+          "publisher": "UC Santa Barbara (eScholarship qt4vt6f325)",
+          "pdStatus": "in copyright (open access)",
+          "quoteSafe": false,
+          "note": "Ullrey states he was 'preparing a full critical edition and translation of the Buddhist version' (p. 553 n.2); whether that ever appeared was NOT checked this round. Principal manuscripts named: NAK C-0027-03 (palm-leaf, incomplete, oldest), A-0141-06 (oldest complete, paper), A-0140-10 (closest to the Tibetan), with E-0700-19 and E-2329-04 later."
+        },
+        {
+          "translator": "Dharmachakra Translation Committee — Wiesiek Mical from Sanskrit manuscripts, Thomas Doctor comparing the Degé Kangyur Tibetan",
+          "year": null,
+          "publisher": "84000: Translating the Words of the Buddha (Toh 747)",
+          "pdStatus": "in copyright; 84000's CC BY-NC-ND-style licence — CITE-ONLY",
+          "quoteSafe": false,
+          "note": "PUBLICATION YEAR NOT VERIFIED. The 84000 reading-room pages are client-side rendered and returned no body text to two fetch attempts this round; the introduction, chapter list and text were NOT READ. Everything attributed to 84000 here comes from landing-page metadata and a search-result summary and is flagged as such."
+        },
+        {
+          "translator": "Benoytosh Bhattacharyya (description and comparison, not an edition)",
+          "year": 1933,
+          "publisher": "—",
+          "pdStatus": "unresolved",
+          "quoteSafe": false,
+          "note": "The 1933 article tabulated the Buddhist and Śaiva chapter contents side by side. Ullrey: it 'has yet to be surpassed' (p. 548). Bhattacharyya worked from a Baroda Oriental Institute copy he judged 'a recent copy of some older manuscript… as found in Nepal very probably in the Durbar Library' (quoted U1 p. 554)."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "spirit-compelling / conjuring (bhūtinī- and yakṣiṇī-sādhana) with a named hierarchy",
+          "textCompleteness": "complete",
+          "completenessBasis": "a first sādhana was edited and translated in full by a reader of the manuscripts, and the remainder characterised as repetitive variants of it",
+          "evidence": "Ullrey edited and translated the first complete sādhana — the one immediately following the frame narrative — and then states: 'Subsequent rituals are repetitive; consequently, I shift from detailed translation to paraphrase in sections following this one' (p. 575). The rite as he prints it carries every part an operation needs: named target-spirit, mantra with a name-slot, a stated repetition regime, a ritual site, offerings, and a declared outcome, plus eight indexed variations matched to the eight Demon Princesses. Grade 'complete' is asserted at the RITE level for this sādhana and its variant set. NONE of the mantra, count, site-preparation or offering detail is reproduced in this file.",
+          "harmNote": "REQUIRED, and severe on two axes. (a) COERCIVE SANCTION: the compelling procedure carries an explicit clause that if the summoned spirit does not appear, she is destroyed; and non-serving spirits are killed by the presiding deity (U1 pp. 575-576). (b) SERVITOR/SEXUAL OUTCOME: the declared results include enslavement (kiṃkarī) and, in the first variation, sexual compliance. This is recorded as what the text SAYS. The named hierarchy is not reproduced beyond the fact of its existence and its size; nothing here can be executed."
+        },
+        {
+          "typeAsFiled": "mudrā-based compelling (hand-gesture repertoire attached to the spirit-classes)",
+          "textCompleteness": "partial",
+          "completenessBasis": "the FUNCTION-SET is enumerated by the reading scholar, who deliberately withheld the gesture descriptions at that point in his own text",
+          "evidence": "U1 pp. 575-576 enumerates what the gesture set is FOR — drawing the spirit forth, binding her to the practitioner's will, subjugating her, calling her from a distance, casting her in any direction, forcing an action, and striking her — and then says 'I will not describe the specific mudrā practice here.' The function-list survives; the executable content does not, in his text or in this one. Graded 'partial' because the source read does not establish whether the tantra's own gesture descriptions are step-complete.",
+          "harmNote": "The function-set is a coercion vocabulary: summon, bind, subjugate, compel, strike."
+        },
+        {
+          "typeAsFiled": "maṇḍala practice (Vajradhara/Mahākrodha), including initiation and mantra-being material",
+          "textCompleteness": "partial",
+          "completenessBasis": "sections located by heading in a scholar's chapter outline; contents not assessed here",
+          "evidence": "U1's chapter-seven headings locate 'Vajradhara's Dominating Maṇḍala' (p. 589), 'Mantras, Mantra Beings, and Initiation' (p. 595) and 'Maṇḍala Results and Conjuring Vajradhara' (p. 597). This slice read the surrounding argument, not those pages; the grade reflects that.",
+          "harmNote": "The maṇḍala's declared function is to conjure and subjugate 'a wide range of powerful creatures' (U1 p. 552)."
+        },
+        {
+          "typeAsFiled": "subjugation of rival-tradition deities (kiṃkara-sādhana — 'making Hindu gods into slaves')",
+          "textCompleteness": "partial",
+          "completenessBasis": "section located and its polemical function established; contents not read",
+          "evidence": "U1 p. 600 heading, and the argument at pp. 556-557: the Buddhist text 'treats Hindu deities as demons and world protectors', and retains 'subjugation and murder rituals against high Hindu gods, unheard of in an originally Hindu tantra'. This is the load-bearing evidence for the recension-priority argument, so its presence is well attested even though its procedures were not read.",
+          "harmNote": "Inter-traditional polemic executed as ritual violence against another community's gods. Recorded as religious history; no content reproduced. This is material a modern reader may find offensive to a living tradition, and it is presented as what a medieval text does, not as a verdict on Buddhism or Śaivism."
+        },
+        {
+          "typeAsFiled": "dismissal / release of the compelled spirit (visarjana)",
+          "textCompleteness": "referenced",
+          "completenessBasis": "attested for the ritual grammar, NOT located as a rubric inside this text — see the honesty note",
+          "evidence": "HONESTY NOTE, and the auditor should press here. Ullrey observes that the tantra's compelling-gesture results 'echo the five-fold ritual sequences found elsewhere: invocation, depositing, gaining attention, worship, and dismissal' (p. 576). But his footnote for that five-fold sequence cites the JAIN Bhairavapadmāvatīkalpa 3.24, not the Bhūtaḍāmaratantra. So: the five-part sequence terminating in visarjana is documented for the surrounding ritual grammar of the magic tantras; an analyst reads the Bhūtaḍāmara's gesture-set as echoing it; and NO source read this round places a dismissal rubric inside the Bhūtaḍāmaratantra itself. Grade 'referenced' means exactly that and no more. This matters because the licence-to-depart is the single most-cited structural point of comparison with the Ars Goetia, and it is the weakest link in that comparison as the evidence currently stands.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U1",
+        "U4",
+        "U5",
+        "U14",
+        "U15",
+        "U19"
+      ],
+      "contested": [
+        {
+          "flag": "Priority: is the Buddhist recension earlier than the Śaiva one?",
+          "positions": [
+            {
+              "holder": "Bhattacharyya (1933), as reported at U1 pp. 548-557",
+              "value": "YES — the Buddhist version is prior; and further, the tantra-age deities involved (Kālī, Tārā, Bhadrakālī, Sarasvatī, Mañjughoṣa, Chinnamastā) were 'originally Buddhist' and were folded into the Śaiva system by Hindus attracted to their power and adaptability."
+            },
+            {
+              "holder": "Ullrey (2016)",
+              "value": "YES on priority — 'The tantra's earliest form is Buddhist, but it was re-written, simplified, and then expanded to become a Śaiva text' (p. 565) — but NO on Bhattacharyya's deity claim: 'I find the assertion that Sarasvatī was originally Buddhist to be patently false. Tārā and Mañjughoṣa seem to be likely Buddhist. Kāli and Bhadrakālī appear to arise in a fluid world neither Hindu or Buddhist' (p. 553 n.3). Ullrey also flags Bhattacharyya's 'Buddhist chauvinism… obvious though of a piece with his time of writing', while granting that here 'that bias is supported by data'."
+            },
+            {
+              "holder": "Sanderson (2009), as reported at U1 p. 565 n.29",
+              "value": "The GENERAL direction of borrowing is Śaiva → Buddhist; Buddhists adopted and intensified Śaiva ritual technology. Ullrey accepts this as the rule and treats the Bhūtaḍāmara as a documented REVERSAL of it: 'while the direction was usually Śaiva to Buddhist, the direction is reversed here.' Why the Śaivas took up this particular Buddhist text 'remains a mystery'."
+            }
+          ],
+          "resolved": false
+        },
+        {
+          "flag": "Date.",
+          "positions": [
+            {
+              "holder": "Bhattacharyya (1933)",
+              "value": "Buddhist version: first part of the 7th century."
+            },
+            {
+              "holder": "P. Pal (1981), as cited at U1 p. 564 n.26 — Ullrey states he has not consulted Pal",
+              "value": "Hindu version: between the 11th and 15th centuries."
+            },
+            {
+              "holder": "84000 (summary, NOT read from the page)",
+              "value": "compiled anonymously around the 7th or 8th century CE."
+            },
+            {
+              "holder": "Ullrey (2016)",
+              "value": "'These dates are far from secure' (p. 564)."
+            }
+          ],
+          "resolved": false
+        },
+        {
+          "flag": "Whether the text belongs to a Tibetan doxographic class (kriyā/caryā/yoga/anuttarayoga).",
+          "positions": [
+            {
+              "holder": "Nihom, via Lessing & Wayman, as reported at U1 pp. 560-561",
+              "value": "'ascribed to the kriyātantra class… as one of the tantras of the master of the vajrakula who is Vajrapāṇi'."
+            },
+            {
+              "holder": "Ullrey (2016)",
+              "value": "declines: 'Neither can I argue for any classification of the text into Kriyā, Cārya, Yoga, or Annuttarayoga categories, for the text never uses such distinctions in its body or colophons' (p. 561); and the underlying scholarship 'consistently pigeon-hole[s] Indian sources into overdetermined Tibetan scholastic categories'."
+            }
+          ],
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "id": "gri:bhutadamara-saiva",
+      "nodeKind": "work",
+      "title": "Bhūtaḍāmaratantra — the ŚAIVA recension",
+      "titleOriginal": "भूतडामरतन्त्र",
+      "author": "au:anonymous-saiva-bhutadamara",
+      "culture": "cul:saiva-operative",
+      "dateText": "later than the Buddhist recension and later than the Tibetan translation of it; Pal's 11th-15th c. range is the only figure on offer and Ullrey did not consult Pal. Earliest DATED Śaiva manuscript Ullrey found: T23-4, 1762, Devanāgarī — with undated Newari- and Maithili-script copies that 'appear older'.",
+      "sortYear": 1200,
+      "attributionNote": "Framed as a dialogue between Unmattabhairava and his consort. The Buddhist conversion narrative is gone entirely: 'The Śaiva text has no conversion narrative whatsoever' (U1 p. 567).",
+      "structuralNote": "ANATOMY, and the reason this recension matters formally. Bhattacharyya's side-by-side chapter table showed the Śaiva text incorporating and augmenting the Buddhist one. Ullrey's summary of the difference is the slice's best single formal marker: 'the Śaiva text is systematic, the Buddhist encyclopedic' (p. 553). Concretely, the Śaiva recension (a) establishes consistent deity lists, (b) imposes a coherent structure with matching colophons, (c) applies a mantra-CODE system (mantroddhāra / mantrakośa) across the whole text, and (d) is written in VERSE where the Buddhist is prose. Buddhist material is retained undigested: goddess-lists and female-deity cycles survive, Buddhist worship-sites survive in place-names, and Buddhist deity names survive inside the mantras. Overt Buddhist doctrine (the closing śūnya discourse) is removed. Catalogue records give a paṭala 1-15 structure for Śaiva witnesses.",
+      "editions": [
+        {
+          "translator": "— no critical edition located",
+          "year": null,
+          "publisher": "—",
+          "pdStatus": "n/a",
+          "quoteSafe": false,
+          "note": "HONEST GAP. Ullrey collected 26 Śaiva manuscripts from the National Archives, Kathmandu alone, and reports the recension throughout Indian archives; no critical edition of the Śaiva recension was located this round. Devotional/trade prints exist (an English-language 'Bhuta Damara Tantra… of Sri Krodha Bhairava' is sold commercially) and are NOT scholarship."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "spirit-compelling / conjuring, systematised (bhūtinī cycles with regularised names)",
+          "textCompleteness": "partial",
+          "completenessBasis": "the recension's relationship to a translated rite is documented, but the recension itself has no edition and was not read",
+          "evidence": "U1 p. 575 n.50: the third chapter of the Śaiva version 'reproduces this sādhana in an expanded, simplified, and more systematic form. In general, the Hindu version resolves ambiguity of techniques but encodes the mantras.' The bhūtinī names are regularised — 'pressed into more palatable, pleasant Sanskrit titles' — and are 'explicitly matched up in sequence with the specific rituals'. So the rite is MORE explicit procedurally and LESS explicit mantrically than its Buddhist parent. Cannot be graded 'complete': no edition exists and nobody read the whole.",
+          "harmNote": "Inherits the Buddhist recension's compelling logic and adds it to a Śaiva frame. It ALSO retains 'subjugation and murder rituals against high Hindu gods' — which is the anomaly on which the priority argument turns (U1 p. 557)."
+        },
+        {
+          "typeAsFiled": "mantra-encoding apparatus (mantroddhāra / mantrakośa) — a deliberate withholding device",
+          "textCompleteness": "complete-as-a-device, and DELIBERATELY INCOMPLETE as transmission",
+          "completenessBasis": "the withholding is the finding, and it is documented twice over",
+          "evidence": "THE SLICE'S KEY WITHHOLDING FINDING. 'The Śaiva version presents coded mantras (mantroddhāra); mantras are uncoded in the Buddhist text and are written exactly as to be spoken. In general, earlier tantras portray explicit mantras and later ones use mantra codes; consequently, coded mantras indicate posteriority' (U1 p. 565). A mantra-code substitutes descriptive epithets for syllables, so that the operative core is retrievable only by a reader who already holds the key — i.e. an initiate. This is a text that is complete as an artefact and unusable as a manual by design. It also gives philology a DATING TOOL: encoding correlates with lateness. The repo should record this as the Indian corpus's own answer to the question the Western grimoire tradition answers with cipher and notarikon.",
+          "harmNote": "The encoding does not reduce the harm profile; it restricts the audience."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U4",
+        "U15"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:damara-family",
+      "nodeKind": "corpus",
+      "title": "The Ḍāmara family (ḍāmaratantras) — a long-standing native genre label",
+      "titleOriginal": "डामरतन्त्र",
+      "author": "au:various",
+      "culture": "cul:saiva-operative",
+      "dateText": "undated as a family",
+      "sortYear": null,
+      "structuralNote": "'ḍāmara is a long-standing tantra categorization' (U1 p. 191) — that is, an EMIC genre term, not a modern scholarly grouping. The Dattātreyatantra names a group of ḍāmaratantras and counts the Uḍḍīśatantra among them (U1 p. 191 n.114), which is the corpus's own testimony that the Uḍḍ- and Ḍāmara- labels overlap. Monier-Williams lists six titled members: Yogaḍāmara, Śivaḍāmara, Durgāḍāmara, Sārasvataḍāmara, Brahmaḍāmara, Gandharvaḍāmara (via U1 p. 565 n.27). The word is Śiva's noisy drum (ḍamaru); Sanderson's suggested English is 'hooligan'.",
+      "editions": [],
+      "procedures": [
+        {
+          "typeAsFiled": "family label covering operative tantras generally",
+          "textCompleteness": "n/a — genre node",
+          "completenessBasis": "no member text was examined this round beyond the Bhūtaḍāmara pair",
+          "evidence": "The family is recorded because the corpus itself uses the label and because the label is a live source of confusion — see contested[].",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U1"
+      ],
+      "contested": [
+        {
+          "flag": "Whether the Bhūtaḍāmaratantra belongs to the Ḍāmara family. THE SLICE'S MOST IMPORTANT NEGATIVE FINDING.",
+          "positions": [
+            {
+              "holder": "Ullrey (2016)",
+              "value": "NO, twice over. 'The Bhūtaḍāmaratantra should not be confused with Śaiva Ḍāmaratantras to which the Bhūtaḍamaratantra has no connection' (p. 565), and 'This text is not directly connected to the so-called Ḍāmara tantras of any variety or the east Indian Ḍāmarutantra' (p. 565); the footnote adds that 'Publications of the simply named Ḍāmaratantra should not be grouped with the Buddhist or Hindu Bhūtaḍāmaratantra' (n.27)."
+            },
+            {
+              "holder": "The title-syllable, and any classification built on it",
+              "value": "would group them."
+            }
+          ],
+          "resolved": false,
+          "note": "Recorded as contested only because a name-based grouping is the default error; Ullrey's position is the only sourced one and this slice follows it. Any future edge joining gri:bhutadamara-* to gri:damara-family must be ASSERTED:false."
+        }
+      ]
+    },
+    {
+      "id": "gri:damarutantra-bengali",
+      "nodeKind": "work",
+      "title": "The east Indian Ḍāmarutantra (the 'Bangla Damaru')",
+      "titleOriginal": "ডামরু তন্ত্র / Ḍāmarutantra",
+      "author": "au:anonymous-bengali",
+      "culture": "cul:bengali-assamese-operative",
+      "dateText": "undated; a composite in hybrid Sanskrit and Bengali",
+      "sortYear": null,
+      "structuralNote": "Composed in hybrid Sanskrit and Bengali, it reproduces both common rituals and whole goddess/spirit cycles from the Bhūtaḍāmaratantra. This is the slice's clearest case of an operative Sanskrit text passing INTO a regional vernacular manual.",
+      "editions": [
+        {
+          "translator": "— none located",
+          "year": null,
+          "publisher": "—",
+          "pdStatus": "n/a",
+          "quoteSafe": false
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "spirit-cycle conjuring, vernacularised",
+          "textCompleteness": "referenced",
+          "completenessBasis": "the whole record rests on a table of contents and two conversations reported at second hand",
+          "evidence": "EVIDENCE IS THIN AND THE THINNESS IS THE POINT. U1 p. 566 n.30 in full substance: Keith Cantú translated the table of contents; from that table and 'several conversations with Cantú', Ullrey observed shared rituals with the Śaiva (and ultimately Buddhist) Bhūtaḍāmaratantra plus 'reproductions of goddess/spirit cycles… in the Bengali source'. No edition, no manuscript shelfmark, no published study. A search this round for Cantú on the Ḍāmara material returned nothing — his published work is on Bengali Sufism, the Yoga Kalandar and Bāul Fakiri song. So the ONLY evidence for this work is a personal communication reported in a footnote.",
+          "harmNote": "Presumed to share the compelling logic of its source; NOT verified."
+        }
+      ],
+      "sources": [
+        "U1"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:kaksaputa",
+      "nodeKind": "work",
+      "title": "Kakṣapuṭa (Siddhanāgārjunakakṣapuṭa; also Kacchapuṭa)",
+      "titleOriginal": "कक्षपुट / सिद्धनागार्जुनकक्षपुट",
+      "author": "au:nagarjuna-siddha-attributed",
+      "culture": "cul:siddha-operative",
+      "dateText": "c. 10th c. by common attribution; no critical dating located this round",
+      "sortYear": 950,
+      "attributionNote": "ATTRIBUTED TO SIDDHA NĀGĀRJUNA — and this is a three-way conflation the repo already polices. (1) The 2nd-c. Madhyamaka philosopher Nāgārjuna: a DIFFERENT person, already a separate node in the repo at confluence.js 'Nāgārjuna (Madhyamaka philosopher)'. (2) The Siddha/alchemical Nāgārjuna: the repo's confluence.js 'Nagarjuna the alchemist' carries a contested block with both positions, and rasa-data.js encodes Wujastyk's finding that 'the Rasaratnākara by Nāgārjuna' is a manuscript-conflation GHOST (the genuine works being the Rasendramaṅgala of Nāgārjuna Siddha and the Rasaratnākara of Nityanātha Siddha). (3) A third use the operative corpus adds: 'Nāgārjuna' as a BAZAAR-PRINT AUTHOR-BRAND. Ullrey's bibliography carries an Āścaryayogamālātantra ascribed to 'the perennial author Nāgārjuna', ed. Baladevaprasāda Miśra, published by Khemarāja Śrīkṛṣṇadāsa (Bombay, 2005 printing) — and he adds a footnote 'On the many Nāgārjunas in Hinduism' (U1 p. 1023-1024 of the extract's line numbering; dissertation bibliography). This slice asserts NO identification among the three and re-confuses none of them. NOTE for the repo: rasa-data.js already cites the Kakṣapuṭa for Nāgārjuna's 4×4 magic-square construction method — so the repo ALREADY holds a Kakṣapuṭa datum, filed under alchemy, without knowing the text is a ṣaṭkarman grimoire.",
+      "structuralNote": "Encyclopedic in Ullrey's sense, and the most systematised of the five texts printed in the 1915 Indrajālavidyāsaṃgraha — 'The Siddhanāgārjunakakṣapuṭam is the longest and most systematized' (U1 p. 117 n.24). Content includes six-results operations (ṣaṭkarman), a yakṣiṇī-mantra-sādhana block ('invoking yakṣiṇīs'), and ceṭaka practices ('using as a slave'). It is also where the term indrajāla appears as a SIDDHI — a supernatural power — rather than as a genre label.",
+      "editions": [
+        {
+          "translator": "printed in the Indrajālavidyāsaṃgraha (Calcutta, 1915) as one of five texts",
+          "year": 1915,
+          "publisher": "Calcutta",
+          "pdStatus": "PD by date",
+          "quoteSafe": "PD, but this round quotes nothing — and the edition is uncritical (see gri:indrajalavidyasamgraha)",
+          "note": "Ullrey's warning applies: 'the versions in the Indrajālavidyāsaṃgraha are hardly definitive' (p. 116 n.22); manuscripts of these texts range from over a hundred folios down to 'a few pages in a chapbook or frayed country paper'."
+        },
+        {
+          "translator": "Chieko Yamano — critical edition and translation of the yakṣiṇī-sādhana section only",
+          "year": 2013,
+          "publisher": "Journal of the International College for Postgraduate Buddhist Studies XVII",
+          "pdStatus": "in copyright",
+          "quoteSafe": false,
+          "note": "PAGE RANGE DISPUTED — Ullrey's bibliography gives 61-118, the NTU DLMBS record gives 61-99. NOT READ in full this round."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "conjuring — yakṣiṇī-mantra-sādhana",
+          "textCompleteness": "complete",
+          "completenessBasis": "a named critical edition and translation exists FOR THIS SECTION, made from manuscripts",
+          "evidence": "Yamano 2013 is a critical edition and translation of the yakṣiṇī-sādhana specifically, and Ullrey reports from it a fully articulated rite-shape including the outcome-negotiation formula in which the appearing spirit asks what relation she should take to the practitioner — mother, sister, or wife (U1 p. 562, citing Yamano p. 66). Grade 'complete' is asserted FOR THE YAKṢIṆĪ-SĀDHANA SECTION ONLY, on the strength of the critical edition; the rest of the text carries no grade here. The rite's timing and duration parameters, which Yamano prints, are withheld.",
+          "harmNote": "The outcome set includes a kinship-or-consort relation imposed on a compelled spirit, and a companion ceṭaka ('slave') practice. Recorded as what the text claims."
+        },
+        {
+          "typeAsFiled": "six-results operations (ṣaṭkarman)",
+          "textCompleteness": "partial",
+          "completenessBasis": "reported as present by a scholar working on a different section; no edition of the ṣaṭkarman block located",
+          "evidence": "Yamano 'describes various six magic results operations (ṣaṭkarman) in the encyclopedic Kakṣapuṭatantra' (U1 p. 561). Nobody read this round assessed whether those rites are step-complete in the 1915 print. Goudriaan built part of his ṣaṭkarman synthesis on this text, and Ullrey's structural objection to Goudriaan applies: none of the five Indrajālavidyāsaṃgraha texts are 'organically connected by a religious tradition, common source, or geographic area'.",
+          "harmNote": "REQUIRED — ṣaṭkarman includes māraṇa."
+        },
+        {
+          "typeAsFiled": "magic-square construction (yantra arithmetic)",
+          "textCompleteness": "partial",
+          "completenessBasis": "the repo already holds this datum and states its own limit",
+          "evidence": "DEDUP: assets/js/core/data/rasa-data.js records a 4×4 square summing to 100 built by 'Nāgārjuna's primary skeleton square construction method (Kakṣapuṭa)', and explicitly notes 'The source gives the METHOD and the constant (100), not a single canonical cell arrangement — so no grid is asserted here.' That in-data note is itself a completeness grade of exactly the kind this slice produces, and it stands. What this slice ADDS is context: the repo files this under alchemy and does not know that the containing text is a ṣaṭkarman grimoire printed in an uncritical 1915 magic-anthology.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U1",
+        "U5",
+        "U8",
+        "U20"
+      ],
+      "contested": [
+        {
+          "flag": "Which Nāgārjuna, if any.",
+          "positions": [
+            {
+              "holder": "The text's own title",
+              "value": "Siddha Nāgārjuna."
+            },
+            {
+              "holder": "The repo (confluence.js contested block; rasa-data.js)",
+              "value": "carries both the 'one Nāgārjuna' and the 'distinct later siddha (c. 10th c. or later)' positions without resolving, and flags the Rasaratnākara attribution as a manuscript ghost per Wujastyk 1984."
+            },
+            {
+              "holder": "This slice",
+              "value": "adds a third, non-competing use — 'Nāgārjuna' as an author-brand on 20th/21st-c. bazaar tantra prints — and asserts no identification."
+            }
+          ],
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "id": "gri:indrajalavidyasamgraha",
+      "nodeKind": "collection",
+      "title": "Indrajālavidyāsaṃgraha — the 1915 Calcutta magic-anthology",
+      "titleOriginal": "इन्द्रजालविद्यासंग्रह",
+      "author": "au:various",
+      "culture": "cul:bengali-assamese-operative",
+      "dateText": "1915 (the anthology); its five constituent texts are of unrelated dates and provenances",
+      "sortYear": 1915,
+      "structuralNote": "THE CORPUS'S MOST CONSEQUENTIAL EDITORIAL ACCIDENT. Five texts printed together: Indrajālaśāstra, Kāmaratna, Dattātreyatantra, Ṣaṭkarmadīpikā, and Siddhanāgārjunakakṣapuṭa. Ullrey's verdict on the grouping is blunt: none of the five 'are organically connected by a religious tradition, common source, or geographic area… These tantras are only connected by appearing in the same publication' (pp. 116-117). Manuscript sources were collected from eastern India and printed WITHOUT emendation — Goudriaan's own description, quoted by Ullrey, calls the result 'uncritical, without adequate numbering of stanzas, without introductory comment by the editors, and without any warning that in some places the material is incomplete, perhaps because of deliberate omission by the editors' (U1 p. 116 n.22). Ullrey's comparison of the volume's Dattātreyatantra against Kathmandu manuscripts found 'great similarity in content and organization but substantial differences within the verses'.",
+      "editions": [
+        {
+          "translator": "editorship UNRESOLVED — see U8 discrepancy",
+          "year": 1915,
+          "publisher": "Calcutta",
+          "pdStatus": "PD by date (1915)",
+          "quoteSafe": "PD, but the edition is uncritical and its text is not a reliable witness; this round quotes nothing",
+          "note": "The archive.org scan (CC0 by uploader) files it under the 'Complete Works of Jibananda Vidyasagara'; search results give the editors as Aśubodha Vidyābhūṣaṇa Bhaṭṭācārya and Nityabodha Vidyāratna Bhaṭṭācārya. Ullrey names no editor. UNRESOLVED — do not print an editor without saying which record it came from."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "anthology-level: ṣaṭkarman + indrajāla + conjuring + erotics + toxicology",
+          "textCompleteness": "partial",
+          "completenessBasis": "the volume is documented as possibly carrying DELIBERATE editorial omissions, which is itself a completeness finding",
+          "evidence": "Goudriaan (quoted U1 p. 116 n.22) suspects 'deliberate omission by the editors'. Ullrey partly demurs — 'Deliberate omissions by the editors are possible, as Goudriaan suggests, but omissions and inclusions occur regularly during textual transmission' (p. 117 n.23) — and adds that these texts 'contain awkward seams where material is inserted or tacked on artlessly and without citation; such seams may appear to be sites of omission but instead are signals of continual accretion.' Either way the volume cannot be graded complete, and the two competing explanations for its gaps are both recorded.",
+          "harmNote": "REQUIRED at the volume level — it contains at least two ṣaṭkarman texts."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U2",
+        "U3",
+        "U8"
+      ],
+      "contested": [
+        {
+          "flag": "Why these five texts were printed together.",
+          "positions": [
+            {
+              "holder": "Ullrey (2016)",
+              "value": "'Likely, the texts were published together because of their common concern with magic and alchemy and Śaiva orientation. We cannot discount that they were published together because a trove of manuscripts was discovered that just happened to include these texts' (p. 116 n.22)."
+            }
+          ],
+          "resolved": false,
+          "note": "This matters because Goudriaan built a 'classic' ṣaṭkarman list partly on this volume's contents, and Ullrey's counter is that the anthology's boundaries are an accident of publication being read as a tradition: he proposes Goudriaan's study 'would be more accurately titled A Study of the Six Acts in the Indrajālavidyāsaṃgraha with Selected References to Other Tantras, as Inspired by Passages in the Mahāmāyā Fragment' (p. 117 n.22)."
+        }
+      ]
+    },
+    {
+      "id": "gri:indrajalasastra",
+      "nodeKind": "work",
+      "title": "Indrajālaśāstra",
+      "titleOriginal": "इन्द्रजालशास्त्र",
+      "author": "au:anonymous-indrajala",
+      "culture": "cul:saiva-operative",
+      "dateText": "undated",
+      "sortYear": null,
+      "structuralNote": "'The Indrajālaśāstra supposedly contains quotes from all sorts of other sources' (U1 p. 117 n.24) — i.e. a compilation whose own compilers signalled it as such. The word indrajāla covers both a genre ('fantastic feats and enchanted items', kautuhalakarman) and, in the Kakṣapuṭa, a siddhi. Ullrey treats indrajāla as the SECOND of the three emic constituents of Indian tantra magic.",
+      "editions": [
+        {
+          "translator": "printed in the Indrajālavidyāsaṃgraha",
+          "year": 1915,
+          "publisher": "Calcutta",
+          "pdStatus": "PD by date",
+          "quoteSafe": "PD; uncritical text",
+          "note": "no independent edition located"
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "fantastic feats and enchanted items (indrajāla / kautuhalakarman)",
+          "textCompleteness": "referenced",
+          "completenessBasis": "characterised in one sentence by one scholar; contents not examined by any source read",
+          "evidence": "U1 p. 117 n.24, one clause. Nobody read this round opened the text. Graded 'referenced' and no higher — this is one of the slice's genuinely thin rows and should be attacked as such.",
+          "harmNote": "The indrajāla category is generally the corpus's LEAST harm-laden — illusion, invisibility, treasure-finding, cures — but it sits in a volume with ṣaṭkarman material and the boundary is not policed by the texts."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U8"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:brhat-indrajala",
+      "nodeKind": "work",
+      "title": "Bṛhat Indrajāla / Bṛhad Indrajāl — a bazaar title with no critical existence",
+      "titleOriginal": "बृहत् इन्द्रजाल",
+      "author": "au:bazaar-compilers",
+      "culture": "cul:hindi-bazaar-print",
+      "dateText": "modern; the circulating compilations are 20th-21st c. and undated on their title pages",
+      "sortYear": null,
+      "structuralNote": "THE ROW THE SLICE IS LEAST WILLING TO DRESS UP. What can be established: the title circulates in at least three mutually independent modern compilations under different named compilers and different publishers — a Khemraj Prakashan edition attributed to Pt. Devcharan Awasthi; a DPB Publication edition attributed to Pt. Rameshwar Mishra; a Deep Prakashan 'Prāchīn Bṛhat Indrajāl' attributed to 'Ojha Baba'; plus English-language repackagings. Trade descriptions say the contents include Sanskrit verses ascribed to Dattātreya alongside mohana, uccāṭana and vaśīkaraṇa material — i.e. ṣaṭkarman results under an indrajāla title. That is ALL that is established.",
+      "editions": [
+        {
+          "translator": "Pt. Devcharan Awasthi (attrib.)",
+          "year": null,
+          "publisher": "Khemraj Prakashan",
+          "pdStatus": "in copyright",
+          "quoteSafe": false
+        },
+        {
+          "translator": "Pt. Rameshwar Mishra (attrib., comp.)",
+          "year": null,
+          "publisher": "DPB Publication",
+          "pdStatus": "in copyright",
+          "quoteSafe": false
+        },
+        {
+          "translator": "'Ojha Baba' (attrib.), as Prāchīn Bṛhat Indrajāl",
+          "year": null,
+          "publisher": "Deep Prakashan",
+          "pdStatus": "in copyright",
+          "quoteSafe": false
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "mixed ṣaṭkarman results (subjugation, bewildering, eradication) under an indrajāla title",
+          "textCompleteness": "UNGRADED",
+          "completenessBasis": "NO SCHOLARSHIP EXISTS THAT THIS SLICE COULD LOCATE, and no completeness grade is offered",
+          "evidence": "Deliberately ungraded. Every source found this round for this title is a COMMERCIAL RETAIL LISTING (U24). There is no critical edition, no manuscript study, no academic treatment, and no way from the evidence available to say whether the constituent rites are step-complete, abridged, or invented for the print. Recording 'no grade' is the honest output; recording a grade from a bookseller's blurb would be exactly the failure the brief warns against — 'dressing up a bazaar print as a source'.",
+          "harmNote": "REQUIRED on the CATEGORY: the titles are marketed on vaśīkaraṇa and uccāṭana, i.e. subjugation and driving-out of named persons, and are sold at pavement prices without any gatekeeping. This is the live-tradition end of the corpus and the point at which harm ceases to be historical."
+        }
+      ],
+      "sources": [
+        "U24"
+      ],
+      "contested": [
+        {
+          "flag": "Whether 'Bṛhat Indrajāla' names a text at all, or only a genre-slot in the print trade.",
+          "positions": [
+            {
+              "holder": "This slice",
+              "value": "UNDECIDED, and says so. Three differently-compiled, differently-attributed books share the title; nothing establishes a common textual ancestor."
+            }
+          ],
+          "resolved": false
+        }
+      ]
+    },
+    {
+      "id": "gri:kamaratna",
+      "nodeKind": "work",
+      "title": "Kāmaratna / Kāmaratnatantra",
+      "titleOriginal": "कामरत्न / कामरत्नतन्त्र",
+      "author": "au:nityanatha-attributed",
+      "culture": "cul:bengali-assamese-operative",
+      "dateText": "undated; the Assamese/Kāmākhyā association is a provenance claim, not a date",
+      "sortYear": null,
+      "attributionNote": "The Wellcome record for the 1899 Bombay edition gives the attribution as 'variously to Nityanātha, Nāga Bhaṭṭa, and others' — an attribution set, not an author. NOTE the repo-relevant trap: Nityanātha Siddha is the genuine author of the Rasaratnākara per Wujastyk 1984 (already encoded at rasa-data.js). Whether the Kāmaratna's 'Nityanātha' is the same figure was NOT established this round and MUST NOT be assumed.",
+      "structuralNote": "ANATOMY, from Goudriaan's description as quoted at U1 p. 154 n.29: an erotics-and-remedy core (potency, venereal disease, infertility, assistance in childbirth) plus a kautuka block gathering 'the cure of diseases of the eyes and other ailments, the ability to detect hidden treasures or to render oneself invisible, and the treatment of wounds caused by snakebite or attacks of venomous insects', with yakṣiṇī-manipulation 'which procure[s] all kinds of earthly goods' also housed there. Note that this straddles Ullrey's second and third magic categories at once — he says Goudriaan 'condenses the two later parts of my three-fold magic constituency'. The 1899 Bombay print runs 370 pages with a 27-page appendix of yantra plates; the 1928 Shillong edition runs 110 pages with 20 pages of diagrams. THOSE TWO OBJECTS ARE NOT THE SAME TEXT AT THE SAME LENGTH, and no source read this round reconciles them.",
+      "editions": [
+        {
+          "translator": "Jvālāprasāda Miśra (Sanskrit text with Hindi translation and preface)",
+          "year": 1899,
+          "publisher": "Khemarāja Śrīkṛṣṇadāsa, Baṃbaī",
+          "pdStatus": "PD by date (1899)",
+          "quoteSafe": "PD — clears the repo's pre-1930 bar. This round still quotes nothing.",
+          "note": "370 pp. + 27 pp. of yantra plates. Wellcome Library copy, archive.org b30095050. THE SLICE'S BEST SINGLE ARTEFACT: a bazaar-press Sanskrit-plus-vernacular operative manual with a full plate apparatus, from the flagship cheap-print house, digitised by a medical-history library because it was catalogued as a work on 'charms, magic, medicine'."
+        },
+        {
+          "translator": "Pandit Hemchandra Goswami Tattvabhushan (Assam Civil Service, retd.)",
+          "year": 1928,
+          "publisher": "Assam Government Press, Shillong",
+          "pdStatus": "PD by date (1928)",
+          "quoteSafe": "PD — clears the repo's pre-1930 bar. This round still quotes nothing.",
+          "note": "110 pp. + 20 pp. of diagrams; reviewed in JRAS. A COLONIAL GOVERNMENT PRESS printing an operative manual — the sharpest available contrast with the Bombay commercial print of the same title 29 years earlier."
+        },
+        {
+          "translator": "modern Sanskrit-with-Hindi trade reprints",
+          "year": null,
+          "publisher": "various",
+          "pdStatus": "in copyright",
+          "quoteSafe": false
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "erotic and reproductive operative material (potency, fertility, childbirth, venereal cure)",
+          "textCompleteness": "partial",
+          "completenessBasis": "characterised by Goudriaan at category level; no reader of a full edition consulted",
+          "evidence": "U1 p. 154 n.29 quoting Goudriaan p. 123. Two PD editions exist and neither was read this round.",
+          "harmNote": "Erotic-compulsion material in this corpus is continuous with vaśīkaraṇa. Recorded, not detailed."
+        },
+        {
+          "typeAsFiled": "'mechanical' mantra-rites — rites with no presiding deity and no invocation",
+          "textCompleteness": "partial",
+          "completenessBasis": "a live methodological dispute about this very text, recorded rather than resolved",
+          "evidence": "THE SLICE'S BEST STRUCTURAL DISPUTE. Goudriaan called some Kāmaratna recipes 'automatic' — 'the mantra must have been thought to work automatically' — because they carry no deity name and no presiding deity. Ullrey rejects the term while keeping the category: 'these rituals are not automatic because they require actions — intentional actions that are often quite long and intense. Merely removing a deity name from a mantra, according to Goudriaan, would thereby make the whole ritual automatic… Throughout the magic tantras I have seen the exact same rituals used with a mantra and without a mantra, the rituals are not made automatic as much as the deity-component is added or removed. The ritual performed without invocation is thereby MECHANICAL — it is effective based on its inherent power and its perfect performance' (U1 p. 154 n.29). Both positions are recorded. The distinction matters for the Western comparison: a mechanical rite has no spirit to bind and therefore no licence to depart.",
+          "harmNote": null
+        },
+        {
+          "typeAsFiled": "conjuring (yakṣiṇī manipulation) and kautuka feats",
+          "textCompleteness": "referenced",
+          "completenessBasis": "listed under a heading by Goudriaan; not examined",
+          "evidence": "U1 p. 154 n.29 quoting Goudriaan p. 123.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U1",
+        "U3",
+        "U9",
+        "U10",
+        "U21"
+      ],
+      "contested": [
+        {
+          "flag": "Provenance — is the Kāmaratna an Assamese/Kāmākhyā text?",
+          "positions": [
+            {
+              "holder": "Ullrey (2016), reporting the standing view",
+              "value": "'The Kāmaratnam is ostensibly from Assam' (p. 117 n.24) — the hedge 'ostensibly' is his."
+            },
+            {
+              "holder": "The 1928 edition's circumstances",
+              "value": "consistent with it: edited by an Assam Civil Service pandit and printed by the Assam Government Press at Shillong."
+            },
+            {
+              "holder": "The 1899 edition's circumstances",
+              "value": "cut against a tidy regional story: a Bombay commercial press issued a 370-page Sanskrit-and-Hindi version with a large yantra apparatus."
+            }
+          ],
+          "resolved": false,
+          "note": "No source read this round collates the two editions. Until someone does, 'Kāmaratna' should be treated as a title borne by at least two substantially different books."
+        }
+      ]
+    },
+    {
+      "id": "gri:dattatreyatantra",
+      "nodeKind": "work",
+      "title": "Dattātreyatantra",
+      "titleOriginal": "दत्तात्रेयतन्त्र",
+      "author": "au:dattatreya-pseudepigraphic",
+      "culture": "cul:saiva-operative",
+      "dateText": "undated",
+      "sortYear": null,
+      "attributionNote": "Framed as Dattātreya questioning Śaṅkara/Śiva on Mount Kailāsa. The opening explicitly asks for 'the dark mantra lore' as the teaching 'appropriate for this dark age (kali)' — a self-periodising warrant that the corpus uses to license operative material.",
+      "structuralNote": "IMPORTANT FOR THE GRAPH: this is the text that supplies the corpus's own bibliography. Its opening lists the scriptural homes of spells, diagrams and hostile exertions (abhicāraka) as 'the Āgamas, Purāṇas, Vedas, and Ḍāmara scriptures', and then names members: 'Uḍḍīśa, Merutantra, Kālacaṇḍeśvara, Rādhātantra, Tāratantra, Amṛteśvara' (U1 p. 191 n.114, from Nepal manuscript NGMPP E2234/4, verses 1.1-7). Two of those — Merutantra and the Amṛteśa/Netra material — are already S10 nodes, so this verse is a genuine emic bridge between the philosophical and the operative slices. Ullrey found the volume 'not systematized, and little can be said about it' (p. 117 n.24).",
+      "editions": [
+        {
+          "translator": "printed in the Indrajālavidyāsaṃgraha",
+          "year": 1915,
+          "publisher": "Calcutta",
+          "pdStatus": "PD by date",
+          "quoteSafe": "PD; uncritical text"
+        },
+        {
+          "translator": "Kathmandu manuscript witnesses (NGMPP E2234/4 and others) collated informally by Ullrey",
+          "year": null,
+          "publisher": "—",
+          "pdStatus": "n/a",
+          "quoteSafe": false,
+          "note": "Ullrey: comparison with the 1915 print showed 'great similarity in content and organization but substantial differences within the verses'; he made 'many clarifications, corrections, and emendations' (p. 117 n.23). No edition published."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "spells, yantras and hostile exertions (abhicāraka), unsystematised",
+          "textCompleteness": "partial",
+          "completenessBasis": "a scholar collated print against manuscripts and found substantial verse-level divergence — so no single witness can be graded complete",
+          "evidence": "U1 p. 117 nn.23-24. The divergence finding is the grade: where print and manuscripts differ substantially at verse level, the printed rite is not a reliable complete witness even if it looks whole on the page.",
+          "harmNote": "REQUIRED — the text's own opening names abhicāraka (hostile exertion) among its subjects."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U8"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:satkarmadipika",
+      "nodeKind": "work",
+      "title": "Ṣaṭkarmadīpikā ('Lamp on the Six Acts')",
+      "titleOriginal": "षट्कर्मदीपिका",
+      "author": "au:anonymous-satkarmadipika",
+      "culture": "cul:saiva-operative",
+      "dateText": "'recent date' per Ullrey; no figure offered",
+      "sortYear": null,
+      "structuralNote": "The purest SYSTEMATIC text in the anthology, and an outlier in the whole corpus for one reason: 'The Ṣaṭkarmadīpika is quite long, and it is a systematic compilation of recent date in which the author tak[es] the unusual care to mention his sources' (U1 p. 117 n.24). Source-citation is 'unusual' in this literature — the Uḍḍ-corpus reproduces verses without attribution as a matter of course. A magic tantra with a bibliography is a genre event.",
+      "editions": [
+        {
+          "translator": "printed in the Indrajālavidyāsaṃgraha",
+          "year": 1915,
+          "publisher": "Calcutta",
+          "pdStatus": "PD by date",
+          "quoteSafe": "PD; uncritical text"
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "six-results systematisation (second-order magic lore, with source attributions)",
+          "textCompleteness": "partial",
+          "completenessBasis": "characterised as long and systematic by one scholar; not read",
+          "evidence": "U1 p. 117 n.24. Goudriaan used it as one of the five texts from which he built his 'classic' ṣaṭkarman list — a use Ullrey rejects on the ground that the five are not organically connected.",
+          "harmNote": "REQUIRED — ṣaṭkarman includes māraṇa; a systematic text supplies the variable tables that serve every result including the lethal ones."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U3",
+        "U8"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:kamakhya-vernacular-manuals",
+      "nodeKind": "corpus",
+      "title": "The Bengali/Assamese folk-operative manual milieu around Kāmākhyā",
+      "titleOriginal": "—",
+      "author": "au:various",
+      "culture": "cul:bengali-assamese-operative",
+      "dateText": "living tradition; the print witnesses are 19th-21st c.",
+      "sortYear": null,
+      "structuralNote": "A node the slice opens and cannot fill. What IS evidenced: (a) the Kāmaratna is 'ostensibly from Assam' and got a 1928 Assam Government Press edition; (b) the Indrajālavidyāsaṃgraha's manuscript sources were 'collected from eastern India'; (c) a hybrid Sanskrit-Bengali Ḍāmarutantra reproduces Bhūtaḍāmara spirit-cycles; (d) Ullrey suspects 'the roots of the Buddhist and Śaiva versions [of the Bhūtaḍāmara] are in Northeast South Asia, likely Bengal' (p. 566). What is NOT evidenced: any studied corpus of Kāmākhyā-milieu vernacular operative manuals. Named-tradition claims about Kāmākhyā are abundant in popular and devotional writing and were excluded.",
+      "editions": [],
+      "procedures": [
+        {
+          "typeAsFiled": "UNGRADED — the corpus node is a placeholder for a gap",
+          "textCompleteness": "UNGRADED",
+          "completenessBasis": "no studied corpus located",
+          "evidence": "Recorded as an explicit hole so that a later round does not mistake the slice's silence for absence. The four evidenced points above are the only content.",
+          "harmNote": "Kāmākhyā's association with hostile ritual in popular writing is intense and largely unsourced; nothing of it is admitted here."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U8",
+        "U10"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:tantrasamuccaya",
+      "nodeKind": "work",
+      "title": "Tantrasamuccaya of Cennas Nārāyaṇan Nambūtiri",
+      "titleOriginal": "तन्त्रसमुच्चय",
+      "author": "au:cennas-narayanan-nambutiri",
+      "culture": "cul:kerala-tantra",
+      "dateText": "15th c.; commonly given as 1427-28 CE, composed under the Sāmūtiri (Zamorin) polity",
+      "sortYear": 1428,
+      "structuralNote": "THE SLICE'S MOST IMPORTANT CORRECTIVE TO ITS OWN BRIEF. The Tantrasamuccaya is Kerala's dominant ritual manual — but it is a TEMPLE manual, not a grimoire. Its subject is temple ritual from the construction of a new temple through installation (pratiṣṭhā) to expiatory procedure (prāyaścitta); it remains the working reference for temple architecture and ritual in Kerala today. It is a paddhati — a sequenced liturgical handbook — and paddhati completeness is a DIFFERENT axis from grimoire completeness: a paddhati is complete when a qualified officiant can run the liturgy, which is precisely the property that makes it non-transferable to an outsider. Filing it under 'operative manual literature' because it is called a tantra would be the same category error as filing the Ars Notoria under conjuration. It earns its place in this slice for a different reason: it is the DIVIDING LINE of the Kerala corpus. Syamkumar periodises the literature into a 'Pre-Tantrasamuccaya phase' emphasising philosophical and mythological dimensions and a 'Post-Tantrasamuccaya phase' whose manuals 'mainly concentrate only on the practical side of Tantric rituals'.",
+      "editions": [
+        {
+          "translator": "T. Ganapati Sastri (Sanskrit text with Śaṅkara's Vimarśinī commentary)",
+          "year": null,
+          "publisher": "Trivandrum Sanskrit Series LXVII",
+          "pdStatus": "UNRESOLVED — depends on the year, which was NOT VERIFIED this round",
+          "quoteSafe": false,
+          "note": "TSS number LXVII from a search-result summary only. Ganapati Sastri (1860-1926) edited the series from 1905; if the volume falls in his editorial lifetime it is pre-1930 and PD, but that inference is NOT a verification and must not be printed as one."
+        },
+        {
+          "translator": "modern 3-vol. set with Vimarśinī of Śaṅkara and Vivaraṇa of Nārāyaṇaśiṣya",
+          "year": null,
+          "publisher": "trade reprint",
+          "pdStatus": "in copyright as an edition",
+          "quoteSafe": false
+        },
+        {
+          "translator": "Malayalam chapter-wise editions",
+          "year": null,
+          "publisher": "various",
+          "pdStatus": "unresolved",
+          "quoteSafe": false
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "temple liturgy — installation (pratiṣṭhā), festival (utsava), expiation (prāyaścitta)",
+          "textCompleteness": "partial",
+          "completenessBasis": "the text's practical authority is documented; its internal step-completeness was NOT assessed by any source read, and the one paper that would have assessed it could not be parsed",
+          "evidence": "Kerala practice treats it as the authoritative working manual, which is strong indirect evidence of operational completeness for its own liturgies. But the direct evidence was not obtained: the IJFMR 2023 paper on the text (U23) returned an unparseable PDF, and the wisdomlib survey of Kerala tantric literature explicitly supplies no chapter structure or content analysis. Graded 'partial' on the honest ground that nobody consulted here opened it.",
+          "harmNote": null
+        },
+        {
+          "typeAsFiled": "hostile/operative material (ṣaṭkarman, abhicāra)",
+          "textCompleteness": "NOT ESTABLISHED AS PRESENT",
+          "completenessBasis": "no source read this round places ṣaṭkarman or abhicāra material in this text",
+          "evidence": "NEGATIVE FINDING, recorded deliberately. The brief lists Tantrasamuccaya under 'the Kerala MANTRAVĀDA corpus'; nothing found this round supports that placement. The operative/mantravāda material in the Kerala corpus sits in the Īśānaśivagurudevapaddhati's Mantrapāda and in the Tantrasārasaṃgraha, not here. If a later round finds ṣaṭkarman chapters in the Tantrasamuccaya, this row must be revised — but it must not be assumed.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U15",
+        "U18",
+        "U22",
+        "U23"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:prayogamanjari",
+      "nodeKind": "work",
+      "title": "Prayogamañjarī of Ravi",
+      "titleOriginal": "प्रयोगमञ्जरी",
+      "author": "au:ravi-kerala",
+      "culture": "cul:kerala-tantra",
+      "dateText": "10th-11th c. (Ravi commonly placed c. 11th c.)",
+      "sortYear": 1050,
+      "structuralNote": "Twenty-seven paṭalas. Again a TEMPLE-RITUAL text, not a grimoire: a foundational treatise on the installation and worship of the liṅga, with temple architecture, renovation (jīrṇoddhāra, ch. 21, 96 verses) and festival (utsava, chs. 24-25). Commented by Trivikrama (Pradyota).",
+      "editions": [
+        {
+          "translator": "Raman Nambiar & K. Achyutapothuval",
+          "year": 1953,
+          "publisher": "Sanskrit College, Tripunithura",
+          "pdStatus": "in copyright (1953)",
+          "quoteSafe": false
+        },
+        {
+          "translator": "N.V.P. Unithiri & S.A.S. Sarma — critical edition with Trivikrama's Pradyota, announced as in preparation",
+          "year": null,
+          "publisher": "—",
+          "pdStatus": "n/a",
+          "quoteSafe": false,
+          "note": "Status NOT checked this round; the announcement is reported in an aggregator source and may be stale. Trivandrum manuscripts library shelfmarks reported: L.530, L.674, T.20, 5439, C.1796A, C.693, C.730, T.413."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "temple liturgy — liṅga installation and worship, renovation, festival",
+          "textCompleteness": "partial",
+          "completenessBasis": "chapter architecture is known; internal completeness not assessed",
+          "evidence": "Chapter count, the jīrṇoddhāra and utsava placements, and the commentary all come from aggregator sources (U15, U21) reproducing catalogue and secondary description. No edition read.",
+          "harmNote": null
+        },
+        {
+          "typeAsFiled": "hostile/operative material",
+          "textCompleteness": "NOT ESTABLISHED AS PRESENT",
+          "completenessBasis": "same negative finding as gri:tantrasamuccaya",
+          "evidence": "No source read this round places ṣaṭkarman or abhicāra material in the Prayogamañjarī.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U15",
+        "U18",
+        "U21"
+      ],
+      "contested": []
+    },
+    {
+      "id": "tan:isanasivagurudevapaddhati",
+      "nodeKind": "work",
+      "title": "Īśānaśivagurudevapaddhati (Siddhāntasāra) — the operative sections",
+      "titleOriginal": "ईशानशिवगुरुदेवपद्धति",
+      "author": "au:isanasiva-gurudeva",
+      "culture": "cul:kerala-tantra",
+      "dateText": "Kerala; commonly c. 11th-12th c. — NOT independently verified this round",
+      "sortYear": 1150,
+      "dedupWith": "S10 `tan:isanasivagurudevapaddhati`. THE ID IS DELIBERATELY REUSED, NOT RE-MINTED — this is the same work, approached on a different axis. S10 owns it as a mantraśāstra/paddhati compendium. This row ADDS (a) its placement in the KERALA corpus rather than the pan-Indian one, (b) the location of its operative material in the Mantrapāda, (c) the Bühnemann finding that it carries Buddhist deities and mantras, and (d) a PER-EDITION PD SPLIT that any quoting decision depends on. The two rows must be merged, not concatenated, by the generator.",
+      "structuralNote": "A very large four-part paddhati (Sāmānya, Mantra, Kriyā, Yoga pādas; ~18,000 verses by the figure the Kerala-literature survey gives). THE OPERATIVE MATERIAL SITS IN THE MANTRAPĀDA — this is where the Kerala corpus's ṣaṭkarman, bhūtavidyā and related material lives, not in the temple-liturgy paddhatis. It is also one of the two texts in which Bühnemann documented BUDDHIST deities and mantras inside a Hindu tantra.",
+      "editions": [
+        {
+          "translator": "T. Ganapati Sastri (Sanskrit)",
+          "year": 1920,
+          "publisher": "Trivandrum Sanskrit Series 69 (vol. 1)",
+          "pdStatus": "PD by date for vol. 1 (1920)",
+          "quoteSafe": "PD — clears the pre-1930 bar for vol. 1. This round quotes nothing.",
+          "note": "TSS numbers for vols 2-4 are commonly given as 72, 77 and 83 (1921/1922/1925); those were NOT VERIFIED this round and must not be printed as verified. Only TSS-069 (1920) was confirmed against an item record."
+        },
+        {
+          "translator": "T. Ganapati Sastri with N.P. Unni",
+          "year": 1988,
+          "publisher": "Bharatiya Vidya Prakashan, Delhi/Varanasi — 4 vols, 1988-89",
+          "pdStatus": "NOT PD as an edition",
+          "quoteSafe": false,
+          "note": "LOAD-BEARING PD SPLIT. This reprint is the edition actually in circulation and the one most citations and most digitised copies point to (the archive.org scans of vols III-IV are the 1989 BVP printing, not the TSS originals). A quotation taken from a scan labelled 'Ganapati Sastri' may in fact be taken from the 1988-89 edition and therefore NOT be PD. Any future quotation from this work must verify WHICH printing the page came from."
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "operative material in the Mantrapāda (ṣaṭkarman-class and spirit-affliction material)",
+          "textCompleteness": "partial",
+          "completenessBasis": "placement is documented; contents were not read by this slice and S10 recorded no completeness grade for this axis",
+          "evidence": "Bühnemann 1999 takes the Īśānaśivagurudevapaddhati as one of two case texts for Buddhist deities and mantras inside Hindu tantras — a study that presupposes worked mantra material in the Mantrapāda. That article was NOT READ (Brill 403). Graded 'partial' accordingly.",
+          "harmNote": "REQUIRED for the ṣaṭkarman-class material; the Kerala tradition's own reception of it is contested (see gri:kerala-mantravada contested[])."
+        },
+        {
+          "typeAsFiled": "adoption of Buddhist deities and mantras into a Śaiva paddhati",
+          "textCompleteness": "referenced",
+          "completenessBasis": "the finding is a scholar's, and the scholar's article could not be read",
+          "evidence": "Bühnemann, IIJ 42.4 (1999), pp. 303-334, title and scope verified against Brill/Springer records and her own publication list; contents NOT read. What the citation supports is the EXISTENCE of documented Buddhist-to-Hindu mantra transfer in this text. It does not support any specific deity claim, and none is made here.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U6",
+        "U15",
+        "U16"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:tantrasarasamgraha",
+      "nodeKind": "work",
+      "title": "Tantrasārasaṃgraha of Nārāyaṇa (the Viṣanārāyaṇīya) — the Kerala operative manual proper",
+      "titleOriginal": "तन्त्रसारसंग्रह; popularly विषनारायणीय / Viṣanārāyaṇīya",
+      "author": "au:narayana-sivapura",
+      "culture": "cul:kerala-tantra",
+      "dateText": "15th-16th c.; a Kerala brahmin resident at Śivapura on the Nila river",
+      "sortYear": 1500,
+      "structuralNote": "THIS — not the Tantrasamuccaya — is the Kerala corpus's operative manual, and the slice's answer to where Kerala mantravāda actually lives in Sanskrit. 32 chapters, c. 2,100 verses besides the mantra portions. The FIRST TEN CHAPTERS are viṣavaidya, toxicology — mantra-treatment of poison and snakebite, which is why the text is popularly named after poison rather than after tantra. The remaining chapters cover grahapīḍā (affliction by seizing spirits/planets), kṣudra-dhvaṃsa (destruction of hostile petty magic — i.e. COUNTER-sorcery), unmāda (madness), and kāmika-karma (desire-directed acts). Commentary: Mantravimarśinī of Svarṇagrāma Vāsudeva. NOTE THE SHAPE OF THE HARM PROFILE: a Kerala mantravāda manual is organised around DEFENCE — poison, possession, madness, counter-sorcery — with the desire-directed acts as one heading among several. That is a different distribution from the Uḍḍ-corpus, where murder heads the body-text, and the difference should not be flattened.",
+      "editions": [
+        {
+          "translator": "N.V.P. Unithiri (ed.), Sanskrit text with the Mantravimarśinī of Svarṇagrāma Vāsudeva, 2 vols",
+          "year": 2002,
+          "publisher": "University of Calicut",
+          "pdStatus": "in copyright",
+          "quoteSafe": false
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "viṣavaidya — mantra-based toxicology (chs. 1-10)",
+          "textCompleteness": "partial",
+          "completenessBasis": "chapter allocation documented; contents not read",
+          "evidence": "Chapter count, verse count and the ten-chapter toxicology block come from aggregator description (U15) reproducing the Calicut edition's own framing; the edition itself was NOT read.",
+          "harmNote": "Toxicology in this tradition is treatment-facing; but a text that maps poisons is also a text that maps poisons. Flagged, not detailed."
+        },
+        {
+          "typeAsFiled": "grahapīḍā (spirit/planetary affliction) and unmāda (madness) — affliction diagnosis and counter-rite",
+          "textCompleteness": "partial",
+          "completenessBasis": "headings documented; contents not read",
+          "evidence": "U15.",
+          "harmNote": "Material of this class historically underwrites coercive treatment of people identified as possessed or mad. Recorded as religious history; the repo should carry that note if it ever surfaces this text."
+        },
+        {
+          "typeAsFiled": "kṣudra-dhvaṃsa — counter-sorcery",
+          "textCompleteness": "partial",
+          "completenessBasis": "heading documented; contents not read",
+          "evidence": "U15. STRUCTURALLY IMPORTANT: counter-sorcery presupposes a sorcery it answers. A defensive manual is evidence for an offensive practice even where the offensive manual is absent — the same inference the repo's abhicāra wing already draws for the Atharvan kṛtyāpratiharaṇa material.",
+          "harmNote": null
+        },
+        {
+          "typeAsFiled": "kāmika-karma — desire-directed acts",
+          "textCompleteness": "partial",
+          "completenessBasis": "heading documented; contents not read",
+          "evidence": "U15.",
+          "harmNote": "REQUIRED — desire-directed acts in this literature are continuous with vaśīkaraṇa."
+        },
+        {
+          "typeAsFiled": "adoption of Buddhist deities and mantras into a Kerala Śaiva manual",
+          "textCompleteness": "referenced",
+          "completenessBasis": "the finding is Bühnemann's and her article was not read",
+          "evidence": "Bühnemann 1999 (IIJ 42.4, 303-334) takes the Tantrasārasaṃgraha as the OTHER of her two case texts. Citation verified; contents NOT read.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U6",
+        "U15",
+        "U17",
+        "U18"
+      ],
+      "contested": []
+    },
+    {
+      "id": "gri:kerala-mantravada",
+      "nodeKind": "corpus",
+      "title": "The Kerala mantravāda corpus and the Malayalam manual tradition",
+      "titleOriginal": "മന്ത്രവാദം / mantravādam",
+      "author": "au:various",
+      "culture": "cul:kerala-tantra",
+      "dateText": "living tradition on a Sanskrit base of the 11th-16th c.",
+      "sortYear": null,
+      "structuralNote": "SCHOLARSHIP HERE IS THIN AND THE SLICE SAYS SO. What is established: a Sanskrit operative layer (Īśānaśivagurudevapaddhati Mantrapāda; Tantrasārasaṃgraha) distinct from the temple-liturgy paddhatis; a corpus periodisation around the Tantrasamuccaya; named commentators (Trivikrama, Śaṅkara, Nārāyaṇaśiṣya, Svarṇagrāma Vāsudeva); and the practice's transmission through specific Nambūtiri households holding it as family competence. What could NOT be established this round: any scholarly treatment of the MALAYALAM manual tradition as such; the contents of named Malayalam manuals; or any critical edition of a vernacular Kerala mantravāda text. Searches returned temple-history and community-history pages, not scholarship. Two named Kerala items surfaced in the brief and in aggregator lists but were NOT verifiable and are recorded as unverified leads: 'Śeṣasamuccaya' (attrib. Kṛṣṇa Śarma) and the Malayalam household compendium usually called 'Kuzhikkāṭṭu Pacca'.",
+      "editions": [],
+      "procedures": [
+        {
+          "typeAsFiled": "mantravāda — the Kerala practitioner tradition",
+          "textCompleteness": "UNGRADED for the vernacular layer",
+          "completenessBasis": "no vernacular manual was located in an edition or a study",
+          "evidence": "Explicit gap. The Sanskrit layer is graded at gri:tantrasarasamgraha and tan:isanasivagurudevapaddhati; the Malayalam layer carries no grade because no evidence was obtained.",
+          "harmNote": "REQUIRED at corpus level — mantravāda covers both counter-affliction work and hostile work, and the boundary is drawn by practitioners, not by the texts."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U15",
+        "U18"
+      ],
+      "contested": [
+        {
+          "flag": "How Kerala practitioners themselves handle the hostile results.",
+          "positions": [
+            {
+              "holder": "A Nambūtiri tantrika interviewed by Ullrey in Kerala, reported at U1 p. 189 n.108",
+              "value": "Substitution and restriction. In his practice dangerous offerings are replaced with benign ones, and 'the hostile ritual results are only used against noncorporeal malignant creatures, demons and the like'. He stressed 'the power of mantra over ritual', cited the mantras in his FAMILY tantras as the source of his power, and 'had no interest in traditional or literal performance of the rituals in his family tantras'."
+            },
+            {
+              "holder": "Ullrey's own framing",
+              "value": "reads this as a Kerala instance of a general interpretive move — 'all religious groups dress-up grubby grievous grimoires' (p. 188) — the same move he documents for Buddhist hermeneuts and Jain 'soft murder'."
+            }
+          ],
+          "resolved": false,
+          "note": "This is a single interview with one living practitioner, reported in a footnote. It is recorded because it is the only first-hand Kerala testimony obtained, and it is NOT generalised to Kerala practice. The slice takes no position on whether the substitution account is descriptive, normative, or offered to a visiting researcher."
+        }
+      ]
+    },
+    {
+      "id": "gri:bazaar-print-corpus",
+      "nodeKind": "corpus",
+      "title": "The printed-bazaar tantra-mantra trade — where the living tradition meets print",
+      "titleOriginal": "—",
+      "author": "au:various",
+      "culture": "cul:hindi-bazaar-print",
+      "dateText": "1868-present; the formative phase c. 1871-1930",
+      "sortYear": 1880,
+      "structuralNote": "THE SLICE'S CENTRAL CLAIM ABOUT TRANSMISSION, and the answer to 'how did this actually circulate'. Almost nothing in the Indian grimoire corpus reaches a modern reader through a critical edition. It reaches them through cheap commercial print, and the houses are nameable. THE PRESS: two Marwari brothers from Churu — Gangavishnu Bajaj and Khemraj Bajaj, sons of Shrikrishnadas — arrive in Mumbai in 1868; Khemraj works as an itinerant bookseller before opening a small press at Moti Bazar in 1871; by 1880 they are at Khetwadi as the Sri Venkateswar Steam Press; the brothers separate in 1893; Gangavishnu having no descendants, Khemraj's line inherits, producing the Khemraj Shrikrishnadas imprint (U12 — TERTIARY, flagged). THE EVIDENCE THAT THIS IS THE OPERATIVE CORPUS'S ACTUAL CHANNEL, and it is direct: (1) the Kāmaratnam of 1899 — 370 pp., Sanskrit with Hindi, 27 pp. of yantra plates — was issued by Khemarāja Śrīkṛṣṇadāsa at Bombay; (2) the Sanskrit Uḍḍīśatantra that Tripathī reproduces was 'published by order of Seṭh Khemarāj Śrīkṛṣṇadās at the Bombay Veṅkaṭeśvara Steam Press' (U1 p. 182); (3) Tripathī's own 1965 volume was issued by Gangāviṣṇu Śrīkṛṣṇadāsa at Kalyāṇ — the OTHER brother's imprint; (4) Ullrey's bibliography carries a 2005 Khemarāja Śrīkṛṣṇadāsa printing of an Āścaryayogamālātantra ascribed to 'the perennial author Nāgārjuna'. One publishing family, four operative titles, a century and a third. The Lucknow parallel — Munshi Naval Kishore's press, founded 1858, the subcontinent's foremost house — is the other half of the picture and has a standing monograph in Stark (2007), NOT read this round.",
+      "editions": [],
+      "procedures": [
+        {
+          "typeAsFiled": "channel-level: the mass reproduction of operative texts without critical apparatus",
+          "textCompleteness": "n/a — channel node",
+          "completenessBasis": "the channel's effect on completeness is the finding: it FIXES uncritical witnesses as the standard text",
+          "evidence": "Ullrey's Uḍḍīśatantra case is the demonstration. Three published recensions; no identified manuscript attestation for any of them; provenance left unspecified or elliptically described by publishers, editors and commentators; one commentator possibly working not from manuscripts at all but from earlier poor prints (U1 pp. 181, 186). The bazaar print is not a window onto a manuscript tradition — for most of this corpus it IS the tradition's surviving form, and the scholarly apparatus that would let anyone see past it does not exist.",
+          "harmNote": "REQUIRED, and it is the sharpest harm point in the slice. Ṣaṭkarman material including māraṇa and vaśīkaraṇa circulates in cheap mass-market form with no gatekeeping and, in the modern Hindi commentaries, with the initiation requirement rhetorically retained while the text is sold to anyone. Recorded as a fact about the trade."
+        }
+      ],
+      "sources": [
+        "U1",
+        "U9",
+        "U12",
+        "U13",
+        "U24"
+      ],
+      "contested": [
+        {
+          "flag": "What the modern Hindi commentators are doing to the material.",
+          "positions": [
+            {
+              "holder": "Ullrey (2016) on Śrīvāstava specifically",
+              "value": "A documented RECODING, described at U1 pp. 187-189: the interpretation is pushed 'toward a modern, apologetic representation of the magic tantras'; it aligns with 'the dominant paradigm in contemporary emic tantra magic discourse, which is modern, psychological, and consistent with orthodox, translocal Hinduism'; 'Rituals whose results alter the physical world are re-coded as psychological'; 'Literal practice and interpretation of magic is rarely encouraged and is usually prohibited'; the commentator 'describes performing rituals only for socially positive results… and stresses mental performance', importing modern frames (bewildering as hypnotism, dissension as political ideology). Ullrey's summary formula: 'The anesthetizing of tantra continues in the present, but aestheticization is replaced by mental act akin to Protestant prayer.' And the reader's actual use of the Sanskrit: 'modern pandits cheerfully extract the mantras from the rituals; after all, tantras are considered mere strong-boxes to preserve and transmit the mantras.'"
+            },
+            {
+              "holder": "Ullrey's own counter-caution",
+              "value": "he refuses to treat this as decline or as mere colonial contamination — 'South Asians interpret tantra from the inside; their interpretations are valid developments in the tantra tradition throughout South Asia' (p. 189 n.109), and he notes that literal practice 'continue[s] to be practiced outside urbane environments… in villages, remote areas, and by/for urban non-elites' (p. 189)."
+            }
+          ],
+          "resolved": false,
+          "note": "Both positions are the same scholar's, held together deliberately. The slice does not adjudicate, and in particular does not endorse either 'the moderns have watered it down' or 'the moderns have cleaned it up'. The named commentators are recent or living."
+        }
+      ]
+    },
+    {
+      "id": "gri:bhairavapadmavatikalpa-xref",
+      "nodeKind": "cross-reference",
+      "title": "Bhairavapadmāvatīkalpa of Malliṣeṇa — CROSS-REFERENCE NODE ONLY",
+      "titleOriginal": "भैरवपद्मावतीकल्प",
+      "author": "au:mallisena",
+      "culture": "cul:jain-operative",
+      "dateText": "c. 10th-11th c., Karnataka",
+      "sortYear": 1050,
+      "dedupWith": "repo abhichara-data.js TEXTS[7]. NOT a slice work — carried ONLY so that the visarjana evidence edge has an endpoint. Do not re-grade it here; the repo record (ed. princeps Jhavery 1944; no epigraphical evidence for Malliṣeṇa or Bandhuṣeṇa) stands.",
+      "structuralNote": "Cited in this slice for exactly one thing: it is the text in which the five-fold worship sequence terminating in dismissal is stated as a rule — invocation, depositing, drawing the deity near, worship, and dismissal (visarjana), at BPK 3.24 as reported at U1 p. 576 n.51. That sequence is the evidentiary anchor for every 'licence to depart' claim in this slice, and it comes from a JAIN text, not from the Bhūtaḍāmaratantra.",
+      "editions": [
+        {
+          "translator": "M.B. Jhavery (ed. princeps, with Bandhuṣeṇa's commentary)",
+          "year": 1944,
+          "publisher": "Sarabhai Manilal Nawab, Ahmedabad",
+          "pdStatus": "NOT PD (1944)",
+          "quoteSafe": false
+        }
+      ],
+      "procedures": [
+        {
+          "typeAsFiled": "five-fold ritual sequence terminating in dismissal (visarjana)",
+          "textCompleteness": "complete",
+          "completenessBasis": "the sequence is stated as an explicit rule in a single verse, and that verse was read in a scholar's translation",
+          "evidence": "U1 p. 576 n.51 gives the verse's content as a five-member enumeration and locates it at 3.24; Ullrey's own Appendix Two translates the BPK in full. The Sanskrit of the enumeration and the dismissal formula are both printed in Ullrey and are NOT reproduced here.",
+          "harmNote": null
+        }
+      ],
+      "sources": [
+        "U1",
+        "U19"
+      ],
+      "contested": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "gri:uddisatantra",
+      "to": "gri:udd-corpus",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "criterial",
+      "evidence": "Ullrey's membership criterion is met and stated: a cluster of the characteristic opening verses, plus exposition of the six results, plus overt concern with pragmatic ritual (U1 p. 196). The Uḍḍīśatantra is his type-specimen.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:uddamaresvaratantra",
+      "to": "gri:udd-corpus",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "criterial",
+      "evidence": "U1 p. 196 n.121 prints the Zadoo Uḍḍāmareśvara's opening verses 1.19-23 alongside the parallel Uḍḍīśa openings and shows the shared verse-cluster.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:kriyoddisatantra",
+      "to": "gri:udd-corpus",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "reported",
+      "evidence": "Named as an Uḍḍ-corpus ancillary at U1 p. 182 n.93 and counted by Goudriaan among the four Uḍḍīśa parents (U1 p. 194 n.118). Contents not examined.",
+      "sources": [
+        "U1",
+        "U2"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:virabhadratantra",
+      "to": "gri:udd-corpus",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "reported",
+      "evidence": "U1 pp. 190, 194.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:uddisatantra",
+      "to": "gri:virabhadratantra",
+      "kind": "DERIVES_FROM",
+      "basis": "COLOPHON CLAIM ONLY — declined",
+      "evidence": "The corpus's colophons make this claim, and make the reverse claim, and make it of several other texts. U1 p. 194: 'Almost every Uḍḍ-corpus text claims the Vīrabhadratantra as a source, yet several chapters of an Uḍḍīśatantra will claim the Uḍḍāmareśvaratantra as a source and vice versa'; published colophons have been editorially normalised. A source-claim here is a genre gesture. NOT a documented dependency.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:uddamaresvaratantra",
+      "to": "gri:virabhadratantra",
+      "kind": "DERIVES_FROM",
+      "basis": "COLOPHON CLAIM ONLY — declined",
+      "evidence": "Zadoo ch.1 colophon states the Uḍḍāmareśvara mahātantra is derived from the Vīrabhadreśvaratantra (U1 p. 194 n.118). Same objection as above: the corpus's colophons contradict one another and the printed ones are normalised.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:uddisatantra",
+      "to": "gri:uddamaresvaratantra",
+      "kind": "SHARES_CONTENT_WITH",
+      "basis": "verse-level correspondence observed by a scholar with manuscript access",
+      "evidence": "U1 p. 193: 'Many Uḍḍīśatantra manuscripts resemble Zadoo's Uḍḍāmareśvaratantra… rather than the many published Uḍḍīśatantras. One Uḍḍīśatantra manuscript often closer resembles various Uḍḍāmaratantras, and a single Uḍḍāmeśvaratantra often contains identical content from numerous Uḍḍīśatantras.' This is a symmetric content-sharing edge, NOT a directed dependency, and is asserted only as such.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:uddisatantra",
+      "to": "au:ravana-pseudepigraphic",
+      "kind": "ATTRIBUTED_TO",
+      "basis": "revelation frame internal to the text",
+      "evidence": "Śiva reveals to Rāvaṇa on Kailāsa; dialogue partners switch mid-text between Rāvaṇa and a goddess (U1 pp. 194-197). Legendary, not historical. The repo already flags this at abhichara-data.js.",
+      "sources": [
+        "U1",
+        "U19"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:uddisatantra-tripathi-edition",
+      "to": "gri:bazaar-print-corpus",
+      "kind": "PRINTED_BY",
+      "basis": "the edition's own introduction, reported by a reader of it",
+      "evidence": "THE SLICE'S BEST-DOCUMENTED PRINT EDGE. U1 p. 182: 'The text reproduces a prior Sanskrit source published by order of Seṭh Khemarāj Śrīkṛṣṇadās at the Bombay Veṅkaṭeśvara Steam Press', per the Hindi publisher and author introductions to Tripathī's text; and Tripathī's own 1965 volume was issued by Gangāviṣṇu Śrīkṛṣṇadāsa at Kalyāṇ — the other Bajaj brother's imprint. Ullrey had access to neither the earlier print nor its manuscript. NOTE: the `from` id is an EDITION, not a work; the generator must either resolve it onto gri:uddisatantra or accept edition-level endpoints.",
+      "sources": [
+        "U1",
+        "U12"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:kamaratna",
+      "to": "gri:bazaar-print-corpus",
+      "kind": "PRINTED_BY",
+      "basis": "imprint on a verified item record",
+      "evidence": "Kāmaratnam, ed. Jvālāprasāda Miśra, Baṃbaī: Khemarāja Śrīkṛṣṇadāsa, 1899, 370 pp. with 27 pp. of yantra plates (Wellcome copy, archive.org b30095050).",
+      "sources": [
+        "U9"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:brhat-indrajala",
+      "to": "gri:bazaar-print-corpus",
+      "kind": "PRINTED_BY",
+      "basis": "trade listings",
+      "evidence": "Khemraj Prakashan, DPB Publication and Deep Prakashan editions under three different named compilers (U24). Evidence is commercial listings only and the edge asserts nothing beyond the imprint fact.",
+      "sources": [
+        "U24"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:ravana-samhita",
+      "to": "gri:bazaar-print-corpus",
+      "kind": "PRINTED_BY",
+      "basis": "imprint reported by a reader of the volume",
+      "evidence": "Manoj Pocket Books, Delhi, undated, dated by Ullrey to no earlier than 1995 on advertisement evidence (U1 p. 182 n.93).",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:ravana-samhita",
+      "to": "gri:uddisatantra",
+      "kind": "REPRINTS",
+      "basis": "textual identity stated by a reader of both",
+      "evidence": "U1 p. 182 n.93: 'The Uḍḍīśatantra reproduced here is identical to Tripathī's Uḍḍīśatantra.' The omnibus is a re-wrapper, not an independent witness — which is why its completeness grade is marked DERIVED.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:ravana-samhita",
+      "to": "gri:kriyoddisatantra",
+      "kind": "CONTAINS",
+      "basis": "table of contents",
+      "evidence": "Section 5 of the omnibus (U1 p. 182 n.93).",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:kaksaputa",
+      "to": "gri:indrajalavidyasamgraha",
+      "kind": "PRINTED_IN",
+      "basis": "contents of the 1915 volume",
+      "evidence": "One of the five texts (U1 pp. 116-117; U8).",
+      "sources": [
+        "U1",
+        "U8"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:kamaratna",
+      "to": "gri:indrajalavidyasamgraha",
+      "kind": "PRINTED_IN",
+      "basis": "contents of the 1915 volume",
+      "evidence": "One of the five texts (U1 pp. 116-117; U8).",
+      "sources": [
+        "U1",
+        "U8"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:dattatreyatantra",
+      "to": "gri:indrajalavidyasamgraha",
+      "kind": "PRINTED_IN",
+      "basis": "contents of the 1915 volume",
+      "evidence": "One of the five texts (U1 pp. 116-117; U8).",
+      "sources": [
+        "U1",
+        "U8"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:satkarmadipika",
+      "to": "gri:indrajalavidyasamgraha",
+      "kind": "PRINTED_IN",
+      "basis": "contents of the 1915 volume",
+      "evidence": "One of the five texts (U1 pp. 116-117; U8).",
+      "sources": [
+        "U1",
+        "U8"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:indrajalasastra",
+      "to": "gri:indrajalavidyasamgraha",
+      "kind": "PRINTED_IN",
+      "basis": "contents of the 1915 volume",
+      "evidence": "One of the five texts (U1 pp. 116-117; U8).",
+      "sources": [
+        "U1",
+        "U8"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:indrajalavidyasamgraha",
+      "to": "gri:udd-corpus",
+      "kind": "SHARED_TRADITION",
+      "basis": "DECLINED — the anthology is an editorial accident, not a tradition",
+      "evidence": "U1 pp. 116-117: none of the five texts 'are organically connected by a religious tradition, common source, or geographic area… These tantras are only connected by appearing in the same publication.' Reading the 1915 volume's boundaries as a corpus is the specific error Ullrey charges against Goudriaan. Recorded so that no future round re-derives it.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:dattatreyatantra",
+      "to": "gri:damara-family",
+      "kind": "NAMES_AS_SOURCE_CLASS",
+      "basis": "the text's own opening enumeration",
+      "evidence": "The Dattātreyatantra's opening lists 'Āgamas, Purāṇas, Vedas, and Ḍāmara [scriptures]' as the homes of spells, diagrams and hostile exertions (U1 p. 191 n.114, Nepal MS NGMPP E2234/4, 1.1-7). This is the corpus's own testimony that ḍāmara is a live genre label.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:dattatreyatantra",
+      "to": "gri:uddisatantra",
+      "kind": "NAMES_AS_SOURCE",
+      "basis": "the text's own enumeration",
+      "evidence": "The same passage names Uḍḍīśa first in its list of scriptures (with Merutantra, Kālacaṇḍeśvara, Rādhātantra, Tāratantra, Amṛteśvara). U1 p. 191 also states the Dattātreyatantra 'describes a group of texts called ḍāmaratantras and lists the Uḍḍīśatantra as a constituent'. The edge asserts that the naming HAPPENS — not that the Dattātreyatantra used the Uḍḍīśatantra we have.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:dattatreyatantra",
+      "to": "tan:merutantra",
+      "kind": "NAMES_AS_SOURCE",
+      "basis": "the text's own enumeration; CROSS-SLICE endpoint into S10",
+      "evidence": "Same passage (U1 p. 191 n.114). Merutantra is an existing S10 node. This is one of two genuine emic bridges between the philosophical and operative slices found this round.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:bhutadamara-buddhist",
+      "to": "gri:bhutadamara-saiva",
+      "kind": "SOURCE_OF_RECENSION",
+      "basis": "DOCUMENTED DEPENDENCY — chapter-level collation plus manuscript-error inheritance",
+      "evidence": "THE STRONGEST TRANSMISSION EDGE IN THE SLICE, and the only one resting on inherited errors. (1) Bhattacharyya (1933) tabulated the two recensions' chapters side by side and showed the Śaiva text incorporating and augmenting the Buddhist one (U1 pp. 553-554). (2) Ullrey adds the decisive philological evidence: 'Śaiva manuscripts reproduce errors exhibited in late Buddhist versions that postdate the Tibetan translation' (p. 566-567). Shared ERROR, not shared content, is what makes this a dependency rather than a resemblance. (3) Corroborating direction-markers: the Śaiva version encodes mantras where the Buddhist writes them plainly, and encoding indicates posteriority; the Śaiva recasts prose as verse; the Śaiva retains Buddhist deity names inside its mantras and Buddhist worship-sites in its place-names while deleting Buddhist doctrine; and the Śaiva retains subjugation and murder rites against high Hindu gods, 'unheard of in an originally Hindu tantra'.",
+      "sources": [
+        "U1",
+        "U4"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:bhutadamara-saiva",
+      "to": "gri:damarutantra-bengali",
+      "kind": "SOURCE_OF",
+      "basis": "reported from a table of contents plus personal communication — WEAK, and asserted only at low confidence",
+      "evidence": "U1 p. 566 n.30: Keith Cantú translated the Bengali source's table of contents; from it and from conversations Ullrey observed shared rituals and 'reproductions of goddess/spirit cycles from the Bhūtaḍāmaratantra'. Ullrey states in the body that 'the contents of the so-called Bangla Damaru reveal that the Śaiva Bhūtaḍāmaratantra was one of its main sources' (p. 566). ASSERTED because a named scholar states it in a directional form; flagged WEAK because the only evidence is a contents-list and an unpublished conversation, and because reproduced goddess-cycles are precisely the evidence-type Ullrey elsewhere warns against.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true,
+      "confidence": "low"
+    },
+    {
+      "from": "gri:bhutadamara-buddhist",
+      "to": "gri:udd-corpus",
+      "kind": "SOURCE_OF",
+      "basis": "DECLINED — this is a resemblance edge that the repo currently asserts and should not",
+      "evidence": "REPO CORRECTION. abhichara-data.js TEXTS[8] describes the Bhūtaḍāmaratantra as 'A Buddhist conjuring source feeding the later Uḍḍīśa material', citing Ullrey pp. 133-134. What Ullrey actually supports is weaker and symmetric: 'Lists of yoginī/yakṣinīs are identical to those found in the Śaiva Bhūtaḍāmaratantra (and also the earlier Buddhist version); such lists are located in many tantras' (p. 197). And he warns in terms: goddess lists 'must be used with great care since they are not standard, contain both real and fanciful names, and often represent borrowed materials with no semantic value' (p. 562 + n.22). Shared goddess-lists in a literature where such lists float freely are not a dependency. The edge is recorded DECLINED and the repo record should be softened to a SHARES_CONTENT_WITH.",
+      "sources": [
+        "U1",
+        "U19"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:bhutadamara-buddhist",
+      "to": "gri:udd-corpus",
+      "kind": "SHARES_CONTENT_WITH",
+      "basis": "shared spirit-lists, observed and explicitly hedged by the observer",
+      "evidence": "U1 p. 197 (identical yoginī/yakṣiṇī lists) and pp. 562, 574 (Ullrey's comparative tables of goddesses and goddess-groups across the Uḍḍ-corpus and both Bhūtaḍāmara recensions). Asserted as symmetric content-sharing only, carrying the observer's own caution.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:bhutadamara-buddhist",
+      "to": "gri:damara-family",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "DECLINED on explicit scholarly instruction",
+      "evidence": "U1 p. 565 and n.27: 'The Bhūtaḍāmaratantra should not be confused with Śaiva Ḍāmaratantras to which the Bhūtaḍamaratantra has no connection'; 'This text is not directly connected to the so-called Ḍāmara tantras of any variety or the east Indian Ḍāmarutantra'; 'Publications of the simply named Ḍāmaratantra should not be grouped with the Buddhist or Hindu Bhūtaḍāmaratantra.' The title-syllable is the trap and the corpus's own genre label is not a warrant.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:bhutadamara-saiva",
+      "to": "gri:damara-family",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "DECLINED — same instruction",
+      "evidence": "U1 p. 565 n.27 covers both the Buddhist and Hindu Bhūtaḍāmara.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:bhutadamara-buddhist",
+      "to": "gw:ars-goetia",
+      "kind": "STRUCTURAL_ANALOGUE_OF",
+      "basis": "STRUCTURAL, EVIDENCED, AND EXPLICITLY NOT GENEALOGICAL — this is the slice's headline comparison and it is deliberately fenced",
+      "evidence": "Four structural correspondences, each independently sourced, none implying contact. (1) A NAMED, RANKED HIERARCHY: the Buddhist recension organises its material by spirit pantheon in 'a loose, over-arching maṇḍala of being, ranging from dryads (yakṣiṇī) to demons (bhūtinī) to snakes (nāginī)', with eight named Demon Princesses (aṣṭamahābhūtarajñā) heading their own cycle of eight indexed rites (U1 pp. 552, 575). Compare the Ars Goetia's ranked, individually named and individually rited spirit list. (2) A COMPELLING PROCEDURE WITH A COERCIVE SANCTION: the rite compels appearance, and the text states a destructive consequence for non-appearance and for non-service (U1 pp. 575-576). Compare the Goetic constraint and the curses of the Solomonic conjuration sequence. (3) A SERVITOR OUTCOME: the declared result is enslavement (kiṃkarī), and the tantra carries a distinct kiṃkara-sādhana making rival-tradition gods into slaves (U1 p. 600). Compare the Goetic office-and-service structure. (4) A DISMISSAL TERMINUS — WITH THE SLICE'S OWN CAVEAT: the five-fold sequence ending in visarjana is documented for this ritual grammar and Ullrey reads the tantra's gesture-set as echoing it, but the anchoring verse is Bhairavapadmāvatīkalpa 3.24, a Jain text, and no source read this round locates a dismissal rubric inside the Bhūtaḍāmaratantra (U1 p. 576 + n.51). Correspondence (4) is therefore the weak leg and is flagged as such rather than quietly carried.",
+      "sources": [
+        "U1",
+        "U19"
+      ],
+      "ASSERTED": true,
+      "assertionScope": "The edge asserts a STRUCTURAL PARALLEL as an observation of this slice. It asserts no contact, no shared source, no influence and no common origin in either direction."
+    },
+    {
+      "from": "gri:bhutadamara-buddhist",
+      "to": "gw:ars-goetia",
+      "kind": "TRANSMISSION_DEPENDENCY",
+      "basis": "DECLINED — no documented dependency in either direction",
+      "evidence": "The only printed linkage located between the Indian operative corpus and the Goetia is Ullrey's own footnote (U1 pp. 190-191 n.112), and it is a SEMANTIC aside, not a textual claim: sorcerers and powerful female beings are characteristically NOISY, ḍākinī may derive from √ḍam 'to sound' rather than *ḍī 'to fly', and the Greek goēs is a howler — from which he glances at 'the modern occult references to the power-daemons of Goetia'. TWO INDEPENDENT REASONS THE EDGE FAILS. First, the etymology it rests on is a minority one: White, whom Ullrey cites, presents ḍam as 'suggested' against 'the more widely accepted' *ḍi. Second, and decisively, a shared semantic field of noisiness is not a textual dependency at all. Ullrey himself supplies the governing methodological rule at p. 192: 'Etymology similarities in titles does not establish connection; texts must reproduce cognate verses and/or content to establish connection' — and at p. 193 n.117, following J.Z. Smith and Hassan, that comparison yields affinity, not influence, and that 'subjective experience is projected as an objective connection through some theory of influence, diffusion, borrowing, or the like.' No cognate verses, no shared content, no contact. DECLINED, and it should stay declined.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:kaksaputa",
+      "to": "gri:uddamaresvaratantra",
+      "kind": "SHARES_CONTENT_WITH",
+      "basis": "goddess-name overlap tabulated by a critical editor",
+      "evidence": "Yamano correlates the Kakṣapuṭa's goddess lists with Zadoo's Uḍḍāmareśvara and finds 'quite a few common names' (U1 pp. 561-562, citing Yamano pp. 69-70). Symmetric content-sharing only; the same caution about floating goddess-lists applies.",
+      "sources": [
+        "U1",
+        "U5"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:kaksaputa",
+      "to": "gri:bhutadamara-buddhist",
+      "kind": "SHARES_PROCEDURE_TYPE",
+      "basis": "shared rite-type vocabulary and shared outcome-formula",
+      "evidence": "Both carry yakṣiṇī-sādhana ('invoking yakṣiṇīs') and ceṭaka-sādhana ('using as a slave'); and the kinship-or-consort outcome negotiation Yamano prints from the Kakṣapuṭa is, per Ullrey, 'common in the Buddhist Bhūtaḍāmaratantra' (U1 pp. 561-562). ASSERTED AS TYPE-SHARING ONLY. Note the deeper chronology Yamano opens: the same yakṣiṇīsādhana is found in the Jayākhyasaṃhitā, 'generally dated to the Gupta period', with the kinship formula at ch. 26.77-86 — which would push the formula well behind both texts. Ullrey calls this 'an exciting attestation' and does not build on it; neither does this slice.",
+      "sources": [
+        "U1",
+        "U5"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:kaksaputa",
+      "to": "au:nagarjuna-siddha-attributed",
+      "kind": "ATTRIBUTED_TO",
+      "basis": "title attribution",
+      "evidence": "The text circulates as Siddhanāgārjunakakṣapuṭa. NO identification with the Madhyamaka philosopher, with the alchemical Siddha of the Rasendramaṅgala, or with the bazaar-print author-brand is asserted; the repo's existing three-way flags (confluence.js contested block; rasa-data.js Wujastyk note) stand unaltered.",
+      "sources": [
+        "U1",
+        "U20"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:kaksaputa",
+      "to": "au:nagarjuna-madhyamaka",
+      "kind": "SAME_PERSON_AS",
+      "basis": "DECLINED — the standing conflation the repo already polices",
+      "evidence": "Recorded explicitly so that the operative corpus's use of the name cannot re-open a confusion the repo has already closed. See confluence.js 'Nāgārjuna (Madhyamaka philosopher)' vs 'Nagarjuna the alchemist', and rasa-data.js: 'The Nāgārjuna of alchemy is a Siddha figure, not the 2nd-c. Madhyamaka philosopher.'",
+      "sources": [
+        "U19",
+        "U20"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "tan:isanasivagurudevapaddhati",
+      "to": "gri:kerala-mantravada",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "regional and functional placement",
+      "evidence": "A Kerala paddhati whose Mantrapāda houses the operative material; one of Bühnemann's two case texts for Buddhist mantra-adoption in Hindu tantras (U6, U15).",
+      "sources": [
+        "U6",
+        "U15"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:tantrasarasamgraha",
+      "to": "gri:kerala-mantravada",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "regional and functional placement",
+      "evidence": "Nārāyaṇa of Śivapura on the Nila; 32 chapters covering viṣavaidya, grahapīḍā, kṣudra-dhvaṃsa, unmāda and kāmika-karma (U15, U17). This is the Kerala corpus's operative manual proper.",
+      "sources": [
+        "U15",
+        "U17"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:tantrasamuccaya",
+      "to": "gri:kerala-mantravada",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "DECLINED as an OPERATIVE-corpus membership",
+      "evidence": "NEGATIVE FINDING against the slice's own brief. The Tantrasamuccaya is a temple-ritual manual — construction, installation, festival, expiation — and no source read this round places ṣaṭkarman or abhicāra material in it. It belongs to the Kerala TANTRA corpus and is its periodising landmark; it does not belong to the mantravāda/operative corpus on any evidence obtained. Recorded declined rather than omitted, so the absence is legible.",
+      "sources": [
+        "U15",
+        "U18",
+        "U22"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:prayogamanjari",
+      "to": "gri:kerala-mantravada",
+      "kind": "MEMBER_OF_CORPUS",
+      "basis": "DECLINED as an OPERATIVE-corpus membership",
+      "evidence": "Same finding: liṅga installation and worship, renovation, festival. Twenty-seven paṭalas, none placed in operative territory by any source read.",
+      "sources": [
+        "U15",
+        "U21"
+      ],
+      "ASSERTED": false
+    },
+    {
+      "from": "gri:tantrasamuccaya",
+      "to": "gri:prayogamanjari",
+      "kind": "SUCCEEDS_IN_CORPUS",
+      "basis": "periodisation stated by a Kerala-corpus specialist",
+      "evidence": "Syamkumar divides the literature into a 'Pre-Tantrasamuccaya phase' emphasising philosophical and mythological dimensions and a 'Post-Tantrasamuccaya phase' whose manuals 'mainly concentrate only on the practical side of Tantric rituals' (U18). An ordering claim about the corpus, not a dependency between these two texts.",
+      "sources": [
+        "U18"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:tantrasarasamgraha",
+      "to": "cul:buddhist-tantric-operative",
+      "kind": "ADOPTS_MATERIAL_FROM",
+      "basis": "documented in a peer-reviewed study whose citation was verified and whose contents were NOT read",
+      "evidence": "Bühnemann, 'Buddhist Deities and Mantras in the Hindu Tantras: I. The Tantrasārasaṃgraha and the Īśānaśivagurudevapaddhati', IIJ 42.4 (1999), 303-334. Title, volume, issue, year and page range verified against Brill and Springer records and the author's own publication list; the article itself returned HTTP 403 and was NOT READ. The edge therefore asserts only what the TITLE AND SCOPE establish — that a specialist documented Buddhist deities and mantras in this text — and asserts no specific deity, mantra or direction of borrowing beyond that. An auditor is entitled to demand the article before this edge is upgraded.",
+      "sources": [
+        "U6"
+      ],
+      "ASSERTED": true,
+      "confidence": "medium"
+    },
+    {
+      "from": "tan:isanasivagurudevapaddhati",
+      "to": "cul:buddhist-tantric-operative",
+      "kind": "ADOPTS_MATERIAL_FROM",
+      "basis": "same study, same limits",
+      "evidence": "As above; the Īśānaśivagurudevapaddhati is Bühnemann's other case text. Contents NOT read.",
+      "sources": [
+        "U6"
+      ],
+      "ASSERTED": true,
+      "confidence": "medium"
+    },
+    {
+      "from": "gri:bhairavapadmavatikalpa-xref",
+      "to": "gri:bhutadamara-buddhist",
+      "kind": "SUPPLIES_STRUCTURAL_RULE_FOR",
+      "basis": "an analyst's reading, flagged as such",
+      "evidence": "The five-fold sequence — invocation, depositing, drawing near, worship, dismissal — is stated as a rule at BPK 3.24, and Ullrey invokes it to characterise the Bhūtaḍāmara's compelling-gesture set as an 'echo' (U1 p. 576 + n.51). The edge records that a JAIN text supplies the grammar against which a BUDDHIST text's structure is read. It does NOT claim the Bhūtaḍāmara contains the rule.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:udd-corpus",
+      "to": "proc:satkarman-six-results",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "genre-defining",
+      "evidence": "Ṣaṭkarman exposition is one of the three criteria for corpus membership (U1 p. 196). Ullrey's caution travels with the edge: 'The six-results mark a genre not an actual list of six constituents' — lists 'usually differ in number, order, and constituents' and 'A list may ONLY be representative' (pp. 148, 151).",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:udd-corpus",
+      "to": "proc:maranam-lethal-sorcery",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "genre-defining, and the corpus's harm centre",
+      "evidence": "Māraṇa (murderous sorcery) with its sub-class nāśana (destruction). Two of three published Uḍḍīśatantra recensions place murder first in the body of the text (U1 pp. 184, 187, and the treatment at pp. 318-357). Recorded as academic religious history under the repo's abhicāra precedent; no procedure, substance, count, timing or target-formula crosses into this file.",
+      "sources": [
+        "U1",
+        "U19"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:udd-corpus",
+      "to": "proc:indrajala-fantastic-feats",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "genre-defining; the corpus's accretion zone",
+      "evidence": "Kautuhalakarman / indrajāla, the second of Ullrey's three emic constituents, and the block through which magic tantras GROW (U1 pp. 183-184).",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:udd-corpus",
+      "to": "proc:yaksini-sadhana-conjuring",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "genre-defining",
+      "evidence": "Conjuring, the third emic constituent (U1 pp. 185 n.99, 552). Śivadatta appends yakṣiṇī chapters and an indrajāla chapter, 'thereby fill[ing] out the three categories I argue compromise Indian magic' (U1 p. 185).",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:bhutadamara-buddhist",
+      "to": "proc:yaksini-sadhana-conjuring",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "the text's organising principle",
+      "evidence": "Conjuring is its 'main ritual concern' (U1 abstract, p. xviii); some Śaiva-recension colophons even name the genre as yakṣiṇī-sādhana (U1 p. 567).",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:bhutadamara-saiva",
+      "to": "proc:mantroddhara-encoding",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "a documented withholding device",
+      "evidence": "'The Śaiva version presents coded mantras (mantroddhāra); mantras are uncoded in the Buddhist text and are written exactly as to be spoken' (U1 p. 565); the Śaiva recension 'applies a well constructed mantra-code system (mantrakośa) applicable to mantras throughout' (p. 553). The completeness consequence is recorded on the work row: complete as an artefact, deliberately unusable without the key.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:uddisatantra",
+      "to": "proc:systematic-variable-tables",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "located verse range",
+      "evidence": "Tripathī 1.14-163 (U1 p. 160). The variable AXES are recorded on the work row; none of their values is.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:satkarmadipika",
+      "to": "proc:systematic-variable-tables",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "characterised by a scholar",
+      "evidence": "'a systematic compilation of recent date in which the author tak[es] the unusual care to mention his sources' (U1 p. 117 n.24).",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:tantrasarasamgraha",
+      "to": "proc:counter-sorcery",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "chapter heading",
+      "evidence": "kṣudra-dhvaṃsa (U15). The defensive/offensive pairing here mirrors the Atharvan kṛtyāpratiharaṇa material the repo already carries.",
+      "sources": [
+        "U15",
+        "U19"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:uddisatantra",
+      "to": "proc:counter-sorcery",
+      "kind": "CONTAINS_PROCEDURE_TYPE",
+      "basis": "located section",
+      "evidence": "The later half carries 'methods for counteracting magic' alongside error-remedies (U1 p. 183). Offensive and defensive sit in the same block.",
+      "sources": [
+        "U1"
+      ],
+      "ASSERTED": true
+    },
+    {
+      "from": "gri:bazaar-print-corpus",
+      "to": "gri:udd-corpus",
+      "kind": "IS_TRANSMISSION_CHANNEL_FOR",
+      "basis": "the corpus's surviving witnesses are print, and their manuscript provenance is undetermined",
+      "evidence": "THE SLICE'S CENTRAL TRANSMISSION CLAIM. All three published Uḍḍīśatantra recensions leave manuscript sources 'unspecified — or they only elliptically describe' them; Ullrey identified no manuscript attestation for any of them; one commentator may have worked from earlier prints rather than manuscripts at all (U1 pp. 181, 186). For most of this corpus the cheap print is not a witness to the tradition — it is the tradition's surviving form.",
+      "sources": [
+        "U1",
+        "U12"
+      ],
+      "ASSERTED": true
+    }
+  ],
+  "structuralFindings": [
+    {
+      "id": "SF1",
+      "finding": "SYSTEMATIC vs ENCYCLOPEDIC is the corpus's real formal division, and it is a completeness axis.",
+      "detail": "Encyclopedic tantras catalogue discrete short rites grouped by RESULT — 'They are cookbooks, grimoire catalogs' (U1 p. 158). Systematic tantras correlate VARIABLES to results and are second-order: 'They are the culinary arts, magic principles, theory, lore, magic śāstra' (p. 157). Three encyclopedic composition strategies: three-part discrete verses carrying ritual action + mantra + result; long discrete verses; and simple discrete verses lacking one of the three parts. Three systematic strategies: the 'systematic variable' (a variable-set mapped to a result-set), the 'rolling variable' (one rite followed by verses each altering one element to shift the result), and 'lore' (ranking, symptomatology, substitution, and what to do when nothing happens). Ullrey's own image for his choice of subject: 'I study cooks, not chefs; sorcerers, not pandits' (p. 159).",
+      "whyItMatters": "A completeness grade means different things on the two sides. An encyclopedic rite is complete when it carries all three parts; a systematic passage is complete when its variable-set closes. Grading them on one scale is the error this slice's `completenessBasis` field exists to prevent.",
+      "sources": [
+        "U1"
+      ]
+    },
+    {
+      "id": "SF2",
+      "finding": "THE INDEX-VERSE MISMATCH: a magic tantra's own table of contents routinely does not describe it.",
+      "detail": "All three published Uḍḍīśatantras print a six-item index verse; their bodies deliver eight, seven and seven results respectively, in three different orders, and in two of the three the first headed topic is MURDER. Zadoo's Uḍḍāmareśvara prints four mutually inconsistent organising passages before its body begins. Ullrey: 'Index verses differing from actual contents of the text is common, if not universal, in magic tantras' (p. 183 n.95); 'Index lists, in fact, rarely present a text's contents accurately' (p. 148).",
+      "whyItMatters": "It forbids a whole class of cheap research move. No completeness or contents claim about a text in this corpus may be derived from its index verse, its title, or a catalogue entry copying either. Every grade in this slice that rests on a heading rather than a reading is marked accordingly.",
+      "sources": [
+        "U1"
+      ]
+    },
+    {
+      "id": "SF3",
+      "finding": "DELIBERATE WITHHOLDING IS BUILT INTO THE TEXTS, and it takes at least three distinct forms.",
+      "detail": "(1) MANTRA ENCODING (mantroddhāra/mantrakośa): the Śaiva Bhūtaḍāmara substitutes coded epithets for the syllables its Buddhist source writes out plainly — the text is whole and unusable without a key held by an initiator. (2) THE GURU CLAUSE: the Uḍḍīśatantra's opening states in its own voice that wisdom written in a book confers nothing, and that without a guru there is no authority in scripture — a printed book denying the sufficiency of printed books. (3) EDITORIAL SUPPRESSION IN PRINT: Goudriaan suspected 'deliberate omission by the editors' in the 1915 Indrajālavidyāsaṃgraha; Ullrey partly demurs, attributing the gaps instead to ordinary transmission and to 'awkward seams where material is inserted or tacked on artlessly'. Both explanations are recorded.",
+      "whyItMatters": "Incompleteness in this corpus is frequently a FEATURE and must be graded as such rather than as damage — and the repo now has an Indian analogue to the cipher-and-notarikon withholding of the Western grimoire tradition.",
+      "sources": [
+        "U1",
+        "U2"
+      ]
+    },
+    {
+      "id": "SF4",
+      "finding": "THE PRINT-TRADE IS THE TRANSMISSION, and it is nameable.",
+      "detail": "One Marwari publishing family — Gangavishnu and Khemraj Bajaj of Churu, Mumbai from 1868, Moti Bazar 1871, Khetwadi 1880, separating 1893 — printed the 1899 Kāmaratnam with its 27 plates of yantras, the Venkateshvar Steam Press Uḍḍīśatantra that Tripathī reproduces, Tripathī's own 1965 volume under the other brother's Kalyāṇ imprint, and a 2005 Nāgārjuna-branded tantra. Meanwhile no published Uḍḍīśatantra recension has an identified manuscript attestation, and one may have been assembled from earlier prints rather than from manuscripts at all.",
+      "whyItMatters": "This is the Indian counterpart of the cheap chapbook grimoire, and it is better documented at the imprint level than at the textual level — the reverse of the Western case, where the texts are edited and the print history is often the murky part.",
+      "sources": [
+        "U1",
+        "U9",
+        "U12"
+      ]
+    },
+    {
+      "id": "SF5",
+      "finding": "THE GOETIA PARALLEL IS STRUCTURAL AND HAS EXACTLY ONE WEAK LEG.",
+      "detail": "Named ranked hierarchy: EVIDENCED. Compelling procedure with coercive sanction: EVIDENCED. Servitor/office outcome: EVIDENCED. Dismissal terminus: ATTESTED FOR THE RITUAL GRAMMAR, from a Jain text, and NOT located inside the Bhūtaḍāmaratantra by any source read. Transmission in either direction: NO EVIDENCE, and the only printed linkage is a semantic aside resting on a minority etymology of ḍākinī.",
+      "whyItMatters": "The comparison is worth making and worth fencing. Ullrey supplies the fence himself: 'Etymology similarities in titles does not establish connection; texts must reproduce cognate verses and/or content to establish connection' (p. 192), and — after J.Z. Smith and Hassan — comparison yields affinity, not influence (p. 193 n.117).",
+      "sources": [
+        "U1"
+      ]
+    },
+    {
+      "id": "SF6",
+      "finding": "'KERALA MANTRAVĀDA' IS NOT WHERE THE BRIEF EXPECTED IT.",
+      "detail": "The two famous Kerala manuals named in the brief — Tantrasamuccaya and Prayogamañjarī — are TEMPLE-RITUAL paddhatis: construction, installation, liṅga worship, renovation, festival, expiation. No source read this round places ṣaṭkarman or abhicāra material in either. The Kerala operative material sits in the Īśānaśivagurudevapaddhati's Mantrapāda and, above all, in Nārāyaṇa's Tantrasārasaṃgraha (Viṣanārāyaṇīya): 32 chapters, ten of them toxicology, the rest spirit-affliction, madness, COUNTER-sorcery, and desire-directed acts.",
+      "whyItMatters": "Two consequences. First, the Kerala operative corpus has a DEFENCE-WEIGHTED shape — poison, possession, madness, counter-sorcery — quite unlike the Uḍḍ-corpus, where murder heads the body-text; that difference must not be flattened into one 'Indian grimoire' profile. Second, in this corpus the word 'tantra' in a title predicts nothing about contents.",
+      "sources": [
+        "U15",
+        "U17",
+        "U18",
+        "U22"
+      ]
+    },
+    {
+      "id": "SF7",
+      "finding": "THE CORPUS PROVIDES ITS OWN BIBLIOGRAPHY — and it cannot be trusted as one.",
+      "detail": "The Dattātreyatantra opens by naming where operative material lives (Āgamas, Purāṇas, Vedas, Ḍāmara scriptures) and then names titles: Uḍḍīśa, Merutantra, Kālacaṇḍeśvara, Rādhātantra, Tāratantra, Amṛteśvara. Uḍḍ-corpus colophons name each other and the Vīrabhadratantra in every direction at once, and printed colophons have been editorially normalised.",
+      "whyItMatters": "These self-citations are genuine evidence of a self-aware genre and of an emic map — including two bridges into S10's philosophical corpus — but they are NOT citations in the bibliographic sense, and no derivation edge in this slice rests on one.",
+      "sources": [
+        "U1"
+      ]
+    },
+    {
+      "id": "SF8",
+      "finding": "SHARED ERROR, NOT SHARED CONTENT, IS WHAT MAKES A DEPENDENCY HERE.",
+      "detail": "The slice's one strong transmission edge — Buddhist Bhūtaḍāmara → Śaiva Bhūtaḍāmara — rests on Śaiva manuscripts reproducing errors found in LATE Buddhist versions that postdate the Tibetan translation, corroborated by mantra-encoding, prose-to-verse reformatting, retained Buddhist deity-names inside mantras, retained Buddhist place-names, deleted Buddhist doctrine, and retained rites against high Hindu gods. Every other candidate transmission edge in the slice rests on shared goddess-lists, and Ullrey warns that such lists 'are not standard, contain both real and fanciful names, and often represent borrowed materials with no semantic value'.",
+      "whyItMatters": "It gives the slice a bright line, and the line is why the repo's existing 'Bhūtaḍāmara feeds the Uḍḍīśa material' record is downgraded here to a symmetric content-sharing edge.",
+      "sources": [
+        "U1",
+        "U4"
+      ]
+    }
+  ],
+  "notes": [
+    "NOTHING IN THIS FILE IS AN INSTRUCTION. The corpus catalogued here is dense with rites aimed at named living persons, including lethal ones. No mantra syllable, seed-syllable string, ingredient, quantity, repetition-count, timing, site-preparation, yantra template or target-naming formula appears anywhere in this file, and the sources it draws on print all of them.",
+    "EFFICACY IS NEVER ASSERTED. The tradition claims; the text says. Ullrey, this slice's principal source, states at p. 633: 'Do the magic operations confer the results declared? Well no, they don't. Magic doesn't work.'",
+    "The Uḍḍīśatantra's opening declares in its own voice that no wisdom written in a book confers perfection and that without a guru there is no authority in scripture (Tripathī 1.7). It is worth recording that the corpus's own frame denies the sufficiency of the printed page — in a text that survives almost entirely as printed pages.",
+    "THREE ROWS ARE DELIBERATELY UNGRADED rather than weakly graded: gri:brhat-indrajala, gri:kamakhya-vernacular-manuals, and the vernacular layer of gri:kerala-mantravada. In each case no scholarship was located and a grade would have to come from booksellers' copy. Recording no grade is the finding.",
+    "THREE EDGE ENDPOINTS ARE NON-LOCAL and the generator must resolve them: `tan:merutantra` (existing S10 node — an intentional cross-slice bridge), `gw:ars-goetia` (existing S12 node — the structural-comparison endpoint), and `gri:uddisatantra-tripathi-edition`, which is an EDITION-level endpoint with no work row. The last is deliberate: the print-lineage claim attaches to one edition of the Uḍḍīśatantra, not to the work, and collapsing it onto gri:uddisatantra would assert that the whole textual tradition passed through the Venkateshvar Steam Press, which is false. Either give the generator edition-level endpoints or resolve it with the qualification intact.",
+    "ONE ID IS SHARED WITH S10 BY DESIGN: `tan:isanasivagurudevapaddhati`. The generator must MERGE the two rows, not concatenate them. S10 owns the mantraśāstra axis; this row adds the Kerala placement, the Mantrapāda locus, the Bühnemann Buddhist-adoption finding, and the per-edition PD split between the 1920s TSS printing and the 1988-89 Bharatiya Vidya Prakashan reprint."
+  ]
+}
