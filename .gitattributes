@@ -1,0 +1,35 @@
+# ============================================================================
+#  .gitattributes — line endings for the GENERATED artifacts and everything a
+#  --check compares byte-for-byte.
+#
+#  WHY THIS EXISTS. The generators (scripts/gen-opgraph.mjs,
+#  scripts/seed-opgraph-gate.mjs, scripts/round-ledger.mjs) write LF. On Windows
+#  git checks out CRLF by default, so a FRESH CLONE produced files that could
+#  never equal their generator's output — the anti-drift checks passed in a tree
+#  where the generator had just run and FAILED on checkout. The gate was
+#  therefore not reproducible from tracked state, which is the one property the
+#  tracked artery exists to guarantee (operator Rule 4).
+#
+#  Found by exporting HEAD with `git archive` and running the gate against the
+#  pristine export rather than the working tree — the working tree passed and
+#  HEAD did not. Any future --check-guarded artifact belongs in this list.
+# ============================================================================
+
+# Sensible default: normalise in the repo, and let the working tree be native
+# for ordinary source files.
+* text=auto
+
+# --- Byte-compared generated artifacts: LF in the working tree, always. ------
+assets/js/core/data/opgraph.js      text eol=lf
+research/opgraph/gate.json          text eol=lf
+research/opgraph/gate-decisions.json text eol=lf
+research/opgraph/vocab.json         text eol=lf
+research/opgraph/vocab-map.json     text eol=lf
+docs/ROUND-LEDGER.md                text eol=lf
+docs/plans/opgraph/NEXT.md          text eol=lf
+docs/telemetry/rounds.jsonl         text eol=lf
+assets/search-index.json            text eol=lf
+scripts/tests/fixtures/*.json       text eol=lf
+
+# --- Generator inputs: a CRLF slice would change the generator's output. -----
+research/opgraph/slices/*.json      text eol=lf
