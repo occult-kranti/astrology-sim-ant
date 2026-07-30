@@ -22,7 +22,19 @@ import {
   timeScale, layoutConfluence, filterEntries, entryBySlug, threadFrom, confluenceStats,
 } from '../../assets/js/core/confluence.js';
 
-const EDGE_LABELS_JSON = 'C:/Users/mehta/AppData/Local/Temp/claude/c--Users-mehta-OneDrive-Documents-github-2026-astrology-sim-ant/4c4bfebe-9070-4f90-b661-5425fb4ad24b/scratchpad/r28data/edge-labels.json';
+// RULE-4 FIX (R33): this pointed at a session scratchpad. That artifact has since
+// evaporated with its temp folder, so the bijection below had been silently
+// running its weak fallback branch for several rounds — a gate that quietly
+// stops checking is worse than one that fails loudly. The rows are now a TRACKED
+// FIXTURE, so the check is reproducible from repo state alone.
+//
+// HONEST PROVENANCE: the fixture is a snapshot of the SHIPPED labels taken at
+// R33, not the original R28 research artifact (that evidence is gone and cannot
+// be recovered). It therefore CANNOT retroactively re-verify the R28 merge; what
+// it does is pin the state so any future drift in a label, citation or note is
+// caught. Treat it as a hash-pinned holdout going forward, not as independent
+// confirmation of the past.
+const EDGE_LABELS_JSON = new URL('./fixtures/r28-edge-labels.json', import.meta.url);
 const LABEL_ENUM = new Set(['documented', 'disputed', 'debunked', 'conspiracy']);
 const key = g => g.from + '|' + g.to + '|' + g.kind;
 
@@ -58,14 +70,18 @@ export async function run() {
   // its citation is the Deslippe definitive edition (verbatim witness present)
   ok(deb[0] && /Deslippe/.test(deb[0].bestCitation), 'labels: debunked edge cites Deslippe (Kybalion definitive edition)');
 
-  // ---- 4. BIJECTION WITH THE VERIFIED edge-labels.json ---------------------
+  // ---- 4. BIJECTION WITH THE TRACKED LABEL FIXTURE -------------------------
+  // NO silent-fallback branch: the fixture is tracked repo state, so if it cannot
+  // be read that is a REAL failure, not a reason to quietly check less.
   {
-    let rows = null;
-    try { rows = JSON.parse(readFileSync(EDGE_LABELS_JSON, 'utf8')); } catch { /* scratchpad may be absent in a clean checkout */ }
+    let rows = null, readErr = '';
+    try { rows = JSON.parse(readFileSync(EDGE_LABELS_JSON, 'utf8')); } catch (e) { readErr = e.message; }
+    ok(Array.isArray(rows), `labels: tracked fixture scripts/tests/fixtures/r28-edge-labels.json readable (${readErr})`);
     if (Array.isArray(rows)) {
-      ok(rows.length === 151, `labels: edge-labels.json has 151 rows (${rows.length})`);
+      ok(rows.length === CONFLUENCE_EDGES.length,
+        `labels: fixture row count === shipped edge count (${rows.length}/${CONFLUENCE_EDGES.length})`);
       const rowByKey = new Map(rows.map(r => [r.from + '|' + r.to + '|' + r.kind, r]));
-      ok(rowByKey.size === 151, 'labels: edge-labels.json keys unique');
+      ok(rowByKey.size === rows.length, 'labels: fixture keys unique');
       let matched = 0, mismatchLabel = 0, mismatchCite = 0, mismatchNote = 0;
       for (const g of CONFLUENCE_EDGES) {
         const r = rowByKey.get(key(g));
@@ -75,18 +91,14 @@ export async function run() {
         if (r.bestCitation !== g.bestCitation) mismatchCite++;
         if (r.note !== g.note) mismatchNote++;
       }
-      ok(matched === 151, `labels: all 151 edges matched a label row (${matched})`);
-      ok(mismatchLabel === 0, `labels: merged label === verified label (${mismatchLabel} drift)`);
-      ok(mismatchCite === 0, `labels: merged bestCitation verbatim === verified (${mismatchCite} drift)`);
-      ok(mismatchNote === 0, `labels: merged note verbatim === verified (${mismatchNote} drift)`);
-      // reverse: every verified row was consumed by an edge
+      ok(matched === CONFLUENCE_EDGES.length, `labels: every shipped edge matched a fixture row (${matched}/${CONFLUENCE_EDGES.length})`);
+      ok(mismatchLabel === 0, `labels: shipped label === pinned label (${mismatchLabel} drift)`);
+      ok(mismatchCite === 0, `labels: shipped bestCitation verbatim === pinned (${mismatchCite} drift)`);
+      ok(mismatchNote === 0, `labels: shipped note verbatim === pinned (${mismatchNote} drift)`);
+      // reverse: no orphan fixture row (an edge deleted without re-pinning)
       const edgeKeys = new Set(CONFLUENCE_EDGES.map(key));
       const orphans = rows.filter(r => !edgeKeys.has(r.from + '|' + r.to + '|' + r.kind));
-      ok(orphans.length === 0, `labels: every verified row consumed by an edge (${orphans.length} orphan rows)`);
-    } else {
-      // clean checkout without the scratchpad: assert self-consistency stands in
-      ok(dist.documented + dist.disputed + dist.debunked + dist.conspiracy === 151,
-        'labels: (scratchpad absent) self-consistent 151-edge label total');
+      ok(orphans.length === 0, `labels: every pinned row consumed by a shipped edge (${orphans.length} orphan rows)`);
     }
   }
 

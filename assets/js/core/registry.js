@@ -378,7 +378,7 @@ export const REGISTRY = [
     book: 'Vedic (Jyotiṣa)', chapter: 'Parāśara BPHS / Jagannath Hora',
     citation: 'Parāśara, Bṛhat Parāśara Horā Śāstra; P.V.R. Narasimha Rao, Vedic Astrology (Jagannath Hora).',
     pages: ['pages/vedic/index.html'], howItWorks: 'pages/vedic/index.html',
-    glossaryTerms: ['Sidereal Zodiac', 'Ayanāṁśa', 'Lagna', 'Graha', 'Nakṣatra', 'Vimśottarī Daśā', 'Pañcāṅga', 'Varga', 'Navāṁśa', 'Aṣṭakavarga', 'Ṣaḍbala', 'Bhāva', 'Kāraka', 'Bīja Mantra', 'Yantra'],
+    glossaryTerms: ['Sidereal Zodiac', 'Ayanāṁśa', 'Lagna', 'Graha', 'Nakṣatra', 'Vimśottarī Daśā', 'Balance of daśā at birth', 'Pañcāṅga', 'Varga', 'Navāṁśa', 'Aṣṭakavarga', 'Bindu', 'Ṣaḍbala', 'Rūpa', 'Bhāva', 'Kāraka', 'Bīja Mantra', 'Yantra'],
   },
   {
     id: 'picatrix-prayers', title: 'Picatrix prayers, spirits & the Perfect Nature (Bk III–IV)',

@@ -8,6 +8,12 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../../assets/css/style.css">
 <link rel="stylesheet" href="../../assets/css/vedic-tools.css">
+<style>
+  /* The prefilled "explain this" chips: they only FILL the assistant's box.
+     Wrapping + a width cap keep the row clean at 390 px. */
+  #v-ai-chips { gap: .4rem; align-items: flex-start; }
+  #v-ai-chips .btn { max-width: 100%; white-space: normal; text-align: left; }
+</style>
 </head>
 <body>
 <main class="wrap">
@@ -61,6 +67,49 @@
 
   <section class="card panel"><h2 style="margin-top:0">The chart (Jagannath Hora style)</h2>
     <div id="v-out"></div></section>
+
+  <section class="card" id="dv-assistant-card">
+    <h2 style="margin-top:0">Ask it to explain the reading <span class="small muted">(optional · your own API key)</span></h2>
+
+    <div class="callout science"><span class="label">About this diviner — please read</span>
+      This panel <b>explains a computed reading; it is not a prediction service</b>. Everything it talks about is already
+      on this page — the sidereal Lagna and the nine grahas by bhāva and nakṣatra, the pañcāṅga, the Vimśottarī daśā, the
+      vargas, the Sarvāṣṭakavarga bindus, the six-fold Ṣaḍbala rūpas, the yogas and the conclusion lines. Its job is to make
+      those numbers <em>legible</em>: what a rūpa is and what the required minimum means, why <em>this</em> daśā is running
+      and how the balance at birth produced it, what an aṣṭakavarga bindu is counting, and <b>which classical rule</b>
+      (BPHS tr. Santhanam, Phaladīpikā tr. Sareen, Sārāvalī, Laghu Parāśarī) produced each interpretive line — and to say
+      so plainly when a statement cannot be tied to a cited rule.
+      <br><br>
+      <b>A second, independent system.</b> This reading is <b>compared</b> with the Western tropical chart, never merged:
+      the astronomy is identical, the zodiac and the methods are not. <b>The ayanāṁśa is a choice</b> — Lahiri is this
+      site's default, not the one true zodiac; <b>Rāman</b>, <b>KP</b> and <b>Fagan–Bradley</b> differ by degrees, which moves
+      cusps and can move a graha into a different sign. <b>Nothing here is advice.</b> The assistant will not prescribe
+      remedies (gemstones, mantras, pūjā, donations, fasting, or a muhūrta for a real decision), will not give medical,
+      legal, financial or marital guidance, will not time a death or predict a lifespan (the māraka material is described
+      as historical doctrine only), and will not tell you what <em>will</em> happen — it describes what the tradition
+      computes and claims. Where the sources genuinely disagree (yoga conditions, the three nīca-bhaṅga recensions, the
+      scope of kendrādhipati doṣa, varga conventions, combustion arcs) it shows <b>every position and resolves none</b>.
+      Jyotiṣa, like all astrology, has <b>no demonstrated predictive validity</b>.
+      <br><br>
+      <b>Bring your own key.</b> The model is called <b>directly from your browser with your own API key</b> — nothing is
+      proxied and no key is bundled. <b>No key, no calls:</b> with the field empty the panel simply sits there and every
+      button below still works offline. <b>Your birth data is never sent anywhere by this site itself</b> — it stays in
+      your browser (and in the shareable link you choose to copy); it leaves only if <em>you</em> press a send button, and
+      then only to the AI provider you picked, under your own account.</div>
+
+    <p class="small" style="margin:.2rem 0 .3rem"><b>Start here — the explain questions.</b> These only <b>fill the box</b>
+      below; nothing is sent and no key is needed to read or edit them.</p>
+    <div class="field-row" id="v-ai-chips">
+      <button type="button" class="btn sm" data-q="Explain my Ṣaḍbala numbers: what is a rūpa, how are the six balas summed, and what does the BPHS required minimum for each graha actually mean? Cite the rule.">✶ Explain my Ṣaḍbala numbers</button>
+      <button type="button" class="btn sm" data-q="Why is this Vimśottarī daśā running now? Walk me from the Moon's nakṣatra to the balance of the first mahādaśā at birth, and show how that arithmetic lands on today's mahā and antar lords. Cite the rule.">✶ Why is this daśā running now?</button>
+      <button type="button" class="btn sm" data-q="What do the Aṣṭakavarga bindus mean? What is each bindu counting, where does the Sarvāṣṭakavarga total of 337 come from, and what is the 28-per-sign average actually a baseline for? Cite the rule.">✶ What do the Aṣṭakavarga bindus mean?</button>
+      <button type="button" class="btn sm" data-q="Where does this sidereal chart disagree with the tropical Western one, and why? Name the ayanāṁśa and its value, say which placements move, and keep the two systems compared and never merged.">✶ Sidereal vs tropical — where do they differ?</button>
+      <button type="button" class="btn sm" data-q="Which classical rule produced each conclusion line in the reading above? For every line, name the rule and the edition, and say plainly if a line cannot be tied to a cited rule.">✶ Which rule produced each conclusion?</button>
+      <button type="button" class="btn sm" data-q="In what order would a Jyotiṣī actually read this chart? Take me through the canonical sequence — lagna and its lord, the kārakas, bhāva by bhāva, dignity, vargas, ṣaḍbala, aṣṭakavarga, then daśā — and say what each step is for.">✶ In what order is a chart read?</button>
+    </div>
+
+    <div id="dv-assistant"></div>
+  </section>
 
   <section class="card panel"><h2 style="margin-top:0">Worked example — reading a Vedic chart</h2>
     <p class="small">Take the default chart above (<b>15 May 1990, 12:00, London</b>). Here is how the tradition reads it,

@@ -15,9 +15,13 @@ const digClass = s => s === 'Exalted' || s === 'Own sign' || s === 'Mūlatriko�
 
 // Render the full sidereal reading for `chart` into `body`. opts.currentDate
 // selects the running daśā (the page/tool passes "now" for a birth chart).
+// RETURNS the castVedic() result `v` (or null when the cast failed) so a page
+// can hand the very same computed reading to the AI assistant panel WITHOUT
+// casting a second time — one cast, one reading, no drift between what is
+// drawn and what is explained.
 export function renderVedicPanel(body, chart, opts = {}) {
   let v;
-  try { v = castVedic(chart, opts); } catch (e) { body.innerHTML = `<p class="muted">Vedic computation failed: ${esc(e.message)}</p>`; return; }
+  try { v = castVedic(chart, opts); } catch (e) { body.innerHTML = `<p class="muted">Vedic computation failed: ${esc(e.message)}</p>`; return null; }
 
   const grahaRows = Object.entries(v.grahas).map(([p, g]) => `<tr>
     <td>${GL[p] || ''} ${esc(p)}</td>
@@ -125,6 +129,8 @@ export function renderVedicPanel(body, chart, opts = {}) {
   // imported + guarded: if V1's surfacing refactor is not present the panels
   // simply stay empty and the tables above remain the reading's text form.
   try { mountVedicRelations(body, v, chart); } catch { /* non-fatal */ }
+
+  return v;
 }
 
 // Aries…Pisces short labels for the compact navamsa line.

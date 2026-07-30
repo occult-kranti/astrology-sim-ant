@@ -24,7 +24,16 @@ function walk(d, o = []) {
 }
 const norm = p => '/' + String(p).replace(/^[./]+/, '').replace(/\\/g, '/');
 const pages = walk(process.cwd()).sort();
-const b = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+// CHROME_PATH (optional) pins the browser binary. Puppeteer normally resolves the
+// exact build it was published against; when the local cache holds a different one
+// (an ephemeral per-session install is common here) that lookup fails, and this is
+// the escape hatch. Unset → puppeteer's own resolution, exactly as before.
+const CHROME = process.env.CHROME_PATH || '';
+const b = await puppeteer.launch({
+  headless: 'new',
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  ...(CHROME ? { executablePath: CHROME } : {}),
+});
 let tot = 0;
 
 // ---------------------------------------------------------------------------
@@ -69,7 +78,7 @@ for (const rel of pages) {
 // are executed; prose drives are page-loaded (already covered above) and
 // counted as documented descriptors.
 // ---------------------------------------------------------------------------
-const MODULES = ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search', 'r29-vedic-course', 'r29-narrate', 'r29-thelemic', 'r30-buddhist-ui', 'r30-compare', 'r31-practices-ui', 'r31-dhammapada', 'r32-atlas-east', 'r32-east-ui'];
+const MODULES = ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search', 'r29-vedic-course', 'r29-narrate', 'r29-thelemic', 'r30-buddhist-ui', 'r30-compare', 'r31-practices-ui', 'r31-dhammapada', 'r32-atlas-east', 'r32-east-ui', 'r33-vedic-ai', 'r33-vedic-page'];
 const isStructured = d => (Array.isArray(d.actions) && d.actions.every(a => typeof a === 'object'))
   && (!d.asserts || d.asserts.every(a => typeof a === 'object'));
 

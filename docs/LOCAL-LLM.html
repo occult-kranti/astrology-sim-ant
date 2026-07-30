@@ -71,13 +71,51 @@
     <li><code>assets/js/core/registry.js</code> — the capability map the tool schema is derived from.</li>
   </ul>
 
-  <h2>The diviner — the same assistant on the oracle pages</h2>
-  <p>Each oracle page (<a href="../pages/geomancy.html">Geomancy</a>, <a href="../pages/tarot.html">Tarot</a>,
-    <a href="../pages/iching.html">I Ching</a>) carries an <b>“Ask the diviner”</b> panel built on the same transport
-    and the same key. It speaks in the voice of a learned historian of the Western esoteric tradition — vivid about the
-    figures, the cards and their rituals — yet it is held to the identical locked framing, and it is grounded in the
-    <b>computed cast</b> (the shield, the spread, the hexagram): it interprets what was actually drawn, never inventing
-    a figure or card. Every figure and card also carries a <b>✶ explain</b> chip that pre-fills a focused question.</p>
+  <h2>The diviner — the same assistant on the tool pages</h2>
+  <p>Many computed pages carry an <b>“Ask the diviner”</b> panel built on the same transport and the same key. It speaks
+    in the voice of a learned historian of the tradition in question — vivid about the figures, the cards and their
+    rituals — yet it is held to the identical locked framing, and it is grounded in the <b>computed result</b> (the
+    shield, the spread, the hexagram, the chart): it interprets what was actually drawn or cast, never inventing a
+    figure, a card or a placement. Most pages also give each figure a <b>✶ explain</b> chip that pre-fills a focused
+    question.</p>
+  <p>Each panel declares a <b>kind</b>, and each kind has its own grounded context builder, interpret prompt and JSON
+    data block in <code>core/llm-context.js</code>. The kinds shipped so far:</p>
+  <ul class="clean">
+    <li><b>Oracles</b> — <code>geomancy</code> (<a href="../pages/geomancy.html">Geomancy</a>),
+      <code>tarot</code> (<a href="../pages/tarot.html">Tarot</a>),
+      <code>iching</code> (<a href="../pages/iching.html">I Ching</a>),
+      <code>runes</code> (<a href="../pages/runes.html">Runes</a>).</li>
+    <li><b>Western computed readings</b> — <code>cycles</code> (<a href="../pages/cycles.html">Cycles</a>),
+      <code>timelords</code> (<a href="../pages/timelords.html">Time-lords</a>),
+      <code>jung</code> (<a href="../pages/jung/tool.html">the Jung tool</a>),
+      <code>confluence</code> (<a href="../pages/confluence.html">the influence atlas</a>).</li>
+    <li><b>Indian &amp; Perso-Arabic computed readings</b> — <code>prasna</code>
+      (<a href="../pages/prasna.html">Praśna</a>), <code>muhurta</code> (<a href="../pages/muhurta.html">Muhūrta</a>),
+      <code>tajika</code> (<a href="../pages/tajika.html">Tājika varṣaphala</a>),
+      <code>vedicyogas</code> (<a href="../pages/vedic/yogas.html">the yoga detector</a>),
+      <code>vedicdelineation</code> (<a href="../pages/vedic/delineation.html">the bhāva browser</a>), and
+      <code>vedic</code> (<a href="../pages/vedic/index.html">the sidereal reading</a>).</li>
+  </ul>
+
+  <h2>The <code>vedic</code> kind — explaining a sidereal reading</h2>
+  <p>The <a href="../pages/vedic/index.html">Vedic reading</a>'s panel is an <b>explainer, not a predictor</b>. It is
+    handed the very cast the page drew — the same <code>castVedic()</code> result, so the words on screen and the numbers
+    in the figure can never drift apart — and its system prompt is the site's largest: a <b>codebook</b> that teaches the
+    model the units before it is allowed to use them. A ṣaḍbala total is meaningless without its bar, so the model is
+    given both (1 rūpa = 60 virūpas; each graha's own required minimum, and the <em>ratio</em> is what gets quoted). An
+    aṣṭakavarga bindu is a tally of votes, not a measurement (0–8 per sign, SAV per-sign mean ≈28, grand total always
+    337). The Vimśottarī balance at birth is derived, not asserted.</p>
+  <p>Four framing rules are enforced by the round's test suite rather than by convention. The Vedic and Western charts
+    are <b>compared, never merged</b> — they are two rulebooks, and agreement between them is a coincidence of
+    conventions. The <b>ayanāṁśa is a choice</b>: Lahiri is this site's default, not the one true zodiac, and Rāman, KP
+    and Fagan–Bradley would each move the degrees; the context even flags <b>ayanāṁśa-fragile</b> placements (a graha
+    within 1.5° of a sign boundary, which another ayanāṁśa would push into the next sign and bhāva) so the model must say
+    so aloud. Every interpretive claim must <b>cite its rule</b> to a named edition, or say plainly that it cannot. And
+    the assistant <b>refuses</b> remedies (gemstones, mantras, pūjā, donations, fasting), medical/legal/financial/marital
+    questions, lifespan and death-timing (māraka is described as historical doctrine only), muhūrta for a real decision,
+    and “what is going to happen” — each refusal answering the question actually being asked instead. Your birth data is
+    never sent anywhere by this site itself; it leaves your browser only if you press send, and then only to the provider
+    whose key you pasted.</p>
 
   <h2>The local-model option (currently disabled)</h2>
   <p>The codebase also contains an <b>offline</b> path — a local model via <a href="https://ollama.com" rel="noopener">Ollama</a>

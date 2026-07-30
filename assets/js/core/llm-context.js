@@ -824,6 +824,30 @@ export function buildOperationPrompt(reading, request, opts = {}) {
 }
 
 // ---------------------------------------------------------------------------
+//  slimVedic — THE ONE flattener for a castVedic() result. Shared by the
+//  agentic tool layer (runTool → castVedic / vedicPractice) and by
+//  vedicDataBlock() below, so the model always meets the sidereal reading in a
+//  single shape. Defensive: a missing limb yields null instead of throwing; for
+//  a well-formed castVedic() result the output is unchanged.
+// ---------------------------------------------------------------------------
+function slimVedic(v) {
+  if (!v) return null;
+  const nk = n => (n ? `${n.name} p${n.pada}` : null);
+  const pa = v.panchanga || {}, dz = v.vimshottari || {}, av = v.ashtakavarga || {}, sb = v.shadbala || {};
+  return {
+    system: 'vedic (sidereal / Jagannath Hora)', ayanamsa: v.ayanamsa,
+    lagna: v.lagna ? `${v.lagna.label} (lord ${v.lagna.lord})` : null,
+    grahas: Object.fromEntries(Object.entries(v.grahas || {}).map(([k, g]) => [k, { position: g.label, bhava: g.house, nakshatra: nk(g.nakshatra), dignity: g.dignity && g.dignity.state }])),
+    panchanga: { tithi: pa.tithi && pa.tithi.name, vara: pa.vara && pa.vara.name, nakshatra: pa.nakshatra && pa.nakshatra.name, yoga: pa.yoga && pa.yoga.name, karana: pa.karana && pa.karana.name },
+    dasha: { maha: dz.currentMaha == null ? null : dz.currentMaha, antar: dz.currentAntar == null ? null : dz.currentAntar, balanceYears: dz.balanceYears == null ? null : dz.balanceYears },
+    yogas: (v.yogas || []).filter(y => y.present).map(y => y.name),
+    sarvashtakavarga: { total: av.savTotal == null ? null : av.savTotal, bySign: av.sav || null },
+    shadbala: { strongest: sb.strongest || null, weakest: sb.weakest || null, order: sb.order || null, rupas: Object.fromEntries(Object.entries(sb.perGraha || {}).map(([k, s]) => [k, s.totalRupa])) },
+    note: 'A SEPARATE sidereal system from the Western chart; do not conflate the two zodiacs.',
+  };
+}
+
+// ---------------------------------------------------------------------------
 //  runTool — execute an engine function for a tool call. `ctx` may carry the
 //  page's current { chart, birthChart, lat, lon } so tools that need a chart can
 //  use it without the model re-supplying everything. Returns plain JSON; THROWS
@@ -847,17 +871,7 @@ export function runTool(name, args = {}, ctx = {}) {
     gating: e.gating, reasons: e.reasons.slice(0, 8).map(r => ({ severity: r.severity, text: r.text, cite: r.cite })),
     moon: { sign: e.moon.sign, phase: e.moon.phase, mansion: e.moon.mansion, voidOfCourse: e.moon.voidOfCourse },
   });
-  const slimVedic = v => ({
-    system: 'vedic (sidereal / Jagannath Hora)', ayanamsa: v.ayanamsa,
-    lagna: `${v.lagna.label} (lord ${v.lagna.lord})`,
-    grahas: Object.fromEntries(Object.entries(v.grahas).map(([k, g]) => [k, { position: g.label, bhava: g.house, nakshatra: `${g.nakshatra.name} p${g.nakshatra.pada}`, dignity: g.dignity.state }])),
-    panchanga: { tithi: v.panchanga.tithi.name, vara: v.panchanga.vara.name, nakshatra: v.panchanga.nakshatra.name, yoga: v.panchanga.yoga.name, karana: v.panchanga.karana.name },
-    dasha: { maha: v.vimshottari.currentMaha, antar: v.vimshottari.currentAntar, balanceYears: v.vimshottari.balanceYears },
-    yogas: v.yogas.filter(y => y.present).map(y => y.name),
-    sarvashtakavarga: { total: v.ashtakavarga.savTotal, bySign: v.ashtakavarga.sav },
-    shadbala: { strongest: v.shadbala.strongest, weakest: v.shadbala.weakest, order: v.shadbala.order, rupas: Object.fromEntries(Object.entries(v.shadbala.perGraha).map(([k, s]) => [k, s.totalRupa])) },
-    note: 'A SEPARATE sidereal system from the Western chart; do not conflate the two zodiacs.',
-  });
+  // (slimVedic is the shared module-level flattener defined above.)
   // Stamp every ORCHESTRATOR tool result with its citation + the honest caveat.
   const withCite = (obj, cite) => ({ ...obj, citation: cite || '', caveat: TOOL_CAVEAT });
   const safeLots = chart => { try { return (computeLots(chart).lots) || []; } catch { return []; } };
@@ -1682,6 +1696,374 @@ export function vedicDelineationDataBlock(x) {
     contradictionNote: x.contradictionNote || null, sensitiveNote: x.sensitiveNote || null,
   };
   return '\n\nCOMPUTED DELINEATION (JSON — interpret THESE two witnesses, never merge, never invent):\n' + JSON.stringify(dig);
+}
+
+// ===========================================================================
+//  THE WHOLE SIDEREAL READING — pages/vedic/index.html (kind 'vedic').
+//  x = currentVedicReport() (app/vedic.js) = { v, chart, moment, conclusions },
+//  where v = castVedic().
+//
+//  THE MISSION IS EXPLANATION, NOT PROPHECY. The Vedic page computes the densest
+//  output on the site (Lagna & nine grahas by bhāva + nakṣatra, pañcāṅga,
+//  Vimśottarī, sixteen vargas, Sarvāṣṭakavarga, six-fold Ṣaḍbala, yogas,
+//  conclusions) and every one of those numbers is opaque without its unit and
+//  its threshold. This codebook exists to make the reading LEGIBLE: what a rūpa
+//  IS and what its per-graha minimum means, why THIS daśā is running and how the
+//  balance-at-birth produced it, what a bindu counts, which classical rule
+//  generated each conclusion line, the order in which a Jyotiṣī reads a chart,
+//  and how the sidereal placements differ from the tropical ones BY DESIGN.
+// ===========================================================================
+
+// (1,2,6) The honest frame — stated ONCE, crisply, up front.
+const VEDIC_FRAME =
+  '\n\nTHE FRAME FOR THIS READING — state each of these once, plainly, at the top, and then get on with the work:\n' +
+  '• NO DEMONSTRATED VALIDITY. Jyotiṣa, like every astrology, has no demonstrated predictive validity. Say it once, ' +
+  'without apology and without hedging — then do NOT repeat it in every paragraph. The astronomy below is real and ' +
+  'checkable; the meanings are the tradition’s.\n' +
+  '• A SECOND, INDEPENDENT SYSTEM. This sidereal reading is COMPARED with the Western (tropical) chart the rest of ' +
+  'this site computes — never merged with it. The astronomy is identical; the ZODIAC (tropical − ayanāṁśa) and the ' +
+  'METHODS differ (whole-sign bhāvas, nakṣatras, daśās, vargas, aṣṭakavarga, ṣaḍbala). Never blend a Western verdict ' +
+  'and a Jyotiṣa verdict into one pronouncement.\n' +
+  '• THE AYANĀṀŚA IS A CHOICE, NOT A FACT. This site computes the Lahiri (Citrāpakṣa) ayanāṁśa because it is the ' +
+  'Indian government standard and the historic Jagannath Hora default — NOT because it is the one true zodiac. ' +
+  'Fagan–Bradley runs roughly 0.9° larger, Rāman roughly 1.4° smaller, K. S. Krishnamurti’s about 5′ smaller ' +
+  '(approximate offsets — only Lahiri is computed here). Those degrees move sign, bhāva and nakṣatra boundaries, and ' +
+  'a graha sitting within about a degree of a boundary can change SIGN outright under another ayanāṁśa. Where the ' +
+  'facts flag such a placement, say so. Never present the sidereal frame as objectively correct.';
+
+// The units-and-thresholds key: the numbers are meaningless until named.
+const VEDIC_UNITS =
+  '\n\nUNITS & THRESHOLDS — no figure in this reading may be quoted without its unit and its threshold:\n' +
+  '• ṢAḌBALA is reported in RŪPAS. One rūpa = 60 virūpas. The six balas (Sthāna positional, Dig directional, Kāla ' +
+  'temporal, Ceṣṭā motional, Naisargika natural, Dṛk aspectual) are summed in virūpas and divided by 60. Each graha ' +
+  'has its OWN classical minimum (BPHS ch. 27, vv. 48–49) — as this engine implements them: Sun 6.5, Moon 6, Mars 5, ' +
+  'Mercury 7, Jupiter 6.5, Venus 5.5, Saturn 5 rūpas. So 6.2 rūpas clears Mars’s bar and fails Mercury’s. ALWAYS ' +
+  'quote the RATIO (total ÷ required) beside the total: above 1 the graha clears its own bar, below 1 it does not. ' +
+  'The transmitted tables differ between editions, so use the `required` value carried in the facts, never a ' +
+  'remembered one. Iṣṭa (benefic yield) and Kaṣṭa (its difficult counterpart) are a separate 0–60 pair derived from ' +
+  'the uccha and ceṣṭā components — they are NOT part of the rūpa total.\n' +
+  '• AṢṬAKAVARGA counts BINDUS (benefic points), a tally of votes and not a measured quantity. In a graha’s ' +
+  'Bhinnāṣṭakavarga (BAV) each of the twelve signs scores 0–8: eight contributors (the seven grahas plus the Lagna) ' +
+  'each either give that sign a point or do not. The Sarvāṣṭakavarga (SAV) sums the seven BAVs, so a sign scores ' +
+  'roughly 0–56 and the twelve signs ALWAYS total 337 — a checksum on the arithmetic, not a judgement. The per-sign ' +
+  'mean is therefore about 28: above 28 is what the tradition calls a well-supported sign, below 28 a thin one. Read ' +
+  'the SAV by BHĀVA (counting from the Lagna’s sign) to say which life-areas the count supports.\n' +
+  '• VIMŚOTTARĪ DAŚĀ is a 120-year cycle in a fixed order and fixed spans: Ketu 7, Venus 20, Sun 6, Moon 10, Mars 7, ' +
+  'Rāhu 18, Jupiter 16, Saturn 19, Mercury 17 years. The cycle does NOT begin at its start. The birth Moon’s ' +
+  'nakṣatra picks the opening lord, and the FRACTION of that 13°20′ nakṣatra the Moon had already traversed is the ' +
+  'fraction of that lord’s period already spent; what remains is the BALANCE AT BIRTH. A Moon 30% of the way through ' +
+  'a Venus nakṣatra therefore opens life with 70% of 20 years = 14 years of Venus mahādaśā, and every later period ' +
+  'follows mechanically from that one arithmetic fact. The antardaśā (sub-period) divides the mahā in the same fixed ' +
+  'proportions. Explaining WHY this period is running means retracing exactly that: Moon → nakṣatra → fraction → ' +
+  'balance → the chain. It is arithmetic on the birth Moon, not a judgement about anything.\n' +
+  '• DIGNITY (the Parāśarī ladder) is coarse and categorical, not a score: Exalted, Mūlatrikoṇa, Own sign, Neutral, ' +
+  'Debilitated — decided by which sign a graha occupies (and, for exaltation, which degree). It is ONE input to ' +
+  'Sthāna-bala, never a verdict on its own. Avasthās (the graha’s "states") are a further descriptive layer.\n' +
+  '• AYANĀṀŚA is in DEGREES: sidereal longitude = tropical longitude − ayanāṁśa. It is about 24° now and grows some ' +
+  '50″ a year by precession. Subtracting it slides nearly every placement about 24° back, which is why a Sun the ' +
+  'Western chart calls Gemini this reading usually calls Taurus. That disagreement is the DESIGN, not an error in ' +
+  'either system.\n' +
+  '• VARGAS are Dn divisional charts: each sign is cut into n parts and re-mapped (D9 navāṁśa for marriage, dharma ' +
+  'and a graha’s inner strength; D10 daśāṁśa for work). A varga sign is a RE-MAPPING of the same longitude, never a ' +
+  'new observation — and the cutting conventions themselves are contested (see below).';
+
+// The canonical sequence a Jyotiṣī reads in.
+const VEDIC_ORDER =
+  '\n\nTHE READING ORDER — walk the chart in THIS sequence, the order a Jyotiṣī uses. Do not free-associate:\n' +
+  '1. THE LAGNA AND ITS LORD — the rising sidereal sign, its nakṣatra and pada, and where its lord sits by bhāva and ' +
+  'by dignity. Everything after this is read from here.\n' +
+  '2. THE MOON AND ITS NAKṢATRA — the mind (manas): the mansion, its lord and its devatā, and the fact that this ' +
+  'single placement seeds the whole daśā sequence.\n' +
+  '3. THE PAÑCĀṄGA — the five limbs of the day (tithi, vāra, nakṣatra, yoga, karaṇa): the day-quality of the moment.\n' +
+  '4. THE GRAHAS BY BHĀVA — each with its sign, nakṣatra, dignity, retrogression and kāraka-ship. The placements ' +
+  'themselves, before any interpretation.\n' +
+  '5. THE YOGAS PRESENT — the named combinations the texts single out, with the literal conditions that fired them.\n' +
+  '6. STRENGTH (ṢAḌBALA) — who clears their own bar and who does not, in rūpas WITH the ratio, and which of the six ' +
+  'components carried or sank each figure.\n' +
+  '7. THE PROMISE CROSS-CHECKED IN THE VARGAS — chiefly D9: a graha strong in the rāśi chart but fallen in navāṁśa is ' +
+  'the classic caution, and the reverse (vargottama) the classic support.\n' +
+  '8. THE TIMING LAYER — the running mahādaśā and antardaśā, and the balance-at-birth arithmetic that produced them.\n' +
+  '9. THE SAV — which signs, and so which bhāvas from the Lagna, the bindu count supports and which it leaves thin.\n' +
+  'THEN the conclusions — each line tied to the rule that generated it.';
+
+// (4) The citation contract.
+const VEDIC_CITE_RULE =
+  '\n\nCITE THE RULE. Every interpretive statement names the classical rule AND the edition behind it — Bṛhat Parāśara ' +
+  'Horā Śāstra (tr. R. Santhanam) by chapter and verse where the facts supply one; Phaladīpikā of Mantreśvara ' +
+  '(tr. Sareen / Sastri); Sārāvalī of Kalyāṇavarman (tr. Santhanam 1983); Laghu Parāśarī for the kendra/trikoṇa ' +
+  'lordship doctrine. The numbered facts below carry their own citations — quote them. If a statement cannot be tied ' +
+  'to a cited rule in the facts or to a named text, SAY SO ("the texts I can cite here do not settle this") rather ' +
+  'than asserting it. A confident sentence with no rule behind it is the one thing this assistant may never produce.';
+
+// (5) The contested ledger.
+const VEDIC_CONTESTED =
+  '\n\nCONTESTED STAYS CONTESTED. Where the tradition disagrees, surface EVERY position and resolve NONE. The live ' +
+  'disagreements this reading can raise:\n' +
+  '• Yoga conditions — Gaja-Kesarī in its bare form (Jupiter in a kendra from the Moon) against the conditioned form ' +
+  'the later texts demand; the pañca-mahāpuruṣa yogas’ eligibility; Kemadruma’s long and disputed cancellation lists.\n' +
+  '• Nīca-bhaṅga (cancelled debilitation) — BPHS 39.19–28, Phaladīpikā 7.26–30 (the dispositor in a kendra) and ' +
+  'Jātaka Pārijāta each give a DIFFERENT condition set. Three recensions, no winner.\n' +
+  '• Kendrādhipati doṣa — whether, and how far, the natural benefics are spoiled by angular lordship; Laghu ' +
+  'Parāśarī’s scope is read narrowly by some commentators and broadly by others.\n' +
+  '• Varga conventions — how the odd/even and Parāśara/Rāman schemes cut D30 and the higher vargas. Jagannath Hora’s ' +
+  'defaults, which this engine follows, are ONE choice among several.\n' +
+  '• Combustion (asta) arcs — the orb at which a graha is "burnt" differs by text and by graha, and some authorities ' +
+  'give a retrograde graha a different arc entirely.\n' +
+  '• Kāla-sarpa — a modern doctrine with no classical locus. If it comes up, name it as modern.\n' +
+  '• The ayanāṁśa itself — the deepest disagreement of all, and the one that can move a placement between signs.\n' +
+  'Where the ENGINE has declared a simplification of its own (they are in the facts), report it as the site’s ' +
+  'limitation, distinct from the tradition’s own disputes.';
+
+// (3) The refusals — short, in-voice redirections, never a legal notice.
+const VEDIC_REFUSALS =
+  '\n\nWHAT THIS ASSISTANT DOES NOT DO. Refuse briefly, in voice, and redirect to what it CAN explain. No lectures, no ' +
+  'boilerplate, no repeated disclaimers:\n' +
+  '• REMEDIES. The tradition carries a whole remedial logic — a gemstone keyed to a graha, a bīja mantra with a japa ' +
+  'count, a vrata on the graha’s vāra, dāna (donation) of its substances, a yantra. This site DESCRIBES that logic ' +
+  'and does not prescribe it. Asked for a remedy, explain what the remedial reasoning IS, name which graha the texts ' +
+  'would have singled out in this chart and why (usually the weakest by Ṣaḍbala), and offer to walk the arithmetic ' +
+  'that named it. Do not instruct anyone to obtain, don, chant, fast or donate anything.\n' +
+  '• MEDICAL, LEGAL, FINANCIAL OR MARITAL DECISIONS. Say plainly that a chart is no source of such counsel; name the ' +
+  'bhāva and kāraka the tradition reads for that topic; explain what the texts claim about them — and stop there.\n' +
+  '• LIFESPAN AND DEATH. The māraka doctrine (the 2nd and 7th lords as "killers") and the āyurdāya lifespan schemes ' +
+  'are described as HISTORICAL DOCTRINE ONLY. Never time a death, never estimate a lifespan, never read a period as ' +
+  'dangerous to a life. Asked, say the site does not compute it and describe what the texts claimed instead.\n' +
+  '• MUHŪRTA FOR A REAL DECISION. Explain how the electional tradition reasons; do not pick a date for an actual ' +
+  'event in anyone’s life.\n' +
+  '• WHAT IS GOING TO HAPPEN. There is no answer to this. Redirect to what the texts SAY about the placement or the ' +
+  'period, and to what the engine actually computed.\n' +
+  'In every case the redirection is generous: refuse the prescription, then give the explanation that was really ' +
+  'being asked for.';
+
+// (1) The compare-never-merge clause, restated as a working instruction.
+const VEDIC_COMPARE =
+  '\n\nCOMPARE, NEVER MERGE. If the user brings a Western or tropical reading (this site computes one), set the two ' +
+  'side by side: what each system says, out of which rulebook, and exactly WHERE they disagree BY DESIGN — the ~24° ' +
+  'ayanāṁśa shift that moves signs, whole-sign bhāvas against quadrant houses, nakṣatras against the Picatrix lunar ' +
+  'mansions, daśās against profections or firdāria. Never average them, never pick a winner, never issue a blended ' +
+  'verdict. Two rulebooks read the same real sky; where they agree that is a coincidence of construction, not ' +
+  'corroboration.';
+
+const VEDIC_SPEECH =
+  '\n\nHOW TO SPEAK: plain English first, the Sanskrit term in parenthesis after — "the rising sign (Lagna)", "the ' +
+  'six-fold strength (Ṣaḍbala)". Give every number its unit and its threshold in the same breath. Explain the ' +
+  'MECHANISM before the meaning. Prefer "the tradition reads this as…" over any sentence whose subject is a real ' +
+  'person and whose verb is in the future tense.';
+
+const VEDIC_CODEBOOK = JYOTISHI_PREAMBLE + VEDIC_FRAME + VEDIC_UNITS + VEDIC_ORDER +
+  VEDIC_CITE_RULE + VEDIC_CONTESTED + VEDIC_REFUSALS + VEDIC_COMPARE + VEDIC_SPEECH;
+
+const VEDIC_GLOSS_CATS = ['Jyotiṣa', 'Vedic (Jyotiṣa)'];
+const V_RASHI = RASHI_NAMES;
+const nk1 = n => (n ? `${n.name} pada ${n.pada}` : '—');
+const ord12 = n => ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'][n] || `${n}th`;
+
+export function buildVedicContext(x, opts = {}) {
+  const max = opts.maxFacts ?? 120;
+  // `spine` marks a fact the interpret prompt REQUIRES. See the budget note on
+  // done() below: a plain slice() would drop exactly these.
+  const facts = []; const add = (t, c, spine) => t && facts.push({ text: t, cite: c || '', spine: !!spine });
+  const glossary = divinationGlossary(VEDIC_GLOSS_CATS).slice(0, opts.maxGlossary ?? 99);
+  // ---- BUDGET-AWARE TRIM ---------------------------------------------------
+  // This is the densest reading on the site (45 facts for an ordinary chart) and
+  // the facts are pushed in READING ORDER, so every number the codebook exists to
+  // explain — the ṣaḍbala ranking, the balance at birth and the running daśā, the
+  // SAV, the D9 — sits at the TAIL, behind nine per-graha placement rows.
+  // A plain facts.slice(0, max) therefore decapitated the reading on the site's
+  // DEFAULT provider: the free tiers send maxFacts 14 (an ad-hoc question) or 22
+  // (Interpret), and at 14 not one rūpa, bindu, daśā or conclusion survived — while
+  // buildVedicInterpretPrompt() still commanded §7 Ṣaḍbala, §9 the timing layer and
+  // §10 the Aṣṭakavarga, and the free path sends no JSON data block either. The
+  // prompt was demanding numbers the model had never been shown, against a codebook
+  // whose one hard rule is "never invent a position, a bindu, a rūpa or a verse".
+  // So: keep the spine first (12 summary rows, always < any real budget), then fill
+  // with the rest in reading order. Per-graha ṣaḍbala detail and the conclusion
+  // lines fill in as the budget allows; a paid provider takes all 45 plus the JSON.
+  const done = () => {
+    let kept = facts;
+    if (facts.length > max) {
+      const keep = new Set(facts.filter(f => f.spine).slice(0, max));
+      for (const f of facts) { if (keep.size >= max) break; keep.add(f); }
+      kept = facts.filter(f => keep.has(f));
+    }
+    const trimmed = kept.map(f => ({ text: f.text, cite: f.cite }));
+    return { system: assembleSystem(trimmed, glossary, 'SIDEREAL READING', VEDIC_CODEBOOK), facts: trimmed, glossary };
+  };
+  const v = x && x.v;
+  if (!v) return done();
+  const m = x.moment || {}, g = v.grahas || {}, sb = v.shadbala || {}, av = v.ashtakavarga || {}, dz = v.vimshottari || {}, pa = v.panchanga || {};
+
+  // --- the moment, the frame, the ayanāṁśa ---------------------------------
+  add(`The sidereal chart, cast for ${String(m.dateISO || '').replace('T', ' ').slice(0, 16)}${m.offset != null ? ` (UTC${Number(m.offset) >= 0 ? '+' : ''}${m.offset})` : ''}${m.place ? ` at ${m.place}` : ''}${m.lat != null ? `, lat ${m.lat}°, lon ${m.lon}°` : ''}; whole-sign bhāvas; Rāhu/Ketu from the mean node.`, 'castVedic — modelled on Jagannath Hora (P.V.R. Narasimha Rao)', true);
+  add(`Ayanāṁśa: ${v.ayanamsaName || 'Lahiri (Citrāpakṣa)'} = ${v.ayanamsa}°. Every sidereal longitude below is the tropical longitude MINUS this figure. The ayanāṁśa is a CHOICE of zodiac, not a measurement of truth: Fagan–Bradley would run ≈0.9° larger, Rāman ≈1.4° smaller, K.P. ≈5′ smaller, and those degrees can move a graha into the neighbouring sign.`, 'Lahiri = the Indian government standard & the historic JHora default; the alternatives are named, not computed here', true);
+  add('This reading is a SECOND, INDEPENDENT system to set beside the Western (tropical) chart the rest of this site computes — compared, never merged. Identical astronomy; a different zodiac and a different method.', 'the site’s standing rule', true);
+
+  // --- 1. Lagna & its lord --------------------------------------------------
+  if (v.lagna) {
+    const L = v.lagna;
+    add(`THE LAGNA: ${L.label} — ${L.rashi} (${L.sanskrit}), lord ${L.lord}; rising in nakṣatra ${nk1(L.nakshatra)}${L.nakshatra ? ` (lord ${L.nakshatra.lord}, devatā ${L.nakshatra.deity})` : ''}. The whole sign is the 1st bhāva and every other bhāva counts on from it.`, 'BPHS — the Lagna as the chart’s foundation', true);
+    const lr = g[L.lord];
+    if (lr) add(`The LAGNA LORD ${L.lord} sits in the ${ord12(lr.house)} bhāva, in ${lr.rashi}, nakṣatra ${nk1(lr.nakshatra)}, dignity ${lr.dignity && lr.dignity.state}${lr.retrograde ? ', retrograde' : ''} — the bhāva the tradition reads as the life’s main emphasis.`, 'BPHS — the Lagna lord’s bhāva colours the whole chart');
+  }
+  // --- 2. the Moon & its nakṣatra ------------------------------------------
+  if (g.Moon) {
+    const mo = g.Moon;
+    add(`THE MOON (kāraka of the mind, manas): ${mo.label}, ${ord12(mo.house)} bhāva, nakṣatra ${nk1(mo.nakshatra)}${mo.nakshatra ? ` — lord ${mo.nakshatra.lord}, devatā ${mo.nakshatra.deity}, ${(mo.nakshatra.fraction * 100).toFixed(1)}% of that 13°20′ mansion already traversed at birth` : ''}, dignity ${mo.dignity && mo.dignity.state}. This one placement seeds the entire Vimśottarī sequence.`, 'BPHS — the Moon as manas; the nakṣatra seeds the daśā', true);
+  }
+  // --- 3. the pañcāṅga ------------------------------------------------------
+  if (pa.tithi) add(`PAÑCĀṄGA (the five limbs of the day): tithi ${pa.tithi.name} #${pa.tithi.num} (${pa.tithi.paksha}); vāra ${pa.vara.name} (lord ${pa.vara.lord}); nakṣatra ${pa.nakshatra.name}; yoga ${pa.yoga.name} (#${pa.yoga.num}); karaṇa ${pa.karana.name}. The tithi is Moon−Sun elongation in 12° steps; the pañcāṅga yoga is their SUM in 13°20′ steps — a different quantity from a planetary yoga, despite the shared word.`, 'Classical pañcāṅga; the civil weekday is used for the vāra (the Vedic vāra begins at sunrise — a declared simplification)');
+  // --- 4. the grahas by bhāva ----------------------------------------------
+  for (const p of ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu']) {
+    const gr = g[p]; if (!gr) continue;
+    add(`${p} (${gr.sanskrit || p}): ${gr.label}, ${ord12(gr.house)} bhāva, nakṣatra ${nk1(gr.nakshatra)}, dignity ${gr.dignity && gr.dignity.state}${gr.retrograde && p !== 'Rahu' && p !== 'Ketu' ? ', retrograde' : ''}${p === 'Rahu' || p === 'Ketu' ? ' (the nodes are always reckoned retrograde)' : ''}; natural kāraka of ${gr.karaka}.`, 'BPHS — grahas, bhāvas & Parāśarī dignity');
+  }
+  // ayanāṁśa-fragile placements: a boundary this close moves under another ayanāṁśa
+  const fragile = [];
+  for (const p of Object.keys(g)) {
+    const gr = g[p]; if (gr.deg == null) continue;
+    const margin = Math.min(gr.deg, 30 - gr.deg);
+    if (margin <= 1.5) fragile.push(`${p} (${margin.toFixed(2)}° from a sign boundary)`);
+  }
+  add(fragile.length
+    ? `AYANĀṀŚA-FRAGILE placements — within 1.5° of a sign boundary, so a different ayanāṁśa (Fagan–Bradley ≈+0.9°, Rāman ≈−1.4°) could move them into the neighbouring sign and change their bhāva: ${fragile.join(', ')}. Flag this when reading them.`
+    : 'No graha lies within 1.5° of a sign boundary, so the ordinary ayanāṁśa disagreements (Fagan–Bradley ≈+0.9°, Rāman ≈−1.4°) would not move any of these placements between signs — though they still shift nakṣatra and pada boundaries.',
+    'computed from the sidereal degrees; the alternative ayanāṁśas are named, not computed');
+  // --- 5. the yogas ---------------------------------------------------------
+  const yp = (v.yogas || []).filter(y => y.present), yn = (v.yogas || []).filter(y => !y.present);
+  add(yp.length ? `YOGAS PRESENT (of the four this engine checks): ${yp.map(y => `${y.name} — ${y.detail}`).join('; ')}.` : 'YOGAS: none of the four combinations this engine checks (Gajakesarī, Budha-Āditya, Candra-Maṅgala, Kemadruma) is formed here.', 'BPHS — named planetary combinations. The dedicated yoga tool tests the far larger rule-set and shows contested ones unresolved', true);
+  if (yn.length) add(`Checked and NOT formed: ${yn.map(y => y.name).join(', ')}. This engine tests only four; absence here is not absence in the tradition.`, 'the engine’s declared scope');
+  // --- 6. strength (Ṣaḍbala) ------------------------------------------------
+  if (sb.perGraha) {
+    // The header carries the TRIPLES (total / required → ratio), not merely the
+    // ranking: it is a spine fact, so on a lean budget it may be the only ṣaḍbala
+    // fact present, and the prompt's §7 requires total, required and ratio quoted
+    // together. The per-graha rows below add the six components for bigger budgets.
+    const triples = (sb.order || Object.keys(sb.perGraha)).map(p => { const s = sb.perGraha[p]; return s ? `${p} ${s.totalRupa}/${s.required}→${s.ratio}${s.strong ? '' : ' (below its bar)'}` : ''; }).filter(Boolean).join(', ');
+    add(`ṢAḌBALA (six-fold strength, in rūpas; 1 rūpa = 60 virūpas). Ranking strongest→weakest by ratio: ${(sb.order || []).join(' > ')}. Strongest ${sb.strongest}; weakest ${sb.weakest}. Totals as rūpas/required→ratio: ${triples}.`, sb.note ? 'BPHS Ch.27 — Ṣaḍbala (engine simplifications declared below)' : 'BPHS Ch.27', true);
+    for (const p of (sb.order || Object.keys(sb.perGraha))) {
+      const s = sb.perGraha[p]; if (!s) continue;
+      add(`${p} Ṣaḍbala: ${s.totalRupa} rūpas against a required ${s.required} → ratio ${s.ratio}, so it ${s.strong ? 'CLEARS' : 'does NOT clear'} its own classical bar. Components (virūpas): Sthāna ${s.sthana && s.sthana.total}, Dig ${s.dig}, Kāla ${s.kala && s.kala.total}, Ceṣṭā ${s.cheshta}, Naisargika ${s.naisargika}, Dṛk ${s.drik}. Iṣṭa ${s.ishta} vs Kaṣṭa ${s.kashta} (a separate 0–60 pair, not part of the rūpa total).`, 'BPHS Ch.27.48–49 — the per-graha required minimums');
+    }
+    if (sb.timeLords) add(`Ṣaḍbala time-lords used for Kāla-bala: year ${sb.timeLords.yearLord}, month ${sb.timeLords.monthLord}, vāra ${sb.timeLords.varaLord}, hora ${sb.timeLords.horaLord || '—'}, tribhāga ${sb.timeLords.tribhagaLord || '—'}.`, 'BPHS Ch.27 — Kāla-bala');
+    if (sb.note) add(`Declared engine simplifications inside Ṣaḍbala: ${sb.note}`, 'the site’s own limitation, stated as such — distinct from any disagreement in the tradition');
+  }
+  // --- 7. the vargas --------------------------------------------------------
+  if (v.vargas && v.vargas.D9) {
+    const d9 = v.vargas.D9;
+    add(`NAVĀṀŚA (D9) — the same longitudes re-mapped in ninths, read for marriage, dharma and a graha’s inner strength: Lagna in ${V_RASHI[d9.lagna]}; ${['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'].map(p => `${p} ${V_RASHI[d9[p]]}`).join(', ')}. A graha strong in the rāśi chart but fallen in D9 is the classic caution; one in the SAME sign in both is vargottama.`, 'BPHS — the vargas; JHora’s cutting conventions (one choice among several)', true);
+    if (v.vargas.D10) add(`DAŚĀṀŚA (D10), read for work and station: Lagna in ${V_RASHI[v.vargas.D10.lagna]}; ${['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'].map(p => `${p} ${V_RASHI[v.vargas.D10[p]]}`).join(', ')}.`, 'BPHS — the vargas');
+  }
+  // --- 8. the timing layer --------------------------------------------------
+  if (dz.currentMaha) {
+    const nkm = dz.nakshatra;
+    add(`VIMŚOTTARĪ — THE BALANCE AT BIRTH: the Moon lay in ${nkm ? nkm.name : '—'} (lord ${nkm ? nkm.lord : '—'}), ${nkm ? (nkm.fraction * 100).toFixed(1) : '?'}% of that 13°20′ mansion already traversed. The cycle therefore opened on ${dz.startLord}, with ${dz.balanceYears} years of its mahādaśā still unspent — the traversed fraction is the fraction of the period already gone. THAT one figure fixes every period boundary that follows.`, 'BPHS — Vimśottarī: 120 years, Ketu 7 … Mercury 17', true);
+    add(`RUNNING PERIOD: ${dz.currentMaha} mahādaśā${dz.currentAntar ? ` / ${dz.currentAntar} antardaśā` : ''}. Sequence from birth: ${(dz.maha || []).map(mm => `${mm.lord} ${mm.years}yr${mm.current ? ' ←running' : ''}`).join(' → ')}.`, 'BPHS — Vimśottarī; pure arithmetic on the birth Moon', true);
+    const nxt = (dz.antardashas || []).filter(a => a.current);
+    if (nxt.length) add(`The antardaśās of the running ${dz.currentMaha} mahā divide it in the same fixed 120-year proportions; the current sub-lord is ${dz.currentAntar}.`, 'BPHS — antardaśā apportionment');
+  }
+  // --- 9. the Aṣṭakavarga ---------------------------------------------------
+  if (av.sav) {
+    const sav = av.sav, hi = Math.max(...sav), lo = Math.min(...sav);
+    add(`SARVĀṢṬAKAVARGA (bindus, 0–8 per sign per graha in the BAVs, summed across seven grahas): ${sav.map((b, i) => `${V_RASHI[i]} ${b}`).join(', ')}. Grand total ${av.savTotal} (the checksum is always 337); the per-sign mean is ~28. Best-supported sign ${V_RASHI[sav.indexOf(hi)]} (${hi}); thinnest ${V_RASHI[sav.indexOf(lo)]} (${lo}).`, 'BPHS Ch.66–67 — Aṣṭakavarga', true);
+    if (v.lagna) {
+      const byB = [];
+      for (let n = 1; n <= 12; n++) byB.push(`${ord12(n)} ${sav[(v.lagna.rashiIndex + n - 1) % 12]}`);
+      add(`SAV counted BY BHĀVA from the Lagna (this is how it is read for life-areas): ${byB.join(', ')}. Above ~28 the tradition calls the bhāva supported; below, thin.`, 'BPHS Ch.66–67 — the SAV graded per bhāva', true);
+    }
+  }
+  // --- the computed conclusions, each with the rule that made it -----------
+  const cc = (x && x.conclusions) || v.conclusions;
+  if (cc && Array.isArray(cc.sections)) {
+    for (const s of cc.sections) add(`CONCLUSION — ${s.title}: ${s.text}`, 'buildVedicConclusions — a deterministic summary; the rule it applied is named inside the sentence');
+    if (cc.conclusion) add(`CONCLUSION — the whole: ${cc.conclusion}`, 'buildVedicConclusions — the site’s own closing, honest frame included');
+  }
+  // --- the engine's declared limits ----------------------------------------
+  if (v.notes) add(`Engine notes & declared simplifications: ${v.notes}`, 'stated as the site’s limitation, not the tradition’s');
+  if (Array.isArray(v.citations) && v.citations.length) add(`Sources this reading was computed from: ${v.citations.join(' ')}`, 'the reading’s own citation list');
+  return done();
+}
+
+export function buildVedicInterpretPrompt() {
+  return (
+    'EXPLAIN THIS SIDEREAL READING. Your task is EXPLANATION, NOT PROPHECY: make a dense Jyotiṣa reading LEGIBLE. ' +
+    'Walk it in the canonical order, give every number its unit and its threshold in plain words, name the classical ' +
+    'rule behind every interpretive line, flag every contested point, and finish with what the reading does NOT ' +
+    'claim. Use ONLY the numbered facts and the JSON below — never invent a position, a bindu, a rūpa or a verse.\n\n' +
+    'THE WALK — one compact section each, in this order, plain English first with the Sanskrit in parenthesis:\n' +
+    '**1. The frame, once.** Two sentences: this is a historical symbolic system with no demonstrated predictive ' +
+    'validity, computed faithfully; and it is a SECOND, INDEPENDENT sidereal system to set beside the tropical chart, ' +
+    'never merged with it. Name the ayanāṁśa and its value in degrees, and say in one sentence that the ayanāṁśa is a ' +
+    'CHOICE (Lahiri here; Fagan–Bradley, Rāman and K.P. differ by degrees that can move a graha’s sign). Then move on.\n' +
+    '**2. The Lagna and its lord.** The rising sidereal sign, its nakṣatra and pada, and where its lord sits by bhāva ' +
+    'and dignity — with the rule that makes this the starting point.\n' +
+    '**3. The Moon and its nakṣatra.** The mind (manas), the mansion, its lord and devatā — and the fact that this ' +
+    'placement alone seeds the daśā chain.\n' +
+    '**4. The pañcāṅga.** The five limbs and what each one literally measures (tithi = Moon−Sun elongation in 12° ' +
+    'steps; the pañcāṅga yoga = their sum in 13°20′ steps, a different thing from a planetary yoga).\n' +
+    '**5. The grahas by bhāva.** Each with sign, nakṣatra, dignity and kāraka-ship. Explain what the Parāśarī dignity ' +
+    'ladder is (categorical, not a score) before using the words. Flag any placement the facts mark ' +
+    'AYANĀṀŚA-FRAGILE and say what a different ayanāṁśa would do to it.\n' +
+    '**6. The yogas present.** For each, the literal condition that fired it and what the text counted it to signify ' +
+    '— and state plainly how few rules this engine tests.\n' +
+    '**7. Strength (Ṣaḍbala).** THE NUMBERS SECTION. Explain first what a rūpa is (60 virūpas) and that each graha ' +
+    'has its OWN required minimum, so a bare total means nothing without its ratio. Then walk the ranking, quoting ' +
+    'total, required and ratio together, and name which of the six components carried or sank each figure. Explain ' +
+    'Iṣṭa and Kaṣṭa as a separate pair. Report the engine’s declared simplifications as the SITE’s limitation.\n' +
+    '**8. The vargas.** What a Dn actually is (the same longitude re-mapped, not a new observation), then the D9 ' +
+    'cross-check on the promise — vargottama and the strong-in-D1-fallen-in-D9 caution — and note that the cutting ' +
+    'conventions are themselves contested.\n' +
+    '**9. The timing layer.** Retrace the arithmetic out loud: birth Moon → its nakṣatra → the fraction already ' +
+    'traversed → the BALANCE AT BIRTH → the chain of mahādaśās → the period running now. Say explicitly that this is ' +
+    'arithmetic on one placement in a fixed 120-year cycle, not a judgement, and describe what the tradition claims ' +
+    'the period-lord colours — in the past tense of doctrine, never as a forecast.\n' +
+    '**10. The Aṣṭakavarga.** What a bindu counts (eight contributors voting on each sign, 0–8 in a BAV), how the SAV ' +
+    'sums them, why the total is always 337 and the per-sign mean about 28 — then which bhāvas from the Lagna the ' +
+    'count supports and which it leaves thin.\n' +
+    '**11. The conclusions, rule by rule.** Take each computed conclusion line and name the classical rule that ' +
+    'generated it and the edition it comes from. If a line cannot be tied to a cited rule, say so.\n' +
+    '**12. Where the tradition disagrees.** List every contested point this reading touches — yoga conditions, ' +
+    'nīca-bhaṅga’s three recensions, kendrādhipati doṣa’s scope, varga conventions, combustion arcs, the ayanāṁśa ' +
+    'itself — with the positions side by side, resolving NONE.\n' +
+    '**13. What this reading does NOT claim.** Close here, plainly and briefly: it does not predict an event, name a ' +
+    'lifespan, prescribe a remedy, or describe an actual person; it does not measure anything about a life; and it ' +
+    'is not the Western chart’s verdict in other clothes — the two are compared, never merged.' + PLAIN_CODA
+  );
+}
+
+export function vedicDataBlock(x) {
+  const v = x && x.v; if (!v) return '';
+  const base = slimVedic(v);
+  const m = x.moment || {}, sb = v.shadbala || {}, dz = v.vimshottari || {}, av = v.ashtakavarga || {};
+  const cc = x.conclusions || v.conclusions || null;
+  const rashiName = i => (i == null ? null : V_RASHI[i]);
+  const savByBhava = (av.sav && v.lagna) ? Object.fromEntries(Array.from({ length: 12 }, (_, k) => [ord12(k + 1), av.sav[(v.lagna.rashiIndex + k) % 12]])) : null;
+  const vargaRow = key => (v.vargas && v.vargas[key])
+    ? Object.fromEntries(['lagna', 'Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'].map(p => [p, rashiName(v.vargas[key][p])]))
+    : null;
+  const dig = {
+    ...base,
+    ayanamsaName: v.ayanamsaName || null,
+    ayanamsaNote: 'Sidereal longitude = tropical − ayanāṁśa. Lahiri is this site’s CHOICE of zodiac, not the one true one; Fagan–Bradley ≈+0.9°, Rāman ≈−1.4°, K.P. ≈−5′ (named, not computed here).',
+    moment: { dateISO: m.dateISO || null, utcOffsetHours: m.offset == null ? null : m.offset, lat: m.lat == null ? null : m.lat, lon: m.lon == null ? null : m.lon, place: m.place || null, houses: 'whole-sign bhāvas' },
+    lagnaDetail: v.lagna ? { rashi: v.lagna.rashi, sanskrit: v.lagna.sanskrit, lord: v.lagna.lord, degInSign: v.lagna.deg, nakshatra: nk1(v.lagna.nakshatra) } : null,
+    dashaUnits: '120-year Vimśottarī cycle (Ketu 7, Venus 20, Sun 6, Moon 10, Mars 7, Rāhu 18, Jupiter 16, Saturn 19, Mercury 17). balanceYears = the UNSPENT remainder of the birth-nakṣatra lord’s mahādaśā at birth; it fixes every later boundary.',
+    dashaBirth: dz.nakshatra ? { moonNakshatra: dz.nakshatra.name, nakshatraLord: dz.nakshatra.lord, fractionTraversed: dz.nakshatra.fraction, startLord: dz.startLord, balanceYears: dz.balanceYears } : null,
+    dashaSequence: (dz.maha || []).map(mm => ({ lord: mm.lord, years: mm.years, running: !!mm.current })),
+    shadbalaUnits: 'rūpas (1 rūpa = 60 virūpas). Each graha has its OWN required minimum (BPHS 27.48–49) — quote the ratio, never the bare total.',
+    shadbalaDetail: Object.fromEntries(Object.entries(sb.perGraha || {}).map(([k, s]) => [k, { rupas: s.totalRupa, required: s.required, ratio: s.ratio, clearsItsBar: !!s.strong, ishta: s.ishta, kashta: s.kashta }])),
+    shadbalaSimplifications: sb.note || null,
+    ashtakavargaUnits: 'BAV = 0–8 bindus per sign per graha (eight contributors: the 7 grahas + the Lagna). SAV = the seven BAVs summed; per-sign mean ≈28; the twelve always total 337 (a checksum, not a judgement).',
+    savByBhavaFromLagna: savByBhava,
+    vargaD9: vargaRow('D9'),
+    vargaD10: vargaRow('D10'),
+    yogasChecked: (v.yogas || []).map(y => ({ name: y.name, present: !!y.present, detail: y.detail || null })),
+    conclusions: cc && Array.isArray(cc.sections) ? cc.sections.map(s => ({ title: s.title, text: s.text })) : null,
+    closing: cc && cc.conclusion ? cc.conclusion : null,
+    engineNotes: v.notes || null,
+    citations: v.citations || null,
+    contract: 'COMPARE with the Western chart, never merge. Described, never prescribed: no remedy prescribed, no lifespan, no forecast. Contested points stay contested.',
+  };
+  return '\n\nCOMPUTED SIDEREAL READING (JSON — EXPLAIN these, never invent):\n' + JSON.stringify(dig);
 }
 
 //  x = currentMuhurtaReport() (app/muhurta.js)
