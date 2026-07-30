@@ -347,7 +347,8 @@ function renderPicatrix(traj, place) {
         `<b>Verdict right now:</b> <span class="verdict ${esc(t.verdict)}">${esc(t.verdict)}</span>` +
         `${t.verdictLabel ? ` <span class="small muted">(${esc(t.verdictLabel)})</span>` : ''}.</p>
         <p class="small"><b>Materials (study only):</b> suffumigation of ${esc(m.suffumigation)}; colour ${esc(m.colour)};
-          metal ${esc(m.metal)}; stone ${esc(m.stone)}.</p>
+          metal ${esc(m.metal)}; stone ${esc(m.stone)}.
+          ${(m.harmNotes && m.harmNotes.length) ? `<span class="neg">${m.harmNotes.map(esc).join(' ')}</span>` : ''}</p>
         <p class="small"><a href="${esc(link)}">Open this recipe in the Talisman Workshop →</a></p>`;
     }
 

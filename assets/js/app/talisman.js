@@ -63,9 +63,13 @@ function build() {
     try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
     const r = talismanRecipe(chart, $('t-op').value, { scanHours: 72, stepMinutes: 30 });
 
-    // Step-by-step
-    $('t-steps').innerHTML = `<ol class="steps">${r.steps.map(s =>
-      `<li>${esc(s.text)} <span class="small muted">— ${esc(s.cite)}</span></li>`).join('')}</ol>`;
+    // What the sources record, in order — attested description, never instruction
+    // (FRAMING §9.14). `steps` no longer exists; each entry is third-person and
+    // names who instructed whom.
+    $('t-steps').innerHTML =
+      `<p class="small muted">${esc(r.voice)}</p>` +
+      `<ol class="steps">${r.attestedSequence.map(s =>
+        `<li>${esc(s.text)} <span class="small muted">— ${esc(s.cite)}</span></li>`).join('')}</ol>`;
 
     // End-result recipe card
     const m = r.materials, sp = m.spirits;

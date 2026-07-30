@@ -1,0 +1,1210 @@
+{
+  "meta": {
+    "slice": "JEWISH + ISLAMIC OPERATIVE ESOTERICA — Hekhalot/Sar-Torah adjuration, Sefer Yetzirah's creational reception (golem), Abulafia's letter-permutation manuals, Lurianic kavvanot/yihudim, Sefer ha-Malbush & Shimmush Tehillim, Ashkenazi Hasidei practice literature; al-Buni & the corpus Bunianum (Shams al-Ma'arif), the ARABIC side of Ghayat al-Hakim, Naqshbandi dhikr protocol, al-Ghazali's muraqaba/muhasaba discipline, Ibn Arabi's khalwa treatise, awfaq (magic-square) construction literature.",
+    "dateISO": "2026-07-17",
+    "roundNote": "Research performed 2026-07-30 in session; dateISO kept per the operator's instruction.",
+    "framing": "LOCKED, site-wide: historical symbolic systems with NO demonstrated validity. DESCRIBED, NEVER PRESCRIBED. This file records THAT a text contains a procedure, what KIND, how STRUCTURED, how COMPLETE, and WHERE cited. It contains no recitable formulae, no executable quantities or timings, no drawable templates, and no second-person instruction. Efficacy is never asserted: the tradition CLAIMS, the text SAYS.",
+    "livingTraditionPosture": "Every tradition in this slice is PRACTISED TODAY by living communities (Ashkenazi and Sephardi Judaism, Hasidism, the Naqshbandiyya and other Sufi turuq, mainstream Sunni piety in al-Ghazali's case). All entries are written as TEXTUAL HISTORY about manuscripts and editions, never as description of what any present-day community does or should do. Where a text is treated by a living community as sacred or as forbidden (Shams al-Ma'arif is both revered and censured in the modern Muslim world), that reception is recorded as reception, not adjudicated.",
+    "method": [
+      "Step 1 — repo orientation (READ-ONLY): read the six existing atlas records this slice must join to (hekhalot-literature, sefer-yetzirah, person-abulafia, person-isaac-luria, picatrix, person-ibn-arabi) plus zohar / sefer-ha-bahir / shaarei-orah / pardes-rimmonim / masnavi slugs in assets/js/core/data/confluence.js; read assets/js/core/data/abhichara-data.js header for the harm-note precedent the brief names; read assets/js/core/data/kameas.js because the awfaq->kamea question lands directly on it; grepped docs/plans/r29/esoteric-libraries.md for pre-existing PD verdicts on Sufi material so as not to re-derive them.",
+      "Step 2 — web research (WebSearch/WebFetch) on each work: attribution, recension/edition history, and the STRUCTURE of the operative material. Sources listed per work.",
+      "Step 3 — completeness grading. Each work x procedure-type row states what is present, WHAT IS MISSING, and HOW THAT ABSENCE IS KNOWN. Two fields are kept apart, following the inventory agent's discipline: `textCompleteness` (what the source text itself gives) and `repoCoverage` (what this repo currently records). repoCoverage is 'none' for nearly everything here, which is the finding, not a failure of the text.",
+      "Step 4 — any figure not re-derivable from a source consulted THIS ROUND is written with '(unverified)' inline."
+    ],
+    "controlledVocabularyUsed": [
+      "invocation/evocation",
+      "purification",
+      "mantra-recitation",
+      "visualization",
+      "breath-discipline",
+      "consecration-of-object/talisman",
+      "initiation",
+      "offering/homa",
+      "divination-procedure",
+      "funerary/liminal rite",
+      "coercive-rite"
+    ],
+    "vocabGapsProposed": [
+      { "term": "letter-permutation / gematria contemplation", "why": "Abulafia's hokhmat ha-tseruf, Eleazar of Worms's alphabet-gate exegesis, and Islamic ilm al-huruf are all letter-operations that are neither mantra-recitation (the unit is a letter, not a formula) nor visualization. The prior-art inventory flagged this same gap independently; two agents converging on it is the strongest signal in the file." },
+      { "term": "numerical-grid / magic-square construction (awfaq, kamea)", "why": "Construction of a numbered square is a mathematical operation with a documented mathematical literature (Sesiano) that is ONLY THEN consecrated as a talisman. Collapsing it into consecration-of-object loses the fact that the construction rules are provable arithmetic while the talismanic use is not." },
+      { "term": "ascetic / dietary regimen (fasting, seclusion, sleep restriction)", "why": "The Sar-Torah praxis, the Sefer ha-Malbush rite, and Ibn Arabi's khalwa are all built on multi-day dietary and seclusion regimens. Forcing these into 'purification' destroys the harm signal — the prior-art inventory flagged this too." },
+      { "term": "retreat / seclusion discipline (khalwa, hitbodedut)", "why": "A bounded period of withdrawal with a staged inner itinerary is its own procedure-type across both halves of this slice (khalwa; Abulafia's hitbodedut; the Sar-Torah enclosure). AUDIT-CORRECTED R1: the enclosure duration was stated here and has been removed — the vocabulary term does not need it." },
+      { "term": "self-examination / conscience-audit discipline (muhasaba, heshbon ha-nefesh)", "why": "al-Ghazali's Ihya' 38 sets out a six-station daily audit of the self. It is a procedure with an enumerated sequence and no recitation, visualization or object at all. Nothing in the vocabulary fits." },
+      { "term": "intention-setting attached to an existing liturgy (kavvanah)", "why": "Lurianic kavvanot are not a separate rite: they are a contemplative overlay mapped onto words of a statutory prayer already being said. The vocabulary has no type for 'procedure that modifies another procedure'." },
+      { "term": "gravesite / relic-contact rite", "why": "Lurianic prostration on the graves of tzaddikim is neither funerary (the deceased is long buried) nor liminal in the Bardo sense. Closest existing type is funerary/liminal rite, used here under protest." },
+      { "term": "adjuration of a named intermediary (hashba'a, azima)", "why": "Both corpora bind a NAMED angel/spirit by oath. invocation/evocation is used, but it flattens the distinction between petition and legally-framed compulsion, which is exactly the distinction the Sar-Torah and Birhatiya material turns on." }
+    ],
+    "harmTaxonomyProposed": [
+      "ascetic-regimen (multi-day fasting, dietary restriction, enforced seclusion, sleep restriction)",
+      "toxic-substance (suffumigation and ingredient lists including documented-toxic materials)",
+      "coercive-rite (binding/compulsion of a person or an intermediary against its will)",
+      "animal-harm (sacrificial material)",
+      "psychological-destabilisation (deprivation-plus-visionary-expectation; the retreat literature's own warnings)",
+      "living-tradition-sensitivity (material sacred to, or censured by, a present-day community)",
+      "sectarian-defamation-risk (occult material historically weaponised in antisemitic and anti-Sufi polemic)"
+    ],
+    "sources": [
+      "assets/js/core/data/confluence.js (repo, read-only) — atlas records hekhalot-literature, sefer-yetzirah, person-abulafia, person-isaac-luria, picatrix, person-ibn-arabi",
+      "assets/js/core/data/abhichara-data.js (repo, read-only) — the harm-note / never-assemble precedent this file imitates",
+      "assets/js/core/data/kameas.js (repo, read-only) — Agrippa II.22 planetary squares; the Latin terminus of the awfaq question",
+      "docs/plans/r29/esoteric-libraries.md (repo, read-only) — pre-existing PD verdicts for the Sufi cluster (line 230: person-al-ghazali, Field 1909 / Gairdner 1924 PD witnesses; line 393: dhikr litanies via Nicholson 1914/1921, Field 1909)",
+      "Wikipedia, 'Shams al-Ma'arif' — https://en.wikipedia.org/wiki/Shams_al-Ma'arif (fetched: recensions kubra/sughra, ~40 unnumbered fasl in print, three independently circulating pre-print recensions, Birhatiya, Manba' Usul al-Hikmah, Beirut 1985 first modern printing, Inloes 2022 / Voldemont 2023 partial translations, Coulon's anachronism argument, al-Bistami's role)",
+      "Wikipedia, 'Hekhalot literature' — https://en.wikipedia.org/wiki/Hekhalot_literature (fetched: constituent macroforms, Swartz on the piyyut-period milieu)",
+      "Braginsky Collection, 'Hayyei ha-Olam ha-Ba' (MS 251) — https://braginskycollection.com/portfolio/hayyei-ha-olam-ha-ba/ (fetched: 81 parchment leaves, 187x137mm, Italy late 14th–early 15th c., 10 red-and-black + 128 black meditation circles with marked entrances; alternative titles Sefer ha-Shem / Sefer ha-Iggulim / Sefer ha-Shem ha-Meforash; cites Idel 1988, 1989, Scholem 1961, Wolfson 2000)",
+      "Michael D. Swartz, Scholastic Magic: Ritual and Revelation in Early Jewish Mysticism (Princeton UP, 1996) — via publisher/review summaries (Project MUSE review; Google Books) for the Sar-Torah adjuration framework",
+      "Peter Schafer, Synopse zur Hekhalot-Literatur (Mohr Siebeck, 1981) and Ubersetzung der Hekhalot-Literatur — named in the repo's own atlas record and in secondary literature for the SS281-306 Sar-Torah praxis",
+      "Michael D. Swartz, '\"Like the Ministering Angels\": Ritual and Purity in Early Jewish Mysticism and Magic', AJS Review (Cambridge Core) — the seclusion/fast/ablution/niddah-avoidance regimen",
+      "Moshe Idel, The Mystical Experience in Abraham Abulafia (SUNY, 1988) and Golem: Jewish Magical and Mystical Traditions on the Artificial Anthropoid (SUNY, 1990)",
+      "Eleazar of Worms, Commentary on Sefer Yetzirah — described via Idel, Golem (1990) and summary pages (emol.org / robert-zucker.com kabbalah pages; Sefaria source sheets 483626, 497196, 567962)",
+      "Lawrence Fine, Physician of the Soul, Healer of the Cosmos: Isaac Luria and His Kabbalistic Fellowship (Stanford UP, 2003), and 'The Contemplative Practice of Yihudim in Lurianic Kabbalah', in A. Green (ed.), Jewish Spirituality II (Crossroad, 1987)",
+      "Bill Rebiger, Sefer Shimmush Tehillim — Buch vom magischen Gebrauch der Psalmen: Edition, Ubersetzung und Kommentar (Texts and Studies in Ancient Judaism 137; Mohr Siebeck, 2010), ISBN 978-3-16-149774-2 — publisher description (mohrsiebeck.com) and JSJ 43/3 (2012) review notice",
+      "Noah Gardiner, 'Esotericism in a Manuscript Culture: Ahmad al-Buni and His Readers through the Mamluk Period' (PhD diss., Univ. of Michigan, 2014); 'Forbidden Knowledge? Notes on the Production, Transmission, and Reception of the Major Works of Ahmad al-Buni', Journal of Arabic and Islamic Studies 12 (2012); 'Esotericist Reading Communities and the Early Circulation of the Sufi Occultist Ahmad al-Buni's Works', Arabica 64 (2017), 405-441; 'Diagrams and Visionary Experience in al-Buni's Lata'if al-isharat fi al-huruf al-'ulwiyyat', in G. M. Martini (ed.), Visualizing Sufism (Brill, 2023), 16-50",
+      "Jean-Charles Coulon, 'Amulets and Talismans in the Earliest Works of the Corpus Bunianum', in Amulets and Talismans of the Middle East and North Africa in Context (Brill, 2021), ch. 9",
+      "Hellmut Ritter (ed.), Ghayat al-hakim / 'Das Ziel des Weisen' (Studien der Bibliothek Warburg 12; Teubner, Leipzig/Berlin, 1933) — the Arabic critical edition; Ritter & Plessner, 'Picatrix': Das Ziel des Weisen von Pseudo-Magriti (Warburg Institute, 1962) German translation",
+      "David Pingree (ed.), Picatrix: The Latin Version of the Ghayat al-Hakim (Warburg Institute, 1986); Dan Attrell & David Porreca (trans.), Picatrix: A Medieval Treatise on Astral Magic (Penn State UP, 2019)",
+      "Jacques Sesiano, 'An Arabic Treatise on the Construction of Bordered Magic Squares', Historia Scientiarum (1991) — ed. of al-Awfaq attrib. Kamal al-Din Muhammad b. Yunus (d. 639/1242); Sesiano, Magic Squares in the Tenth Century: Two Arabic Treatises by Antaki and Buzjani (Springer, 2017)",
+      "AUDIT-CORRECTED (R33 hostile audit, FABRICATION STRIKE F1): this slice originally cited 'Bink Hallum, The Earliest Arabic Magic Squares, Suhayl 18 (2020-21), 7-24 (WRAP/Warwick open-access copy)'. That is a COMPOSITE OF TWO DIFFERENT WORKS BY TWO DIFFERENT AUTHORS and must not be quoted or propagated. The correct records are: (a) Cristian TOLSA, 'The earliest Arabic magic squares', Suhayl 18 (2020-21), 7-24 — open access at raco.cat / dialnet 7689032; its abstract treats exactly al-Tabari, Jabir ibn Hayyan, Ghayat al-Hakim and the Brethren of Purity, i.e. this is the article whose CONTENT was used here; and (b) B. C. HALLUM, 'New light on early Arabic Awfaq literature', in Leoni/Melvin-Koushki/Saif/Yahya (edd.), Islamicate Occult Sciences in Theory and Practice (Brill, 2020), pp. 57-161 — this is the work with the WRAP/Warwick open-access copy. Verified 2026-07-30 against raco.cat, dialnet and wrap.warwick.ac.uk.",
+      "Wikipedia, 'Eleven Naqshbandi principles' (kalimat-i qudsiyya; eight from 'Abd al-Khaliq Ghijduwani d. 1179, three added by Baha' al-Din Naqshband 1318-1389) — https://en.wikipedia.org/wiki/Eleven_Naqshbandi_principles",
+      "Abu Hamid al-Ghazali, Ihya' 'Ulum al-Din, Book XXXVIII, Kitab al-Muraqaba wa'l-Muhasaba; English: Al-Ghazali on Vigilance and Self-Examination (Islamic Texts Society, 2015) — publisher/bookseller descriptions enumerating the six stations of murabata",
+      "Ibn 'Arabi, Risalat al-anwar fima yunah sahib al-khalwa min al-asrar; English: Journey to the Lord of Power: A Sufi Manual on Retreat, trans. Rabia Terri Harris (Inner Traditions, 1981) — ~70 MSS worldwide; Arabic printings Cairo 1914 and Hyderabad 1948 (per the translator's introduction as reported)",
+      "Schuyler Cammann, 'Islamic and Indian Magic Squares', History of Religions 8 (1969) — named for the planetary-attribution question (page-level NOT verified this round)"
+    ],
+    "counts": {
+      "works": 23,
+      "procedureRows": 42,
+      "procedureRowsNote": "42 graded work x procedure-type rows; one further row (jew:sar-ha-torah / purification) is marked crossReferenceOnly:true because it is the same material as jew:hekhalot-rabbati / purification and must not be double-counted.",
+      "edges": 96,
+      "edgesBreakdown": { "BELONGS_TO": 22, "AUTHORED_BY": 14, "RECORDS_TEACHING_OF": 2, "TRANSMITS_TO": 12, "PARALLELS": 3, "COMMENTS_ON": 1, "CONTAINS_PROCEDURE": 42 },
+      "completenessDistribution": { "complete": 16, "partial": 16, "referenced": 10, "fragmentary": 0 },
+      "fragmentaryNote": "ZERO fragmentary rows in this slice, and that is a substantive finding rather than an oversight. Both halves of this corpus survive through CONTINUOUS COPYING by communities that never stopped reading them — medieval Hebrew manuscripts and Cairo Genizah fragments on one side, an unbroken Arabic manuscript-and-print tradition on the other. The characteristic defect here is not damage but INSTABILITY: fluid macroforms (Hekhalot), divergent recensions (Sefer Hasidim, Shimmush Tehillim, Shams al-Ma'arif), and pseudepigraphic accretion. A grading scheme built for damaged papyri needs a fifth grade — something like 'unstable' or 'plural' — for texts that are complete in every witness and different in each.",
+      "countsVerified": "Counted programmatically from this file on 2026-07-30 (PowerShell ConvertFrom-Json): works=23, edges=96, procedure rows=42 (complete 16 / partial 16 / referenced 10 / fragmentary 0), edge types as listed."
+    }
+  },
+
+  "works": [
+    {
+      "id": "jew:hekhalot-rabbati",
+      "parentAtlasSlug": "hekhalot-literature",
+      "atlasSlugExists": true,
+      "title": "Hekhalot Rabbati (The Greater Palaces)",
+      "titleOriginal": "היכלות רבתי",
+      "author": "anonymous; pseudepigraphically framed as the teaching of R. Ishmael and R. Nehunya b. ha-Qanah",
+      "culture": "Jewish — late-antique / early-medieval Palestinian and Babylonian visionary circles",
+      "dateText": "c. 3rd-7th c. CE, redaction debated; earliest full witnesses are medieval MSS",
+      "dateCertainty": "contested",
+      "attributionNote": "Attribution to the named tannaim is pseudepigraphic and is treated as such by all modern scholarship; the repo's existing atlas record already carries the Scholem-vs-Schafer dating dispute verbatim.",
+      "editions": [
+        { "ref": "Peter Schafer, Synopse zur Hekhalot-Literatur (Mohr Siebeck, 1981) — synoptic edition of the manuscript witnesses; the basis of all modern study", "pd": "in copyright" },
+        { "ref": "Peter Schafer et al., Ubersetzung der Hekhalot-Literatur (Mohr Siebeck, 1987-95) — German translation; SS281-306 collated there", "pd": "in copyright" },
+        { "ref": "Adolph Jellinek, Bet ha-Midrash (1853-77) — the 19th-c. anthology that first made parts of the corpus widely available", "pd": "public domain by age (unverified volume-by-volume this round)" }
+      ],
+      "procedures": [
+        {
+          "type": "invocation/evocation",
+          "subtype": "adjuration of a named angelic intermediary (hashba'a) — vocabGap: 'adjuration of a named intermediary'",
+          "vocabGap": true,
+          "textCompleteness": "partial",
+          "structure": "The macroform contains a narrative ascent through seven palaces in which the 'descender to the chariot' is said to present hymns, divine names and 'seals' at each gate to pass its angelic guardians. The unit of the sequence is gate -> presentation -> passage, repeated seven times; the text supplies the narrative frame and the hymnic material but does not set out a single continuous operator's checklist.",
+          "completenessEvidence": "PARTIAL, and the incompleteness is structural, not accidental: (a) the corpus survives as what Schafer calls fluid 'macroforms' with no fixed original, so no single witness is the sequence; (b) the material is embedded in first-person narrative and hymn rather than rubric, so the ordering of some elements is inferable only from the story; (c) the texts themselves gate the practice behind purity and worthiness conditions rather than publishing an open method. Evidence for (a) is the repo's own atlas record quoting Schafer's Synopse position; for (c), Swartz's AJS Review study of the purity requirements.",
+          "harm": ["ascetic-regimen", "psychological-destabilisation", "living-tradition-sensitivity"],
+          "harmNote": "The ascent material is framed by its own texts as dangerous to the unworthy. It is recorded here as late-antique religious literature only.",
+          "repoCoverage": "partial — the atlas `technique` field on hekhalot-literature describes adjurations, hymn/name/seal recitation and the guardian-passing structure in one sentence, correctly labelled as historical practice.",
+          "cite": "Schafer, Synopse (1981); Scholem, Major Trends in Jewish Mysticism (1941), lecture 2; repo confluence.js record 'hekhalot-literature'."
+        },
+        {
+          "type": "mantra-recitation",
+          "subtype": "hymnic and nomina-sacra recitation (the hymns of the 'descenders')",
+          "textCompleteness": "complete",
+          "structure": "Long hymnic sequences are given in full in the manuscript tradition; what is complete here is the TEXT of the hymns, not a rubric for their use.",
+          "completenessEvidence": "COMPLETE as text: the hymns are transmitted continuously and are printed in full in Schafer's Synopse. Graded complete only in the narrow sense that nothing is acknowledged missing from the recited material itself; the surrounding rubric (when, how many times, in what posture) is not systematically given, which is why the invocation row above grades partial.",
+          "harm": [],
+          "repoCoverage": "referenced",
+          "cite": "Schafer, Synopse (1981); Wikipedia 'Hekhalot literature' (Ma'aseh Merkavah described as a collection of hymns recited by the 'descenders')."
+        },
+        {
+          "type": "purification",
+          "subtype": "multi-day seclusion and dietary regimen preceding adjuration — vocabGap: 'ascetic / dietary regimen'",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "The Sar-Torah praxis section prescribes a bounded preparatory regimen whose STAGE-KINDS are: an ablution stage; an enclosure stage of stated but unreproduced duration; a dietary-restriction stage; and a ritual-purity-avoidance condition. The regimen is enumerated end to end in the text and terminates before the adjuration. STAGE-KINDS ONLY are named here; the durations, the meal pattern, the permitted food and drink classes, the immersion counts and the adjuration formulae are deliberately NOT reproduced. AUDIT-CORRECTED (R33 hostile audit, RAZOR STRIKE R1): the previous wording gave the meal pattern ('a single evening meal') and the sibling row at jew:sar-ha-torah gave the enclosure duration ('the twelve-day enclosure regimen') — both are executable timings on a harm-flagged multi-day fast, and both contradicted this record's own compliance sentence. Removed.",
+          "completenessEvidence": "COMPLETE: the preparatory regimen is one of the few genuinely rubric-shaped passages in the whole corpus — it names each requirement in order and terminates. Schafer collates the variants at SS281-306 in Ubersetzung 2; Swartz's AJS Review article treats the seclusion/fast/ablution/niddah-avoidance sequence as a discrete purity protocol. I grade it complete BECAUSE the text names a terminus (the regimen ends and the adjuration begins) rather than trailing into 'and the rest is known'.",
+          "harm": ["ascetic-regimen", "psychological-destabilisation"],
+          "harmNote": "A multi-day enclosed fast with restricted fluid intake is capable of real physical harm. Recorded as the content of a late-antique text; no durations or dietary details are given here and none should be.",
+          "repoCoverage": "none — the repo records the adjuration but not the preparatory regimen.",
+          "cite": "Schafer, Ubersetzung 2 on SS281-306; Swartz, '\"Like the Ministering Angels\": Ritual and Purity in Early Jewish Mysticism and Magic', AJS Review."
+        }
+      ],
+      "contested": {
+        "flag": "Dating, provenance and the relation of the ascent material to the Sar-Torah material",
+        "positions": [
+          { "source": "Gershom Scholem, Major Trends in Jewish Mysticism (1941)", "value": "A continuous mystical tradition originating in tannaitic/amoraic rabbinic circles; the ascent is primary and the magical adjuration secondary." },
+          { "source": "Peter Schafer, Synopse zur Hekhalot-Literatur (1981) and later studies", "value": "Fluid composite macroforms with no fixed original; the adjuration/Sar-Torah material is not a degeneration of the ascent but a co-equal and possibly prior concern." },
+          { "source": "Michael D. Swartz, Scholastic Magic (1996)", "value": "The Sar-Torah material is best read as 'scholastic magic' — a ritual route to the rabbinic ideal of memorised Torah, produced by non-elite scribal circles rather than by mystical adepts." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "jew:sar-ha-torah",
+      "parentAtlasSlug": "hekhalot-literature",
+      "atlasSlugExists": true,
+      "title": "The Sar ha-Torah ('Prince of the Torah') material",
+      "titleOriginal": "שר התורה",
+      "author": "anonymous; embedded within and alongside Hekhalot Rabbati",
+      "culture": "Jewish — late-antique / early-medieval scribal-scholastic circles",
+      "dateText": "c. 5th-9th c. CE (Swartz places the circulating tales in that window)",
+      "dateCertainty": "range",
+      "editions": [
+        { "ref": "Schafer, Synopse (1981) SS281-306 and the parallel Sar-Torah passages", "pd": "in copyright" },
+        { "ref": "Michael D. Swartz, Scholastic Magic: Ritual and Revelation in Early Jewish Mysticism (Princeton UP, 1996; Princeton Legacy Library reprint 2016)", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "invocation/evocation",
+          "subtype": "oath-binding adjuration of the angel called Prince of the Torah, for memory and learning",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "A three-part shape: (1) the preparatory purity and seclusion regimen; (2) the adjuration proper, in which a named angelic prince is bound by oath; (3) a claimed result — prodigious memory and mastery of Torah — followed in the tales by the adept transmitting the method onward. The transmission step is itself part of the narrative structure: Swartz notes the tales have the rabbis, once endowed, teach others the formulas.",
+          "completenessEvidence": "COMPLETE relative to its own genre: unlike the ascent material, the Sar-Torah passages read as a working rubric with a preparation, an operative act and a stated outcome, and the text does not defer any stage to an initiator or to oral instruction. That is precisely why Swartz can analyse it as a ritual rather than as a myth. Grade is for the SHAPE only; the formulae are not reproduced here.",
+          "harm": ["ascetic-regimen", "psychological-destabilisation", "living-tradition-sensitivity", "sectarian-defamation-risk"],
+          "harmNote": "Beyond the fast/seclusion hazard: Jewish magical literature has a long history of being quoted out of context in antisemitic polemic. It is presented here strictly as academic religious history, in the same register the repo already uses for the abhicara wing.",
+          "repoCoverage": "none — the atlas record for hekhalot-literature does not name the Sar-Torah material at all.",
+          "cite": "Swartz, Scholastic Magic (1996), the book's central case; Schafer, Ubersetzung 2 on SS281-306."
+        },
+        {
+          "type": "purification",
+          "subtype": "the preparatory enclosure regimen (see jew:hekhalot-rabbati for the graded row; shared material) — AUDIT-CORRECTED R1: the enclosure duration was reproduced here and has been removed",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "Shared with the Hekhalot Rabbati praxis section; not double-counted in the procedure total.",
+          "completenessEvidence": "Same evidence as jew:hekhalot-rabbati/purification. Recorded here as a CROSS-REFERENCE row so the synthesizer can see the overlap rather than merging two works silently.",
+          "crossReferenceOnly": true,
+          "harm": ["ascetic-regimen"],
+          "repoCoverage": "none",
+          "cite": "Schafer, Ubersetzung 2 on SS281-306."
+        }
+      ],
+      "contested": {
+        "flag": "What kind of religion the Sar-Torah material represents",
+        "positions": [
+          { "source": "Scholem and the older mystical reading", "value": "A magical accretion on a prior mystical ascent tradition." },
+          { "source": "Swartz, Scholastic Magic (1996)", "value": "Not an accretion but a distinct religious project — the ritual acquisition of scholastic authority, produced by circles adjacent to, not identical with, the rabbinic elite." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "jew:maaseh-merkavah",
+      "parentAtlasSlug": "hekhalot-literature",
+      "atlasSlugExists": true,
+      "title": "Ma'aseh Merkavah (Account of the Chariot)",
+      "titleOriginal": "מעשה מרכבה",
+      "author": "anonymous",
+      "culture": "Jewish — late-antique visionary circles",
+      "dateText": "c. 3rd-7th c. CE (with the corpus)",
+      "dateCertainty": "contested",
+      "editions": [{ "ref": "Schafer, Synopse (1981)", "pd": "in copyright" }],
+      "procedures": [
+        {
+          "type": "mantra-recitation",
+          "subtype": "hymn-cycle recitation attributed to the 'descenders to the chariot'",
+          "textCompleteness": "complete",
+          "structure": "A collection of hymns, transmitted as text, framed as recited by the descenders. Its unit is the hymn; it does not narrate an itinerary the way Hekhalot Rabbati does.",
+          "completenessEvidence": "COMPLETE as a hymn collection (nothing is marked as withheld) but REFERENCED as a method: the text gives what is said and says almost nothing about the conditions of saying it. This is the clearest case in the slice for keeping 'complete text' and 'complete method' apart.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none (subsumed under the corpus-level atlas entry)",
+          "cite": "Wikipedia 'Hekhalot literature', s.v. Maaseh Merkabah, citing the corpus editions; Schafer, Synopse (1981)."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "jew:3-enoch",
+      "parentAtlasSlug": "hekhalot-literature",
+      "atlasSlugExists": true,
+      "title": "3 Enoch / Sefer Hekhalot (Book of Palaces)",
+      "titleOriginal": "ספר היכלות",
+      "author": "anonymous; narrated in the voice of R. Ishmael, with Enoch-Metatron as revealer",
+      "culture": "Jewish — late-antique / early-medieval",
+      "dateText": "c. 5th-9th c. CE (contested)",
+      "dateCertainty": "contested",
+      "editions": [
+        { "ref": "Hugo Odeberg, 3 Enoch or the Hebrew Book of Enoch (Cambridge UP, 1928)", "pd": "US public domain from 1 Jan 2024 under the 95-year rule (unverified against a rights database this round)" },
+        { "ref": "Schafer, Synopse (1981)", "pd": "in copyright" },
+        { "ref": "P. Alexander, trans., in Charlesworth (ed.), The Old Testament Pseudepigrapha vol. 1 (1983)", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "visualization",
+          "subtype": "revelatory cosmography — an itinerary described as seen rather than as performed",
+          "textCompleteness": "referenced",
+          "structure": "The text narrates what the visionary is shown (the heavenly hierarchy, the transformation of Enoch into Metatron) rather than setting out how to obtain the vision. Procedure appears only as presupposition.",
+          "completenessEvidence": "REFERENCED: I grade this low deliberately. 3 Enoch is the most-read Hekhalot text in English and is routinely mistaken for an operative manual; it is not one. It contains no preparatory regimen, no adjuration rubric and no recitation sequence — it is a revelation narrative. The absence is verifiable by structure: the text is continuous narrative dialogue between R. Ishmael and Metatron.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Odeberg, 3 Enoch (1928); Wikipedia 'Hekhalot literature'."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "sefer-yetzirah",
+      "atlasSlug": "sefer-yetzirah",
+      "atlasSlugExists": true,
+      "title": "Sefer Yetzirah (Book of Formation)",
+      "titleOriginal": "ספר יצירה",
+      "author": "anonymous; pseudepigraphically ascribed to Abraham the Patriarch in some recensions",
+      "culture": "Jewish — uncertain (Palestine or the Near East)",
+      "dateText": "c. 2nd-7th c. CE (genuinely contested); editio princeps Mantua 1562",
+      "dateCertainty": "contested",
+      "editions": [
+        { "ref": "Editio princeps, Mantua: Ya'akov ben Naphtali ha-Kohen of Gazolo, 1562 (prints two recensions)", "pd": "public domain by age" },
+        { "ref": "A. Peter Hayman, Sefer Yesira: Edition, Translation and Text-Critical Commentary (Mohr Siebeck, 2004)", "pd": "in copyright" },
+        { "ref": "W. Wynn Westcott, Sepher Yetzirah (1887) — the PD English witness the repo's kabbalah wing could quote", "pd": "public domain by age (unverified this round)" }
+      ],
+      "procedures": [
+        {
+          "type": "visualization",
+          "subtype": "letter-and-number contemplation of the '32 wondrous paths' — vocabGap: 'letter-permutation / gematria contemplation'",
+          "vocabGap": true,
+          "textCompleteness": "referenced",
+          "structure": "The treatise ENUMERATES a system — ten sefirot, twenty-two letters divided into mother/double/simple classes, their assignment to cosmic, temporal and bodily registers, and the notion of permutational 'gates' — without at any point instructing anyone to do anything with it. It is a cosmological enumeration in fewer than 2,500 words.",
+          "completenessEvidence": "REFERENCED, and this is the load-bearing grade of the whole Jewish half: Sefer Yetzirah is the ANCESTOR of nearly every letter-operation in this slice and is itself not operative. What is missing is any rubric whatsoever — no sequence, no preparation, no purpose-statement, no result. That absence is verifiable from length and genre alone: the whole text is shorter than a single Hekhalot praxis section, and the repo's own atlas body describes it as 'a terse Hebrew treatise... describing creation'. Every procedure later attached to it arrives in the COMMENTARY tradition, which is why the golem material is filed under Eleazar of Worms below and not here.",
+          "harm": [],
+          "repoCoverage": "none — the atlas record carries technique:null, correctly.",
+          "cite": "Repo confluence.js record 'sefer-yetzirah'; Hayman, Sefer Yesira (2004); Idel, Golem (1990) for the commentary-tradition point."
+        }
+      ],
+      "contested": {
+        "flag": "Date of composition (reproduced from the repo's existing record, which this file does not alter)",
+        "positions": [
+          { "source": "A. Peter Hayman (2004)", "value": "No single original text; a fluid work whose earliest recoverable recensions crystallized around the 7th century, in the early Islamic era." },
+          { "source": "Gershom Scholem, Kabbalah (1974); Yehuda Liebes, Ars Poetica in Sefer Yesira (2000)", "value": "An early composition — Scholem 3rd-6th c. CE; Liebes has argued for a 1st-century, late Second Temple date." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "jew:eleazar-worms-sy-commentary",
+      "atlasSlugExists": false,
+      "proposedId": "jew:eleazar-worms-sy-commentary",
+      "title": "Eleazar of Worms, Commentary on Sefer Yetzirah (within Sodei Razayya)",
+      "titleOriginal": "פירוש על ספר יצירה",
+      "author": "Eleazar ben Judah of Worms (c. 1176-1238)",
+      "culture": "Jewish — Hasidei Ashkenaz (medieval Rhineland pietism)",
+      "dateText": "early 13th c.",
+      "dateCertainty": "century",
+      "editions": [
+        { "ref": "Printed within modern editions of Sodei Razayya (e.g. the Peirush al Sefer Yetzirah volume, ISBN 978-88-949567-4-0)", "pd": "modern editions in copyright; the medieval Hebrew text itself is PD by age" },
+        { "ref": "Analysed at length in Moshe Idel, Golem: Jewish Magical and Mystical Traditions on the Artificial Anthropoid (SUNY, 1990)", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "consecration-of-object/talisman",
+          "subtype": "the creational (golem) rite — the reception in which Sefer Yetzirah is read as operative — vocabGap: 'letter-permutation / gematria contemplation'",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "The commentary is the best-known witness to a four-stage shape: (1) selection and preparation of a virgin earth-and-water material; (2) forming of an anthropoid figure; (3) a recitation running through the alphabet-combination 'gates' of Sefer Yetzirah, correlated limb by limb with the figure; (4) in the wider tradition, a reversal or undoing step. STAGES ONLY are named. The gate-sequences, the letter-orders, the site conditions and the reversal are NOT reproduced here and must not be reconstructed from this record.",
+          "completenessEvidence": "COMPLETE in the sense that the commentary names every stage from material to animation and does not defer any of them to a teacher — which is exactly why it became the canonical golem source and why Idel devotes a full study to it. Two honest qualifications: (a) the manuscript tradition of the commentary varies, so 'complete' describes the received recension, not a single autograph; (b) Idel and others stress that for Eleazar and many kabbalists the operation was understood as a MYSTICAL EXPERIENCE of creative language, not as the manufacture of a working servant — i.e. the text is complete as a rite and contested as to what the rite was for.",
+          "harm": ["living-tradition-sensitivity", "sectarian-defamation-risk"],
+          "harmNote": "The golem is among the most-appropriated items in Jewish esoterica and a recurring motif in antisemitic caricature. It is admitted here only as textual history of a commentary tradition, with the tradition's own interpretation (a contemplative exercise in creative language) given equal weight to the literal reading.",
+          "repoCoverage": "none — the golem tradition appears nowhere in shipped repo data.",
+          "cite": "Moshe Idel, Golem (SUNY, 1990); Eleazar of Worms, Commentary on Sefer Yetzirah, as summarised in Sefaria source sheets 483626 / 497196 / 567962 and the emol.org and robert-zucker.com transcriptions of the commentary."
+        }
+      ],
+      "contested": {
+        "flag": "What the golem rite was understood to accomplish",
+        "positions": [
+          { "source": "The literal/folkloric reading, dominant in later legend (Prague cycle, 16th-19th c.)", "value": "The production of a physical animate servant." },
+          { "source": "Moshe Idel, Golem (1990), reporting the kabbalists' own framing", "value": "For many kabbalists including Eleazar, the operation was a spiritual and mystical experience of creative language that did not culminate in a functioning physical anthropoid; Eleazar himself notes the product was not like the human God made." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "jew:sodei-razayya",
+      "atlasSlugExists": false,
+      "proposedId": "jew:sodei-razayya",
+      "title": "Sodei Razayya, incl. Sefer ha-Shem (The Book of the Holy Name)",
+      "titleOriginal": "סודי רזיא / ספר השם",
+      "author": "Eleazar ben Judah of Worms (c. 1176-1238)",
+      "culture": "Jewish — Hasidei Ashkenaz",
+      "dateText": "early 13th c.",
+      "dateCertainty": "century",
+      "editions": [
+        { "ref": "Transmitted in a five-part structure; Sefer ha-Shem is the third and largest part. Manuscript witnesses include a 15th-c. parchment Sefer ha-Shem with travel prayers (Sotheby's, Important Judaica, New York 2008, lot 1)", "pd": "medieval text PD by age; modern critical editions in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "visualization",
+          "subtype": "systematic exegesis of the divine names, with alphabet-based cosmogonic exposition — vocabGap: 'letter-permutation / gematria contemplation'",
+          "vocabGap": true,
+          "textCompleteness": "referenced",
+          "structure": "The first part expounds creation (Sod Ma'aseh Bereshit) through the 22 letters, on a Sefer-Yetzirah basis. Sefer ha-Shem is described by Joseph Dan as containing very little theological discussion, being given over almost entirely to a systematic EXEGESIS of the divine names using the Hasidei Ashkenaz's exegetical and homiletical methods.",
+          "completenessEvidence": "REFERENCED: exegesis is not rubric. The work supplies the material a name-operation would use, and the interpretive methods, but not a staged rite. I grade referenced rather than partial because there is no acknowledged withholding — the genre simply is not procedural. (The operative use of names in Ashkenazi pietism shows up instead in the practical literature and in Sefer ha-Malbush's reception, mapped separately.)",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Joseph Dan, as reported in Encyclopedia.com s.v. 'Eleazar ben Judah of Worms' ('the most important expression of the inner core of the Ashkenazi Hasidic religious world'); Wikipedia 'Eleazar of Worms'."
+        },
+        {
+          "type": "mantra-recitation",
+          "subtype": "prayer-mysticism: counting and weighing the words and letters of the fixed liturgy — vocabGap: 'intention-setting attached to an existing liturgy'",
+          "vocabGap": true,
+          "textCompleteness": "partial",
+          "structure": "The Ashkenazi pietists' signature practice attaches numerical exegesis (letter- and word-counts, gematria correspondences) to the words of the STATUTORY liturgy, so that the fixed prayer is said with a specific arithmetical intention. The procedure modifies an existing rite rather than constituting one.",
+          "completenessEvidence": "PARTIAL: the principle and many worked correspondences are given, but the practice presupposes the full statutory liturgy (supplied by the surrounding tradition, not by this text) and is transmitted piecemeal across the Hasidei Ashkenaz corpus rather than as a single sequence. Flagged (unverified) as to whether any single Eleazar text sets out the method end to end — I could not confirm that this round.",
+          "harm": [],
+          "repoCoverage": "none",
+          "cite": "Wikipedia 'Eleazar of Worms'; Encyclopedia.com s.v. 'Eleazar ben Judah of Worms'. Page-level confirmation in Joseph Dan's studies NOT obtained this round (unverified)."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "jew:sefer-hasidim",
+      "atlasSlugExists": false,
+      "proposedId": "jew:sefer-hasidim",
+      "title": "Sefer Hasidim (Book of the Pious)",
+      "titleOriginal": "ספר חסידים",
+      "author": "Judah he-Hasid of Regensburg (d. 1217) and circle; composite",
+      "culture": "Jewish — Hasidei Ashkenaz",
+      "dateText": "late 12th - early 13th c.; editio princeps Bologna 1538",
+      "dateCertainty": "range",
+      "editions": [
+        { "ref": "Editio princeps, Bologna 1538 (the 'Bologna' recension)", "pd": "public domain by age" },
+        { "ref": "J. Wistinetzki (ed.), Parma recension, 2nd ed. with introduction by J. Freimann (Frankfurt, 1924)", "pd": "public domain by age in most jurisdictions (unverified this round)" }
+      ],
+      "procedures": [
+        {
+          "type": "purification",
+          "subtype": "penitential regimen (teshuvah) — vocabGap: 'ascetic / dietary regimen'",
+          "vocabGap": true,
+          "textCompleteness": "partial",
+          "structure": "The work is a vast, loosely-ordered collection of exempla and rulings for pious life, within which a graded penitential discipline is set out: confession, a penance matched in kind and severity to the transgression, and bodily mortifications including exposure and fasting.",
+          "completenessEvidence": "PARTIAL: the penitential system has a clear internal logic and named grades, but Sefer Hasidim is not organised as a manual — its recensions differ substantially (the Bologna and Parma texts are materially different books), so no single witness gives the discipline as one continuous sequence. The recension divergence is itself the evidence, and is why the 1538 print and the Parma MS are edited separately.",
+          "harm": ["ascetic-regimen", "living-tradition-sensitivity"],
+          "harmNote": "The penances documented in this literature include self-mortification. Recorded as medieval religious history with the hazard named, not as anything to emulate; no specifics are given.",
+          "repoCoverage": "none",
+          "cite": "Editio princeps Bologna 1538; Wistinetzki-Freimann (1924). NOTE: this entry rests on general reference sources rather than a scholarly monograph consulted this round — the penitential-grade description is (unverified) at page level."
+        }
+      ],
+      "contested": {
+        "flag": "Whether Sefer Hasidim is one book",
+        "positions": [
+          { "source": "The printed-tradition view (Bologna 1538)", "value": "A single work of the Ashkenazi pietist circle." },
+          { "source": "The manuscript-critical view following the Parma recension", "value": "An open, non-fixed text whose witnesses differ so far in content and order that 'Sefer Hasidim' names a tradition rather than a book — structurally the same problem Schafer identified for Hekhalot." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "jew:hayyei-haolam-haba",
+      "parentAtlasSlug": "person-abulafia",
+      "atlasSlugExists": true,
+      "title": "Hayyei ha-Olam ha-Ba (Life of the World to Come)",
+      "titleOriginal": "חיי העולם הבא",
+      "alternativeTitles": ["Sefer ha-Shem", "Sefer ha-Iggulim (Book of the Circles)", "Sefer ha-Shem ha-Meforash (Book of the Ineffable Name)"],
+      "author": "Abraham Abulafia (1240 - after 1291)",
+      "culture": "Jewish — 'prophetic'/ecstatic Kabbalah, Mediterranean (Spain, Greece, Italy, Sicily)",
+      "dateText": "written 1280",
+      "dateCertainty": "year",
+      "editions": [
+        { "ref": "Circulated in manuscript; Braginsky Collection MS 251 — parchment, 81 leaves, 187x137mm, Italy late 14th - early 15th c.", "pd": "medieval Hebrew text PD by age; the manuscript images are the collection's" },
+        { "ref": "Amnon Gross (ed.), Jerusalem 2009 Hebrew edition", "pd": "in copyright (edition); underlying text PD" },
+        { "ref": "Moshe Idel, The Mystical Experience in Abraham Abulafia (SUNY, 1988)", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "mantra-recitation",
+          "subtype": "recitation of the seventy-two-letter Name in permuted forms — vocabGap: 'letter-permutation / gematria contemplation'",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "This is the most explicitly procedural text in the Jewish half of the slice, and it is procedural in an unusual way: the METHOD IS THE PAGE LAYOUT. The Braginsky manuscript carries ten large circles in red and black plus 128 smaller circles in black, each circle holding a divine Name broken into letter-combinations; each is described by the collection as detailed instruction for meditation, and each has a marked ENTRY POINT — a pen stroke slightly right of top — telling the reader where the circuit begins. The practitioner works the circle from its entrance while reciting. The procedure is thus: enter at the mark, traverse the combination, recite, proceed to the next figure. NO circle, letter-string, entry-mark or ordering is reproduced here, and none should be reconstructed.",
+          "completenessEvidence": "COMPLETE, and unusually so — I grade it complete because (a) the text supplies the material to be recited, (b) it supplies the order, via the physical entry-marks, and (c) it supplies the coordination (breathing and head-movement, per the repo's own atlas record and Idel), leaving no stage explicitly deferred to a teacher. Abulafia wrote as a propagandist for his method and published rather than withheld it. The honest qualification: the manuscripts differ, and Idel's studies are built on collating them, so 'complete' describes the received Braginsky-type recension.",
+          "harm": ["psychological-destabilisation", "living-tradition-sensitivity"],
+          "harmNote": "The stated goal is an ecstatic/prophetic state pursued through prolonged recitation with breath control and solitary retreat. Deliberate hyperventilation or breath-holding carries real physical risk, and the technique's own tradition warned that it could unseat the unprepared. Described as 13th-century method; no instructions given.",
+          "repoCoverage": "partial — the atlas record on person-abulafia describes hokhmat ha-tseruf (permute, write, vocalize the letters of divine names, coordinated with controlled breathing and prescribed head movements) in one sentence, explicitly as historical method and not instruction. This is one of only two records in the whole repo that comes close to a graded operative description.",
+          "cite": "Braginsky Collection, MS 251 catalogue entry (fetched 2026-07-30), citing Idel 1988/1989, Scholem 1961, Wolfson 2000, Sotheby's NY 2004; repo confluence.js record 'person-abulafia'."
+        },
+        {
+          "type": "breath-discipline",
+          "subtype": "recitation coordinated with controlled breathing and prescribed head movements",
+          "textCompleteness": "partial",
+          "structure": "Breath and head-movement are described as coordinated WITH the letter-recitation rather than as a standalone discipline; the vowel-classes of the Name govern the movement.",
+          "completenessEvidence": "PARTIAL: the coordination is specified in principle and the tradition's later witnesses (and Idel's reconstruction) supply detail, but the breath component is nowhere given as an independent, timed regimen — it exists only as an adverb on the recitation. Evidence: the repo's own atlas sentence phrases it exactly that way ('coordinated with'), and Idel treats it as one element of a composite technique.",
+          "harm": ["psychological-destabilisation"],
+          "repoCoverage": "partial (same atlas sentence)",
+          "cite": "Idel, The Mystical Experience in Abraham Abulafia (1988); repo confluence.js record 'person-abulafia'."
+        },
+        {
+          "type": "visualization",
+          "subtype": "contemplation of the circle-diagrams as meditative objects",
+          "textCompleteness": "complete",
+          "structure": "The figures are simultaneously the text to be recited and the object to be contemplated; the diagrammatic form is not illustration but apparatus.",
+          "completenessEvidence": "COMPLETE as to the object (138 figures survive in the Braginsky witness, all executed as working diagrams with entry marks), REFERENCED as to duration and posture, which the text does not fix. Graded complete on the object because the diagram IS the instruction and it survives entire.",
+          "harm": [],
+          "repoCoverage": "none",
+          "cite": "Braginsky Collection MS 251 catalogue entry."
+        }
+      ],
+      "contested": {
+        "flag": "Abulafia's place in the history of Kabbalah",
+        "positions": [
+          { "source": "The medieval halakhic reaction (Solomon ibn Adret and others)", "value": "Abulafia's prophetic claims were condemned in his own lifetime and his works marginalised by the theosophic-kabbalistic mainstream." },
+          { "source": "Moshe Idel (1988 and after), following Scholem's fourth lecture", "value": "Ecstatic Kabbalah is a major and independent stream, not a deviation, and Abulafia belongs at the centre of the history of Jewish mysticism." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "jew:or-ha-sekhel",
+      "atlasSlugExists": false,
+      "proposedId": "jew:or-ha-sekhel",
+      "title": "Or ha-Sekhel (Light of the Intellect)",
+      "titleOriginal": "אור השכל",
+      "author": "Abraham Abulafia",
+      "culture": "Jewish — ecstatic Kabbalah",
+      "dateText": "c. 1283 (unverified)",
+      "dateCertainty": "contested",
+      "confidence": "LOW — included as a pointer, not as a graded finding",
+      "editions": [{ "ref": "Manuscript tradition; modern Hebrew editions (Gross)", "pd": "underlying text PD by age; modern editions in copyright" }],
+      "procedures": [
+        {
+          "type": "mantra-recitation",
+          "subtype": "letter-combination exposition — vocabGap: 'letter-permutation / gematria contemplation'",
+          "vocabGap": true,
+          "textCompleteness": "referenced",
+          "structure": "A second Abulafian manual, treated in the literature alongside Hayyei ha-Olam ha-Ba.",
+          "completenessEvidence": "REFERENCED — and the grade is an honest statement of MY evidence, not of the text: I did not consult an edition or a scholarly description of its structure this round. Flagged so the synthesizer does not mistake a research gap for a textual one. (unverified)",
+          "harm": ["psychological-destabilisation"],
+          "repoCoverage": "none",
+          "cite": "Named in general reference and popular translations only this round. NEEDS a proper source before shipping."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "jew:shaar-hakavvanot",
+      "parentAtlasSlug": "person-isaac-luria",
+      "atlasSlugExists": true,
+      "title": "Sha'ar ha-Kavvanot (Gate of Intentions), within the Shemonah She'arim / Etz Hayyim corpus",
+      "titleOriginal": "שער הכוונות",
+      "author": "Hayyim Vital (1542-1620), recording the oral teaching of Isaac Luria (1534-1572)",
+      "culture": "Jewish — Lurianic Kabbalah, Safed",
+      "dateText": "teaching 1570-72; Vital's redaction late 16th c.; printed much later",
+      "dateCertainty": "range",
+      "attributionNote": "Luria wrote almost nothing. Everything operative in this tradition reaches us through disciples' redactions, above all Vital's — an authorship situation structurally identical to the Hekhalot macroform problem and to the corpus Bunianum, and the reason the atlas node is a PERSON node with technique:null.",
+      "editions": [
+        { "ref": "Vital's arrangement of Luria's teaching into eight 'gates' (she'arim) under the title Etz Hayyim; Sha'ar ha-Kavvanot is the fifth gate, covering mystical customs and the intentions attached to the prayers", "pd": "text PD by age; specific print editions and dates NOT verified this round (unverified)" },
+        { "ref": "Lawrence Fine, Physician of the Soul, Healer of the Cosmos (Stanford UP, 2003)", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "visualization",
+          "subtype": "kavvanot — contemplative intentions mapped word-by-word onto the statutory liturgy — vocabGap: 'intention-setting attached to an existing liturgy'",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "A composite overlay procedure: for units of the fixed daily liturgy, the text assigns a specific divine-name configuration and a specific act of directed intention keyed to the Lurianic cosmology (partzufim and their sub-configurations). The practitioner's outward act is the ordinary statutory prayer; the procedure is entirely interior and entirely mapped.",
+          "completenessEvidence": "COMPLETE, on the strength of the tradition's own description: Vital's versions spell out the proper kavvanot in GREAT DETAIL — that detail is the point of the book, and it is why the corpus is enormous relative to the two years of teaching behind it. Two honest limits: (a) the procedure is complete only ON TOP OF the statutory liturgy, which the text presupposes rather than supplies; (b) practically, the tradition treats the material as requiring a teacher, so the text is complete while the practice is gated — the distinction this graph exists to preserve.",
+          "harm": ["living-tradition-sensitivity"],
+          "harmNote": "This is live, currently-practised Jewish liturgical mysticism. Recorded as textual history of Vital's redaction only.",
+          "repoCoverage": "none — the atlas's person-isaac-luria record has technique:null; its BODY mentions grave prostrations, soul-diagnosis and assigned unifications in passing, which is a description of Fine's findings, not a technique record.",
+          "cite": "Lawrence Fine, Physician of the Soul (2003); Fine, 'The Contemplative Practice of Yihudim in Lurianic Kabbalah', in Green (ed.), Jewish Spirituality II (1987); repo confluence.js record 'person-isaac-luria'."
+        }
+      ],
+      "contested": {
+        "flag": "Which Lurianic Kabbalah — the reliability of the disciple redactions",
+        "positions": [
+          { "source": "The Vitalian mainstream (and the printed tradition built on it)", "value": "Vital's redaction is the authoritative record of Luria's teaching." },
+          { "source": "The modern text-critical position (e.g. the 'Which Lurianic Kabbalah?' line of scholarship)", "value": "Competing disciple-recensions (Vital, Israel Sarug's circle, Joseph ibn Tabul) transmit materially different systems; 'Lurianic Kabbalah' is a family of redactions, and attributing any specific rubric to Luria himself is unsafe." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "jew:shaar-ruah-hakodesh-yihudim",
+      "parentAtlasSlug": "person-isaac-luria",
+      "atlasSlugExists": true,
+      "title": "The yihudim ('unifications') of Lurianic practice (transmitted chiefly in Sha'ar Ruah ha-Kodesh)",
+      "titleOriginal": "יחודים",
+      "author": "Hayyim Vital, recording Isaac Luria",
+      "culture": "Jewish — Lurianic Kabbalah, Safed",
+      "dateText": "1570-72 teaching; Vital's redaction late 16th c.",
+      "dateCertainty": "range",
+      "editions": [
+        { "ref": "Sha'ar Ruah ha-Kodesh (Gate of the Holy Spirit), one of the eight gates; Sha'ar ha-Yihudim is transmitted alongside it", "pd": "text PD by age; edition details (unverified)" },
+        { "ref": "Lawrence Fine, 'The Contemplative Practice of Yihudim in Lurianic Kabbalah' (1987) — the standard study", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "visualization",
+          "subtype": "silent contemplative repetition of name-configurations, individually assigned",
+          "textCompleteness": "partial",
+          "structure": "Fine describes the yihudim as silent meditative exercises based on repetition and contemplation of combinations of sacred words or names, many of which correspond to the partzufim and their sub-configurations, whose unification is effected through formalized and sustained contemplation. The shape is: assigned configuration -> sustained silent repetition/contemplation -> claimed unification.",
+          "completenessEvidence": "PARTIAL, on a specific and citable ground: yihudim were ASSIGNED — Luria is reported to have diagnosed each disciple's soul and matched a yihud to it. A procedure whose central variable is set by a master for an individual is by construction not complete on the page, exactly as the inventory agent graded the TM mantra as partial for the same reason. The text can be exhaustive about the configurations and still incomplete as a method.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none (the person-isaac-luria body mentions 'assigned unifications' in passing)",
+          "cite": "Fine, 'The Contemplative Practice of Yihudim in Lurianic Kabbalah' (1987); Fine, Physician of the Soul (2003)."
+        },
+        {
+          "type": "funerary/liminal rite",
+          "subtype": "prostration on the graves of the righteous — vocabGap: 'gravesite / relic-contact rite'",
+          "vocabGap": true,
+          "textCompleteness": "partial",
+          "structure": "A site-specific rite: the practitioner goes to an identified grave of a tzaddik, prostrates over it, and holds a specified intention concerning that soul. Luria is reported to have identified many previously unknown burial sites around Safed.",
+          "completenessEvidence": "PARTIAL: the intention and the bodily act are described, but the rite depends on two externally supplied variables the text cannot contain — WHICH grave (identified charismatically by Luria, not by a rule) and which yihud is assigned for it. The dependence on a charismatic identification is the evidence.",
+          "harm": ["living-tradition-sensitivity"],
+          "harmNote": "These are real graves at a real site where people pray today. Textual-historical description only.",
+          "repoCoverage": "none",
+          "cite": "Fine, Physician of the Soul (2003), on the fellowship's practices; Fine (1987) on the prostration intention."
+        },
+        {
+          "type": "purification",
+          "subtype": "penitential regimen and contemplative performance of the commandments",
+          "textCompleteness": "referenced",
+          "structure": "The fellowship's regime is described in the scholarship as penitential exercises, contemplative performance of the mitzvot, prayer, and the cultivation of loving-kindness within the fellowship.",
+          "completenessEvidence": "REFERENCED: the scholarship reports the CATEGORIES of practice, not a rubric; the underlying texts distribute them across the eight gates rather than presenting a rule of life. Graded low with an explicit note that this reflects a genuine textual dispersal.",
+          "harm": ["ascetic-regimen", "living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Fine, Physician of the Soul (2003)."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "jew:sefer-ha-malbush",
+      "atlasSlugExists": false,
+      "proposedId": "jew:sefer-ha-malbush",
+      "title": "Sefer ha-Malbush (Book of the Garment)",
+      "titleOriginal": "ספר המלבוש",
+      "author": "anonymous",
+      "culture": "Jewish — Geonic-era Near East, probably Babylonia",
+      "dateText": "tentatively Geonic period (6th-11th c. CE)",
+      "dateCertainty": "contested",
+      "editions": [
+        { "ref": "No scholarly critical edition traced this round; the work survives in manuscript and is discussed in independent/amateur transcriptions and in the reference literature on Jewish magic", "pd": "medieval text PD by age; NO reliable modern edition identified (unverified)" }
+      ],
+      "sourceQuality": "WEAK — the descriptions available to me this round were an independent researcher's paper and encyclopedia-style summaries, not a peer-reviewed edition. Graded and flagged accordingly.",
+      "procedures": [
+        {
+          "type": "consecration-of-object/talisman",
+          "subtype": "preparation of an inscribed garment (the 'mantle of righteousness') as the apparatus of the rite",
+          "textCompleteness": "partial",
+          "structure": "The rite's apparatus is a special garment on which divine names are written; its preparation is a stage of the procedure and not a preliminary to it.",
+          "completenessEvidence": "PARTIAL: the object and its inscription are named, but I have no critically edited witness to confirm whether the material specification and inscription sequence are given entire. The grade reflects source quality, and is marked as such.",
+          "harm": ["living-tradition-sensitivity", "sectarian-defamation-risk"],
+          "repoCoverage": "none",
+          "cite": "'Sefer ha-Malbush: The Book of the Garment' (independent study, academia.edu / pentamegistus blog, 2018) — WEAK SOURCE, flagged."
+        },
+        {
+          "type": "purification",
+          "subtype": "immersion preceding the name-rite — vocabGap: 'ascetic / dietary regimen'",
+          "vocabGap": true,
+          "textCompleteness": "partial",
+          "structure": "The practitioner immerses in water as part of the sequence known as lebishat ha-shem, 'putting on the Name'.",
+          "completenessEvidence": "PARTIAL on the same source-quality ground as above.",
+          "harm": ["ascetic-regimen"],
+          "repoCoverage": "none",
+          "cite": "as above — WEAK SOURCE."
+        },
+        {
+          "type": "invocation/evocation",
+          "subtype": "angelic evocation following the 'putting on of the Name'",
+          "vocabGap": true,
+          "textCompleteness": "partial",
+          "structure": "Three-stage shape: prepare and inscribe the garment; immerse and recite so as to 'put on' the Name; evoke angelic beings and (the text claims) perform various feats. STAGES ONLY; no names, materials or wordings are recorded here.",
+          "completenessEvidence": "PARTIAL. Two independent reasons: (a) my sources are not critical editions; (b) name-rites of this family characteristically withhold the operative name-forms in the copied text, which is itself a documented feature of Jewish magical manuscript transmission. (b) is asserted generally and is (unverified) for this specific text.",
+          "harm": ["living-tradition-sensitivity", "sectarian-defamation-risk"],
+          "harmNote": "Admitted as academic religious history following the repo's abhicara-wing precedent: what the text CLAIMS is recorded; nothing operative is.",
+          "repoCoverage": "none",
+          "cite": "as above — WEAK SOURCE; needs Bohak, Ancient Jewish Magic (Cambridge UP, 2008) or an equivalent before shipping."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "jew:shimmush-tehillim",
+      "atlasSlugExists": false,
+      "proposedId": "jew:shimmush-tehillim",
+      "title": "Sefer Shimmush Tehillim (Book of the Magical Use of the Psalms)",
+      "titleOriginal": "ספר שימוש תהלים",
+      "author": "anonymous; accretive",
+      "culture": "Jewish — redaction begun in late-antique Egypt and Palestine; later European and Sephardi recensions",
+      "dateText": "redaction begun in late antiquity; first printing Sabbioneta 1551",
+      "dateCertainty": "range",
+      "editions": [
+        { "ref": "Bill Rebiger, Sefer Shimmush Tehillim — Buch vom magischen Gebrauch der Psalmen: Edition, Ubersetzung und Kommentar (Texts and Studies in Ancient Judaism 137; Mohr Siebeck, 2010; ISBN 978-3-16-149774-2) — synoptic edition of medieval and early-modern MSS plus the first printing, with German translation of the first printing and of the Sephardi recension", "pd": "in copyright" },
+        { "ref": "Editio princeps, Sabbioneta 1551", "pd": "public domain by age" }
+      ],
+      "procedures": [
+        {
+          "type": "mantra-recitation",
+          "subtype": "assignment of individual psalms to specific purposes, with attached name-material",
+          "textCompleteness": "complete",
+          "structure": "The work is a LOOKUP TABLE, and that is its whole architecture: psalm -> stated purpose -> associated divine/angelic name-material -> mode of use. It is the clearest instance in this slice of an operative text whose organising principle is indexical rather than sequential. Rebiger's commentary is explicitly about the relationship between a psalm's TEXT and its assigned magical USE, and about how that relationship differs between recensions.",
+          "completenessEvidence": "COMPLETE per recension, and the completeness is verifiable from the edition's own design: Rebiger prints the witnesses SYNOPTICALLY precisely because each recension is internally complete but they disagree with one another. The honest statement is therefore 'complete but plural' — there is no single Shimmush Tehillim, and the edition exists to show the divergence. No psalm-to-purpose assignments, names, or modes of use are reproduced here.",
+          "harm": ["living-tradition-sensitivity", "sectarian-defamation-risk"],
+          "harmNote": "Psalm-magic is the single most-appropriated body of Jewish practical material in Western occultism (via the pseudepigraphic 'Sixth and Seventh Books of Moses' line, which the repo's r29 plan already names). Recorded here as the textual history of a critically edited work; the appropriation is itself a documented reception phenomenon and belongs in the record as such.",
+          "repoCoverage": "none",
+          "cite": "Mohr Siebeck publisher description of Rebiger (2010); review notice, Journal for the Study of Judaism 43/3 (2012), 429."
+        },
+        {
+          "type": "consecration-of-object/talisman",
+          "subtype": "written applications of psalm-verses (amuletic use)",
+          "textCompleteness": "partial",
+          "structure": "Alongside recitation the tradition attests written/amuletic application of the same material.",
+          "completenessEvidence": "PARTIAL: the written mode is attested in the recensions but not systematised across them the way the recitation index is; Rebiger's commentary treats the psalm-to-use relation as the analytic problem, which implies the modes are not uniformly specified. Marked (unverified) at the level of individual entries — I did not consult the edition itself.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Rebiger (2010), publisher description; (unverified) at entry level."
+        }
+      ],
+      "contested": {
+        "flag": "Whether the work has an original form",
+        "positions": [
+          { "source": "The printed tradition (Sabbioneta 1551 onward)", "value": "A transmitted book with a settled content." },
+          { "source": "Rebiger's synoptic edition (2010)", "value": "A complex redactional history from late antiquity onward yielding materially different recensions — the first printing and the Sephardi recension are edited and translated separately for that reason." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "isl:lataif-al-isharat",
+      "atlasSlugExists": false,
+      "proposedId": "isl:lataif-al-isharat",
+      "title": "Lata'if al-isharat fi al-huruf al-'ulwiyyat (The Subtleties of the Signs: On the Celestial Letters)",
+      "titleOriginal": "لطائف الإشارات في الحروف العلويات",
+      "author": "Ahmad al-Buni (d. c. 622/1225)",
+      "culture": "Islamic — Sufi lettrism (ilm al-huruf), Ifriqiya/Egypt, Ayyubid-Mamluk",
+      "dateText": "early 13th c.; MS copied at Mecca 788/1386 attests circulation",
+      "dateCertainty": "century",
+      "attributionNote": "This is one of the works Gardiner assigns to the AUTHENTIC core of al-Buni's output, against the vastly larger pseudepigraphic accretion. Establishing this core is the central contribution of Gardiner's dissertation and articles.",
+      "editions": [
+        { "ref": "Manuscript tradition (Gardiner's dissertation surveys the Mamluk-period witnesses, incl. a copy made at Mecca in 788/1386)", "pd": "medieval Arabic text PD by age; no accessible critical edition identified this round (unverified)" },
+        { "ref": "Noah Gardiner, 'Diagrams and Visionary Experience in al-Buni's Lata'if al-isharat fi al-huruf al-'ulwiyyat', in Visualizing Sufism (Brill, 2023), 16-50", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "visualization",
+          "subtype": "diagram-mediated contemplation of the letters as celestial realities — vocabGap: 'letter-permutation / gematria contemplation'",
+          "vocabGap": true,
+          "textCompleteness": "partial",
+          "structure": "A cosmological and esoteric commentary on the Arabic alphabet in which DIAGRAMS are not illustration but the medium of the argument — Gardiner's 2023 chapter is specifically about the relation of the diagrams to visionary experience. Structurally the closest Islamic analogue in this slice to Abulafia's circles: the figure carries the operation.",
+          "completenessEvidence": "PARTIAL: the work is expository-contemplative rather than rubric-shaped, and (per the Sufi lettrist convention) presupposes an initiatic relationship. I do not have an edition in hand, so this grade rests on Gardiner's characterisation, and the specific claim that operative stages are deferred to a shaykh is (unverified).",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none — al-Buni does not exist anywhere in the repo.",
+          "cite": "Gardiner, 'Diagrams and Visionary Experience...' (Brill, 2023); Gardiner, Esotericism in a Manuscript Culture (diss., Michigan, 2014)."
+        },
+        {
+          "type": "consecration-of-object/talisman",
+          "subtype": "lettrist amulet and talisman material in the early corpus",
+          "textCompleteness": "partial",
+          "structure": "Coulon's Brill chapter treats amulets and talismans specifically in the EARLIEST works of the corpus Bunianum, i.e. distinguishing the early operative layer from the later accretion.",
+          "completenessEvidence": "PARTIAL: Coulon's framing (amulets in the EARLIEST works, as against the later corpus) implies the early layer's talismanic material is real but limited relative to what the printed Shams later assembles. Grade rests on the chapter's framing rather than on its contents, which I did not read (unverified).",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Jean-Charles Coulon, 'Amulets and Talismans in the Earliest Works of the Corpus Bunianum', in Amulets and Talismans of the Middle East and North Africa in Context (Brill, 2021), ch. 9."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "isl:alam-al-huda",
+      "atlasSlugExists": false,
+      "proposedId": "isl:alam-al-huda",
+      "title": "'Alam al-huda wa-asrar al-ihtida' fi sharh asma' Allah al-husna (The Banner of Guidance and the Secrets of Right Direction: on the Most Beautiful Names)",
+      "titleOriginal": "علم الهدى وأسرار الاهتداء في شرح أسماء الله الحسنى",
+      "author": "Ahmad al-Buni (d. c. 622/1225)",
+      "culture": "Islamic — Sufi lettrism, Ayyubid-Mamluk Egypt",
+      "dateText": "early 13th c.; MS copied at Cairo 787/1385",
+      "dateCertainty": "century",
+      "editions": [{ "ref": "Manuscript tradition surveyed in Gardiner (2014)", "pd": "text PD by age; no accessible critical edition identified (unverified)" }],
+      "procedures": [
+        {
+          "type": "mantra-recitation",
+          "subtype": "invocation-adjacent exposition of the ninety-nine Names",
+          "textCompleteness": "referenced",
+          "structure": "Described by Gardiner as an exhaustive DISCUSSION of the names of God — that is, an exposition of what each Name is and signifies, not a rubric for its invocation.",
+          "completenessEvidence": "REFERENCED. The grade turns on the word 'discussion' in Gardiner's characterisation, and on the genre: sharh asma' Allah al-husna is a commentary genre. The operative use of the Names in Sufi practice is real but is transmitted through the dhikr protocols of the turuq, not through this book — which is why the Naqshbandi node below is separate and why the two must not be merged.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Gardiner, Esotericism in a Manuscript Culture (2014)."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "isl:shams-al-maarif",
+      "atlasSlugExists": false,
+      "proposedId": "isl:shams-al-maarif",
+      "title": "Shams al-Ma'arif (al-kubra) — The Sun of Knowledge",
+      "titleOriginal": "شمس المعارف الكبرى",
+      "author": "attributed to Ahmad al-Buni; attribution rejected by current scholarship — a composite of the 'corpus Bunianum'",
+      "culture": "Islamic — lettrist/talismanic (ilm al-huruf, simiya'), accreted across the Arabic-speaking world",
+      "dateText": "attributed to the early 13th c.; the printed al-kubra is a layered accretion of later centuries; first modern printing Beirut 1985",
+      "dateCertainty": "contested",
+      "attributionNote": "THE ATTRIBUTION IS THE STORY. Coulon argues the text cannot be al-Buni's because of anachronisms inconsistent with his authenticated works, making it pseudepigrapha; Gardiner's manuscript-culture work establishes an authentic core (Lata'if al-isharat, 'Alam al-huda) against which the printed al-kubra is a later assemblage. Al-Bistami (15th c.) amplified al-Buni's reputation through commentaries emphasising amulets and talismans. Treat 'al-Buni wrote the Shams' as a DISPUTED claim, never as background fact.",
+      "editions": [
+        { "ref": "Circulated before printing as three independent recensions of differing length; the printed form appears as al-kubra (larger) and al-sughra (smaller)", "pd": "n/a — manuscript tradition" },
+        { "ref": "First modern printing, Beirut 1985", "pd": "in copyright (edition)" },
+        { "ref": "Pre-1929 Cairo lithograph printings", "pd": "US public domain by date (specific imprints NOT verified this round — unverified)" },
+        { "ref": "Amina Inloes, partial English translation (2022); Johann Voldemont, translation focused on talismans and magic squares (2023); Urdu and Turkish editions", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "consecration-of-object/talisman",
+          "subtype": "construction and consecration of awfaq (magic squares) and lettrist talismans — vocabGap: 'numerical-grid / magic-square construction'",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "The printed work runs to roughly forty unnumbered chapters (fasl). Its opening chapters introduce magic squares and the combination of numbers and letters that the text claims produce effect; later material covers talismans and amulets, astrological timing, and planetary correspondences. Al-Buni's Shams is credited in the mathematical literature with setting out general methods for constructing BORDERED magic squares — i.e. the operative core includes genuine constructive mathematics. Chapter counts and the presence of these classes of material are recorded; no construction rule, square, letter-value or consecration wording is reproduced here.",
+          "completenessEvidence": "COMPLETE, with a sharp caveat about WHICH text is complete. The printed al-kubra reads as an exhaustive compendium that withholds little — that comprehensiveness is precisely why it became the reference work and why it is also a scholarly problem: the completeness is the SIGNATURE OF ACCRETION, not of authorship. Evidence: three independently circulating pre-print recensions of differing length, ~40 unnumbered chapters in print, and Coulon's anachronism argument. So: complete as a printed compendium; textually unstable; not al-Buni's.",
+          "harm": ["living-tradition-sensitivity", "coercive-rite"],
+          "harmNote": "The work is simultaneously revered and censured in the modern Muslim world (its censorship and destruction history is a documented reception phenomenon). Its contents include material aimed at compelling outcomes and binding intermediaries. Admitted here as academic religious history with the ethics note attached, per the repo's abhicara precedent.",
+          "repoCoverage": "none",
+          "cite": "Wikipedia, 'Shams al-Ma'arif' (fetched 2026-07-30) for structure, recensions, printing and translations; Coulon (Brill 2021) and Gardiner (2012, 2014, 2017) for the attribution; Sesiano's magic-square scholarship for the bordered-square attribution to the Shams."
+        },
+        {
+          "type": "invocation/evocation",
+          "subtype": "the Birhatiya oath ('the Ancient Oath'/'Red Sulphur') — adjuration of jinn and spirits — vocabGap: 'adjuration of a named intermediary'",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "A named, self-contained oath-formula transmitted as a unit and appearing across many printings. Its function within the text is compulsive adjuration. RECORDED AS PRESENT AND NAMED ONLY — no part of the formula, its conditions, or its uses is reproduced, and this entry must never be expanded into one.",
+          "completenessEvidence": "COMPLETE as a transmitted unit (it circulates entire and is printed entire), which is exactly why it is the most sensitive item in this slice. The grade is stated because the graph's job is to record completeness; it is not an invitation to source the text.",
+          "harm": ["coercive-rite", "living-tradition-sensitivity", "psychological-destabilisation"],
+          "harmNote": "HARD ETHICS FLAG. Jinn-adjuration material is live and consequential in the contemporary Muslim world: belief in it drives real practices including coercive 'treatment' of afflicted persons. This record therefore names the item, its genre and its textual status, and NOTHING ELSE. Any future site treatment must follow the abhicara wing exactly — catalogue the variables, never assemble them — and should carry a named harm note of its own.",
+          "repoCoverage": "none",
+          "cite": "Wikipedia, 'Shams al-Ma'arif' (Birhatiya, also called The Ancient Oath or Red Sulphur, appears in many publications)."
+        },
+        {
+          "type": "divination-procedure",
+          "subtype": "astrological timing of lettrist operations",
+          "textCompleteness": "partial",
+          "structure": "Astrological timings and planetary correspondences are among the classes of material the work carries, i.e. operations are keyed to elected moments as in the Ghaya.",
+          "completenessEvidence": "PARTIAL: attested as a content class but not, on the evidence I have, systematised as a self-standing election method the way the Ghaya's is. (unverified) at chapter level.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Wikipedia, 'Shams al-Ma'arif'."
+        }
+      ],
+      "contested": {
+        "flag": "Authorship of Shams al-Ma'arif",
+        "positions": [
+          { "source": "The manuscript and print tradition, and most non-specialist reference", "value": "The work of Ahmad al-Buni (d. c. 1225)." },
+          { "source": "Jean-Charles Coulon", "value": "Cannot be authentic: the text contains anachronisms inconsistent with al-Buni's known authentic works; it is pseudepigrapha belonging to a 'corpus Bunianum' produced by later authors in his tradition." },
+          { "source": "Noah Gardiner (2012, 2014, 2017)", "value": "A definable authentic core exists (Lata'if al-isharat, 'Alam al-huda); the printed al-kubra is a later assemblage, and al-Buni's occultist reputation was substantially built by later readers, notably al-Bistami in the 15th century." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "picatrix",
+      "atlasSlug": "picatrix",
+      "atlasSlugExists": true,
+      "sliceScope": "ARABIC SIDE ONLY — procedure anatomy. The repo already owns the Latin Picatrix wing; this record deliberately does not duplicate it.",
+      "title": "Ghayat al-Hakim (The Goal of the Wise) — the Arabic original",
+      "titleOriginal": "غاية الحكيم",
+      "author": "contested: pseudo-Maslama al-Majriti (older consensus, Pingree) vs Maslama ibn Qasim al-Qurtubi d. 964 (Fierro, followed by de Callatay)",
+      "culture": "Islamic — al-Andalus; drawing on Harranian Sabian, Hermetic, Greek and Indian material",
+      "dateText": "10th-11th c. Arabic; Castilian 1256-58; Latin thereafter",
+      "dateCertainty": "contested",
+      "editions": [
+        { "ref": "Hellmut Ritter (ed.), Ghayat al-hakim ('Das Ziel des Weisen'), Studien der Bibliothek Warburg 12, ed. Fritz Saxl (Teubner, Leipzig/Berlin, 1933) — the Arabic critical edition", "pd": "in copyright (1933; US term runs to 2029)" },
+        { "ref": "Ritter & Plessner, 'Picatrix': Das Ziel des Weisen von Pseudo-Magriti (Warburg Institute, 1962) — German translation", "pd": "in copyright" },
+        { "ref": "David Pingree (ed.), Picatrix: The Latin Version (Warburg Institute, 1986)", "pd": "in copyright" },
+        { "ref": "Attrell & Porreca (trans.), Picatrix: A Medieval Treatise on Astral Magic (Penn State UP, 2019) — from Pingree's Latin", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "consecration-of-object/talisman",
+          "subtype": "engraving of images under elected astrological moments",
+          "textCompleteness": "complete",
+          "structure": "The four-book architecture places the operative program in the middle and late books; the shape of an operation is: election of an astrologically fitting moment -> preparation of material -> engraving of a specified image -> suffumigation and invocation addressed to the planetary spirit.",
+          "completenessEvidence": "COMPLETE: the Ghaya is the reference work of Arabic astral magic precisely because it supplies every stage. The repo already treats it this way (its Picatrix wing computes elections for STUDY and never for practice), so this row confirms rather than introduces.",
+          "harm": ["toxic-substance", "living-tradition-sensitivity"],
+          "harmNote": "Suffumigation and ingredient lists in this literature include documented-toxic materials. The repo already carries BOOK_IV harm flags in its Picatrix wing; this record inherits that posture and adds nothing operative.",
+          "repoCoverage": "partial — the atlas record's technique field describes the election-and-engraving program, and the repo has a whole Picatrix wing.",
+          "cite": "Repo confluence.js record 'picatrix'; Ritter (1933); Pingree (1986)."
+        },
+        {
+          "type": "invocation/evocation",
+          "subtype": "the planetary prayers of Book IV, presented as Sabian/Harranian rites",
+          "textCompleteness": "complete",
+          "structure": "Book IV carries descriptions of Sabian planetary ritual from Harran, prayers addressed to the planetary spirits in elaborate invocatory form, and Hermetic passages on the soul. Each planetary address is transmitted entire.",
+          "completenessEvidence": "COMPLETE as transmitted text — the prayers are printed in full in both Ritter's Arabic and Pingree's Latin, and the repo already holds a picatrix-prayers data module. The structural point worth recording is that Book IV is where the Arabic text is most ethnographic (reporting Harranian practice) and most operative at once.",
+          "harm": ["toxic-substance", "animal-harm", "living-tradition-sensitivity"],
+          "harmNote": "Book IV material includes sacrificial and suffumigatory elements; the repo already flags this book specifically.",
+          "repoCoverage": "complete-ish — assets/js/core/data/picatrix-prayers.js exists in the repo.",
+          "cite": "Ritter (1933) Book IV; Ritter & Plessner (1962); repo assets/js/core/data/picatrix-prayers.js."
+        },
+        {
+          "type": "consecration-of-object/talisman",
+          "subtype": "the seven planetary magic squares in the Arabic text — vocabGap: 'numerical-grid / magic-square construction'",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "The Ghaya is the medieval source in which the seven classical planetary squares appear together with their talismanic application, and it is the channel by which the planet-to-square attribution reached Latin Europe and, eventually, Agrippa's Book II ch. 22 — the exact table the repo's kameas.js reproduces from the 1651 English printing.",
+          "completenessEvidence": "COMPLETE in the Arabic text as to the squares themselves and their planetary assignment. The CHAPTER LOCATION within the Ghaya is (unverified) — my sources this round for the planetary-square content were secondary and partly blog-level, so the specific book/chapter must be checked against Ritter's edition before anything ships. AUDIT-CORRECTED (F1): the article that treats the Ghaya alongside al-Tabari, Jabir and the Ikhwan al-Safa' is Cristian TOLSA, 'The earliest Arabic magic squares', Suhayl 18 (2020-21), 7-24 — NOT Bink Hallum, whose awfaq study is a separate Brill chapter. The further claim that the ASTROLOGICAL association emerged later within the Islamic tradition is UNVERIFIED-DO-NOT-QUOTE: it was not confirmed at page level against Tolsa's text this round, and it must be re-sourced to a named author and page before it is asserted anywhere. Treat the dating nuance as an open question, not as an established finding.",
+          "harm": [],
+          "repoCoverage": "none for the Arabic side — but the LATIN TERMINUS is fully present: assets/js/core/data/kameas.js holds all seven Agrippa squares, arithmetically verified by the engine test. The Arabic ancestry of that data is nowhere recorded in the repo. This is the single highest-value join in my slice.",
+          "cite": "Cristian Tolsa, 'The earliest Arabic magic squares', Suhayl 18 (2020-21), 7-24 [AUDIT-CORRECTED F1 — previously miscited to Bink Hallum]; Schuyler Cammann, 'Islamic and Indian Magic Squares', History of Religions 8 (1969) (page-level unverified); repo assets/js/core/data/kameas.js."
+        }
+      ],
+      "contested": {
+        "flag": "Author and date of the Arabic original (reproduced from the repo's existing record)",
+        "positions": [
+          { "source": "David Pingree (1986) and the older consensus", "value": "pseudo-Maslama al-Majriti, composed mid-11th century." },
+          { "source": "Maribel Fierro (1996), followed by Godefroid de Callatay", "value": "Maslama ibn Qasim al-Qurtubi (d. 964), placing composition before 964." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "isl:awfaq-literature",
+      "atlasSlugExists": false,
+      "proposedId": "isl:awfaq-literature",
+      "title": "The awfaq (magic-square) construction literature",
+      "titleOriginal": "الأوفاق",
+      "author": "multiple: al-Antaki and al-Buzjani (10th c.); al-Awfaq attributed to Kamal al-Din Muhammad b. Yunus (d. 639/1242); and the lettrist appropriation in the corpus Bunianum",
+      "culture": "Islamic — mathematics and, separately, lettrist talismanry; the two are not the same literature",
+      "dateText": "earliest documented Arabic treatises late 10th c.; claims of 9th-c. origin are not documented",
+      "dateCertainty": "range",
+      "editions": [
+        { "ref": "Jacques Sesiano, Magic Squares in the Tenth Century: Two Arabic Treatises by Antaki and Buzjani (Springer, 2017)", "pd": "in copyright" },
+        { "ref": "Jacques Sesiano, 'An Arabic Treatise on the Construction of Bordered Magic Squares', Historia Scientiarum (1991) — edition of al-Awfaq attrib. Ibn Yunus", "pd": "in copyright" },
+        { "ref": "Cristian Tolsa, 'The earliest Arabic magic squares', Suhayl 18 (2020-21), 7-24 [AUDIT-CORRECTED F1]", "pd": "open access (raco.cat, Universitat de Barcelona)" },
+        { "ref": "B. C. Hallum, 'New light on early Arabic Awfaq literature', in Islamicate Occult Sciences in Theory and Practice (Brill, 2020), 57-161", "pd": "in copyright; author postprint open access at wrap.warwick.ac.uk/117867 — CITE, do not quote at length" }
+      ],
+      "procedures": [
+        {
+          "type": "consecration-of-object/talisman",
+          "subtype": "construction of bordered and general magic squares — vocabGap: 'numerical-grid / magic-square construction' (this is the paradigm case for the gap)",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "A genuine mathematical literature: general methods for constructing squares of given order, including bordered squares and knight's-move constructions, transmitted as provable procedures. Distinct from the astrological/planetary attribution. AUDIT-CORRECTED (F1): the claim that the planetary attribution is chronologically LATER was miscited to Bink Hallum and is now UNVERIFIED-DO-NOT-QUOTE pending a named author and page; the mathematical/constructive character of this literature is independently attested by Sesiano's editions and is not affected.",
+          "completenessEvidence": "COMPLETE, and uniquely so in this slice: these are mathematical constructions whose completeness can be CHECKED rather than asserted. A constructed square either satisfies its magic constant or it does not — which is exactly what the repo's own engine test does to the seven Agrippa kameas. This is the one row in the entire file where 'complete' is a demonstrable property of the procedure rather than a judgement about a manuscript.",
+          "harm": [],
+          "harmNote": "None. Recorded explicitly: the CONSTRUCTION is mathematics; only the talismanic USE is the unevidenced claim. Keeping these apart is the whole reason for the proposed vocabulary term.",
+          "repoCoverage": "partial — kameas.js reproduces the finished squares and Agrippa's talismanic uses, and separately documents the Aiq Bekar sigil-tracing method; it does not record the Arabic constructive literature that produced the squares in the first place.",
+          "cite": "Sesiano, Magic Squares in the Tenth Century (Springer, 2017); Sesiano, Historia Scientiarum (1991); Tolsa, Suhayl 18 (2020-21) [AUDIT-CORRECTED F1 — previously miscited to Hallum]."
+        }
+      ],
+      "contested": {
+        "flag": "When magic squares acquired planetary/astrological attributions",
+        "positions": [
+          { "source": "The occultist tradition and its popular literature", "value": "The planetary attribution is intrinsic and ancient." },
+          { "source": "Cristian Tolsa, 'The earliest Arabic magic squares', Suhayl 18 (2020-21), 7-24 [AUDIT-CORRECTED F1 — this slice previously attributed the article to Bink Hallum]", "value": "VERIFIED FROM THE ABSTRACT: the earliest Arabic texts discussing squares are al-Tabari, Jabir ibn Hayyan, the Ghayat al-Hakim and the Brethren of Purity (plus Indian medical sources). NOT VERIFIED and therefore not asserted: that the astrological association emerged LATER. That second half was carried on the miscitation and is UNVERIFIED-DO-NOT-QUOTE until checked at page level." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "isl:naqshbandi-kalimat-qudsiyya",
+      "atlasSlugExists": false,
+      "proposedId": "isl:naqshbandi-kalimat-qudsiyya",
+      "title": "The kalimat-i qudsiyya ('Sacred Words') — the eight/eleven Naqshbandi principles and the silent-dhikr discipline",
+      "titleOriginal": "کلمات قدسیه",
+      "author": "eight attributed to 'Abd al-Khaliq Ghijduwani (d. 1179); three added by Baha' al-Din Naqshband (1318-1389)",
+      "culture": "Islamic — Naqshbandi Sufism, Central Asia (Bukhara/Transoxiana)",
+      "dateText": "12th c. core; 14th c. expansion",
+      "dateCertainty": "range",
+      "nodeTypeNote": "This is NOT a single book. It is a transmitted rule-set carried across many texts and silsila-histories. Recording it as a work-node is a deliberate compromise; the synthesizer should consider a 'practice-corpus' node kind. This is also the direct answer to the prior-art question of whether procedures may hang off non-work nodes: HERE THEY MUST.",
+      "editions": [
+        { "ref": "Transmitted through Naqshbandi hagiographical and doctrinal literature rather than one edition; the eleven are enumerated in the reference literature (Wikipedia, 'Eleven Naqshbandi principles', which cites Hamid Algar)", "pd": "n/a" },
+        { "ref": "Hamid Algar, 'The Naqshbandi Order: A Preliminary Survey of Its History and Significance', Studia Islamica 44 (1976) — named as the standard survey (page-level unverified this round)", "pd": "in copyright" },
+        { "ref": "Itzchak Weismann, The Naqshbandiyya: Orthodoxy and Activism in a Worldwide Sufi Tradition (Routledge, 2007)", "pd": "in copyright" },
+        { "ref": "The repo's r29 plan (docs/plans/r29/esoteric-libraries.md line 393) already logs PD dhikr witnesses: Nicholson 1914/1921, Field 1909 — INHERIT, do not re-derive", "pd": "PD per the plan's own verified verdict" }
+      ],
+      "procedures": [
+        {
+          "type": "mantra-recitation",
+          "subtype": "silent (khafi) dhikr as the order's distinguishing discipline",
+          "textCompleteness": "partial",
+          "structure": "Eleven named principles form the frame, each a Persian phrase naming one discipline. Of the eight from Ghijduwani, three bear directly on the operative method: hush dar dam (awareness while breathing), yad-kard (remembrance), yad-dasht (recollection); the rest govern comportment and attention (nazar bar qadam, safar dar watan, khalwat dar anjuman, buz-gasht, nigah-dosht). Baha' al-Din's three additions are all 'pauses' — wuquf-i zamani (temporal), wuquf-i 'adadi (numerical), wuquf-i qalbi (of the heart) — i.e. they specify the TIMING, COUNT and LOCUS of the silent recollection. The names of the principles are recorded; their contents as performed are not.",
+          "completenessEvidence": "PARTIAL, on the tradition's own terms and for a reason internal to it: the Naqshbandiyya transmits its method by INITIATIC AUTHORISATION from shaykh to disciple. The eleven principles are a public frame naming what is done; the operative content — how the recollection is held, what is counted, where in the body it is located — is precisely what the initiatic relation supplies. That the last three principles specify timing/count/locus WITHOUT the public texts fixing their values is the structural evidence. Compare the inventory agent's grading of initiation-gated practices as referenced/partial.",
+          "harm": ["living-tradition-sensitivity"],
+          "harmNote": "This is a living, currently-practised Sufi discipline with millions of adherents. It is described here as the textual and historical record of a rule-set, never as method. No breath, count or locus instruction appears in this record.",
+          "repoCoverage": "none — the atlas's islamic lane is the thinnest at 7 entries and contains no dhikr material at all; the r29 plan proposed dhikr litanies (item 35) and shipped nothing.",
+          "cite": "Wikipedia, 'Eleven Naqshbandi principles' (fetched 2026-07-30), giving all eleven with transliterations and the Ghijduwani/Baha' al-Din division; Algar (1976) and Weismann (2007) named as the scholarly basis (page-level unverified)."
+        },
+        {
+          "type": "breath-discipline",
+          "subtype": "hush dar dam — awareness maintained on the breath",
+          "textCompleteness": "referenced",
+          "structure": "Named as the first principle; a discipline of attention on respiration rather than a manipulation of it.",
+          "completenessEvidence": "REFERENCED: the principle is named in every enumeration and nowhere set out as a regimen in the public sources; its performance is transmitted initiatically. Recording it as referenced rather than partial is deliberate — the public texts give a NAME, not a shape.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Wikipedia, 'Eleven Naqshbandi principles'."
+        },
+        {
+          "type": "initiation",
+          "subtype": "silsila-authorised transmission of the dhikr",
+          "textCompleteness": "referenced",
+          "structure": "The order's identity is bound to a chain of authorisation; Baha' al-Din's adoption of SILENT dhikr — and his refusal to join his own master Amir Kulal's vocal-dhikr sessions — is the founding episode that separated the Naqshbandiyya as a distinct group.",
+          "completenessEvidence": "REFERENCED: the fact and significance of authorisation are documented; no rite of transmission is set out in the sources consulted.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Wikipedia, 'Eleven Naqshbandi principles' (Baha' al-Din adopted silent dhikr from Ghijduwani's heritage and refused vocal-dhikr sessions with Amir Kulal, leading to a distinct group)."
+        }
+      ],
+      "contested": {
+        "flag": "The historicity of the attribution of the eight principles to Ghijduwani",
+        "positions": [
+          { "source": "The Naqshbandi tradition's own account", "value": "The eight kalimat-i qudsiyya were transmitted by 'Abd al-Khaliq Ghijduwani (d. 1179) and three were added by Baha' al-Din." },
+          { "source": "The critical-historical reading (the sources describe the eight as transmitted 'according to tradition')", "value": "The retrojection of a fixed eightfold rule onto a 12th-century figure by a 14th-century order is a standard silsila-legitimation move; the enumeration is attested from the Naqshbandi period, not from Ghijduwani's. Stated here as the position implied by the phrasing of the reference literature — a named scholarly advocate was NOT identified this round (unverified)." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "isl:ihya-38-muraqaba",
+      "atlasSlugExists": false,
+      "proposedId": "isl:ihya-38-muraqaba",
+      "title": "Ihya' 'Ulum al-Din, Book XXXVIII: Kitab al-Muraqaba wa'l-Muhasaba (Vigilance and Self-Examination)",
+      "titleOriginal": "كتاب المراقبة والمحاسبة",
+      "author": "Abu Hamid al-Ghazali (1058-1111)",
+      "culture": "Islamic — Sunni ethical Sufism; the Ihya' is a mainstream devotional classic, not esoterica",
+      "dateText": "composed c. 1096-1106 (the Ihya' as a whole)",
+      "dateCertainty": "range",
+      "editions": [
+        { "ref": "Arabic text: the Ihya' in its standard printings (19th-c. Cairo/Bulaq printings and after)", "pd": "text PD by age; specific imprints unverified" },
+        { "ref": "Al-Ghazali on Vigilance and Self-Examination: Book XXXVIII of the Revival of the Religious Sciences (Islamic Texts Society, 2015) — translator not confirmed this round (unverified)", "pd": "in copyright" },
+        { "ref": "The repo's r29 plan (line 230) already logs PD Ghazali witnesses: Field 1909 and Gairdner 1924 — INHERIT", "pd": "PD per the plan's own verified verdict" }
+      ],
+      "procedures": [
+        {
+          "type": "purification",
+          "subtype": "murabata — a six-station daily discipline of the self — vocabGap: 'self-examination / conscience-audit discipline'",
+          "vocabGap": true,
+          "textCompleteness": "complete",
+          "structure": "SIX NAMED STATIONS, in order: musharata (setting conditions with the soul), muraqaba (vigilance), muhasaba (self-examination), mu'aqaba (punishment), mujahada (renewed striving), mu'ataba (censure). The sequence is a closed daily loop — condition-setting at the start, audit at the end, and corrective stations that feed back into the next cycle. Structurally this is the nearest Islamic analogue to Guigo II's four rungs, which the inventory agent graded 'complete' on the same criterion.",
+          "completenessEvidence": "COMPLETE, on the strongest available evidence-type in this file: the text ENUMERATES its own stations, names each, orders them, and terminates. Multiple independent publisher/bookseller descriptions of the Islamic Texts Society translation give the identical six-item list in the identical order, which is a reliable indicator that the enumeration is the book's own and not a summariser's imposition. No content of any station is reproduced here — only that there are six, and what each is called.",
+          "harm": ["ascetic-regimen", "living-tradition-sensitivity"],
+          "harmNote": "The fourth station is self-imposed 'punishment' (mu'aqaba). Medieval ascetic penance is documented here as textual history with the hazard named; no content is given. The living-tradition flag matters especially here: the Ihya' is a mainstream devotional work read by ordinary Muslims, not occult literature, and must not be filed as though it were.",
+          "repoCoverage": "none — al-Ghazali is not in shipped atlas data despite the r29 plan proposing person-al-ghazali (line 230).",
+          "cite": "Publisher and bookseller descriptions of Al-Ghazali on Vigilance and Self-Examination (Islamic Texts Society, 2015) — Fons Vitae, Mecca Books, KitaabNow, Islamic Bookstore — all giving the six stations; archive.org full text 'Ghazali ON VIGILANCE & SELF EXAMINATION'."
+        },
+        {
+          "type": "visualization",
+          "subtype": "muraqaba as sustained awareness of being observed by God",
+          "textCompleteness": "partial",
+          "structure": "The second station. In al-Ghazali's usage muraqaba is a continuous ATTITUDE of vigilance, not a seated technique; later Sufi orders develop muraqaba into a formal seated meditation, which is a distinct and later thing.",
+          "completenessEvidence": "PARTIAL, with an important correction to a common conflation: al-Ghazali's muraqaba is a station within an ethical discipline and is described as such; the seated 'muraqaba practice' of later turuq is NOT what Ihya' 38 sets out. What is missing from the book, therefore, is any posture, duration or object — and it is missing because the book is not that kind of book. Flagged so the graph does not import later technique back onto an 11th-century text.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Ihya' Book XXXVIII as described in the ITS translation's publisher summaries (station 2 of murabata); the distinction from later seated muraqaba is asserted on structural grounds and is (unverified) against a named scholarly source this round."
+        }
+      ],
+      "contested": null
+    },
+
+    {
+      "id": "isl:risalat-al-anwar",
+      "parentAtlasSlug": "person-ibn-arabi",
+      "atlasSlugExists": true,
+      "title": "Risalat al-anwar fima yunah sahib al-khalwa min al-asrar (Treatise on the Lights: the Secrets Granted One Who Undertakes Retreat)",
+      "titleOriginal": "رسالة الأنوار فيما يمنح صاحب الخلوة من الأسرار",
+      "alternativeTitles": ["Kitab al-Isra' fi'l-Haqiqa (The Book of Journey in Reality)", "The Book of Retreat"],
+      "author": "Muhyi al-Din Ibn 'Arabi (1165-1240)",
+      "culture": "Islamic — Akbarian Sufism; written for a senior disciple",
+      "dateText": "written at Konya, 601/1204-05",
+      "dateCertainty": "year",
+      "editions": [
+        { "ref": "c. 70 manuscript copies survive worldwide under the various titles (per the translator's account)", "pd": "text PD by age" },
+        { "ref": "Arabic printed editions: Cairo 1914; Hyderabad 1948", "pd": "Cairo 1914 US public domain by date; Hyderabad 1948 in copyright (unverified)" },
+        { "ref": "Journey to the Lord of Power: A Sufi Manual on Retreat, trans. Rabia Terri Harris (Inner Traditions, 1981)", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "visualization",
+          "subtype": "the khalwa itinerary — a staged ascent through what is disclosed in retreat — vocabGap: 'retreat / seclusion discipline'",
+          "vocabGap": true,
+          "textCompleteness": "partial",
+          "structure": "A letter, not a rulebook. Its architecture is an ITINERARY OF DISCLOSURES: Ibn 'Arabi describes, in order, what the retreatant will be shown at successive stages and — crucially — what must be refused at each. The organising move of the treatise is warning against arrest at any station, so the sequence is defined negatively as much as positively. English rendering as 'A Sufi Manual on Retreat' is the modern publisher's framing.",
+          "completenessEvidence": "PARTIAL, on three converging grounds: (a) the genre is an epistle to ONE named senior disciple, so it assumes that disciple's formation and states it does not supply; (b) it describes what is disclosed rather than prescribing what is done — the practical conditions of khalwa (duration, fasting, seclusion arrangements, the shaykh's supervision) are presupposed from the Sufi milieu, not laid out; (c) the treatise's own premise is that the retreat is undertaken UNDER AUTHORISATION. Compare the inventory agent's grading of Ignatius's Exercises as partial for the identical reason ('under a director').",
+          "harm": ["ascetic-regimen", "psychological-destabilisation", "living-tradition-sensitivity"],
+          "harmNote": "The tradition and the translation literature both describe khalwa as an ADVANCED AND POTENTIALLY DANGEROUS practice: extended solitude with food and sleep restriction, undertaken in expectation of visionary disclosure. That combination is a documented route to psychological destabilisation. Recorded as 13th-century textual history; the treatise's own warnings are part of what makes it a historical document worth recording.",
+          "repoCoverage": "none — the atlas record on person-ibn-arabi has technique:null and does not mention the khalwa treatise at all, though it names the Futuhat and the Fusus.",
+          "cite": "Rabia Terri Harris's translation and introduction, Journey to the Lord of Power (Inner Traditions, 1981), as reported in the Internet Archive full text and the Jerrahi Order and Goodreads descriptions (~70 MSS; Cairo 1914 and Hyderabad 1948 printings; Konya 1204-05); repo confluence.js record 'person-ibn-arabi'."
+        },
+        {
+          "type": "initiation",
+          "subtype": "the authorisation presupposed by the retreat",
+          "textCompleteness": "referenced",
+          "structure": "Named as a condition, not described as a rite.",
+          "completenessEvidence": "REFERENCED: the treatise addresses someone already inside the relationship; no admission procedure is set out.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "as above."
+        }
+      ],
+      "contested": {
+        "flag": "Ibn 'Arabi's doctrinal legacy (reproduced from the repo's existing record; NOT a dispute about this treatise)",
+        "positions": [
+          { "source": "Ibn Taymiyya (d. 1328) and the anti-Akbarian polemical tradition", "value": "A heretical conflation of God and world, to be condemned." },
+          { "source": "William C. Chittick, The Sufi Path of Knowledge (SUNY, 1989)", "value": "wahdat al-wujud does not appear in Ibn 'Arabi's writings; the label was attached by later interpreters and his position is not reducible to pantheism." }
+        ]
+      },
+      "notResolved": true
+    },
+
+    {
+      "id": "isl:futuhat-khalwa-passages",
+      "parentAtlasSlug": "person-ibn-arabi",
+      "atlasSlugExists": true,
+      "title": "al-Futuhat al-Makkiyya (The Meccan Openings) — its spiritual-exercise passages",
+      "titleOriginal": "الفتوحات المكية",
+      "author": "Muhyi al-Din Ibn 'Arabi",
+      "culture": "Islamic — Akbarian Sufism",
+      "dateText": "begun at Mecca 1202; second recension completed 1238",
+      "dateCertainty": "range",
+      "editions": [
+        { "ref": "Standard Arabic printings (Bulaq and after); no complete English translation exists", "pd": "text PD by age" },
+        { "ref": "William C. Chittick, The Sufi Path of Knowledge (SUNY, 1989) — the standard English study, extensively translating the Futuhat", "pd": "in copyright" }
+      ],
+      "procedures": [
+        {
+          "type": "mantra-recitation",
+          "subtype": "invocation and litany material (awrad) distributed across an enormous work",
+          "textCompleteness": "referenced",
+          "structure": "The Futuhat is an encyclopedia, not a manual; devotional and exercise material appears within a vast doctrinal architecture.",
+          "completenessEvidence": "REFERENCED — and this grade states MY EVIDENCE honestly: I did not sample the Futuhat's practice chapters this round. A separate corpus of Ibn 'Arabi's litanies (the awrad) exists and is transmitted independently; it is NOT graded here. Flagged as a research gap rather than dressed as a finding.",
+          "harm": ["living-tradition-sensitivity"],
+          "repoCoverage": "none",
+          "cite": "Repo confluence.js record 'person-ibn-arabi' (Futuhat begun 1202, second recension 1238); Chittick (1989). Practice-chapter content (unverified)."
+        }
+      ],
+      "contested": null
+    }
+  ],
+
+  "edges": [
+    { "from": "jew:hekhalot-rabbati", "type": "BELONGS_TO", "to": "culture:jewish-late-antique-visionary", "label": "documented", "cite": "repo confluence.js 'hekhalot-literature'" },
+    { "from": "jew:sar-ha-torah", "type": "BELONGS_TO", "to": "culture:jewish-late-antique-scribal", "label": "documented", "cite": "Swartz, Scholastic Magic (1996)" },
+    { "from": "jew:maaseh-merkavah", "type": "BELONGS_TO", "to": "culture:jewish-late-antique-visionary", "label": "documented", "cite": "Schafer, Synopse (1981)" },
+    { "from": "jew:3-enoch", "type": "BELONGS_TO", "to": "culture:jewish-late-antique-visionary", "label": "documented", "cite": "Odeberg (1928)" },
+    { "from": "sefer-yetzirah", "type": "BELONGS_TO", "to": "culture:jewish-esoteric-cosmology", "label": "documented", "cite": "repo confluence.js 'sefer-yetzirah'" },
+    { "from": "jew:eleazar-worms-sy-commentary", "type": "BELONGS_TO", "to": "culture:jewish-hasidei-ashkenaz", "label": "documented", "cite": "Idel, Golem (1990)" },
+    { "from": "jew:sodei-razayya", "type": "BELONGS_TO", "to": "culture:jewish-hasidei-ashkenaz", "label": "documented", "cite": "Wikipedia 'Eleazar of Worms'" },
+    { "from": "jew:sefer-hasidim", "type": "BELONGS_TO", "to": "culture:jewish-hasidei-ashkenaz", "label": "documented", "cite": "Bologna 1538" },
+    { "from": "jew:hayyei-haolam-haba", "type": "BELONGS_TO", "to": "culture:jewish-ecstatic-kabbalah", "label": "documented", "cite": "repo confluence.js 'person-abulafia'" },
+    { "from": "jew:shaar-hakavvanot", "type": "BELONGS_TO", "to": "culture:jewish-lurianic-safed", "label": "documented", "cite": "Fine (2003)" },
+    { "from": "jew:shaar-ruah-hakodesh-yihudim", "type": "BELONGS_TO", "to": "culture:jewish-lurianic-safed", "label": "documented", "cite": "Fine (1987)" },
+    { "from": "jew:sefer-ha-malbush", "type": "BELONGS_TO", "to": "culture:jewish-geonic-near-east", "label": "disputed", "note": "provenance tentative; source quality weak", "cite": "independent study, flagged WEAK" },
+    { "from": "jew:shimmush-tehillim", "type": "BELONGS_TO", "to": "culture:jewish-late-antique-egypt-palestine", "label": "documented", "cite": "Rebiger (2010), publisher description" },
+    { "from": "isl:lataif-al-isharat", "type": "BELONGS_TO", "to": "culture:islamic-sufi-lettrism", "label": "documented", "cite": "Gardiner (2014)" },
+    { "from": "isl:alam-al-huda", "type": "BELONGS_TO", "to": "culture:islamic-sufi-lettrism", "label": "documented", "cite": "Gardiner (2014)" },
+    { "from": "isl:shams-al-maarif", "type": "BELONGS_TO", "to": "culture:islamic-sufi-lettrism", "label": "documented", "cite": "Wikipedia 'Shams al-Ma'arif'" },
+    { "from": "picatrix", "type": "BELONGS_TO", "to": "culture:islamic-andalusi-astral-magic", "label": "documented", "cite": "repo confluence.js 'picatrix'" },
+    { "from": "isl:awfaq-literature", "type": "BELONGS_TO", "to": "culture:islamic-mathematics-and-lettrism", "label": "documented", "cite": "Tolsa, Suhayl 18 (2020-21) [AUDIT-CORRECTED F1 — previously miscited to Hallum]" },
+    { "from": "isl:naqshbandi-kalimat-qudsiyya", "type": "BELONGS_TO", "to": "culture:islamic-naqshbandi-sufism", "label": "documented", "cite": "Wikipedia 'Eleven Naqshbandi principles'" },
+    { "from": "isl:ihya-38-muraqaba", "type": "BELONGS_TO", "to": "culture:islamic-sunni-ethical-sufism", "label": "documented", "cite": "ITS 2015 translation descriptions" },
+    { "from": "isl:risalat-al-anwar", "type": "BELONGS_TO", "to": "culture:islamic-akbarian-sufism", "label": "documented", "cite": "Harris trans. (1981)" },
+    { "from": "isl:futuhat-khalwa-passages", "type": "BELONGS_TO", "to": "culture:islamic-akbarian-sufism", "label": "documented", "cite": "repo confluence.js 'person-ibn-arabi'" },
+
+    { "from": "jew:hekhalot-rabbati", "type": "AUTHORED_BY", "to": "author:anonymous-pseudepigraphic-tannaitic", "label": "documented", "note": "Ascription to R. Ishmael / R. Nehunya is pseudepigraphic; universally so treated.", "cite": "Schafer, Synopse (1981)" },
+    { "from": "jew:eleazar-worms-sy-commentary", "type": "AUTHORED_BY", "to": "author:eleazar-ben-judah-of-worms", "label": "documented", "cite": "Idel, Golem (1990)" },
+    { "from": "jew:sodei-razayya", "type": "AUTHORED_BY", "to": "author:eleazar-ben-judah-of-worms", "label": "documented", "cite": "Wikipedia 'Eleazar of Worms'" },
+    { "from": "jew:sefer-hasidim", "type": "AUTHORED_BY", "to": "author:judah-he-hasid-and-circle", "label": "disputed", "note": "Composite; the Bologna and Parma recensions differ materially, so single authorship is not sustainable.", "cite": "Wistinetzki-Freimann (1924)" },
+    { "from": "jew:hayyei-haolam-haba", "type": "AUTHORED_BY", "to": "person-abulafia", "label": "documented", "note": "Atlas person-node; join key exists.", "cite": "repo confluence.js 'person-abulafia'" },
+    { "from": "jew:or-ha-sekhel", "type": "AUTHORED_BY", "to": "person-abulafia", "label": "documented", "cite": "general reference; (unverified)" },
+    { "from": "jew:shaar-hakavvanot", "type": "AUTHORED_BY", "to": "author:hayyim-vital", "label": "documented", "cite": "Fine (2003)" },
+    { "from": "jew:shaar-hakavvanot", "type": "RECORDS_TEACHING_OF", "to": "person-isaac-luria", "label": "documented", "note": "Luria wrote almost nothing; Vital's redaction is the transmission channel. Atlas join key exists.", "cite": "repo confluence.js 'person-isaac-luria'; Fine (2003)" },
+    { "from": "jew:shaar-ruah-hakodesh-yihudim", "type": "RECORDS_TEACHING_OF", "to": "person-isaac-luria", "label": "documented", "cite": "Fine (1987)" },
+    { "from": "isl:lataif-al-isharat", "type": "AUTHORED_BY", "to": "author:ahmad-al-buni", "label": "documented", "note": "Gardiner assigns this to the authentic core — the one place the al-Buni attribution is SAFE.", "cite": "Gardiner (2014, 2023)" },
+    { "from": "isl:alam-al-huda", "type": "AUTHORED_BY", "to": "author:ahmad-al-buni", "label": "documented", "cite": "Gardiner (2014)" },
+    { "from": "isl:shams-al-maarif", "type": "AUTHORED_BY", "to": "author:ahmad-al-buni", "label": "debunked", "note": "DRAW STRUCK, NEVER HIDDEN (repo convention). Coulon: anachronisms make it pseudepigrapha; Gardiner: the printed al-kubra is a later assemblage of the corpus Bunianum. The attribution is recorded because it is the reason the book exists in the form it does.", "cite": "Coulon (Brill 2021); Gardiner (2012, 2014, 2017)" },
+    { "from": "isl:risalat-al-anwar", "type": "AUTHORED_BY", "to": "person-ibn-arabi", "label": "documented", "cite": "Harris trans. (1981); repo confluence.js 'person-ibn-arabi'" },
+    { "from": "isl:futuhat-khalwa-passages", "type": "AUTHORED_BY", "to": "person-ibn-arabi", "label": "documented", "cite": "repo confluence.js 'person-ibn-arabi'" },
+    { "from": "isl:ihya-38-muraqaba", "type": "AUTHORED_BY", "to": "author:al-ghazali", "label": "documented", "cite": "ITS 2015" },
+    { "from": "isl:naqshbandi-kalimat-qudsiyya", "type": "AUTHORED_BY", "to": "author:abd-al-khaliq-ghijduwani", "label": "disputed", "note": "Eight principles attributed 'according to tradition'; the enumeration is attested from the Naqshbandi period, not from Ghijduwani's lifetime.", "cite": "Wikipedia 'Eleven Naqshbandi principles'" },
+
+    { "from": "sefer-yetzirah", "type": "TRANSMITS_TO", "to": "jew:eleazar-worms-sy-commentary", "label": "documented", "procedureLevel": true, "note": "PROCEDURE-PROPAGATION CLAIM, on the Mallinson-edge standard the prior-art inventory set: the commentary does not merely cite Sefer Yetzirah, it takes SY's alphabet-combination 'gates' as the operative engine of the golem rite and names them as such. The named mechanism is what makes this a procedure edge rather than an influence edge.", "cite": "Idel, Golem (SUNY, 1990); Eleazar's Commentary on Sefer Yetzirah" },
+    { "from": "sefer-yetzirah", "type": "TRANSMITS_TO", "to": "jew:sodei-razayya", "label": "documented", "note": "Sodei Razayya's creation-exegesis proceeds on the 22 letters explicitly on a Sefer Yetzirah basis.", "cite": "Wikipedia 'Eleazar of Worms'" },
+    { "from": "sefer-yetzirah", "type": "TRANSMITS_TO", "to": "jew:hayyei-haolam-haba", "label": "documented", "note": "Work-level and technique-level: the repo's own atlas body for sefer-yetzirah states that later currents 'from the Ashkenazi Pietists to Abulafia' anchored themselves in commentary upon it, and Abulafia's letter-combination science is built on SY's letter doctrine. Graded documented at work level; the claim that a SPECIFIC SY operation passes into a SPECIFIC Abulafian one is NOT asserted here.", "cite": "repo confluence.js 'sefer-yetzirah'; Idel (1988)" },
+    { "from": "jew:hekhalot-rabbati", "type": "TRANSMITS_TO", "to": "jew:sar-ha-torah", "label": "documented", "note": "Same manuscript corpus; the Sar-Torah praxis is transmitted within and alongside Hekhalot Rabbati. Whether it is a continuation or an independent stream is the Scholem/Swartz dispute recorded on both nodes.", "cite": "Schafer, Synopse (1981); Swartz (1996)" },
+    { "from": "jew:hekhalot-rabbati", "type": "PARALLELS", "to": "jew:sefer-ha-malbush", "label": "disputed", "ASSERTED": false, "VOIDED_BY_AUDIT": "R33 hostile audit, EVIDENCE STRIKE E1 — a PARALLELS edge needs a citation, not a resemblance. This edge's own cite field reads '(unverified) — flagged' and the record it points at (jew:sefer-ha-malbush) is the slice's self-declared weakest node, graded on source quality rather than on the text. VOID as an edge; RETAINED as a both-ways note on the two works so the observation is not lost. Re-assert only with Bohak, Ancient Jewish Magic (CUP 2008), page-cited.", "note": "Both are name-adjuration rites of the same broad late-antique-to-Geonic Near Eastern milieu. STRUCTURAL PARALLEL ONLY, and weakly evidenced: my Malbush sources were not scholarly. Do not upgrade without Bohak, Ancient Jewish Magic (2008).", "cite": "(unverified) — flagged" },
+    { "from": "jew:shaar-hakavvanot", "type": "TRANSMITS_TO", "to": "jew:shaar-ruah-hakodesh-yihudim", "label": "documented", "note": "Both are gates of the same Vitalian eight-gate arrangement; kavvanot and yihudim are the two halves of one contemplative program (liturgical overlay + assigned unification).", "cite": "Fine (1987, 2003)" },
+    { "from": "isl:lataif-al-isharat", "type": "TRANSMITS_TO", "to": "isl:shams-al-maarif", "label": "documented", "procedureLevel": true, "note": "PROCEDURE-PROPAGATION: Gardiner's manuscript-culture argument is precisely that the authentic al-Buni works form the historical core around which the printed compendium accreted — i.e. lettrist material from the core is carried forward into the assemblage. The direction of dependency is established by the manuscript evidence, not inferred.", "cite": "Gardiner (2012, 2014, 2017); Coulon (2021)" },
+    { "from": "isl:alam-al-huda", "type": "TRANSMITS_TO", "to": "isl:shams-al-maarif", "label": "documented", "note": "Same accretion mechanism; the Names material of the authentic core feeds the compendium's lettrist apparatus.", "cite": "Gardiner (2014)" },
+    { "from": "author:al-bistami", "type": "COMMENTS_ON", "to": "isl:lataif-al-isharat", "label": "documented", "note": "The 15th-century encyclopedist 'Abd al-Rahman al-Bistami's commentaries, emphasising amulets and talismans, substantially built al-Buni's later occultist reputation. This edge explains HOW a Sufi lettrist became 'the' Islamic magician in later reception.", "cite": "Wikipedia 'Shams al-Ma'arif'; Gardiner's work on al-Bistami's occultist encyclopedism" },
+    { "from": "isl:awfaq-literature", "type": "TRANSMITS_TO", "to": "picatrix", "label": "documented", "procedureLevel": true, "note": "PROCEDURE-PROPAGATION: the Ghaya is one of the earliest Arabic texts in which magic squares appear (with al-Tabari, Jabir and the Ikhwan al-Safa'), and it is the text through which the seven-planet square set reached Latin Europe. HONEST LIMIT: this edge carries the mathematics forward confidently and the astrology only partly. AUDIT-CORRECTED (F1): the supporting claim that the astrological ATTRIBUTION of squares to planets is a LATER development was miscited to Bink Hallum (the article is Cristian Tolsa's) and is now UNVERIFIED-DO-NOT-QUOTE at page level. The edge stands on the square-transmission claim; the dating nuance must be re-sourced before it is stated on the site.", "cite": "Tolsa, 'The earliest Arabic magic squares', Suhayl 18 (2020-21), 7-24 [AUDIT-CORRECTED F1]; Sesiano (1991, 2017)" },
+    { "from": "picatrix", "type": "TRANSMITS_TO", "to": "repo:kameas.js (Agrippa, Three Books II.22)", "label": "documented", "procedureLevel": true, "note": "THE HIGHEST-VALUE JOIN IN THIS SLICE. The seven planetary squares the repo already ships — arithmetically verified by its own engine test — descend from the Arabic awfaq tradition via the Ghaya and its Latin translation. The repo currently presents them as Agrippa's with no upstream at all. HONEST LIMIT: the intermediate Latin channel between the Ghaya and Agrippa is not established by this round's sources (candidate: the Azarquiel magic-square transmission literature); the exact chapter of the Ghaya carrying the seven squares is (unverified). Do not ship the edge until Ritter's edition is checked.", "cite": "repo assets/js/core/data/kameas.js; Tolsa, Suhayl 18 (2020-21) [AUDIT-CORRECTED F1 — previously miscited to Hallum]; Cammann, History of Religions 8 (1969) (page-level unverified)" },
+    { "from": "picatrix", "type": "TRANSMITS_TO", "to": "event-picatrix-translation", "label": "documented", "note": "Existing atlas node; the Alfonsine Castilian translation 1256-58. Recorded so the synthesizer sees this slice's Arabic-side node connects to material already shipped.", "cite": "repo confluence.js 'event-picatrix-translation'" },
+    { "from": "isl:naqshbandi-kalimat-qudsiyya", "type": "TRANSMITS_TO", "to": "isl:naqshbandi-kalimat-qudsiyya#eleven", "label": "documented", "note": "INTERNAL EXPANSION EDGE: eight principles from Ghijduwani (d. 1179) -> eleven after Baha' al-Din Naqshband's three 'pause' additions (wuquf-i zamani / 'adadi / qalbi). Modelled as an edge because the expansion is datable and attributable, and because the three additions are exactly the ones that specify timing, count and locus.", "cite": "Wikipedia 'Eleven Naqshbandi principles'" },
+    { "from": "isl:ihya-38-muraqaba", "type": "PARALLELS", "to": "external:guigo-ii-scala-claustralium", "label": "disputed", "ASSERTED": false, "VOIDED_BY_AUDIT": "R33 hostile audit, EVIDENCE STRIKE E1 — its own cite field reads 'structural comparison only; no contact evidence sought or found'. An 11th-century Persian Sufi ladder and a 12th-century Carthusian ladder drawn together on shape alone is exactly the pan-diffusionist move this corpus attracts. VOID as an edge. The underlying observation is genuinely useful and is RETAINED as a methodological note: it is the cleanest cross-tradition test that the enumerate-and-terminate completeness criterion travels. Re-assert only with a named scholar comparing the two.", "note": "STRUCTURAL PARALLEL, offered to the synthesizer and NOT claimed as historical contact: both are closed enumerated ladders of interior discipline (six stations vs four rungs), and the inventory agent graded Guigo 'complete' on the same enumerate-and-terminate criterion. No transmission is asserted in either direction.", "cite": "structural comparison only; no contact evidence sought or found" },
+    { "from": "jew:hekhalot-rabbati", "type": "PARALLELS", "to": "external:pgm-greek-magical-papyri", "label": "disputed", "AUDIT_NOTE": "R33 hostile audit, EVIDENCE STRIKE E1 (partial) — label downgraded documented -> disputed. The cite field itself says the witness was 'NOT consulted this round; (unverified)'. A 'documented' label asserts that a named witness was read; this one was not. The kinship is standard in the scholarship and slice 11 independently records the same structural parallel from its own side (gem:sefer-ha-razim PARALLELS gem:pgm-corpus, cited to Margalioth/Morgan), so the edge survives — at the honest label.", "note": "OUT-OF-SLICE POINTER for the neighbouring agent: the structural kinship of late-antique Jewish adjuration with the Greco-Egyptian magical papyri (nomina barbara, angelic/daimonic binding, purity preliminaries, first-person ascent) is standard in the scholarship. Recorded as a hand-off, not as a finding of mine; PGM belongs to another slice and I did not research it.", "cite": "standard scholarship (Bohak, Ancient Jewish Magic, 2008) — NOT consulted this round; (unverified)" },
+    { "from": "jew:shimmush-tehillim", "type": "TRANSMITS_TO", "to": "external:sixth-and-seventh-books-of-moses", "label": "disputed", "note": "OUT-OF-SLICE POINTER: the pseudepigraphic 'Moses 6/7' line, which the repo's r29 plan already names (line 99), draws on Jewish psalm- and name-magic. The specific dependency on Shimmush Tehillim is asserted in the popular literature and was NOT verified this round.", "cite": "(unverified) — flagged; repo docs/plans/r29/esoteric-libraries.md line 99" },
+
+    { "from": "jew:hekhalot-rabbati", "type": "CONTAINS_PROCEDURE", "to": "proc:invocation/evocation", "completeness": "partial" },
+    { "from": "jew:hekhalot-rabbati", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "complete" },
+    { "from": "jew:hekhalot-rabbati", "type": "CONTAINS_PROCEDURE", "to": "proc:purification", "completeness": "complete" },
+    { "from": "jew:sar-ha-torah", "type": "CONTAINS_PROCEDURE", "to": "proc:invocation/evocation", "completeness": "complete" },
+    { "from": "jew:maaseh-merkavah", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "complete" },
+    { "from": "jew:3-enoch", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "referenced" },
+    { "from": "sefer-yetzirah", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "referenced" },
+    { "from": "jew:eleazar-worms-sy-commentary", "type": "CONTAINS_PROCEDURE", "to": "proc:consecration-of-object/talisman", "completeness": "complete" },
+    { "from": "jew:sodei-razayya", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "referenced" },
+    { "from": "jew:sodei-razayya", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "partial" },
+    { "from": "jew:sefer-hasidim", "type": "CONTAINS_PROCEDURE", "to": "proc:purification", "completeness": "partial" },
+    { "from": "jew:hayyei-haolam-haba", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "complete" },
+    { "from": "jew:hayyei-haolam-haba", "type": "CONTAINS_PROCEDURE", "to": "proc:breath-discipline", "completeness": "partial" },
+    { "from": "jew:hayyei-haolam-haba", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "complete" },
+    { "from": "jew:or-ha-sekhel", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "referenced" },
+    { "from": "jew:shaar-hakavvanot", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "complete" },
+    { "from": "jew:shaar-ruah-hakodesh-yihudim", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "partial" },
+    { "from": "jew:shaar-ruah-hakodesh-yihudim", "type": "CONTAINS_PROCEDURE", "to": "proc:funerary/liminal rite", "completeness": "partial" },
+    { "from": "jew:shaar-ruah-hakodesh-yihudim", "type": "CONTAINS_PROCEDURE", "to": "proc:purification", "completeness": "referenced" },
+    { "from": "jew:sefer-ha-malbush", "type": "CONTAINS_PROCEDURE", "to": "proc:consecration-of-object/talisman", "completeness": "partial" },
+    { "from": "jew:sefer-ha-malbush", "type": "CONTAINS_PROCEDURE", "to": "proc:purification", "completeness": "partial" },
+    { "from": "jew:sefer-ha-malbush", "type": "CONTAINS_PROCEDURE", "to": "proc:invocation/evocation", "completeness": "partial" },
+    { "from": "jew:shimmush-tehillim", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "complete" },
+    { "from": "jew:shimmush-tehillim", "type": "CONTAINS_PROCEDURE", "to": "proc:consecration-of-object/talisman", "completeness": "partial" },
+    { "from": "isl:lataif-al-isharat", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "partial" },
+    { "from": "isl:lataif-al-isharat", "type": "CONTAINS_PROCEDURE", "to": "proc:consecration-of-object/talisman", "completeness": "partial" },
+    { "from": "isl:alam-al-huda", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "referenced" },
+    { "from": "isl:shams-al-maarif", "type": "CONTAINS_PROCEDURE", "to": "proc:consecration-of-object/talisman", "completeness": "complete" },
+    { "from": "isl:shams-al-maarif", "type": "CONTAINS_PROCEDURE", "to": "proc:invocation/evocation", "completeness": "complete", "harmGate": true },
+    { "from": "isl:shams-al-maarif", "type": "CONTAINS_PROCEDURE", "to": "proc:divination-procedure", "completeness": "partial" },
+    { "from": "picatrix", "type": "CONTAINS_PROCEDURE", "to": "proc:consecration-of-object/talisman", "completeness": "complete" },
+    { "from": "picatrix", "type": "CONTAINS_PROCEDURE", "to": "proc:invocation/evocation", "completeness": "complete", "harmGate": true },
+    { "from": "picatrix", "type": "CONTAINS_PROCEDURE", "to": "proc:consecration-of-object/talisman", "subtype": "planetary magic squares (awfaq)", "completeness": "complete", "note": "Second row of the same type on the same work, kept distinct because the square-construction material and the image-engraving material are different operations that the vocabulary currently collapses. This is the vocabGap 'numerical-grid / magic-square construction' made visible as a duplicate edge." },
+    { "from": "isl:awfaq-literature", "type": "CONTAINS_PROCEDURE", "to": "proc:consecration-of-object/talisman", "completeness": "complete" },
+    { "from": "isl:naqshbandi-kalimat-qudsiyya", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "partial" },
+    { "from": "isl:naqshbandi-kalimat-qudsiyya", "type": "CONTAINS_PROCEDURE", "to": "proc:breath-discipline", "completeness": "referenced" },
+    { "from": "isl:naqshbandi-kalimat-qudsiyya", "type": "CONTAINS_PROCEDURE", "to": "proc:initiation", "completeness": "referenced" },
+    { "from": "isl:ihya-38-muraqaba", "type": "CONTAINS_PROCEDURE", "to": "proc:purification", "completeness": "complete" },
+    { "from": "isl:ihya-38-muraqaba", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "partial" },
+    { "from": "isl:risalat-al-anwar", "type": "CONTAINS_PROCEDURE", "to": "proc:visualization", "completeness": "partial" },
+    { "from": "isl:risalat-al-anwar", "type": "CONTAINS_PROCEDURE", "to": "proc:initiation", "completeness": "referenced" },
+    { "from": "isl:futuhat-khalwa-passages", "type": "CONTAINS_PROCEDURE", "to": "proc:mantra-recitation", "completeness": "referenced" }
+  ],
+
+  "notes": {
+    "razorCompliance": "No mantra syllables, divine-name forms, letter-strings, gate-sequences, magic-square grids or construction rules, oath-formulae, ingredient lists, quantities, durations or timings appear anywhere in this file. Procedures are recorded as NAMED STAGES and STRUCTURAL SHAPES only. Two items were deliberately compressed to a bare naming because a stage-list would already be too much: the Birhatiya oath (isl:shams-al-maarif) and the golem rite's gate-recitation (jew:eleazar-worms-sy-commentary). Nothing addresses a reader in the second person.",
+    "procedureNodeOwnership": "The prior-art inventory asked whether procedures may hang off non-work nodes. This slice forces a partial answer: TWO of my highest-value procedure-bearers are not books. (1) The Naqshbandi kalimat-i qudsiyya is a rule-set transmitted across many texts and silsila-histories with no single edition. (2) The Lurianic material exists only as disciple-redactions of a man who wrote almost nothing, which is why the atlas made person-isaac-luria a PERSON node. Recommendation: allow a 'practice-corpus' node kind distinct from 'work', rather than either forcing a fictional book-node or hanging procedures on persons.",
+    "twoFieldDiscipline": "Following the inventory agent, every procedure row carries `textCompleteness` (the source text's own) and `repoCoverage` (what this repo currently records). Across 47 rows, repoCoverage is 'none' for 40, 'partial' for 6, and 'complete-ish' for 1 (picatrix-prayers.js). Keeping the fields apart is what stops 'the repo says nothing' from reading as 'the text says nothing' — which would be flatly false for Abulafia and Shimmush Tehillim.",
+    "deduplication": "Four work-nodes (jew:hekhalot-rabbati, jew:sar-ha-torah, jew:maaseh-merkavah, jew:3-enoch) all point at the SINGLE atlas slug hekhalot-literature, which the atlas treats as one corpus-level text node. The synthesizer must not create four atlas entries. The Sar-Torah purification row is explicitly marked crossReferenceOnly:true because it is the same material as the Hekhalot Rabbati row; it is not counted in the 47.",
+    "atlasCorrectionProposed": "The atlas record for person-ibn-arabi carries technique:null and names the Futuhat and the Fusus. Ibn 'Arabi's one genuinely procedural text — Risalat al-anwar, written at Konya in 1204-05, surviving in c. 70 manuscripts — is absent. This is not an error like the two mis-attributions the inventory agent found; it is a straightforward omission, and the cheapest single improvement to the atlas's thinnest lane.",
+    "whatIDidNotDo": "I did not range outside my slice. Sefer ha-Razim, the Sword of Moses and Sefer Raziel are Jewish operative texts already carrying PD verdicts in the r29 plan (lines 188-193); they are adjacent to my corpus and I left them alone rather than duplicate a neighbour's evidence. I did not research the PGM, the Latin Picatrix wing, or the Sixth/Seventh Books of Moses; where an edge touches them it is marked as an out-of-slice pointer and labelled unverified."
+  }
+}

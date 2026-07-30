@@ -163,7 +163,9 @@ export function buildContext(reading, opts = {}) {
   const ranked = reading.election.rankedNow;
   if (ranked.length) add(`Aims ranked now (best→worst): ${ranked.map(o => `${o.label} ${o.verdict}`).join('; ')}.`, 'Picatrix — election');
   const t = reading.talisman;
-  if (t) add(`Talisman for "${t.aim}" (${t.planet}): verdict ${t.verdict}; suffumigation ${t.materials.suffumigation}, colour ${t.materials.colour}, metal ${t.materials.metal}, stone ${t.materials.stone}.`, 'Picatrix II–III / Agrippa II — historical practice only');
+  // The harm note of a flagged materia is appended to the SAME fact string, so a
+  // truncated context can never carry the material without it (FRAMING §5 A-5).
+  if (t) add(`Talisman for "${t.aim}" (${t.planet}), as the sources record it: verdict ${t.verdict}; suffumigation ${t.materials.suffumigation}, colour ${t.materials.colour}, metal ${t.materials.metal}, stone ${t.materials.stone}.${(t.harmNotes && t.harmNotes.length) ? ' ' + t.harmNotes.join(' ') : ''}`, 'Picatrix II–III / Agrippa II — historical practice only');
   // Picatrix Book III prayer & spirit of the ruling planet (historical text only)
   if (t && t.planet) {
     const pr = prayerFor(t.planet);
@@ -798,7 +800,7 @@ export function buildOperationPrompt(reading, request, opts = {}) {
     reading && reading.vedic ? `the Vedic vāra is ${reading.vedic.panchanga.vara.name} and the running mahādaśā is ${reading.vedic.vimshottari.currentMaha}` : null,
   ].filter(Boolean).join('; ');
   return (
-    `A practitioner asks: "${String(request).trim()}"\n\n` +
+    `A reader asks about the historical practice: "${String(request).trim()}"\n\n` +
     'Answer ONLY from the Lilly + Picatrix (and, where relevant, the Jyotiṣa) traditions this Workbench ' +
     'computes. You do NOT need to browse the website: the engine is available to you AS TOOLS — call them ' +
     'to ground every number (do not invent positions or times). ' +
@@ -814,12 +816,19 @@ export function buildOperationPrompt(reading, request, opts = {}) {
     '— the planetary hour, the ruling planet’s dignity, the Moon’s phase/mansion/void-of-course, the ' +
     'election verdict, any fixed-star contact; and, if the aim has a devotional dimension, the Vedic ' +
     'day/birth practice (call `vedicPractice` / `castVedic`).\n' +
-    '4. THE HISTORICAL PROCEDURE the tradition would follow: the timing (day & hour), the materials ' +
-    'and mansion (call `talismanRecipe` if useful), the design — recorded as historical practice.\n' +
-    '5. Point the practitioner to the live tool to watch it themselves: ' +
+    // FRAMING §9.11: this step used to command "THE HISTORICAL PROCEDURE the
+    // tradition would follow", which asks the model for a procedure addressed to
+    // the asker. It now asks for attested description in the third person, and
+    // `talismanRecipe` is safe to reference here only because §9.14 has landed.
+    '4. WHAT THE SOURCES RECORD about the procedure — the timing (day & hour), the materials ' +
+    'and mansion (call `talismanRecipe` if useful, which returns `attestedSequence`, not steps), the ' +
+    'design — AS THE TEXTS DESCRIBE THEM, in the third person and attributed to the text, with ' +
+    'citations. Do not restate any of it as a step for the reader.\n' +
+    '5. Point the reader to the live tool to watch it themselves: ' +
     `${SITE_URLS.workbench} (source: ${SITE_URLS.repo}).\n\n` +
     'End with one honest sentence: these are historical, pseudoscientific arts with no demonstrated ' +
-    'efficacy — described for study, never a recommendation to act.'
+    'efficacy — described for study, never a recommendation to act — and what stands above is a ' +
+    'description of what the sources record, not a set of instructions to follow.'
   );
 }
 
@@ -886,7 +895,10 @@ export function runTool(name, args = {}, ctx = {}) {
     case 'mansionOf': return mansionOf(need('lon'));
     case 'faceOf': return faceOf(need('lon'));
     case 'electionScore': return slimElection(electionScore(chartFromArgs(), need('operationKey')));
-    case 'talismanRecipe': { const r = talismanRecipe(chartFromArgs(), need('operationKey')); return { aim: r.aim, planet: r.planet, verdict: r.verdict, materials: r.materials, steps: r.steps.map(s => s.text), disclaimer: r.disclaimer }; }
+    // FRAMING §5 A-3 / §9.14 (blocker B1): this tool returns ATTESTED DESCRIPTION,
+    // never executable `steps`. The key is `attestedSequence`, each entry is
+    // third-person and attributed, and any harm note travels in the SAME object.
+    case 'talismanRecipe': { const r = talismanRecipe(chartFromArgs(), need('operationKey')); return { aim: r.aim, planet: r.planet, verdict: r.verdict, materials: r.materials, attestedSequence: r.attestedSequence.map(s => ({ text: s.text, attributedTo: s.attributedTo, cite: s.cite })), harmNotes: r.harmNotes, voice: r.voice, disclaimer: r.disclaimer }; }
     case 'annualProfection': return annualProfection(ctx.birthChart || chartFromArgs(), need('age'));
     case 'lifeTrajectory': { const tj = lifeTrajectory(ctx.birthChart || chartFromArgs(), {}); return { natal: tj.natal, currentYear: tj.currentYear, rulingPlanets: tj.picatrix.rulingPlanets }; }
     case 'rankNow': return rankNow(chartFromArgs()).map(r => ({ aim: r.operation.label, ruler: r.operation.ruler, verdict: r.verdict, score: r.score }));

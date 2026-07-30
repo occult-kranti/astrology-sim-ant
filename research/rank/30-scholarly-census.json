@@ -1,0 +1,983 @@
+{
+  "id": "30-scholarly-census",
+  "title": "The scholarly-weight census — how much serious scholarship exists, and of what kind",
+  "compiled": "2026-07-30",
+  "compiledBy": "research agent, R33 ranking round",
+  "framingVersion": "docs/FRAMING.md v2 (the quotation amendment), as amended 2026-07-30",
+
+  "hardLine": {
+    "thisIsNotAnEfficacyAxis": true,
+    "statement": "This file measures ATTENTION PAID BY SCHOLARS to a body of text. It measures nothing else. It does not rank, score, or imply how well any rite works as magic; it contains no efficacy field, no effects field, and no place for either. A corpus with a century of philology behind it is a corpus that has been READ carefully. It is not thereby more true, more powerful, or more likely to do anything. The Niśvāsatattvasaṃhitā has the strongest critical edition on this list and no demonstrated operative validity whatsoever; so does the Papyri Graecae Magicae; so does everything else here.",
+    "governingInvariant": "FRAMING §1.1 — frequency of attestation is evidence about transmission, never about efficacy. This census extends that: DENSITY OF SCHOLARSHIP is evidence about a modern academic field's priorities, never about a historical claim's truth.",
+    "documentedEffects": "none recorded here — out of scope for this axis. No physiological, psychological or toxicological finding appears in this file. Effects belong to the harm-note apparatus (FRAMING §5.1) and to the sibling toxicology slice, not to a bibliometric census. Do not join this table to one in a way that lets a high scholarship band read as corroboration of an effect.",
+    "forbiddenJoins": [
+      "scholarshipBand × any efficacy, potency, power or 'works' column",
+      "scholarshipBand × any 'recommended', 'canonical practice' or 'start here for practice' surface",
+      "using scholarshipBand as a tiebreak that promotes one rite over another in any operative sense"
+    ],
+    "permittedUse": "Sorting and filtering a STUDY interface: which texts a reader can actually go and check; where the philology is thick and where it is thin; where the site's own citations rest on a critical edition and where they rest on a Victorian translation the field has superseded (FRAMING §4.4, the stated philological cost)."
+  },
+
+  "methods": {
+    "primaryQuantitativeProbe": {
+      "source": "OpenAlex REST API",
+      "endpoint": "https://api.openalex.org/works?filter=title_and_abstract.search:\"<PHRASE>\"&per-page=1",
+      "readField": "meta.count",
+      "runDate": "2026-07-30",
+      "why": "Chosen over Google Scholar because it is (a) reproducible — anyone can re-run the exact URL and get a number, (b) stable enough to cite, and (c) free of Scholar's citation-stuffing and its inclusion of syllabi, blog mirrors and duplicate PDFs. A count nobody can reproduce is not a method, it is an assertion.",
+      "phraseSemantics": "The quoted phrase in title_and_abstract.search is treated as a phrase, not a bag of words. Control: the unquoted `search=Greek magical papyri` returns 688; the quoted title_and_abstract phrase returns 153. The quoted form is the one used throughout.",
+      "whatItCounts": "DOI-registered scholarly works (journal articles, book chapters, some monographs, some editions) whose TITLE OR ABSTRACT contains the phrase.",
+      "whatItDoesNotCount": [
+        "works whose relevance is in the body but not the title/abstract — which for humanities philology is most of them",
+        "monographs without DOIs, which is a large share of the Indological, Sinological and Judaic book literature",
+        "most pre-1970 scholarship, i.e. exactly the era in which the German and French philology on several of these corpora was done",
+        "conference volumes and Festschriften from small learned presses (SISMEL, Egbert Forsten, IFP/EFEO, Almqvist & Wiksell, Kaivalyadhama)",
+        "articles in non-DOI regional journals (Indian Ayurvedic and yoga journals partially; Japanese Buddhological journals partially; Chinese Daoist-studies journals partially)"
+      ]
+    },
+
+    "documentedBiases": [
+      {
+        "bias": "DIACRITIC SENSITIVITY — the single largest silent error in this method",
+        "evidence": "title_and_abstract.search \"Saradatilaka\" = 0. Same probe with \"Śāradātilaka\" = 8, first hit a review of Bühnemann's Gonda Indological Studies volumes. \"Hathapradipika\" = 8; \"Haṭhapradīpikā\" = 18. \"Nisvasa\" = 1; \"Niśvāsa\" = 3. \"Kularnava\" = 9; \"Kulārṇava\" = 5 (the two sets overlap only partly — neither is a superset).",
+        "consequence": "An ASCII-only census of Sanskrit corpora undercounts by roughly 2×, and can return a hard ZERO for a text that has a published edition. Every Indic row here was probed in both forms and both numbers are recorded. Anyone re-running this must do the same.",
+        "unresolved": "The site cannot determine the true dedup'd union without pulling full result sets; the two figures are reported side by side rather than summed."
+      },
+      {
+        "bias": "HOMONYM CONTAMINATION — the count can be almost entirely noise",
+        "evidence": "\"Heptameron\" = 283, of which the first result is 'A Reassessment of Boccaccio's Role in Marguerite de Navarre's Heptameron' (Diffley 1995). The count is measuring French Renaissance literature, not the pseudo-Peter-of-Abano grimoire. \"Abulafia\" = 672; \"Abraham Abulafia\" = 128 — the residue is the medievalist David Abulafia and others sharing the surname.",
+        "consequence": "Raw counts for Heptameron and Abulafia are recorded as VOID and DISAMBIGUATED respectively. Any row whose count was not sampled for contamination is marked sampled:false and must not be ranked on."
+      },
+      {
+        "bias": "PRIMARY-TEXT EDITIONS COUNT AS 'WORKS'",
+        "evidence": "\"Key of Solomon\" = 48; a sample of the first five returns 'The Key of Solomon the King' (1989), 'The Key of Solomon the King (Clavicula Salomonis)' (2012), 'Key of Solomon' (2017), 'Key of Solomon' (2012), 'English Translation of The Key of Solomon' (2026) — five reprints of the text, zero pieces of scholarship.",
+        "consequence": "For popular grimoires the count measures REPRINT VOLUME, which correlates with occult-market demand and not with scholarly investment. This inverts the axis if used naively: the Key of Solomon outscores the Niśvāsa 48 to 3, and the truth is the exact opposite."
+      },
+      {
+        "bias": "MODERN-DISCIPLINE FLOODING",
+        "evidence": "\"hatha yoga\" = 1722 and \"rasashastra\" = 512. These are dominated by contemporary clinical-trial and pharmacology literature (yoga-intervention RCTs; modern Ayurvedic bhasma pharmacognosy), not by philology. A sample of \"Gheranda\" = 79 returns modern comparative-practice papers ('A COMPARATIVE STUDY OF SHATKARMA ACORDING TO GHERANDA SAMHITA AND HATHA YOGA PRADIPIKA', 2023) alongside Mallinson's edition.",
+        "consequence": "For the haṭha and rasaśāstra rows the corpus-level count is recorded but explicitly disqualified as a philology proxy. The narrow text-level probes (Haṭhapradīpikā, Khecarīvidyā, Śiva Saṁhitā) are used instead."
+      },
+      {
+        "bias": "ENGLISH-ONLY SEARCHING SYSTEMATICALLY UNDERCOUNTS — measured, not asserted",
+        "evidence": [
+          "German: \"Zauberpapyri\" = 52 against English \"Greek magical papyri\" = 153 and Latin-titled \"Papyri Graecae Magicae\" = 74. Roughly a third again of the literature sits behind a German keyword.",
+          "Japanese: \"密教\" (mikkyō) = 1602 against \"Shingon\" = 731. The Japanese-language esoteric-Buddhist literature is over twice the English-keyword count, and this is still a floor because much of it is in non-DOI Japanese journals.",
+          "Chinese: \"内丹\" = 282 against \"neidan\" = 144. Same 2× pattern.",
+          "French/Italian: not separately probed. Véronèse's Ars notoria edition (SISMEL, Micrologus Library) and Coulon's al-Būnī work are both French-language and both invisible to an English keyword; the Ritter–Plessner Picatrix is German."
+        ],
+        "consequence": "FOR SEVERAL OF THESE CORPORA THE PRIMARY SCHOLARSHIP IS NOT IN ENGLISH. Shingon ritual manuals, Daoist neidan, the Solomonic Latin tradition, al-Būnī and the Greek magical papyri all have their centre of gravity in Japanese, Chinese, French, Italian or German. Any ranking built on English counts alone will systematically demote them, and the demotion is an artefact of the instrument."
+      },
+      {
+        "bias": "ABSTRACT COVERAGE IS PATCHY IN THE HUMANITIES",
+        "evidence": "OpenAlex inherits abstracts from Crossref; humanities publishers deposit them inconsistently. Where the abstract is missing, only the title is searchable, which shrinks recall further and unpredictably.",
+        "consequence": "All counts are FLOORS, not estimates. The correct reading of '4' for Khecarīvidyā is 'at least 4, probably a low multiple of 4' — not 'exactly 4'."
+      },
+      {
+        "bias": "CROSSREF CROSS-CHECK ABANDONED AS UNUSABLE",
+        "evidence": "api.crossref.org/works?query.bibliographic=\"Papyri Graecae Magicae\"&rows=0 returns total-results = 6368 — Crossref's bibliographic query is a fuzzy OR-match and does not honour phrases. It is recorded here so the next round does not waste the attempt.",
+        "consequence": "Crossref counts are NOT used anywhere in this file."
+      }
+    ],
+
+    "qualitativeSignals": {
+      "note": "The counts are the weak signal. These three are the strong ones, and where they conflict with the counts the counts lose.",
+      "signals": [
+        {
+          "signal": "criticalEdition",
+          "why": "The strongest single indicator of scholarly investment. A critical edition means someone collated the manuscripts, built a stemma, and staked a career on the text. It is expensive, slow, and almost never done for a text nobody serious cares about.",
+          "gradations": [
+            "critical-edition-modern — collated from manuscripts, apparatus, academic press, post-1950",
+            "critical-edition-legacy — pre-1950 collation, still standard, sometimes superseded in part",
+            "semi-critical — some manuscript collation, thin or absent apparatus, or a non-academic press with real scholarly apparatus",
+            "uncritical-standard — the circulating text is a printed vulgate, lithograph or Victorian translation with no collation",
+            "none — no edition of any kind beyond reproductions"
+          ]
+        },
+        {
+          "signal": "researchProgramme",
+          "why": "A named, funded, multi-year programme (ERC / AHRC / DFG / ANR / a university chair / a standing institute) is the difference between a field and a hobby. It also predicts the next decade of output."
+        },
+        {
+          "signal": "namedScholars",
+          "why": "Where three to six names recur across the editions, the monographs and the review literature, the field has an identifiable centre. Where no name recurs, the 'literature' is a scatter of one-off treatments and the corpus is effectively unowned."
+        }
+      ]
+    },
+
+    "weightBandScale": {
+      "type": "ordinal, NOT interval — band 4 is not twice band 2",
+      "derivedFrom": "criticalEdition (dominant) + researchProgramme + namedScholars; counts used only to break ties and only where sampled for contamination",
+      "bands": {
+        "5": "A century or more of philology. Multiple critical editions across languages, a funded programme or standing chair, a self-identified subfield with its own conferences and review literature.",
+        "4": "A modern critical edition from an academic press, plus an identifiable school of named scholars. No standing programme, or the programme has closed.",
+        "3": "Either one critical/semi-critical edition OR a substantial monograph literature, but not both; scholarship is real but sparse and often the work of one or two people.",
+        "2": "No critical edition. The circulating text is a vulgate, lithograph or Victorian translation. A handful of scholarly treatments, usually within surveys of a wider field rather than dedicated to the text.",
+        "1": "Essentially none. Editing has been done by practitioners or trade presses; academic engagement is incidental and usually reception-history rather than textual study.",
+        "0": "No scholarship located."
+      },
+      "honestNote": "The spread on this list runs the full range, and that is the finding. The Greek magical papyri and the Hekhalot literature have entire subfields; the Kulārṇava and the long recension of the Shams al-Maʿārif — both enormously influential, both constantly cited by practitioners — have essentially nothing."
+    },
+
+    "citationVerificationPolicy": {
+      "rule": "Every exemplar citation carries a `verified` field. `web-2026-07-30` means the bibliographic facts were confirmed against a source retrieved in this pass and the retrieval is named. `unverified-this-pass` means the compiler is asserting it from general knowledge and it MUST be checked before it reaches a shipped page.",
+      "why": "FRAMING §1.2 — no claim rests on a work the compiler has not seen. This file cannot fully honour that for every citation in one research pass, so it marks the gap instead of hiding it.",
+      "noFabricatedIdentifiers": "No DOI has been invented. Where a DOI is given it was read out of a retrieved URL. Where none was retrieved, an ISBN, series number or repository handle is given instead, or the identifier field is null."
+    }
+  },
+
+  "rows": [
+    {
+      "id": "pgm",
+      "work": "Greek Magical Papyri (PGM) and Demotic Magical Papyri (PDM)",
+      "family": "Greco-Egyptian magical formularies, 2nd c. BCE – 5th c. CE",
+      "languages": ["Greek", "Demotic Egyptian", "Coptic", "Old Coptic"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 5,
+      "criticalEdition": {
+        "status": "critical-edition-modern",
+        "editions": [
+          {"editor": "Karl Preisendanz (with A. Abt, S. Eitrem et al.)", "title": "Papyri Graecae Magicae / Die griechischen Zauberpapyri", "vols": "I (1928), II (1931), III (proofs destroyed 1941)", "publisher": "B. G. Teubner, Leipzig", "verified": "web-2026-07-30", "identifier": "Heidelberg digitised: digi.ub.uni-heidelberg.de/diglit/heidhs3763IIA-51bd1 (Bd 1), …-51bd2 (Bd 2)", "note": "PD-US status is VOLUME BY VOLUME per FRAMING §4.3: vol. 1 (1928) is PD in the US; vol. 2 (1931) is not until 1 Jan 2027."},
+          {"editor": "Albert Henrichs (2nd edn, under Preisendanz's name)", "title": "Papyri Graecae Magicae, 2. Auflage", "year": "1973–1974", "publisher": "Teubner, Stuttgart", "verified": "web-2026-07-30", "identifier": "De Gruyter reissue Band I: ISBN 9783598742767; DOI 10.1515/9783110951271", "note": "substantially an unmodified reissue with corrections"},
+          {"editor": "Christopher A. Faraone & Sofía Torallas Tovar", "title": "Greek and Egyptian Magical Formularies, vol. 1: Text and Translation", "year": 2022, "publisher": "California Classical Studies 9, Dept of Classics, University of California, Berkeley", "verified": "web-2026-07-30", "identifier": "ISBN 978-1-939926-16-6; open access at escholarship.org/uc/item/9650x69r", "note": "EXPLICITLY REPLACES Preisendanz. This is the live edition-in-progress and the most important single fact in this row."}
+        ],
+        "note": "Betz's translation (Chicago 1986/1992) is not an edition; it is a translation of Preisendanz plus additions, and is cite-only under FRAMING §4.4. Griffith & Thompson, The Demotic Magical Papyrus of London and Leiden (1904), is the PD route for the Demotic layer."
+      },
+      "counts": [
+        {"query": "\"Greek magical papyri\"", "count": 153, "sampled": true, "note": "first hit is Betz 1986; mix of scholarship and translations"},
+        {"query": "\"Papyri Graecae Magicae\"", "count": 74, "sampled": false},
+        {"query": "\"Zauberpapyri\" (German control)", "count": 52, "sampled": false, "note": "language-bias probe — see methods"}
+      ],
+      "countVerdict": "A real, large, multilingual literature. Even the floor figure understates it because most PGM scholarship names an individual papyrus (PGM IV, PGM XIII) in the title rather than the corpus.",
+      "namedScholars": ["Karl Preisendanz", "Albert Henrichs", "Hans Dieter Betz", "Christopher A. Faraone", "Sofía Torallas Tovar", "Fritz Graf", "Richard Gordon", "Jacco Dieleman", "David Frankfurter"],
+      "researchProgramme": {
+        "exists": true,
+        "name": "The Transmission of Magical Knowledge",
+        "host": "Neubauer Collegium for Culture and Society, University of Chicago",
+        "since": 2015,
+        "leads": ["Christopher A. Faraone", "Sofía Torallas Tovar"],
+        "output": "GEMF vols; awarded the Charles J. Goodwin Award of Merit, Society for Classical Studies, January 2024",
+        "verified": "web-2026-07-30"
+      },
+      "exemplarCitations": [
+        {"cite": "Faraone, C. A. & Torallas Tovar, S. (eds), Greek and Egyptian Magical Formularies: Text and Translation, vol. 1, California Classical Studies 9, 2022", "id": "ISBN 978-1-939926-16-6", "verified": "web-2026-07-30"},
+        {"cite": "Faraone, C. A. & Torallas Tovar, S. (eds), The Greco-Egyptian Magical Formularies: Libraries, Books, and Individual Recipes, University of Michigan Press, 2022", "id": "ISBN 9780472133277", "verified": "web-2026-07-30"},
+        {"cite": "Bryn Mawr Classical Review 2023.02.49, review of GEMF vol. I", "id": "bmcr.brynmawr.edu/2023/2023.02.49/", "verified": "web-2026-07-30"},
+        {"cite": "Classical Review, joint review of both 2022 GEMF volumes", "id": "Cambridge Core, article 8FAC4986E67CE5310327F4FBF354ED8C", "verified": "web-2026-07-30"},
+        {"cite": "Betz, H. D. (ed.), The Greek Magical Papyri in Translation, Including the Demotic Spells, University of Chicago Press, 1986; 2nd edn 1992", "id": "cite-only under FRAMING §4.4", "verified": "web-2026-07-30"},
+        {"cite": "Griffith, F. Ll. & Thompson, H., The Demotic Magical Papyrus of London and Leiden, 1904", "id": "PD-US, named in FRAMING §4.4 as the PD route", "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "The top of the range. This corpus has had a critical edition for ~100 years, is currently receiving a second one from a funded programme, and has a dedicated review literature in at least four languages."
+    },
+
+    {
+      "id": "key-of-solomon",
+      "work": "Clavicula Salomonis / Key of Solomon",
+      "family": "Solomonic corpus",
+      "languages": ["Latin", "Italian", "French", "Hebrew (later)", "Greek (posited archetype)"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 2,
+      "criticalEdition": {
+        "status": "none",
+        "editions": [],
+        "note": "THERE IS NO CRITICAL EDITION of the Key of Solomon. The circulating English text is S. L. MacGregor Mathers, The Key of Solomon the King (1889), a conflation of a handful of British Museum manuscripts by a Golden Dawn founder — exactly the class of witness FRAMING §4.4 says the PD constraint selects for and that modern editions exist to correct, except that here they do not yet exist. Manuscript-tradition work is active but scattered: a Hebrew original is now generally excluded and a Greek archetype posited; the oldest known fragment (2 leaves, Biblioteca capitolare di Trento, c. 1380–1410) was identified by Matteo Cova.",
+        "noteVerified": "web-2026-07-30"
+      },
+      "counts": [
+        {"query": "\"Key of Solomon\"", "count": 48, "sampled": true, "note": "CONTAMINATED — sample of first 5 returns five reprints/translations of the primary text (1989, 2012, 2017, 2012, 2026) and zero pieces of scholarship. Read as reprint volume, not scholarly attention."},
+        {"query": "\"Clavicula Salomonis\"", "count": 26, "sampled": false, "note": "cleaner keyword; still mixes editions with studies"}
+      ],
+      "countVerdict": "The count is an artefact of the occult publishing market. The scholarly literature dedicated to this text is a small fraction of 26.",
+      "namedScholars": ["Jean-Patrice Boudet", "Julien Véronèse", "Laurence Moulinier-Brogi", "Robert Mathiesen", "Matteo Cova"],
+      "researchProgramme": {
+        "exists": "indirect",
+        "name": "No programme dedicated to this text. It sits inside the French medieval-magic school (Boudet, Véronèse, Weill-Parot) and the Societas Magica / journal Magic, Ritual, and Witchcraft (Penn Press) infrastructure.",
+        "verified": "unverified-this-pass"
+      },
+      "exemplarCitations": [
+        {"cite": "Gal, F., Boudet, J.-P. & Moulinier-Brogi, L., Vedrai mirabilia: Un libro di magia del Quattrocento, Viella, Rome, 2017", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Mathers, S. L. M. (ed./trans.), The Key of Solomon the King (Clavicula Salomonis), 1889", "id": "archive.org/details/b24884431; PD-US", "verified": "web-2026-07-30"},
+        {"cite": "Cambridge University Press reissue of the Mathers text in the Cambridge Library Collection", "id": "cambridge.org/core/books/key-of-solomon-the-king-clavicula-salomonis/7D32CC69C2B47B21C6F2D0F7738567C5", "verified": "web-2026-07-30", "note": "a reissue, NOT an edition — the distinction matters and is exactly what the count blurs"}
+      ],
+      "honestSpread": "One of the two or three most reproduced magical texts in the world and one of the least edited. The gap between its cultural weight and its philological weight is the widest on this list."
+    },
+
+    {
+      "id": "ars-notoria",
+      "work": "Ars notoria",
+      "family": "Solomonic corpus (the edited counter-example)",
+      "languages": ["Latin"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 4,
+      "criticalEdition": {
+        "status": "critical-edition-modern",
+        "editions": [
+          {"editor": "Julien Véronèse", "title": "L'Ars notoria au Moyen Âge. Introduction et édition critique", "year": 2007, "publisher": "SISMEL – Edizioni del Galluzzo, Micrologus Library", "verified": "web-2026-07-30", "identifier": null}
+        ],
+        "note": "Included in this census precisely as the control: it is a Solomonic-cycle text of the same family as the Key of Solomon and the Sworn Book, and it HAS a modern critical edition. That the Key of Solomon does not is therefore a fact about the field's choices, not an inevitability of the genre."
+      },
+      "counts": [{"query": "\"Ars notoria\"", "count": 49, "sampled": false}],
+      "countVerdict": "Modest but overwhelmingly genuine — 'Ars notoria' has no common homonym.",
+      "namedScholars": ["Julien Véronèse", "Frank Klaassen", "Claire Fanger", "Nicholas Watson", "Michael Camille"],
+      "researchProgramme": {"exists": "indirect", "name": "Societas Magica; the Penn State Magic in History series; the John of Morigny / Liber florum editorial project (Fanger & Watson)", "verified": "unverified-this-pass"},
+      "exemplarCitations": [
+        {"cite": "Véronèse, J., L'Ars notoria au Moyen Âge, SISMEL – Edizioni del Galluzzo (Micrologus Library), 2007", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Castle, M. (trans.), Ars Notoria: The Notory Art of Solomon, Inner Traditions, 2023 — an English translation BASED ON Véronèse's critical Latin edition", "id": "ISBN 9781644115275", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "A well-edited minor text sitting beside badly-edited famous ones. Scholarly attention does not track fame."
+    },
+
+    {
+      "id": "sworn-book",
+      "work": "Liber iuratus Honorii / The Sworn Book of Honorius",
+      "family": "Solomonic corpus",
+      "languages": ["Latin"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 4,
+      "criticalEdition": {
+        "status": "critical-edition-modern",
+        "editions": [
+          {"editor": "Gösta Hedegård", "title": "Liber iuratus Honorii: A Critical Edition of the Latin Version of the Sworn Book of Honorius", "year": 2002, "publisher": "Almqvist & Wiksell International, Stockholm", "series": "Studia Latina Stockholmiensia 48 / Acta Universitatis Stockholmiensis", "identifier": "ISBN 9789122019701", "verified": "web-2026-07-30", "note": "First critical edition. Established from four British Library manuscripts (Sloane 3854, mid-14th c.; Sloane 313, later 14th c.; and two others). Includes an index of voces mysticae and divine/angelic/demonic names, and appends a partial edition of the Ars notoria text Flores aurei Apollonii, identified as one of its sources."}
+        ]
+      },
+      "counts": [{"query": "\"Liber iuratus\"", "count": 11, "sampled": false}],
+      "countVerdict": "Small and clean. A critical edition plus roughly a dozen indexed treatments plus a Speculum review is a healthy profile for a minor Latin text.",
+      "namedScholars": ["Gösta Hedegård", "Robert Mathiesen", "Katelyn Mesler", "Julien Véronèse", "Jean-Patrice Boudet"],
+      "researchProgramme": {"exists": false, "name": null, "note": "No dedicated programme; the edition was a Stockholm Latin-philology dissertation."},
+      "exemplarCitations": [
+        {"cite": "Hedegård, G., Liber iuratus Honorii, Studia Latina Stockholmiensia 48, 2002", "id": "ISBN 9789122019701", "verified": "web-2026-07-30"},
+        {"cite": "Review of Hedegård, Speculum 79/1 (2004)", "id": "DOI 10.1017/S0038713400095142", "verified": "web-2026-07-30", "note": "DOI read from the retrieved journals.uchicago.edu URL"},
+        {"cite": "Review in Archivum Latinitatis Medii Aevi (ALMA) 62 (2004)", "id": "persee.fr/doc/alma_0994-8090_2004_num_62_1_1854", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "The best-edited text in the Solomonic corpus, and one of the least famous. Again: fame and philology are uncorrelated here."
+    },
+
+    {
+      "id": "lemegeton",
+      "work": "Lemegeton Clavicula Salomonis (incl. Ars Goetia)",
+      "family": "Solomonic corpus",
+      "languages": ["English (17th c. compilation)", "Latin sources"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 2,
+      "criticalEdition": {
+        "status": "semi-critical",
+        "editions": [
+          {"editor": "Joseph H. Peterson", "title": "The Lesser Key of Solomon: Lemegeton Clavicula Salomonis", "year": 2001, "publisher": "Weiser Books", "identifier": "ISBN 9781578632206", "verified": "web-2026-07-30", "note": "Compiled from British Library manuscripts (Harley MS 6483; Sloane MSS 2731, 3825, 3648) with provenance analysis and heavy footnoting. A trade press, but the apparatus is real. This is the best text available and it is not from an academic publisher."}
+        ],
+        "note": "No academic critical edition exists."
+      },
+      "counts": [{"query": "\"Lemegeton\"", "count": 0, "sampled": true, "note": "ZERO. The most notorious demon-catalogue in the Western tradition returns no DOI-indexed title/abstract hits under its own name."}],
+      "countVerdict": "A zero that is nearly literal. Academic engagement, where it exists, is reception-history (Crowley, chaos magic, heavy metal, video games) rather than textual study, and is titled accordingly.",
+      "namedScholars": ["Joseph H. Peterson (independent)", "Owen Davies (as reception history)", "Egil Asprem (as modern occulture)"],
+      "researchProgramme": {"exists": false, "name": null},
+      "exemplarCitations": [
+        {"cite": "Peterson, J. H. (ed.), The Lesser Key of Solomon: Lemegeton Clavicula Salomonis, Weiser, 2001", "id": "ISBN 9781578632206", "verified": "web-2026-07-30"},
+        {"cite": "Esoteric Archives transcription with manuscript sigla", "id": "esotericarchives.com/solomon/lemegeton.htm", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "Near the bottom. Enormous popular presence, essentially no philology."
+    },
+
+    {
+      "id": "heptameron",
+      "work": "Heptameron / Elementa magica, attributed to Peter of Abano",
+      "family": "Solomonic corpus",
+      "languages": ["Latin"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 1,
+      "criticalEdition": {
+        "status": "none",
+        "editions": [
+          {"editor": "Joseph H. Peterson", "title": "Elucidation of Necromancy (Lucidarium artis nigromantice) attributed to Peter of Abano, including a new translation of his Heptameron", "publisher": "Ibis Press", "identifier": "ISBN 9780892541997", "verified": "web-2026-07-30", "note": "The most careful text available; a trade press, not a critical edition."}
+        ],
+        "note": "The attribution to Pietro d'Abano is doubted — his Inquisition trials charged astrology/heresy, not magic. Heptameron, Elucidarium and Elementa magica are variant titles for one text. The 1565 Basel printing (Peter Perna) may have been reorganised by Jacques Gohory."
+      },
+      "counts": [{"query": "\"Heptameron\"", "count": 283, "sampled": true, "note": "VOID — the count is Marguerite de Navarre's Heptaméron. First result: Diffley, P. B., 'From Translation to Imitation and beyond: A Reassessment of Boccaccio's Role in Marguerite de Navarre's Heptameron' (1995). The grimoire's share is close to nil."}],
+      "countVerdict": "Unusable. This row exists in the census mainly as the worked example of homonym failure.",
+      "namedScholars": ["Joseph H. Peterson (independent)", "Nicolas Weill-Parot (on Pietro d'Abano's astrological magic, not the Heptameron per se)"],
+      "researchProgramme": {"exists": false, "name": null},
+      "exemplarCitations": [
+        {"cite": "Peterson, J. H., Elucidation of Necromancy … including a new translation of his Heptameron", "id": "ISBN 9780892541997", "verified": "web-2026-07-30"},
+        {"cite": "Esoteric Archives text of the Heptameron", "id": "esotericarchives.com/solomon/heptamer.htm", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "Bottom of the list alongside the Lemegeton. A text every subsequent grimoire copies, with no edition and no field."
+    },
+
+    {
+      "id": "abramelin",
+      "work": "Das Buch Abramelin / The Book of Abramelin",
+      "family": "Solomonic-adjacent (German, early 17th c.)",
+      "languages": ["German", "Hebrew (Oxford MS)", "French (1750 MS, Mathers's base)"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 2,
+      "criticalEdition": {
+        "status": "semi-critical",
+        "editions": [
+          {"editor": "Georg Dehn (ed.), Steven Guth (trans.)", "title": "The Book of Abramelin: A New Translation", "year": "2006; rev. and expanded 2nd edn 2015", "publisher": "Ibis Press", "verified": "web-2026-07-30", "note": "Built from Wolfenbüttel Codices Guelferbytani 10.1 Aug. 4° and 47.13 Aug. 4° (both dated 1608), two Dresden MSS (c. 1700, c. 1750) and Bodleian MS Opp. 594 (Hebrew). Manuscript-based and much better than Mathers, but a trade press with no formal apparatus."}
+        ],
+        "note": "Mathers, The Book of the Sacred Magic of Abramelin the Mage (1900), translates a single late French manuscript and is the PD route named in FRAMING §4.4 — and is a demonstrably poor witness, which the record must say (FRAMING §4.4, 'the cost is stated, not hidden')."
+      },
+      "counts": [{"query": "\"Abramelin\"", "count": 11, "sampled": false}],
+      "countVerdict": "Small. Most academic mentions are in Crowley/Golden Dawn reception studies rather than in German philology, which is where the text actually belongs.",
+      "namedScholars": ["Georg Dehn (independent)", "Steven Guth", "reviewers in Correspondences (open-access journal for the study of esotericism)"],
+      "researchProgramme": {"exists": false, "name": null, "note": "No German early-modern-magic programme has taken it up, which is the notable absence given the manuscripts sit in two German state libraries."},
+      "exemplarCitations": [
+        {"cite": "Dehn, G. (ed.) & Guth, S. (trans.), The Book of Abramelin: A New Translation, Ibis Press, 2006; 2nd edn 2015", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Book review of Dehn's edition, Correspondences (journal for the academic study of Western esotericism)", "id": "correspondencesjournal.com/ojs/ojs/index.php/home/article/download/42/42", "verified": "web-2026-07-30"},
+        {"cite": "Mathers, S. L. M., The Book of the Sacred Magic of Abramelin the Mage, 1900", "id": "PD-US", "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "Low-middle. Better source-work than the Key of Solomon, done outside the academy."
+    },
+
+    {
+      "id": "picatrix",
+      "work": "Ghāyat al-Ḥakīm / Picatrix",
+      "family": "Arabic astral magic and its Latin transmission",
+      "languages": ["Arabic", "Latin", "Castilian (lost intermediary)", "Hebrew fragments"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 5,
+      "criticalEdition": {
+        "status": "critical-edition-modern",
+        "editions": [
+          {"editor": "Hellmut Ritter", "title": "Ġāyat al-ḥakīm (Arabic text)", "year": 1933, "publisher": "Studien der Bibliothek Warburg XII, Teubner", "verified": "web-2026-07-30"},
+          {"editor": "Hellmut Ritter & Martin Plessner", "title": "«Picatrix»: Das Ziel des Weisen von Pseudo-Maǧrīṭī (German translation from the Arabic)", "year": 1962, "publisher": "Studies of the Warburg Institute 27, London", "verified": "web-2026-07-30", "note": "The German translation is still the primary access route to the Arabic for most non-Arabists. An English-only reader is cut off from the better half of this text's scholarship."},
+          {"editor": "David Pingree", "title": "Picatrix: The Latin Version of the Ghāyat al-Ḥakīm. Text, Introduction, Appendices, Indices", "year": 1986, "publisher": "Studies of the Warburg Institute 39, Warburg Institute, University of London", "verified": "web-2026-07-30", "note": "lxxxi + 326 pp., 18 plates, 7 microfiches; built on 20+ manuscripts. The definitive Latin critical edition."}
+        ]
+      },
+      "counts": [
+        {"query": "\"Picatrix\"", "count": 151, "sampled": false},
+        {"query": "\"Ghayat al-hakim\"", "count": 10, "sampled": false, "note": "the Arabic-title probe returns a fraction of the Latin-title probe — a transliteration/language artefact, not a fact about Arabist attention"}
+      ],
+      "countVerdict": "Large and largely genuine. 'Picatrix' has no significant homonym. The Arabic-side literature is undercounted by transliteration variance (Ghāya, Ghayat, Ġāya, Gayat).",
+      "namedScholars": ["David Pingree", "Hellmut Ritter", "Martin Plessner", "Jean-Patrice Boudet", "Jean-Charles Coulon", "Liana Saif", "Nicolas Weill-Parot", "David Porreca", "Dan Attrell"],
+      "researchProgramme": {
+        "exists": true,
+        "name": "The Warburg Institute's long-running publication programme on astral magic (Studies of the Warburg Institute), which produced all three editions across 53 years; supplemented today by the Islamicate-occult-sciences cluster (Saif, Melvin-Koushki, Gardiner, Coulon).",
+        "verified": "web-2026-07-30"
+      },
+      "exemplarCitations": [
+        {"cite": "Pingree, D. (ed.), Picatrix: The Latin Version of the Ghāyat al-Ḥakīm, Studies of the Warburg Institute 39, 1986", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Ritter, H. & Plessner, M., «Picatrix»: Das Ziel des Weisen von Pseudo-Maǧrīṭī, Studies of the Warburg Institute 27, 1962", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Boudet, J.-P. & Coulon, J.-C., 'La version arabe (Ghāyat al-ḥakīm) et la version latine du Picatrix', Cahiers de recherches médiévales et humanistes 33 (2017)", "id": "classiques-garnier.com, CRMH 2017-1 n.33", "verified": "web-2026-07-30"},
+        {"cite": "Attrell, D. & Porreca, D. (trans.), Picatrix: A Medieval Treatise on Astral Magic, Penn State University Press, 2019", "id": "review at Project MUSE article 775358", "verified": "web-2026-07-30"},
+        {"cite": "Greer, J. M. & Warnock, C. (trans.), The Picatrix, Adocentyn Press, 2010–11", "id": "cite-only under FRAMING §4.4 and §2.5 — currently quoted in violation in assets/js/core/data/picatrix-prayers.js", "verified": "unverified-this-pass"},
+        {"cite": "Review of Pingree 1986, Journal of the Royal Asiatic Society", "id": "Cambridge Core S0035869X00141747a", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "Top band. Three critical editions in three languages over half a century, from one institute. The site's own Picatrix pages sit on a strong philological base — but the site currently quotes the one edition it may not (§2.5)."
+    },
+
+    {
+      "id": "saradatilaka",
+      "work": "Śāradātilakatantra (Lakṣmaṇadeśika, c. 12th c.)",
+      "family": "Indian tantric procedural corpus / mantraśāstra",
+      "languages": ["Sanskrit"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 3,
+      "criticalEdition": {
+        "status": "uncritical-standard, with one chapter critically edited",
+        "editions": [
+          {"editor": "Gudrun Bühnemann", "title": "'The Śāradātilakatantra on yoga: a new edition and translation of chapter 25'", "year": 2011, "publisher": "Bulletin of the School of Oriental and African Studies 74/2", "verified": "web-2026-07-30", "note": "A new edition OF ONE CHAPTER. There is no critical edition of the whole text."},
+          {"editor": "Arthur Avalon (ed.), with Rāghavabhaṭṭa's Padārthādarśa commentary", "title": "Śāradātilaka Tantra, Tantrik Texts", "year": "1933", "verified": "unverified-this-pass", "note": "the circulating vulgate"}
+        ]
+      },
+      "counts": [
+        {"query": "\"Saradatilaka\" (ASCII)", "count": 0, "sampled": true, "note": "ZERO — a false zero produced entirely by diacritics"},
+        {"query": "\"Śāradātilaka\" (diacritics)", "count": 8, "sampled": true, "note": "first hit is a review of Bühnemann's Gonda Indological Studies vols I–II"}
+      ],
+      "countVerdict": "The ASCII/diacritic gap here is the file's cleanest demonstration that a naive count can report zero for a text with published scholarship.",
+      "namedScholars": ["Gudrun Bühnemann", "Teun Goudriaan", "Sanjukta Gupta", "Alexis Sanderson (contextually)"],
+      "researchProgramme": {"exists": false, "name": null, "note": "Covered incidentally by the Gonda Foundation / Gonda Indological Studies series (Egbert Forsten, Groningen), which is a publication series rather than a research programme."},
+      "exemplarCitations": [
+        {"cite": "Bühnemann, G., 'The Śāradātilakatantra on yoga: a new edition and translation of chapter 25', BSOAS 74/2 (2011)", "id": "Cambridge Core 65682490D8D1EFE256AEEE5655736EC4", "verified": "web-2026-07-30"},
+        {"cite": "Bühnemann, G., The Iconography of Hindu Tantric Deities, vol. II: The Pantheons of the Prapañcasāra and the Śāradātilaka, Gonda Indological Studies X, Egbert Forsten, Groningen, 2001 — 101 deity descriptions from the Śāradātilaka with text and literal translation", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Goudriaan, T. & Gupta, S., Hindu Tantric and Śākta Literature, A History of Indian Literature II.2, Harrassowitz, 1981", "id": null, "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "Middle. One scholar has done most of the serious work on it, in English and German, and the text as a whole remains unedited."
+    },
+
+    {
+      "id": "mantramahodadhi",
+      "work": "Mantramahodadhi (Mahīdhara, 1588)",
+      "family": "Indian tantric procedural corpus / mantraśāstra digest",
+      "languages": ["Sanskrit"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 2,
+      "criticalEdition": {
+        "status": "uncritical-standard",
+        "editions": [],
+        "note": "No critical edition. The circulating text is the Khemraj / Venkateshvar Steam Press class of Bombay printings with Mahīdhara's own Nauka commentary, plus a Prāchya Prakāshan Sanskrit-English edition. Bühnemann's volume I edits and translates the DEITY DESCRIPTIONS only, not the text."
+      },
+      "counts": [{"query": "\"Mantramahodadhi\"", "count": 14, "sampled": false, "note": "unambiguous term; the number is small and real"}],
+      "countVerdict": "Genuinely thin. This is the standard practical mantra handbook of late-medieval north India and it has roughly a dozen indexed scholarly treatments.",
+      "namedScholars": ["Gudrun Bühnemann"],
+      "researchProgramme": {"exists": false, "name": null},
+      "exemplarCitations": [
+        {"cite": "Bühnemann, G., The Iconography of Hindu Tantric Deities, vol. I: The Pantheon of the Mantramahodadhi, Gonda Indological Studies IX, Egbert Forsten, Groningen, 2000", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Bühnemann, G., work on the ṣaṭkarman (six acts) — named in FRAMING §4.4 as cite-only", "id": "cite-only", "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "Low. Essentially a one-scholar field."
+    },
+
+    {
+      "id": "kularnava",
+      "work": "Kulārṇavatantra",
+      "family": "Indian tantric procedural corpus / Kaula",
+      "languages": ["Sanskrit"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 2,
+      "criticalEdition": {
+        "status": "uncritical-standard",
+        "editions": [],
+        "note": "No critical edition. The circulating text descends from Tārānātha Vidyāratna's edition in Arthur Avalon's Tantrik Texts (1917), reprinted endlessly by Motilal Banarsidass with M. P. Pandit's readings. Barthakuria's The Kularnava Tantra: A Study is a monograph study, not an edition."
+      },
+      "counts": [
+        {"query": "\"Kularnava\" (ASCII)", "count": 9, "sampled": false},
+        {"query": "\"Kulārṇava\" (diacritics)", "count": 5, "sampled": false, "note": "the two sets overlap only partly; neither is a superset"}
+      ],
+      "countVerdict": "Thin, and a chunk of it is critique of how Avalon's framing distorted the text's Western reception rather than study of the text itself.",
+      "namedScholars": ["Apurba Chandra Barthakuria", "Arthur Avalon / Sir John Woodroffe (as historical editor and as object of critique)", "M. P. Pandit"],
+      "researchProgramme": {"exists": false, "name": null},
+      "exemplarCitations": [
+        {"cite": "Vidyāratna, T. (ed.), Kulārṇava Tantra, Tantrik Texts vol. V, ed. A. Avalon, 1917", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Barthakuria, A. C., The Kularnava Tantra (A Study)", "id": "ISBN 9789381209332", "verified": "web-2026-07-30"},
+        {"cite": "'Critical analysis of the Kularnava Tantra, Part 1: A foreword corrupted by repressed sexuality'", "id": "indexed in DOAJ, article b21fd965e75149afbd3462759a856a9e", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "Low. 'The foremost Tantra of the Kaula school' by its own tradition's reckoning, and no critical edition in over a century of print."
+    },
+
+    {
+      "id": "vijnanabhairava",
+      "work": "Vijñānabhairava(tantra)",
+      "family": "Indian tantric procedural corpus / Trika-Kaula",
+      "languages": ["Sanskrit"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 2,
+      "criticalEdition": {
+        "status": "uncritical-standard",
+        "editions": [],
+        "note": "No modern critical edition. The base text is the Kashmir Series of Texts and Studies edition with Kṣemarāja's and Śivopādhyāya's commentaries. What exists instead is a stack of scholarly TRANSLATIONS, several of them of high quality and one of them (Silburn) foundational and in French."
+      },
+      "counts": [
+        {"query": "\"Vijnanabhairava\" (ASCII)", "count": 9, "sampled": false},
+        {"query": "\"Vijñānabhairava\" (diacritics)", "count": 10, "sampled": false}
+      ],
+      "countVerdict": "Small. Note that the Kashmir-Śaiva field's centre of gravity is Abhinavagupta, not this text.",
+      "namedScholars": ["Lilian Silburn", "Jaideva Singh", "Bettina Bäumer", "Swami Lakshman Joo (as traditional commentator)", "Alexis Sanderson and Isabelle Ratié (for the wider Trika)"],
+      "researchProgramme": {"exists": "indirect", "name": "No programme for this text. The Kashmir-Śaiva field is served by ERC-scale work on Abhinavagupta and Utpaladeva (Ratié and colleagues) rather than on the Vijñānabhairava.", "verified": "unverified-this-pass"},
+      "exemplarCitations": [
+        {"cite": "Silburn, L., Le Vijñāna Bhairava, texte traduit et commenté, Publications de l'Institut de Civilisation Indienne, Paris, 1961", "id": null, "verified": "web-2026-07-30", "note": "French — invisible to an English-keyword count"},
+        {"cite": "Singh, J., Vijñānabhairava or Divine Consciousness, Motilal Banarsidass, Delhi (repr. 2001)", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Bäumer, B. (trans.), with commentary by Swami Lakshman Joo, Vijñāna Bhairava: The Practice of Centring Awareness, Indica Books, Varanasi, 2002", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Ivanov, 'The Vijñānabhairava Tantra: translation, exegetical notes, part 1', Pis'mennye pamiatniki Vostoka", "id": "journals.eco-vector.com/1811-8062/article/view/637173", "verified": "web-2026-07-30", "note": "Russian-language — a second language the English probe misses entirely"}
+      ],
+      "honestSpread": "Low-middle, and unusually international: the serious work is in French, Russian, Hindi/Sanskrit and English, which makes it one of the worst-served rows by an English count."
+    },
+
+    {
+      "id": "nisvasa",
+      "work": "Niśvāsatattvasaṃhitā",
+      "family": "Indian tantric procedural corpus / earliest surviving Mantramārga scripture",
+      "languages": ["Sanskrit (9th c. Nepalese palm-leaf MS)"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 5,
+      "criticalEdition": {
+        "status": "critical-edition-modern",
+        "editions": [
+          {"editor": "Dominic Goodall, in collaboration with Alexis Sanderson & Harunaga Isaacson, with contributions by Nirajan Kafle, Diwakar Acharya and others", "title": "The Niśvāsatattvasaṃhitā: The Earliest Surviving Śaiva Tantra, vol. 1 — A Critical Edition and Annotated Translation of the Mūlasūtra, Uttarasūtra and Nayasūtra", "year": 2015, "publisher": "Institut Français de Pondichéry / École française d'Extrême-Orient / Asien-Afrika-Institut, Universität Hamburg", "series": "Collection Indologie 128; Early Tantra Series 1", "identifier": "ISBN 9788184702057 / 2855391512", "verified": "web-2026-07-30", "note": "First appearance of the text in print, ever. Accompanied in the series by DVDs of colour manuscript images."},
+          {"editor": "Nirajan Kafle", "title": "The Niśvāsamukha, the Introductory Book of the Niśvāsatattvasaṃhitā (critical edition, Leiden dissertation)", "verified": "web-2026-07-30", "identifier": "scholarlypublications.universiteitleiden.nl item:2889940"}
+        ]
+      },
+      "counts": [
+        {"query": "\"Nisvasa\" (ASCII)", "count": 1, "sampled": false},
+        {"query": "\"Niśvāsa\" (diacritics)", "count": 3, "sampled": true, "note": "CONTAMINATED — the first hit is a Bengali-language book, 'Nishiddha nishvāsa'. The genuine count is 1–2."}
+      ],
+      "countVerdict": "THE HEADLINE DIVERGENCE OF THIS WHOLE CENSUS. This text has the single most impressive editorial pedigree on the list — three of the field's leading Sanskritists, a Franco-German funded project, two institutional publishers — and an OpenAlex count of effectively ONE. Any ranking axis driven by counts would place it below the Lemegeton. That is the instrument failing, not the text.",
+      "namedScholars": ["Dominic Goodall", "Alexis Sanderson", "Harunaga Isaacson", "Diwakar Acharya", "Nirajan Kafle", "Peter Bisschop", "Gavin Flood (as reviewer)"],
+      "researchProgramme": {
+        "exists": true,
+        "name": "Early Tantra: Discovering the Interrelationships and Common Ritual Syntax of the Śaiva, Buddhist, Vaiṣṇava and Saura Traditions",
+        "funders": ["ANR (France)", "DFG (Germany)"],
+        "hosts": ["EFEO Pondicherry", "Universität Hamburg, Centre for Tantric Studies"],
+        "workshops": ["Kathmandu, 15–26 Sept 2008", "Pondicherry, 20–31 July 2009", "Hamburg, 15–23 July 2010"],
+        "verified": "web-2026-07-30"
+      },
+      "exemplarCitations": [
+        {"cite": "Goodall, D. et al. (eds), The Niśvāsatattvasaṃhitā, vol. 1, Collection Indologie 128 / Early Tantra Series 1, IFP/EFEO/Hamburg, 2015", "id": "ISBN 9788184702057", "verified": "web-2026-07-30"},
+        {"cite": "Goodall, D. & Isaacson, H. (eds), Tantric Studies: Fruits of a Franco-German Project on Early Tantra, Collection Indologie / EFEO", "id": "publications.efeo.fr/en/livres/840_tantric-studies", "verified": "web-2026-07-30"},
+        {"cite": "Flood, G., review of Niśvāsatattvasaṃhitā vol. 1, Journal of the American Oriental Society", "id": "lockwoodonlinejournals.com/index.php/jaos/article/view/1065; PhilPapers FLONTE", "verified": "web-2026-07-30"},
+        {"cite": "Kafle, N., The Niśvāsamukha, Leiden, critical edition", "id": "Leiden Scholarly Publications item:2889940", "verified": "web-2026-07-30"},
+        {"cite": "Sanderson, A., 'The Śaiva Age', in Einoo, S. (ed.), Genesis and Development of Tantrism, University of Tokyo, 2009", "id": null, "verified": "unverified-this-pass", "note": "the field-defining survey; a Japanese-published volume, again invisible to most English indexes"}
+      ],
+      "honestSpread": "Top band on every qualitative signal, bottom band on every count. Ship this row as the site's standing warning about the axis."
+    },
+
+    {
+      "id": "rasasastra",
+      "work": "Rasaśāstra (Indian alchemy / iatrochemistry): Rasārṇava, Rasahṛdayatantra, Rasaratnākara, Rasaratnasamuccaya, Rasa-Jala-Nidhi",
+      "family": "Indian alchemical procedural corpus",
+      "languages": ["Sanskrit", "modern Hindi/Marathi commentary tradition"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 3,
+      "criticalEdition": {
+        "status": "uncritical-standard for the primary texts; exceptional bibliographic infrastructure",
+        "editions": [],
+        "note": "There is no critical edition of the major rasa texts. What exists instead — and it is genuinely first-rate — is Meulenbeld's descriptive and bibliographical survey, which catalogues contents, manuscripts and printed editions of every alchemical work. That is philological infrastructure of the highest order without being an edition of anything."
+      },
+      "counts": [
+        {"query": "\"rasashastra\"", "count": 512, "sampled": true, "note": "DISQUALIFIED as a philology proxy — dominated by modern Ayurvedic pharmacology and bhasma analytical chemistry in Indian journals (AYU, Ancient Science of Life and kin). These are studies of contemporary preparations, not of the medieval texts."}
+      ],
+      "countVerdict": "A large number attached to the wrong discipline. The historical-philological literature on rasaśāstra is perhaps one to two orders of magnitude smaller than 512.",
+      "namedScholars": ["Gerrit Jan Meulenbeld", "David Gordon White", "Dominik Wujastyk", "Dagmar Wujastyk", "Arion Roşu", "Jason Birch (on the yoga interface)"],
+      "researchProgramme": {
+        "exists": true,
+        "name": "AyurYog — 'Medicine, Immortality, Mokṣa: Entangled Histories of Yoga, Ayurveda and Alchemy in South Asia'",
+        "funder": "European Research Council, Starting Grant",
+        "pi": "Dagmar Wujastyk",
+        "years": "2015–2020",
+        "hosts": ["Department of South Asian, Tibetan and Buddhist Studies, University of Vienna", "Department of History and Classics, University of Alberta"],
+        "note": "Covered rasaśāstra from the 10th century to the present; included alchemy reconstructions and historical timelines.",
+        "verified": "web-2026-07-30"
+      },
+      "exemplarCitations": [
+        {"cite": "Meulenbeld, G. J., A History of Indian Medical Literature, vols IIA & IIB, part 10 (the alchemical literature), Egbert Forsten, Groningen, 1999–2002", "id": null, "verified": "web-2026-07-30", "note": "described by Oxford Bibliographies as the most comprehensive source on the history of Indian alchemical literature, published and in manuscript"},
+        {"cite": "White, D. G., The Alchemical Body: Siddha Traditions in Medieval India, University of Chicago Press, 1996", "id": "cite-only under FRAMING §4.4", "verified": "unverified-this-pass"},
+        {"cite": "Wujastyk, Dagmar (ed.), Indian Alchemy, Oxford University Press", "id": "global.oup.com/academic/product/indian-alchemy-9780197805800", "verified": "web-2026-07-30"},
+        {"cite": "Wujastyk, Dominik, 'An Alchemical Ghost: The Rasaratnākara of Nāgārjuna', Ambix 31 (1984)", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Wujastyk, Dagmar et al. (eds), Medicine, Immortality, Mokṣa: Entangled Histories of Yoga, Ayurveda and Alchemy in South Asia (AyurYog volume)", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Mookerjee, B. (trans.), Rasa-Jala-Nidhi, or Ocean of Indian Chemistry and Alchemy, Calcutta, 1926–38", "id": "named in FRAMING C-1 as a complete PD English rasaśāstra corpus", "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "Middle, and structurally odd: excellent secondary and bibliographic scholarship, a recent ERC programme, and almost no critically edited primary text. A reader who wants the Rasārṇava gets a Bombay vulgate."
+    },
+
+    {
+      "id": "hathapradipika",
+      "work": "Haṭhapradīpikā (Svātmārāma, early 15th c.)",
+      "family": "Haṭha corpus",
+      "languages": ["Sanskrit"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 5,
+      "criticalEdition": {
+        "status": "critical-edition-modern (digital, in progress/released)",
+        "editions": [
+          {"editor": "James Mallinson & Jason Birch, with Jürgen Hanneder, Mitsuyo Demoto and Nils Jacob Liersch", "title": "Haṭhapradīpikā: digital critical edition and English translation", "hosts": ["University of Oxford", "Philipps-Universität Marburg"], "funders": ["AHRC (UK)", "DFG (Germany)"], "basis": "over 200 manuscripts in a variety of Indic scripts", "verified": "web-2026-07-30", "note": "Launched with a dedicated symposium (SOAS Yoga Studies Online). This is one of the largest manuscript collations ever undertaken for a yoga text."},
+          {"editor": "Swami Digambarji & Pt. Raghunatha Shastri Kokaje", "title": "Haṭhapradīpikā (Kaivalyadhama, Lonavla, 1970/1998)", "verified": "unverified-this-pass", "note": "the previous semi-critical standard"}
+        ]
+      },
+      "counts": [
+        {"query": "\"Hathapradipika\" (ASCII)", "count": 8, "sampled": false},
+        {"query": "\"Haṭhapradīpikā\" (diacritics)", "count": 18, "sampled": false},
+        {"query": "\"hatha yoga\" (corpus-level)", "count": 1722, "sampled": true, "note": "DISQUALIFIED — dominated by modern clinical yoga-intervention literature, not philology"}
+      ],
+      "countVerdict": "The text-level probes (8 / 18) are the honest ones and they are small. The corpus-level 1722 measures a completely different discipline that happens to share a name.",
+      "namedScholars": ["James Mallinson", "Jason Birch", "Mark Singleton", "Daniela Bevilacqua", "Jürgen Hanneder", "Christian Bouy", "Mitsuyo Demoto"],
+      "researchProgramme": {
+        "exists": true,
+        "name": "The Haṭha Yoga Project (HYP)",
+        "funder": "European Research Council",
+        "years": "2015–2020",
+        "host": "SOAS University of London, with EFEO Pondicherry",
+        "team": ["James Mallinson (PI)", "Mark Singleton", "Jason Birch", "Daniela Bevilacqua", "Vishwanath Gupta (EFEO)", "Ramya Harimadhava (EFEO)"],
+        "successor": "AHRC/DFG collaborative project producing the Haṭhapradīpikā digital critical edition (Oxford + Marburg)",
+        "method": "philology plus ethnography — textual editing alongside fieldwork with living ascetic communities",
+        "verified": "web-2026-07-30"
+      },
+      "exemplarCitations": [
+        {"cite": "Haṭha Yoga Project, SOAS University of London, ERC-funded 2015–2020", "id": "hyp.soas.ac.uk", "verified": "web-2026-07-30"},
+        {"cite": "Mallinson, J. & Birch, J. et al., digital critical edition of the Haṭhapradīpikā (AHRC/DFG, Oxford–Marburg)", "id": "theluminescent.org/2020/12/lightonhathayoga-projectlaunch.html; yso.soas.ac.uk symposium listing", "verified": "web-2026-07-30"},
+        {"cite": "Mallinson, J. & Singleton, M., Roots of Yoga, Penguin Classics, 2017", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Birch, J., 'The Meaning of haṭha in Early Haṭhayoga', Journal of the American Oriental Society 131/4 (2011)", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Sinh, P. (trans.), The Hatha Yoga Pradipika, 1914", "id": "PD-US; named in FRAMING §2.3 as one of the Victorian/Edwardian witnesses the site will disproportionately quote", "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "Top band, and the freshest programme on this list. Also the row where the PD constraint hurts most: the site can quote Sinh (1914) and must cite, without quoting, an edition built on 200+ manuscripts."
+    },
+
+    {
+      "id": "gheranda-samhita",
+      "work": "Gheraṇḍasaṃhitā (late 17th / early 18th c.)",
+      "family": "Haṭha corpus",
+      "languages": ["Sanskrit"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 3,
+      "criticalEdition": {
+        "status": "semi-critical",
+        "editions": [
+          {"editor": "James Mallinson", "title": "The Gheraṇḍa Saṁhitā: The Original Sanskrit and an English Translation", "year": 2004, "publisher": "YogaVidya.com, Woodstock NY", "identifier": "ISBN 9780971646636", "verified": "web-2026-07-30", "note": "By a philologist, but published outside the academy and NOT styled a critical edition (unlike his Śiva Saṁhitā of 2007)."},
+          {"editor": "Swami Digambarji & M. L. Gharote", "title": "Gheraṇḍa Saṁhitā (Kaivalyadhama S.M.Y.M. Samiti, Lonavla, 1978)", "verified": "unverified-this-pass"}
+        ]
+      },
+      "counts": [{"query": "\"Gheranda\"", "count": 79, "sampled": true, "note": "MIXED — the sample returns Mallinson's 2004 edition and a 1995 edition alongside modern yoga-practice comparison papers ('A COMPARATIVE STUDY OF SHATKARMA…', 2023) and Indian distance-learning course units. Philological share is small."}],
+      "countVerdict": "Most of the 79 is contemporary yoga-studies output, not textual scholarship.",
+      "namedScholars": ["James Mallinson", "M. L. Gharote", "Śrīśa Chandra Vasu (as historical translator)"],
+      "researchProgramme": {"exists": "indirect", "name": "Covered by the Haṭha Yoga Project's wider remit; no dedicated programme.", "verified": "web-2026-07-30"},
+      "exemplarCitations": [
+        {"cite": "Mallinson, J., The Gheranda Samhita: The Original Sanskrit and an English Translation, YogaVidya.com, 2004", "id": "ISBN 9780971646636", "verified": "web-2026-07-30"},
+        {"cite": "Vasu, S. C. (trans.), The Gheraṇḍa Saṁhitā, 1895; repr. Sacred Books of the Hindus XV.2, 1914–15", "id": "PD-US; the edition FRAMING §3.3 uses in its worked quotation example", "verified": "unverified-this-pass"},
+        {"cite": "Mallinson, J., The Khecarīvidyā of Ādinātha, Routledge, 2007 — for the GS 3.25 khecarī material and its harm apparatus", "id": "ISBN 9780415391153", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "Middle. Better served than most tantric texts, worse served than the Haṭhapradīpikā, and its most-quoted verse (GS 3.25) is annotated properly only in a copyrighted book the site may not quote."
+    },
+
+    {
+      "id": "siva-samhita",
+      "work": "Śivasaṃhitā",
+      "family": "Haṭha corpus",
+      "languages": ["Sanskrit"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 3,
+      "criticalEdition": {
+        "status": "critical-edition-modern (non-academic press)",
+        "editions": [
+          {"editor": "James Mallinson", "title": "The Shiva Samhita: A Critical Edition and an English Translation", "year": 2007, "publisher": "YogaVidya.com", "identifier": "ISBN 9780971646650", "verified": "web-2026-07-30", "note": "Explicitly a critical edition based on collation of the Sanskrit manuscripts — the first for this text. Trade-adjacent publisher, academic method."}
+        ]
+      },
+      "counts": [{"query": "\"Siva Samhita\"", "count": 13, "sampled": false}],
+      "countVerdict": "Small and probably mostly genuine; some contamination from modern yoga comparison papers is likely (see the Gheraṇḍa sample).",
+      "namedScholars": ["James Mallinson", "Jason Birch"],
+      "researchProgramme": {"exists": "indirect", "name": "Haṭha Yoga Project remit"},
+      "exemplarCitations": [
+        {"cite": "Mallinson, J., The Shiva Samhita: A Critical Edition and an English Translation, YogaVidya.com, 2007", "id": "ISBN 9780971646650", "verified": "web-2026-07-30"},
+        {"cite": "Vasu, S. C. (trans.), The Śiva Saṁhitā, 1914 (SBH)", "id": "PD-US", "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "Middle. One scholar, one critical edition, a dozen papers."
+    },
+
+    {
+      "id": "khecarividya",
+      "work": "Khecarīvidyā of Ādinātha",
+      "family": "Haṭha corpus",
+      "languages": ["Sanskrit"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 4,
+      "criticalEdition": {
+        "status": "critical-edition-modern",
+        "editions": [
+          {"editor": "James Mallinson", "title": "The Khecarīvidyā of Ādinātha: A Critical Edition and Annotated Translation of an Early Text of Haṭhayoga", "year": 2007, "publisher": "Routledge, Routledge Studies in Tantric Traditions", "identifier": "ISBN 9780415391153 (hbk); 9780415586139 (pbk); SOAS eprints 17963", "verified": "web-2026-07-30", "note": "Drawn from thirty Sanskrit works plus fieldwork among living yogins in India. Cite-only under FRAMING §4.4."}
+        ]
+      },
+      "counts": [{"query": "\"Khecarividya\"", "count": 4, "sampled": true, "note": "first hit is Mallinson's edition itself"}],
+      "countVerdict": "Four. A Routledge critical edition and a count of four — the second-clearest count/weight divergence in the file after the Niśvāsa.",
+      "namedScholars": ["James Mallinson"],
+      "researchProgramme": {"exists": "indirect", "name": "Haṭha Yoga Project remit; the edition itself predates the project and was a doctoral thesis (SOAS)."},
+      "exemplarCitations": [
+        {"cite": "Mallinson, J., The Khecarīvidyā of Ādinātha, Routledge, 2007", "id": "ISBN 9780415391153; eprints.soas.ac.uk/17963", "verified": "web-2026-07-30"},
+        {"cite": "FRAMING §2.2 cites this edition's footnote apparatus as the model for the site's harm-note shape (§5.1): the blade, the depth, the aftercare and the weekly schedule are translated, AND the same footnote records that most informants said the practice was unnecessary — including those who had done it — and names yogins left with pronounced lisps and difficulty eating and talking.", "id": "internal cross-reference", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "High on edition quality, near-zero on volume. A one-book, one-scholar field with an exemplary book."
+    },
+
+    {
+      "id": "baopuzi",
+      "work": "Baopuzi neipian 抱朴子內篇 (Ge Hong 葛洪, c. 320 CE)",
+      "family": "Daoist waidan (external alchemy)",
+      "languages": ["Literary Chinese"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 4,
+      "criticalEdition": {
+        "status": "critical-edition-modern (Chinese-language)",
+        "editions": [
+          {"editor": "Wang Ming 王明", "title": "Baopuzi neipian jiaoshi 抱朴子內篇校釋", "year": "1980; rev. 1985", "publisher": "Zhonghua shuju 中華書局, Beijing", "verified": "web-2026-07-30", "note": "THE standard critical edition, and it is in Chinese. An English-only bibliography will not find it; it appears in the bibliography of essentially every serious Western study."}
+        ],
+        "note": "Ware's 1966 English translation (Alchemy, Medicine, Religion in the China of A.D. 320) is cite-only under FRAMING §4.4 and is in any case widely regarded as unreliable."
+      },
+      "counts": [{"query": "\"Baopuzi\"", "count": 77, "sampled": false, "note": "unambiguous romanisation; likely clean, though Chinese-language output titled 抱朴子 is a separate and larger population"}],
+      "countVerdict": "Solid for a single early-medieval Chinese text. Undercounted by at least the same ~2× factor demonstrated for 内丹/neidan.",
+      "namedScholars": ["Wang Ming 王明", "Robert Ford Campany", "Nathan Sivin", "Fabrizio Pregadio", "James R. Ware (historical translator)", "Jay Sailey"],
+      "researchProgramme": {
+        "exists": true,
+        "name": "The Daozang Project → The Taoist Canon: A Historical Companion to the Daozang (European Science Foundation-supported, 3 decades, ~30 scholars)",
+        "verified": "web-2026-07-30",
+        "note": "Not specific to the Baopuzi, but it is the standing bibliographic infrastructure for every Daoist text on this list."
+      },
+      "exemplarCitations": [
+        {"cite": "Wang Ming 王明, Baopuzi neipian jiaoshi 抱朴子內篇校釋, Zhonghua shuju, Beijing, 1985", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Schipper, K. & Verellen, F. (eds), The Taoist Canon: A Historical Companion to the Daozang, 3 vols, University of Chicago Press, 2004", "id": "ISBN 9780226738178", "verified": "web-2026-07-30"},
+        {"cite": "Campany, R. F., To Live as Long as Heaven and Earth: A Translation and Study of Ge Hong's Traditions of Divine Transcendents, University of California Press, 2002", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "'Seeking Immortality in Ge Hong's Baopuzi Neipian', in Dao Companion volume, Springer", "id": "DOI chapter 10.1007/978-3-030-49228-1_22", "verified": "web-2026-07-30"},
+        {"cite": "Ware, J. R. (trans.), Alchemy, Medicine, Religion in the China of A.D. 320, MIT Press, 1966", "id": "cite-only under FRAMING §4.4", "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "High-middle. Well edited in Chinese, well studied in English, and the source of the tradition's own harm literature (Ge Hong flags poisonous preparations among his recipes — FRAMING C-1 lists this as publishable and harm-reducing)."
+    },
+
+    {
+      "id": "cantong-qi",
+      "work": "Zhouyi cantong qi 周易參同契",
+      "family": "Daoist alchemy (waidan → neidan hinge text)",
+      "languages": ["Literary Chinese"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 4,
+      "criticalEdition": {
+        "status": "critical study and translation; a vast Chinese commentarial tradition in place of a single critical edition",
+        "editions": [
+          {"editor": "Fabrizio Pregadio", "title": "The Seal of the Unity of the Three: A Study and Translation of the Cantong qi, the Source of the Taoist Way of the Golden Elixir", "year": 2011, "publisher": "Golden Elixir Press", "identifier": "ISBN 9780984308286", "verified": "web-2026-07-30"},
+          {"editor": "Fabrizio Pregadio", "title": "The Seal of the Unity of the Three, vol. 2 — Bibliographic Studies on the Cantong qi: Commentaries, Essays, and Related Works", "publisher": "Golden Elixir Press", "identifier": "ISBN 9780984308293", "verified": "web-2026-07-30", "note": "A whole volume of bibliography for one text — an unusually strong signal of scholarly investment."}
+        ]
+      },
+      "counts": [
+        {"query": "\"Cantong qi\"", "count": 30, "sampled": false},
+        {"query": "\"neidan\" (family-level)", "count": 144, "sampled": false},
+        {"query": "\"内丹\" (Chinese control)", "count": 282, "sampled": false, "note": "≈2× the romanised count — language-bias probe"}
+      ],
+      "countVerdict": "Real but modest in English; roughly doubled once Chinese-language output is admitted, and that is still a floor.",
+      "namedScholars": ["Fabrizio Pregadio", "Kristofer Schipper", "Franciscus Verellen", "Isabelle Robinet", "Meng Naichang 孟乃昌", "Ho Peng Yoke"],
+      "researchProgramme": {"exists": true, "name": "The Daozang Project / The Taoist Canon (Schipper & Verellen); Golden Elixir Press as a one-scholar publishing programme", "verified": "web-2026-07-30"},
+      "exemplarCitations": [
+        {"cite": "Pregadio, F., The Seal of the Unity of the Three, Golden Elixir Press, 2011", "id": "ISBN 9780984308286", "verified": "web-2026-07-30"},
+        {"cite": "Pregadio, F., The Seal of the Unity of the Three, vol. 2: Bibliographic Studies, Golden Elixir Press", "id": "ISBN 9780984308293", "verified": "web-2026-07-30"},
+        {"cite": "Schipper, K. & Verellen, F. (eds), The Taoist Canon, University of Chicago Press, 2004", "id": "ISBN 9780226738178", "verified": "web-2026-07-30"},
+        {"cite": "Robinet, I., Introduction à l'alchimie intérieure taoïste, Cerf, 1995", "id": null, "verified": "unverified-this-pass", "note": "French — another language the English probe misses"}
+      ],
+      "honestSpread": "High-middle. One modern scholar carries most of the Western load; the Chinese commentarial literature is enormous and is a different, older kind of scholarship."
+    },
+
+    {
+      "id": "wuzhen-pian",
+      "work": "Wuzhen pian 悟真篇 (Zhang Boduan, 1075)",
+      "family": "Daoist neidan (internal alchemy)",
+      "languages": ["Literary Chinese"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 3,
+      "criticalEdition": {
+        "status": "translation and study; no Western critical edition",
+        "editions": [
+          {"editor": "Fabrizio Pregadio", "title": "Awakening to Reality: The 'Regulated Verses' of the Wuzhen pian", "publisher": "Golden Elixir Press", "verified": "web-2026-07-30"}
+        ]
+      },
+      "counts": [{"query": "\"Wuzhen pian\"", "count": 10, "sampled": false}],
+      "countVerdict": "Thin in English. The Chinese commentarial tradition (Weng Baoguang, Chen Zhixu, Lu Xixing and others) is where the weight is, and none of it is indexed here.",
+      "namedScholars": ["Fabrizio Pregadio", "Isabelle Robinet", "Judith Boltz", "Lowell Skar"],
+      "researchProgramme": {"exists": "indirect", "name": "Daozang / Taoist Canon infrastructure"},
+      "exemplarCitations": [
+        {"cite": "Pregadio, F., Awakening to Reality: The 'Regulated Verses' of the Wuzhen pian, Golden Elixir Press", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Schipper & Verellen (eds), The Taoist Canon, 2004 — entry on the Wuzhen pian and its commentaries", "id": "ISBN 9780226738178", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "Middle-low in Western scholarship, high in the tradition's own textual scholarship. This row is where 'peer reviewed' as an axis is most clearly a statement about one academy."
+    },
+
+    {
+      "id": "hekhalot",
+      "work": "Hekhalot literature (Hekhalot Rabbati, Zutarti, Maʿaseh Merkavah, Sar ha-Torah, 3 Enoch)",
+      "family": "Jewish esoteric / ascent and adjuration literature",
+      "languages": ["Hebrew", "Aramaic"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 5,
+      "criticalEdition": {
+        "status": "critical-edition-modern (synoptic)",
+        "editions": [
+          {"editor": "Peter Schäfer, with Margarete Schlüter and Hans Georg von Mutius", "title": "Synopse zur Hekhalot-Literatur", "year": 1981, "publisher": "J. C. B. Mohr (Paul Siebeck), Tübingen", "series": "Texte und Studien zum antiken Judentum 2", "identifier": "ISBN 9783161445125; reissue 9783161587146", "verified": "web-2026-07-30", "note": "A SYNOPSIS rather than an eclectic critical text — a deliberate methodological choice, since Schäfer argued the manuscript tradition is too fluid to support a single archetype. That argument is itself a major scholarly position and is contested."},
+          {"editor": "Peter Schäfer et al.", "title": "Übersetzung der Hekhalot-Literatur (4 vols) and Konkordanz zur Hekhalot-Literatur (2 vols), TSAJ", "publisher": "Mohr Siebeck", "verified": "unverified-this-pass"}
+        ]
+      },
+      "counts": [{"query": "\"Hekhalot\"", "count": 333, "sampled": false, "note": "unambiguous term; likely largely clean"}],
+      "countVerdict": "Large and clean. One of the two or three best-served corpora in this census.",
+      "namedScholars": ["Peter Schäfer", "Gershom Scholem", "Michael D. Swartz", "Rebecca Macy Lesses", "Ra'anan Boustan", "Klaus Herrmann", "Joseph Dan"],
+      "researchProgramme": {
+        "exists": true,
+        "name": "Schäfer's Hekhalot and Jewish-magic editorial programme (Freie Universität Berlin / Princeton), which produced the Synopse, the Übersetzung, the Konkordanz, the Geniza magical texts and Sefer ha-Razim across four decades",
+        "verified": "web-2026-07-30"
+      },
+      "exemplarCitations": [
+        {"cite": "Schäfer, P. (ed.), Synopse zur Hekhalot-Literatur, TSAJ 2, Mohr Siebeck, 1981", "id": "ISBN 9783161445125", "verified": "web-2026-07-30"},
+        {"cite": "Review of the Synopse, Journal of Jewish Studies (1983)", "id": "DOI 10.18647/1084/JJS-1983", "verified": "web-2026-07-30", "note": "DOI read from the retrieved Liverpool University Press URL"},
+        {"cite": "Schäfer, P. & Shaked, S., Magische Texte aus der Kairoer Geniza, 3 vols, Mohr Siebeck, 1994–1999", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Swartz, M. D., Scholastic Magic: Ritual and Revelation in Early Jewish Mysticism, Princeton University Press, 1996", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Lesses, R. M., Ritual Practices to Gain Power: Angels, Incantations, and Revelation in Early Jewish Mysticism, Trinity Press, 1998", "id": null, "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "Top band. Also the corpus where the site should expect the field to be openly divided (Schäfer vs Scholem vs Boustan on dating, milieu and the relation of adjuration to ascent) — FRAMING §1.3 applies hard here."
+    },
+
+    {
+      "id": "abulafia",
+      "work": "Abraham Abulafia and the ecstatic-Kabbalah letter-permutation corpus (Ḥayyei ha-ʿOlam ha-Baʾ, Or ha-Sekhel, Sefer ha-Ḥesheq et al.)",
+      "family": "Jewish letter-permutation / prophetic Kabbalah",
+      "languages": ["Hebrew"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 4,
+      "criticalEdition": {
+        "status": "SPLIT — a large interpretive literature standing on a weak text-critical base",
+        "editions": [],
+        "note": "This is the most important honest finding in the row. Abulafia has been studied intensively for fifty years, but most of his works circulate in the non-critical printed editions produced by Amnon Gross (Jerusalem, 1990s–2000s) from a handful of manuscripts, alongside older partial editions. Critical editions of individual treatises exist only patchily. The secondary literature is far ahead of the primary-text apparatus."
+      },
+      "counts": [
+        {"query": "\"Abulafia\"", "count": 672, "sampled": true, "note": "CONTAMINATED — 'Abulafia' is a common surname; the medievalist David Abulafia and others account for most of the residue"},
+        {"query": "\"Abraham Abulafia\"", "count": 128, "sampled": false, "note": "the disambiguated figure; use this one"}
+      ],
+      "countVerdict": "128 is a real, substantial literature. The 672 figure must never be used.",
+      "namedScholars": ["Moshe Idel", "Elliot R. Wolfson", "Harvey J. Hames", "Robert Sagerman", "Gershom Scholem (as originator of the modern study)"],
+      "researchProgramme": {"exists": "indirect", "name": "No dedicated editorial programme. Served by the Institute of Jewish Studies (Hebrew University), the Association for Jewish Studies infrastructure and the Brill/SUNY monograph series.", "verified": "unverified-this-pass"},
+      "exemplarCitations": [
+        {"cite": "Idel, M., The Mystical Experience in Abraham Abulafia, SUNY Press, 1988", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Idel, M., Language, Torah, and Hermeneutics in Abraham Abulafia, SUNY Press, 1989", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Wolfson, E. R., Abraham Abulafia: Kabbalist and Prophet, Cherub Press, 2000", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Hames, H. J., Like Angels on Jacob's Ladder: Abraham Abulafia, the Franciscans and Joachimism, SUNY Press, 2007", "id": null, "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "High on volume, weak on editions — the inverse of the Khecarīvidyā profile, and a good demonstration that 'scholarly weight' is at least two independent quantities that this axis should not collapse into one number."
+    },
+
+    {
+      "id": "sefer-ha-razim",
+      "work": "Sefer ha-Razim I and II",
+      "family": "Jewish magical manual (late antique)",
+      "languages": ["Hebrew", "Latin (Liber Razielis)"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 4,
+      "criticalEdition": {
+        "status": "critical-edition-modern",
+        "editions": [
+          {"editor": "Mordecai Margalioth", "title": "Sepher Ha-Razim: A Newly Recovered Book of Magic from the Talmudic Period", "year": 1966, "publisher": "Yediot Achronot, Jerusalem", "verified": "unverified-this-pass", "note": "the reconstruction that founded the modern study; superseded"},
+          {"editor": "Bill Rebiger & Peter Schäfer", "title": "Sefer ha-Razim I und II — Das Buch der Geheimnisse I und II. Bd 1: Edition; Bd 2: Einleitung, Übersetzung und Kommentar", "year": 2009, "publisher": "Mohr Siebeck, Tübingen", "series": "Texts and Studies in Ancient Judaism 125 & 132", "identifier": "ISBN 9783161497810 (Bd 1); 9783161499562 (Bd 2)", "verified": "web-2026-07-30", "note": "Includes facsimile and transcription in Hebrew, the Latin Liber Razielis text, and a German introduction. German-language — the current critical edition of this text is not in English."}
+        ]
+      },
+      "counts": [{"query": "\"Sefer ha-Razim\"", "count": 22, "sampled": false}],
+      "countVerdict": "Small but clean, and the qualitative signal (two critical editions, one recent, from Mohr Siebeck's flagship series) far outweighs the number.",
+      "namedScholars": ["Bill Rebiger", "Peter Schäfer", "Mordecai Margalioth", "Michael A. Morgan (translator)", "Gideon Bohak"],
+      "researchProgramme": {"exists": true, "name": "Schäfer's Jewish-magic editorial programme (see Hekhalot row); Gideon Bohak's Tel Aviv work on ancient Jewish magic and the Genizah magical corpus", "verified": "web-2026-07-30"},
+      "exemplarCitations": [
+        {"cite": "Rebiger, B. & Schäfer, P., Sefer ha-Razim I und II, TSAJ 125 & 132, Mohr Siebeck, 2009", "id": "ISBN 9783161497810 / 9783161499562", "verified": "web-2026-07-30"},
+        {"cite": "Review of Rebiger & Schäfer Bd 2, Journal for the Study of Judaism", "id": "DOI 10.1163/157006311X544698", "verified": "web-2026-07-30", "note": "DOI read from the retrieved Brill/DeepDyve URL"},
+        {"cite": "Bohak, G., Ancient Jewish Magic: A History, Cambridge University Press, 2008", "id": null, "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "High-middle. A small text extremely well served, in German."
+    },
+
+    {
+      "id": "shams-al-maarif",
+      "work": "Shams al-maʿārif wa-laṭāʾif al-ʿawārif, attributed to Aḥmad al-Būnī (d. c. 1225)",
+      "family": "Arabic lettrism and talismanic magic (the corpus bunianum)",
+      "languages": ["Arabic"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 2,
+      "criticalEdition": {
+        "status": "none for the circulating long recension; a partial critical edition exists inside an unpublished thesis",
+        "editions": [
+          {"editor": "Jean-Charles Coulon", "title": "La magie islamique et le «corpus bunianum» au Moyen Âge (doctoral thesis, Université Paris-Sorbonne, defended 2013, dirs. Abdallah Cheikh-Moussa & Ludvik Kalus)", "verified": "web-2026-07-30", "identifier": "Sudoc 179447130", "note": "Proposes an analysis and a critical edition of PART of the corpus bunianum: the SHORT (earlier) recension of the Shams al-maʿārif, al-Lumʿa al-nūrāniyya, and related treatises used to compose the Shams."}
+        ],
+        "note": "The book everyone actually reads — the Shams al-maʿārif al-kubrā — is a late, expanded, pseudepigraphic recension circulating in uncritical Cairo and Beirut lithographs. Coulon argues on anachronism grounds that it cannot be al-Būnī's. There is no published critical edition of it."
+      },
+      "counts": [{"query": "\"al-Buni\"", "count": 48, "sampled": false, "note": "transliteration variance (al-Būnī, al-Buni, Ahmad al-Buni, Būnī) fragments this badly; French-language work is largely missed"}],
+      "countVerdict": "Understated. The real literature is French and Arabic and has grown sharply since 2017.",
+      "namedScholars": ["Jean-Charles Coulon", "Noah Gardiner", "Matthew Melvin-Koushki", "Liana Saif", "Farouk Yahya", "Francesca Leoni"],
+      "researchProgramme": {
+        "exists": "emerging",
+        "name": "The Islamicate-occult-sciences cluster — the Arabica special double issue 'Islamicate Occultism: New Perspectives' (64/3–4, 2017, eds Melvin-Koushki & Gardiner) and the Brill Handbook of Oriental Studies volume Islamicate Occult Sciences in Theory and Practice (2021); Coulon based at IRHT–CNRS.",
+        "verified": "web-2026-07-30",
+        "note": "A field that essentially did not exist as such fifteen years ago and now has flagship venues. This is the fastest-changing row in the census and will be out of date soonest."
+      },
+      "exemplarCitations": [
+        {"cite": "Coulon, J.-C., La magie en terre d'Islam au Moyen Âge, Éditions du CTHS, 'CTHS Histoire' 61, Paris, 2017, 349 pp.", "id": "ISBN 9782735508525", "verified": "web-2026-07-30"},
+        {"cite": "Melvin-Koushki, M. & Gardiner, N. (eds), 'Islamicate Occultism: New Perspectives', Arabica 64/3–4 (2017)", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Saif, L., Leoni, F., Melvin-Koushki, M. & Yahya, F. (eds), Islamicate Occult Sciences in Theory and Practice, Handbook of Oriental Studies I/140, Brill, 2021", "id": "ISBN 9789004426962", "verified": "web-2026-07-30"},
+        {"cite": "Gardiner, N., 'Lettrism and History in ʿAbd al-Raḥmān al-Bisṭāmī's Naẓm al-sulūk fī musāmarat al-mulūk', Arabica 64 (2017)", "id": null, "verified": "web-2026-07-30"},
+        {"cite": "Coulon, J.-C., review essay in Cahiers de recherches médiévales et humanistes (2017)", "id": "journals.openedition.org/crmh/14180", "verified": "web-2026-07-30"}
+      ],
+      "honestSpread": "Low band, rising fast. One of the most widely copied and printed occult books in the Islamic world with no published critical edition of its circulating form — the Islamic counterpart of the Key of Solomon situation."
+    },
+
+    {
+      "id": "shingon-ritual-manuals",
+      "work": "Shingon ritual manuals (shidai 次第) and the mikkyō-bu of the Taishō canon (jūhachidō, goma, kuden transmissions)",
+      "family": "Japanese esoteric Buddhist ritual literature",
+      "languages": ["Literary Chinese (kanbun)", "Japanese", "Siddhaṃ"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 4,
+      "criticalEdition": {
+        "status": "SPLIT — the canonical layer is edited to a high standard; the ritual-manual layer largely is not",
+        "editions": [
+          {"editor": "Takakusu Junjirō & Watanabe Kaigyoku (eds)", "title": "Taishō shinshū daizōkyō 大正新脩大藏經, esoteric section (mikkyō-bu)", "year": "1924–1934", "verified": "unverified-this-pass", "note": "The standard scholarly canon, with apparatus; searchable through the SAT Daizōkyō Text Database (University of Tokyo)."},
+          {"editor": "—", "title": "The shidai and kuden (oral-transmission) manuals of the Shingon lineages", "verified": "web-2026-07-30", "note": "Largely UNEDITED, many still lineage-internal or held in temple archives. What Western scholarship exists describes and analyses them rather than editing them."}
+        ]
+      },
+      "counts": [
+        {"query": "\"Shingon\"", "count": 731, "sampled": false},
+        {"query": "\"密教\" (mikkyō, Japanese control)", "count": 1602, "sampled": false, "note": "over 2× the English keyword — and still a floor, because much Japanese Buddhological output is in non-DOI journals"},
+        {"query": "\"goma ritual\"", "count": 2, "sampled": false, "note": "the specific ritual family that the site covers returns TWO — because the literature calls it 護摩 or homa"}
+      ],
+      "countVerdict": "The clearest language-bias row in the census. English keywords capture under a third of the indexed literature and the ritual-specific English keyword captures almost none of it.",
+      "namedScholars": ["Richard K. Payne", "Robert H. Sharf", "Ryūichi Abé", "Fabio Rambelli", "Charles D. Orzech", "Lucia Dolce", "Misaki Ryōshū 三崎良周", "Yoritomi Motohiro 頼富本宏"],
+      "researchProgramme": {
+        "exists": true,
+        "name": "SAT Daizōkyō Text Database (University of Tokyo) and the International Institute for Digital Humanities; the Institute of Buddhist Studies / Graduate Theological Union (Payne) as a Western node; Kōyasan University and Taishō University as the Japanese sectarian-scholarly centres",
+        "verified": "web-2026-07-30"
+      },
+      "exemplarCitations": [
+        {"cite": "Payne, R. K., The Tantric Ritual of Japan: Feeding the Gods — The Shingon Fire Ritual, Aditya Prakashan / IABS", "id": "ISBN 9788185179766", "verified": "web-2026-07-30"},
+        {"cite": "Sharf, R. H., 'Thinking through Shingon Ritual', Journal of the International Association of Buddhist Studies 26/1 (2003)", "id": "journals.ub.uni-heidelberg.de/index.php/jiabs/article/download/8931/2824/8725", "verified": "web-2026-07-30"},
+        {"cite": "Payne, R. K., 'A Pragmatics of Ritual: The Yoshida Goma at the Interface of Shintō and Shingon', Religions 12/10 (2021), art. 884", "id": "mdpi.com/2077-1444/12/10/884", "verified": "web-2026-07-30"},
+        {"cite": "Abé, R., The Weaving of Mantra: Kūkai and the Construction of Esoteric Buddhist Discourse, Columbia University Press, 1999", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "Orzech, C. D., Sørensen, H. H. & Payne, R. K. (eds), Esoteric Buddhism and the Tantras in East Asia, Brill, Handbook of Oriental Studies, 2011", "id": null, "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "High band on the canonical layer, low on the manuals the site actually describes. Anyone ranking this corpus from English indexes will get it badly wrong."
+    },
+
+    {
+      "id": "tibetan-sadhana",
+      "work": "Tibetan and Indo-Tibetan sādhana literature (Sādhanamālā, Niṣpannayogāvalī, the Kangyur/Tengyur tantric sections, indigenous Tibetan sgrub thabs)",
+      "family": "Buddhist tantric visualisation-and-recitation manuals",
+      "languages": ["Sanskrit", "Classical Tibetan"],
+      "axisMeaning": "Counts scholarly attention to the text. Carries no information about whether anything in it works.",
+      "weightBand": 3,
+      "criticalEdition": {
+        "status": "SPLIT — a few flagship critical editions against an essentially unedited mass",
+        "editions": [
+          {"editor": "Benoytosh Bhattacharyya", "title": "Sādhanamālā, 2 vols", "year": "1925 (vol. I, 170 sādhanas) and 1928 (vol. II, 142 sādhanas)", "publisher": "Oriental Institute, Baroda", "series": "Gaekwad's Oriental Series XXVI and XLI", "verified": "web-2026-07-30", "note": "Edited from eight manuscripts. Legacy critical edition; still standard, and now PD-adjacent (scans on archive.org)."},
+          {"editor": "David B. Gray", "title": "The Cakrasamvara Tantra (The Discourse of Śrī Heruka): Editions of the Sanskrit and Tibetan Texts", "year": 2009, "publisher": "American Institute of Buddhist Studies / Columbia University Center for Buddhist Studies / Tibet House US, Treasury of the Buddhist Sciences", "identifier": "ISBN 9781935011040", "verified": "web-2026-07-30", "note": "A critical edition of the Sanskrit from manuscripts, commentaries and intertexts; a critical edition of the Prajñākīrti–Mardo Tibetan translation from seven print redactions; a diplomatic edition of the Sumatikīrti–Mal-gyo revision from the Phug-brag manuscript Kangyur; plus the extracanonical translation. Model apparatus."},
+          {"editor": "David B. Gray", "title": "The Cakrasamvara Tantra: A Study and Annotated Translation", "year": "2007; reissue 2019", "identifier": "ISBN 9780975373460 / 9781949163025", "verified": "web-2026-07-30"}
+        ],
+        "note": "The overwhelming majority of Tibetan sgrub thabs — the practice manuals actually used — have never been critically edited in any language, and many remain lineage-restricted."
+      },
+      "counts": [
+        {"query": "\"sadhana\" AND \"Tibetan\" (conjunctive filter)", "count": 17, "sampled": false},
+        {"query": "\"Tibetan Buddhist ritual\"", "count": 38, "sampled": false}
+      ],
+      "countVerdict": "Both probes are poor instruments — this literature is indexed under text names (Cakrasaṃvara, Hevajra, Guhyasamāja, Vajrayoginī), under Tibetan titles, and under 'tantra' generally. The counts here are the least trustworthy in the file and should not be ranked on.",
+      "namedScholars": ["Benoytosh Bhattacharyya", "David B. Gray", "Yael Bentor", "Harunaga Isaacson", "Péter-Dániel Szántó", "Christian Wedemeyer", "Elizabeth English", "Jacob Dalton"],
+      "researchProgramme": {
+        "exists": true,
+        "programmes": [
+          {"name": "84000: Translating the Words of the Buddha", "type": "translation, not critical edition", "scale": "25-year mission for the 108-volume Kangyur, 100-year mission for the 224-volume Tengyur; over 165 grants totalling more than US$8.5m to 60+ translation groups; ~25% of the Kangyur freely available in English; first complete English-language catalogue of the Tengyur", "verified": "web-2026-07-30", "caveat": "A translation initiative funded largely by Buddhist philanthropy (Khyentse Foundation), not a philological editing programme. It is a huge investment in ACCESS and a much smaller one in TEXT CRITICISM, and the census must not conflate the two."},
+          {"name": "Treasury of the Buddhist Sciences (AIBS / Columbia CBS / Tibet House US)", "type": "critical editions and annotated translations", "verified": "web-2026-07-30"},
+          {"name": "Buddhist Digital Resource Center (BDRC)", "type": "manuscript and blockprint digitisation", "verified": "unverified-this-pass"}
+        ]
+      },
+      "exemplarCitations": [
+        {"cite": "Bhattacharyya, B. (ed.), Sādhanamālā, vol. I, Gaekwad's Oriental Series XXVI, Baroda, 1925; vol. II, GOS XLI, 1928", "id": "archive.org/details/in.ernet.dli.2015.344679 (vol. 1); …/2015.46889 (vol. 2)", "verified": "web-2026-07-30"},
+        {"cite": "Gray, D. B., The Cakrasamvara Tantra: Editions of the Sanskrit and Tibetan Texts, AIBS/Columbia, 2009", "id": "ISBN 9781935011040", "verified": "web-2026-07-30"},
+        {"cite": "Gray, D. B., The Cakrasamvara Tantra: A Study and Annotated Translation, AIBS, 2007", "id": "ISBN 9780975373460", "verified": "web-2026-07-30"},
+        {"cite": "Bentor, Y., Consecration of Images and Stūpas in Indo-Tibetan Tantric Buddhism, Brill, 1996", "id": null, "verified": "unverified-this-pass"},
+        {"cite": "English, E., Vajrayoginī: Her Visualizations, Rituals, and Forms, Wisdom Publications, 2002", "id": null, "verified": "unverified-this-pass"}
+      ],
+      "honestSpread": "Middle, and highly uneven: a handful of tantras have world-class editions while the sādhana literature proper — thousands of texts — is unedited. FRAMING §7.2 also bites hardest here: much of this material is initiation-gated by its own tradition, and that restriction is a dated, sourced fact about the texts, not something the site adjudicates."
+    }
+  ],
+
+  "aggregateFindings": [
+    {
+      "finding": "The spread is real and it is enormous.",
+      "detail": "Band 5 (PGM, Picatrix, Hekhalot, Niśvāsa, Haṭhapradīpikā) sits beside band 1 (Heptameron) and band 2 (Lemegeton, Key of Solomon, Kulārṇava, Shams al-maʿārif). Two of the most famous operative texts in the Western tradition — the Key of Solomon and the Lemegeton — have no critical edition of any kind, while obscure siblings in the same corpus (Ars notoria, Liber iuratus) have excellent ones."
+    },
+    {
+      "finding": "Fame and philology are close to uncorrelated, and where they correlate the sign is sometimes negative.",
+      "detail": "The texts with the largest occult-market presence (Key of Solomon, Lemegeton, Shams al-maʿārif al-kubrā, Kulārṇava) are among the least edited. The count-based probe actively inverts the axis for these, because reprints register as 'works'."
+    },
+    {
+      "finding": "For at least six of these corpora the primary scholarship is not in English.",
+      "detail": "Picatrix (German: Ritter–Plessner), Sefer ha-Razim (German: Rebiger–Schäfer), Hekhalot (German: Schäfer), Ars notoria (French: Véronèse), al-Būnī (French: Coulon), Baopuzi (Chinese: Wang Ming), Vijñānabhairava (French: Silburn; Russian: Ivanov), Shingon manuals (Japanese). Measured undercounting for the languages probed: German ≈ +34% of the English figure for PGM; Japanese ≈ 2.2× for esoteric Buddhism; Chinese ≈ 2.0× for neidan."
+    },
+    {
+      "finding": "A count-driven ranking would be actively wrong, not merely noisy.",
+      "detail": "Niśvāsatattvasaṃhitā: OpenAlex ≈ 1–3, weight band 5. Khecarīvidyā: 4, band 4. Key of Solomon: 48, band 2. Heptameron: 283, band 1. Ranking by count places the two worst-edited texts above the two best-edited. This is why criticalEdition dominates the band and the counts are a tiebreak only."
+    },
+    {
+      "finding": "'Peer reviewed' as an axis label needs qualifying on the page.",
+      "detail": "What is being measured is attention from one academy — largely Euro-American, largely post-1900, largely secular-philological. The Chinese commentarial tradition on the Cantong qi, the Japanese sectarian scholarship on Shingon ritual, and the Sanskrit commentarial tradition on the tantras are all rigorous, cumulative, peer-scrutinised bodies of work that this axis registers at close to zero."
+    },
+    {
+      "finding": "This census contains no efficacy information and cannot be made to yield any.",
+      "detail": "Restated because it is the round's hard line: a high band means careful readers, not working magic. There is no field in this file that a downstream renderer could mistake for one, and joining it to one is listed under hardLine.forbiddenJoins."
+    }
+  ],
+
+  "reproducibility": {
+    "howToRerun": "For each row's `counts[].query`, issue GET https://api.openalex.org/works?filter=title_and_abstract.search:\"<query>\"&per-page=1 and read meta.count. Percent-encode the phrase INCLUDING its diacritics. Re-run both the ASCII and diacritic forms for every Indic row. Sample the first five results (add &per-page=5&select=title,publication_year) before trusting any count above ~40.",
+    "expectedDrift": "OpenAlex grows continuously; these figures will rise. They are floors as of 2026-07-30 and should be re-run, not carried forward, if this axis is ever displayed with numbers.",
+    "displayRecommendation": "Display the BAND and the critical-edition status. Do NOT display the raw counts as a headline number without the contamination note attached in the same DOM node — the Heptameron and Key of Solomon rows show what happens when a count travels without its caveat (cf. FRAMING §5 A-5, the harm note travelling inside the same container)."
+  }
+}

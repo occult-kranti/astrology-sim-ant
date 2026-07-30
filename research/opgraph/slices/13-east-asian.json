@@ -1,0 +1,1146 @@
+{
+  "meta": {
+    "slice": "13 — EAST ASIAN OPERATIVE LITERATURE (Daoist alchemy/self-cultivation, Daoist ritual & talisman corpora, Chinese Buddhist esoteric/dhāraṇī & Tiantai contemplative manuals, Japanese Shingon/Tendai mikkyō, Chinese divination-procedure texts)",
+    "dateISO": "2026-07-17",
+    "agent": "east-asian-operative-literature",
+    "method": "Read the shipped repo data (assets/js/core/data/confluence.js) to harvest existing atlas slugs and avoid re-deriving what is already cited; read docs/plans/r28/eastern-greats.md for planned-not-shipped verdicts to inherit; then web-verified each work THIS ROUND via WebSearch/WebFetch against the sources listed below. Every completeness grade carries an evidence string naming WHAT is missing and HOW that is known. Figures not re-derived from a source this round are marked '(unverified)' inline. NO procedure is reproduced as usable instructions: stage COUNTS, stage NAMES, structural shape, and locus of citation only — never syllables, quantities, timings, drawn graphs, or second-person instruction.",
+    "razorCompliance": {
+      "policy": "OPERATIVE-CONTENT RAZOR observed throughout. This file records THAT a text contains a procedure, of what KIND, in what STRUCTURE, how COMPLETE, and WHERE cited. It contains no mantra syllables, no dhāraṇī transcriptions, no elixir quantities or firing timings, no talisman (fu) graphs or seal designs, no mudrā execution detail, no yarrow-manipulation arithmetic, and no second-person instructions.",
+      "sensitiveAdmitted": [
+        "Waidan elixir alchemy (Baopuzi, Cantong qi) — admitted as religious/scientific history WITH a named toxic-substance harm note.",
+        "Thunder-rite exorcism and subjugation liturgy (Daofa huiyuan) — admitted as religious history WITH a coercive-rite harm/ethics note, following the repo's abhicāra-wing precedent.",
+        "Funerary/universal-salvation liturgy (Wushang huanglu dazhai lichengyi) — admitted WITH a living-tradition and mortuary-sensitivity note.",
+        "Initiation-restricted mikkyō ritual (Shingon shidō kegyō) — admitted at the level of structure only, WITH a living-tradition/secrecy note; the tradition's own restriction and this round's razor point the same way."
+      ],
+      "efficacy": "No efficacy is asserted anywhere. Formulations are 'the tradition claims', 'the text says', 'the scripture is held to'."
+    },
+    "corrections": [
+      "SLICE-BRIEF CORRECTION: the brief states the Xiuyao jing is 'already atlas-linked'. It is NOT. Verified this round: zero occurrences of 'Xiuyao' or 'Kūkai' in assets/js/core/data/confluence.js. Both appear ONLY in docs/plans/r28/eastern-greats.md (#22, Tier D+) and docs/plans/r28/ROADMAP.md:95 as PLANNED work. This is a further instance of the inventory agent's planned≠shipped finding. Node id ea:xiuyao-jing is therefore new.",
+      "The Taishang ganying pian is NOT in shipped atlas data either (verified: no 'ganying' match in confluence.js), and — against the slice brief's phrasing 'Taishang ganying pian-adjacent ritual manuals' — it is not a ritual manual at all but a morality tract whose operative offspring is the merit-and-demerit ledger (gongguoge) genre. Graded accordingly.",
+      "Atlas slugs confirmed present and reused verbatim: baopuzi, cantong-qi, huangting-jing, zhengao, wuzhen-pian, secret-of-the-golden-flower, yijing, event-shangqing-revelations, person-ge-hong. No other East Asian person node exists (no person-zhang-boduan, person-tao-hongjing, person-zhiyi, person-kukai, person-shao-yong, person-zhu-xi, person-yang-xi, person-amoghavajra) — every author node below except Ge Hong needs minting.",
+      "Atlas technique field for baopuzi already carries the toxicity note; huangting-jing and zhengao carry technique:null (zhengao verified null at confluence.js:1073) — both are on the inventory agent's 99-null list and are filled structurally here."
+    ],
+    "sources": [
+      "Fabrizio Pregadio, Great Clarity: Daoism and Alchemy in Early Medieval China, Stanford University Press, 2006 (cited in repo; relied on for the Taiqing/waidan framing)",
+      "Fabrizio Pregadio, Awakening to Reality: The 'Regulated Verses' of the Wuzhen pian, Golden Elixir Press, 2009 (already a repo source)",
+      "Fabrizio Pregadio, The Seal of the Unity of the Three: A Study and Translation of the Cantong qi, Golden Elixir Press, 2011 (already a repo source)",
+      "Fabrizio Pregadio, Taoist Internal Alchemy: An Anthology of Neidan Texts, Golden Elixir Press (web-verified this round: includes Weng Baoguang and Liu Yiming Wuzhen pian commentary material)",
+      "James R. Ware, Alchemy, Medicine, Religion in the China of A.D. 320: The Nei P'ien of Ko Hung, MIT Press, 1966 — CITE-ONLY (in copyright); Paul Kroll's criticism of it web-verified this round",
+      "Wang Ming, Baopuzi neipian jiaoshi, Zhonghua shuju, 1985 — standard Chinese critical edition (in copyright)",
+      "Isabelle Robinet, Taoist Meditation: The Mao-shan Tradition of Great Purity, SUNY Press, 1993 (already a repo source)",
+      "Stephen R. Bokenkamp, A Fourth-Century Daoist Family: The Zhen'gao, or Declarations of the Perfected, Volume 1, University of California Press, 2021 (web-verified this round)",
+      "Thomas E. Smith, Declarations of the Perfected, Part One, Three Pines Press, 2013 (already a repo source)",
+      "Livia Kohn (ed.), The Yellow Court Scripture, vols. 1–3, Three Pines Press / UH Press, 2023–2025 (web-verified this round)",
+      "Shih-shan Susan Huang and Livia Kohn, 'Internal Gods in Chinese Visual Culture' (web-verified this round, for body-god visualization)",
+      "Shih-shan Susan Huang, 'Daoist Seals, Part 1: Activation and Fashioning', Journal of Daoist Studies 10, 2017 (web-verified this round)",
+      "Kristofer Schipper and Franciscus Verellen (eds.), The Taoist Canon: A Historical Companion to the Daozang, University of Chicago Press, 2004 (web-verified this round; full text on archive.org)",
+      "Florian C. Reiter, Man, Nature and the Infinite: The Scope of Taoist Thunder Magic Rituals (reviewed in Project MUSE; web-verified this round)",
+      "Koichi Shinohara, Spells, Images, and Maṇḍalas: Tracing the Evolution of Esoteric Buddhist Rituals, Columbia University Press, 2014 (review by Elacqua, Journal of Buddhist Ethics 16, web-verified this round)",
+      "Bill M. Mak, Digital Dictionary of Buddhism entry 'Amoghavajra's Xiuyao jing 宿曜經 (Buddhist Astrology Manual)'; and 'Two 8th-Century CE Recensions of Amoghavajra's Buddhist Astral Compendium', in Plurilingualism in Traditional Eurasian Scholarship, Brill (web-verified this round; Brill page returned 403, cited from search abstract)",
+      "Michio Yano, Mikkyō senseijutsu (Japanese; cite-only, in copyright) — named in the repo's own r28 plan and corroborated by web sources this round for the Xiuyao jing recension history",
+      "Jeffrey Kotyk / MDPI Religions 13(5):458, 'Astronomy and Calendrical Science in Early Mikkyō in Japan: Challenges and Adaptations' (open access; page returned 403 to WebFetch, cited from search abstract and the encyclopedia.pub mirror)",
+      "Neal Donner and Daniel B. Stevenson, The Great Calming and Contemplation: A Study and Annotated Translation of the First Chapter of Chih-i's Mo-ho chih-kuan, Kuroda Institute / University of Hawai'i Press, 1993 (web-verified this round)",
+      "Paul L. Swanson, Clear Serenity, Quiet Insight: T'ien-t'ai Chih-i's Mo-ho chih-kuan, University of Hawai'i Press, 2018 (web-verified this round)",
+      "Ryuichi Abé, The Weaving of Mantra: Kūkai and the Construction of Esoteric Buddhist Discourse, Columbia University Press, 1999 (cite-only)",
+      "Yoshito S. Hakeda, Kūkai: Major Works, Columbia University Press, 1972 — CITE-ONLY, no PD English (verdict inherited from docs/plans/r28/eastern-greats.md #22)",
+      "Richard K. Payne, The Tantric Ritual of Japan: Feeding the Gods — the Shingon Fire Ritual, 1991 (cite-only)",
+      "Encyclopedia.com, 'Shingonshū' (web-verified this round for the shidō kegyō four-part sequence and the Jūhachidō's eighteen mudrā–mantra pairs)",
+      "Joseph A. Adler, Introduction to the Study of the Classic of Change (Yixue qimeng) by Zhu Xi, Global Scholarly Publications, 2002; translation PDF hosted at kenyon.edu (web-verified this round)",
+      "James Legge, The Yî King (Sacred Books of the East vol. 16, 1882) — PUBLIC DOMAIN",
+      "James Legge, The Texts of Taoism Part II (Sacred Books of the East vol. 40, 1891), containing the Tʻai Shang Kan Ying Pʻien — PUBLIC DOMAIN (web-verified this round)",
+      "Teitaro Suzuki and Paul Carus, T'ai-Shang Kan-Ying P'ien: Treatise on Response and Retribution, Open Court, 1906 — PUBLIC DOMAIN",
+      "Richard J. Smith, Fathoming the Cosmos and Ordering the World, University of Virginia Press, 2008 (already a repo source)",
+      "Edward L. Shaughnessy, I Ching: The Classic of Changes (Mawangdui manuscript) — named this round as the alternative textual witness for the Xici",
+      "en.daoinfo.org (FYSK Daoist Culture Centre database) entries for the Dadong zhenjing and for Daoist ritual offerings (web-verified this round; a tertiary source, flagged as such)",
+      "Wikipedia 'Baopuzi' (tertiary; used only for the 20-chapter title list and the translation history, both cross-checkable)"
+    ],
+    "vocabularyNote": "Six controlled-vocabulary gaps were hit in this slice and are flagged per-procedure as vocabGap: (1) electional/catarchic timing & hemerology — 'divination-procedure' flattens the Xiuyao jing's day-assignment tables into 'fortune-telling'; (2) talisman/celestial-script DRAWING as distinct from talisman consecration — 'consecration-of-object/talisman' names the wrong half of the act for the Daofa huiyuan and Dadong zhenjing; (3) seal (yin) fashioning and activation as an apparatus act (Huang 2017 treats fashioning and activation as two stages); (4) objectless / calming-and-insight seated contemplation (Mohe zhiguan's zhiguan) — the inventory agent already flagged this; (5) moral self-audit / merit-and-demerit ledger (Taishang ganying pian → gongguoge) — no type exists and none of purification/divination fits; (6) scriptural chanting at prescribed repetition counts as distinct from mantra-recitation (Huangting jing, Dadong zhenjing)."
+  },
+  "works": [
+    {
+      "id": "baopuzi",
+      "atlasSlug": "baopuzi",
+      "title": "Baopuzi neipian (Inner Chapters of the Master Who Embraces Simplicity)",
+      "titleOriginal": "抱朴子內篇",
+      "dateText": "substantially complete c. 317 CE, revised to c. 330",
+      "author": "Ge Hong 葛洪 (283–343)",
+      "authorNodeId": "person-ge-hong",
+      "culture": "chinese-daoist-jin-southern-esoteric",
+      "structure": "20 Inner Chapters. Chapter list verified this round: 1 Changxuan, 2 Lunxian, 3 Duisu, 4 Jindan (Gold and Cinnabar), 5 Zhili, 6 Weizhi, 7 Sainan, 8 Shizhi, 9 Daoyi, 10 Mingben, 11 Xianyao (Medicines of Immortality), 12 Bianwen, 13 Jiyan, 14 Qinqiu, 15 Zaying, 16 Huangbai (Yellow and White), 17 Dengshe (Climbing and Crossing), 18 Dizhen, 19 Xialan (Broad Overview — a CATALOGUE of Daoist books and talismans, not their contents), 20 Quhuo.",
+      "procedures": [
+        {
+          "type": "alchemical-operation",
+          "subject": "waidan — laboratory compounding of mineral elixirs, chiefly the cyclically reverted cinnabar elixir and 'potable gold', chapters 4 and 16",
+          "structureOfProcedure": "Ge Hong names elixir METHODS and cites the Taiqing (Great Clarity) source scriptures by title; the operative shape is a repeated cyclical refinement in a sealed and luted vessel, the product taken internally. Ingredient identities are named in the text; this record does not reproduce quantities, firing schedules, or vessel preparation.",
+          "completeness": "partial",
+          "completenessEvidence": "Ge Hong describes the methods at the level of naming and endorsing them and refers the reader onward to the Taiqing scriptures he lists in ch. 19 (Xialan), which is a bibliography rather than a set of recipes; Pregadio's Great Clarity (2006) treats the Baopuzi as the fullest EARLY SOURCE ON the Taiqing corpus rather than as that corpus itself. Ge Hong further states his own transmission came under oath from his master Zheng Yin and that essentials pass by oral instruction — so what is withheld is exactly the executable layer. MISSING: the source-scripture recipe texts (only some of which survive), the oral keys, and the apparatus detail.",
+          "harm": {
+            "kinds": ["toxic-substance"],
+            "note": "The elixir ingredients named include mercury and mercury sulfide, arsenic compounds, and lead compounds — all documented poisons. Historical ingestion of elixirs on this doctrine is documented to have killed practitioners and Tang emperors (Ho Ping-Yü & Needham; the repo already carries this as an atlas edge from baopuzi). Recorded here as the history of a claim, never as a preparation."
+          },
+          "citation": "Pregadio, Great Clarity (Stanford UP, 2006); Ware 1966 (cite-only)"
+        },
+        {
+          "type": "consecration-of-object/talisman",
+          "subject": "protective fu (talismans) for mountain entry and demon-avoidance, chapter 17 (Dengshe), with talisman titles catalogued in chapter 19",
+          "structureOfProcedure": "Ch. 17 concerns the hazards of entering mountains and the apotropaic apparatus — talismans, mirrors, timing and day-selection — held to make passage safe; ch. 19 registers talismans by name.",
+          "completeness": "referenced",
+          "completenessEvidence": "The chapter names and endorses talismans and lists them by title but the operative content of a fu is its GRAPH, and ch. 19 is explicitly a catalogue. Whether the received Daozang recension of ch. 17 carries reproduced talisman graphs was NOT verified this round (unverified). Graded 'referenced' on the conservative reading.",
+          "vocabGap": "talisman-drawing / celestial-script inscription is not the same act as consecration-of-object; the vocabulary has no term for the drawing.",
+          "citation": "Wikipedia 'Baopuzi' chapter list (tertiary, this round); Pregadio 2006 for the Taiqing talisman context"
+        },
+        {
+          "type": "purification",
+          "subject": "preliminary regimen — retreat to mountains, abstinences, dietary and behavioural preconditions before elixir work",
+          "completeness": "referenced",
+          "completenessEvidence": "Preconditions are asserted as necessary across chs. 4, 11 and 17 but are nowhere set out as an ordered regimen with durations; the text treats them as known to a properly transmitted disciple.",
+          "harm": {
+            "kinds": ["ascetic-regimen"],
+            "note": "Grain-avoidance and related dietary regimens are described in the tradition as preparatory; recorded as history, with no nutritional claim."
+          },
+          "citation": "Pregadio 2006"
+        }
+      ],
+      "editions": [
+        { "edition": "Wang Ming, Baopuzi neipian jiaoshi, Zhonghua shuju, 1985", "language": "Chinese critical edition", "pd": "in copyright" },
+        { "edition": "James R. Ware, MIT Press, 1966 (complete English)", "language": "English", "pd": "in copyright — CITE-ONLY", "note": "Kroll's criticism ('at times misguided') web-verified this round; do not treat as a neutral base text." },
+        { "edition": "Wu Lu-ch'iang & T. L. Davis, 1935 (chs. 4 and 16); Davis & Ch'en, 1941 (chs. 8 and 11)", "language": "English partial", "pd": "probably PD in the US as pre-1964 periodical matter (unverified — renewal not checked this round)" },
+        { "edition": "Daoist Translation Committee, ed. Louis Komjathy, 2025 (complete English)", "language": "English", "pd": "in copyright" }
+      ],
+      "contested": null,
+      "repoState": "atlas entry exists with a technique field already carrying the toxicity note; person-ge-hong exists."
+    },
+    {
+      "id": "cantong-qi",
+      "atlasSlug": "cantong-qi",
+      "title": "Zhouyi cantong qi (Seal of the Unity of the Three)",
+      "titleOriginal": "周易參同契",
+      "dateText": "accretional; traditionally attributed to Wei Boyang, 2nd c. CE; received text later (dating contested)",
+      "author": "attributed to Wei Boyang 魏伯陽; in fact anonymous/accretional",
+      "authorNodeId": "ea:author-wei-boyang-attributed",
+      "culture": "chinese-daoist-alchemical",
+      "structure": "Emblematic verse. Pregadio's analysis: the work 'seals into one' three subjects — Yijing trigram/hexagram emblems, Daoist (Daodejing/Huang-Lao) cosmology, and alchemy. The atlas already records that Kan and Li stand for the ingredients and that lunar-cycle hexagram sequences govern the 'fire phases'.",
+      "procedures": [
+        {
+          "type": "alchemical-operation",
+          "subject": "elixir work encoded in trigram and lunar-cycle emblems ('fire phases')",
+          "structureOfProcedure": "The text supplies an EMBLEMATIC GRAMMAR — a correspondence system between Yijing figures, the lunar cycle, and the stages of a refining process — rather than an operational sequence.",
+          "completeness": "referenced",
+          "completenessEvidence": "There is no ingredient list with quantities, no apparatus description, and no ordered step sequence; the correspondences are stated as cosmological analogy. This is why the entire later commentarial tradition (waidan and neidan alike) had to supply the operative reading, and why the same verses were read both ways. Pregadio 2011 treats it as a 'seal' of three subjects, not a recipe.",
+          "harm": {
+            "kinds": ["toxic-substance"],
+            "note": "Read as waidan, the emblems 'true lead' and 'true mercury' point at actual lead and mercury compounds — documented severe poisons. The atlas entry already carries this note. Described for study only."
+          },
+          "citation": "Pregadio, The Seal of the Unity of the Three (Golden Elixir Press, 2011)"
+        },
+        {
+          "type": "breath-discipline",
+          "subject": "the same emblems read as neidan — timing of inner 'fire phases' mapped onto breath and inner essences",
+          "completeness": "referenced",
+          "completenessEvidence": "This reading is supplied by the commentators (from the Tang–Song neidan tradition onward), not by the base text; the base text does not name a breath sequence at all.",
+          "citation": "Pregadio 2011"
+        }
+      ],
+      "contested": {
+        "flag": "Whether the Cantong qi is a waidan text, a neidan text, or neither — and whether Ge Hong knew it",
+        "positions": [
+          { "source": "Traditional neidan lineage reading (Song commentaries onward)", "value": "the ancestral scripture of inner alchemy" },
+          { "source": "Pregadio 2011 and the repo's own edge note at confluence.js (web-verified in a prior round)", "value": "Pregadio doubts Ge Hong knew the Cantong qi at all — the Baopuzi never mentions it; the Shenxian zhuan Wei Boyang account is first fully attested only in the Taiping guangji (978)" }
+        ],
+        "resolution": "NOT RESOLVED — both positions recorded."
+      },
+      "editions": [
+        { "edition": "Pregadio, The Seal of the Unity of the Three, Golden Elixir Press, 2011", "language": "English", "pd": "in copyright" }
+      ],
+      "repoState": "atlas entry exists with technique field; edges to wuzhen-pian and daodejing already shipped."
+    },
+    {
+      "id": "huangting-jing",
+      "atlasSlug": "huangting-jing",
+      "title": "Huangting jing (Scripture of the Yellow Court), Inner and Outer versions",
+      "titleOriginal": "黃庭經",
+      "dateText": "Outer version most likely 2nd-c. Eastern Han; Inner version a Shangqing-linked expansion roughly a century later (3rd–4th c.) — the atlas already flags the Inner/Outer priority as contested",
+      "author": "anonymous / revealed by 'senior deities' in the text's own frame",
+      "authorNodeId": "ea:author-anonymous-revealed",
+      "culture": "chinese-daoist-body-god-visualization",
+      "structure": "Two related scriptures, both in lines of seven characters, meant to be chanted. Tao Hongjing (456–536) compiled and commented on it (web-verified this round).",
+      "procedures": [
+        {
+          "type": "visualization",
+          "subject": "body-god visualization (cunsi) — the indwelling deities of the five viscera and the body's 'palaces' and 'chambers'",
+          "structureOfProcedure": "The verse functions as an INVENTORY: it names the inner deities, their offices in a bureaucratic hierarchy, their palaces, and their colour-and-five-phase attributes. The stated aim is to keep the gods in place and prevent their departure. It is a catalogue of what is to be held in mind, not a sitting protocol.",
+          "completeness": "partial",
+          "completenessEvidence": "MISSING: posture, sequence, duration, session structure, and the order in which the deities are taken up — none of which the verse supplies. The operative sequencing comes from outside the text: Tao Hongjing's 5th-c. commentary is described as 'clarifying the text's meditative instructions', which is itself evidence that the base text does not stand alone. Graded partial, not referenced, because the WHAT of the visualization (the full deity roster and its attributes) is genuinely given.",
+          "vocabGap": "no type for 'chanted scripture doubling as a visualization checklist'.",
+          "citation": "Huang & Kohn, 'Internal Gods in Chinese Visual Culture'; Kohn (ed.), The Yellow Court Scripture vols. 1–3 (Three Pines Press/UH Press, 2023–2025)"
+        },
+        {
+          "type": "mantra-recitation",
+          "subject": "chanted recitation of the scripture itself",
+          "completeness": "referenced",
+          "completenessEvidence": "The seven-character metre and the tradition's use of the text as a chanted scripture are documented, but the text does not itself state repetition counts, occasions, or a recitation liturgy.",
+          "vocabGap": "scriptural chanting at prescribed counts is not the same act as mantra-recitation.",
+          "citation": "Kohn (ed.), The Yellow Court Scripture, 2023–2025"
+        },
+        {
+          "type": "breath-discipline",
+          "subject": "energy concentration and the refining of essence, framed as keeping the spirits in the body",
+          "completeness": "referenced",
+          "completenessEvidence": "Named as the mechanism ('concentrating energy and refining essence') without any ordered breath sequence.",
+          "citation": "Huang & Kohn, 'Internal Gods in Chinese Visual Culture'"
+        }
+      ],
+      "editions": [
+        { "edition": "Daozang recensions, Inner and Outer (DZ numbers not re-derived this round — unverified)", "language": "Chinese", "pd": "text PD; modern critical editions in copyright" },
+        { "edition": "Livia Kohn (ed.), The Yellow Court Scripture, vols. 1–3, 2023–2025", "language": "English", "pd": "in copyright" },
+        { "edition": "Paul W. Kroll, partial translations/studies", "language": "English partial", "pd": "in copyright" }
+      ],
+      "pdNote": "No public-domain complete English translation located this round (unverified as an exhaustive claim). Say so on the site rather than implying one exists.",
+      "repoState": "atlas entry exists; technique field present. On the inventory agent's list as procedure-bearing."
+    },
+    {
+      "id": "ea:dadong-zhenjing",
+      "atlasSlug": null,
+      "proposedSlug": "dadong-zhenjing",
+      "title": "Shangqing dadong zhenjing (Perfect Scripture of the Great Cavern of Highest Clarity)",
+      "titleOriginal": "上清大洞真經",
+      "dateText": "core material from the Shangqing revelations of 364–370 CE; received recensions later and divergent",
+      "author": "anonymous; some attribute it to the medium Yang Xi (330–c. 386), presented as celestial dictation",
+      "authorNodeId": "ea:author-yang-xi",
+      "culture": "chinese-daoist-shangqing",
+      "structure": "Thirty-nine chapters/sections. The first volume, 'Recitation of Scriptures and Jade Formulae', frames the practice; volumes 2–6 carry the main scriptural content. Chen Jingyuan's Song commentary ('Meanings of the Jade Formulae') is the principal exegesis. Catalogued in the Dongzhen (Pervasive Perfection) division of the Zhengtong Daozang.",
+      "procedures": [
+        {
+          "type": "visualization",
+          "subject": "cunsi — visualizing indwelling and descending deities, and the pneumas of the five directions, the sun, the moon, and the twenty-four constellations",
+          "structureOfProcedure": "Section-by-section: each of the thirty-nine chapters attaches a visualization and an accompanying formula, with the practitioner visualizing a spirit's descent to a position in the body.",
+          "completeness": "partial",
+          "completenessEvidence": "The scripture prescribes WHAT is visualized and recited section by section, but the operative keys are the separately transmitted 'jade formulae' (yujue) and oral instructions, which is precisely why Chen Jingyuan's commentary exists to supply them; and the daoinfo/FYSK entry states that 'there have been different versions from the beginning', so no single received sequence is authoritative. MISSING: the transmission-restricted keys and a stable text.",
+          "citation": "Isabelle Robinet, Taoist Meditation: The Mao-shan Tradition of Great Purity (SUNY, 1993); en.daoinfo.org FYSK entry (tertiary, this round)"
+        },
+        {
+          "type": "mantra-recitation",
+          "subject": "silent recitation of incantations paired with each section",
+          "completeness": "partial",
+          "completenessEvidence": "The pairing of recitation with visualization is structural and documented; the formulae themselves are transmission-restricted and are not reproduced here.",
+          "citation": "en.daoinfo.org FYSK entry (tertiary); Robinet 1993"
+        },
+        {
+          "type": "consecration-of-object/talisman",
+          "subject": "talismans (fu) accompanying the scripture",
+          "completeness": "referenced",
+          "completenessEvidence": "Talismans are described as part of the scripture's apparatus but the graph forms and their consecration are not set out in accessible scholarship consulted this round.",
+          "vocabGap": "talisman-drawing again distinct from consecration.",
+          "citation": "en.daoinfo.org FYSK entry (tertiary)"
+        },
+        {
+          "type": "initiation",
+          "subject": "ordination/transmission required before the scripture may be used",
+          "completeness": "referenced",
+          "completenessEvidence": "Shangqing practice is transmission-gated in Robinet's account; the gate is named, the rite is not set out in this scripture.",
+          "citation": "Robinet 1993"
+        }
+      ],
+      "editions": [
+        { "edition": "Zhengtong Daozang, Dongzhen division (DZ number not re-derived this round — unverified)", "language": "Chinese", "pd": "text PD" }
+      ],
+      "pdNote": "No complete English translation located this round.",
+      "repoState": "NOT in the atlas. The atlas has event-shangqing-revelations (an EVENT node carrying a technique field) but no node for the tradition's principal scripture."
+    },
+    {
+      "id": "zhengao",
+      "atlasSlug": "zhengao",
+      "title": "Zhen'gao (Declarations of the Perfected)",
+      "titleOriginal": "真誥",
+      "dateText": "compiled c. 499 CE from autograph materials of 364–370",
+      "author": "Tao Hongjing 陶弘景 (456–536), compiler and annotator; underlying material from the medium Yang Xi and the Xu family",
+      "authorNodeId": "ea:author-tao-hongjing",
+      "culture": "chinese-daoist-shangqing",
+      "structure": "A compilation, not a manual: poems, accounts of the dead and the netherworld administration, letters, instructions, and meditation methods, reassembled by Tao Hongjing from scattered autograph manuscripts he authenticated by handwriting and provenance, with his own annotations.",
+      "procedures": [
+        {
+          "type": "visualization",
+          "subject": "Shangqing interior visualization and ecstatic celestial journeying, as dictated to Yang Xi",
+          "completeness": "fragmentary",
+          "completenessEvidence": "The strongest completeness evidence in this slice. The methods survive as EXCERPTS embedded in dictations, poems and correspondence, and the compilation is itself a philological reconstruction of a scattered archive — Tao Hongjing recovered the manuscripts, judged their authenticity, and arranged them, which entails that the original ordering and much of the archive were lost. Graded fragmentary rather than partial for that reason.",
+          "citation": "Stephen R. Bokenkamp, A Fourth-Century Daoist Family: The Zhen'gao, vol. 1 (UC Press, 2021); Michel Strickmann, 'The Mao Shan Revelations' (T'oung Pao 63, 1977); Thomas E. Smith, Declarations of the Perfected, Part One (Three Pines Press, 2013)"
+        },
+        {
+          "type": "funerary/liminal rite",
+          "subject": "the netherworld bureaucracy material — the dead, their posthumous offices, and the ancestral liabilities of the living",
+          "completeness": "referenced",
+          "completenessEvidence": "The Declarations narrate and adjudicate the affairs of the dead; they are not a mortuary liturgy and set out no rite.",
+          "harm": {
+            "kinds": ["mortuary-sensitivity"],
+            "note": "Material about named dead persons and their families; treat as religious history."
+          },
+          "citation": "Bokenkamp 2021"
+        },
+        {
+          "type": "initiation",
+          "subject": "transmission of texts and methods within a defined kin and patronage circle",
+          "completeness": "referenced",
+          "completenessEvidence": "Transmission is the compilation's social subject; no ordination rite is set out.",
+          "citation": "Bokenkamp 2021"
+        }
+      ],
+      "editions": [
+        { "edition": "Bokenkamp, A Fourth-Century Daoist Family, vol. 1, UC Press, 2021 (translation in progress across volumes)", "language": "English", "pd": "in copyright" },
+        { "edition": "Thomas E. Smith, Declarations of the Perfected, Part One, Three Pines Press, 2013", "language": "English", "pd": "in copyright" }
+      ],
+      "repoState": "atlas entry exists with technique:null (verified at confluence.js:1073) — a null this slice fills."
+    },
+    {
+      "id": "wuzhen-pian",
+      "atlasSlug": "wuzhen-pian",
+      "title": "Wuzhen pian (Awakening to Reality)",
+      "titleOriginal": "悟真篇",
+      "dateText": "1075",
+      "author": "Zhang Boduan 張伯端 (c. 987–1082; Crowe gives c. 983–1081)",
+      "authorNodeId": "ea:author-zhang-boduan",
+      "culture": "chinese-daoist-neidan-southern-lineage",
+      "structure": "A cycle of poems in fixed forms — the core that Pregadio translates is the set of sixteen 'regulated verses' (lüshi); the full received text adds quatrains and song-lyrics (the usual tallies of 16 lüshi + 64 jueju + 1 lüshi + 12 ci are NOT re-derived this round — unverified). Written to be chanted.",
+      "procedures": [
+        {
+          "type": "visualization",
+          "subject": "neidan — symbolic-physiological inner alchemy: gathering the emblems 'true lead' and 'true mercury' and refining essence, breath and spirit in the 'tripod' of the body",
+          "structureOfProcedure": "The poems present the work as a sequence of emblematic operations governed by 'fire phases' inherited from the Cantong qi. The physiology is symbolic; the atlas entry already records that no physical elixir is compounded and that the text itself warns against ingesting minerals.",
+          "completeness": "referenced",
+          "completenessEvidence": "THIS IS THE SLICE'S CLEANEST CASE OF DELIBERATE INCOMPLETENESS. The verses are allusive poetry, not procedure: no posture, no session structure, no duration, no criterion of success. The tradition's own position is that the essentials pass by oral instruction (koujue) from a master, and the evidence for that is the commentarial apparatus the text immediately grew — Weng Baoguang's Wuzhen zhizhi xiangshuo sansheng biyao ('Straightforward Directions … and the Secret Essentials') and, six centuries later, Liu Yiming's Wuzhen zhizhi ('Straightforward Directions') — both of which are titled as though supplying what the base text withholds, and both of which remain symbolic themselves. Graded 'referenced', NOT 'partial': the text names its operations without setting any of them out.",
+          "harm": {
+            "kinds": ["breath-retention-hypoxia", "allegory-misread-as-recipe"],
+            "note": "Two distinct hazards. (a) Neidan 'fire phases' have historically been read as breath-retention regimens; breath retention carries hypoxia risk. (b) The far commoner historical harm is the reverse misreading — taking the emblems 'lead' and 'mercury' literally, which the Wuzhen pian itself rejects as a 'side gate' and which the waidan record shows to have been lethal. Recorded as history, not guidance."
+          },
+          "citation": "Fabrizio Pregadio, Awakening to Reality (Golden Elixir Press, 2009); Pregadio, Taoist Internal Alchemy: An Anthology of Neidan Texts; Paul Crowe, 'Chapters on Awakening to the Real', B.C. Asian Review 12 (2000)"
+        },
+        {
+          "type": "breath-discipline",
+          "subject": "the timed 'fire phases' read onto breath and inner essences",
+          "completeness": "referenced",
+          "completenessEvidence": "Named in emblematic terms only; the timing schema is astronomical-emblematic (lunar-cycle hexagram sequences borrowed from the Cantong qi), not a stated respiratory practice.",
+          "citation": "Pregadio 2009"
+        }
+      ],
+      "editions": [
+        { "edition": "Pregadio, Awakening to Reality: The 'Regulated Verses' of the Wuzhen pian, Golden Elixir Press, 2009", "language": "English", "pd": "in copyright" },
+        { "edition": "Weng Baoguang, Wuzhen zhizhi xiangshuo sansheng biyao (Song commentary)", "language": "Chinese", "pd": "text PD" },
+        { "edition": "Liu Yiming (1734–1821), Wuzhen zhizhi (Qing commentary)", "language": "Chinese", "pd": "text PD" }
+      ],
+      "repoState": "atlas entry exists with technique field; edge cantong-qi→wuzhen-pian already shipped."
+    },
+    {
+      "id": "secret-of-the-golden-flower",
+      "atlasSlug": "secret-of-the-golden-flower",
+      "title": "The Secret of the Golden Flower (Taiyi jinhua zongzhi)",
+      "titleOriginal": "太乙金華宗旨",
+      "dateText": "Qing; the recension Wilhelm used is an eight-chapter edition of 1834",
+      "author": "spirit-writing revelation attributed to Lü Dongbin; anonymous compilers within a Qing Lü-cult",
+      "authorNodeId": "ea:author-anonymous-spirit-writing",
+      "culture": "chinese-daoist-neidan-quanzhen-longmen-adjacent",
+      "structure": "Short chaptered treatise. Recension-dependent: the atlas already records Mori Yuria's finding that it arose in a Qing spirit-writing cult of Lü Dongbin and circulated in editions tied to the Longmen branch of Quanzhen.",
+      "procedures": [
+        {
+          "type": "visualization",
+          "subject": "'turning the light around' (huiguang) — a light-directed inner contemplation",
+          "completeness": "partial",
+          "completenessEvidence": "The text does name an ordered progression across its chapters — which is more than the Wuzhen pian does — but the sequence is recension-dependent (Wilhelm translated an eight-chapter 1834 edition; longer recensions exist), so 'the' procedure is not textually stable. MISSING: a stable recension and, again, the oral layer of a spirit-writing lineage.",
+          "harm": {
+            "kinds": ["reception-distortion"],
+            "note": "The most consequential problem with this text in the West is not the practice but the transmission: the Wilhelm/Jung 1929–31 presentation reframed it psychologically, and the atlas already carries event-golden-flower-1929 for that. Any site treatment must separate the Qing text from its European reception."
+          },
+          "citation": "Mori Yuria, 'Identity and Lineage: The Taiyi jinhua zongzhi and the Spirit-Writing Cult of Patriarch Lü in Qing China', in Kohn & Roth (eds.), Daoist Identity (UH Press, 2002)"
+        },
+        {
+          "type": "breath-discipline",
+          "subject": "breath as the vehicle of the light-turning",
+          "completeness": "referenced",
+          "completenessEvidence": "Named, not set out.",
+          "citation": "Mori Yuria 2002"
+        }
+      ],
+      "editions": [
+        { "edition": "Richard Wilhelm, Das Geheimnis der Goldenen Blüte, 1929 (German, from the 8-chapter 1834 edition)", "language": "German", "pd": "unverified (author d. 1930; likely PD in life+70 jurisdictions, US status not checked this round)" },
+        { "edition": "Cary F. Baynes, English from Wilhelm, 1931", "language": "English", "pd": "unverified — US renewal not checked this round" },
+        { "edition": "Thomas Cleary, 1991 (from a fuller Chinese recension, explicitly correcting Wilhelm)", "language": "English", "pd": "in copyright" }
+      ],
+      "repoState": "atlas entry exists; the inventory agent flags that event-golden-flower-1929 restates this entry's technique field nearly verbatim — a duplication to fix, not copy."
+    },
+    {
+      "id": "ea:taishang-ganying-pian",
+      "atlasSlug": null,
+      "proposedSlug": "taishang-ganying-pian",
+      "title": "Taishang ganying pian (Tractate of the Most High on Action and Response)",
+      "titleOriginal": "太上感應篇",
+      "dateText": "Song, 12th century (a precise first-attestation date was NOT re-derived this round — unverified)",
+      "author": "anonymous; framed as an utterance of Taishang Laojun",
+      "authorNodeId": "ea:author-anonymous-revealed",
+      "culture": "chinese-daoist-morality-book (shanshu)",
+      "structure": "A short tract: an opening principle of moral causation, then extended enumerations of meritorious and culpable acts, closing with a reckoning of lifespan increments and deductions administered by celestial and bodily overseers.",
+      "procedures": [
+        {
+          "type": "purification",
+          "subject": "moral self-audit — the practice the tract generated is the merit-and-demerit ledger (gongguoge), in which acts are scored daily against a tabulated scale",
+          "structureOfProcedure": "The tract supplies the DOCTRINE (acts are recorded and reckoned) and the CONTENT (the act enumerations); the ledger genre supplies the accounting apparatus.",
+          "completeness": "referenced",
+          "completenessEvidence": "The tract enumerates acts and asserts a reckoning but sets out no ledger method — no scoring scale, no periodicity, no balancing rule. Those belong to the separate gongguoge literature, which was NOT examined this round (gap).",
+          "vocabGap": "MAJOR GAP — there is no controlled-vocabulary type for moral self-audit / merit accounting. 'purification' is used here only as the least-wrong available slot and misdescribes the act.",
+          "citation": "James Legge, The Texts of Taoism Part II (SBE 40, 1891); Suzuki & Carus, Treatise on Response and Retribution (Open Court, 1906)"
+        }
+      ],
+      "editions": [
+        { "edition": "James Legge, SBE vol. 40, 1891 — 'Tʻai Shang Kan Ying Pʻien'", "language": "English", "pd": "PUBLIC DOMAIN (verified this round: the whole SBE set is PD in the US)" },
+        { "edition": "Teitaro Suzuki & Paul Carus, Open Court, 1906", "language": "English", "pd": "PUBLIC DOMAIN" },
+        { "edition": "Taishang ganying pian tushuo (illustrated editions, Chinese, Qing; a copy held at Harvard, verified this round)", "language": "Chinese", "pd": "text PD" }
+      ],
+      "repoState": "NOT in the atlas (verified: no 'ganying' match in confluence.js). Note that this is one of the very few East Asian operative-adjacent works in this slice with TWO public-domain English translations — cheap to ship honestly."
+    },
+    {
+      "id": "ea:wushang-huanglu-dazhai-lichengyi",
+      "atlasSlug": null,
+      "proposedSlug": "wushang-huanglu-dazhai-lichengyi",
+      "title": "Wushang huanglu dazhai lichengyi (Standardized Rituals of the Supreme Yellow Register Great Retreat)",
+      "titleOriginal": "無上黃籙大齋立成儀",
+      "dateText": "compiled c. 1220 (Southern Song)",
+      "author": "Jiang Shuyu 蔣叔輿 (1162–1223; birth-death variants 1163–1223 and 1156–1217 appear in the literature — flagged, not resolved)",
+      "authorNodeId": "ea:author-jiang-shuyu",
+      "culture": "chinese-daoist-lingbao-liturgical",
+      "structure": "57 juan. Daozang no. DZ 508. A compilation drawing on earlier masters, on the Tang liturgists Zhang Wanfu (fl. 711) and Du Guangting (850–933), and on Jiang's own teacher Liu Yongguang (1134–1206). The genre marker is in the title: lichengyi, 'rituals set out complete'.",
+      "procedures": [
+        {
+          "type": "funerary/liminal rite",
+          "subject": "the Huanglu zhai (Yellow Register Retreat) — a mass rite for the universal salvation of the dead, irrespective of age, sex, or status",
+          "structureOfProcedure": "A programmed multi-day liturgy: the manual sets out the ordered sequence of the retreat's segments across its 57 juan, including the announcement, the purification, the audience/offering segments, the documents submitted to the celestial bureaucracy, and the closing.",
+          "completeness": "complete",
+          "completenessEvidence": "COMPLETE FOR THE OUTER LITURGY, and this is the genre's own claim — lichengyi means the ritual is set out ready for performance, which is why it became the standard Lingbao liturgical authority. QUALIFIER: it is complete only for what a congregation would see. The officiant's interior work (cunsi / neilian — the visualization and inner refinement performed silently during the rite) is presupposed, not written; and the manual assumes an ordained priest holding registers of a given rank. So: 'complete' for the outer sequence, 'partial' for the rite as actually performed.",
+          "harm": {
+            "kinds": ["living-tradition-sensitivity", "mortuary-sensitivity"],
+            "note": "This is a living Zhengyi/Quanzhen liturgy for the dead, performed today. Describe as religious history and as a text; do not present as reproducible, and do not extract its documents or invocations."
+          },
+          "citation": "Schipper & Verellen (eds.), The Taoist Canon: A Historical Companion to the Daozang (Chicago, 2004)"
+        },
+        {
+          "type": "purification",
+          "subject": "zhai — the retreat/fast frame that precedes and structures the rite",
+          "completeness": "complete",
+          "completenessEvidence": "The zhai frame is the manual's organising structure and is set out in it; graded with the same outer/inner qualifier as above.",
+          "citation": "Schipper & Verellen 2004"
+        },
+        {
+          "type": "offering/homa",
+          "subject": "jiao — the offering rite paired with the zhai in Song Daoist liturgy",
+          "completeness": "complete",
+          "completenessEvidence": "Set out within the compiled programme.",
+          "citation": "Schipper & Verellen 2004"
+        },
+        {
+          "type": "invocation/evocation",
+          "subject": "summoning and memorialising the celestial bureaucracy through submitted documents",
+          "completeness": "partial",
+          "completenessEvidence": "The document types and their placement in the sequence are given; the efficacious element in Daoist bureaucratic ritual is the priest's registers and inner visualisation, which the manual does not supply.",
+          "citation": "Schipper & Verellen 2004"
+        },
+        {
+          "type": "initiation",
+          "subject": "ordination rank and register-holding as a precondition of officiating",
+          "completeness": "referenced",
+          "completenessEvidence": "Presupposed throughout; the ordination rite belongs to other texts in the canon.",
+          "citation": "Schipper & Verellen 2004"
+        }
+      ],
+      "editions": [
+        { "edition": "Zhengtong Daozang, DZ 508 (57 juan)", "language": "Chinese", "pd": "text PD" }
+      ],
+      "pdNote": "No English translation. Schipper & Verellen's Taoist Canon supplies the descriptive entry and is the citable authority.",
+      "repoState": "NOT in the atlas. The atlas's daoist lane has NO liturgical/ritual-manual node at all — its Daoist coverage is philosophical, alchemical and visionary only. This is the single largest structural hole this slice found."
+    },
+    {
+      "id": "ea:daofa-huiyuan",
+      "atlasSlug": null,
+      "proposedSlug": "daofa-huiyuan",
+      "title": "Daofa huiyuan (Corpus of Daoist Ritual Methods)",
+      "titleOriginal": "道法會元",
+      "dateText": "Song–Yuan materials, compiled by the early Ming",
+      "author": "anonymous compilation of many lineage manuals",
+      "authorNodeId": "ea:author-anonymous-compilation",
+      "culture": "chinese-daoist-ritual-lineages (leifa / thunder-rite milieu)",
+      "structure": "268 juan — the largest single collection in the Daoist Canon (DZ 1220). Not one work but an anthology of ritual manuals from many Song and Yuan liturgical lineages, largely organised around exorcistic and apotropaic 'thunder ritual' (leifa).",
+      "procedures": [
+        {
+          "type": "consecration-of-object/talisman",
+          "subject": "fu (talismans) and yin (ritual seals) — their fashioning and their activation",
+          "structureOfProcedure": "Huang (2017) treats the seal as a two-stage matter: FASHIONING (the making of the physical object) and ACTIVATION (the ritual that makes it operative). The corpus carries both talisman material and seal material across many fascicles.",
+          "completeness": "partial",
+          "completenessEvidence": "Completeness VARIES BY FASCICLE — this is an anthology, not a work, so a single grade is a category error. Where fascicles reproduce talisman graphs they are relatively full; but the corpus systematically encodes the operative keys (the 'secret' pronunciations, the register affiliations, the master-to-disciple transmission) and restricts transmission, so no fascicle is self-sufficient to an outsider. Graded partial for the corpus with that variance stated.",
+          "vocabGap": "TWO gaps: talisman-DRAWING (celestial-script inscription) and seal-FASHIONING as an apparatus act are both distinct from 'consecration-of-object/talisman', which names only the activation half.",
+          "citation": "Shih-shan Susan Huang, 'Daoist Seals, Part 1: Activation and Fashioning', Journal of Daoist Studies 10 (2017); Schipper & Verellen 2004"
+        },
+        {
+          "type": "coercive-rite",
+          "subject": "leifa — exorcistic and subjugating thunder rites, described as quelling demonic forces by the absorption and projection of thunder pneumas",
+          "structureOfProcedure": "The officiant is described as internalising a cosmic force and directing it at an identified malign agent. Recorded at this level of description only.",
+          "completeness": "partial",
+          "completenessEvidence": "The rites are set out at manual length in individual fascicles but, again, with transmission-gated keys; and Reiter's study frames the corpus as a scope-survey of a whole ritual genre rather than a single executable rite.",
+          "harm": {
+            "kinds": ["coercion/ritual-aggression", "living-tradition-sensitivity"],
+            "note": "REQUIRED ETHICS NOTE, following the repo's abhicāra-wing precedent. Thunder rites include subjugation and exorcism directed at persons and spirits identified as malign; the historical record of exorcistic accusation carries obvious social harm. Admitted here as academic religious history; the graphs, invocations and keys are not recorded and must not be. No efficacy is claimed by this record — the tradition claims it."
+          },
+          "citation": "Florian C. Reiter, Man, Nature and the Infinite: The Scope of Taoist Thunder Magic Rituals; Schipper & Verellen 2004"
+        },
+        {
+          "type": "invocation/evocation",
+          "subject": "summoning of thunder divinities and marshal-deities",
+          "completeness": "partial",
+          "completenessEvidence": "Named deities and their liturgical placement are documented in the scholarship; the summoning formulae are transmission-restricted.",
+          "citation": "Reiter; Schipper & Verellen 2004"
+        },
+        {
+          "type": "visualization",
+          "subject": "neilian — the officiant's interior refinement that the outer rite is held to depend on",
+          "completeness": "referenced",
+          "completenessEvidence": "Named as the rite's inner engine across the leifa literature; not set out, by design.",
+          "citation": "Reiter"
+        }
+      ],
+      "editions": [
+        { "edition": "Zhengtong Daozang, DZ 1220 (268 juan)", "language": "Chinese", "pd": "text PD" }
+      ],
+      "pdNote": "No English translation of the corpus. Schipper & Verellen 2004 give the historical background and a résumé of the whole collection — the citable route.",
+      "repoState": "NOT in the atlas. Note for the synthesizer: this is an ANTHOLOGY node and breaks the one-work-one-completeness-grade assumption; the schema may need a 'compositeCorpus: true' flag."
+    },
+    {
+      "id": "ea:tuoluoni-jijing",
+      "atlasSlug": null,
+      "proposedSlug": "tuoluoni-jijing",
+      "title": "Tuoluoni jijing (Dhāraṇīsaṃgraha / Collected Dhāraṇī Sūtra)",
+      "titleOriginal": "陀羅尼集經",
+      "dateText": "654 CE (Tang)",
+      "author": "translated/compiled by Atikūṭa 阿地瞿多",
+      "authorNodeId": "ea:author-atikuta",
+      "culture": "chinese-buddhist-esoteric (pre-mikkyō Tang dhāraṇī ritual)",
+      "structure": "12 scrolls (juan). Taishō no. 901. A ritual compendium: dhāraṇī texts grouped with the rites that deploy them, image-making instructions, altar (maṇḍala) layouts, and an initiation ceremony.",
+      "procedures": [
+        {
+          "type": "mantra-recitation",
+          "subject": "dhāraṇī recitation as the compendium's organising act",
+          "completeness": "complete",
+          "completenessEvidence": "The compendium's stated purpose is to supply dhāraṇī texts together with their ritual settings; the recitation frame (occasion, deity, purpose) is given per item. The syllables themselves are deliberately not recorded in this graph.",
+          "citation": "Koichi Shinohara, Spells, Images, and Maṇḍalas: Tracing the Evolution of Esoteric Buddhist Rituals (Columbia UP, 2014)"
+        },
+        {
+          "type": "maṇḍala-construction",
+          "subject": "altar/maṇḍala layouts for the rites, including an initiation altar",
+          "structureOfProcedure": "The text describes altar arrangements and the placement of deities within them, and attaches an initiation ceremony to the altar.",
+          "completeness": "complete",
+          "completenessEvidence": "Shinohara's study takes T.901 as a key stage in the evolution FROM spell-recitation TO image-and-maṇḍala ritual precisely because it sets out altar construction and the maṇḍala initiation as full ceremonies. QUALIFIER: it assumes a qualified ācārya, and Shinohara shows the sequences were assembled from heterogeneous earlier sources, so internal consistency across the twelve scrolls is not to be assumed.",
+          "citation": "Shinohara 2014; ntireader.org Taishō T0901 entry (tertiary, this round)"
+        },
+        {
+          "type": "consecration-of-object/talisman",
+          "subject": "image-making — the text describes carving a wooden sculpture of Avalokiteśvara and its ritual use",
+          "completeness": "complete",
+          "completenessEvidence": "Named in the standard description of the text's contents as a set-out procedure (material, form, and the rite attaching to it). Graded complete on that description; not independently collated against the Taishō text this round (unverified at the level of internal detail).",
+          "citation": "ntireader.org T0901; Shinohara 2014"
+        },
+        {
+          "type": "initiation",
+          "subject": "a maṇḍala initiation (abhiṣeka-type) ceremony",
+          "completeness": "complete",
+          "completenessEvidence": "The initiation ritual is one of the text's headline contents in every description consulted.",
+          "harm": {
+            "kinds": ["living-tradition-sensitivity"],
+            "note": "Initiation material of a living Buddhist ritual tradition; describe, do not reproduce."
+          },
+          "citation": "ntireader.org T0901; Shinohara 2014"
+        },
+        {
+          "type": "coercive-rite",
+          "subject": "subjugation/aggressive applications of dhāraṇī, a standard division of dhāraṇī ritual function",
+          "completeness": "referenced",
+          "completenessEvidence": "The four-or-five-fold classification of ritual aims (pacifying, increasing, subjugating, etc.) is standard across dhāraṇī and tantric literature, but WHETHER and WHERE T.901 specifically sets out subjugation rites was NOT verified this round — recorded as (unverified) and graded 'referenced' pending verification.",
+          "harm": {
+            "kinds": ["coercion/ritual-aggression"],
+            "note": "Flagged prospectively so that a later verification pass does not ship the material without the note. Compare the repo's abhicāra wing, which handles exactly this class."
+          },
+          "citation": "(unverified) — flagged for a later pass"
+        }
+      ],
+      "editions": [
+        { "edition": "Taishō shinshū daizōkyō vol. 18, no. 901", "language": "Chinese", "pd": "base text PD; the Taishō apparatus itself is a 1924–34 edition (status not checked this round). SAT and NTI Reader provide access." }
+      ],
+      "pdNote": "No complete English translation located this round.",
+      "repoState": "NOT in the atlas. The atlas has Guhyasamāja (an Indian tantra) but NO Chinese esoteric ritual text at all."
+    },
+    {
+      "id": "ea:xiuyao-jing",
+      "atlasSlug": null,
+      "proposedSlug": "xiuyao-jing",
+      "title": "Xiuyao jing (Treatise on Lunar Mansions and Planets) — full title Wenshushili pusa ji zhuxian suoshuo jixiong shiri shan'e xiuyao jing",
+      "titleOriginal": "宿曜經",
+      "dateText": "759 CE (recension transcribed by Amoghavajra's disciple Shi Yao); a second recension redacted by Yang Jingfeng in 764",
+      "author": "attributed to Amoghavajra 不空 (705–774) and his team",
+      "authorNodeId": "ea:author-amoghavajra",
+      "culture": "chinese-buddhist-esoteric-astral (transmitted to Japan as Sukuyōdō)",
+      "structure": "Two juan. Taishō no. 1299. An astral compendium built from Indian, Central Asian, and Chinese sources: lunar mansions (nakṣatra), the seven luminaries and the seven-day week, and day-assignment tables used hemerologically.",
+      "procedures": [
+        {
+          "type": "divination-procedure",
+          "subject": "nakṣatra hemerology — assigning days to lunar mansions and reading the resulting day-qualities for the timing of activities",
+          "structureOfProcedure": "Tabular. Mak's account: the model of assigning days to nakṣatras was devised by Amoghavajra and his team — that is, the text supplies a constructed assignment scheme, not merely inherited Indian material.",
+          "completeness": "partial",
+          "completenessEvidence": "The day-assignment scheme and the mansion/luminary tables are given (that is what the text IS), but two things are missing: (a) it is not a computational manual — it does not supply the astronomical procedure for deriving planetary or lunar positions, which had to come from calendrical science; and (b) the two 8th-century recensions differ, and the mainland (China/Korea) and Japanese recension families diverge further through what Mak describes as a gradual process of Sinicization, so there is no single authoritative procedure text.",
+          "vocabGap": "electional/catarchic timing and hemerology are flattened into 'divination-procedure'. The Xiuyao jing is a timing manual, not an oracle.",
+          "citation": "Bill M. Mak, DDB entry 'Amoghavajra's Xiuyao jing 宿曜經'; Mak, 'Two 8th-Century CE Recensions of Amoghavajra's Buddhist Astral Compendium', in Plurilingualism in Traditional Eurasian Scholarship (Brill); Michio Yano, Mikkyō senseijutsu (cite-only)"
+        }
+      ],
+      "editions": [
+        { "edition": "Taishō vol. 21, no. 1299 (two recensions represented in the manuscript record)", "language": "Chinese", "pd": "base text PD; Taishō apparatus status not checked this round" },
+        { "edition": "Michio Yano, Mikkyō senseijutsu", "language": "Japanese study", "pd": "in copyright — CITE-ONLY" }
+      ],
+      "pdNote": "No public-domain English translation. The repo's r28 plan already recorded 'No PD English — say so' for the Kūkai cluster; that verdict is inherited, not re-derived.",
+      "repoState": "NOT in the atlas, contrary to the slice brief — see meta.corrections. Planned only, at docs/plans/r28/eastern-greats.md #22. This is the highest-value new node in the slice for THIS site specifically, because it is the join between the repo's jyotiṣa/nakṣatra lane and East Asia."
+    },
+    {
+      "id": "ea:mohe-zhiguan",
+      "atlasSlug": null,
+      "proposedSlug": "mohe-zhiguan",
+      "title": "Mohe zhiguan (The Great Calming and Contemplation)",
+      "titleOriginal": "摩訶止觀",
+      "dateText": "lectures delivered 594 CE; compiled and edited by Guanding (561–632)",
+      "author": "Zhiyi 智顗 (538–597), lectures; Guanding, editor",
+      "authorNodeId": "ea:author-zhiyi",
+      "culture": "chinese-buddhist-tiantai (transmitted to Japan as Tendai)",
+      "structure": "Seven chapters in ten fascicles. Taishō no. 1911. Four organising frameworks, all verified this round: the twenty-five preparatory expedients (skillful means), the four samādhis, the ten objects of contemplation, and the ten modes of contemplation (mode 1 is the contemplation of the inconceivable realm; modes 2–10 are bodhicitta, skillful pacification of mind, universal refutation of dharmas, recognition of obstructions and throughways, adjustment of aspects of the way, curative aids, understanding stages of progress, forbearance, and freedom from attachment to attainments).",
+      "procedures": [
+        {
+          "type": "visualization",
+          "subject": "the four samādhis, including the constantly-walking samādhi built on buddha-recollection (buddhānusmṛti)",
+          "completeness": "partial",
+          "completenessEvidence": "The four samādhis are enumerated and characterised, including their durations and bodily modes, but they are presented within an unfinished work (see below) and Zhiyi's other manuals carry parts of the practical apparatus.",
+          "harm": {
+            "kinds": ["sleep-deprivation", "ascetic-regimen"],
+            "note": "The constantly-walking samādhi is a fixed-term regimen of continuous circumambulation without lying down; the constantly-sitting samādhi is its seated counterpart. Both are historically described as multi-day regimens entailing sleep restriction. Recorded as religious history with the hazard named; no duration or regimen detail is reproduced here."
+          },
+          "citation": "Donner & Stevenson, The Great Calming and Contemplation (Kuroda Institute/UH Press, 1993); Swanson, Clear Serenity, Quiet Insight (UH Press, 2018)"
+        },
+        {
+          "type": "breath-discipline",
+          "subject": "the twenty-five preparatory expedients, which include the regulation of body, breath and mind",
+          "completeness": "partial",
+          "completenessEvidence": "Enumerated as a preparatory framework; the fuller practical treatment sits in Zhiyi's shorter meditation manuals rather than here.",
+          "citation": "Donner & Stevenson 1993"
+        },
+        {
+          "type": "purification",
+          "subject": "the preparatory expedients' ethical and circumstantial preconditions",
+          "completeness": "partial",
+          "completenessEvidence": "Given as a numbered set within the preparatory framework.",
+          "citation": "Donner & Stevenson 1993"
+        },
+        {
+          "type": "objectless-and-insight-contemplation",
+          "subject": "zhiguan proper — the ten modes applied to the ten objects of contemplation",
+          "structureOfProcedure": "A matrix: ten modes of contemplation to be applied across ten objects.",
+          "completeness": "partial",
+          "completenessEvidence": "THE SLICE'S BEST-EVIDENCED STRUCTURAL INCOMPLETENESS AFTER THE ZHEN'GAO, and it is an incompleteness of the WORK, not of the tradition. Verified this round: the work as we have it is seven chapters in ten fascicles. The standard scholarly account (Donner & Stevenson 1993) is that Zhiyi projected ten chapters and that the treatment of the ten objects breaks off — the ten modes are worked out in full only against the FIRST object, so the matrix is executed in one row out of ten. Donner & Stevenson translate and study chapter ONE only; a complete English translation waited until Swanson 2018. NOTE: the '10 chapters projected / 3 never delivered' figure is the standard account and is NOT independently re-derived this round (unverified in that specific numeric form); the 7-chapters-in-10-fascicles figure IS verified.",
+          "vocabGap": "'objectless-and-insight-contemplation' is NOT in the controlled vocabulary. The inventory agent already flagged bare-attention/insight contemplation as the largest untyped practice family; zhiguan (calming-and-insight) belongs to it and cannot be forced into visualization or breath-discipline without misdescribing it.",
+          "citation": "Donner & Stevenson 1993; Swanson 2018"
+        },
+        {
+          "type": "graded-curriculum",
+          "subject": "the work's function as a staged meditation curriculum rather than a single method",
+          "completeness": "partial",
+          "completenessEvidence": "The curriculum's frameworks are all present; its execution is truncated as above.",
+          "vocabGap": "graded doctrinal/practical curriculum — flagged by the inventory agent (lamrim) and confirmed here for Tiantai.",
+          "citation": "Donner & Stevenson 1993"
+        }
+      ],
+      "editions": [
+        { "edition": "Taishō vol. 46, no. 1911", "language": "Chinese", "pd": "base text PD" },
+        { "edition": "Donner & Stevenson, 1993 (chapter 1, study and annotated translation)", "language": "English partial", "pd": "in copyright" },
+        { "edition": "Paul L. Swanson, Clear Serenity, Quiet Insight, UH Press, 2018 (complete)", "language": "English", "pd": "in copyright" }
+      ],
+      "pdNote": "No PD English translation.",
+      "repoState": "NOT in the atlas as a work. The atlas mentions Zhiyi's calming-and-contemplation curriculum only inside a Dōgen edge body (confluence.js c.5967), which is a work-level influence claim, not a procedure node."
+    },
+    {
+      "id": "ea:shingon-shido-kegyo",
+      "atlasSlug": null,
+      "proposedSlug": "shingon-shido-kegyo",
+      "title": "The Shingon shidō kegyō corpus (the four-part preparatory ritual training) and its shidai (procedure manuals)",
+      "titleOriginal": "四度加行",
+      "dateText": "root transmission from Kūkai (774–835), who studied under Huiguo and returned to Japan in 806; the individual shidai are later, lineage-specific, and continuously revised",
+      "author": "transmitted from Kūkai; the shidai are lineage compilations, largely anonymous or lineage-attributed",
+      "authorNodeId": "ea:author-kukai",
+      "culture": "japanese-shingon-mikkyō",
+      "structure": "Verified this round: the training is called shidō kegyō, 'training in four parts', and consists of four rituals performed across roughly a hundred-day period, beginning with the Jūhachidō ('eighteen paths'), originally comprising eighteen mudrā-and-mantra pairs, with the contemporary form more elaborate; the remaining three are the two maṇḍala rites (Kongōkai and Taizōkai) and the fire rite (goma). The doctrinal frame is the sanmitsu, the 'three mysteries' of body, speech, and mind, aligned respectively with mudrā, mantra, and maṇḍala-visualization.",
+      "procedures": [
+        {
+          "type": "mudrā",
+          "subject": "hand gestures as the 'body' member of the three mysteries",
+          "completeness": "partial",
+          "completenessEvidence": "The STRUCTURE is fully documented in scholarship (that the Jūhachidō pairs eighteen mudrās with eighteen mantras, and where in the sequence each falls); the EXECUTION is transmitted under initiation and the shidai used in training are largely unpublished or restricted. Partial in the public record by the tradition's own design.",
+          "harm": {
+            "kinds": ["living-tradition-sensitivity"],
+            "note": "Shingon is a living institution with explicit secrecy norms and initiation gating (denbō kanjō). The repo's own r28 plan already flags 'Shingon institutional sensitivity'. Here the operative-content razor and the tradition's restriction coincide: record the structure, never the content."
+          },
+          "citation": "Encyclopedia.com 'Shingonshū' (web-verified this round for the shidō kegyō sequence and the eighteen pairs); Ryuichi Abé, The Weaving of Mantra (Columbia UP, 1999); Richard K. Payne, The Tantric Ritual of Japan (1991)"
+        },
+        {
+          "type": "mantra-recitation",
+          "subject": "mantra/shingon as the 'speech' member",
+          "completeness": "partial",
+          "completenessEvidence": "Same evidence as above: the pairing structure is public, the syllables and their transmission are not. No syllables are recorded here.",
+          "citation": "Abé 1999; Encyclopedia.com 'Shingonshū'"
+        },
+        {
+          "type": "visualization",
+          "subject": "maṇḍala visualization and deity contemplation as the 'mind' member; the two-maṇḍala rites of the four-part training",
+          "completeness": "partial",
+          "completenessEvidence": "The Kongōkai and Taizōkai rites are named and structurally described in scholarship; their contemplative content is initiation-gated.",
+          "citation": "Abé 1999"
+        },
+        {
+          "type": "offering/homa",
+          "subject": "goma — the Shingon fire ritual, the fourth of the four trainings",
+          "completeness": "partial",
+          "completenessEvidence": "The most fully described of the four in Western scholarship: Payne's monograph is a study of the Shingon fire ritual and gives its structure in detail. Still graded partial because the performed rite depends on the officiant's transmitted inner practice and on lineage-specific shidai.",
+          "harm": {
+            "kinds": ["fire-hazard", "living-tradition-sensitivity"],
+            "note": "A rite involving a sustained hearth fire and combustible offerings. Structure recorded; no materials, quantities, or fire-management detail."
+          },
+          "citation": "Richard K. Payne, The Tantric Ritual of Japan: Feeding the Gods — the Shingon Fire Ritual (1991)"
+        },
+        {
+          "type": "initiation",
+          "subject": "kanjō (abhiṣeka) — the consecration that gates the training and the transmission",
+          "completeness": "referenced",
+          "completenessEvidence": "Named as the gate in all scholarship consulted; the rite itself is not published in operative form.",
+          "harm": { "kinds": ["living-tradition-sensitivity"], "note": "As above." },
+          "citation": "Abé 1999"
+        },
+        {
+          "type": "purification",
+          "subject": "goshinbō — the self-protection sequence that opens Shingon rites",
+          "completeness": "referenced",
+          "completenessEvidence": "Named in the literature as a standard opening; its content is initiation-gated. Its structural position (opening) is the only thing recorded.",
+          "citation": "(structural placement standard in Shingon ritual descriptions; not independently re-verified this round — unverified)"
+        }
+      ],
+      "editions": [
+        { "edition": "Yoshito S. Hakeda, Kūkai: Major Works, Columbia UP, 1972", "language": "English", "pd": "in copyright — CITE-ONLY. 'No PD English — say so' (verdict inherited from docs/plans/r28/eastern-greats.md #22)" },
+        { "edition": "Kūkai's own doctrinal works (Sokushin jōbutsu gi, Jūjūshinron, Benkenmitsu nikyōron) — Taishō texts", "language": "Chinese/Japanese", "pd": "base texts PD", "note": "These are DOCTRINAL, not operative. The operative layer is the shidai, which are a different genre and largely restricted. Do not conflate." },
+        { "edition": "Sanjūjō sasshi (the thirty-booklet manuscript set Kūkai brought from China)", "language": "Chinese", "pd": "manuscript; status not checked this round (unverified)" }
+      ],
+      "repoState": "NOT in the atlas — no person-kukai, no Shingon node, no mikkyō ritual node. The inventory agent's gap list already names 'Japanese Shintō/Shugendō/Shingon (no mikkyō ritual despite Guhyasamāja being present)'; this record is that gap's first filling."
+    },
+    {
+      "id": "yijing",
+      "atlasSlug": "yijing",
+      "title": "The Yijing (Book of Changes) — specifically the milfoil/yarrow-stalk procedure of the Xici (Great Treatise)",
+      "titleOriginal": "易經 / 繫辭傳",
+      "dateText": "core text Western Zhou c. 9th c. BCE; the Xici appended by the Han (commonly dated around the 3rd–2nd c. BCE); canonized 136 BCE",
+      "author": "anonymous/composite; traditionally Fuxi, King Wen, the Duke of Zhou, Confucius — an attribution the atlas already flags as contested",
+      "authorNodeId": "ea:author-anonymous-composite",
+      "culture": "chinese-classical-divinatory (Zhou → Han canonical)",
+      "structure": "The procedure locus is a single passage of the Xici (the 'dayan' or 'great expansion' passage, Xici A.9 in the conventional numbering — the section number is standard but NOT re-derived this round). It states a stalk count, a division, remainder-counting, and the number of operations required to build a six-line figure.",
+      "procedures": [
+        {
+          "type": "divination-procedure",
+          "subject": "milfoil (yarrow-stalk) consultation producing a hexagram line by line",
+          "structureOfProcedure": "Recorded structurally only: the passage gives a starting stalk count, a set of manipulations repeated to yield one line, and the number of repetitions needed for a full figure. The arithmetic is not reproduced here; the repo's own I Ching page already computes it for study, which is the appropriate placement.",
+          "completeness": "fragmentary",
+          "completenessEvidence": "THE STRONGEST 'INCOMPLETE PROCEDURE' EVIDENCE IN THE DIVINATION PART OF THIS SLICE, and it is evidenced by the reception rather than by assertion: because the Xici passage is elliptical, Zhu Xi had to RECONSTRUCT the method in the Yixue qimeng (1188), and it is Zhu Xi's reconstruction — not the Xici — that has been the standard procedure ever since. Sources consulted this round describe the Xici version explicitly as 'fragmentary' and Zhu Xi's as a recreation from it. MISSING from the Xici: the handling of the remainders across the three operations, the mapping of the resulting counts to old/young yin/yang, and the rule for changing lines — all of which the later tradition had to fix. Shaughnessy's work on the Mawangdui Xici supplies an alternative textual witness and shows the transmitted text is not the only one.",
+          "harm": null,
+          "citation": "James Legge, The Yî King (SBE 16, 1882) — PD; Zhu Xi, Yixue qimeng (1188), trans. Joseph A. Adler (2002); Richard Rutt, The Book of Changes (Curzon, 1996); Edward L. Shaughnessy on the Mawangdui recension"
+        }
+      ],
+      "editions": [
+        { "edition": "James Legge, The Yî King, SBE vol. 16, 1882", "language": "English", "pd": "PUBLIC DOMAIN — the usable base text for this site" },
+        { "edition": "Richard Wilhelm / Cary F. Baynes, The I Ching or Book of Changes, Bollingen, 1950", "language": "English", "pd": "IN COPYRIGHT — cite-only. Do not quote at length." },
+        { "edition": "Richard Rutt, The Book of Changes (Zhouyi): A Bronze Age Document, Curzon, 1996", "language": "English", "pd": "in copyright" }
+      ],
+      "repoState": "atlas entry exists with a technique field that already names the yarrow procedure and points at the site's I Ching page. What is NEW here is the COMPLETENESS grade and its evidence — the atlas says the procedure 'is described in the Great Commentary' without recording that the description is insufficient to perform."
+    },
+    {
+      "id": "ea:yixue-qimeng",
+      "atlasSlug": null,
+      "proposedSlug": "yixue-qimeng",
+      "title": "Yixue qimeng (Introduction to the Study of the Changes)",
+      "titleOriginal": "易學啟蒙",
+      "dateText": "1186 [AUDIT-CORRECTED: this slice dated the work '1186–1188 (conventionally dated 1188)' and then used 1188 in two other places. Adler's own scholarship — the translator this slice relies on — dates the Yixue qimeng to 1186. The 1188 figure is not supported by the source consulted and should not be repeated; where a range is wanted, state 1186 with the compilation window and cite Adler.]",
+      "author": "Zhu Xi 朱熹 (1130–1200), with Cai Yuanding",
+      "authorNodeId": "ea:author-zhu-xi",
+      "culture": "chinese-neo-confucian",
+      "structure": "A short systematic introduction covering the number-and-diagram materials (Hetu/Luoshu, the trigram and hexagram generation sequences) and, decisively for this slice, the milfoil procedure.",
+      "procedures": [
+        {
+          "type": "divination-procedure",
+          "subject": "the reconstructed milfoil procedure",
+          "completeness": "complete",
+          "completenessEvidence": "This is the work that MADE the procedure complete. Verified this round: Zhu Xi reconstructed the method from the fragmentary Xici version, and his version has remained the standard. Completeness is therefore not a property inferred from the text's confidence but from its function in the tradition — every later yarrow practitioner uses this text's reconstruction. QUALIFIER for the site: 'complete' here means internally executable, NOT historically authentic to the Zhou; the two must not be conflated.",
+          "citation": "Joseph A. Adler, Introduction to the Study of the Classic of Change (Yixue qimeng) by Zhu Xi (Global Scholarly Publications, 2002), with the translation PDF hosted at kenyon.edu"
+        }
+      ],
+      "contested": {
+        "flag": "Whether Zhu Xi's procedure recovers the Zhou method or invents a Song one",
+        "positions": [
+          { "source": "The received tradition and Zhu Xi's own framing", "value": "a recovery of the classical method from the Xici" },
+          { "source": "The modern text-critical position (Rutt; Shaughnessy on the Mawangdui witness)", "value": "the Xici is itself late relative to the Zhouyi core, and the transmitted Xici is not the only recension, so a Song reconstruction from it cannot be assumed to recover Zhou practice" }
+        ],
+        "resolution": "NOT RESOLVED — both positions recorded."
+      },
+      "editions": [
+        { "edition": "Adler trans., 2002", "language": "English", "pd": "in copyright; author-hosted PDF at kenyon.edu is accessible for citation" }
+      ],
+      "repoState": "NOT in the atlas. Without it the atlas's yijing technique field is misleading, because it credits the Great Commentary with a procedure the Great Commentary does not fully give."
+    },
+    {
+      "id": "ea:meihua-yishu",
+      "atlasSlug": null,
+      "proposedSlug": "meihua-yishu",
+      "title": "Meihua yishu (Plum Blossom Numerology)",
+      "titleOriginal": "梅花易數",
+      "dateText": "traditionally referred to Shao Yong (1011–1077); the received text is a later compilation, with Ming-dynasty editions documented ('Ming chao zhenben meihua yishu')",
+      "author": "attributed to Shao Yong; the attribution is not accepted as authorial by scholarship",
+      "authorNodeId": "ea:author-shao-yong-attributed",
+      "culture": "chinese-xiangshu (image-and-number) divinatory, popular transmission",
+      "structure": "A method-plus-casebook text: it derives hexagrams from numbers taken from the time and circumstances of the question rather than from a randomizer (stalks, coins, dice), then reads the result through a ti/yong (host/guest) analysis. Verified this round at the level of method-kind, not of internal chapter structure.",
+      "procedures": [
+        {
+          "type": "divination-procedure",
+          "subject": "number-derived hexagram casting and ti/yong interpretation",
+          "structureOfProcedure": "Recorded as a method KIND only: hexagram derivation from circumstantial numbers, then a relational reading between the two trigrams. No derivation rules are reproduced.",
+          "completeness": "complete",
+          "completenessEvidence": "Complete AS RECEIVED — the text sets out a method that can be followed end to end, which is why it circulates as a practical manual today. TWO qualifications that must travel with the grade: (a) the received text is heterogeneous and interpolated, so 'the' method varies between editions; (b) authorship is not Shao Yong's on any scholarly reading, so the completeness belongs to a late compilation, not to a Song master.",
+          "harm": null,
+          "citation": "Richard J. Smith, Fathoming the Cosmos and Ordering the World (UVA Press, 2008) — cited as the standard authority on late-imperial Chinese divination; NOTE: not re-read this round for this specific text (unverified)."
+        }
+      ],
+      "contested": {
+        "flag": "Authorship and date",
+        "positions": [
+          { "source": "Popular reprints and the tradition", "value": "composed by Shao Yong (1011–1077)" },
+          { "source": "Textual record (Ming editions; the absence of the work from Shao Yong's authenticated corpus)", "value": "a later, probably Ming, compilation attached to Shao Yong's name because the method belongs to the xiangshu tradition he systematised" }
+        ],
+        "resolution": "NOT RESOLVED. WEAKEST SOURCING IN THIS SLICE: repeated searches this round returned only popular and commercial sites plus a Baidu-derived encyclopedia; no scholarly monograph or article on the Meihua yishu's textual history was located. Anything shipped from this node must be marked as thinly sourced or the node held back."
+      },
+      "editions": [
+        { "edition": "Ming-dynasty editions ('Ming chao zhenben')", "language": "Chinese", "pd": "text PD" },
+        { "edition": "Da Liu, I Ching Numerology: Based on Shao Yung's Classic Plum Blossom Numerology, 1979", "language": "English", "pd": "in copyright; a practitioner text, not a scholarly edition" }
+      ],
+      "repoState": "NOT in the atlas."
+    }
+  ],
+  "edges": [
+    {
+      "from": "baopuzi",
+      "type": "AUTHORED_BY",
+      "to": "person-ge-hong",
+      "evidence": "Ge Hong's own authorship statement; the Inner Chapters were substantially complete by 317 by his account.",
+      "citation": "Pregadio, Great Clarity (2006)",
+      "confidence": "high"
+    },
+    {
+      "from": "baopuzi",
+      "type": "BELONGS_TO",
+      "to": "culture:chinese-daoist-jin-southern-esoteric",
+      "evidence": "Jurong, Jiangsu; the southern esoteric traditions Ge Hong inherited from Zheng Yin and the Ge family.",
+      "citation": "Pregadio 2006",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:taiqing-corpus-cited-in-baopuzi",
+      "type": "TRANSMITS_TO",
+      "to": "baopuzi",
+      "AUDIT_CORRECTED": "R33 hostile audit, EVIDENCE STRIKE E2 — endpoints FLIPPED. As originally encoded this edge ran baopuzi -> taiqing-corpus while carrying a field that read 'REVERSED — the Taiqing scriptures are Ge Hong's SOURCE, not his dependents'. Under the repo's own edge semantics (from = the earlier work / source of the act; to = where it landed, per confluence.js) that encoding reverses known chronology: the Taiqing scriptures are 3rd-c. and the Baopuzi is c.317-330. A prose disclaimer does not fix a wrongly-directed arrow — a synthesizer reads the endpoints, not the note. The reconstruction dependency (Pregadio reconstructs the Taiqing corpus THROUGH the Baopuzi) is a MODERN scholarly relation, not a transmission relation, and is recorded below as witnessRelation rather than as edge direction.",
+      "witnessRelation": "The surviving witness is the later text: Pregadio's Great Clarity (2006) reconstructs the Taiqing corpus largely through the Baopuzi. This is a philological dependency of modern scholarship on a later source, and must not be encoded as a transmission arrow.",
+      "evidence": "Ge Hong cites the Taiqing (Great Clarity) alchemical scriptures by title in ch. 4 and catalogues Daoist books and talismans in ch. 19 — i.e. he received and listed them.",
+      "citation": "Pregadio, Great Clarity (2006)",
+      "confidence": "high",
+      "note": "Placeholder target node — the Taiqing corpus is not itself modelled as a work in this slice. Flagged for the synthesizer."
+    },
+    {
+      "from": "cantong-qi",
+      "type": "TRANSMITS_TO",
+      "to": "wuzhen-pian",
+      "evidence": "Zhang Boduan wrote the Wuzhen pian in the Cantong qi's emblematic language of trigrams, lead and mercury; the neidan tradition paired the two as its ancestral and its classic scripture.",
+      "citation": "Pregadio 2009; Pregadio 2011",
+      "confidence": "high",
+      "repoState": "ALREADY SHIPPED as an atlas edge (confluence.js ~5194). Do not duplicate — this row exists so the graph is self-consistent. NOTE: the shipped edge is a WORK-level influence claim; this slice's addition is that the borrowed thing is specifically the PROCEDURAL GRAMMAR (the fire-phase timing schema), which upgrades it to a procedure-propagation edge on the Mallinson exemplar's standard."
+    },
+    {
+      "from": "cantong-qi",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-wei-boyang-attributed",
+      "evidence": "Traditional attribution only; the Shenxian zhuan Wei Boyang account is first fully attested in the Taiping guangji (978).",
+      "citation": "repo edge note at confluence.js (web-verified in a prior round); Pregadio 2011",
+      "confidence": "low — attribution, not authorship"
+    },
+    {
+      "from": "event-shangqing-revelations",
+      "type": "TRANSMITS_TO",
+      "to": "ea:dadong-zhenjing",
+      "evidence": "The Dadong zhenjing is the principal scripture of the Shangqing corpus produced from the 364–370 revelations; some attribute it directly to the medium Yang Xi.",
+      "citation": "Robinet, Taoist Meditation (1993); en.daoinfo.org FYSK entry (tertiary)",
+      "confidence": "high"
+    },
+    {
+      "from": "event-shangqing-revelations",
+      "type": "TRANSMITS_TO",
+      "to": "zhengao",
+      "evidence": "Tao Hongjing assembled the Zhen'gao c. 499 from the autograph manuscripts of the 364–370 revelations.",
+      "citation": "Bokenkamp 2021; Strickmann 1977",
+      "confidence": "high",
+      "ASSERTED": false,
+      "VOIDED_BY_AUDIT": "R33 hostile audit, DUPLICATION STRIKE D1 — this edge re-derives a shipped atlas edge (confluence.js ~5745) verbatim and adds NO operative-content information: no procedure type, no completeness grade, no procedure-level propagation claim. Per the inventory's charter the new graph 'must not restate' the atlas's transmission claims, and per the duplication blacklist item 12 the atlas is not to be re-derived. VOID as an edge; DEMOTED to crossReferenceOnly so the synthesizer still sees the join key without minting a second arrow. Contrast the sibling cantong-qi -> wuzhen-pian row, which is also already shipped but SURVIVES because it names the borrowed thing (the fire-phase timing schema) and thereby upgrades an influence claim to a procedure-propagation claim — that is the standard this edge fails.",
+      "crossReferenceOnly": true,
+      "repoState": "ALREADY SHIPPED (confluence.js ~5745)."
+    },
+    {
+      "from": "event-shangqing-revelations",
+      "type": "TRANSMITS_TO",
+      "to": "huangting-jing",
+      "evidence": "The expanded 'Inner' version was produced and canonized within the Shangqing milieu, which adopted the older Outer version's body-god visualization.",
+      "citation": "Robinet 1993",
+      "confidence": "medium — the repo's own note records that Inner/Outer priority remains debated in specialist literature",
+      "ASSERTED": false,
+      "VOIDED_BY_AUDIT": "R33 hostile audit, DUPLICATION STRIKE D1 — same reasoning as the zhengao row: re-derives a shipped atlas edge (confluence.js ~5732) with no operative-content addition, and its only substantive content (the Inner/Outer priority caveat) is itself lifted from the repo's own existing note. VOID as an edge; DEMOTED to crossReferenceOnly.",
+      "crossReferenceOnly": true,
+      "repoState": "ALREADY SHIPPED (confluence.js ~5732)."
+    },
+    {
+      "from": "huangting-jing",
+      "type": "PARALLELS",
+      "to": "ea:dadong-zhenjing",
+      "evidence": "DOCUMENTED STRUCTURAL PARALLEL, not a guess: both are Shangqing-milieu scriptures whose operative content is the visualization of indwelling deities located in named bodily positions, both are chanted verse, and both depend on separately transmitted oral keys. Robinet treats body-god visualization as the shared Shangqing technique across the corpus.",
+      "citation": "Robinet 1993; Huang & Kohn, 'Internal Gods in Chinese Visual Culture'",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:author-tao-hongjing",
+      "type": "COMMENTS_ON",
+      "to": "huangting-jing",
+      "evidence": "Tao Hongjing (456–536) compiled and commented extensively on the Huangting jing, clarifying its meditative instructions — evidence in itself that the base scripture does not stand alone operatively.",
+      "citation": "web-verified this round via the Huangting jing scholarship survey; Kohn (ed.), The Yellow Court Scripture",
+      "confidence": "medium — the attribution of the standard commentary to Tao Hongjing is traditional and was not text-critically checked this round (unverified)"
+    },
+    {
+      "from": "zhengao",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-tao-hongjing",
+      "evidence": "Compiler and annotator, c. 499.",
+      "citation": "Bokenkamp 2021",
+      "confidence": "high"
+    },
+    {
+      "from": "wuzhen-pian",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-zhang-boduan",
+      "evidence": "Completed 1075.",
+      "citation": "Pregadio 2009; Crowe 2000",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:weng-baoguang-commentary",
+      "type": "COMMENTS_ON",
+      "to": "wuzhen-pian",
+      "evidence": "Weng Baoguang composed the Wuzhen zhizhi xiangshuo sansheng biyao ('Straightforward Directions and Detailed Explanations on the Wuzhen pian and the Secret Essentials of the Three Vehicles') — one of the main commentaries, whose title advertises that it supplies what the verses withhold.",
+      "citation": "Pregadio, Taoist Internal Alchemy anthology (web-verified this round)",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:liu-yiming-commentary",
+      "type": "COMMENTS_ON",
+      "to": "wuzhen-pian",
+      "evidence": "Liu Yiming (1734–1821) wrote the Wuzhen zhizhi ('Straightforward Directions on the Awakening to Reality').",
+      "citation": "Pregadio, Taoist Internal Alchemy anthology (web-verified this round)",
+      "confidence": "high"
+    },
+    {
+      "from": "wuzhen-pian",
+      "type": "TRANSMITS_TO",
+      "to": "secret-of-the-golden-flower",
+      "evidence": "The Taiyi jinhua zongzhi condenses the neidan idiom of the Longmen/Quanzhen milieu, into which the Wuzhen pian's Southern Lineage was merged under the Yuan (an edge the atlas already carries). GRADED CAUTIOUSLY: this is a milieu-level dependency, not a demonstrated textual borrowing.",
+      "citation": "Mori Yuria 2002; the atlas's existing wuzhen-pian→Quanzhen edge",
+      "confidence": "low-medium — do not upgrade to a procedure-propagation claim without a textual parallel"
+    },
+    {
+      "from": "ea:taishang-ganying-pian",
+      "type": "BELONGS_TO",
+      "to": "culture:chinese-daoist-morality-book",
+      "evidence": "The shanshu (morality book) genre; the tract is the genre's foundational text.",
+      "citation": "Legge SBE 40 (1891); Suzuki & Carus (1906)",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:taishang-ganying-pian",
+      "type": "TRANSMITS_TO",
+      "to": "ea:gongguoge-ledger-genre",
+      "evidence": "The merit-and-demerit ledger genre operationalises the tract's doctrine of recorded acts and reckoned lifespan. FLAGGED: the ledger literature itself was NOT examined this round; this edge is asserted on the standard genre history and is (unverified) at the textual level.",
+      "citation": "(unverified this round)",
+      "confidence": "low",
+      "note": "Placeholder target node."
+    },
+    {
+      "from": "ea:wushang-huanglu-dazhai-lichengyi",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-jiang-shuyu",
+      "evidence": "Jiang Shuyu is remembered chiefly as this manual's compiler and as an authority on Lingbao liturgy, which he studied with Liu Yongguang from 1195.",
+      "citation": "Schipper & Verellen 2004 (web-verified this round)",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:du-guangting-liturgical-corpus",
+      "type": "TRANSMITS_TO",
+      "to": "ea:wushang-huanglu-dazhai-lichengyi",
+      "evidence": "EXPLICIT COMPILATIONAL DEPENDENCY, the strongest new procedure-propagation edge in this slice: the manual is documented as a compilation based on earlier masters AND specifically on the two major Tang liturgists Zhang Wanfu (fl. 711) and Du Guangting (850–933), plus the Song masters Liu Yongguang and Jiang Shuyu himself. The dependency is on RITUAL PROGRAMMES, not on doctrine — which is exactly what makes it a procedure edge rather than an influence edge.",
+      "citation": "Schipper & Verellen 2004 (web-verified this round)",
+      "confidence": "high",
+      "note": "Placeholder target nodes for Zhang Wanfu and Du Guangting; a parallel edge should be minted for Zhang Wanfu."
+    },
+    {
+      "from": "ea:wushang-huanglu-dazhai-lichengyi",
+      "type": "PARALLELS",
+      "to": "ea:buddhist-water-land-rite",
+      "evidence": "DOCUMENTED FUNCTIONAL PARALLEL: the Huanglu zhai's transformation into a universal-salvation liturgy for the mass deliverance of the dead made it a direct competitor of the Buddhist Water-Land ritual — a competition the scholarship states explicitly, so this is a documented parallel, not an inferred one.",
+      "citation": "Schipper & Verellen 2004 and the associated Song-liturgy scholarship (web-verified this round)",
+      "confidence": "medium-high",
+      "note": "Placeholder target node; the Water-Land rite is outside this slice's corpus."
+    },
+    {
+      "from": "ea:daofa-huiyuan",
+      "type": "BELONGS_TO",
+      "to": "culture:chinese-daoist-ritual-lineages",
+      "evidence": "268 juan of manuals from many Song and Yuan liturgical lineages, largely leifa.",
+      "citation": "Schipper & Verellen 2004; Reiter",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:tuoluoni-jijing",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-atikuta",
+      "evidence": "Translated/compiled by Atikūṭa in 12 scrolls in the Tang, 654.",
+      "citation": "ntireader.org T0901; Shinohara 2014",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:tuoluoni-jijing",
+      "type": "TRANSMITS_TO",
+      "to": "ea:xiuyao-jing",
+      "evidence": "REJECTED — no such dependency was found. Recorded as a NEGATIVE result so that a later agent does not invent it: both are Tang Chinese esoteric-Buddhist texts a century apart, but nothing verified this round links the dhāraṇī compendium to the astral compendium.",
+      "citation": null,
+      "confidence": "rejected",
+      "status": "NEGATIVE-RESULT-ROW — do not import as an edge."
+    },
+    {
+      "from": "ea:sardulakarnavadana",
+      "type": "TRANSMITS_TO",
+      "to": "ea:xiuyao-jing",
+      "evidence": "Bill Mak's Stanford lecture is titled 'From the Śārdūlakarṇāvadāna to Amoghavajra's Xiuyao jing', framing the Indian Buddhist nakṣatra-astrology text as the Xiuyao jing's antecedent. NOTE: title-level evidence only — the argument was not read this round (unverified in detail).",
+      "citation": "Bill M. Mak, 'Visualizing Time and Space through Foreign Eyes in Medieval China: From the Śārdūlakarṇāvadāna to Amoghavajra's Xiuyao jing' (Ho Center for Buddhist Studies, Stanford)",
+      "confidence": "medium",
+      "note": "Placeholder target node; the Śārdūlakarṇāvadāna is Indian and belongs to a neighbouring slice."
+    },
+    {
+      "from": "ea:xiuyao-jing",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-amoghavajra",
+      "evidence": "Attributed to Amoghavajra; the 759 recension was transcribed by his Chinese disciple Shi Yao, and a second recension was redacted by Yang Jingfeng in 764. Mak: the day-to-nakṣatra assignment model was devised by Amoghavajra and his team.",
+      "citation": "Mak, DDB entry; Mak, Brill chapter on the two recensions",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:xiuyao-jing",
+      "type": "TRANSMITS_TO",
+      "to": "ea:sukuyodo",
+      "evidence": "THE SLICE'S KEY CROSS-CULTURAL EDGE AND THE ONE THE REPO'S OWN PLAN ASKED FOR. Kūkai brought a copy of the Xiuyao jing to Japan on his return in 806; the Heian divinatory school called Sukuyōdō is named after and based on the Xiuyao jing, and it competed with the older, Chinese-derived Onmyōdō. The Japanese recension family of the text is traced back to Kūkai's import. Kūkai is described as the first to press for its introduction and as answering questions about its implementation.",
+      "citation": "Yano Michio's recension work as reported in the Mikkyō-astronomy literature; Jeffrey Kotyk, 'Astronomy and Calendrical Science in Early Mikkyō in Japan' (MDPI Religions 13(5):458); the r28 plan's own citation set",
+      "confidence": "high",
+      "note": "Placeholder target node for Sukuyōdō (an institution/tradition node, not a work)."
+    },
+    {
+      "from": "ea:author-kukai",
+      "type": "TRANSMITS_TO",
+      "to": "ea:sukuyodo",
+      "evidence": "As above — Kūkai as the importing agent in 806, and Shingon (Sukuyōdō's mikkyō host) as the institutional setting in which the seven-day week functioned as a schedule for religious activity rather than as timekeeping.",
+      "citation": "Kotyk, MDPI Religions 13(5):458; the r28 plan #22",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:shingon-shido-kegyo",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-kukai",
+      "evidence": "Root transmission attributed to Kūkai via Huiguo; the shidai themselves are later lineage compilations, so this is a TRANSMISSION attribution rather than an authorship claim. Flagged as such.",
+      "citation": "Abé, The Weaving of Mantra (1999); Encyclopedia.com 'Shingonshū'",
+      "confidence": "medium — attribution of a corpus, not of a work"
+    },
+    {
+      "from": "ea:mahavairocana-sutra",
+      "type": "TRANSMITS_TO",
+      "to": "ea:shingon-shido-kegyo",
+      "evidence": "Verified this round: Shingon doctrine and the practice of the three mysteries were developed by Kūkai on his interpretation of the Mahāvairocana-sūtra and the Vajraśekhara/Tattvasaṃgraha — which are also the scriptural bases of the Taizōkai and Kongōkai rites that constitute two of the four trainings. The dependency is on RITUAL SYSTEMS, so it is a procedure edge.",
+      "citation": "Encyclopedia.com 'Shingonshū' (web-verified this round); Abé 1999",
+      "confidence": "high",
+      "note": "Placeholder target nodes; both sūtras are Indian-origin and belong to a neighbouring slice. A parallel edge should be minted for the Vajraśekhara."
+    },
+    {
+      "from": "ea:mohe-zhiguan",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-zhiyi",
+      "evidence": "Lectures of 594, compiled and edited by Zhiyi's disciple Guanding (561–632) — a two-agent authorship that the node records.",
+      "citation": "Donner & Stevenson 1993; Swanson 2018",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:mohe-zhiguan",
+      "type": "TRANSMITS_TO",
+      "to": "ea:japanese-tendai",
+      "evidence": "The Tiantai calming-and-contemplation curriculum defined meditation on Mt. Hiei — the atlas already carries this inside a Dōgen edge body, citing Bielefeldt. This row raises it from a buried sentence to a typed edge.",
+      "citation": "the atlas's own Bielefeldt-cited edge (confluence.js ~5967); Donner & Stevenson 1993",
+      "confidence": "high",
+      "note": "Placeholder target node for Japanese Tendai (an institution node)."
+    },
+    {
+      "from": "yijing",
+      "type": "TRANSMITS_TO",
+      "to": "ea:yixue-qimeng",
+      "evidence": "Zhu Xi reconstructed the milfoil procedure from the fragmentary Xici version; the Yixue qimeng is that reconstruction and became standard.",
+      "citation": "Adler 2002; web-verified this round",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:yixue-qimeng",
+      "type": "COMMENTS_ON",
+      "to": "yijing",
+      "evidence": "Zhu Xi also wrote a commentary on the Xicizhuan; the Yixue qimeng is his systematic introduction to the classic. Both directions are real and are recorded separately: TRANSMITS_TO carries the procedural dependency, COMMENTS_ON the exegetical relation.",
+      "citation": "Adler, translations of the Yixue qimeng and of Zhu Xi's Xicizhuan commentary (kenyon.edu)",
+      "confidence": "high"
+    },
+    {
+      "from": "ea:meihua-yishu",
+      "type": "AUTHORED_BY",
+      "to": "ea:author-shao-yong-attributed",
+      "evidence": "Attribution only; contested (see the work's contested block).",
+      "citation": "popular reprints; no scholarly confirmation located this round",
+      "confidence": "low — attribution, disputed"
+    },
+    {
+      "from": "ea:meihua-yishu",
+      "type": "PARALLELS",
+      "to": "yijing",
+      "evidence": "A method-contrast rather than a similarity: Plum Blossom derives hexagrams from numbers taken from time and circumstance INSTEAD OF from a randomizing procedure (stalks, coins, dice). Recorded because the contrast is the historically documented reason the method exists as a separate tradition within xiangshu Yijing practice.",
+      "citation": "web-verified this round at method-kind level; scholarly sourcing weak",
+      "confidence": "low-medium"
+    },
+    {
+      "from": "baopuzi",
+      "type": "PARALLELS",
+      "to": "ea:daofa-huiyuan",
+      "evidence": "REJECTED as a parallel and recorded as a negative result: the Baopuzi's ch. 17/19 talisman material and the Daofa huiyuan's fu-and-seal corpus are separated by a millennium and by an entire intervening ritual history (Tianshi, Lingbao, Song ritual movements). No documented structural parallel was found this round. Do not assert one.",
+      "citation": null,
+      "confidence": "rejected",
+      "status": "NEGATIVE-RESULT-ROW — do not import as an edge."
+    }
+  ],
+  "notes": "Counts (machine-verified against this file): 17 work nodes — 7 reuse an existing atlas slug (baopuzi, cantong-qi, huangting-jing, zhengao, wuzhen-pian, secret-of-the-golden-flower, yijing), 10 are new and namespaced ea:. 49 work×procedure-type rows across 15 distinct procedure types. 36 edge rows, of which 2 are explicit NEGATIVE-RESULT rows that must NOT be imported (leaving 34 real edges) and 3 restate edges already shipped in confluence.js (marked repoState) so this graph is self-consistent without silently duplicating atlas data. Completeness distribution across the 49 procedure rows: complete 9, partial 19, referenced 19, fragmentary 2. The two fragmentary rows are the Zhen'gao's visualization methods (survive only as excerpts inside a philologically reassembled archive) and the Yijing/Xici milfoil procedure (elliptical to the point that Zhu Xi had to reconstruct it in 1188). NOTE ON A GRADING DECISION: the Cantong qi's alchemical row is graded 'referenced', not 'fragmentary', because the text survives whole — its procedure was never set out to begin with. 'Fragmentary' must mean damaged transmission, not constitutive reticence; if the synthesizer collapses those two the whole completeness dimension loses its point. Six controlled-vocabulary gaps are flagged (see meta.vocabularyNote). Nothing in this file is executable as instruction."
+}

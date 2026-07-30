@@ -1,0 +1,655 @@
+{
+  "meta": {
+    "slice": "S10 — INDIAN TANTRA / MANTRA / YANTRA (Sanskrit + regional). Corpus: Śāradātilaka + Padārthādarśa; Mantramahodadhi + Naukā; Kulārṇava; Netra/Svacchanda/Niśvāsa; Śrīvidyā (Nityāṣoḍaśikārṇava, Yoginīhṛdaya, Saundaryalaharī apparatus); Prapañcasāra; Īśānaśivagurudevapaddhati; Merutantra; Atharvaveda ritual-magic layer + Kauśika Sūtra; Bṛhat Tantrasāra; plus the Śrīvidyā pūjā-paddhati pair Paraśurāmakalpasūtra/Nityotsava. DISJOINT from S1 (repo-internal inventory) by method: every row here is derived from an EXTERNAL source consulted 2026-07-17, not from repo files. Where a work also exists in the repo the row carries `dedupWith` and states what it CORRECTS or ADDS.",
+    "dateISO": "2026-07-17",
+    "method": "WebSearch/WebFetch on scholarly and edition sources; ONE full-text primary-scholarship read: Ullrey's UCSB dissertation PDF was downloaded and converted with pdftotext -layout, then read at pp.117-142 and 575-576 — those quotations are verbatim from the extracted text and are the evidentiary spine of the completeness grades for Śāradātilaka 23, Mantramahodadhi 25 and the five-fold ritual syntax. Kulārṇava quotations are verbatim from the archive.org full text of the Avalon/Pandit volume. Every work×procedure-type row carries `textCompleteness` (the SOURCE TEXT's own completeness) with `evidence` naming what is missing and how I know; `repoCoverage` is deliberately NOT set here — S1 owns that axis. Figures not re-derived from a source this round are written '(unverified)'. Nothing in this file reproduces a procedure as usable instructions: mantra syllables, yantra templates, ingredient quantities and second-person instructions are excluded by design, per the operative-content razor.",
+    "operativeContentRazor": "This file records THAT a text contains a procedure, what KIND, how STRUCTURED, how COMPLETE, and WHERE cited. It does not transcribe mantra syllables, does not reproduce any yantra as a usable template, gives no quantities or timings as instructions, and contains no second-person directive. Harm-capable material (the ṣaṭkarman's five hostile acts, Kaula pañcamakāra, abhicāra sections) is admitted only as academic religious history and every such row carries a named harmNote, following the repo's abhicāra-wing precedent. Efficacy is never asserted: the tradition CLAIMS, the text SAYS.",
+    "sources": [
+      { "key": "S1", "cite": "Bühnemann, 'The Six Rites of Magic', in D.G. White (ed.), Tantra in Practice (Princeton UP 2000), pp. 447-462.", "accessed": "indirectly, via S2's verbatim quotation and page citations", "pd": false },
+      { "key": "S2", "cite": "M. Ullrey, 'Grim Grimoires: Pragmatic Ritual in the Magic Tantras' (PhD diss., UC Santa Barbara 2016; eScholarship qt4vt6f325).", "accessed": "FULL TEXT this round — PDF fetched from escholarship.org and converted with pdftotext; pp. 117-118 n.25-26, 131 n.44, 132-134 + nn.45-55, 141-142 n.9, 575-576 + n.51 read directly.", "pd": false, "openAccess": true },
+      { "key": "S3", "cite": "Bühnemann, The Iconography of Hindu Tantric Deities, 2 vols (vol.1 The Pantheon of the Mantramahodadhi; vol.2 The Pantheons of the Prapañcasāra and Śāradātilaka), Gonda Indological Series IX (Groningen: Egbert Forsten, 2000 & 2001); rev. C.K. Wedemeyer, JRAS 14.3 (2004), pp. 280-282.", "pd": false },
+      { "key": "S4", "cite": "Bühnemann, 'The Śāradātilakatantra on Yoga: A New Edition and Translation of Chapter 25', Bulletin of the School of Oriental and African Studies 74.2 (June 2011), 205-235.", "note": "AUDIT-RESOLVED (R33 hostile audit): volume, issue, year and page range verified against the Cambridge Core record (doi S0041977X11000036) and Bühnemann's own publication list; the '(unverified)' flag on this citation is cleared. The slice's separate open question — whether ST ch.25's yoga sequence is internally step-complete — is NOT resolved and remains open, because the article itself is in copyright and was not read.", "pd": false },
+      { "key": "S5", "cite": "Bühnemann, Pūjā: A Study in Smārta Ritual (Publications of the De Nobili Research Library XV; Vienna 1988; also Brill/Motilal 1988).", "pd": false },
+      { "key": "S6", "cite": "D. Goodall (ed.), in collab. A. Sanderson & H. Isaacson, with N. Kafle, D. Acharya et al., The Niśvāsatattvasaṃhitā: The Earliest Surviving Śaiva Tantra, vol.1, critical edition & annotated translation of the Mūlasūtra, Uttarasūtra & Nayasūtra (Pondichéry: IFP/EFEO, 2015).", "pd": false },
+      { "key": "S7", "cite": "A. Sanderson, 'The Śaiva Literature', Journal of Indological Studies (Kyoto) 24-25 (2012-2013), pub. 2014, pp. 1-113.", "pd": false },
+      { "key": "S8", "cite": "A. Padoux with R.-O. Jeanty, The Heart of the Yogini: The Yoginīhṛdaya, a Sanskrit Tantric Treatise (Oxford University Press, 2013).", "pd": false },
+      { "key": "S9", "cite": "A. Padoux, Tantric Mantras: Studies on Mantraśāstra (Routledge Studies in Tantric Traditions, 2011).", "pd": false },
+      { "key": "S10", "cite": "A. Kavaleuskaya, 'Extraction of Mantras', Etnografia / Этнография 4(10) (2020), pp. 59-79.", "pd": false, "openAccess": true },
+      { "key": "S11", "cite": "Kulārṇava Tantra — Sanskrit text ed. Tārānātha Vidyāratna, Tantrik Texts V (ed. Arthur Avalon, 1917); introduction Arthur Avalon; 'readings' (free English rendering) M.P. Pandit (Motilal Banarsidass, 1st Indian ed. 1965; repr. 1984, 1999, 2000, 2007). Full text read this round at archive.org/stream/ArthurAvalonKularnavaTantraEng.", "pd": "Sanskrit text 1917 = PD in US; Pandit's 1965 readings = in copyright" },
+      { "key": "S12", "cite": "M. Bloomfield, 'The Kāuśika-Sūtra of the Atharva-Veda, with extracts from the commentaries of Dārila and Keśava', JAOS 14 (1890).", "pd": true },
+      { "key": "S13", "cite": "W. Caland, Altindisches Zauberritual (Amsterdam 1900) — translation of Kauśika Sūtra 7-52.", "pd": true },
+      { "key": "S14", "cite": "T. Gaṇapati Śāstrī (ed.), Īśānaśivagurudevapaddhati (Siddhāntasāra) of Īśānaśivagurudevamiśra, 4 vols, Trivandrum Sanskrit Series (Trivandrum: Government Press, 1920-25).", "pd": true },
+      { "key": "S15", "cite": "W. Norman Brown (ed. & tr.), The Saundaryalaharī, or Flood of Beauty, traditionally ascribed to Śaṅkarācārya, Harvard Oriental Series 43 (Harvard UP, 1958) — ix/249 pp., 4 plates, 147 photographs.", "pd": false },
+      { "key": "S16", "cite": "P.J.P. Sauthoff, 'Protective Rites in the Netra Tantra' (PhD diss., SOAS, University of London, 2019; SOAS Research Online eprints 32803); cf. her Illness and Immortality: Mantra, Maṇḍala, and Meditation in the Netra Tantra.", "pd": false },
+      { "key": "S17", "cite": "Madhusūdan Kaul Śāstrī (ed.), Netratantra with the Uddyota of Kṣemarāja, KSTS 46 & 61 (Bombay: Nirnaya Sagar Press, 1926 & 1939).", "pd": "KSTS 46 (1926) PD in US; KSTS 61 (1939) NOT PD in US" },
+      { "key": "S18", "cite": "Madhusūdan Kaul Śāstrī (ed.), Svacchandatantra with the Uddyota of Rājānaka Kṣemarāja, KSTS 31, 38, 44, 48, 51, 53, 56 (Bombay 1921-1935).", "pd": "volumes to 1929 PD in US; 1930-35 volumes NOT PD in US" },
+      { "key": "S19", "cite": "Vrajavallabha Dvivedī (ed.), Nityāṣoḍaśikārṇava with Śivānanda's Ṛjuvimarśinī and Vidyānanda's Artharatnāvalī, Yogatantragranthamālā 1 (Varanasi: Sanskrit University, 1968).", "pd": false },
+      { "key": "S20", "cite": "T. Goudriaan & S. Gupta, Hindu Tantric and Śākta Literature, A History of Indian Literature II.2 (Wiesbaden: Harrassowitz, 1981).", "accessed": "partial — the archive.org full text served only the opening survey chapters this round; per-text entries for Merutantra / Bṛhat Tantrasāra / Mantramahodadhi were NOT reachable. Flagged as a gap.", "pd": false },
+      { "key": "S21", "cite": "wisdomlib.org digest of an academic thesis, 'A study of the Īśānaśivagurudevapaddhati' — chapter-by-chapter summaries of the Śāradātilaka (25 paṭalas) and the Īśānaśivagurudevapaddhati (119 paṭalas, 4 pādas).", "note": "TERTIARY. A digest of an unnamed thesis, not a critical edition. Every claim taken from it is marked tertiary and, where it conflicts with S2/S3, both positions are kept.", "pd": false },
+      { "key": "S22", "cite": "Umānandanātha, Nityotsava (supplement to the Paraśurāmakalpasūtra), ed. A. Mahādeva Śāstrī (Gaekwad's Oriental Series); Bühnemann, The Tantric Worship of Mahāgaṇapati according to the Nityotsava and Other Texts, 2 parts.", "pd": "GOS edition likely PD; Bühnemann's study in copyright" },
+      { "key": "S23", "cite": "Kṛṣṇānanda Āgamavāgīśa, Bṛhat Tantrasāraḥ (HathiTrust catalog record 002212948).", "pd": "(unverified)" },
+      { "key": "S24", "cite": "Arthur Avalon (ed.), Prapañcasāratantra of Śaṅkarācārya with the Vivaraṇa of Padmapādācārya and the Prayogakramadīpikā (a vṛtti on the Vivaraṇa), Tantrik Texts III (1914) / XVIII (1919) & XIX (1935).", "pd": "1914 & 1919 volumes PD in US; the 1935 volume NOT PD in US" },
+      { "key": "S25", "cite": "Arthur Avalon (ed.), Śāradātilakatantram of Lakṣmaṇadeśikendra with the Padārthādarśa commentary of Rāghavabhaṭṭa, Tantrik Texts XVI-XVII (1933); repr. Motilal Banarsidass, Delhi 1982; Eng. tr. 'a Board of Scholars' (Sarada Tilaka Tantram, Motilal Banarsidass).", "pd": "1933 — NOT PD in US (enters US PD 2029)" },
+      { "key": "S26", "cite": "Mahīdhara, Mantramahodadhi with the author's own Naukā commentary, ed. with a critical introduction in English by 'a Board of Scholars' (Delhi: Sri Satguru Publications, 1981). No critical edition exists (S2 p.133).", "pd": false }
+    ],
+    "vocabularyNotes": {
+      "usedFromControlledList": ["mantra-recitation", "mantra-consecration", "nyāsa", "yantra-construction", "maṇḍala-construction", "mudrā", "visualization", "breath-discipline", "invocation/evocation", "consecration-of-object/talisman", "purification", "offering/homa", "initiation", "divination-procedure", "coercive-rite"],
+      "vocabGaps": [
+        "META-RITUAL / PARAMETER-TABLE — the single most important structural type in this slice and it has no vocabulary term. Śāradātilaka 23.121-45 and Mantramahodadhi 25 are not procedures at all: they are TABLES OF VARIABLES that modulate a procedure supplied elsewhere. S2 calls this 'meta-text' and 'second-order' as against 'first-order' texts that give discrete rites. Without this type the graph will mis-file the corpus's two most-cited operative chapters as if they were rites.",
+        "MANTRA-EXTRACTION (mantroddhāra) — the coded derivation of a mantra from an alphabet grid or code-words (S10). It is a distinct procedure-type, it is the corpus's principal withholding device, and 'mantra-consecration' does not cover it.",
+        "PURAŚCARAṆA — the fixed preparatory regimen (a counted japa quota plus homa/tarpaṇa/abhiṣeka fractions) that qualifies a mantra for use. Named as a discrete topic in Śāradātilaka 6/10/13, Mantramahodadhi and Kulārṇava XV. It is neither plain mantra-recitation nor consecration-of-object.",
+        "PRATIṢṬHĀ (installation/consecration of an image or temple) as distinct from consecration-of-a-talisman — the Īśānaśivagurudevapaddhati's kriyāpāda (64 paṭalas) is largely this, plus renovation and expiation rites.",
+        "APOTROPAIC/PROTECTIVE RITE (śāntika-pauṣṭika, kavaca, rakṣā) — Netratantra and Kauśika Sūtra are dominated by it; forcing it into 'purification' loses the fact that it is done ON BEHALF OF a third party (S16: the court priest acting for the monarch).",
+        "COMMENTARY-AS-PROCEDURE-COMPLETER — Padārthādarśa, Naukā, Uddyota, Dīpikā and Ṛjuvimarśinī are the reason many of these texts are performable at all. The graph needs to represent that a commentary can RAISE a root text's completeness."
+      ]
+    },
+    "gradingRules": {
+      "complete": "the text gives the full sequence end to end and nothing in the text or its scholarship says an element is withheld",
+      "partial": "a substantial but acknowledged-incomplete sequence — steps assumed from a base paradigm, mantras encoded, initiation required, or the commentary demonstrably supplies missing steps",
+      "referenced": "the procedure is named, tabulated or alluded to but not set out as a sequence",
+      "fragmentary": "survives only in damaged, excerpted or unpublished form"
+    }
+  },
+
+  "cultures": [
+    { "id": "cul:saiva-mantramarga", "label": "Śaiva Mantramārga (tantric Śaivism; Kashmir/Nepal transmission)", "cite": "S6, S7" },
+    { "id": "cul:sakta-mantrasastra", "label": "Śākta mantraśāstra — the pan-Indian digest/compendium milieu (Prapañcasāra→Śāradātilaka→Mantramahodadhi line)", "cite": "S3, S2" },
+    { "id": "cul:srividya", "label": "Śrīvidyā (Tripurasundarī / Śrīcakra cult)", "cite": "S8, S19, S22" },
+    { "id": "cul:kaula", "label": "Kaula (Kulamārga)", "cite": "S11, S20" },
+    { "id": "cul:vedic-atharvan", "label": "Vedic Atharvan ritual (Śaunaka śākhā)", "cite": "S12, S13" },
+    { "id": "cul:kerala-tantra", "label": "Kerala tantra (temple-ritual paddhati tradition)", "cite": "S14, S21" },
+    { "id": "cul:bengal-sakta", "label": "Bengal Śākta digest tradition", "cite": "S23" }
+  ],
+
+  "authors": [
+    { "id": "au:laksmanadesika", "label": "Lakṣmaṇadeśika (Lakṣmaṇadeśikendra / Lakṣmaṇācārya)", "note": "Traditionally of Nāsik (tertiary, S21). Historical person otherwise undocumented.", "cite": "S3, S21" },
+    { "id": "au:raghavabhatta", "label": "Rāghavabhaṭṭa, son of Pṛthvīdhara, of Janasthāna (modern Nāsik)", "date": "c. 1493-94 CE", "cite": "S21 (tertiary) — the 1493/94 date is repeated across the surveys but was NOT re-derived from a colophon this round" },
+    { "id": "au:mahidhara", "label": "Mahīdhara", "date": "1588 CE, Varanasi", "note": "Describes himself as an anchorite performing austerity at Varanasi.", "cite": "S2 p.132; S26" },
+    { "id": "au:isanasiva", "label": "Īśānaśivagurudevamiśra", "date": "11th c. CE, Kerala", "cite": "S14, S21" },
+    { "id": "au:krsnananda", "label": "Kṛṣṇānanda Āgamavāgīśa Bhaṭṭācārya", "date": "late 16th c., Bengal", "cite": "S23" },
+    { "id": "au:umanandanatha", "label": "Umānandanātha, disciple of Bhāskararāya (Bhāsurānandanātha, 1675-1768)", "date": "c. 1745 (unverified)", "cite": "S22" },
+    { "id": "au:ksemaraja", "label": "Kṣemarāja", "date": "active c. 1000-1050 CE, Kashmir", "cite": "S17, S18" },
+    { "id": "au:amrtananda", "label": "Amṛtānanda Nātha", "note": "Author of the Dīpikā on the Yoginīhṛdaya; calls himself disciple of Puṇyānanda Nātha.", "cite": "S8" },
+    { "id": "au:sivananda", "label": "Śivānanda", "note": "First Śrīvidyācārya in South India to comment on the Nityāṣoḍaśikārṇava (Ṛjuvimarśinī).", "cite": "S19" },
+    { "id": "au:jayaratha", "label": "Jayaratha (Kashmirian)", "date": "early 13th c.", "cite": "S19" },
+    { "id": "au:anonymous", "label": "anonymous / pseudepigraphically attributed", "note": "Used for Prapañcasāra (traditionally Śaṅkara — flagged), Saundaryalaharī (traditionally Śaṅkara — flagged), Kulārṇava, Merutantra, Paraśurāmakalpasūtra, the Śaiva revealed tantras and the Kauśika Sūtra." }
+  ],
+
+  "works": [
+    {
+      "id": "tan:atharvaveda-saunaka",
+      "title": "Atharvaveda (Śaunaka Saṃhitā) — the ritual-magic layer",
+      "dedupWith": "repo: abhichara-data.js TEXTS[0]; atlas slug 'rigveda' is a DIFFERENT work — do not conflate",
+      "author": "au:anonymous",
+      "culture": "cul:vedic-atharvan",
+      "date": "c. 1200-1000 BCE (standard consensus range)",
+      "structuralNote": "A hymn collection, NOT a manual. The hymns state intent and address the agent; they do not lay out a sequence. The sequence lives in the Kauśika Sūtra. This is the corpus's cleanest example of an OPERATIVE-INTENT text with zero operative structure — the reason the completeness axis needs a 'referenced' grade that is not a criticism of the text.",
+      "editions": [
+        { "cite": "Whitney & Lanman, Atharva-Veda Saṃhitā, HOS 7-8 (1905)", "pd": true },
+        { "cite": "Bloomfield, Hymns of the Atharva-Veda, SBE 42 (1897)", "pd": true }
+      ],
+      "procedures": [
+        { "type": "coercive-rite", "textCompleteness": "referenced", "evidence": "The abhicāra hymns declare a hostile aim in the first person of the reciter; no stage-sequence, no apparatus list, no timing is given in the saṃhitā itself. The performative frame is supplied only by the Kauśika Sūtra's ābhicārika-gaṇa (S12, S13).", "harmNote": "REQUIRED — hostile-sorcery material. Recorded strictly as what the hymns CLAIM, per the repo's abhicāra-wing framing. No hymn text, target-naming formula or apparatus is reproduced here." },
+        { "type": "mantra-recitation", "textCompleteness": "referenced", "evidence": "The hymns are the recited material; the count, posture, time and accompanying acts are all external to the saṃhitā." }
+      ]
+    },
+
+    {
+      "id": "tan:kausikasutra",
+      "title": "Kauśika Sūtra",
+      "dedupWith": "repo: abh:kausika-sutra (abhichara-data.js) — S1's inventory recorded it as an 'application manual' with no structural detail; this row supplies the structure and the completeness argument",
+      "author": "au:anonymous",
+      "culture": "cul:vedic-atharvan",
+      "date": "Vedic sūtra period (not narrowed this round — unverified)",
+      "structuralNote": "Fourteen adhyāyas divided into 141 kaṇḍikās, each of several sūtras (S12 via the wisdomlib digest of the Atharvavedic ancillary literature). It is simultaneously a gṛhyasūtra (conception→funeral) and the sole extant Atharvan ritual treatise. It classes its rites: bhaiṣajyāni (medical), strīkarmāṇi (women's/love rites), ābhicārika (hostile), śāntika/pauṣṭika (appeasing/prospering), adbhutāni (portent-counteraction). Caland's Altindisches Zauberritual translates Kauś. 7-52 — i.e. the practical block.",
+      "commentaries": ["Dārila, Kauśikabhāṣya (extends only to kaṇḍikā 48 — itself a fragmentary witness)", "Keśava, Keśavī Paddhati — described as elaborating the rites rather than glossing words", "Atharvaṇīya Paddhati (gṛhya only)"],
+      "editions": [
+        { "cite": "Bloomfield, JAOS 14 (1890), with extracts from Dārila and Keśava", "pd": true },
+        { "cite": "Caland, Altindisches Zauberritual (1900), tr. of Kauś. 7-52", "pd": true }
+      ],
+      "procedures": [
+        { "type": "coercive-rite", "textCompleteness": "partial", "evidence": "COMPLETE at the level of hymn→rite pairing (this is the corpus's key 'application manual' witness: it is what makes the Atharvan hymns performable at all) but PARTIAL as a standalone sequence, because 'most of the ceremonies in the Kauśika Sūtra are fitted into the framework of the New and Full moon sacrifice' — the darśapūrṇamāsa paradigm is PRESUPPOSED, not restated. The base frame is the missing element, and it is missing by sūtra-genre convention, not by damage.", "harmNote": "REQUIRED — the ābhicārika-gaṇa and cātana-gaṇa are hostile-sorcery classes. No rite, substance or formula is reproduced." },
+        { "type": "purification", "textCompleteness": "partial", "evidence": "śāntika/pauṣṭika and adbhuta (portent-counteraction) rites are classed and located; same presupposed-base-frame limitation." },
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "Oblation is the operative core of the paradigm the sūtra assumes; the sūtra supplies deviations from it (vikṛti), not the paradigm." },
+        { "type": "divination-procedure", "textCompleteness": "referenced", "evidence": "adbhutāni — portents are interpreted and counteracted; the interpretive scheme is named as a rite-class, not set out as a table here." }
+      ],
+      "gating": { "kind": "genre-ellipsis", "note": "Not secrecy — sūtra economy. The text is public; it is incomplete because the sūtra form assumes the reader already performs the base sacrifice. Distinguish sharply from the tantric withholding below." }
+    },
+
+    {
+      "id": "tan:nisvasatattvasamhita",
+      "title": "Niśvāsatattvasaṃhitā",
+      "dedupWith": "atlas slug 'nisvasatattvasamhita' — repo lists it with technique:null (an S1 gap). This row fills it.",
+      "author": "au:anonymous",
+      "culture": "cul:saiva-mantramarga",
+      "date": "Earliest surviving complete scripture of the Mantramārga; transmitted in a well-preserved 9th-c. Nepalese manuscript.",
+      "structuralNote": "Five books: Niśvāsamukha, Mūlasūtra, Uttarasūtra, Nayasūtra, Guhyasūtra. Goodall's vol.1 (2015) critically edits and translates the three earliest layers (Mūla-, Uttara-, Naya-sūtra), whose topics are cosmology, rituals of worship and initiation, and forms of yoga. The GUHYASŪTRA — the largest book — is described in the scholarship as containing 'lengthy grimoires of magical rites' and 'a grimoire of recipes in prose for attaining magical siddhis', with common ground with Buddhist kriyātantra; a dedicated volume was still outstanding at the time of the sources consulted.",
+      "editions": [{ "cite": "S6 — Goodall et al., Pondichéry 2015 (vol.1: Mūla/Uttara/Naya)", "pd": false }],
+      "procedures": [
+        { "type": "initiation", "textCompleteness": "partial", "evidence": "Initiation is named by S6 as one of the volume's three headline topics and the text is the earliest full Mantramārga scripture; but I did not re-derive an end-to-end dīkṣā sequence from the edition this round — (unverified) whether the sequence is given without lacuna." },
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "'rituals of worship' per S6's own topic list; internal completeness not re-derived this round — (unverified)." },
+        { "type": "breath-discipline", "textCompleteness": "partial", "evidence": "'forms of yoga' per S6's topic list; internal completeness not re-derived — (unverified)." },
+        { "type": "invocation/evocation", "textCompleteness": "fragmentary", "evidence": "GRADED FRAGMENTARY ON EDITION GROUNDS, NOT TEXTUAL DAMAGE — this is the slice's clearest case where the two must be separated. The Guhyasūtra's prose siddhi-recipes are the single richest operative block in the earliest Śaiva tantra, and at the time of the sources consulted they remained largely unpublished in the collaborative critical edition. Flag as edition-fragmentary and revisit.", "harmNote": "Siddhi-recipe literature of this class typically involves substances and cremation-ground settings; nothing is reproduced here and nothing was inspected." },
+        { "type": "mantra-recitation", "textCompleteness": "referenced", "evidence": "Mantramārga by definition; no mantra material inspected or reproduced." }
+      ],
+      "gating": { "kind": "guhya (secret) book-title", "note": "The book carrying the operative material is literally titled 'the secret sūtra'. The corpus names its own withholding." }
+    },
+
+    {
+      "id": "tan:svacchandatantra",
+      "title": "Svacchandatantra (Svacchandabhairavatantra), with Kṣemarāja's Uddyota",
+      "author": "au:anonymous",
+      "culture": "cul:saiva-mantramarga",
+      "date": "Text: datable to at least the 7th c. (tertiary claim, flagged). Commentary: Kṣemarāja, active c. 1000-1050.",
+      "structuralNote": "Over 3,000 ślokas. Its chief theme is Śaiva initiation; scholarship characterises it as 'a Sanskrit ritual manual' whose 'detailed ritual prescription' and 'explicit portraits of initiation' are its principal scholarly value. Kṣemarāja appended to his commentary a short prakaraṇa-style tract defending the claim that dīkṣā can bestow liberation — i.e. the commentary argues the EFFICACY CLAIM, which is exactly the kind of claim this project records and never endorses.",
+      "editions": [{ "cite": "S18 — KSTS 31/38/44/48/51/53/56, ed. Madhusūdan Kaul Śāstrī, Bombay 1921-35", "pd": "volumes through 1929 PD in US; 1930-35 volumes not" }],
+      "scholarlyStatus": "NO critical edition and NO complete translation existed at the time of the sources consulted — a structural gap for any completeness claim about this text.",
+      "procedures": [
+        { "type": "initiation", "textCompleteness": "partial", "evidence": "The text's chief subject and the reason it is cited; but with no critical edition and no complete translation, no end-to-end sequence could be re-derived this round. Grade partial and say so rather than asserting 'complete' from reputation." },
+        { "type": "mantra-recitation", "textCompleteness": "partial", "evidence": "Chapter 2 is reported to cover daily worship and mantra imposition; chapter 7 the haṃsa-mantra (tertiary sourcing, flagged)." },
+        { "type": "nyāsa", "textCompleteness": "partial", "evidence": "'mantra impositions' in the daily-worship chapter (tertiary)." },
+        { "type": "breath-discipline", "textCompleteness": "referenced", "evidence": "The text is cited for 'esoteric and wondrous powers of Yoga'; nothing sequential re-derived." },
+        { "type": "mantra-consecration", "textCompleteness": "referenced", "evidence": "S10 lists the Svacchandatantra (SvT) among the texts that transmit mantras by CODED extraction — see gating." }
+      ],
+      "gating": { "kind": "mantroddhāra encoding + dīkṣā prerequisite", "note": "S10 names SvT explicitly among texts encoding mantras via prastāra/gahvara grids and code-words. The text therefore withholds its own operative core from any reader without the decoding convention and the initiation." }
+    },
+
+    {
+      "id": "tan:netratantra",
+      "title": "Netratantra (Mṛtyujit / Amṛteśa tantra), with Kṣemarāja's Netroddyota",
+      "author": "au:anonymous",
+      "culture": "cul:saiva-mantramarga",
+      "date": "9th c. (commonly given); commentary c. 1000-1050",
+      "structuralNote": "Divided into 22 adhikāras of uneven length, centred on Mṛtyuñjaya/Amṛteśa — a formless deity said to conquer death and relieve ailments. Contents span pūjā, dīkṣā, abhiṣeka, protective and exorcistic rites (against bhūtas, pretas, yakṣas, piśācas, rākṣasas) and yoga. S16 reads it as the working handbook of the ROYAL COURT PRIEST: the mantrin performs on behalf of a third party (the monarch), which makes it the slice's clearest instance of a proxy/apotropaic operative genre.",
+      "editions": [{ "cite": "S17 — KSTS 46 (1926) & 61 (1939)", "pd": "KSTS 46 PD in US; KSTS 61 not" }],
+      "procedures": [
+        { "type": "mantra-recitation", "textCompleteness": "partial", "evidence": "The mṛtyuñjaya/amṛteśa mantra is the text's spine and its qualities are expounded at length; the syllables themselves are transmitted by the initiatory apparatus, and none is reproduced here." },
+        { "type": "maṇḍala-construction", "textCompleteness": "partial", "evidence": "S16 analyses maṇḍala as one of the three ritual components she reconstructs (mantra, maṇḍala, iconography); the śaśimaṇḍala rite — writing the beneficiary's name and worshipping with white substances — is described in the scholarship at the level of ritual grammar, and I record only that grammar, not the operation." },
+        { "type": "visualization", "textCompleteness": "partial", "evidence": "Iconographic prescription for the deity's forms is one of S16's three components; the text supplies the visualisation content that the rite depends on." },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "abhiṣeka and protective-object rites are named among the contents; sequence not re-derived — (unverified)." },
+        { "type": "initiation", "textCompleteness": "partial", "evidence": "dīkṣā named among contents (tertiary)." },
+        { "type": "purification", "textCompleteness": "partial", "evidence": "The exorcistic/apotropaic block against bhūta-graha classes. VOCAB GAP: this is protective-rite-on-behalf-of-another, not self-purification." },
+        { "type": "breath-discipline", "textCompleteness": "referenced", "evidence": "Yoga is named among the contents; no sequence re-derived." }
+      ],
+      "harmNote": "The protective/exorcistic material is presented as royal-court religious history (S16). Where medical claims are made ('relief from ailments', 'conquest of death') they are recorded as the tradition's CLAIM and carry no validity."
+    },
+
+    {
+      "id": "tan:prapancasara",
+      "title": "Prapañcasāra (Prapañcasāratantra)",
+      "dedupWith": "repo: abh:prapancasara (abhichara-data.js) — S1 recorded only 'six-rites parallel at 446-452'. This row supplies the whole work.",
+      "author": "au:anonymous",
+      "authorNote": "Traditionally ascribed to Ādi Śaṅkara. FLAGGED, not established: Bühnemann calls the text anonymous (S1 via S2 p.133).",
+      "culture": "cul:sakta-mantrasastra",
+      "date": "CONTESTED — ≥2 positions, not resolved: (a) S3: 'likely composed in the tenth or eleventh century', and the Śāradātilaka is BASED ON it, i.e. PS is the earlier; (b) S2 p.133: Śāradātilaka and Prapañcasāra date 'to the tenth and eleventh centuries, respectively', i.e. ST earlier than PS — the reverse order; (c) traditional ascription to Śaṅkara implies c. 788-820 (rejected by all modern scholarship cited here); (d) Sanderson is reported to place both 'quite likely in the twelfth century'.",
+      "structuralNote": "36 paṭalas, 2,470 verses. Covers creation and dissolution, embryology, the alphabet and bīja-syllables, dīkṣā, then per-deity mantra-and-ritual chapters; bhūtaśuddhi, Tripurā-vidyā worship, japa, bīja, yantra and mudrā are named as distinct topics. The ṣaṭkarman parallel to Mantramahodadhi 25 sits at 446-452 (verse numbering, not chapter.verse — flagged as an unusual locus form given by S1/S2).",
+      "commentaries": ["Vivaraṇa, ascribed to Padmapāda", "Prayogakramadīpikā — a vṛtti on the Vivaraṇa; its title ('lamp on the order of the ritual application') is itself evidence that the root text's ORDER needed supplying"],
+      "editions": [{ "cite": "S24 — Avalon, Tantrik Texts III (1914) / XVIII (1919) & XIX (1935)", "pd": "1914 & 1919 PD in US; 1935 not" }],
+      "procedures": [
+        { "type": "coercive-rite", "textCompleteness": "referenced", "evidence": "PS 446-452 is a six-rites PARALLEL to MMU 25 — i.e. the same meta-ritual variable-table genre, not a discrete rite. Same grade and same reasoning as MMU 25 and ST 23.121-45.", "harmNote": "REQUIRED — five of the six acts are hostile. Recorded as textual claim only, per the abhicāra-wing framing." },
+        { "type": "purification", "textCompleteness": "partial", "evidence": "bhūtaśuddhi (purification of the bodily elements) is named as a distinct topic; whether the paṭala gives the full sequence was not re-derived — (unverified)." },
+        { "type": "initiation", "textCompleteness": "partial", "evidence": "dīkṣā is one of the enumerated subjects; sequence not re-derived — (unverified)." },
+        { "type": "mantra-recitation", "textCompleteness": "partial", "evidence": "japa and bīja named as topics; 78 deity descriptions with dhyāna verses (S3) supply the visualisation each japa presupposes." },
+        { "type": "visualization", "textCompleteness": "partial", "evidence": "S3: 78 deity descriptions. Dhyāna verses are 'structured poetic descriptions meant for visualization within ritual contexts' — a complete visualisation OBJECT, embedded in an incompletely-stated rite." },
+        { "type": "yantra-construction", "textCompleteness": "referenced", "evidence": "yantra named among the 'distinguishing marks of Tantric ritual' treated; no construction sequence re-derived." },
+        { "type": "mudrā", "textCompleteness": "referenced", "evidence": "mudrā named among topics treated." }
+      ]
+    },
+
+    {
+      "id": "tan:saradatilaka",
+      "title": "Śāradātilaka (Śāradātilakatantra)",
+      "dedupWith": "repo: abhichara-data.js TEXTS row (six rites at 23.121-145). This row supplies the whole 25-paṭala structure and CORRECTS the completeness reading.",
+      "author": "au:laksmanadesika",
+      "culture": "cul:sakta-mantrasastra",
+      "date": "CONTESTED — kept open: 11th c. (the most common statement); 12th c. (S3-adjacent and Sanderson, reported); 10th c. (S2 p.133); an 8th-c. claim appears in the tertiary digest S21 and is rejected here as unsupported by any scholarly source consulted.",
+      "extent": "25 paṭalas. Verse count CONTESTED: 'some 3,500 stanzas (the exact number depending on the edition)' vs '4500 verses in all' (both tertiary). Not resolved.",
+      "structuralNote": "THE ARCHITECTURE IS ITSELF A DOCTRINAL CLAIM: Rāghavabhaṭṭa states that paṭalas 1-24 correspond to the 24 Sāṃkhya tattvas and the 25th (yoga) shows the puruṣa beyond prakṛti — i.e. the book's table of contents is a cosmological diagram. Sequence of the whole: 1-2 emanation of sound and mantra (śabdabrahman→vaikharī) and the qualifications of the ācārya; 3 pre-initiation rites, site-selection and construction of the maṇḍapa, and instructions for drawing the yantra; 4 dīkṣā in its four kinds with mantropadeśa; 5 the fire-chapter (agnijñāna, homa); 6-23 the per-deity mantra chapters (Sarasvatī, Lakṣmī, Bhuvaneśvarī, Tvaritā, Durgā, Tripurā, Gaṇeśa, Sūrya, Viṣṇu, Nṛsiṃha, Puruṣottama, Śiva, Dakṣiṇāmūrti, Paśupata/Kṣetrapāla, Gāyatrī, Tryambaka…), each running the same internal cycle — mantra, nyāsa of letters, dhyāna, pūjāvidhi, puraścaraṇa, yantra, homa; 24 an exclusively yantra chapter listing 36 yantras by purpose; 25 yoga. THE PER-DEITY CYCLE, REPEATED ~18 TIMES, IS THE SLICE'S BEST EVIDENCE THAT THE STANDARD PŪJĀ SYNTAX (purification→nyāsa→dhyāna→invocation→services→japa→homa→dismissal) IS A REAL STRUCTURAL TEMPLATE AND NOT A MODERN SCHOLARLY IMPOSITION.",
+      "commentaries": ["Padārthādarśa of Rāghavabhaṭṭa (see tan:padarthadarsa) — the most important; 'Sudhā' Hindi tr. in the modern Sanskrit-commentary editions"],
+      "editions": [
+        { "cite": "S25 — Avalon, Tantrik Texts XVI-XVII (1933) with the Padārthādarśa; repr. Motilal Banarsidass 1982", "pd": false, "pdNote": "1933 — not US-PD until 2029. The repo must not quote this edition's text." },
+        { "cite": "Eng. tr. 'a Board of Scholars', Sarada Tilaka Tantram (Motilal Banarsidass)", "pd": false },
+        { "cite": "S4 — Bühnemann, new critical edition + translation of chapter 25 alone", "pd": false },
+        { "cite": "S3 vol.2 — Bühnemann's study of its 101 deity descriptions", "pd": false }
+      ],
+      "procedures": [
+        { "type": "coercive-rite", "textCompleteness": "referenced", "evidence": "THE ROUND'S SHARPEST COMPLETENESS FINDING. S2 p.131 n.44, verbatim: 'the Śāradātilaka sample is meta-text that describes variations within ritual to coordinate with a specific results, not full discrete rituals with specific ends.' And S2 p.133: 'Śāradātilaka 23.121-45 lists the six results, describes them, and provides ritual variants for each. Variables include time of day, hand gestures, colors, seed syllables, arrangement of mantra syllables, and so forth. That meta-ritual lore is not connected to a larger set of practices (sādhana) dedicated to a single deity.' The famous ṣaṭkarman locus is therefore a PARAMETER TABLE, not a rite. Anyone grading it 'complete' because it is 'the six rites chapter' has mis-read the genre.", "harmNote": "REQUIRED — five of the six acts (subjugation, immobilization, enmity, eradication, slaying) are hostile; the abhicāra-wing framing applies verbatim. No variable value is reproduced as an instruction here.", "vocabGap": "meta-ritual/parameter-table" },
+        { "type": "initiation", "textCompleteness": "partial", "evidence": "Paṭala 4 'deals in general with the rite of initiation (dīkṣā), in its diverse aspects' including four dīkṣā types and mantropadeśa (S21, tertiary). 'In general' is the digest's own hedge; and paṭala 3's pre-initiation rites (vāstuyāga, site-selection, maṇḍapa construction, yantra drawing) show that the sequence spans two chapters. Substantial but not verified end-to-end." },
+        { "type": "nyāsa", "textCompleteness": "partial", "evidence": "Nyāsa of the letters is an explicit component of the Sarasvatī chapter (6) and recurs through the per-deity cycle; the repetition across ~18 chapters is what evidences it as a standing step rather than a one-off." },
+        { "type": "mantra-consecration", "textCompleteness": "partial", "evidence": "puraścaraṇa (the qualifying regimen) is named as a distinct step in paṭalas 6, 10, 13 and elsewhere; the counts and their fractions were not inspected and are not reproduced. VOCAB GAP: puraścaraṇa has no term in the controlled list." },
+        { "type": "visualization", "textCompleteness": "partial", "evidence": "S3 vol.2: 101 deity descriptions, 'based on the Prapañcasāra but treating topics independently'. Dhyāna verses give a complete visualisation object per deity." },
+        { "type": "yantra-construction", "textCompleteness": "partial", "evidence": "Paṭala 3 gives 'directions on how to draw yantra' (S21) and paṭala 24 is exclusively yantric, listing 36 yantras BY PURPOSE (protection, Mṛtyuñjaya, immobilization, māraṇa, Manmatha…). Purposes and names are catalogued; whether each construction is given step-by-step was NOT verified — (unverified). No yantra is reproduced here in any form.", "harmNote": "The 36-yantra list includes māraṇa- and stambhana-class items and items aimed at coercing a spouse. Catalogued as religious history with the abhicāra framing; no template, no measurement, no inscription." },
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "Paṭala 5 is the dedicated fire chapter (agnijñāna + homa) and homa recurs as the closing step of the per-deity cycle (e.g. paṭalas 12, 13, 16, 21). A dedicated chapter plus consistent recurrence is strong structural evidence; internal step-completeness not verified." },
+        { "type": "breath-discipline", "textCompleteness": "partial", "evidence": "Paṭala 25 enumerates the classical scheme end to end — yama, niyama, āsana, prāṇāyāma … samādhi — and mixes elements normally labelled haṭhayoga with mantra practice, plus bhūtodaya/svarodaya (the rise of the gross elements) EXPLICITLY CONNECTED TO THE SIX RITES OF MAGIC. The SCHEME is enumerated completely; whether each aṅga is set out as a performable regimen was not re-derived from S4 this round — (unverified). Graded partial for that reason, not because the text hedges.", "vocabGap": "the chapter also carries a divinatory/prognostic element (svarodaya) that 'breath-discipline' does not cover" },
+        { "type": "divination-procedure", "textCompleteness": "referenced", "evidence": "svarodaya (prognostication from the predominance of the elements in the breath) is named in paṭala 25 and linked to the ṣaṭkarman; named, not set out." },
+        { "type": "purification", "textCompleteness": "partial", "evidence": "Paṭala 3's vāstuyāga and site-purification precede initiation; bhūtaśuddhi is the standing tantric precondition attested for the sister text (Prapañcasāra) and the digests." }
+      ],
+      "gating": { "kind": "dīkṣā prerequisite + compressed digest style", "note": "The text places dīkṣā at paṭala 4, BEFORE all per-deity operative chapters — the architecture itself gates the operative material. And the existence of the Padārthādarśa as the indispensable commentary is evidence that the root text's compression left steps unsupplied." },
+      "discrepancyFlags": [
+        "LOCUS ⚑: S1/S2 place the six rites at 23.121-45 (paṭala 23), but the tertiary chapter digest S21 assigns abhicāra mantras to paṭala 22 and makes 23 the Tryambaka chapter. The scholarly locus (S2, quoting Bühnemann and cross-checked against Türstig p.102) is preferred; the digest is noted, not merged.",
+        "DATE ⚑: four positions (8th/10th/11th/12th c.) — the 8th-c. claim is tertiary-only and is recorded as rejected.",
+        "EXTENT ⚑: 3,500 vs 4,500 stanzas."
+      ]
+    },
+
+    {
+      "id": "tan:padarthadarsa",
+      "title": "Padārthādarśa — Rāghavabhaṭṭa's commentary on the Śāradātilaka",
+      "nodeKind": "commentary-work",
+      "author": "au:raghavabhatta",
+      "culture": "cul:sakta-mantrasastra",
+      "date": "c. 1493-94 CE",
+      "structuralNote": "Universally described as the most important commentary on the Śāradātilaka; it is the text through which the root work is read and printed (Avalon's edition prints them together). ITS GRAPH SIGNIFICANCE IS THE COMPLETENESS DIMENSION: it is the commentary that states the 24-tattva/25-paṭala architecture — i.e. the root text's PLAN is known from the commentary, not from the root text's own words. This is the cleanest instance in the slice of a commentary supplying what the root text withheld or compressed.",
+      "procedures": [
+        { "type": "mantra-consecration", "textCompleteness": "partial", "evidence": "As a padārtha ('word-meaning') commentary it exists to resolve the root text's compressed ritual references; I did not sample its ritual glosses this round, so its own completeness is (unverified). Recorded as a completeness-RAISING node." }
+      ],
+      "note": "VOCABULARY DEMAND: the graph needs an edge semantics for 'commentary raises the root text's completeness grade'. COMMENTS_ON alone loses that."
+    },
+
+    {
+      "id": "tan:mantramahodadhi",
+      "title": "Mantramahodadhi of Mahīdhara, with the author's own Naukā commentary",
+      "dedupWith": "repo: abh:mantramahodadhi (abhichara-data.js) AND 'Mantra Mahodadhi' in vedic-remedies.js GRAHA_MANTRA_SOURCE — S1 flagged these as the same work under two transliterations in two wings. CONFIRMED here: taraṅga 15 is the planetary/ṛṣi mantra chapter, which is exactly what vedic-remedies.js draws on. The de-duplication is now evidenced, not inferred.",
+      "author": "au:mahidhara",
+      "culture": "cul:sakta-mantrasastra",
+      "date": "1588 CE, Varanasi — S2 p.132: 'a compendium of pragmatic rituals composed by Mahīdhara in 1588 while he was dwelling in Varanasi'.",
+      "structuralNote": "25 taraṅgas ('waves'), most dedicated to a single deity or deity-group: 1 the aspirant's preliminaries (seat, dress, preliminary meditation); 2 Gaṇeśa; 3-10 the Mahāvidyā/Śākta goddesses (Kālī, Tārā, Chinnamastā, Vārāhī, Bagalāmukhī, Tripurā, Annapūrṇā…); 11-12 Śrīvidyā at length; 13-14 Hanumān, Gopāla, Garuḍa; 15 the planets (graha) and ṛṣis; 16 Mahāmṛtyuñjaya, Rudra, Gaṅgā; 17 Kārtavīryārjuna; 18-19 Caṇḍī/Navārṇa/Śatacaṇḍī/Sahasracaṇḍī; 20 yantra diagrams; 21 the Vedic-philosophical reading of tantric practice; 22-25 tantric worship, the ṣaṭkarman, and technical terminology. Cross-cutting topics named for the work as a whole: bhūtaśuddhi, prāṇapratiṣṭhā, mātṛkā-nyāsa, puraścaryā, homa, tarpaṇa.",
+      "authorialStructure": "S2 pp.132-133 makes a structural point worth preserving verbatim: 'Mahīdhara creates a coherent root text, and then he writes a systematic commentary to elucidate it; such a root text differs from encyclopedia tantras that present a dizzying array of discrete rituals only tangentially related… Instead of an exhaustive ritual catalog aiming to present as many rituals as possible, Mahīdhara proposes a cohesive, systematic method to effect the six results via mantra and supporting techniques. His is a quintessentially systematic tantra.' The commentary's title Naukā ('the Boat') was composed to 'enable practitioners to cross the Great Ocean of Mantras'. THIS IS A SINGLE-AUTHOR SYSTEMATISATION, NOT A REVELATION — S2 p.134: 'Mantramahodadhi 25 is tantra synthesis rather than tantra revelation. The scholar and pandit would agree that Śiva doesn't talk like that!'",
+      "editions": [
+        { "cite": "S26 — ed. with Naukā by 'a Board of Scholars', Sri Satguru, Delhi 1981. S2 p.133: 'A critical edition of the Mantramahodadhi has not been produced.'", "pd": false },
+        { "cite": "Bühnemann's edition of chapter 25 = appendix 2 of S3 vol.1 (Groningen 2000)", "pd": false }
+      ],
+      "procedures": [
+        { "type": "coercive-rite", "textCompleteness": "referenced", "evidence": "DECISIVE VERBATIM EVIDENCE, S2 p.134: 'Full rituals, as opposed to systematic verses, are scattered throughout the text, but no discrete rituals are found in this section. Chapter 25 describes nineteen variables or \"nineteen items\" that the practitioner should know before performing a rite.' Chapter 25 — the chapter the entire ṣaṭkarman literature and this repo's abhicāra wing are built on — CONTAINS NO RITE. It is a parameter table. NOTE FOR THE SYNTHESIZER: S1 recorded repoCoverage 'partial' for this pairing; on the text axis the correct grade is 'referenced', and the two are not in conflict — the repo maps the variables exhaustively precisely because the variables are all the chapter contains.", "harmNote": "REQUIRED — the six acts include māraṇa ('the taking of life'). The 1981 translation itself carries a publisher's disclaimer (quoted at S2 pp.141-142 n.9) declining responsibility for 'nefarious acts'. Recorded as religious history; no variable value reproduced.", "vocabGap": "meta-ritual/parameter-table" },
+        { "type": "mantra-consecration", "textCompleteness": "partial", "evidence": "puraścaryā, prāṇapratiṣṭhā and tarpaṇa are named as standing topics of the work; taraṅga 1 supplies the aspirant's preliminaries. Full rituals ARE 'scattered throughout the text' (S2 p.134) — so the work as a whole does contain complete rites; I have not inspected one, so the grade stays partial rather than complete.", "vocabGap": "puraścaraṇa" },
+        { "type": "nyāsa", "textCompleteness": "partial", "evidence": "mātṛkā-nyāsa named as a standing topic." },
+        { "type": "purification", "textCompleteness": "partial", "evidence": "bhūtaśuddhi named as a standing topic." },
+        { "type": "yantra-construction", "textCompleteness": "partial", "evidence": "Taraṅga 20 gives 'various types of sketches of yantras' — i.e. this text does print diagrams, unlike most of the slice. Nothing reproduced here.", "harmNote": "The 1981 edition's own warning is specifically about readers acting on 'the Yantras as provided in this book'." },
+        { "type": "mantra-recitation", "textCompleteness": "partial", "evidence": "Taraṅga 15 (grahas and ṛṣis) is the chapter the repo's vedic-remedies.js bīja-family citation resolves to; taraṅgas 3-19 are per-deity mantra chapters." },
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "homa named as a standing topic; the six-rites chapter's nineteen variables include the fire-apparatus items (fire-sticks, fire, fire-pit, sruva, sruc)." },
+        { "type": "visualization", "textCompleteness": "partial", "evidence": "S3 vol.1: 108 deity descriptions, primarily in tantric forms — one complete dhyāna object per deity." },
+        { "type": "mudrā", "textCompleteness": "referenced", "evidence": "mudrā is one of the nineteen variables of ch.25 — named per act, never described." }
+      ],
+      "discrepancyFlags": [
+        "INTERNAL CONTRADICTION IN THE REPO'S OWN CITED SOURCE ⚑: S2 states the date twice and differently — p.117 n.25: 'The Mantramahodadhi is a fifteenth-century compilation on mantras and pragmatic ritual'; p.132: 'composed by Mahīdhara in 1588'. 1588 is the sixteenth century and is corroborated by S3 ('a sixteenth-century North Indian compendium'). The fifteenth-century statement is an error in Ullrey. Worth recording because the repo cites Ullrey heavily and an auditor will find it.",
+        "GENRE ⚑: S3 calls MMU a 'compendium'; S2 insists it is a systematic single-author root-text-plus-commentary and NOT an encyclopedia. Both positions kept."
+      ]
+    },
+
+    {
+      "id": "tan:kularnavatantra",
+      "title": "Kulārṇava Tantra",
+      "author": "au:anonymous",
+      "culture": "cul:kaula",
+      "date": "Not established this round — (unverified). Described as the foremost Kaula tantra and constantly cited as an authority in tantric literature.",
+      "structuralNote": "17 ullāsas, 2,058 verses. I: human birth and life; II: the glory of kula-dharma; III-IV: the ūrdhvāmnāya and its great mantra, and the mahāṣoḍhā-nyāsa; V: the kaula substances (wine, meat) and doctrinal fundamentals; VI: the worshipper's characteristics, purification; VII: worship of Baṭuka and the śakti, the eight kinds of kula-śakti; VIII: the cakra rite and the states of bliss (ārambha→taṭa→unmanā); IX: yoga and the advaita doctrine; X: worship on special days; XI: the rules of kulācāra; XII: the pādukā-mantra and the guru-disciple relation; XIII-XIV: qualifications of guru and disciple and the testing of competence; XV: puraścaraṇa, prāṇāyāma, mantra defects; XVI: rites for objects of desire; XVII: definitions of technical terms and guru-dhyāna.",
+      "editions": [{ "cite": "S11 — Sanskrit text ed. Tārānātha Vidyāratna, Tantrik Texts V (1917); intro Avalon; English 'readings' M.P. Pandit (Motilal Banarsidass 1965 ff.)", "pd": "1917 Sanskrit text PD in US; 1965 readings in copyright" }],
+      "procedures": [
+        { "type": "initiation", "textCompleteness": "partial", "evidence": "Initiation is the text's central rite and occupies ullāsas XII-XIV (pādukā-mantra, guru-disciple relation, qualifications, testing of competence). But the withholding is explicit and DOUBLE — see gating. The text itself says the knowledge 'is not to be known from Vedas or Āgamas or Śāstras or Purāṇas, however exhaustive they may be… It can be known only through the mouth of the Guru' (Pandit, ch. III). A text that says its own content cannot be got from texts is, by its own testimony, partial." },
+        { "type": "mantra-consecration", "textCompleteness": "partial", "evidence": "Ullāsa XV treats puraścaraṇa, prāṇāyāma and mantra defects — the qualifying regimen and its failure modes — but the operative details are among what Pandit removed.", "vocabGap": "puraścaraṇa" },
+        { "type": "nyāsa", "textCompleteness": "referenced", "evidence": "The mahāṣoḍhā-nyāsa is named as the subject of ullāsa IV; the imposition itself is not recoverable from the English rendering." },
+        { "type": "breath-discipline", "textCompleteness": "referenced", "evidence": "prāṇāyāma named in XV; ullāsa IX treats yoga doctrinally." },
+        { "type": "offering/homa", "textCompleteness": "referenced", "evidence": "Ullāsa VII (worship of Baṭuka and the śakti) and X (worship on special days) name worship-occasions; sequences not recoverable from the consulted rendering." },
+        { "type": "coercive-rite", "textCompleteness": "referenced", "evidence": "Ullāsa XVI, 'rites for objects of desire' (kāmya) — the kāmya class that the ṣaṭkarman belongs to is named as a chapter subject and nothing more is recoverable here.", "harmNote": "REQUIRED — kāmya/ṣaṭkarman material. Recorded as a chapter heading only." },
+        { "type": "purification", "textCompleteness": "referenced", "evidence": "Ullāsa VI treats the worshipper's purification." },
+        { "type": "visualization", "textCompleteness": "referenced", "evidence": "guru-dhyāna closes the work (XVII)." }
+      ],
+      "gating": {
+        "kind": "THE SLICE'S FULLEST WITHHOLDING CASE — four independent layers, all documented verbatim",
+        "layers": [
+          "SCRIPTURAL-CLASS SECRECY. Avalon, introduction: 'The Vedas, Sastras, Puranas can be made public, but the Shaiva and Shakta Agamas are not to be so done. Of these the Kula Sastras are more secret.' — a native taxonomy of publishability.",
+          "IN-TEXT PROHIBITION ON READING. Avalon, end of introduction: 'At the end of the seventeenth Chapter there is a remarkable passage (v. 103) prohibiting (ordinary persons) from reading the portions of this work dealing with Asavollasa.' The TEXT forbids part of ITSELF to part of its readership. This is the strongest 'partial-by-design' evidence anywhere in my slice.",
+          "ORAL-ONLY TRANSMISSION CLAIM. Pandit, ch. III: 'It is not to be known from Vedas or Agamas or Sastras or Puranas, however exhaustive they may be… It can be known only through the mouth of the Guru.'; ch. XI: 'The rules of Kulachara which should be carefully concealed (v. 84).'",
+          "TRANSLATOR-LEVEL REDACTION — A SEPARATE, MODERN LAYER. M.P. Pandit's preface: 'Portions relating to rituals, technicalities of special types of japa, etc. have been kept out of the treatment so as not to tax the aspirant of the present times… it is possible to achieve the same results by more psychological means suited to the modern age.' THE MOST-READ ENGLISH KULĀRṆAVA IS AN AVOWEDLY REDACTED TEXT. Any completeness grade taken from an English Kulārṇava is a grade of Pandit, not of the tantra. This distinction — TEXT-completeness vs EDITION/TRANSLATION-completeness — should become a field in the merged schema."
+        ]
+      },
+      "harmNote": "REQUIRED. Ullāsa V concerns the kaula substances (wine, meat) and the tradition's transgressive pañcamakāra frame; ullāsa VII-VIII concern śakti-worship and the cakra rite, which in this tradition includes ritualised sexual content. Admitted here as academic religious history only, at the level of naming what a chapter is about. Avalon's own stated rationale for the in-text prohibition is recorded as the tradition's: 'the desire that such persons should not be led astray and take to practices which might lead to their moral ruin.' No substance, quantity, partner-role or rite is described."
+    },
+
+    {
+      "id": "tan:nityasodasikarnava",
+      "title": "Nityāṣoḍaśikārṇava (Vāmakeśvarīmata) — first part of the Vāmakeśvaratantra",
+      "author": "au:anonymous",
+      "culture": "cul:srividya",
+      "date": "In existence by the early 13th c., when Jayaratha commented on it; the earliest tantra of the Kaula Śrīvidyā.",
+      "structuralNote": "CONTESTED EXTENT ⚑, both positions kept: (a) 'four hundred verses in five chapters', dealing with the EXTERNAL worship of Tripurasundarī; (b) the Vāmakeśvaratantra comprises two works, the Nityāṣoḍaśikārṇava and the Yoginīhṛdaya, the latter being 'its last three chapters' — which implies a different chapter arithmetic. Not resolved. The external/internal division against the Yoginīhṛdaya is however consistent across sources and is the structurally important claim: NṢA = outer worship, YH = the inner meaning of the same worship.",
+      "commentaries": ["Ṛjuvimarśinī of Śivānanda — the first South Indian Śrīvidyā commentary", "Artharatnāvalī of Vidyānanda", "a commentary by the Kashmirian Jayaratha, early 13th c."],
+      "editions": [{ "cite": "S19 — ed. Vrajavallabha Dvivedī, Yogatantragranthamālā 1, Varanasi 1968, with Ṛjuvimarśinī and Artharatnāvalī", "pd": false }],
+      "procedures": [
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "Its declared subject is the EXTERNAL worship (bāhyapūjā) of Tripurasundarī — i.e. it is the half of the Śrīvidyā pair that DOES give outward ritual. Internal completeness not re-derived — (unverified)." },
+        { "type": "yantra-construction", "textCompleteness": "partial", "evidence": "Śrīcakra worship is the cult's operative core and this is its root tantra; the drawing itself is expounded in the paired Yoginīhṛdaya's first chapter." },
+        { "type": "mantra-consecration", "textCompleteness": "referenced", "evidence": "The śrīvidyā mantra is the cult's central object; it is transmitted by coded mantroddhāra and initiation (S9, S10) and is not reproduced or described here." },
+        { "type": "initiation", "textCompleteness": "referenced", "evidence": "Kaula Śrīvidyā is initiation-gated by definition; no sequence re-derived from this text." }
+      ],
+      "gating": { "kind": "mantroddhāra + dīkṣā", "note": "Śrīvidyā is a living initiatory tradition. Beyond the operative-content razor, this row carries a LIVING-TRADITION sensitivity note: describing structure is appropriate; supplying the vidyā is not, and is also not something an outsider source could responsibly verify." }
+    },
+
+    {
+      "id": "tan:yoginihrdaya",
+      "title": "Yoginīhṛdaya ('The Heart of the Yoginī') — second part of the Vāmakeśvaratantra",
+      "author": "au:anonymous",
+      "culture": "cul:srividya",
+      "date": "10th or 11th c. CE (S8)",
+      "structuralNote": "THE CLEANEST THREE-PART OPERATIVE ARCHITECTURE IN THE SLICE. Three chapters, one per saṃketa ('sign, convention, secret understanding'): (1) CAKRASAṂKETA — in two halves, the first on the drawing of the yantra, the second naming the nine cakras inherent in the Śrīyantra (Trailokyamohana… Sarvarakṣākara… Sarvānandamaya); (2) MANTRASAṂKETA — the six levels of meaning (artha) the practitioner is to contemplate DURING japa (bhāvārtha, sampradāyārtha, nirgarbhārtha, kaulikārtha, rahasyārtha, mahātattvārtha — the list is given with five names in one source and six in another ⚑); (3) PŪJĀSAṂKETA — the worship. The three-fold structure is itself the doctrine: diagram, formula, worship are one thing seen three ways. NOTE: the mantrasaṃketa is a HERMENEUTIC procedure — a prescribed sequence of contemplations layered onto a recitation. The controlled vocabulary has no term for it; 'mantra-recitation' loses the whole point.",
+      "commentaries": ["Dīpikā of Amṛtānanda Nātha (see tan:dipika-amrtananda) — 'often used as the basis of explanation of the Yoginīhṛdaya'", "Setubandha of Bhāskararāya (named in the Sarasvatī Bhavana edition, Gopīnātha Kavirāja 1924)"],
+      "editions": [
+        { "cite": "S8 — Padoux with Jeanty, OUP 2013: the first English translation, with introduction and commentary", "pd": false },
+        { "cite": "Yoginīhṛdaya with Amṛtānanda's Dīpikā and Bhāskararāya's Setubandha, ed. Gopīnātha Kavirāja, Sarasvatī Bhavana Texts 7 (1924)", "pd": true }
+      ],
+      "procedures": [
+        { "type": "yantra-construction", "textCompleteness": "partial", "evidence": "Chapter 1's first half is explicitly on the DRAWING of the yantra and its second half names the nine constituent cakras — a genuine construction procedure with a named output. Graded partial because the text is written for initiates and is read through the Dīpikā; the construction is not reproduced here in any form." },
+        { "type": "mantra-recitation", "textCompleteness": "partial", "evidence": "Chapter 2 prescribes a graded sequence of six meanings to be held during japa. The CONTEMPLATIVE sequence is enumerated; the mantra it is applied to is not in the text in plain form (Śrīvidyā mantroddhāra, S9/S10).", "vocabGap": "layered hermeneutic contemplation during recitation — no controlled-vocabulary term" },
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "Chapter 3 is the worship chapter; the paired Nityāṣoḍaśikārṇava carries the external worship, so YH's pūjāsaṃketa presupposes NṢA. A text that presupposes its sibling is partial by construction." },
+        { "type": "visualization", "textCompleteness": "partial", "evidence": "The nine cakras of the Śrīyantra are named and the goddess is identified with the diagram; visualisation content is doctrinal rather than stepwise here." }
+      ],
+      "gating": {
+        "kind": "initiate-only address, stated by the publisher and the tradition",
+        "note": "OUP's own description: the text 'discloses to initiates the secret of the Heart of the Yoginī'. The tradition holds it 'a secret doctrine transmitted traditionally from Guru to disciple'. A stronger claim — that the text 'omits much of the information as tantric rites are intended to be secret' and that initiates 'will likely have received fuller instructions from their guru' — was encountered this round in a NON-SCHOLARLY reader review, not in Padoux; recorded as (unverified) and NOT used to set the grade. The grades above rest on the initiate-address and commentary-dependence, which are attested."
+      }
+    },
+
+    {
+      "id": "tan:dipika-amrtananda",
+      "title": "Dīpikā ('The Lamp') of Amṛtānanda Nātha on the Yoginīhṛdaya",
+      "nodeKind": "commentary-work",
+      "author": "au:amrtananda",
+      "culture": "cul:srividya",
+      "date": "not established this round — (unverified)",
+      "structuralNote": "'The Dīpikā is the work of Amṛtānanda Nātha, who calls himself the disciple of Puṇyānanda Nātha of Kashmir reputation… often used as the basis of explanation of the Yoginīhṛdaya.' A second completeness-raising commentary node, parallel to the Padārthādarśa.",
+      "procedures": [
+        { "type": "yantra-construction", "textCompleteness": "referenced", "evidence": "Recorded as a completeness-raiser for tan:yoginihrdaya; its own content was not sampled — (unverified)." }
+      ]
+    },
+
+    {
+      "id": "tan:saundaryalahari",
+      "title": "Saundaryalaharī ('Flood of Beauty'), with its yantra/prayoga apparatus",
+      "author": "au:anonymous",
+      "authorNote": "Traditionally ascribed to Śaṅkarācārya — FLAGGED as traditional. Brown's HOS title itself hedges: 'traditionally ascribed to Śaṅkarācārya'.",
+      "culture": "cul:srividya",
+      "date": "not established this round — (unverified)",
+      "structuralNote": "THE SLICE'S MOST INTERESTING COMPLETENESS CASE, BECAUSE THE OPERATIVE LAYER IS PARATEXTUAL. The Saundaryalaharī is a devotional stotra. Its operative apparatus — a yantra, a mantra and a prayoga (application, with a stated result) attached to EACH verse — is an accretion carried by the manuscript and commentarial tradition, not by the poem: 'In the last 1,200 years, there have been innumerable publications… some with commentaries… many with a variety of mantras or yantras for each of the verses.' The apparatus VARIES BY EDITION. Brown's HOS 43 took the apparatus seriously enough to photograph it — the volume carries 4 plates and 147 photographs, and modern Indian editions add indices 'in which yantras and the mode of their worship have been given'. So: a stotra with a bolt-on, edition-variable operative shell.",
+      "commentaries": ["Lakṣmīdhara — the most famous commentary (ed. N.N. Swami Ghanapati, Government Branch Press, Mysore 1953)", "many others; a Sanskrit commentary 'with prayogas' circulates on archive.org"],
+      "editions": [
+        { "cite": "S15 — W. Norman Brown, HOS 43 (Harvard UP 1958): 'Edited, translated, and presented in photographs'", "pd": false },
+        { "cite": "Saundaryalaharī with Lakṣmīdhara's commentary, ed. N.N. Swami Ghanapati, Mysore 1953", "pd": false }
+      ],
+      "procedures": [
+        { "type": "yantra-construction", "textCompleteness": "partial", "evidence": "A per-verse yantra is supplied by the apparatus in many editions and Brown reproduced them photographically; but the apparatus is NOT stable across editions, so no single 'the' sequence exists. This is a genuine 'partial because the witness disagrees with itself' case, distinct from 'partial because withheld'. No yantra is reproduced here.", "harmNote": "Some per-verse prayogas in the popular apparatus are aimed at controlling or attracting another person; recorded as a genre fact, with no prayoga transcribed." },
+        { "type": "mantra-recitation", "textCompleteness": "partial", "evidence": "A per-verse mantra accompanies the apparatus in many editions; same instability. Verses themselves are recited as stotra." },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "referenced", "evidence": "The 'mode of their worship' indices in modern editions indicate a talismanic use of the per-verse yantras; named, not set out here." }
+      ],
+      "gating": { "kind": "edition-instability rather than secrecy", "note": "Worth preserving as a contrast class: this text is not withheld, it is over-supplied and inconsistent. A completeness schema that only models secrecy will mis-grade it." }
+    },
+
+    {
+      "id": "tan:parasuramakalpasutra",
+      "title": "Paraśurāmakalpasūtra",
+      "author": "au:anonymous",
+      "culture": "cul:srividya",
+      "date": "anonymous 16th- or 17th-century text, probably composed in South India",
+      "structuralNote": "A SŪTRA-STYLE digest of Śrīvidyā — 'a collection of brief aphorisms outlining many of the features of Śrī Vidyā'. The sūtra form is the completeness fact: aphorism is compression by genre, and the Nityotsava exists precisely to decompress it. Together with the Kauśika Sūtra this makes TWO sūtra-genre works in the slice whose incompleteness is formal, not secretive. An e-text is in GRETIL.",
+      "editions": [{ "cite": "GRETIL corpus e-text (Göttingen); ed. A. Mahādeva Śāstrī, Gaekwad's Oriental Series (with the Nityotsava as supplement)", "pd": "(unverified)" }],
+      "procedures": [
+        { "type": "offering/homa", "textCompleteness": "referenced", "evidence": "Aphoristic outline of the worship-system; the sūtras index the rite rather than perform it — which is why the Nityotsava was written." },
+        { "type": "mantra-consecration", "textCompleteness": "referenced", "evidence": "Same genre argument." },
+        { "type": "initiation", "textCompleteness": "referenced", "evidence": "Same genre argument." }
+      ],
+      "gating": { "kind": "genre-ellipsis (sūtra)", "note": "Parallel to tan:kausikasutra — see the PARALLELS edge." }
+    },
+
+    {
+      "id": "tan:nityotsava",
+      "title": "Nityotsava of Umānandanātha (supplement to the Paraśurāmakalpasūtra)",
+      "author": "au:umanandanatha",
+      "culture": "cul:srividya",
+      "date": "c. 1745 (unverified — Bühnemann's study is reported to give 1745; the author is Umānandanātha, disciple of Bhāskararāya/Bhāsurānandanātha, 1675-1768)",
+      "structuralNote": "THE SLICE'S MOST COMPLETE OPERATIVE TEXT AND THE BEST WITNESS THAT THE PŪJĀ-PADDHATI SEQUENCE IS REAL. Seven chapters: (1) initiation practices; (2) Gaṇeśa worship; (3) the major 'Śrīkrama' — the worship of Lalitā Tripurasundarī, running to SIXTY-FOUR ritual services (upacāra); (4) Śyāmā/Kurukullā; (5) Daṇḍinī/Vārāhī; (6) general worship-forms for other deities; (7) practices, pūjās and mantras common to all. Contains 'very little philosophical material… but a wealth of detail on the ritual, the mantras and other features'. THE 64-UPACĀRA COUNT IS THE POINT: the standard smārta pūjā runs sixteen services (S5 enumerates them — invocation, seat, foot-water, arghya, sipping-water, bath, garments, sacred thread, unguents, flowers, incense, lamp, food, prostration, circumambulation, gift); the Śrīvidyā paddhati quadruples it. A paddhati is defined by supplying what the scripture compresses.",
+      "editions": [{ "cite": "S22 — ed. A. Mahādeva Śāstrī; studied and partly translated in Bühnemann, The Tantric Worship of Mahāgaṇapati according to the Nityotsava and Other Texts (2 parts), which gives Sanskrit text and English translation with commentary on chapter 2", "pd": "(unverified)" }],
+      "procedures": [
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "This is the corpus's strongest 'complete' candidate — a paddhati whose declared purpose is to set out the whole rite, with 64 enumerated services for the principal worship and a final chapter of elements common to all. I withhold the 'complete' grade for one honest reason: the mantras that accompany each service are Śrīvidyā mantras, initiation-transmitted, and the sources consulted do not state that the text supplies them in plain form. Graded partial with the reason named; a scholar with the edition in hand could plausibly promote it." },
+        { "type": "initiation", "textCompleteness": "partial", "evidence": "Chapter 1 is on initiation practices; sequence not inspected — (unverified)." },
+        { "type": "mantra-consecration", "textCompleteness": "partial", "evidence": "Chapter 7 gathers 'practices, pūjās and mantras common to all' — the shared substrate the per-deity chapters assume, which is exactly the element most scriptures leave implicit." },
+        { "type": "yantra-construction", "textCompleteness": "referenced", "evidence": "Śrīkrama presupposes the Śrīcakra; the source describes the work as centring on 'the famous Śrī Yantra' but does not state that construction is set out." },
+        { "type": "visualization", "textCompleteness": "referenced", "evidence": "Per-deity worship implies dhyāna; not separately attested here." }
+      ],
+      "discrepancyFlags": ["AUTHOR ⚑: one page consulted this round attributed the Nityotsava to 'Jagannātha Paṇḍita, 1745'. Two independent Śrīvidyā sources give Umānandanātha, disciple of Bhāskararāya. Umānandanātha is adopted; the outlier is recorded, not merged."]
+    },
+
+    {
+      "id": "tan:isanasivagurudevapaddhati",
+      "title": "Īśānaśivagurudevapaddhati (Siddhāntasāra)",
+      "author": "au:isanasiva",
+      "culture": "cul:kerala-tantra",
+      "date": "11th c. CE, Kerala",
+      "structuralNote": "THE LARGEST SINGLE OPERATIVE WORK IN THE SLICE and the one that most deserves the word 'paddhati' — a ritual ROAD-MAP. Roughly 18,000 verses in 119 paṭalas, further subdivided into some 580 units, across four pādas: SĀMĀNYAPĀDA (14 paṭalas, general); MANTRAPĀDA (38 paṭalas — hymns and mantras of gods and goddesses together with japa, homa and śrauta/smārta rites); KRIYĀPĀDA (64 paṭalas — construction of temples, houses, palaces and gateways; consecration of images; the forms of daily worship; festivals; and renovation and expiation rites for dilapidated temples); YOGAPĀDA (3 paṭalas). THE PĀDA RATIO IS THE FINDING: 64 of 119 paṭalas are kriyā — the operative bulk of the Kerala tradition is IMAGE- AND BUILDING-CONSECRATION, not personal sādhana, and the yoga content is 3 paṭalas, about 2.5% of the work.",
+      "editions": [{ "cite": "S14 — ed. T. Gaṇapati Śāstrī, Trivandrum Sanskrit Series, 4 vols, 1920-25; scans on archive.org. Introductions later by N.P. Unni.", "pd": true }],
+      "scholarlyStatus": "'no studies or commentaries have yet been done on Īśānaśivagurudevapaddhati except those by T. Ganapati Sastri' and N.P. Unni (tertiary, S21). An under-studied text of the first rank — a cheap high-value target.",
+      "procedures": [
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "Image-consecration (pratiṣṭhā) is a headline subject of the 64-paṭala kriyāpāda. Graded partial only because I could not inspect the sequence; the genre and scale make a 'complete' grade plausible on inspection. VOCAB GAP: pratiṣṭhā of an image or temple is not 'talisman'." , "vocabGap": "pratiṣṭhā" },
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "The mantrapāda expressly covers 'japa, homa and several religious śrauta and smārta rites' — i.e. this work deliberately spans the Vedic and tantric ritual registers, which is unusual and worth a graph edge." },
+        { "type": "mantra-recitation", "textCompleteness": "partial", "evidence": "The 38-paṭala mantrapāda is the mantra corpus with its applications." },
+        { "type": "maṇḍala-construction", "textCompleteness": "referenced", "evidence": "Implied by the kriyāpāda's consecration and festival material; not separately attested in the sources consulted — (unverified)." },
+        { "type": "purification", "textCompleteness": "partial", "evidence": "'renovation and penance/expiation rites for dilapidated temples' — an expiatory (prāyaścitta) class aimed at a BUILDING, not a person. Another vocabulary gap." },
+        { "type": "breath-discipline", "textCompleteness": "referenced", "evidence": "Yogapāda, 3 paṭalas — named and tiny." },
+        { "type": "coercive-rite", "textCompleteness": "referenced", "evidence": "Kerala tantra digests of this class carry ābhicārika sections; not separately attested for this work in the sources consulted — (unverified). Recorded as an open question, not a claim.", "harmNote": "Flagged prospectively; nothing asserted." }
+      ]
+    },
+
+    {
+      "id": "tan:brhattantrasara",
+      "title": "Bṛhat Tantrasāra of Kṛṣṇānanda Āgamavāgīśa",
+      "author": "au:krsnananda",
+      "culture": "cul:bengal-sakta",
+      "date": "composed in Bengal in the last part of the sixteenth century; 'still widely influential there today'",
+      "structuralNote": "A COMPILATION-DIGEST built by citation: Kṛṣṇānanda 'cites 150+ texts' (one source says the work is based on 170 tantra-sādhana texts) and 'displays a remarkable mastery over his sources'. Its organising subject is the worship of the goddesses of the Daśamahāvidyā. It is the Bengal counterpart of Mahīdhara's Varanasi project and Malliṣeṇa's Karnataka Jain project — S2 p.133 n.46 groups exactly this kind of enterprise: 'the product of one author, consulting many sources to make a system of magic'. THE 150-170 CITED TEXTS ARE THE MOST IMPORTANT UNMINED EDGE-SOURCE IN THIS SLICE: a single work whose apparatus IS a transmission graph.",
+      "editions": [{ "cite": "S23 — Bṛhat Tantrasāraḥ, Kṛṣṇānanda Āgamavāgīśa kṛta (HathiTrust 002212948); numerous Bengali-script devotional printings", "pd": "(unverified)" }],
+      "procedures": [
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "Its declared subject is the worship system of the Daśamahāvidyā goddesses assembled from the tantras; as a digest it is normally used AS a practical manual in Bengal. Internal completeness not inspected — (unverified)." },
+        { "type": "mantra-consecration", "textCompleteness": "partial", "evidence": "A digest of this genre carries mantra, nyāsa, kavaca and puraścaraṇa material per goddess; attested at genre level, not verified per-chapter — (unverified)." },
+        { "type": "yantra-construction", "textCompleteness": "referenced", "evidence": "Genre-level expectation; not attested in the sources consulted — (unverified)." },
+        { "type": "coercive-rite", "textCompleteness": "referenced", "evidence": "S2 p.117 n.25 names the Bengal Tantrasāra tradition alongside the Mantramahodadhi and the Keralan Tantrasārasaṃgraha as texts whose 'sole concern is pragmatic ritual' — S2's phrase for the operative/magical register.", "harmNote": "REQUIRED — pragmatic-ritual digests of this class contain ābhicārika material. Named at genre level only." }
+      ]
+    },
+
+    {
+      "id": "tan:merutantra",
+      "title": "Merutantra",
+      "author": "au:anonymous",
+      "culture": "cul:sakta-mantrasastra",
+      "date": "CONTESTED and weakly evidenced — a 17th-c. dating is reported (with a question mark in the source that carries it); a University of Pennsylvania manuscript is catalogued c.1700-1850. NOT RESOLVED, and my evidence is thin.",
+      "structuralNote": "HONEST GAP. Manuscript catalogues (Aufrecht's Catalogus Catalogorum) record the work in prakāśas, with witnesses variously of 1-10, 1-25 and 1-35 prakāśas — i.e. the transmission itself disagrees about the work's extent. It is catalogued as Rathakrānta-class, is named in the Kakṣapuṭatantra's tantra-list (1.5-7), and is cited in Ayurvedic-medical contexts. Printed in 5 volumes (Venkateshwar Press; modern reprints). I could NOT reach a scholarly content description this round — Goudriaan & Gupta's per-text entry was not served by the archive.org text I could fetch.",
+      "procedures": [
+        { "type": "mantra-recitation", "textCompleteness": "referenced", "evidence": "Genre-level only: it is catalogued as a tantra of the encyclopedic mantra-compendium class. NOTHING about its procedures was verified this round. This row is deliberately thin rather than plausibly padded." }
+      ],
+      "discrepancyFlags": [
+        "EXTENT ⚑: manuscript witnesses of 10, 25 and 35 prakāśas.",
+        "DATE ⚑: 17th c. (uncertain in its own source) vs manuscript range 1700-1850.",
+        "The often-repeated popular claim that the Merutantra mentions Europeans (phiraṅga) and can therefore be dated late was NOT substantiated this round; phiraṅga is attested as a Sanskrit word for 'Frankish/European' but no source consulted tied it to this text. Recorded as (unverified) and NOT used."
+      ]
+    }
+  ],
+
+  "edges": [
+    { "from": "tan:atharvaveda-saunaka", "type": "BELONGS_TO", "to": "cul:vedic-atharvan", "cite": "S12, S13" },
+    { "from": "tan:kausikasutra", "type": "BELONGS_TO", "to": "cul:vedic-atharvan", "cite": "S12" },
+    { "from": "tan:nisvasatattvasamhita", "type": "BELONGS_TO", "to": "cul:saiva-mantramarga", "cite": "S6" },
+    { "from": "tan:svacchandatantra", "type": "BELONGS_TO", "to": "cul:saiva-mantramarga", "cite": "S18" },
+    { "from": "tan:netratantra", "type": "BELONGS_TO", "to": "cul:saiva-mantramarga", "cite": "S16, S17" },
+    { "from": "tan:prapancasara", "type": "BELONGS_TO", "to": "cul:sakta-mantrasastra", "cite": "S3" },
+    { "from": "tan:saradatilaka", "type": "BELONGS_TO", "to": "cul:sakta-mantrasastra", "cite": "S3" },
+    { "from": "tan:padarthadarsa", "type": "BELONGS_TO", "to": "cul:sakta-mantrasastra", "cite": "S25" },
+    { "from": "tan:mantramahodadhi", "type": "BELONGS_TO", "to": "cul:sakta-mantrasastra", "cite": "S3, S2" },
+    { "from": "tan:merutantra", "type": "BELONGS_TO", "to": "cul:sakta-mantrasastra", "cite": "catalogue-level only — weak" },
+    { "from": "tan:kularnavatantra", "type": "BELONGS_TO", "to": "cul:kaula", "cite": "S11" },
+    { "from": "tan:nityasodasikarnava", "type": "BELONGS_TO", "to": "cul:srividya", "cite": "S19" },
+    { "from": "tan:yoginihrdaya", "type": "BELONGS_TO", "to": "cul:srividya", "cite": "S8" },
+    { "from": "tan:dipika-amrtananda", "type": "BELONGS_TO", "to": "cul:srividya", "cite": "S8" },
+    { "from": "tan:saundaryalahari", "type": "BELONGS_TO", "to": "cul:srividya", "cite": "S15" },
+    { "from": "tan:parasuramakalpasutra", "type": "BELONGS_TO", "to": "cul:srividya", "cite": "S22" },
+    { "from": "tan:nityotsava", "type": "BELONGS_TO", "to": "cul:srividya", "cite": "S22" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "BELONGS_TO", "to": "cul:kerala-tantra", "cite": "S14" },
+    { "from": "tan:brhattantrasara", "type": "BELONGS_TO", "to": "cul:bengal-sakta", "cite": "S23" },
+
+    { "from": "tan:saradatilaka", "type": "AUTHORED_BY", "to": "au:laksmanadesika", "cite": "S3" },
+    { "from": "tan:padarthadarsa", "type": "AUTHORED_BY", "to": "au:raghavabhatta", "cite": "S25, S21" },
+    { "from": "tan:mantramahodadhi", "type": "AUTHORED_BY", "to": "au:mahidhara", "cite": "S2 p.132" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "AUTHORED_BY", "to": "au:isanasiva", "cite": "S14" },
+    { "from": "tan:brhattantrasara", "type": "AUTHORED_BY", "to": "au:krsnananda", "cite": "S23" },
+    { "from": "tan:nityotsava", "type": "AUTHORED_BY", "to": "au:umanandanatha", "cite": "S22", "contested": "one source consulted attributed it to Jagannātha Paṇḍita — outlier, not merged" },
+    { "from": "tan:dipika-amrtananda", "type": "AUTHORED_BY", "to": "au:amrtananda", "cite": "S8" },
+    { "from": "tan:prapancasara", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S1 via S2 p.133 — Bühnemann calls the text anonymous; the Śaṅkara ascription is traditional and FLAGGED" },
+    { "from": "tan:saundaryalahari", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S15 — Brown's own title says 'traditionally ascribed'" },
+    { "from": "tan:kularnavatantra", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S11" },
+    { "from": "tan:parasuramakalpasutra", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S22 — 'an anonymous 16th- or 17th-century text'" },
+    { "from": "tan:merutantra", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "catalogue-level" },
+    { "from": "tan:nisvasatattvasamhita", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S6 — revealed scripture" },
+    { "from": "tan:svacchandatantra", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S18 — revealed scripture" },
+    { "from": "tan:netratantra", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S17 — revealed scripture" },
+    { "from": "tan:nityasodasikarnava", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S19 — revealed scripture" },
+    { "from": "tan:yoginihrdaya", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S8 — revealed scripture" },
+    { "from": "tan:kausikasutra", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S12" },
+    { "from": "tan:atharvaveda-saunaka", "type": "AUTHORED_BY", "to": "au:anonymous", "cite": "S12" },
+
+    { "from": "tan:kausikasutra", "type": "COMMENTS_ON", "to": "tan:atharvaveda-saunaka", "strength": "strong", "evidence": "The Kauśika Sūtra is 'the sole extant treatise on the Atharvan ritual' — it supplies the viniyoga (ritual application) for the hymns of the Śaunaka saṃhitā, hymn by hymn. This is the slice's paradigm case of a work that turns a NON-operative text into an operative one, and the most important edge in the file for the completeness dimension.", "cite": "S12, S13" },
+    { "from": "tan:padarthadarsa", "type": "COMMENTS_ON", "to": "tan:saradatilaka", "strength": "strong", "evidence": "The standard and indispensable commentary (c.1493-94), printed with the root text in Avalon's edition. Completeness-raising: the 24-tattva/25-paṭala architecture of the root work is known FROM the commentator's statement.", "cite": "S25, S21" },
+    { "from": "tan:dipika-amrtananda", "type": "COMMENTS_ON", "to": "tan:yoginihrdaya", "strength": "strong", "evidence": "'often used as the basis of explanation of the Yoginīhṛdaya' — the text is read through it.", "cite": "S8" },
+    { "from": "tan:nityotsava", "type": "COMMENTS_ON", "to": "tan:parasuramakalpasutra", "strength": "strong", "evidence": "The Nityotsava is the supplement/paddhati to the Paraśurāmakalpasūtra: 'The author based his work on the Paraśurāmakalpasūtra' / it is 'ostensibly based on the Kalpasūtras'. It decompresses aphorism into a 64-upacāra rite. THE ARCHETYPAL COMPLETENESS-RAISING EDGE.", "cite": "S22" },
+
+    { "from": "tan:prapancasara", "type": "TRANSMITS_TO", "to": "tan:saradatilaka", "strength": "strong", "evidence": "S3: the Śāradātilaka's 101 deity descriptions are 'based on the Prapañcasāra but treating topics independently'; the two are 'closely related texts, with the latter drawing upon the former while incorporating new descriptions and omitting others'. A cited textual dependency, not a guess.", "cite": "S3", "contested": "S2 p.133 implies the opposite chronological order (ST 10th c., PS 11th c.). Both positions recorded; the dependency direction follows S3, which argues it from shared content." },
+    { "from": "tan:prapancasara", "type": "PARALLELS", "to": "tan:mantramahodadhi", "strength": "strong", "evidence": "S2 p.133: 'Bühnemann notes two textual parallels of Mantramahodadhi chapter 25, namely Śāradātilaka 23.121-45 and Prapañcasāra 446-452'. A DOCUMENTED structural parallel between three ṣaṭkarman parameter-tables — exactly the edge type the brief asks for and the only one in this slice with a named scholar asserting it.", "cite": "S2 p.133 citing S1" },
+    { "from": "tan:saradatilaka", "type": "PARALLELS", "to": "tan:mantramahodadhi", "strength": "strong", "evidence": "Same Bühnemann statement; and independently Türstig used the same Śāradātilaka passage to build his six-results chart (S2 p.133 n.49, citing Türstig p.102). Two scholars, same parallel.", "cite": "S2 p.133 nn.49, 52" },
+    { "from": "tan:kausikasutra", "type": "PARALLELS", "to": "tan:parasuramakalpasutra", "ASSERTED": false, "VOIDED_BY_AUDIT": "R33 hostile audit, EVIDENCE STRIKE E1 — the edge's own cite field ends 'inference labelled' and its evidence says the parallel is 'a claim NOT found in a source'. A Vedic-period Atharvan ritual sūtra and a 16th/17th-c. South Indian Śrīvidyā digest joined on the shared property 'is a sūtra' is a genre observation, not a documented dependency. VOID as an edge. RETAINED as a genre observation in the completeness commentary, where it is genuinely useful: both are compressed by form and both generated a decompressing paddhati (Keśavī Paddhati; Nityotsava). The four other PARALLELS in this slice are scholar-asserted (Bühnemann, Türstig, Ullrey) and stand.", "strength": "moderate", "evidence": "A GENRE parallel asserted here on explicit grounds, not a transmission: both are sūtra-form works whose incompleteness is formal rather than secretive — the Kauśika presupposes the darśapūrṇamāsa paradigm, the Kalpasūtra presupposes the Śrīvidyā rite, and each generated a decompressing paddhati (Keśavī Paddhati; Nityotsava). Flagged as an analytic parallel drawn by me from the two genre descriptions, NOT a claim found in a source.", "cite": "S12 + S22; inference labelled" },
+    { "from": "tan:nityasodasikarnava", "type": "PARALLELS", "to": "tan:yoginihrdaya", "strength": "strong", "evidence": "The two together constitute the Vāmakeśvaratantra and divide the same cult between external worship (NṢA) and its inner meaning (YH). A structural complementarity attested across all Śrīvidyā sources consulted.", "cite": "S8, S19" },
+    { "from": "tan:mantramahodadhi", "type": "PARALLELS", "to": "tan:brhattantrasara", "strength": "moderate", "evidence": "S2 p.117 n.25 groups them (with the Keralan Tantrasārasaṃgraha) as the three late Hindu-tantra sources 'since their sole concern is pragmatic ritual', noting they 'respectively originate from Varanasi, Bengal, and Kerala'. A scholar-asserted grouping of three single-author regional systematisations.", "cite": "S2 p.117 n.25" },
+
+    { "from": "tan:atharvaveda-saunaka", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "referenced", "cite": "S12, S13" },
+    { "from": "tan:atharvaveda-saunaka", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "referenced", "cite": "S12" },
+    { "from": "tan:kausikasutra", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "partial", "cite": "S12, S13" },
+    { "from": "tan:kausikasutra", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "partial", "cite": "S12" },
+    { "from": "tan:kausikasutra", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S12" },
+    { "from": "tan:kausikasutra", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "referenced", "cite": "S12" },
+    { "from": "tan:nisvasatattvasamhita", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "partial", "cite": "S6" },
+    { "from": "tan:nisvasatattvasamhita", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S6" },
+    { "from": "tan:nisvasatattvasamhita", "type": "CONTAINS_PROCEDURE", "to": "breath-discipline", "completeness": "partial", "cite": "S6" },
+    { "from": "tan:nisvasatattvasamhita", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "fragmentary", "cite": "S6 + Guhyasūtra scholarship" },
+    { "from": "tan:nisvasatattvasamhita", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "referenced", "cite": "S6" },
+    { "from": "tan:svacchandatantra", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "partial", "cite": "S18" },
+    { "from": "tan:svacchandatantra", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "partial", "cite": "S18 (tertiary chapter refs)" },
+    { "from": "tan:svacchandatantra", "type": "CONTAINS_PROCEDURE", "to": "nyāsa", "completeness": "partial", "cite": "S18 (tertiary)" },
+    { "from": "tan:svacchandatantra", "type": "CONTAINS_PROCEDURE", "to": "breath-discipline", "completeness": "referenced", "cite": "S18" },
+    { "from": "tan:svacchandatantra", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "referenced", "cite": "S10" },
+    { "from": "tan:netratantra", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "partial", "cite": "S16, S17" },
+    { "from": "tan:netratantra", "type": "CONTAINS_PROCEDURE", "to": "maṇḍala-construction", "completeness": "partial", "cite": "S16" },
+    { "from": "tan:netratantra", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "partial", "cite": "S16" },
+    { "from": "tan:netratantra", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": "S16" },
+    { "from": "tan:netratantra", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "partial", "cite": "S17" },
+    { "from": "tan:netratantra", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "partial", "cite": "S16" },
+    { "from": "tan:netratantra", "type": "CONTAINS_PROCEDURE", "to": "breath-discipline", "completeness": "referenced", "cite": "S17" },
+    { "from": "tan:prapancasara", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "referenced", "cite": "S2 p.133" },
+    { "from": "tan:prapancasara", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "partial", "cite": "S24" },
+    { "from": "tan:prapancasara", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "partial", "cite": "S24" },
+    { "from": "tan:prapancasara", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "partial", "cite": "S24, S3" },
+    { "from": "tan:prapancasara", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "partial", "cite": "S3" },
+    { "from": "tan:prapancasara", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "referenced", "cite": "S24" },
+    { "from": "tan:prapancasara", "type": "CONTAINS_PROCEDURE", "to": "mudrā", "completeness": "referenced", "cite": "S24" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "referenced", "cite": "S2 pp.131 n.44, 133" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "nyāsa", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "partial", "cite": "S3" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "breath-discipline", "completeness": "partial", "cite": "S4, S21" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "referenced", "cite": "S4" },
+    { "from": "tan:saradatilaka", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:padarthadarsa", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "partial", "cite": "S25" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "referenced", "cite": "S2 p.134" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "partial", "cite": "S26, S2 p.134" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "nyāsa", "completeness": "partial", "cite": "S26" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "partial", "cite": "S26" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "partial", "cite": "S26" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "partial", "cite": "S26" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S26" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "partial", "cite": "S3 vol.1" },
+    { "from": "tan:mantramahodadhi", "type": "CONTAINS_PROCEDURE", "to": "mudrā", "completeness": "referenced", "cite": "S1 via S2" },
+    { "from": "tan:kularnavatantra", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "partial", "cite": "S11" },
+    { "from": "tan:kularnavatantra", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "partial", "cite": "S11" },
+    { "from": "tan:kularnavatantra", "type": "CONTAINS_PROCEDURE", "to": "nyāsa", "completeness": "referenced", "cite": "S11" },
+    { "from": "tan:kularnavatantra", "type": "CONTAINS_PROCEDURE", "to": "breath-discipline", "completeness": "referenced", "cite": "S11" },
+    { "from": "tan:kularnavatantra", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "referenced", "cite": "S11" },
+    { "from": "tan:kularnavatantra", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "referenced", "cite": "S11" },
+    { "from": "tan:kularnavatantra", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "referenced", "cite": "S11" },
+    { "from": "tan:kularnavatantra", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "referenced", "cite": "S11" },
+    { "from": "tan:nityasodasikarnava", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S19" },
+    { "from": "tan:nityasodasikarnava", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "partial", "cite": "S19" },
+    { "from": "tan:nityasodasikarnava", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "referenced", "cite": "S9, S10" },
+    { "from": "tan:nityasodasikarnava", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "referenced", "cite": "S19" },
+    { "from": "tan:yoginihrdaya", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "partial", "cite": "S8" },
+    { "from": "tan:yoginihrdaya", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "partial", "cite": "S8" },
+    { "from": "tan:yoginihrdaya", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S8" },
+    { "from": "tan:yoginihrdaya", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "partial", "cite": "S8" },
+    { "from": "tan:dipika-amrtananda", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "referenced", "cite": "S8" },
+    { "from": "tan:saundaryalahari", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "partial", "cite": "S15" },
+    { "from": "tan:saundaryalahari", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "partial", "cite": "S15" },
+    { "from": "tan:saundaryalahari", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "referenced", "cite": "S15" },
+    { "from": "tan:parasuramakalpasutra", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "referenced", "cite": "S22" },
+    { "from": "tan:parasuramakalpasutra", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "referenced", "cite": "S22" },
+    { "from": "tan:parasuramakalpasutra", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "referenced", "cite": "S22" },
+    { "from": "tan:nityotsava", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S22, S5" },
+    { "from": "tan:nityotsava", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "partial", "cite": "S22" },
+    { "from": "tan:nityotsava", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "partial", "cite": "S22" },
+    { "from": "tan:nityotsava", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "referenced", "cite": "S22" },
+    { "from": "tan:nityotsava", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "referenced", "cite": "S22" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": "S14, S21" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "CONTAINS_PROCEDURE", "to": "maṇḍala-construction", "completeness": "referenced", "cite": "S21" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "partial", "cite": "S21" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "CONTAINS_PROCEDURE", "to": "breath-discipline", "completeness": "referenced", "cite": "S21" },
+    { "from": "tan:isanasivagurudevapaddhati", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "referenced", "cite": "(unverified) — open question, not a claim" },
+    { "from": "tan:brhattantrasara", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "cite": "S23" },
+    { "from": "tan:brhattantrasara", "type": "CONTAINS_PROCEDURE", "to": "mantra-consecration", "completeness": "partial", "cite": "S23" },
+    { "from": "tan:brhattantrasara", "type": "CONTAINS_PROCEDURE", "to": "yantra-construction", "completeness": "referenced", "cite": "(unverified) — genre-level" },
+    { "from": "tan:brhattantrasara", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "referenced", "cite": "S2 p.117 n.25" },
+    { "from": "tan:merutantra", "type": "CONTAINS_PROCEDURE", "to": "mantra-recitation", "completeness": "referenced", "cite": "catalogue-level only" }
+  ],
+
+  "structuralFindings": {
+    "ritualSyntax": {
+      "claim": "The 'standard pūjā sequence' the brief proposes (snāna→nyāsa→dhyāna→āvāhana→upacāra→japa→homa→visarjana) is REAL, but it is attested at two different granularities and the graph should not merge them.",
+      "fiveFoldCore": "A five-act core is stated verbatim IN A TEXT, with a locus — S2 p.576 n.51 translating Bhairavapadmāvatīkalpa 3.24: 'The wise declare the five worship acts of the goddess to be invocation (āhvānaṃ), depositing (stāpanaṃ), gaining her attention (sannidhīkaraṇa), worship (pūjā), and dismissal (visarjanaṃ).' Invocation→installation→presencing→service→dismissal. This is a tradition-internal statement of ritual syntax, not a scholarly reconstruction — the strongest such statement I found.",
+      "sixteenUpacara": "S5 (Bühnemann, Pūjā) enumerates the smārta service-sequence: invocation (āvāhana), seat (āsana), foot-water (pādya), arghya, sipping-water (ācamanīya), bath (snāna), garments (vastra), sacred thread (yajñopavīta), unguents (anulepana), flowers (puṣpa), incense (dhūpa), lamp (dīpa), food (nivedana), prostration (namaskāra), circumambulation (pradakṣiṇā), gift (dakṣiṇā) — with the whole 'preceded by the performance of nyāsa'. This is the UPACĀRA expansion of the fourth act of the five-fold core.",
+      "sixtyFourUpacara": "The Śrīvidyā paddhati (Nityotsava ch.3) runs sixty-four upacāras — a fourfold elaboration of the same slot.",
+      "innerBeforeOuter": "Cross-cutting: 'In Tantric rites, internal worship (antaryāga) always precedes the external (bahiryāga)', with bhūtaśuddhi and nyāsa as the acts that make the deity's establishment possible. So the full template is antaryāga(bhūtaśuddhi→nyāsa→dhyāna) → bahiryāga(āvāhana→upacāra→japa) → homa → visarjana.",
+      "graphImplication": "CONTAINS_PROCEDURE should be able to carry a SLOT (which position in the syntax a procedure occupies), otherwise nyāsa in the Śāradātilaka and nyāsa in the Mantramahodadhi look like unrelated facts rather than the same slot in the same template."
+    },
+    "initiationGatingAndSecrecy": {
+      "claim": "Withholding is not incidental to this corpus; it is a STRUCTURAL FEATURE with at least six distinguishable mechanisms, and a completeness schema that does not distinguish them will produce mush.",
+      "mechanisms": [
+        { "id": "M1", "name": "mantroddhāra encoding", "note": "The mantra is not written; it is derivable by grid (prastāra/gahvara), code-word substitution, numeric code or letter-reversal. S10 (Kavaleuskaya 2020, pp.59-79) names Tantrāloka, Parātriṃśikā, Mālinīvijayottara, Siddhayogeśvarīmata, Kubjikāmata, SVACCHANDATANTRA, Jayadrathayāmala and Vīṇāśikha among texts using it, and observes that 'obstacles to understanding the process of decryption were probably created intentionally either to keep some degree of secrecy'. S2 records the same at work in the Uḍḍ-corpus: the Hindu recension 'resolves ambiguity of techniques but ENCODES THE MANTRAS'. Effect on grading: a text can be complete in every respect except the one element without which nothing runs." },
+        { "id": "M2", "name": "dīkṣā prerequisite", "note": "Śāradātilaka places dīkṣā at paṭala 4, before every operative chapter; Kulārṇava makes initiation its central subject; Śrīvidyā is initiation-gated throughout. Architecture as gate." },
+        { "id": "M3", "name": "explicit in-text reading prohibition", "note": "Kulārṇava 17.103 forbids ordinary persons from reading part of the work (Avalon's introduction). The rarest and hardest mechanism: the text names a readership it excludes." },
+        { "id": "M4", "name": "oral-only transmission claim", "note": "Kulārṇava III: the knowledge 'is not to be known from Vedas or Āgamas or Śāstras or Purāṇas, however exhaustive they may be… It can be known only through the mouth of the Guru.' A text asserting that texts cannot convey it." },
+        { "id": "M5", "name": "commentary-dependence", "note": "Padārthādarśa, Naukā, Uddyota, Dīpikā, Ṛjuvimarśinī, Prayogakramadīpikā. Where the root text is unreadable without the commentary, the completeness grade belongs to the PAIR, not the root. Note the pattern in the titles: 'lamp on the order of the ritual application', 'the boat for crossing the ocean of mantras' — the commentators say plainly that the root texts do not get you across." },
+        { "id": "M6", "name": "MODERN EDITORIAL AND TRANSLATOR REDACTION — a separate axis entirely", "note": "M.P. Pandit's preface to the standard English Kulārṇava: 'Portions relating to rituals, technicalities of special types of japa, etc. have been kept out of the treatment.' M.P. Pandit's Kulārṇava is not an incomplete rendering of a complete text — it is a deliberate modern redaction of an already-withholding text. Separately, the 1981 Mantramahodadhi carries a publisher's disclaimer against 'nefarious acts' (quoted S2 pp.141-142 n.9). CONSEQUENCE FOR THE SCHEMA: `textCompleteness` must be joined by `witnessCompleteness` (what the edition/translation actually gives). Grading the Kulārṇava from Pandit grades Pandit." }
+      ]
+    },
+    "metaRitualFinding": {
+      "claim": "THE SINGLE MOST CONSEQUENTIAL FINDING OF THIS SLICE. The three most-cited 'operative' chapters in the Śākta digest line — Mantramahodadhi 25, Śāradātilaka 23.121-45, Prapañcasāra 446-452 — contain no rite. They are parameter tables.",
+      "evidence": [
+        "S2 p.134: 'Full rituals, as opposed to systematic verses, are scattered throughout the text, but no discrete rituals are found in this section. Chapter 25 describes nineteen variables or \"nineteen items\" that the practitioner should know before performing a rite.'",
+        "S2 p.131 n.44: 'the Śāradātilaka sample is meta-text that describes variations within ritual to coordinate with a specific results, not full discrete rituals with specific ends. A second-order text cannot describe a first-order text.'",
+        "S2 p.133: 'That meta-ritual lore is not connected to a larger set of practices (sādhana) dedicated to a single deity.'",
+        "S2 p.134: 'Mantramahodadhi 25 and Śāradātilaka 23 — source texts for Bühnemann and Türstig — DEVIATE FROM THE TEXTS' OVERALL CONTENT.' i.e. the chapters the scholarship built the ṣaṭkarman on are atypical of their own books."
+      ],
+      "consequenceForThisProject": "The repo's abhicāra wing maps the nineteen variables exhaustively and never assembles them. S1 read that as editorial restraint. It is BOTH restraint AND fidelity: the source chapter has nothing to assemble. The wing is more accurate than it knew, and the graph should say so rather than quietly upgrading these rows.",
+      "consequenceForVocabulary": "Add a procedure-type or a work-kind for META-RITUAL / PARAMETER-TABLE. Without it, first-order and second-order operative texts are indistinguishable in the graph, and 'completeness' becomes unanswerable for the corpus's most-cited chapters."
+    },
+    "procedureNodeAttachment": {
+      "ruling": "In this slice every procedure hangs off a WORK (including commentary-works, which are works). Nothing needed to hang off a person, event or institution. RECOMMENDATION to the synthesizer: restrict CONTAINS_PROCEDURE to work-nodes, and represent a person's or school's practice as work→CONTAINS_PROCEDURE plus person→TRANSMITS/PRACTISES edges. The atlas's 91 technique fields on text/person/event/institution/translation nodes should be normalised onto works, with the two mis-attributions S1 identified (Mevlevi samāʿ; the golden-flower translation node) as the precedent for why."
+    }
+  },
+
+  "notes": "Nothing in this file reproduces a procedure. No mantra syllable, no bīja, no yantra template, no measurement, no substance quantity, no timing-as-instruction and no second-person directive appears anywhere. The ṣaṭkarman rows, the Kaula pañcamakāra row, the Atharvan ābhicārika rows and the Niśvāsa Guhyasūtra row each carry a harmNote and are admitted only as academic religious history, following the repo's abhicāra-wing precedent. Efficacy is never asserted: where a text claims to conquer death (Netratantra), grant liberation through initiation (Svacchanda + Kṣemarāja), or produce a worldly result (ṣaṭkarman), the claim is attributed to the text or the tradition and left there. Contested points carry ≥2 positions and are not resolved: the Śāradātilaka's date (four positions) and ṣaṭkarman locus; the Prapañcasāra/Śāradātilaka priority; the Mantramahodadhi's date inside its own cited source; the Nityāṣoḍaśikārṇava's extent; the Nityotsava's author; the Merutantra's date and extent."
+}

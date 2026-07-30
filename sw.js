@@ -32,7 +32,7 @@
 
 // Bump on every deploy that changes cached bytes. The date-ish tag makes stale
 // caches obvious in DevTools → Application → Cache Storage.
-const VERSION = 'awb-2026-07-16';
+const VERSION = 'awb-2026-07-30';
 const PRECACHE = `${VERSION}-shell`;
 const RUNTIME = `${VERSION}-runtime`;
 const CURRENT = new Set([PRECACHE, RUNTIME]);
@@ -70,6 +70,14 @@ const SHELL_PATHS = [
   'assets/js/core/registry.js',
   'assets/js/lib/astronomy.js',
 ];
+// DELIBERATELY NOT IN THE SHELL (R34): pages/opgraph.html, assets/css/opgraph.css,
+// assets/js/app/opgraph.js, assets/js/core/opgraph.js and assets/js/core/data/opgraph.js.
+// The graph's data module alone is ~851 KB — larger than everything else in this shell
+// put together — and it serves exactly one page. Precaching it would spend a
+// first-visit download on a page most readers never open, which is what "keep it
+// SMALL" forbids. All five are runtime-cached on first request (stale-while-revalidate
+// for the assets, network-first for the page), so the graph is fully offline for anyone
+// who has actually visited it. Revisit only if that page becomes a boot destination.
 const SHELL = SHELL_PATHS.map(p => new URL(p, self.location).href);
 const INDEX_URL = new URL('index.html', self.location).href;
 

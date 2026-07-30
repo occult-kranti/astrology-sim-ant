@@ -76,6 +76,7 @@ export const NAV_GROUPS = [
     ['pages/jung/index.html', 'Jung & astrology', 'jung'],
     ['pages/chronology/index.html', 'The Hermetic Chronology', 'chronology'],
     ['pages/confluence.html', 'The Great Confluence — atlas', 'confluence'],
+    ['pages/opgraph.html', 'The Operative Corpus — graph', 'opgraph'],
     ['pages/yoga/index.html', 'The Yoga Sūtras', 'yoga'],
     ['pages/buddhist/index.html', 'Buddhist scriptures — word by word', 'buddhist'],
     ['pages/practices/index.html', 'Practices — the museum of methods', 'practices'],
@@ -130,6 +131,7 @@ export function currentSection() {
   if (m(/\/pages\/jung\//)) return 'jung';
   if (m(/\/pages\/chronology\//)) return 'chronology';
   if (m(/\/pages\/confluence\.html$/)) return 'confluence';
+  if (m(/\/pages\/opgraph\.html$/)) return 'opgraph';
   if (m(/\/pages\/yoga\//)) return 'yoga';
   if (m(/\/pages\/buddhist\//)) return 'buddhist';
   if (m(/\/pages\/practices\//)) return 'practices';

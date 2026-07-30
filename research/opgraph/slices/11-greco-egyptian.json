@@ -1,0 +1,783 @@
+{
+  "meta": {
+    "slice": "11 — Greco-Egyptian + late-antique operative papyri and theurgy (PGM/PDM, Coptic magical corpus, Leiden/Stockholm alchemical papyri, Sefer ha-Razim, Cyranides, Chaldean Oracles, Iamblichus, Proclus)",
+    "dateISO": "2026-07-17",
+    "agent": "opgraph slice 11",
+    "namespaces": {
+      "gem:": "Greco-Egyptian magical formularies & applied corpora (this slice; no atlas slug unless stated)",
+      "theu:": "late-antique theurgic literature (this slice)",
+      "au:": "author / attribution node",
+      "cu:": "culture / tradition-milieu node",
+      "coll:": "manuscript collection / archive node (SCHEMA EXTENSION — see notes.schemaProposals)",
+      "gw:": "existing repo greatworks id (join key, do not mint)",
+      "atlas:": "existing/planned Confluence slug (join key, do not mint)"
+    },
+    "framingLock": "Historical symbolic systems, no demonstrated validity. DESCRIBED NEVER PRESCRIBED. This file records THAT a text contains a procedure, of what KIND, in what STRUCTURE, and how COMPLETE — it deliberately contains no voces magicae, no formula text, no quantities, no timings expressed as instructions, no drawable characters/charaktēres, and no second-person address. Efficacy is never asserted: the tradition CLAIMS, the text SAYS.",
+    "method": [
+      "Web research this round (WebSearch/WebFetch) against encyclopaedic overviews, publisher/edition pages, the Würzburg Coptic Magical Papyri project, BMCR/Cambridge reviews, and archive.org/Heidelberg digitisations. Every figure below is traceable to a `cite` key resolved in meta.sources.",
+      "Repo prior art read first (READ-ONLY) to inherit rather than re-derive: docs/plans/r29/esoteric-libraries.md (pgm-corpus, chaldean-oracles, sefer-ha-razim admitted-but-NOT-SHIPPED; the PGM V→Goodwin 1852→Goetia 1904→Samekh chain), and assets/js/core/data/greatworks.js §iamblichus (de-mysteriis record, incl. the Scutelli-1556 editorial-book-division flag).",
+      "Two completeness fields kept apart per the inventory agent's precedent: `repoCoverage` (what THIS repo currently records) vs `textCompleteness` (what the SOURCE text itself gives). For this slice repoCoverage is almost uniformly 'absent' — that is the headline.",
+      "Anything not re-derivable from a source consulted THIS ROUND is written with '(unverified)' inline."
+    ],
+    "sources": {
+      "S1": "Wikipedia, 'Greek Magical Papyri' — https://en.wikipedia.org/wiki/Greek_Magical_Papyri (corpus range 100s BCE–400s CE; Preisendanz 2 vols 1928/1931; vol. III galley proofs 'Pentecost 1941' destroyed in the bombing of Leipzig; 1973–74 revised ed.; Betz 1980s–1992; numbering runs to PGM LXXXI; Thebes Cache / d'Anastasi c.1827; Greco-Egyptian not general Greco-Roman syncretism)",
+      "S2": "Wikipedia, 'Mithras Liturgy' — https://en.wikipedia.org/wiki/Mithras_Liturgy (PGM IV.475–829; Dieterich, Eine Mithrasliturgie 1903, coined the name from the Helios-Mithras invocations; Cumont contra; Betz syncretic reading; Meyer pro; seven-grade ascent; ll.751–834 preparatory/materia section; vowel-sequences, hissing/popping vocalisation, breath manipulation, apathanatismos)",
+      "S3": "antikemagie.com, 'The \"Great Paris Papyrus\" — PGM IV' — https://www.antikemagie.com/greek-magical-papyrus-book-pgm-iv/ (4th c.; 36 sheets / 72 pages, 66 inscribed; 27–30.5 × 9.5–13 cm; BnF; >50 sections, majority ritual instructions; >3,200 lines; no medical magic; also carries a re-usable prayer, astrological data, plant-picking lore, a salutation)",
+      "S4": "Würzburg Coptic Magical Papyri project, 'The Bilingual Direct-Vision of PGM IV' — https://www.coptic-magic.phil.uni-wuerzburg.de/index.php/2019/06/21/the-bilingual-direct-vision-of-pgm-iv/ (Greek carries the ritual INSTRUCTIONS, Old Coptic-Egyptian carries the INVOCATIONS; PGM IV.5–51 direct-vision recipe: seven-day purity, an animal-derived eye-preparation, lunar-day + sunrise timing, place condition, bird sacrifice, river immersion; end 3rd/early 4th c.; 72 pp., 3,274 lines)",
+      "S5": "Würzburg Coptic Magical Papyri project, 'Looking at the Coptic Magical Papyri II: Formularies and Applied Texts' — https://www.coptic-magic.phil.uni-wuerzburg.de/index.php/2019/03/29/looking-at-the-coptic-magical-papyri-ii-formularies-and-applied-texts/ (formulary vs applied text; placeholder 'NN son/daughter of NN' vs named 'Jacob son of Euphemia'; Kyprianos counts: 181 definite formularies, 187 definite applied, 132 unclear, +45 uncertain formularies / +99 uncertain applied; practitioners adapted recipes rather than following them verbatim)",
+      "S6": "Wikipedia, 'Coptic magical papyri' + Würzburg project pages — https://en.wikipedia.org/wiki/Coptic_magical_papyri , https://www.coptic-magic.phil.uni-wuerzburg.de/ (c. 500–600 texts, 3rd–12th c.; Meyer & Smith, Ancient Christian Magic 1994 = largest published collection, c. 100 texts ≈ one fifth; Kyprianos database, 7 linked tables; project at JMU Würzburg since Sept 2018)",
+      "S7": "Dosoo & Preininger et al., Papyri Copticae Magicae: Coptic Magical Texts, Vol. 1: Formularies, De Gruyter, Archiv für Papyrusforschung Beihefte 48, 2023 (ISBN 9783111079790) — https://www.academia.edu/108991065/",
+      "S8": "Faraone & Torallas Tovar (edd.), Greek and Egyptian Magical Formularies: Text and Translation, Vol. 1, California Classical Studies 9, 2022, OPEN ACCESS (escholarship.org/uc/item/9650x69r); companion vol. The Greco-Egyptian Magical Formularies: Libraries, Books, and Individual Recipes, Univ. of Michigan Press, 2022. Reviews: BMCR 2023.02.49 https://bmcr.brynmawr.edu/2023/2023.02.49/ ; Classical Review (Cambridge). 'More than eighty magical handbooks survive, some in a fragmentary state'; project 'The Transmission of Magical Knowledge', Neubauer Collegium, Univ. of Chicago, from 2015; GEMF replaces Preisendanz as the reference edition.",
+      "S9": "GEMF concordance items verified this round from article/volume titles: GEMF 15 = PGM/PDM XII (academia.edu/119271664 'GEMF 15 (= PGM/PDM XII): Production and Use of a Bilingual Magical Formulary'); GEMF 16 = PGM/PDM XIV (Symbolae Osloenses 98.1, 'Bilingual Scribes in Magical Formularies: The Cases of PGM/PDM XII (= GEMF 15) and XIV (= GEMF 16)', https://www.tandfonline.com/doi/full/10.1080/00397679.2025.2454757); GEMF 30 = PGM II / P.Berol. inv. 5026 (ZPE 224 (2022) 267–273, ink analysis); GEMF 31 = PGM I (Symbolae Osloenses, 'Considering PGM I as GEMF 31', doi 10.1080/00397679.2025.2463262); GEMF 55 = PGM III (Symbolae Osloenses 99.1, 'From PGM III to GEMF 55: Rearrangement of an Ancient Magical Roll'); GEMF 57 = PGM IV (De Gruyter Brill, 'New Approaches to the Great Paris Magical Codex (PGM IV/GEMF 57)', ISBN 9783111237169)",
+      "S10": "Griffith & Thompson (edd.), The Demotic Magical Papyrus of London and Leiden, H. Grevel & Co., 1904–1909 — https://archive.org/details/demoticmagicalpa01grifuoft , https://archive.org/details/b29003519_0001 (3rd c. AD; recto 29 ruled columns of spells and recipes — divination, love spells, poisons, healing; verso discontinuous memoranda, prescriptions and short invocations; Demotic with Old Coptic glosses and Greek recitation elements)",
+      "S11": "Wikipedia 'Papyrus 121 (Greek magical papyrus)' + antikemagie.com — https://en.wikipedia.org/wiki/Papyrus_121_(Greek_magical_papyrus) (P.Lond. 121 = PGM VII; c. 2.33 m × 33 cm; inscribed both sides; >1,000 lines; 67 ritual instructions — the most extensive ritual collection in the corpus; contains a Homer Oracle / Homeromanteion; bought in Egypt 1888 by Wallis Budge for the British Museum; now British Library; 3rd c. per one source, 4th c. per another — dating contested; Theban origin likely)",
+      "S12": "British Library Archives & Manuscripts, Papyrus 46 — https://searcharchives.bl.uk/catalog/040-002104464 ('Handbook of Magic', P.Lond. I 46 = PGM V, TM 64368; 7 pages of a papyrus codex, written both sides, single column averaging 37 lines/page; includes 'Stele of Ieu the Hieroglyphist' at ff. 2r–3r)",
+      "S13": "Wikipedia, 'Bornless Ritual' — https://en.wikipedia.org/wiki/Bornless_Ritual (source = PGM V.96–172, 'Stele of Jeu the Hieroglyphist in his letter'; originally a rite of exorcism; first English publication C. W. Goodwin, 'Fragment of a Graeco-Egyptian Work Upon Magic', Cambridge Antiquarian Society, 1852; Mathers/GD reception; Crowley's 1904 Goetia Preliminary Invocation; Liber Samekh)",
+      "S14": "Louvre collections + academia.edu, on PGM III / Papyrus Mimaut — https://collections.louvre.fr/en/ark:/53355/cl010001517 , https://www.academia.edu/33226015/ ('The \"PGM III\" Archive: Two Papyri, Two Scribes, Two Scripts, and Two Languages'; Louvre N 2391; acquired by J.-F. Mimaut c.1820, to the museum 1837; bilingual Greek–Old Coptic roll, 3rd–4th c.; two distinct papyri PGM III.1 / III.2, Scribe A monolingual Greek, Scribe B bilingual; hymns to Pan/Pantokrator, Helios and All the Gods, Apollo & Daphne)",
+      "S15": "Klutz, 'Jesus, Morton Smith, and the Eighth Book of Moses (PGM 13.1–734)', Journal for the Study of the Pseudepigrapha 21.2 (2011), 133–159 [AUDIT-CORRECTED: this slice gave the journal as JSNT; the doi prefix 0951820 and the SAGE record both resolve to JSP, not the Journal for the Study of the New Testament] — https://journals.sagepub.com/doi/abs/10.1177/0951820711426746 (Leiden Papyrus J 395 = PGM XIII, 1,078 lines of Greek; Smith argued THREE recensions of MosesVIII, Klutz argues for the pre-Smith TWO; the 'Secret Tenth Book' also present). Photographic edition: Two Greek Magical Papyri in the National Museum of Antiquities in Leiden: A Photographic Edition of J 384 and 395 (= PGM XII and XIII).",
+      "S16": "Wikipedia, 'Leyden papyrus X' — https://en.wikipedia.org/wiki/Leyden_papyrus_X (Greek, end of 3rd c. AD; Thebes, found by Jean d'Anastasi; 10-leaf codex; 111 recipes for extracting/counterfeiting precious metals, imitation gemstones and purple dye, plus textile and ink recipes; last eleven recipes are extracts from Dioscorides' Materia Medica; Stockholm papyrus probably by the SAME scribe and found with it; now Leiden University)",
+      "S17": "Wikipedia 'Papyrus Graecus Holmiensis' + Caley — https://en.wikipedia.org/wiki/Papyrus_Graecus_Holmiensis (154 recipes: dyeing, colouring gemstones, cleaning/whitening pearls, imitation gold and silver). Editions: Berthelot, Collection des anciens alchimistes grecs, 1888; E. R. Caley, J. Chem. Educ. — Leyden Papyrus X 1926, Stockholm Papyrus 1927 (English); R. Halleux, Les alchimistes grecs I: Papyrus de Leyde, Papyrus de Stockholm, Fragments de recettes, Les Belles Lettres, 1981.",
+      "S18": "Margalioth, Sepher ha-Razim, 1966 (reconstruction from Cairo Genizah fragments + medieval Hebrew/Latin/Arabic versions; dated late 3rd/early 4th c. CE); Morgan, Sepher Ha-Razim: The Book of Mysteries, SBL, 1983 (preface + seven chapters for seven firmaments; 700+ angel names; c. 30 recipes/'counsels'; Greek termini technici; a concluding Greek prayer to Helios) — https://en.wikipedia.org/wiki/Sepher_Ha-Razim:_The_Book_of_Mysteries and search-verified summaries. Rebiger & Schäfer, Sefer ha-Razim I und II, Mohr Siebeck, 2009 (critical edition) — cited from the plan's own bibliography, edition details (unverified) this round.",
+      "S19": "Wikipedia, 'Cyranides' — https://en.wikipedia.org/wiki/Cyranides (compilation of Hermetic magico-medical works in Greek, first put together in the 4th c.; incorporates the treatise of Harpocration; Book I in 24 chapters, one per Greek letter, each pairing a plant, a bird, a fish (broadly construed) and a stone). Editions: D. Kaimakis (ed.), Kyranides, Beiträge zur klassischen Philologie 76, Meisenheim am Glan, 1976; M. Waegeman, Amulet and Alphabet: Magical Amulets in the First Book of Cyranides, J. C. Gieben, Amsterdam, 1987 — https://archive.org/details/amuletalphabetma0000waeg",
+      "S20": "Wikipedia 'Chaldean Oracles' + Grokipedia + Majercik — https://en.wikipedia.org/wiki/Chaldean_Oracles (c. 300 fragments surviving ONLY as quotations in Damascius, Proclus, Simplicius and Psellos; attributed to Julian the Theurgist, possibly with Julian the Chaldean; presented as revelations received in inspired trance). Editions: W. Kroll, De oraculis Chaldaicis, 1894; É. des Places, Oracles chaldaïques, Budé, 1971 (fragments 1–227 + testimonia — the standard numbering); R. Majercik, The Chaldean Oracles: Text, Translation and Commentary, Brill, Studies in Greek and Roman Religion 5, 1989. Commentaries by Porphyry, Iamblichus and Proclus are ALL LOST.",
+      "S21": "Iamblichus, De mysteriis. Editions/translations: Clarke, Dillon & Hershbell, Iamblichus: De mysteriis, SBL Writings from the Greco-Roman World, 2003 (ISBN 9789004127203); Saffrey, Segonds & Lecerf, Jamblique: Réponse à Porphyre (De mysteriis), Budé/CUF Série grecque 496, Les Belles Lettres, 2013 — BMCR 2013.11.41 https://bmcr.brynmawr.edu/2013/2013.11.41 (the familiar title 'De mysteriis' was bestowed by Marsilio FICINO and has burdened the text for five centuries; the true title is the Reply to Porphyry's Letter to Anebo). The work is a DEFENCE of theurgy answering Porphyry, framed as the reply of the Egyptian priest 'Abamon'; examines sacrifice, angels and daimones, divine possession, and oracles.",
+      "S22": "Repo prior art, READ-ONLY: assets/js/core/data/greatworks.js §id:'iamblichus' / work id:'de-mysteriis' — Taylor 1821/1895 and Wilder 1911 PD, Clarke–Dillon–Hershbell 2003 cite-only; FLAG already in-repo: 'The 10-book division is EDITORIAL, not authorial — devised by Scutelli for the 1556 Rome edition … only undone by Saffrey–Segonds (Budé, 2013). Wilder's 1911 text uses its OWN numbering.'",
+      "S23": "Proclus, On the Hieratic Art according to the Greeks (De arte hieratica / Peri tēs kath' Hellēnas hieratikēs technēs). Greek text in J. Bidez, Catalogue des manuscrits alchimiques grecs VI, Bruxelles: Lamertin, 1928. New critical edition: E. Pachoumi, Proclus' On the Hieratic Art according to the Greeks: Critical Edition with Translation and Commentary, Brill, Studies in Platonism, Neoplatonism, and the Platonic Tradition 33, 2024 — https://brill.com/display/title/69653 (treats sympatheia, sunthēmata/symbols, statues, incenses, purifications, invocations and epiphanies as a blend of ritual acts and philosophical concepts).",
+      "S24": "K. Dosoo, 'A History of the Theban Magical Library', Bulletin of the American Society of Papyrologists 53 (2016) 251–274 — https://www.academia.edu/29796108/ ('several inconsistent models of its contents have been proposed'; on collection-history and content criteria TEN magical and alchemical papyri can probably be associated with the Theban Library and a further NINE, associated by various authors, can be EXCLUDED). Trismegistos archive 363 — https://www.trismegistos.org/archive/363",
+      "S25": "Faraone, 'The Ethnic Origins of a Roman-Era Philtrokatadesmos (PGM IV 296–434)'; PGM IV.296–466 described in overviews as a binding + agōgē erotic spell pairing two modelled figurines with an inscribed lead tablet and a recited formula; a bound, pin-pierced female figurine in the Louvre corresponds materially to it. Search-verified summaries (Magic in Ancient Greece and Rome; Würzburg project blog).",
+      "S26": "Preisendanz digitisations: Heidelberg, Papyri graecae magicae Bd.1 (1928) https://digi.ub.uni-heidelberg.de/diglit/heidhs3763IIA-51bd1/0011 and Bd.2 (1931) https://digi.ub.uni-heidelberg.de/diglit/heidhs3763IIA-51bd2 ; AWOL notice http://ancientworldonline.blogspot.com/2017/11/preisendanz-papyri-graecae-magicae.html",
+      "S27": "Repo prior art, READ-ONLY: docs/plans/r29/esoteric-libraries.md §2.3 & §2.5 — admitted-but-NOT-SHIPPED atlas entries `pgm-corpus` (alchemy-west, 2nd–5th c. CE, 'Greek PD (Preisendanz 1928); Betz cite-only'), `chaldean-oracles` (c.170 CE, Westcott 1895 PD witness with redaction flagged, Majercik cite-only), `sefer-ha-razim` (kabbalah lane, ~300 CE CONTESTED vs later redaction); admitted edges `pgm-corpus→lemegeton` (Bornless chain: Goodwin 1852 → 1904 Preliminary Invocation) and `sefer-ha-razim→sefer-raziel`; tool T24 'Chaldean Oracles fragment browser'; tool T9 'PGM voces magicae → Enochian → Ouranian Barbaric, no dictionary reproduction'."
+    },
+    "counts": {
+      "works": 22,
+      "worksNote": "20 in-slice works + 1 work-segment pair counted within them + 1 external anchor node (gw:goetia-1904-preliminary-invocation) that exists only to give the PGM V transmission edge a typed target.",
+      "authors": 8,
+      "cultures": 6,
+      "collections": 1,
+      "procedureRows": 62,
+      "edges": 121,
+      "edgesByType": { "AUTHORED_BY": 19, "BELONGS_TO": 18, "CONTAINS_PROCEDURE": 61, "SEGMENT_OF": 2, "TRANSMITS_TO": 4, "COMMENTS_ON": 2, "PARALLELS": 8, "FOUND_WITH": 7 },
+      "reconciliation": "62 procedure rows vs 61 CONTAINS_PROCEDURE edges: gem:pgm-iv carries a coercive-rite row that deliberately emits NO work-level edge, because the procedure belongs to the segment gem:pgm-iv-296-466 and would otherwise be double-counted.",
+      "danglingTargets": ["gem:pgm-vi (named in one PARALLELS edge, given no record this round)", "atlas:sefer-raziel and atlas:sefer-yetzirah (external join keys, neighbouring slices)", "gw:goetia-1904-preliminary-invocation (external anchor, neighbouring slice)"],
+      "vocabGapsDistinct": 15
+    }
+  },
+
+  "authors": [
+    { "id": "au:anonymous-greco-egyptian", "label": "Anonymous / multiple (Greco-Egyptian ritual practitioners and temple-trained scribes)", "kind": "anonymous", "note": "The PGM/PDM handbooks are compilations by named-nowhere copyists; GEMF work identifies individual SCRIBAL HANDS rather than authors (e.g. PGM III's Scribe A / Scribe B; GEMF 15's principal bilingual scribe-user plus three Greek-trained assistants). 'Author' is the wrong node type for most of this slice — see notes.schemaProposals.", "cite": ["S8","S9","S14"] },
+    { "id": "au:pseudo-moses", "label": "'Moses' (pseudepigraphic attribution)", "kind": "attributed", "note": "PGM XIII circulates as the 'Eighth Book of Moses' (with a 'Secret Tenth Book'); the attribution is a claim of authority, not a historical author.", "cite": ["S15"] },
+    { "id": "au:hermes-trismegistus", "label": "Hermes Trismegistus (pseudepigraphic attribution)", "kind": "attributed", "note": "Attribution frame of the Cyranides. The repo already carries a glossary entry stating Hermes Trismegistus is not a historical person.", "cite": ["S19"] },
+    { "id": "au:harpocration", "label": "Harpocration of Alexandria (source-treatise author absorbed into the Cyranides)", "kind": "named-source", "cite": ["S19"] },
+    { "id": "au:julian-theurgist", "label": "Julian the Theurgist (attributed; possibly with Julian the Chaldean)", "kind": "attributed", "note": "The Oracles present themselves as divine revelations received in inspired trance — i.e. the tradition CLAIMS a non-human author. Recorded as a claim.", "cite": ["S20"] },
+    { "id": "au:iamblichus", "label": "Iamblichus of Chalcis (writing as 'Abamon')", "kind": "named", "repoJoin": "gw:iamblichus (greatworks.js author id)", "dates": "c. 245 – c. 325 CE", "cite": ["S21","S22"] },
+    { "id": "au:porphyry", "label": "Porphyry of Tyre", "kind": "named", "cite": ["S21"] },
+    { "id": "au:proclus", "label": "Proclus Diadochus", "kind": "named", "cite": ["S23"] }
+  ],
+
+  "cultures": [
+    { "id": "cu:greco-egyptian-roman-egypt", "label": "Greco-Egyptian ritual practice of Roman Egypt", "span": "c. 100s BCE – 400s CE", "note": "S1 is explicit that the syncretism is Greco-EGYPTIAN rather than generically Greco-Roman: Greek, Egyptian, Jewish and later Christian elements fused in one milieu.", "cite": ["S1"] },
+    { "id": "cu:demotic-egyptian-priestly", "label": "Demotic/hieratic Egyptian temple-priestly literacy", "note": "The bilingual formularies' principal scribe-users appear trained in the Egyptian temple priesthood; Egyptian script carries the recited matter, Greek the instructions.", "cite": ["S4","S9"] },
+    { "id": "cu:coptic-christian-egypt", "label": "Coptic (Christian and post-Christian) Egypt", "span": "3rd – 12th c. CE", "cite": ["S6"] },
+    { "id": "cu:greco-jewish-late-antique", "label": "Greco-Jewish late antiquity", "cite": ["S18"] },
+    { "id": "cu:greco-egyptian-craft-alchemy", "label": "Greco-Egyptian craft chemistry / proto-alchemy", "cite": ["S16","S17"] },
+    { "id": "cu:late-antique-neoplatonism", "label": "Late-antique Neoplatonic theurgy", "cite": ["S20","S21","S23"] }
+  ],
+
+  "collections": [
+    {
+      "id": "coll:theban-magical-library",
+      "label": "The 'Theban Magical Library' (Anastasi cache)",
+      "kind": "manuscript-archive",
+      "schemaExtension": true,
+      "claim": "A group of Greek, Demotic, Old Coptic and alchemical papyri said to have been found together at Thebes and acquired c. 1827 by Jean d'Anastasi, then dispersed to the BnF, British Museum, Louvre, Berlin and Leiden.",
+      "contested": {
+        "positionA": "Traditional model: a single coherent find — the most important surviving magical archive; the shared provenance is what licenses reading PGM IV/XII/XIII, PDM xiv and the alchemical papyri as one practitioner's or one workshop's library.",
+        "positionB": "Dosoo 2016 (BASP 53, 251–274): 'several inconsistent models of its contents have been proposed'; on collection-history and content criteria only TEN magical and alchemical papyri can probably be associated with the Library, while NINE that other authors have assigned to it can be excluded.",
+        "resolution": "NOT RESOLVED. Any 'same library' edge in this graph is tagged contested:true and must ship with both positions.",
+        "cite": ["S1","S24"]
+      }
+    }
+  ],
+
+  "procedureVocabulary": {
+    "usedFromControlledList": ["invocation/evocation","divination-procedure","consecration-of-object/talisman","purification","offering/homa","visualization","breath-discipline","initiation","alchemical-operation","coercive-rite","mantra-recitation","yantra-construction"],
+    "vocabGaps": [
+      { "gap": "spoken-formula-recitation", "why": "'mantra-recitation' is an Indic term. The PGM's core act is the recitation of a logos built from voces magicae / onomata barbara — untranslatable strings, divine-name chains and vowel sequences. Typing it 'mantra-recitation' imports the wrong tradition; typing it 'invocation/evocation' loses the fact that the formula is a FIXED TEXT copied verbatim in the handbook. Proposed culture-neutral type." },
+      { "gap": "glossolalic/phonetic vocalization", "why": "The Mithras Liturgy specifies non-lexical vocalizations (hissing, popping) alongside vowel-strings. No controlled type covers non-lexical sound-production as a ritual act (S2)." },
+      { "gap": "ascent / anagogic liturgy", "why": "PGM IV.475–829 is a graded seven-stage ascent through elemental, aerial, planetary and supra-celestial ranks. 'visualization' captures the imagery and 'invocation/evocation' the speech, but neither captures the GRADED SEQUENCE with named gates — the structural feature that makes it a liturgy rather than a spell (S2)." },
+      { "gap": "binding / curse inscription (defixio, katadesmos)", "why": "'coercive-rite' names the intent but not the medium: an inscribed lead tablet deposited in a grave or well is a distinct procedural form with its own archaeology (S25)." },
+      { "gap": "figurine / effigy fabrication (kolossos)", "why": "Modelling a figure in wax or clay as a ritual object is not consecration-of-object (it is not consecrated), not yantra-construction (it is three-dimensional and iconic), and not covered anywhere (S25)." },
+      { "gap": "animal sacrifice / blood offering", "why": "'offering/homa' is a Vedic fire-oblation term. PGM recipes specify bird sacrifice and blood use; Iamblichus Bks IV–VII is an extended DEFENCE of animal sacrifice. Forcing this into offering/homa erases both the act and the ethical register (S4, S21)." },
+      { "gap": "lecanomancy / lychnomancy / scrying (bowl, lamp, vessel divination)", "why": "Confirms the inventory agent's flagged gap. PDM xiv's divination spells and the PGM's direct-vision recipes work through a bowl, a lamp or a medium's eyes. Collapsing them into 'divination-procedure' loses the apparatus (S4, S10)." },
+      { "gap": "dream-incubation / dream-sending (oneiraitēton, oneiropompos)", "why": "A large PGM/Coptic recipe family and a category in Iamblichus Bk III; no controlled type (S10, S21)." },
+      { "gap": "sortilege by canonical text (Homeromanteion, bibliomancy)", "why": "PGM VII carries a Homer Oracle: a numbered-lot lookup table against verses of a canonical poem. Structurally identical to later Sortes and to bibliomancy; not 'divination-procedure' generically (S11)." },
+      { "gap": "ritual-abstinence regimen (agneia / hagneia)", "why": "The recipes' multi-day food, drink and sexual abstinence conditions are a PRECONDITION with duration, not the 'purification' rite itself. Same loss the inventory agent flagged for ascetic regimen." },
+      { "gap": "sympathetic-materia selection (ousia)", "why": "The choice of substance is itself governed and is the theoretical heart of both the Cyranides (letter → plant/bird/fish/stone tetrad) and Proclus' sunthēmata doctrine. No type covers 'selecting the correspondent substance' as a procedural step (S19, S23)." },
+      { "gap": "charaktēres / ring-sign drawing", "why": "Typed here as yantra-construction faute de mieux; charaktēres are non-alphabetic ring-lettered signs with no Indic diagrammatic geometry. (Deliberately not reproduced in this file.)" },
+      { "gap": "amulet inscription & wearing (phylactery)", "why": "'consecration-of-object/talisman' presumes a consecration act; many PGM/Coptic amulets are simply written and worn or folded and deposited (S5)." },
+      { "gap": "craft recipe (metallurgical, dyeing, gem-imitation)", "why": "The Leiden/Stockholm papyri are procedure-dense but their operations are artisanal chemistry, not 'alchemical-operation' in the transmutational sense — the tradition's own boundary is exactly what is at stake in the scholarship (S16, S17)." },
+      { "gap": "apologetic / theoretical treatise ON procedure", "why": "The single biggest completeness lesson in this slice. Iamblichus' De mysteriis and Proclus' On the Hieratic Art discuss, classify and JUSTIFY ritual at length while giving no executable sequence. They need a node role ('meta-procedural') distinct from a graded procedure — otherwise the graph either falsely credits them with procedures or falsely records them as procedure-free." }
+    ]
+  },
+
+  "works": [
+    {
+      "id": "gem:pgm-corpus",
+      "kind": "modern-scholarly-corpus (NOT an ancient work)",
+      "title": "Papyri Graecae Magicae — 'the Greek Magical Papyri'",
+      "atlasSlug": "pgm-corpus",
+      "atlasStatus": "PLANNED in docs/plans/r29/esoteric-libraries.md §2.3 (lane alchemy-west, 2nd–5th c. CE); VERIFIED ABSENT from shipped CONFLUENCE_ENTRIES by the inventory agent. Inherit the plan's PD verdict, do not re-derive.",
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "dateClaim": "Constituent papyri range c. 100s BCE – 400s CE; the bulk of the major handbooks are 2nd–4th c. CE.",
+      "criticalNote": "PGM is a MODERN EDITORIAL CONSTRUCT, not an ancient book. Treating 'the PGM' as a work is the single commonest category error about this corpus and the graph should say so on the node itself: the Roman numerals are Preisendanz's shelf-order, not an ancient table of contents.",
+      "scale": "Preisendanz numbering runs to PGM LXXXI (81). GEMF reports that 'more than eighty magical handbooks survive, some of them in a fragmentary state.'",
+      "editions": [
+        { "label": "K. Preisendanz (with A. Abt et al.), Papyri graecae magicae: Die griechischen Zauberpapyri, Bd. 1 (1928), Bd. 2 (1931), Teubner", "pd": "Bd. 1 (1928) is PD in the US (95-year term expired 1 Jan 2024). Bd. 2 (1931) is NOT yet PD in the US — its term expires 1 Jan 2027. THE PLAN'S BLANKET 'Greek PD (Preisendanz 1928)' IS TOO COARSE and must be split by volume.", "cite": ["S1","S26"] },
+        { "label": "Projected Bd. 3 (new texts + indices)", "pd": "Never published: galley proofs dated 'Pentecost 1941'; the type was destroyed in the bombing of Leipzig. Photocopies of the proofs circulated among scholars — a genuinely unusual bibliographic status the atlas should record.", "cite": ["S1"] },
+        { "label": "2nd ed., rev. A. Henrichs, 2 vols., 1973–74", "pd": "IN COPYRIGHT — cite-only.", "cite": ["S1"] },
+        { "label": "H. D. Betz (ed.), The Greek Magical Papyri in Translation, Including the Demotic Spells, Univ. of Chicago Press, 1986; 2nd ed. 1992", "pd": "IN COPYRIGHT — CITE-ONLY. This is the standard English and the standard citation form; the repo may cite line-numbers by it and must never quote it.", "cite": ["S1"] },
+        { "label": "C. A. Faraone & S. Torallas Tovar (edd.), Greek and Egyptian Magical Formularies (GEMF), vol. I: Text and Translation, California Classical Studies 9, 2022", "pd": "IN COPYRIGHT but OPEN ACCESS (escholarship.org). Open access ≠ public domain: freely readable and linkable, still not quotable at length. GEMF renumbers the whole corpus and is superseding PGM as the reference edition — any atlas record must carry BOTH numbers or become unusable within a decade.", "cite": ["S8"] }
+      ],
+      "procedures": [],
+      "structuralFinding": "THE ANATOMY OF A RECIPE (the round's structural deliverable, stated descriptively). A PGM formulary entry is built from a small, repeating set of SLOTS: (1) a TITLE/claim of effect; (2) MATERIA — the substances and objects required, often including an ousia, a substance sympathetically linked to the target; (3) an APPARATUS/support — lamp, bowl, tablet, ring, papyrus strip, figurine; (4) the ACTION — what is done with them; (5) the TIMING — hour, lunar day, planetary day, sunrise/sunset; (6) a PLACE/purity CONDITION — often a multi-day abstinence regimen preceding the act; (7) the LOGOS — the fixed spoken/written formula, frequently marked off in the manuscript and in bilingual books written in a DIFFERENT SCRIPT AND LANGUAGE from the surrounding instructions; and (8) a DISMISSAL or closing note. Recipes vary in which slots they fill; the slot-count filled is the best objective completeness metric available for this corpus and is what the completeness grades below track. This file records the slot inventory and never the slot contents.",
+      "bilingualFinding": "In the bilingual handbooks the division is functional and consistent: Greek carries the RITUAL INSTRUCTIONS, Egyptian (Demotic, hieratic or Old Coptic) carries the INVOCATIONS. Language choice is itself a structural marker of the praxis/logos boundary — the clearest formal evidence that ancient compilers themselves distinguished 'what you do' from 'what is said'.",
+      "cite": ["S1","S4","S8","S26","S27"]
+    },
+
+    {
+      "id": "gem:pgm-i",
+      "kind": "work (formulary)",
+      "title": "PGM I (= GEMF 31)",
+      "shelfmark": "P.Berol. inv. 5025, Staatliche Museen zu Berlin",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "dateClaim": "4th–5th c. CE (unverified — not re-derived this round)",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "partial", "evidence": "PGM I is best known for its paredros ('assistant daimon') acquisition recipes. Graded PARTIAL, not complete, on the general ground established for the corpus: formulary entries are written for a reader who already possesses the craft — they routinely omit the ordinary competences (how to write, where to obtain the materia, how to intone) and the surviving papyrus has damaged passages. Specific lacuna audit not performed this round (unverified).", "vocabGap": "spoken-formula-recitation" },
+        { "type": "purification", "textCompleteness": "referenced", "evidence": "Purity requirements are stated as conditions rather than set out as rites — the pattern documented explicitly for PGM IV (S4) and treated here as the corpus norm." }
+      ],
+      "editionalNote": "The GEMF re-edition is published under a renumbered identity ('Considering PGM I as GEMF 31'), and the accompanying article's very framing — 'Exploring the Form and Purpose of a Magical Formulary' — signals that the BOOK's purpose (professional reference? training copy? display object?) is itself an open question, which bears directly on how completely any single recipe was ever meant to be written down.",
+      "repoCoverage": "absent",
+      "cite": ["S9"]
+    },
+
+    {
+      "id": "gem:pgm-ii",
+      "kind": "work (formulary)",
+      "title": "PGM II (= GEMF 30)",
+      "shelfmark": "P.Berol. inv. 5026, Staatliche Museen zu Berlin",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "dateClaim": "3rd–4th c. CE (unverified)",
+      "procedures": [
+        { "type": "divination-procedure", "textCompleteness": "partial", "evidence": "Apolline dream/oracle-obtaining material (unverified in detail this round); graded partial on the corpus norm.", "vocabGap": "dream-incubation / dream-sending" }
+      ],
+      "materialityNote": "The subject of a 2022 ZPE instrumental ink analysis (Bonnerot, Chronopoulou & Rabin, ZPE 224, 267–273) — an example of the field's turn to MATERIAL evidence: ink chemistry is now used to test whether papyri were produced together, which is precisely the evidence that adjudicates the Theban Library question.",
+      "relatedFinding": "PGM VI (P.Lond. I 47) and PGM II have been argued to be parts of one manuscript by one author ('The authorship of PGM VI (P.Lond. I 47) + II (P.Berol. inv. 5026)') — i.e. Preisendanz's numbering actively splits things that belong together. A second, independent reason not to treat PGM numerals as work-identities.",
+      "repoCoverage": "absent",
+      "cite": ["S9","S24"]
+    },
+
+    {
+      "id": "gem:pgm-iii",
+      "kind": "work (formulary; two papyri under one inventory number)",
+      "title": "PGM III — the Mimaut Papyrus (= GEMF 55)",
+      "shelfmark": "Musée du Louvre, Dép. des Antiquités Égyptiennes, N 2391",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:demotic-egyptian-priestly",
+      "dateClaim": "3rd–4th c. CE, palaeographically",
+      "provenance": "Acquired by the French diplomat Jean-François Mimaut c. 1820; transferred to the Louvre 1837 — a provenance INDEPENDENT of Anastasi, which is one reason it figures in the Theban-Library dispute.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "partial", "evidence": "Contains hymnic invocations (to Pan/Pantokrator, to Helios and All the Gods, to Apollo & Daphne). Hymns are transmitted as text but the rites they belong to are not fully set out; the roll has been physically REARRANGED in the GEMF re-edition ('From PGM III to GEMF 55: Rearrangement of an Ancient Magical Roll'), meaning the sequence readers worked from for a century was partly an editorial artefact.", "vocabGap": "spoken-formula-recitation" },
+        { "type": "coercive-rite", "textCompleteness": "referenced", "evidence": "Erotic and protective spells are reported as present in the roll; contents not itemised this round (unverified).", "harm": { "kind": "coercion", "note": "Erotic-compulsion material. Admitted as academic religious history only, with the repo's abhicāra-wing posture: the target of such a rite is by definition a non-consenting named person. Recorded, never reproduced." } }
+      ],
+      "scribalFinding": "Two distinct papyri (PGM III.1 / III.2) written by two scribes: Scribe A produced monolingual Greek, Scribe B added bilingual Egyptian–Greek material. A direct witness to the praxis/logos language-split being a SCRIBAL DIVISION OF LABOUR, not merely a textual convention.",
+      "repoCoverage": "absent",
+      "cite": ["S9","S14"]
+    },
+
+    {
+      "id": "gem:pgm-iv",
+      "kind": "work (formulary — the corpus's flagship codex)",
+      "title": "PGM IV — the Great Magical Papyrus of Paris / Great Paris Magical Codex (= GEMF 57)",
+      "shelfmark": "Paris, Bibliothèque nationale de France, suppl. gr. 574",
+      "atlasSlug": null,
+      "atlasNote": "Should hang under the planned `pgm-corpus` entry rather than claim its own slug, unless the atlas admits per-papyrus nodes.",
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "dateClaim": "End of the 3rd or early 4th c. CE (S4); '4th century' in the museum-facing description (S3). Minor, non-contested spread — recorded, not resolved.",
+      "physicalDescription": "Papyrus codex; 36 leaves/sheets giving 72 pages, of which 66 are inscribed; written on both sides; 3,274 lines; page height 27–30.5 cm, width 9.5–13 cm. The longest magical handbook surviving from antiquity — equivalent in text-volume to four or five ordinary papyrus rolls.",
+      "contentsProfile": "Over 50 individual sections, the majority of them ritual instructions. Subject range: divination, erotic attraction and binding, favour-gaining, business success, anger-restraint, exorcism. NOTABLY ABSENT: medical magic. Also carries non-recipe matter — a reusable prayer, astrological data, plant-gathering lore, a salutation.",
+      "procedures": [
+        { "type": "divination-procedure", "textCompleteness": "complete", "evidence": "PGM IV.5–51 (the bilingual 'direct-vision' recipe) fills every structural slot the corpus offers: a stated purpose (theophany/face-to-face encounter), a multi-day purity precondition, a compounded eye-preparation with a named applicator, a lunar-day + sunrise timing, a specified ground-condition, an animal sacrifice with a disposal instruction, an immersion with a departure condition, and a recited invocation naming the powers. This is the strongest 'complete' grade in the slice: no step is deferred to an initiator and none is marked as withheld. (Recorded as slot-inventory only; the contents of the slots are deliberately not given here.)", "vocabGaps": ["lecanomancy / lychnomancy / scrying","ritual-abstinence regimen","animal sacrifice"] },
+        { "type": "invocation/evocation", "textCompleteness": "complete", "evidence": "The logoi are written out verbatim in the manuscript — that is what a formulary IS. Bilingual recipes write the invocation in Old Coptic-Egyptian while the surrounding instructions stay in Greek, so the boundary of the spoken text is physically marked in the manuscript.", "vocabGap": "spoken-formula-recitation" },
+        { "type": "purification", "textCompleteness": "partial", "evidence": "Purity is imposed as a stated precondition with a duration (a seven-day period in the direct-vision recipe) but the manner of purification is assumed known, not described.", "vocabGap": "ritual-abstinence regimen" },
+        { "type": "offering/homa", "textCompleteness": "partial", "evidence": "Animal offering appears as a required act with a species and a disposal, but the sacrificial protocol proper is assumed.", "vocabGap": "animal sacrifice / blood offering", "harm": { "kind": "animal-killing", "note": "Recipes specify the killing of birds and the handling of blood. Stated as historical content; no modern practice implied." } },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "Phylactery/amulet elements appear inside larger recipes (e.g. the protective components of the ascent text's materia section); not itemised as a standalone consecration sequence in the sections examined.", "vocabGap": "amulet inscription & wearing" },
+        { "type": "coercive-rite", "textCompleteness": "complete", "evidence": "See the segment record gem:pgm-iv-296-466.", "harm": { "kind": "coercion", "note": "See segment record." } }
+      ],
+      "preservationNote": "The codex is exceptionally well preserved by corpus standards — it is the intactness of PGM IV, not its typicality, that makes it the default source for every popular account of 'ancient magic'. A survivorship-bias caveat the atlas should state.",
+      "repoCoverage": "absent",
+      "cite": ["S3","S4","S9"]
+    },
+
+    {
+      "id": "gem:pgm-iv-475-829",
+      "kind": "work-segment",
+      "segmentOf": "gem:pgm-iv",
+      "title": "PGM IV.475–829 — the so-called 'Mithras Liturgy'",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "titleDispute": {
+        "positionA": "Albrecht Dieterich, Eine Mithrasliturgie (1903), named it from its invocation of Helios-Mithras as the source of immortal revelation and read it as a genuine Mithraic cult document.",
+        "positionB": "Franz Cumont rejected the Mithraic attribution: the text lacks Mithraic eschatology and the characteristic seven-sphere passage of the soul.",
+        "positionC": "H. D. Betz: a text formed at the intersection of Greek, Egyptian and Mithraic traditions, its central ascent reflecting early Hermeticism.",
+        "positionD": "Marvin Meyer: genuine Mithraic connections survive.",
+        "resolution": "NOT RESOLVED. The name is a modern scholarly label with four live positions and must always be quoted with the 'so-called'. The r29 plan already anticipated this as a body-note ('Betz vs Cumont'); this round adds Meyer and Betz's own syncretic position, i.e. FOUR positions, not two.",
+        "cite": ["S2","S27"]
+      },
+      "structuralAnatomy": "The single most articulated operative structure in the slice. Two clearly distinguished blocks: (a) ll. 475–750, a first-person ASCENT LITURGY in seven graded stages — elemental powers, lower aerial powers, planetary gate-guardians, a solar figure, seven asp-faced female Tychai, seven bull-faced male Pole-Lords, and a supreme figure appearing amid celestial phenomena, each stage carrying its own address; and (b) ll. 751–834, a following PRAXIS/MATERIA section giving the preparations (an insect-derived ointment, protective amulet elements, and a herb whose identification — kentritis — is itself a long-running botanical puzzle). The recipe block coming AFTER the liturgy block, rather than before it, is a structural fact worth recording: the manuscript treats the spoken/experiential text as primary and the material preparation as apparatus.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "complete", "evidence": "Every stage's address is written out; the sequence runs from opening to supreme encounter without a gap or an 'as you have been taught'.", "vocabGaps": ["spoken-formula-recitation","glossolalic/phonetic vocalization","ascent / anagogic liturgy"] },
+        { "type": "visualization", "textCompleteness": "complete", "evidence": "Each grade is specified by its visionary content (what appears, in what form, with what attributes) — the imagery is prescribed in the text, not left to the operator.", "vocabGap": "ascent / anagogic liturgy" },
+        { "type": "breath-discipline", "textCompleteness": "partial", "evidence": "The text specifies breath manipulation as part of the working (drawing in breath in coordination with the addresses) but does not set out a graded respiratory training; the technique is invoked as a component, not taught. Contrast the Indic prāṇāyāma manuals the repo already carries.", "harm": { "kind": "hypoxia/breath-holding", "note": "Breath manipulation aimed at an altered state. Named as a documented hazard KIND per this round's harm-taxonomy requirement; described, never prescribed." } },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "The ll.751–834 block names amulet and ointment components and their preparation as apparatus for the liturgy, but the amulet's own consecration is not separately set out.", "vocabGap": "amulet inscription & wearing" },
+        { "type": "initiation", "textCompleteness": "referenced", "evidence": "The text frames itself as transmitting a revelation and claims a limited, quasi-initiatory transmission; it does not contain an initiation ceremony. This is a 'referenced' grade with positive evidence — the claim is made, the rite is not given." }
+      ],
+      "claimNote": "The tradition CLAIMS a temporary deification (apathanatismos, 'immortalisation') as the outcome. Recorded as the text's claim; no efficacy asserted or implied.",
+      "repoCoverage": "absent",
+      "cite": ["S2"]
+    },
+
+    {
+      "id": "gem:pgm-iv-296-466",
+      "kind": "work-segment",
+      "segmentOf": "gem:pgm-iv",
+      "title": "PGM IV.296–466 — an erotic binding/attraction rite (philtrokatadesmos / agōgē)",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "harmClass": "COERCIVE — highest sensitivity record in this slice.",
+      "harmNote": "This is a rite whose stated object is to compel a specific named person, overwhelmingly a woman named by a male operator, to abandon her household and come to him; the scholarly term agōgē designates precisely a spell that burns or torments its target in order to drive her out. It is admitted here ONLY as academic religious history and ONLY at the level of structure and typology, following the repo's abhicāra-wing precedent (Bühnemann's ṣaṭkarman variables mapped exhaustively and never assembled). NOTHING of its materia, formula, sign-set or sequence is reproduced. It should carry a page-level care note if it ever surfaces, and it must never be presented as an artefact of 'romance'.",
+      "structuralAnatomy": "Structurally it is a THREE-MEDIUM rite: two modelled figurines (one an armed male deity, one a bound female target), pins driven into the effigy at named body-locations, and an inscribed lead tablet, with a formula recited and copied simultaneously. It is described in the literature as among the most detailed surviving instructions behind the several hundred curse tablets recovered archaeologically — i.e. it is one of the very few cases where a HANDBOOK RECIPE and its ARCHAEOLOGICAL PRODUCTS can be matched: a bound, pin-pierced female figurine in the Louvre corresponds materially to this recipe type.",
+      "procedures": [
+        { "type": "coercive-rite", "textCompleteness": "complete", "evidence": "Widely described as one of the fullest surviving binding instructions; formula, materia, effigy-treatment and tablet-deposition are all present in the text. Graded complete on that basis — a case where completeness and harm coincide, which is exactly why the grade must be recorded and the content must not.", "vocabGaps": ["binding / curse inscription (defixio)","figurine / effigy fabrication (kolossos)"] },
+        { "type": "invocation/evocation", "textCompleteness": "complete", "evidence": "The logos is written out in the handbook and is recited and inscribed at once.", "vocabGap": "spoken-formula-recitation" }
+      ],
+      "scholarship": "Faraone, 'The Ethnic Origins of a Roman-Era Philtrokatadesmos (PGM IV 296–434)' — note the line-range disagreement in the literature (296–434 vs 296–466), itself a recordable editorial fact.",
+      "repoCoverage": "absent",
+      "cite": ["S25"]
+    },
+
+    {
+      "id": "gem:pgm-v",
+      "kind": "work (formulary)",
+      "title": "PGM V — the London 'Handbook of Magic'",
+      "shelfmark": "London, British Library, P.Lond. I 46 (Trismegistos 64368)",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "dateClaim": "4th c. CE (recorded with a question mark in the museum description — dating not firm)",
+      "physicalDescription": "Papyrus codex, 7 pages, written on both sides, single column averaging c. 37 lines per page. Dimensions c. 28 × 12 cm.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "complete", "evidence": "PGM V.96–172, the 'Stele of Jeu the Hieroglyphist in his letter', is a continuous written-out adjuration; it survives whole and was publishable as a self-contained text as early as 1852, which is itself the completeness evidence.", "vocabGap": "spoken-formula-recitation" },
+        { "type": "purification", "textCompleteness": "referenced", "evidence": "Its function is exorcistic/apotropaic — a rite of banishing and healing — but the surrounding operational conditions are minimal in the section as transmitted." },
+        { "type": "divination-procedure", "textCompleteness": "partial", "evidence": "Other sections of the codex are divinatory/oracular (unverified in detail this round)." }
+      ],
+      "transmissionFinding": "THE SLICE'S SHARPEST TRANSMISSION CHAIN AND A CORRECTION TO THE REPO. The r29 plan records a coarse edge `pgm-corpus → lemegeton` for the 'Bornless' chain. The precise chain, verified this round, is: PGM V.96–172 → C. W. Goodwin, 'Fragment of a Graeco-Egyptian Work Upon Magic' (Cambridge Antiquarian Society, 1852; PD) → Mathers/Golden Dawn use (1887–1903) → Crowley's 'Preliminary Invocation' prefixed to The Book of the Goetia of Solomon the King (1904) → Crowley's commentary Liber Samekh (1929/30). The edge should be re-anchored on the SEGMENT, not the corpus, and the Lemegeton itself is NOT the recipient — the Preliminary Invocation is Crowley's 1904 ADDITION to his edition of the Goetia, not part of the Lemegeton text. This is a genuine mis-statement in the plan and should be fixed before shipping.",
+      "repoCoverage": "absent (the transmission claim exists only in the unshipped r29 plan)",
+      "cite": ["S12","S13","S27"]
+    },
+
+    {
+      "id": "gem:pgm-vii",
+      "kind": "work (formulary)",
+      "title": "PGM VII — the London magical roll",
+      "shelfmark": "London, British Library, P.Lond. I 121",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "dateClaim": "CONTESTED: 3rd c. CE (Wikipedia/palaeographic) vs 4th c. CE (antikemagie/religiondatabase). Thebes the likely origin. Recorded both ways, not resolved.",
+      "physicalDescription": "A roll c. 2.33 m long × 33 cm high, inscribed on both sides, carrying over 1,000 lines of Greek.",
+      "provenance": "Purchased in Egypt in 1888 by E. A. Wallis Budge for the British Museum, together with several other Greek magical papyri — a SECOND acquisition event, sixty years after Anastasi, and therefore another datum in the Theban-Library dispute.",
+      "procedures": [
+        { "type": "divination-procedure", "textCompleteness": "complete", "evidence": "PGM VII contains a Homeromanteion — a Homer Oracle: a lot-generating step plus a numbered lookup table of Homeric verses. Graded complete because a sortilege table is functionally self-contained: the table IS the procedure, and it survives with its entries. This is the one procedure-type in the whole slice whose completeness can be assessed without any judgement about tacit knowledge.", "vocabGap": "sortilege by canonical text (bibliomancy)" },
+        { "type": "invocation/evocation", "textCompleteness": "complete", "evidence": "The roll is described as the most extensive ritual collection in the corpus, carrying 67 ritual instructions — the highest recipe-count attested for a single manuscript in this slice.", "vocabGap": "spoken-formula-recitation" },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "Amulet/ring material is present in the roll's 67 instructions (itemisation not performed this round — unverified).", "vocabGap": "amulet inscription & wearing" }
+      ],
+      "completenessCaveat": "A NEW COLUMN of P.Lond. I 121 was edited as recently as 2019 (Symbolae Osloenses 92.1). A corpus whose flagship manuscripts are still gaining columns in the 21st century cannot be graded 'complete' at the manuscript level; the grades above are per-procedure, not per-book.",
+      "repoCoverage": "absent",
+      "cite": ["S11"]
+    },
+
+    {
+      "id": "gem:pgm-pdm-xii",
+      "kind": "work (bilingual formulary)",
+      "title": "PGM XII / PDM XII (= GEMF 15)",
+      "shelfmark": "Leiden, Rijksmuseum van Oudheden, P.Leid. I 384 verso (J 384)",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:demotic-egyptian-priestly",
+      "dateClaim": "2nd c. CE (the scribal circle is dated to the second century); 'mid to late 2nd century' in the museum-facing description.",
+      "physicalDescription": "Greek text inscribed on the verso AGAINST the fibres in thirteen columns, flanked by Demotic — two columns to the left and four to the right, carrying magical spells. The physical layout is itself the praxis/logos evidence: the two languages occupy distinct zones of the sheet.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "partial", "evidence": "Bilingual recipes throughout; contents not itemised this round. Graded partial on the corpus norm (assumed competences, no initiator-gate stated).", "vocabGap": "spoken-formula-recitation" },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "Ring/amulet consecration material is standardly associated with PGM XII (unverified in detail this round).", "vocabGap": "amulet inscription & wearing" },
+        { "type": "divination-procedure", "textCompleteness": "partial", "evidence": "Divinatory recipes present (unverified in detail)." }
+      ],
+      "scribalFinding": "THE BEST-EVIDENCED PRODUCTION FACT IN THE SLICE. GEMF 15 and GEMF 16 (= PDM/PGM XIV) were produced under the supervision of the SAME principal scribe-user, probably trained in the Egyptian temple priesthood, in the 2nd c. CE; that bilingual scribe copied the long Demotic sections himself and brought in three further, more highly Greek-trained scribes for the extensive Greek sections. This gives a documented WORKSHOP link between two manuscripts and is the correct evidentiary basis for a PARALLELS edge — the standard the inventory agent set with the Mallinson Amṛtasiddhi edge.",
+      "repoCoverage": "absent",
+      "cite": ["S9","S15"]
+    },
+
+    {
+      "id": "gem:pgm-xiii",
+      "kind": "work (formulary containing multiple recensions of one book)",
+      "title": "PGM XIII — the 'Eighth Book of Moses' (with a 'Secret Tenth Book')",
+      "shelfmark": "Leiden, Rijksmuseum van Oudheden, P.Leid. J 395",
+      "atlasSlug": null,
+      "authorId": "au:pseudo-moses",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "dateClaim": "4th c. CE",
+      "physicalDescription": "1,078 lines of Greek; the extant versions of MosesVIII and the Secret Tenth Book together occupy the manuscript. Photographic edition of J 384 and J 395 published jointly.",
+      "recensionDispute": {
+        "positionA": "Morton Smith: PGM 13.1–734 contains THREE distinct versions of the Eighth Book of Moses.",
+        "positionB": "Todd Klutz (JSNT 2011), reviving pre-Smith scholarship: only TWO versions are present.",
+        "resolution": "NOT RESOLVED. Recorded as a live disagreement about the manuscript's own architecture — with the direct consequence that the number of procedure-instances in this work is itself contested.",
+        "cite": ["S15"]
+      },
+      "structuralFinding": "THE SLICE'S BEST COMPLETENESS TEST-CASE. A single papyrus preserving two (or three) recensions of the SAME operative book lets completeness be assessed COMPARATIVELY rather than impressionistically: what one recension gives and another omits is direct evidence of what copyists thought was optional, tacit, or reserved. No other work in this slice supports that method.",
+      "procedures": [
+        { "type": "initiation", "textCompleteness": "partial", "evidence": "The book presents itself as a revealed, restricted text (the 'Secret Tenth Book' framing is itself a withholding device); an initiatory frame is asserted around the material rather than a ceremony being set out." },
+        { "type": "invocation/evocation", "textCompleteness": "partial", "evidence": "Written-out invocatory material is present across the recensions, but which text belongs to which recension is exactly what the Smith/Klutz dispute contests — so no single continuous sequence can be asserted.", "vocabGaps": ["spoken-formula-recitation","glossolalic/phonetic vocalization"] },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "Consecratory material is associated with the book (unverified in detail this round)." },
+        { "type": "purification", "textCompleteness": "referenced", "evidence": "Purity conditions stated rather than described (corpus norm)." }
+      ],
+      "repoCoverage": "absent",
+      "cite": ["S15"]
+    },
+
+    {
+      "id": "gem:pdm-xiv",
+      "kind": "work (bilingual formulary — the principal Demotic magical book)",
+      "title": "PDM xiv / PGM XIV (= GEMF 16) — the Demotic Magical Papyrus of London and Leiden",
+      "shelfmark": "London, British Museum EA 10070 + Leiden, Rijksmuseum van Oudheden J 383 (one manuscript split between two collections)",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:demotic-egyptian-priestly",
+      "dateClaim": "3rd c. AD (Griffith & Thompson)",
+      "physicalDescription": "Recto: a series of spells and recipes in TWENTY-NINE columns written between ruled lines. Verso: apparently DISCONTINUOUS memoranda, prescriptions and short invocations. Written in Demotic with Old Coptic glosses and Greek recitation elements.",
+      "procedures": [
+        { "type": "divination-procedure", "textCompleteness": "complete", "evidence": "Divination spells (including vessel/lamp inquiry conducted through a medium) are a headline category of the recto, set out at length in continuous ruled columns rather than as notes. Graded complete for the recto material; see the verso caveat.", "vocabGap": "lecanomancy / lychnomancy / scrying" },
+        { "type": "coercive-rite", "textCompleteness": "partial", "evidence": "Love spells are among the four content categories the editors name; itemisation not performed this round.", "harm": { "kind": "coercion", "note": "Erotic-compulsion material, as elsewhere in the corpus. Structure and typology only." } },
+        { "type": "invocation/evocation", "textCompleteness": "complete", "evidence": "Recitation matter is written out, with Old Coptic glosses supplied precisely so the Egyptian-script recitations could be VOCALISED correctly — an ancient scribal solution to the very problem of transmitting a spoken formula in writing. That gloss layer is itself evidence that the compilers were trying to make the logos fully executable from the page.", "vocabGap": "spoken-formula-recitation" },
+        { "type": "alchemical-operation", "textCompleteness": "referenced", "evidence": "The editors list 'poisons' among the recto's contents; substance-preparation appears, but as recipe-notes rather than a worked operation.", "harm": { "kind": "toxic-substance", "note": "The manuscript's own content categories include poisons. Named as a hazard kind; no substance list, quantity or preparation is recorded here." } },
+        { "type": "purification", "textCompleteness": "referenced", "evidence": "Purity conditions appear as stated preconditions." }
+      ],
+      "completenessCaveat": "A SPLIT-GRADE WORK — the clearest single argument for grading per-SECTION rather than per-work. The RECTO is a formally ruled, orderly recipe book (complete-tending). The VERSO is explicitly described by its editors as 'apparently discontinuous memoranda, prescriptions and short invocations' — i.e. working notes, and by construction fragmentary/referenced. One shelfmark, two completeness regimes.",
+      "editions": [
+        { "label": "F. Ll. Griffith & H. Thompson (edd.), The Demotic Magical Papyrus of London and Leiden, 3 vols., H. Grevel & Co., 1904–1909", "pd": "PUBLIC DOMAIN in the US (published pre-1930), with full scans on archive.org and etana.org. THE MOST IMPORTANT PD FINDING IN THIS SLICE: the principal Demotic magical book is available in a quotable scholarly edition with Demotic text, transliteration and English — while the Greek corpus's standard English (Betz) is locked. Any repo treatment of Greco-Egyptian ritual has a fully-PD path through the DEMOTIC side that it does not have through the Greek side." }
+      ],
+      "repoCoverage": "absent",
+      "cite": ["S9","S10"]
+    },
+
+    {
+      "id": "gem:coptic-magical-corpus",
+      "kind": "corpus (c. 500–600 manuscripts)",
+      "title": "The Coptic magical corpus",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:coptic-christian-egypt",
+      "dateClaim": "3rd – 12th c. CE",
+      "scale": "Approximately 500–600 texts survive. Meyer & Smith, Ancient Christian Magic (1994), the largest published collection, holds about 100 — roughly one fifth of the corpus. The Würzburg Coptic Magical Papyri project (JMU Würzburg, from Sept 2018) is producing the first full edition (Papyri Copticae Magicae, vol. 1: Formularies, De Gruyter 2023) and the Kyprianos database (seven linked tables).",
+      "structuralFinding": "THE MOST IMPORTANT METHODOLOGICAL FINDING OF THIS SLICE FOR THE COMPLETENESS DIMENSION. Magical papyrology already operates a hard binary that the repo's completeness grade half-reinvents: FORMULARY vs APPLIED TEXT. A formulary is a handbook of one or more recipes — titles, instructions, incense specifications, timings — and it marks its target with a PLACEHOLDER ('NN son/daughter of NN'). An applied text is the object actually produced in a performance — an amulet, a curse tablet, an inscribed vessel — and it carries a REAL NAME ('Jacob son of Euphemia'), and is often folded for wearing or deposit. Kyprianos counts, as reported: 181 definite formularies, 187 definite applied texts, 132 unclear, plus 45 uncertain formularies and 99 uncertain applied texts. TWO CONSEQUENCES FOR THE GRAPH: (1) applied texts are NOT procedure-bearing works at all — they are procedure OUTPUTS, and grading them for completeness is a category error the graph must be built to avoid; (2) the placeholder is a formal, machine-detectable marker of a text's operative status, which is a far better completeness signal than prose inference. The same project also observes that practitioners adapted formularies to circumstance rather than executing them verbatim — i.e. even a 'complete' recipe was not treated as a closed algorithm by its own users.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "complete", "evidence": "The formulary half of the corpus (181 definite) is by definition procedure-bearing with written-out formulae; that is what makes it a formulary in the project's own taxonomy.", "vocabGap": "spoken-formula-recitation" },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "complete", "evidence": "Amulet production is the corpus's largest single output category — and uniquely in this slice, the PRODUCTS survive in bulk (187 definite applied texts), so recipe and artefact can be checked against each other.", "vocabGap": "amulet inscription & wearing" },
+        { "type": "coercive-rite", "textCompleteness": "partial", "evidence": "Curse tablets are among the named applied-text types; the corresponding formulary recipes exist but were not itemised this round.", "harm": { "kind": "coercion", "note": "Cursing material within a Christian-era corpus. Historical description only." } },
+        { "type": "divination-procedure", "textCompleteness": "partial", "evidence": "Divinatory and oracular material is present across the corpus (unverified in detail this round)." }
+      ],
+      "editions": [
+        { "label": "A. Kropp, Ausgewählte koptische Zaubertexte, 3 vols., Bruxelles, 1930–31", "pd": "Vol. published 1930 is PD in the US as of 1 Jan 2026; the 1931 volume(s) not until 1 Jan 2027. Split by volume, exactly as with Preisendanz. (Edition details beyond the standard citation not re-derived this round — unverified.)" },
+        { "label": "M. Meyer & R. Smith, Ancient Christian Magic: Coptic Texts of Ritual Power, 1994", "pd": "IN COPYRIGHT — cite-only." },
+        { "label": "K. Dosoo, M. Preininger et al., Papyri Copticae Magicae: Coptic Magical Texts, Vol. 1: Formularies, De Gruyter, APF Beiheft 48, 2023", "pd": "IN COPYRIGHT — cite-only. The new reference edition." }
+      ],
+      "ethicsNote": "This is a corpus of CHRISTIAN ritual texts. The repo's inventory flags 'no Christian ritual beyond contemplative prayer' as a coverage gap; the Coptic corpus fills part of it, and should be presented as ordinary late-antique Christian religious practice rather than as 'magic' in a pejorative sense — the framing the Würzburg project itself adopts (it prefers 'texts of ritual power'/'magical' as a scholarly convenience, not a verdict).",
+      "repoCoverage": "absent",
+      "cite": ["S5","S6","S7"]
+    },
+
+    {
+      "id": "gem:p-leid-x",
+      "kind": "work (craft-recipe collection)",
+      "title": "Leiden Papyrus X (P.Leid. I 397)",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-craft-alchemy",
+      "dateClaim": "Written in Greek about the end of the 3rd c. AD.",
+      "provenance": "Thebes; found in the early 19th c. by Jean d'Anastasi — the same acquirer as the magical papyri, which is why the alchemical and magical papyri are usually discussed as one find.",
+      "physicalDescription": "A codex of 10 leaves.",
+      "contentsProfile": "111 recipes. Subject: extracting or COUNTERFEITING precious metals, imitating precious stones, and purple dye; plus textile and ink recipes. The last eleven recipes are simply extracts from the Materia Medica of Dioscorides — a mineralogical appendix rather than operations.",
+      "procedures": [
+        { "type": "alchemical-operation", "textCompleteness": "complete", "evidence": "111 discrete recipes, each self-contained with materials and operations — a craft recipe book of the same formal type as a magical formulary but with no logos slot at all. Graded complete BECAUSE the absent slot is absent by genre, not by omission: nothing is said to be withheld and no initiation is invoked. The contrast with the PGM (which fills the same slots PLUS a spoken formula) is the cleanest structural comparison available in this slice.", "vocabGap": "craft recipe (metallurgical, dyeing, gem-imitation)", "harm": { "kind": "toxic-substance", "note": "Greco-Egyptian metallurgical and colouring recipes of this class work with mercury, arsenic sulphides and lead compounds — all documented toxic and, in the case of mercury vapour and arsenic, hazardous by inhalation as well as ingestion. Named as a hazard kind. No substance list, proportion, temperature or sequence is recorded here, and none should ever be surfaced operationally: the repo's RASA_TOXICITY precedent applies directly." } },
+        { "type": "purification", "textCompleteness": "referenced", "evidence": "Metal 'purification' language occurs but as a technical operation-name, not a ritual purification. Recorded to prevent a false type-match in the merged graph — a real de-duplication hazard for a synthesizer keying on the word." }
+      ],
+      "genreDispute": {
+        "positionA": "These are technical/artisanal handbooks — craft chemistry of the goldsmith's and dyer's workshop, with no transmutational theory; their inclusion in 'alchemy' is a modern editorial decision going back to Berthelot's 1888 title.",
+        "positionB": "They belong with the Greco-Egyptian alchemical tradition proper (pseudo-Democritus, Zosimos), share its vocabulary and its Theban milieu, and the 'imitation vs transmutation' line is anachronistic.",
+        "resolution": "NOT RESOLVED. Flagged because the repo would otherwise have to choose a lane (alchemy-west vs a craft lane) and the choice is itself the scholarly question."
+      },
+      "editions": [
+        { "label": "C. J. C. Reuvens (1830) and C. Leemans (1885) early editions", "pd": "PD (details not re-derived this round — unverified)." },
+        { "label": "M. Berthelot, Collection des anciens alchimistes grecs, 1888", "pd": "PUBLIC DOMAIN." },
+        { "label": "E. R. Caley, English translations: Leyden Papyrus X, Journal of Chemical Education, 1926; The Stockholm Papyrus, JChemEduc, 1927", "pd": "PUBLIC DOMAIN in the US (both pre-1930). A SECOND fully-PD English path in this slice — like Griffith & Thompson, and unlike the Greek magical corpus." },
+        { "label": "R. Halleux, Les alchimistes grecs I: Papyrus de Leyde, Papyrus de Stockholm, Fragments de recettes, Les Belles Lettres, 1981", "pd": "IN COPYRIGHT — cite-only. The standard modern edition." }
+      ],
+      "repoCoverage": "absent",
+      "cite": ["S16","S17"]
+    },
+
+    {
+      "id": "gem:p-holm",
+      "kind": "work (craft-recipe collection)",
+      "title": "Papyrus Graecus Holmiensis — the Stockholm Papyrus",
+      "atlasSlug": null,
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-egyptian-craft-alchemy",
+      "dateClaim": "Same milieu and date as Leiden X (late 3rd / early 4th c. AD).",
+      "contentsProfile": "154 recipes: dyeing, colouring gemstones, cleaning/whitening pearls, and imitation gold and silver.",
+      "procedures": [
+        { "type": "alchemical-operation", "textCompleteness": "complete", "evidence": "154 discrete self-contained recipes; same genre-completeness reasoning as Leiden X.", "vocabGap": "craft recipe (metallurgical, dyeing, gem-imitation)", "harm": { "kind": "toxic-substance", "note": "As Leiden X — mordants and metal salts of the ancient dyer's and jeweller's trade. Hazard kind named; no operational content." } }
+      ],
+      "parallelFinding": "Probably written by the SAME SCRIBE as Leiden X and found with it. This is a documented material parallel (shared hand + shared find), not an inferred one — it meets the evidentiary bar the inventory agent set for PARALLELS edges.",
+      "repoCoverage": "absent",
+      "cite": ["S16","S17"]
+    },
+
+    {
+      "id": "gem:sefer-ha-razim",
+      "kind": "work (handbook)",
+      "title": "Sefer ha-Razim — 'the Book of Mysteries'",
+      "atlasSlug": "sefer-ha-razim",
+      "atlasStatus": "PLANNED in r29 §2.3 (lane kabbalah, '~300 CE CONTESTED vs later redaction', both-ways per Peterson's Raziel page); VERIFIED ABSENT from shipped data.",
+      "authorId": "au:anonymous-greco-egyptian",
+      "cultureId": "cu:greco-jewish-late-antique",
+      "dateDispute": {
+        "positionA": "Margalioth (1966) dated composition to the late 3rd / early 4th c. CE, making it the earliest systematic Jewish magical handbook.",
+        "positionB": "The work as we have it is a RECONSTRUCTION from Cairo Genizah fragments plus later Hebrew, Latin and Arabic versions; later redaction is argued, and the r29 plan already carries the contested-date verdict both ways.",
+        "resolution": "NOT RESOLVED. Note the compounding problem: a reconstructed text cannot be dated independently of the reconstruction.",
+        "cite": ["S18","S27"]
+      },
+      "structuralAnatomy": "A preface narrating the book's transmission (revealed to Noah by the angel Raziel, thence to Solomon — a legendary chain, recorded as the text's own claim), followed by SEVEN chapters, one per firmament. Each firmament is populated with its own ranks of angels — over 700 angel and archangel names in total — and carries the 'counsels' that use them: roughly 30 magical recipes.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "complete", "evidence": "Its c. 30 recipes are adjurations that name the specific angels of a specific firmament and are written out with their conditions; the text's whole architecture (angel catalogue → counsel) is designed so that a recipe is executable from the page. Described by a reviewer as showing magic to require 'extensive spiritual preparations, the proper magic implements, complex ceremonies, and a knowledge of the secret names of power' — i.e. the text supplies all four registers.", "vocabGaps": ["spoken-formula-recitation"] },
+        { "type": "purification", "textCompleteness": "partial", "evidence": "Purity and preparatory requirements are stated as conditions attached to individual counsels rather than set out as an independent rite.", "vocabGap": "ritual-abstinence regimen" },
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "Recipes involve inscribed implements and materials; itemisation not performed this round." },
+        { "type": "divination-procedure", "textCompleteness": "partial", "evidence": "Dream-related and inquiry procedures are among the applications named.", "vocabGap": "dream-incubation" },
+        { "type": "coercive-rite", "textCompleteness": "partial", "evidence": "Applications named in the literature include love spells and compulsion of animals/spirits alongside healing; the coercive register is present.", "harm": { "kind": "coercion", "note": "Compulsion material within an angelological frame. Structure and typology only." } }
+      ],
+      "parallelFinding": "A DOCUMENTED, NOT GUESSED, PARALLEL TO THE PGM: the text carries Greek technical terms (termini technici) and closes with a GREEK PRAYER TO HELIOS inside a Hebrew angelological handbook. This is the single most-cited piece of evidence that Greco-Egyptian and Jewish ritual literature shared a workshop culture, and it is the strongest PARALLELS edge available in this slice.",
+      "editions": [
+        { "label": "M. Margalioth, Sepher ha-Razim, Jerusalem, 1966", "pd": "IN COPYRIGHT — cite-only." },
+        { "label": "M. A. Morgan, Sepher Ha-Razim: The Book of Mysteries, SBL Texts and Translations, 1983", "pd": "IN COPYRIGHT — cite-only. The standard English." },
+        { "label": "B. Rebiger & P. Schäfer, Sefer ha-Razim I und II, Mohr Siebeck, 2009", "pd": "IN COPYRIGHT — cite-only. The critical edition. (Volume/series details not re-derived this round — unverified.)" }
+      ],
+      "repoCoverage": "absent",
+      "cite": ["S18","S27"]
+    },
+
+    {
+      "id": "gem:cyranides",
+      "kind": "work (compilation)",
+      "title": "Cyranides / Kyranides",
+      "atlasSlug": null,
+      "authorId": "au:hermes-trismegistus",
+      "secondaryAuthorId": "au:harpocration",
+      "cultureId": "cu:greco-egyptian-roman-egypt",
+      "dateClaim": "First compiled in the 4th c. CE, from earlier material — notably the treatise of Harpocration.",
+      "structuralAnatomy": "Book I is an ALPHABETIC CONCORDANCE, not a recipe book: 24 chapters, one per letter of the Greek alphabet, each assembling a tetrad — a plant, a bird, a fish (broadly construed, including turtles and seals) and a stone — whose Greek names share that initial letter. The organising principle is the LETTER, and the resulting tetrads supply the materia for amulets. Books II–IV catalogue the properties of animals, birds, fish and stones.",
+      "procedures": [
+        { "type": "consecration-of-object/talisman", "textCompleteness": "partial", "evidence": "Book I is a materia-selection apparatus rather than a set of rites: it tells a reader WHICH four substances go together and what is claimed of them, and amulet-making follows, but the fabrication and any consecration are thin or assumed. Waegeman's monograph is titled Amulet and Alphabet precisely because the amulet is reconstructed FROM the alphabetic scheme. Graded partial: the selection step is complete, the making step is not.", "vocabGaps": ["sympathetic-materia selection (ousia)","amulet inscription & wearing"] },
+        { "type": "alchemical-operation", "textCompleteness": "referenced", "evidence": "Magico-medical preparations are named across the books; no worked operation is set out.", "harm": { "kind": "toxic-substance", "note": "A magico-MEDICAL compilation. Its remedies are pre-modern pharmacology of no demonstrated validity and include animal and mineral materials. Historical description only — the repo's existing 'historical medicine, obsolete, described never prescribed' posture (used for Ficino's De vita) applies verbatim." } }
+      ],
+      "structuralFinding": "The Cyranides is the slice's purest example of a text that is PROCEDURE-ADJACENT WITHOUT BEING A PROCEDURE MANUAL: it supplies one slot of the recipe anatomy (materia, chosen by a formal rule) at exhaustive length and leaves the other seven slots to the operator. Any completeness scheme that grades only whole works would misfile it; graded per slot it is exactly legible.",
+      "vocabFinding": "Its letter→substance rule is the same formal move as the letter-permutation family the inventory agent flagged as a vocabulary gap (Abulafia, Sefer Yetzirah, kamea sigil-tracing) — a shared 'alphabet as generative index' pattern across three unrelated traditions. Worth a cross-slice note; asserted as a STRUCTURAL observation, not a transmission claim.",
+      "editions": [
+        { "label": "D. Kaimakis (ed.), Kyranides, Beiträge zur klassischen Philologie 76, Meisenheim am Glan, 1976", "pd": "IN COPYRIGHT — cite-only. The standard Greek text." },
+        { "label": "M. Waegeman, Amulet and Alphabet: Magical Amulets in the First Book of Cyranides, J. C. Gieben, Amsterdam, 1987", "pd": "IN COPYRIGHT — cite-only. Greek text with English translation of Book I." },
+        { "label": "A. Delatte's editorial work; Delatte & Derchain, Les intailles magiques gréco-égyptiennes, Paris, 1964", "pd": "IN COPYRIGHT — cite-only." },
+        { "label": "Modern popular English versions circulate (e.g. a Warnock 'Kyranides')", "pd": "NOT a scholarly edition; provenance of the underlying translation unclear. Flagged as a trap: do not cite." }
+      ],
+      "repoCoverage": "absent",
+      "cite": ["S19"]
+    },
+
+    {
+      "id": "theu:chaldean-oracles",
+      "kind": "work (survives only as quotations)",
+      "title": "The Chaldean Oracles",
+      "atlasSlug": "chaldean-oracles",
+      "atlasStatus": "PLANNED in r29 §2.3 (lane alchemy-west, c. 170 CE; Psellos/Plethon/Ficino chain in body; Westcott 1895 PD witness with redaction flagged; Majercik cite-only) + tool T24 'Chaldean Oracles fragment browser' scheduled for R33. VERIFIED ABSENT from shipped data.",
+      "authorId": "au:julian-theurgist",
+      "cultureId": "cu:late-antique-neoplatonism",
+      "dateClaim": "2nd c. CE (the r29 plan's c. 170 CE).",
+      "authorshipNote": "Attributed to Julian the Theurgist, possibly with or building on Julian the Chaldean. The text PRESENTS ITSELF as divine revelation received in inspired trance — recorded as the tradition's claim about its own origin, never as a fact.",
+      "transmissionFinding": "THE SLICE'S DEFINING FRAGMENTARY CASE, AND A DOUBLE LOSS. (1) The Oracles themselves survive only as roughly 300 fragments QUOTED by later writers — Damascius, Proclus, Simplicius, and the 11th-c. Byzantine Psellos. There is no manuscript of the work. (2) The commentaries that would have explained them — by Porphyry, Iamblichus AND Proclus — are ALL LOST. So the operative tradition survives at two removes: quotations selected by commentators, minus the commentaries that selected them. Every reconstruction of 'Chaldean ritual' is therefore an argument, not a reading.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "fragmentary", "evidence": "Ritual language survives in the fragments but no continuous rite does; the quoting authors excerpted for doctrinal purposes, so the operative connective tissue is precisely what was not preserved. Fragmentary by the round's definition: survives only in excerpted form.", "vocabGap": "spoken-formula-recitation" },
+        { "type": "visualization", "textCompleteness": "fragmentary", "evidence": "Fire- and light-imagery of the ascent is present in the fragments; no sequence survives." },
+        { "type": "initiation", "textCompleteness": "referenced", "evidence": "The theurgic rites the Oracles underwrite (the anagōgē, the immortalising of the soul, the celebrated fire-and-light rites) are NAMED in and around the fragments and expounded nowhere that survives." },
+        { "type": "divination-procedure", "textCompleteness": "referenced", "evidence": "The tradition's trance-mediumship is asserted as the Oracles' own mode of production but not described procedurally in what survives." }
+      ],
+      "editions": [
+        { "label": "W. Kroll, De oraculis Chaldaicis, Breslau, 1894", "pd": "PUBLIC DOMAIN. Greek text with commentary, thematically arranged." },
+        { "label": "W. Wynn Westcott, The Chaldæan Oracles of Zoroaster, 1895", "pd": "PUBLIC DOMAIN — but the r29 plan already flags its REDACTION, and this round adds the specific problem: Westcott's arrangement and numbering do not correspond to the des Places numbering that all modern scholarship uses. A Westcott-based fragment browser (tool T24) MUST carry a numbering-concordance warning or it will silently mis-cite." },
+        { "label": "É. des Places, Oracles chaldaïques, Collection Budé, 1971", "pd": "IN COPYRIGHT — cite-only. Fragments 1–227 plus testimonia; THE standard numbering." },
+        { "label": "R. Majercik, The Chaldean Oracles: Text, Translation and Commentary, Brill, SGRR 5, 1989", "pd": "IN COPYRIGHT — cite-only. The standard English." }
+      ],
+      "repoCoverage": "absent",
+      "cite": ["S20","S27"]
+    },
+
+    {
+      "id": "theu:letter-to-anebo",
+      "kind": "work (survives only as quotations)",
+      "title": "Porphyry, Letter to Anebo",
+      "atlasSlug": null,
+      "authorId": "au:porphyry",
+      "cultureId": "cu:late-antique-neoplatonism",
+      "dateClaim": "Late 3rd c. CE.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "fragmentary", "evidence": "Not an operative text at all — a letter of SCEPTICAL QUESTIONS about ritual and divination addressed to an Egyptian priest, and itself surviving only as fragments reconstructed from Iamblichus' quotations and from Eusebius and Augustine. It is included because it is the frame without which De mysteriis is unreadable, and because it is the earliest surviving INTERNAL CRITIQUE of theurgic ritual — a period-native sceptic, which is directly useful to a site whose epistemics are honest-doubt-first." }
+      ],
+      "structuralFinding": "A useful negative datum for the completeness dimension: a text can be procedure-CENTRAL (everything in it is about ritual) and procedure-EMPTY (it contains no procedure), and the grade must be able to say so. Recorded here as 'meta-procedural' — see procedureVocabulary.vocabGaps 'apologetic / theoretical treatise ON procedure'.",
+      "repoCoverage": "referenced only — greatworks.js §iamblichus mentions 'the Letter to Anebo frame' in a study-path step; no record of its own.",
+      "cite": ["S21","S22"]
+    },
+
+    {
+      "id": "theu:de-mysteriis",
+      "kind": "work (apologetic treatise)",
+      "title": "De mysteriis — properly, the Reply of Abamon to Porphyry's Letter to Anebo",
+      "atlasSlug": null,
+      "repoJoin": "gw:iamblichus / work id 'de-mysteriis' in assets/js/core/data/greatworks.js — THE ONE WORK IN THIS SLICE ALREADY SHIPPED. Do not mint a new node; extend this one.",
+      "authorId": "au:iamblichus",
+      "cultureId": "cu:late-antique-neoplatonism",
+      "dateClaim": "c. 300 CE (per the repo record).",
+      "titleFinding": "TWO SEPARATE EDITORIAL IMPOSITIONS, both of which the atlas should state, and the repo currently states only one. (1) THE TITLE 'De mysteriis' was bestowed by MARSILIO FICINO and has, in the Budé editors' phrase, burdened the text for over five centuries; the work's own title is the Reply to Porphyry's Letter to Anebo. (2) THE TEN-BOOK DIVISION is EDITORIAL, not authorial — devised by Scutelli for the 1556 Rome edition and perpetuated until Saffrey–Segonds (Budé, 2013); Wilder's 1911 English uses its own numbering, so every section reference must name its edition. Finding (2) is already in-repo (greatworks.js flag); finding (1) is NEW this round and belongs beside it.",
+      "structuralAnatomy": "A defence, organised by Porphyry's questions rather than by any ritual order: the classes of superior beings and their apparitions; divination (dreams, oracles, divine inspiration, as against technical inference); the rationale of SACRIFICE and of Egyptian material rites; Egyptian theology and first causes; the personal daimon; and union/happiness.",
+      "procedures": [
+        { "type": "invocation/evocation", "textCompleteness": "referenced", "evidence": "THE SLICE'S CENTRAL COMPLETENESS CONTRAST, and the reason the assignment named it. De mysteriis is the fullest late-antique account of WHY ritual is held to reach the gods and contains, so far as this round's sources show, NO executable rite: it names, classifies and justifies invocation, sacrifice, statue-animation, divination and possession without setting any of them out. It is a THEORY of a practice whose manuals (the PGM) survive separately and anonymously. Grade: referenced, with positive evidence — the procedures are discussed at book length and given nowhere." },
+        { "type": "divination-procedure", "textCompleteness": "referenced", "evidence": "Book III (in the editorial division) is a period-native TAXONOMY of divination — dreams, oracles, divine inspiration vs technical inference. A classification, not a method. The repo already maps this chapter onto its four oracle tools as history.", "vocabGaps": ["dream-incubation","lecanomancy / lychnomancy / scrying"] },
+        { "type": "offering/homa", "textCompleteness": "referenced", "evidence": "Books IV–VII (editorial division) defend animal sacrifice and material rites at length without prescribing a sacrificial protocol.", "vocabGap": "animal sacrifice / blood offering" },
+        { "type": "initiation", "textCompleteness": "referenced", "evidence": "Theurgic union is the work's stated goal; no initiatory sequence is given." }
+      ],
+      "editions": [
+        { "label": "T. Taylor (trans.), 1821 (2nd ed. 1895); A. Wilder (trans.), Theurgia, or the Egyptian Mysteries, 1911", "pd": "PUBLIC DOMAIN and quotable — with the repo's own standing caution that Taylor's English is archaic and interpretive, and Wilder's numbering is idiosyncratic." },
+        { "label": "E. C. Clarke, J. M. Dillon & J. P. Hershbell, Iamblichus: De mysteriis, SBL Writings from the Greco-Roman World, 2003", "pd": "IN COPYRIGHT — cite-only. The standard modern English; based on the des Places Budé text." },
+        { "label": "H.-D. Saffrey, A.-P. Segonds & A. Lecerf, Jamblique: Réponse à Porphyre (De mysteriis), CUF Série grecque 496, Les Belles Lettres, 2013", "pd": "IN COPYRIGHT — cite-only. The edition that finally undid the Scutelli book-division." }
+      ],
+      "repoCoverage": "COMPLETE at work level, ABSENT at procedure level — greatworks.js gives edition, PD status, the Scutelli flag, four chapter-groups and site mappings, but records no procedure types and no completeness. This is the exemplar of the inventory agent's finding that the repo's operative layer is untyped and ungraded.",
+      "cite": ["S21","S22"]
+    },
+
+    {
+      "id": "theu:proclus-hieratic-art",
+      "kind": "work (short theoretical treatise / excerpt)",
+      "title": "Proclus, On the Hieratic Art according to the Greeks (De arte hieratica)",
+      "atlasSlug": null,
+      "authorId": "au:proclus",
+      "cultureId": "cu:late-antique-neoplatonism",
+      "dateClaim": "5th c. CE.",
+      "transmissionNote": "Survives as a short piece transmitted in the GREEK ALCHEMICAL manuscript tradition — its standard Greek text is in J. Bidez, Catalogue des manuscrits alchimiques grecs VI (1928). Its survival route is itself a finding: the one surviving Proclan text specifically on hieratic technique came down not through the philosophical manuscripts but through the alchemists' books, which is a documented (and rarely noted) bridge between the theurgic and alchemical corpora.",
+      "procedures": [
+        { "type": "consecration-of-object/talisman", "textCompleteness": "referenced", "evidence": "The treatise expounds the doctrine that underwrites statue-animation and talismanic practice — sympatheia binding the chain of beings, and sunthēmata/symbola as the divine tokens deposited in stones, plants, animals and images — and treats statues, incenses, purifications, invocations and epiphanies together with the philosophical concepts. It gives the RATIONALE for choosing a material, not an operation. Referenced, with the same positive evidence as De mysteriis.", "vocabGap": "sympathetic-materia selection (ousia)" },
+        { "type": "purification", "textCompleteness": "referenced", "evidence": "Purifications are named among the ritual acts discussed; not set out." },
+        { "type": "invocation/evocation", "textCompleteness": "referenced", "evidence": "Invocations and epiphanies are named and theorised; no formula or sequence." }
+      ],
+      "theoreticalFinding": "Proclus supplies the missing THEORY of the PGM's materia slot. The magical papyri specify an ousia — the sympathetically-linked substance — without ever saying why it works; Proclus' sunthēmata doctrine is the philosophical account of exactly that move. Recording the two together is the single most illuminating juxtaposition in this slice, and it is a doctrinal correspondence, NOT a transmission claim: nothing shows the papyri's compilers read Proclus (they mostly predate him) or that Proclus read them.",
+      "editions": [
+        { "label": "J. Bidez, Catalogue des manuscrits alchimiques grecs VI, Bruxelles: Lamertin, 1928", "pd": "PUBLIC DOMAIN in the US (pre-1930). The Greek text." },
+        { "label": "E. Pachoumi, Proclus' On the Hieratic Art according to the Greeks: Critical Edition with Translation and Commentary, Brill, SPNPT 33, 2024", "pd": "IN COPYRIGHT — cite-only. The new critical edition with English." }
+      ],
+      "repoCoverage": "absent (Proclus appears nowhere in the repo's shipped data as an author node — verified by grep this round)",
+      "cite": ["S23"]
+    },
+
+    {
+      "id": "gw:goetia-1904-preliminary-invocation",
+      "kind": "external-anchor (NOT in this slice's corpus — the receiving end of a transmission edge)",
+      "title": "The 'Preliminary Invocation' prefixed to The Book of the Goetia of Solomon the King (1904)",
+      "atlasSlug": null,
+      "note": "Included ONLY so the PGM V transmission edge has a typed target. Its own record belongs to the neighbouring Solomonic/Thelemic slice; do not duplicate.",
+      "procedures": [],
+      "cite": ["S13","S27"]
+    }
+  ],
+
+  "edges": [
+    { "from": "gem:pgm-i", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S9"] },
+    { "from": "gem:pgm-ii", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S9"] },
+    { "from": "gem:pgm-iii", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S14"] },
+    { "from": "gem:pgm-iv", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S3"] },
+    { "from": "gem:pgm-v", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S12"] },
+    { "from": "gem:pgm-vii", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S11"] },
+    { "from": "gem:pgm-pdm-xii", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S9"] },
+    { "from": "gem:pgm-xiii", "type": "AUTHORED_BY", "to": "au:pseudo-moses", "attribution": "pseudepigraphic", "cite": ["S15"] },
+    { "from": "gem:pdm-xiv", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S10"] },
+    { "from": "gem:coptic-magical-corpus", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S6"] },
+    { "from": "gem:p-leid-x", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S16"] },
+    { "from": "gem:p-holm", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "cite": ["S17"] },
+    { "from": "gem:sefer-ha-razim", "type": "AUTHORED_BY", "to": "au:anonymous-greco-egyptian", "attribution": "legendary chain Raziel→Noah→Solomon, recorded as the text's own claim", "cite": ["S18"] },
+    { "from": "gem:cyranides", "type": "AUTHORED_BY", "to": "au:hermes-trismegistus", "attribution": "pseudepigraphic", "cite": ["S19"] },
+    { "from": "gem:cyranides", "type": "AUTHORED_BY", "to": "au:harpocration", "attribution": "named source-treatise absorbed into the compilation", "cite": ["S19"] },
+    { "from": "theu:chaldean-oracles", "type": "AUTHORED_BY", "to": "au:julian-theurgist", "attribution": "attributed; the text claims divine revelation in trance", "cite": ["S20"] },
+    { "from": "theu:letter-to-anebo", "type": "AUTHORED_BY", "to": "au:porphyry", "cite": ["S21"] },
+    { "from": "theu:de-mysteriis", "type": "AUTHORED_BY", "to": "au:iamblichus", "attribution": "written under the persona 'Abamon'", "cite": ["S21","S22"] },
+    { "from": "theu:proclus-hieratic-art", "type": "AUTHORED_BY", "to": "au:proclus", "cite": ["S23"] },
+
+    { "from": "gem:pgm-i", "type": "BELONGS_TO", "to": "cu:greco-egyptian-roman-egypt", "cite": ["S1"] },
+    { "from": "gem:pgm-ii", "type": "BELONGS_TO", "to": "cu:greco-egyptian-roman-egypt", "cite": ["S1"] },
+    { "from": "gem:pgm-iii", "type": "BELONGS_TO", "to": "cu:demotic-egyptian-priestly", "cite": ["S14"] },
+    { "from": "gem:pgm-iv", "type": "BELONGS_TO", "to": "cu:greco-egyptian-roman-egypt", "cite": ["S3","S4"] },
+    { "from": "gem:pgm-v", "type": "BELONGS_TO", "to": "cu:greco-egyptian-roman-egypt", "cite": ["S12"] },
+    { "from": "gem:pgm-vii", "type": "BELONGS_TO", "to": "cu:greco-egyptian-roman-egypt", "cite": ["S11"] },
+    { "from": "gem:pgm-pdm-xii", "type": "BELONGS_TO", "to": "cu:demotic-egyptian-priestly", "cite": ["S9"] },
+    { "from": "gem:pgm-xiii", "type": "BELONGS_TO", "to": "cu:greco-egyptian-roman-egypt", "cite": ["S15"] },
+    { "from": "gem:pdm-xiv", "type": "BELONGS_TO", "to": "cu:demotic-egyptian-priestly", "cite": ["S10"] },
+    { "from": "gem:coptic-magical-corpus", "type": "BELONGS_TO", "to": "cu:coptic-christian-egypt", "cite": ["S6"] },
+    { "from": "gem:p-leid-x", "type": "BELONGS_TO", "to": "cu:greco-egyptian-craft-alchemy", "cite": ["S16"] },
+    { "from": "gem:p-holm", "type": "BELONGS_TO", "to": "cu:greco-egyptian-craft-alchemy", "cite": ["S17"] },
+    { "from": "gem:sefer-ha-razim", "type": "BELONGS_TO", "to": "cu:greco-jewish-late-antique", "cite": ["S18"] },
+    { "from": "gem:cyranides", "type": "BELONGS_TO", "to": "cu:greco-egyptian-roman-egypt", "cite": ["S19"] },
+    { "from": "theu:chaldean-oracles", "type": "BELONGS_TO", "to": "cu:late-antique-neoplatonism", "cite": ["S20"] },
+    { "from": "theu:letter-to-anebo", "type": "BELONGS_TO", "to": "cu:late-antique-neoplatonism", "cite": ["S21"] },
+    { "from": "theu:de-mysteriis", "type": "BELONGS_TO", "to": "cu:late-antique-neoplatonism", "cite": ["S21"] },
+    { "from": "theu:proclus-hieratic-art", "type": "BELONGS_TO", "to": "cu:late-antique-neoplatonism", "cite": ["S23"] },
+
+    { "from": "gem:pgm-i", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "partial", "cite": ["S9"] },
+    { "from": "gem:pgm-i", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "referenced", "cite": ["S4"] },
+    { "from": "gem:pgm-ii", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "partial", "cite": ["S9"] },
+    { "from": "gem:pgm-iii", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "partial", "cite": ["S14"] },
+    { "from": "gem:pgm-iii", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "referenced", "harm": "coercion", "cite": ["S14"] },
+    { "from": "gem:pgm-iv", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "complete", "cite": ["S4"] },
+    { "from": "gem:pgm-iv", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "complete", "cite": ["S4"] },
+    { "from": "gem:pgm-iv", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "partial", "cite": ["S4"] },
+    { "from": "gem:pgm-iv", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "partial", "harm": "animal-killing", "cite": ["S4"] },
+    { "from": "gem:pgm-iv", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": ["S2","S3"] },
+    { "from": "gem:pgm-iv-475-829", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "complete", "cite": ["S2"] },
+    { "from": "gem:pgm-iv-475-829", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "complete", "cite": ["S2"] },
+    { "from": "gem:pgm-iv-475-829", "type": "CONTAINS_PROCEDURE", "to": "breath-discipline", "completeness": "partial", "harm": "hypoxia/breath-holding", "cite": ["S2"] },
+    { "from": "gem:pgm-iv-475-829", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": ["S2"] },
+    { "from": "gem:pgm-iv-475-829", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "referenced", "cite": ["S2"] },
+    { "from": "gem:pgm-iv-296-466", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "complete", "harm": "coercion", "cite": ["S25"] },
+    { "from": "gem:pgm-iv-296-466", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "complete", "cite": ["S25"] },
+    { "from": "gem:pgm-v", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "complete", "cite": ["S13"] },
+    { "from": "gem:pgm-v", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "referenced", "cite": ["S13"] },
+    { "from": "gem:pgm-v", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "partial", "cite": ["S12"] },
+    { "from": "gem:pgm-vii", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "complete", "cite": ["S11"] },
+    { "from": "gem:pgm-vii", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "complete", "cite": ["S11"] },
+    { "from": "gem:pgm-vii", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": ["S11"] },
+    { "from": "gem:pgm-pdm-xii", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "partial", "cite": ["S9"] },
+    { "from": "gem:pgm-pdm-xii", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": ["S9"] },
+    { "from": "gem:pgm-pdm-xii", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "partial", "cite": ["S9"] },
+    { "from": "gem:pgm-xiii", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "partial", "cite": ["S15"] },
+    { "from": "gem:pgm-xiii", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "partial", "cite": ["S15"] },
+    { "from": "gem:pgm-xiii", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": ["S15"] },
+    { "from": "gem:pgm-xiii", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "referenced", "cite": ["S15"] },
+    { "from": "gem:pdm-xiv", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "complete", "cite": ["S10"] },
+    { "from": "gem:pdm-xiv", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "complete", "cite": ["S10"] },
+    { "from": "gem:pdm-xiv", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "partial", "harm": "coercion", "cite": ["S10"] },
+    { "from": "gem:pdm-xiv", "type": "CONTAINS_PROCEDURE", "to": "alchemical-operation", "completeness": "referenced", "harm": "toxic-substance", "cite": ["S10"] },
+    { "from": "gem:pdm-xiv", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "referenced", "cite": ["S10"] },
+    { "from": "gem:coptic-magical-corpus", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "complete", "cite": ["S5"] },
+    { "from": "gem:coptic-magical-corpus", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "complete", "cite": ["S5"] },
+    { "from": "gem:coptic-magical-corpus", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "partial", "harm": "coercion", "cite": ["S5"] },
+    { "from": "gem:coptic-magical-corpus", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "partial", "cite": ["S6"] },
+    { "from": "gem:p-leid-x", "type": "CONTAINS_PROCEDURE", "to": "alchemical-operation", "completeness": "complete", "harm": "toxic-substance", "cite": ["S16"] },
+    { "from": "gem:p-leid-x", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "referenced", "note": "technical metal-purification, NOT ritual purification — de-duplication hazard", "cite": ["S16"] },
+    { "from": "gem:p-holm", "type": "CONTAINS_PROCEDURE", "to": "alchemical-operation", "completeness": "complete", "harm": "toxic-substance", "cite": ["S17"] },
+    { "from": "gem:sefer-ha-razim", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "complete", "cite": ["S18"] },
+    { "from": "gem:sefer-ha-razim", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "partial", "cite": ["S18"] },
+    { "from": "gem:sefer-ha-razim", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": ["S18"] },
+    { "from": "gem:sefer-ha-razim", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "partial", "cite": ["S18"] },
+    { "from": "gem:sefer-ha-razim", "type": "CONTAINS_PROCEDURE", "to": "coercive-rite", "completeness": "partial", "harm": "coercion", "cite": ["S18"] },
+    { "from": "gem:cyranides", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "partial", "cite": ["S19"] },
+    { "from": "gem:cyranides", "type": "CONTAINS_PROCEDURE", "to": "alchemical-operation", "completeness": "referenced", "harm": "toxic-substance", "cite": ["S19"] },
+    { "from": "theu:chaldean-oracles", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "fragmentary", "cite": ["S20"] },
+    { "from": "theu:chaldean-oracles", "type": "CONTAINS_PROCEDURE", "to": "visualization", "completeness": "fragmentary", "cite": ["S20"] },
+    { "from": "theu:chaldean-oracles", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "referenced", "cite": ["S20"] },
+    { "from": "theu:chaldean-oracles", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "referenced", "cite": ["S20"] },
+    { "from": "theu:letter-to-anebo", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "fragmentary", "note": "meta-procedural: questions ABOUT rites, surviving only in quotation", "cite": ["S21"] },
+    { "from": "theu:de-mysteriis", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "referenced", "cite": ["S21"] },
+    { "from": "theu:de-mysteriis", "type": "CONTAINS_PROCEDURE", "to": "divination-procedure", "completeness": "referenced", "cite": ["S21","S22"] },
+    { "from": "theu:de-mysteriis", "type": "CONTAINS_PROCEDURE", "to": "offering/homa", "completeness": "referenced", "cite": ["S21","S22"] },
+    { "from": "theu:de-mysteriis", "type": "CONTAINS_PROCEDURE", "to": "initiation", "completeness": "referenced", "cite": ["S21"] },
+    { "from": "theu:proclus-hieratic-art", "type": "CONTAINS_PROCEDURE", "to": "consecration-of-object/talisman", "completeness": "referenced", "cite": ["S23"] },
+    { "from": "theu:proclus-hieratic-art", "type": "CONTAINS_PROCEDURE", "to": "purification", "completeness": "referenced", "cite": ["S23"] },
+    { "from": "theu:proclus-hieratic-art", "type": "CONTAINS_PROCEDURE", "to": "invocation/evocation", "completeness": "referenced", "cite": ["S23"] },
+
+    { "from": "gem:pgm-iv-475-829", "type": "SEGMENT_OF", "to": "gem:pgm-iv", "schemaExtension": true, "cite": ["S2"] },
+    { "from": "gem:pgm-iv-296-466", "type": "SEGMENT_OF", "to": "gem:pgm-iv", "schemaExtension": true, "cite": ["S25"] },
+
+    { "from": "gem:pgm-v", "type": "TRANSMITS_TO", "to": "gw:goetia-1904-preliminary-invocation", "claim": "PGM V.96–172 ('Stele of Jeu the Hieroglyphist'), originally an exorcism, was first published in English by C. W. Goodwin in 1852 for the Cambridge Antiquarian Society; that publication was taken up by Mathers/the Golden Dawn (1887–1903) and printed by Crowley as the 'Preliminary Invocation' prefixed to his 1904 Book of the Goetia, then expounded in Liber Samekh (1929/30).", "correction": "Supersedes the r29 plan's coarse edge `pgm-corpus→lemegeton`. The source is a SEGMENT of PGM V, not the corpus; and the target is Crowley's 1904 ADDITION to the Goetia, not the Lemegeton text itself.", "confidence": "high — chain fully attested with a named 1852 intermediary", "cite": ["S13","S27"] },
+    { "from": "gem:sefer-ha-razim", "type": "TRANSMITS_TO", "to": "atlas:sefer-raziel", "claim": "Inherited from r29 §2.5 (citation: Peterson's Raziel page). Not re-derived this round.", "confidence": "inherited — unverified this round", "cite": ["S27"] },
+    { "from": "theu:chaldean-oracles", "type": "TRANSMITS_TO", "to": "theu:de-mysteriis", "claim": "Iamblichus wrote a (lost) commentary on the Oracles and their doctrine is foundational for his theurgy.", "confidence": "medium — the commentary's existence and loss is attested; its specific content cannot be recovered", "cite": ["S20"] },
+    { "from": "theu:chaldean-oracles", "type": "TRANSMITS_TO", "to": "theu:proclus-hieratic-art", "claim": "Proclus wrote a (lost) commentary on the Oracles and is one of the four authors through whose quotations they survive at all.", "confidence": "medium — same caveat", "cite": ["S20","S23"] },
+
+    { "from": "theu:de-mysteriis", "type": "COMMENTS_ON", "to": "theu:letter-to-anebo", "claim": "De mysteriis IS the reply to Porphyry's Letter to Anebo, question by question; the Letter survives largely because Iamblichus quotes it.", "confidence": "high", "cite": ["S21"] },
+    { "from": "theu:proclus-hieratic-art", "type": "COMMENTS_ON", "to": "theu:chaldean-oracles", "claim": "Proclus is among the principal quoting witnesses to the Oracles; his surviving hieratic treatise expounds the sunthēmata doctrine the Oracles underwrite.", "confidence": "medium", "cite": ["S20","S23"] },
+
+    { "from": "gem:pgm-pdm-xii", "type": "PARALLELS", "to": "gem:pdm-xiv", "claim": "GEMF 15 and GEMF 16 were produced under the supervision of the SAME principal bilingual scribe-user, temple-priest-trained, in the 2nd c. CE; he copied the Demotic himself and brought in three more Greek-trained scribes for the Greek sections.", "basis": "documented scribal-hand identification (Symbolae Osloenses 98.1, 2025)", "confidence": "high — this is the slice's Mallinson-grade edge", "cite": ["S9"] },
+    { "from": "gem:p-leid-x", "type": "PARALLELS", "to": "gem:p-holm", "claim": "Probably written by the same scribe and discovered together.", "basis": "palaeography + shared find", "confidence": "high", "cite": ["S16"] },
+    { "from": "gem:pgm-ii", "type": "PARALLELS", "to": "gem:pgm-vi", "claim": "PGM VI (P.Lond. I 47) and PGM II (P.Berol. inv. 5026) have been argued to be parts of ONE manuscript by one author — i.e. Preisendanz's numbering splits a single book.", "basis": "published argument ('The authorship of PGM VI + II'); ink analysis (ZPE 224, 2022) is the material test", "confidence": "medium — an argued reconstruction, not consensus", "note": "gem:pgm-vi is a dangling target: not given its own record this round.", "cite": ["S9","S24"] },
+    { "from": "gem:pgm-iv", "type": "PARALLELS", "to": "gem:pgm-iii", "claim": "Both are bilingual Greek / Old Coptic books in which Greek carries the instructions and Egyptian the invocations.", "basis": "the Würzburg project's own comparison", "confidence": "high", "cite": ["S4","S14"] },
+    { "from": "gem:sefer-ha-razim", "type": "PARALLELS", "to": "gem:pgm-corpus", "claim": "Sefer ha-Razim carries Greek technical terminology and closes with a GREEK PRAYER TO HELIOS inside a Hebrew angelological handbook, and its recipe-form matches the Greco-Egyptian formulary form.", "basis": "Margalioth/Morgan; standard in the scholarship", "confidence": "high — a documented structural and linguistic parallel, not a guess", "cite": ["S18"] },
+    { "from": "gem:coptic-magical-corpus", "type": "PARALLELS", "to": "gem:pgm-corpus", "claim": "Direct continuity of form: the Coptic formularies inherit the Greco-Egyptian recipe anatomy (title, materia, timing, incense, written-out formula, NN placeholder) into a Christian idiom, and the corpora overlap in date (3rd–4th c.).", "basis": "Würzburg project framing; the shared formulary/applied-text taxonomy is applied to both", "confidence": "high", "cite": ["S5","S6"] },
+    { "from": "theu:proclus-hieratic-art", "type": "PARALLELS", "to": "gem:pgm-corpus", "claim": "DOCTRINAL correspondence only: Proclus' sunthēmata/sympatheia doctrine is the philosophical account of the materia-selection (ousia) slot the papyri operate without theorising.", "basis": "structural comparison stated explicitly as NOT a transmission claim — no evidence that either read the other, and the papyri largely predate Proclus", "confidence": "medium — offered as a reading aid, flagged as interpretation", "cite": ["S23"] },
+    { "from": "gem:cyranides", "type": "PARALLELS", "to": "atlas:sefer-yetzirah", "ASSERTED": false, "VOIDED_BY_AUDIT": "R33 hostile audit, EVIDENCE STRIKE E1 — the edge's own basis field says 'structural observation made this round' at confidence LOW, i.e. it is a resemblance drawn by the agent, not a dependency found in a source. A 4th-c. Greek magico-medical compilation and a Hebrew cosmological treatise linked because both use an alphabet as an index is precisely the pan-diffusionist edge this corpus attracts. VOID as an edge. RETAINED as a vocabulary-gap note ('alphabet-as-generative-index'), which is the part that was actually load-bearing — the slice author already recommended it be downgraded or dropped, and this audit drops it.", "claim": "Shared FORMAL move only — an alphabet used as a generative index over the natural world (letter → tetrad of plant/bird/fish/stone in Cyranides Bk I; letter → cosmic assignment in Sefer Yetzirah).", "basis": "structural observation made this round", "confidence": "LOW — explicitly NOT a transmission claim. Flagged for the synthesizer to downgrade or drop; included because the vocabulary gap it exposes (alphabet-as-index) is real.", "cite": ["S19"] },
+
+    { "from": "gem:pgm-iv", "type": "FOUND_WITH", "to": "coll:theban-magical-library", "schemaExtension": true, "contested": true, "cite": ["S1","S24"] },
+    { "from": "gem:pgm-pdm-xii", "type": "FOUND_WITH", "to": "coll:theban-magical-library", "schemaExtension": true, "contested": true, "cite": ["S1","S24"] },
+    { "from": "gem:pgm-xiii", "type": "FOUND_WITH", "to": "coll:theban-magical-library", "schemaExtension": true, "contested": true, "cite": ["S1","S24"] },
+    { "from": "gem:pdm-xiv", "type": "FOUND_WITH", "to": "coll:theban-magical-library", "schemaExtension": true, "contested": true, "cite": ["S1","S24"] },
+    { "from": "gem:p-leid-x", "type": "FOUND_WITH", "to": "coll:theban-magical-library", "schemaExtension": true, "contested": true, "note": "Dosoo 2016 counts ALCHEMICAL papyri among the ten probably-associated items — which is why the alchemical and magical corpora of this slice are one archival problem, not two.", "cite": ["S16","S24"] },
+    { "from": "gem:p-holm", "type": "FOUND_WITH", "to": "coll:theban-magical-library", "schemaExtension": true, "contested": true, "cite": ["S16","S24"] },
+    { "from": "gem:pgm-v", "type": "FOUND_WITH", "to": "coll:theban-magical-library", "schemaExtension": true, "contested": true, "note": "Assignment disputed — this is exactly the class of attribution Dosoo argues can be excluded for some manuscripts.", "cite": ["S24"] }
+  ],
+
+  "notes": {
+    "razorCompliance": "This file names procedure TYPES, counts recipes, grades completeness and inventories structural slots. It contains: no voces magicae or divine-name strings, no formula text in any language, no charaktēres or drawable signs, no quantities, no proportions, no temperatures, no substance lists for the toxic material, no ordered executable sequences, and no second-person address. Where a source supplied operational detail (materia identities, effigy treatment, dye chemistry) it has been abstracted to slot-level description. The four harm-bearing categories present — coercive erotic and cursing rites, animal sacrifice, breath manipulation, and toxic craft chemistry — each carry a named hazard KIND at the procedure row, per this round's requirement and the repo's abhicāra precedent.",
+    "schemaProposals": [
+      "SEGMENT_OF (work-segment → work). PGM IV.475–829 and IV.296–466 are the slice's most important operative units and are NOT works; without this edge they either vanish or falsely become works. Line-range segments are the native citation unit of this entire corpus.",
+      "FOUND_WITH (work → collection) plus a `collection` node type. Archival co-provenance is a first-class, contested, citable fact here and is not expressible with any of the six given edge types.",
+      "A node ROLE of 'meta-procedural' for works that discuss/classify/defend procedure without containing it (De mysteriis, Proclus' hieratic treatise, the Letter to Anebo). Without it these works are either wrongly credited with procedures or wrongly recorded as procedure-free.",
+      "An `outputArtefact` node kind, or an explicit exclusion rule, for APPLIED TEXTS (amulets, curse tablets). They are procedure outputs, not procedure-bearing works; the Coptic corpus alone has 187 definite ones and grading them for completeness is a category error.",
+      "A `completenessBasis` enum on every CONTAINS_PROCEDURE edge — one of {slot-inventory, comparative-recension, self-contained-table, editorial-statement, genre-norm}. Every grade in this file rests on one of those five and they are not equally strong; recording the basis is what stops the grade being an opinion.",
+      "RULING REQUESTED on the inventory agent's open question: procedures should hang off WORKS and WORK-SEGMENTS only. This slice supplies the decisive case — Preisendanz's numbering is a shelf-order that both splits one book (II+VI) and bundles multiple recensions (XIII), so 'work' must mean a codicological unit with a shelfmark, not a corpus numeral."
+    ],
+    "joinKeysForSynthesizer": {
+      "alreadyShipped": ["greatworks.js author id 'iamblichus' → au:iamblichus; work id 'de-mysteriis' → theu:de-mysteriis. EXTEND, do not duplicate."],
+      "plannedNotShipped": ["atlas slug 'pgm-corpus' → gem:pgm-corpus", "atlas slug 'chaldean-oracles' → theu:chaldean-oracles", "atlas slug 'sefer-ha-razim' → gem:sefer-ha-razim"],
+      "needNewIds": ["all gem:pgm-* per-papyrus nodes", "gem:pdm-xiv", "gem:coptic-magical-corpus", "gem:p-leid-x", "gem:p-holm", "gem:cyranides", "theu:letter-to-anebo", "theu:proclus-hieratic-art", "au:proclus", "au:porphyry"],
+      "dedupWarnings": [
+        "PGM XIV and PDM xiv are THE SAME MANUSCRIPT under two of Preisendanz's own sequences (Greek vs Demotic numbering) — an exact analogue of the repo's existing Mantramahodadhi/'Mantra Mahodadhi' duplication. Recorded here as one node, gem:pdm-xiv.",
+          "PGM XII and PDM XII are likewise one manuscript (P.Leid. J 384); recorded as gem:pgm-pdm-xii.",
+        "GEMF numbers and PGM numbers are two identifier systems for the same objects and are actively displacing each other. Any node must carry both or it will be uncitable in either literature. Five concordances are verified this round (GEMF 15/16/30/31/55/57); the rest must NOT be guessed.",
+        "'purification' in the alchemical papyri means metal refining, not ritual purity. A synthesizer keying on the type name will merge two unrelated things."
+      ]
+    },
+    "whatIDidNotDo": [
+      "No lacuna audit of individual papyri. Completeness grades rest on genre norms, editors' own statements and structural slot inventories, never on a line-by-line damage assessment — that would require the editions themselves.",
+      "No itemisation of recipe counts for PGM I, II, III, V, XII, XIII. Only PGM VII (67 ritual instructions), PGM IV (>50 sections), P.Leid. X (111 recipes), P.Holm. (154 recipes), Sefer ha-Razim (c. 30 counsels) and PDM xiv (29 recto columns) are counted from sources this round.",
+      "No consultation of Betz, GEMF, Majercik, Morgan or any in-copyright edition. Every figure here comes from encyclopaedic, publisher, project or review sources consulted this round, or from the repo's own inherited verdicts.",
+      "Did not touch the Testament of Solomon, the Hygromanteia, the Sword of Moses or the Hekhalot literature — adjacent late-antique material assigned to neighbouring slices."
+    ]
+  }
+}

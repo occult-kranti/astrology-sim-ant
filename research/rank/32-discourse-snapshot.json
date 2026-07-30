@@ -1,0 +1,602 @@
+{
+  "id": "discourse-snapshot",
+  "schemaVersion": 1,
+  "axisId": "online-discussed",
+  "axisLabel": "Online discussed",
+
+  "capturedAt": "2026-07-30",
+  "surveyStamp": "2026-07",
+  "pageviewWindow": { "from": "2025-07-01", "to": "2026-06-30", "months": 12 },
+
+  "whatThisAxisIs": "A dated RECEPTION measure: how much contemporary English-language internet attention a work or practice-family attracts. It is a fact about the internet in July 2026, not a fact about the work.",
+
+  "whatThisAxisIsNot": [
+    "NOT a measure of whether any of this works. There is no efficacy axis in this dataset and no field of it may be read as one. Every system surveyed here has no demonstrated predictive or operative validity (FRAMING.md §1.1), and a high or low number changes that not at all.",
+    "NOT a measure of historical importance, influence, scholarly standing, textual quality or transmission significance.",
+    "NOT a measure of the size of any living tradition. It measures English-language internet activity, which is close to unrelated to the number of people who actually practise something.",
+    "NOT comparable across languages. Every number here is en.wikipedia and anglophone Reddit."
+  ],
+
+  "rankingHazard": {
+    "statement": "Discourse volume tracks ACCESSIBILITY, RECENCY and ENGLISH-LANGUAGE POPULARITY — not importance. Anything sorted by this axis is sorted by how easy a thing is to read about in English on a phone, and by nothing else.",
+    "workedExample": {
+      "claim": "The Lemegeton outranks the Śāradātilaka online by orders of magnitude, and that fact says nothing whatever about either text.",
+      "measured": "Solomonic entry points (Lesser Key of Solomon 44,922 + Ars Goetia 97,817 + Goetia 204,403) drew 347,142 en-wiki pageviews in the 12 months to 2026-06-30. The Śāradātilaka — a foundational Sanskrit tantric ritual compendium — has NO English Wikipedia article at all (API 'missing', verified 2026-07-30). So does the Mantra Mahodadhi. The ratio is not large; it is undefined, because the denominator is zero.",
+      "reading": "The Lemegeton is a late compilation in a language the anglophone internet reads, printed by Mathers in 1904, out of copyright, and absorbed into games, music and film. The Śāradātilaka is in Sanskrit, has no public-domain English translation, and is read by specialists. The difference measured here is a difference in ACCESS, and this dataset asserts nothing else."
+    },
+    "otherDistortionsFound": [
+      "CELEBRITY OVER DOCTRINE — Aleister Crowley the person drew 1,513,619 views; Thelema the doctrine 510,195; The Book of the Law, the actual text, 110,062. The man outranks his own scripture 13.8 to 1.",
+      "AUTHOR OVER WORK — Manly P. Hall drew 136,597; The Secret Teachings of All Ages, the book he is known for, 5,991. A 22.8-to-1 gap in the wrong direction.",
+      "PRACTICE OVER ORIGINATOR — sigil discourse (Sigil, 217,312; 'Sigil (magic)' redirects to it) outranks Austin Osman Spare, who originated the technique, 2.8 to 1.",
+      "POPULAR PARENT OVER TECHNICAL CORPUS — Ayurveda 459,412 against rasaśāstra 873, a 526-to-1 gap between a wellness category and the alchemical-pharmaceutical corpus inside it.",
+      "ENCYCLOPEDIC INTEREST IS NOT COMMUNITY — the I Ching draws 478,080 pageviews and r/iching has ~10k members; Vajrayāna draws 279,878 and r/vajrayana ~13k. People look these up; they do not gather around them. The two components of this axis measure different things and are deliberately not combined into one score."
+    ]
+  },
+
+  "popularReceptionFlags": {
+    "note": "Records flagged here are ones where the contemporary discourse is demonstrably ABOUT A MODERN RECEPTION, not about the historical text the site treats. Sorting these families next to the others compares unlike things, and the flag exists so a renderer can say so.",
+    "kinds": {
+      "reception-not-text": "The measured attention attaches to a modern popular form, not to the historical corpus.",
+      "no-historical-corpus": "There is no historical corpus at all; the family is a modern movement.",
+      "homonym-diluted": "The anchor article's scope is broader than, or different from, the subject the site treats, so the number is inflated by unrelated traffic.",
+      "celebrity-inflated": "The attention attaches to a biography rather than to the work."
+    }
+  },
+
+  "method": {
+    "summary": "Two independently-sourced components, captured 2026-07-30, deliberately NOT combined into a single score. Component A is exact and reproducible; component B is a third-party estimate with known coverage gaps. Mixing them would launder B's gaps into A's precision.",
+    "componentA": {
+      "name": "Wikipedia pageviews",
+      "what": "Sum of monthly pageviews for the 12 months 2025-07-01 .. 2026-06-30, English Wikipedia, all-access, agent=user (SPIDERS AND BOTS EXCLUDED by the API's own agent filter).",
+      "endpoint": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/{ARTICLE}/monthly/2025070100/2026063000",
+      "existenceCheck": "https://en.wikipedia.org/w/api.php?action=query&titles={T}&redirects=1&format=json — 'missing' is recorded as absent:true, which is a first-class finding, never an empty cell.",
+      "quality": "EXACT and fully reproducible. Anyone can re-run the URL in this record and get the same integer for the same window. This is the only component that should carry weight.",
+      "script": "rank/wiki-pv.sh (shipped alongside this file)",
+      "knownLimits": [
+        "Redirects are counted as separate articles by this API. Where a family has several entry points (e.g. Goetia / Ars Goetia / Lesser Key of Solomon) each is listed separately and the sum is shown as a sum, never silently merged into one 'the' number.",
+        "Pageviews measure lookups, not interest, engagement or belief. A person checking a word in a novel counts the same as a scholar.",
+        "en.wikipedia only. A Sanskrit or Chinese corpus is systematically understated relative to a Latin or English one, which is the whole ranking hazard restated as a measurement property."
+      ]
+    },
+    "componentB": {
+      "name": "Subreddit membership",
+      "what": "Member counts as displayed by gummysearch.com, captured 2026-07-30.",
+      "whyThirdParty": "Reddit closed /r/{sub}/about.json to unauthenticated clients; both www.reddit.com and old.reddit.com were tested on 2026-07-30 and return the SPA shell with no subscriber figure in the markup. There is no first-party route without an API key, and this survey did not use one.",
+      "quality": "ESTIMATE. The tracker rounds to two or three significant figures ('422k'), so precision is roughly ±1k at best and worse at scale. Its refresh cadence is not disclosed per-subreddit beyond a page-level 'Last updated' stamp.",
+      "coverageGap": "The tracker does not index every subreddit. On 2026-07-30 it returned no page for r/Kabbalah, r/Golden_Dawn, r/Jyotish, r/Enochian, r/neidan and others that do exist on Reddit. Those are recorded as verified:false / 'unverified', NEVER as zero and never as absent. A gap in a tracker is not a fact about a community.",
+      "script": "rank/gs.sh (shipped alongside this file)"
+    },
+    "componentC": {
+      "name": "Large-audience popular presence",
+      "what": "Named, sourced examples of mass-market presence — a bestseller with a sales figure, a channel with a subscriber count.",
+      "quality": "ILLUSTRATIVE ONLY, and the weakest thing here. Which book or channel counts as 'the' representative one is the compiler's selection, not a measurement, and the search was not exhaustive. This field is evidence that a large-audience presence EXISTS. It is never evidence about its size relative to another family, and it must not be sorted on.",
+      "youtubeCaveat": "YouTube channel pages embed the subscriber counts of RECOMMENDED channels as well as their own. Where the page yielded more than one candidate figure the number was discarded as unverified rather than guessed — this happened for the Esoterica, Doug's Dharma and YouAreCreators channels. Only unambiguous single-value captures are recorded as numbers."
+    }
+  },
+
+  "tierRule": {
+    "statement": "Tier is derived from ONE number — the anchor article's 12-month pageviews — by the fixed thresholds below. It is stated as a rule so it is reproducible rather than a judgement, and the Reddit figure is deliberately NOT folded in, because folding an incompletely-covered estimate into a derived tier would convert a coverage gap into an apparent fact.",
+    "thresholds": [
+      { "tier": "mass", "min": 300000, "label": "Mass audience", "gloss": "A general-interest topic; most traffic is not from practitioners." },
+      { "tier": "broad", "min": 60000, "max": 299999, "label": "Broad interest" },
+      { "tier": "specialist", "min": 5000, "max": 59999, "label": "Specialist interest" },
+      { "tier": "marginal", "min": 1, "max": 4999, "label": "Marginal" },
+      { "tier": "absent", "min": 0, "max": 0, "label": "No English Wikipedia article", "gloss": "A first-class value. It means the anglophone internet has not written this down, which is a fact about the anglophone internet." }
+    ],
+    "liveTrendVsSpecialist": "Recorded per-record in `trend` as one of 'live-trend' | 'steady' | 'specialist' | 'declining' | 'unknown'. 'live-trend' is asserted ONLY where a mass-market commercial artifact of the last twenty years is named in `popularPresence`; otherwise the survey does not have month-resolution trend evidence and says 'unknown' rather than infer a direction from twelve monthly data points."
+  },
+
+  "families": [
+    {
+      "id": "modern-western-astrology", "label": "Modern Western astrology (general)",
+      "siteWings": ["basics.html", "transits.html", "read.html"],
+      "anchor": { "article": "Astrology", "views12mo": 442094, "absent": false },
+      "otherArticles": [],
+      "tier": "mass", "trend": "live-trend",
+      "reddit": [
+        { "sub": "astrology", "members": "2.1M", "verified": true },
+        { "sub": "AskAstrologers", "members": "251k", "verified": true }
+      ],
+      "popularPresence": [{ "kind": "category", "what": "Sun-sign columns, app-store astrology apps and a continuous mass-media presence.", "sourced": false }],
+      "flags": [],
+      "note": "The largest community figure in the survey. Note the shape: 2.1M subreddit members against 442k annual article lookups — this is the one family where the community outweighs the encyclopedia, which is what a live consumer trend looks like."
+    },
+    {
+      "id": "jyotisa", "label": "Jyotiṣa — Indian astrology",
+      "siteWings": ["vedic/index.html", "kuta.html", "tajika.html"],
+      "anchor": { "article": "Hindu astrology", "views12mo": 124657, "absent": false },
+      "otherArticles": [
+        { "article": "Nakshatra", "views12mo": 144585 },
+        { "article": "Brihat Parashara Hora Shastra", "views12mo": 19332 },
+        { "article": "Varahamihira", "views12mo": 8618 }
+      ],
+      "tier": "broad", "trend": "steady",
+      "reddit": [
+        { "sub": "vedicastrology", "members": "130k", "verified": true },
+        { "sub": "hinduism", "members": "221k", "verified": true },
+        { "sub": "Jyotish", "members": null, "verified": false, "why": "not indexed by the tracker on 2026-07-30; the subreddit exists" }
+      ],
+      "popularPresence": [{ "kind": "youtube", "what": "KRSchannel (Kapiel Raaj), Vedic astrology", "metric": "622K subscribers", "capturedAt": "2026-07-30", "sourced": true }],
+      "flags": [],
+      "note": "The one family where the English figures most badly understate the living tradition — jyotiṣa's primary discourse is in Hindi, Tamil, Telugu and Sanskrit and on platforms this survey did not measure. Treat the number as a floor, not an estimate."
+    },
+    {
+      "id": "muhurta-panchanga", "label": "Muhūrta & pañcāṅga — Indian electional timing",
+      "siteWings": ["muhurta.html", "tithi-pravesha.html"],
+      "anchor": { "article": "Muhurta", "views12mo": 64074, "absent": false },
+      "otherArticles": [{ "article": "Panchangam", "views12mo": 34754 }],
+      "tier": "broad", "trend": "unknown",
+      "reddit": [],
+      "popularPresence": [],
+      "flags": [],
+      "note": "No dedicated English-language community found. The attention is reference-lookup shaped: people check a date, they do not discuss the doctrine."
+    },
+    {
+      "id": "lilly-horary", "label": "Lilly & horary astrology",
+      "siteWings": ["book1", "book2", "book3", "prasna.html"],
+      "anchor": { "article": "Horary astrology", "views12mo": 17220, "absent": false },
+      "otherArticles": [{ "article": "William Lilly", "views12mo": 11337 }],
+      "tier": "specialist", "trend": "specialist",
+      "reddit": [{ "sub": "horary", "members": null, "verified": false, "why": "not indexed by the tracker on 2026-07-30" }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "The system this site is built on is, on this axis, a specialist interest — roughly 1/26th of the traffic of 'Astrology'. That is worth stating on the page, because a reader arriving from the general topic is arriving from something 26 times larger."
+    },
+    {
+      "id": "hellenistic-astrology", "label": "Hellenistic astrology (Valens, Ptolemy lineage)",
+      "siteWings": ["timelords.html", "book1"],
+      "anchor": { "article": "Hellenistic astrology", "views12mo": 27941, "absent": false },
+      "otherArticles": [{ "article": "Vettius Valens", "views12mo": 7307 }],
+      "tier": "specialist", "trend": "steady",
+      "reddit": [{ "sub": "AskAstrologers", "members": "251k", "verified": true, "note": "general-astrology community, not Hellenistic-specific" }],
+      "popularPresence": [{ "kind": "youtube", "what": "The Astrology Podcast (Chris Brennan)", "metric": "269K subscribers", "capturedAt": "2026-07-30", "sourced": true }],
+      "flags": [],
+      "note": "The clearest case in the survey of a specialist corpus with a disproportionately large single media channel attached to it — the revival is real and is substantially carried by one podcast."
+    },
+    {
+      "id": "picatrix", "label": "Picatrix (Ghāyat al-Ḥakīm)",
+      "siteWings": ["picatrix"],
+      "anchor": { "article": "Picatrix", "views12mo": 58786, "absent": false },
+      "otherArticles": [],
+      "tier": "specialist", "trend": "steady",
+      "reddit": [{ "sub": "occult", "members": "422k", "verified": true, "note": "general community; no Picatrix-specific subreddit found" }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "Steady month-to-month (4,819–5,400 across the window). A specialist text with no mass-market entry point, and the pageview curve looks like it."
+    },
+    {
+      "id": "agrippa", "label": "Agrippa — Three Books of Occult Philosophy",
+      "siteWings": ["picatrix/correspondences.html", "geomancy.html", "kameas.html"],
+      "anchor": { "article": "Three Books of Occult Philosophy", "views12mo": 58063, "absent": false },
+      "otherArticles": [{ "article": "Heinrich Cornelius Agrippa", "views12mo": 104977, "note": "biography, not the work" }],
+      "tier": "specialist", "trend": "steady",
+      "reddit": [{ "sub": "occult", "members": "422k", "verified": true }],
+      "popularPresence": [],
+      "flags": ["celebrity-inflated"],
+      "note": "The man outdraws the book 1.8 to 1. Anyone sorting 'Agrippa' by the biography article would rank this family nearly twice as high as sorting by the work; the anchor is deliberately the work."
+    },
+    {
+      "id": "lemegeton-goetia", "label": "Lemegeton — the Lesser Key of Solomon / Ars Goetia",
+      "siteWings": ["library/esoteric.html", "chronology"],
+      "anchor": { "article": "Lesser Key of Solomon", "views12mo": 44922, "absent": false },
+      "otherArticles": [
+        { "article": "Goetia", "views12mo": 204403 },
+        { "article": "Ars Goetia", "views12mo": 97817 }
+      ],
+      "entryPointSum": 347142,
+      "tier": "specialist", "trend": "live-trend",
+      "reddit": [
+        { "sub": "DemonolatryPractices", "members": "72k", "verified": true },
+        { "sub": "occult", "members": "422k", "verified": true }
+      ],
+      "popularPresence": [{ "kind": "category", "what": "The 72 demons are a recurring fixture of video games, tabletop RPGs, anime and metal music; the pop-culture entry points ('Goetia', 'Ars Goetia') outdraw the actual text article 6.7 to 1.", "sourced": false }],
+      "flags": ["reception-not-text"],
+      "note": "THE headline reception case, and the reason this axis carries a flag field. Sorting the Lemegeton high does not mean readers are engaging with a seventeenth-century Solomonic compilation; it overwhelmingly means they met a demon name in a game and looked it up. The site's own record is about the text; this number is mostly not."
+    },
+    {
+      "id": "key-of-solomon", "label": "Clavicula Salomonis — the Key of Solomon",
+      "siteWings": ["library/esoteric.html"],
+      "anchor": { "article": "Key of Solomon", "views12mo": 169405, "absent": false },
+      "otherArticles": [],
+      "tier": "broad", "trend": "steady",
+      "reddit": [{ "sub": "occult", "members": "422k", "verified": true }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "Excluded from this record: the article 'Solomon's Key' (19,025 views) is a 1986 Tecmo video game and is a homonym, not this text. Recorded here because the mistake is easy and would have inflated the figure by 11%."
+    },
+    {
+      "id": "abramelin", "label": "The Book of Abramelin",
+      "siteWings": ["library/esoteric.html"],
+      "anchor": { "article": "Book of Abramelin", "views12mo": 546, "absent": false },
+      "otherArticles": [],
+      "tier": "marginal", "trend": "specialist",
+      "reddit": [{ "sub": "occult", "members": "422k", "verified": true }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "546 views in twelve months — about 1.5 a day. A text of considerable weight inside the Western magical tradition and one of Mathers' major translations, and on this axis it is very nearly invisible. A clean demonstration that the axis does not measure importance."
+    },
+    {
+      "id": "enochian", "label": "Enochian — Dee & Kelley",
+      "siteWings": ["chronology", "library/esoteric.html"],
+      "anchor": { "article": "Enochian magic", "views12mo": 92963, "absent": false },
+      "otherArticles": [{ "article": "John Dee", "views12mo": 251931, "note": "biography, not the system" }],
+      "tier": "broad", "trend": "steady",
+      "reddit": [{ "sub": "Enochian", "members": null, "verified": false, "why": "not indexed by the tracker on 2026-07-30" }],
+      "popularPresence": [],
+      "flags": ["celebrity-inflated"],
+      "note": "Dee the Elizabethan courtier draws 2.7× the system he and Kelley recorded."
+    },
+    {
+      "id": "hermetica", "label": "The Hermetica — Corpus Hermeticum & Emerald Tablet",
+      "siteWings": ["chronology/hermetica.html", "greatworks"],
+      "anchor": { "article": "Hermetica", "views12mo": 128386, "absent": false },
+      "otherArticles": [
+        { "article": "Hermeticism", "views12mo": 478249 },
+        { "article": "Emerald Tablet", "views12mo": 317585 },
+        { "article": "Corpus Hermeticum", "views12mo": 82733 }
+      ],
+      "tier": "broad", "trend": "steady",
+      "reddit": [{ "sub": "Hermeticism", "members": "67k", "verified": true }],
+      "popularPresence": [{ "kind": "category", "what": "'As above, so below' and the Emerald Tablet circulate far outside any reading of the text — the Tablet article alone outdraws the Corpus Hermeticum 3.8 to 1.", "sourced": false }],
+      "flags": ["reception-not-text"],
+      "note": "A single aphorism outperforms the corpus it was extracted from."
+    },
+    {
+      "id": "golden-dawn", "label": "The Hermetic Order of the Golden Dawn",
+      "siteWings": ["kabbalah.html", "tarot.html", "library/esoteric.html"],
+      "anchor": { "article": "Hermetic Order of the Golden Dawn", "views12mo": 385445, "absent": false },
+      "otherArticles": [],
+      "tier": "mass", "trend": "steady",
+      "reddit": [{ "sub": "Golden_Dawn", "members": null, "verified": false, "why": "not indexed by the tracker on 2026-07-30; the subreddit exists" }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "Checked for the obvious homonym: the Greek far-right party is a SEPARATE article ('Golden Dawn (political party)') and does not contaminate this figure."
+    },
+    {
+      "id": "thelema-crowley", "label": "Thelema & Crowley",
+      "siteWings": ["thelemic-times.html", "greatworks"],
+      "anchor": { "article": "Thelema", "views12mo": 510195, "absent": false },
+      "otherArticles": [
+        { "article": "Aleister Crowley", "views12mo": 1513619, "note": "biography — the single largest figure in the survey" },
+        { "article": "The Book of the Law", "views12mo": 110062 }
+      ],
+      "tier": "mass", "trend": "steady",
+      "reddit": [{ "sub": "thelema", "members": "63k", "verified": true }],
+      "popularPresence": [{ "kind": "category", "what": "Crowley is a durable pop-culture figure (Beatles sleeve, Bowie, Page, Ozzy, film and television).", "sourced": false }],
+      "flags": ["celebrity-inflated"],
+      "note": "The starkest celebrity distortion measured: 1,513,619 for the man against 110,062 for the text he claimed was dictated to him. Note also how small the community is against the traffic — 63k subscribers behind half a million annual lookups. People read about Crowley; comparatively few gather around Thelema."
+    },
+    {
+      "id": "chaos-magic-spare", "label": "Chaos magic & sigils (Spare lineage)",
+      "siteWings": ["library/esoteric.html"],
+      "anchor": { "article": "Chaos magic", "views12mo": 169076, "absent": false },
+      "otherArticles": [
+        { "article": "Sigil", "views12mo": 217312, "note": "'Sigil (magic)' is a REDIRECT to this article — verified 2026-07-30; the two are the same content and are not summed" },
+        { "article": "Austin Osman Spare", "views12mo": 78399 }
+      ],
+      "tier": "broad", "trend": "live-trend",
+      "reddit": [
+        { "sub": "chaosmagick", "members": "70k", "verified": true },
+        { "sub": "sigils", "members": null, "verified": false, "why": "not indexed by the tracker on 2026-07-30" }
+      ],
+      "popularPresence": [{ "kind": "category", "what": "Sigil-making is a staple of short-form video and witchcraft-adjacent social platforms.", "sourced": false }],
+      "flags": ["reception-not-text"],
+      "note": "The brief's own example, and it holds: the contemporary discourse is about a sigil METHOD — draw an intention, abstract it, forget it — that circulates almost entirely detached from Spare's actual writing. Spare's Book of Pleasure (1913) has no article of its own in this capture; sigil discourse outdraws Spare himself 2.8 to 1. Related, and belonging in the site's own voice rather than here: the modern conflation of sigil practice with breath-retention-to-unconsciousness is a documented misattribution to Spare (FRAMING.md §C-3)."
+    },
+    {
+      "id": "hall-stoaa", "label": "Manly P. Hall — The Secret Teachings of All Ages",
+      "siteWings": ["greatworks", "chronology"],
+      "anchor": { "article": "The Secret Teachings of All Ages", "views12mo": 5991, "absent": false },
+      "otherArticles": [{ "article": "Manly P. Hall", "views12mo": 136597, "note": "biography" }],
+      "tier": "specialist", "trend": "steady",
+      "reddit": [{ "sub": "occult", "members": "422k", "verified": true }],
+      "popularPresence": [],
+      "flags": ["celebrity-inflated"],
+      "note": "22.8 to 1 for the author over the book. The lecture archive on YouTube is very likely the reason and this survey did not measure it."
+    },
+    {
+      "id": "tarot", "label": "Tarot",
+      "siteWings": ["tarot.html"],
+      "anchor": { "article": "Tarot", "views12mo": 833581, "absent": false },
+      "otherArticles": [],
+      "tier": "mass", "trend": "live-trend",
+      "reddit": [{ "sub": "tarot", "members": "621k", "verified": true }],
+      "popularPresence": [{ "kind": "category", "what": "A continuously published mass-market deck-and-guidebook industry.", "sourced": false }],
+      "flags": [],
+      "note": "The most balanced profile in the survey — large traffic AND a large community, the signature of something people both look up and do."
+    },
+    {
+      "id": "iching", "label": "I Ching",
+      "siteWings": ["iching.html"],
+      "anchor": { "article": "I Ching", "views12mo": 478080, "absent": false },
+      "otherArticles": [{ "article": "Zhou Yi", "views12mo": 825 }],
+      "tier": "mass", "trend": "steady",
+      "reddit": [{ "sub": "iching", "members": "10k", "verified": true }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "The sharpest traffic-to-community gap in the survey: 478,080 annual lookups, ~10k community members — a 48-to-1 ratio against tarot's 1.3-to-1. Canonical status drives lookups; it does not produce a forum."
+    },
+    {
+      "id": "geomancy", "label": "Geomancy (ʿilm al-raml / Agrippa lineage)",
+      "siteWings": ["geomancy.html"],
+      "anchor": { "article": "Geomancy", "views12mo": 100392, "absent": false },
+      "otherArticles": [],
+      "tier": "broad", "trend": "specialist",
+      "reddit": [{ "sub": "Geomancy", "members": "2k", "verified": true }],
+      "popularPresence": [],
+      "flags": ["homonym-diluted"],
+      "note": "The article's scope is 'earth divination' broadly and explicitly includes feng shui and reading ground markings; the Arabic-Latin sixteen-figure art the site actually computes is a subsection. The 100,392 is therefore an overstatement of this family, and the ~2k subreddit is probably the truer signal."
+    },
+    {
+      "id": "runic-divination", "label": "Runic divination & rune magic",
+      "siteWings": ["runes.html"],
+      "anchor": { "article": "Runic magic", "views12mo": 44724, "absent": false },
+      "otherArticles": [{ "article": "Runes", "views12mo": 422589, "note": "the WRITING SYSTEM — verified 2026-07-30 that this article is about the Germanic alphabets, not divination; excluded from the anchor" }],
+      "tier": "specialist", "trend": "steady",
+      "reddit": [{ "sub": "runes", "members": "32k", "verified": true }],
+      "popularPresence": [],
+      "flags": ["homonym-diluted"],
+      "note": "Anchoring on 'Runes' would have put this family in the mass tier on the strength of people looking up an alphabet. The correction costs it 377,865 views and one whole tier, and is the single largest correction made in this survey."
+    },
+    {
+      "id": "kabbalah", "label": "Kabbalah & Hermetic Qabalah",
+      "siteWings": ["kabbalah.html"],
+      "anchor": { "article": "Kabbalah", "views12mo": 902407, "absent": false },
+      "otherArticles": [
+        { "article": "Zohar", "views12mo": 253907 },
+        { "article": "Hermetic Qabalah", "views12mo": 100647 },
+        { "article": "Sefer Yetzirah", "views12mo": 71648 }
+      ],
+      "tier": "mass", "trend": "steady",
+      "reddit": [
+        { "sub": "Kabbalah", "members": null, "verified": false, "why": "not indexed by the tracker on 2026-07-30; the subreddit exists" },
+        { "sub": "Judaism", "members": "136k", "verified": true, "note": "parent religious community, not Kabbalah-specific" }
+      ],
+      "popularPresence": [],
+      "flags": [],
+      "note": "The second-largest anchor in the survey. Carries a live-tradition caveat the others do not: a substantial share of this is a living Jewish religious subject, not an esoteric-revival one, and the site's wing treats mainly the Hermetic Qabalah branch (100,647) — 11% of the anchor."
+    },
+    {
+      "id": "western-alchemy", "label": "Western alchemy",
+      "siteWings": ["chronology/alchemy.html"],
+      "anchor": { "article": "Alchemy", "views12mo": 656769, "absent": false },
+      "otherArticles": [],
+      "tier": "mass", "trend": "steady",
+      "reddit": [{ "sub": "alchemy", "members": "54k", "verified": true }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "656,769 lookups against a 54k community — a 12-to-1 ratio. Alchemy is a thing people read about, not a thing people do."
+    },
+    {
+      "id": "daoist-neidan", "label": "Daoist internal alchemy (neidan) & waidan",
+      "siteWings": ["chronology/alchemy.html", "confluence.html"],
+      "anchor": { "article": "Neidan", "views12mo": 51634, "absent": false },
+      "otherArticles": [
+        { "article": "Waidan", "views12mo": 11246 },
+        { "article": "Baopuzi", "views12mo": 11875 },
+        { "article": "Cantong qi", "views12mo": 5068 },
+        { "article": "Taoist alchemy", "views12mo": 939 }
+      ],
+      "tier": "specialist", "trend": "specialist",
+      "reddit": [
+        { "sub": "taoism", "members": "163k", "verified": true, "note": "parent tradition, not neidan-specific" },
+        { "sub": "neidan", "members": null, "verified": false, "why": "not indexed by the tracker on 2026-07-30" }
+      ],
+      "popularPresence": [],
+      "flags": [],
+      "note": "The Cantong qi — by common scholarly account the foundational text of Chinese alchemy — draws 5,068 lookups a year against Western 'Alchemy' at 656,769, a 130-to-1 gap. Same subject, different language of origin. This is the ranking hazard in its purest measurable form."
+    },
+    {
+      "id": "rasasastra", "label": "Rasaśāstra — Indian alchemy & mineral pharmacy",
+      "siteWings": ["rasa.html"],
+      "anchor": { "article": "Rasa shastra", "views12mo": 873, "absent": false },
+      "otherArticles": [
+        { "article": "Ayurveda", "views12mo": 459412, "note": "popular parent category" },
+        { "article": "Rasayana", "views12mo": 13916 },
+        { "article": "Bhasma", "views12mo": 1394 }
+      ],
+      "tier": "marginal", "trend": "specialist",
+      "reddit": [{ "sub": "Ayurveda", "members": "33k", "verified": true, "note": "parent category, not rasaśāstra-specific" }],
+      "popularPresence": [],
+      "flags": ["homonym-diluted"],
+      "note": "873 lookups a year, against 459,412 for Ayurveda — a 526-to-1 gap between a wellness category and the mineral-alchemical corpus inside it. This is also the family carrying the site's heaviest documented-harm apparatus (heavy-metal toxicity, FRAMING.md §C-1), and the discourse figure has no bearing on that: harm documentation is a separate axis and low discourse volume is not safety."
+    },
+    {
+      "id": "yoga-sutras", "label": "Yoga Sūtras of Patañjali",
+      "siteWings": ["yoga"],
+      "anchor": { "article": "Yoga Sutras of Patanjali", "views12mo": 151324, "absent": false },
+      "otherArticles": [],
+      "tier": "broad", "trend": "steady",
+      "reddit": [{ "sub": "yoga", "members": "3.4M", "verified": true, "note": "postural-yoga community; overwhelmingly not about this text" }],
+      "popularPresence": [{ "kind": "youtube", "what": "Sadhguru (Isha) — modern yoga-Vedānta, adjacent rather than textual", "metric": "6.41M subscribers", "capturedAt": "2026-07-30", "sourced": true }],
+      "flags": ["reception-not-text"],
+      "note": "r/yoga's 3.4M members are the second-largest community in this survey and are almost entirely about modern postural practice, which is a twentieth-century development with a contested relationship to this text. Attributing that community to the Yoga Sūtras would be the worst single misreading available in this dataset."
+    },
+    {
+      "id": "hatha-yoga-texts", "label": "Haṭha yoga texts — Pradīpikā, Gheraṇḍa Saṁhitā",
+      "siteWings": ["practices", "yoga"],
+      "anchor": { "article": "Hatha Yoga Pradipika", "views12mo": 31076, "absent": false },
+      "otherArticles": [
+        { "article": "Gheranda Samhita", "views12mo": 15892 },
+        { "article": "Pranayama", "views12mo": 88948 },
+        { "article": "Mudra", "views12mo": 106558 },
+        { "article": "Khecari mudra", "views12mo": 351 }
+      ],
+      "tier": "specialist", "trend": "specialist",
+      "reddit": [{ "sub": "yoga", "members": "3.4M", "verified": true, "note": "not text-specific" }],
+      "popularPresence": [],
+      "flags": ["reception-not-text"],
+      "note": "Khecarī mudrā — the practice this site handles with its most careful harm apparatus (FRAMING.md §C-2, the ratified worked example) — draws 351 lookups a year, under one a day. Worth stating plainly: the practices the site is most careful about are the ones almost nobody is reading about, and that ordering is a coincidence of accessibility, not a safety finding."
+    },
+    {
+      "id": "tantra-ritual-manuals", "label": "Tantric ritual manuals (Śāradātilaka, Mantra Mahodadhi)",
+      "siteWings": ["abhichara", "practices"],
+      "anchor": { "article": "Tantra", "views12mo": 364228, "absent": false },
+      "corpusAnchor": { "article": "Sharadatilaka", "views12mo": null, "absent": true, "verifiedAt": "2026-07-30", "method": "en.wikipedia action=query returned 'missing'" },
+      "otherArticles": [
+        { "article": "Shaktism", "views12mo": 208608 },
+        { "article": "Sri Yantra", "views12mo": 102929 },
+        { "article": "Shri Vidya", "views12mo": 30019 },
+        { "article": "Mantra", "views12mo": 181433 },
+        { "article": "Mantra Mahodadhi", "views12mo": null, "absent": true }
+      ],
+      "tier": "mass", "corpusTier": "absent", "trend": "live-trend",
+      "reddit": [{ "sub": "Tantra", "members": "34k", "verified": true, "note": "substantially a neotantra / modern-sexuality community" }],
+      "popularPresence": [{ "kind": "category", "what": "'Tantra' in English mass media denotes a modern sexuality-and-intimacy genre with essentially no relationship to the Sanskrit ritual corpus.", "sourced": false }],
+      "flags": ["reception-not-text"],
+      "note": "THE decisive case for keeping `corpusAnchor` separate from `anchor`. The FAMILY reads as mass tier (364,228). The actual ritual manuals the site treats have NO ENGLISH WIKIPEDIA ARTICLE AT ALL. A single number here would be a lie in either direction, so the record carries two and refuses to reconcile them."
+    },
+    {
+      "id": "atharvaveda-abhicara", "label": "Atharvaveda & abhicāra",
+      "siteWings": ["abhichara"],
+      "anchor": { "article": "Atharvaveda", "views12mo": 119423, "absent": false },
+      "corpusAnchor": { "article": "Abhichara", "views12mo": null, "absent": true, "verifiedAt": "2026-07-30", "method": "en.wikipedia action=query returned 'missing' for both 'Abhichara' and 'Abhicara'" },
+      "otherArticles": [],
+      "tier": "broad", "corpusTier": "absent", "trend": "specialist",
+      "reddit": [{ "sub": "hinduism", "members": "221k", "verified": true, "note": "parent community" }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "The Veda is broadly looked up; abhicāra as a topic has no English article. The site's abhicāra wing is, on this axis, writing about something the anglophone internet has not written down."
+    },
+    {
+      "id": "pali-canon", "label": "The Pāli canon & Dhammapada",
+      "siteWings": ["buddhist"],
+      "anchor": { "article": "Dhammapada", "views12mo": 83692, "absent": false },
+      "otherArticles": [{ "article": "Pali Canon", "views12mo": 79973 }],
+      "tier": "broad", "trend": "steady",
+      "reddit": [
+        { "sub": "Buddhism", "members": "769k", "verified": true },
+        { "sub": "theravada", "members": "23k", "verified": true }
+      ],
+      "popularPresence": [{ "kind": "category", "what": "The Dhammapada is continuously in print in many mass-market translations.", "sourced": false }],
+      "flags": [],
+      "note": "r/Buddhism at 769k is a large religious community; r/theravada at 23k is the school-specific figure and is the better comparator for the canon proper."
+    },
+    {
+      "id": "heart-sutra", "label": "The Heart Sūtra",
+      "siteWings": ["buddhist/heart.html"],
+      "anchor": { "article": "Heart Sutra", "views12mo": 144556, "absent": false },
+      "otherArticles": [],
+      "tier": "broad", "trend": "steady",
+      "reddit": [{ "sub": "Buddhism", "members": "769k", "verified": true }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "The highest-traffic single text in the Buddhist part of the survey — 1.7× the Dhammapada."
+    },
+    {
+      "id": "anapanasati-metta", "label": "Ānāpānasati & mettā practice",
+      "siteWings": ["buddhist/mn118.js", "buddhist/metta.js"],
+      "anchor": { "article": "Anapanasati", "views12mo": 36326, "absent": false },
+      "otherArticles": [
+        { "article": "Vipassana movement", "views12mo": 106315 },
+        { "article": "Mettā", "views12mo": 11900 }
+      ],
+      "tier": "specialist", "trend": "live-trend",
+      "reddit": [
+        { "sub": "Meditation", "members": "3.6M", "verified": true, "note": "the LARGEST community in this survey; overwhelmingly secular, not canonical" },
+        { "sub": "streamentry", "members": "43k", "verified": true }
+      ],
+      "popularPresence": [{ "kind": "category", "what": "A mass-market secular mindfulness industry (apps, clinical programmes) descends from this material at several removes.", "sourced": false }],
+      "flags": ["reception-not-text"],
+      "note": "The largest community figure in the whole survey (3.6M) sits against a 36,326 text article — roughly 100 community members per annual lookup of the sutta the practice descends from. The community is real; its relationship to the canonical text is remote."
+    },
+    {
+      "id": "vajrayana", "label": "Vajrayāna / tantric Buddhism",
+      "siteWings": ["buddhist"],
+      "anchor": { "article": "Vajrayana", "views12mo": 279878, "absent": false },
+      "otherArticles": [],
+      "tier": "broad", "trend": "steady",
+      "reddit": [{ "sub": "vajrayana", "members": "13k", "verified": true }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "279,878 lookups, 13k community — a 21-to-1 ratio. A tradition with restricted transmission produces encyclopedia readers rather than open forums, which is what the numbers show."
+    },
+    {
+      "id": "greek-magical-papyri", "label": "The Greek Magical Papyri (PGM)",
+      "siteWings": ["chronology"],
+      "anchor": { "article": "Greek Magical Papyri", "views12mo": 65770, "absent": false },
+      "otherArticles": [],
+      "tier": "broad", "trend": "steady",
+      "reddit": [{ "sub": "occult", "members": "422k", "verified": true }],
+      "popularPresence": [],
+      "flags": [],
+      "note": "Notable against the copyright position: the standard translation (Betz 1986) is cite-only under FRAMING.md §4.4, so most of this traffic reaches an encyclopedia article rather than a text."
+    },
+    {
+      "id": "manifestation-loa", "label": "Manifestation / Law of Attraction",
+      "siteWings": [],
+      "anchor": { "article": "The Secret (Byrne book)", "views12mo": 352915, "absent": false },
+      "otherArticles": [
+        { "article": "Neville Goddard", "views12mo": 318934 },
+        { "article": "Law of attraction (New Thought)", "views12mo": 189293 },
+        { "article": "Rhonda Byrne", "views12mo": 80594 }
+      ],
+      "tier": "mass", "trend": "live-trend",
+      "reddit": [
+        { "sub": "lawofattraction", "members": "366k", "verified": true },
+        { "sub": "NevilleGoddard", "members": "255k", "verified": true }
+      ],
+      "popularPresence": [
+        { "kind": "book", "what": "Rhonda Byrne, The Secret (2006) — reported at 30M+ copies sold worldwide and 200+ weeks on the New York Times bestseller list", "sourced": true, "sourceNote": "en.wikipedia 'The Secret (Byrne book)'; figures are publisher-derived and this survey did not independently audit them" },
+        { "kind": "youtube", "what": "YouAreCreators (law-of-attraction channel)", "metric": null, "verified": false, "why": "the channel page returned multiple candidate subscriber figures (recommended-channel contamination); no number recorded rather than a guessed one" }
+      ],
+      "flags": ["no-historical-corpus"],
+      "note": "INCLUDED AS A CONTROL, NOT AS A SUBJECT — the site has no wing for this and siteWings is deliberately empty. It is here because it is the purest available demonstration of what this axis measures: 621k combined subreddit members and 941,736 combined annual lookups attached to a body of material with no historical corpus behind it, whose oldest layer is nineteenth-century New Thought. It outranks the Picatrix, Agrippa, the Lemegeton, the Cantong qi and the entire Sanskrit ritual literature combined. If any reader is tempted to read this axis as importance, this row is the answer."
+    }
+  ],
+
+  "adjacentCommunities": {
+    "note": "General communities captured for context. They are NOT assigned to any family, because doing so would credit one text with a forum that discusses hundreds.",
+    "captured": [
+      { "sub": "occult", "members": "422k", "verified": true },
+      { "sub": "witchcraft", "members": "679k", "verified": true },
+      { "sub": "SASSWitches", "members": "87k", "verified": true, "note": "explicitly non-supernatural / skeptical witchcraft — the closest community analogue to this site's own framing" },
+      { "sub": "Hellenism", "members": "90k", "verified": true, "note": "Hellenic polytheism, not Hellenistic astrology — a name collision" }
+    ]
+  },
+
+  "unverified": [
+    "r/Kabbalah, r/Golden_Dawn, r/Jyotish, r/Enochian, r/neidan, r/horary, r/sigils and r/Demonology returned no page from the tracker on 2026-07-30. They are recorded as unverified, not as zero.",
+    "No Discord server sizes were captured. Discord publishes member counts only for servers with Discovery enabled and there is no general index; rather than sample an unrepresentative handful, the survey captured none and says so.",
+    "No podcast download figures were obtained. The analytics platforms found (Podscan, Rephonic, Listen Notes) gate their figures; the one podcast metric recorded is a YouTube subscriber count, which is a different quantity.",
+    "YouTube subscriber counts were recorded for only three channels, because the channel page embeds recommended channels' counts and only unambiguous single-value captures were kept.",
+    "Google Trends was not used: it reports relative indices, not counts, and its output is not stable enough across captures to ship as static data."
+  ],
+
+  "limits": [
+    "EVERY NUMBER HERE DECAYS. Subreddit counts move monthly and only ever upward, so relative standings drift; pageviews swing on news, film releases and school terms. The capture date is part of every figure and a figure quoted without it is not a figure.",
+    "The 12-month window smooths a spike but does not remove it. A single film or game release inside the window can move a family a whole tier, and this survey did not test for that.",
+    "English Wikipedia and anglophone Reddit only. The systematic effect is to understate every non-English tradition — jyotiṣa, Daoist alchemy, rasaśāstra and the tantric corpus most of all — and the survey does not correct for it because there is no honest correction factor.",
+    "Pageviews count lookups by people who may be hostile, indifferent, or checking a crossword. Nothing here distinguishes interest from curiosity.",
+    "Anchor-article selection is a judgement, and it is load-bearing: the runic family moves a full tier depending on whether 'Runes' or 'Runic magic' is the anchor. Every such choice is recorded in-record with its reason so it can be disputed.",
+    "Tiers are buckets with hard edges. A family at 59,999 and one at 60,001 are indistinguishable in reality and land in different tiers here.",
+    "This survey has no efficacy content of any kind and no field of it may be rendered, sorted or summarised in a way that implies one. There is no efficacy axis in this dataset."
+  ],
+
+  "renderingRules": [
+    "The staleness stamp is MANDATORY wherever any figure from this file is shown, following pages/compare.html's `data-survey-stamp` pattern: page-level stamp plus the per-record capture date.",
+    "Staleness badge is computed in the app layer, never in the data module — amber at >=12 months from capturedAt, red at >=24 — exactly as competitors.js delegates to app/compare.js.",
+    "Where `verified` is false, render the compare.html unverified glyph (?) — never 0, never a blank cell, never an em dash that reads as 'none'.",
+    "Where `absent` is true, render 'No English Wikipedia article' as a positive statement. It is a finding.",
+    "A family carrying any entry in `flags` must render the flag text beside its number. A flagged number shown bare is a misrepresentation.",
+    "Where a record has both `anchor` and `corpusAnchor`, BOTH render. Collapsing them to one figure is forbidden — that is the whole point of the Śāradātilaka and abhicāra rows.",
+    "`popularPresence` must never be sorted on and must carry its illustrative-only caveat.",
+    "The axis label reads 'Online discussed' and must be adjacent to a one-line restatement of the ranking hazard. The axis must never be labelled with any word implying quality, standing, or importance."
+  ],
+
+  "sources": [
+    { "what": "Pageview figures", "url": "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/{article}/monthly/2025070100/2026063000", "capturedAt": "2026-07-30" },
+    { "what": "Article existence", "url": "https://en.wikipedia.org/w/api.php?action=query&titles={t}&redirects=1&format=json", "capturedAt": "2026-07-30" },
+    { "what": "Subreddit member counts", "url": "https://gummysearch.com/r/{sub}/", "capturedAt": "2026-07-30", "note": "third-party tracker; page carried 'Last updated: July 30, 2026'" },
+    { "what": "YouTube subscriber counts", "url": "https://www.youtube.com/@{handle}", "capturedAt": "2026-07-30" },
+    { "what": "The Secret sales and bestseller-list figures", "url": "https://en.wikipedia.org/wiki/The_Secret_(Byrne_book)", "capturedAt": "2026-07-30" }
+  ],
+
+  "resurveyChecklist": [
+    "Re-run rank/wiki-pv.sh with the window advanced 12 months; update pageviewWindow and capturedAt together.",
+    "Re-run rank/gs.sh; re-test whether Reddit's /about.json has reopened — if it has, switch componentB to first-party and say so.",
+    "Re-check the two absences (Śāradātilaka, abhicāra). If an English article has appeared, the headline worked example must be rewritten, not quietly repointed.",
+    "Re-verify the homonym exclusions: 'Solomon's Key' (video game), 'Runes' (alphabet), 'Golden Dawn (political party)', 'Sigil (magic)' (redirect status).",
+    "Re-check anchor articles for renames or merges; a moved article silently returns a lower number rather than an error."
+  ]
+}

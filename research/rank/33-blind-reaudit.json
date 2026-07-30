@@ -1,0 +1,545 @@
+{
+  "_meta": {
+    "artifact": "R33 blind re-audit of the ritual/magic corpus",
+    "date": "2026-07-30",
+    "method": "The repository was read ONLY to extract the claims listed below. Every verdict rests on a source OUTSIDE the repository's own curation gate — primary editions, peer-reviewed scholarship, publisher/archive metadata, or public-domain full texts located independently. No repo record, no repo research file, and no other R33 research slice was consulted as evidence. The other slices' scratchpad (scratchpad/opgraph/) was not opened.",
+    "sampleSize": 37,
+    "modulesSampled": [
+      "assets/js/core/data/practices/mudras.js",
+      "assets/js/core/data/abhichara-data.js",
+      "assets/js/core/data/rasa-data.js",
+      "assets/js/core/data/planetary-magic.js",
+      "assets/js/core/data/picatrix-prayers.js",
+      "assets/js/core/data/mansion-images.js",
+      "assets/js/core/data/decan-faces.js",
+      "assets/js/core/data/confluence.js (CONFLUENCE_EDGES)",
+      "docs/FRAMING.md (toxicology + harm figures asserted as binding)"
+    ],
+    "samplingFrame": "Purposive, not random. Weighted toward (a) load-bearing claims the site's own arguments rest on, (b) cross-cultural transmission edges, (c) sensitive material (self-injury technique, hostile rites, toxic materia, coercive practice). Selection bias is stated in the notes and is NOT corrected for in the headline number.",
+    "verdictCounts": { "CONFIRMED": 31, "CONTESTED": 2, "REFUTED": 2, "UNVERIFIABLE": 2 },
+    "accuracyEstimate": {
+      "pointEstimateAllSampled": "31/37 = 83.8% fully confirmed against an out-of-gate source",
+      "wilson95AllSampled": "68.9% - 92.4%",
+      "pointEstimateExcludingUnverifiable": "31/35 = 88.6%",
+      "wilson95ExcludingUnverifiable": "74.1% - 95.5%",
+      "validityWarning": "The sample is PURPOSIVE, not random. These intervals describe sampling error only; they do NOT correct for selection bias, and the selection was deliberately biased toward the claims the site itself had already flagged, cross-checked or built arguments on — i.e. toward its BEST work. The true corpus-wide rate is more likely below the point estimate than above it. Do not round up."
+    },
+    "noEfficacyAxis": "Nothing in this file ranks, scores or implies how well any rite works. Where physiological or toxicological effect is recorded (rows rasa-cinnabar, rasa-saper, rasa-mmwr), it is a documented finding from peer-reviewed literature with its limits stated. Where no study exists, that is recorded as the answer."
+  },
+
+  "rows": [
+
+    {
+      "id": "mud-gs-khecari-quote",
+      "class": "attribution/quotation",
+      "sensitivity": "high (C-2 bodily-injury technique)",
+      "loadBearing": "very high — FRAMING §3.3 uses this as the worked example of the amendment",
+      "claim": "Vasu's English at Gheranda Samhita 3.25 reads, in part, 'Cut down the lower tendon of the tongue … and draw it out.'",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Vasu's rendering of GS 3.25 is reproduced independently as: 'cut down the lower tendon of the tongue (frenulum linguae) and move the tongue constantly: rub it with fresh butter, and draw it out (to lengthen it) with an iron instrument.' Sanskrit at 3.25 independently confirmed as 'jihvādho nāḍīṃ sañchinnāṃ rasanāṃ cālayet sadā | doheyen navanītena lauhayantreṇa karṣayet'.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Khecar%C4%AB_mudr%C4%81 (quoting Vasu)",
+        "https://www.siva.sh/gherand-samhita/3/21-25 (Sanskrit, verse-numbered)",
+        "https://drsomveeryoga.com/gheranda-samhita-ch-3-25-32/ (Sanskrit 3.25-3.26)"
+      ],
+      "note": "The ellipsis is doing real work: Vasu's full sentence also names fresh butter and an iron instrument, both of which the site reproduces in its site-voice description, so nothing is concealed by the cut."
+    },
+
+    {
+      "id": "mud-gs-khecari-locus",
+      "class": "locus",
+      "sensitivity": "high",
+      "loadBearing": "high",
+      "claim": "Khecari mudra begins at GS 3.25 and runs 3.25-32.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Two independent verse-numbered Sanskrit witnesses place the frenum verse at 3.25. One of them presents 3.25-3.32 as the khecari block.",
+      "sources": [
+        "https://www.siva.sh/gherand-samhita/3/21-25",
+        "https://drsomveeryoga.com/gheranda-samhita-ch-3-25-32/"
+      ],
+      "note": "Start of the range is solid. The END of the range is where the problem begins — see row mud-gs-post-khecari-loci."
+    },
+
+    {
+      "id": "mud-gs-namelist",
+      "class": "attribution",
+      "sensitivity": "low",
+      "loadBearing": "medium (the site's numbering-mapping claim rests on it)",
+      "claim": "GS 3.1-3 is the mudra name-list: v.1 gives eight names through khecari; v.2 viparitakarani through the panca-dharana; v.3 asvini through bhujangini.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Verse 1 = mahamudra, nabhomudra, uddiyana, jalandhara, mulabandha, mahabandha, mahavedha, khecari (8). Verse 2 = viparitakarani, yoni, vajroni, sakticalani, tadagi, manduki, sambhavi, five dharanas. Verse 3 = asvini, pasini, kaki, matangini, bhujangini (5).",
+      "sources": ["https://www.siva.sh/gherand-samhita/3"],
+      "note": "Exact match, including the count of 25."
+    },
+
+    {
+      "id": "mud-gs-post-khecari-loci",
+      "class": "locus",
+      "sensitivity": "medium",
+      "loadBearing": "very high — every Gheranda record after khecari carries one of these loci",
+      "claim": "GS 3.33-36 = viparitakarani; 3.37-44 = yoni mudra; 3.45-48 = vajroni; 3.49-60 = sakticalani; 3.61 = tadagi; 3.62-63 = manduki; 3.64-67 = sambhavi; 3.70-81 = the five dharanas; 3.82-93 = asvini through bhujangini. Chapter 3 runs to v.93.",
+      "verdict": "CONTESTED",
+      "independentEvidence": "The verse-numbered Sanskrit witness the module itself names as its cross-check places viparitakarani at 3.46-48 ('urdhvam ca yojayet suryam candram ca adha anayet … vipariitakarii mudraa sarvatantreshu gopitaa ||3-46||'; 'bhuumau shirash ca samsthaapya karayugmam samaahitah ||3-47||') and yoni mudra beginning at 3.49-50. That is roughly +13 verses against the site's viparitakarani at 3.33-36 and yoni at 3.37-44. A third widely-circulated recension (the archive.org 'GherandaSamhita' full text) is different again: khecari 3.21-28, vajroli 3.39, manduki 3.45, pasini 3.48, matangini 3.50, bhujangini 3.51, dharanas 3.59-63. Wikipedia's Vajroli-mudra article independently cites the Gheranda vajroli at 3.39, not 3.45.",
+      "sources": [
+        "https://www.siva.sh/gherand-samhita/3/46-50",
+        "https://www.siva.sh/gherand-samhita/3/41-45",
+        "https://archive.org/stream/GherandaSamhita/GherandaSamhita_djvu.txt",
+        "https://en.wikipedia.org/wiki/Vajroli_mudra"
+      ],
+      "note": "At least three incompatible verse-numbering schemes for GS ch.3 are in circulation. The site's loci may well be right FOR VASU'S 1895 ENGLISH, which is what it cites — but the module's own numberingMapping field says the ranges were 'independently cross-checked against the Sanskrit verse numbering at siva.sh', and that cross-check demonstrably holds only for the opening name-list and the khecari start. Beyond 3.32 the two disagree. Nothing in the shipped data warns a reader that a different edition renumbers by up to 13 verses. This is the single largest accuracy exposure I found."
+    },
+
+    {
+      "id": "mud-gs-edition",
+      "class": "provenance/edition",
+      "sensitivity": "low",
+      "loadBearing": "high — the module's whole edition-resolution rests on it",
+      "claim": "archive.org item b28140102 is Vasu's 1895 Bombay (Tatva-Vivechaka Press) first edition, NOT the 1914-15 Sacred Books of the Hindus XV pt.2 reprint.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "archive.org metadata for b28140102: title 'The Gheranda Sanhita, a treatise on Hatha Yoga'; date 1895; publisher 'Bombay : Printed at the \"Tatva-Vivechaka\" press'; creator 'Vasu, Srisa Chandra, 1861-1918?'; note 'The English translation precedes the Sanskrit.'",
+      "sources": ["https://archive.org/metadata/b28140102"],
+      "note": "Exactly as the module states, including the English-before-Sanskrit layout it cites as its OCR limitation."
+    },
+
+    {
+      "id": "mud-gs-vajroni-content",
+      "class": "attribution (same-name/different-practice)",
+      "sensitivity": "high (sexual practice / consent)",
+      "loadBearing": "high — it is the site's flagship cross-text divergence finding",
+      "claim": "The Gheranda's vajroni is an inverted arm-balance (palms on the ground, legs raised, head off the ground) with no genito-urinary element, and is a different practice from the HYP's vajroli despite the shared name.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'In verse 3.39 of the Gheranda Samhita, Vajroli mudra is described as a simple physical posture, unlike in other manuals of Hatha Yoga where it refers to a technique involving resorption of sexual fluids.' Independently, the Sanskrit witness has viparitakarani (head ON the ground) and vajroni (head OFF the ground) as adjacent contrasting inversions.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Vajroli_mudra",
+        "https://www.siva.sh/gherand-samhita/3/46-50"
+      ],
+      "note": "Substance confirmed; the LOCUS is the contested part (see mud-gs-post-khecari-loci). A separate, unrecorded fact the site would want: Vasu is independently reported to have omitted vajroli from a translation as 'an obscene practice indulged in by low class Tantrists' — this is very likely the real origin of the 'left untranslated for moral reasons' rumour the site attaches to SINH."
+    },
+
+    {
+      "id": "mud-hyp-ten",
+      "class": "census",
+      "sensitivity": "low",
+      "loadBearing": "medium",
+      "claim": "The Hathayogapradipika enumerates ten mudras.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "HYP 3.6 lists mahamudra, mahabandha, mahavedha, khecari, uddiyana bandha, mula bandha, jalandhara bandha; 3.7 adds viparita karani, vajroli, sakti calana — 'these are the ten Mudras which annihilate old age and death.'",
+      "sources": [
+        "https://www.ashtangayoga.info/philosophy/source-texts-and-mantra/hatha-pradipika/chapter-3/",
+        "https://www.sacred-texts.com/hin/hyp/hyp05.htm (via search index)"
+      ],
+      "note": ""
+    },
+
+    {
+      "id": "mud-hyp-loci",
+      "class": "locus",
+      "sensitivity": "medium",
+      "loadBearing": "high",
+      "claim": "HYP loci: mahamudra 3.10-18; mahabandha 3.19-25; mahavedha 3.26-31; khecari 3.32-54; uddiyana 3.55-60; mulabandha 3.61-69; jalandhara 3.70-76; viparitakarani 3.78-82; vajroli 3.83-103 (sahajoli 3.92-95, amaroli 3.96-103); sakticalana 3.104-125.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Independent verse-index gives: mahamudra 10-18, mahabandha 19-25, mahavedha 26-30, khecari 32-54, uddiyana 55-60, mulabandha 61-69, jalandhara 70-76, viparitakarani 78-82, vajroli 83-91, sahajoli 92-94, amaroli 96-102, sakticalana 104-125; chapter 3 total 130 verses.",
+      "sources": ["https://www.ashtangayoga.info/philosophy/source-texts-and-mantra/hatha-pradipika/chapter-3/"],
+      "note": "Eight of eleven ranges match exactly. Three END-boundaries differ by one verse (mahavedha 30 vs 31; sahajoli 94 vs 95; amaroli 102 vs 103) — ordinary section-boundary judgement, not error. Unlike the Gheranda case the offsets are ±1, not ±13."
+    },
+
+    {
+      "id": "mud-hyp-snuhi",
+      "class": "attribution",
+      "sensitivity": "high (C-2)",
+      "loadBearing": "high",
+      "claim": "The HYP itself specifies a clean instrument shaped like a leaf of the snuhi (milk-hedge) plant, and lengthening 'a hair's breadth' at a time; frenum-cutting at HYP 3.33-37.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "HYP 3.34 (not 3.33): 'After taking a knife which is clean, soft (lubricated) and so sharp as a spurge-leaf' — snuhipatranibham shastram … romamatram samucchinet ('cut a hair's breadth'). 3.34 falls inside the site's declared 3.33-37 range.",
+      "sources": [
+        "https://www.sanskrit-trikashaivism.com/en/hatha-yoga-pradipika-mudra-and-bandha/626 (via search index)",
+        "https://en.wikipedia.org/wiki/Khecar%C4%AB_mudr%C4%81"
+      ],
+      "note": "MISSING TRANSMISSION FACT, not an error: the snuhi-leaf blade + romamatra couplet is the SAME couplet as Khecarividya 1.46-47, cited to Mallinson & Singleton, Roots of Yoga (2017) pp. 247-248. The HYP is here reproducing the Khecarividya. That is a documented, scholar-attributed dependency of exactly the kind the site's diffusion argument exists to display, and it is not in the record."
+    },
+
+    {
+      "id": "mud-gs-date",
+      "class": "dating",
+      "sensitivity": "low",
+      "loadBearing": "medium",
+      "claim": "The Gheranda Samhita is a late-seventeenth or early-eighteenth-century text.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'a late 17th-century text, probably from northeast India'; 'based on the location of most of its manuscripts in Bengal, it may be hazarded that the Gheranda Samhita was composed in Bengal around 1700 C.E.'; Mallinson's 2011 Nath Sampradaya entry positions it as a late-17th-century synthesis.",
+      "sources": ["https://en.wikipedia.org/wiki/Gheranda_Samhita"],
+      "note": ""
+    },
+
+    {
+      "id": "mud-khecari-mallinson",
+      "class": "contested-position / scholarly attribution",
+      "sensitivity": "high",
+      "loadBearing": "very high — it is the site's stated deterrent argument",
+      "claim": "Mallinson holds that frenum-cutting is characteristic of the khecari/Khecarividya stream but not universal; and (FRAMING C-2) that 'only five of the many texts require the cut at all'.",
+      "verdict": "UNVERIFIABLE",
+      "independentEvidence": "The general shape is independently supported — 'cutting the lingual frenulum can be dangerous, resulting in the loss of tongue mobility. Many practitioners deem it unnecessary'; Mallinson drew on thirty Sanskrit works and fieldwork, and met barely half a dozen khecari practitioners across long fieldwork. But the specific quantification 'only five of the many texts' could not be located in any openly accessible source.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Khecar%C4%AB_mudr%C4%81",
+        "https://www.routledge.com/The-Khecarividya-of-Adinatha-A-Critical-Edition-and-Annotated-Translation/Mallinson/p/book/9780415586139"
+      ],
+      "note": "Mallinson (2007) is in copyright and is cite-only under the site's own §4.4, so the site cannot quote it and I cannot verify it without the physical volume. 'No accessible source confirms the number five' is the honest answer. The claim is plausible and consistent with everything accessible; it is simply not checkable from open sources, and the site presents it without that caveat."
+    },
+
+    {
+      "id": "mud-gs-matangini",
+      "class": "attribution",
+      "sensitivity": "very high (C-3 breath+water)",
+      "loadBearing": "medium",
+      "claim": "GS matangini mudra directs the practitioner, standing in water up to the neck, to draw water in through the nostrils and expel it through the mouth.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'Stelle dich ins Wasser, dass es bis zum Hals reicht, ziehe Wasser durch die Nasenlöcher ein und spucke es durch den Mund wieder aus.'",
+      "sources": ["https://wiki.yoga-vidya.de/Gheranda_Samhita_3._Unterweisung"],
+      "note": "Textually accurate. FLAGGED FOR THE MAINTAINER AS A POLICY CONFLICT, NOT AN ACCURACY DEFECT: FRAMING C-3 rule 2 excludes 'anything pairing breath technique with water, submersion or bathing … entirely, in any voice, from any tradition, at any date.' The shipped gs-matangini record pairs nasal water-aspiration with standing submerged to the neck, in site voice. Either the record is out of policy or C-3 rule 2 is drawn wider than the site actually intends. Only the maintainer can decide which; an auditor cannot."
+    },
+
+    {
+      "id": "abh-mmu-date",
+      "class": "dating/edition",
+      "sensitivity": "low",
+      "loadBearing": "high — MMU 25 is the systematizing source for the whole timing screen",
+      "claim": "Mantramahodadhi of Mahidhara, 1588 CE, with Mahidhara's own Nauka ('Boat') commentary.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'The Mantramahodadhi (\"great ocean of mantras\") was written around 1588, and Mahidhara himself contributed a commentary called Nauka thereon.'",
+      "sources": ["https://en.wikipedia.org/wiki/Mah%C4%ABdhara"],
+      "note": "The site's added detail that ch.25 is the final chapter with 132 verses could not be independently checked without Bühnemann's edition; not counted as a separate row."
+    },
+
+    {
+      "id": "abh-eightfold",
+      "class": "list variant",
+      "sensitivity": "medium",
+      "loadBearing": "medium",
+      "claim": "An eight-fold set exists: the six plus akarsana (attraction) and mohana (bewildering).",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "An independent lexicographic source enumerates the 'six results' as santi (tranquilizing), vasikarana (subjugating), stambhana (immobilising), mohana (bewildering), vidvesana (dissent), uccatana (eradicating), akarsana (attracting), marana (murder) — i.e. eight items still called 'six', exactly the anomaly the site records.",
+      "sources": ["https://www.wisdomlib.org/definition/satkarman"],
+      "note": "The independent witness reproduces the site's most interesting structural finding — that the count 'six' does not match the lists — without any dependence on Ullrey."
+    },
+
+    {
+      "id": "abh-dirdeity",
+      "class": "correspondence table",
+      "sensitivity": "high (hostile rites)",
+      "loadBearing": "very high — the module marks this its ONE promoted-to-verified table",
+      "claim": "santi/NE/Rati/white/hemanta; vasya/N/Vani(Sarasvati)/red/vasanta; stambhana/E/Rama/yellow/sisira; vidvesana/SW/Jyestha/citra/grisma; uccatana/NW/Durga/dark/varsa; marana/SE/Kali/gray/sarad. South and west omitted.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "A wholly independent (non-Bühnemann, non-Ullrey) tantric source reproduces the identical mapping: 'The deities in charge of these rites are: Rati for shantikarma, Vani for vashikaran, Rama for stambhan, Jyestha for vidweshan, Durga for uchchatan, and Kali for maran'; directions NE / N / E / SW / NW / SE respectively; seasons Hemant / Vasant / Shishir / Greeshma / Varsha / Sharad.",
+      "sources": ["https://www.wisdomlib.org/definition/satkarman", "search-indexed tantric compendia reproducing the MMU 25 / Saradatilaka 23 chart"],
+      "note": "All six rows, all four columns, independently matched. LIMIT STATED: the independent witness is a traditional/practitioner compendium, not peer-reviewed scholarship, so it establishes that the mapping is the standard one, not that Bühnemann's tables read as quoted. The site's claim of 'verified verbatim against two independent authoritative full-text sources' is stronger than anything I could reach from open sources; the mapping itself is nonetheless right."
+    },
+
+    {
+      "id": "abh-turstig",
+      "class": "bibliographic",
+      "sensitivity": "low",
+      "loadBearing": "low",
+      "claim": "Türstig, 'The Indian Sorcery Called Abhicara', WZKS 29 (1985): 69-117 — with the volume number flagged as uncertain because an OCR showed '24'.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "The article is cited across independent scholarly literature and on the author's own publications page as Wiener Zeitschrift für die Kunde Südasiens 29 (1985), 69-117.",
+      "sources": ["https://turstig.net/publications.html", "citations in academia.edu-hosted scholarship on abhicara"],
+      "note": "The site is MORE uncertain than the evidence warrants. The ⚑ flag on the volume number can be retired: 29 is correct. Over-hedging is the benign failure mode, but it is still an inaccuracy about the state of the evidence."
+    },
+
+    {
+      "id": "abh-av-date",
+      "class": "dating",
+      "sensitivity": "low",
+      "loadBearing": "medium",
+      "claim": "Atharvaveda (Saunaka Samhita), c. 1200-1000 BCE, described as the standard consensus range (Witzel et al.).",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'likely compiled as a Veda contemporaneously with Samaveda and Yajurveda, or about 1200 BCE – 1000 BCE'; Witzel dates the bulk of the hymns to around or slightly after 1200/1000 BCE. One source widens to c. 1200-900 BCE.",
+      "sources": ["https://handwiki.org/wiki/Religion:Atharvaveda", "https://vedicheritage.gov.in/samhitas/atharvaveda-samhitas/"],
+      "note": "Confirmed, including the attribution to Witzel. Some sources run the lower bound to 900 BCE; the site's narrower range is defensible and is presented as a range."
+    },
+
+    {
+      "id": "abh-uddisa-ravana",
+      "class": "attribution",
+      "sensitivity": "medium",
+      "loadBearing": "medium",
+      "claim": "The Uddisatantra is attributed pseudepigraphically to Ravana via a Siva-revelation frame; the attribution is legendary, not historical.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'a tantra attributed to Ravana'; 'believed to have been preached to Lankesh Ravana by god Siva'; printed editions circulate under titles such as 'Lankesa Ravana's Uddisa Tantra'.",
+      "sources": [
+        "https://www.wisdomlib.org/definition/uddishatantra",
+        "https://search.worldcat.org/title/lankesa-ravanas-uddisa-tantra-uddisatantra/oclc/913856098"
+      ],
+      "note": "The site's framing (legendary attribution, explicitly flagged as not historical) is exactly right and is the harder, more honest reading."
+    },
+
+    {
+      "id": "abh-ncrb",
+      "class": "present-day harm statistic",
+      "sensitivity": "very high (C-5 accusation violence)",
+      "loadBearing": "high — FRAMING C-5 rests its whole interface argument on it",
+      "claim": "India's NCRB records 2,500+ deaths linked to witchcraft accusation and superstition-related violence between 2001 and 2018.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'According to the latest available data of the National Crime Records Bureau (NCRB), over 2,500 deaths were linked to witch-hunting between 2000 and 2016.' Jharkhand alone: 593 women killed 2001-2021.",
+      "sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10958086/",
+        "https://www.indiaspend.com/in-jharkhand-witchcraft-thrives-because-of-poor-healthcare"
+      ],
+      "note": "MAGNITUDE CONFIRMED, WINDOW DRIFTED. The published NCRB window I can source is 2000-2016; the site states 2001-2018. The 2,500+ figure is right, the date range as stated is not the one the cited data covers. A two-word fix."
+    },
+
+    {
+      "id": "abh-maha-act",
+      "class": "legal fact",
+      "sensitivity": "very high",
+      "loadBearing": "high",
+      "claim": "The Maharashtra Act of 2013 criminalises both practising black magic for gain AND accusing someone of being a witch.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Maharashtra Prevention and Eradication of Human Sacrifice, other Inhuman and Aghori Practices and Black Magic Act, 2013 criminalises black magic, human sacrifice and magic remedies; and 'includes provisions making it illegal to accuse a person of practicing black magic'. Enacted as an ordinance following Narendra Dabholkar's assassination in 2013.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Maharashtra_Prevention_and_Eradication_of_Human_Sacrifice,_other_Inhuman_and_Aghori_Practices_and_Black_Magic_Act,_2013",
+        "https://vidhilegalpolicy.in/blog/the-maharashtra-anti-superstition-act/"
+      ],
+      "note": "Both limbs confirmed. The site's point — that the law protects the accused as well as the defrauded — is correct and is the non-obvious half."
+    },
+
+    {
+      "id": "rasa-ghost",
+      "class": "attribution / historiographic correction",
+      "sensitivity": "low",
+      "loadBearing": "very high — it is the rasa module's headline finding",
+      "claim": "The 'Rasaratnakara by Nagarjuna' is a literary ghost: P.C. Ray was misled by a Raghunatha Temple Library (Jammu) manuscript interleaving two works; the real texts are the Rasendramangala (Nagarjuna Siddha) and the Rasaratnakara (Nityanatha Siddha). Wujastyk, Ambix 31.2 (1984) 70-83.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'The \"Rasaratnākara\" by Nāgārjuna is a literary ghost created by P. C. Ray, who was misled by a manuscript at the Raghunātha Temple Library in Jammu, Kashmir that has a mixture of leaves from the Rasaratnākara and the Rasendramaṅgala.' Article confirmed at Ambix 31, no. 2 (1984), 70-83, DOI 10.1179/amb.1984.31.2.70.",
+      "sources": [
+        "https://www.tandfonline.com/doi/abs/10.1179/amb.1984.31.2.70",
+        "https://wujastyk.github.io/Rasendramangala/",
+        "https://pubmed.ncbi.nlm.nih.gov/11615977/"
+      ],
+      "note": "Confirmed down to the library, the mechanism and the two correct attributions. The strongest single record in the sample."
+    },
+
+    {
+      "id": "rasa-varahamihira",
+      "class": "dating + mathematical property",
+      "sensitivity": "low",
+      "loadBearing": "medium",
+      "claim": "Varahamihira's order-4 pandiagonal 'perfume' magic square, constant 18, c. 550 CE, Brhatsamhita ch. 77 (76 in some editions, vv. 23-26); Hayashi, Historia Mathematica 14 (1987).",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'Varāhamihira (ca. 550) … utilized a pandiagonal magic square of sixteen cells in prescribing how to prepare perfumes from sixteen original substances'; constant 18; 'the oldest datable magic square in India occurs in … Brhatsamhita (ca. AD 550)'. Hayashi, T., 'Varāhamihira's Pandiagonal Magic Square of the Order Four', Historia Mathematica 14 (1987): 159-66.",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/031508608790019X",
+        "https://link.springer.com/rwe/10.1007/978-1-4020-4425-0_9778"
+      ],
+      "note": "Confirmed including the constant and the perfume application. The site's in-data contested block about the chapter number (77 vs 76) is appropriate: the divergence is real and edition-dependent."
+    },
+
+    {
+      "id": "rasa-rrs-ch9",
+      "class": "attribution",
+      "sensitivity": "low",
+      "loadBearing": "medium",
+      "claim": "Rasaratnasamuccaya ch. 9 ('Yantra') describes ~31 instruments.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'In Chapter 8 and 9 of the Rasaratnasamuccaya, both texts mention 78 different terms and 31 types of Yantra (instruments).'",
+      "sources": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC5255965/"],
+      "note": "Confirmed at the peer-reviewed source the site cites, reached independently."
+    },
+
+    {
+      "id": "rasa-cinnabar",
+      "class": "toxicology (documented physiological finding)",
+      "sensitivity": "very high (C-1)",
+      "loadBearing": "very high — FRAMING C-1 makes it the required harm-note content",
+      "claim": "Cinnabar (HgS) is not methylmercury: oral absorption is around 0.2%, against roughly 95% for methylmercury; the alchemical PROCESSING is what liberates the toxic species.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'Absorption of cinnabar (0.2%) from the gastrointestinal tract is much less than mercuric chloride (7-15%), and methyl mercury (>95%)'; 'bioavailability of cinnabar is 30- to 60-fold less than mercuric chloride'; 'oral cinnabar or mercury sulphide administration results in at least 1000-fold less tissue mercury accumulation in mice'. Liu, Shi, Yu, Goyer & Waalkes, 'Mercury in Traditional Medicines: Is Cinnabar Toxicologically Similar to Common Mercurials?', Experimental Biology and Medicine 233(7) (2008), DOI 10.3181/0712-MR-336.",
+      "sources": [
+        "https://journals.sagepub.com/doi/10.3181/0712-MR-336",
+        "https://pubmed.ncbi.nlm.nih.gov/3750334/"
+      ],
+      "note": "Numerically exact. LIMITS THE SITE SHOULD CARRY AND DOES NOT: (a) the 0.2% figure is from rodent studies, not human dosimetry; (b) low absorption is not low hazard — Huang et al., BioMed Research International (2012), report neurotoxicological effects in offspring mice from LOW-dose cinnabar; (c) the 'processing is the hazard vector' clause is a reasonable inference from the speciation literature but I found no single paper stating it in those words, so it is an interpretation, not a quoted finding. NO NULL RESULT AND NO ABSENCE-OF-EVIDENCE STATEMENT is carried alongside; there is no human RCT literature on rasashastra bhasma safety at all, and that absence is itself a first-class finding the harm note omits."
+    },
+
+    {
+      "id": "rasa-saper",
+      "class": "toxicology (documented finding)",
+      "sensitivity": "very high",
+      "loadBearing": "high",
+      "claim": "Saper et al., JAMA 292:23 (2004) — heavy-metal content of Ayurvedic herbal medicine products.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Saper RB, Kales SN, Paquin J, Burns MJ, Eisenberg DM, Davis RB, Phillips RS, 'Heavy Metal Content of Ayurvedic Herbal Medicine Products', JAMA 292(23):2868-2873, 15 Dec 2004. Finding: 14 of 70 South-Asian-made products bought in Boston contained lead, mercury and/or arsenic at levels that, taken as directed, exceed published regulatory standards — i.e. one in five.",
+      "sources": [
+        "https://jamanetwork.com/journals/jama/fullarticle/1108395",
+        "https://pubmed.ncbi.nlm.nih.gov/15598918/"
+      ],
+      "note": "Citation and substance both confirmed. LIMIT: this is a market-sample study of products purchased in one US metropolitan area in 2003-04, not a population exposure estimate and not a study of classically prepared bhasmas."
+    },
+
+    {
+      "id": "rasa-mmwr",
+      "class": "toxicology (documented figure)",
+      "sensitivity": "very high",
+      "loadBearing": "high — FRAMING C-1 states it as required harm-note content",
+      "claim": "CDC MMWR 61(33) (2012): six lead-poisoning cases in pregnant women in New York City, one product at 1.2% lead by weight.",
+      "verdict": "REFUTED",
+      "independentEvidence": "'Lead Poisoning in Pregnant Women Who Used Ayurvedic Medications from India — New York City, 2011-2012', MMWR 2012;61(33):641-646. Six cases in foreign-born pregnant women, blood lead 16-64 µg/dL, 10 oral Ayurvedic medications made in India — CONFIRMED. But: 'Lead concentrations of the medications were as high as 2.4%; several medications also contained mercury or arsenic.' The published maximum is 2.4%, not 1.2%.",
+      "sources": [
+        "https://www.cdc.gov/mmwr/pdf/wk/mm6133.pdf",
+        "https://www.medscape.com/s/viewarticle/770071",
+        "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5779587/"
+      ],
+      "note": "Everything except the concentration is right. The stated concentration understates the published maximum by a factor of two, on a lead figure, in a document that makes carrying that figure mandatory. Under the round's own hard line — record documented toxicological findings plainly — halving the number is precisely the failure mode to catch. Fix: '2.4%'. (It is possible 1.2% is one individual product's assay buried in the article body; even so, the site presents it as the headline severity figure, and the headline figure is 2.4%.)"
+    },
+
+    {
+      "id": "pic-mansion-images",
+      "class": "attribution/quotation",
+      "sensitivity": "medium",
+      "loadBearing": "very high — 28 shipped records",
+      "claim": "Agrippa II.46 mansion images: (1) a black man in a hair garment, girdled, casting a small lance, sealed in black wax, perfumed with liquid storax, for destruction; (11) a man riding a lion holding its ear in his left hand and a gold bracelet in his right, on gold, perfumed with sweet odours and saffron, for fear/reverence/worship; (14) a dog biting its own tail, on red copper, perfumed with the hair of a black dog and a black cat, for divorce; (22) a man with wings on his feet bearing a helmet, on iron, perfumed with argent vive, for safety of runaways; (27) a winged man holding an empty perforated vessel, in red earth, with asafoetida and liquid storax, to destroy fountains and waters.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Verbatim from the Freake 1651 English of Agrippa, Three Books II.xlvi 'Of the Images of the Mansions of the Moon': mansion 1 'the Image of a black man in a garment made of haire, and girdled round, casting a small lance with his right hand … sealed this in black wax, and perfumed it with liquid Storax'; mansion 11 'a seal of a plate of gold, being the image of a man riding on a Lion, holding the ear thereof in his left hand, and in his right, holding forth a bracelet of gold … perfumed it with good odours and Saffron'; mansion 14 'a seal of red Copper, being the image of a Dog biting his tail … perfumed with the hair of a black Dog, and black Cat'; mansion 22 'a seal of Iron, being the image of a man with wings on his feet, bearing an helmet on his head … perfumed with Argent vive'; mansion 27 'of red Earth the image of a man winged, holding in his hand an empty vessel, and perforated … Assafetida, and liquid Storax'.",
+      "sources": ["https://www.esotericarchives.com/agrippa/agripp2d.htm"],
+      "note": "Five of five sampled mansions match the primary edition exactly, including every suffumigation and the gold bracelet the site correctly flags as diverging from the Picatrix. This is the most accurate dataset in the sample. The site's HEADER claim that 'Agrippa is translating the Picatrix here' is a transmission claim I could only partly corroborate (the two mansion lists do both appear in Picatrix and Agrippa; the direction of dependence is generally accepted but I found no scholar-attributed statement to that effect, and the site supplies none) — under the site's own §2.4 that sentence should carry a claimedBy or be softened."
+    },
+
+    {
+      "id": "pic-decan-aries1",
+      "class": "attribution/quotation",
+      "sensitivity": "low",
+      "loadBearing": "high — 36 shipped records",
+      "claim": "Agrippa II.37 is 'Of the Images of the Faces'; the first face of Aries is a black man in a white garment, large-bodied and strong, with red eyes — boldness, fortitude, loftiness.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Chapter XXXVII is 'Of the Images of the Faces, and of those Images which are without the Zodiack'. First face of Aries: 'a black man, standing and cloathed in a white garment, girdled about, of a great body, with reddish eyes, and great strength' … 'signifieth and causeth boldness, fortitude, loftiness and shamelesness'.",
+      "sources": ["http://www.esotericarchives.com/agrippa/agripp2c.htm"],
+      "note": "Match, with one softening: Agrippa's fourth virtue is 'shamelesness', which the site's paraphrase drops. Trivial in isolation, but it is the site editing a source's moral colouring out of a paraphrase, which is the class of drift worth watching."
+    },
+
+    {
+      "id": "pic-saturn-opium",
+      "class": "attribution (substance)",
+      "sensitivity": "very high (controlled substance; C-1; FRAMING §3.1 shipping blocker B1)",
+      "loadBearing": "very high — it is the material named in the generated talisman protocol",
+      "claim": "planetary-magic.js gives Saturn suffumigation: 'opium, etc.', cited to 'Picatrix III.7; Agrippa, Three Books II'.",
+      "verdict": "REFUTED",
+      "independentEvidence": "The Picatrix's own suffumigation list reads: 'The suffumigation of Saturn is all things that smell bad, asafoetida, gum arabic, bdellium, hemlock and similar things; Jupiter's is all good and temperate odors and includes amber, lignum aloes …; Mars' is everything hot such as pepper and ginger; the Sun's is things that are temperate and good odors like nutmeg, amber …; Venus' is everything fragrant like rose, violets, green myrtle …; Mercury's is mixed odors …; the Moon['s] is everything that smells cold like camphor and lilies.' Opium is documented in the Picatrix corpus, but the accessible scholarship attributes it to an invocation of the SUN, not to Saturn.",
+      "sources": [
+        "https://ia803109.us.archive.org/13/items/arshistoria/Picatrix-books-3-4.pdf (Greer-Warnock Liber Atratus, Books 3-4)",
+        "https://www.cannabisculture.com/content/2019/03/23/the-cannabis-suffumigations-of-the-ghayat-alhakim-and-the-picatrix/"
+      ],
+      "note": "Two failures at once. (1) ACCURACY: the cited locus does not say what the record says; Saturn's suffumigation there is asafoetida/gum arabic/bdellium/hemlock. (2) The record needlessly names a controlled substance and then propagates it into a generated, personalised, imperative protocol — the exact artefact FRAMING §3.1 already calls a shipping blocker. Note the Jupiter and Moon rows in the same module ('storax, frankincense'; '28-component lunar') also do not match this list, so the module may be drawing on the Book IV compound recipes rather than III.7 while citing III.7. I could not verify a Book IV.6 Saturn compound containing opium from open sources; that possibility is left open rather than closed. Either way the cite string as shipped is not supported."
+    },
+
+    {
+      "id": "pic-jupiter-angel",
+      "class": "attribution (name form)",
+      "sensitivity": "low",
+      "loadBearing": "medium",
+      "claim": "Picatrix III.7 prayer-angels: Saturn Heylil, Jupiter Raucayehil, Mars Raucahehil, Sun none, Venus Beyteyl, Mercury Arquyl, Moon Celan.",
+      "verdict": "CONTESTED",
+      "independentEvidence": "Saturn = 'Heylil is the angel to whom God has assigned the powers and potencies of Saturn' — CONFIRMED. Mercury = 'Arquyl is the angel whom God has set beside Mercury' — CONFIRMED. Jupiter, however, appears independently as 'Raubeil is the angel whom God placed beside Jupiter', not Raucayehil.",
+      "sources": ["https://www.renaissanceastrology.com/picatrixmercuryinvocation.html"],
+      "note": "Two of the three checkable Latin forms confirm. The Jupiter form does not. Note the structural hazard the site has built in: 'Raucayehil' (Jupiter) and 'Raucahehil' (Mars) differ by a single letter and sit in adjacent records — a transcription-collision waiting to happen, and one witness rendering Jupiter as 'Raubeil' is consistent with the pair having been confused or normalised somewhere upstream. Venus 'Beyteyl' and Moon 'Celan' could not be reached from open sources. Recommend a variant-forms note in-data rather than a single asserted spelling."
+    },
+
+    {
+      "id": "pic-alfonso",
+      "class": "transmission edge (documented dependency)",
+      "sensitivity": "low",
+      "loadBearing": "high",
+      "claim": "Alfonso X's commission of 1256-58 turned the Arabic Ghayat al-Hakim into Castilian; the Latin Picatrix derives from that vernacular version rather than directly from the Arabic (Pingree, Warburg 1986).",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'The Picatrix must have been finished between 1256 and 1258 – at the beginning of Alfonso's reign'; 'the Latin translation was made using an earlier Castilian one'; the Castilian version is lost, the Latin Liber Picatrix survives. Pingree's critical edition of the Latin is the Warburg Institute volume.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Picatrix",
+        "https://commons.warburg.sas.ac.uk/concern/published_works/bn999672v"
+      ],
+      "note": "Dates, direction and intermediation all confirmed. A genuinely documented dependency, not a resemblance."
+    },
+
+    {
+      "id": "pic-pingree1980",
+      "class": "bibliographic + transmission edge",
+      "sensitivity": "low",
+      "loadBearing": "high",
+      "claim": "Pingree traced Sabian material among the Ghayat al-Hakim's identifiable sources — 'Some of the Sources of the Ghayat al-hakim', JWCI 43 (1980).",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "David Pingree, 'Some of the Sources of the Ghāyat al-hakīm', Journal of the Warburg and Courtauld Institutes 43 (1980), 1-15.",
+      "sources": ["https://www.scribd.com/document/205711316/1980-PINGREE-Some-of-the-Sources-of-the-Gh%C4%81yat-al-hak%C4%ABm"],
+      "note": "Citation exact. Worth noting the site correctly grades the ADJACENT edge (corpus-hermeticum -> event-harran-sabians) as 'disputed' on van Bladel's authority while keeping this one 'documented' — the distinction is the right one and is well drawn."
+    },
+
+    {
+      "id": "conf-biruni",
+      "class": "transmission edge (cross-cultural)",
+      "sensitivity": "low",
+      "loadBearing": "very high — the site's flagship India→Islam edge",
+      "claim": "Al-Biruni rendered Patanjali's sutras with a commentary into Arabic before 1030; Pines and Gelblum characterise the result as an interpretive paraphrase in dialogue form, sutra and commentary fused, Indian technical terms recast in Arabic philosophical and Sufi vocabulary — not a verbatim translation. BSOAS 29 (1966).",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Pines & Gelblum, 'Al-Bīrūnī's Arabic Version of Patañjali's Yogasūtra', BSOAS 29/2 (1966), with subsequent chapters at 40/3 (1977) and 46/2 (1983). Al-Biruni's India dates to 1030, so a pre-1030 date for the Kitab Patanjal is sound.",
+      "sources": [
+        "https://www.cambridge.org/core/journals/bulletin-of-the-school-of-oriental-and-african-studies/article/abs/albirunis-arabic-version-of-patanjalis-yogasutra/2986B654B9B0FE42332A6CBA0DD46EE8",
+        "https://archive.org/details/albiruniyoga"
+      ],
+      "note": "Citation and characterisation both confirmed. The edge's kind is 'translation' while its own body says 'not a verbatim translation' — the body carries the correction, so a reader is not misled; but the machine-readable kind field is the looser of the two."
+    },
+
+    {
+      "id": "conf-wilkins",
+      "class": "transmission edge / priority claim",
+      "sensitivity": "low",
+      "loadBearing": "high",
+      "claim": "Wilkins's 1785 Bhagvat-Geeta was the first printed translation of a complete Sanskrit work directly into English, financed by the East India Company at Hastings's urging.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'The Bhagavad Gita published in London in 1785 by the East India Company was the first work translated directly from Sanskrit into English … and indeed the first direct translation from Sanskrit into any European language.' Wilkins presented the translation to Warren Hastings in Oct 1784; Hastings then sought Company patronage for publication.",
+      "sources": [
+        "https://www.rarebooksocietyofindia.org/postDetail.php?id=196174216674_10154320737466675",
+        "https://www.mvnadkarni.com/files/Introduction%20to%20Charles%20Wilkins%20Gita.pdf"
+      ],
+      "note": "Confirmed. The site's claim is in fact WEAKER than the record supports (it was the first direct Sanskrit→European translation, not merely →English) — an understatement, not a drift."
+    },
+
+    {
+      "id": "conf-goldenflower",
+      "class": "transmission edge / edition claim",
+      "sensitivity": "low",
+      "loadBearing": "high",
+      "claim": "Richard Wilhelm translated an eight-chapter 1834 edition of the Taiyi jinhua zongzhi into German in 1929; Cary F. Baynes's English version followed in 1931.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "'Richard Wilhelm's German translation, which appeared in 1929, was based on an 1834 \"Supplement to the Taoist Canon\" [Daozang xubian] edition. The version that Wilhelm used had eight chapters.' Cleary (1991) used a 13-chapter recension; Esposito (1998) shows the work originates with the Jingming tradition and survives in six major editions.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/The_Secret_of_the_Golden_Flower",
+        "https://dao.crs.cuhk.edu.hk/daozangjiyao/files/Esposito_The%20Different%20Versions%20of%20the%20Secret%20of%20the%20Golden%20Flower%20and%20Their%20Relationship%20with%20the%20Longmen%20School-old.pdf"
+      ],
+      "note": "Edition, chapter count and both dates confirmed. WHAT THE EDGE OMITS and should carry, since the site's own §4.4 requires saying when a witness is poor: Wilhelm's eight-chapter source is an abridged late recension; Esposito and Cleary both establish fuller versions. This is the Daoist-lane counterpart of the site's stated 'the PD constraint selects the worst witnesses' problem, and it is not flagged here."
+    },
+
+    {
+      "id": "conf-kybalion",
+      "class": "transmission edge — DEBUNKED label",
+      "sensitivity": "medium (the site's only 'debunked' edge)",
+      "loadBearing": "very high — it is the site's one worked example of keeping a debunked claim visible",
+      "claim": "The Kybalion borrows the Hermetic name and figurehead only; Deslippe shows the content is Atkinson's New Thought and the claimed ancient axioms have no Hermetic source.",
+      "verdict": "CONFIRMED",
+      "independentEvidence": "Deslippe's 2011 Tarcher 'Definitive Edition' 'definitively establishes the book's sole author as William Walker Atkinson (1862-1932)', with Deslippe supplying the biographical sketch of 'the New Thought pioneer William Walker Atkinson' and surveying the work's reception from New Thought to Black Nationalism.",
+      "sources": [
+        "https://www.penguinrandomhouse.com / Tarcher 2011, ISBN 9781585428748",
+        "https://books.google.com/books/about/The_Kybalion.html?id=tKbWObPHouMC"
+      ],
+      "note": "Confirmed. Minor limit: Deslippe's sole-authorship attribution to Atkinson is the dominant scholarly position, not a unanimous one — a small number of writers still argue for a group of authors. The site prints one position where its own §1.3 would ordinarily want two; the imbalance is defensible here because the dissent is not scholarly."
+    },
+
+    {
+      "id": "conf-physika-leiden",
+      "class": "transmission edge — direction of dependency",
+      "sensitivity": "medium",
+      "loadBearing": "high — it is a resemblance-vs-dependency case, the exact class this audit targets",
+      "claim": "Edge physika-kai-mystika -> leiden-stockholm-papyri, kind 'influence', label 'disputed': 'Several recipes in the Theban papyri parallel pseudo-Democritus closely, showing both draw on a common Greco-Egyptian recipe literature.' Best citation: Martelli, The Four Books of Pseudo-Democritus (2013).",
+      "verdict": "UNVERIFIABLE",
+      "independentEvidence": "Martelli's 2013 edition is not openly accessible and no open source I could reach states the direction of dependency between pseudo-Democritus and the Leiden/Stockholm papyri in terms I could quote.",
+      "sources": [],
+      "note": "Recorded as unverifiable rather than dropped, because the row's INTERNAL shape is checkable without the source and it is inconsistent: the edge body says 'common source', which is by definition NOT a directed borrowing, while the edge's machine-readable kind is 'influence' and it is drawn from one node to another. The site's own note field concedes 'the influence kind overstates'. A directed arrow whose own annotation says the direction is wrong is a rendering that will mislead anyone reading the graph rather than the footnote. Under §1.3 this should be direction:'unknown' or a symmetric kind."
+    }
+
+  ]
+}

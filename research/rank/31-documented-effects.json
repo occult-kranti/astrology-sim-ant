@@ -1,0 +1,839 @@
+{
+  "schemaVersion": "1.0.0",
+  "slice": "31-documented-effects",
+  "compiledOn": "2026-07-30",
+  "compiledBy": "research agent, The Astrologer's Workbench, R33 ranking round",
+  "governedBy": "docs/FRAMING.md v2 (as amended and audited 2026-07-30)",
+
+  "axisContract": {
+    "name": "studied-effects",
+    "replaces": "the impossible 'effective' axis",
+    "whatThisAxisIs": "A record of what the peer-reviewed literature has measured about a practice-type, and how strong that literature is. It is an axis about RESEARCH, not about practices.",
+    "whatThisAxisIsNot": [
+      "It is not an efficacy axis. Nothing in this file ranks, scores or implies how well any rite works as magic.",
+      "It does not rank practices against each other. A high evidence grade means a practice has been studied a lot, not that it does anything, and certainly not that it does what its tradition claims.",
+      "A high grade and a null result routinely co-occur. See 'meditation-mindfulness-secular', graded sr-meta, whose strongest single finding is that meditation programmes were no better than any active control.",
+      "It does not adjudicate the traditions' own claims. Those remain, per FRAMING 1.1, of no demonstrated validity and no plausible mechanism."
+    ],
+    "theSeparationRule": {
+      "statement": "Evidence that performing a ritual changes the performer is evidence about ritual-as-behaviour. It is never evidence that the rite achieved its stated aim.",
+      "worked": "Norton & Gino (2014) found that people who performed a mourning ritual reported less grief. That is a finding about grief in ritual performers. It is not a finding about the dead, about the beloved, or about any supernatural addressee. The two propositions are not related by the study's design and cannot be made related by it.",
+      "enforcement": "Every record carries a non-empty 'separationNote'. A record without one does not ship. Records whose literature has no aim-attainment claim in it at all carry 'separationNote' anyway, stating that fact.",
+      "theInverseTrap": "The reverse error is also forbidden: a null or absent literature is not evidence that a rite fails at its stated aim either, because no study has ever tested the stated aim. Absence of study is absence of study."
+    },
+    "absenceIsAValue": "'No study exists' is the expected majority answer for the material this site catalogues and is a first-class value. Records graded 'none' are not empty cells and are not deficient records; they are findings."
+  },
+
+  "evidenceGradeScale": {
+    "definition": "How much peer-reviewed outcome research exists on THIS practice-type, and how methodologically strong it is. Ordinal on volume-and-rigour only. Explicitly NOT ordinal on benefit, on effect size, or on anything a tradition claims.",
+    "grades": [
+      { "key": "sr-meta", "label": "Systematic-review and meta-analysis backed", "meaning": "Two or more independent systematic reviews or meta-analyses of randomised trials exist, with pooled estimates." },
+      { "key": "sr-single", "label": "Single systematic review", "meaning": "One systematic review exists, or the only reviews synthesise trials the reviewers themselves rate as poor quality." },
+      { "key": "rct-few", "label": "Individual trials, unsynthesised", "meaning": "One or a few randomised or controlled trials, no synthesis, typically small and unreplicated." },
+      { "key": "lab-physiology", "label": "Controlled laboratory physiology", "meaning": "Within-subject or crossover physiological measurement in small samples. Measures a mechanism, not a clinical outcome." },
+      { "key": "observational", "label": "Observational only", "meaning": "Cohort, cross-sectional, survey or uncontrolled programme data. No randomisation." },
+      { "key": "case-reports", "label": "Case reports and series only", "meaning": "The literature consists of individual case write-ups. Denominators are unknown, so incidence cannot be estimated." },
+      { "key": "toxicology-adjacent", "label": "Toxicology of the material, not the practice", "meaning": "There is real literature, but it is about the substance or the surgery in general clinical use. Nobody has studied the practice as the tradition performs it." },
+      { "key": "none", "label": "No peer-reviewed outcome literature located", "meaning": "Searched and not found. A finding, not a gap in this file." }
+    ],
+    "harmGradeUsesTheSameScale": true,
+    "aSeparateGradeIsCarriedForHarms": "Because the two literatures diverge sharply. Meditation is sr-meta for benefit claims and observational/case-reports for harms, and that asymmetry is itself the most important fact about the field."
+  },
+
+  "effectDirectionScale": [
+    { "key": "positive-small", "meaning": "Statistically detectable improvement on the measured outcome, small standardised effect (roughly <0.4)." },
+    { "key": "positive-moderate", "meaning": "Statistically detectable improvement, moderate standardised effect (roughly 0.4-0.8)." },
+    { "key": "null", "meaning": "No detectable difference from control on the measured outcome." },
+    { "key": "mixed", "meaning": "Trials disagree; some positive, some null, no stable pooled answer." },
+    { "key": "negative", "meaning": "Detectable harm on the measured outcome." },
+    { "key": "physiological-change-no-clinical-outcome", "meaning": "A physiological variable measurably changed. No clinical benefit was measured or claimed." },
+    { "key": "not-measured", "meaning": "Nobody has measured it." }
+  ],
+
+  "fieldContract": {
+    "measuredValues": "Numbers with units live ONLY here. This field is machine data, never site voice, and never a recipe parameter. Per FRAMING C-1 / A-4 the site never converts an archaic recipe unit into a modern one; nothing in this field is such a conversion. Values here are (a) assay results from marketed products, (b) standardised effect sizes, (c) doses of pharmaceutical-grade compounds in registered clinical trials, or (d) prevalence figures. See risks[] for the residual tension.",
+    "siteVoiceFields": ["whatWasMeasured", "inWhom", "magnitude", "replicationStatus", "strongestCritique.text", "absenceOfEvidence", "separationNote", "documentedHarms[].harm", "documentedHarms[].mechanism"],
+    "siteVoiceRules": "Third person, indicative mood, attributing frame. No imperatives, no second-person address, no instruction. Numbers with units are excluded from these fields by construction and live in measuredValues.",
+    "citationVerification": "Every citation was retrieved in this pass. 'verified' records which identifiers were seen on the source page in this session. Where a page or volume number was not seen, it is omitted rather than guessed."
+  },
+
+  "records": [
+    {
+      "id": "eff-meditation-mindfulness-secular",
+      "practiceType": "Seated meditation and secular mindfulness programmes (MBSR, MBCT, focused-attention and open-monitoring practice)",
+      "siteWings": ["practices", "buddhist", "yoga"],
+      "harmFlagged": false,
+      "whatWasMeasured": "Clinician- and self-rated anxiety, depression, perceived stress, pain, mental-health-related quality of life, positive mood, attention, substance use, eating behaviour, sleep and weight, in randomised trials of structured meditation programmes.",
+      "inWhom": "Adults in clinical populations across 47 randomised trials and 3,515 participants in the Goyal synthesis; the wider field is dominated by convenience samples of educated adult volunteers.",
+      "effectDirection": "positive-small",
+      "magnitude": "Goyal and colleagues report small effects on anxiety, depression and pain at eight weeks, attenuating but persisting at three to six months; low evidence of improvement in stress and mental-health quality of life; and low evidence of no effect, or insufficient evidence of any effect, for positive mood, attention, substance use, eating habits, sleep and weight.",
+      "replicationStatus": "The small anxiety and depression effects are the most replicated finding in the contemplative literature and appear across multiple independent syntheses. The absence of superiority over active controls is equally replicated and far less often reported.",
+      "evidenceGrade": "sr-meta",
+      "harmEvidenceGrade": "observational",
+      "keyNullFinding": "Goyal and colleagues found no evidence that meditation programmes were better than any active treatment - drugs, exercise or other behavioural therapies. The headline benefit of meditation over doing nothing is therefore not a demonstrated benefit of meditation over doing something else.",
+      "strongestCritique": {
+        "text": "Van Dam and sixteen co-authors, several of them working meditation researchers, argue that the field suffers from an unstable definition of its own construct, widespread use of inactive control conditions, small and unblinded samples, and a publication and press environment that has outrun the data. They state directly that poor methodology and misinformation may leave the public harmed, misled and disappointed.",
+        "source": "vandam-2018"
+      },
+      "documentedHarms": [
+        { "harm": "Anxiety, depression and cognitive anomalies reported as meditation-related adverse events.", "mechanism": "Not established. Farias and colleagues report the association without a demonstrated mechanism.", "evidenceGrade": "sr-single", "source": "farias-2020" },
+        { "harm": "Adverse events are under-reported in the trial literature relative to observational settings.", "mechanism": "Trials frequently do not solicit or record adverse events at all; where they are solicited, prevalence rises roughly ninefold.", "evidenceGrade": "sr-single", "source": "farias-2020" }
+      ],
+      "measuredValues": [
+        { "what": "Anxiety, standardised effect size at 8 weeks (Goyal)", "value": 0.38, "ci95": [0.12, 0.64] },
+        { "what": "Anxiety, standardised effect size at 3-6 months (Goyal)", "value": 0.22, "ci95": [0.02, 0.43] },
+        { "what": "Depression, standardised effect size at 8 weeks (Goyal)", "value": 0.30, "ci95": [0.00, 0.59] },
+        { "what": "Depression, standardised effect size at 3-6 months (Goyal)", "value": 0.23, "ci95": [0.05, 0.42] },
+        { "what": "Pain, standardised effect size (Goyal)", "value": 0.33, "ci95": [0.03, 0.62] },
+        { "what": "Trials screened / included / participants (Goyal)", "value": "18753 screened, 47 included, 3515 participants" },
+        { "what": "Pooled prevalence of meditation-related adverse events (Farias)", "value": 0.083, "ci95": [0.05, 0.12], "note": "3.7% in experimental studies, 33.2% in observational studies" }
+      ],
+      "absenceOfEvidence": "No trial in this literature has tested any traditional soteriological or magical aim of seated practice. Nothing has been measured about liberation, insight into emptiness, siddhi, or contact with any addressee. Those are not outcomes anyone has attempted to operationalise, and their absence from the literature is total.",
+      "separationNote": "This literature measures symptom scales in people who sat and attended to their breath. It is evidence about a behaviour and its psychological correlates. It is not evidence for any claim the Buddhist, tantric or yogic sources make about what the practice accomplishes, and no study in it was designed to bear on such a claim.",
+      "citations": ["goyal-2014", "vandam-2018", "farias-2020", "ospina-2007"]
+    },
+
+    {
+      "id": "eff-meditation-adverse-events",
+      "practiceType": "Meditation-related adverse events and 'contemplative crisis' (treated as its own literature, because it is)",
+      "siteWings": ["practices", "buddhist"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Self-reported challenging, distressing, functionally impairing or support-requiring experiences arising in association with meditation practice; and, separately, the rate at which meditation trials solicit and report adverse events at all.",
+      "inWhom": "Lindahl and colleagues interviewed 60 Western Buddhist practitioners across Theravada, Zen and Tibetan traditions plus 32 meditation experts. Farias and colleagues synthesised 83 studies.",
+      "effectDirection": "negative",
+      "magnitude": "Farias reports a pooled adverse-event prevalence of roughly one in twelve overall, but with an order-of-magnitude gap between experimental and observational designs. Lindahl reports that a large majority of interviewees described moderate to severe impairment in at least one domain, with a median symptom duration measured in years.",
+      "replicationStatus": "Two independent lines - Lindahl's qualitative taxonomy and Farias's quantitative synthesis - converge on the same conclusion, that adverse events occur and are systematically under-solicited. Neither is a randomised design and neither establishes causation.",
+      "evidenceGrade": "sr-single",
+      "harmEvidenceGrade": "sr-single",
+      "strongestCritique": {
+        "text": "Lindahl and colleagues state their own limits plainly: the sample was recruited by deviant-case sampling explicitly for challenging experiences, so it cannot estimate incidence; it was overwhelmingly white, highly educated and professional; it is retrospective self-report with no control group; and the qualitative method cannot establish temporal or causal mechanism. Recruitment through teachers plausibly excluded people who stopped practising altogether, which would bias toward under- rather than over-statement.",
+        "source": "lindahl-2017"
+      },
+      "documentedHarms": [
+        { "harm": "Anxiety, depression, cognitive anomalies, gastrointestinal disturbance and suicidal behaviour reported as meditation-related.", "mechanism": "Not established.", "evidenceGrade": "sr-single", "source": "farias-2020" },
+        { "harm": "Changes in sense of self - loss of sense of ownership, of agency, of embodiment, of self-world boundary, and of basic self.", "mechanism": "Not established. Lindahl records these as a phenomenological domain, not a diagnosis.", "evidenceGrade": "observational", "source": "lindahl-2017" },
+        { "harm": "Suicidality and inpatient hospitalisation reported by a minority of Lindahl's interviewees.", "mechanism": "Not established; the sampling frame prevents any incidence claim.", "evidenceGrade": "observational", "source": "lindahl-2017" }
+      ],
+      "measuredValues": [
+        { "what": "Lindahl practitioners / experts interviewed", "value": "60 / 32" },
+        { "what": "Experience categories / domains in the taxonomy", "value": "59 categories across 7 domains" },
+        { "what": "Reported moderate-to-severe impairment in at least one domain", "value": 0.73 },
+        { "what": "Reported suicidality", "value": 0.17 },
+        { "what": "Required inpatient hospitalisation", "value": 0.17 },
+        { "what": "Median symptom duration", "value": "1-3 years, range days to over 10 years" },
+        { "what": "Farias studies analysed / reporting at least one adverse-event type", "value": "83 / 55 (65%)" }
+      ],
+      "absenceOfEvidence": "There is no prospective cohort with a denominator, so the incidence of meditation-related adverse events in the general practising population is unknown and no figure in this record should be read as one. There is also no literature on adverse events in the traditional, non-secular, initiatory settings this site's corpora actually describe; all of it is Western and mostly secular.",
+      "separationNote": "This record concerns harms documented in people who meditated. It says nothing about whether contemplative practice attains any traditional goal, and the traditions' own warnings about practice - which this site quotes as primary text - are historical statements, not corroboration of these modern findings.",
+      "citations": ["lindahl-2017", "farias-2020", "vandam-2018"]
+    },
+
+    {
+      "id": "eff-transcendental-meditation",
+      "practiceType": "Transcendental Meditation (branded mantra meditation)",
+      "siteWings": ["practices"],
+      "harmFlagged": false,
+      "whatWasMeasured": "Blood pressure; cognitive function and measured intelligence; anxiety.",
+      "inWhom": "Adults, largely in trials conducted or funded by organisations affiliated with the technique.",
+      "effectDirection": "mixed",
+      "magnitude": "The American Heart Association's 2013 scientific statement rated Transcendental Meditation as reasonable to consider for blood-pressure lowering at its second-weakest recommendation class, and rated all other meditation techniques and yoga as not useful or effective for that outcome. For cognitive function, Canter and Ernst found four of ten qualifying trials strongly positive, four wholly negative and two largely negative.",
+      "replicationStatus": "Poor and provenance-dependent. Canter and Ernst found that 97 of 107 identified reports failed basic inclusion criteria because they were uncontrolled or non-randomised. The blood-pressure literature has been contested in print by the technique's own researchers, who published a formal request that the AHA upgrade its rating; the AHA writing group published a response declining.",
+      "evidenceGrade": "sr-meta",
+      "harmEvidenceGrade": "none",
+      "strongestCritique": {
+        "text": "Canter and Ernst conclude that the trial evidence shows no convincing specific cumulative effect on cognitive function beyond practice effects and motivation, and note that the positive trials came predominantly from within the movement. The AHRQ report by Ospina and colleagues, which covered the wider meditation field including Transcendental Meditation, concluded that the research is characterised by poor methodological quality and that firm conclusions about health effects cannot be drawn.",
+        "source": "canter-2003"
+      },
+      "documentedHarms": [],
+      "measuredValues": [
+        { "what": "AHA 2013 class of recommendation / level of evidence, Transcendental Meditation for blood pressure", "value": "Class IIB, Level of Evidence B" },
+        { "what": "AHA 2013 class / level, other meditation techniques", "value": "Class III, Level of Evidence C" },
+        { "what": "AHA 2013 class / level, yoga", "value": "Class III, Level of Evidence C" },
+        { "what": "AHA 2013 class / level, device-guided slow breathing", "value": "Class IIA, Level of Evidence B" },
+        { "what": "Canter and Ernst: reports identified / met inclusion criteria", "value": "107 / 10" },
+        { "what": "Canter and Ernst: strongly positive / wholly negative / largely negative", "value": "4 / 4 / 2" }
+      ],
+      "absenceOfEvidence": "No independent replication programme outside the movement exists at scale. The Cochrane review of meditation for anxiety disorders found so few eligible trials in diagnosed patients that it could not reach a conclusion, and noted high drop-out.",
+      "separationNote": "Blood pressure and cognitive test scores are the outcomes. The tradition's own account of what the mantra is and does - a bija drawn from an initiatory Saiva-Vedantic frame, transmitted under conditions of secrecy - has never been an outcome variable in any trial and is not addressed by any result here.",
+      "dateCorrection": "The commissioning brief cites 'Canter & Ernst 2004'. The paper was published in Wiener klinische Wochenschrift on 28 November 2003, volume 115, issues 21-22. The 2004 date in circulation appears to come from indexing. Recorded here as 2003 with the PMID, per FRAMING 1.2.",
+      "citations": ["canter-2003", "ospina-2007", "brook-2013", "krisanaprakornkit-2006"]
+    },
+
+    {
+      "id": "eff-mantra-chanting",
+      "practiceType": "Chanting, mantra repetition and rhythmic recitation (japa, rosary, Om, liturgical recitation)",
+      "siteWings": ["practices", "buddhist", "picatrix"],
+      "harmFlagged": false,
+      "whatWasMeasured": "Respiratory rate, heart-rate and blood-pressure oscillations, baroreflex sensitivity; and separately, regional brain blood-oxygen signal during audible chanting.",
+      "inWhom": "Bernardi and colleagues studied 23 healthy adults in Florence and Pavia. Kalyani and colleagues scanned 12 healthy right-handed volunteers, nine of them men.",
+      "effectDirection": "physiological-change-no-clinical-outcome",
+      "magnitude": "Bernardi found that both the Latin Ave Maria recited in the rosary cycle and a Sanskrit yogic mantra slowed respiration to almost exactly six breaths per minute, and that this entrained and amplified existing cardiovascular rhythms and raised baroreflex sensitivity. The effect is a property of the respiratory rate the verse forces, not of the verse's semantic content.",
+      "replicationStatus": "The underlying finding - that paced breathing near six per minute maximises cardiorespiratory coupling and baroreflex gain - is one of the best replicated results in autonomic physiology and is the mechanism behind the device-guided breathing that the AHA rated Class IIA. The specific rosary and mantra observation itself has been widely cited and rarely directly replicated. Kalyani's imaging study is an explicitly labelled pilot in twelve people and has not been robustly replicated.",
+      "evidenceGrade": "lab-physiology",
+      "harmEvidenceGrade": "none",
+      "strongestCritique": {
+        "text": "The result is about metre, not about mantra. Bernardi's own design shows this: a Latin prayer and a Sanskrit mantra produced the same effect because both impose the same breathing rate, and controlled paced breathing at the same rate reproduces it without any recitation at all. Reading the study as evidence for the power of sacred syllables inverts what it demonstrated. Kalyani's twelve-subject pilot has the sample size, single-site design and uncorrected-inference risks endemic to early functional imaging.",
+        "source": "bernardi-2001"
+      },
+      "documentedHarms": [],
+      "measuredValues": [
+        { "what": "Baroreflex sensitivity, before and during recitation (Bernardi), in ms/mmHg", "value": "9.5 (SD 4.6) rising to 11.5 (SD 4.9)" },
+        { "what": "Respiratory rate at which both rosary and mantra converged", "value": "approximately 6 per minute" },
+        { "what": "Bernardi sample", "value": "23 healthy adults" },
+        { "what": "Kalyani sample", "value": "12 healthy volunteers" }
+      ],
+      "absenceOfEvidence": "No study has tested any claim a tradition makes for a mantra - not its assignment to a deity, not its efficacy in a specific rite, not bija theory, not the necessity of initiatory transmission. The mantroddhara encoding tradition, which this site treats as a philological object, has no research literature of any kind attached to it.",
+      "separationNote": "That reciting a rosary decade at six breaths a minute raises baroreflex sensitivity is a fact about respiration in the reciter. It is not evidence about intercession, about the addressee of the prayer, or about the operative claims made for mantra in any tantric or Picatrix-adjacent source.",
+      "citations": ["bernardi-2001", "kalyani-2011", "brook-2013"]
+    },
+
+    {
+      "id": "eff-paced-breathing-pranayama",
+      "practiceType": "Slow and paced breathing, including non-hyperventilatory pranayama and device-guided breathing",
+      "siteWings": ["yoga", "practices"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Blood pressure, heart-rate variability, baroreflex sensitivity, respiratory parameters.",
+      "inWhom": "Healthy adults and adults with hypertension, in small trials and in the device-guided breathing trials the AHA reviewed.",
+      "effectDirection": "positive-small",
+      "magnitude": "The AHA statement gives device-guided slow breathing its second-strongest class of recommendation for blood-pressure lowering, ahead of every meditation technique it assessed, while giving yoga its lowest. The blood-pressure reductions in this literature are modest.",
+      "replicationStatus": "The autonomic mechanism is well replicated. Clinical blood-pressure benefit is smaller and more contested, and the AHA rating is explicitly a rating of a device protocol rather than of any traditional pranayama.",
+      "evidenceGrade": "sr-meta",
+      "harmEvidenceGrade": "case-reports",
+      "strongestCritique": {
+        "text": "What the AHA rated was a commercial device delivering metronomic breathing, not any historical practice. Traditional pranayama - which involves retention, ratios, bandhas and nasal alternation, and which the sources embed in a soteriology - has not been tested as such, and the AHA rated yoga as a whole in its lowest class. Transferring the device rating onto the classical practice is an unsupported step.",
+        "source": "brook-2013"
+      },
+      "documentedHarms": [
+        { "harm": "Spontaneous pneumothorax attributed to forceful breathing practice.", "mechanism": "Forceful repeated abdominal expulsion raises intrathoracic pressure; alveolar rupture allows air into the pleural space.", "evidenceGrade": "case-reports", "source": "johnson-2004" },
+        { "harm": "Nervous-system, musculoskeletal and ocular injury, and one death, across the yoga adverse-event case literature, with forceful breathing among the named practices.", "mechanism": "Varies by case; not established for the class.", "evidenceGrade": "case-reports", "source": "cramer-2013" }
+      ],
+      "measuredValues": [
+        { "what": "AHA 2013 class / level, device-guided breathing", "value": "Class IIA, Level of Evidence B" },
+        { "what": "Pneumothorax case: age and health status of patient", "value": "29-year-old previously healthy woman, yoga instructor training" }
+      ],
+      "absenceOfEvidence": "The classical retention ratios have not been tested clinically. There is no controlled outcome literature on the traditional kumbhaka sequences at all, and per this site's own C-3 rule the ratios are reproduced only as quoted primary text and never in the site's voice.",
+      "separationNote": "Slow breathing changes autonomic tone. That is a documented physiological effect in the breather. It is not evidence for prana, for nadi purification, for kundalini, or for any operative outcome the haṭha corpus claims, none of which has been operationalised in any study.",
+      "citations": ["brook-2013", "johnson-2004", "cramer-2013"]
+    },
+
+    {
+      "id": "eff-hyperventilation-methods",
+      "practiceType": "Hyperventilation-based breath methods, including the Wim Hof method and forceful kapalabhati-type practice",
+      "siteWings": ["yoga", "practices"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Circulating catecholamines, cortisol, pro- and anti-inflammatory cytokines, blood gases and pH, flu-like symptom scores after experimental endotoxin administration; and separately, expectancy and personality measures.",
+      "inWhom": "Small samples of healthy, overwhelmingly male volunteers. The systematic review found trials of 15 to 48 participants each, with an 86.4% male sample overall.",
+      "effectDirection": "mixed",
+      "magnitude": "Kox and colleagues reported that trained participants voluntarily raised epinephrine, blunted the pro-inflammatory cytokine response to injected endotoxin and reported fewer flu-like symptoms. The 2024 systematic review found the inflammatory-response category the most promising and everything else inconclusive.",
+      "replicationStatus": "Nine papers covering eight trials in total. The review's authors state that all results must be interpreted with caution because study quality was very low, that all but one randomised trial carried high risk-of-bias concerns, and that heterogeneity prevented meta-analysis. A separate proof-of-principle study specifically examined whether outcome expectancy, rather than the technique, drove the endotoxemia result.",
+      "evidenceGrade": "sr-single",
+      "harmEvidenceGrade": "case-reports",
+      "strongestCritique": {
+        "text": "Participants cannot be blinded to a method that involves hyperventilating and sitting in ice, so expectancy is uncontrolled by construction; samples are tiny and nearly all male; and the review found only one trial without high risk-of-bias concerns. The reviewers describe the safety record within trials as showing minimal serious adverse events, which is a statement about supervised laboratory conditions and carries no information about unsupervised practice.",
+        "source": "almahayni-2024"
+      },
+      "documentedHarms": [
+        { "harm": "Loss of consciousness underwater without warning, and drowning, when hyperventilation is followed by breath-holding in or near water.", "mechanism": "Pre-effort hyperventilation lowers arterial carbon dioxide, so the urge to breathe is delayed past the point at which oxygen falls below the level compatible with consciousness. Onset is abrupt and has no prodrome.", "evidenceGrade": "case-reports", "source": "craig-1976" },
+        { "harm": "Deaths and injuries attributed to the branded method, compiled outside the peer-reviewed literature.", "mechanism": "As above, plus cardiac arrest in ice water.", "evidenceGrade": "non-peer-reviewed", "source": "whm-death-tally", "provenanceWarning": "This tally is journalistic and litigation-derived, not peer-reviewed and not from a vital-statistics registry. It is recorded as such and must never be presented as a study finding." },
+        { "harm": "Spontaneous pneumothorax after forceful breathing practice.", "mechanism": "Raised intrathoracic pressure and alveolar rupture.", "evidenceGrade": "case-reports", "source": "johnson-2004" },
+        { "harm": "Transient sensory disturbance during the breathing itself, reported inside trials.", "mechanism": "Hypocapnic cerebral vasoconstriction.", "evidenceGrade": "rct-few", "source": "almahayni-2024" }
+      ],
+      "measuredValues": [
+        { "what": "Systematic review: papers / trials included", "value": "9 papers, 8 trials" },
+        { "what": "Trial sample sizes", "value": "15 to 48 participants" },
+        { "what": "Proportion male across included trials", "value": 0.864 },
+        { "what": "Reported deaths and injuries associated with the branded method as of 1 Jan 2024, non-peer-reviewed compilation", "value": "21 deaths, 18 injuries; 12 deaths in the United States", "provenance": "journalistic and litigation" }
+      ],
+      "absenceOfEvidence": "No peer-reviewed forensic case series specific to the branded method was located in this pass. The drowning mechanism is very well characterised in the general breath-hold literature going back to Craig's 1976 series of 58 cases, but the branded-method death tally itself has no peer-reviewed source, and this file records that gap rather than borrowing the authority of the physiology to cover it.",
+      "separationNote": "An epinephrine rise and a blunted cytokine response are effects on the immune physiology of the person breathing. The tummo lineage from which the cold and breath material is drawn makes claims about inner heat, subtle channels and yogic attainment that no study has measured and that these results do not bear on.",
+      "framingCrossReference": "FRAMING C-3 excludes outright any pairing of breath technique with water, submersion or bathing, in any voice, and any presentation of loss of consciousness as goal or marker. Nothing in this record licenses relaxing that; the harms recorded here are the reason it exists.",
+      "citations": ["kox-2014", "almahayni-2024", "craig-1976", "johnson-2004", "datta-2006", "whm-death-tally"]
+    },
+
+    {
+      "id": "eff-breath-retention-hypoxia",
+      "practiceType": "Breath retention (kumbhaka) and induced hypoxia as a practice",
+      "siteWings": ["yoga", "practices"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Nothing, as a practice. The physiology of voluntary apnoea and of hypoxic blackout is well characterised in breath-hold diving and in drowning-prevention research; the yogic and magical retention practices themselves have no controlled outcome literature.",
+      "inWhom": "Breath-hold divers, swimmers and drowning victims, in the physiology and prevention literature. Not practitioners of kumbhaka.",
+      "effectDirection": "not-measured",
+      "magnitude": "Not applicable. No effect of the practice has been measured because the practice has not been studied.",
+      "replicationStatus": "Not applicable to the practice. The hypoxic-blackout mechanism itself is settled and long-replicated.",
+      "evidenceGrade": "none",
+      "harmEvidenceGrade": "case-reports",
+      "strongestCritique": {
+        "text": "There is no literature to critique. The temptation this record exists to block is to import the breath-hold-diving physiology as though it were a study of yogic retention. It is not; it is a study of a different population doing a different thing for different reasons, and it establishes only the hazard, never a benefit.",
+        "source": "craig-1976"
+      },
+      "documentedHarms": [
+        { "harm": "Abrupt loss of consciousness without warning, and drowning, where retention follows hyperventilation.", "mechanism": "Hypocapnia delays the urge to breathe past the threshold of hypoxic unconsciousness.", "evidenceGrade": "case-reports", "source": "craig-1976" },
+        { "harm": "Deaths among children and adolescents from deliberate self-induced cerebral hypoxia pursued as a desirable state.", "mechanism": "Cerebral hypoxia.", "evidenceGrade": "observational", "source": "cdc-choking-game", "provenanceNote": "Recorded in FRAMING C-3 from CDC surveillance; carried here because it is the evidentiary basis for the site's strictest exclusion." }
+      ],
+      "measuredValues": [
+        { "what": "Craig 1976: cases of loss of consciousness during underwater swimming and diving", "value": 58 },
+        { "what": "CDC surveillance, probable deaths from deliberate self-induced hypoxia, US youths 6-19, 1995-2007", "value": "82; mean age 13.3; 86.6% male", "note": "As recorded in FRAMING C-3. Autoerotic and suicidal cases were excluded by the surveillance definition." }
+      ],
+      "absenceOfEvidence": "Complete on the benefit side. No controlled study has measured any outcome of classical kumbhaka. The classical ratios have never been tested. This is the clearest case in the file where the studied-effects axis is empty and the harms axis is not, and the two must not be averaged into a single score.",
+      "separationNote": "Nothing here concerns whether retention accomplishes what the haṭha, Daoist, Thelemic or chaos-magick sources say it accomplishes. That question has never been studied and is not studied by the drowning literature.",
+      "framingCrossReference": "FRAMING C-3, parts 2 and 3, exclude water pairings and unconsciousness-as-goal protocols outright. This record supplies the documented-harm basis and adds nothing on the other side.",
+      "citations": ["craig-1976", "cdc-choking-game", "datta-2006"]
+    },
+
+    {
+      "id": "eff-prolonged-fasting-supervised",
+      "practiceType": "Prolonged fasting under medical supervision (as against the hagiographic and inedia claims, which are a separate record)",
+      "siteWings": ["practices", "buddhist"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Adverse events, blood pressure, lipids, glucose regulation, weight, abdominal circumference, emotional and physical well-being scales, subjective health complaints.",
+      "inWhom": "1,422 subjects, 41% male, completing a supervised 4-to-21-day programme in a single German clinic in 2016.",
+      "effectDirection": "positive-small",
+      "magnitude": "The authors report the programme as safe and well tolerated, with improvement in cardiovascular and general risk factors and in subjective well-being.",
+      "replicationStatus": "Single-centre and uncontrolled. It is the largest such dataset and it is observational; there is no randomised comparator and no independent replication at that scale.",
+      "evidenceGrade": "observational",
+      "harmEvidenceGrade": "sr-single",
+      "strongestCritique": {
+        "text": "The study is an uncontrolled observational series run by the clinic whose programme it evaluates, on self-selected paying participants under continuous medical supervision, with a small daily caloric intake and an accompanying lifestyle programme rather than true abstention. Its safety finding is a finding about that supervised setting and generalises to nothing outside it.",
+        "source": "toledo-2019"
+      },
+      "documentedHarms": [
+        { "harm": "Refeeding syndrome: cardiac, respiratory and neuromuscular dysfunction, and death, occurring on resumption of nutrition rather than during the fast.", "mechanism": "Reintroduced carbohydrate triggers insulin release and a shift to anabolism; depleted phosphate, potassium and magnesium stores are driven intracellularly, producing severe hypophosphataemia and electrolyte collapse.", "evidenceGrade": "sr-single", "source": "mehanna-2008" },
+        { "harm": "Multiple organ failure, severe sepsis and ventricular fibrillation as causes of death in fatal hunger strike.", "mechanism": "Prolonged caloric deficiency with organ atrophy and loss of subcutaneous and internal fat, demonstrated at autopsy.", "evidenceGrade": "case-reports", "source": "peel-1997" }
+      ],
+      "measuredValues": [
+        { "what": "Toledo cohort size and sex split", "value": "1,422 subjects, 41% male, 59% female" },
+        { "what": "Programme duration arms", "value": "5, 10, 15 or 20 days" },
+        { "what": "Daily caloric intake during the programme, in kcal", "value": "200-250" },
+        { "what": "Refeeding syndrome: typical onset after nutrition resumes", "value": "within about four days" },
+        { "what": "1981 Irish hunger strike: days without food to death, range across the nine who died", "value": "approximately 46 to 73" }
+      ],
+      "absenceOfEvidence": "There is no controlled outcome literature on religious fasting as practised - not on Jain, Buddhist, Christian ascetic or Islamic ritual fasting as a spiritual discipline. The clinical fasting literature studies a supervised medical programme that shares only its physiology.",
+      "separationNote": "Improvements in blood pressure in a supervised clinic cohort are effects on the metabolism of people who did not eat. They are not evidence for any ascetic, purificatory or soteriological claim, and they say nothing about the traditions' accounts of what fasting does.",
+      "citations": ["toledo-2019", "mehanna-2008", "peel-1997"]
+    },
+
+    {
+      "id": "eff-inedia-breatharianism",
+      "practiceType": "Inedia and breatharian claims (living without food, and modern branded regimens claiming to teach it)",
+      "siteWings": ["practices"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Nothing. No peer-reviewed study of inedia exists, because the claim is inconsistent with mammalian energetics and no protocol has been submitted to controlled test.",
+      "inWhom": "Not applicable.",
+      "effectDirection": "not-measured",
+      "magnitude": "Not applicable.",
+      "replicationStatus": "Not applicable.",
+      "evidenceGrade": "none",
+      "harmEvidenceGrade": "case-reports",
+      "strongestCritique": {
+        "text": "There is no study to critique. What exists is a documented death toll and a manslaughter conviction, plus a well-characterised physiology of starvation and of refeeding that explains both. The absence of study here is not a gap awaiting research; the underlying claim contradicts settled energetics.",
+        "source": "mehanna-2008"
+      },
+      "documentedHarms": [
+        { "harm": "Three named deaths associated with a modern branded regimen - Timo Degen (Munich, 1997), Lani Morris (Melbourne, 1998), Verity Linn (Scotland, 1999). Two supervising instructors in the Morris case were convicted of manslaughter and jailed.", "mechanism": "Starvation and dehydration under a staged withdrawal of food and water.", "evidenceGrade": "non-peer-reviewed", "source": "framing-c6", "provenanceWarning": "Coroner, court and press record, carried forward from FRAMING C-6. Not peer-reviewed literature and never to be presented as such." },
+        { "harm": "Refeeding syndrome, which kills during recovery rather than during the fast.", "mechanism": "Insulin-driven intracellular electrolyte shift on reintroduction of carbohydrate, producing severe hypophosphataemia.", "evidenceGrade": "sr-single", "source": "mehanna-2008" }
+      ],
+      "measuredValues": [
+        { "what": "Named deaths in the FRAMING C-6 record", "value": 3 },
+        { "what": "Manslaughter sentences in the Morris case", "value": "six years and two years" }
+      ],
+      "absenceOfEvidence": "Total on the effects side, and it is the honest answer. Historical fasting hagiography is a body of textual claims, and this file records that no study has ever tested one.",
+      "separationNote": "The hagiographic claim that a saint took no food for years is a claim in a text. It is not a measured outcome and this file does not treat it as one. The site's risk here is evidential dignity - a hagiography sitting in a well-cited apparatus and inheriting its neighbours' credibility - and this record exists partly to carry the no-demonstrated-validity flag in the same field as the claim.",
+      "framingCrossReference": "FRAMING C-6 excludes modern branded regimens with day counts and staged schedules outright. This record supplies the harm evidence and adds nothing on the effects side.",
+      "citations": ["mehanna-2008", "peel-1997", "framing-c6"]
+    },
+
+    {
+      "id": "eff-ritual-as-behaviour",
+      "practiceType": "Ritual performance as a behaviour: emotion regulation, performance under pressure, social bonding",
+      "siteWings": ["picatrix", "practices", "abhichara"],
+      "harmFlagged": false,
+      "whatWasMeasured": "Self-reported grief; felt control; anxiety before a performance task; task performance; group affiliation and trust measures.",
+      "inWhom": "Undergraduate and online adult samples in laboratory experiments, predominantly Western.",
+      "effectDirection": "positive-small",
+      "magnitude": "Norton and Gino report lower grief in participants directed to recall or to perform a mourning ritual after a loss, with increased feelings of control mediating the link. The effect appeared in participants who did not profess belief in rituals as well as in those who did. Hobson and colleagues organise the wider literature around three regulatory functions - emotion, performance goal states, and social connection.",
+      "replicationStatus": "The ritual-and-anxiety literature sits inside social psychology's replication problem: small samples, single-laboratory designs, flexible operationalisations of what counts as a ritual. Hobson's review is an organising framework over that literature rather than a meta-analysis of it, and should not be read as establishing pooled effect sizes.",
+      "evidenceGrade": "rct-few",
+      "harmEvidenceGrade": "none",
+      "strongestCritique": {
+        "text": "The independent variable in these studies is typically an arbitrary sequence invented by the experimenters, performed once, by people who know they are in an experiment. That is a good way to isolate a mechanism and a poor model of a rite embedded in a cosmology, a lineage and a life. Whether findings from an invented laboratory sequence transfer to the Picatrix consecrations or the Atharvan charms this site catalogues is untested, and the framework paper does not claim it.",
+        "source": "hobson-2018"
+      },
+      "documentedHarms": [],
+      "measuredValues": [
+        { "what": "Norton and Gino experiments", "value": 3 },
+        { "what": "Mediator identified", "value": "increased feelings of control" }
+      ],
+      "absenceOfEvidence": "No study in this literature involves a historical rite from any corpus this site catalogues. There is no experimental work on Picatrix planetary consecration, on abhicara, on Solomonic operation, or on any talismanic procedure. The transfer is assumed by readers, never demonstrated by researchers.",
+      "separationNote": "THIS IS THE RECORD THE TRAP IS ABOUT. That performing a ritual lowers self-reported grief or pre-performance anxiety is a finding about the psychology of the performer. It is not, in any part, evidence that a rite achieves its stated aim - that a talisman draws a planet's virtue, that a charm reaches a target, that an offering is received. Norton and Gino measured grief in the bereaved, not the condition of the dead. Hobson and colleagues explain why ritual feels efficacious, which is the opposite of showing that it is.",
+      "citations": ["hobson-2018", "norton-2014"]
+    },
+
+    {
+      "id": "eff-ritual-efficacy-intuitions",
+      "practiceType": "Intuitions about ritual efficacy: what makes a rite feel like it will work",
+      "siteWings": ["picatrix", "abhichara", "practices"],
+      "harmFlagged": false,
+      "whatWasMeasured": "Rated likely effectiveness of problem-solving rituals, as a function of repetition, number of procedural steps, and specificity of procedural detail.",
+      "inWhom": "Brazilian adults familiar with simpatias, in three studies totalling 162 participants, plus a US replication with 68 participants.",
+      "effectDirection": "positive-moderate",
+      "magnitude": "Both Brazilian and US adults rated rituals as more effective when they contained more repetition and more procedural steps. The effect is on perceived efficacy only.",
+      "replicationStatus": "Replicated across two cultural contexts within the same programme, with identical stimuli. Wider independent replication is limited.",
+      "evidenceGrade": "rct-few",
+      "harmEvidenceGrade": "none",
+      "strongestCritique": {
+        "text": "The design measures ratings of vignettes, not behaviour and not outcomes, and the stimuli were partly constructed by the researchers. The finding is about a heuristic in causal reasoning under conditions of causal opacity, and it is powerful precisely because it is narrow.",
+        "source": "legare-2012"
+      },
+      "documentedHarms": [],
+      "measuredValues": [
+        { "what": "Brazilian studies: participants", "value": 162 },
+        { "what": "US replication: participants", "value": 68 },
+        { "what": "Features that raised rated efficacy", "value": "repetition, number of procedural steps, specificity of procedural detail" }
+      ],
+      "absenceOfEvidence": "No study has tested whether these heuristics predict which historical rites were actually transmitted, elaborated or preserved. That would be a genuinely interesting philological question and nobody has asked it in a publishable design.",
+      "separationNote": "This literature is the strongest available account of why elaborate rites feel effective to the people who perform them, and it is therefore the single most anti-efficacy result in this file. It explains perceived efficacy in the absence of any efficacy. It must never be cited in a way that lets a reader hear the word 'efficacy' without the word 'perceived' attached.",
+      "usefulToTheSite": "Legare and Souza's variables - repetition, step count, procedural specificity - are precisely the features this site's corpora are dense in. That is a fact about how rites are built and how minds read them. It is not a fact about what rites do.",
+      "citations": ["legare-2012", "hobson-2018"]
+    },
+
+    {
+      "id": "eff-placebo-expectancy",
+      "practiceType": "Placebo, expectancy and open-label placebo (the general mechanism behind reported benefit in any unblindable practice)",
+      "siteWings": ["about", "practices"],
+      "harmFlagged": false,
+      "whatWasMeasured": "Symptom severity and global improvement in irritable bowel syndrome under openly labelled inert pills against a no-treatment control with matched patient-provider interaction; and, in the meditation and cold-exposure literature, whether outcome expectancy alone reproduces a reported physiological effect.",
+      "inWhom": "80 adults meeting Rome III criteria for IBS, 70% female, mean age 47, at a single academic centre.",
+      "effectDirection": "positive-moderate",
+      "magnitude": "Kaptchuk and colleagues found openly labelled placebo superior to no treatment on IBS symptom measures - that is, an effect obtained with no deception at all, in patients explicitly told the pills were inert.",
+      "replicationStatus": "Open-label placebo has been replicated in several conditions and pooled in at least one meta-analysis, though the field remains small, is dominated by subjective outcomes, and has contested effect sizes.",
+      "evidenceGrade": "sr-single",
+      "harmEvidenceGrade": "none",
+      "strongestCritique": {
+        "text": "The outcomes are self-reported and the control was no-treatment rather than a second active ritual, so part of the effect may be attention, contact and response bias rather than expectancy proper. The literature is heavily weighted toward conditions with subjective endpoints.",
+        "source": "kaptchuk-2010"
+      },
+      "documentedHarms": [],
+      "measuredValues": [
+        { "what": "Kaptchuk 2010 randomised participants", "value": 80 },
+        { "what": "Trial duration", "value": "three weeks" }
+      ],
+      "absenceOfEvidence": "No study has tested a historical rite against an inert ritual comparator. The obvious design - a Picatrix consecration against a structurally matched sham consecration - has never been run, and this file does not propose that it should be; it records that it has not.",
+      "separationNote": "Open-label placebo is the reason a documented psychological benefit of ritual performance can never be read as evidence for the rite's stated mechanism. An effect that survives telling the participant the treatment is inert is by definition not evidence that the treatment does what it purports to do. This is the mechanism that makes the whole separation rule necessary, and it belongs on the honest side of the ledger.",
+      "citations": ["kaptchuk-2010", "charlesworth-2017", "vanlieshout-2016"]
+    },
+
+    {
+      "id": "eff-psilocybin",
+      "practiceType": "Psilocybin (as a modern clinical intervention; distinguished sharply from any historical entheogenic use)",
+      "siteWings": ["practices"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Depression severity on clinician-rated scales, response and remission rates, and adverse events, in randomised double-blind trials.",
+      "inWhom": "233 adults with treatment-resistant depression in the phase 2 dose-finding trial; 59 adults with moderate-to-severe major depressive disorder in the escitalopram comparison.",
+      "effectDirection": "positive-moderate",
+      "magnitude": "Goodwin and colleagues found the higher dose associated with greater reduction in depression scores at three weeks than the low-dose control, with the difference at twelve weeks not reaching significance. Carhart-Harris and colleagues found no significant difference from escitalopram on the primary endpoint, with secondary measures favouring psilocybin and the authors cautioning that the trial was not powered for those comparisons.",
+      "replicationStatus": "Several independent randomised trials now exist; larger phase 3 programmes are ongoing. Long-term durability is not established, and the primary endpoint of the head-to-head comparison against a standard antidepressant was null.",
+      "evidenceGrade": "sr-meta",
+      "harmEvidenceGrade": "rct-few",
+      "strongestCritique": {
+        "text": "Functional unblinding is near-total - participants and raters know who received a psychedelic - so expectancy is uncontrolled in trials whose primary outcomes are rater-assessed subjective scales. Trials are conducted with intensive psychological support that is not itself controlled, sponsor involvement is substantial, and the twelve-week sustained-response difference in the largest trial was not statistically significant.",
+        "source": "goodwin-2022"
+      },
+      "documentedHarms": [
+        { "harm": "Suicidal ideation and self-injurious behaviour reported in the trial, numerically more frequent in the higher-dose groups than in the low-dose control.", "mechanism": "Not established.", "evidenceGrade": "rct-few", "source": "goodwin-2022" },
+        { "harm": "Headache, nausea and dizziness as common adverse events; severe adverse events more frequent at higher dose.", "mechanism": "Pharmacological.", "evidenceGrade": "rct-few", "source": "goodwin-2022" },
+        { "harm": "Worsening suicidal ideation and a prolonged adverse event in a clinical-setting case report.", "mechanism": "Not established.", "evidenceGrade": "case-reports", "source": "psilocybin-ae-case" }
+      ],
+      "measuredValues": [
+        { "what": "Goodwin randomised participants; mean age; proportion women", "value": "233; 39 years; 52%" },
+        { "what": "Goodwin dose arms, in mg of synthetic psilocybin", "value": "25, 10, 1 (1 mg serving as control)" },
+        { "what": "Severe adverse events by arm (25 mg / 10 mg / 1 mg)", "value": "9% / 7% / 1%" },
+        { "what": "Baseline depression severity (moderate / severe)", "value": "30% / 68%" }
+      ],
+      "verificationNote": "The exact least-squares mean differences and confidence intervals for the primary endpoint were not retrievable in this pass; the publisher returned 403. They are deliberately omitted rather than reproduced from memory, per FRAMING 1.2. Whoever integrates this record retrieves them from the NEJM article directly before rendering any number.",
+      "absenceOfEvidence": "There is no controlled research on psilocybin-containing mushrooms as used in any historical or indigenous ritual context, and none on the entheogenic materia that actually appear in this site's corpora. The clinical literature studies a pharmaceutical-grade synthetic compound administered with structured psychological support in a hospital, which shares a molecule with historical practice and nothing else.",
+      "separationNote": "A depression scale falling in a monitored clinical trial is a documented psychopharmacological effect. It is not evidence for anything any tradition claims about visionary substances, and importing it into a survey of entheogens in magical corpora would be exactly the credibility-borrowing the site refuses.",
+      "citations": ["goodwin-2022", "carharthar-2021", "psilocybin-ae-case"]
+    },
+
+    {
+      "id": "eff-datura-anticholinergics",
+      "practiceType": "Datura and other tropane-alkaloid materia appearing in magical and medical corpora",
+      "siteWings": ["picatrix", "rasa", "abhichara"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Clinical toxicology only. Presentation, course and outcome of anticholinergic poisoning after ingestion.",
+      "inWhom": "Emergency-department patients, predominantly adolescents and young adults ingesting the plant for hallucinogenic effect, in case reports and single-centre series.",
+      "effectDirection": "negative",
+      "magnitude": "Severe anticholinergic syndrome with delirium, hyperthermia, tachycardia, urinary retention, coma and respiratory compromise. Fatal outcomes are documented, including a forensic case attributed to disordered cardiac rhythm.",
+      "replicationStatus": "Consistent across many independent case reports and series worldwide. The toxidrome is settled clinical knowledge.",
+      "evidenceGrade": "toxicology-adjacent",
+      "harmEvidenceGrade": "case-reports",
+      "strongestCritique": {
+        "text": "The literature is case reports and single-centre series, so denominators are unknown and case-fatality figures quoted in reviews are not population estimates. Alkaloid content varies enormously by plant part, season, cultivar and locality, which is precisely why no dose statement of any kind is reliable and why this site converts nothing.",
+        "source": "datura-case-2017"
+      },
+      "documentedHarms": [
+        { "harm": "Severe anticholinergic syndrome: delirium, hyperthermia, tachycardia and arrhythmia, mydriasis, urinary retention, coma.", "mechanism": "Competitive antagonism of muscarinic acetylcholine receptors by atropine, hyoscyamine and scopolamine.", "evidenceGrade": "case-reports", "source": "datura-case-2017" },
+        { "harm": "Death.", "mechanism": "Cardiac arrhythmia and respiratory failure. The margin between the delirium-producing and the lethal concentration is narrow.", "evidenceGrade": "case-reports", "source": "datura-forensic" }
+      ],
+      "measuredValues": [
+        { "what": "Alkaloids responsible", "value": "atropine, hyoscyamine, scopolamine" }
+      ],
+      "absenceOfEvidence": "There is no study of any ritual, divinatory or magical use of these plants - not one. Every finding here is emergency toxicology from recreational or accidental ingestion. Nothing has been measured about visionary content, about the practices the corpora describe, or about any purpose the texts assign.",
+      "separationNote": "This record documents poisoning. It documents nothing about what a text claims a suffumigation or a philtre accomplishes, and it is not evidence either for or against any such claim.",
+      "framingCrossReference": "FRAMING C-1: substance identity is recorded here; quantity and process parameters are not, and no archaic measure is converted.",
+      "citations": ["datura-case-2017", "datura-ed-series", "datura-forensic"]
+    },
+
+    {
+      "id": "eff-rasasastra-heavy-metals",
+      "practiceType": "Rasasastra and bhasma preparations, and heavy-metal materia in traditional medicine generally",
+      "siteWings": ["rasa"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Metal content of marketed products by assay; blood lead levels in exposed patients; clinical presentation of poisoning.",
+      "inWhom": "Saper 2004 assayed 70 South-Asian-manufactured products from Boston-area stores; Saper 2008 assayed 193 products bought over the internet; the CDC investigated six lead-poisoned pregnant women in New York City.",
+      "effectDirection": "negative",
+      "magnitude": "One in five products in each Saper survey carried detectable and regulation-exceeding lead, mercury or arsenic. Products declared as rasasastra preparations were roughly twice as likely to carry detectable metals as those sold as herbal-only.",
+      "replicationStatus": "Replicated across two independent sampling frames four years apart, across two countries of manufacture, and corroborated by public-health case investigation and by later scoping reviews. This is one of the most solidly replicated findings in the entire file.",
+      "evidenceGrade": "sr-single",
+      "harmEvidenceGrade": "observational",
+      "strongestCritique": {
+        "text": "These are product-assay surveys and case investigations, not studies of traditional practice. They establish that marketed products contain toxic metals; they do not characterise what a properly performed sodhana and marana sequence produces, and rasasastra practitioners argue that the surveyed products are not representative of correct preparation. That argument has not been settled by assay data, because nobody has assayed a controlled series of correctly prepared bhasmas against the same standards.",
+        "source": "saper-2008"
+      },
+      "documentedHarms": [
+        { "harm": "Lead poisoning in pregnant women, with elevated blood lead levels.", "mechanism": "Oral ingestion of lead-containing preparations.", "evidenceGrade": "observational", "source": "cdc-mmwr-2012" },
+        { "harm": "Lead, mercury and arsenic intoxication associated with use of these products.", "mechanism": "Ingestion of metal-containing preparations at levels exceeding regulatory daily limits.", "evidenceGrade": "observational", "source": "saper-2004" }
+      ],
+      "measuredValues": [
+        { "what": "Saper 2004: products assayed / exceeding regulatory standards", "value": "70 / 14 (20%)" },
+        { "what": "Saper 2008: products assayed / with detectable Pb, Hg or As", "value": "193 / 40 (20.7%)" },
+        { "what": "Saper 2008: proportion with detectable metals, rasa shastra products vs herbal-only", "value": "approximately 40% vs 17%" },
+        { "what": "CDC MMWR 2012: cases / blood lead level range, in ug/dL", "value": "6 cases; 16 to 64" },
+        { "what": "CDC MMWR 2012: highest product lead content, by weight", "value": "up to 2.4%" },
+        { "what": "Bhasma assay cited in FRAMING C-1, lead and arsenic in mg/kg", "value": "19,400 and 1,430", "source": "framing-c1" }
+      ],
+      "toxicologicalCorrection": {
+        "claim": "Cinnabar is not methylmercury, and treating them as equivalent is wrong.",
+        "evidence": "Liu and colleagues report that cinnabar is insoluble and poorly absorbed from the gastrointestinal tract, that absorbed mercury distributes like inorganic mercury with renal accumulation, and that doses required to produce neurotoxicity are around a thousandfold higher than for methylmercury.",
+        "butAlso": "The same literature is clear that this is a statement about the unprocessed mineral. Heat transformation is what liberates the toxic species, which is why the process is the hazard vector rather than the mineral, and why Shen Kuo could write in 1088 that heat-transformed cinnabar becomes deadly poison.",
+        "source": "liu-2008"
+      },
+      "absenceOfEvidence": "There is no controlled clinical trial of any bhasma for any indication that would meet modern standards. There is no toxicological characterisation of the classical sodhana and marana sequences performed to specification. And there is no study of any of it as a magical or alchemical operation, which is how the corpora frame it.",
+      "separationNote": "Assay results and blood lead levels are documented toxicology of marketed products. They are not evidence about rasasastra's own claims - not about transmutation, not about deha-vedha, not about immortality - and no study has addressed those.",
+      "framingCrossReference": "FRAMING C-1 requires that at most two of {substance, quantity, process parameter} appear in the site's own voice for harm-flagged material, and forbids modernising any archaic unit. Every number in measuredValues is an assay result or a clinical measurement, never a converted recipe parameter.",
+      "citations": ["saper-2004", "saper-2008", "cdc-mmwr-2012", "liu-2008", "framing-c1"]
+    },
+
+    {
+      "id": "eff-waidan-elixirs",
+      "practiceType": "Daoist waidan elixirs (outer alchemy) and Chinese alchemical elixir poisoning",
+      "siteWings": ["rasa", "eastern-greats"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Nothing prospectively. The evidence is historical and toxicological: the recorded deaths of emperors and officials, and the known toxicology of the mercurial and arsenical materials involved.",
+      "inWhom": "Not a studied population. The historical record concerns Chinese emperors, officials and adepts, principally in the Tang.",
+      "effectDirection": "negative",
+      "magnitude": "Historians record several Tang emperors and many court officials as dying from elixir consumption; the exact count varies with which contested deaths are admitted, and this file records the disagreement rather than picking a number.",
+      "replicationStatus": "Not applicable. The toxicology of mercury and arsenic is settled; the historical attributions of cause of death are a matter of scholarly interpretation and are contested.",
+      "evidenceGrade": "none",
+      "harmEvidenceGrade": "toxicology-adjacent",
+      "strongestCritique": {
+        "text": "Retrospective attribution of a cause of death from a dynastic history is not a toxicological finding, and modern secondary accounts differ on how many Tang emperors died this way. The site records the range and the disagreement and does not resolve it, consistent with FRAMING 1.3.",
+        "source": "elixir-poisoning-historiography"
+      },
+      "documentedHarms": [
+        { "harm": "Mercury and arsenic poisoning attributed to elixir ingestion in the historical record.", "mechanism": "Heat transformation of cinnabar liberates mercury; arsenical minerals were used directly.", "evidenceGrade": "toxicology-adjacent", "source": "liu-2008" },
+        { "harm": "The tradition's own internal harm literature, which is substantial and is a philological asset.", "mechanism": "Recorded by the tradition itself: Ge Hong's Baopuzi flags poisonous preparations; the Zhenyuan miaodao yaolue lists common fatal mistakes; the Xuanjie lu supplies antidotes; Shen Kuo warned in 1088 that heat-transformed cinnabar becomes deadly poison.", "evidenceGrade": "historical-primary", "source": "framing-c1" }
+      ],
+      "measuredValues": [
+        { "what": "Tang emperors reported to have died of elixir poisoning", "value": "at least five, commonly given as six; the count is contested" }
+      ],
+      "absenceOfEvidence": "Complete on the effects side. Nobody has studied waidan. There is no toxicological reconstruction of any specific elixir formula, and there could not ethically be a prospective one.",
+      "separationNote": "Deaths in the historical record are deaths. They are not a test of waidan's own claims about transcendence and the transformed body, which have never been tested and are not testable by this evidence.",
+      "citations": ["liu-2008", "elixir-poisoning-historiography", "framing-c1"]
+    },
+
+    {
+      "id": "eff-khecari-frenulum",
+      "practiceType": "Khecari mudra and the cutting of the lingual frenulum",
+      "siteWings": ["practices", "yoga"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Nothing about the practice. The relevant literature is surgical: complications of lingual frenectomy performed as a clinical procedure for ankyloglossia.",
+      "inWhom": "Surgical patients, mostly infants and children, undergoing frenotomy or frenectomy by clinicians in sterile conditions.",
+      "effectDirection": "not-measured",
+      "magnitude": "Not applicable. No outcome of khecari has been measured.",
+      "replicationStatus": "Not applicable to the practice. The surgical complication profile is consistent across the clinical literature.",
+      "evidenceGrade": "none",
+      "harmEvidenceGrade": "toxicology-adjacent",
+      "strongestCritique": {
+        "text": "The clinical frenectomy literature describes a single controlled incision by a trained operator with anaesthesia, haemostasis and follow-up. The practice the texts describe is a repeated incision performed without any of those, over months. Complication rates from the former do not transfer to the latter and would if anything understate it. Nobody has studied the latter, and the strongest evidence about it remains ethnographic.",
+        "source": "frenectomy-complications"
+      },
+      "documentedHarms": [
+        { "harm": "Haemorrhage.", "mechanism": "Injury to the submental and sublingual arteries and the deep lingual veins.", "evidenceGrade": "case-reports", "source": "frenectomy-complications" },
+        { "harm": "Obstruction of Wharton's duct, with retention cyst, ductal stricture, sialocele and dysphagia.", "mechanism": "Injury to or occlusion of the submandibular salivary duct openings on the ventral tongue.", "evidenceGrade": "case-reports", "source": "frenectomy-complications" },
+        { "harm": "Lingual nerve injury with numbness of the tongue tip.", "mechanism": "Direct nerve transection or traction.", "evidenceGrade": "case-reports", "source": "frenectomy-complications" },
+        { "harm": "Sublingual and submandibular space infection.", "mechanism": "Microbial contamination of a deep incision or of suture material.", "evidenceGrade": "case-reports", "source": "frenectomy-complications" },
+        { "harm": "Permanent speech and swallowing impairment among practitioners, and the tradition's own internal dissent about the necessity of the cut.", "mechanism": "Progressive division of the frenulum and its consequences for tongue function.", "evidenceGrade": "ethnographic", "source": "mallinson-2007", "note": "Mallinson's informants, including those who had performed the cut, mostly said it was unnecessary; he records yogins left with pronounced lisps and difficulty eating and talking. This is ethnography reported in a critical edition, not clinical data, and is recorded as such." }
+      ],
+      "measuredValues": [],
+      "absenceOfEvidence": "Total. There is no clinical, physiological or psychological study of khecari mudra with or without the cut. There is no case series of practitioners. The best evidence available is a philologist's fieldwork notes in a 2007 critical edition, and this file says so rather than dressing it as medicine.",
+      "separationNote": "Surgical complication data describes what happens to tissue. It says nothing about amrta, about the claimed attainments of the practice, or about anything the Khecarividya asserts. No study addresses those.",
+      "framingCrossReference": "FRAMING C-2 permits locus, attested sentence, structural description and the four-part harm note, and forbids graded regimen, interval, session count and progression. Nothing in this record supplies any of the forbidden four. Mallinson (2007) is cite-only under FRAMING 4.4 and is cited here, never quoted.",
+      "citations": ["frenectomy-complications", "mallinson-2007", "framing-c2"]
+    },
+
+    {
+      "id": "eff-extreme-postures",
+      "practiceType": "Extreme and sustained postures (headstand, shoulder stand, lotus, and asana practice generally)",
+      "siteWings": ["yoga", "practices"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Adverse events reported in the published case literature; and, separately, adverse-event rates in population surveys of yoga practitioners.",
+      "inWhom": "Cramer and colleagues synthesised 35 case reports and 2 case series covering 76 cases. Population survey work draws on national health-interview samples.",
+      "effectDirection": "negative",
+      "magnitude": "Roughly a third of reported adverse events affected the musculoskeletal system, around a fifth the nervous system, and around a tenth the eyes. Recovery was incomplete in a substantial minority of reported cases and one death is recorded in the series.",
+      "replicationStatus": "The case literature is consistent in the kinds of injury it reports. It cannot give incidence, because case reports have no denominator; the survey literature that could give incidence has not been synthesised to the same standard.",
+      "evidenceGrade": "sr-single",
+      "harmEvidenceGrade": "sr-single",
+      "strongestCritique": {
+        "text": "A systematic review of case reports establishes what can happen, never how often. Publication favours the unusual and severe, so the profile of reported injuries is not the profile of injuries that occur. Cramer and colleagues are explicit that their review cannot support an incidence estimate.",
+        "source": "cramer-2013"
+      },
+      "documentedHarms": [
+        { "harm": "Musculoskeletal injury.", "mechanism": "Loading of joints and soft tissue beyond tolerance, commonly in headstand, shoulder stand and lotus.", "evidenceGrade": "case-reports", "source": "cramer-2013" },
+        { "harm": "Nervous-system injury.", "mechanism": "Compression and traction, including cervical and peripheral nerve injury; vascular events are also reported.", "evidenceGrade": "case-reports", "source": "cramer-2013" },
+        { "harm": "Ocular injury.", "mechanism": "Raised intraocular pressure in inverted postures is the mechanism most commonly proposed; not established for every case.", "evidenceGrade": "case-reports", "source": "cramer-2013" }
+      ],
+      "measuredValues": [
+        { "what": "Cramer 2013: case reports / case series / total cases", "value": "35 / 2 / 76" },
+        { "what": "Musculoskeletal / nervous system / eyes, as proportion of reported adverse events", "value": "35.5% / 18.4% / 11.8%" },
+        { "what": "Full recovery / partial recovery / no recovery / death, in reported cases", "value": "19.7% / 11.3% / 1.3% / 1.3%" }
+      ],
+      "absenceOfEvidence": "There is no study of asana as the haṭha corpora frame it - as a stage in a soteriological programme rather than as exercise. The clinical literature that exists studies modern postural yoga classes, which are historically a twentieth-century formation.",
+      "separationNote": "Injury data concerns bodies in postures. It is not evidence for or against anything the sources claim asana accomplishes.",
+      "citations": ["cramer-2013", "johnson-2004"]
+    },
+
+    {
+      "id": "eff-suffumigation-incense",
+      "practiceType": "Suffumigation and ritual incense burning (the Picatrix and Agrippa planetary suffumigations, temple incense, dhupa)",
+      "siteWings": ["picatrix", "practices"],
+      "harmFlagged": true,
+      "whatWasMeasured": "Airborne particulate mass and size distribution, polycyclic aromatic hydrocarbons, nitrogen dioxide and carbon monoxide in temples and enclosed spaces; biomarkers and respiratory outcomes in chronically exposed temple workers; and case-referent lung-cancer risk.",
+      "inWhom": "Temple workers and residents of high-exposure households, in occupational and environmental epidemiology; and in chamber studies of emissions.",
+      "effectDirection": "negative",
+      "magnitude": "Heavy incense burning in enclosed temple settings produces substantial fine-particulate and carcinogenic PAH exposure. Epidemiological findings on lung cancer specifically have been inconsistent across studies.",
+      "replicationStatus": "The emissions and exposure findings are consistently replicated. The cancer-outcome epidemiology is not consistent, and the honest summary is that exposure is well established and the cancer risk estimate is not.",
+      "evidenceGrade": "observational",
+      "harmEvidenceGrade": "observational",
+      "strongestCritique": {
+        "text": "Exposure measurement in temples is not exposure in a domestic or ritual setting, confounding by smoking and by cooking fuel is severe in the cancer studies, and results across the cohort and case-referent literature disagree. Emissions data establish a hazard; they do not establish a risk to any particular practitioner.",
+        "source": "chiang-2006"
+      },
+      "documentedHarms": [
+        { "harm": "Exposure to fine particulate matter and carcinogenic polycyclic aromatic hydrocarbons.", "mechanism": "Incomplete combustion of plant resins and binders in enclosed spaces; particles remain airborne for hours.", "evidenceGrade": "observational", "source": "chiang-2006" },
+        { "harm": "Airway inflammation and respiratory disease associated with chronic exposure.", "mechanism": "Particulate and nitrogen-dioxide-mediated inflammatory response.", "evidenceGrade": "observational", "source": "lin-2008" }
+      ],
+      "measuredValues": [],
+      "absenceOfEvidence": "There is no study of any specific magical suffumigation, of any planetary correspondence, or of any of the materia the Picatrix and Agrippa assign. The site's own module notes that some named suffumigation materials are toxic or controlled, and no research literature attaches to their ritual use.",
+      "separationNote": "Air-quality data describes smoke. It has nothing to say about the operative claims made for suffumigation in the Picatrix tradition, which no study has approached.",
+      "framingCrossReference": "FRAMING B1 and A-3: the site's talisman generator names a controlled substance as a suffumigation material in imperative site voice. This record is the documented-harm side of that finding and does not license reproducing any material list.",
+      "citations": ["chiang-2006", "lin-2008"]
+    },
+
+    {
+      "id": "eff-ritual-bathing-cold-immersion",
+      "practiceType": "Ritual bathing, cold-water immersion and the cold-exposure component of modern branded methods",
+      "siteWings": ["practices", "yoga"],
+      "harmFlagged": true,
+      "whatWasMeasured": "The cold-shock response - initial gasp, uncontrollable hyperventilation, hypertension - and its habituation with repeated exposure; and drowning outcomes.",
+      "inWhom": "Healthy volunteers in immersion laboratory studies, and immersion casualties in the drowning-prevention literature.",
+      "effectDirection": "physiological-change-no-clinical-outcome",
+      "magnitude": "Cold-shock magnitude is halved by around six two-minute immersions, and the habituation persists in part indefinitely. That is a documented adaptation and it is an adaptation of the response, not a health benefit.",
+      "replicationStatus": "Well replicated in the environmental-physiology literature.",
+      "evidenceGrade": "lab-physiology",
+      "harmEvidenceGrade": "observational",
+      "strongestCritique": {
+        "text": "This literature exists to prevent drowning, not to endorse immersion. Its central finding is a hazard. Reading habituation data as support for cold plunging as a wellness practice reverses the purpose of the research programme that produced it.",
+        "source": "datta-2006"
+      },
+      "documentedHarms": [
+        { "harm": "Drowning on sudden immersion in cold water.", "mechanism": "Cold receptors trigger an involuntary gasp and uncontrollable hyperventilation; the gasp prevents breath-holding, so water is aspirated if the airway is submerged. Cold shock, not hypothermia, accounts for the majority of immersion deaths.", "evidenceGrade": "observational", "source": "golden-2003" },
+        { "harm": "Cardiac arrest in ice water, among deaths compiled in association with a modern branded method.", "mechanism": "Not established in individual cases.", "evidenceGrade": "non-peer-reviewed", "source": "whm-death-tally", "provenanceWarning": "Journalistic and litigation-derived; not peer-reviewed." }
+      ],
+      "measuredValues": [
+        { "what": "Immersions required to halve the cold-shock response", "value": "as few as six of two minutes each" }
+      ],
+      "absenceOfEvidence": "No study exists of ritual bathing as ritual - not of Ganga snana, not of mikveh, not of baptismal immersion, not of any purification rite. All of it is either environmental physiology or sports science.",
+      "separationNote": "Cold-shock habituation is an adaptation in the immersed body. It is not evidence about purification, about ritual efficacy, or about any claim made for immersion in any tradition.",
+      "framingCrossReference": "FRAMING C-3 part 2 excludes outright anything pairing breath technique with water, submersion or bathing, in any voice, from any tradition, at any date. The harms in this record and in eff-hyperventilation-methods are jointly why.",
+      "citations": ["datta-2006", "golden-2003", "whm-death-tally"]
+    },
+
+    {
+      "id": "eff-talismanry-astrological-election",
+      "practiceType": "Talisman manufacture, planetary magic and astrological election",
+      "siteWings": ["picatrix", "lilly", "talisman"],
+      "harmFlagged": false,
+      "whatWasMeasured": "Nothing. No peer-reviewed study of any physiological or psychological outcome of making, consecrating, wearing or electing a time for a talisman was located.",
+      "inWhom": "Not applicable.",
+      "effectDirection": "not-measured",
+      "magnitude": "Not applicable.",
+      "replicationStatus": "Not applicable.",
+      "evidenceGrade": "none",
+      "harmEvidenceGrade": "none",
+      "strongestCritique": {
+        "text": "There is no literature. A search for randomised or controlled study of amulet or talisman wearing on any health outcome returns only cardiology device trials that share the trade name Amulet, which is a good illustration of how empty the field is.",
+        "source": "search-null-talisman"
+      },
+      "documentedHarms": [
+        { "harm": "Where a talismanic procedure names a toxic or controlled substance as materia, the harms are those of the substance.", "mechanism": "Substance-specific; see eff-suffumigation-incense and eff-datura-anticholinergics.", "evidenceGrade": "toxicology-adjacent", "source": "chiang-2006" }
+      ],
+      "measuredValues": [],
+      "absenceOfEvidence": "This is the expected answer for the majority of what this site catalogues, and it is a finding, not a gap. Nothing has been measured. The separate question of astrology's predictive validity is settled negatively in the literature the site's About page already carries (Carlson 1985; Dean and Kelly 2003; Forer 1949), but those are validity studies and belong on a different axis than this one.",
+      "separationNote": "There is no result here to misread, which makes this the safest record in the file and the most representative. The absence of study is not evidence that talismans fail; it is the absence of study. The claim that they have no demonstrated validity rests on FRAMING 1.1 and the About page's scientific assessment, not on this axis.",
+      "citations": ["search-null-talisman", "chiang-2006"]
+    },
+
+    {
+      "id": "eff-divination-consultation",
+      "practiceType": "Divinatory consultation as a practice: tarot, geomancy, I Ching, horary judgement",
+      "siteWings": ["lilly", "tarot", "iching", "geomancy"],
+      "harmFlagged": false,
+      "whatWasMeasured": "Essentially nothing. No large randomised trial of divinatory consultation as an intervention was located; what exists is small, qualitative, or about adjacent constructs.",
+      "inWhom": "Not applicable at any scale.",
+      "effectDirection": "not-measured",
+      "magnitude": "Not applicable.",
+      "replicationStatus": "Not applicable.",
+      "evidenceGrade": "none",
+      "harmEvidenceGrade": "none",
+      "strongestCritique": {
+        "text": "The one adjacent literature that does exist - the Barnum or Forer effect, the acceptance of vague generic statements as personally accurate - is a finding about how readings are received, not about what readings do. Treating it as an effect of divination would be the same category error this file exists to prevent.",
+        "source": "search-null-tarot"
+      },
+      "documentedHarms": [],
+      "measuredValues": [],
+      "absenceOfEvidence": "Near-total. This is a second first-class 'no study exists' record and the site should expect many more like it.",
+      "separationNote": "Nothing here bears on whether a divinatory judgement is true. The site's position on that is unchanged and rests on the validity literature on the About page, not on this axis.",
+      "citations": ["search-null-tarot"]
+    },
+
+    {
+      "id": "eff-mudras",
+      "practiceType": "Mudras (hand and body gestures) as a discrete practice",
+      "siteWings": ["practices"],
+      "harmFlagged": false,
+      "whatWasMeasured": "A small and recent set of physiological measurements - heart-rate variability, peak expiratory flow, pupillary light reflex - in single-session studies and study protocols, mostly in integrative-medicine journals.",
+      "inWhom": "Small samples of healthy volunteers.",
+      "effectDirection": "not-measured",
+      "magnitude": "Reviews of this material describe the direct evidence as limited and mostly extrapolated from broader yoga interventions rather than from mudra-specific trials.",
+      "replicationStatus": "Effectively none. Much of what exists is protocol papers and narrative reviews rather than completed replicated trials.",
+      "evidenceGrade": "rct-few",
+      "harmEvidenceGrade": "none",
+      "strongestCritique": {
+        "text": "The reviews themselves concede that direct studies are limited and that support is inferred from wider yoga interventions. Single-session heart-rate-variability changes in tiny unblinded samples, published in journals with limited indexing, are the weakest form of positive evidence in this whole file, and the honest grade is near-absent rather than positive.",
+        "source": "mudra-narrative-review"
+      },
+      "documentedHarms": [],
+      "measuredValues": [],
+      "absenceOfEvidence": "Very nearly total. The site's own mudra catalogue is a philological and iconographic object and has no outcome literature behind it, which is the correct state of affairs for a museum catalogue.",
+      "separationNote": "A heart-rate-variability shift during a hand gesture, if it survives replication, would be a fact about autonomic tone. It would still say nothing about what the Gheranda Samhita or any tantric source claims a mudra accomplishes.",
+      "citations": ["mudra-narrative-review"]
+    }
+  ],
+
+  "citations": {
+    "goyal-2014": { "authors": "Goyal M, Singh S, Sibinga EMS, et al.", "year": 2014, "title": "Meditation programs for psychological stress and well-being: a systematic review and meta-analysis", "venue": "JAMA Internal Medicine 174(3):357-368", "pmid": "24395196", "pmcid": "PMC4142584", "doi": "10.1001/jamainternmed.2013.13018", "verified": ["pmid", "doi", "pmcid", "pages", "effect sizes", "active-control null"] },
+    "vandam-2018": { "authors": "Van Dam NT, van Vugt MK, Vago DR, et al. (16 authors)", "year": 2018, "title": "Mind the Hype: A Critical Evaluation and Prescriptive Agenda for Research on Mindfulness and Meditation", "venue": "Perspectives on Psychological Science 13(1)", "pmid": "29016274", "doi": "10.1177/1745691617709589", "verified": ["pmid", "doi", "venue"] },
+    "lindahl-2017": { "authors": "Lindahl JR, Fisher NE, Cooper DJ, Rosen RK, Britton WB", "year": 2017, "title": "The varieties of contemplative experience: A mixed-methods study of meditation-related challenges in Western Buddhists", "venue": "PLoS ONE 12(5):e0176239", "doi": "10.1371/journal.pone.0176239", "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0176239", "verified": ["doi", "sample", "taxonomy", "impairment figures", "author-stated limitations"], "pmidNote": "PMID not displayed on the retrieved page; omitted rather than guessed." },
+    "farias-2020": { "authors": "Farias M, Maraldi E, Wallenkampf KC, Lucchetti G", "year": 2020, "title": "Adverse events in meditation practices and meditation-based therapies: a systematic review", "venue": "Acta Psychiatrica Scandinavica 142(5):374-393", "doi": "10.1111/acps.13225", "url": "https://onlinelibrary.wiley.com/doi/10.1111/acps.13225", "verified": ["doi", "prevalence figures", "study counts", "adverse-event categories"] },
+    "ospina-2007": { "authors": "Ospina MB, Bond K, Karkhaneh M, et al.", "year": 2007, "title": "Meditation Practices for Health: State of the Research", "venue": "AHRQ Evidence Report/Technology Assessment No. 155; AHRQ Publication No. 07-E010", "pmid": "17764203", "verified": ["pmid", "report number", "poor-methodological-quality conclusion"] },
+    "canter-2003": { "authors": "Canter PH, Ernst E", "year": 2003, "title": "The cumulative effects of Transcendental Meditation on cognitive function - a systematic review of randomised controlled trials", "venue": "Wiener klinische Wochenschrift 115(21-22):758-766, 28 November 2003", "pmid": "14743579", "doi": "10.1007/BF03040500", "verified": ["pmid", "doi", "date", "10 of 107 inclusion", "4 positive / 4 negative / 2 largely negative"], "note": "Frequently cited as 2004; the publication date is 2003." },
+    "brook-2013": { "authors": "Brook RD, Appel LJ, Rubenfire M, et al.", "year": 2013, "title": "Beyond medications and diet: alternative approaches to lowering blood pressure - a scientific statement from the American Heart Association", "venue": "Hypertension 61(6):1360-1383", "pmid": "23608661", "doi": "10.1161/HYP.0b013e318293645f", "verified": ["pmid", "doi", "pages", "class/level for TM, other meditation, yoga, device-guided breathing"] },
+    "krisanaprakornkit-2006": { "authors": "Krisanaprakornkit T, Krisanaprakornkit W, Piyavhatkul N, Laopaiboon M", "year": 2006, "title": "Meditation therapy for anxiety disorders", "venue": "Cochrane Database of Systematic Reviews, Issue 1, CD004998", "pmid": "16437509", "doi": "10.1002/14651858.CD004998.pub2", "verified": ["pmid", "doi", "conclusion", "drop-out note"] },
+    "bernardi-2001": { "authors": "Bernardi L, Sleight P, Bandinelli G, Cencetti S, Fattorini L, Wdowczyc-Szulc J, Lagi A", "year": 2001, "title": "Effect of rosary prayer and yoga mantras on autonomic cardiovascular rhythms: comparative study", "venue": "BMJ 323(7327):1446-1449, 22-29 December 2001", "pmid": "11751348", "doi": "10.1136/bmj.323.7327.1446", "verified": ["pmid", "doi", "pages", "n=23", "six per minute", "baroreflex values"] },
+    "kalyani-2011": { "authors": "Kalyani BG, Venkatasubramanian G, Arasappa R, et al.", "year": 2011, "title": "Neurohemodynamic correlates of 'OM' chanting: A pilot functional magnetic resonance imaging study", "venue": "International Journal of Yoga 4(1)", "pmid": "21654968", "pmcid": "PMC3099099", "verified": ["pmid", "pmcid", "n=12", "limbic deactivation", "pilot designation"] },
+    "kox-2014": { "authors": "Kox M, van Eijk LT, Zwaag J, et al.", "year": 2014, "title": "Voluntary activation of the sympathetic nervous system and attenuation of the innate immune response in humans", "venue": "Proceedings of the National Academy of Sciences 111(20):7379-7384", "doi": "10.1073/pnas.1322174111", "url": "https://www.pnas.org/doi/10.1073/pnas.1322174111", "verified": ["doi", "venue", "pages", "finding"] },
+    "almahayni-2024": { "authors": "Almahayni O, Hammond L", "year": 2024, "title": "Does the Wim Hof Method have a beneficial impact on physiological and psychological outcomes in healthy and non-healthy participants? A systematic review", "venue": "PLoS ONE 19(3):e0286933, 13 March 2024", "pmid": "38478473", "doi": "10.1371/journal.pone.0286933", "verified": ["pmid", "doi", "9 papers / 8 trials", "risk-of-bias statement", "sample sizes", "86.4% male", "adverse-event statement"] },
+    "craig-1976": { "authors": "Craig AB Jr", "year": 1976, "title": "Summary of 58 cases of loss of consciousness during underwater swimming and diving", "venue": "Medicine and Science in Sports 8(3):171-175", "verified": ["title", "venue", "n=58"], "note": "Earlier related series: Craig 1961, eight cases." },
+    "datta-2006": { "authors": "Datta A, Tipton M", "year": 2006, "title": "Respiratory responses to cold water immersion: neural pathways, interactions, and clinical consequences awake and asleep", "venue": "Journal of Applied Physiology 100(6)", "doi": "10.1152/japplphysiol.01201.2005", "url": "https://journals.physiology.org/doi/full/10.1152/japplphysiol.01201.2005", "verified": ["doi", "venue", "cold-shock and habituation findings"] },
+    "golden-2003": { "authors": "Golden F, Tipton M", "year": 2003, "title": "Cold water immersion: sudden death and prolonged survival", "venue": "The Lancet 362 (Supplement)", "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(03)15057-X/fulltext", "verified": ["venue", "title", "cold-shock-not-hypothermia finding"] },
+    "johnson-2004": { "authors": "Johnson DB, Tierney MJ, Sadighi PJ", "year": 2004, "title": "Kapalabhati pranayama: breath of fire or cause of pneumothorax? A case report", "venue": "Chest 125(5):1951-1952", "pmid": "15136413", "verified": ["pmid", "venue", "pages", "29-year-old healthy woman"] },
+    "cramer-2013": { "authors": "Cramer H, Krucoff C, Dobos G", "year": 2013, "title": "Adverse events associated with yoga: a systematic review of published case reports and case series", "venue": "PLoS ONE 8(10):e75515", "pmid": "24146758", "doi": "10.1371/journal.pone.0075515", "verified": ["pmid", "doi", "35 reports + 2 series = 76 cases", "system proportions", "recovery proportions"] },
+    "toledo-2019": { "authors": "Wilhelmi de Toledo F, Grundler F, Bergouignan A, Drinda S, Michalsen A", "year": 2019, "title": "Safety, health improvement and well-being during a 4 to 21-day fasting period in an observational study including 1422 subjects", "venue": "PLoS ONE 14(1):e0209353", "doi": "10.1371/journal.pone.0209353", "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0209353", "verified": ["doi", "n=1422", "sex split", "duration arms", "200-250 kcal", "single-centre observational design"] },
+    "mehanna-2008": { "authors": "Mehanna HM, Moledina J, Travis J", "year": 2008, "title": "Refeeding syndrome: what it is, and how to prevent and treat it", "venue": "BMJ 336", "url": "https://www.bmj.com/content/336/7659/1495", "verified": ["authors", "venue", "year", "pathophysiology", "10 kcal/kg starting rate", "high-risk criteria"], "pageNote": "Commonly cited as 336:1495-1498; page range not directly confirmed in this pass." },
+    "peel-1997": { "authors": "Peel M", "year": 1997, "title": "Hunger strikes", "venue": "BMJ 315", "pmid": "9353494", "verified": ["pmid", "title", "venue"] },
+    "hobson-2018": { "authors": "Hobson NM, Schroeder J, Risen JL, Xygalatas D, Inzlicht M", "year": 2018, "title": "The Psychology of Rituals: An Integrative Review and Process-Based Framework", "venue": "Personality and Social Psychology Review 22(3):260-284", "pmid": "29130838", "doi": "10.1177/1088868317734944", "verified": ["pmid", "doi", "pages", "three regulatory functions"] },
+    "norton-2014": { "authors": "Norton MI, Gino F", "year": 2014, "title": "Rituals alleviate grieving for loved ones, lovers, and lotteries", "venue": "Journal of Experimental Psychology: General 143(1):266-272", "pmid": "23398180", "doi": "10.1037/a0031772", "verified": ["pmid", "doi", "pages", "three experiments", "control mediator", "effect in non-believers"] },
+    "legare-2012": { "authors": "Legare CH, Souza AL", "year": 2012, "title": "Evaluating ritual efficacy: Evidence from the supernatural", "venue": "Cognition", "url": "https://www.sciencedirect.com/science/article/abs/pii/S0010027712000546", "verified": ["authors", "title", "venue", "n=162 Brazil + 68 US", "repetition and step-count findings"], "doiNote": "DOI not confirmed on the retrieved page; omitted rather than guessed." },
+    "kaptchuk-2010": { "authors": "Kaptchuk TJ, Friedlander E, Kelley JM, et al.", "year": 2010, "title": "Placebos without deception: a randomized controlled trial in irritable bowel syndrome", "venue": "PLoS ONE 5(12):e15591", "pmid": "21203519", "doi": "10.1371/journal.pone.0015591", "verified": ["pmid", "doi", "n=80", "three-week trial", "open-label design"] },
+    "charlesworth-2017": { "authors": "Charlesworth JEG, Petkovic G, Kelley JM, et al.", "year": 2017, "title": "Effects of placebos without deception compared with no treatment: A systematic review and meta-analysis", "venue": "Journal of Evidence-Based Medicine", "doi": "10.1111/jebm.12251", "url": "https://onlinelibrary.wiley.com/doi/10.1111/jebm.12251", "verified": ["venue", "doi", "title"] },
+    "vanlieshout-2016": { "authors": "van Middendorp H, Kox M, Pickkers P, Evers AWM", "year": 2016, "title": "The role of outcome expectancies for a training program consisting of meditation, breathing exercises, and cold exposure on the response to endotoxin administration: a proof-of-principle study", "venue": "Clinical Rheumatology (PMC4819555)", "pmcid": "PMC4819555", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4819555/", "verified": ["pmcid", "title"], "note": "Cited for the point that expectancy was specifically examined as a candidate explanation for the endotoxemia result." },
+    "goodwin-2022": { "authors": "Goodwin GM, Aaronson ST, Alvarez O, et al.", "year": 2022, "title": "Single-Dose Psilocybin for a Treatment-Resistant Episode of Major Depression", "venue": "New England Journal of Medicine 387(18):1637-1648, 3 November 2022", "pmid": "36322843", "doi": "10.1056/NEJMoa2206443", "verified": ["pmid", "doi", "pages", "n=233", "dose arms", "severe AE percentages", "12-week non-significance"], "notRetrieved": "Primary-endpoint least-squares mean differences and confidence intervals; publisher returned 403." },
+    "carharthar-2021": { "authors": "Carhart-Harris R, Giribaldi B, Watts R, et al.", "year": 2021, "title": "Trial of Psilocybin versus Escitalopram for Depression", "venue": "New England Journal of Medicine 384(15):1402-1411", "doi": "10.1056/NEJMoa2032994", "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2032994", "verified": ["doi", "venue", "design"] },
+    "psilocybin-ae-case": { "authors": "(case report and thematic analysis)", "year": null, "title": "Worsening suicidal ideation and prolonged adverse event following psilocybin administration in a clinical setting: case report and thematic analysis of one participant's experience", "venue": "BJPsych Open", "url": "https://www.cambridge.org/core/journals/bjpsych-open/article/worsening-suicidal-ideation-and-prolonged-adverse-event-following-psilocybin-administration-in-a-clinical-setting-case-report-and-thematic-analysis-of-one-participants-experience/01A95EB812984A7B5F5A7341D959FAF7", "verified": ["title", "venue"], "note": "Full bibliographic details not retrieved; retrieve before rendering." },
+    "saper-2004": { "authors": "Saper RB, Kales SN, Paquin J, et al.", "year": 2004, "title": "Heavy metal content of ayurvedic herbal medicine products", "venue": "JAMA 292(23):2868-2873, 15 December 2004", "pmid": "15598918", "verified": ["pmid", "venue", "pages", "70 products", "14 exceeding standards"] },
+    "saper-2008": { "authors": "Saper RB, Phillips RS, Sehgal A, et al.", "year": 2008, "title": "Lead, mercury, and arsenic in US- and Indian-manufactured Ayurvedic medicines sold via the Internet", "venue": "JAMA 300(8):915-923", "pmid": "18728265", "verified": ["pmid", "venue", "pages", "193 products", "40 (20.7%) with detectable metals", "rasa shastra vs herbal-only split"] },
+    "cdc-mmwr-2012": { "authors": "Centers for Disease Control and Prevention", "year": 2012, "title": "Lead Poisoning in Pregnant Women Who Used Ayurvedic Medications from India - New York City, 2011-2012", "venue": "MMWR Morbidity and Mortality Weekly Report 61(33):641-646", "url": "https://www.cdc.gov/mmwr/pdf/wk/mm6133.pdf", "verified": ["venue", "volume", "issue", "pages", "6 cases", "BLL 16-64 ug/dL", "product lead up to 2.4%"] },
+    "liu-2008": { "authors": "Liu J, Shi JZ, Yu LM, Goyer RA, Waalkes MP", "year": 2008, "title": "Mercury in traditional medicines: is cinnabar toxicologically similar to common mercurials?", "venue": "Experimental Biology and Medicine 233(7):810-817", "doi": "10.3181/0712-MR-336", "url": "https://journals.sagepub.com/doi/10.3181/0712-MR-336", "verified": ["doi", "venue", "insolubility and poor absorption", "renal distribution", "thousandfold neurotoxicity threshold vs methylmercury"] },
+    "chiang-2006": { "authors": "Chiang KC, Liao CM", "year": 2006, "title": "Heavy incense burning in temples promotes exposure risk from airborne PMs and carcinogenic PAHs", "venue": "Science of the Total Environment", "pmid": "16979223", "verified": ["pmid", "title", "venue"] },
+    "lin-2008": { "authors": "Lin TC, Krishnaswamy G, Chi DS", "year": 2008, "title": "Incense smoke: clinical, structural and molecular effects on airway disease", "venue": "Clinical and Molecular Allergy", "verified": ["authors", "year", "title"], "doiNote": "Commonly cited as 10.1186/1476-7961-6-3; not directly confirmed in this pass." },
+    "frenectomy-complications": { "authors": "(critical review)", "year": 2019, "title": "Etiology and clinical recommendations to manage the complications following lingual frenectomy: A critical review", "venue": "(journal per PubMed record)", "pmid": "31255827", "verified": ["pmid", "title"], "note": "Complication list - haemorrhage from submental/sublingual arteries and deep lingual veins, Wharton's duct obstruction with retention cyst and stricture, lingual nerve injury, sublingual and submandibular space infection - drawn from this review and the associated case literature." },
+    "mallinson-2007": { "authors": "Mallinson J", "year": 2007, "title": "The Khecarividya of Adinatha: A Critical Edition and Annotated Translation of an Early Text of Hathayoga", "venue": "Routledge", "licence": "cite-only under FRAMING 4.4 - cited, page-referenced, never reproduced", "verified": ["as recorded in FRAMING 2.2 and 5.1"], "note": "Ethnographic, not clinical. Records that most informants, including those who had done it, said the cut was unnecessary, and reports yogins with pronounced lisps and difficulty eating and talking." },
+    "cdc-choking-game": { "authors": "Centers for Disease Control and Prevention", "year": 2008, "title": "Unintentional strangulation deaths from the choking game among youths aged 6-19 years - United States, 1995-2007", "venue": "MMWR", "verified": ["as recorded in FRAMING C-3: 82 probable deaths, mean age 13.3, 86.6% male, autoerotic and suicidal cases excluded"], "note": "Carried forward from FRAMING C-3 rather than re-derived in this pass; verify the MMWR volume and issue before rendering." },
+    "whm-death-tally": { "authors": "(journalistic and litigation compilation)", "year": 2024, "title": "Deaths and injuries associated with the Wim Hof Method", "venue": "Investigative journalism and civil litigation; no peer-reviewed source located", "provenance": "NOT PEER-REVIEWED", "verified": ["existence and figures as reported in press coverage retrieved in this pass"], "warning": "Must be rendered with its provenance attached and must never be presented as a study finding or aggregated with peer-reviewed harm data." },
+    "framing-c1": { "source": "docs/FRAMING.md section C-1", "note": "Carries the bhasma assay figure of 19,400 mg/kg lead and 1,430 mg/kg arsenic (J Occup Med Toxicol 8:26), and the tradition's own harm literature - Baopuzi, Zhenyuan miaodao yaolue, Xuanjie lu, Shen Kuo 1088. Those primary citations were not independently re-verified in this pass." },
+    "framing-c2": { "source": "docs/FRAMING.md section C-2" },
+    "framing-c6": { "source": "docs/FRAMING.md section C-6", "note": "Carries the three named inedia deaths and the manslaughter convictions. Coroner, court and press record; not peer-reviewed." },
+    "elixir-poisoning-historiography": { "authors": "(secondary historiography)", "title": "Chinese alchemical elixir poisoning: Tang imperial deaths", "note": "Secondary accounts differ on whether five, six or more Tang emperors died of elixir poisoning. FRAMING 1.3 requires the disagreement to print rather than be resolved. Needham, Science and Civilisation in China vol. V, and Ho Peng Yoke are the standard references and were NOT retrieved in this pass; retrieve before rendering any count." },
+    "datura-case-2017": { "title": "Acute poisoning due to ingestion of Datura stramonium - a case report", "year": 2017, "pmid": "28913501", "verified": ["pmid", "title"] },
+    "datura-ed-series": { "title": "Acute Datura stramonium poisoning in an emergency department", "year": 2007, "pmid": "17560071", "verified": ["pmid", "title"], "note": "French-language report." },
+    "datura-forensic": { "title": "Forensic features of a fatal Datura poisoning case during a robbery", "venue": "Forensic Science International", "url": "https://www.sciencedirect.com/science/article/abs/pii/S0379073816300500", "verified": ["title", "venue"] },
+    "mudra-narrative-review": { "title": "Yoga Mudras and Physiological Benefits: A Narrative Review of Their Role in Cardiopulmonary Function", "venue": "Journal of Ayurveda and Integrated Medical Sciences", "verified": ["title", "venue"], "note": "Narrative review in a low-indexed integrative-medicine journal; cited as evidence that the field itself describes its direct evidence as limited, not as evidence of effect." },
+    "search-null-talisman": { "type": "null-result-of-search", "date": "2026-07-30", "query": "randomized controlled trial amulet talisman wearing health outcome peer-reviewed study", "result": "No peer-reviewed randomised or controlled trial of traditional amulet or talisman wearing on any health outcome was located. Results were dominated by the AMPLATZER Amulet cardiac occluder device, an unrelated trade name." },
+    "search-null-tarot": { "type": "null-result-of-search", "date": "2026-07-30", "query": "tarot reading psychological wellbeing randomized study", "result": "No large-scale randomised trial of tarot as an intervention was located. Extant work is small, qualitative, or concerns adjacent constructs such as the Barnum effect." }
+  },
+
+  "coverage": {
+    "recordCount": 23,
+    "countsVerifiedBy": "PowerShell pass over this file, 2026-07-30; dangling citation ids: none; records missing separationNote or absenceOfEvidence: none; units, imperative openers or second-person address in site-voice fields: none.",
+    "byEvidenceGrade": {
+      "sr-meta": 4,
+      "sr-single": 5,
+      "rct-few": 3,
+      "lab-physiology": 2,
+      "observational": 2,
+      "toxicology-adjacent": 1,
+      "none": 6
+    },
+    "gradeNoneShare": 0.261,
+    "harmFlaggedRecords": 14,
+    "recordsWhoseOnlyEvidenceIsAboutHarm": 5,
+    "commissionedItemsAllCovered": true,
+    "commissionedChecklist": {
+      "seated meditation / mindfulness": "eff-meditation-mindfulness-secular",
+      "meditation adverse effects (Lindahl, Farias, Britton)": "eff-meditation-adverse-events",
+      "Transcendental Meditation + methodological critiques (Canter & Ernst, Ospina AHRQ)": "eff-transcendental-meditation",
+      "breath practices - paced / pranayama": "eff-paced-breathing-pranayama",
+      "breath practices - hyperventilation-based incl. Wim Hof, blackout and deaths": "eff-hyperventilation-methods, eff-breath-retention-hypoxia",
+      "prolonged fasting and inedia, refeeding syndrome, documented fatalities": "eff-prolonged-fasting-supervised, eff-inedia-breatharianism",
+      "chanting / mantra repetition (Bernardi 2001)": "eff-mantra-chanting",
+      "ritual and placebo/expectancy (Hobson 2018, Norton & Gino 2014, Legare & Souza)": "eff-ritual-as-behaviour, eff-ritual-efficacy-intuitions, eff-placebo-expectancy",
+      "entheogens - datura / anticholinergic, psilocybin trials": "eff-datura-anticholinergics, eff-psilocybin",
+      "heavy-metal preparations - rasasastra / waidan, Saper, CDC MMWR, Tang elixirs": "eff-rasasastra-heavy-metals, eff-waidan-elixirs",
+      "bodily practices - khecari frenulum cutting, extreme postures": "eff-khecari-frenulum, eff-extreme-postures"
+    },
+    "addedBeyondTheBrief": ["eff-suffumigation-incense", "eff-ritual-bathing-cold-immersion", "eff-talismanry-astrological-election", "eff-divination-consultation", "eff-mudras"]
+  },
+
+  "risks": [
+    "UNIT TENSION WITH FRAMING C-1. C-1 makes the presence of g|mg|kg|ml|degree markers|minutes|hours in a harm-flagged record's site-voice fields a hard failure. This slice necessarily carries mg/kg assay results, ug/dL blood levels and mg trial doses. They are confined to measuredValues, which is declared machine data and not a site-voice field, and none is a conversion of an archaic recipe unit. The integrating round must either (a) declare measuredValues exempt in the lint with a positive test proving the exemption is narrow, per the V5 pattern in FRAMING 3.4, or (b) render numbers only as images/graded chips. Doing neither ships a rule the file trips on day one.",
+    "PSILOCYBIN DOSE FIGURES. The 25/10/1 mg arms are the identity of the intervention in a registered trial of a synthetic pharmaceutical, not a historical preparation. A reviewer could still read a dose next to entheogenic materia as normalisation. Recommend rendering the arms as 'high, low, and sub-perceptual control dose' in site voice and keeping the numbers in data only.",
+    "NON-PEER-REVIEWED HARM DATA IS IN THIS FILE ON PURPOSE. The Wim Hof death tally and the three inedia deaths are journalistic, coroner and court records. They carry provenanceWarning fields. Any renderer that drops the warning turns a press count into a study finding, which is the exact credibility-borrowing FRAMING 2.3 forbids.",
+    "THE GRADE WILL BE MISREAD AS A SCORE. 'sr-meta' next to 'none' looks like a league table. It is a measure of how much research exists. The renderer must place the axisContract text adjacent to any grade chip, not in a footer, and must not sort or colour-rank records by grade.",
+    "SR-META AND NULL CO-OCCUR AND THAT MUST BE VISIBLE. The best-studied practice in the file has as its single strongest finding that it beat nothing and did not beat anything else. If the interface shows the grade without the keyNullFinding, it inverts the meaning of the best evidence on the site.",
+    "TWO CITATIONS NEED RETRIEVAL BEFORE RENDER. The Goodwin primary-endpoint effect estimates (publisher 403) and the CDC choking-game MMWR volume/issue (carried forward from FRAMING, not re-derived). Both are flagged in-record. Neither was reproduced from memory.",
+    "MALLINSON IS CITE-ONLY. The khecari harm evidence rests on a 2007 Routledge critical edition that FRAMING 4.4 forbids reproducing. This record cites and page-references it and quotes nothing. Any renderer that quotes the informant testimony breaks 4.4.",
+    "THE TANG EMPEROR COUNT IS CONTESTED AND UNRESOLVED HERE. Five, six or more, depending on which deaths are admitted. FRAMING 1.3 requires printing the disagreement. The primary historiography (Needham vol. V; Ho Peng Yoke) was not retrieved in this pass and must be before any count renders.",
+    "SELECTION BIAS IN THIS FILE ITSELF. Practice-types with literature got long records; practice-types without got short ones. An interface that sizes cards by content length will make the studied practices look important and the unstudied ones look like stubs, which is the opposite of the point. Five 'none' records are findings and should render at full weight."
+  ]
+}

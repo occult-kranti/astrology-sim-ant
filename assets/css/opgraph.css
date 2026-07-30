@@ -1,0 +1,298 @@
+/* ============================================================================
+   opgraph.css — presentation for THE OPERATIVE CORPUS graph
+   (pages/opgraph.html · R33). Loaded AFTER style.css; built ONLY on the shipped
+   Design System 2.0 / 3.0 tokens (--paper/--surface surfaces, --ep-* epistemic
+   palette, --dg-* diagram family, --fs-* fluid type, --t-*/--ease motion,
+   spacing/radius/shadow/z tokens). style.css is LOCKED and untouched.
+
+   The eight culture-accent tokens live HERE, scoped to .opg-page, exactly as
+   confluence.css scopes its eight lane accents to .cfl-page. They are the only
+   literal colours in this file, they are validated for the parchment surfaces
+   only, and NOTHING is encoded by colour alone: every accent is accompanied by
+   the culture's name in the node's own sub-row and in the ledger.
+
+   REDUCED-MOTION-FIRST. Every default state below IS the final resting state.
+   All animation lives inside @media (prefers-reduced-motion: no-preference).
+
+   390 px HONEST. Nothing here can scroll the page sideways: the diagram lives
+   inside its own overflow-x box, every table lives inside its own overflow-x
+   box, and below 680 px the diagram is not drawn at all — the ledger is the
+   view, which is also the accessible representation and the print view.
+   ============================================================================ */
+
+/* ---------- CULTURE ACCENT TOKENS (the only literal colours in this file) --- */
+.opg-page {
+  --og-c0:#3a6cb0;  /* steel azure  */
+  --og-c1:#9a5526;  /* sienna       */
+  --og-c2:#6a4aa0;  /* violet       */
+  --og-c3:#00939c;  /* cyan-teal    */
+  --og-c4:#84831c;  /* olive        */
+  --og-c5:#b83f88;  /* magenta      */
+  --og-c6:#8a4a22;  /* russet       */
+  --og-c7:#2f7ca8;  /* air blue     */
+
+  /* completeness family — washes derived from the shipped verdict triads so the
+     grade reads as a strength, not as a mood. Glyph + word carry it regardless. */
+  --cg-complete:var(--ok-wash);
+  --cg-partial:var(--warn-wash);
+  --cg-referenced:var(--surface-inset);
+  --cg-fragmentary:var(--info-wash);
+  --cg-unstable:var(--ep-disp-wash);
+  --cg-withheld:var(--surface-wash);
+
+  --og-node-h:58px;
+  --og-gutter:var(--sp-3);
+}
+
+.opg-page [data-cult="0"] { --og-accent:var(--og-c0); }
+.opg-page [data-cult="1"] { --og-accent:var(--og-c1); }
+.opg-page [data-cult="2"] { --og-accent:var(--og-c2); }
+.opg-page [data-cult="3"] { --og-accent:var(--og-c3); }
+.opg-page [data-cult="4"] { --og-accent:var(--og-c4); }
+.opg-page [data-cult="5"] { --og-accent:var(--og-c5); }
+.opg-page [data-cult="6"] { --og-accent:var(--og-c6); }
+.opg-page [data-cult="7"] { --og-accent:var(--og-c7); }
+
+/* ---------- utility --------------------------------------------------------- */
+.opg-page .og-vh { position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* an over-wide child NEVER pushes the page: it scrolls inside its own box */
+.opg-page .og-scroll { overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch;
+  max-width:100%; border:1px solid var(--border); border-radius:var(--rad-2);
+  background:var(--dg-fill); }
+
+.opg-page .callout.bad { border-color:var(--bad); background:var(--bad-wash); color:var(--bad-ink); }
+.opg-page .callout.bad .label::before { content:'\26A0\2009'; }
+
+/* ---------- the how-to-read legend ----------------------------------------- */
+.opg-page .opg-key-title { font-family:var(--font-sans); font-size:var(--fs-label); font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--accent-strong); margin:0 0 .3rem; }
+.opg-page .opg-swatch { display:inline-block; width:.8em; height:.8em; vertical-align:baseline;
+  border:1px solid var(--border-strong); margin-right:.2rem; background:var(--surface-inset); }
+.opg-page .opg-swatch.opg-sw-work { border-radius:var(--rad-1); background:var(--surface-card);
+  border-left:3px solid var(--accent); }
+.opg-page .opg-swatch.opg-sw-op { border-radius:var(--rad-pill); background:var(--cg-partial); }
+.opg-page .opg-swatch.opg-sw-rel { transform:rotate(45deg); background:var(--ep-doc-wash); }
+
+/* ---------- the toolbar ----------------------------------------------------- */
+.opg-page .opg-toolbar { top:var(--sticky-top); z-index:var(--z-sticky); gap:var(--sp-2) var(--sp-4); }
+
+/* ---------- the filter bar -------------------------------------------------- */
+.opg-page .og-filters { display:grid; gap:var(--sp-2);
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); margin:0 0 var(--sp-3); }
+.opg-page .og-fgroup { border:1px solid var(--border); border-radius:var(--rad-2);
+  background:var(--surface-card); padding:.4rem .6rem; }
+.opg-page .og-fgroup > summary { font-family:var(--font-sans); font-size:var(--fs-label);
+  letter-spacing:.06em; text-transform:uppercase; color:var(--accent-strong); cursor:pointer;
+  font-weight:700; }
+.opg-page .og-fbody { max-height:15rem; overflow-y:auto; margin-top:.35rem; }
+.opg-page .og-flabel { font-family:var(--font-sans); font-size:var(--fs-label); letter-spacing:.06em;
+  text-transform:uppercase; color:var(--accent-strong); font-weight:700; margin:.2rem 0 .3rem; }
+.opg-page .og-check { display:flex; gap:.4rem; align-items:flex-start; font-size:var(--fs--1);
+  padding:.12rem 0; line-height:1.35; }
+.opg-page .og-check input { margin-top:.28rem; flex:0 0 auto; }
+.opg-page .og-n { font-family:var(--font-sans); font-size:var(--fs-badge); color:var(--text-muted); }
+/* the weight / harm / struck controls are a single wrapping strip across the
+   full width, so the four collapsed facet groups above them do not leave a
+   column of empty parchment beside a tall fifth box */
+.opg-page .og-fgroup-flat { grid-column:1 / -1; display:flex; flex-flow:row wrap;
+  align-items:center; gap:.4rem var(--sp-4); }
+.opg-page .og-fgroup-flat .og-flabel { margin:0; }
+.opg-page .og-fgroup-flat > p { margin:0; flex:1 1 16rem; }
+
+/* ---------- the index ------------------------------------------------------- */
+.opg-page .og-index { display:grid; gap:var(--sp-2);
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); margin:0 0 var(--sp-4); }
+.opg-page .og-index-row { min-width:0; border:1px solid var(--border); border-radius:var(--rad-2);
+  background:var(--surface-card); padding:.5rem .7rem; overflow-wrap:anywhere; }
+.opg-page .og-index-label { font-family:var(--font-sans); font-size:var(--fs-label); font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--accent-strong); margin:0 0 .3rem; }
+.opg-page .og-count-strip { display:flex; flex-wrap:wrap; gap:.25rem .55rem; }
+/* a count chip never sets the page's width: a long culture name wraps rather
+   than pushing the document sideways at 390 px */
+.opg-page .og-count { font-family:var(--font-sans); font-size:var(--fs--1); color:var(--text-muted);
+  max-width:100%; overflow-wrap:anywhere; }
+.opg-page .og-count b { color:var(--text); font-variant-numeric:tabular-nums; }
+.opg-page .og-index-meta { grid-column:1 / -1; margin:0; }
+
+/* ---------- the counter ----------------------------------------------------- */
+.opg-page .og-counter { font-family:var(--font-sans); font-size:var(--fs--1); color:var(--text-muted);
+  margin:0 0 var(--sp-2); }
+.opg-page .og-counter b { color:var(--bad-ink); }
+
+/* ---------- the stage ------------------------------------------------------- */
+.opg-page .og-stage-wrap { display:grid; grid-template-columns:minmax(0,1fr); gap:var(--sp-3);
+  margin:0 0 var(--sp-5); }
+@media (min-width:1000px) {
+  .opg-page .og-stage-wrap { grid-template-columns:minmax(0,1fr) 20rem; align-items:start; }
+}
+.opg-page .og-stage-wrap > .og-scroll { max-height:70vh; overflow-y:auto; }
+.opg-page .og-stage { position:relative; min-width:100%; min-height:12rem; }
+.opg-page .og-svg-host { position:absolute; inset:0; }
+.opg-page .og-svg { display:block; }
+.opg-page .og-nodes { position:absolute; inset:0; }
+
+/* edges — one ink family, kind written into the class so the sheet is auditable */
+.opg-page .og-edge { fill:none; stroke:var(--dg-grid); stroke-width:1.1; }
+.opg-page .og-e-contains { stroke:var(--dg-grid); }
+.opg-page .og-e-of_type { stroke:var(--dg-tick); stroke-width:.9; }
+.opg-page .og-e-rel_from, .opg-page .og-e-rel_to { stroke:var(--dg-strong); stroke-width:1.4; }
+.opg-page .og-e-segment_of, .opg-page .og-e-has_part { stroke:var(--dg-label); stroke-dasharray:1 3; }
+.opg-page .og-e-recon { stroke-dasharray:5 3; stroke:var(--ep-disp); }
+.opg-page .og-e-struck { stroke-dasharray:2 4; stroke:var(--text-faint); }
+
+/* ---------- THE RECORD SHAPE — micrograd's node, values on its own face ----- */
+.opg-page .og-node { position:absolute; display:grid; align-content:start;
+  grid-template-columns:1fr auto auto auto; grid-template-rows:auto auto;
+  gap:0 .35rem; text-align:left; font:inherit; font-size:var(--fs--1);
+  background:var(--surface-card); color:var(--text);
+  border:1px solid var(--border-strong); border-left:4px solid var(--og-accent, var(--border-strong));
+  border-radius:var(--rad-1); padding:.2rem .35rem; cursor:pointer; overflow:hidden; }
+.opg-page .og-node:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+.opg-page .og-node:hover { background:var(--surface-wash); }
+.opg-page .og-node.og-selected { box-shadow:0 0 0 3px var(--accent-soft); border-color:var(--accent-strong); }
+
+.opg-page .og-cell { font-family:var(--font-sans); font-size:var(--fs-badge); line-height:1.3;
+  align-self:center; }
+.opg-page .og-cell-title { grid-column:1; min-width:0; font-family:var(--font-serif);
+  font-size:var(--fs--1); font-weight:700; white-space:nowrap; overflow:hidden;
+  text-overflow:ellipsis; }
+/* a box too small for the pressure cell gives the space back to the title */
+.opg-page .og-face-tight { grid-template-columns:1fr auto auto; }
+.opg-page .og-cell-w { grid-column:2; color:var(--text-muted); font-variant-numeric:tabular-nums;
+  border-left:1px solid var(--border); padding-left:.3rem; }
+.opg-page .og-cell-g { grid-column:3; color:var(--bad-ink); font-variant-numeric:tabular-nums;
+  border-left:1px solid var(--border); padding-left:.3rem; }
+.opg-page .og-cell-marks { grid-column:4; }
+.opg-page .og-sub { grid-column:1 / -1; grid-row:2; font-family:var(--font-sans);
+  font-size:var(--fs-badge); color:var(--text-muted); white-space:nowrap; overflow:hidden;
+  text-overflow:ellipsis; }
+
+/* weight → stroke width, in three steps, ALONGSIDE the printed number */
+.opg-page .og-wt-1 { border-top-width:1px; }
+.opg-page .og-wt-2 { border-top-width:2px; }
+.opg-page .og-wt-3 { border-top-width:3px; }
+
+/* the op-nodes: interposed, smaller, visually a different class of thing */
+.opg-page .og-op { border-radius:var(--rad-3); background:var(--surface-wash); }
+.opg-page .og-g-complete { background:var(--cg-complete); }
+.opg-page .og-g-partial { background:var(--cg-partial); }
+.opg-page .og-g-referenced { background:var(--cg-referenced); }
+.opg-page .og-g-fragmentary { background:var(--cg-fragmentary); }
+.opg-page .og-g-unstable-plural { background:var(--cg-unstable); }
+.opg-page .og-g-withheld { background:var(--cg-withheld); }
+
+/* a genre-norm grade must NOT look like a slot-inventory grade */
+.opg-page .og-hatched { background-image:repeating-linear-gradient(45deg,
+  transparent 0 4px, var(--dg-grid) 4px 5px); }
+.opg-page .og-dotted { border-style:dotted; }
+.opg-page .og-dnq { box-shadow:inset 0 0 0 2px var(--bad); }
+
+.opg-page .og-rel { border-radius:var(--rad-1); }
+.opg-page .og-ep-doc  { border-color:var(--ep-doc);  background:var(--ep-doc-wash); }
+.opg-page .og-ep-disp { border-color:var(--ep-disp); background:var(--ep-disp-wash); }
+.opg-page .og-ep-deb  { border-color:var(--ep-deb);  background:var(--ep-deb-wash); }
+.opg-page .og-ep-con  { border-color:var(--ep-con);  background:var(--ep-con-wash); }
+/* a relation recorded as NOT asserted is drawn struck — never hidden */
+.opg-page .og-struck { border-style:dashed; opacity:.85; }
+.opg-page .og-struck .og-cell-title { text-decoration:line-through; }
+.opg-page .og-inv-mark, .opg-page .og-dnq-mark { color:var(--bad); }
+.opg-page .og-harm { color:var(--bad); }
+.opg-page .og-proclevel { border-width:2px; }
+.opg-page .og-chip { background:var(--accent-wash); border-color:var(--accent); }
+.opg-page .og-scaffold { background:var(--surface-inset); color:var(--text-muted); }
+
+/* ---------- the dossier drawer ---------------------------------------------- */
+.opg-page .og-drawer { align-self:start; max-height:70vh; overflow-y:auto; position:relative;
+  padding:var(--sp-4); }
+@media (min-width:1000px) { .opg-page .og-drawer { position:sticky; top:calc(var(--sticky-top) + 3.4rem); } }
+.opg-page .og-drawer-close { position:absolute; top:.4rem; right:.5rem; background:transparent;
+  border:1px solid var(--border); border-radius:var(--rad-1); cursor:pointer; font:inherit;
+  color:var(--text-muted); padding:.1rem .4rem; }
+.opg-page .og-drawer h3 { margin:0 0 .2rem; padding-right:2.2rem; font-size:var(--fs-1); }
+.opg-page .og-drawer-kind { margin:0 0 var(--sp-3); }
+.opg-page .og-orig { font-family:var(--font-serif); color:var(--text-muted); }
+.opg-page .og-dl { margin:0; }
+.opg-page .og-kv { margin:0 0 var(--sp-2); }
+.opg-page .og-kv dt { font-family:var(--font-sans); font-size:var(--fs-label); font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--accent-strong); }
+.opg-page .og-kv dd { margin:.1rem 0 0; font-size:var(--fs--1); overflow-wrap:anywhere; }
+.opg-page .og-drawer code, .opg-page .og-drawer cite { overflow-wrap:anywhere; }
+.opg-page .og-evidence { margin:.2rem 0; padding:.35rem .6rem; border-left:3px solid var(--accent-soft);
+  background:var(--surface-wash); font-style:normal; font-size:var(--fs--1); }
+.opg-page .og-stages, .opg-page .og-eds, .opg-page .og-claimlist { margin:.2rem 0 .2rem 1.1rem; padding:0; }
+.opg-page .og-harm-block { border:1px solid var(--bad); border-left:5px solid var(--bad);
+  background:var(--bad-wash); color:var(--bad-ink); border-radius:var(--rad-2);
+  padding:.5rem .7rem; margin:0 0 var(--sp-3); }
+.opg-page .og-harm-title { font-family:var(--font-sans); font-size:var(--fs-label); font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; margin:0 0 .2rem; }
+.opg-page .og-contested { border:1px dashed var(--ep-disp); background:var(--ep-disp-wash);
+  border-radius:var(--rad-2); padding:.5rem .7rem; margin:0 0 var(--sp-3); }
+.opg-page .og-contested-title { font-family:var(--font-sans); font-size:var(--fs-label); font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--ep-disp-ink); margin:0 0 .2rem; }
+.opg-page .og-razor { border-top:1px solid var(--border); margin-top:var(--sp-3); padding-top:var(--sp-2); }
+.opg-page .og-razor-title { font-family:var(--font-sans); font-size:var(--fs-label); font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); margin:0 0 .2rem; }
+.opg-page .og-axes { width:100%; border-collapse:collapse; font-size:var(--fs--1); }
+.opg-page .og-axes th, .opg-page .og-axes td { border:1px solid var(--border); padding:.2rem .4rem;
+  text-align:left; vertical-align:top; }
+.opg-page .og-cycles { margin:.4rem 0 0 1.1rem; }
+.opg-page .og-cycles code { font-family:var(--font-mono); font-size:var(--fs-badge); }
+
+/* ---------- the chain walk -------------------------------------------------- */
+.opg-page .og-chain { border:1px solid var(--border); border-radius:var(--rad-2);
+  background:var(--surface-card); padding:var(--sp-3) var(--sp-4); margin:0 0 var(--sp-5); }
+.opg-page .og-chain h3 { margin:0 0 var(--sp-2); font-size:var(--fs-1); }
+.opg-page .og-chain-steps { margin:0 0 var(--sp-2) 1.2rem; padding:0; }
+.opg-page .og-chain-steps li { margin-bottom:.4rem; }
+
+/* ---------- THE TEXT MIRROR ------------------------------------------------- */
+.opg-page .og-table-wrap { margin:0 0 var(--sp-5); }
+.opg-page .og-table-wrap h3 { font-size:var(--fs-1); margin:0 0 .2rem; }
+.opg-page .og-table { border-collapse:collapse; font-size:var(--fs--1); min-width:100%; }
+.opg-page .og-table th, .opg-page .og-table td { border:1px solid var(--border);
+  padding:.28rem .45rem; text-align:left; vertical-align:top; }
+.opg-page .og-table thead th { background:var(--surface-inset); font-family:var(--font-sans);
+  font-size:var(--fs-badge); letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }
+.opg-page .og-table tbody tr:nth-child(even) { background:var(--surface-wash); }
+.opg-page .og-row-struck th, .opg-page .og-row-struck td { color:var(--text-muted); }
+.opg-page .og-row-struck th { text-decoration:line-through; }
+.opg-page .og-rowlink { font:inherit; font-weight:700; background:none; border:0; padding:0;
+  color:var(--link); cursor:pointer; text-align:left; text-decoration:underline; }
+.opg-page .og-rowlink:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+.opg-page .og-ev summary { cursor:pointer; font-family:var(--font-sans); font-size:var(--fs-badge); }
+.opg-page .og-ev p { margin:.25rem 0 0; max-width:34rem; }
+.opg-page .og-ev-harm { color:var(--bad-ink); }
+.opg-page .opg-limits { max-width:var(--measure); }
+.opg-page .opg-limits li { margin-bottom:.35rem; }
+
+/* ---------- NARROW: the ledger IS the view (D13) ---------------------------- */
+.opg-page .og-narrow-note { display:none; }
+@media (max-width:680px) {
+  .opg-page .og-stage-wrap > .og-scroll { display:none; }
+  .opg-page .og-narrow-note { display:block; }
+  .opg-page .og-zoom { display:none; }
+  .opg-page .og-drawer { position:static; max-height:none; }
+  .opg-page .og-table th, .opg-page .og-table td { padding:.22rem .3rem; }
+}
+
+/* ---------- PRINT: the ledger, and nothing that needs a pointer ------------- */
+@media print {
+  .opg-page .og-stage-wrap > .og-scroll,
+  .opg-page .opg-toolbar,
+  .opg-page .og-filters,
+  .opg-page .og-drawer-close { display:none !important; }
+  .opg-page .og-scroll { overflow:visible !important; border:0 !important; max-height:none !important; }
+  .opg-page .og-table { font-size:8pt; }
+  .opg-page .og-ev[open] summary { font-weight:700; }
+  .opg-page .og-ev p { display:block; }
+}
+
+/* ---------- MOTION — opt-in only, and never on information ------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .opg-page .og-node { transition:background var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease); }
+  .opg-page .og-rowlink { transition:color var(--t-fast) var(--ease); }
+  .opg-page .og-drawer { transition:opacity var(--t-med) var(--ease); }
+}

@@ -621,7 +621,8 @@ function renderTalisman(r) {
   const t = r.talisman;
   if (!t) { $('wb-talisman').innerHTML = '<p class="muted">No recipe.</p>'; return; }
   const sp = t.materials.spirits;
-  const steps = t.steps.map(s => `<li>${esc(s.text)} <span class="small muted">— ${esc(s.cite)}</span></li>`).join('');
+  // Attested description, not steps — FRAMING §9.14 (blocker B1).
+  const steps = t.attestedSequence.map(s => `<li>${esc(s.text)} <span class="small muted">— ${esc(s.cite)}</span></li>`).join('');
   const pimg = planetImage(t.planet);
   const imgHtml = pimg ? `<p class="small"><b>Planetary talismanic image (historical):</b> ${esc(pimg.image)} <i>— ${esc(pimg.purpose)}</i> <span class="muted small">[${esc(pimg.citation)}]</span></p>` : '';
   const pr = prayerFor(t.planet);

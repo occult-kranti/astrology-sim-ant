@@ -1,0 +1,610 @@
+{
+  "meta": {
+    "slice": "SLICE 12 — WESTERN GRIMOIRE / RITUAL MAGIC (medieval–early modern). Solomonic corpus (Clavicula recensions, Lemegeton's five books), Sworn Book of Honorius, Heptameron, Arbatel, Grimorium Verum, Grand Grimoire, Abramelin, Sefer Raziel / Liber Razielis, Picatrix (PROCEDURE ANATOMY ONLY — catalog re-derivation blacklisted), Agrippa Three Books + spurious Fourth Book, Trithemius Steganographia, John Dee's angelic diaries. Transmission anchors (Weyer, Scot, Clm 849, Hygromanteia, Grimoire du Pape Honorius) admitted only as edge endpoints.",
+    "dateISO": "2026-07-17",
+    "razorCompliance": {
+      "statement": "Every row records THAT a procedure exists, its KIND, its STRUCTURAL anatomy, its COMPLETENESS and its CITATION. No row transcribes a conjuration, a divine/angelic name-string used operatively, an ingredient quantity or timing, a circle/seal/word-square as a usable template, or any second-person instruction. Stage names are structural metadata, not steps. Efficacy is never asserted: the text SAYS, the tradition CLAIMS.",
+      "harmPolicy": "Coercive-rite, pact, ordeal-regimen and toxic-material content is admitted as academic religious history only, each with a named harmNote, following the repo's abhicāra wing precedent (six-acts.html / FRAMING.care).",
+      "contestedPolicy": "Every contested point carries >=2 named positions and is never resolved."
+    },
+    "method": "1) Read the repo's inherited verdicts in docs/plans/r29/esoteric-libraries.md (PD wall pre-1931; Mathers 1889/1898/1904; Turner 1655/56/57; Peterson editorial (c); the admitted-edge list) and did NOT re-derive them. 2) Fetched five Esoteric Archives editorial introductions THIS ROUND for structure/witness/stemma facts (ksol.htm, lemegeton.htm, juratus.htm, heptamer.htm, gv.htm) — introductions only, no operative text requested or received. 3) Ran eight targeted web searches for scholarly-consensus points (Arbatel 9-tome plan, Steganographia decipherment, Abramelin square counts and recension duration, Ars Notoria notae omission, Liber Razielis structure, Hygromanteia ancestry debate, Fourth Book spuriousness, Picatrix operative anatomy, Almadel branches, Dee MS losses). 4) Graded work x procedure-type completeness ONLY where a source THIS ROUND evidenced it; anything not re-derivable is marked '(unverified)'. 5) Carried witness-level completeness SEPARATELY from work-level completeness — the round's key methodological move for this slice (see keyFinding 2).",
+    "sources": [
+      {"id": "S1", "cite": "Joseph H. Peterson, ed., 'Clavicula Salomonis / Key of Solomon', Twilit Grotto — Esoteric Archives, esotericarchives.com/solomon/ksol.htm (editorial introduction; digital ed. (c) 1999–2005 Peterson). Fetched 2026-07-17.", "rights": "Peterson editorial copyright — CITE, do not ingest; quote only from Mathers 1889 (PD)."},
+      {"id": "S2", "cite": "Peterson, ed., 'Lemegeton Clavicula Salomonis', esotericarchives.com/solomon/lemegeton.htm (editorial introduction). Fetched 2026-07-17.", "rights": "Peterson editorial (c) — cite only."},
+      {"id": "S3", "cite": "Peterson, ed., 'Liber Juratus Honorii / Sworn Book of Honorius', esotericarchives.com/juratus/juratus.htm (editorial introduction). Fetched 2026-07-17.", "rights": "Peterson editorial (c) — cite only; NO PD English witness exists, so quote nothing."},
+      {"id": "S4", "cite": "Peterson, ed., 'Heptameron, seu Elementa Magica' (pseudo-Peter of Abano), esotericarchives.com/solomon/heptamer.htm (editorial introduction; digital ed. (c) 1998, 2008, 2020 Peterson). Fetched 2026-07-17.", "rights": "Peterson editorial (c) — cite; quote from Turner 1655 (PD)."},
+      {"id": "S5", "cite": "Peterson, ed., 'Grimorium Verum', esotericarchives.com/solomon/gv.htm (editorial introduction). Fetched 2026-07-17.", "rights": "AUDIT-CORRECTED (R33 hostile audit, LICENSING STRIKE L1). The original claim — 'this page's digital edition is licensed CC-BY 4.0' — is TOO BROAD and, as used, licence-unsafe. Re-fetched 2026-07-30: the page carries TWO notices, not one. (a) 'License CC-BY 4.0' governs the grimoire TEXT. (b) 'Introduction copyright Joseph H. Peterson, 1999; all rights reserved.' governs the editorial introduction. Every structural fact this slice draws from S5 — the Wellcome MS 983 / MS 4667 witnesses, the Alibeck c.1817 first print, the Blocquel / Bestetti / Muzzi print history, the three-part structure, and the Key-of-Solomon and Heptameron dependencies — comes from the INTRODUCTION, i.e. from the all-rights-reserved half. CONSEQUENCE: cite Peterson for these, never quote or ingest them, exactly as for S1-S4. FURTHER: the disclaimer wording this slice proposed to adopt 'as the repo's precedent' is also introduction text and is therefore NOT reusable under CC-BY; the repo must write its own disclaimer. The CC-BY exception is real but it applies to the operative TEXT, which is precisely the part this program does not want."},
+      {"id": "S6", "cite": "Wikipedia, 'Arbatel de magia veterum'; corroborated by Theatrum Paracelsicum, 'De magia veterum' (theatrum-paracelsicum.com). Consulted 2026-07-17.", "rights": "Reference-tier, not scholarly-tier — flagged where load-bearing."},
+      {"id": "S7", "cite": "Jim Reeds, 'Solved: The Ciphers in Book III of Trithemius's Steganographia', Cryptologia 22:4 (October 1998), 291–313 [AUDIT-CORRECTED: page range was given as 291–317; verified against the Taylor & Francis / ACM records, doi 10.1080/0161-119891886948]; independently and slightly earlier Thomas Ernst (1996). Wikipedia 'Steganographia' as the summarising witness. Consulted 2026-07-17.", "rights": "Reeds 1998 in copyright — cite only."},
+      {"id": "S8", "cite": "Georg Dehn & Steven Guth, eds./trans., 'The Book of Abramelin: A New Translation' (Ibis, 2006/2015), on the German recension; C. 'Aaron' Leitch, 'Abramelin's Magickal Word Squares: Compiled and Corrected for the First Time' (self-published PDF, kheph777.tripod.com/abrasquares.pdf), for the square counts. Consulted 2026-07-17.", "rights": "Both in copyright — cite only. Dehn/Kollatsch German-family squares NOT ingestible."},
+      {"id": "S9", "cite": "Julien Véronèse, 'L'Ars notoria au Moyen Âge: Introduction et édition critique' (SISMEL–Edizioni del Galluzzo, 2007), based on his 2004 thesis; >50 MSS collated. Version A / Version B distinction. Consulted via secondary summaries 2026-07-17.", "rights": "In copyright — cite only."},
+      {"id": "S10", "cite": "Gösta Hedegård, 'Liber Iuratus Honorii: A Critical Edition of the Latin Version of the Sworn Book of Honorius', Studia Latina Stockholmiensia 48 (Stockholm, 2002); reviewed in Speculum 79:1 (2004). Parallel edition Jean-Patrice Boudet (2002). Consulted 2026-07-17.", "rights": "In copyright — cite only."},
+      {"id": "S11", "cite": "David Pingree, ed., 'Picatrix: The Latin Version of the Ghāyat Al-Hakīm' (Warburg Institute, 1986); Dan Attrell & David Porreca, trans., 'Picatrix: A Medieval Treatise on Astral Magic' (Penn State UP, 2019), based on Pingree. Consulted 2026-07-17.", "rights": "In copyright — cite only. Repo blacklist: Picatrix CATALOG data already shipped; this slice covers procedure anatomy only."},
+      {"id": "S12", "cite": "Library of Congress catalog record 11031418: 'Henry Cornelius Agrippa, his Fourth book of occult philosophy. Of geomancy. Magical elements of Peter de Abano. Astronomical geomancy [Gerardus Cremonensis]. The nature of spirits [George Pictorius]. Arbatel of magick / translated into English by Robert Turner' (London, 1655). loc.gov/item/11031418. Consulted 2026-07-17.", "rights": "PD (1655). VERIFIED THIS ROUND: the composite contents of the Turner 1655 volume — the repo's single richest PD quote-witness."},
+      {"id": "S13", "cite": "Johann Weyer, 'De praestigiis daemonum' (1563), denouncing the Fourth Book as spurious; 'Pseudomonarchia daemonum' appended to the 1577 ed. Reginald Scot, 'The Discoverie of Witchcraft' (1584; expanded 1665). Consulted via S2 and secondary summaries 2026-07-17.", "rights": "PD."},
+      {"id": "S14", "cite": "Christopher Whitby, 'John Dee's Actions with Spirits: 22 December 1581 to 23 May 1583', PhD thesis, University of Birmingham (1982), etheses.bham.ac.uk/id/eprint/3149 — open access. Meric Casaubon, 'A True and Faithful Relation…' (London, 1659). BL Sloane MSS 3188, 3189, 3191. Consulted 2026-07-17.", "rights": "Casaubon 1659 PD; Whitby thesis open-access, cite."},
+      {"id": "S15", "cite": "A. E. Waite, 'The Book of Ceremonial Magic' (1911; 1st ed. as 'The Book of Black Magic and of Pacts', 1898), sacred-texts.com/grim/bcm — the PD critical/denunciatory voice on the Grand Grimoire and the black-magic shelf.", "rights": "PD (pre-1931) — quotable. The museum voice ready-made."},
+      {"id": "S16", "cite": "Ioannis Marathakis, trans./ed., 'The Magical Treatise of Solomon, or Hygromanteia' (Golden Hoard / Llewellyn, Sourceworks of Ceremonial Magic, 2011) — subtitled 'The Ancestor of the Key of Solomon'. Contrast: Pablo A. Torijano, 'Solomon the Esoteric King: From King to Magus' (Brill, 2002). Consulted 2026-07-17.", "rights": "Both in copyright — cite only."},
+      {"id": "S17", "cite": "Google Books record: 'The Almadel of Solomon According to the Text of the Sloane MS. 2731. By A. W. Greenup. [Extracted from the \"Occult Review\".]'. Consulted 2026-07-17.", "rights": "PD (pre-1931) — NEW THIS ROUND: the repo plan attaches Greenup 1912 only to Sefer ha-Levanah; Greenup ALSO produced a PD English Almadel witness. See gaps/G8."},
+      {"id": "S18", "cite": "Repo inheritance (NOT re-derived): docs/plans/r29/esoteric-libraries.md §1.1, §2.3, §2.5, §3 Group A — PD wall pre-1931; Mathers KOS 1889 (ISTA mislabels '1888'); Mathers Abramelin 1898 (2nd ed. 1900); Mathers Goetia 1904; Turner 1655/56/57; Steganographia 1606; Peterson editorial (c) with per-page CC-BY exceptions.", "rights": "Internal plan document."}
+    ],
+    "schemaNotes": {
+      "edgeTypesUsed": ["CONTAINS_PROCEDURE", "AUTHORED_BY", "BELONGS_TO", "TRANSMITS_TO", "PARALLELS", "COMMENTS_ON", "HAS_PART", "NON_EDGE"],
+      "schemaExtensionsProposed": [
+        {"type": "HAS_PART", "reason": "The Lemegeton is a 17th-c. COMPILATION whose five books have independent authorship, dates and completeness grades (Ars Notoria is 13th-c., Ars Paulina carries an internal 1641). Collapsing them into one work destroys the slice's central completeness contrast. TRANSMITS_TO is wrong (no copying) and PARALLELS is wrong (not a parallel). Synthesizer must rule.", "instances": 5},
+        {"type": "NON_EDGE", "reason": "The repo plan explicitly wants the Liber Juratus / Grimoire du Pape Honorius name-confusion recorded as a CITABLE NON-EDGE. A knowledge graph with no way to assert 'these two are NOT related, and here is who confused them' will silently regrow the error. Synthesizer must rule.", "instances": 1}
+      ],
+      "completenessGrades": {"complete": "text gives the full sequence end to end", "partial": "substantial but acknowledged-incomplete (steps assumed, elements withheld, initiation required, recensions disagree)", "referenced": "procedure named/alluded to but not set out", "fragmentary": "survives only in damaged/excerpted form"},
+      "twoLevelCompleteness": "Every procedure row carries workCompleteness (the text/tradition as reconstructed by modern critical scholarship) AND pdWitnessCompleteness (what the pre-1931 witness the repo may actually QUOTE contains). These diverge sharply and systematically in this slice — see keyFinding 2. Extends the inventory agent's repoCoverage/textCompleteness split with a third, rights-aware axis.",
+      "operativeAnatomy": {
+        "id": "solomonic-six-stage",
+        "definition": "The recurring structural skeleton of the Latin-Christian ritual-magic operation, recorded as STRUCTURE not as steps.",
+        "stages": [
+          {"code": "S1", "name": "preparation / purification period", "note": "abstinence, confession, ablution, fasting; duration is the variable that most distinguishes works (Heptameron days — Liber Juratus weeks — Abramelin 6 or 18 months)"},
+          {"code": "S2", "name": "timing by planetary hour / day / lunar phase", "note": "the stage that ties this corpus to the repo's shipped hours engine"},
+          {"code": "S3", "name": "consecrated instruments and materials", "note": "knife, wand, parchment, ink, incense, garment, wax tablet"},
+          {"code": "S4", "name": "circle / figure construction", "note": "the protective or contactive enclosure; NO template reproduced anywhere in this file"},
+          {"code": "S5", "name": "invocation / conjuration", "note": "often escalating in tiers (call -> constraint -> curse); the coercive tier is the harm-bearing stage"},
+          {"code": "S6", "name": "licence to depart / dismissal", "note": "the closing stage; its PRESENCE or ABSENCE is a strong completeness diagnostic"}
+        ],
+        "useNote": "Recording which of S1–S6 a text sets out is descriptive structural metadata. It is not a procedure and cannot be executed from this file."
+      },
+      "vocabGapsProposed": [
+        {"term": "ritual-enclosure-construction", "why": "The magic circle is the single most characteristic operative element of this entire corpus and has no controlled type. yantra-construction / maṇḍala-construction are Indic-specific and importing them would be a category error.", "affectedWorks": 9},
+        {"term": "timing-election", "why": "Planetary-hour / lunar-phase election is a distinct, computable, repo-shipped procedure (cast-hour.js, election-tool.js) that is currently unrepresentable. divination-procedure is wrong — nothing is being divined.", "affectedWorks": 8},
+        {"term": "dismissal-licence-to-depart", "why": "The closing stage of Western evocation. Its absence is diagnostic of incompleteness, so it must be typeable separately from invocation/evocation."},
+        {"term": "oath-pact-binding", "why": "Covers both the Sworn Book's secrecy oath (transmission-restricting) and the Grand Grimoire's pact frame (harm-bearing). initiation covers neither. Carries a harm signal that would be lost if folded into initiation."},
+        {"term": "figure-inspection-contemplation", "why": "The Ars Notoria's core act is gazing at an EXTERNAL diagram (nota) while reciting. visualization means internally generated imagery and is the wrong type."},
+        {"term": "scrying-crystallomancy", "why": "Re-flagging the inventory agent's gap with slice evidence: the Almadel wax-tablet operation, the pseudo-Trithemian crystal operation and Dee's shew-stone practice are one technique family, currently all collapsed into divination-procedure."},
+        {"term": "ascetic-retreat-regimen", "why": "Re-flagging the inventory agent's gap: forcing the Abramelin ordeal into 'purification' loses precisely the harm signal (prolonged isolation + fasting) that the repo plan mandates a callout for."},
+        {"term": "cryptographic-concealment", "why": "Genuinely novel to this slice. The Steganographia's apparent spirit-invocations are cipher cover-text (S7). There is no honest way to type this without a term meaning 'has procedure-form but is not a procedure'."},
+        {"term": "procedure-as-session-record", "why": "Dee's diaries are transcripts of sittings, not manuals. No existing type distinguishes a text that RECORDS a working from a text that PRESCRIBES one — and that distinction is this slice's assigned completeness contrast."}
+      ],
+      "procedureHostRuling": "This slice hangs procedures ONLY on work nodes. The Dee corpus was the hard case — the temptation is to hang procedures on the person or on the 'angelic conversations' event. Resolved by treating the diaries as a work (dee-angelic-diaries) and the compiled manuals as separate works. Recommend the synthesizer adopt work-only as a rule and re-home the atlas's technique fields that currently sit on person/event/institution/translation nodes."
+    }
+  },
+
+  "works": [
+    {
+      "id": "gw:hygromanteia",
+      "atlasSlug": null,
+      "title": "Hygromanteia / The Magical Treatise of Solomon",
+      "titleOriginal": "Ὑγρομαντεία",
+      "author": "anonymous (pseudepigraphically attributed to Solomon)",
+      "culture": "Byzantine Greek Christian, with Greco-Egyptian and Arabic substrate",
+      "date": "surviving MSS from the 15th c.; composition contested (early Byzantine Italy vs Venetian Crete 13th–14th c.)",
+      "dateCertainty": "contested",
+      "role": "transmission anchor / contested ancestor",
+      "bestEdition": "Marathakis 2011 (S16) — first full English translation from the Greek",
+      "pdStatus": "Marathakis 2011 in copyright; underlying Greek MSS PD but no PD English witness. QUOTE NOTHING.",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "partial", "pdWitnessCompleteness": "none", "anatomyStages": ["S2", "S4", "S5"], "evidence": "Marathakis's edition presents a planetary-hours-and-spirits apparatus with conjuration frames; the MS tradition is heterogeneous and no single witness is treated as complete. Grade rests on secondary description of the 2011 edition, not on the edition itself.", "evidenceStrength": "low", "unverified": true},
+        {"type": "divination-procedure", "workCompleteness": "referenced", "pdWitnessCompleteness": "none", "anatomyStages": ["S2"], "evidence": "The title itself denotes a divinatory practice (hydromancy/lecanomancy family); secondary sources describe rather than set it out.", "evidenceStrength": "low", "unverified": true}
+      ],
+      "contested": {
+        "question": "Is the Hygromanteia the ANCESTOR of the Key of Solomon, or a cousin sharing a common Solomonic tradition?",
+        "positions": [
+          {"holder": "Marathakis (2011) and Skinner, Sourceworks series", "claim": "Direct ancestry — the edition is literally subtitled 'The Ancestor of the Key of Solomon', and argues Byzantine transmission of Greco-Egyptian, Arabic and Christian material into the Latin West.", "cite": "S16"},
+          {"holder": "shared-tradition / diffusionist reading (Torijano's genealogy of the Solomon-as-magus tradition; Peterson's witness-list presentation)", "claim": "The Solomonic material is a broad late-antique-to-medieval stream; common features evidence a shared reservoir rather than a single stemmatic descent, and 15th-c. Greek MSS are not automatically prior to the 1380–1410 Trente fragment.", "cite": "S16, S1"}
+        ],
+        "resolution": "NOT RESOLVED. No unqualified TRANSMITS_TO edge is asserted — an edge would resolve the contest. See edge E-CONTESTED-01."
+      },
+      "notes": "Admitted to this slice only because the Key of Solomon's origin question is unanswerable without it."
+    },
+    {
+      "id": "gw:key-of-solomon",
+      "atlasSlug": "key-of-solomon",
+      "title": "Key of Solomon (Clavicula Salomonis)",
+      "author": "anonymous, pseudepigraphically attributed to Solomon",
+      "culture": "Latin-Christian learned magic (with Jewish and Byzantine-Greek substrate)",
+      "date": "14th–15th c.; oldest fragment Trente 86 dated 1380–1410; Italian BNF Ital. 1524 dated 1446; oldest complete Latin Coxe 25 late 15th c.",
+      "dateCertainty": "well-attested range",
+      "structure": "Two books. Book I: love and fear of God, planetary hours and their properties, circle, confessions, prayers, conjurations, a series of named 'experiments', and the seven planetary pentacles. Book II: timing, operator and disciple conduct, fasting, bathing, clothing, place, construction of knives/wands/staffs, incense, water, fire, parchment, ink, needles, silk, astrological images, characters, sacrifices. (S1 — Peterson's TOC summary.)",
+      "bestEdition": "No single critical edition; Peterson's collated digital edition (S1) is the working scholarly reference. Recension spread is the defining feature: Mathers used mostly 18th-c. French MSS (Kings 288, Harley 3981, Sloane 3091) descending from Abraham Colorno's Italian.",
+      "pdStatus": "MSS PD. QUOTE WITNESS: Mathers 1889 (PD; the repo plan records that ISTA mislabels it '1888' — inherited, not re-derived, S18). Peterson's collation is (c) — cite only.",
+      "procedures": [
+        {"type": "purification", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S1"], "evidence": "Book II devotes discrete chapters to operator conduct, fasting, bathing and clothing — the preparation stage is set out as its own apparatus rather than assumed. (S1)", "evidenceStrength": "high"},
+        {"type": "timing-election", "vocabGap": true, "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S2"], "evidence": "Book I opens on planetary hours and their properties; Book II opens on times of operation. Timing is foregrounded, not incidental. This is the row that ties the slice to the repo's shipped hours engine. (S1)", "evidenceStrength": "high"},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "complete", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3"], "evidence": "Book II sets out construction AND consecration for the full instrument set (knife, wand, staff, parchment, ink, needle, silk, incense, water, fire). Witness downgrade: Mathers omitted operations involving blood and material he judged interpolated from the Grimorium Verum and the Clavicola di Salomone ridolta (S1) — so the PD witness is deliberately abridged at exactly the material-practice layer.", "evidenceStrength": "high"},
+        {"type": "ritual-enclosure-construction", "vocabGap": true, "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S4"], "evidence": "Book I contains a dedicated circle chapter. (S1)", "evidenceStrength": "high"},
+        {"type": "invocation/evocation", "workCompleteness": "complete", "pdWitnessCompleteness": "partial", "anatomyStages": ["S5", "S6"], "evidence": "Book I gives confessions, prayers and conjurations as a continuous sequence. Downgrade of the witness for the same abridgement reason above.", "evidenceStrength": "high"},
+        {"type": "coercive-rite", "workCompleteness": "partial", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S5"], "evidence": "Book I's 'experiments' include named operations for recovering stolen goods, invisibility, love, and destruction of enemies. Mathers omitted the black-magic operations he judged interpolations, so the PD witness names but does not set them out. (S1)", "evidenceStrength": "high", "harmNote": "COERCION/HARM: the experiment list includes love-compulsion and enemy-destruction operations. Admitted as academic religious history only, per the repo's abhicāra precedent; the site describes the CLAIM-STRUCTURE and never the operation. No operative content recorded in this graph."},
+        {"type": "offering/homa", "workCompleteness": "partial", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S3", "S5"], "evidence": "Book II closes with a chapter on sacrifices to spirits (S1); the PD witness abridges the blood material.", "evidenceStrength": "medium", "harmNote": "Animal-sacrifice material — described as historical religious practice only."}
+      ],
+      "notes": "The completeness anchor for the whole slice: the KOS is one of very few works here that sets out ALL SIX anatomy stages. Its recension spread means 'complete' is a statement about the tradition as collated, never about any single manuscript."
+    },
+    {
+      "id": "gw:lemegeton",
+      "atlasSlug": "lemegeton",
+      "title": "Lemegeton, or Clavicula Salomonis Regis (The Lesser Key of Solomon)",
+      "author": "anonymous compiler; pseudepigraphically attributed to Solomon",
+      "culture": "English 17th-c. compilation of Latin-Christian learned magic",
+      "date": "17th-c. compilation. Base MS Sloane 3825 (17th c.); Ars Paulina carries the internal date 1641 and mentions guns.",
+      "dateCertainty": "well-attested",
+      "structure": "A COMPILATION of five independent books (see HAS_PART edges). Its unity is editorial, not authorial — the constituent books differ by four centuries in origin.",
+      "bestEdition": "Peterson, ed. (S2), following Sloane 3825 as base text — 'the most accurate manuscript when compared with identifiable source material'. Other witnesses: Harl. 6483 (1712–13, the 'Dr. Rudd' additions), Sloane 2731 (1687?, omits Ars Notoria), Sloane 3648 (c. 1665+, numerous errors vs Scot and Trithemius), Wellcome 3203 (1828, Lea's copy of Hockley).",
+      "pdStatus": "MSS PD. Quote witness for Book I only: Mathers/Crowley 'Goetia' 1904 (PD, S18). Peterson's edition (c) — cite only.",
+      "procedures": [],
+      "notes": "Procedures are graded on the five constituent books, not on the compilation. The compilation ITSELF contributes one structural fact: it silently merges a 13th-c. devotional art (Ars Notoria) with a 17th-c. demon catalog, which is why any single completeness grade for 'the Lemegeton' would be meaningless."
+    },
+    {
+      "id": "gw:ars-goetia",
+      "atlasSlug": null,
+      "title": "Ars Goetia (Lemegeton Book I)",
+      "author": "anonymous compiler",
+      "culture": "English 17th-c. compilation",
+      "date": "17th c.; catalog descends from Weyer 1563/1577 via Scot",
+      "structure": "A catalog of 72 spirits with offices and ranks, framed by a conjuration apparatus. Peterson notes the spirit ORDER differs from Weyer's, unexplained. (S2)",
+      "bestEdition": "Peterson (S2) after Sloane 3825.",
+      "pdStatus": "Mathers/Crowley 1904 PD — including Crowley's 'Initiated Interpretation' preface reading the spirits as 'portions of the human brain', i.e. the skeptical reading from inside the tradition (S18).",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S1", "S2", "S3", "S4", "S5", "S6"], "evidence": "The text supplies the full six-stage frame including the closing licence to depart — the S6 stage whose presence is diagnostic. The 1904 PD witness reproduces the frame in full.", "evidenceStrength": "high"},
+        {"type": "coercive-rite", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S5"], "evidence": "The conjuration apparatus is explicitly TIERED — successive conjurations escalate to constraint and to a curse formula if the spirit does not appear. The escalation structure is recorded; no tier is transcribed.", "evidenceStrength": "high", "harmNote": "HARM/ETHICS CALLOUT (mirrors the repo's six-acts.html abhicāra treatment): the entire frame is one of compulsion of a personified other. Three stacked historical voices are available and all PD: Weyer's own counter-voice (his 1563 project was to argue accused witches were deluded, not effective — S13); Waite 1911's denunciation (S15); Crowley 1904's psychologising preface (S18). The repo plan mandates: no conjuration texts, no default seals. Honoured here."},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3"], "evidence": "Instrument and seal preparation is present but leaner than the Key of Solomon's dedicated Book II; several material specifications are assumed from the greater Key.", "evidenceStrength": "medium"}
+      ],
+      "notes": "STEMMA FINGERPRINT (the slice's cleanest philological result): Peterson establishes descent from Weyer through Scot by 'unique errors and spellings introduced' in Scot's 1665 edition — i.e. the dependency is proven by INHERITED MISTAKES, not by resemblance. Weyer's 69 spirits (Pruflas dropped in Scot's rendering) become 72 with four added. (S2, S13, S18)"
+    },
+    {
+      "id": "gw:theurgia-goetia",
+      "atlasSlug": null,
+      "title": "Theurgia-Goetia (Lemegeton Book II)",
+      "author": "anonymous compiler, on Trithemius",
+      "culture": "English 17th-c. compilation",
+      "date": "17th c.",
+      "structure": "Catalog of 513 aerial spirits (good and evil mixed), organised by cardinal direction, with abundant seals. (S2)",
+      "bestEdition": "Peterson (S2) after Sloane 3825.",
+      "pdStatus": "MS PD; no PD English print witness identified this round for this book specifically.",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3", "S5"], "evidence": "The substance is catalog-plus-seals lifted from Steganographia Book 1 — Peterson records that the seals match Trithemius's exemplars EXACTLY (S2). A general conjuration frame is supplied but is thin relative to the catalog bulk, and preparation/timing/dismissal stages are largely assumed from the Goetia.", "evidenceStrength": "medium"}
+      ],
+      "notes": "The most important work in the slice for what it reveals about READING: its operative content is derived from a text (Steganographia Bk 1) whose spirit-material is cipher cover, not magic. See keyFinding 1."
+    },
+    {
+      "id": "gw:ars-paulina",
+      "atlasSlug": null,
+      "title": "Ars Paulina (Lemegeton Book III)",
+      "author": "anonymous compiler, on Trithemius; pseudepigraphically referred to the Apostle Paul",
+      "culture": "English 17th-c. compilation",
+      "date": "internal date 1641; references guns; also references Saunders's 'Physiognomie and Chiromancie' (1671) and Paracelsus's 'Archidoxes of Magic' (S2)",
+      "dateCertainty": "internally dated but with post-1641 references — compilation strata, flagged",
+      "structure": "Two parts: angels of the 24 hours, and angels of the 360 degrees of the zodiac. Spirits derive from Steganographia Book 2. (S2)",
+      "bestEdition": "Peterson (S2) after Sloane 3825.",
+      "pdStatus": "MS PD.",
+      "procedures": [
+        {"type": "timing-election", "vocabGap": true, "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S2"], "evidence": "The hour-angel and degree-angel assignment tables are exhaustive by construction (24 + 360) — a table is complete or it is not, and these are. This is the rare row where 'complete' is checkable by counting.", "evidenceStrength": "high"},
+        {"type": "invocation/evocation", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3", "S5"], "evidence": "The operative frame is brief relative to the table apparatus; the ratio of catalog to procedure is the evidence. Preparation and dismissal are not independently set out.", "evidenceStrength": "medium"},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3"], "evidence": "A seal/table-of-practice apparatus is described; material specification is partial.", "evidenceStrength": "low"}
+      ],
+      "notes": "The repo plan's T13 targets these two tables as displayable cited facts against the chart engine's hour and ascendant-degree outputs (S18) — described, never prescribed. Data volume, not framing, is the cost."
+    },
+    {
+      "id": "gw:ars-almadel",
+      "atlasSlug": null,
+      "title": "Ars Almadel (Lemegeton Book IV)",
+      "author": "anonymous; Arabic-derived",
+      "culture": "Latin-Christian, from an Arabic source (darb al-mandal, 'drawing the circle') — the etymology is widely repeated but I could not confirm it from a scholarly-tier source this round",
+      "date": "13th-c. Latin forms attested (a 'De consecratione lapidum' version of the Liber Almandal Salomonis has a published critical edition); the Lemegeton form 17th c.",
+      "structure": "A wax-tablet ('almadel') apparatus governing four Altitudes — Chora Orientis and its three counterparts — each with subordinate choras and their angels; twenty chief spirits over the 360 degrees. All spirits beneficent. (S2 and search summaries.)",
+      "bestEdition": "Peterson (S2). Two branches documented: one closer to the Arabic source, one a significant Christianising revision; the English versions descend from the Christianised branch.",
+      "pdStatus": "MS PD. NEW PD WITNESS FOUND THIS ROUND: A. W. Greenup, 'The Almadel of Solomon According to the Text of the Sloane MS. 2731', extracted from the Occult Review (S17) — pre-1931, quotable. The repo plan does not list this.",
+      "procedures": [
+        {"type": "scrying-crystallomancy", "vocabGap": true, "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S2", "S3", "S5"], "evidence": "The wax-tablet apparatus, the four-altitude scheme and seasonal/timing constraints are set out; but the two-branch divergence (Arabic-closer vs Christianised) means the English text the repo can reach is a revision, and preparation/dismissal stages are not independently developed. Graded partial on branch-divergence evidence.", "evidenceStrength": "medium"},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3"], "evidence": "Tablet material and dimensional specification is given; the repo records the schema, not the measurements.", "evidenceStrength": "medium"}
+      ],
+      "notes": "Lowest-harm member of the Lemegeton — the text's own claim is that all twenty spirits are beneficent. Useful as the wing's non-coercive counterweight to the Goetia."
+    },
+    {
+      "id": "gw:ars-notoria",
+      "atlasSlug": null,
+      "title": "Ars Notoria (Lemegeton Book V; independently, the Flores Aurei of pseudo-Apollonius)",
+      "author": "anonymous, attributed to Solomon; the 'Golden Flowers' recension attributed to Apollonius of Tyana",
+      "culture": "Latin-Christian medieval devotional/university magic",
+      "date": "13th c. or earlier — the oldest layer in the Lemegeton by roughly four centuries",
+      "dateCertainty": "well-attested",
+      "structure": "Short prayers followed by orations composed of angel-name lists, recited while the operator INSPECTS a 'nota' — a complex figure encapsulating a subject of study. Claimed purpose: rapid infusion of the seven liberal arts. Two recensions: Version A (Apollonii Flores Aurei) and Version B (Dogma Artis Notoriae), distinguished by glossing (S9).",
+      "bestEdition": "Julien Véronèse, critical Latin edition, SISMEL 2007, collating >50 MSS (S9). English: Skinner & Clark 2019 (Version A); Castle 2023.",
+      "pdStatus": "PD quote witness: Robert Turner's English translation, London 1657 (S18). Peterson's transcription of it is CC-BY 4.0 (attribution required) per the repo plan (S18).",
+      "procedures": [
+        {"type": "figure-inspection-contemplation", "vocabGap": true, "workCompleteness": "partial", "pdWitnessCompleteness": "FRAGMENTARY", "anatomyStages": ["S1", "S2"], "evidence": "THE SLICE'S SHARPEST WITNESS-LEVEL FINDING. The notae ARE the art — the orations are recited while gazing at them. Turner's 1657 edition, and earlier versions, OMIT the drawings of the notae entirely. The PD English witness the repo may quote is therefore structurally void at precisely the operative centre. Independently, MS transmission of the figures is documented as lost, altered or corrupted in places (S9 and search summaries). Work-level 'partial' because Véronèse's collation recovers a coherent text; witness-level 'fragmentary' because Turner does not.", "evidenceStrength": "high"},
+        {"type": "invocation/evocation", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S1", "S5"], "evidence": "Orations survive in the PD witness. Two registers coexist: Latin prayers of emphatic Christian orthodoxy, and 'Solomon's cryptic prayers' resembling voces magicae. The voces are recorded AS A PHENOMENON (unintelligible name-strings in a devotional frame); no string is transcribed.", "evidenceStrength": "high"},
+        {"type": "purification", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S1"], "evidence": "Ritual purity and fasting requirements are stated as conditions rather than set out as a regimen.", "evidenceStrength": "medium"}
+      ],
+      "counterVoice": "John of Morigny's 'Liber florum celestis doctrine' (early 14th c.) is the documented insider critique — a monk who used the Ars Notoria, judged it dangerous, and wrote a replacement. The repo plan already schedules him as the counter-voice (S18). This is the corpus's best example of a period-internal ethical objection, which is worth more to the museum framing than any modern disclaimer.",
+      "notes": "Also the corpus's best 'why did people actually do this' node: the claimed purpose is passing your exams. Medieval university anxiety, not demonology."
+    },
+    {
+      "id": "gw:liber-juratus",
+      "atlasSlug": "liber-juratus",
+      "title": "Liber Iuratus Honorii / The Sworn Book of Honorius",
+      "author": "attributed to 'Honorius of Thebes'; anonymous",
+      "culture": "Latin-Christian learned magic (theurgic/devotional register)",
+      "date": "early 14th c. (the plan anchors composition to the John XXII window 1316–34; the Summa Sacre Magice of 1346 as a body date-anchor) (S18)",
+      "dateCertainty": "well-attested range",
+      "structure": "93 chapters in four major sections (per S3's editorial summary). Operations named include obtaining the vision of God, knowledge of the angelic hierarchies, command of elemental forces, invisibility, and healing. NOTE A DISCREPANCY: S3 gives 93 chapters, yet also records Royal 17Axlii 'breaks off just after the beginning of chapter CXV' — chapter numbering evidently differs between witnesses. Flagged, not reconciled.",
+      "bestEdition": "Gösta Hedegård, Studia Latina Stockholmiensia 48 (2002), critical edition of the Latin, with a parallel edition by Jean-Patrice Boudet the same year (S10). Both rest on Sloane 3854 (14th c.), which Peterson calls the most reliable, complete and readable witness (S3).",
+      "pdStatus": "MSS PD; Hedegård/Boudet in copyright. THERE IS NO PD ENGLISH WITNESS. The repo plan's ruling stands: cite, quote nothing (S18).",
+      "procedures": [
+        {"type": "purification", "workCompleteness": "complete", "pdWitnessCompleteness": "none", "anatomyStages": ["S1"], "evidence": "The text conditions success on the operator being spiritually cleansed and morally upright, and develops this as a sustained multi-week regimen rather than a precondition clause — the 'devotional maximalism' the repo plan names (S3, S18). Duration figure not re-derived this round.", "evidenceStrength": "medium", "unverified": "the specific 28-day figure the repo plan cites was NOT re-derived from a source this round"},
+        {"type": "visualization", "workCompleteness": "partial", "pdWitnessCompleteness": "none", "anatomyStages": ["S1", "S5"], "evidence": "The claimed goal of the flagship operation is the vision of God (beatific vision) — a contemplative, not evocatory, target. Recorded as claim.", "evidenceStrength": "medium"},
+        {"type": "invocation/evocation", "workCompleteness": "partial", "pdWitnessCompleteness": "none", "anatomyStages": ["S3", "S4", "S5"], "evidence": "WITNESS-LEVEL FRAGMENTARY, EXPLICITLY: Royal 17Axlii — the English-language witness, c. mid-16th c., ~82 folios — breaks off just after the beginning of chapter CXV, BEFORE the angel-invocation instructions commence (S3). The one English manuscript stops exactly where the operative core begins. Work-level grade rests on Sloane 3854 via Hedegård.", "evidenceStrength": "high"},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "complete", "pdWitnessCompleteness": "none", "anatomyStages": ["S3"], "evidence": "The Sigillum Dei (Seal of God) construction is the work's most consequential single element — it is what Dee derived his Sigillum Dei Aemeth from (S3, S18). Structure recorded; construction not.", "evidenceStrength": "high"},
+        {"type": "oath-pact-binding", "vocabGap": true, "workCompleteness": "complete", "pdWitnessCompleteness": "none", "anatomyStages": ["S1"], "evidence": "The work is 'sworn' by definition: transmission is gated by an oath, and the copying restriction is preserved even in Peterson's modern copyright notice, which parodically restates it ('permission… to make one handwritten copy for personal use, provided the master bind his executors by a strong oath to bury it with him in his grave' — S3). A rare case where the transmission rule is itself a documented procedure.", "evidenceStrength": "high"},
+        {"type": "coercive-rite", "workCompleteness": "referenced", "pdWitnessCompleteness": "none", "anatomyStages": ["S5"], "evidence": "The operation list includes summoning armies and commanding elemental forces; these are named among the work's claimed powers, not set out chapter by chapter in the summary available. (S3)", "evidenceStrength": "low", "harmNote": "Named as historical claim only."}
+      ],
+      "notes": "Carries the corpus's single best manuscript-provenance edge: John Dee OWNED and ANNOTATED Sloane 313 in his own hand (S3). Not an influence guess — physical marginalia."
+    },
+    {
+      "id": "gw:heptameron",
+      "atlasSlug": "heptameron-print",
+      "title": "Heptameron, seu Elementa Magica",
+      "author": "pseudo-Peter of Abano (attribution to the Paduan physician Pietro d'Abano, 1250–1316, judged 'quite certainly spurious' by Lynn Thorndike; Jacques Gohory proposed as possible editor via his link to the printer Pietro Perna)",
+      "culture": "Latin-Christian Renaissance ritual magic",
+      "date": "first printed 1559 (Marburg), within Agrippa's 'Liber Quartus' volume; reorganised Latin edition Basel 1565; Vatican Reg. lat. 1115 (1569) preserves an EARLIER textual state than the prints (S4). The repo plan flags the '1474/1496' ghost-prints (S18).",
+      "dateCertainty": "print-attested; ghost-print claims flagged",
+      "structure": "A weekday-organised angel-magic manual: for each day, the presiding angels and aerial spirits, the hour names and their angels, plus circle, pentacle, incense and sword specifications and time-specific conjurations. The whole six-stage anatomy in miniature. (S4)",
+      "bestEdition": "Peterson's digital edition (S4), (c) 1998/2008/2020.",
+      "pdStatus": "PD. Quote witness: Robert Turner's English, London 1655, reprinted 1665 (S4, S12). VERIFIED THIS ROUND via LoC record 11031418 that the Turner 1655 volume contains, in one binding: the Fourth Book, Of Geomancy, the Magical Elements of Peter de Abano (= Heptameron), Astronomical Geomancy, The Nature of Spirits, and the Arbatel — four of this slice's works in a single PD English witness.",
+      "procedures": [
+        {"type": "timing-election", "vocabGap": true, "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S2"], "evidence": "The text's organising principle IS the timing scheme: named hours, hour angels, day angels, airs/winds, seasonal names. Exhaustive by construction across the seven days and 24 hours. (S4, S18)", "evidenceStrength": "high"},
+        {"type": "purification", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S1"], "evidence": "A preparation period is specified as part of the operative frame — measured in days, in sharp contrast to Abramelin's months. Duration is the comparative variable, recorded as a structural fact.", "evidenceStrength": "medium"},
+        {"type": "ritual-enclosure-construction", "vocabGap": true, "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S4"], "evidence": "Circle and pentacle specification is present and integral (S4). No template recorded here.", "evidenceStrength": "high"},
+        {"type": "invocation/evocation", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S3", "S5", "S6"], "evidence": "Conjurations keyed to specific times, with implement specification (swords, incense). The compactness is the point: this is the shortest text in the slice that supplies the full anatomy, which is exactly why the cheap-print grimoires reused it wholesale.", "evidenceStrength": "high"}
+      ],
+      "notes": "THE HINGE OF THE SLICE. Peterson documents that it draws substantially on the Liber Iuratus Honorii, the Clavicula Salomonis, and Clm 849 (a 15th-c. necromancer's manual), with elements systematically reorganised from those older sources (S4) — and it in turn supplies the ritual skeleton the 18th–19th-c. cheap prints copy (S5, S18). Medieval manuscript magic enters print HERE and leaves through the Bibliothèque bleue."
+    },
+    {
+      "id": "gw:arbatel",
+      "atlasSlug": "arbatel",
+      "title": "Arbatel de Magia Veterum",
+      "author": "anonymous",
+      "culture": "Latin-Christian Renaissance, Paracelsian milieu",
+      "date": "first printed Latin 1575, Basel, by Pietro Perna — the leading Paracelsus printer-publisher of the city (S6)",
+      "dateCertainty": "print-attested",
+      "structure": "THE SLICE'S PRIMARY COMPLETENESS EXHIBIT. Planned as nine tomes; only the first, the Isagoge ('a Book of the Institutions of Magick… which in fourty and nine Aphorisms comprehendeth the most general Precepts of the whole Art'), was ever published or, so far as is known, written. 49 aphorisms = 7 x 7 (S6). Contains the seven Olympic Spirits / planetary governors.",
+      "bestEdition": "No modern critical edition identified this round.",
+      "pdStatus": "PD. Quote witness: Turner 1655, in the composite Fourth Book volume (S12 — verified this round).",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "referenced", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S5"], "evidence": "Two independent grounds. (a) FORM: the surviving book is aphoristic and preceptive — general precepts, not a sequence; the Olympic Spirits and their governances are NAMED and characterised without an operative frame being set out. (b) PLAN: eight of nine projected tomes do not exist, so any operative development the scheme envisaged was never written (S6). Note the two grades are distinct — the Isagoge is COMPLETE AS A BOOK (all 49 aphorisms present) while the WORK is fragmentary at 1/9. Recorded both ways rather than collapsed.", "evidenceStrength": "high"},
+        {"type": "timing-election", "vocabGap": true, "workCompleteness": "referenced", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S2"], "evidence": "Planetary governance is doctrinal here; the associated Trithemian age-cycle scheme lives in a different work (De septem secundeis).", "evidenceStrength": "medium"}
+      ],
+      "structuralCompleteness": {"grade": "fragmentary", "basis": "1 of 9 planned tomes exists", "distinctFrom": "the surviving Isagoge, which is internally complete at 49/49 aphorisms"},
+      "notes": "Also the corpus's ethical outlier: the repo plan singles out its 'unusual ethical register' — piety and warning rather than compulsion (S18). Pairs directly against the Goetia as the tradition's own internal moral spread."
+    },
+    {
+      "id": "gw:abramelin",
+      "atlasSlug": "abramelin",
+      "title": "The Book of Abramelin (Die egyptischen großen Offenbarungen / La Sacrée Magie)",
+      "author": "attributed to Abraham of Worms, transmitting 'Abramelin the Mage'; actual authorship anonymous",
+      "culture": "German-Jewish / Latin-Christian border, early modern",
+      "date": "CONTESTED. Internal claim: 1458. Modern scholarship: composition c. 1595–1609 (the repo plan cites Kollatsch 2021, S18 — NOT re-derived this round). Dehn worked from the two earliest extant MSS, both 1608 (S8). Mathers used a 15th-c.-claimed French MS.",
+      "dateCertainty": "contested",
+      "structure": "An ordeal-form operation: a sustained retreat culminating in a claimed contact with the 'Holy Guardian Angel', followed by an apparatus of word-squares. Book count and duration differ by recension (see contested).",
+      "bestEdition": "Dehn & Guth, 'The Book of Abramelin: A New Translation' (S8) — from the earliest and most complete German sources. Mathers 1898 is superseded as scholarship but is the only PD English text.",
+      "pdStatus": "Mathers 1898 PD (2nd ed. 1900) — the repo plan's inherited verdict (S18). Note a date wrinkle found this round: secondary sources give the translation as made in 1897 and published 1898; the repo's 1898 verdict is the publication date and stands. Dehn/Guth and the Kollatsch material are in copyright — the complete German-family squares must NEVER be ingested.",
+      "procedures": [
+        {"type": "ascetic-retreat-regimen", "vocabGap": true, "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S1"], "evidence": "The regimen is set out end to end in both recensions — but the recensions DISAGREE ON ITS LENGTH, which is the operation's defining parameter. All the German texts give 18 months before any claimed divine contact; Mathers's French gives six (S8). A procedure whose duration is not determinate across the tradition is not 'complete'.", "evidenceStrength": "high", "harmNote": "HARM CALLOUT — MANDATED BY THE REPO PLAN AND CARRIED HERE. Prolonged isolation combined with fasting. The historical record around this operation includes documented obsessive harm; Mathers's own edition carries warnings; modern framing must name psychiatric risk (isolation, sleep and nutrition disruption, and the reinforcement of fixed ideation). The site describes THAT the text sets out a months-long retreat and never what it consists of. Forcing this into the generic 'purification' type would erase the risk signal — hence the vocabGap."},
+        {"type": "invocation/evocation", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S1", "S5"], "evidence": "The claimed culmination (contact with the Holy Guardian Angel) is described as the retreat's terminus; the operative content is devotional-prayer form rather than conjuration form, and differs across recensions.", "evidenceStrength": "medium"},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "partial", "pdWitnessCompleteness": "FRAGMENTARY", "anatomyStages": ["S3"], "evidence": "THE SLICE'S ONE FULLY QUANTIFIED COMPLETENESS RESULT. The word-square apparatus contains 242 squares in Mathers versus 251 in the German tradition, AND most squares in Mathers are not completely filled in — the French text Mathers used left most letters blank (S8). So the PD witness is short by nine squares and materially incomplete within the squares it does have. Separately, Dehn's own MSS present the words in LINE form, not grids, so grid reconstruction is itself modern editorial work (Leitch, filling gaps by pattern and linguistic inference — S8). Three different objects are commonly conflated: the French/Mathers blanks, the German line-lists, and Leitch's reconstructed grids.", "evidenceStrength": "high", "harmNote": "The square list includes operations of the coercive and harmful classes. Catalogued as claims about what the text asserts; no square is reproduced as a usable template. The repo plan's T26 (structural metadata only — symmetry class, letter frequency, completion status) is the right shape and is explicitly 'theory, not usable squares' (S18)."},
+        {"type": "purification", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S1"], "evidence": "Subsumed in the retreat regimen above; graded separately only because the controlled vocabulary lacks the retreat term."}
+      ],
+      "contested": {
+        "question": "How long is the operation, and when was the book written?",
+        "positions": [
+          {"holder": "German recension family (Dehn & Guth 2006, from the 1608 MSS)", "claim": "18 months; and the earliest witnesses are early-17th-c. German, implying composition around 1595–1609 rather than the internally claimed 1458.", "cite": "S8, S18"},
+          {"holder": "French recension / Mathers 1898", "claim": "six months; and the manuscript presents itself as a 15th-c. text of 1458.", "cite": "S8"}
+        ],
+        "resolution": "NOT RESOLVED HERE. Note that the two questions are entangled — the recension that gives 18 months is also the one that redates the book — so a site cannot adopt one figure without implicitly taking the dating side. Both must be stated together."
+      },
+      "notes": "Mathers is widely judged to have used the least reliable manuscript available, with many errors and omissions (S8). The repo is therefore in the awkward but honest position of being able to QUOTE only the worst witness — which is itself the story worth telling."
+    },
+    {
+      "id": "gw:grimorium-verum",
+      "atlasSlug": null,
+      "proposedId": "gw:grimorium-verum",
+      "title": "Grimorium Verum",
+      "author": "anonymous; falsely ascribed on the title page to 'Plaingière, Jesuit Dominican' (a self-contradictory order attribution) and imprinted 'Alibeck l'Égyptien, Memphis, 1517'",
+      "culture": "French cheap-print (Bibliothèque bleue) descendant of Latin-Christian ritual magic",
+      "date": "CONTESTED / FALSE IMPRINT. Claimed: Memphis 1517. Actual: earliest printed exemplar c. 1817 (Alibeck); principal MS witness Wellcome MS 983 (c. 1709, 'l'art Magique'); Wellcome MS 4667 (mid-18th c.) bridges the Latin MSS and the printed form. Later prints: Blocquel c. 1830, Bestetti 1868, Muzzi 1880 (S5).",
+      "dateCertainty": "contested — false imprint documented",
+      "structure": "Three parts: (1) invocations and spirit-summoning procedures; (2) natural and supernatural 'secrets' operated through demonic agency; (3) 'the key to the work', the operational section. (S5)",
+      "bestEdition": "Peterson's edition (S5), which establishes a stemma deriving all later printed editions from the Alibeck print and corrects Waite and Shah on the direction of dependency (the Italian editions depend on the French, not the reverse).",
+      "pdStatus": "Underlying prints PD. Peterson's digital edition of THIS page is CC-BY 4.0 (verified this round, S5) — attribution required, a rare exception to his usual all-rights-reserved.",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S1", "S2", "S3", "S4", "S5", "S6"], "evidence": "The three-part structure is itself the evidence: part 1 supplies the summoning frame and part 3 the operational key, i.e. the text is self-consciously organised as a working whole. Derivative of the Key of Solomon and of the Heptameron's ritual skeleton (S5).", "evidenceStrength": "high"},
+        {"type": "coercive-rite", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S5"], "evidence": "Part 2's 'secrets operated through demonic power' is the coercive-and-harmful class. Peterson's own editorial disclaimer is the strongest evidence of the content's character: he states the text is presented for historical purposes only and 'does not suggest or condone any criminal, unethical, or coercive practices', recommending ethical alternatives (S5).", "evidenceStrength": "high", "harmNote": "HARM/ETHICS: contains operations in the criminal and coercive classes. Peterson's disclaimer is adopted as the repo's precedent wording. Catalog-level treatment only, per the abhicāra wing model — the repo records THAT the class exists and never its members' operations."},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S3"], "evidence": "Instrument and character preparation is set out; inherited from the Key of Solomon family.", "evidenceStrength": "medium"}
+      ],
+      "notes": "Bears directly on the Key of Solomon row: Mathers EXCLUDED material from his KOS translation on the grounds that it was interpolated FROM the Grimorium Verum (S1). The two works' textual histories are entangled in both directions."
+    },
+    {
+      "id": "gw:grand-grimoire",
+      "atlasSlug": null,
+      "proposedId": "gw:grand-grimoire",
+      "title": "Grand Grimoire (Le Dragon Rouge / The Red Dragon)",
+      "author": "anonymous; attributed on some title pages to 'Antonio Venitiana del Rabina'",
+      "culture": "French cheap-print (Bibliothèque bleue)",
+      "date": "CONTESTED / FALSE IMPRINTS. Title pages variously claim 1421, 1521, 1522; Owen Davies proposes a first edition c. 1702 with a Bibliothèque bleue version possibly c. 1750; the imprints are documented as fictitious and unusable for genealogy.",
+      "dateCertainty": "contested",
+      "structure": "NOT RECORDED. The repo plan's ruling is a ONE-LINE record with no structural detail (S18), and this graph honours it. What IS recorded: the work is organised around a pact frame rather than a conjuration-and-dismissal frame — the structural difference from the Goetia that makes it the corpus's ethical outer edge.",
+      "bestEdition": "no critical edition identified this round",
+      "pdStatus": "Prints PD. PD critical witness available and preferred: A. E. Waite, 'The Book of Ceremonial Magic' (1911; 1898 as 'The Book of Black Magic and of Pacts') — his denunciation is quotable and gives the museum voice ready-made (S15). Éliphas Lévi regarded the contemporary Dragon Rouge as a counterfeit of an older true Grand Grimoire — a period-internal skepticism worth recording.",
+      "procedures": [
+        {"type": "oath-pact-binding", "vocabGap": true, "workCompleteness": null, "pdWitnessCompleteness": null, "gradeWithheld": "R33 hostile audit, EVIDENCE STRIKE E3 — grade VOIDED from 'complete' to null. The evidence field said in terms that the grade rested on nothing but the text's physical finishedness and 'NOT on any inspection of its contents'. That is a completeness grade asserted without evidence, which is the exact failure rule 2 exists to catch — and it is worse here than elsewhere because the round has deliberately (and correctly, on ethics grounds) refused to inspect this text. The honest record is: this work is admitted to the graph as a one-line transmission-map placeholder and is UNGRADED. Withholding the grade costs nothing and removes a fabricated data point; asserting 'complete' about a book nobody opened would have been the round's most quotable error.", "anatomyStages": ["S5"], "evidence": "UNGRADED. The printed text is a finished, self-contained working document; its contents were not inspected, by design.", "evidenceStrength": "none", "harmNote": "HARM/ETHICS — HIGHEST IN SLICE. The pact frame and its associated preliminary operations are the material the tradition's own commentators denounced. Treatment: one line, no structure, Waite's PD denunciation quoted, Peterson's 'historical purposes only' disclaimer applied. This entry exists so that the graph is not silently incomplete; it is not a research target."}
+      ],
+      "notes": "Included for completeness of the transmission map (it is a Heptameron-skeleton descendant via the cheap-print wave) and for nothing else. Any future round should treat expansion here as requiring explicit operator sign-off."
+    },
+    {
+      "id": "gw:sefer-raziel",
+      "atlasSlug": "sefer-raziel",
+      "title": "Sefer Raziel ha-Malakh / Liber Razielis Archangeli / (English) Sepher Raziel, Liber Salomonis",
+      "author": "anonymous; attributed to the angel Raziel via Adam",
+      "culture": "Jewish, transmitted into Latin-Christian learned magic through Alfonsine Castile",
+      "date": "Latin Liber Razielis produced under Alfonso X of Castile, 13th c.; Hebrew Sefer Raziel ha-Malakh redaction probably 13th c.; the English 'Sepher Raziel / Liber Salomonis' MS dated 1564; printed Hebrew Amsterdam 1701 (the 1564 English MS and the 13th-c. Latin are the load-bearing dates here).",
+      "dateCertainty": "well-attested for the Latin and English witnesses; the Hebrew redaction layered and debated",
+      "structure": "Seven treatises in the majority of versions. Named: 1. 'Liber Clavis' (astrology and its magical use); 2. 'Ala' (magical virtues of stones, herbs, beasts, words); further treatises on angelology, gematria and divine names; book 6 rests on the Sefer ha-Razim, with additions including the 'Prayer of Adam'.",
+      "bestEdition": "Don Karr & Stephen Skinner, 'Sepher Raziel: Liber Salomonis' (Sourceworks of Ceremonial Magic 6) for the 1564 English MS; Alfonsine Latin studied by Ana Rosa González Sánchez and in the 'Est Iste Liber Maximi Secreti' study of the Liber Razielis and kingship.",
+      "pdStatus": "Underlying MSS PD; modern editions in copyright. The repo plan records a 1564 English MS (Sloane 3846) and a Raziel 1564 print reference (S18).",
+      "procedures": [
+        {"type": "consecration-of-object/talisman", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S2", "S3"], "evidence": "The stone/herb/beast-virtue treatise ('Ala') supplies materia and the 'Liber Clavis' supplies astrological timing — i.e. the components of a talismanic operation are distributed across separate treatises rather than assembled into one sequence. That distribution IS the partial grade.", "evidenceStrength": "medium"},
+        {"type": "invocation/evocation", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S5"], "evidence": "Angelology and divine-name material is extensive; book 6's dependence on the Sefer ha-Razim brings a late-antique adjuration stratum with it. Whether any single continuous operation is set out could not be established from the sources available this round.", "evidenceStrength": "low", "unverified": true},
+        {"type": "timing-election", "vocabGap": true, "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S2"], "evidence": "The first treatise is explicitly on astrology and its use in magic.", "evidenceStrength": "medium"}
+      ],
+      "notes": "Structurally a COMPILATION rather than a manual — which is why no six-stage anatomy fits it. Peterson (per the repo plan) records that 'Trithemius and Agrippa drew upon this work' (S18), making it an upstream node for two other works in this slice."
+    },
+    {
+      "id": "gw:picatrix",
+      "atlasSlug": "picatrix",
+      "title": "Picatrix (Latin) / Ghāyat al-Ḥakīm (Arabic, 'The Goal of the Wise')",
+      "author": "pseudo-Majrīṭī (attributed to Maslama al-Majrīṭī; the attribution is not accepted)",
+      "culture": "Arabic-Islamic astral magic, transmitted to Latin Christendom via Alfonsine Castile",
+      "date": "Arabic compiled from 200+ sources in the latter half of the 10th c.; Castilian translation mid-13th c.; Latin shortly after.",
+      "dateCertainty": "well-attested",
+      "SLICE_LIMIT": "REPO BLACKLIST HONOURED: the Picatrix CATALOG (decan faces, lunar mansions, kameas, planetary correspondences, election rules) is already shipped in-repo and is NOT re-derived here. This entry records PROCEDURE ANATOMY ONLY.",
+      "structure": "Four books. The practical portions comprise: recipes for ritual materials, prayers for invoking the planets and their spirits, talisman-crafting instructions, suffumigation formulas, and remedies for specific conditions (S11).",
+      "bestEdition": "David Pingree, ed., the Latin version (Warburg, 1986) — the standard critical text; Attrell & Porreca, trans. (Penn State UP, 2019), based on Pingree (S11).",
+      "pdStatus": "Pingree 1986 and Attrell/Porreca 2019 both in copyright — cite only. No PD English witness of the full text.",
+      "procedures": [
+        {"type": "consecration-of-object/talisman", "workCompleteness": "complete", "pdWitnessCompleteness": "none", "anatomyStages": ["S2", "S3", "S5"], "evidence": "The text supplies, for talismanic operations, all three of: the astrological condition to be met, the material recipe, and the invocatory prayer — i.e. the operation is specified end to end rather than by correspondence table alone (S11). This is the specific respect in which Picatrix differs from Agrippa.", "evidenceStrength": "high"},
+        {"type": "offering/homa", "workCompleteness": "complete", "pdWitnessCompleteness": "none", "anatomyStages": ["S3", "S5"], "evidence": "Suffumigation formulas are given as formulas, i.e. as executable specifications, not as references (S11). Recorded as a fact about the text's specificity; no formula is reproduced.", "evidenceStrength": "high", "harmNote": "MATERIALS HAZARD: the repo already flags Book IV materials. Suffumigation recipes in this literature include combusted substances of documented toxicity and, in places, materials whose collection is unethical or illegal. Flagged at the procedure level here — which the repo currently does only at page level."},
+        {"type": "invocation/evocation", "workCompleteness": "complete", "pdWitnessCompleteness": "none", "anatomyStages": ["S2", "S5"], "evidence": "Planetary prayers are supplied as texts to be used at specified astrological moments (S11).", "evidenceStrength": "high"},
+        {"type": "timing-election", "vocabGap": true, "workCompleteness": "complete", "pdWitnessCompleteness": "none", "anatomyStages": ["S2"], "evidence": "IN-REPO ALREADY — not re-derived. Cross-reference only.", "evidenceStrength": "high", "blacklisted": true}
+      ],
+      "notes": "Belongs to this slice as the OPERATIVE FOIL: it is the corpus's most fully specified talismanic manual and it is the one that reached the Latin West from Arabic rather than from the Solomonic pseudepigrapha. Its procedural completeness is the yardstick against which Agrippa's incompleteness becomes visible."
+    },
+    {
+      "id": "gw:agrippa-three-books",
+      "atlasSlug": "agrippa-occulta-philosophia",
+      "title": "De occulta philosophia libri tres (Three Books of Occult Philosophy)",
+      "author": "Heinrich Cornelius Agrippa von Nettesheim (1486–1535)",
+      "culture": "Latin-Christian Renaissance humanism / Neoplatonic-Hermetic synthesis",
+      "date": "Book I printed 1531; the full three books Cologne 1533 (drafted c. 1510)",
+      "dateCertainty": "well-attested",
+      "structure": "Three books ascending the three worlds. Book I: elemental/natural magic — the four elements, occult virtues of natural objects. Book II: celestial magic — number, harmony, astrological magic. Book III: intellectual/ceremonial magic — divine names, angelic hierarchies, religion, the soul.",
+      "bestEdition": "V. Perrone Compagni, ed., critical Latin edition (Brill, 1992) — in copyright, cite only. (I could not re-confirm the Perrone Compagni edition details from a source this round; flagged.)",
+      "pdStatus": "1533 Latin PD; the 'J.F.' English translation of 1651 (attributed to John French / 'James Freake') is PD and is the standard PD quote witness.",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "referenced", "pdWitnessCompleteness": "referenced", "anatomyStages": [], "evidence": "THE SLICE'S MOST IMPORTANT NEGATIVE RESULT. Book III is titled for ceremonial magic and supplies the doctrinal and correspondence apparatus — divine names, angelic orders, the theory of religious efficacy — but does not set out an operation as a sequence. Agrippa's own framing makes ceremonial magic depend on inner transformation, faith and contemplation rather than on mechanical rite. NONE of the six anatomy stages is set out. The most influential book in the entire Western magical corpus contains essentially no complete procedure.", "evidenceStrength": "high"},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "referenced", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S2"], "evidence": "Book II supplies the planetary kameas, characters, images and number-harmony doctrine that talismanic practice USES, without giving a consecration sequence. Correspondence tables are not procedures — a distinction this graph exists to make.", "evidenceStrength": "high"},
+        {"type": "purification", "workCompleteness": "referenced", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S1"], "evidence": "Purity and dignification of the operator are discussed as conditions of efficacy, in doctrinal register.", "evidenceStrength": "medium"}
+      ],
+      "notes": "The Three Books' near-total absence of executable procedure is precisely WHY the spurious Fourth Book was fabricated and found a market — the reference work everyone had did not tell them what to do. That causal reading is mine and is offered as a hypothesis, not a sourced claim."
+    },
+    {
+      "id": "gw:pseudo-agrippa-fourth-book",
+      "atlasSlug": null,
+      "proposedId": "gw:pseudo-agrippa-fourth-book",
+      "title": "Fourth Book of Occult Philosophy (Liber Quartus de Occulta Philosophia) — SPURIOUS",
+      "author": "pseudo-Agrippa; anonymous",
+      "culture": "Latin-Christian Renaissance",
+      "date": "Marburg, 1559 — some 24 years after Agrippa's death; French 'IV. livre de la philosophie occulte' 1565 without printer or place",
+      "dateCertainty": "print-attested",
+      "attributionStatus": "SPURIOUS — denounced by Johann Weyer, Agrippa's own student, in 'De praestigiis daemonum' (1563), as not in his master's style. Peterson notes the verdict 'has rarely been questioned' (S13). One of the corpus's few attribution questions that is effectively settled.",
+      "structure": "The 1559 Latin volume, and Turner's 1655 English rendering of it, are COMPOSITE: the Fourth Book proper plus Of Geomancy, the Magical Elements of Peter de Abano (= Heptameron), Astronomical Geomancy (Gerard of Cremona), The Nature of Spirits (George Pictorius), and the Arbatel (S12, verified this round). Six works in one binding.",
+      "bestEdition": "Peterson's edition (esotericarchives.com/agrippa/agrippa4.htm) — cite only.",
+      "pdStatus": "PD. Quote witness: Turner 1655 (S12).",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": ["S1", "S2", "S3", "S4", "S5", "S6"], "evidence": "The Fourth Book supplies exactly what the genuine Three Books withhold: an operative frame for spirit-work. Graded complete on the strength of its function — it circulated as, and was used as, the practical supplement to Agrippa. Anatomy-stage list should be treated as high-confidence-by-genre rather than chapter-verified, since I did not inspect the text this round.", "evidenceStrength": "medium", "unverified": "stage-by-stage confirmation not performed"},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3"], "evidence": "Pentacle/character preparation is present in the tradition of the 1559 volume; not chapter-verified this round.", "evidenceStrength": "low", "unverified": true}
+      ],
+      "notes": "THE SINGLE MOST USEFUL PD ARTEFACT IN THIS SLICE. The 1655 Turner binding puts the Fourth Book, the Heptameron and the Arbatel — three separately graded works here — into one quotable public-domain English volume. Any repo work on this corpus should start from that volume."
+    },
+    {
+      "id": "gw:steganographia",
+      "atlasSlug": "steganographia",
+      "title": "Steganographia",
+      "author": "Johannes Trithemius (1462–1516), abbot of Sponheim",
+      "culture": "Latin-Christian Renaissance; cryptography in occult dress",
+      "date": "begun 1499; circulated in manuscript for a century; first printed 1606 (Frankfurt)",
+      "dateCertainty": "well-attested",
+      "structure": "Three books. Books I–II present tables and spirit-invocations that are in fact systems for encoding messages — the first books written on cryptography. Book III is cast in the guise of occult astrology.",
+      "bestEdition": "Reeds 1998 (Cryptologia) for the Book III solution (S7); Ernst 1996 independently and slightly earlier.",
+      "pdStatus": "1606 print PD (S18). Reeds 1998 and Ernst 1996 in copyright — cite only.",
+      "procedures": [
+        {"type": "cryptographic-concealment", "vocabGap": true, "workCompleteness": "complete", "pdWitnessCompleteness": "complete", "anatomyStages": [], "evidence": "The 1606 first printed edition itself included a KEY revealing that the incantations for summoning spirits were coded instructions for implementing ciphers — for Books I and II. Book III resisted until Thomas Ernst (1996) and Jim Reeds (1998) independently solved it; the recovered plaintexts are banal (one is the Latin analogue of a pangram) (S7). Complete because both the cover-text and its key are extant and the whole has been decoded.", "evidenceStrength": "high"},
+        {"type": "invocation/evocation", "workCompleteness": "referenced", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S5"], "evidence": "GRADED WITH A CAVEAT THE GRAPH MUST CARRY: the text HAS invocation FORM but the form is not a procedure — it is cipher scaffolding. Recording this as an operative procedure at any grade above 'referenced' would be a factual error. This is the case that proves the graph needs a way to say 'procedure-shaped, not a procedure'.", "evidenceStrength": "high"}
+      ],
+      "notes": "THE SLICE'S BEST FINDING (see keyFinding 1). Two books of the Lemegeton — Theurgia-Goetia and Ars Paulina — take their spirit hierarchies and seals from Steganographia Books 1 and 2 respectively, with the seals 'matching exactly' (S2). The seventeenth-century compilers were copying, in good faith, the decorative surface of a cipher manual and transmitting it as angelology. A genuine, documented, downstream-of-a-misreading transmission chain, and unusually well evidenced for this corpus."
+    },
+    {
+      "id": "gw:dee-angelic-diaries",
+      "atlasSlug": "event-dee-angelic-conversations",
+      "atlasSlugNote": "The atlas hangs this on an EVENT node. This graph re-homes the procedures onto a work node per the procedureHostRuling.",
+      "title": "John Dee's angelic conversation diaries (Mysteriorum Libri; Liber Loagaeth; and the compiled manuals)",
+      "author": "John Dee (1527–1609), recording; Edward Kelley as scryer",
+      "culture": "Elizabethan English Christian angelology / learned magic",
+      "date": "principal recorded sessions 1581–1587; Sloane 3188 covers 22 December 1581 – 23 May 1583",
+      "dateCertainty": "precisely dated by session — the corpus's only day-level dating",
+      "structure": "NOT A MANUAL — A RECORD. Sloane 3188: diary of sittings, material delivered by Kelley and written down by Dee. Sloane 3189: Liber Loagaeth, 1583, in KELLEY's hand, and incomplete in that it does not repeat the earlier material. Sloane 3191: the COMPILED angelic texts — the 48 Claves Angelicae, Liber Scientiae, De Heptarchia Mystica, and Invocations. Casaubon printed a large part of the records (from the Cotton Appendix MSS) in 1659 (S14).",
+      "bestEdition": "Whitby's Birmingham thesis (1982, open access) for the 1581–83 actions (S14); Peterson's 'John Dee's Five Books of Mystery' — cite, do not ingest; Peterson's Index Verborum is his original scholarship and must never be ingested (S18).",
+      "pdStatus": "MSS PD. Casaubon 1659 PD — but it is a partial and editorially hostile print, published to discredit Dee. Whitby 1982 open-access, cite.",
+      "procedures": [
+        {"type": "procedure-as-session-record", "vocabGap": true, "workCompleteness": "fragmentary", "pdWitnessCompleteness": "fragmentary", "anatomyStages": ["S2", "S3", "S5"], "evidence": "THE COMPLETENESS CONTRAST THIS SLICE WAS ASKED FOR, AND IT IS A DOUBLE FRAGMENTATION. (a) BY GENRE: a transcript of what happened on a given afternoon is not a sequence anyone could follow; the operative frame must be inferred from repeated practice across sittings rather than read off. (b) BY PHYSICAL LOSS: Dee himself admitted BURNING roughly nine years of angelic actions (1591–1600), and further papers were destroyed in domestic use — the pie-plate story (S14). Sloane 3189 is independently noted as incomplete for not repeating earlier material. A named, quantified, self-inflicted lacuna.", "evidenceStrength": "high"},
+        {"type": "scrying-crystallomancy", "vocabGap": true, "workCompleteness": "fragmentary", "pdWitnessCompleteness": "fragmentary", "anatomyStages": ["S3", "S5"], "evidence": "The shew-stone practice is everywhere PERFORMED in the records and nowhere SET OUT. Dee never wrote the manual for the thing he did most.", "evidenceStrength": "high"},
+        {"type": "invocation/evocation", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3", "S5"], "evidence": "PARTIAL, AND ONLY BECAUSE DEE HIMSELF DID THE EDITORIAL WORK: De Heptarchia Mystica and the 48 Claves Angelicae in Sloane 3191 are COMPILATIONS Dee extracted from the diaries into manual form (S14). The compiled manuals grade higher than the diaries they came from — a completeness inversion worth recording as a general phenomenon.", "evidenceStrength": "high"},
+        {"type": "consecration-of-object/talisman", "workCompleteness": "partial", "pdWitnessCompleteness": "partial", "anatomyStages": ["S3"], "evidence": "The Sigillum Dei Aemeth is derived from the Liber Iuratus material Dee owned in Sloane 313 (S3). Construction not recorded here.", "evidenceStrength": "high"}
+      ],
+      "notes": "Also the corpus's best case against reading influence from resemblance: the Dee-to-Liber-Juratus link is not stylistic, it is a physical book with his handwriting in the margins."
+    },
+    {
+      "id": "gw:weyer-pseudomonarchia",
+      "atlasSlug": "weyer-pseudomonarchia",
+      "title": "Pseudomonarchia daemonum (appended to De praestigiis daemonum)",
+      "author": "Johann Weyer (1515–1588), pupil of Agrippa",
+      "culture": "Latin-Christian, physician-skeptic milieu",
+      "date": "De praestigiis daemonum 1563; Pseudomonarchia appended to the 1577 edition",
+      "role": "transmission anchor",
+      "pdStatus": "PD.",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "referenced", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S5"], "evidence": "A catalog of 69 spirits with offices, printed by a man whose stated purpose was to argue that accused witches were deluded rather than effective. Weyer prints the material to DISCREDIT it. The corpus's founding irony: the demon list everyone inherits was published by a skeptic.", "evidenceStrength": "high"}
+      ],
+      "notes": "Also denounced the Fourth Book as spurious (S13) — Weyer is a node in two independent chains in this slice."
+    },
+    {
+      "id": "gw:scot-discoverie",
+      "atlasSlug": "scot-discoverie",
+      "title": "The Discoverie of Witchcraft",
+      "author": "Reginald Scot (c. 1538–1599)",
+      "culture": "English Protestant skeptical polemic",
+      "date": "1584; expanded posthumous edition 1665",
+      "role": "transmission anchor",
+      "pdStatus": "PD (S13).",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": "referenced", "pdWitnessCompleteness": "referenced", "anatomyStages": ["S5"], "evidence": "Scot translates Weyer's catalog into English inside a debunking argument. Peterson's stemma turns on Scot's 1665 edition specifically: the Goetia inherits its 'unique errors and spellings' (S2).", "evidenceStrength": "high"}
+      ],
+      "notes": "SECOND SKEPTIC IN THE CHAIN. The 72-spirit Goetia descends through TWO consecutive authors who did not believe in it. Both PD, both quotable. This is the strongest available support for the site's described-never-prescribed framing, and it comes from inside the primary sources."
+    },
+    {
+      "id": "gw:clm-849",
+      "atlasSlug": null,
+      "proposedId": "gw:clm-849",
+      "title": "Munich Handbook of Necromancy (Bayerische Staatsbibliothek, Clm 849)",
+      "author": "anonymous",
+      "culture": "Latin-Christian clerical underworld, late medieval",
+      "date": "15th c.",
+      "role": "transmission anchor (upstream of the Heptameron)",
+      "bestEdition": "Richard Kieckhefer, 'Forbidden Rites: A Necromancer's Manual of the Fifteenth Century' (Penn State UP, 1997) — in copyright, cite only.",
+      "pdStatus": "MS PD; Kieckhefer's edition and translation in copyright.",
+      "procedures": [
+        {"type": "invocation/evocation", "workCompleteness": null, "pdWitnessCompleteness": "none", "gradeWithheld": "R33 hostile audit, EVIDENCE STRIKE E3 — grade VOIDED from 'complete' to null. The grade was derived by inference from the text's ROLE ('a text cannot supply a reorganisable operative skeleton unless it has one'), not from the text; the row's own flags already read evidenceStrength low, unverified true. A 'complete' grade is the strongest claim this schema makes and it cannot rest on a syllogism about a source relationship. Kieckhefer's edition and translation of Clm 849 (Forbidden Rites, 1997) would settle it in one pass and is named as the blocker. NOTE for the synthesizer: the five-stage anatomyStages list was likewise inferred and is retained only as a hypothesis.", "anatomyStages": ["S1", "S2", "S3", "S4", "S5"], "anatomyStagesInferred": true, "evidence": "UNGRADED. Peterson names Clm 849 as one of the three sources the Heptameron systematically reorganises (S4); that establishes the SOURCE RELATION, not the source's own completeness. Not independently verified against Kieckhefer this round.", "evidenceStrength": "low", "unverified": true, "harmNote": "Necromantic and coercive material. Catalog-level admission only."}
+      ],
+      "notes": "Admitted solely to make the Heptameron's dependency chain honest. Its own contents are out of scope."
+    },
+    {
+      "id": "gw:grimoire-pape-honorius",
+      "atlasSlug": null,
+      "proposedId": "gw:grimoire-pape-honorius",
+      "title": "Le Grimoire du Pape Honorius",
+      "author": "anonymous; falsely ascribed to Pope Honorius III",
+      "culture": "French cheap-print",
+      "date": "CONTESTED. Imprint claims 'Rome, 1670'; scholarship places it in the 18th c. (S18, inherited).",
+      "dateCertainty": "contested",
+      "role": "NON-EDGE anchor",
+      "pdStatus": "PD.",
+      "procedures": [],
+      "notes": "EXISTS IN THIS GRAPH ONLY TO CARRY A NEGATIVE CLAIM. Peterson records that the Liber Iuratus's reputation led to the fabrication of this 'ridiculous' later derivative, 'despised by Eliphas Levi and A. E. Waite' (S3). Name-similarity has caused persistent conflation with the Sworn Book of Honorius, which is a serious, devotional, 14th-c. Latin work. See edge E-NON-01."
+    }
+  ],
+
+  "edges": [
+    {"id": "E-HAS-01", "from": "gw:lemegeton", "type": "HAS_PART", "to": "gw:ars-goetia", "part": "Book I", "cite": "S2", "schemaExtension": true},
+    {"id": "E-HAS-02", "from": "gw:lemegeton", "type": "HAS_PART", "to": "gw:theurgia-goetia", "part": "Book II", "cite": "S2", "schemaExtension": true},
+    {"id": "E-HAS-03", "from": "gw:lemegeton", "type": "HAS_PART", "to": "gw:ars-paulina", "part": "Book III", "cite": "S2", "schemaExtension": true},
+    {"id": "E-HAS-04", "from": "gw:lemegeton", "type": "HAS_PART", "to": "gw:ars-almadel", "part": "Book IV", "cite": "S2", "schemaExtension": true},
+    {"id": "E-HAS-05", "from": "gw:lemegeton", "type": "HAS_PART", "to": "gw:ars-notoria", "part": "Book V", "cite": "S2", "schemaExtension": true, "note": "The anomaly: a 13th-c. devotional art bound as the fifth book of a 17th-c. demon-magic compilation. Sloane 2731 omits it entirely — its membership was not stable."},
+
+    {"id": "E-TR-01", "from": "gw:weyer-pseudomonarchia", "type": "TRANSMITS_TO", "to": "gw:scot-discoverie", "relation": "translation into English within a debunking frame", "evidence": "Scot renders Weyer's catalog; the repo plan records Pruflas dropped in the transmission.", "cite": "S2, S13, S18", "strength": "high"},
+    {"id": "E-TR-02", "from": "gw:scot-discoverie", "type": "TRANSMITS_TO", "to": "gw:ars-goetia", "relation": "direct textual descent", "evidence": "PROVEN BY INHERITED ERROR, not resemblance: the Goetia carries the 'unique errors and spellings introduced' in Scot's 1665 edition. Four spirits added to reach 72. This is the corpus's methodological gold standard for a transmission claim.", "cite": "S2, S18", "strength": "high"},
+    {"id": "E-TR-03", "from": "gw:steganographia", "type": "TRANSMITS_TO", "to": "gw:theurgia-goetia", "relation": "spirit hierarchy and seals taken from Steganographia Book 1", "evidence": "Peterson: the abundant seals match Trithemius's exemplars EXACTLY. Seal-identity is a strong material fingerprint.", "cite": "S2", "strength": "high", "note": "The transmitted material is cipher cover-text received as angelology — see keyFinding 1."},
+    {"id": "E-TR-04", "from": "gw:steganographia", "type": "TRANSMITS_TO", "to": "gw:ars-paulina", "relation": "spirits taken from Steganographia Book 2", "evidence": "S2.", "cite": "S2", "strength": "high", "note": "Same misreading as E-TR-03."},
+    {"id": "E-TR-05", "from": "gw:liber-juratus", "type": "TRANSMITS_TO", "to": "gw:heptameron", "relation": "source, systematically reorganised", "evidence": "Peterson: the Heptameron draws substantially on the Liber Iuratus Honorii, with many elements systematically reorganised.", "cite": "S4", "strength": "high"},
+    {"id": "E-TR-06", "from": "gw:key-of-solomon", "type": "TRANSMITS_TO", "to": "gw:heptameron", "relation": "source, systematically reorganised", "evidence": "S4.", "cite": "S4", "strength": "high"},
+    {"id": "E-TR-07", "from": "gw:clm-849", "type": "TRANSMITS_TO", "to": "gw:heptameron", "relation": "source, systematically reorganised", "evidence": "S4 names the 15th-c. necromancer's manual Clm 849 as a third source.", "cite": "S4", "strength": "high"},
+    {"id": "E-TR-08", "from": "gw:heptameron", "type": "TRANSMITS_TO", "to": "gw:grimorium-verum", "relation": "ritual skeleton", "evidence": "The repo plan records the heptameron-print -> cheap-print-grimoires edge citing heptamer.htm and gv.htm; the Grimorium Verum is the named instance.", "cite": "S4, S5, S18", "strength": "medium"},
+    {"id": "E-TR-09", "from": "gw:heptameron", "type": "TRANSMITS_TO", "to": "gw:grand-grimoire", "relation": "ritual skeleton (via the Bibliothèque bleue wave)", "evidence": "Same plan edge, grouped instance. Weaker than E-TR-08 because the Grand Grimoire's own text was not examined.", "cite": "S18", "strength": "low"},
+    {"id": "E-TR-10", "from": "gw:key-of-solomon", "type": "TRANSMITS_TO", "to": "gw:grimorium-verum", "relation": "source", "evidence": "Peterson records the Grimorium Verum drawing on the Key of Solomon (S5); and, in the reverse direction, Mathers excluded KOS manuscript material he judged interpolated FROM the Grimorium Verum (S1) — the two traditions contaminate each other.", "cite": "S1, S5", "strength": "high", "bidirectionalContamination": true},
+    {"id": "E-TR-11", "from": "gw:ars-notoria", "type": "TRANSMITS_TO", "to": "gw:liber-juratus", "relation": "shared orations", "evidence": "The repo plan's admitted edge, citing juratus.htm.", "cite": "S18", "strength": "medium"},
+    {"id": "E-TR-12", "from": "gw:agrippa-three-books", "type": "TRANSMITS_TO", "to": "gw:pseudo-agrippa-fourth-book", "relation": "spurious continuation — attribution, not text", "evidence": "The Fourth Book appeared in 1559 claiming to complete a work whose author died in 1535; Weyer, Agrippa's own pupil, denounced it in 1563 as not in his master's style, a verdict rarely questioned since.", "cite": "S13", "strength": "high", "subtype": "pseudepigraphic-continuation", "note": "Directional and asymmetric: the Fourth Book depends on the Three Books' AUTHORITY, not on their text."},
+    {"id": "E-TR-13", "from": "gw:sefer-raziel", "type": "TRANSMITS_TO", "to": "gw:agrippa-three-books", "relation": "source", "evidence": "Peterson (via the repo plan): 'Trithemius and Agrippa drew upon this work'.", "cite": "S18", "strength": "medium"},
+    {"id": "E-TR-14", "from": "gw:sefer-raziel", "type": "TRANSMITS_TO", "to": "gw:steganographia", "relation": "source", "evidence": "Same Peterson statement as E-TR-13.", "cite": "S18", "strength": "medium"},
+    {"id": "E-TR-15", "from": "gw:liber-juratus", "type": "TRANSMITS_TO", "to": "gw:dee-angelic-diaries", "relation": "Sigillum Dei -> Sigillum Dei Aemeth", "evidence": "THE STRONGEST PROVENANCE EDGE IN THE SLICE AND ARGUABLY IN THE REPO. Not stylistic influence: Sloane 313 bears marginal annotations in Dee's own hand — he owned and worked the book — and derived his Sigillum Dei Aemeth from it.", "cite": "S3, S18", "strength": "high", "corridorNote": "The repo plan already admits this as a cross-lane corridor edge and calls it non-negotiable."},
+    {"id": "E-TR-16", "from": "gw:dee-angelic-diaries", "type": "TRANSMITS_TO", "to": "gw:dee-angelic-diaries", "relation": "SELF-EDGE: diaries -> compiled manuals", "evidence": "De Heptarchia Mystica and the 48 Claves Angelicae (Sloane 3191) are Dee's own extractions from his session records. The compiled form grades MORE complete than its source — a within-corpus completeness inversion.", "cite": "S14", "strength": "high", "schemaFlag": "A self-edge is a modelling smell. The synthesizer should probably split gw:dee-angelic-diaries into a record work and a compiled-manuals work. Flagged rather than silently resolved."},
+
+    {"id": "E-CONTESTED-01", "from": "gw:hygromanteia", "type": "TRANSMITS_TO", "to": "gw:key-of-solomon", "relation": "claimed ancestry", "ASSERTED": false, "evidence": "DELIBERATELY NOT ASSERTED. Marathakis 2011 titles his edition 'The Ancestor of the Key of Solomon'; the shared-tradition reading holds that common Solomonic features evidence a common reservoir, and notes that the surviving Greek MSS begin in the 15th c. while the Trente KOS fragment is dated 1380–1410. Asserting this edge would RESOLVE a live scholarly contest, which the round's rules forbid.", "cite": "S1, S16", "strength": "contested", "renderAs": "a both-ways note attached to both works, never a drawn edge"},
+
+    {"id": "E-NON-01", "from": "gw:liber-juratus", "type": "NON_EDGE", "to": "gw:grimoire-pape-honorius", "relation": "NOT related — name confusion only", "evidence": "Peterson records that the Sworn Book's reputation prompted the fabrication of the later 'ridiculous' Grimoire du Pape Honorius, despised by Lévi and Waite. The two are routinely conflated because both invoke 'Honorius'. A graph with no negative-assertion capability will regenerate this error on every pass.", "cite": "S3, S18", "schemaExtension": true},
+
+    {"id": "E-PAR-01", "from": "gw:ars-almadel", "type": "PARALLELS", "to": null, "ASSERTED": false, "VOIDED_BY_AUDIT": "R33 hostile audit, EVIDENCE STRIKE E1 — two independent grounds. (1) The edge's own evidence field ends 'I could NOT confirm the etymology from a scholarly-tier source this round', with strength low and unverified true: it rests on a widely-repeated etymology, which is a resemblance-argument in the strict sense. (2) STRUCTURAL: `to` is null. This is not an edge at all — it is a note with an arrow drawn on it, and a synthesizer ingesting edges will either crash on it or mint a phantom node. VOID as an edge; RETAINED as an etymological note on gw:ars-almadel, marked unverified. Re-assert only with a named Arabist or a critical edition's introduction.", "parallelTo": "Arabic darb al-mandal ('drawing the circle') practice", "evidence": "The etymology Almadel < al-mandal, and a corresponding Arabic circle-drawing practice, is widely repeated; a 13th-c. Latin 'De consecratione lapidum' version of the Liber Almandal Salomonis has a published critical edition, and Peterson documents a two-branch tradition with one branch closer to the Arabic source and one Christianised. I could NOT confirm the etymology from a scholarly-tier source this round.", "cite": "S2", "strength": "low", "unverified": true},
+    {"id": "E-PAR-02", "from": "gw:picatrix", "type": "PARALLELS", "to": "gw:sefer-raziel", "relation": "both are Arabic/Hebrew astral-magic corpora transmitted to the Latin West through 13th-c. Alfonsine Castile", "evidence": "Structural-historical parallel, well attested for both works independently: the Liber Razielis was produced under Alfonso X, and the Picatrix reached Latin via a mid-13th-c. Castilian intermediary. The parallel is the TRANSLATION PROGRAMME, not the texts.", "cite": "S11", "strength": "medium"},
+
+    {"id": "E-COM-01", "from": "gw:scot-discoverie", "type": "COMMENTS_ON", "to": "gw:weyer-pseudomonarchia", "relation": "skeptical reception", "cite": "S13", "strength": "high"},
+    {"id": "E-COM-02", "from": "gw:weyer-pseudomonarchia", "type": "COMMENTS_ON", "to": "gw:pseudo-agrippa-fourth-book", "relation": "denunciation as spurious (1563)", "cite": "S13", "strength": "high"},
+
+    {"id": "E-AUTH-01", "from": "gw:agrippa-three-books", "type": "AUTHORED_BY", "to": "person:agrippa", "certainty": "certain"},
+    {"id": "E-AUTH-02", "from": "gw:steganographia", "type": "AUTHORED_BY", "to": "person:trithemius", "certainty": "certain"},
+    {"id": "E-AUTH-03", "from": "gw:weyer-pseudomonarchia", "type": "AUTHORED_BY", "to": "person:weyer", "certainty": "certain"},
+    {"id": "E-AUTH-04", "from": "gw:scot-discoverie", "type": "AUTHORED_BY", "to": "person:scot", "certainty": "certain"},
+    {"id": "E-AUTH-05", "from": "gw:dee-angelic-diaries", "type": "AUTHORED_BY", "to": "person:dee", "certainty": "certain", "note": "with Edward Kelley as scryer — the corpus's only two-role authorship"},
+    {"id": "E-AUTH-06", "from": "gw:heptameron", "type": "AUTHORED_BY", "to": "person:pseudo-peter-of-abano", "certainty": "SPURIOUS", "evidence": "Thorndike: the attribution 'seems quite certainly spurious'. Jacques Gohory suggested as possible editor via his association with the printer Pietro Perna.", "cite": "S4"},
+    {"id": "E-AUTH-07", "from": "gw:pseudo-agrippa-fourth-book", "type": "AUTHORED_BY", "to": "person:agrippa", "certainty": "SPURIOUS", "cite": "S13"},
+    {"id": "E-AUTH-08", "from": "gw:key-of-solomon", "type": "AUTHORED_BY", "to": "person:solomon", "certainty": "PSEUDEPIGRAPHIC"},
+    {"id": "E-AUTH-09", "from": "gw:lemegeton", "type": "AUTHORED_BY", "to": "person:solomon", "certainty": "PSEUDEPIGRAPHIC"},
+    {"id": "E-AUTH-10", "from": "gw:liber-juratus", "type": "AUTHORED_BY", "to": "person:honorius-of-thebes", "certainty": "PSEUDEPIGRAPHIC/legendary"},
+    {"id": "E-AUTH-11", "from": "gw:abramelin", "type": "AUTHORED_BY", "to": "person:abraham-of-worms", "certainty": "contested", "cite": "S8, S18"},
+    {"id": "E-AUTH-12", "from": "gw:sefer-raziel", "type": "AUTHORED_BY", "to": "person:raziel", "certainty": "PSEUDEPIGRAPHIC/angelic"},
+    {"id": "E-AUTH-13", "from": "gw:picatrix", "type": "AUTHORED_BY", "to": "person:pseudo-majriti", "certainty": "SPURIOUS"},
+    {"id": "E-AUTH-14", "from": "gw:grimorium-verum", "type": "AUTHORED_BY", "to": "person:plaingiere-fictitious", "certainty": "FICTITIOUS", "evidence": "Title page claims 'Plaingière, Jesuit Dominican' — an impossible order combination, and the imprint 'Alibeck l'Égyptien, Memphis, 1517' is equally false.", "cite": "S5"},
+    {"id": "E-AUTH-15", "from": "gw:grand-grimoire", "type": "AUTHORED_BY", "to": "person:antonio-venitiana-fictitious", "certainty": "FICTITIOUS"},
+    {"id": "E-AUTH-16", "from": "gw:arbatel", "type": "AUTHORED_BY", "to": "person:anonymous", "certainty": "anonymous"},
+    {"id": "E-AUTH-17", "from": "gw:ars-notoria", "type": "AUTHORED_BY", "to": "person:pseudo-apollonius", "certainty": "PSEUDEPIGRAPHIC", "note": "Version A circulates as the Flores Aurei of Apollonius."},
+
+    {"id": "E-CUL-01", "from": "gw:key-of-solomon", "type": "BELONGS_TO", "to": "culture:latin-christian-learned-magic"},
+    {"id": "E-CUL-02", "from": "gw:lemegeton", "type": "BELONGS_TO", "to": "culture:english-17c-compilation"},
+    {"id": "E-CUL-03", "from": "gw:liber-juratus", "type": "BELONGS_TO", "to": "culture:latin-christian-learned-magic"},
+    {"id": "E-CUL-04", "from": "gw:heptameron", "type": "BELONGS_TO", "to": "culture:latin-christian-renaissance"},
+    {"id": "E-CUL-05", "from": "gw:arbatel", "type": "BELONGS_TO", "to": "culture:latin-christian-renaissance-paracelsian"},
+    {"id": "E-CUL-06", "from": "gw:agrippa-three-books", "type": "BELONGS_TO", "to": "culture:latin-christian-renaissance"},
+    {"id": "E-CUL-07", "from": "gw:pseudo-agrippa-fourth-book", "type": "BELONGS_TO", "to": "culture:latin-christian-renaissance"},
+    {"id": "E-CUL-08", "from": "gw:steganographia", "type": "BELONGS_TO", "to": "culture:latin-christian-renaissance"},
+    {"id": "E-CUL-09", "from": "gw:dee-angelic-diaries", "type": "BELONGS_TO", "to": "culture:elizabethan-english-angelology"},
+    {"id": "E-CUL-10", "from": "gw:grimorium-verum", "type": "BELONGS_TO", "to": "culture:french-cheap-print-bibliotheque-bleue"},
+    {"id": "E-CUL-11", "from": "gw:grand-grimoire", "type": "BELONGS_TO", "to": "culture:french-cheap-print-bibliotheque-bleue"},
+    {"id": "E-CUL-12", "from": "gw:grimoire-pape-honorius", "type": "BELONGS_TO", "to": "culture:french-cheap-print-bibliotheque-bleue"},
+    {"id": "E-CUL-13", "from": "gw:abramelin", "type": "BELONGS_TO", "to": "culture:german-jewish-christian-border-early-modern"},
+    {"id": "E-CUL-14", "from": "gw:sefer-raziel", "type": "BELONGS_TO", "to": "culture:jewish-via-alfonsine-castile"},
+    {"id": "E-CUL-15", "from": "gw:picatrix", "type": "BELONGS_TO", "to": "culture:arabic-islamic-astral-magic-via-alfonsine-castile"},
+    {"id": "E-CUL-16", "from": "gw:hygromanteia", "type": "BELONGS_TO", "to": "culture:byzantine-greek-christian"},
+    {"id": "E-CUL-17", "from": "gw:ars-notoria", "type": "BELONGS_TO", "to": "culture:latin-christian-medieval-devotional"},
+    {"id": "E-CUL-18", "from": "gw:clm-849", "type": "BELONGS_TO", "to": "culture:latin-christian-clerical-underworld"},
+    {"id": "E-CUL-19", "from": "gw:weyer-pseudomonarchia", "type": "BELONGS_TO", "to": "culture:latin-christian-physician-skeptic"},
+    {"id": "E-CUL-20", "from": "gw:scot-discoverie", "type": "BELONGS_TO", "to": "culture:english-protestant-skeptical-polemic"},
+    {"id": "E-CUL-21", "from": "gw:ars-goetia", "type": "BELONGS_TO", "to": "culture:english-17c-compilation"},
+    {"id": "E-CUL-22", "from": "gw:theurgia-goetia", "type": "BELONGS_TO", "to": "culture:english-17c-compilation"},
+    {"id": "E-CUL-23", "from": "gw:ars-paulina", "type": "BELONGS_TO", "to": "culture:english-17c-compilation"},
+    {"id": "E-CUL-24", "from": "gw:ars-almadel", "type": "BELONGS_TO", "to": "culture:latin-christian-from-arabic-source"}
+  ],
+
+  "notes": {
+    "harmRegister": [
+      {"work": "gw:abramelin", "kind": "isolation + fasting regimen (psychiatric risk)", "treatment": "named callout mandated by the repo plan; duration recorded as a contested structural fact, regimen contents never recorded"},
+      {"work": "gw:ars-goetia", "kind": "coercion of a personified other; tiered constraint-and-curse frame", "treatment": "abhicāra-wing precedent; three PD counter-voices available (Weyer, Waite 1911, Crowley 1904)"},
+      {"work": "gw:grand-grimoire", "kind": "pact frame", "treatment": "one line, no structure, Waite's PD denunciation"},
+      {"work": "gw:grimorium-verum", "kind": "criminal/coercive operation class", "treatment": "Peterson's own CC-BY-licensed disclaimer adopted as repo precedent wording"},
+      {"work": "gw:key-of-solomon", "kind": "love-compulsion and enemy-destruction 'experiments'; animal sacrifice", "treatment": "class named, members not; note that Mathers's PD witness already omits most of it"},
+      {"work": "gw:picatrix", "kind": "toxic/unethical suffumigation materials", "treatment": "procedure-level flag added (repo currently flags only at page level)"},
+      {"work": "gw:clm-849", "kind": "necromantic/coercive", "treatment": "catalog-level admission only, as a transmission anchor"},
+      {"work": "gw:liber-juratus", "kind": "army-summoning and elemental-command claims", "treatment": "named as historical claim; no PD English witness exists so nothing is quotable anyway"}
+    ],
+    "pdQuoteWitnessLedger": {
+      "usable": ["Turner 1655 composite volume (Fourth Book + Heptameron + Arbatel + geomancies + Pictorius) — LoC 11031418, verified this round", "Turner 1657 Ars Notoria (notae ABSENT)", "Scot 1584 / 1665", "Casaubon 1659 (partial, hostile)", "Steganographia 1606 print", "Agrippa 1533 Latin / 1651 English", "Mathers KOS 1889", "Mathers Abramelin 1898 (2nd ed. 1900)", "Mathers/Crowley Goetia 1904 incl. Crowley's skeptical preface", "Waite 1898/1911 Book of Ceremonial Magic", "Greenup, Almadel per Sloane 2731, Occult Review extract — NEW THIS ROUND"],
+      "citeOnly": ["all Peterson digital editions EXCEPT the two CC-BY 4.0 pages (Ars Notoria per the repo plan; Grimorium Verum verified this round)", "Peterson's Index Verborum — never ingest", "Hedegård 2002", "Boudet 2002", "Véronèse 2007", "Pingree 1986", "Attrell & Porreca 2019", "Dehn & Guth 2006", "Leitch's reconstructed squares", "Marathakis 2011", "Kieckhefer 1997", "Perrone Compagni 1992"],
+      "noWitnessAtAll": ["gw:liber-juratus (no PD English text — cite, quote nothing)", "gw:picatrix full text", "gw:hygromanteia"]
+    },
+    "joinKeys": {
+      "haveAtlasSlug": ["key-of-solomon", "lemegeton", "liber-juratus", "heptameron-print", "arbatel", "abramelin", "sefer-raziel", "picatrix", "agrippa-occulta-philosophia", "steganographia", "event-dee-angelic-conversations", "weyer-pseudomonarchia", "scot-discoverie"],
+      "needNamespacedId": ["gw:hygromanteia", "gw:ars-goetia", "gw:theurgia-goetia", "gw:ars-paulina", "gw:ars-almadel", "gw:ars-notoria", "gw:grimorium-verum", "gw:grand-grimoire", "gw:grimoire-pape-honorius", "gw:pseudo-agrippa-fourth-book", "gw:clm-849"],
+      "warning": "PER THE INVENTORY AGENT: never write back into confluence.js — it is generated by gen-data.mjs. Also note that most of the 'haveAtlasSlug' entries above are PLANNED-NOT-SHIPPED (r29 plan §2.3), so the join key exists on paper only. Verify against CONFLUENCE_ENTRIES before relying on any of them.",
+      "hostRuling": "event-dee-angelic-conversations is an EVENT node carrying what should be work-level procedures. This slice re-homes them. The synthesizer must decide globally."
+    },
+    "deliberateOmissions": "No conjuration, oration, divine or angelic name-string, circle, seal, pentacle, word-square, suffumigation formula, ingredient quantity, or timing specification appears anywhere in this file. Anatomy stages S1–S6 are structural labels. Where a procedure is graded 'complete', that grade is a statement about the SOURCE TEXT's coverage and carries no operative content forward."
+  }
+}

@@ -158,7 +158,10 @@ ok(rec.aim && rec.planet === 'Venus', 'recipe: love -> Venus');
 ok(rec.materials && rec.materials.suffumigation && rec.materials.metal && rec.materials.stone, 'recipe has materials (suffumigation/metal/stone)');
 ok(rec.materials.spirits && rec.materials.spirits.agrippa && rec.materials.spirits.agrippa.angel === 'Haniel', 'recipe spirits: Venus Agrippa angel Haniel');
 ok(rec.moon && rec.moon.mansion && rec.moon.mansion.num >= 1, 'recipe reports the Moon mansion');
-ok(Array.isArray(rec.steps) && rec.steps.length >= 6 && rec.steps.every(s => s.text && s.cite), 'recipe has >=6 cited steps');
+// FRAMING §9.14 (blocker B1): `steps` was an imperative protocol and is gone.
+ok(Array.isArray(rec.attestedSequence) && rec.attestedSequence.length >= 6 && rec.attestedSequence.every(s => s.text && s.cite && s.attributedTo),
+   'recipe has >=6 cited, attributed entries in attestedSequence');
+ok(rec.steps === undefined, 'recipe no longer exposes an imperative `steps` array');
 ok(Array.isArray(rec.citations) && rec.citations.length > 0, 'recipe collects citations');
 ok(['green','amber','red'].includes(rec.verdict), 'recipe carries an election verdict');
 ok(typeof TALISMAN_DISCLAIMER === 'string' && /historical/i.test(TALISMAN_DISCLAIMER), 'talisman disclaimer present');
@@ -1730,13 +1733,36 @@ import { timeScale as cfTimeScale, layoutConfluence as cfLayout, filterEntries a
 // one poisons another's headless assertions. They are green standalone; run each
 // in an isolated child process (the same environment as their standalone smoke).
 import { execFileSync } from 'node:child_process';
-for (const modName of ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search', 'r29-vedic-course', 'r29-narrate', 'r29-thelemic', 'r30-buddhist-core', 'r30-buddhist-ui', 'r30-compare', 'r31-practices-core', 'r31-practices-ui', 'r31-dhammapada', 'r32-atlas-east', 'r32-east-core', 'r32-east-ui', 'r33-vedic-ai', 'r33-vedic-page']) {
+for (const modName of ['ui3-motion-controls', 'ui3-viz', 'ui3-art', 'ui3-hosts-west', 'ui3-hosts-east', 'ui3-atlas', 'r28-vedic-core', 'r28-vedic-ui', 'r28-explain', 'r28-atlas-labels', 'r28-pwa-search', 'r29-vedic-course', 'r29-narrate', 'r29-thelemic', 'r30-buddhist-core', 'r30-buddhist-ui', 'r30-compare', 'r31-practices-core', 'r31-practices-ui', 'r31-dhammapada', 'r32-atlas-east', 'r32-east-core', 'r32-east-ui', 'r33-vedic-ai', 'r33-vedic-page', 'og-framing', 'og-engine', 'og-page', 'og-artery']) {
   const child = `import('./scripts/tests/${modName}.mjs').then(m=>m.run()).then(r=>{if(!r.pass){console.error(JSON.stringify((r.failures||[]).slice(0,8)));process.exit(1)}process.exit(0)}).catch(e=>{console.error(JSON.stringify([e.message]));process.exit(1)})`;
   let res = { pass: true, failures: [] };
   try { execFileSync(process.execPath, ['--input-type=module', '-e', child], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] }); }
   catch (e) { let fs2 = []; try { fs2 = JSON.parse(String(e.stderr || '').trim().split('\n').pop()); } catch { fs2 = [String(e.stderr || e.message).slice(0, 120)]; } res = { pass: false, failures: fs2 }; }
   ok(res.pass, `${modName}: ${res.pass ? 'PASS' : res.failures.length + ' failure(s)'}`);
   if (!res.pass) for (const f of res.failures.slice(0, 8)) console.log('    · ' + f);
+}
+
+// --- THE ARTERY GATE (R34) -------------------------------------------------
+// A generated data module that no longer matches its generator is the failure
+// mode this repo has been unable to see: five earlier modules name generators
+// that were never committed, so nobody can tell a hand-edit from a rebuild.
+// These two checks make hand-editing a generated file a TEST FAILURE. Each
+// script rebuilds its output in memory and exits 1 when the committed bytes
+// differ; `og-artery` asserts the same thing from the inside, and this is the
+// outer, one-line version that keeps working if that module is ever refactored.
+// A missing script is also a failure — the artery may not quietly disappear.
+for (const [script, what] of [
+  ['scripts/gen-opgraph.mjs', 'assets/js/core/data/opgraph.js is exactly gen-opgraph.mjs\'s output'],
+  ['scripts/seed-opgraph-gate.mjs', 'research/opgraph/gate.json is exactly what its decisions produce'],
+]) {
+  let pass = true, why = '';
+  if (!existsSync(resolve(REPO_ROOT, script))) { pass = false; why = `${script} is missing — the tracked artery may not be deleted`; }
+  else {
+    try { execFileSync(process.execPath, [script, '--check'], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] }); }
+    catch (e) { pass = false; why = String(e.stderr || e.message).trim().split('\n').pop().slice(0, 200); }
+  }
+  ok(pass, `artery: ${what}`);
+  if (!pass) console.log('    · ' + why + '\n    · rebuild with: node ' + script);
 }
 
 console.log(`\n[engine-test] ${fails ? fails + ' FAILED' : 'all passed'}`);
