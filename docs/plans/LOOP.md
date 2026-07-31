@@ -1,0 +1,253 @@
+# THE LOOP — how a round runs, what state it is in, what is queued
+
+> **This file deliberately contains almost no numbers.**
+>
+> Every figure about the graph, the roadmap or the ledger is computed by a script
+> and printed into a generated file. Copying those numbers here would create a
+> second source of truth that goes stale silently — which is the exact failure
+> this loop exists to prevent. So this file names **where each number lives** and
+> **what it means**; run the command to see the value.
+>
+> The one thing it does hold is the QUEUE, because a queue is a judgement and
+> judgements belong in tracked, hand-authored files.
+
+---
+
+## 1 · What the loop is
+
+Four artifacts, each generated from the one before it. The arrows are real
+dependencies, not documentation:
+
+```
+  research/opgraph/slices/*.json      hand-authored evidence (the round's output)
+  research/opgraph/gate-decisions.json  hand-authored JUDGEMENTS
+            │
+            │  node scripts/seed-opgraph-gate.mjs        ← arithmetic only
+            ▼
+  research/opgraph/gate.json          every weight, COMPUTED not argued
+            │
+            │  node scripts/gen-opgraph.mjs              ← assembly only
+            ▼
+  assets/js/core/data/opgraph.js      the shipped graph (GENERATED — never hand-edit)
+            │
+            ├── node scripts/opgraph-eig.mjs --write  →  docs/plans/opgraph/NEXT.md
+            │        the ROADMAP, ranked from data statistics
+            │
+            └── node scripts/round-telemetry.mjs record → docs/telemetry/rounds.jsonl
+                     node scripts/round-ledger.mjs      → docs/ROUND-LEDGER.md
+                        the LEDGER and its computed stop conditions
+```
+
+**The separation that makes it work.** `gate-decisions.json` holds everything
+that is a judgement — source tiers, node splits, ejections, minted-author kinds.
+`gate.json` holds only what arithmetic produces from those judgements plus the
+slices. A weight is therefore never argued into existence; it is recomputed every
+run, and `--check` fails loudly if the committed bytes disagree.
+
+**Both generators are dependency-free, idempotent, and have `--check` modes wired
+into the gate.** That is what stops `opgraph.js` joining the repo's other orphaned
+generated modules, whose generators lived in scratch directories that no longer
+exist.
+
+---
+
+## 2 · How a round runs
+
+```bash
+NODE=C:/Users/mehta/.conda/envs/astro-workbench/node.exe    # no system node
+
+# 1. edit TRACKED SOURCE only — slices and/or gate-decisions.json
+#    (never assets/js/core/data/opgraph.js; it is generated)
+
+# 2. regenerate, IN THIS ORDER — the second stage reads the first's output
+$NODE scripts/seed-opgraph-gate.mjs
+$NODE scripts/gen-opgraph.mjs
+
+# 3. the gate
+$NODE scripts/audit.mjs            # → Problems: 0
+$NODE scripts/engine-test.mjs      # → all passed
+$NODE scripts/pristine-check.mjs   # → reproducible from tracked state
+
+# 4. the roadmap and the ledger
+$NODE scripts/opgraph-eig.mjs --write
+$NODE scripts/round-telemetry.mjs record --round Rnn --domain N --tooling M
+$NODE scripts/round-ledger.mjs
+```
+
+**Running stage 2 alone is a known way to ship red.** It happened: `gate.json`
+went stale while `opgraph.js` was rebuilt, and the mismatch was pushed because the
+gate's output was not read before committing. Run both, read the output.
+
+**`pristine-check` is not optional and not redundant.** The other checks compare
+tracked bytes to generator output *in a tree where the generator just ran*, so
+they pass trivially. `pristine-check` exports HEAD into a throwaway worktree and
+runs the gate there — it answers "can someone who CLONES this reproduce it?",
+which for a while was **no** while every other check said yes.
+
+### Standing rules
+
+- **Repo files are edited only with Write/Edit tools.** PowerShell `Set-Content`
+  / `Out-File` mojibakes the UTF-8 in these files, and this corpus is full of
+  diacritics.
+- **`assets/js/app/local-config.js` is committed EMPTY** and protected with
+  `git update-index --skip-worktree`. Verify the `S` flag and that it is not
+  staged **before every commit**. Never commit an API key.
+- **Build rounds run in a `git worktree`** on their own port, so the working tree
+  the dev server reads is never mid-edit. This became standing practice after a
+  live edit produced a blank page for the maintainer.
+- **`assets/js/core/**` is PURE** — no DOM, no network, no RNG, no `Date`. DOM
+  lives only in `assets/js/app/**`.
+
+---
+
+## 3 · Where each number lives
+
+| question | run this | it writes |
+|---|---|---|
+| what is in the graph? | `node scripts/gen-opgraph.mjs` | prints node/edge census |
+| what should the next round do? | `node scripts/opgraph-eig.mjs` | `docs/plans/opgraph/NEXT.md` |
+| is the loop producing knowledge or instruments? | `node scripts/round-ledger.mjs` | `docs/ROUND-LEDGER.md` |
+| is it reproducible from a clone? | `node scripts/pristine-check.mjs` | stdout only |
+| which nodes still need a second witness? | `research/opgraph/corroboration-targets.json` | (snapshot — re-derive if stale) |
+
+---
+
+## 4 · The queue
+
+Ordered. Each entry says **why it sits where it does**, because a queue without
+reasons is just a list and gets reordered by whoever is nearest.
+
+### Now
+
+1. **The corroboration round (roadmap action A).** The single largest
+   score in `NEXT.md`. The witness term is the only rubric factor a research pass
+   can move, and it is at its floor on the single-witness nodes. Targets are
+   pinned in `corroboration-targets.json`, disjoint by slice.
+   *Blocked on nothing. In flight.*
+
+2. **Apply the corroboration proposal.** The round produces
+   `research/opgraph/corroboration-R34.json` as a PROPOSAL; a human adds the
+   sources to each slice's `meta.sources`, attaches the ids, sets tiers in
+   `gate-decisions.json`, and regenerates. Nothing in the round edits the graph.
+
+### Next — the open defect queue
+
+3. **`picatrix-prayers.js` — FRAMING §9.8, and it is fully live.** Re-verified
+   2026-07-30: `pdBasis` occurs **0 times** in the module, so neither of §9.8's
+   two required fixes has landed, and the verbatim Greer–Warnock excerpts
+   (Adocentyn Press, 2010–11, in copyright) reach **five** call sites:
+
+   | site | what leaves |
+   |---|---|
+   | `llm-context.js:172` | 160 chars auto-injected into the assistant context |
+   | `llm-context.js:622` | the full excerpt in a structured payload |
+   | `llm-context.js:929` | a tool returning the full `prayerExcerpt` |
+   | `app/picatrix-prayers.js:23` | the full excerpt rendered on the page |
+   | `app/workbench.js:631` | 150 chars on the workbench |
+
+   **This ranks first among the defects** because three of those five ship
+   in-copyright text to a third-party API on every relevant request — an
+   ongoing external disclosure, not a static page problem. §9.8's fixes are
+   specific: add `pdBasis` to every prayer record and either re-source to the
+   Latin / a PD translation (the site already does this for Dee's *Monas*) or
+   mark `cite-only` and substitute the site's own summary; then gate the
+   injection on `pdBasis.verdict !== 'cite-only'`. **Paraphrase is not one of
+   the options** — a close paraphrase of a translation is still derivative of it.
+
+4. **7 category-confused work→person/event joins.** Same family as the Agrippa
+   and `scot-discoverie` findings: an edge whose endpoints are different kinds of
+   thing. Checks L and M now catch two shapes of this; these seven are not yet
+   covered by a check, which is the argument for doing them as a group and
+   writing the check that would have caught them.
+
+5. **Remaining accuracy patchset** — `docs/plans/accuracy/70-PATCHSET.md`:
+   the Picatrix III.3-vs-III.7 conflation in `planetary-magic.js` (the harm note
+   must follow the hemlock), and the Gheraṇḍa `numberingMapping` provenance
+   scoping (P10/P11).
+
+6. **Confluence lane accents fail the palette validator.** russet `#8a4a22` vs
+   sienna `#9a5526` is ΔE 4.4 against a floor of 15 for normal vision — a hard
+   FAIL, not a CVD-only warning. 43 cultures cycling 8 hues is the categorical
+   anti-pattern; the fix is fold-to-Other or facet, not more hues.
+
+### Then — the three stalled specs
+
+Their research is **complete and tracked**; only the synthesis died on a session
+limit. None needs new research to start.
+
+7. **UI-SPEC arbitration** — `docs/plans/opgraph/design/10..13` are four
+   independent panel documents that were never arbitrated into one spec. The
+   opgraph page is a 68,196px scroll that should be a viewport-filling expandable
+   instrument.
+8. **EASTERN-SPEC** from `research/eastern/*` (8 files, incl. a hostile audit and
+   a nav redesign).
+9. **SKINNER-SPEC** from `research/skinner/*` (9 files). No `docs/plans/skinner/`
+   exists yet.
+
+### Held deliberately
+
+10. **The locator.** Audited **DO NOT BUILD AS SPECIFIED** (37 strikes, 11
+    blockers) — see `docs/plans/locator/PLAN.md`. Its Phase 0 was data-integrity
+    preconditions, and those shipped with the repairs above. The deep locator
+    ships **with no AI at all** and is useful alone; the AI layer stays gated
+    behind pre-registered thresholds with a no-ship fallback fixed in advance.
+
+11. **Roadmap action F — a silent culture.** Mesoamerican, sub-Saharan African,
+    Mesopotamian, Shintō/Shugendō, Slavic. The EIG proxy scores it **0 by
+    construction** because it ranks over rows that exist and these have none.
+    Kept on the board by hand precisely so a metric that can only ever promote
+    filling in what is already started does not quietly close the shelf.
+
+---
+
+## 5 · The loop's own defects
+
+Stated here because a loop that measures the work but not itself is the thing it
+was built to prevent.
+
+**D1 — the round numbering has collided twice.** `R33` is a MASTER-PLAN round and
+`R33r` is the opgraph research round; `R34` appears twice (an advance declaration
+and its superseding row). Two numbering series are being pushed through one
+identifier space. The ledger survives it — it renders the newest row per round and
+keeps every line — but a reader cannot tell which series a bare "R33" means.
+*Fix: name the series in the round id, or keep one series. Not yet decided.*
+
+**D2 — stop condition C3 has never been evaluable.** It needs five consecutive
+rounds carrying the curation census (`graph.excluded` / `graph.ejected`), and only
+one round has ever carried it, because the census is read from the shipped graph
+module and most rounds predate it. C3 correctly prints `NOT EVALUABLE` rather than
+passing by default. It becomes live after four more rounds record normally — so
+**do not pass `--skip-graph`** without a stated reason.
+
+**D3 — every claim count in the ledger is `(unverified)`.** The two columns are
+hand-classified by construction; no script can decide whether a change was
+knowledge or an instrument. The ledger says so on every row and the stop condition
+prints a NOTE that it is computed from figures no script re-derived. This is an
+accepted limit, not a bug — but it means C1/C2 are advisory, not authoritative.
+
+**D4 — the roadmap had no reader but itself.** `opgraph-eig.mjs` computed the
+queue, printed its own statistics as findings, and nothing checked them. A witness
+count that had silently collapsed to 1 therefore reported "every node in the graph
+is single-witness" for a full round, inflating the top action's affected set from
+115 to 347. Now guarded by `scripts/tests/og-eig.mjs`, which recounts
+independently. **The general lesson is the one to keep: a number that explains
+itself reads exactly like a number that is right.**
+
+---
+
+## 6 · The stop conditions
+
+Computed on every ledger run and printed into `docs/ROUND-LEDGER.md`.
+
+| rule | condition | effect |
+|---|---|---|
+| **C1 — instrument drift** | over the last 3 scorable rounds, `sum(domain) === 0` while `sum(tooling) > 0` | **HARD STOP, exit 3** |
+| **C2 — thinning** | trailing-3 `domain / (domain + tooling) < 0.20` | WARN |
+| **C3 — rubber-stamp gate** | over the last 5 rounds, `excluded` **and** `ejected` both grew by 0 | WARN |
+
+C1 and C2 exist because the honest failure mode of a project like this is not
+wrong claims — it is a long, satisfying run of building instruments and calling it
+research. **Ambiguous items count as `tooling_only`; the tie goes against us.**
+C3 exists because a curation gate that never rejects anything is not a gate.
+
+Run `node scripts/round-ledger.mjs` for what they currently say.
