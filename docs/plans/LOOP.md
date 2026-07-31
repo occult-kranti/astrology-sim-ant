@@ -165,7 +165,34 @@ reasons is just a list and gets reordered by whoever is nearest.
    must follow the hemlock), and the Gheraṇḍa `numberingMapping` provenance
    scoping (P10/P11).
 
-6. **Confluence lane accents fail the palette validator.** russet `#8a4a22` vs
+6. **The gate's "2 drive warnings" are two real defects, not noise.** They have
+   been riding in every browser sweep as a constant. Root-caused 2026-07-30:
+
+   **(a) `assets/js/app/dial.js` is dead code, and its test can never fail.**
+   Nothing imports it — the only other `dial` hits in the repo are `now.js`'s
+   unrelated `n-dial` planetary-hours host and the orphaned `.dial` CSS block in
+   `style.css`. The drive *"dial arrow keys move the bound input"* runs against
+   `pages/handcalc.html`, where `.dial` and `.dial-face` **do not exist**: the
+   focus is a no-op, `readValue` returns `null`, ArrowUp goes nowhere, and the
+   assertion compares `"null"→"null"` and emits a WARN. A test that cannot pass
+   and cannot fail is the same vacuous-check pattern the check-M parse guard was
+   written to catch. *Decide: wire the dial, or delete the module, its CSS and
+   the drive together. Do not leave it warning.*
+
+   **(b) The workbench records a "recent place" the user never chose.** The page
+   renders a default chart on load; that render path ends in
+   `picker.commitRecent()` (e.g. `book1-master.js:213`), which pushes the current
+   field values into `wb-recent-places`. So the default London coordinates are
+   written to recents on every bare page load and always occupy chip 0. Verified
+   in Chromium: seed storage with one entry, load the page, and storage comes
+   back `[London(fresh ts), Testville]`.
+   The chip mechanism itself is **fine** — clicking it filled both lat and lon
+   correctly. Two separate things to settle: recents that record places you never
+   picked is arguably wrong product behaviour (a maintainer judgement, not a bug
+   report), and the drive's assumption that chip 0 is its seeded entry is wrong
+   regardless and should target the chip by name.
+
+7. **Confluence lane accents fail the palette validator.** russet `#8a4a22` vs
    sienna `#9a5526` is ΔE 4.4 against a floor of 15 for normal vision — a hard
    FAIL, not a CVD-only warning. 43 cultures cycling 8 hues is the categorical
    anti-pattern; the fix is fold-to-Other or facet, not more hues.
@@ -175,24 +202,24 @@ reasons is just a list and gets reordered by whoever is nearest.
 Their research is **complete and tracked**; only the synthesis died on a session
 limit. None needs new research to start.
 
-7. **UI-SPEC arbitration** — `docs/plans/opgraph/design/10..13` are four
+8. **UI-SPEC arbitration** — `docs/plans/opgraph/design/10..13` are four
    independent panel documents that were never arbitrated into one spec. The
    opgraph page is a 68,196px scroll that should be a viewport-filling expandable
    instrument.
-8. **EASTERN-SPEC** from `research/eastern/*` (8 files, incl. a hostile audit and
+9. **EASTERN-SPEC** from `research/eastern/*` (8 files, incl. a hostile audit and
    a nav redesign).
-9. **SKINNER-SPEC** from `research/skinner/*` (9 files). No `docs/plans/skinner/`
+10. **SKINNER-SPEC** from `research/skinner/*` (9 files). No `docs/plans/skinner/`
    exists yet.
 
 ### Held deliberately
 
-10. **The locator.** Audited **DO NOT BUILD AS SPECIFIED** (37 strikes, 11
+11. **The locator.** Audited **DO NOT BUILD AS SPECIFIED** (37 strikes, 11
     blockers) — see `docs/plans/locator/PLAN.md`. Its Phase 0 was data-integrity
     preconditions, and those shipped with the repairs above. The deep locator
     ships **with no AI at all** and is useful alone; the AI layer stays gated
     behind pre-registered thresholds with a no-ship fallback fixed in advance.
 
-11. **Roadmap action F — a silent culture.** Mesoamerican, sub-Saharan African,
+12. **Roadmap action F — a silent culture.** Mesoamerican, sub-Saharan African,
     Mesopotamian, Shintō/Shugendō, Slavic. The EIG proxy scores it **0 by
     construction** because it ranks over rows that exist and these have none.
     Kept on the board by hand precisely so a metric that can only ever promote
