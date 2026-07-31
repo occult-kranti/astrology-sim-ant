@@ -12,7 +12,7 @@ statistics are the contribution; the ordering is an argument you may disagree wi
 
 | # | action | affected | headroom | lev | cost | score |
 |---|---|---:|---:|---:|---:|---:|
-| 1 | A · second witness | 347 | 0.3 | 1 | 3 | **34.7** |
+| 1 | A · second witness | 115 | 0.3 | 1 | 3 | **11.5** |
 | 2 | B · basis upgrade | 217 | 0.15 | 1 | 4 | **8.1** |
 | 3 | E · desk-check queue | 50 | 0.08 | 1 | 1 | **4.0** |
 | 4 | D · atlas join | 24 | 0.05 | 2 | 1 | **2.4** |
@@ -23,7 +23,7 @@ statistics are the contribution; the ordering is an argument you may disagree wi
 
 **Add one INDEPENDENT second witness to the highest-weight nodes.**
 
-Every node in the graph is single-witness (246/246 claims, 101/101 works). The rubric multiplies a witness term that is therefore at its floor everywhere, which is why 137/347 weighted nodes sit within 0.10 of the 0.4 admission floor. This is the only action that can move that term at all.
+100/246 claims and 15/101 works rest on a SINGLE witness, so the rubric's witness term sits at 0.5 for them while corroborated nodes reach 0.8–1.0. Witness distribution — works: 1→15 · 2→39 · 3→22 · 4→12 · 5→10 · 7→2 · 8→1; claims: 1→100 · 2→96 · 3→38 · 4→12. 137/347 weighted nodes sit within 0.10 of the 0.4 admission floor, and the single-witness rows are where that pressure concentrates. This is the only action that can move the witness term at all.
 
 ### B · basis upgrade
 

@@ -46,7 +46,21 @@ const claims = N.filter(n => n.type === 'procedure-claim');
 const rels = N.filter(n => n.type === 'relation-claim');
 const FLOOR = OPGRAPH_META.admissionFloor ?? 0.40;
 
-const witCount = x => (Array.isArray(x.witnesses) ? x.witnesses.length : x.witnesses ? 1 : 0);
+// SHAPE NOTE — read this before touching it. `witnesses` has TWO shapes in this
+// repo. In the slices (and inside seed-opgraph-gate.mjs) it is an ARRAY of
+// witness records; in the SHIPPED module gen-opgraph.mjs collapses it to a
+// COUNT. This script reads the shipped module, so the number is the truth here.
+//
+// The original line was `Array.isArray(x) ? x.length : x.witnesses ? 1 : 0` —
+// written for the slice shape and applied to the shipped shape, so every count
+// >= 1 fell through the truthiness branch and became 1. That made the entire
+// graph look single-witness and inflated action A's `affected` from 115 to 347.
+// The weights were never wrong (the gate reads the array shape correctly); the
+// ROADMAP was. Guarded by scripts/tests/og-eig.mjs so it cannot regress silently.
+const witCount = x => (
+  Array.isArray(x.witnesses) ? x.witnesses.length
+  : typeof x.witnesses === 'number' ? x.witnesses
+  : 0);
 const num = x => (typeof x.weight === 'number' ? x.weight : null);
 
 // ── THE MEASUREMENTS (all re-derived; none carried from a previous round) ────
@@ -70,6 +84,19 @@ const M = {
   editions: works.reduce((n, w) => n + (w.editions || []).length, 0),
 };
 
+// The witness histogram is PRINTED, not just reduced to a headline. A single
+// summary number is what let the collapse bug above hide: "every node is
+// single-witness" and "most nodes have 2-3 witnesses" both reduce to one figure
+// if you only ever look at the count of nodes at the floor. Show the shape.
+const histogram = rows => {
+  const h = new Map();
+  for (const r of rows) h.set(witCount(r), (h.get(witCount(r)) || 0) + 1);
+  return [...h.entries()].sort((a, b) => a[0] - b[0])
+    .map(([w, n]) => `${w}→${n}`).join(' · ');
+};
+M.workWitnessHist = histogram(works);
+M.claimWitnessHist = histogram(claims);
+
 // ── THE CANDIDATE ACTIONS ───────────────────────────────────────────────────
 // headroom is in rubric units: the witness term is the only one a corroboration
 // pass can move, and it is pinned at its floor across the whole graph today.
@@ -77,7 +104,7 @@ const CANDIDATES = [
   {
     id: 'A · second witness',
     what: 'Add one INDEPENDENT second witness to the highest-weight nodes.',
-    why: `Every node in the graph is single-witness (${M.singleWitnessClaims}/${M.claims} claims, ${M.singleWitnessWorks}/${M.works} works). The rubric multiplies a witness term that is therefore at its floor everywhere, which is why ${M.nearFloor}/${M.weighted} weighted nodes sit within 0.10 of the ${FLOOR} admission floor. This is the only action that can move that term at all.`,
+    why: `${M.singleWitnessClaims}/${M.claims} claims and ${M.singleWitnessWorks}/${M.works} works rest on a SINGLE witness, so the rubric's witness term sits at 0.5 for them while corroborated nodes reach 0.8–1.0. Witness distribution — works: ${M.workWitnessHist}; claims: ${M.claimWitnessHist}. ${M.nearFloor}/${M.weighted} weighted nodes sit within 0.10 of the ${FLOOR} admission floor, and the single-witness rows are where that pressure concentrates. This is the only action that can move the witness term at all.`,
     affected: M.singleWitnessClaims + M.singleWitnessWorks,
     headroom: 0.30, leverage: 1.0, cost: 3,
   },
@@ -158,8 +185,20 @@ L.push('promotes filling in what is already started will never open a new shelf.
 L.push('');
 
 const out = L.join('\n');
-console.log(out);
-if (process.argv.includes('--write')) {
-  writeFileSync(new URL('../docs/plans/opgraph/NEXT.md', import.meta.url), out);
-  console.log('\n[eig] wrote docs/plans/opgraph/NEXT.md');
+
+// The measurements are EXPORTED so a test can recount them independently rather
+// than trust the number this file prints about itself. scripts/tests/og-eig.mjs
+// does exactly that — the witness-count collapse survived a round precisely
+// because the only reader of these figures was the file that computed them.
+export { M, CANDIDATES, ranked, out };
+
+// Printing and writing happen only on direct invocation, so importing this
+// module for measurement is free of side effects.
+const isMain = process.argv[1] && import.meta.url === new URL(`file://${process.argv[1].replace(/\\/g, '/')}`).href;
+if (isMain) {
+  console.log(out);
+  if (process.argv.includes('--write')) {
+    writeFileSync(new URL('../docs/plans/opgraph/NEXT.md', import.meta.url), out);
+    console.log('\n[eig] wrote docs/plans/opgraph/NEXT.md');
+  }
 }
