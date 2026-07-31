@@ -40,7 +40,7 @@
    "5. scripts/tests/og-artery.mjs asserts write-invariant W4. This is what makes the gate load-bearing rather than decorative."
   ],
   "counts": {
-   "admittedNodes": 508,
+   "admittedNodes": 509,
    "admittedEdges": 747,
    "excluded": 102,
    "ejected": 17
@@ -5947,19 +5947,13 @@
    "id": "person:agrippa",
    "kind": "node",
    "nodeType": "author",
-   "label": "pseudo-Agrippa; anonymous",
+   "label": "Heinrich Cornelius Agrippa von Nettesheim (1486–1535)",
    "witnesses": [
     {
      "key": "S12",
      "slice": "12-solomonic-western",
      "tier": "primary",
      "cite": "Library of Congress catalog record 11031418: 'Henry Cornelius Agrippa, his Fourth book of occult philosophy. Of geomancy. Magical elements of Peter de Abano. Astronomical geomancy [Gerardus Cremonensis]. The nature of spirits [George Pictorius]. Arbatel of magick / translated into English by Robert Turner' (London, 1655). loc.gov/item/11031418. Consulted 2026-07-17."
-    },
-    {
-     "key": "S13",
-     "slice": "12-solomonic-western",
-     "tier": "primary",
-     "cite": "Johann Weyer, 'De praestigiis daemonum' (1563), denouncing the Fourth Book as spurious; 'Pseudomonarchia daemonum' appended to the 1577 ed. Reginald Scot, 'The Discoverie of Witchcraft' (1584; expanded 1665). Consulted via S2 and secondary summaries 2026-07-17."
     },
     {
      "key": "S14",
@@ -5972,12 +5966,12 @@
    "contestedPositions": 0,
    "flags": [],
    "factors": {
-    "witness": 1,
+    "witness": 0.8,
     "primaryFactor": 1,
     "contestFactor": 1,
     "flagFactor": 1
    },
-   "weight": 1,
+   "weight": 0.8,
    "admittedRound": "R33"
   },
   {
@@ -6151,6 +6145,37 @@
     "flagFactor": 1
    },
    "weight": 0.68,
+   "admittedRound": "R33"
+  },
+  {
+   "id": "person:pseudo-agrippa",
+   "kind": "node",
+   "nodeType": "author",
+   "label": "pseudo-Agrippa; anonymous",
+   "witnesses": [
+    {
+     "key": "S12",
+     "slice": "12-solomonic-western",
+     "tier": "primary",
+     "cite": "Library of Congress catalog record 11031418: 'Henry Cornelius Agrippa, his Fourth book of occult philosophy. Of geomancy. Magical elements of Peter de Abano. Astronomical geomancy [Gerardus Cremonensis]. The nature of spirits [George Pictorius]. Arbatel of magick / translated into English by Robert Turner' (London, 1655). loc.gov/item/11031418. Consulted 2026-07-17."
+    },
+    {
+     "key": "S13",
+     "slice": "12-solomonic-western",
+     "tier": "primary",
+     "cite": "Johann Weyer, 'De praestigiis daemonum' (1563), denouncing the Fourth Book as spurious; 'Pseudomonarchia daemonum' appended to the 1577 ed. Reginald Scot, 'The Discoverie of Witchcraft' (1584; expanded 1665). Consulted via S2 and secondary summaries 2026-07-17."
+    }
+   ],
+   "epistemicLabel": "documented",
+   "contestedPositions": 0,
+   "flags": [],
+   "factors": {
+    "witness": 0.8,
+    "primaryFactor": 1,
+    "contestFactor": 1,
+    "flagFactor": 1
+   },
+   "weight": 0.8,
    "admittedRound": "R33"
   },
   {
@@ -18139,7 +18164,7 @@
    "admittedRound": "R33"
   },
   {
-   "id": "AUTHORED_BY|gw:pseudo-agrippa-fourth-book|person:agrippa",
+   "id": "AUTHORED_BY|gw:pseudo-agrippa-fourth-book|person:pseudo-agrippa",
    "kind": "edge",
    "edgeKind": "AUTHORED_BY",
    "admittedRound": "R33"
