@@ -1,0 +1,1399 @@
+{
+  "round": "R34",
+  "generatedISO": "2026-07-30",
+  "status": "PROPOSAL ONLY — NOTHING HERE HAS BEEN APPLIED. This file does not edit the graph, the slices, meta.sources, any node's cite array, or any weight. A human applies it to the slice files and regenerates the artery. Until that happens the 115 nodes below still carry one witness each.",
+  "scope": "115 single-witness nodes across five slices, each given to a finder agent and then to an adversarial verifier. This file is the integrator's merge of the verifier's verdicts.",
+  "counts": {
+    "singleWitnessNodesInScope": 115,
+    "attempted": 115,
+    "neverAttempted": 0,
+    "acceptedVerifiedSecondWitness": 81,
+    "rejectedByAdversarialPass": 8,
+    "confirmedAbsencesAtFinderStage": 25,
+    "proposedButNotAdjudicated": 1,
+    "acceptedRequiringACorrectedCitation": 54,
+    "acceptedCarryingAScopeLimitOrContest": 55,
+    "countingNote": "81 + 8 + 25 + 1 = 115. 'acceptedRequiringACorrectedCitation' is a hard count of accepted entries where the verifier supplied a correctedCite (wrong page, chapter, folio, date, edition or attribution). 'acceptedCarryingAScopeLimitOrContest' is MY classification from the verdict reasoning — a maintainer could score it a few either way."
+  },
+  "perSlice": [
+    {
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "singleWitnessNodes": 39,
+      "attempted": 39,
+      "neverAttempted": 0,
+      "accepted": 27,
+      "rejected": 4,
+      "confirmedAbsences": 8,
+      "notAdjudicated": 0,
+      "acceptRate": "27/39 = 69%",
+      "distinctNewSources": 2,
+      "concentration": "22 of 27 acceptances are Goudriaan & Gupta 1981, which is ALREADY S20 in this slice's meta.sources; the other 5 are two chapters of one 2003 Brill volume."
+    },
+    {
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "singleWitnessNodes": 35,
+      "attempted": 35,
+      "neverAttempted": 0,
+      "accepted": 23,
+      "rejected": 1,
+      "confirmedAbsences": 10,
+      "notAdjudicated": 1,
+      "acceptRate": "23/35 = 66%",
+      "distinctNewSources": 10,
+      "concentration": "Klaassen 2013 carries 8 of the 23; Lang 2008 carries 4."
+    },
+    {
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "singleWitnessNodes": 20,
+      "attempted": 20,
+      "neverAttempted": 0,
+      "accepted": 18,
+      "rejected": 1,
+      "confirmedAbsences": 1,
+      "notAdjudicated": 0,
+      "acceptRate": "18/20 = 90%",
+      "distinctNewSources": 7,
+      "concentration": "Goodman 2013 and Liu 2020 carry 4 each; The Taoist Canon carries 3 and was ALREADY in this slice's source list."
+    },
+    {
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "singleWitnessNodes": 17,
+      "attempted": 17,
+      "neverAttempted": 0,
+      "accepted": 10,
+      "rejected": 1,
+      "confirmedAbsences": 6,
+      "notAdjudicated": 0,
+      "acceptRate": "10/17 = 59%",
+      "distinctNewSources": 4,
+      "concentration": "Chandler 2015 carries 4; Kambitsis 1976 carries 3; Bortolani 2016 carries 2 and both are PLAUSIBLE not CONFIRMED."
+    },
+    {
+      "sliceFile": "research/opgraph/slices/14-abrahamic-esoteric.json",
+      "singleWitnessNodes": 4,
+      "attempted": 4,
+      "neverAttempted": 0,
+      "accepted": 3,
+      "rejected": 1,
+      "confirmedAbsences": 0,
+      "notAdjudicated": 0,
+      "acceptRate": "3/4 = 75%",
+      "distinctNewSources": 3,
+      "concentration": "n=4. Too small to generalise from; two of the three lean on a devotional popularizer and a page-less web entry."
+    }
+  ],
+  "sourceIdAllocation": {
+    "research/opgraph/slices/10-indian-tantra.json": {
+      "scheme": "meta.sources is an array of objects with a `key` field",
+      "existingKeys": "S1-S26",
+      "nextFree": "S27",
+      "allocatedThisRound": {
+        "S20": "EXISTING — Goudriaan & Gupta 1981, already present and flagged there as 'accessed: partial'. 22 nodes re-use it. No new key.",
+        "S27": "NEW — Torzsok, 'Icons of Inclusivism', in Buhnemann (ed.), Mandalas and Yantras in the Hindu Traditions (Brill, 2003)",
+        "S28": "NEW — Buhnemann, 'Mandala, Yantra and Cakra: Some Observations', in the same volume. Keyed separately from S27 because it is a different chapter by a different author."
+      }
+    },
+    "research/opgraph/slices/11-greco-egyptian.json": {
+      "scheme": "meta.sources is an object keyed S1..S27",
+      "existingKeys": "S1-S27",
+      "nextFree": "S28",
+      "allocatedThisRound": {
+        "S28": "Kambitsis, BIFAO 76 (1976)",
+        "S29": "Chandler, Culture and Cosmos 19.1-2 (2015)",
+        "S30": "Bortolani, Magical Hymns from Roman Egypt (CUP, 2016)",
+        "S31": "Dufault, Early Greek Alchemy (California Classical Studies 7, 2019)"
+      }
+    },
+    "research/opgraph/slices/12-solomonic-western.json": {
+      "scheme": "meta.sources is an array of objects with an `id` field",
+      "existingKeys": "S1-S18",
+      "nextFree": "S19",
+      "allocatedThisRound": {
+        "S19": "Kieckhefer, Forbidden Rites (1997/1998)",
+        "S20": "Grimoire du Pape Honorius, Wellcome copy (artefact + library catalogue record)",
+        "S21": "Lang, Unlocked Books (Penn State UP, 2008)",
+        "S22": "VD16 A 1185 (with VD16 P 1798)",
+        "S23": "Skinner & Rankine, The Goetia of Dr Rudd (Golden Hoard, 2007)",
+        "S24": "Nicholson (ed.), The Discoverie of Witchcraft (1886) — EDITOR'S NOTES ONLY",
+        "S25": "Mathers, Book of the Sacred Magic of Abramelin the Mage, 2nd ed. 1900",
+        "S26": "Klaassen, The Transformations of Magic (Penn State UP, 2013)",
+        "S27": "Harkness, John Dee's Conversations with Angels (CUP, 1999)",
+        "S28": "Kahn, The Codebreakers (Macmillan, 1967)"
+      }
+    },
+    "research/opgraph/slices/13-east-asian.json": {
+      "scheme": "NO KEYING SCHEME EXISTS. meta.sources is an unkeyed array of 32 plain strings; procedure rows carry free-text `citation` fields. There is no S-number to allocate.",
+      "existingKeys": "none",
+      "nextFree": "n/a",
+      "allocatedThisRound": {
+        "S33-S39": "PROVISIONAL ONLY — these assume the maintainer introduces keys in array order (32 existing entries => next is 33). If keys are not introduced, paste the cite string into each node's `citation` field instead.",
+        "EXISTING": "The Taoist Canon (Schipper & Verellen 2004) is already meta.sources entry #13 and is re-used by three nodes; it needs no new entry."
+      }
+    },
+    "research/opgraph/slices/14-abrahamic-esoteric.json": {
+      "scheme": "NO KEYING SCHEME EXISTS. meta.sources is an unkeyed array of 24 plain strings; works carry `editions[].ref` and free-text cites.",
+      "existingKeys": "none",
+      "nextFree": "n/a",
+      "allocatedThisRound": {
+        "S25-S27": "PROVISIONAL ONLY — assumes the maintainer introduces keys in array order (24 existing entries => next is 25)."
+      }
+    }
+  },
+  "accepted": [
+    {
+      "nodeId": "tan:kularnavatantra",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING — already in meta.sources, marked there as 'accessed: partial'. No new S-number. Add S20 to this node's cite array.",
+      "cite": "T. Goudriaan & S. Gupta, Hindu Tantric and Śākta Literature, A History of Indian Literature II.2 (Wiesbaden: Otto Harrassowitz, 1981), pp. 93–96",
+      "locator": "https://archive.org/details/goudriaan-teun-gupta-sanjukta-1981.-hindu-tantric-and-shakta-literature — full OCR obtained via the item's _hocr_searchtext.txt.gz + _hocr_pageindex.json.gz + _page_numbers.json; printed pp. 93–96 (ch. V, ‘Some Other Kaula Tantras’)",
+      "tier": "secondary-scholarly",
+      "supports": "G&G’s own chapter survey: ‘The Kulārṇavatantra (KT) is without doubt the most important of its class’; the colophons make the text only the fifth khaṇḍa (mokṣapāda) while the text as it stands has seventeen chapters and about 2060 ślokas; it is ‘one of the small number of Tantras which manages to do so in the form of a set of clear and systematically ordered prescriptions’; date ‘between about 1000 and 1400 A.D.’",
+      "independenceArgument": "Not Pandit’s English abridgement: G&G collate Vidyāsāgar 1882/1897, Vidyāratna 1917 (= S11’s Sanskrit) and Bh. Śarmā 1963, and use the NCC manuscript record plus Carlstedt’s critical edition of chs. 1–2 from c.20 MSS. Their survey reports technical material Pandit deliberately removed.",
+      "scopeLimit": "MANDATORY: the 1000–1400 date is G&G REPORTING Carlstedt (their n.11), not their own derivation — record as ‘Carlstedt’s estimate as reported by G&G’. The verse figure is near-agreement, not identity (slice: 2,058; G&G: ‘about 2060’)."
+    },
+    {
+      "nodeId": "proc:tan-kularnavatantra-3",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta, Hindu Tantric and Śākta Literature (Harrassowitz, 1981), p. 95",
+      "locator": "https://archive.org/details/goudriaan-teun-gupta-sanjukta-1981.-hindu-tantric-and-shakta-literature — printed p. 95",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘A sixfold nyāsa of the mantra as a preparation to worship is expounded in chapter IV which is rather technical.’ Confirms the chapter locus (ullāsa IV), the ṣoḍhā (sixfold) character, and the preparation-to-worship slot.",
+      "independenceArgument": "Technical detail the slice itself records as NOT recoverable from its own witness (Pandit’s English readings); read from the Sanskrit and the MS record.",
+      "scopeLimit": "none beyond the above"
+    },
+    {
+      "nodeId": "proc:tan-kularnavatantra-5",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), pp. 95–96",
+      "locator": "same archive item — printed pp. 95–96",
+      "tier": "secondary-scholarly",
+      "supports": "p.95: the worship proper is ch. VI; ‘The attendant deities, especially Vaṭuka, Kṣetrapāla and Ucchiṣṭacāṇḍālī, should also be carefully worshipped by means of a tribute of solid food (bali; first part of chapter VII)’, with śaktipūjā at 7,36–57. p.96: ‘There are rituals for special occasions … in chapter X.’ Confirms ullāsa VII and X and adds verse loci G&G derived themselves.",
+      "independenceArgument": "Independent verse-level reading of the Sanskrit; G&G decline to give ‘the details’, exercising the same restraint the repo requires, which is evidence about the material rather than a copy of the first witness.",
+      "scopeLimit": "none beyond the above"
+    },
+    {
+      "nodeId": "proc:tan-kularnavatantra-1",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 96",
+      "locator": "same archive item — printed p. 96",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘… the position of the guru (chapter XII); the sacred lore to be mastered by him arranged systematically according to numbers: sextuples, triads etc. (XII and XIII); the kinds of dīkṣā (XIV) …’ Corroborates the XII–XIV initiation block and the dīkṣā locus.",
+      "independenceArgument": "A different scholar’s own chapter survey of the Sanskrit, not derived from Avalon’s introduction or Pandit’s English.",
+      "scopeLimit": "SCOPE LIMIT: G&G attest dīkṣā at XIV and guru/lore at XII–XIII only. They do NOT mention the pādukā-mantra or the ‘testing of competence’ the slice lists. Second witness is for the block and the dīkṣā locus, not for every element."
+    },
+    {
+      "nodeId": "proc:tan-kularnavatantra-2",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 96",
+      "locator": "same archive item — printed p. 96",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘… the mastery of mantras and the method of recitation (XV) …’ Corroborates ullāsa XV as the chapter that qualifies a mantra for use and gives the recitation method — the puraścaraṇa slot, hence the node’s mantra-consecration type.",
+      "independenceArgument": "Independent chapter survey from the Sanskrit; predates and does not cite the slice’s English rendering.",
+      "scopeLimit": "SCOPE LIMIT: G&G do NOT itemise ‘mantra defects’ or prāṇāyāma within XV. Accept for the chapter’s subject only."
+    },
+    {
+      "nodeId": "proc:tan-kularnavatantra-6",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 96",
+      "locator": "same archive item — printed p. 96",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘… the execution of special powers with the help of mantras (XVI) …’ Corroborates ullāsa XVI as the desire-directed / siddhi chapter at exactly the ‘named, not set out’ grade the node records.",
+      "independenceArgument": "Independent chapter survey from the Sanskrit by a different scholar.",
+      "scopeLimit": "G&G reproduce no rite, substance or target formula, so the operative-content razor is not stressed. Nothing beyond the chapter subject is corroborated."
+    },
+    {
+      "nodeId": "proc:tan-kularnavatantra-7",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 95",
+      "locator": "same archive item — printed p. 95",
+      "tier": "secondary-scholarly",
+      "supports": "p.95: ‘Before describing the worship itself the text expatiates (in chapter V) on the utensils and the sacred substances (kuladravya) …’ and ‘The rules for ritual eating and drinking involve the consecration of the sādhaka’s body by the guru (7,63–103).’ A purification / body-consecration procedure IS independently attested, with a verse locus the slice’s English witness does not supply.",
+      "independenceArgument": "Independent verse-level reading of the Sanskrit; the disagreement over the chapter assignment is itself proof this is not a restatement of the first witness.",
+      "scopeLimit": "MANDATORY LOCUS FLAG: G&G assign chapter VI to ‘the worship proper’ and place body-consecration at 7.63–103, contradicting the slice’s ‘Ullāsa VI treats the worshipper’s purification.’ Keep BOTH positions; do not silently adopt either."
+    },
+    {
+      "nodeId": "tan:merutantra",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING — closes the gap the slice itself declared against S20 (‘per-text entries … NOT reachable’)",
+      "cite": "Goudriaan & Gupta (1981), p. 98 with n. 24",
+      "locator": "same archive item — printed p. 98",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: the Merutantra ‘has more than once been regarded as a late work because the town of London is said to be mentioned in it’; it does not appear in traditional Tantra lists; ‘in some Mss. the number of ślokas seems to amount to 15.000 or more, divided into prakāśas (25,35 or 50)’; a Baroda Mantrakhaṇḍa MS is ‘only 800 slokas’. n.24 verifies the Lucknow 1907 and Lakṣmīveṅkaṭeśvara 1908 editions, the India Office Cat. IV p.380f. (no. 2570) contents list, and Kavirāj TSah p.528f. for the MSS.",
+      "independenceArgument": "A different documentary route from the slice’s Aufrecht CC / UPenn evidence: the India Office catalogue tradition plus Kavirāj.",
+      "scopeLimit": "MUST BE RECORDED AS CATALOGUE-BASED, NOT TEXT-BASED: G&G state explicitly they had not seen the printed editions. The extent flag WIDENS rather than closes — G&G give 25/35/50 prakāśas against the slice’s 10/25/35. G&G do not endorse the London remark as a dating argument."
+    },
+    {
+      "nodeId": "proc:tan-merutantra-1",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 98",
+      "locator": "same archive item — printed p. 98",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘From the list of contents it appears that the subject-matter (a general survey of Kaula ritual) has been arranged in the manner of a digest: dīkṣā, puraścaraṇa and mantras of various deities, traditions of different schools having been incorporated in an eclectic manner.’ Lifts the node above pure genre-inference: mantra material and puraścaraṇa are named as contents.",
+      "independenceArgument": "Derived from the India Office Library catalogue entry, a different catalogue tradition from the slice’s Aufrecht CC / UPenn evidence.",
+      "scopeLimit": "HONEST LIMIT: catalogue-derived, not an inspection of the text; G&G state they had not seen the printed editions."
+    },
+    {
+      "nodeId": "tan:padarthadarsa",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 135 with n. 17 (and p. 165, n. 13)",
+      "locator": "same archive item — printed pp. 135, 165",
+      "tier": "secondary-scholarly",
+      "supports": "p.135: ‘There are at least ten commentaries. The most famous is the Padārthādarśa by Rāghavabhaṭṭa, a South Indian scholar who came to live in Varanasi and wrote his commentary in A.D. 1494.’ n.17: ‘The date is based on the author’s own information in the concluding stanzas of the Padārthādarśa.’ p.165: ‘An important source, but more of ritual than of philosophy.’ Closes the slice’s ‘(unverified) colophon’ note and upgrades tertiary S21’s 1493–94 to a scholarly 1494.",
+      "independenceArgument": "G&G’s base edition (n.13) is Mukunda Jhā Bakhśī, KSS 107, Varanasi 1963, with Rāghavabhaṭṭa’s commentary — not the slice’s Avalon 1933, which they list only as an ‘older ed.’ They also use Pusalker’s independent study (ABORI XLI, 1960) and the Gode identification of Rāghavabhaṭṭa’s Abhijñānaśākuntala commentary.",
+      "scopeLimit": "none material"
+    },
+    {
+      "nodeId": "tan:dipika-amrtananda",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), pp. 152, 165–166 (with n. 59)",
+      "locator": "same archive item — printed pp. 152, 165–166",
+      "tier": "secondary-scholarly",
+      "supports": "p.152: Amṛtānanda, the Yoginīhṛdaya commentator, also wrote a Saubhāgyasubhagodaya in six chapters, three of which expound the Śrīcakra; he ‘seems to have been a Kashmirian and a pupil of Puṇyānandanātha’. p.165 lists him first among ‘the most authoritative commentators’; pp.165–166 give translated Dīpikā specimens on YH 1,5cd and 1,6a. Corroborates author identity, lineage and the Dīpikā’s ritual-explanatory function.",
+      "independenceArgument": "G&G work from Kavirāj’s Sarasvatībhavana editions and Dvivedī’s Sanskrit prefaces and translate the Dīpikā directly, 32 years before Padoux 2013 (S8).",
+      "scopeLimit": "TWO CORRECTIONS THE FINDER OMITTED, both material: (1) the date is NOT G&G’s own — their n.59 sources it to V.V. Dvivedī’s preface to Kavirāj’s YH edition; (2) it CONFLICTS with the node’s existing witness S8 — Padoux places Amṛtānanda in the 13th–14th c. (commonly c.1325–1375). Enter the date as CONTESTED with both positions kept. Do NOT record it as ‘the date the slice left unverified, now settled’."
+    },
+    {
+      "nodeId": "proc:tan-yoginihrdaya-1",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), pp. 62–63 [CITE CORRECTED from the finder’s ‘p. 62’]",
+      "locator": "same archive item — printed pp. 62–63; the sub-cakra enumeration falls AFTER the running head ‘Tantras of the Śrīkula 63’",
+      "tier": "secondary-scholarly",
+      "supports": "p.62: ch. 1 Cakrasaṃketa — Śiva ‘describes the Śrīcakra in all its constituents’, expounding the evolutionary symbolism of its nine ‘wombs’ (navayoni); and ‘It is impossible to understand the argumentation without constant consultation of the commentaries …’, corroborating the commentary-dependent grade. p.63: the chapter ends by enumerating the nine sub-cakras and their shapes.",
+      "independenceArgument": "Independent reading from Kavirāj’s Sarasvatībhavana edition with the Dīpikā and Setubandha (their n.17), 32 years before Padoux 2013. Its partial disagreement with the slice is itself evidence of independence.",
+      "scopeLimit": "LOCUS NUANCE, verified and to be recorded: G&G place the technical CONSTRUCTION of the Śrīcakra in the Nityāṣoḍaśikārṇava (1,43–58) and describe YH ch. 1 as symbolism, constituents and sub-cakra enumeration rather than drawing instructions."
+    },
+    {
+      "nodeId": "proc:tan-yoginihrdaya-4",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), pp. 62–63",
+      "locator": "same archive item — printed pp. 62–63",
+      "tier": "secondary-scholarly",
+      "supports": "p.62: ‘A host of divine figures … is located on strategical points of the cakra’, and ‘The whole system should also be understood by the sādhaka as being present in his body (1,25; 2,8).’ p.63: in the Sarvarahasyārtha and Mahātattvārtha ‘one meditates respectively on the Kuṇḍalinī’s ascent in the body … and on the union with the Supreme Brahman.’ Corroborates the node’s ‘doctrinal rather than stepwise’ grading.",
+      "independenceArgument": "Independent reading of the Sanskrit editions and commentaries with verse loci (1,25; 2,8; 2,14ff.) not taken from the slice’s witness.",
+      "scopeLimit": "BONUS RESOLUTION, verified: p.63 states the Mantrasaṃketa ‘consists of the description of six “meanings” (artha)’ and names all six (bhāvārtha, sampradāyārtha, nigarbhārtha, kaulikārtha, sarvarahasyārtha, mahātattvārtha) — the slice’s open five-vs-six discrepancy resolves in favour of SIX."
+    },
+    {
+      "nodeId": "proc:tan-nityasodasikarnava-2",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 60",
+      "locator": "same archive item — printed p. 60",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘[Īśvara] gives the names of the Nityās … and proceeds with a technical description of the construction of the Śrīcakra interrupted by a glowing eulogy on the cakra and its effectivity (1,43–58).’ A genuine corrective to the slice’s note that the drawing sits in the paired Yoginīhṛdaya. No template, measurement or bīja is reproduced, so the razor holds.",
+      "independenceArgument": "They collate two further editions beyond the existing witness — Āgāśe, ĀSS 56 (1908) with Bhāskararāya’s Setubandha, and M.K. Śāstrī, KSTS 66 with Jayaratha’s Vivaraṇa — and supply their own verse loci.",
+      "scopeLimit": "PARTIAL-OVERLAP FLAG: G&G’s n.9 lists Dvivedī’s 1968 edition (= the node’s existing witness S19) FIRST, so their base text overlaps it. Independence rests on the two further collated editions and their own loci, not on a disjoint text base."
+    },
+    {
+      "nodeId": "proc:tan-prapancasara-4",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), pp. 133–134, 136",
+      "locator": "same archive item — printed pp. 133–134, 136",
+      "tier": "secondary-scholarly",
+      "supports": "p.133: ‘From ch. 7 onwards we find descriptions of mantras of deities and their application, beginning with Bhāratī (=Sarasvatī) in 7 and 8 …’. p.136: the per-deity scheme, including that the mantra is ‘communicated more or less in codal form with its ṛṣi etc.’ and an ‘explication of the method of puraścaraṇa’ — an independent attestation of the mantroddhāra gating mechanism the slice labels M1.",
+      "independenceArgument": "G&G translate the Sanskrit directly (PS 1,58; 2,41f.; 8,25; 8,33; 8,36; 9,21; 9,29; 9,44) two decades before Bühnemann’s Iconography (S3).",
+      "scopeLimit": "SCOPE LIMIT: G&G nowhere give the figure of 78 deity descriptions — that count remains on S3 alone."
+    },
+    {
+      "nodeId": "proc:tan-prapancasara-5",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 136",
+      "locator": "same archive item — printed p. 136",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘The general scheme of the discussion of a mantra is the same in the ŚT and the PS. The mantra is announced … then follow the dhyānaśloka which describes the figure of the corresponding deity for the purpose of meditation; enumeration of the surrounding deities (āvaraṇadevatāḥ) …’ Independently attests the dhyāna-śloka as a fixed structural slot supplying a complete visualisation object per deity.",
+      "independenceArgument": "Written 1981, two decades before Bühnemann 2000–2001 (S3), and derived from G&G’s own PS/ŚT comparison — it cannot be a summary of the existing witness.",
+      "scopeLimit": "none material"
+    },
+    {
+      "nodeId": "proc:tan-saradatilaka-5",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), pp. 135–136 (with n. 13)",
+      "locator": "same archive item — printed pp. 135–136",
+      "tier": "secondary-scholarly",
+      "supports": "p.136 states the per-mantra scheme (including the dhyāna-śloka slot) holds for the ŚT as well as the PS. pp.135–136: ‘In general, we can characterize the ŚT as a re-presentation, and sometimes a rearrangement, in simpler form of the subject-matter of the PS’, and ‘The author has a keen eye for system … and sometimes adds more details in the description of external ritual.’",
+      "independenceArgument": "Base edition Bakhśī KSS 107 (1963), not the slice’s Avalon 1933; predates Bühnemann’s iconographic study by twenty years.",
+      "scopeLimit": "SCOPE LIMIT: G&G give the ŚT as 25 chapters / 3489 stanzas (n.13) but nowhere corroborate S3’s count of 101 deity descriptions — that count stays single-witness."
+    },
+    {
+      "nodeId": "proc:tan-saradatilaka-1",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), p. 122 with n. 48 (and the contents list at p. 136)",
+      "locator": "same archive item — printed pp. 122, 136, 139",
+      "tier": "secondary-scholarly",
+      "supports": "On Kṛṣṇānanda’s Ṣaṭkarmadīpikā, p.122: ‘Thus, the first chapter (uddeśa) contains many stanzas from the 23rd chapter of the Śāradātilaka. This chapter deals with the general observances (sāmānyadharma) preparatory to any magic ritual.’ Supports the meta-ritual / parameter-table reading the slice calls its sharpest completeness finding, reached by a different route (tracing the Ṣaṭkarmadīpikā’s unattributed borrowings).",
+      "independenceArgument": "G&G collate a DIFFERENT text — the Ṣaṭkarmadīpikā (ed. Indrajālavidyāsaṃgraha, Calcutta 1915) — against the Śāradātilaka, 35 years before Ullrey (S2) and predating Bühnemann 2000 (S1) and Türstig 1985.",
+      "scopeLimit": "WITNESS ACCEPTED, HEADLINE CLAIM REJECTED. Three corrections: (1) ‘This chapter’ has an AMBIGUOUS antecedent — it can equally refer to the Ṣaṭkarmadīpikā’s own first chapter; the meta-ritual reading survives either way but must not be recorded as an unambiguous statement about ŚT 23. (2) The LOCUS flag CANNOT be closed: G&G’s own contents list at p.136 labels ŚT ch. 22 ‘magic weapons’ and ch. 23 ‘Tryambaka and others’, which if anything supports tertiary S21’s paṭala-22 assignment. G&G are internally inconsistent — keep both. (3) G&G name the author ‘Kṛṣṇānanda Vidyāvāgīśa’ at p.122 and ‘Āgamavāgīśa’ at p.139; cite the name as printed, per page."
+    },
+    {
+      "nodeId": "proc:tan-brhattantrasara-4",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING — closes the gap the slice declared against S20",
+      "cite": "Goudriaan & Gupta (1981), pp. 139–140 with n. 37 (and p. 122)",
+      "locator": "same archive item — printed pp. 122, 139–140",
+      "tier": "secondary-scholarly",
+      "supports": "p.139–140: ‘The concluding section in nearly 200 pages contains miscellaneous subjects, i.a. mantravāda, homa, the Six Acts, a collection of stotras and kavacas … mudrās, yantras, a succinct description of daily worship, various siddhis, Kulācāra, animal sacrifice (yajana), and yoga’; the deity order in II–III includes ‘deities of exorcism and magic’; extent ‘about 5000 slokas’; the author ‘bore the title Āgamavāgīśa, was a Varendra Brahman who lived at Navadvīpa’ and ‘is also the author of the Ṣaṭkarmadīpikā’. Moves the coercive-rite claim from genre-level to a named section.",
+      "independenceArgument": "Six named Bengali editions, the manuscript record (RASB 6187–6191; Orissa Cat. 32–39) and S.C. Banerji’s description — none of which is the slice’s HathiTrust record (S23) or Ullrey’s footnote (S2).",
+      "scopeLimit": "DATE CONTEST TO RECORD, NOT RESOLVE: the Tantrasāra quotes Pūrṇānanda’s Śrītattvacintāmaṇi (A.D. 1577), so ‘Kṛṣṇānanda therefore probably wrote in the seventeenth century’ — against the slice’s ‘last part of the sixteenth century’. Keep both; n.37 shows G&G themselves record competing positions (Sircar; Gode 1500–1600 on a Saṃvat 1586 colophon; oldest MS A.D. 1632)."
+    },
+    {
+      "nodeId": "proc:tan-mantramahodadhi-2",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING — closes the gap the slice declared against S20",
+      "cite": "Goudriaan & Gupta (1981), p. 137 with n. 23",
+      "locator": "same archive item — printed p. 137",
+      "tier": "secondary-scholarly",
+      "supports": "The per-text entry the slice flagged as unreachable: the Mantramahodadhi was ‘written by Mahīdhara (cf. vs. 25,122)’ with his own Naukā commentary; ‘The date of its composition is V.S. 1645 (A.D. 1588–89)’; ‘consists of 3800 slokas and 25 chapters’; further commentaries Padārthādarśa (Kāśīnātha) and Mantravallī (Gaṅgādhara); contents include ‘a general scheme of the performer’s preparation (ch. 1); … generalities of Mantravāda (24); the Six Acts (25).’ Confirms taraṅga 1 as the preparatory/qualifying chapter, taraṅga 24 as the mantra-technical chapter, and the 1588–89 date.",
+      "independenceArgument": "n.23 verifies four earlier editions (Chattopādhyāya 1877–84; Vidyāsāgar 1892; Veṅkaṭeśvara Press 1910/1962) plus Gode’s biographical study — not S26 (1981 Sri Satguru) or S2 (2016).",
+      "scopeLimit": "none material"
+    },
+    {
+      "nodeId": "proc:tan-nisvasatattvasamhita-5",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), pp. 34–36 (with n. 7)",
+      "locator": "same archive item — printed pp. 34–36",
+      "tier": "secondary-scholarly",
+      "supports": "p.35: ‘Śiva is said to manifest himself in the form of the “Five Brahmas” … and worshipped with a famous series of five mantras. The chapters 6–8 of the Mūlasūtra discuss the mantric form of the fivefold Śiva.’ p.36: ‘ch. 9 concentrates on mantric secrets, i.a. the nature of Oṃ, and communicates a lengthy Vyomavyāpimantra; the mastery of this mantra and other elements of mantravāda … Then follow the Aṅgas … and the Śaiva variety of the Sāvitrī (ch. 15).’ Raises the node from ‘Mantramārga by definition’ to chapter- and folio-level attestation.",
+      "independenceArgument": "G&G work from the Nepalese palm-leaf MS directly (n.7: Nepal Cat. I, p.137, MS No. 277, 114 fols.), give their own folio ranges (18b–23b, 23b–29a, 29a–41a, 41a–113b) and their own palaeographic opinion (‘not much earlier or later than A.D. 900’), 34 years before Goodall 2015 (S6).",
+      "scopeLimit": "IMPORTANT: both witnesses examine the SAME sole manuscript. This corroborates the READING, not the transmission."
+    },
+    {
+      "nodeId": "proc:tan-nisvasatattvasamhita-4",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "EXISTING",
+      "cite": "Goudriaan & Gupta (1981), pp. 34, 36",
+      "locator": "same archive item — printed pp. 34, 36",
+      "tier": "secondary-scholarly",
+      "supports": "p.34: ‘Its Sanskrit is unidiomatic and the manuscript is unfortunately damaged. The size is considerable (about 4500 ślokas).’ p.36: ‘The Guhyasūtra is by far the longest (fol. 41a–113b). Its seventeen chapters contain a variety of subjects … A very interesting section in ch. 1 describes types of sādhakas and the deities they incarnate; this is followed by a list of sacred places (siddhikṣetra) and a description of the installation of the Liṅga in ch. 2. The third chapter contains a series of vratas (śmāśāna, asidhāra etc.) and their results.’",
+      "independenceArgument": "Independent inspection of the same Nepalese MS with G&G’s own folio ranges, 34 years before the Goodall/Sanderson/Isaacson edition.",
+      "scopeLimit": "MANDATORY AMENDMENT: the slice grades this ‘fragmentary on EDITION grounds, NOT textual damage’. G&G report BOTH grounds — unedited in 1981 AND the sole MS damaged. Record both together; do not oppose them."
+    },
+    {
+      "nodeId": "proc:tan-netratantra-2",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S27",
+      "sourceStatus": "NEW — next free key in this slice (existing keys run S1–S26)",
+      "cite": "Judit Törzsök, ‘Icons of Inclusivism: Maṇḍalas in Some Early Śaiva Tantras’, in G. Bühnemann (ed.), Maṇḍalas and Yantras in the Hindu Traditions, Brill’s Indological Library 18 (Leiden/Boston: Brill, 2003), Appendix 1, pp. 215–219, with Illustration 1 and Colour Plates 16–17",
+      "locator": "https://archive.org/details/MandalasAndYantrasInTheHinduTraditions — full OCR downloaded; Appendix 1 opens at printed p. 215 under the running head ‘ICONS OF INCLUSIVISM 215’; Appendix 2 begins p. 220; plates confirmed in the List of Illustrations, p. xvii",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘Below is a brief description of how a simple maṇḍala is constructed, following the prescription of the NT with Kṣemarāja’s commentary. Note that without the commentary it would be impossible to reconstruct the maṇḍala … What follows concerns only the actual drawing and the colours applied according to NT₂ 18.31ff.’ Corroborates twice over: a maṇḍala-construction procedure exists at a verse locus, and it is commentary-dependent in exactly the way the slice’s M5 mechanism predicts.",
+      "independenceArgument": "Törzsök reads the Sanskrit with the Netroddyota sixteen years before Sauthoff (S16), and expressly differentiates her reconstruction from Brunner’s earlier one made from the Śāradātilaka.",
+      "scopeLimit": "RAZOR WARNING: the finder’s ‘supports’ field transcribed the grid size, circle names and pīṭha divisions. NONE of that may be copied into the graph — record only the structural fact and the locator."
+    },
+    {
+      "nodeId": "proc:tan-svacchandatantra-5",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S27",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Törzsök, ‘Icons of Inclusivism’, in Bühnemann (ed.), Maṇḍalas and Yantras in the Hindu Traditions (Brill, 2003), p. 200 with n. 83 (SvT₂ 5.19ff., deities from 5.37c), and Appendix 2, p. 220 (SvT₂ 5.19–34) [LOCATOR CORRECTED from the finder’s ‘5.39ff.’, which is an inference, not printed]",
+      "locator": "https://archive.org/details/MandalasAndYantrasInTheHinduTraditions — printed p. 200 (running head ‘200 JUDIT TÖRZSÖK’) and p. 220",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘On the pericarp of the central lotus, one is to place and worship the supreme deity of this system, Svacchandabhairava, surrounded by eight Bhairavas on the eight petals. The eight Bhairavas are placed on the petals as eight mantra-syllables extracted from the navātmabīja.’ The footnote reproduces Kṣemarāja’s decoding — root text encodes, commentary decodes — an independent attestation of mantroddhāra operating inside the Svacchandatantra.",
+      "independenceArgument": "Törzsök works from the Sanskrit with Kṣemarāja’s Uddyota in the Dvivedī 1985 edition (SvT₂), distinct from the slice’s KSTS printing (S18), seventeen years before Kavaleuskaya 2020 (S10).",
+      "scopeLimit": "Reinforces the slice’s vocabGap case for a MANTRA-EXTRACTION term; the node’s current type label is ‘mantra-consecration’ while the evidence is mantroddhāra."
+    },
+    {
+      "nodeId": "tan:saundaryalahari",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S28",
+      "sourceStatus": "NEW — same edited volume as S27 but a different chapter and author; keyed separately",
+      "cite": "Gudrun Bühnemann, ‘Maṇḍala, Yantra and Cakra: Some Observations’, in G. Bühnemann (ed.), Maṇḍalas and Yantras in the Hindu Traditions, Brill’s Indological Library 18 (Leiden/Boston: Brill, 2003), pp. 37–38 with n. 90; Bibliography p. 275",
+      "locator": "https://archive.org/details/MandalasAndYantrasInTheHinduTraditions — printed pp. 37–38, 275",
+      "tier": "secondary-scholarly",
+      "supports": "p.37: ‘The Saundaryalaharī is a hymn to the Tantric goddess Tripurasundarī in 100 (sometimes 103) stanzas. It is traditionally ascribed to Śaṃkarācārya … Each verse … became associated with a specific seed (bīja) syllable, which is inscribed in a yantra shape.’ p.38: ‘The yantras associated with the stanzas of these three hymns were obviously created later, their connection with the stanzas not being evident from the text itself’, with n.90 quoting the editor Anantakṛṣṇa Śāstrī to the same effect. Independently confirms the slice’s central reading — the operative apparatus is a later paratextual accretion — and the ‘traditionally ascribed’ authorship.",
+      "independenceArgument": "Her edition is the Madras 1957 Anantakṛṣṇa Śāstrī text, not Brown HOS 43 (S15), and her lateness argument rests on the stanza/bīja mismatch plus comparison with the Jain Bhaktāmarastotra and Kalyāṇamandirastotra yantras — her own evidence, not Brown’s photographs.",
+      "scopeLimit": "none material"
+    },
+    {
+      "nodeId": "proc:tan-saundaryalahari-1",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S28",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Bühnemann, ‘Maṇḍala, Yantra and Cakra: Some Observations’, in Maṇḍalas and Yantras in the Hindu Traditions (Brill, 2003), p. 37, with the Illustration 4 caption in the List of Illustrations",
+      "locator": "https://archive.org/details/MandalasAndYantrasInTheHinduTraditions — printed p. 37 and the List of Illustrations",
+      "tier": "secondary-scholarly",
+      "supports": "p.37 body text: a per-stanza bīja is inscribed in a yantra shape. The Illustration 4 caption independently attests a per-verse yantra with an attached prayoga specifying a named durable support material and a stated result, reproduced from the Madras 1957 edition (Saundaryalaharī 1957: 87) — a different edition from Brown’s.",
+      "independenceArgument": "A different scholar, a different edition, reached by comparison with Jain stanza-yantra traditions rather than through Brown HOS 43.",
+      "scopeLimit": "RAZOR: the bīja, the support material and the counted regimen named in the caption must NOT be transcribed into the graph — record the structural fact and the locator only."
+    },
+    {
+      "nodeId": "proc:tan-saundaryalahari-2",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "proposedSourceId": "S28",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Bühnemann, ‘Maṇḍala, Yantra and Cakra: Some Observations’, in Maṇḍalas and Yantras in the Hindu Traditions (Brill, 2003), p. 36, with the Illustration 4 caption",
+      "locator": "https://archive.org/details/MandalasAndYantrasInTheHinduTraditions — printed p. 36 and the List of Illustrations",
+      "tier": "secondary-scholarly",
+      "supports": "p.36: ‘To reinforce the efficacy of hymn-recitation in bringing about the promised material benefits, the practice arose of reciting hymns a given number of times. This practice is modelled on that of repeating powerful mantras … hymns are recited at most hundreds or thousands of times.’ The Saundaryalaharī-SPECIFIC counted regimen is supplied by the Illustration 4 caption, so unlike the rejected sibling proposal this node has text-specific support.",
+      "independenceArgument": "Different scholar, different edition (Madras 1957), reached through her own comparative study of stotra-yantras.",
+      "scopeLimit": "Efficacy is stated strictly as the tradition’s claim (‘promised’, ‘to secure’), which matches the repo framing and must be preserved in that register."
+    },
+    {
+      "nodeId": "gw:clm-849",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S19",
+      "sourceStatus": "NEW — next free key in this slice (existing keys run S1–S18)",
+      "cite": "Richard Kieckhefer, Forbidden Rites: A Necromancer’s Manual of the Fifteenth Century (Magic in History; Stroud: Sutton, 1997; University Park, PA: Pennsylvania State University Press, 1998), ISBN 0-271-01750-3, ch. 2 ‘The Munich Handbook of Necromancy: Clm 849’; edition of fols 31r–108v [CITE CORRECTED: UK first publication was Sutton 1997, not Penn State; Penn State issued cloth and paper in 1998]",
+      "locator": "Cite by book and page. Consulted via the OCR at https://archive.org/details/forbidden-rites-a-necromancers-manual-of-the-fifteenth-century-richard-kieckhefer — that upload is unauthorised and is NOT a durable locator.",
+      "tier": "primary",
+      "supports": "Verified verbatim: ‘a fifteenth-century manuscript in the Bavarian State Library, Clm 849, and in particular the texts on folios 3 through 108’; ‘The compiler of this main block of material was evidently German’; the published catalogue describes it only as ‘a book of incantations, exorcisms and sundry bewitchments’; ‘It is clearly a miscellany, with little linkage, clustering or other organization of its materials’; ‘The first two folios of the manuscript are missing’; the contents are ‘a series of forty-two magic experiments’ interspersed with a Liber consecracionum (no. 31), a spirit list (no. 34), an astral-magic manual (no. 37) and a list of favourable/unfavourable days (no. 46); ‘Lynn Thorndike made no reference to it in his monumental History of Magic’.",
+      "independenceArgument": "Kieckhefer’s own codicological and textual examination: the Acknowledgements record the Bayerische Staatsbibliothek supplying microfilm and photographs of Clm 849 and Martina Stratmann supplying a codicological analysis, and he edits fols 31r–108v. Peterson (S4) merely names Clm 849 as one of three Heptameron sources; Kieckhefer predates and is upstream of that.",
+      "scopeLimit": "HIGH VALUE BEYOND CORROBORATION: this contents description is the exact evidence the R33 audit named as the blocker for the VOIDED completeness grade on proc:gw-clm-849-1, and now unblocks it."
+    },
+    {
+      "nodeId": "gw:grimoire-pape-honorius",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S20",
+      "sourceStatus": "NEW",
+      "cite": "Grimoire du Pape Honorius, avec un recueil des plus rares secrets, title-page imprint ‘A Rome 1760’; Wellcome Collection copy, catalogued [Avignon]: [Offray, Snr], [1850?], 95 pp., 16mo, coloured frontispiece and plates",
+      "locator": "https://wellcomecollection.org/works/bn28svbp (Wellcome record, fetched) ; digitised copy read at https://archive.org/details/b33028308",
+      "tier": "primary",
+      "supports": "The artefact plus a research library’s own cataloguing of the copy in hand. Corroborates the node’s load-bearing NEGATIVE: a false Roman imprint on a cheap French print falsely ascribed to Honorius III (d. 1227).",
+      "independenceArgument": "The physical object and the holding library’s description of it — no route through Peterson’s juratus.htm (S3) or the repo plan (S18).",
+      "scopeLimit": "MANDATORY CAVEAT: this witness attests a DIFFERENT imprint variant (1760) and dates this exemplar to c.1850. It corroborates neither the node’s ‘Rome, 1670’ nor its 18th-century placement. The ‘1670’ figure is now unsupported by anything verified in this round and should be re-checked against whatever S18 drew it from — it may be a transposition of 1760."
+    },
+    {
+      "nodeId": "gw:picatrix",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S21",
+      "sourceStatus": "NEW",
+      "cite": "Benedek Láng, Unlocked Books: Manuscripts of Learned Magic in the Medieval Libraries of Central Europe (Magic in History; University Park, PA: Penn State UP, 2008), ISBN 978-0-271-03377-8, Part Two, image-magic chapter, pp. 96–104",
+      "locator": "https://archive.org/details/benedek-lang-unlocked-books-manuscripts-of-learned-magic-in-the-medieval-librari — OCR downloaded; running heads put the Kraków passage at p. 97 and the omission/decan passages at pp. 103–4",
+      "tier": "secondary-scholarly",
+      "supports": "On Kraków, Biblioteka Jagiellońska MS BJ 793, which Láng examined himself: ‘the Kraków version is unfinished; it contains only the first two parts of the Picatrix’; ‘Although the Prologue promises all four books, the text is interrupted in the middle of chapter 10 of the second’; ‘This Kraków manuscript is the only illustrated Picatrix known to us; indeed, when illustrating his critical edition, the editor could not but borrow from this copy of the text’; and a third fragment from Martin ‘not known to Pingree either’.",
+      "independenceArgument": "His evidence base is his own codicological survey of Central European manuscripts, including fragments Pingree did not know.",
+      "scopeLimit": "INDEPENDENCE IS PARTIAL AND MUST BE SCOPED: independent for the BJ 793 codicology (four-book structure per the Prologue, only illustrated Picatrix, the Martin fragment). NOT independent for the Castilian 1256–58 / Alfonso X dating — Láng’s n. 40 footnotes that to Pingree 1980 and 1981, i.e. to S11’s author. Do not double-count on the dating."
+    },
+    {
+      "nodeId": "gw:pseudo-agrippa-fourth-book",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S22",
+      "sourceStatus": "NEW",
+      "cite": "VD16 A 1185 (with VD16 P 1798): ‘HENRICI CORNELII AGRIPPAE LIBER QVARTVS DE OCCVLTA PHILosophia, seu de Cerimonijs Magicis. Cui accesserunt, Elementa Magica Petri de Abano. Philosophi.’ — Impressum: s.l., 1559; 118 S., 8°; note ‘Impressum nach Vorlage: Marburg. Wohl kein deutscher Druck.’",
+      "locator": "https://gateway-bayern.de/VD16+A+1185 (record fetched; MARC 250/264/300/505 fields read). Digitised copy: BSB Res/Phys.m. 224#Beibd.4, http://mdz-nbn-resolving.de/urn:nbn:de:bvb:12-bsb00080748-3",
+      "tier": "primary",
+      "supports": "A German national retrospective bibliography describing surviving copies (BSB München; Halle ULB). Corroborates the 1559 date — twenty-four years after Agrippa’s death, the fact the spurious attribution rests on — the 118 pp. octavo collation, and the Fourth Book + Elementa magica (Heptameron) pairing already present in the Latin volume rather than being Turner’s editorial doing.",
+      "independenceArgument": "Wholly independent of the LoC record 11031418 for Turner’s 1655 English composite (S12), and of Peterson and Weyer; it reaches the facts from the surviving copies of the edition itself.",
+      "scopeLimit": "MANDATORY CORRECTION: VD16 records the place as s.l. (unknown) and judges the imprint probably NOT a German print. It therefore UNDERCUTS the node’s flat ‘Marburg, 1559’ — do NOT record it as confirming a Marburg imprint. It does not touch the spuriousness verdict, which still rests on Weyer (S13) alone."
+    },
+    {
+      "nodeId": "gw:theurgia-goetia",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S23",
+      "sourceStatus": "NEW",
+      "cite": "Stephen Skinner & David Rankine, eds., The Goetia of Dr Rudd (Sourceworks of Ceremonial Magic; London: Golden Hoard Press, 2007), ‘History and Origins’; Appendix 1 (Theurgia-Goetia material from Sloane MS 3824). Prime text Harley MS 6483, with Harley MS 6482, Sloane MS 3824, Wellcome MS 3203",
+      "locator": "https://archive.org/details/the-goetia-of-dr.-rudd-pdfdrive.com — OCR downloaded; title page and ‘History and Origins’ chapter read",
+      "tier": "primary",
+      "supports": "Verbatim: ‘Trithemius himself is the source of the demon names in the second (Theurgia-Goetia) and third (Ars Paulina Part 1) parts of the Lemegeton, which can be traced directly to his Steganographia’; ‘The second part of the Lemegeton, the Theurgia-Goetia is simply Book 1 of Trithemius’ Steganographia recast in a more practical form with sigils’; and on Sloane 3824, invocations of the Wandering spirits ‘which we have reproduced in Appendix 1 … originally part of a more complete Theurgia-Goetia’.",
+      "independenceArgument": "A different manuscript recension: ‘Peterson used as his prime text Sloane MS 3825 … We have selected Harley MS 6483 as our prime text.’",
+      "scopeLimit": "TWO FLAGS. TIER: independent EDITION, not peer-reviewed scholarship (specialist occult press). DEPENDENCE: the editors thank Peterson ‘for having done the definitive version of the Lemegeton in the first place’, cite his Weiser 2001 edition repeatedly, defer to his comparative spirit-name footnotes and take one figure from Sloane 3825 — independence is of manuscript base and argument, not of the scholarly conversation. RECORD THE CONTEST: they reject the slice’s keyFinding 1 outright (‘the cryptography was an integral part of the sorcery’)."
+    },
+    {
+      "nodeId": "gw:weyer-pseudomonarchia",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S24",
+      "sourceStatus": "NEW",
+      "cite": "Brinsley Nicholson, ed., The Discoverie of Witchcraft by Reginald Scot: Being a Reprint of the First Edition Published in 1584 (London: Elliot Stock, 1886) — EDITOR’S NOTES ONLY, to Book XV chaps. ii–iv (notes to pp. 377–9)",
+      "locator": "https://archive.org/details/discoverieofwitc00scot — OCR downloaded; title page and editorial notes read",
+      "tier": "primary",
+      "supports": "Nicholson states his own collation base: ‘The edition of Wier that I have used, I may here remark, is chiefly that of 1660, but where any doubt arose, that of 1583.’ He quotes Weyer’s own address prefixed to the Pseudomonarchia (the practitioners’ title Officium spirituum / Liber officiorum spirituum, ‘de principibus & regibus daemoniorum, qui cogi possunt divina vertute & humana’, renamed by Weyer ‘Pseudomonarchia Daemonum’), Weyer’s hostile marginal gloss on the Gaap entry (‘Scelerati necromantici verba sunt’), and the full Latin of the Purflas entry that Scot drops.",
+      "independenceArgument": "Nicholson had Weyer’s 1583 and 1660 Latin in his own hands and collated them against the 1584 English, 110+ years before Peterson. This materially upgrades S13, which the slice itself admits was ‘consulted via S2 and secondary summaries’ — i.e. never read.",
+      "scopeLimit": "SCOPE LIMIT THE GRAPH MUST CARRY: the volume is a reprint of Scot 1584, and a reprint of a witness is not a second witness. Only the editorial apparatus counts as new evidence; the cite must name the notes, not the reprinted text."
+    },
+    {
+      "nodeId": "proc:gw-abramelin-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S25",
+      "sourceStatus": "NEW — note S18 already names ‘Mathers Abramelin 1898 (2nd ed. 1900)’ as inherited repo prior art, so this is the first genuine consultation rather than a wholly new source",
+      "cite": "S. L. MacGregor Mathers, trans., The Book of the Sacred Magic of Abramelin the Mage, 2nd ed. (London: John M. Watkins, 1900), Book II, chapter ‘How the Operations should be performed’, numbered rules (13), (14), (15), (23), (33); Book II’s three successive chapters on ‘the first two Moons’, ‘the two second Moons’, ‘the two last Moons’; Book I, Abraham’s narrative",
+      "locator": "https://archive.org/details/sacred-magic-abramelin — Benjamin Rowe’s 1998 typesetting, which states on its first page that it reproduces ‘the complete and unaltered text of the corresponding sections in the second (1900) edition published by John M. Watkins, London’",
+      "tier": "primary",
+      "supports": "All five numbered rules verified verbatim, each keyed to the six-month span: (13) ‘in the space of Six Months before commencing’; (14) ‘during the Six Months or Moons commit voluntarily any mortal sin’; (15) ‘Sleep in the day-time is entirely forbidden’; (23) ‘During the Six Moons, you shall sweep the Oratory every Sabbath’; (33) ‘Take well heed during the Six Moons or Months to lose no blood’; and Book I’s ‘I continued it for Six Moons without omitting the slightest detail’.",
+      "independenceArgument": "A different manuscript recension, which the brief expressly allows: Mathers translates the French BnF manuscript, the existing witness S8 (Dehn & Guth) the German family from the two 1608 MSS. The six-month figure is now attested by the French witness itself instead of only by the German editors’ report of it.",
+      "scopeLimit": "LOCATOR ERROR CORRECTED: there is NO section headed ‘Rules to be observed during the Six Moons’; the numbered rules sit in Book II’s final narrative chapter. The strongest evidence is structural and was missed by the finder — Book II’s chapter sequence is literally ‘the first two Moons’ / ‘the two second Moons’ / ‘the two last Moons’."
+    },
+    {
+      "nodeId": "proc:gw-agrippa-three-books-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S26",
+      "sourceStatus": "NEW",
+      "cite": "Frank Klaassen, The Transformations of Magic: Illicit Learned Magic in the Later Middle Ages and Renaissance (Magic in History; University Park, PA: Penn State UP, 2013), ISBN 978-0-271-05626-5, ch. 7 ‘Medieval Ritual Magic and Renaissance Magic’, p. 204 (with p. 197) [NB chapter 7, not 8 — the volume has seven numbered chapters]",
+      "locator": "https://archive.org/details/frank-klaassen-the-transformations-of-magic_-illicit-learned-magic-in-the-later- — OCR downloaded; p. 204 confirmed by the running head ‘204 MAGIC AFTER 1580’",
+      "tier": "secondary-scholarly",
+      "supports": "Klaassen corroborates the row’s key NEGATIVE result almost verbatim. Summarising Book III he lists the topics (divine emanations, names, seals, intelligences, spirits, binding of evil spirits, frenzy, prophecy, oracles and the preparations for them), then: ‘In these descriptions, Agrippa refers to a host of classical, biblical, patristic, and philosophical sources, but he does not provide any explicit instructions on how these states might be attained.’ He notes that Christopher Lehrich has had to RECONSTRUCT an operative outline — i.e. the sequence is a scholarly reconstruction, not something the text sets out.",
+      "independenceArgument": "The row currently cites NOBODY at all, so any real reading of the text is a first genuine second witness. Klaassen reads and translates Agrippa directly; he mentions Peterson only twice in the whole book and never here, and does not work from Perrone Compagni’s apparatus.",
+      "scopeLimit": "none material"
+    },
+    {
+      "nodeId": "proc:gw-agrippa-three-books-2",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S26",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Frank Klaassen, The Transformations of Magic (Penn State UP, 2013), ch. 7, p. 197 and p. 204 [NB chapter 7, not 8]",
+      "locator": "same archive item — pp. 197 and 204, both confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "p.197: ‘The magic of the first two books is commonly connected with Ficino’s magic because it employs natural and celestial things, that is, material things from the world and formal or abstract things such as astrological images. But crucial elements of Ficino’s magic also appear in the third book, which is dedicated to ceremonial and ritual magic.’ Supports the row’s claim that Books I–II are the materials-and-astrological-images layer.",
+      "independenceArgument": "As above: an independent peer-reviewed reading of Agrippa’s own text against a row that cites no source.",
+      "scopeLimit": "HALF-TENSION TO RECORD, NOT TRIM: Lehrich’s reconstruction at p. 204 does include ‘consecration of ritual objects’. Klaassen frames it as a proposal (‘at least as plausible an outline’), so it still supports the ‘referenced’ grade, but the graph must not read Klaassen as flatly confirming ‘no consecration sequence exists’."
+    },
+    {
+      "nodeId": "proc:gw-agrippa-three-books-3",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S26",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Frank Klaassen, The Transformations of Magic (Penn State UP, 2013), ch. 7, p. 204 and p. 202 [PAGE CORRECTED: the ‘having first been purged’ quotation is p. 202, not p. 204]",
+      "locator": "same archive item — pp. 202 and 204, both confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "p.204, exactly on point for the ‘referenced’ grade: the preparations for divine contact ‘include various forms of common religious observance, purifications, suffumigations, and ceremonies, although Agrippa is not precise about these.’ p.202 carries Klaassen’s translation of Agrippa’s Book III opening, ‘Therefore, having first been purged, we ought to offer and entrust ourselves to divine piety and religion’ — a doctrinal exhortation with no procedure attached.",
+      "independenceArgument": "‘Although Agrippa is not precise about these’ is Klaassen’s own judgement from the text, and is exactly the discrimination the ‘referenced’ grade encodes. The row currently cites no source.",
+      "scopeLimit": "none material beyond the page correction"
+    },
+    {
+      "nodeId": "proc:gw-ars-notoria-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S26",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Frank Klaassen, The Transformations of Magic (Penn State UP, 2013), ch. 4 ‘The Ars Notoria and the Sworn Book of Honorius’, pp. 89, 91, 102",
+      "locator": "same archive item — p. 89 sits between running heads 88 and 90; pp. 91 and 102 likewise confirmed",
+      "tier": "secondary-scholarly",
+      "supports": "p.89: ‘the Ars notoria seeks the acquisition of knowledge and/or other special gifts … through a program of prayers, rituals, and meditations that employ the inspection of complex figures inscribed with prayers. It is from these figures, or notae, that the art derives its name.’ p.91 on the figures themselves. p.102, from his own manuscript work on Sloane 3853 and John of Morigny: ‘John advises the reader to meditate upon these cogitationes in much the same way that the original text requires meditations on the notae.’",
+      "independenceArgument": "Klaassen’s general characterisation and the Sloane 3853 / John of Morigny material are his own, from British manuscripts he catalogued.",
+      "scopeLimit": "INDEPENDENCE IS PARTIAL, verified at the sentence: ‘Nonetheless, Véronèse’s outline of a fourteenth-century manuscript in the Bibliothèque nationale, which I summarize here, provides a crucial starting point.’ For the fifteen-day / four-month programme he IS relaying S9 and must not be double-counted. He also says NOTHING about Turner’s 1657 omission of the notae — this row’s sharpest finding — which remains single-witnessed."
+    },
+    {
+      "nodeId": "proc:gw-dee-spiritual-diaries-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S27",
+      "sourceStatus": "NEW",
+      "cite": "Deborah E. Harkness, John Dee’s Conversations with Angels: Cabala, Alchemy, and the End of Nature (Cambridge: CUP, 1999), ISBN 0-521-62228-x, ch. 1 ‘Genesis’, pp. 24, 39, 44",
+      "locator": "https://archive.org/details/johndeesconversationswithangels.cabalaalchemyandtheendofnaturebydeborahe.harkness — OCR downloaded; pages confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "p.39 on genre: ‘Dee recorded the day-to-day angelic revelations in notebooks he maintained chronologically, here referred to as “angel diaries.”’ p.24 on the datable loss: ‘On 29 September 1600 Dee manifested his disappointment by burning the angel diaries that he had kept during those nine long years.’ p.44 on the 1586 Prague episode, where the angels ‘instructed Dee to place the revealed books and his angel diaries in his oratory furnace’, with a list of what was lost.",
+      "independenceArgument": "Checked at footnote level rather than taken on trust: notes 63–64 for the 1600 burning cite Bodleian Library, Ashmole MS 488, entries for September 1600 — Dee’s own private diary, entirely outside Whitby’s 1581–83 range, so she cannot be relaying S14 there.",
+      "scopeLimit": "NODE-ID NOTE: the slice’s work node is gw:dee-angelic-diaries, not ‘gw:dee-spiritual-diaries’; map this to procedure row 1. INDEPENDENCE SCOPE: Harkness uses Whitby’s edition heavily elsewhere (a standing abbreviation, ‘Whitby, AWS I/II’), so she is independent for the 1600 and 1586 losses and the diary genre, NOT for the 1581–83 sittings."
+    },
+    {
+      "nodeId": "proc:gw-dee-spiritual-diaries-3",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S27",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Deborah E. Harkness, John Dee’s Conversations with Angels (CUP, 1999), ch. 1 ‘Genesis’, p. 39 with n. 122 (BL Sloane MS 3191)",
+      "locator": "same archive item — p. 39 confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘The second class of books — the revealed books — were given to Dee in the course of the conversations, and they were always meant to be extracted from the chronologically recorded diaries and maintained as separate books. Dee’s extant copies of the revealed books … were finely executed in his most polished handwriting.’ That is exactly the completeness inversion the row records.",
+      "independenceArgument": "Verified at the footnote, not assumed: n.122 reads ‘These volumes were found in a secret compartment of a storage chest belonging to Dee. They are now bound as British Library, Sloane MS 3191’, citing the Sloane 3191 corpus and a published edition of the Heptarchia mystica — not Whitby. The extraction argument is Harkness’s own analysis of the relation between the diaries and Sloane 3191.",
+      "scopeLimit": "MAP to gw:dee-angelic-diaries procedure 3. The adjoining seal/reverence details the finder cited (Uriel’s instruction; ‘Each angel also conveyed his personal seal’) sit in the Whitby-cited stratum — use as colour only, never as independent attestation."
+    },
+    {
+      "nodeId": "proc:gw-key-of-solomon-4",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S26",
+      "sourceStatus": "NEW (Klaassen 2013)",
+      "cite": "Frank Klaassen, The Transformations of Magic (Penn State UP, 2013), ch. 5 ‘The Magic of Demons and Angels’, p. 122 and p. 116 [PAGE CORRECTED: the dating remark is p. 116, NOT p. 176]",
+      "locator": "same archive item — p. 122 confirmed by running head; p. 116 confirmed by the following running head ‘THE MAGIC OF DEMONS AND ANGELS 117’",
+      "tier": "secondary-scholarly",
+      "supports": "p.122: ‘these works tend to seek experience of the numinous in various ways, whether in the conjuring circles of the Clavicula Salomonis or the eerie smoke rising through a specially constructed table in the Almandal.’ That names the Clavicula’s enclosure as its identifying operative feature and corroborates the row’s circle claim. p.116 adds, as a bonus for the work node’s date/origin and the Hygromanteia contest: ‘The Clavicula Salomonis, a text with only one surviving medieval witness that probably appeared in Europe sometime in the late thirteenth century, appears to have Greek roots.’",
+      "independenceArgument": "Checked rather than assumed: Klaassen mentions Peterson only four times in the entire book (twice in the bibliography, once for the Lemegeton at ch. 4 n. 14, once acknowledging his online transcriptions in a ch. 6 note). Nothing in the Clavicula material runs through S1/ksol.htm.",
+      "scopeLimit": "THIN AND ACKNOWLEDGED AS SUCH: it corroborates the circle claim and NOTHING more. The page correction is load-bearing — anyone following p. 176 would find the Scot/Discoverie discussion and conclude the citation was fabricated."
+    },
+    {
+      "nodeId": "proc:gw-liber-juratus-3",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S26",
+      "sourceStatus": "NEW (Klaassen 2013) — but see the independence correction: cite Veenstra as the underlying authority",
+      "cite": "Frank Klaassen, The Transformations of Magic (Penn State UP, 2013), ch. 4, pp. 104–5 — RELAYING Jan R. Veenstra, ‘Honorius and the Sigil of God’, which Klaassen states at ch. 4 n. 47 his Sworn Book descriptions ‘draw heavily upon’",
+      "locator": "same archive item — pp. 104–5 confirmed by running head; n. 47 read",
+      "tier": "secondary-scholarly",
+      "supports": "p.104 supplies the invocation half the English witness Royal 17.A.XLII breaks off before: ‘The second portion of the text turns to the invocation of spirits of the planets, air, and earth … These operations are built upon and slightly modify the prayers and rituals already described, and they employ the sigil of God described in an earlier chapter.’ Also the conjuring site (three concentric circles on cleared, consecrated level ground, the largest nine feet across, with angel and divine names and an inscribed heptagon) and, p.105, suffumigation with a censer and a first call to spirits of the wind. Corroborates anatomy stages S3, S4 and S5.",
+      "independenceArgument": "Independent of the existing witness S3 (Peterson): Klaassen never routes the Sworn Book through him, and Veenstra is independent of Peterson and of Hedegård-via-summaries.",
+      "scopeLimit": "THE FINDER’S INDEPENDENCE ARGUMENT IS FACTUALLY WRONG AND MUST NOT BE SHIPPED. It claimed Klaassen works the London Honorius ‘from the manuscripts directly … manuscript-first’. His own ch. 4 n. 47 says the opposite. Cite Veenstra as the underlying authority; do NOT describe Klaassen as first-hand on this text. BONUS, p.102: base text ‘probably originating in Spain in the early fourteenth or even late thirteenth century’, with Ganell’s Summa sacre magice drawing on it."
+    },
+    {
+      "nodeId": "proc:gw-liber-juratus-5",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S26",
+      "sourceStatus": "NEW (Klaassen 2013, relaying Veenstra)",
+      "cite": "Frank Klaassen, The Transformations of Magic (Penn State UP, 2013), ch. 4, p. 108 — relaying Veenstra, ‘Honorius and the Sigil of God’ (ch. 4 n. 47)",
+      "locator": "same archive item — p. 108 confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘The prologue ends with rules for transmitting the text, to which any owner of the volume must swear compliance. Only three copies can be made at a time, and they cannot be given to a woman or a minor but only to a godly man who has been tested for one year. The practitioners must not reveal their secrets, even at the cost of their own lives … should the “master” be unable to pass the work on to a suitable disciple, the work must be buried with him. The owner of the manuscript is to swear to uphold these regulations in order to get a copy, and this is the basis for one of its titles, the Liber iuratus, or Sworn Book.’ The framing myth (council of eighty-nine masters, Honorius of Thebes, the angel Hocroel, the forged papal letter) is also verbatim.",
+      "independenceArgument": "Reports the oath from the fourteenth-century text’s own prologue rather than from Peterson’s modern parodic copyright notice; independent of S3.",
+      "scopeLimit": "ACTION RECOMMENDED BEYOND CITING: the row’s evidence field currently rests on Peterson’s copyright-notice parody, which is (a) his editorial text and therefore cite-only under the R33 licensing ruling and (b) not evidence about the medieval text at all. Replace it with the prologue rules as reported here. Same Veenstra correction as the preceding row."
+    },
+    {
+      "nodeId": "proc:gw-liber-juratus-6",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S26",
+      "sourceStatus": "NEW (Klaassen 2013, relaying Veenstra)",
+      "cite": "Frank Klaassen, The Transformations of Magic (Penn State UP, 2013), ch. 4, p. 104 and ch. 5, p. 124 — relaying Veenstra per ch. 4 n. 47",
+      "locator": "same archive item — pp. 104 and 124 confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "p.104: the spirit operations ‘give more evidence for the fluidity between “theurgic” and “necromantic” magic’; and ‘At his command and by virtue of the seal, the spirits will stop their trickery and will ultimately appear in unfrightening form to perform the tasks he sets them.’ p.124: ‘the necromantic portions of the Sworn Book’. A compulsion register and a scholarly necromantic classification are corroborated.",
+      "independenceArgument": "Independent of S3, with the Veenstra correction applied.",
+      "scopeLimit": "SCOPE LIMIT, verified adversarially: there is NOTHING in Klaassen about summoning armies or commanding elemental forces. Those claims remain single-witnessed on S3, and the ‘referenced’ grade must stand and must NOT be upgraded on this witness."
+    },
+    {
+      "nodeId": "proc:gw-picatrix-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S21",
+      "sourceStatus": "NEW (Láng 2008)",
+      "cite": "Benedek Láng, Unlocked Books (Penn State UP, 2008), p. 103 (Kraków, Biblioteka Jagiellońska MS BJ 793)",
+      "locator": "https://archive.org/details/benedek-lang-unlocked-books-manuscripts-of-learned-magic-in-the-medieval-librari — p. 103 confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "The scribe of BJ 793 ‘included those sections of the Picatrix which contain the general reports on the classification and learning of magic and the instructions on the preparation and functioning of images, but omitted the third and the fourth books containing the more risky ritual elements’. Attests that the Picatrix carries image/talisman-preparation instructions and — the more interesting point — that a fifteenth-century reader could and did separate them from the ritual apparatus.",
+      "independenceArgument": "Láng’s evidence here is a manuscript he examined himself and the choices its scribe made, not Pingree’s apparatus; his general reliance on Pingree’s edition for Latin quotations is stated openly and does not touch this observation.",
+      "scopeLimit": "SCOPE LIMIT: corroborates the PRESENCE of preparation instructions (anatomy S3). It does NOT corroborate the row’s load-bearing claim that astrological condition, material recipe and invocatory prayer are supplied as one end-to-end specification, and arguably cuts slightly against reading them as a single fused sequence. The ‘complete’ grade is NOT doubly attested by this."
+    },
+    {
+      "nodeId": "proc:gw-picatrix-2",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S21",
+      "sourceStatus": "NEW (Láng 2008)",
+      "cite": "Benedek Láng, Unlocked Books (Penn State UP, 2008), pp. 103–4",
+      "locator": "same archive item — pp. 103–4 confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "Books III–IV contain ‘the more risky ritual elements: suffumigations of the seven planets and guidelines on how the planetary spirits and demons should be addressed’; on the decans, these spirits ‘apparently require animal sacrifices, suffumigations, invocations, and veneration in exchange for their willing cooperation’; and on reception, ‘when more ritual elements emerged, such as suffumigations, orations, and open invocations to spirits, fifteenth-century readers became more ambivalent’, with Ficino’s De vita coelitus comparanda as the named case.",
+      "independenceArgument": "Manuscript- and reception-based (BJ 793’s scribe, Ficino, the Speculum astronomiae criteria), not derived from Pingree’s editorial judgements.",
+      "scopeLimit": "SCOPE: corroborates suffumigation and animal sacrifice as book III–IV content; does NOT corroborate the stronger claim that they are ‘given as formulas, i.e. as executable specifications’. GENUINE BONUS, confirmed: this supplies a period-internal counter-voice for the MATERIALS HAZARD harmNote, which currently has none — fifteenth-century readers themselves recoiled at this stratum."
+    },
+    {
+      "nodeId": "proc:gw-picatrix-3",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S21",
+      "sourceStatus": "NEW (Láng 2008)",
+      "cite": "Benedek Láng, Unlocked Books (Penn State UP, 2008), pp. 103–4",
+      "locator": "same archive item — pp. 103–4 confirmed by running head",
+      "tier": "secondary-scholarly",
+      "supports": "Books III–IV contain ‘guidelines on how the planetary spirits and demons should be addressed’, and the objectionable ritual stratum comprised ‘suffumigations, orations, and open invocations to spirits’, with the decan spirits requiring ‘animal sacrifices, suffumigations, invocations, and veneration’. Independently attests an invocation stratum aimed at planetary and decanic spirits.",
+      "independenceArgument": "Same basis as the two preceding rows — the Kraków manuscript’s contents and fifteenth-century reception evidence, not Pingree’s Latin apparatus.",
+      "scopeLimit": "SCOPE: does NOT corroborate the row’s formulation that planetary prayers are ‘supplied as texts to be used at specified astrological moments’ — the timing half is not attested here. NOTE FOR THE MAINTAINER: proc:gw-picatrix-1, -2 and -3 all rest on the SAME TWO PAGES of one witness. Legitimate per node, but this is not three independent confirmations of the Picatrix’s overall procedural completeness."
+    },
+    {
+      "nodeId": "proc:gw-scot-discoverie-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S24",
+      "sourceStatus": "NEW (Nicholson 1886); secondary corroboration from S26 (Klaassen) at p. 177",
+      "cite": "Brinsley Nicholson, ed., The Discoverie of Witchcraft by Reginald Scot (London: Elliot Stock, 1886) — EDITOR’S NOTES to Book XV chaps. ii–iv (notes to pp. 377–9) and ‘General Notings’. Secondary corroboration: Frank Klaassen, The Transformations of Magic (Penn State UP, 2013), ch. 6, p. 177 [NOT p. 176]",
+      "locator": "https://archive.org/details/discoverieofwitc00scot — OCR downloaded and notes read; Klaassen at the archive item above, p. 177",
+      "tier": "primary",
+      "supports": "Nicholson performs the slice’s own gold-standard method — inherited error — independently and 120 years earlier. On the dropped spirit: ‘P. 378. “Marbas.” After this name Scot omits from Wier’s list — “Purflas, alibi invenitur Busas, magnus Princeps & Dux est…”’, the Pruflas the slice records as lost in transmission, with the full Latin. He lists the divergent forms (Naberus/Naberius; Forres/Foras; Chax/Shax; Pucel/Procell; Zagam/Zagan; Volac/Valac; Oze/Ose) and observes ‘It will be noticed that “e” is five times used for “o”, a MS. copyist’s error.’ Klaassen p.177 independently confirms the operative bulk of the printed book.",
+      "independenceArgument": "Nicholson collated Weyer’s 1583 and 1660 Latin against the 1584 English himself, in 1886, with no possible dependence on Peterson (S2).",
+      "scopeLimit": "TWO THINGS. (1) SCOPE: cite the editorial notes only — the reprinted Scot text is a reprint of S13 and is not a second witness. (2) THE COMPLICATION IS THE MOST VALUABLE PART AND SHOULD CHANGE THE ROW: ‘these are now overmany to prove that Scot had access to some other copy than Wier’s Pseudomonarchia, and made use of it, and that his translator was not very conversant with Latin’, pointing to Scot’s marginal ‘This was the work of one T. R.’ and a 1570 English manuscript translation. The row’s phrase ‘Scot translates Weyer’s catalog into English’ is probably wrong; reword it, and revisit edge E-TR-01."
+    },
+    {
+      "nodeId": "proc:gw-steganographia-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S28",
+      "sourceStatus": "NEW",
+      "cite": "David Kahn, The Codebreakers: The Story of Secret Writing (New York: The Macmillan Company, 1967), ch. 4 ‘On the Origin of a Species’, pp. 131–33",
+      "locator": "https://archive.org/details/B-001-001-264 — OCR downloaded; title and copyright pages verified (‘Copyright © 1967 by David Kahn … THIRD PRINTING 1968’); ch. 4 begins p. 125; pages confirmed by running head",
+      "tier": "tertiary-adjacent — trade-press history of cryptology; a standard reference but NOT peer-reviewed scholarship. Record it as such; do not tier it as an academic monograph.",
+      "supports": "Kahn describes the cover-text mechanism concretely and with a worked example thirty years before Ernst and Reeds: ‘In the first two books he described some elementary reciprocal vowel-consonant substitutions and several variations on a system in which only certain letters of nonsense words signify the meaning, the other letters being nulls’, with the decipherer extracting ‘every other letter of every other word’ and the Latin plaintext beginning ‘Sum tali cautela ut …’. He also carries the reception history the slice needs: the visitor who ‘denounced it as sorcery’, and the 1506 mutiny of the Spanheim monks.",
+      "independenceArgument": "1967, three decades before Ernst 1996 and Reeds 1998 (S7), so dependency cannot run from S7 to Kahn; if anything it runs the other way.",
+      "scopeLimit": "RECORD THE CONTEST: Kahn states Book III ‘included no cryptography at all’ and reads it as genuinely magical — the position Ernst and Reeds overturned. He corroborates the Books I–II mechanism STRONGLY and CONTRADICTS the row’s ‘the whole has been decoded’ basis as of 1967. Minor: Kahn spells the abbey ‘Spanheim’ and says the work was planned in eight books, not three. With Skinner & Rankine (S23) holding a third position, this node now has three named positions and should move under the slice’s contestedPolicy."
+    },
+    {
+      "nodeId": "proc:gw-theurgia-goetia-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSourceId": "S23",
+      "sourceStatus": "NEW (Skinner & Rankine 2007)",
+      "cite": "Stephen Skinner & David Rankine, eds., The Goetia of Dr Rudd (Golden Hoard Press, 2007), ‘History and Origins’ and Appendix 1 (Sloane MS 3824 material); prime text Harley MS 6483",
+      "locator": "https://archive.org/details/the-goetia-of-dr.-rudd-pdfdrive.com — OCR downloaded and read",
+      "tier": "primary",
+      "supports": "‘The second part of the Lemegeton, the Theurgia-Goetia is simply Book 1 of Trithemius’ Steganographia recast in a more practical form with sigils’ — the phrase ‘recast in a more practical form with sigils’ independently corroborates the row’s grading rationale that the substance is catalogue-plus-seals rather than a developed operative sequence. On Sloane 3824: invocations of the Wandering spirits ‘which do not appear elsewhere in print. From the initial part of the text it is clear this was originally part of a more complete Theurgia-Goetia’ — direct evidence that the received invocation apparatus is truncated, supporting the ‘partial’ grade.",
+      "independenceArgument": "Independent manuscript base: Harley 6483 with Sloane 3824, against Peterson’s Sloane 3825 (S2).",
+      "scopeLimit": "SAME TWO FLAGS as the work node: tier is an independent EDITION, not peer-reviewed; and the editors explicitly build on and repeatedly cite Peterson’s edition, so independence holds for the manuscript base and the argument, not for the scholarly lineage. Record their contest with keyFinding 1."
+    },
+    {
+      "nodeId": "ea:tuoluoni-jijing",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S33 (PROVISIONAL)",
+      "sourceStatus": "NEW — but SEE THE SLICE-LEVEL WARNING: 13-east-asian.json has NO source-keying scheme. meta.sources is an unkeyed array of 32 plain strings and nodes carry free-text `citation` fields. ‘S33’ assumes the human introduces keys in array order; otherwise paste the cite into the node’s citation field.",
+      "cite": "Amanda K. Goodman, ‘The Ritual Instructions for Altar Methods (Tanfa yize): Prolegomenon to the Study of a Chinese Esoteric Buddhist Ritual Compendium From Late-Medieval Dunhuang’, PhD diss., University of California, Berkeley, Fall 2013, p. 4 n. (Davidson / Song gaoseng zhuan note) and p. 47 n. (Vajragarbha / fascicle 7 note) [PAGE CORRECTED from the finder’s ‘p. 48’]",
+      "locator": "https://escholarship.org/uc/item/9z15816v (stable item page; the direct PDF URL 403s without a Referer header). PDF downloaded, 123 pp.; title page verified.",
+      "tier": "secondary-scholarly",
+      "supports": "p.4 verbatim: ‘Atikūṭa’s Dhāraṇīsaṃgraha (Tuoluoniji jing T18.901; cf. S2392, B7456 at Dunhuang)’; and ‘According to this biography in the Song Gaoseng zhuan (T50.2061.718b17-718c2), Atikūṭa (or Atigupta?) arrived in the Tang capital of Chang’an in 652 and translated the Tuoluoniji jing, the preface of which … outlines its “methods of dhāraṇī (tuoluoni), seals (yin), and altars (tan).” That text also records an altar-ceremony he presided over on behalf of members of the ruling [elite].’ p.47 supplies the fascicle-7 structure from the text’s own interlinear note (57 mudrās, 32 spells, 57 sections).",
+      "independenceArgument": "Her evidence base is the Song gaoseng zhuan at T50.2061, the T18.901 preface and its interlinear notes, the Dunhuang witnesses S2392/B7456, and Davidson 2012 — not Shinohara (the existing witness).",
+      "scopeLimit": "THREE CORRECTIONS. (1) The ‘early Buddhoṣṇīṣa system stratum’ identification is DAVIDSON’s as reported by Goodman, not her own finding — the cite must not present it as hers. (2) She attests 652 (arrival), NOT the slice’s 654, and attests nothing about the 12-scroll structure or the image-making content, so she is a PARTIAL second witness for this work node. (3) The finder’s disclosed caveat is confirmed and worse than stated: at p.47 she cites Shinohara BY NAME (p. 400) on the very passage the fascicle-7 note comes from. The 57/32 count is nonetheless from the primary text’s own interlinear note, so the propositions stand independent."
+    },
+    {
+      "nodeId": "proc:cantong-qi-1",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S34 (PROVISIONAL)",
+      "sourceStatus": "NEW — same unkeyed-sources warning as above",
+      "cite": "Joseph Needham, with Ho Ping-Yü and Lu Gwei-Djen, Science and Civilisation in China, Vol. 5, Part 3: Spagyrical Discovery and Invention: Historical Survey, Cambridge University Press, 1976, sect. 33 ‘Wei Po-Yang’, pp. 51–75; the load-bearing passages are at p. 52 and p. 56",
+      "locator": "https://archive.org/details/science-and-civilisation-in-china-volume-5-chemistry-and-chemical-technology-par_20210927_1445 — Part 3 djvu.txt downloaded and searched in full (1.9 MB); running heads ‘33. WEI PO-YANG’ confirmed at pp. 51–75",
+      "tier": "secondary-scholarly",
+      "supports": "p.56 verbatim: the text ‘is composed of short sentences resembling gnomic or oracular utterances, in which the allusive undertones, as well as the overt meanings, of each word, and its character-structure, have to be taken into account—as in some modern poetry. This makes it almost impossible to translate—unless one should annotate every other word’; and ‘the obscurity and the various possible interpretations of the text itself give every reason for the long list of commentaries. We can find much divergence of opinion among the different commentators.’ p.52 supplies the ‘three roads leading up the same mountain’ reading. Genuine independent support for the node’s grade — emblematic grammar, with the operative reading supplied by commentators.",
+      "independenceArgument": "1976 predates Pregadio 2011 by 35 years; the evidence base is the Chinese text, the Chinese commentators (Pheng Hsiao, Chu Hsi, Yü Yen, Chhen Chih-Hsü) and Wu & Davis’s 1932 translation from the Yü Yen recension.",
+      "scopeLimit": "TWO MATERIAL CORRECTIONS THAT MUST NOT SHIP AS THE FINDER WROTE THEM. (a) The finder truncated the Ko Hung sentence. Needham’s full sentence reads: ‘Ko Hung late in the same century never mentions the Tshan Thung Chhi, BUT LISTS IN HIS BIBLIOGRAPHY A WEI PO-YANG NEI CHING WHICH MAY WELL HAVE BEEN THE SAME WORK.’ Quoted whole it CUTS AGAINST the slice’s contested note that Ge Hong may not have known the text — do not record Needham as corroborating that position. (b) Needham expressly DECLINES to adjudicate waidan vs neidan and states ‘What is undeniable is that the Tshan Thung Chhi contains many chemical terms’ — he supports obscurity/untranslatability, not the stronger ‘no ingredient list, no apparatus, no step sequence’."
+    },
+    {
+      "nodeId": "proc:ea-mohe-zhiguan-2",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S35 (PROVISIONAL)",
+      "sourceStatus": "NEW — same unkeyed-sources warning",
+      "cite": "Ching-Hsuan Mei, ‘Preparatory Guidelines for Meditation in Pre-Modern Sino-Tibetan Buddhist Traditions’, Religions 16 (2025), no. 5, art. 636, doi:10.3390/rel16050636 (open access), §2 and §2.3",
+      "locator": "doi:10.3390/rel16050636. MDPI blocks automated fetching; the identical full-text PDF was obtained from the wisdomlib mirror and extracted directly rather than through a reader proxy. Author confirmed as Ching-Hsuan Mei, Dharma Drum Institute of Liberal Arts; received 14 Mar 2025, published 17 May 2025.",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘Although all three texts—SPC, BSV, and GSV—address the twenty-five preliminary practices, they do so with varying degrees of scope and elaboration … In contrast, the GSV diverges more substantially. It offers only brief references to dietary and sleep regulation, while placing greater emphasis on the cultivation of bodily posture, breath control, and focused mental attention’; and ‘in the fourth juàn of the GSV … Zhiyi states, “When the body is properly regulated, the foundation of the path is solidly established”’ (her n. 8 = GSV, T no.1911, 46: 41c). She uses GSV = Móhē zhǐguān throughout.",
+      "independenceArgument": "Her claims are anchored to Taishō folios she cites herself (T no.1911, 46: 41c, 47b, 48a, 35c, 106c, 109a) across a three-manual philological comparison. Her survey of Donner & Stevenson 1993 is literature review, not derivation; they translate ch. 1 only, whereas her material is juan 4 and 8.",
+      "scopeLimit": "CORRECTION THE MAINTAINER MUST RECORD: Mei partly CONTRADICTS the node’s stated completenessEvidence. The node says ‘the fuller practical treatment sits in Zhiyi’s shorter meditation manuals rather than here’; Mei says the opposite for exactly this node’s domain — the GSV places GREATER emphasis on posture, breath control and mental attention, and is thinner only on diet and sleep. The completenessEvidence string should be REWRITTEN, not merely re-cited."
+    },
+    {
+      "nodeId": "proc:ea-mohe-zhiguan-3",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S35 (PROVISIONAL)",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Ching-Hsuan Mei, Religions 16 (2025), art. 636, §2",
+      "locator": "doi:10.3390/rel16050636 — full text obtained and read as above",
+      "tier": "secondary-scholarly",
+      "supports": "The strongest of the slice’s twenty proposals. Verbatim: the practices are ‘structured around five interrelated sets … (1) fulfilling the five conditions (jù wǔyuán), (2) avoiding the five desires (hē wǔyù), (3) abandoning the five hindrances (qì wǔgài), (4) adjusting the five factors (tiào wǔshì), and (5) engaging in the five methods (xíng wǔfǎ). Collectively referred to as the “twenty-five preliminary practices”’, offering ‘systematic guidance across domains ranging from ethical conduct and dietary restraint to environmental selection and the harmonization of bodily, respiratory, and mental states’. The dependency statement is explicitly labelled as the GSV’s own (her n. 13 = GSV, T no.1911, 46: 35c). Squarely corroborates ‘given as a numbered set within the preparatory framework’ with the ethical and circumstantial preconditions named.",
+      "independenceArgument": "As above — her own comparative reading of the Chinese Taishō texts, not a restatement of Donner & Stevenson.",
+      "scopeLimit": "RAZOR WARNING (not a witness defect): §2.3 of this article contains explicit second-person posture-and-breath instructions. Cite the section; do NOT quote from §2.3 into the graph."
+    },
+    {
+      "nodeId": "proc:ea-shingon-shido-kegyo-4",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S36 (PROVISIONAL)",
+      "sourceStatus": "NEW — same unkeyed-sources warning",
+      "cite": "Taikō Yamasaki, Shingon: Japanese Esoteric Buddhism, trans. and adapted by Richard and Cynthia Peterson, ed. Yasuyoshi Morimoto and David Kidd (Boston/London: Shambhala, 1988), ch. 7 ‘The Preparatory Fourfold Enlightenment Practice’, pp. 167–168 ff.; the goma description is at pp. 73–74 [PAGE CORRECTED — NOT p. 153]",
+      "locator": "https://archive.org/details/shingontaikoyamasaki — full text downloaded; title/copyright pages verified (‘© 1988 by Taiko Yamasaki and David Kidd’, LC BQ8965.4.Y36 1988); printed pages resolved from the book’s own running numbers",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘The Preparatory Fourfold Enlightenment Practice (shido kegyo) consists of four rituals performed in a series as preparation for the Dharma-transmission initiation … The four practices are the eighteenfold practice, the Kongo-kai Mandala practice, the Tai-zo Mandala practice, and the fire ritual. The order in which they are performed may vary from school to school.’ And: ‘The basic fourfold preparatory system and its contents were apparently established by Kukai based on oral transmissions from Hui-kuo. That system prescribed a series of initiations to be given to a candidate priest over a period of years.’ The goma passage at pp. 73–74 describes the hearth and the burning of offerings to invoked deities.",
+      "independenceArgument": "Yamasaki 1988 predates Payne 1991 and cannot derive from it; it is a Shingon scholar-priest’s own account, argued from the tradition and the Dainichikyō commentary, through an entirely different editorial team.",
+      "scopeLimit": "BONUS: independently supplies the training’s own duration figures and the fact that Kōya-san training is institute-gated, supporting the node’s ‘partial’ grade and the living-tradition note. The finder’s claim of a goma listing at p. 153 could not be confirmed."
+    },
+    {
+      "nodeId": "proc:ea-tuoluoni-jijing-1",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S33 (PROVISIONAL)",
+      "sourceStatus": "NEW (Goodman 2013)",
+      "cite": "Amanda K. Goodman, PhD diss., UC Berkeley, 2013, p. 4 n. (the preface’s three methods) and p. 47 n. (fascicle 7)",
+      "locator": "https://escholarship.org/uc/item/9z15816v — PDF read",
+      "tier": "secondary-scholarly",
+      "supports": "The preface ‘outlines its “methods of dhāraṇī (tuoluoni), seals (yin), and altars (tan)”’, and p.47 records that fascicle 7 carries an interlinear note referring to 57 mudrās and 32 spells across 57 sections. Supports the node’s SUBJECT — dhāraṇī method is one of the compendium’s three declared organising categories, and spells are enumerated inside numbered ritual units rather than free-standing. No syllables are reproduced here or there.",
+      "independenceArgument": "The preface report is anchored to the Song gaoseng zhuan at T50.2061.718b17–718c2 and to T18.901 itself; the count is from the text’s own interlinear note.",
+      "scopeLimit": "REAL SCOPE LIMIT: Goodman does NOT support the node’s completenessEvidence, which asserts that ‘the recitation frame (occasion, deity, purpose) is given per item’. She says nothing about per-item occasion/deity/purpose, so the ‘complete’ grade still rests on Shinohara alone and must be flagged as such. Confirmed caveat: at p.47 she cites Shinohara by name for the SIGNIFICANCE of fascicle 7, though not for the count."
+    },
+    {
+      "nodeId": "proc:ea-tuoluoni-jijing-2",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S33 (PROVISIONAL)",
+      "sourceStatus": "NEW (Goodman 2013)",
+      "cite": "Amanda K. Goodman, PhD diss., UC Berkeley, 2013, p. 4, quoting Ronald M. Davidson, ‘Some Observations on an Uṣṇīṣa Abhiṣeka Rite in Atikūṭa’s Dhāraṇīsaṃgraha’, in István Keul (ed.), Transformations and Transfer of Tantra in Asia and Beyond (De Gruyter, 2012), pp. 77–98, at p. 77 — RECORD GOODMAN AS THE CONSULTED WITNESS AND DAVIDSON AS QUOTED-THROUGH",
+      "locator": "https://escholarship.org/uc/item/9z15816v — p. 4 read. The Davidson chapter itself is paywalled and bot-blocked at De Gruyter and was NOT opened; its bibliographic details were separately confirmed (doi 10.1515/9783110258110.77).",
+      "tier": "secondary-scholarly",
+      "supports": "Verified verbatim in Goodman: Davidson dates the Dhāraṇīsaṃgraha to the mid-seventh century and calls it ‘the first text that crosses the threshold of the minimum essentials of the Buddhist tantric system’, defined by ‘a gateway rite, the abhiṣeka, into a maṇḍala of Buddhist divinities, employing homa rituals and implicating mudrās and mantras while admonishing the candidates to secrecy’. Together with the preface’s ‘altars (tan)’ and the recorded altar-ceremony, this independently attests that T.901 sets out altar/maṇḍala construction with an initiation attached.",
+      "independenceArgument": "Independent of Shinohara: the chain is Goodman → the T.901 preface and the Song gaoseng zhuan, plus Davidson’s own study of a rite in this very text.",
+      "scopeLimit": "CITE-FORM REQUIREMENT: the graph MUST record Goodman as the witness actually consulted and mark Davidson as quoted-through. Recording Davidson as a directly-consulted witness would be false."
+    },
+    {
+      "nodeId": "proc:ea-tuoluoni-jijing-4",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S33 (PROVISIONAL)",
+      "sourceStatus": "NEW (Goodman 2013)",
+      "cite": "MANDATORY REFORMULATION — cite as: Amanda K. Goodman, PhD diss., UC Berkeley, 2013, p. 4, quoting Ronald M. Davidson (2012: 77). Do NOT cite as ‘Davidson … at p. 77’ with the dissertation demoted to a locator note.",
+      "locator": "https://escholarship.org/uc/item/9z15816v — p. 4 read; the De Gruyter chapter was not opened",
+      "tier": "secondary-scholarly",
+      "supports": "The quoted Davidson sentence identifies the abhiṣeka as the text’s gateway rite into a maṇḍala ‘while admonishing the candidates to secrecy, perhaps the earliest surviving invocation to secrecy in Mahāyānist history’ — corroborating both the node’s initiation claim and, independently, the living-tradition/secrecy harm note.",
+      "independenceArgument": "Independent of Shinohara and of the tertiary ntireader record.",
+      "scopeLimit": "ACCEPTED ONLY AS REFORMULATED. As submitted, the finder named Davidson’s chapter as the witness with the dissertation relegated to a parenthetical reading route — inverting what was actually verified. Shipped in that form the graph would carry a peer-reviewed chapter as a directly-consulted second witness when it is a second-hand quotation. ALSO NOTE: this node and proc:ea-tuoluoni-jijing-2 now share ONE AND THE SAME Goodman footnote as their second witness — legitimate per node, but it is a single passage, not two."
+    },
+    {
+      "nodeId": "proc:ea-wushang-huanglu-dazhai-lichengyi-2",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S37 (PROVISIONAL)",
+      "sourceStatus": "NEW — same unkeyed-sources warning",
+      "cite": "Jingyu Liu, ‘The Unimpeded Passage: The Making of Universal Salvation Rites and Buddho-Daoist Interactions in Medieval China’, PhD diss., Harvard University, 2020, chapter on the Yellow Register Retreat, pp. 156–165 (and p. 5). The zhai/jiao definition is at Licheng yi, HY508, 478c — NOT 378c [FOLIO CORRECTED]",
+      "locator": "dash.harvard.edu handle 1/37365892 — full 14 MB PDF (247 pp.) downloaded and searched",
+      "tier": "secondary-scholarly",
+      "supports": "Liu analyses Jiang Shuyu’s (1162–1223) Wushang huanglu dazhai licheng yi, 57 fascicles in 24 ‘gates’, and its two ritual programmes (confession, chanyi; and salvation through sublimation, liandu). Jiang’s own definition of the zhai frame and his programmatic aim ‘to collect the guiding principles and to rectify the mistakes’ are quoted from the manual, with the retreat frame documented at HY508, 388c, 388c–389a and 443b (‘Zhai means the fasting of mind…’).",
+      "independenceArgument": "Liu argues folio-by-folio from HY508 (378c, 388c, 402a-b, 443b, 453b, 456a, 464c, 471c, 478c, 484c–487a, 492b, 527b, 551a-b), reading the manual against Buddhist Water-Land liturgies.",
+      "scopeLimit": "TWO NOTES. (1) FOLIO: shipping 378c for the zhai/jiao definition would put a wrong folio in the graph; it is 478c (Liu’s n. 32, printed pp. 164–165). (2) DISCLOSED OVERLAP: Liu cites the existing witness twice — Schipper & Verellen vol. 2 p. 1017 (n. 17) and n. 55 crediting Lagerwey’s account of Jiang Shuyu in The Taoist Canon vol. 2, 1014–18 — so he is aware of and uses it for provenance; his ritual analysis is not drawn from it. Cite by page (156 ff.), not by chapter number: Liu’s prose says ‘Chapter 2’ while the PDF headings say CHAPTER 4."
+    },
+    {
+      "nodeId": "proc:ea-wushang-huanglu-dazhai-lichengyi-3",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S37 (PROVISIONAL)",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Jingyu Liu, PhD diss., Harvard University, 2020, pp. 163–165 (Licheng yi, HY508, 478c, 464c, 378c)",
+      "locator": "dash.harvard.edu handle 1/37365892 — pp. 163–165 read",
+      "tier": "secondary-scholarly",
+      "supports": "The strongest of the four Licheng yi proposals; every quotation verified at exactly the pages claimed. Jiang Shuyu’s definition: ‘Invoking the Perfected and inviting the Saints to come down, begging for mercy and praying for blessing: these are called [the performances of] “jiao.” The rituals of “zhai” and “jiao” are not the same’ (n. 32 = HY508, 478c). His history of the rite traces the thanksgiving offering to Du Guangting’s liturgy (n. 28 = HY508, 464c), and his lament that ‘Today the methods of jiao are prevailing all over the world whereas the methods of zhai are nearly gone’ (n. 30 = HY508, 378c). Liu adds that jiao as a thanksgiving practice ‘constitutes a crucial part of the Yellow Register Retreat since the late Tang or early Song’ — direct support for the node’s claim that the jiao offering is set out inside this manual’s programme.",
+      "independenceArgument": "Folio-anchored argument from HY508, as above.",
+      "scopeLimit": "Every folio cite in the proposal is correct for THIS node. Same disclosed Lagerwey / Taoist Canon background overlap as the preceding row."
+    },
+    {
+      "nodeId": "proc:ea-wushang-huanglu-dazhai-lichengyi-4",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S37 (PROVISIONAL)",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Jingyu Liu, PhD diss., Harvard University, 2020, p. 150 (Merit Altar certificate, Licheng yi HY508, 456a) and pp. 179–180 (the retreat memorial, Licheng yi HY508, 402a–b) [FOLIO CORRECTED from the finder’s ‘471c’]",
+      "locator": "dash.harvard.edu handle 1/37365892 — pp. 150, 179–180 read",
+      "tier": "secondary-scholarly",
+      "supports": "At p.150 Liu quotes a Licheng yi certificate from the Merit Altar (n. 118 = HY508, 456a) announcing ‘the Unimpeded Evening Retreat’ on behalf of named dead, with ‘Transmitting talismans and conferring precepts; sublimating and delivering [the beings] for rebirth’. At pp.179–180 he quotes the manual’s own memorial to the Celestial Worthy requesting ‘a decree to command the celestial beings of the ten directions and the spiritual officials all to descend to the altar seats and report on high the sincerity of the retreat’. Those two documents independently attest the node’s claim — summoning and memorialising the celestial bureaucracy through submitted documents.",
+      "independenceArgument": "Same folio-anchored basis and same disclosed overlap as the preceding rows.",
+      "scopeLimit": "TWO ERRORS, ONE SERIOUS. (1) The memorial is at HY508, 402a–b (Liu’s n. 91), NOT 471c; 471c is a different passage on dispatching body gods and the xianling (n. 90). (2) MISATTRIBUTED SOURCE TEXT — the finder’s generalisation (‘the written documents used in the ritual are largely modeled on the Daoist rites, the jiao ritual in particular’; ‘in accordance with the statutes and ordinances’; the priest as ‘a divine bureaucrat issuing military commands’) is verbatim Liu but is HIS ANALYSIS OF THE BUDDHIST Tiandi mingyang / Water-Land liturgy, not a statement about the Licheng yi. Copying it here would attribute to this Daoist manual a passage written about a Buddhist one. STRIP IT; the node stands on the two verified Licheng yi documents alone."
+    },
+    {
+      "nodeId": "proc:ea-wushang-huanglu-dazhai-lichengyi-5",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S37 (PROVISIONAL)",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Jingyu Liu, PhD diss., Harvard University, 2020, p. 179 n. 89 (glossing Licheng yi, HY508, 471c) [PAGE CORRECTED — p. 179, not 180]",
+      "locator": "dash.harvard.edu handle 1/37365892 — p. 179 n. 89 read",
+      "tier": "secondary-scholarly",
+      "supports": "The footnote glosses Jiang Shuyu’s own words at HY508, 471c (‘whenever a retreat or an offering is performed, from sending out to recalling body gods, the words of confession are transmitted by the immortals and spirits’): ‘The “xianling” here refers to the two categories of immortals and spirits of the registers (lu). When a Daoist priest is ordained, he will receive different registers of celestial beings which will be used under his command’ (citing John Lagerwey, ‘Zhengyi Registers’, CUHK 2005, p. 9). So the manual’s own wording does presuppose an officiant who commands register-spirits received at ordination.",
+      "independenceArgument": "Anchored to the manual’s own wording plus Lagerwey’s separate study of Zhengyi registers.",
+      "scopeLimit": "THE WEAKEST ACCEPTED WITNESS IN THIS SLICE; accepted only with two caveats recorded in-data. (1) SCOPE: a single background footnote. It supports the presupposition and says nothing about the ordination rite belonging to other canonical texts — the second half of the node’s completenessEvidence. (2) PARTIAL INDEPENDENCE PROBLEM the finder did not spot: the load-bearing authority in the footnote is John Lagerwey, who is ALSO the author of the Licheng yi entry inside Schipper & Verellen’s Taoist Canon — this node’s existing witness. It is not the barred case (different study, different subject, and Liu’s anchor is the manual’s own wording), but the same scholar stands behind both witnesses and that is exactly the overlap the weight rubric is meant to price. For a clean second witness, re-propose one that reaches ordination-gating without going through Lagerwey."
+    },
+    {
+      "nodeId": "proc:huangting-jing-2",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "EXISTING — meta.sources entry #13 (unkeyed)",
+      "sourceStatus": "ALREADY IN THE SLICE’S SOURCE TABLE (‘Kristofer Schipper and Franciscus Verellen (eds.), The Taoist Canon…’). No new source is being discovered here; the gain is that a source the slice already held is now applied, at entry level, to this node.",
+      "cite": "Kristofer Schipper, entry ‘Taishang huangting waijing yujing’ (DZ 332, fasc. 167), in Schipper & Verellen (eds.), The Taoist Canon, vol. 1 (Chicago, 2004), section 1.A.4 (Yangsheng), pp. 97–98; and entry ‘Taishang huangting neijing yujing’ (DZ 331, fasc. 167), section 1.B.2 (Shangqing), pp. 184–186 [BOTH page figures in the finder’s proposal were WRONG]",
+      "locator": "https://archive.org/details/daozang — vol. 1 full text downloaded and searched; both entries located and both signed ‘Kristofer Schipper’ at the end of their bibliographies (attribution confirmed, not assumed)",
+      "tier": "secondary-scholarly",
+      "supports": "DZ 332: ‘This is the original Huangting jing, a didactic poem spoken by Lord Lao and describing the interior world … Liexian zhuan 2.21a (biography of Zhu Huang) mentions the Laojun Huangting jing and the practice of its multiple recitations.’ DZ 331: ‘The importance of multiple recitation as an adept’s first step on the road to perfection has been stressed in hagiography … Divine instructions for its recitation by beginners were reproduced and copiously annotated by Tao Hongjing (421 Dengzhen yinjue 3.1a–5b).’ That last sentence is exactly the node’s point — the recitation instructions live in a different text.",
+      "independenceArgument": "Schipper’s evidence is his own Concordance du Houang-t’ing king (EFEO 1975) plus the Liexian zhuan, the Zhengyi fawen tianshi jiaojie kejing (dated 255), Wang Xizhi’s 337 autograph via Nakata Yūjirō, the Zhen’gao and Tao Hongjing’s Dengzhen yinjue — none of which is Kohn or Huang (the existing witness).",
+      "scopeLimit": "LOCATOR CORRECTION, one of them a cross-contamination: DZ 332 is at pp. 97–98 in section 1.A.4 Yangsheng, not ‘1.B.2 (Shangqing), p. c.155’; DZ 331 is at pp. 184–186, not pp. 198–199 — pp. 198–201 is the Zhen’gao entry, which the finder appears to have carried across from the zhengao proposals."
+    },
+    {
+      "nodeId": "proc:huangting-jing-3",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S38 (PROVISIONAL)",
+      "sourceStatus": "NEW — same unkeyed-sources warning",
+      "cite": "Joseph Needham and Lu Gwei-Djen, Science and Civilisation in China, Vol. 5, Part 5: Physiological Alchemy, CUP 1983, p. 147, quoting Li Feng-Shih, Sung Shan Thai-Wu hsien-seng Chhi Ching (c. +770) [PAGE CORRECTED from the finder’s ‘pp. c.145–147’]",
+      "locator": "https://archive.org/details/science-and-civilisation-in-china-volume-5-chemistry-and-chemical-technology-par_20210927_1445 — Part 5 djvu.txt downloaded and searched; running heads confirm the passage sits between pp. 147 and 148",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘The most important techniques of Taoism are not to be found in the books but rather in the instructions orally transmitted. The procedures of absorbing the chhi described in the two “Manuals of the Yellow Courts”, with those called the “five ya” and the “six mou”, all have to do only with the external chhi (of the air) … But if one does not obtain the personal explanations of an enlightened teacher, all one’s efforts will be but labour and sorrow.’",
+      "independenceArgument": "1983 predates Huang & Kohn by decades; evidence base is Li Feng-Shih’s Chhi Ching, the Hsiu Chen Shih Shu, the +848 Huang Thing Nei Ching Wu Tsang Liu Fu Thu and Maspero.",
+      "scopeLimit": "TWO CAVEATS THAT WEAKEN THIS WITNESS AND MUST BE RECORDED. (a) It is Needham & Lu QUOTING a Tang primary source, not their own analysis — the citation must say so. (b) The passage partly CUTS AGAINST the node’s ‘referenced’ grade: Li Feng-Shih says the two Yellow Court manuals DO ‘describe procedures of absorbing the chhi’, criticising them as merely external rather than saying the text withholds them. The ‘named not set out’ reading survives only via the opening general claim about Taoist technique. Cite for the general oral-transmission point, not as a statement that the Huangting jing specifically withholds keys."
+    },
+    {
+      "nodeId": "proc:secret-of-the-golden-flower-1",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S39 (PROVISIONAL)",
+      "sourceStatus": "NEW — same unkeyed-sources warning",
+      "cite": "Monica Esposito, ‘The Different Versions of the Secret of the Golden Flower and Their Relationship with the Longmen School’, Transactions of the International Conference of Eastern Studies (Tōhō Gakkai), No. XLIII (1998), pp. 90–103, esp. pp. 90, 97–98",
+      "locator": "CUHK Daozang jiyao project scan, downloaded and text-extracted; masthead verified (‘TRANSACTIONS OF THE INTERNATIONAL CONFERENCE OF EASTERN [STUDIES] No. XLIII 1998, THE TOHO GAKKAI’)",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘The Chinese text used by Wilhelm is Dan Ranhui’s edition, published in 1921 and found, as the editor himself explains, in Beijing’s Liuli chang’; ‘Since many Daoist schools took part in the reconstitution of this text, which in its main lines was a product of spirit-writing practice, they each left their mark’; and the enumeration of all six known editions (Shao Zhilin 1775; Jiang Yuanting 1803; Chen Mou 1852, which she located at Ōtani University; the Daozang jiyao version; Min Yide’s 1834 Daozang xubian Longmen version; Dan Ranhui’s 1921 Changsheng shu). CONFIRMS A SLICE CORRECTION: the slice’s ‘the recension Wilhelm used is an eight-chapter edition of 1834’ is wrong twice over — Wilhelm used the 1921 edition, and Min Yide’s 1834 version is in 13 chapters.",
+      "independenceArgument": "Her evidence is her own collation of six editions and their prefaces, including an 1852 Lüzu quanshu examined at Ōtani. She cross-cites Mori Yuria 1998a in footnotes (nn. 23, 39, 44) but her findings are not derived from him.",
+      "scopeLimit": "ONE CORRECTION TO THE FINDER, IN THE SLICE’S FAVOUR: the finder quoted ‘the content of the Golden Flower is approximately the same in all extant versions’ and concluded this WEAKENS the node. Esposito’s actual sentence opens with a qualifier the finder dropped — ‘APART FROM THE FIFTH VERSION … Min Yide’ — so the 1834 Longmen recension is precisely the outlier, which SUPPORTS the recension-dependence point. SCOPE: she brackets the practice content (‘leaving aside its alchemical contents’), so she corroborates the recension half only, not the huiguang description."
+    },
+    {
+      "nodeId": "proc:wuzhen-pian-2",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "S38 (PROVISIONAL)",
+      "sourceStatus": "NEW (Needham & Lu, SCC V:5, 1983 — same source as proc:huangting-jing-3)",
+      "cite": "Joseph Needham and Lu Gwei-Djen, Science and Civilisation in China, Vol. 5, Part 5: Physiological Alchemy, CUP 1983, pp. 99–100, caption to Fig. 1576a–c (‘The three explanations of the Wu Chen Phien’, TT 260, ch. 26, pp. 6b–7a)",
+      "locator": "same archive item — Part 5 djvu.txt searched; the running head ‘100 33. ALCHEMY AND CHEMISTRY’ brackets the passage, preceded by ‘33. PHYSIOLOGICAL ALCHEMY 99’",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim caption: the three images (the ‘suspended womb aludel’, the ‘iron ox’, the ‘crescent moon furnace’) — ‘The captions on the right and left have already been translated in Vol. 5, pt. 4 … in the context of real laboratory apparatus, and that is their superficial meaning; but they also carry esoteric meanings relating to the kua of the [I] Ching and to the several respiratory, gymnastic, heliotherapeutic and sexual techniques.’ Genuine independent support for the node’s claim that the emblems carry a breath reading layered under an apparatus reading, and that this is emblematic rather than a stated respiratory protocol.",
+      "independenceArgument": "1983 predates Pregadio 2009; the evidence is the Daozang text with its illustrations plus Maspero and the Chinese commentators.",
+      "scopeLimit": "SCOPE CAVEAT, stronger than the finder admitted: the evidence is Needham’s caption on three explanatory CHARTS preserved in TT 260 (Xiuzhen shishu, ch. 26) — the later illustrated commentarial tradition — not the Wuzhen pian’s own regulated verses. It attests how the tradition read the emblems; it is not testimony about what the base text states."
+    },
+    {
+      "nodeId": "proc:zhengao-2",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "EXISTING — meta.sources entry #13 (unkeyed)",
+      "sourceStatus": "ALREADY IN THE SLICE’S SOURCE TABLE (The Taoist Canon). The gain is application to this node, not discovery.",
+      "cite": "Isabelle Robinet, entry ‘Zhen’gao’ (DZ 1016, fasc. 637–640), in Schipper & Verellen (eds.), The Taoist Canon, vol. 1 (Chicago, 2004), pp. 198–201; running head is ‘1.B.2 Shangqing’ (the finder’s sub-section label ‘1.B.2.d Anthologies’ is NOT confirmed in the scan)",
+      "locator": "https://archive.org/details/daozang — entry located between the volume’s own page markers [199], [200], [201], and signed ‘Isabelle Robinet’",
+      "tier": "secondary-scholarly",
+      "supports": "Verified verbatim: ‘Juan 7 and 8 concern the tribulations of the ancestors of the Xu family in the nether world.’ ‘The fifth section (juan 15-16) concerns Fengdu, the world of the dead … The division into two juan is quite arbitrary, occurring as it does in the middle of a text on the judges of hell.’ ‘They do not convey the essential part of the divine message, but either contain the deities’ minor pronouncements, or provide supplementary explanations pertaining to the practice of the major texts.’ ‘There is a certain disorder in the compilation and in the text.’",
+      "independenceArgument": "The 2004 entry predates Bokenkamp 2021 by seventeen years, and its printed bibliography is Ishii Masako (four items), Mugitani Kunio, Robinet’s own La révélation du Shangqing ch. 3, Strickmann ch. 2, Wang Liqi, Yoshikawa Tadao and Zhong Laiyin — no Bokenkamp, no Smith.",
+      "scopeLimit": "The NEGATIVE claim was checked adversarially and holds: across the whole entry Robinet describes the netherworld material as narrative and administrative and locates the only ‘small rites’ in the third section (juan 9–10), never in juan 7–8 or 15–16. The node’s ‘they are not a mortuary liturgy and set out no rite’ is genuinely consistent with her section-by-section account."
+    },
+    {
+      "nodeId": "proc:zhengao-3",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "proposedSourceId": "EXISTING — meta.sources entry #13 (unkeyed)",
+      "sourceStatus": "ALREADY IN THE SLICE’S SOURCE TABLE (The Taoist Canon)",
+      "cite": "Isabelle Robinet, entry ‘Zhen’gao’ (DZ 1016, fasc. 637–640), in Schipper & Verellen (eds.), The Taoist Canon, vol. 1 (Chicago, 2004), pp. 198–201",
+      "locator": "https://archive.org/details/daozang — as above",
+      "tier": "secondary-scholarly",
+      "supports": "Verified verbatim: ‘Tao Hongjing compiled the present collection of notes taken by Yang Xi, Xu Mi, or his son Xu Hui (331–ca. 370) on the instructions addressed to them by the gods, in the years after 490.’ ‘The materials used for the present work are mainly autographs by Yang Xi and the two Xu’s. It is sometimes overlooked that Tao was only the compiler of these texts.’ ‘The sixth section (juan 17-18) assembles the personal archives of Yang Xi and the Xus … fragments of their correspondence, quotations, and accounts of dreams.’ ‘The seventh section (juan 19-20) is the only one written entirely by Tao Hongjing himself. He explains his methodology, describes the history of the texts, their alterations and falsifications, and gives the genealogy of the Xu family.’ Together these attest that transmission inside a defined kin/patronage circle is the compilation’s social subject, and that what the text supplies is documentation of transmission rather than a rite.",
+      "independenceArgument": "Same basis as proc:zhengao-2 — Robinet’s own Shangqing scholarship and the Japanese philological literature, predating Bokenkamp 2021.",
+      "scopeLimit": "The whole entry was checked for a described ordination/transmission RITE: there is none, which is consistent with the ‘referenced’ grade."
+    },
+    {
+      "nodeId": "gem:pgm-iv-296-466",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S28",
+      "sourceStatus": "NEW — next free key in this slice (existing keys run S1–S27)",
+      "cite": "Sophie Kambitsis, ‘Une nouvelle tablette magique d’Égypte. Musée du Louvre, inv. E 27145 — IIIe/IVe siècle [avec 2 planches]’, Bulletin de l’Institut français d’archéologie orientale (BIFAO) 76 (1976), pp. 213–223, at pp. 213–217 (esp. p. 215 with nn. 2–3)",
+      "locator": "https://www.ifao.egnet.net/bifao/76/12/ — IFAO open PDF fetched and read; cover page confirms author, title, volume, year and page range",
+      "tier": "primary",
+      "supports": "The editio princeps of the Louvre assemblage (pierced clay female figurine E 27145 A, inscribed lead lamella C, clay vase B, probably from the Antinoopolis region), collated against the handbook recipe. p.215 verbatim describes PGM IV ll. 296–434 as ‘la recette d’un « merveilleux charme d’amour à lier » — philtrokatadesmos thaumastos’, with the praxis/logos split, the two modelled figurines (Ares; ‘une femme à genoux, les mains derrière le dos’), the piercing ‘de treize aiguilles de bronze’, ‘de réciter une incantation et de l’inscrire sur une feuille de plomb’, the binding of lamella to figurines, and deposition ‘auprès de la tombe d’un homme décédé avant l’âge ou emporté d’une mort violente’. Every structural element of the node’s structuralAnatomy is independently attested, including the handbook-recipe-to-archaeological-product match.",
+      "independenceArgument": "Published 1976 from autopsy with two plates, decades BEFORE Faraone (S25) and upstream of him — not a reprint, translation, digitisation or summary of the existing witness. She additionally collates three separately published parallel tablets (Edgar, Bull. Soc. Arch. Alex. XXI (1925) 42–47; Wortmann, Bonn. Jahrb. CLXVIII (1968) nos 1 and 2).",
+      "scopeLimit": "THREE NOTES. (1) TIER: ‘primary’ is correct as editio princeps of the Louvre lamella; for the PGM IV recipe anatomy she is reading Preisendanz PGM I(3) 1973 (her p.215 n.1), i.e. an independent scholarly reading of the primary text rather than a fresh edition of it. (2) Her line-range is 296–434, not the node’s 296–466 — this corroborates the editorial dispute the node already flags, NOT the node’s headline range. (3) RAZOR: p.215 n.2 quotes the Greek pin-placement instruction with named body-locations. Cite it; do not transcribe it."
+    },
+    {
+      "nodeId": "proc:gem-pgm-iv-296-466-1",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S28",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Sophie Kambitsis, BIFAO 76 (1976), pp. 213–223, at pp. 214–215",
+      "locator": "https://www.ifao.egnet.net/bifao/76/12/ — pp. 213–217 read",
+      "tier": "primary",
+      "supports": "p.214 verbatim: the tablet is a love charm which ‘Sarapammon, fils d’Aréa, fit graver sur la tablette afin de s’attirer l’amour de Ptolémaïs, fille d’Aïas et d’Origène’, calling on the spirit of a dead man named Antinoos, ordering him to seek out Ptolemais and ‘lier’ her — to deprive her of food, drink, sleep, all feeling and all pleasure — and to seize her and bring her, ‘amoureuse et soumise pour toujours’. Corroborates BOTH halves of the row: the coercive-rite type (compulsion of a specific named non-consenting woman — the node’s harmClass) and the ‘complete’ grade, since the p.215 praxis is set out end-to-end from modelling to deposition with no step deferred to an initiator.",
+      "independenceArgument": "1976 editio princeps from autopsy, upstream of Faraone (S25).",
+      "scopeLimit": "none material"
+    },
+    {
+      "nodeId": "proc:gem-pgm-iv-296-466-2",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S28",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Sophie Kambitsis, BIFAO 76 (1976), pp. 213–223, at p. 215 with n. 3, and the edited text at p. 217",
+      "locator": "https://www.ifao.egnet.net/bifao/76/12/ — pp. 215, 217 read",
+      "tier": "primary",
+      "supports": "The tightest match of the three. The node’s evidence sentence is ‘The logos is written out in the handbook and is recited and inscribed at once’; Kambitsis p.215 says exactly that twice — ‘… ensuite, de réciter une incantation et de l’inscrire sur une feuille de plomb’, and ‘Quant au logos, un modèle nous est donné aux ll. 335-434’. The edited text at p.217 is introduced with ‘sont soulignés d’un trait les mots qui se lisent dans PGM, IV, ll. 335-384’ and the printed text carries the underlining.",
+      "independenceArgument": "As above; and STRONGER than the finder claimed — it attests not only that the logos is written out but that a differently-recensed copy of it was physically executed. Kambitsis concludes the operator’s manual ‘n’était pas celui du papyrus de la Bibliothèque Nationale, quoique apparenté’.",
+      "scopeLimit": "none material"
+    },
+    {
+      "nodeId": "gem:pgm-xiii",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S29",
+      "sourceStatus": "NEW",
+      "cite": "Claire Chandler, ‘Investigating the Magical Practice found in PGM (Greek Magical Papyri) XIII’, Celestial Magic, special issue of Culture and Cosmos 19, nos. 1 and 2 (Autumn/Winter and Spring/Summer 2015), pp. 87–97; offprint pp. 5–15 [CORRECTED: the offprint runs to p. 15, not p. 14]",
+      "locator": "http://www.cultureandcosmos.org/pdfs/19/19-1_chandler_magical_practice_pgm.pdf — open access; PDF fetched and read in full. ISSN 1368-6534, Sophia Centre Press with UWTSD.",
+      "tier": "secondary-scholarly",
+      "supports": "Abstract: ‘PGM XIII is a Greco-Egyptian magical papyri dated to the mid fourth century CE. It contains at least two versions of a rite to summon the creator god and gain his name, which is then used in further spells also included in the papyrus.’ Offprint p.7: ‘PGM XIII is also known as P Leid J 395, it being a papyrus held in the Museum of Antiquities in Leiden’, and ‘PGM XIII is completely in Greek’. Offprint p.8: ‘PGM XIII is interesting as it contains multiple versions of the same rite to obtain the Great Name of the creator god.’ Independently confirms shelfmark, repository, date, all-Greek character and — the point that matters for the node’s structuralFinding — that one papyrus preserves multiple recensions of the same operative book.",
+      "independenceArgument": "Checked at footnote level: Klutz (S15) appears ONLY in fn. 1, inside a general ‘for recent studies of PGM XIII see’ list, and is the authority for no descriptive claim. Her descriptive claims are footnoted to Preisendanz PGM I/II, Betz GMPT, Brashear ANRW II.18.5, Fowden, Van der Horst, Daniel 1991 and Merkelbach 1993. Awareness of Klutz is real and was disclosed; derivation is not.",
+      "scopeLimit": "Her ‘at least two’ deliberately does NOT adjudicate Smith(3) vs Klutz(2), so it corroborates the recension-plurality fact without settling the slice’s recensionDispute. HANDLING WARNING: Chandler’s Table 2 (offprint p. 13) reproduces voces magicae verbatim, which the slice’s framingLock forbids — cite the table, NEVER copy it."
+    },
+    {
+      "nodeId": "proc:gem-pgm-xiii-1",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S29",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Claire Chandler, Culture and Cosmos 19.1–2 (2015), pp. 87–97, at offprint p. 9 with n. 17 (section ‘Timing of the Rite’)",
+      "locator": "http://www.cultureandcosmos.org/pdfs/19/19-1_chandler_magical_practice_pgm.pdf — offprint p. 9 read; n. 17 reads ‘Betz, GMPT, p. 179, l. 230-234; p. 189, l. 740-744’",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘The rite includes many entreaties to the reader to keep both the book and knowledge of the rite secret.’ Also the quoted Janowitz passage on secrecy and ‘strict limitation of both knowledge and practice to select individuals and circles’. Corroborates the node’s positive claim — that a restriction/withholding frame is asserted around the material.",
+      "independenceArgument": "As for the parent node.",
+      "scopeLimit": "THREE NARROWINGS IMPOSED ON THIS ACCEPTANCE. (1) Chandler nowhere mentions the ‘Secret Tenth Book’, so that specific withholding-device evidence remains on S15 alone. (2) The node’s contrastive half (‘rather than a ceremony being set out’) is supported only by Chandler’s SILENCE, and argument from a secondary summary’s silence is weak — the witness attests the restriction frame, not the absence of an initiation ceremony. (3) The antikemagie.com corroboration the finder appended was NOT verified and must not be recorded as part of this witness."
+    },
+    {
+      "nodeId": "proc:gem-pgm-xiii-2",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S29",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Claire Chandler, Culture and Cosmos 19.1–2 (2015), pp. 87–97, at the abstract and offprint pp. 13 (Table 2, with n. 47) and 14",
+      "locator": "http://www.cultureandcosmos.org/pdfs/19/19-1_chandler_magical_practice_pgm.pdf — offprint pp. 13–14 read; n. 47 verified as ‘Dieleman, Priests, Tongues and Rites, p. 65.; Frankfurter, Magic of Writing, pp. 201-5.; Cox Miller, Praise of Nonsense, p. 493.; Betz, GMPT, p. 187, PGM XIII.630’",
+      "tier": "secondary-scholarly",
+      "supports": "The strongest of the four Chandler proposals. Offprint p.14 opens: ‘The Rite, which is found in both part A and part B of the papyrus, begins by gathering materials which will form part of that rite’ — the invocatory rite is duplicated across recensions, which is precisely the node’s reason for saying no single continuous sequence can be asserted. Offprint p.13 attests that Egyptian priests ‘were reported to sing the seven vowels during rites, so transcending both speech and writing as what is nonsemantic as a word becomes music’, and pp.10–12 treat voces magicae explicitly as non-semantic sound. Both of the node’s vocabGaps (‘spoken-formula-recitation’, ‘glossolalic/phonetic vocalization’) are independently attested.",
+      "independenceArgument": "The Table 2 selection and the XIII.205 / XIII.630 line references are her own reading of Betz/Preisendanz, not Klutz’s.",
+      "scopeLimit": "HANDLING WARNING repeated: Table 2 is voces magicae in the clear. Cite it; do not transcribe it into the slice."
+    },
+    {
+      "nodeId": "proc:gem-pgm-xiii-4",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S29",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Claire Chandler, Culture and Cosmos 19.1–2 (2015), pp. 87–97, at offprint p. 9 (section ‘Timing of the Rite’)",
+      "locator": "http://www.cultureandcosmos.org/pdfs/19/19-1_chandler_magical_practice_pgm.pdf — offprint p. 9 read",
+      "tier": "secondary-scholarly",
+      "supports": "Verbatim: ‘The practitioner is instructed to begin a period of purification which will end on the Aries new moon, that is the new moon after the spring equinox, one of the turning points of the year.’ A positive, independent attestation that PGM XIII states a purity condition as a precondition with a terminus — the substantive content of the ‘referenced’ grade.",
+      "independenceArgument": "As for the parent node.",
+      "scopeLimit": "TWO NARROWINGS, one of which corrects the finder’s reasoning. (1) The finder argued the grade from what Chandler ‘does NOT report’. Argument from a secondary summary’s silence is not evidence that the papyrus omits a description of the purification. The witness supports ‘purity condition stated as a precondition’; it does NOT establish ‘rather than described’, which stays on S15. (2) The antikemagie.com corroboration (41 days) was not verified, is tertiary, and must not be recorded — counting it would lower the node’s weight for nothing."
+    },
+    {
+      "nodeId": "proc:gem-pgm-iii-1",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S30",
+      "sourceStatus": "NEW",
+      "cite": "Ljuba Merlina Bortolani, Magical Hymns from Roman Egypt: A Study of Greek and Egyptian Traditions of Divinity (Cambridge: Cambridge University Press, 2016), ISBN 9781107108387, Hymn 3 ‘Hymn to Helios: III 198-230’, pp. 117–139, and Hymn 4 ‘Hymn to Helios: III 549-58’, pp. 140–150",
+      "locator": "Cambridge Core chapter list (fetched; confirms both chapter titles, line ranges and page ranges); BMCR review 2017.05.30 (fetched) confirms book, author, publisher and year",
+      "tier": "secondary-scholarly",
+      "supports": "Two CUP-authoritative chapter titles establish that PGM III lines 198–230 and 549–58 carry hymns to Helios edited as free-standing texts with translation and commentary. Corroborates the node’s core type-claim: PGM III contains written-out hymnic invocation, at named line ranges.",
+      "independenceArgument": "A Greek/Egyptian hymnology project establishing text from the papyri and Preisendanz; not a reprint, translation or summary of the GEMF renumbering article (S9) or the ‘PGM III Archive’ scribal study (S14), and it predates both.",
+      "scopeLimit": "VERDICT ‘PLAUSIBLE’, NOT ‘CONFIRMED’ — the chapters themselves were NOT read; only the publisher’s chapter list and the review were verified. RECORD SCOPE: corroborates the presence and line-location of written-out hymnic invocation in PGM III ONLY. It does NOT corroborate the node’s hymn list (Pan/Pantokrator; Apollo and Daphne — Bortolani’s two PGM III chapters are both Helios hymns), and it does NOT corroborate ‘the rites they belong to are not fully set out’: the BMCR line the finder used for that clause actually says Bortolani edits the metric sections found within ‘the ritual procedures contained in the PGM’, which cuts the other way. That clause stays on S9/S14."
+    },
+    {
+      "nodeId": "proc:gem-pgm-pdm-xii-1",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S30",
+      "sourceStatus": "NEW (same source as the preceding entry)",
+      "cite": "Ljuba Merlina Bortolani, Magical Hymns from Roman Egypt (Cambridge University Press, 2016), Hymn 9, ‘Hymn to the creator god: XII 244-52’, pp. 202–216",
+      "locator": "Cambridge Core chapter list (fetched; confirms title, line range and pages; the hymn is dated second/third century, consistent with the node’s 2nd-c. dating of the manuscript)",
+      "tier": "secondary-scholarly",
+      "supports": "The node’s own evidence line concedes ‘contents not itemised this round’ and rests its ‘partial’ grade on the corpus norm. Bortolani supplies an itemised, independently edited instance of written-out invocatory hymn material at PGM XII 244–52, converting a genre presumption into an attested instance.",
+      "independenceArgument": "Not a reprint, translation or summary of the GEMF 15 production study (S9) or of Klutz / the Leiden photographic edition (S15); it addresses a different question entirely.",
+      "scopeLimit": "VERDICT ‘PLAUSIBLE’, NOT ‘CONFIRMED’ — the chapter’s full text was not read. What is corroborated is the presence and line-location of an edited invocatory hymn in PGM XII, nothing finer, and in particular nothing about the completeness of the surrounding praxis."
+    },
+    {
+      "nodeId": "proc:gem-p-holm-1",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "proposedSourceId": "S31",
+      "sourceStatus": "NEW",
+      "cite": "Olivier Dufault, Early Greek Alchemy, Patronage and Innovation in Late Antiquity, California Classical Studies 7 (Berkeley: California Classical Studies, 2019), ISBN 9781939926128, open access CC BY-NC 4.0, at p. 55 with n. 16 (and p. 4 n. 15)",
+      "locator": "https://escholarship.org/content/qt2ks0g83x/qt2ks0g83x.pdf — fetched and read; cover page confirms author, title, series, ISBN, licence and ‘Peer reviewed’. Supporting institutional record: https://www.manuscripta.se/ms/100200 (National Library of Sweden, Acc. 2013/75, formerly Dep. 45; 15 leaves, Greek, ca 300 CE, Egypt).",
+      "tier": "secondary-scholarly",
+      "supports": "p.55: ‘The last recipe comes from P.Holm., a third century book of tinctorial (or alchemical) recipes found in Egypt’, followed by a complete specimen recipe (its n.16 = ‘P.Holm., 2.’) that is materials plus sequence plus operations end to end with no recitation slot — the node’s structural contrast with the PGM. He adds that such recipes ‘belonged to the tradition of baphai, “tinctures,” which would later be called chēmeia’, which bears on the node’s genreDispute. p.4 n.15 cites P.Holm. 12–14 and 866–871 with Halleux 1981.",
+      "independenceArgument": "Dufault reaches P.Holm. through Halleux’s Greek text and the Pliny/Anaxilaus/Democritus fragment tradition, in service of an argument about scholarly patronage — not a reprint, translation or summary of Caley 1927 or of the Wikipedia articles (S16, S17). This also upgrades the node’s evidence from tertiary to peer-reviewed secondary.",
+      "scopeLimit": "NARROWING: Dufault does NOT assert the ‘154 discrete recipes’ count and does NOT state that there is ‘no logos slot’; he supplies one specimen exhibiting the form. The manuscripta.se record is recorded as a SUPPORTING institutional record only — its contents phrasing is close enough to S17’s that it may descend from Caley/Halleux, so independence rests on Dufault."
+    },
+    {
+      "nodeId": "proc:jew-hayyei-haolam-haba-2",
+      "sliceFile": "research/opgraph/slices/14-abrahamic-esoteric.json",
+      "proposedSourceId": "S25 (PROVISIONAL)",
+      "sourceStatus": "NEW — but SEE THE SLICE-LEVEL WARNING: 14-abrahamic-esoteric.json has NO source-keying scheme. meta.sources is an unkeyed array of 24 plain strings; works carry `editions[].ref` and free-text cites. ‘S25’ assumes the human introduces keys in array order.",
+      "cite": "Abraham Abulafia, Ḥayyei ha-Olam ha-Ba, trans. from Jewish Theological Seminary Ms. 2158, ff. 19a ff., in Aryeh Kaplan, Meditation and Kabbalah (York Beach, ME: Samuel Weiser, 1982), ch. 4 §7 ‘Life of the Future World’, pp. 93, 99–101, 104–105; MS attribution at p. 325 n. 128",
+      "locator": "https://archive.org/details/meditation-and-kabbalah-aryeh-kaplan — full djvu text downloaded; copyright page verified (‘Copyright © 1982 Aryeh Kaplan’, LCCCN 81-70150); pages fixed from the printed running heads",
+      "tier": "primary",
+      "supports": "p.93: ‘The main method discussed in Chayay Olam HaBah is very similar to that found in Or HaSekhel, also involving the same head motions as well as controlled breathing. Instead of making use of the Tetragrammaton, however, this book utilizes the Name of Seventy-Two Combinations.’ p.99: ‘As you pronounce each letter, exhale while you sound out the accompanying vowel together with its proper motion.’ p.100 carries the head/heart coordination and the counted rest-breaths between letters; pp.104–105 give the remaining vowels, each closing ‘Complete [the exhalation and head movement] simultaneously.’ The PARTIAL grade is genuinely supported: breath appears only as an adverb on recitation and as counted rests, never as a timed standalone regimen.",
+      "independenceArgument": "Tested adversarially rather than assumed: a full-text grep for ‘Idel’ across the whole book returns ZERO hits — Kaplan never cites the existing witness, in text or notes. His acknowledged apparatus for this section is Jellinek’s Philosophie und Kabbalah, Scholem’s Kitvey Yad BaKabbalah and Major Trends p. 136. He works from a named, citable exemplar (JTS Ms. 2158) that is a different codex in a different library from Braginsky MS 251.",
+      "scopeLimit": "TIER RESERVATION, recorded not fatal: ‘primary’ is generous. Kaplan is a devotional popularizer whose renderings carry heavy bracketed interpolation and no critical apparatus — this is a translation of a manuscript, not a critical edition. His value is precisely that he names the exemplar. PAGE CORRECTIONS: the head/heart passage falls entirely on p. 100 (only the ‘exhale while you sound out’ sentence is on p. 99); p. 93 reads ‘the Name of Seventy-Two Combinations’, not ‘the Name of Seventy-Two’. The ‘25 breaths’ instruction on p. 92 belongs to Or ha-Sekhel, a different work — correctly not claimed."
+    },
+    {
+      "nodeId": "proc:jew-shaar-ruah-hakodesh-yihudim-2",
+      "sliceFile": "research/opgraph/slices/14-abrahamic-esoteric.json",
+      "proposedSourceId": "S26 (PROVISIONAL)",
+      "sourceStatus": "NEW — same unkeyed-sources warning",
+      "cite": "Isaac Luria / Ḥayyim Vital, Sha‘ar ha-yiḥudim (The Gate of Unifications), ‘First Unity’ (excerpt), trans. Brian Ogren, in The Posen Library of Jewish Culture and Civilization, vol. 5; the entry’s source citation gives the underlying print as Ḥayyim ben Joseph Vital, Sha‘ar ha-yiḥudim (Lvov: M. F. Poremba, 1855)",
+      "locator": "https://www.posenlibrary.com/entry/shaar-ha-yihudim-gate-unifications — fetched; the site prints NO page number, so the printed locator is ‘Posen Library vol. 5, s.v.’ Supplementary, separately verified in full text: Gershom Scholem, Major Trends in Jewish Mysticism, 7th lecture, p. 255; Solomon Schechter, Studies in Judaism, Second Series (JPS, 1908), p. 276.",
+      "tier": "primary",
+      "supports": "Verbatim: ‘If you prostrate yourself over the graves of the righteous, you need to have the proper intention, so that through your prostration, you will cause the soul of that righteous person to prostrate itself and to be disseminated within his corpse.’ That sentence carries all three elements the row records — identified grave of a tzaddik, prostration, specified intention concerning that soul — and it supplies the intention while supplying no rule for WHICH grave, which is exactly the row’s ground for the PARTIAL grade. Scholem p.255 and Schechter p.276 (both verified verbatim) independently carry the second half of the claim: that the grave identifications came charismatically from Luria rather than from a rule.",
+      "independenceArgument": "The Posen text is the primary document in a fresh translation by a different scholar from a named 1855 printing; Fine’s 1987/2003 studies are reports about this corpus, not its source. The finder’s own worry — that ‘document versus a scholar’s report of the same document’ is thin independence — is settled by the supplements: Scholem (1941/1961) and Schechter (1908) predate Fine by decades and examined the Lurianic hagiographic and Vitalian material themselves.",
+      "scopeLimit": "THREE RESERVATIONS. (a) The Posen entry prints no page number, so the locator is URL plus ‘vol. 5, s.v.’ — followable but not paginated. (b) The read is through the site’s rendering, not the Lvov 1855 sheet. (c) NEITHER Scholem NOR Schechter uses the word ‘prostration’ — they corroborate the graveside soul-union and the charismatic identification, not the bodily posture. If the maintainer wants Scholem and Schechter keyed as their own sources, Schechter is already proposed as S27 below."
+    },
+    {
+      "nodeId": "proc:jew-shaar-ruah-hakodesh-yihudim-3",
+      "sliceFile": "research/opgraph/slices/14-abrahamic-esoteric.json",
+      "proposedSourceId": "S27 (PROVISIONAL)",
+      "sourceStatus": "NEW — same unkeyed-sources warning",
+      "cite": "Solomon Schechter, ‘Safed in the Sixteenth Century — A City of Legists and Mystics’, in Studies in Judaism, Second Series (Philadelphia: Jewish Publication Society of America, 1908), essay beginning p. 202 (Appendixes pp. 289–306), at pp. 265–266, 269–271, 273–275",
+      "locator": "https://archive.org/details/cu31924029096944 — Cornell scan downloaded; title page, imprint, 1908 copyright and table of contents verified; each cited page located against a printed running head",
+      "tier": "secondary-scholarly",
+      "supports": "All four categories the row records, verbatim and on the exact pages cited. (1) pp.265–266: Luria could tell men ‘their past as well as predict their future, and to prescribe for them the rules of conduct calculated to make amends for their shortcomings in a previous existence’, with the Galanti episode at pp.273–275 (‘He put on sackcloth and spread ashes on his head in accordance with the usage of penitents’). (2) p.269 on the ‘Attentions, or Devotions’ literature and the mystical meaning of every commandment. (3) p.271: such prayer ‘should be preceded by a series of ablutions, forming a part of the mystical programme at all times’. (4) pp.269–270 on praying for one another and accepting ‘And thou shalt love thy neighbour as thyself’ before prayer. Schechter gives categories and anecdotes rather than a rubric, which is exactly what the row’s REFERENCED grade asserts.",
+      "independenceArgument": "Published 1908 — seventy-nine years before Fine 1987 and ninety-five before Fine 2003 — so chronology alone forecloses derivation; and Schechter works from the Hebrew hagiographic and Lurianic material and the Safed hanhagot.",
+      "scopeLimit": "TWO RESERVATIONS. (a) Schechter NEVER names Sha‘ar Ruaḥ ha-Kodesh or the eight-gate arrangement — he corroborates the CATEGORY LIST and the REFERENCED grade, not the work-level attribution this row hangs them on, and the cite should carry that limitation explicitly. (b) 1908 is pre-critical scholarship, and much of his material is the Shivḥei ha-Ari hagiography, which he reports with far less source-critical distance than Fine — a strength for independence, a weakness for reliability."
+    }
+  ],
+  "rejected": [
+    {
+      "nodeId": "proc:tan-kularnavatantra-4",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "rejectionKind": "does-not-say-it",
+      "proposedSource": "Goudriaan & Gupta 1981, pp. 95-96",
+      "reason": "The quotes are real (p.95 'The ninth chapter is devoted to the description of yoga and the yogin'; p.96 the aphoristic characterisation with KT 9.77 quoted) but the node is typed BREATH-DISCIPLINE and its evidence is the conjunction 'pranayama named in XV; ullasa IX treats yoga doctrinally'. Pranayama is nowhere attested for the Kularnava in G&G, and their XV is 'mastery of mantras and the method of recitation'. A yoga chapter is not a breath-discipline attestation. The finder conceded this and should have filed found:false.",
+      "salvage": "Usable ONLY as corroboration that ullasa IX is doctrinal/aphoristic yoga — not as a witness for a breath-discipline procedure."
+    },
+    {
+      "nodeId": "proc:tan-nityotsava-3",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "rejectionKind": "does-not-say-it",
+      "proposedSource": "Goudriaan & Gupta 1981, p. 151",
+      "reason": "The p.151 passage is real and verbatim, but the node's claim is that the Nityotsava's chapter 7 gathers practices, pujas and mantras common to all as a mantra-consecration substrate. G&G say nothing of the kind: their remarks about mantras of other deities, the Rasmimala and Ramesvara's added purascarana matter are all about the PARASURAMAKALPASUTRA and its commentary, not the Nityotsava's seventh ullasa.",
+      "salvage": "HIGH-VALUE REDIRECT: as a witness for the WORK node tan:nityotsava the same page is excellent and should be filed there — it dissolves the AUTHOR flag (Umanandanatha = the religious name of Jagannatha, a Maharastra Brahman of the Visvamitragotra) and corrects the date from the slice's '(unverified) c.1745' to A.D. 1775."
+    },
+    {
+      "nodeId": "proc:tan-saundaryalahari-3",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "rejectionKind": "does-not-say-it",
+      "proposedSource": "Buhnemann, in Mandalas and Yantras in the Hindu Traditions (Brill, 2003), pp. 36, 38",
+      "reason": "All quoted text is real and located (p.36 on yantras inserted into lockets and consecrated by a specialist; p.38 on pranapratistha citing Raghavabhatta and the Mantramahodadhi), but every one of those statements is made of YANTRAS IN GENERAL, not of the Saundaryalahari. The finder said so explicitly. The only Saundaryalahari-specific datum is the Illustration 4 caption, which is already doing the work on nodes 1 and 2 and says nothing about the stanza-yantras being worn, carried or consecrated — precisely this node's claim. Accepting would record a witness for a claim the witness does not make AND make one illustration caption the second witness for three separate nodes.",
+      "salvage": "Would become acceptable only if the node were re-scoped to 'per-verse prayoga specifies a durable support' — which duplicates node 1."
+    },
+    {
+      "nodeId": "proc:tan-atharvaveda-saunaka-2",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "rejectionKind": "not-independent",
+      "proposedSource": "Whitney & Lanman, Atharva-Veda Samhita, HOS 7-8 (1905)",
+      "reason": "Source and quotations genuine and verified. Independence fails on two grounds, both conceded by the finder: (1) Whitney & Lanman is ALREADY carried in this work's `editions` array in the slice, so counting it would double-count a bibliographic entity the node's own record already holds; (2) Whitney's data on the Kausika's ritual employments is taken from Bloomfield's 1890 edition, which IS the existing witness S12 — on the sutra side he is a later scholar relying on the first witness.",
+      "salvage": "Strengthen the existing edition entry with Whitney's locators (General Introduction pp. lxxv-lxxviii; the note on AV iii.13.7) rather than incrementing the witness count. Note also that the 'primary' tier is defensible for the samhita text itself but not for the Kausika-employment statements."
+    },
+    {
+      "nodeId": "proc:gw-dee-spiritual-diaries-4",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "rejectionKind": "not-independent",
+      "proposedSource": "Harkness, John Dee's Conversations with Angels (CUP, 1999), p. 37",
+      "reason": "The source exists and the quotations are verbatim, but the footnotes were checked and the independence argument does not survive: notes 110-112 attached to exactly this passage read '110. Dee, AWS II:83 … 111. Ibid., 20. 112. Ibid.' — AWS is Harkness's own abbreviation for John Dee's Actions with Spirits, ed. Christopher Whitby, i.e. THE EXISTING WITNESS S14. The March 1582 sessions fall squarely inside Whitby's range (22 Dec 1581 - 23 May 1583). Reproducing the Sigillum plate from Sloane MS 3188 f. 30r by British Library permission is a picture credit, not an independent evidential route to the construction instructions. This is the disqualifying case in the brief: a later scholar quoting the first witness as her own authority.",
+      "salvage": "A genuine second witness must come from a source that reads Sloane 3188 independently of Whitby's edition, or from the Liber Iuratus side of the Sigillum derivation, which Harkness does not address at all. Edge E-TR-15 still rests on S3/S18."
+    },
+    {
+      "nodeId": "proc:ea-daofa-huiyuan-4",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "rejectionKind": "does-not-say-it",
+      "proposedSource": "en.daoinfo.org (FYSK Daoist Culture Centre), entry 'The Great Collection of Daoist Skills'",
+      "reason": "The entry is real and was fetched, and does name a neilian item among nine listed contents of DZ 1220. But the node's proposition is not 'the corpus contains neilian material'; it is that neilian is the officiant's interior refinement THAT THE OUTER RITE IS HELD TO DEPEND ON, named as the rite's inner engine across the leifa literature and not set out, by design. A nine-item contents list attests none of that — no dependency, no engine claim, no transmission restriction. Compounding it: the source is TERTIARY, so accepting would LOWER the node's weight in exchange for half-support. NOTE: en.daoinfo.org is ALSO already in this slice's meta.sources (entry #31).",
+      "salvage": "Leave the node at one witness. A peer-reviewed statement tying neilian specifically to DZ 1220 as the rite's presupposed inner engine was looked for and not verified either — recorded as a confirmed absence for now."
+    },
+    {
+      "nodeId": "proc:gem-pdm-xiv-3",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "rejectionKind": "unverifiable",
+      "proposedSource": "Jacco Dieleman, Priests, Tongues, and Rites (Brill, RGRW 153, 2005)",
+      "reason": "THE ONE PROPOSAL IN THIS ROUND THAT WOULD HAVE POISONED THE GRAPH. Three disqualifying grounds. (1) FABRICATED QUOTATION: the finder placed inside quotation marks, attributed to the BMCR review, 'PGM XIV contains Greek invocations with Egyptian content alongside Demotic recipes or translations'. The review's actual sentence is 'There are also several Greek invocations that are traditionally Egyptian in content and accompanied by Demotic recipes.' A paraphrase presented as a quotation, with 'PGM XIV' and 'or translations' silently added. A reader following the locator would not find the quoted string. (2) NO USABLE LOCATOR: the cite is a whole 400-page monograph with no page or chapter, and the finder states outright that the book was not read. (3) INDEPENDENCE COLLAPSES EITHER WAY: if the witness is the book, it was not examined; if it is the review, a review summarising the proposed witness is exactly the downstream summary the rules exclude. (4) A sub-claim is arguably contradicted: the node's rationale is that Old Coptic glosses enabled correct VOCALISATION, while the review describes the Old Coptic letters in P. London-Leiden as a CIPHER ALPHABET — concealment, the opposite function.",
+      "salvage": "Dieleman 2005 remains a genuinely promising second witness — real (ISBN 9004141855), a different scholar's monograph-length re-examination of P.BM 10070 + P.Leiden I 383, independent of Griffith & Thompson (S10) and the GEMF articles (S9). Re-propose ONLY with a chapter and page actually read, for the specific claim about Old Coptic glosses and vocalisation. Until then the node stays on one witness."
+    },
+    {
+      "nodeId": "proc:jew-hayyei-haolam-haba-3",
+      "sliceFile": "research/opgraph/slices/14-abrahamic-esoteric.json",
+      "rejectionKind": "does-not-say-it",
+      "proposedSource": "R. Judah Hayyat, Minhat Yehudah (Mantua, 1558), f. 3b, and Azulai, Shem ha-Gedolim, both via Kaplan, Meditation and Kabbalah (1982), pp. 60-61",
+      "reason": "The testimonies are real, verbatim, and genuinely independent — a 1558 Mantua polemical print and an 18th-c. bibliographer's autopsy of a different parchment codex owe nothing to a 21st-c. Zurich catalogue. But the node's claim is not 'the book is written in circles'. It is that the figures are simultaneously the text to be recited and the object to be contemplated, graded COMPLETE on the ground that 138 figures survive in the Braginsky witness, all executed as working diagrams with entry marks. Neither testimony supports any load-bearing part: no entry marks, no figure count, no traversal order. And on the one point where Hayyat does speak to purpose he asserts the OPPOSITE — the circles exist 'so as to confuse those who look at it', i.e. concealment, not apparatus. The finder's own supporting note cuts against it too: Kaplan n. 8 says 'In ONE manuscript … the text is actually written within a series of circles', a restrictive 'one', and Kaplan's own working exemplar (JTS Ms. 2158) is evidently not among them.",
+      "salvage": "Re-file as a `contested` block on the WORK node jew:hayyei-haolam-haba — Hayyat and the Braginsky catalogue disagree about what the circles are FOR — or re-propose against a narrowed claim ('known from the late fifteenth century onward as a work written in circles, on the Name of Seventy-Two'), which this witness does carry."
+    }
+  ],
+  "proposedButNotAdjudicated": [
+    {
+      "nodeId": "proc:gw-weyer-pseudomonarchia-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "proposedSource": "Nicholson (ed.), The Discoverie of Witchcraft (1886), editor's notes to pp. 377-79, quoting Weyer's own address prefixed to the Pseudomonarchia and his marginalia",
+      "status": "The finder returned found:true for this node; the adversarial pass returned no verdict for it. It is therefore NOT counted among the 81 accepted and MUST NOT be applied on the strength of this file. The underlying source (proposed S24) was independently verified for two sibling nodes in the same slice, so this is likely to survive adjudication — but 'likely' is not 'verified', and the whole point of the two-stage process is that the finder's word alone is not enough. Send it back through the adversarial pass before applying."
+    }
+  ],
+  "confirmedAbsences": [
+    {
+      "nodeId": "proc:tan-kularnavatantra-8",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "kind": "does-not-say-it",
+      "note": "INFORMATIVE ABSENCE. G&G p.96 describe ullasa XVII as 'the mystical meaning of important terms', closing with praise of the tradition and rules for secrecy. No guru-dhyana, no visualization procedure anywhere in their four-page survey. All Kularnava references in the volume were checked."
+    },
+    {
+      "nodeId": "proc:tan-nityasodasikarnava-4",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "kind": "does-not-say-it",
+      "note": "INFORMATIVE ABSENCE. G&G's chapter-by-chapter survey of all five chapters contains no mention of diksa or an initiation procedure. Secondary blocker: Brooks, Auspicious Wisdom (SUNY 1992) is an archive.org lending item whose search-inside returns 'Item not available'."
+    },
+    {
+      "nodeId": "proc:tan-mantramahodadhi-8",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "kind": "does-not-say-it",
+      "note": "G&G give a full 25-taranga contents list but nowhere state that the per-deity chapters carry dhyana verses; their dhyana-sloka statement is made explicitly of the Prapancasara and Saradatilaka only. The other readable candidate is by the SAME scholar as the existing witness (not-independent)."
+    },
+    {
+      "nodeId": "proc:tan-isanasivagurudevapaddhati-6",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "kind": "does-not-say-it",
+      "note": "Four scholars who work with this text in detail (G&G, Brunner, Buhnemann, Sanderson) cite its samanya-, mantra- and kriyapadas and NEVER its yogapada. Consistent with the slice's own finding that yoga content is c.2.5% of the work, but not a witness. The TSS edition was deliberately NOT opened: reading Devanagari OCR that could not be reliably checked was judged worse than no citation."
+    },
+    {
+      "nodeId": "proc:tan-netratantra-3",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "kind": "does-not-say-it",
+      "note": "Five candidates checked (G&G pp.33, 163; Torzsok 2003; Brunner 2003 pp.162-63; Sanderson 2009; Flood 1993) and none attests the Netratantra's iconographic/dhyana prescriptions independently of Sauthoff."
+    },
+    {
+      "nodeId": "proc:tan-netratantra-7",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "kind": "does-not-say-it / unverifiable",
+      "note": "Same candidates plus targeted searching of Flood 1993's yoga chapter, whose breath/uccara material is drawn from the Malinivijayottara, Vijnanabhairava, Ksemaraja and Abhinavagupta, not the Netratantra. Sanderson, 'The Saiva Literature' (JIS 24-25, 2014) is the obvious next target and is available only via academia.edu, which could not be fetched."
+    },
+    {
+      "nodeId": "proc:tan-svacchandatantra-2",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "kind": "unverifiable",
+      "note": "Verifying the chapter-2 daily-worship and chapter-7 hamsa-mantra claims requires either the KSTS text itself (the same witness) or Arraj's 1988 Chicago dissertation / Sanderson 2014, neither obtainable. G&G mention the text only in passing; Dyczkowski treats it only as a canonical classifier."
+    },
+    {
+      "nodeId": "proc:tan-svacchandatantra-4",
+      "sliceFile": "research/opgraph/slices/10-indian-tantra.json",
+      "kind": "does-not-say-it",
+      "note": "Flood 1993 — the most likely open candidate, its ch. 7 entirely on yoga and breath — rests its uccara/pranayama discussion on other texts and cites the Svacchandatantra only doctrinally."
+    },
+    {
+      "nodeId": "proc:gw-grimorium-verum-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "unverifiable / not-independent",
+      "note": "Owen Davies, Grimoires (OUP 2009) covers exactly this and is an archive.org lending item returning 'Item not available'. Every other hit (Grokipedia, Wikipedia, occult vendors) is visibly summarising Peterson's gv.htm — the existing witness."
+    },
+    {
+      "nodeId": "proc:gw-grimorium-verum-2",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "unverifiable / not-independent",
+      "note": "As above. This row is also the one the slice used to justify borrowing Peterson's disclaimer wording, which the R33 licensing strike has already voided — so it is doubly worth a targeted future pass."
+    },
+    {
+      "nodeId": "proc:gw-heptameron-2",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "unverifiable",
+      "note": "Klaassen mentions the Heptameron three times, only as a printed book being extracted by 16th-c. scribes, never describing its contents. Thorndike vols V-VI would settle it but the obtained archive.org copy has OCR too corrupt to search — zero hits on 'Heptameron' in a volume that certainly discusses it."
+    },
+    {
+      "nodeId": "proc:gw-heptameron-3",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "unverifiable",
+      "note": "As above. NEAR-MISS worth recording: VD16 A 1185 (verified, and accepted as S22 elsewhere) confirms the Elementa Magica was printed with the Liber quartus in 1559, but a bibliographic record cannot evidence what the circle-and-pentacle chapters contain."
+    },
+    {
+      "nodeId": "proc:gw-key-of-solomon-1",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "not-independent / unverifiable",
+      "note": "Mathers 1889 is disallowed by the brief's own worked example, and Peterson's collation incorporates Mathers anyway. Klaassen discusses transmission and date but not chapter contents; he points to Boudet & Veronese, 'Le secret dans la magie rituelle', which could not be obtained."
+    },
+    {
+      "nodeId": "proc:gw-key-of-solomon-2",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "not-independent / unverifiable",
+      "note": "Same blockers. No independent source examined attests the Key's planetary-hour apparatus from its own manuscripts."
+    },
+    {
+      "nodeId": "proc:gw-key-of-solomon-3",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "not-independent / unverifiable",
+      "note": "Same blockers. This row also carries the Mathers-abridgement finding, which makes an independent manuscript-based witness especially valuable and especially absent."
+    },
+    {
+      "nodeId": "proc:gw-key-of-solomon-6",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "not-independent / unverifiable",
+      "note": "No independent source read enumerates the Key's coercive 'experiments' from its own manuscript evidence. Operative reproductions of the text were deliberately not consulted — they would be the same witness."
+    },
+    {
+      "nodeId": "proc:gw-key-of-solomon-7",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "not-independent / unverifiable",
+      "note": "Same blockers."
+    },
+    {
+      "nodeId": "proc:gw-picatrix-4",
+      "sliceFile": "research/opgraph/slices/12-solomonic-western.json",
+      "kind": "declined by design",
+      "note": "NOT a failure. The row is marked blacklisted:true / 'IN-REPO ALREADY — cross-reference only', and the finder deliberately declined to smuggle a new election-rules source into a row the slice has fenced off. Lang's nearest timing-and-materials language is about De septem quadraturis planetarum, not the Picatrix, and citing it would be a mis-citation."
+    },
+    {
+      "nodeId": "proc:ea-mohe-zhiguan-5",
+      "sliceFile": "research/opgraph/slices/13-east-asian.json",
+      "kind": "does-not-say-it / unverifiable",
+      "note": "Two near-misses verified and rejected: Mei 2025 covers only the internal ordering of the PREPARATORY framework, not the work as a graded curriculum; Ziporyn's Encyclopedia of Buddhism entry describes the four samadhis and ten vehicles but does not frame them as a curriculum. Wikipedia and the Encyclopedia of Buddhism wiki visibly summarise Donner & Stevenson / Swanson and are excluded by the independence rule. Swanson 2018 is the obvious candidate; its text could not be obtained."
+    },
+    {
+      "nodeId": "proc:gem-p-leid-x-1",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "kind": "not-independent / unverifiable",
+      "note": "The node's own S16/S17 bundle already names the whole edition history (Reuvens, Leemans, Berthelot, Caley, Halleux), disqualifying every obvious candidate as already-in-bundle. Three independent routes were blocked: the Rijksmuseum van Oudheden highlight page (HTTP 403), Brill's Nuncius 35.1 (2020) (HTTP 403), and the GIA pearl-recipes article (two timeouts, and P.Holm.-only anyway). Dufault 2019, which rescued the sister node, does not treat Leiden X at all."
+    },
+    {
+      "nodeId": "proc:gem-pgm-i-2",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "kind": "does-not-say-it / unverifiable",
+      "note": "POSSIBLE DATA PROBLEM, not merely a gap: the antikemagie.com page on the Pnouthis paredros rite (PGM I.42-105), which was fetched, prints the passage with NO purity, abstinence or cleanliness instruction — weak evidence, but it points away from the node's assumption, which the node itself admits is imported by analogy from PGM IV (S4) as 'the corpus norm' and is marked unverified. Pachoumi 2017/18 is the source that would settle it and is paywalled."
+    },
+    {
+      "nodeId": "theu:proclus-hieratic-art",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "kind": "not-independent (structural) / unverifiable",
+      "note": "STRUCTURAL, NOT AN EFFORT FAILURE. The treatise survives as one short text. Bidez's Greek (CMAG VI, 1928) and Pachoumi's 2024 Brill critical edition are BOTH already S23; Ficino's Latin, Taylor's 1895 English and Copenhaver's 1988 English are translations of that same text and are excluded by the brief's own Mathers/Clavicula rule. A qualifying witness must be another scholar's independent examination — Sheppard, CQ 32 (1982) 212-224 is the named candidate; both Cambridge Core and the Scribd copy were inaccessible."
+    },
+    {
+      "nodeId": "proc:theu-proclus-hieratic-art-1",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "kind": "not-independent (structural) / unverifiable",
+      "note": "Same obstacle. Every reachable account of the treatise's sunthemata/symbola material is Pachoumi 2024 (= S23), a translation of the same Greek, or a blog."
+    },
+    {
+      "nodeId": "proc:theu-proclus-hieratic-art-2",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "kind": "not-independent (structural) / unverifiable",
+      "note": "Same obstacle. An adjacent independent source WAS verified and deliberately NOT mis-filed as a witness: Krulak, GRBS 57 (2017) 454-481 at pp. 456-57 attests (from Marinus, Vita Procli 18-19, 28) that Proclus valued hieratic ritual and practised Chaldean purifications — but that is about Proclus' practice, not about what THIS TREATISE names. Declining to stretch it is the correct call."
+    },
+    {
+      "nodeId": "proc:theu-proclus-hieratic-art-3",
+      "sliceFile": "research/opgraph/slices/11-greco-egyptian.json",
+      "kind": "not-independent (structural) / unverifiable",
+      "note": "Same obstacle. Next targets: Sheppard CQ 32 (1982); Addey, Divination and Theurgy in Neoplatonism (2014); Tanaseanu-Dobler, Theurgy in Late Antiquity (2013) — each read at page level."
+    }
+  ],
+  "nextRoundLeverage": [
+    {
+      "source": "Owen Davies, Grimoires: A History of Magic Books (OUP, 2009)",
+      "wouldAddress": "9 nodes in 12-solomonic-western (Key of Solomon x5, Heptameron x2, Grimorium Verum x2)",
+      "blocker": "archive.org controlled digital lending returns 'Item not available'. Needs library or ILL access. This is the single highest-yield unblock in the round."
+    },
+    {
+      "source": "Alexis Sanderson, 'The Saiva Literature', Journal of Indological Studies 24-25 (2014)",
+      "wouldAddress": "4 nodes in 10-indian-tantra (Netratantra x2, Svacchandatantra x2)",
+      "blocker": "academia.edu only; could not be fetched."
+    },
+    {
+      "source": "Anne Sheppard, 'Proclus' Attitude to Theurgy', Classical Quarterly 32 (1982) 212-224",
+      "wouldAddress": "4 nodes in 11-greco-egyptian (the entire Proclus cluster)",
+      "blocker": "Cambridge Core paywall. Existence and pagination confirmed twice, but the article was not read."
+    },
+    {
+      "source": "Jacco Dieleman, Priests, Tongues, and Rites (Brill, 2005), read at page level",
+      "wouldAddress": "proc:gem-pdm-xiv-3",
+      "blocker": "Not a search problem — the finder cited it without reading it and fabricated a supporting quotation. Re-propose only with a page actually read."
+    },
+    {
+      "source": "Paul Swanson, Clear Serenity, Quiet Insight (UH Press, 2018)",
+      "wouldAddress": "proc:ea-mohe-zhiguan-5",
+      "blocker": "Text could not be obtained."
+    },
+    {
+      "source": "Douglas Renfrew Brooks, Auspicious Wisdom (SUNY, 1992)",
+      "wouldAddress": "proc:tan-nityasodasikarnava-4",
+      "blocker": "archive.org lending; search-inside returns 'Item not available'."
+    },
+    {
+      "source": "Robert Halleux's edition of P.Leid. X read directly, or the Rijksmuseum van Oudheden collection record fetched with a real browser",
+      "wouldAddress": "proc:gem-p-leid-x-1",
+      "blocker": "HTTP 403 to automated fetches."
+    },
+    {
+      "source": "Boudet & Veronese, 'Le secret dans la magie rituelle'",
+      "wouldAddress": "the Key of Solomon rows, alongside Davies",
+      "blocker": "Could not be obtained; named by Klaassen as the most recent discussion of the Clavicula."
+    }
+  ],
+  "freeCorrectionsHarvestedThisRound": [
+    "10-indian-tantra: the Yoginihrdaya mantrasanketa arthas resolve at SIX, not five (G&G p.63).",
+    "10-indian-tantra: the Nityotsava AUTHOR flag dissolves — Umanandanatha is the religious name of Jagannatha — and the date is A.D. 1775, not the slice's unverified c.1745 (G&G pp.151, 169 n.25). File against the WORK node tan:nityotsava.",
+    "10-indian-tantra: the Padarthadarsa date upgrades from tertiary '1493-94' to a scholarly A.D. 1494 sourced to the author's own concluding stanzas (G&G p.135 n.17).",
+    "10-indian-tantra: NEW DISCREPANCIES TO OPEN, not close — Krsnananda's date (G&G argue 17th c. against the slice's late 16th); the Kularnava purification locus (G&G put body-consecration at 7.63-103 and make ch. VI the worship chapter); the Sricakra construction locus (G&G put it at Nityasodasikarnava 1.43-58, where the slice puts it in the Yoginihrdaya); and the Dipika's date (G&G's late-12th/early-13th vs Padoux's 13th-14th).",
+    "12-solomonic-western: Nicholson 1886 concludes Scot did NOT translate Weyer directly but used a 1570 English manuscript translation marked 'the work of one T. R.' — proc:gw-scot-discoverie-1 and edge E-TR-01 should be reworded.",
+    "12-solomonic-western: the Steganographia node now has three named positions (Kahn 1967: Book III has no cryptography; Ernst/Reeds: it does; Skinner & Rankine: the two are inseparable) and should move under the slice's contestedPolicy.",
+    "12-solomonic-western: proc:gw-liber-juratus-5's evidence field currently rests on Peterson's modern parodic copyright notice. Replace it with the transmission oath reported from the text's own prologue (Klaassen p.108).",
+    "12-solomonic-western: gw:clm-849's Kieckhefer contents description is the exact evidence the R33 audit named as the blocker for the VOIDED completeness grade on proc:gw-clm-849-1.",
+    "12-solomonic-western: VD16 undercuts the flat 'Marburg, 1559' imprint on the pseudo-Agrippa Fourth Book — VD16 records s.l. and judges it 'wohl kein deutscher Druck'.",
+    "12-solomonic-western: the Grimoire du Pape Honorius node's 'Rome, 1670' is now unsupported by anything verified and may be a transposition of the 1760 title-page imprint. Re-check against S18.",
+    "13-east-asian: the slice states twice that Wilhelm translated an eight-chapter 1834 edition of the Taiyi jinhua zongzhi. Esposito 1998 p.90: Wilhelm used Dan Ranhui's 1921 edition; the 1834 Daozang xubian text is Min Yide's Longmen version, also in 13 chapters.",
+    "13-east-asian: proc:ea-mohe-zhiguan-2's completenessEvidence is partly contradicted by Mei 2025 and should be rewritten, not merely re-cited.",
+    "13-east-asian: the work node for the Dee diaries in slice 12 is gw:dee-angelic-diaries, not 'gw:dee-spiritual-diaries' — the finder's node ids for those rows need mapping before application."
+  ]
+}

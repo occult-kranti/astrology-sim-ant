@@ -125,10 +125,34 @@ reasons is just a list and gets reordered by whoever is nearest.
    pinned in `corroboration-targets.json`, disjoint by slice.
    *Blocked on nothing. In flight.*
 
-2. **Apply the corroboration proposal.** The round produces
-   `research/opgraph/corroboration-R34.json` as a PROPOSAL; a human adds the
-   sources to each slice's `meta.sources`, attaches the ids, sets tiers in
-   `gate-decisions.json`, and regenerates. Nothing in the round edits the graph.
+2. **Apply the corroboration proposal.** `research/opgraph/corroboration-R34.json`
+   (81 accepted of 115) is a PROPOSAL — a human attaches the sources, sets tiers
+   in `gate-decisions.json`, and regenerates. Nothing in the round edited the
+   graph; `git status` after it showed only the two new files.
+
+   **IT CANNOT BE APPLIED MECHANICALLY. The five slices have five different
+   source-table shapes**, which the round under-reported as "13 and 14 are
+   unkeyed":
+
+   | slice | `meta.sources` shape |
+   |---|---|
+   | `10-indian-tantra` | array of `{key, cite, accessed, pd}` — keyed on **`key`** |
+   | `11-greco-egyptian` | **object map** `{S1: "cite string", …}` (27 entries) |
+   | `12-solomonic-western` | array of `{id, cite, rights}` — keyed on **`id`** |
+   | `13-east-asian` | **`string[]`, unkeyed** (32) |
+   | `14-abrahamic-esoteric` | **`string[]`, unkeyed** (24) |
+
+   So `proposedSourceId` means something different in each file, and for 13/14
+   it means nothing yet. **Normalise the source tables first, or apply per-slice
+   by hand.** Two traps: slice 10's `proposedSourceId: "S20"` means *attach the
+   EXISTING S20*, not create it — Goudriaan & Gupta is already in that table —
+   and slice 11's existing S1/S2 are **Wikipedia**, i.e. tertiary, which lowers
+   the weight rather than raising it.
+
+   *This same shape-drift bit twice in one day: an `x.id` lookup returned nothing
+   on slice 10 because it keys on `key`, and check M's first regex matched 0
+   slugs because `confluence.js` quotes its keys. Assume nothing about shape;
+   print it.*
 
 ### Next — the open defect queue
 
