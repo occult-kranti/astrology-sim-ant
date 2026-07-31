@@ -225,6 +225,14 @@ knowledge or an instrument. The ledger says so on every row and the stop conditi
 prints a NOTE that it is computed from figures no script re-derived. This is an
 accepted limit, not a bug — but it means C1/C2 are advisory, not authoritative.
 
+**D5 — the round recorder stamps UTC, the operator works in EDT.** R35 was
+recorded at `2026-07-30 22:27 EDT` and landed in the ledger as **`2026-07-31`**.
+Any round recorded after 20:00 EDT gets the next day's date. This is cosmetic for
+trend analysis and wrong for a dated record, and it is logged rather than quietly
+patched because rewriting past rows in an append-only ledger is worse than an
+off-by-one date. *Fix, if taken: stamp local date at record time; do NOT rewrite
+existing rows — append a correction row, which the ledger already supports.*
+
 **D4 — the roadmap had no reader but itself.** `opgraph-eig.mjs` computed the
 queue, printed its own statistics as findings, and nothing checked them. A witness
 count that had silently collapsed to 1 therefore reported "every node in the graph

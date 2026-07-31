@@ -2,7 +2,7 @@
 
 **GENERATED FILE. Do not hand-edit.** Source of truth: `docs/telemetry/rounds.jsonl`.
 Regenerate with `node scripts/round-ledger.mjs`; append a round with `node scripts/round-telemetry.mjs record --round Rnn …`.
-Generated 2026-07-30.
+Generated 2026-07-31.
 
 ## What the two columns mean
 
@@ -38,7 +38,8 @@ A `—` is a figure that does not exist, and it is never rendered as a zero.
 | R33 | 2026-07-30 | 7 *(unverified)* | 9 *(unverified)* | 0.44 | · ?/?/? *(unverified)* |
 | R33r | 2026-07-30 | 48 *(unverified)* | 4 *(unverified)* | 0.92 | · ?/?/? *(unverified)* |
 | R34 | 2026-07-30 | 2 *(unverified)* | 12 *(unverified)* | 0.14 | clean 0/0/0 |
-| **all scorable** | | **95** | **54** | **0.64** | |
+| R35 | 2026-07-31 | 2 *(unverified)* | 9 *(unverified)* | 0.18 | clean 0/0/0 |
+| **all scorable** | | **97** | **63** | **0.61** | |
 
 *1 superseding correction row(s) are on file: `rounds.jsonl` keeps every line and this table
 renders the newest row per round. A log may be corrected; it is never rewritten.*
@@ -54,9 +55,9 @@ renders the newest row per round. A log may be corrected; it is never rewritten.
 This run computed:
 
 ```
-C1 ok — trailing-3 (R33, R33r, R34): 57 domain, 25 tooling.
-C2 ok — trailing-3 domain ratio 0.70 (floor 0.20).
-C3 NOT EVALUABLE — 1 of the last 5 rounds carry a curation census (graph.excluded / graph.ejected). C3 cannot pass by default.
+C1 ok — trailing-3 (R33r, R34, R35): 52 domain, 25 tooling.
+C2 ok — trailing-3 domain ratio 0.68 (floor 0.20).
+C3 NOT EVALUABLE — 2 of the last 5 rounds carry a curation census (graph.excluded / graph.ejected). C3 cannot pass by default.
 NOTE — 3 of the 3 rounds in the C1/C2 window carry (unverified) claim counts (amendment E). The stop condition is computed from figures no script re-derived.
 exit 0
 ```
