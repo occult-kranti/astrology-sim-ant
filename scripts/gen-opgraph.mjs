@@ -414,7 +414,18 @@ export function buildCandidates(inputs) {
       nodes.set(w.id, {
         id: w.id, type: 'work', label: clean(w.title) || w.id,
         kind: cfg.kind || sliceWorkKind(w),
-        atlasSlug: clean(w.atlasSlug || w.parentAtlasSlug) || null,
+        // A SLUG IS A CLAIM THAT THE ATLAS HAS THIS ENTRY, and the page turns it
+        // straight into a live <a href="confluence.html#slug">. So a slug the
+        // atlas does not carry is not a cosmetic mismatch — it ships a dead
+        // link and asserts a join that was never built. Twelve did.
+        //
+        // `atlasSlugExists: false` in a slice means "this is the slug I WOULD
+        // want, and the atlas has no such entry": it moves to proposedAtlasSlug
+        // and raises atlasNeeded, so the page takes its honest branch ("not
+        // present, and it arguably deserves an entry") instead of linking into
+        // nothing. The wanted slug is kept, because it is the thing to create.
+        atlasSlug: (w.atlasSlugExists === false ? null : clean(w.atlasSlug || w.parentAtlasSlug)) || null,
+        proposedAtlasSlug: (w.atlasSlugExists === false ? clean(w.atlasSlug || w.parentAtlasSlug) : null) || null,
         atlasNeeded: Boolean(w.proposedSlug || w.proposedId) || w.atlasSlugExists === false,
         titleOriginal: clean(w.titleOriginal) || null,
         dateText, sortYear: sortYear(dateText),

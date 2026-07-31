@@ -686,7 +686,12 @@ export function dossierHTML(n, ctx) {
       + (txt(e.locus) ? ` <span class="small muted">${esc(txt(e.locus))}</span>` : '') + '</li>').join('');
     if (eds) dl.push(kv('Editions', `<ul class="og-eds">${eds}</ul><p class="small muted">The public-domain verdict is per EDITION and is a <b>United States</b> verdict. It gates quotation, not display — and this page quotes no operative text at all.</p>`));
     if (n.atlasSlug) dl.push(kv('In the Confluence atlas', `<a href="confluence.html#${esc(n.atlasSlug)}">${esc(idx.label(n.id))} in the atlas</a> <span class="small muted">— the atlas answers <i>who read whom</i>; this graph answers <i>what the book tells an operator to do</i>. Neither owns the other.</span>`));
-    else if (n.atlasNeeded) dl.push(kv('In the Confluence atlas', '<i>not present, and it arguably deserves an entry</i>'));
+    // NOT a link. A proposed slug is the entry someone should CREATE; rendering
+    // it as an anchor is what shipped twelve dead links into confluence.html in
+    // the first place. Naming it makes the gap actionable without asserting it
+    // has been filled.
+    else if (n.atlasNeeded) dl.push(kv('In the Confluence atlas', '<i>not present, and it arguably deserves an entry</i>'
+      + (txt(n.proposedAtlasSlug) ? ` <span class="small muted">— the slug it would take is <code>${esc(txt(n.proposedAtlasSlug))}</code>, held as a proposal rather than a link because the atlas has no such entry yet.</span>` : '')));
     const claims = idx.claimsByWork.get(n.id) || [];
     if (claims.length) {
       dl.push(kv('Procedures recorded', `<ul class="og-claimlist">${claims.map(c =>
