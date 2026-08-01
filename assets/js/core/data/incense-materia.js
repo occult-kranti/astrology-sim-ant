@@ -77,15 +77,22 @@ export const MATERIA = {
   storax: { label: 'Storax', kind: 'simple', botanical: 'balsam of Liquidambar orientalis / Styrax spp.' },
   frankincense: { label: 'Frankincense', kind: 'simple', botanical: 'oleoresin of Boswellia spp.' },
   aloeswood: {
-    label: 'Aloeswood',
+    label: 'Aloeswood (oud)',
     kind: 'simple',
-    botanical: 'resinous heartwood of Aquilaria spp. (agarwood, oud)',
+    botanical: 'resinous heartwood of Aquilaria spp. — agarwood, also called oud or agallochum',
     ambiguity: 'aloes-pair',
   },
   'aloes-resin': {
-    label: 'Aloes',
+    label: 'Aloes (bitter aloes — NOT aloe vera)',
     kind: 'simple',
-    botanical: 'most likely the bitter resin of Aloe spp. (socotrine aloes) — NOT the same plant as aloeswood',
+    botanical: 'the bitter dried exudate of Aloe spp., chiefly Aloe perryi / A. succotrina '
+      + '("socotrine aloes"), used as a drug and a fumigant',
+    notAloeVera: true,
+    botanicalNote: 'NOT aloe vera. Aloe vera (A. barbadensis) is a different species and, more to the '
+      + 'point, a different PRODUCT: the modern cosmetic gel of the inner leaf. What a Renaissance '
+      + 'materia list calls "aloes" is the bitter yellow latex from just under the rind, dried to a '
+      + 'dark resin. Same genus, different plant, different substance — and also not aloeswood, '
+      + 'which is not an Aloe at all.',
     ambiguity: 'aloes-pair',
   },
   'blood-animal': {
@@ -127,8 +134,11 @@ export const AMBIGUITIES = {
     title: 'Two different “aloes”',
     affects: ['aloeswood', 'aloes-resin'],
     body: 'Mars is given "aloes wood" and Venus "aloes". These read as the same word and are almost '
-      + 'certainly two unrelated plants: aloeswood is the resinous heartwood of Aquilaria (agarwood/oud), '
-      + 'while "aloes" in a Renaissance materia list usually means the bitter resin of Aloe. This index '
+      + 'certainly two unrelated plants: ALOESWOOD is the resinous heartwood of Aquilaria — agarwood, '
+      + 'also called OUD — and is not an Aloe at all, while "ALOES" in a Renaissance materia list means '
+      + 'the bitter dried latex of Aloe spp. (socotrine aloes). NEITHER IS ALOE VERA: that is a '
+      + 'different species and a different product — the modern cosmetic gel of the inner leaf, not the '
+      + 'bitter exudate under the rind that the old lists mean. This index '
       + 'keeps them SEPARATE. If they were merged, the page would report a Mars–Venus convergence that '
       + 'no source states — the most damaging error a comparison view can make.',
     status: 'kept-apart pending a source that settles it',

@@ -219,6 +219,25 @@ function paintNow(lat, lon) {
   const idx = rows.indexOf(cur);
   const nxt = idx < rows.length - 1 ? rows[idx + 1] : null;
 
+  // THE VEDIC COLUMN. Structurally present, deliberately EMPTY, and saying why.
+  // The horā ruler is the same Chaldean sequence, so naming it is safe. The
+  // MATERIA is not: this repo has no Indian incense data at all — vedic-remedies.js
+  // carries mantras, devatās, japa counts and āsana, and NAKSHATRA_INFO is
+  // num/name/lord/deity/significance. There is no herb, tree, vanaspati or
+  // samidha table anywhere in core/data.
+  //
+  // Under FRAMING §11.3 an empty cell is the only honest cell here. Filling it
+  // from general knowledge is exactly the fabrication the whole protocol exists
+  // to stop, and it would be indistinguishable on the page from a cited one.
+  const vedic = `<div class="inc-assign inc-vedic">
+      <b>Vedic horā</b> — this hour's ruler is ${esc(cur.ruler)} on the same Chaldean sequence
+      <span class="small muted">(the jyotiṣa horā runs the same order from sunrise)</span>.
+      <div class="small"><b>Materia: not carried.</b> This repo holds no Indian incense data —
+        no graha samidha, no nakṣatra-vanaspati, no remedial-herb table. Rather than fill the cell
+        from general knowledge, it stays empty: an invented assignment would look exactly like a
+        cited one. It needs its own sourced round (HORARIUM stage 3).</div>
+    </div>`;
+
   const assigned = m
     ? `<div class="inc-assign">The texts assign to ${esc(cur.ruler)}: <b>${esc(m.substance)}</b>
         <span class="small muted">— ${esc(m.source || '')}</span>
@@ -232,6 +251,7 @@ function paintNow(lat, lon) {
       <div>
         <div class="inc-ruler">Hour of ${esc(cur.ruler)} · ${cur.night ? 'Night' : 'Day'} ${esc(ROMAN[(idx % 12)])}</div>
         ${assigned}
+        ${vedic}
       </div>
       <div class="inc-cd"><div class="inc-cd-t">${esc(cd)}</div>
         <div class="small muted">until the hour turns</div></div>
