@@ -235,10 +235,38 @@ exclusions **empty out vocabulary terms**, and the invariants that guard
 (`consecration-of-object-talisman`, `divination-procedure` and others left with
 claims but no procedure-type node) plus 4 artery failures.
 
-**The remaining work is the cascade, not the cap:** decide whether an emptied
-vocabulary term is dropped, retained with a stated zero occupancy, or blocks the
-round — and make the op-node invariant agree. Do that first; the cap itself is
-already proven.
+**The remaining work is the cascade, not the cap.** The cap is proven. What is
+not yet found is *why* the cascade happens, and two plausible explanations have
+already been tested and killed — recorded here so the next attempt does not
+re-walk them:
+
+*The symptom, exactly.* Under the cap, six claims carry
+`typeTerm: "divination-procedure"` and survive into the shipped graph, while
+**no `procedure-type` node exists for that term**. `OPGRAPH_VOCAB` ships
+`occupancy: 0` for it. Same shape for `consecration-of-object-talisman` and
+`scrying-crystallomancy`. Result: 22 op-node violations + 4 artery failures.
+
+*Hypothesis 1 — a later pass rewrites `typeTerm`, so pass 6 counts the wrong
+term.* **KILLED.** All six claims have `retypePending: false`, no
+`retypeTarget`, and `typeAsFiled === typeTerm === "divination-procedure"`. The
+term never changes.
+
+*Hypothesis 2 — the liveness prune (`gen-opgraph.mjs` ~965) drops the type node
+because its claims were dropped first in the same pass.* **KILLED.** The prune
+iterates `[...live].sort()`, and `proc:` sorts before `type:`, so claims are
+evaluated first; these claims survive, so `used` would be true. The type node is
+therefore **never in `live` to begin with** — it is excluded upstream of the
+prune, not by it.
+
+*Where to look next:* pass 6 builds each type node's witnesses from its claims
+(`dedupeWitnesses(claims.flatMap(c => c.witnesses))`) and the gate then weighs
+it. Check whether the type node's own computed weight falls below the admission
+floor once its claims are capped — i.e. whether the cap propagates into
+type-node weight through that witness roll-up. That is the one path consistent
+with "excluded before the prune".
+
+**Verified NOT live on HEAD:** 0 vocab-occupancy mismatches across 53 terms and
+0 occupied terms missing a node. This is latent, and the cap surfaces it.
 
 **Nothing new joins the artery until this lands**, because every dataset added
 under the current rule inherits the flaw.
