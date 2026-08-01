@@ -119,6 +119,53 @@ for (const f of files) {
   };
   walkRefs(j.entries, 'entries');
 
+  // ---- C5 · the EVIDENCE LEDGER MUST BE ON DISK ---------------------------
+  //
+  // Added after this check gave a FALSE GREEN. The v2 round passed with "0
+  // violations" while three of four dossiers referenced snippet ids that exist
+  // nowhere in the file: 344 of 395 snippetIds resolved to nothing on disk.
+  //
+  // Why it slipped: C3 checks `sourceRef` against `sources[]`. The v2 schema
+  // carries evidence as `snippetIds` against a fetcher LEDGER — a field C3 had
+  // never heard of. The adversary verified against the ledger in-prompt during
+  // the run, so the verification was real at the time; but the artifact cannot
+  // reproduce it, and an evidence chain nobody can re-walk is not a chain.
+  //
+  // This is the same defect shape the protocol exists to prevent, committed by
+  // the protocol's own enforcement script. Which is the argument for the rule:
+  // a check must be able to SEE the thing it certifies.
+  const ledgerSids = new Set();
+  const collectSids = (o) => {
+    if (!o || typeof o !== 'object') return;
+    if (Array.isArray(o)) return o.forEach(collectSids);
+    if (typeof o.sid === 'string' && o.sid) ledgerSids.add(o.sid);
+    for (const v of Object.values(o)) collectSids(v);
+  };
+  collectSids(j);
+
+  const referenced = [];
+  const collectRefs = (o) => {
+    if (!o || typeof o !== 'object') return;
+    if (Array.isArray(o)) return o.forEach(collectRefs);
+    if (Array.isArray(o.snippetIds)) referenced.push(...o.snippetIds.filter(x => typeof x === 'string'));
+    for (const v of Object.values(o)) collectRefs(v);
+  };
+  collectRefs(j);
+
+  if (referenced.length && !ledgerSids.size) {
+    rec(name, 'C5-ledger-absent',
+      `${referenced.length} snippetId reference(s) and NO ledger in the file — not one `
+      + 'object carries a `sid`. The evidence these rows rest on cannot be re-checked by '
+      + 'anyone reading the artifact. Persist the fetcher ledger in the dossier.');
+  } else if (referenced.length) {
+    const missing = [...new Set(referenced.filter(r => !ledgerSids.has(r)))];
+    if (missing.length) {
+      rec(name, 'C5-dangling-snippetId',
+        `${missing.length} snippetId(s) resolve to no sid in this file, e.g. `
+        + `${missing.slice(0, 5).join(', ')}. A compiler may cite only what the fetcher returned.`);
+    }
+  }
+
   // ---- C4 · field and prose may not disagree ------------------------------
   for (const [i, e] of (j.entries || []).entries()) {
     if (!e || typeof e !== 'object') continue;

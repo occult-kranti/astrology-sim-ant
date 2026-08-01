@@ -1,0 +1,2667 @@
+{
+  "key": "vedic-hora-choghadiya",
+  "system": "Vedic horā (Tier A) and Choghadiya (Tier C) — two divisions of the sunrise-bounded Indian civil day. Both are living practice; both are described here, never prescribed, and no claim of predictive or operative validity is made or implied.",
+  "round": 2,
+  "compiled": "2026-08-01",
+  "compiledBy": "COMPILER role, under docs/plans/horae/RESEARCH-PROTOCOL.md C3 (fetcher/compiler split). This file cites ONLY snippet ids present in the round-2 fetcher ledger. No source was introduced by the compiler, and no citation was written from the compiler's own knowledge. Every arithmetic derivation in this file was re-run against the ledger cells before it was written down.",
+  "scopeNote": "horā here means the HOUR, not the half-sign / D-2 varga. Al-Bīrūnī records both senses of the word side by side (S3-d) and this dossier covers only the first. No jyotiṣa text asserting the half-sign sense was fetched, so none is cited.",
+  "dayStart": "SUNRISE, for both systems, with the civil day running sunrise to sunrise. Tier A: the Sūrya Siddhānta defines the civil (sāvana) reckoning by counting sunrises (S1-c); and al-Bīrūnī, quoting Vijayanandin's Karaṇatilaka, reckons the hour-lord by adding the signs risen \"since the morning\" (S3-j). Tier B: the 1860 translator's note to i.12–13 states that the civil day is the natural day, counted in India from sunrise to sunrise (S2-a). Tier C, current practice: the pañcāṅga day starts and ends with sunrise (S7-c), and the horā day is the duration from one sunrise to the next (S7-a). FOR CHOGHADIYA SPECIFICALLY the two boundaries are sunrise and sunset: the sunrise-to-sunset span is the day Choghadiya and the sunset-to-next-sunrise span is the night Choghadiya (S4-a). A CAVEAT ROUND 1 WAS PULLED UP FOR AND THIS ROUND KEEPS: nothing at Sūrya Siddhānta xii.78–79 or i.51 mentions sunrise. The sunrise anchor comes from i.12 (S1-c) and from the translator's note (S2-a), and it is cited to those and not to the hour-lord verses.",
+  "divisionRule": "HORĀ — TWO READINGS, BOTH KEPT. (a) SEASONAL, twelve by day and twelve by night [Tier A, al-Bīrūnī c. AD 1030 / Sachau 1910]: the dominants are arranged according to the horæ temporales (S3-g); each day and each night has twelve hours (S3-h); the hours used in the theory of the dominants are horæ obliquæ temporales (S3-i). Tier C current practice states the same and can be measured off the rendered tables: twelve each in day and night, each arc divided into twelve equal parts (S8-a), giving 72.5-minute day horās against 47.583-minute night horās on one date (S7-d, S7-e) and 67.5 against 52.5 at another location on the same date (S8-e). (b) A TWENTY-FOURTH OF THE DAY [Tier B, the 1860 translator's notes]: the division of the day into twenty-four hours, each assigned in succession to the planets (S2-b), and the hours, or twenty-fourths of the day (S2-h). The fetcher records that this 1/24 wording is the translator's own gloss and not wording in the Sanskrit verse, and the Sanskrit was never retrieved. One Tier C source states 24 horās in a day of approximately one hour each and then retracts the approximation in its own next sentence, tying it to the sunrise-to-sunrise total (S8-d). RULER SEQUENCE, and this part is not in dispute anywhere in the ledger: the regents run in downward order from Saturn (S1-h) through the order Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon (S1-d, S1-e; restated at S2-c and, as \"from above to below\", at S3-k); the first horā of a weekday belongs to that weekday's lord (S2-e, S2-i; Tier C S7-f, S8-b, S8-c); and the weekday lords themselves are got by taking every fourth planet downward from Saturn (S1-f), which reproduces Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday exactly. The cycle crosses sunset without resetting (S7-e, S8-e), which is the behaviour al-Bīrūnī describes at S3-c. CHOGHADIYA — one rule, agreed; the durations, not. The rule: the sunrise-to-sunset arc is divided into 8 and the sunset-to-sunrise arc into 8, sixteen in the nychthemeron (S4-b, S5-c, S6-c, S6-g, S10-d). The first division of each weekday is ruled by that weekday's lord (S4-d), the eighth division of the daytime repeats the day lord (S4-f), the sequence differs per weekday and is fixed for that weekday (S5-d), and seven names fill eight slots because one name takes two (S5-e). The five incompatible fixed-minute figures the same sources print alongside that rule are recorded under contestedPoints and are not adopted. THE NIGHT SEQUENCE DOES NOT CONTINUE THE DAY SEQUENCE — on all seven weekdays the observed night start differs from the cell a continuing cycle would reach — and NO SOURCE IN THIS LEDGER STATES A NIGHT-START RULE OR A REASON FOR THE OFFSET (see gaps). The closed forms that reproduce all 112 published cells are recorded in variants[V3].compilerDerivations, labelled in-data as the compiler's arithmetic.",
+  "hasRulerColumn": true,
+  "rulerColumnJustification": "TRUE, and asymmetrically — the two halves of this file do not carry the same weight and must not render as though they did. VEDIC HORĀ, TIER A: a primary text assigns a governing planet to each division. Sūrya Siddhānta xii.79 states that the regents of the hours occur in downward order from Saturn (S1-h); xii.30–31 supply that downward order (S1-d, S1-e); xii.78 derives the weekday regent by the same descent (S1-f). This is the one genuine Tier A ruler column in the Horae Mundi grid. CHOGHADIYA, TIER C ONLY: four commercial almanacs assign a planet to each of the seven names (S4-g through S4-m and S5-h through S5-n) and agree on all seven, but no primary text and no peer-reviewed scholarship supports them anywhere in this ledger. PER THE MAINTAINER'S GRID RULING, zmanim, shichen, Egyptian and Babylonian have no ruler column at all, and nothing in this file offers one for them. The asymmetry is the teaching. One further limit, from the ledger and not from taste: the horā divisions carry NO quality grade in this ledger, and four of the seven Choghadiyas carry none either — those cells are empty and the gaps entry says how hard was looked.",
+  "entries": [
+    {
+      "index": 1,
+      "name": "Saturn",
+      "tier": "A",
+      "ruler": "Saturn",
+      "snippetIds": [
+        "S1-d",
+        "S1-e",
+        "S1-h",
+        "S1-f",
+        "S2-c",
+        "S2-e",
+        "S2-i",
+        "S7-f",
+        "S8-g",
+        "S7-d",
+        "S8-e"
+      ],
+      "note": "Opens the twelve day-horās on Saturday. Sūrya Siddhānta xii.79 places the horā regents in downward order from Saturn (S1-h); xii.30–31 give that downward order (S1-d, S1-e); xii.78 derives the weekday regent by taking every fourth planet down the same list (S1-f), which puts Saturn first among the weekday lords. The rendered Saturday tables open on Saturn at both retrieved latitudes (S7-d, S8-e).",
+      "associations": {
+        "family": "vedic-hora",
+        "descendingOrderPosition": 1,
+        "descendingOrderSourceRefs": [
+          "S1-d",
+          "S1-e"
+        ],
+        "opensTheTwelveDayHorasOn": "Saturday",
+        "opensTheTwelveDayHorasOnSourceRefs": [
+          "S1-f",
+          "S2-e",
+          "S2-i",
+          "S7-f",
+          "S8-g"
+        ],
+        "weekdayMappingTier": "C",
+        "weekdayMappingNote": "SPLIT THE TIERS HERE. The ORDERED SEQUENCE of weekday regents is Tier A/B — every fourth planet downward from Saturn (S1-f), with the first hour of the first day assigned to the sun and the 25th and 49th hours to the moon and Mars (S2-c, S2-d), and the day lord identical with the lord of its first hour (S2-e, S2-i). But the mapping of those regents onto the ENGLISH WEEKDAY NAMES is stated in this ledger only at Tier C (S8-g, and the parallel sentences at S7-f). The ruler column is Tier A; the weekday label on it is Tier C.",
+        "rulerTier": "A",
+        "rulerSourceRefs": [
+          "S1-e",
+          "S1-h"
+        ],
+        "gradeInThisLedger": "none captured — see gaps[]; the 24 hour-NAMES al-Bīrūnī grades lucky/unlucky are a separate layer, recorded under variants[]"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Jupiter",
+      "tier": "A",
+      "ruler": "Jupiter",
+      "snippetIds": [
+        "S1-d",
+        "S1-e",
+        "S1-h",
+        "S1-f",
+        "S2-c",
+        "S2-e",
+        "S2-i",
+        "S7-f",
+        "S8-g",
+        "S7-d",
+        "S8-e"
+      ],
+      "note": "Second in the downward order (S1-e, S2-c). Opens the twelve day-horās on Thursday, by the weekday-lord list at S8-g together with the first-hour identity at S2-e and S2-i; the same anchor is stated for Jupiter and Thursday in current practice (S7-f). Second in the rendered Saturday day table (S7-d, S8-e).",
+      "associations": {
+        "family": "vedic-hora",
+        "descendingOrderPosition": 2,
+        "descendingOrderSourceRefs": [
+          "S1-d",
+          "S1-e"
+        ],
+        "opensTheTwelveDayHorasOn": "Thursday",
+        "opensTheTwelveDayHorasOnSourceRefs": [
+          "S1-f",
+          "S2-e",
+          "S2-i",
+          "S7-f",
+          "S8-g"
+        ],
+        "weekdayMappingTier": "C",
+        "weekdayMappingNote": "SPLIT THE TIERS HERE. The ORDERED SEQUENCE of weekday regents is Tier A/B — every fourth planet downward from Saturn (S1-f), with the first hour of the first day assigned to the sun and the 25th and 49th hours to the moon and Mars (S2-c, S2-d), and the day lord identical with the lord of its first hour (S2-e, S2-i). But the mapping of those regents onto the ENGLISH WEEKDAY NAMES is stated in this ledger only at Tier C (S8-g, and the parallel sentences at S7-f). The ruler column is Tier A; the weekday label on it is Tier C.",
+        "rulerTier": "A",
+        "rulerSourceRefs": [
+          "S1-e",
+          "S1-h"
+        ],
+        "gradeInThisLedger": "none captured — see gaps[]; the 24 hour-NAMES al-Bīrūnī grades lucky/unlucky are a separate layer, recorded under variants[]"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Mars",
+      "tier": "A",
+      "ruler": "Mars",
+      "snippetIds": [
+        "S1-d",
+        "S1-e",
+        "S1-h",
+        "S1-f",
+        "S2-c",
+        "S2-e",
+        "S2-i",
+        "S7-f",
+        "S8-g",
+        "S2-d",
+        "S7-d"
+      ],
+      "note": "Third in the downward order (S1-e, S2-c). Opens the twelve day-horās on Tuesday (S8-g with S2-e, S2-i; S7-f). The 1860 worked demonstration reaches Mars at the forty-ninth hour, the first of the third day (S2-d).",
+      "associations": {
+        "family": "vedic-hora",
+        "descendingOrderPosition": 3,
+        "descendingOrderSourceRefs": [
+          "S1-d",
+          "S1-e"
+        ],
+        "opensTheTwelveDayHorasOn": "Tuesday",
+        "opensTheTwelveDayHorasOnSourceRefs": [
+          "S1-f",
+          "S2-e",
+          "S2-i",
+          "S7-f",
+          "S8-g"
+        ],
+        "weekdayMappingTier": "C",
+        "weekdayMappingNote": "SPLIT THE TIERS HERE. The ORDERED SEQUENCE of weekday regents is Tier A/B — every fourth planet downward from Saturn (S1-f), with the first hour of the first day assigned to the sun and the 25th and 49th hours to the moon and Mars (S2-c, S2-d), and the day lord identical with the lord of its first hour (S2-e, S2-i). But the mapping of those regents onto the ENGLISH WEEKDAY NAMES is stated in this ledger only at Tier C (S8-g, and the parallel sentences at S7-f). The ruler column is Tier A; the weekday label on it is Tier C.",
+        "rulerTier": "A",
+        "rulerSourceRefs": [
+          "S1-e",
+          "S1-h"
+        ],
+        "gradeInThisLedger": "none captured — see gaps[]; the 24 hour-NAMES al-Bīrūnī grades lucky/unlucky are a separate layer, recorded under variants[]"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Sun",
+      "tier": "A",
+      "ruler": "Sun",
+      "snippetIds": [
+        "S1-d",
+        "S1-e",
+        "S1-h",
+        "S1-f",
+        "S2-c",
+        "S2-e",
+        "S2-i",
+        "S7-f",
+        "S8-g",
+        "S8-c",
+        "S7-d"
+      ],
+      "note": "Fourth in the downward order (S1-e, S2-c). Opens the twelve day-horās on Sunday, which is the anchor the 1860 note sets when it assigns the first of the twenty-four hours to the sun (S2-c); the same anchor is stated for Sunday in current practice (S7-f, S8-c, S8-g). Burgess prints the planet as \"the sun\" (S1-e).",
+      "associations": {
+        "family": "vedic-hora",
+        "descendingOrderPosition": 4,
+        "descendingOrderSourceRefs": [
+          "S1-d",
+          "S1-e"
+        ],
+        "opensTheTwelveDayHorasOn": "Sunday",
+        "opensTheTwelveDayHorasOnSourceRefs": [
+          "S1-f",
+          "S2-e",
+          "S2-i",
+          "S7-f",
+          "S8-g"
+        ],
+        "weekdayMappingTier": "C",
+        "weekdayMappingNote": "SPLIT THE TIERS HERE. The ORDERED SEQUENCE of weekday regents is Tier A/B — every fourth planet downward from Saturn (S1-f), with the first hour of the first day assigned to the sun and the 25th and 49th hours to the moon and Mars (S2-c, S2-d), and the day lord identical with the lord of its first hour (S2-e, S2-i). But the mapping of those regents onto the ENGLISH WEEKDAY NAMES is stated in this ledger only at Tier C (S8-g, and the parallel sentences at S7-f). The ruler column is Tier A; the weekday label on it is Tier C.",
+        "rulerTier": "A",
+        "rulerSourceRefs": [
+          "S1-e",
+          "S1-h"
+        ],
+        "gradeInThisLedger": "none captured — see gaps[]; the 24 hour-NAMES al-Bīrūnī grades lucky/unlucky are a separate layer, recorded under variants[]"
+      }
+    },
+    {
+      "index": 5,
+      "name": "Venus",
+      "tier": "A",
+      "ruler": "Venus",
+      "snippetIds": [
+        "S1-d",
+        "S1-e",
+        "S1-h",
+        "S1-f",
+        "S2-c",
+        "S2-e",
+        "S2-i",
+        "S7-f",
+        "S8-g",
+        "S7-d"
+      ],
+      "note": "Fifth in the downward order (S1-e, S2-c). Opens the twelve day-horās on Friday (S8-g with S2-e, S2-i; S7-f). It is also the twelfth and last day-horā of the rendered Saturday (S7-d), which is what makes the sunset behaviour visible — see the next entry.",
+      "associations": {
+        "family": "vedic-hora",
+        "descendingOrderPosition": 5,
+        "descendingOrderSourceRefs": [
+          "S1-d",
+          "S1-e"
+        ],
+        "opensTheTwelveDayHorasOn": "Friday",
+        "opensTheTwelveDayHorasOnSourceRefs": [
+          "S1-f",
+          "S2-e",
+          "S2-i",
+          "S7-f",
+          "S8-g"
+        ],
+        "weekdayMappingTier": "C",
+        "weekdayMappingNote": "SPLIT THE TIERS HERE. The ORDERED SEQUENCE of weekday regents is Tier A/B — every fourth planet downward from Saturn (S1-f), with the first hour of the first day assigned to the sun and the 25th and 49th hours to the moon and Mars (S2-c, S2-d), and the day lord identical with the lord of its first hour (S2-e, S2-i). But the mapping of those regents onto the ENGLISH WEEKDAY NAMES is stated in this ledger only at Tier C (S8-g, and the parallel sentences at S7-f). The ruler column is Tier A; the weekday label on it is Tier C.",
+        "rulerTier": "A",
+        "rulerSourceRefs": [
+          "S1-e",
+          "S1-h"
+        ],
+        "gradeInThisLedger": "none captured — see gaps[]; the 24 hour-NAMES al-Bīrūnī grades lucky/unlucky are a separate layer, recorded under variants[]"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Mercury",
+      "tier": "A",
+      "ruler": "Mercury",
+      "snippetIds": [
+        "S1-d",
+        "S1-e",
+        "S1-h",
+        "S1-f",
+        "S2-c",
+        "S2-e",
+        "S2-i",
+        "S7-f",
+        "S8-g",
+        "S7-e",
+        "S8-e",
+        "S3-c"
+      ],
+      "note": "Sixth in the downward order (S1-e, S2-c). Opens the twelve day-horās on Wednesday (S8-g with S2-e, S2-i; S7-f). It is the FIRST NIGHT-horā of the rendered Saturday, following Venus straight across sunset with no reset (S7-e, S8-e) — the behaviour al-Bīrūnī describes when he reports that the Hindus make the day-lord the lord of the whole nychthemeron (S3-c), and the point on which this system differs from Choghadiya below.",
+      "associations": {
+        "family": "vedic-hora",
+        "descendingOrderPosition": 6,
+        "descendingOrderSourceRefs": [
+          "S1-d",
+          "S1-e"
+        ],
+        "opensTheTwelveDayHorasOn": "Wednesday",
+        "opensTheTwelveDayHorasOnSourceRefs": [
+          "S1-f",
+          "S2-e",
+          "S2-i",
+          "S7-f",
+          "S8-g"
+        ],
+        "weekdayMappingTier": "C",
+        "weekdayMappingNote": "SPLIT THE TIERS HERE. The ORDERED SEQUENCE of weekday regents is Tier A/B — every fourth planet downward from Saturn (S1-f), with the first hour of the first day assigned to the sun and the 25th and 49th hours to the moon and Mars (S2-c, S2-d), and the day lord identical with the lord of its first hour (S2-e, S2-i). But the mapping of those regents onto the ENGLISH WEEKDAY NAMES is stated in this ledger only at Tier C (S8-g, and the parallel sentences at S7-f). The ruler column is Tier A; the weekday label on it is Tier C.",
+        "rulerTier": "A",
+        "rulerSourceRefs": [
+          "S1-e",
+          "S1-h"
+        ],
+        "gradeInThisLedger": "none captured — see gaps[]; the 24 hour-NAMES al-Bīrūnī grades lucky/unlucky are a separate layer, recorded under variants[]"
+      }
+    },
+    {
+      "index": 7,
+      "name": "Moon",
+      "tier": "A",
+      "ruler": "Moon",
+      "snippetIds": [
+        "S1-d",
+        "S1-e",
+        "S1-h",
+        "S1-f",
+        "S2-c",
+        "S2-e",
+        "S2-i",
+        "S7-f",
+        "S8-g",
+        "S2-d",
+        "S7-e"
+      ],
+      "note": "Seventh and last in the downward order (S1-e, S2-c); Burgess prints \"the moon\". Opens the twelve day-horās on Monday (S8-g with S2-e, S2-i; S7-f), and the 1860 demonstration reaches the moon at the twenty-fifth hour, the first of the second day (S2-d).",
+      "associations": {
+        "family": "vedic-hora",
+        "descendingOrderPosition": 7,
+        "descendingOrderSourceRefs": [
+          "S1-d",
+          "S1-e"
+        ],
+        "opensTheTwelveDayHorasOn": "Monday",
+        "opensTheTwelveDayHorasOnSourceRefs": [
+          "S1-f",
+          "S2-e",
+          "S2-i",
+          "S7-f",
+          "S8-g"
+        ],
+        "weekdayMappingTier": "C",
+        "weekdayMappingNote": "SPLIT THE TIERS HERE. The ORDERED SEQUENCE of weekday regents is Tier A/B — every fourth planet downward from Saturn (S1-f), with the first hour of the first day assigned to the sun and the 25th and 49th hours to the moon and Mars (S2-c, S2-d), and the day lord identical with the lord of its first hour (S2-e, S2-i). But the mapping of those regents onto the ENGLISH WEEKDAY NAMES is stated in this ledger only at Tier C (S8-g, and the parallel sentences at S7-f). The ruler column is Tier A; the weekday label on it is Tier C.",
+        "rulerTier": "A",
+        "rulerSourceRefs": [
+          "S1-e",
+          "S1-h"
+        ],
+        "gradeInThisLedger": "none captured — see gaps[]; the 24 hour-NAMES al-Bīrūnī grades lucky/unlucky are a separate layer, recorded under variants[]"
+      }
+    },
+    {
+      "index": 8,
+      "name": "Udveg",
+      "tier": "C",
+      "ruler": "Sun",
+      "snippetIds": [
+        "S4-g",
+        "S5-h",
+        "S4-p",
+        "S4-s",
+        "S4-d",
+        "S4-e",
+        "S4-f",
+        "S5-a",
+        "S5-b",
+        "S6-f",
+        "S4-n"
+      ],
+      "note": "Opens the eight day-divisions on Sunday (S4-p) and the eight night-divisions on Wednesday (S4-s); the same two starting cells appear in the static weekday tables at S5-a and S5-b. The ruler is stated independently by two almanacs (S4-g, S5-h), which agree on all seven. Printed spellings: Udveg (S5-h), Udvega (S4-n), Udveg (S6-f); the display form above is an editorial choice among the printed spellings and is not a claim about the Sanskrit.",
+      "associations": {
+        "family": "choghadiya",
+        "descendingOrderPosition": 1,
+        "descendingOrderNote": "Position in the Sunday day-sequence as S4-e prints it: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars.",
+        "descendingOrderSourceRefs": [
+          "S4-e"
+        ],
+        "startsDaySequenceOn": "Sunday",
+        "startsDaySequenceOnSourceRefs": [
+          "S4-p",
+          "S5-a"
+        ],
+        "startsNightSequenceOn": "Wednesday",
+        "startsNightSequenceOnSourceRefs": [
+          "S4-s",
+          "S5-b"
+        ],
+        "rulerTier": "C",
+        "rulerSourceRefs": [
+          "S4-g",
+          "S5-h"
+        ],
+        "rulerPlanetCharacterisedAs": "malefic",
+        "rulerPlanetCharacterisedAsSourceRef": "S4-g",
+        "attestedSpellings": [
+          {
+            "form": "Udveg",
+            "sourceRef": "S5-h"
+          },
+          {
+            "form": "Udvega",
+            "sourceRef": "S4-n"
+          },
+          {
+            "form": "Udveg",
+            "sourceRef": "S6-f"
+          }
+        ],
+        "gradeInThisLedger": "none captured — the sentences retrieved for this name state the RULER planet's benefic/malefic character, not a grade for the division. See gaps[]. Cell left empty."
+      }
+    },
+    {
+      "index": 9,
+      "name": "Char",
+      "tier": "C",
+      "ruler": "Venus",
+      "snippetIds": [
+        "S4-h",
+        "S5-j",
+        "S4-u",
+        "S4-q",
+        "S4-d",
+        "S4-e",
+        "S4-f",
+        "S5-a",
+        "S5-b",
+        "S6-f",
+        "S4-n"
+      ],
+      "note": "Opens the eight day-divisions on Friday (S4-u) and the eight night-divisions on Monday (S4-q); the same two starting cells appear in the static weekday tables at S5-a and S5-b. The ruler is stated independently by two almanacs (S4-h, S5-j), which agree on all seven. Printed spellings: Char (S5-j), Chara (S4-n), Chanchal (S4-h), Chal (S6-f); the display form above is an editorial choice among the printed spellings and is not a claim about the Sanskrit.",
+      "associations": {
+        "family": "choghadiya",
+        "descendingOrderPosition": 2,
+        "descendingOrderNote": "Position in the Sunday day-sequence as S4-e prints it: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars.",
+        "descendingOrderSourceRefs": [
+          "S4-e"
+        ],
+        "startsDaySequenceOn": "Friday",
+        "startsDaySequenceOnSourceRefs": [
+          "S4-u",
+          "S5-a"
+        ],
+        "startsNightSequenceOn": "Monday",
+        "startsNightSequenceOnSourceRefs": [
+          "S4-q",
+          "S5-b"
+        ],
+        "rulerTier": "C",
+        "rulerSourceRefs": [
+          "S4-h",
+          "S5-j"
+        ],
+        "rulerPlanetCharacterisedAs": "benefic",
+        "rulerPlanetCharacterisedAsSourceRef": "S4-h",
+        "attestedSpellings": [
+          {
+            "form": "Char",
+            "sourceRef": "S5-j"
+          },
+          {
+            "form": "Chara",
+            "sourceRef": "S4-n"
+          },
+          {
+            "form": "Chanchal",
+            "sourceRef": "S4-h"
+          },
+          {
+            "form": "Chal",
+            "sourceRef": "S6-f"
+          }
+        ],
+        "gradeInThisLedger": "graded by one source only (S4-h)"
+      },
+      "quality": "auspicious"
+    },
+    {
+      "index": 10,
+      "name": "Labh",
+      "tier": "C",
+      "ruler": "Mercury",
+      "snippetIds": [
+        "S4-i",
+        "S5-i",
+        "S4-s",
+        "S4-o",
+        "S4-d",
+        "S4-e",
+        "S4-f",
+        "S5-a",
+        "S5-b",
+        "S6-f",
+        "S4-n",
+        "S6-a"
+      ],
+      "note": "Opens the eight day-divisions on Wednesday (S4-s) and the eight night-divisions on Saturday (S4-o); the same two starting cells appear in the static weekday tables at S5-a and S5-b. The ruler is stated independently by two almanacs (S4-i, S5-i), which agree on all seven. Printed spellings: Labh (S5-i), Labha (S4-n), Laabh (S6-a); the display form above is an editorial choice among the printed spellings and is not a claim about the Sanskrit.",
+      "associations": {
+        "family": "choghadiya",
+        "descendingOrderPosition": 3,
+        "descendingOrderNote": "Position in the Sunday day-sequence as S4-e prints it: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars.",
+        "descendingOrderSourceRefs": [
+          "S4-e"
+        ],
+        "startsDaySequenceOn": "Wednesday",
+        "startsDaySequenceOnSourceRefs": [
+          "S4-s",
+          "S5-a"
+        ],
+        "startsNightSequenceOn": "Saturday",
+        "startsNightSequenceOnSourceRefs": [
+          "S4-o",
+          "S5-b"
+        ],
+        "rulerTier": "C",
+        "rulerSourceRefs": [
+          "S4-i",
+          "S5-i"
+        ],
+        "rulerPlanetCharacterisedAs": "benefic",
+        "rulerPlanetCharacterisedAsSourceRef": "S4-i",
+        "attestedSpellings": [
+          {
+            "form": "Labh",
+            "sourceRef": "S5-i"
+          },
+          {
+            "form": "Labha",
+            "sourceRef": "S4-n"
+          },
+          {
+            "form": "Laabh",
+            "sourceRef": "S6-a"
+          }
+        ],
+        "gradeInThisLedger": "none captured — the sentences retrieved for this name state the RULER planet's benefic/malefic character, not a grade for the division. See gaps[]. Cell left empty."
+      }
+    },
+    {
+      "index": 11,
+      "name": "Amrit",
+      "tier": "C",
+      "ruler": "Moon",
+      "snippetIds": [
+        "S4-j",
+        "S5-n",
+        "S4-q",
+        "S4-t",
+        "S4-d",
+        "S4-e",
+        "S4-f",
+        "S5-a",
+        "S5-b",
+        "S6-f",
+        "S4-n",
+        "S6-a"
+      ],
+      "note": "Opens the eight day-divisions on Monday (S4-q) and the eight night-divisions on Thursday (S4-t); the same two starting cells appear in the static weekday tables at S5-a and S5-b. The ruler is stated independently by two almanacs (S4-j, S5-n), which agree on all seven. Printed spellings: Amrit (S5-n), Amrita (S4-n), Amrut (S6-a); the display form above is an editorial choice among the printed spellings and is not a claim about the Sanskrit.",
+      "associations": {
+        "family": "choghadiya",
+        "descendingOrderPosition": 4,
+        "descendingOrderNote": "Position in the Sunday day-sequence as S4-e prints it: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars.",
+        "descendingOrderSourceRefs": [
+          "S4-e"
+        ],
+        "startsDaySequenceOn": "Monday",
+        "startsDaySequenceOnSourceRefs": [
+          "S4-q",
+          "S5-a"
+        ],
+        "startsNightSequenceOn": "Thursday",
+        "startsNightSequenceOnSourceRefs": [
+          "S4-t",
+          "S5-b"
+        ],
+        "rulerTier": "C",
+        "rulerSourceRefs": [
+          "S4-j",
+          "S5-n"
+        ],
+        "rulerPlanetCharacterisedAs": "benefic",
+        "rulerPlanetCharacterisedAsSourceRef": "S4-j",
+        "attestedSpellings": [
+          {
+            "form": "Amrit",
+            "sourceRef": "S5-n"
+          },
+          {
+            "form": "Amrita",
+            "sourceRef": "S4-n"
+          },
+          {
+            "form": "Amrut",
+            "sourceRef": "S6-a"
+          }
+        ],
+        "gradeInThisLedger": "none captured — the sentences retrieved for this name state the RULER planet's benefic/malefic character, not a grade for the division. See gaps[]. Cell left empty."
+      }
+    },
+    {
+      "index": 12,
+      "name": "Kaal",
+      "tier": "C",
+      "ruler": "Saturn",
+      "snippetIds": [
+        "S4-k",
+        "S5-m",
+        "S4-n",
+        "S4-r",
+        "S4-d",
+        "S4-e",
+        "S4-f",
+        "S5-a",
+        "S5-b",
+        "S6-f"
+      ],
+      "note": "Opens the eight day-divisions on Saturday (S4-n) and the eight night-divisions on Tuesday (S4-r); the same two starting cells appear in the static weekday tables at S5-a and S5-b. The ruler is stated independently by two almanacs (S4-k, S5-m), which agree on all seven. Printed spellings: Kaal (S5-m), Kala (S4-n); the display form above is an editorial choice among the printed spellings and is not a claim about the Sanskrit.",
+      "associations": {
+        "family": "choghadiya",
+        "descendingOrderPosition": 5,
+        "descendingOrderNote": "Position in the Sunday day-sequence as S4-e prints it: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars.",
+        "descendingOrderSourceRefs": [
+          "S4-e"
+        ],
+        "startsDaySequenceOn": "Saturday",
+        "startsDaySequenceOnSourceRefs": [
+          "S4-n",
+          "S5-a"
+        ],
+        "startsNightSequenceOn": "Tuesday",
+        "startsNightSequenceOnSourceRefs": [
+          "S4-r",
+          "S5-b"
+        ],
+        "rulerTier": "C",
+        "rulerSourceRefs": [
+          "S4-k",
+          "S5-m"
+        ],
+        "rulerPlanetCharacterisedAs": "malefic",
+        "rulerPlanetCharacterisedAsSourceRef": "S4-k",
+        "attestedSpellings": [
+          {
+            "form": "Kaal",
+            "sourceRef": "S5-m"
+          },
+          {
+            "form": "Kala",
+            "sourceRef": "S4-n"
+          }
+        ],
+        "gradeInThisLedger": "graded by one source only (S5-m); printed there as \"in-auspicious\""
+      },
+      "quality": "inauspicious"
+    },
+    {
+      "index": 13,
+      "name": "Shubh",
+      "tier": "C",
+      "ruler": "Jupiter",
+      "snippetIds": [
+        "S4-l",
+        "S5-l",
+        "S4-t",
+        "S4-p",
+        "S4-d",
+        "S4-e",
+        "S4-f",
+        "S5-a",
+        "S5-b",
+        "S6-f",
+        "S4-n",
+        "S6-a"
+      ],
+      "note": "Opens the eight day-divisions on Thursday (S4-t) and the eight night-divisions on Sunday (S4-p); the same two starting cells appear in the static weekday tables at S5-a and S5-b. The ruler is stated independently by two almanacs (S4-l, S5-l), which agree on all seven. Printed spellings: Shubh (S5-l), Shubha (S4-n), Shoobh (S6-a); the display form above is an editorial choice among the printed spellings and is not a claim about the Sanskrit.",
+      "associations": {
+        "family": "choghadiya",
+        "descendingOrderPosition": 6,
+        "descendingOrderNote": "Position in the Sunday day-sequence as S4-e prints it: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars.",
+        "descendingOrderSourceRefs": [
+          "S4-e"
+        ],
+        "startsDaySequenceOn": "Thursday",
+        "startsDaySequenceOnSourceRefs": [
+          "S4-t",
+          "S5-a"
+        ],
+        "startsNightSequenceOn": "Sunday",
+        "startsNightSequenceOnSourceRefs": [
+          "S4-p",
+          "S5-b"
+        ],
+        "rulerTier": "C",
+        "rulerSourceRefs": [
+          "S4-l",
+          "S5-l"
+        ],
+        "rulerPlanetCharacterisedAs": "benefic",
+        "rulerPlanetCharacterisedAsSourceRef": "S4-l",
+        "attestedSpellings": [
+          {
+            "form": "Shubh",
+            "sourceRef": "S5-l"
+          },
+          {
+            "form": "Shubha",
+            "sourceRef": "S4-n"
+          },
+          {
+            "form": "Shoobh",
+            "sourceRef": "S6-a"
+          }
+        ],
+        "gradeInThisLedger": "graded by one source only (S5-l)"
+      },
+      "quality": "very auspicious"
+    },
+    {
+      "index": 14,
+      "name": "Rog",
+      "tier": "C",
+      "ruler": "Mars",
+      "snippetIds": [
+        "S4-m",
+        "S5-k",
+        "S4-r",
+        "S4-u",
+        "S4-d",
+        "S4-e",
+        "S4-f",
+        "S5-a",
+        "S5-b",
+        "S6-f",
+        "S4-n"
+      ],
+      "note": "Opens the eight day-divisions on Tuesday (S4-r) and the eight night-divisions on Friday (S4-u); the same two starting cells appear in the static weekday tables at S5-a and S5-b. The ruler is stated independently by two almanacs (S4-m, S5-k), which agree on all seven. Printed spellings: Rog (S5-k), Roga (S4-n); the display form above is an editorial choice among the printed spellings and is not a claim about the Sanskrit.",
+      "associations": {
+        "family": "choghadiya",
+        "descendingOrderPosition": 7,
+        "descendingOrderNote": "Position in the Sunday day-sequence as S4-e prints it: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars.",
+        "descendingOrderSourceRefs": [
+          "S4-e"
+        ],
+        "startsDaySequenceOn": "Tuesday",
+        "startsDaySequenceOnSourceRefs": [
+          "S4-r",
+          "S5-a"
+        ],
+        "startsNightSequenceOn": "Friday",
+        "startsNightSequenceOnSourceRefs": [
+          "S4-u",
+          "S5-b"
+        ],
+        "rulerTier": "C",
+        "rulerSourceRefs": [
+          "S4-m",
+          "S5-k"
+        ],
+        "rulerPlanetCharacterisedAs": "malefic",
+        "rulerPlanetCharacterisedAsSourceRef": "S4-m",
+        "attestedSpellings": [
+          {
+            "form": "Rog",
+            "sourceRef": "S5-k"
+          },
+          {
+            "form": "Roga",
+            "sourceRef": "S4-n"
+          }
+        ],
+        "gradeInThisLedger": "none captured — the sentences retrieved for this name state the RULER planet's benefic/malefic character, not a grade for the division. See gaps[]. Cell left empty."
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "V1",
+      "label": "A second, independent naming layer for the twelve day and twelve night horās (al-Bīrūnī, c. AD 1030)",
+      "tier": "A",
+      "appliesTo": "vedic-hora",
+      "whatItIs": "Al-Bīrūnī prints a table of NAMES for the horæ obliquæ that is explicitly distinct from the planetary rulers (S3-l). It is recorded here rather than merged into entries[] because it is a different layer of the same divisions, and merging the two would manufacture a composite table neither source prints. His own attribution for the list is hedged in his own words (S3-o).",
+      "dayNamesInOrder": [
+        "Raudra",
+        "Saumya",
+        "Karala",
+        "Sattra",
+        "Vega",
+        "Visala",
+        "Mrityusara",
+        "Subha",
+        "Kroda",
+        "Candala",
+        "Krittika",
+        "Amrita"
+      ],
+      "dayNamesSourceRef": "S3-m",
+      "dayNamesGrading": "Sachau prints an adjacent Lucky/Unlucky column: hours 1, 3 and 7 unlucky; 2 and 4–6 and 8–12 lucky.",
+      "nightNamesInOrder": [
+        "Kalaratri",
+        "Rodhini",
+        "Vairahma (?)",
+        "Trasaniva",
+        "Guhaniya (?)",
+        "Maya",
+        "Damariya (?)",
+        "Jivaharani",
+        "Soshini",
+        "Vrishin",
+        "Dahariya (?)",
+        "Cantima (?)"
+      ],
+      "nightNamesSourceRef": "S3-n",
+      "nightNamesGrading": "Only row 11 carries a mark in the retrieved table: \"The most unlucky of all\". No grade was captured for the other eleven night names.",
+      "editorialMarks": "The \"(?)\" marks are Sachau's own, printed in his table; he is flagging readings he was not sure of. They are carried through unchanged rather than silently cleaned.",
+      "attributionOfTheList": "Al-Bīrūnī writes that he thinks they are taken from the book Śrudhava (S3-o). That hedge is his, not this dossier's, and no other witness for the list is in the ledger.",
+      "snippetIds": [
+        "S3-l",
+        "S3-m",
+        "S3-n",
+        "S3-o"
+      ]
+    },
+    {
+      "id": "V2",
+      "label": "Two hour-lord computation rules distinct from plain counting from sunrise",
+      "tier": "A",
+      "appliesTo": "vedic-hora",
+      "whatItIs": "Al-Bīrūnī records two ascendant-based procedures for the dominus horae, neither of which is the simple \"count planets from sunrise\" rule the Tier C almanacs use.",
+      "ruleOne": "From an Indian astronomical handbook al-Bīrūnī does not name: divide the distance between the sun and the degree of the ascendant, in equal degrees, by 15 and add 1 to the quotient (S3-e).",
+      "ruleTwo": "From Vijayanandin's Karaṇatilaka, named: add the signs risen since the morning to the degree of the horoscope (S3-j), then count the quotient off from the dominant of the nychthemeron, taking the planetary spheres from above to below (S3-k) — the same descending order as Sūrya Siddhānta xii.31 (S1-e). Al-Bīrūnī adds that Vijayanandin ought to have said \"add one\" to the quotient.",
+      "whyItMatters": "Karaṇatilaka is the only named Indian text in this ledger, other than the Sūrya Siddhānta, that states an hour-lord rule; and it reckons from \"the morning\", i.e. sunrise.",
+      "snippetIds": [
+        "S3-e",
+        "S3-j",
+        "S3-k"
+      ]
+    },
+    {
+      "id": "V3",
+      "label": "The observed 7-weekday Choghadiya table, as published — 112 cells",
+      "tier": "C",
+      "appliesTo": "choghadiya",
+      "whatItIs": "The directly-observed data. Every cell below was read off a rendered or static table in the ledger; nothing here is interpolated. Two independent witnesses cover all seven weekdays (DrikPanchang dated pages S4-n…S4-u; mPanchang static tables S5-a, S5-b, first row only), and a third covers Saturday in full (AstroSage S6-a, S6-b). There is no disagreement in any cell.",
+      "table": {
+        "Sunday": {
+          "day": [
+            "Udvega",
+            "Chara",
+            "Labha",
+            "Amrita",
+            "Kala",
+            "Shubha",
+            "Roga",
+            "Udvega"
+          ],
+          "night": [
+            "Shubha",
+            "Amrita",
+            "Chara",
+            "Roga",
+            "Kala",
+            "Labha",
+            "Udvega",
+            "Shubha"
+          ],
+          "sourceRefs": [
+            "S4-p",
+            "S5-a",
+            "S5-b"
+          ]
+        },
+        "Monday": {
+          "day": [
+            "Amrita",
+            "Kala",
+            "Shubha",
+            "Roga",
+            "Udvega",
+            "Chara",
+            "Labha",
+            "Amrita"
+          ],
+          "night": [
+            "Chara",
+            "Roga",
+            "Kala",
+            "Labha",
+            "Udvega",
+            "Shubha",
+            "Amrita",
+            "Chara"
+          ],
+          "sourceRefs": [
+            "S4-q",
+            "S5-a",
+            "S5-b"
+          ]
+        },
+        "Tuesday": {
+          "day": [
+            "Roga",
+            "Udvega",
+            "Chara",
+            "Labha",
+            "Amrita",
+            "Kala",
+            "Shubha",
+            "Roga"
+          ],
+          "night": [
+            "Kala",
+            "Labha",
+            "Udvega",
+            "Shubha",
+            "Amrita",
+            "Chara",
+            "Roga",
+            "Kala"
+          ],
+          "sourceRefs": [
+            "S4-r",
+            "S5-a",
+            "S5-b"
+          ]
+        },
+        "Wednesday": {
+          "day": [
+            "Labha",
+            "Amrita",
+            "Kala",
+            "Shubha",
+            "Roga",
+            "Udvega",
+            "Chara",
+            "Labha"
+          ],
+          "night": [
+            "Udvega",
+            "Shubha",
+            "Amrita",
+            "Chara",
+            "Roga",
+            "Kala",
+            "Labha",
+            "Udvega"
+          ],
+          "sourceRefs": [
+            "S4-s",
+            "S5-a",
+            "S5-b"
+          ]
+        },
+        "Thursday": {
+          "day": [
+            "Shubha",
+            "Roga",
+            "Udvega",
+            "Chara",
+            "Labha",
+            "Amrita",
+            "Kala",
+            "Shubha"
+          ],
+          "night": [
+            "Amrita",
+            "Chara",
+            "Roga",
+            "Kala",
+            "Labha",
+            "Udvega",
+            "Shubha",
+            "Amrita"
+          ],
+          "sourceRefs": [
+            "S4-t",
+            "S5-a",
+            "S5-b"
+          ]
+        },
+        "Friday": {
+          "day": [
+            "Chara",
+            "Labha",
+            "Amrita",
+            "Kala",
+            "Shubha",
+            "Roga",
+            "Udvega",
+            "Chara"
+          ],
+          "night": [
+            "Roga",
+            "Kala",
+            "Labha",
+            "Udvega",
+            "Shubha",
+            "Amrita",
+            "Chara",
+            "Roga"
+          ],
+          "sourceRefs": [
+            "S4-u",
+            "S5-a",
+            "S5-b"
+          ]
+        },
+        "Saturday": {
+          "day": [
+            "Kala",
+            "Shubha",
+            "Roga",
+            "Udvega",
+            "Chara",
+            "Labha",
+            "Amrita",
+            "Kala"
+          ],
+          "night": [
+            "Labha",
+            "Udvega",
+            "Shubha",
+            "Amrita",
+            "Chara",
+            "Roga",
+            "Kala",
+            "Labha"
+          ],
+          "sourceRefs": [
+            "S4-n",
+            "S4-o",
+            "S5-a",
+            "S5-b",
+            "S6-a",
+            "S6-b"
+          ]
+        }
+      },
+      "attestedRules": [
+        "The first division of each weekday is ruled by that weekday's lord (S4-d), worked for Sunday at S4-e.",
+        "The last division of the daytime is ruled by the day lord too (S4-f), which is why eight slots hold seven names.",
+        "The sequence differs per weekday and is fixed for that weekday (S5-d).",
+        "Seven names fill eight slots because six take one slot and one takes two (S5-e)."
+      ],
+      "compilerDerivations": {
+        "warning": "THESE ARE ARITHMETIC OVER THE CELLS ABOVE, NOT STATEMENTS ANY SOURCE MAKES. They reproduce all 112 published cells with zero failures and are recorded so a renderer can be tested against them; they must never be presented as sourced.",
+        "descendingList": [
+          "Saturn",
+          "Jupiter",
+          "Mars",
+          "Sun",
+          "Venus",
+          "Mercury",
+          "Moon"
+        ],
+        "dayRule": "Start on the weekday lord and step +1 through the descending list; the 8th cell repeats the 1st.",
+        "nightRule": "Step −2 through the same list; the 8th cell repeats the 1st.",
+        "nightStartRule": "The night sequence starts on the lord of the fifth weekday counted inclusively from the current one — equivalently, five places on in the descending list from the day's starting cell. Verified on all seven weekdays.",
+        "weekdayStep": "Both the day-start and the night-start advance three places along the descending list from one weekday to the next.",
+        "resetAtSunset": "The night sequence does NOT continue the day sequence: on every one of the seven weekdays the observed night start differs from the cell the day cycle would have reached. This is the point of contrast with the horā, which does continue (S7-e)."
+      },
+      "snippetIds": [
+        "S4-d",
+        "S4-e",
+        "S4-f",
+        "S4-n",
+        "S4-o",
+        "S4-p",
+        "S4-q",
+        "S4-r",
+        "S4-s",
+        "S4-t",
+        "S4-u",
+        "S5-a",
+        "S5-b",
+        "S5-d",
+        "S5-e",
+        "S6-a",
+        "S6-b"
+      ]
+    },
+    {
+      "id": "V4",
+      "label": "Vaar Vela, Kaal Vela and Kaal Ratri — overlay markers, NOT an eighth Choghadiya",
+      "tier": "C",
+      "appliesTo": "choghadiya",
+      "whatItIs": "DrikPanchang renders these three markers on top of the choghadiya cells: Vaar Vela and Kaal Vela during the daytime, Kaal Ratri at night (S4-v). They are recorded here explicitly so that a later round does not merge them into the seven-name set. No further detail about them was retrieved, and none is asserted.",
+      "snippetIds": [
+        "S4-v"
+      ]
+    }
+  ],
+  "goldenValues": [
+    {
+      "label": "GV1 · Choghadiya, all 16 boundaries, exact to the printed minute",
+      "date": "2026-08-01 (Saturday)",
+      "place": "NOT NAMED BY THE SOURCE. The retrieved page gives sunrise 05:42 and sunset 19:12 and no geoname. The test must therefore FEED THOSE TWO TIMES IN rather than compute them, or the value is not reproducible — this is the exact defect round 1 was pulled up on when a bare AstroSage URL re-fetched as Marcellus, New York.",
+      "publishedIn": "AstroSage, https://www.astrosage.com/chogadia.asp, accessed 2026-08-01",
+      "expected": "Given sunrise 05:42 and sunset 19:12: eight day parts of 101.25 min — Kaal 05:42, Shoobh 07:23, Rog 09:05, Udveg 10:46, Chal 12:27, Laabh 14:08, Amrut 15:50, Kaal 17:31, ending 19:12. Then, from sunset 19:12 to next sunrise 05:42, eight night parts of 78.75 min — Laabh 19:12, Udveg 20:31, Shoobh 21:50, Amrut 23:08, Chal 00:27, Rog 01:46, Kaal 03:05, Laabh 04:23, ending 05:42. All eighteen boundaries were recomputed and reproduce the printed times exactly under round-half-up to the minute. Tolerance 0.",
+      "snippetIds": [
+        "S6-a",
+        "S6-b"
+      ]
+    },
+    {
+      "label": "GV2 · Choghadiya, name sequence plus arc arithmetic, second location",
+      "date": "2026-08-01 (Saturday)",
+      "place": "Marcellus, New York (named by the fetcher as the geolocation the page rendered for)",
+      "publishedIn": "DrikPanchang, https://www.drikpanchang.com/muhurat/choghadiya.html, accessed 2026-08-01",
+      "expected": "Sunrise 05:56, sunset 20:26, next sunrise 05:57. Day: eight parts of 108.75 min from 05:56 — Kala, Shubha, Roga, Udvega, Chara, Labha, Amrita, Kala. Night: eight parts of 71.375 min from 20:26 — Labha, Udvega, Shubha, Amrita, Chara, Roga, Kala, Labha. The ledger records the sequence and the start time but not each interior boundary, so this value pins the NAME ORDER and the two part-lengths, not the eighteen clock times. Note the asymmetric sunrise (05:56 in, 05:57 out) — the night arc is 571 minutes, not 570.",
+      "snippetIds": [
+        "S4-n",
+        "S4-o"
+      ]
+    },
+    {
+      "label": "GV3 · The 7-weekday Choghadiya starting-offset table — 112 cells, two witnesses, zero disagreement",
+      "date": "2026-08-01 to 2026-08-07 (DrikPanchang, seven consecutive dated pages) and undated static tables (mPanchang)",
+      "place": "Marcellus, New York (DrikPanchang) and an idealised 06:00 sunrise (mPanchang static tables)",
+      "publishedIn": "DrikPanchang https://www.drikpanchang.com/muhurat/choghadiya.html and mPanchang https://www.mpanchang.com/muhurat/choghadiya/, both accessed 2026-08-01",
+      "expected": "First DAY cell by weekday — Sunday Udveg, Monday Amrit, Tuesday Rog, Wednesday Labh, Thursday Shubh, Friday Char, Saturday Kaal. First NIGHT cell by weekday — Sunday Shubh, Monday Char, Tuesday Kaal, Wednesday Udveg, Thursday Amrit, Friday Rog, Saturday Labh. The full 112 cells are in variants[V3].table. The assertion should be made against those published cells; the closed forms recorded beside them are the compiler's arithmetic and are the thing under test, not the reference.",
+      "snippetIds": [
+        "S4-n",
+        "S4-o",
+        "S4-p",
+        "S4-q",
+        "S4-r",
+        "S4-s",
+        "S4-t",
+        "S4-u",
+        "S5-a",
+        "S5-b"
+      ]
+    },
+    {
+      "label": "GV4 · Horā, twelve by day and twelve by night, seasonal lengths",
+      "date": "2026-08-01 (Saturday)",
+      "place": "Marcellus, New York",
+      "publishedIn": "DrikPanchang, https://www.drikpanchang.com/muhurat/hora.html, accessed 2026-08-01",
+      "expected": "Sunrise 05:56, sunset 20:26, next sunrise 05:57. Twelve DAY horās of 72.5 min: Saturn 05:56–07:09, Jupiter 07:09–08:21, then Mars, Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Sun, Venus. Twelve NIGHT horās of 47.583 min from 20:26: Mercury 20:26–21:14, Moon 21:14–… The two printed boundaries recompute exactly. The load-bearing assertions are (i) day horā ≠ night horā in length on the same date, and (ii) the planet cycle crosses sunset without resetting — Venus, the last day horā, is followed by Mercury.",
+      "snippetIds": [
+        "S7-d",
+        "S7-e"
+      ]
+    },
+    {
+      "label": "GV5 · Horā at a second location, boundaries exact",
+      "date": "2026-08-01 (Saturday)",
+      "place": "NOT NAMED BY THE SOURCE. Page gives sunrise 05:42, sunset 19:12; feed those in rather than computing them.",
+      "publishedIn": "AstroSage, https://www.astrosage.com/hora.asp, accessed 2026-08-01",
+      "expected": "Day horās of 67.5 min: Saturn 05:42–06:50, Jupiter 06:50–07:57. Night horās of 52.5 min: Mercury 19:12–20:05, Moon 20:05–20:57. All four printed boundaries recompute exactly under round-half-up. Independent confirmation of the seasonal division at a different sunrise/sunset pair from GV4.",
+      "snippetIds": [
+        "S8-e"
+      ]
+    },
+    {
+      "label": "GV6 · Choghadiya weekday names, second witness, NAMES ONLY — no clock times usable",
+      "date": "undated static tables, retrieved 2026-08-01",
+      "place": "idealised: the tables assume sunrise 06:00 and sunset 18:00",
+      "publishedIn": "mPanchang, https://www.mpanchang.com/muhurat/choghadiya/, accessed 2026-08-01",
+      "expected": "Day first row across Sunday→Saturday: Udveg, Amrit, Rog, Labh, Shubha, Char, Kaal. Night first row across Sunday→Saturday: Shubha, Char, Kaal, Udveg, Amrit, Rog, Labh. USE THE NAMES ONLY. The night table's row labels are defective in the source — they read \"From 6:00 AM\", \"From 7:30 AM\" … \"From 4:30 PM\", i.e. the daytime labels were copied, contradicting the table's own \"*Assuming sunset is at 6:00 PM\" header (S5-p). No clock value from that table may be used as a target.",
+      "snippetIds": [
+        "S5-a",
+        "S5-b",
+        "S5-o",
+        "S5-p"
+      ]
+    }
+  ],
+  "polarBehaviour": "NOT ADDRESSED BY ANY SOURCE IN THIS LEDGER, and nothing is asserted. Both systems are defined wholly by sunrise and sunset (S4-a, S7-a, S7-c, S10-d), so both are arithmetically undefined on any date and at any latitude where the sun does not rise or set — but that is an observation about the arithmetic, not a report of what practice does, and no snippet retrieved this round bears on the question. The fetcher's attempt log records no high-latitude or polar query at all. Recorded as a gap with that stated plainly, rather than as a finding.",
+  "honestLimits": "WHAT THIS FILE IS. A round-2 compilation from a fetcher ledger of ten sources. Every row carries at least one snippet id; no source was introduced; nothing was cited from the compiler's own knowledge. Round 1 pinned 21% of its claims to sources that did not support them, and three of six dossiers invented a confirmed gap; the constraints below exist because of that, and are worth reading as limits rather than as throat-clearing. THE TIER A FLOOR IS THINNER THAN IT LOOKS. Two Tier A sources carry this system: the Sūrya Siddhānta in Burgess's 1860 translation (S1) and al-Bīrūnī in Sachau's 1910 translation (S3). The Sanskrit of xii.78–79 was never retrieved — both GRETIL URLs 404'd — so the claim that the verse uses the word horā rests on a parenthetical transliteration inside a Victorian English translation whose two independent OCR scans both lose the macron. The 1860 translator's own note says that, apart from that passage and its parallel, the Sūrya Siddhānta makes no reference to the week at all (S2-j), which is a fair measure of how thin the attestation inside that text is. THERE IS NO MODERN SCHOLARSHIP IN THIS FILE. Pingree's Yavanajātaka and Jyotiḥśāstra — the standard Tier B treatments — were not fetched and are cited nowhere. The only Tier B material is a 166-year-old translator's annotation which al-Bīrūnī partly contradicts. Consequently this dossier reports NO modern consensus on the Greek-loanword question or on anything else, and its silence on that should not be read as agreement with the 1860 position. CHOGHADIYA IS TIER C THROUGHOUT AND ITS PROVENANCE IS THE WEAKEST THING HERE. Four commercial almanacs and one encyclopedia article whose sole reference is a glossary of Buddhist terms, which itself contains no rulers and no weekday table and has carried an unsourced-article template since July 2012. No primary text, no scholarship, no date, no author, and one undated clause about western India. Meanwhile the DATA is the best-verified in the file: 112 published cells, three witnesses, zero disagreement, and boundary arithmetic that reproduces to the printed minute. Thin provenance plus rich data is the combination FRAMING flags as an evidential-dignity risk, because a well-cited apparatus lends its neighbours credibility they did not earn. WHAT IS DERIVED RATHER THAN SOURCED. The +1 day step, the −2 night step, the fifth-weekday-lord night start, the three-place weekday advance, and the observation that Choghadiya resets at sunset while the horā does not, are ALL the compiler's arithmetic over the published cells. They reproduce every one of the 112 cells, and they are stated by nobody. They live in variants[V3].compilerDerivations behind an explicit warning field, and they are not repeated in any field a renderer would read as sourced. WHAT IS DELIBERATELY ABSENT. No nameOriginal on any entry — the ledger contains no Devanāgarī or IAST for any individual division, and round 1 was pulled up for supplying them. No quality grade on any horā entry, and none on four of the seven Choghadiyas, because the ledger grades only three. No comparison row between the horā and the day-Choghadiya, although the arithmetic relation is visible, because no source in the ledger makes the comparison and FRAMING §2.4 forbids the site making it. No three-way split on Char's auspiciousness, though round 1 found one, because the snippets that would carry it are not in this ledger. SOURCES USED FOR NOTHING. S9 (Prokerala) came back through an extraction model rather than being read directly, so it is marked secondHand in sources[] and is cited in no entry and no golden value. S8-f, the unattributed Sanskrit verse, supports no row. S10 (Wikipedia) is CC BY-SA, which is not among the four verdicts FRAMING §4.1 permits for reproduction, so it is treated as cite-only. QUOTATION POLICY IN THIS FILE. S1, S2 and S3 are pd-us on a stated pre-1931 ground and may be quoted. S4 through S10 are cite-only; the verbatim strings in sources[] are the ≤25-word verification extracts the research protocol requires, they exist so a reviewer can check a citation without re-fetching, and they must not travel into shipped data. The companion notes file paraphrases those sources rather than quoting them. NO EFFICACY CLAIM IS MADE ANYWHERE. Words like auspicious, benefic and malefic in this file are the sources' own vocabulary, reported as their vocabulary, and are not endorsed.",
+  "gaps": [
+    {
+      "claimedAbsent": "The Sanskrit / Devanāgarī wording of Sūrya Siddhānta xii.78–79 is absent from this ledger. The dossier therefore cannot assert that the verse itself uses the word horā, only that the 1860 English translation prints that transliteration parenthetically.",
+      "searchedWhere": [
+        "GRETIL https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/tantra/suryasi_u.htm — HTTP 404",
+        "GRETIL corpusTEI http://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_suuryasiddhaanta.xml — HTTP 404",
+        "targeted web search, multiple queries",
+        "archive.org item in.ernet.dli.2015.69065 — download returned a 146-byte stub"
+      ],
+      "searchTermsUsed": [
+        "होरा",
+        "होराधिपाः",
+        "शनैश्चरात्"
+      ],
+      "whatWasFound": "Both GRETIL URLs 404'd. The searches returned only bibliographic pages (dharmawiki, exoticindiaart, hi.wikipedia, archive.org listing pages) and no retrievable verse text for xii.78–79. Two independent OCR scans of the English translation agree on the passage, and both print the parenthetical transliteration with the macron lost (\"hord\"/\"hora\"). A cross-check scan was obtained from archive.org item dli.calcutta.10431 and confirms the S1/S2 wording.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "No Tier A primary text and no Tier B peer-reviewed scholarship for Choghadiya appears anywhere in this ledger. Every Choghadiya row in this dossier is Tier C.",
+      "searchedWhere": [
+        "DrikPanchang choghadiya (S4) — read in full",
+        "mPanchang choghadiya (S5) — read in full",
+        "AstroSage chogadia (S6) — read in full",
+        "Wikipedia Choghadiya wikitext (S10) — read in full",
+        "web search for scholarly treatment",
+        "web search against the named Sanskrit muhūrta corpus",
+        "Google Books, Chitkara 2005 p. 87"
+      ],
+      "searchTermsUsed": [
+        "\"choghadiya\" OR \"chaughadiya\" muhurta scholarly study Gujarati panchang eight divisions history academic",
+        "\"Muhurta Chintamani\" OR \"Muhurta Martanda\" chaughadiya choghadiya classical Sanskrit muhurta text eight parts day",
+        "Choghadiya (Google Books, within Chitkara 2005)"
+      ],
+      "whatWasFound": "Both searches returned exclusively commercial pañcāṅga sites (mpanchang, drikpanchang, astrosage, astroyogi, shubhpanchang) plus bookseller listings for Muhūrtacintāmaṇi. The only encyclopedia article retrieved carries a no-footnotes template dated July 2012 and a cleanup-rewrite template dated March 2023 (S10-e), has exactly one reference — a glossary of Buddhist terms (S10-f) — and contains no planetary rulers and no weekday table at all. Google Books reports one matching page in that glossary and displays no snippet.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Whether Choghadiya is attested in the classical Sanskrit muhūrta corpus. THIS DOSSIER RECORDS NO VERDICT ON THIS, in either direction.",
+      "searchedWhere": [
+        "web search against the named Sanskrit muhūrta corpus",
+        "web search for scholarly treatment"
+      ],
+      "searchTermsUsed": [
+        "\"Muhurta Chintamani\" OR \"Muhurta Martanda\" chaughadiya choghadiya classical Sanskrit muhurta text eight parts day",
+        "\"choghadiya\" OR \"chaughadiya\" muhurta scholarly study Gujarati panchang eight divisions history academic"
+      ],
+      "whatWasFound": "Nothing surfaced. The fetcher states in the same breath that this is a failed search and not a proven absence: Muhūrtacintāmaṇi, Muhūrtamārtaṇḍa and any printed Gujarati or Marathi pañcāṅga were NOT opened, and a confirmed-absence claim needs that reading first. Recorded here as an open question precisely because round 1 turned a search like this one into a settled absence. Reading those three would settle it.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "Tier B peer-reviewed scholarship on the Vedic horā — of any kind — is absent from this ledger.",
+      "searchedWhere": [
+        "Pingree, The Yavanajātaka of Sphujidhvaja (HOS 48, 1978) — no open full text located, not fetched",
+        "Pingree, Jyotiḥśāstra: Astral and Mathematical Literature (1981) — no open full text located, not fetched"
+      ],
+      "searchTermsUsed": [
+        "(none logged — the fetcher records these as not retrieved rather than as searched-and-missing, and says so explicitly)"
+      ],
+      "whatWasFound": "Neither work was fetched, read or quoted this round. The consequence is structural and is stated rather than implied: the Tier A weight in this dossier rests entirely on Sūrya Siddhānta (S1) and al-Bīrūnī/Sachau (S3); the only Tier B material is the 1860 translator's annotation (S2), which is 166 years old and is partly contradicted by S3 (compare S2-f with S3-f). No modern scholar is cited anywhere in this file, so no modern consensus is reported anywhere in it either.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Any statement of WHY the night Choghadiya sequence starts where it does, or any source-stated rule for it.",
+      "searchedWhere": [
+        "DrikPanchang choghadiya (S4) — read in full",
+        "mPanchang choghadiya (S5) — read in full",
+        "AstroSage chogadia (S6) — read in full",
+        "Wikipedia Choghadiya wikitext (S10) — read in full"
+      ],
+      "searchTermsUsed": [
+        "(page-level reading of all four sources, each retrieved read-full, rather than a keyword query)"
+      ],
+      "whatWasFound": "All four print the sequences; none states a night-start rule or a reason for the offset. The nearest any source comes is mPanchang saying only that the sequence varies by weekday and is fixed for that weekday (S5-d) and that seven names fill eight slots because one takes two (S5-e). The −2 step and the fifth-weekday-lord start recorded in variants[V3].compilerDerivations are the compiler's arithmetic over the published cells — verified against all 112 of them, explained by nobody — and are labelled as derivations in-data.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "A grade (auspicious / inauspicious / intermediate) for four of the seven Choghadiyas — Udveg, Labh, Amrit and Rog. Those four quality cells are left EMPTY in entries[].",
+      "searchedWhere": [
+        "DrikPanchang choghadiya (S4), per-name sections — read in full",
+        "mPanchang choghadiya (S5), \"Choghadiya Meaning\" sub-entries — read in full",
+        "AstroSage chogadia (S6) — read in full",
+        "Wikipedia Choghadiya wikitext (S10) — read in full"
+      ],
+      "searchTermsUsed": [
+        "(section-level reading of each source's per-name sections)"
+      ],
+      "whatWasFound": "The ledger captures an explicit grade for three names only: Char auspicious (S4-h), Shubh very auspicious (S5-l), Kaal in-auspicious (S5-m). For Udveg, Labh, Amrit and Rog the captured sentences state the RULER planet's benefic or malefic character (S4-g, S4-i, S4-j, S4-m and S5-h, S5-i, S5-k, S5-n) and NOT a grade for the division. Both sites plainly carry a section per name, so this is an absence in the ledger and not a demonstrated absence in the sources — a later fetch aimed at the grading sentence would very likely fill it. Inferring \"Sun is malefic, therefore Udveg is inauspicious\" would be completion-by-inference and is refused.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "Choghadiya's date of origin, place of origin, author, and any account of its spread.",
+      "searchedWhere": [
+        "DrikPanchang choghadiya (S4) — read in full",
+        "mPanchang choghadiya (S5) — read in full",
+        "AstroSage chogadia (S6) — read in full",
+        "Wikipedia Choghadiya wikitext (S10) — read in full",
+        "web search for scholarly treatment",
+        "web search against the named Sanskrit muhūrta corpus"
+      ],
+      "searchTermsUsed": [
+        "\"choghadiya\" OR \"chaughadiya\" muhurta scholarly study Gujarati panchang eight divisions history academic",
+        "\"Muhurta Chintamani\" OR \"Muhurta Martanda\" chaughadiya choghadiya classical Sanskrit muhurta text eight parts day"
+      ],
+      "whatWasFound": "One clause, in one commercial source, undated and itself unsourced: AstroSage's opening paragraph says it is used mostly in the western states of India (S6-e). That is the only regional-provenance statement in anything retrieved this round. Nothing dates the system, names an author, or traces its spread. Wikipedia adds nothing — no rulers, no weekday table, one reference to a Buddhist-terms glossary (S10-f).",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "The source behind the \"ninety-eight minutes\" figure. The figure is printed but its stated authority could not be opened, so it is reported here as a printed claim and not as a sourced value.",
+      "searchedWhere": [
+        "Google Books https://books.google.com/books?id=BYIkAQAAIAAJ&q=Choghadiya",
+        "Wikipedia Choghadiya wikitext (S10) — read in full"
+      ],
+      "searchTermsUsed": [
+        "Choghadiya"
+      ],
+      "whatWasFound": "Google Books reports \"1 page matching Choghadiya in this book\" for Chitkara, Encyclopaedia of Buddhism: Glossary of Buddhism Terms vol. 21 (APH, 2005), p. 87, and displays no snippet — the volume is no-preview / snippet-limited. That page is the single footnote behind the ninety-eight-minute figure in the article lead (S10-a), which the same article contradicts twice over: 96 minutes in its etymology section (S10-b) and 90.125 in its worked example (S10-c).",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "Any Devanāgarī or IAST form for the seven Choghadiya names or for the horā planet names. No entry in this dossier carries a nameOriginal field, and none was supplied by the compiler.",
+      "searchedWhere": [
+        "Sūrya Siddhānta trans. Burgess 1860 (S1) — read in full",
+        "Burgess's 1860 translator's notes (S2) — read in full",
+        "al-Bīrūnī trans. Sachau 1910 (S3) — read in full",
+        "DrikPanchang choghadiya (S4) — read in full",
+        "mPanchang choghadiya (S5) — read in full",
+        "AstroSage chogadia (S6) — read in full",
+        "DrikPanchang hora (S7) — read in full",
+        "AstroSage hora (S8) — read in full",
+        "Wikipedia Choghadiya wikitext (S10) — read in full"
+      ],
+      "searchTermsUsed": [
+        "(reading of every snippet in the ledger for Indic script or diacritical transliteration)"
+      ],
+      "whatWasFound": "The only IAST anywhere in the ledger for these systems is Wikipedia's form of the system name itself, Chogaḍīā (S10-a). The only Indic script is a two-line unattributed verse on the AstroSage horā page (S8-f). Nothing gives an Indic-script or IAST form for any individual division. Round 1 supplied those forms from the compiler's own knowledge and was pulled up for it; this round leaves the field off entirely.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Any attribution for the Sanskrit verse the AstroSage horā page prints. It is cited to no work anywhere in this dossier and supports no row.",
+      "searchedWhere": [
+        "AstroSage hora page (S8), https://www.astrosage.com/hora.asp — read in full"
+      ],
+      "searchTermsUsed": [
+        "(full-page read for a text name, author, chapter or verse number accompanying the shlok)"
+      ],
+      "whatWasFound": "The page introduces the two-line verse as \"the following verse (shlok)\" and names no text, author, chapter or verse number anywhere on the page (S8-f). It is unattributable as fetched. It is recorded in sources[] as evidence for this gap and is used for nothing else.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Any statement of what either system does at latitudes or dates where the sun does not rise or set. No polar behaviour is asserted in this dossier.",
+      "searchedWhere": [
+        "Sūrya Siddhānta trans. Burgess 1860 (S1) — read in full",
+        "Burgess's 1860 translator's notes (S2) — read in full",
+        "al-Bīrūnī trans. Sachau 1910 (S3) — read in full",
+        "DrikPanchang choghadiya (S4) — read in full",
+        "mPanchang choghadiya (S5) — read in full",
+        "AstroSage chogadia (S6) — read in full",
+        "DrikPanchang hora (S7) — read in full",
+        "AstroSage hora (S8) — read in full",
+        "Wikipedia Choghadiya wikitext (S10) — read in full"
+      ],
+      "searchTermsUsed": [
+        "(none — the fetcher's attemptedAndFailed log records no polar or high-latitude query, and that is stated here rather than papered over)"
+      ],
+      "whatWasFound": "No snippet in the ledger mentions latitude, polar day, polar night, or any limiting case. Both systems are defined wholly by sunrise and sunset (S4-a, S7-a, S7-c, S10-d), so both are arithmetically undefined where those events do not occur — but no source retrieved this round says what practice does there, and the arithmetic observation is not a report of practice. This is a hole in the fetch, not a finding about the traditions.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "Any jyotiṣa text asserting the OTHER sense of horā — the half-sign / D-2 varga. Neither Bṛhat Parāśara Horā Śāstra nor Bṛhat Jātaka is cited anywhere in this dossier.",
+      "searchedWhere": [
+        "Bṛhat Parāśara Horā Śāstra — not fetched",
+        "Bṛhat Jātaka — not fetched"
+      ],
+      "searchTermsUsed": [
+        "(none logged — the fetcher records these as deliberately not retrieved)"
+      ],
+      "whatWasFound": "The double sense of horā is attested in this ledger only side-on: al-Bīrūnī notes that the same word names the hour and the half of a zodiacal sign (S3-d), and the 1860 note discusses the word's derivation (S2-g). Recorded because the ambiguity is load-bearing — a reader meeting \"horā\" in a jyotiṣa context is at least as likely to meet the half-sign sense as the hour sense, and this dossier is about the hour sense only.",
+      "confidence": "confirmed-absent"
+    }
+  ],
+  "contestedPoints": [
+    "DIVISION OF THE HORĀ — seasonal or a plain twenty-fourth? BOTH POSITIONS STAND. (a) SEASONAL, Tier A: al-Bīrūnī (c. AD 1030, trans. Sachau 1910) reports that Indian astrologers arrange the dominants according to the horæ temporales (S3-g), that each day and each night has twelve hours (S3-h), and concludes that the hours used in the theory of the dominants are horæ obliquæ temporales (S3-i). (b) A TWENTY-FOURTH OF THE DAY, Tier B: the 1860 translator's notes speak of the division of the day into twenty-four hours with each assigned in succession to the planets (S2-b) and of the hours, or twenty-fourths of the day (S2-h). The fetcher records that this 1/24 formulation is the translator's own gloss at his note to xii.78–79 and is NOT wording in the Sanskrit verse — and the Sanskrit was never retrieved. NOTE THE TIER SHIFT AGAINST ROUND 1: round 1 put the seasonal reading at Tier C and the 24th at Tier A; on this ledger it is the other way round, because al-Bīrūnī is Tier A and says seasonal, and the 24th is a Tier B annotation glossing a verse nobody in this round read. The two are not the same arithmetic: seasonal day-horās and night-horās differ in length on the same date at every latitude except at equinox, which the retrieved tables show directly (72.5 min by day against 47.583 by night, S7-d/S7-e; 67.5 against 52.5 at a second location, S8-e).",
+    "DID INDIANS USE HOUR-LORDS AT ALL? BOTH POSITIONS STAND, and they are 830 years apart. Burgess, writing in 1860, asserts that they never made that division of the day into twenty-four hours upon which the order of regency depends (S2-f). Al-Bīrūnī, writing c. AD 1030, reports that nobody in India uses the hours except the astrologers, for they speak of the dominants of the hours (S3-f) — and quotes a named Indian text, Vijayanandin's Karaṇatilaka, giving the rule (S3-j, S3-k). The fetcher flags this conflict explicitly. It is not resolved here.",
+    "THE ETYMOLOGY OF horā. Burgess (1860, Tier B) holds that the name by which the hours are there called (horā — ὥρα) indicates beyond a question the source whence they derived it (S2-g) — a Greek-loanword claim. A contemporary almanac (Tier C) states the indigenous derivation instead, deriving horā from (a)horā(tra), the duration from one sunrise to the next (S7-a). Both are printed here, dated and tiered. NO MODERN SCHOLARSHIP ON THIS QUESTION IS IN THIS LEDGER — see gaps — so this dossier reports no consensus, current or otherwise, and a reader should not read the 1860 position as the settled one merely because it is the older and more emphatic.",
+    "THE LENGTH OF A CHOGHADIYA — five different figures, one of them arithmetically wrong. Ninety-eight minutes (S10-a, on a footnote that could not be opened); ninety-six minutes (S10-b, and S4-c which hedges with \"approximates\"); ninety-six minutes AND one and a half hours in consecutive sentences of the same FAQ (S5-g); 90.125 minutes (S10-c); ninety minutes (S6-c); and \"about 4 hours\" (S6-d, where 3.75 ghaṭī is in fact 90 minutes). Three of these five appear on ONE page (S10-a, S10-b, S10-c). Structurally none of them is a length: every source that states the RULE states a proportional one — the sunrise-to-sunset arc divided by 8 (S4-b, S5-c, S6-c, S10-d) — so the fixed figures are all idealisations of a 12-hour day. The observed tables bear that out: 108.75 min by day and 71.375 by night on one date (S4-n, S4-o), 101.25 and 78.75 on the same date elsewhere (S6-a, S6-b).",
+    "THE ETYMOLOGY DOES NOT MATCH THE ARITHMETIC, in the sources' own numbers. The name is glossed as cho (four) + ghaḍiyā (ghaṭī), four ghaṭī (S4-c, S10-b). But the same sources divide 30 ghaṭī by 8 (S4-b, S5-f, S10-d), which is 3.75 ghaṭī, and AstroSage says 3.75 outright (S6-d). DrikPanchang alone marks the gap, writing that each muhūrta \"approximates to\" four ghaṭī (S4-c). Recorded, not resolved. Note also that only S5-g ties a ghaṭī to minutes at all, and it does so inconsistently.",
+    "DOES THE NIGHT GET ITS OWN LORD? Al-Bīrūnī (Tier A) draws the distinction himself: Greek and Muslim practice gives the night a separate lord, whereas the Hindus make the dominus diei the dominus of the whole nychthemeron, so that day and night follow each other (S3-c). CAUTION CARRIED FROM THE FETCHER: S3-a and S3-b describe MUSLIM astronomers' practice, not Indian, and must not be attributed to India on their own. Tier C current practice matches al-Bīrūnī on the horā — the cycle crosses sunset without resetting, Venus being followed by Mercury (S7-e, S8-e). Choghadiya behaves the OPPOSITE way in the published tables: its night sequence starts somewhere the day sequence would not have reached, on every one of the seven weekdays. That contrast is recorded as an observation over the cited cells; no source in this ledger comments on it.",
+    "THE HOUR-NAMES ARE A SEPARATE LAYER FROM THE RULERS, and al-Bīrūnī says where he thinks they come from with his own hedge attached: \"We think they are taken from the book Śrudhava\" (S3-o). The twelve day-names and twelve night-names (S3-m, S3-n) carry a Lucky/Unlucky column of their own that has no relation to the planetary regents. They are recorded under variants[V1] rather than merged into entries[], because merging them would produce a composite table that neither the Sūrya Siddhānta nor al-Bīrūnī prints. Sachau's own \"(?)\" marks on four night-names are carried through unchanged.",
+    "CHAL, CHAR, CHARA OR CHANCHAL — and Kaal or Kala, Shubh or Shubha or Shoobh, Amrit or Amrita or Amrut, Labh or Labha or Laabh, Rog or Roga, Udveg or Udvega. All are printed; no source in this ledger adjudicates, and no Devanāgarī or IAST form is given for any of them. Every attested spelling is recorded per entry with its sid, and the display form is flagged in-data as an editorial choice rather than a philological claim. A NOTE ON WHAT IS *NOT* HERE: round 1 reported a three-way split on Char's auspiciousness across four sources. This ledger contains a quality verdict for Char from ONE source only (S4-h, auspicious). The three-way split is therefore not reported here — not because it is wrong, but because the snippets that would carry it were not fetched this round.",
+    "THE AUTHORSHIP OF THE 1860 ANNOTATIONS IS ITSELF UNSETTLED HERE. This ledger labels S2 \"Ebenezer Burgess, translator's notes and commentary\", and this dossier follows the ledger. The repository's own phase-1 report attributes the same annotations to Whitney. Nothing in this ledger resolves which, and no snippet bears on it. Wherever the attribution is load-bearing this file says \"the 1860 translation's translator's notes\" and names the ledger's attribution alongside; anyone building on it should settle the question from the title page before printing a name.",
+    "THE ARITHMETIC RELATION BETWEEN THE DAY-CHOGHADIYA AND THE HORĀ IS DELIBERATELY NOT PRINTED AS A ROW. Both start on the weekday lord and both step the same direction through the same seven-planet list; one divides by eight, the other by twelve. NO SOURCE IN THIS LEDGER MAKES THAT COMPARISON, and FRAMING §2.4 says that where no scholar has made the comparison there is no row. The observation is recorded here, in the contested-points prose, as a thing a future round would need a named source for — not as a finding, and not in any machine-readable field a renderer could pick up.",
+    "THE RULER COLUMN IS TIER A BUT ITS WEEKDAY LABELS ARE TIER C. The Sūrya Siddhānta gives the ordered sequence of regents — every fourth planet downward from Saturn (S1-f) — and the 1860 notes anchor it and demonstrate it across three consecutive days (S2-c, S2-d, S2-e, S2-i). Neither names an English weekday. The mapping Sun–Sunday, Moon–Monday, Mars–Tuesday, Mercury–Wednesday, Jupiter–Thursday, Venus–Friday, Saturn–Saturday is stated in this ledger only by a commercial almanac (S8-g), with the same anchors restated one by one on a second (S7-f). The sequence is Tier A; the labels on it are Tier C, and a renderer that prints \"Saturday: Saturn\" is combining the two.",
+    "THE TWO SYSTEMS MUST NOT RENDER AT THE SAME WEIGHT. Vedic horā has a Tier A ruler column resting on a primary text. Choghadiya has a Tier C ruler column resting on four commercial almanacs, with no primary text, no scholarship, no date and no named author. The data quality runs the opposite way to the provenance quality: the Choghadiya table is the best-verified thing in this file (112 cells, three witnesses, zero disagreement) and the worst-provenanced. That combination is the one FRAMING warns about by name under evidential dignity, and it is why the Tier C label has to travel on the comparison view itself and not merely as a badge."
+  ],
+  "sources": [
+    {
+      "id": "S1-a",
+      "parent": "S1",
+      "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Burgess's translation was published in 1860 (JAOS vol. 6); its US term expired long ago, far earlier than the current pre-1931 public-domain threshold (Duke, Public Domain Day 2026). Only Burgess's 1860 wording is quoted here; the 1935 reprint's added introduction (Sengupta) and Gangooly's editorial matter are NOT quoted and are not asserted to be PD. Wording of every snippet below was independently cross-checked against a second, separately-scanned OCR of the same translation (https://archive.org/download/dli.calcutta.10431/cu_pub720_djvu.txt) and agrees; where the two scans differ it is only in obvious OCR noise ('tbe' for 'the', 'Beckoning' for 'Reckoning'), and the reading given is the one both scans support.",
+      "locator": "Sūrya Siddhānta i.51, translated verse (chapter I, 'Mean Motions of the Planets'). Scan OCR page header reads '86' but is an OCR corruption of 36.",
+      "snippet": "From this may be found the lords of the day, the month, and the year, counting from the sun."
+    },
+    {
+      "id": "S1-b",
+      "parent": "S1",
+      "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Burgess's translation was published in 1860 (JAOS vol. 6); its US term expired long ago, far earlier than the current pre-1931 public-domain threshold (Duke, Public Domain Day 2026). Only Burgess's 1860 wording is quoted here; the 1935 reprint's added introduction (Sengupta) and Gangooly's editorial matter are NOT quoted and are not asserted to be PD. Wording of every snippet below was independently cross-checked against a second, separately-scanned OCR of the same translation (https://archive.org/download/dli.calcutta.10431/cu_pub720_djvu.txt) and agrees; where the two scans differ it is only in obvious OCR noise ('tbe' for 'the', 'Beckoning' for 'Reckoning'), and the reading given is the one both scans support.",
+      "locator": "Sūrya Siddhānta i.51, translated verse, immediately continuing S1-a.",
+      "snippet": "If the number be divided by seven, the remainder marks the lord of the day, beginning with the sun."
+    },
+    {
+      "id": "S1-c",
+      "parent": "S1",
+      "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Burgess's translation was published in 1860 (JAOS vol. 6); its US term expired long ago, far earlier than the current pre-1931 public-domain threshold (Duke, Public Domain Day 2026). Only Burgess's 1860 wording is quoted here; the 1935 reprint's added introduction (Sengupta) and Gangooly's editorial matter are NOT quoted and are not asserted to be PD. Wording of every snippet below was independently cross-checked against a second, separately-scanned OCR of the same translation (https://archive.org/download/dli.calcutta.10431/cu_pub720_djvu.txt) and agrees; where the two scans differ it is only in obvious OCR noise ('tbe' for 'the', 'Beckoning' for 'Reckoning'), and the reading given is the one both scans support.",
+      "locator": "Sūrya Siddhānta i.12, translated verse — the text's definition of the civil (sāvana) reckoning. Scan prints 'sdvana' (OCR of sāvana).",
+      "snippet": "a civil (sāvana) month consists of as many sunrises;"
+    },
+    {
+      "id": "S1-d",
+      "parent": "S1",
+      "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Burgess's translation was published in 1860 (JAOS vol. 6); its US term expired long ago, far earlier than the current pre-1931 public-domain threshold (Duke, Public Domain Day 2026). Only Burgess's 1860 wording is quoted here; the 1935 reprint's added introduction (Sengupta) and Gangooly's editorial matter are NOT quoted and are not asserted to be PD. Wording of every snippet below was independently cross-checked against a second, separately-scanned OCR of the same translation (https://archive.org/download/dli.calcutta.10431/cu_pub720_djvu.txt) and agrees; where the two scans differ it is only in obvious OCR noise ('tbe' for 'the', 'Beckoning' for 'Reckoning'), and the reading given is the one both scans support.",
+      "locator": "Sūrya Siddhānta xii.30, translated verse; the clause that governs the planet list in xii.31.",
+      "snippet": "within that is the revolution of the asterisms (bha), and likewise, in order, one below the other,"
+    },
+    {
+      "id": "S1-e",
+      "parent": "S1",
+      "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Burgess's translation was published in 1860 (JAOS vol. 6); its US term expired long ago, far earlier than the current pre-1931 public-domain threshold (Duke, Public Domain Day 2026). Only Burgess's 1860 wording is quoted here; the 1935 reprint's added introduction (Sengupta) and Gangooly's editorial matter are NOT quoted and are not asserted to be PD. Wording of every snippet below was independently cross-checked against a second, separately-scanned OCR of the same translation (https://archive.org/download/dli.calcutta.10431/cu_pub720_djvu.txt) and agrees; where the two scans differ it is only in obvious OCR noise ('tbe' for 'the', 'Beckoning' for 'Reckoning'), and the reading given is the one both scans support.",
+      "locator": "Sūrya Siddhānta xii.31, translated verse — the descending (remotest-first) planetary order, continuing xii.30's 'one below the other'. Chapter XII, scan page ~285.",
+      "snippet": "Revolve Saturn, Jupiter, Mars, the sun, Venus, Mercury, and the moon"
+    },
+    {
+      "id": "S1-f",
+      "parent": "S1",
+      "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Burgess's translation was published in 1860 (JAOS vol. 6); its US term expired long ago, far earlier than the current pre-1931 public-domain threshold (Duke, Public Domain Day 2026). Only Burgess's 1860 wording is quoted here; the 1935 reprint's added introduction (Sengupta) and Gangooly's editorial matter are NOT quoted and are not asserted to be PD. Wording of every snippet below was independently cross-checked against a second, separately-scanned OCR of the same translation (https://archive.org/download/dli.calcutta.10431/cu_pub720_djvu.txt) and agrees; where the two scans differ it is only in obvious OCR noise ('tbe' for 'the', 'Beckoning' for 'Reckoning'), and the reading given is the one both scans support.",
+      "locator": "Sūrya Siddhānta xii.78, translated verse. Scan OCR page header 293.",
+      "snippet": "Counting downward from Saturn, the fourth successively is regent of the day"
+    },
+    {
+      "id": "S1-g",
+      "parent": "S1",
+      "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Burgess's translation was published in 1860 (JAOS vol. 6); its US term expired long ago, far earlier than the current pre-1931 public-domain threshold (Duke, Public Domain Day 2026). Only Burgess's 1860 wording is quoted here; the 1935 reprint's added introduction (Sengupta) and Gangooly's editorial matter are NOT quoted and are not asserted to be PD. Wording of every snippet below was independently cross-checked against a second, separately-scanned OCR of the same translation (https://archive.org/download/dli.calcutta.10431/cu_pub720_djvu.txt) and agrees; where the two scans differ it is only in obvious OCR noise ('tbe' for 'the', 'Beckoning' for 'Reckoning'), and the reading given is the one both scans support.",
+      "locator": "Sūrya Siddhānta xii.79, first half of translated verse.",
+      "snippet": "Reckoning upward from the moon are found, in succession, the regents of the months;"
+    },
+    {
+      "id": "S1-h",
+      "parent": "S1",
+      "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Burgess's translation was published in 1860 (JAOS vol. 6); its US term expired long ago, far earlier than the current pre-1931 public-domain threshold (Duke, Public Domain Day 2026). Only Burgess's 1860 wording is quoted here; the 1935 reprint's added introduction (Sengupta) and Gangooly's editorial matter are NOT quoted and are not asserted to be PD. Wording of every snippet below was independently cross-checked against a second, separately-scanned OCR of the same translation (https://archive.org/download/dli.calcutta.10431/cu_pub720_djvu.txt) and agrees; where the two scans differ it is only in obvious OCR noise ('tbe' for 'the', 'Beckoning' for 'Reckoning'), and the reading given is the one both scans support.",
+      "locator": "Sūrya Siddhānta xii.79, second half of translated verse — THE Tier A hour-ruler statement. Both scans print the parenthetical transliteration as 'hord'/'hora'; the macron is lost in OCR.",
+      "snippet": "the regents of the hours (horā), also, occur in downward order from Saturn."
+    },
+    {
+      "id": "S2-a",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to i.12–13. Establishes the day-start for the reckoning the hour-lords sit inside.",
+      "snippet": "The civil (sāvana) day is the natural day: it is counted in India, from sunrise to sunrise"
+    },
+    {
+      "id": "S2-b",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to i.51–52, explaining the principle behind the weekday-lord assignment.",
+      "snippet": "It depends upon the division of the day into twenty-four hours, and the assignment of each of these in succession to the planets"
+    },
+    {
+      "id": "S2-c",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to i.51–52, continuing S2-b — the explicit descending order plus the Sunday-first-hour anchor.",
+      "snippet": "beginning with the remotest, as follows: Saturn, Jupiter, Mars, sun, Venus, Mercury, moon, and the first hour of the twenty-four being assigned to the sun"
+    },
+    {
+      "id": "S2-d",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to i.51–52 — the worked demonstration that 24 hours of Chaldean-order rotation yields the weekday sequence.",
+      "snippet": "the twenty-fifth hour, or the first of the second day, belongs to the moon; the forty-ninth, or the first of the third day, to Mars"
+    },
+    {
+      "id": "S2-e",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to i.51–52, in the paragraph introducing the day/month/year lord table.",
+      "snippet": "the lord of the day is the lord of its first hour"
+    },
+    {
+      "id": "S2-f",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to i.51–52. NOTE FOR THE COMPILER: this is Burgess's own 1860 assertion and it CONFLICTS with al-Bīrūnī (S3-e to S3-i), who reports Indian astrologers using hour-lords c. AD 1030. Keep both, attributed.",
+      "snippet": "they never made that division of the day into twenty-four hours upon which the order of regency depends"
+    },
+    {
+      "id": "S2-g",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to i.51–52. Burgess's Greek-derivation claim. Scan OCR renders the Greek as 'wsa'; the reading ὥρα is Burgess's and is stated again at his note to xii.78–79 ('hord, which is the Greek u^a').",
+      "snippet": "the name by which the hours are there called (horā — ὥρα) indicates beyond a question the source whence they derived it"
+    },
+    {
+      "id": "S2-h",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to xii.78–79. This is where '1/24' comes from — it is BURGESS'S gloss, not wording in the Sanskrit verse.",
+      "snippet": "adding also the important and significant specification respecting the hours, or twenty-fourths of the day"
+    },
+    {
+      "id": "S2-i",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to xii.78–79.",
+      "snippet": "each planet being constituted lord also of the day whose first hour is placed under his charge"
+    },
+    {
+      "id": "S2-j",
+      "parent": "S2",
+      "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+      "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "pd-us — same ground as S1: published 1860, term expired.",
+      "locator": "Burgess's note to i.51–52 — his statement of how thin the attestation inside this text actually is.",
+      "snippet": "Excepting here and in the parallel passage xii. 77, 78, no reference is made in the Surya-Siddhanta to the week"
+    },
+    {
+      "id": "S3-a",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XIX, p. 213. CAUTION: this sentence describes MUSLIM astronomers' practice ('Muslim astronomers call the planets the lords of the days, and, …'), which al-Bīrūnī then compares with the Hindu. Do not attribute it to Indian practice on its own.",
+      "snippet": "in counting the hours of the day, they begin with the dominus of the day, and then count the planets"
+    },
+    {
+      "id": "S3-b",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XIX, p. 214, still inside the Muslim-practice paragraph begun at S3-a.",
+      "snippet": "the dominus of the twenty-fifth hour is the moon, and this is the first hour of Monday"
+    },
+    {
+      "id": "S3-c",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XIX, p. 214 — al-Bīrūnī's explicit statement of the DIFFERENCE: Greek/Muslim practice gives the night its own lord (13th planet from the day-lord); Indian practice does not, the day-lord rules the whole nychthemeron. The Greek word is OCR-garbled in the scan ('wxdrjf^^pov'); reading supplied from context, flagged.",
+      "snippet": "the Hindus make the dominus diei the dominus of the whole [νυχθήμερον], so that day and night follow each other"
+    },
+    {
+      "id": "S3-d",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XIX, p. 214 — attests BOTH senses of horā (hour, and half-sign / D-2 varga) side by side. Load-bearing for not confusing the hour-horā with the Bṛhat Parāśara Horā Śāstra sense.",
+      "snippet": "They call the hour horā, and by the same name they call the half of a zodiacal sign"
+    },
+    {
+      "id": "S3-e",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XIX, p. 214 — al-Bīrūnī quoting an Indian astronomical handbook he does NOT name, for finding the dominus horae. A second, ascendant-based rule distinct from simple sunrise-counting.",
+      "snippet": "Divide the distance between the sun and the degree of the ascendens measured by equal degrees, by 15, and add to the quotient 1"
+    },
+    {
+      "id": "S3-f",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 343, opening of the passage on hours in Hindu astrology (marginal heading 'On the hours in Hindu astrology').",
+      "snippet": "Nobody in India uses the hours except the astrologers, for they speak of the dominants of the hours"
+    },
+    {
+      "id": "S3-g",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 343 — the division statement: seasonal, not equinoctial.",
+      "snippet": "They arrange the order of the dominants according to the horæ temporales."
+    },
+    {
+      "id": "S3-h",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 343, in the argument from the six signs rising in each day and each night.",
+      "snippet": "each day and each night has twelve hours, and in consequence the hours used in the theory of the dominants"
+    },
+    {
+      "id": "S3-i",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 343, conclusion of that argument. THE Tier A statement that the Indian horā is a SEASONAL (unequal) hour, 12 by day and 12 by night.",
+      "snippet": "the hours used in the theory of the dominants of the hours are horæ obliquæ temporales"
+    },
+    {
+      "id": "S3-j",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 343 — al-Bīrūnī quoting Vijayanandin, 'Karaṇatilaka'. A named Indian source for the hour-lord rule, and it reckons from 'the morning' (sunrise).",
+      "snippet": "To find the horādhipati, add the signs which have risen since the morning to the degree of the horoscope"
+    },
+    {
+      "id": "S3-k",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, pp. 343–344, continuing the Karaṇatilaka quotation. 'From above to below' = the same descending order as Sūrya Siddhānta xii.31 (S1-e). Al-Bīrūnī adds that Vijayanandin ought to have said 'add one' to the quotient.",
+      "snippet": "The quotient you get count off from the dominant of the nychthemeron, counting the planetary spheres from above to below."
+    },
+    {
+      "id": "S3-l",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 344, introducing a table of hour NAMES — a naming layer distinct from the planetary rulers.",
+      "snippet": "The Hindus give certain names to the horæ obliquæ, which we have united in the following table."
+    },
+    {
+      "id": "S3-m",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 344, table column 'Names of the Horas in the day', rows 1–12 in order. The adjacent column marks each 'Lucky'/'Unlucky': 1 unlucky, 2 lucky, 3 unlucky, 4–6 lucky, 7 unlucky, 8–12 lucky.",
+      "snippet": "Raudra. Saumya. Karala. Sattra. Vega. Visala. Mrityusara. Subha. Kroda. Candala. Krittika. Amrita."
+    },
+    {
+      "id": "S3-n",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 344, table column 'Their names in the night', rows 1–12. The '(?)' marks are Sachau's own, printed in the table — he is flagging uncertain readings. Row 11 is marked 'The most unlucky of all'.",
+      "snippet": "Kalaratri. Rodhini. Vairahma (?). Trasaniva. Guhaniya (?). Maya. Damariya (?). Jivaharani. Soshini. Vrishin. Dahariya (?). Cantima (?)."
+    },
+    {
+      "id": "S3-o",
+      "parent": "S3",
+      "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+      "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "pd-us. Sachau's translation was first published in 1888 and this printing is 1910; both are pre-1931 publications and are in the US public domain (works published 1930 or earlier entered the US public domain on 1 January 2026). Page numbers below are taken from the running page headers visible in the scan ('214 ALBERUNI'S INDIA', 'CHAPTER XXXIV. 343', '344 ALBERUNI'S INDIA'), so they are the printed pagination, not a scan-image index.",
+      "locator": "ch. XXXIV, p. 344, immediately before the table — al-Bīrūnī's own hedged attribution for the hour-name list. Note the hedge is his, not ours.",
+      "snippet": "We think they are taken from the book Śrudhava."
+    },
+    {
+      "id": "S4-a",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "heading 'About Choghadiya Table'. The day-start / night-start definition.",
+      "snippet": "The time between sunrise and sunset is called day Choghadiya and the time between sunset and next day sunrise is called night Choghadiya."
+    },
+    {
+      "id": "S4-b",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "heading 'Why Choghadiya Name?'. The division arithmetic.",
+      "snippet": "the time between Sunrise to Sunset is divided into 30 Ghati. For Choghadiya Muhurta, the same time duration is divided into 8 parts"
+    },
+    {
+      "id": "S4-c",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "heading 'Why Choghadiya Name?', continuing S4-b. Note the hedge 'approximates' — cf. S5-g and S10-b, which state 96 minutes flat.",
+      "snippet": "As each Choghadiya Muhurta approximates to 4 Ghati, it is known as Choghadiya i.e. Choghadiya = Cho (four) + Ghadiya (Ghati)."
+    },
+    {
+      "id": "S4-d",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "heading 'How to mark Choghadiya Good or Bad?'. The starting-offset rule.",
+      "snippet": "The first Muhurta on each weekday is ruled by the weekday lord."
+    },
+    {
+      "id": "S4-e",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "heading 'How to mark Choghadiya Good or Bad?', continuing S4-d. This is the same descending order as S1-e / S3-k.",
+      "snippet": "on Sunday, the first Choghadiya Muhurta is ruled by the Sun followed by Venus, Mercury, Moon, Saturn, Jupiter and Mars respectively"
+    },
+    {
+      "id": "S4-f",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "heading 'How to mark Choghadiya Good or Bad?'. Explains why the 8th day-choghadiya repeats the 1st.",
+      "snippet": "The last Muhurta of the daytime is also ruled by the day lord."
+    },
+    {
+      "id": "S4-g",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "opening sentence of the section headed 'Udveg Choghadiya' — the source's ruler assignment for Udveg.",
+      "snippet": "The Sun is considered a malefic planet in Vedic astrology."
+    },
+    {
+      "id": "S4-h",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "section 'Char Choghadiya', whose opening sentence reads 'The Venus is considered a benefic planet in Vedic astrology.' — ruler = Venus.",
+      "snippet": "the time under the influence of it is considered auspicious and marked as Char or Chanchal"
+    },
+    {
+      "id": "S4-i",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "opening sentence of the section headed 'Labh Choghadiya' — ruler = Mercury.",
+      "snippet": "The Mercury is considered a benefic planet in Vedic astrology."
+    },
+    {
+      "id": "S4-j",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "opening sentence of the section headed 'Amrit Choghadiya' — ruler = Moon.",
+      "snippet": "The Moon is usually considered a benefic planet in Vedic astrology."
+    },
+    {
+      "id": "S4-k",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "opening sentence of the section headed 'Kala Choghadiya' — ruler = Saturn.",
+      "snippet": "The Saturn is considered a malefic planet in Vedic astrology."
+    },
+    {
+      "id": "S4-l",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "opening sentence of the section headed 'Shubh Choghadiya' — ruler = Jupiter.",
+      "snippet": "The Jupiter is considered a benefic planet in Vedic astrology."
+    },
+    {
+      "id": "S4-m",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "opening sentence of the section headed 'Rog Choghadiya' — ruler = Mars.",
+      "snippet": "The Mars is considered a malefic planet in Vedic astrology."
+    },
+    {
+      "id": "S4-n",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "DATA EXTRACT, not prose: the rendered 'Day Choghadiya' table for Saturday 1 August 2026 (sunrise 05:56, sunset 20:26; eight parts of ~108.75 min). Names in table order.",
+      "snippet": "Day Choghadiya 05:56 AM — Kala, Shubha, Roga, Udvega, Chara, Labha, Amrita, Kala"
+    },
+    {
+      "id": "S4-o",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "DATA EXTRACT: rendered 'Night Choghadiya' table, Saturday 1 August 2026 (sunset 20:26 to sunrise 05:57; eight parts of ~71.4 min).",
+      "snippet": "Night Choghadiya 08:26 PM — Labha, Udvega, Shubha, Amrita, Chara, Roga, Kala, Labha"
+    },
+    {
+      "id": "S4-p",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "DATA EXTRACT: rendered tables at ?date=02/08/2026 (Sunday 2 August 2026).",
+      "snippet": "Sunday day: Udvega, Chara, Labha, Amrita, Kala, Shubha, Roga, Udvega; night: Shubha, Amrita, Chara, Roga, Kala, Labha, Udvega, Shubha"
+    },
+    {
+      "id": "S4-q",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "DATA EXTRACT: rendered tables at ?date=03/08/2026 (Monday 3 August 2026).",
+      "snippet": "Monday day: Amrita, Kala, Shubha, Roga, Udvega, Chara, Labha, Amrita; night: Chara, Roga, Kala, Labha, Udvega, Shubha, Amrita, Chara"
+    },
+    {
+      "id": "S4-r",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "DATA EXTRACT: rendered tables at ?date=04/08/2026 (Tuesday 4 August 2026).",
+      "snippet": "Tuesday day: Roga, Udvega, Chara, Labha, Amrita, Kala, Shubha, Roga; night: Kala, Labha, Udvega, Shubha, Amrita, Chara, Roga, Kala"
+    },
+    {
+      "id": "S4-s",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "DATA EXTRACT: rendered tables at ?date=05/08/2026 (Wednesday 5 August 2026).",
+      "snippet": "Wednesday day: Labha, Amrita, Kala, Shubha, Roga, Udvega, Chara, Labha; night: Udvega, Shubha, Amrita, Chara, Roga, Kala, Labha, Udvega"
+    },
+    {
+      "id": "S4-t",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "DATA EXTRACT: rendered tables at ?date=06/08/2026 (Thursday 6 August 2026).",
+      "snippet": "Thursday day: Shubha, Roga, Udvega, Chara, Labha, Amrita, Kala, Shubha; night: Amrita, Chara, Roga, Kala, Labha, Udvega, Shubha, Amrita"
+    },
+    {
+      "id": "S4-u",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "DATA EXTRACT: rendered tables at ?date=07/08/2026 (Friday 7 August 2026). S4-n through S4-u together constitute a complete, directly-observed 7-weekday day/night starting-offset table.",
+      "snippet": "Friday day: Chara, Labha, Amrita, Kala, Shubha, Roga, Udvega, Chara; night: Roga, Kala, Labha, Udvega, Shubha, Amrita, Chara, Roga"
+    },
+    {
+      "id": "S4-v",
+      "parent": "S4",
+      "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. Modern commercial website, in copyright, no licence granted. Every snippet below is a ≤25-word verification extract for the research file ONLY and must not be reproduced on the site; the dossier paraphrases and cites the URL and access date. Retrieved by direct HTTP GET and parsed locally, so the wording below is text I saw in the response body, not a summary.",
+      "locator": "heading 'About Vaar Vela, Kaal Vela and Kaal Ratri'. These are overlay markers rendered ON TOP of the choghadiya cells, not choghadiya types; do not merge them into the seven-name set.",
+      "snippet": "Vaar Vela and Kaal Vela prevail during daytime while Kaal Ratri prevails during night time."
+    },
+    {
+      "id": "S5-a",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "DATA EXTRACT: static 'Day's Choghadiya Table', first row, columns in printed order Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday. Matches S4-n…S4-u exactly.",
+      "snippet": "Day's Choghadiya Table *Assuming sunrise is at 6:00 AM — From 6:00 AM: Udveg, Amrit, Rog, Labh, Shubha, Char, Kaal"
+    },
+    {
+      "id": "S5-b",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "DATA EXTRACT: static 'Night's Choghadiya Table', first row, columns Sunday→Saturday. Matches the night-column of S4-n…S4-u exactly.",
+      "snippet": "Night's Choghadiya Table *Assuming sunset is at 6:00 PM — first row: Shubha, Char, Kaal, Udveg, Amrit, Rog, Labh"
+    },
+    {
+      "id": "S5-c",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'What is Choghadiya?'",
+      "snippet": "It divides each day and night into 8 equal periods."
+    },
+    {
+      "id": "S5-d",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'How Today, Aaj ka Choghadiya is Calculated?'",
+      "snippet": "The sequence of Daytime and night time Choghadiya varies for each week day but remains the same for that specific day."
+    },
+    {
+      "id": "S5-e",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'How Today, Aaj ka Choghadiya is Calculated?' — the source's account of why 8 slots hold 7 names.",
+      "snippet": "Since there are seven Choghadiyas, each six Chaughadiyas get one division while the one Choghadiya gets 2 divisions."
+    },
+    {
+      "id": "S5-f",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "FAQ 1, 'What does Choghadiya mean?'",
+      "snippet": "There are 30 Ghadis from sunrise to sunset which is divided by 8."
+    },
+    {
+      "id": "S5-g",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "FAQ 1. INTERNALLY INCONSISTENT IN THE SOURCE: 96 minutes and 1.5 hours (90 minutes) are given in consecutive sentences. Flag, do not silently pick one.",
+      "snippet": "A Choghadiya is equivalent to 4 Ghadis (approximately 96 minutes). So, one Choghadiya lasts for about 1.5 hours."
+    },
+    {
+      "id": "S5-h",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'Choghadiya Meaning', sub-entry 'Udveg Choghadiya'.",
+      "snippet": "In Choghadiya, Udveg is the first muhurat which is ruled by planet Sun."
+    },
+    {
+      "id": "S5-i",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'Choghadiya Meaning', sub-entry 'Labh Choghadiya'.",
+      "snippet": "Labh is the second Choghadiya that is ruled by planet Mercury."
+    },
+    {
+      "id": "S5-j",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'Choghadiya Meaning', sub-entry 'Char Choghadiya'.",
+      "snippet": "Ruled by Venus, Char is the third Choghadiya"
+    },
+    {
+      "id": "S5-k",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'Choghadiya Meaning', sub-entry 'Rog Choghadiya'.",
+      "snippet": "The fourth Muhurat of Choghadiya, Rog is ruled by Planet Mars."
+    },
+    {
+      "id": "S5-l",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'Choghadiya Meaning', sub-entry 'Shubh Choghadiya'.",
+      "snippet": "Shubh Choghadiya is ruled by planet Jupiter and is considered very auspicious for performing any task."
+    },
+    {
+      "id": "S5-m",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'Choghadiya Meaning', sub-entry 'Kaal Choghadiya'.",
+      "snippet": "Kaal is an in-auspicious Choghadiya that is ruled by the malefic planet Saturn."
+    },
+    {
+      "id": "S5-n",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'Choghadiya Meaning', sub-entry 'Amrit Choghadiya' — ruler = Moon. S5-h…S5-n agree with S4-g…S4-m on all seven rulers.",
+      "snippet": "The last Muhurat of Choghadiya is ruled by the planet the Moon."
+    },
+    {
+      "id": "S5-o",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "heading 'What is Choghadiya?' — the idealisation behind the static table's clock times; the live table uses real sunrise.",
+      "snippet": "Din ka Choghadiya for weekdays assumes sunrise at 6:00 AM."
+    },
+    {
+      "id": "S5-p",
+      "parent": "S5",
+      "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Independent second witness to the weekday table — and the only source found that PRINTS the full 7-weekday day and night tables as static tables rather than requiring them to be read off dated pages.",
+      "locator": "DATA EXTRACT / SOURCE DEFECT: the night table's row labels read 'From 6:00 AM', 'From 7:30 AM' … 'From 4:30 PM', i.e. the daytime labels were copied. Contradicts the table's own '*Assuming sunset is at 6:00 PM'. The NAMES are still usable; the clock labels are not.",
+      "snippet": "Night's Choghadiya Table *Assuming sunset is at 6:00 PM … From 6:00 AM … From 7:30 AM"
+    },
+    {
+      "id": "S6-a",
+      "parent": "S6",
+      "cite": "AstroSage, 'Choghadiya: Chogadia for Saturday, August 1, 2026' (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/chogadia.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Third independent witness for the Saturday sequences.",
+      "locator": "DATA EXTRACT: rendered 'Day Choghadiya' table, Saturday 1 August 2026 (sunrise 05:42, sunset 19:12; eight parts of ~101 min). Sequence identical to S4-n and S5-a's Saturday column.",
+      "snippet": "Kaal 05:42-07:23; Shoobh 07:23-09:05; Rog 09:05-10:46; Udveg 10:46-12:27; Chal 12:27-14:08; Laabh 14:08-15:50; Amrut 15:50-17:31; Kaal 17:31-19:12"
+    },
+    {
+      "id": "S6-b",
+      "parent": "S6",
+      "cite": "AstroSage, 'Choghadiya: Chogadia for Saturday, August 1, 2026' (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/chogadia.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Third independent witness for the Saturday sequences.",
+      "locator": "DATA EXTRACT: rendered 'Night Choghadiya' table, same date. Sequence identical to S4-o and S5-b's Saturday column.",
+      "snippet": "Laabh 19:12-20:31; Udveg 20:31-21:50; Shoobh 21:50-23:08; Amrut 23:08-00:27; Chal 00:27-01:46; Rog 01:46-03:05; Kaal 03:05-04:23; Laabh 04:23-05:42"
+    },
+    {
+      "id": "S6-c",
+      "parent": "S6",
+      "cite": "AstroSage, 'Choghadiya: Chogadia for Saturday, August 1, 2026' (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/chogadia.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Third independent witness for the Saturday sequences.",
+      "locator": "heading 'How to calculate Chaughadia'. The '90 minutes' holds only for the idealised 12-hour day; the site's own rendered table gives ~101 min.",
+      "snippet": "For Day Choghadiya, we need to calculate the time between sunrise and sunset and divide it by 8, which is 90 minutes."
+    },
+    {
+      "id": "S6-d",
+      "parent": "S6",
+      "cite": "AstroSage, 'Choghadiya: Chogadia for Saturday, August 1, 2026' (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/chogadia.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Third independent witness for the Saturday sequences.",
+      "locator": "heading 'Meaning of Chaughadia'. SOURCE ERROR: 3.75 ghati is 90 minutes, not 4 hours. Record as evidence of Tier C reliability, do not repeat.",
+      "snippet": "Each Chaughadia is of 3.75 ghati, i.e about 4 hours."
+    },
+    {
+      "id": "S6-e",
+      "parent": "S6",
+      "cite": "AstroSage, 'Choghadiya: Chogadia for Saturday, August 1, 2026' (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/chogadia.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Third independent witness for the Saturday sequences.",
+      "locator": "opening paragraph — the only regional-provenance statement found in any source retrieved this round.",
+      "snippet": "It is used mostly in western states of India."
+    },
+    {
+      "id": "S6-f",
+      "parent": "S6",
+      "cite": "AstroSage, 'Choghadiya: Chogadia for Saturday, August 1, 2026' (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/chogadia.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Third independent witness for the Saturday sequences.",
+      "locator": "heading 'Types of Choghadiya'. Note this source uses 'Chal' where S4/S5 use 'Char/Chara/Chanchal'.",
+      "snippet": "There are basically 7 types of choghadiyas (Muhurats), viz Udveg, Chal, Labh, Amrit, Kaal, Shubh and Rog."
+    },
+    {
+      "id": "S6-g",
+      "parent": "S6",
+      "cite": "AstroSage, 'Choghadiya: Chogadia for Saturday, August 1, 2026' (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/chogadia.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally. Third independent witness for the Saturday sequences.",
+      "locator": "heading 'What is Choghadiya?' — 8 day + 8 night.",
+      "snippet": "A day contains 24 hours and is divided into 16 parts in Chaughadiya."
+    },
+    {
+      "id": "S7-a",
+      "parent": "S7",
+      "cite": "DrikPanchang, 'Shubha Horai, Auspicious Times, Today Hora Table' for 1 August 2026 (accessed 2026-08-01), geolocated to Marcellus, New York",
+      "url": "https://www.drikpanchang.com/muhurat/hora.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "heading 'Hora cycle', in the sentence deriving horā from (a)horā(tra).",
+      "snippet": "In Vedic time keeping, it is the duration from one sunrise to next sunrise."
+    },
+    {
+      "id": "S7-b",
+      "parent": "S7",
+      "cite": "DrikPanchang, 'Shubha Horai, Auspicious Times, Today Hora Table' for 1 August 2026 (accessed 2026-08-01), geolocated to Marcellus, New York",
+      "url": "https://www.drikpanchang.com/muhurat/hora.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "heading 'Hora cycle'.",
+      "snippet": "There are 7 different Hora and total 24 Hora in a day. All seven Hora are cyclic and rotate in a constant fixed cycle"
+    },
+    {
+      "id": "S7-c",
+      "parent": "S7",
+      "cite": "DrikPanchang, 'Shubha Horai, Auspicious Times, Today Hora Table' for 1 August 2026 (accessed 2026-08-01), geolocated to Marcellus, New York",
+      "url": "https://www.drikpanchang.com/muhurat/hora.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "'Notes' block immediately under the rendered hora table.",
+      "snippet": "In Panchang day starts and ends with sunrise."
+    },
+    {
+      "id": "S7-d",
+      "parent": "S7",
+      "cite": "DrikPanchang, 'Shubha Horai, Auspicious Times, Today Hora Table' for 1 August 2026 (accessed 2026-08-01), geolocated to Marcellus, New York",
+      "url": "https://www.drikpanchang.com/muhurat/hora.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "DATA EXTRACT: rendered 'Day Hora' table, Saturday 1 August 2026. Twelve entries spanning sunrise 05:56 to sunset 20:26, each ~72–73 min (05:56–07:09, 07:09–08:21 …). Demonstrates SEASONAL, not 60-minute, horās.",
+      "snippet": "Day Hora 05:56 AM — Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Sun, Venus"
+    },
+    {
+      "id": "S7-e",
+      "parent": "S7",
+      "cite": "DrikPanchang, 'Shubha Horai, Auspicious Times, Today Hora Table' for 1 August 2026 (accessed 2026-08-01), geolocated to Marcellus, New York",
+      "url": "https://www.drikpanchang.com/muhurat/hora.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "DATA EXTRACT: rendered 'Night Hora' table, same date. Night entries are ~48 min (night length 9h30m ÷ 12). Two facts: (i) night horās are shorter than day horās, (ii) the planetary cycle CONTINUES across sunset without resetting — Venus (last day horā) is followed by Mercury. Contrast Choghadiya, which does reset at sunset.",
+      "snippet": "Night Hora 08:26 PM — Mercury 08:26–09:14 PM, Moon 09:14 PM …"
+    },
+    {
+      "id": "S7-f",
+      "parent": "S7",
+      "cite": "DrikPanchang, 'Shubha Horai, Auspicious Times, Today Hora Table' for 1 August 2026 (accessed 2026-08-01), geolocated to Marcellus, New York",
+      "url": "https://www.drikpanchang.com/muhurat/hora.html",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "section 'Sun Hora / Surya Hora' under 'Significance of Seven Hora'. Parallel sentences appear for Venus/Friday, Mercury/Wednesday, Moon/Monday, Saturn/Saturday, Jupiter/Thursday, Mars/Tuesday — i.e. all seven day-lord anchors are stated on this page.",
+      "snippet": "It is first Hora on Ravivara or Sunday"
+    },
+    {
+      "id": "S8-a",
+      "parent": "S8",
+      "cite": "AstroSage, \"Today's Hora Muhurat: Shubha Horai\" for 1 August 2026 (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/hora.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "heading 'How to Calculate Hora Muhurat?'. The clearest Tier C statement of the seasonal-horā division; agrees with al-Bīrūnī S3-i.",
+      "snippet": "There are 12 Horas each in a day and night. Hereby, the duration of Day and Night is further divided into 12 equal parts"
+    },
+    {
+      "id": "S8-b",
+      "parent": "S8",
+      "cite": "AstroSage, \"Today's Hora Muhurat: Shubha Horai\" for 1 August 2026 (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/hora.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "heading 'How to Calculate Hora Muhurat?'. The '6th weekday-lord onward' formulation of the same descending order given at S1-e.",
+      "snippet": "First Hora of a specific day is of the Day Lord and second hora is of 6th Day Lord from the day itself"
+    },
+    {
+      "id": "S8-c",
+      "parent": "S8",
+      "cite": "AstroSage, \"Today's Hora Muhurat: Shubha Horai\" for 1 August 2026 (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/hora.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "heading 'How to Calculate Hora Muhurat?', worked example continuing S8-b.",
+      "snippet": "If today is Sunday, so First Hora will be of Sun, Second hora will be the 6th day lord i.e. Venus, Third Mercury"
+    },
+    {
+      "id": "S8-d",
+      "parent": "S8",
+      "cite": "AstroSage, \"Today's Hora Muhurat: Shubha Horai\" for 1 August 2026 (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/hora.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "heading 'How to Calculate Hora Muhurat?'. The very next sentence qualifies it: 'However; this can be changed as the same is dependent upon total period from one Sunrise to another.' Keep both halves — the '1 hour' is an approximation the source itself retracts.",
+      "snippet": "There are 24 Horas in a day that comes around the duration of approx 1 hour."
+    },
+    {
+      "id": "S8-e",
+      "parent": "S8",
+      "cite": "AstroSage, \"Today's Hora Muhurat: Shubha Horai\" for 1 August 2026 (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/hora.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "DATA EXTRACT: rendered 'Chart on Graha Hora day and night Timings', Saturday 1 August 2026. Day horās ≈68 min (13h30m ÷ 12), night horās ≈53 min (10h30m ÷ 12). Independent confirmation of the seasonal division, at a different latitude from S7.",
+      "snippet": "Sunrise: 05:42 Sunset: 19.12 — Saturn 005:42-006:50; Jupiter 006:50-007:57; Mercury 019:12-020:05; Moon 020:05-020:57"
+    },
+    {
+      "id": "S8-f",
+      "parent": "S8",
+      "cite": "AstroSage, \"Today's Hora Muhurat: Shubha Horai\" for 1 August 2026 (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/hora.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "introductory paragraph, presented as 'the following verse (shlok)'. PROVENANCE GAP IN THE SOURCE: no text, author, chapter or verse number is given anywhere on the page. Unattributable as fetched; must not be cited to any named work.",
+      "snippet": "यस्य ग्रहस्य वारे यत्किंचित्कर्म प्रकीर्तित:। तत्तस्य काल होरायां सर्वमेव विधीयते।।"
+    },
+    {
+      "id": "S8-g",
+      "parent": "S8",
+      "cite": "AstroSage, \"Today's Hora Muhurat: Shubha Horai\" for 1 August 2026 (accessed 2026-08-01)",
+      "url": "https://www.astrosage.com/hora.asp",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. Retrieved by direct HTTP GET and parsed locally.",
+      "locator": "heading 'How to Calculate Hora Muhurat?'.",
+      "snippet": "Out of 7 days a week, every day has its own planetary Lord viz Sun-Sunday, Moon-Monday, Mars-Tuesday, Mercury-Wednesday, Jupiter-Thursday, Venus-Friday and Saturn-Saturday."
+    },
+    {
+      "id": "S9-a",
+      "parent": "S9",
+      "cite": "Prokerala, \"Hora | Today's Horai Timings | Horai Calculator\" (accessed 2026-08-01)",
+      "url": "https://www.prokerala.com/astrology/hora.php",
+      "fetched": true,
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. IMPORTANT CAVEAT ON THIS RECORD: unlike S4–S8, this page was NOT retrieved and parsed by me directly — it came back through the WebFetch extraction model, so the two snippets below are that model's report of the page's wording, not bytes I read myself. Treat as second-hand and re-verify before citing. Included only because it is a fourth, geographically independent data point on horā length. COMPILER NOTE: relayed by an extraction model, not read as bytes. Cited nowhere in entries[] or goldenValues[].",
+      "locator": "explanatory prose on the hora page, as relayed by the fetch extractor. SECOND-HAND — re-verify.",
+      "snippet": "Hora timing is based on week day and sunrise - sunset time on that particular day.",
+      "secondHand": true
+    },
+    {
+      "id": "S9-b",
+      "parent": "S9",
+      "cite": "Prokerala, \"Hora | Today's Horai Timings | Horai Calculator\" (accessed 2026-08-01)",
+      "url": "https://www.prokerala.com/astrology/hora.php",
+      "fetched": true,
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "cite-only. In-copyright commercial site. IMPORTANT CAVEAT ON THIS RECORD: unlike S4–S8, this page was NOT retrieved and parsed by me directly — it came back through the WebFetch extraction model, so the two snippets below are that model's report of the page's wording, not bytes I read myself. Treat as second-hand and re-verify before citing. Included only because it is a fourth, geographically independent data point on horā length. COMPILER NOTE: relayed by an extraction model, not read as bytes. Cited nowhere in entries[] or goldenValues[].",
+      "locator": "DATA EXTRACT, as relayed by the fetch extractor: first three rows of the 1 August 2026 hora table, ~63 min each — i.e. seasonal, not 60-minute. SECOND-HAND — re-verify before use.",
+      "snippet": "Saturn 05:57 AM – 07:00 AM; Jupiter 07:00 – 08:03; Mars 08:03 – 09:06",
+      "secondHand": true
+    },
+    {
+      "id": "S10-a",
+      "parent": "S10",
+      "cite": "Wikipedia (English), 'Choghadiya', article wikitext as retrieved 2026-08-01",
+      "url": "https://en.wikipedia.org/w/index.php?title=Choghadiya&action=raw",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "NOT pd-us. Wikipedia text is CC BY-SA 4.0 — share-alike, which is not among the four verdicts FRAMING §4.1 permits (pd-us, cc0, cc-by, cite-only). Treat as cite-only for reproduction. Retrieved as raw wikitext by direct HTTP GET, so markup below is the article's own.",
+      "locator": "lead sentence. Its sole footnote is Chitkara 2005 (see S10-f), which I could not open.",
+      "snippet": "'''Choghadiya''' ({{IAST|Chogaḍīā}}) refers to an auspicious period of ninety-eight minutes in Indian astrology."
+    },
+    {
+      "id": "S10-b",
+      "parent": "S10",
+      "cite": "Wikipedia (English), 'Choghadiya', article wikitext as retrieved 2026-08-01",
+      "url": "https://en.wikipedia.org/w/index.php?title=Choghadiya&action=raw",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "NOT pd-us. Wikipedia text is CC BY-SA 4.0 — share-alike, which is not among the four verdicts FRAMING §4.1 permits (pd-us, cc0, cc-by, cite-only). Treat as cite-only for reproduction. Retrieved as raw wikitext by direct HTTP GET, so markup below is the article's own.",
+      "locator": "section 'Etymology'. CONTRADICTS the lead's 'ninety-eight minutes' in the same article.",
+      "snippet": "''Cho-ghadiya'' means four ''ghadi'' which totals to 96 minutes. Most of choghadiya are of a figure around 96 minutes."
+    },
+    {
+      "id": "S10-c",
+      "parent": "S10",
+      "cite": "Wikipedia (English), 'Choghadiya', article wikitext as retrieved 2026-08-01",
+      "url": "https://en.wikipedia.org/w/index.php?title=Choghadiya&action=raw",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "NOT pd-us. Wikipedia text is CC BY-SA 4.0 — share-alike, which is not among the four verdicts FRAMING §4.1 permits (pd-us, cc0, cc-by, cite-only). Treat as cite-only for reproduction. Retrieved as raw wikitext by direct HTTP GET, so markup below is the article's own.",
+      "locator": "section 'Method of calculation' → 'Example'. A THIRD figure in the same article. 98 / 96 / 90.125 minutes are all asserted by this one page.",
+      "snippet": "each daytime Choghadiya lasts 721/8 = 90.125 minutes = 1 hour 30 minutes 7.5 seconds"
+    },
+    {
+      "id": "S10-d",
+      "parent": "S10",
+      "cite": "Wikipedia (English), 'Choghadiya', article wikitext as retrieved 2026-08-01",
+      "url": "https://en.wikipedia.org/w/index.php?title=Choghadiya&action=raw",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "NOT pd-us. Wikipedia text is CC BY-SA 4.0 — share-alike, which is not among the four verdicts FRAMING §4.1 permits (pd-us, cc0, cc-by, cite-only). Treat as cite-only for reproduction. Retrieved as raw wikitext by direct HTTP GET, so markup below is the article's own.",
+      "locator": "section 'Method of calculation'. Agrees with S4-b, S5-c, S6-c on the arithmetic.",
+      "snippet": "Each period contains eight Choghadiya's. The daytime difference is arrived at by calculating the difference between Sunrise and Sunset and dividing the same by 8."
+    },
+    {
+      "id": "S10-e",
+      "parent": "S10",
+      "cite": "Wikipedia (English), 'Choghadiya', article wikitext as retrieved 2026-08-01",
+      "url": "https://en.wikipedia.org/w/index.php?title=Choghadiya&action=raw",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "NOT pd-us. Wikipedia text is CC BY-SA 4.0 — share-alike, which is not among the four verdicts FRAMING §4.1 permits (pd-us, cc0, cc-by, cite-only). Treat as cite-only for reproduction. Retrieved as raw wikitext by direct HTTP GET, so markup below is the article's own.",
+      "locator": "article-top maintenance templates — the article has been flagged as unsourced since 2012 and as needing rewrite since 2023.",
+      "snippet": "{{no footnotes|date=July 2012}} {{Cleanup rewrite|date=March 2023}}"
+    },
+    {
+      "id": "S10-f",
+      "parent": "S10",
+      "cite": "Wikipedia (English), 'Choghadiya', article wikitext as retrieved 2026-08-01",
+      "url": "https://en.wikipedia.org/w/index.php?title=Choghadiya&action=raw",
+      "fetched": true,
+      "fetchOutcome": "read-full",
+      "tier": "C",
+      "pd": "NOT pd-us. Wikipedia text is CC BY-SA 4.0 — share-alike, which is not among the four verdicts FRAMING §4.1 permits (pd-us, cc0, cc-by, cite-only). Treat as cite-only for reproduction. Retrieved as raw wikitext by direct HTTP GET, so markup below is the article's own.",
+      "locator": "the article's single <ref>. The ONLY source cited by the only encyclopedia article on Choghadiya is a glossary of Buddhist terms. NOTE ALSO: this article contains no planetary rulers and no weekday starting table at all.",
+      "snippet": "Chitkara, Madan G. … Encyclopaedia of Buddhism: Glossary of Buddhism Terms V. 21 … APH Publishing Corporation … pages=87"
+    }
+  ],
+  "ledgerProvenance": {
+    "note": "sources[] is the round-2 fetcher ledger expanded to one row per snippet id, so that every sid this dossier cites resolves inside this file. cite / url / tier / pd / fetchOutcome are copied from the parent ledger record; locator is the fetcher's locus; snippet is the fetcher's verbatim text, transcribed programmatically rather than retyped.",
+    "parentRecords": [
+      {
+        "id": "S1",
+        "cite": "Sūrya Siddhānta, trans. Ebenezer Burgess, 'Translation of the Sûrya-Siddhânta: A Text-Book of Hindu Astronomy, with Notes and an Appendix' — first published Journal of the American Oriental Society vol. 6 (1860); read in the Calcutta reprint of the 1860 edition (ed. P. Gangooly, 1935). THIS RECORD COVERS THE TRANSLATED VERSES ONLY; Burgess's own notes are ledgered separately as S2.",
+        "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+        "tier": "A",
+        "fetchOutcome": "read-full",
+        "snippetCount": 8
+      },
+      {
+        "id": "S2",
+        "cite": "Ebenezer Burgess, translator's notes and commentary in 'Translation of the Sûrya-Siddhânta' (1860). Separated from S1 because these are the 19th-century translator's own annotations, not the Sanskrit text, and several are now dated or contested.",
+        "url": "https://archive.org/download/SuryaSiddhantaTranslation/surya_siddhanta_english_djvu.txt",
+        "tier": "B",
+        "fetchOutcome": "read-full",
+        "snippetCount": 10
+      },
+      {
+        "id": "S3",
+        "cite": "Abū Rayḥān al-Bīrūnī, 'Kitāb fī taḥqīq mā li-l-Hind' (c. AD 1030), trans. Edward C. Sachau, 'Alberuni's India', vol. i (London: Kegan Paul, Trench, Trübner & Co., 1910; first edition 1888)",
+        "url": "https://archive.org/download/alberunisindiaac01biru/alberunisindiaac01biru_djvu.txt",
+        "tier": "A",
+        "fetchOutcome": "read-full",
+        "snippetCount": 15
+      },
+      {
+        "id": "S4",
+        "cite": "DrikPanchang, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table' (accessed 2026-08-01). Rendered tables retrieved for seven consecutive days, 1–7 August 2026, geolocated to Marcellus, New York.",
+        "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+        "tier": "C",
+        "fetchOutcome": "read-full",
+        "snippetCount": 22
+      },
+      {
+        "id": "S5",
+        "cite": "mPanchang, 'Saturday, August 01, 2026 Choghadiya — Aaj Ka Choghadiya, Choghadiya Table, Today Shubh Kaal & Daily Muhurt' (accessed 2026-08-01), rendered for New Delhi",
+        "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+        "tier": "C",
+        "fetchOutcome": "read-full",
+        "snippetCount": 16
+      },
+      {
+        "id": "S6",
+        "cite": "AstroSage, 'Choghadiya: Chogadia for Saturday, August 1, 2026' (accessed 2026-08-01)",
+        "url": "https://www.astrosage.com/chogadia.asp",
+        "tier": "C",
+        "fetchOutcome": "read-full",
+        "snippetCount": 7
+      },
+      {
+        "id": "S7",
+        "cite": "DrikPanchang, 'Shubha Horai, Auspicious Times, Today Hora Table' for 1 August 2026 (accessed 2026-08-01), geolocated to Marcellus, New York",
+        "url": "https://www.drikpanchang.com/muhurat/hora.html",
+        "tier": "C",
+        "fetchOutcome": "read-full",
+        "snippetCount": 6
+      },
+      {
+        "id": "S8",
+        "cite": "AstroSage, \"Today's Hora Muhurat: Shubha Horai\" for 1 August 2026 (accessed 2026-08-01)",
+        "url": "https://www.astrosage.com/hora.asp",
+        "tier": "C",
+        "fetchOutcome": "read-full",
+        "snippetCount": 7
+      },
+      {
+        "id": "S9",
+        "cite": "Prokerala, \"Hora | Today's Horai Timings | Horai Calculator\" (accessed 2026-08-01)",
+        "url": "https://www.prokerala.com/astrology/hora.php",
+        "tier": "C",
+        "fetchOutcome": "read-partial",
+        "snippetCount": 2
+      },
+      {
+        "id": "S10",
+        "cite": "Wikipedia (English), 'Choghadiya', article wikitext as retrieved 2026-08-01",
+        "url": "https://en.wikipedia.org/w/index.php?title=Choghadiya&action=raw",
+        "tier": "C",
+        "fetchOutcome": "read-full",
+        "snippetCount": 6
+      }
+    ],
+    "attemptedAndFailed": [
+      {
+        "cite": "Sūrya Siddhānta, Sanskrit original of xii.78–79 (GRETIL machine-readable e-text)",
+        "url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/4_rellit/tantra/suryasi_u.htm and http://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_suuryasiddhaanta.xml",
+        "why": "Both candidate URLs returned HTTP 404. CONSEQUENCE THE COMPILER MUST HONOUR: I never saw the Sanskrit of xii.78–79. The word horā in that verse is attested to me ONLY through Burgess's parenthetical transliteration inside his English translation (S1-h). Do not assert the Devanagari or the Sanskrit wording of the verse from this ledger."
+      },
+      {
+        "cite": "Sūrya Siddhānta, Sanskrit text — targeted web search for the verse (होरा / होराधिपाः / शनैश्चरात्)",
+        "url": "web search, multiple queries",
+        "why": "Searches returned only bibliographic pages (dharmawiki, exoticindiaart, hi.wikipedia, archive.org listing pages) and no retrievable verse text for xii.78–79. Gap stands."
+      },
+      {
+        "cite": "Al-Bīrūnī, Alberuni's India — archive.org item 'AlberunisIndia' (1914 printing)",
+        "url": "https://archive.org/download/AlberunisIndia/Alberuni%27s-India_djvu.txt",
+        "why": "Downloaded successfully (1.67 MB) but the OCR is unusable — a grep for 'hora' returns only garbage ('thora', 'Thora', 'Chorasmia', 'philosophora'). Abandoned and replaced with the 1910 scan alberunisindiaac01biru, which OCR'd cleanly. A first attempt at https://archive.org/download/AlberunisIndia/AlberunisIndia_djvu.txt returned a 146-byte stub (wrong filename)."
+      },
+      {
+        "cite": "Burgess, Translation of the Surya-Siddhanta — archive.org item in.ernet.dli.2015.69065",
+        "url": "https://archive.org/download/in.ernet.dli.2015.69065/in.ernet.dli.2015.69065_djvu.txt",
+        "why": "Download returned a 146-byte stub, no text. Cross-check was obtained instead from archive.org item dli.calcutta.10431 (file cu_pub720_djvu.txt), which worked and confirmed the S1/S2 wording."
+      },
+      {
+        "cite": "DrikPanchang hora-timings reference page",
+        "url": "https://www.drikpanchang.com/panchang/hora-timings.html",
+        "why": "HTTP 404. The hora material was obtained instead from https://www.drikpanchang.com/muhurat/hora.html (ledgered as S7)."
+      },
+      {
+        "cite": "DrikPanchang hora page via the WebFetch extractor",
+        "url": "https://www.drikpanchang.com/muhurat/hora.html",
+        "why": "The WebFetch extraction model returned only two short passages and explicitly reported it could not find the day/night division, the weekday first-lord rule, or the worked example — all of which ARE on the page. Recorded because a bare 'not found' from that tool is not evidence of absence. Re-fetched by direct HTTP GET and parsed locally, which yielded the full text (S7). Same pattern applies to S9, which I did NOT manage to re-fetch directly."
+      },
+      {
+        "cite": "Chitkara, Madan G., Encyclopaedia of Buddhism: Glossary of Buddhism Terms, vol. 21 (APH Publishing, 2005), p. 87",
+        "url": "https://books.google.com/books?id=BYIkAQAAIAAJ&q=Choghadiya",
+        "why": "Not viewable. Google Books reports '1 page matching Choghadiya in this book' but displays no snippet — no-preview/snippet-limited. This is the SOLE source behind Wikipedia's 'ninety-eight minutes' figure (S10-a), so that figure is unverified at its root and should not be repeated as though sourced."
+      },
+      {
+        "cite": "Peer-reviewed / academic scholarship on Choghadiya (any)",
+        "url": "web search: '\"choghadiya\" OR \"chaughadiya\" muhurta scholarly study Gujarati panchang eight divisions history academic'; and '\"Muhurta Chintamani\" OR \"Muhurta Martanda\" chaughadiya choghadiya classical Sanskrit muhurta text eight parts day'",
+        "why": "NOTHING FOUND. Both searches returned exclusively commercial panchāṅga sites (mpanchang, drikpanchang, astrosage, astroyogi, shubhpanchang) plus bookseller listings for Muhūrtacintāmaṇi. No Tier A classical Sanskrit text naming Choghadiya and no Tier B peer-reviewed treatment surfaced. I therefore retrieved NO evidence that Choghadiya is attested in any classical muhūrta text — but note this is a failed search, not a proven absence: I did not read Muhūrtacintāmaṇi, Muhūrtamārtaṇḍa or any Gujarati/Marathi printed pañcāṅga. Any 'confirmed gap' claim needs that reading first."
+      },
+      {
+        "cite": "Ernst Wilhelm, Classical Muhurta (practitioner monograph)",
+        "url": "https://storage.yandexcloud.net/j108/library/o28vzqko/Ernst_Wilhelm_-_Classical_Muhurta.pdf",
+        "why": "Deliberately NOT fetched. A complete in-copyright book posted on a third-party file host with no evidence of licence; under FRAMING §4.1/§4.4 it would be cite-only regardless, so retrieving it could not have produced a quotable snippet."
+      },
+      {
+        "cite": "David Pingree, The Yavanajātaka of Sphujidhvaja (HOS 48, 1978) and Jyotiḥśāstra: Astral and Mathematical Literature (1981) — the standard Tier B scholarship on the Indian horā",
+        "url": "none — no open full text located",
+        "why": "NOT RETRIEVED, and I want this stated plainly rather than implied: I did not fetch, read, or quote either work in this round. No Tier B peer-reviewed source on the Vedic horā appears anywhere in this ledger. The Tier A weight rests entirely on Sūrya Siddhānta (S1) and al-Bīrūnī/Sachau (S3); Burgess's 1860 notes (S2) are the only Tier B material, and they are 19th-century and partly contradicted by S3."
+      },
+      {
+        "cite": "Bṛhat Parāśara Horā Śāstra / Bṛhat Jātaka — for the competing sense of 'horā'",
+        "url": "none fetched",
+        "why": "Not retrieved. The distinction between horā = hour and horā = half-sign (D-2 varga) is attested in this ledger ONLY by al-Bīrūnī (S3-d) and Burgess (S2-g), both of whom note the double sense. No jyotiṣa text asserting the half-sign sense was fetched, so do not cite BPHS or Bṛhat Jātaka from this ledger."
+      }
+    ]
+  }
+}

@@ -1,0 +1,2064 @@
+{
+  "key": "zmanim",
+  "system": "Jewish sha'ot zemaniyot (שעות זמניות, \"seasonal\" or \"proportional\" hours) — the halachic division of the daytime span into twelve equal parts, so that an hour lengthens in summer and shortens in winter, and every rabbinically fixed time of day (latest Shema, latest morning prayer, chatzot, mincha gedola, mincha ketana, plag ha-mincha) is stated as a count of them. Rema names the unit in his gloss to Shulchan Arukh, Orach Chayim 233:1 (S7-a). This dossier's subject is narrower than the hours themselves: it is the set of opinions that CHANGE THE CLOCK — where the twelve-fold span starts and ends (Magen Avraham vs. the Vilna Gaon), whether the dawn and dusk intervals are measured in fixed minutes or in solar depression angles, and whether \"sunrise\" names the sea-level geometric event, an elevation-adjusted one, or the visibly observed one. This is current religious practice for millions of people, computed daily by printed luchot, synagogue boards and phone apps; it is not a historical curiosity, and it carries no claim of predictive or operative validity of any kind.",
+  "scopeNote": "COMPILED UNDER THE FETCHER/COMPILER SPLIT (RESEARCH-PROTOCOL C3). Every claim below cites one or more snippet ids (sids) from the fetcher's ledger; nothing is cited from the compiler's own knowledge and no source was introduced. Where the ledger does not support a row, there is no row and the absence is recorded in gaps[].\n\nQUOTATION POLICY, STATED ONCE AND FOLLOWED. Verbatim text appears in this file only from sources the fetcher verified as public domain in the United States or CC0 — the Lemberg 1893 Shulchan Arukh / Magen Avraham / Beur HaGra digitisations, the Warsaw 1882 Terumat ha-Deshen, the Vilna Shas Rashi, the Warsaw 1884–1907 Mishnah Berurah and Biur Halacha, the Torat Emet Rambam and Mishnah digitisations, the 1901–06 Jewish Encyclopedia, and Sefaria's CC0 community translations. Everything else in the ledger — the William Davidson (Steinsaltz/Koren) Talmud and Mishnah English, Touger's Mishneh Torah, Peninei Halakhah, the Kehot Shulchan Aruch HaRav, Gewirtz, KosherJava, MyZmanim, Jewish Action, royzmanim.com — is CC-BY-NC, LGPL or in copyright. None of those is one of FRAMING §4.1's four permitted verdicts, so they are cite-only: paraphrased here, never reproduced. The fetcher's ledger holds their verbatim words for verification; this dossier holds only the sid.\n\nMISHNAH BERURAH 58:4, ONE RULING MADE EXPLICIT. Sefaria reports the licence of the only digitisation it holds for this se'if katan as \"unknown\". The underlying work was published Warsaw 1884–1907, i.e. before 1931, so the words are public domain in the United States and are quoted here; an unlicensed digitisation cannot create a new copyright in them. The unresolved digitisation status is treated as a transcription-accuracy caveat, not a copyright one. (This follows the phase-1 report's finding C4, which held the round-1 cite-only label to be the error.)",
+  "dayStart": "THE START OF THE TWELVE-FOLD SPAN IS THE DISPUTE, NOT A SETTLED VALUE. That is the single most important fact about this system, and an engine must carry the opinion as a parameter rather than pick a default.\n\nBoth positions stand in one sentence of the Mishnah Berurah at OC 58:4: ומונין אלו הג' שעות מזמן עמוד השחר כן כתב המ\"א ודעת הגר\"א משעת הנץ החמה — we count these three hours from amud ha-shachar, so wrote the Magen Avraham; and the opinion of the Gra is from the time of ha-netz ha-chamah (S11-a; Warsaw 1884–1907, term expired, public domain in the United States).\n\n(a) MAGEN AVRAHAM — alot ha-shachar to tzeit ha-kochavim. The Magen Avraham's own words at OC 58:1: נ\"ל דהכא לכ\"ע מנינן מעלות השחר — it appears to me that here, by all opinions, we count from alot ha-shachar (S10-a; first published Dyhernfurth 1692, digitised from a 19th-century NLI imprint, term expired, public domain in the United States). Mishnah Berurah 443:8 sets the two schemes side by side and assigns this one to many Acharonim: וחושבין את היום מעלות השחר עד צאת הכוכבים כ\"כ הרבה אחרונים וי\"א דחושבין מהנץ החמה עד עת השקיעה (S12-a). The scheme is older than the Magen Avraham: Terumat ha-Deshen I:1, mid-15th century, already computes plag ha-mincha on a summer day of some eighteen hours מעלות השחר עד צאת הכוכבים (S16-a; Warsaw 1882, term expired, PD-US). The Zemaneh Yosef implementers name the Terumat ha-Deshen alongside the Magen Avraham for exactly this reason (S25-b, paraphrased, in copyright). Touger's footnote to Hilchot Kriat Shema 1:11 and Gewirtz's Ḥakirah article state it in English (S5-a, S19-b; both cite-only, paraphrased).\n\n(b) VILNA GAON — ha-netz ha-chamah to shki'at ha-chamah. Mishnah Berurah 443:8 continues, immediately after S12-a: ודעת הגר\"א כמותם ולכתחלה טוב להחמיר כדעה א' — the Gra's opinion is like theirs, and lechatchila it is good to be stringent per the first view (S12-b). Shulchan Aruch HaRav OC 443:4 states the sunrise-to-sunset day explicitly (S17-a; Kehot vocalized edition is CC-BY-NC, paraphrased here, not quoted). Gewirtz states it as one of the two fundamental areas in zemanim (S19-a), and the Zemaneh Yosef FAQ states it as the practical rule (S25-a); both paraphrased.\n\nFIRST CONFLICT, KEPT. The Shulchan Aruch HaRav defines the day as netz-to-shki'ah at OC 443:4 (S17-a) and counts the three hours of Shema from alot ha-shachar at OC 58:3 (S17-c); Touger's footnote places the Shulchan Aruch HaRav with the Vilna Gaon (S5-b). Three snippets, two of them from the same author. This dossier does not pick.\n\nSECOND CONFLICT, KEPT. \"Alot to tzeit\" is not one arithmetic. Gewirtz records that the evening endpoint of the Magen Avraham calculation, which falls after sunset, is itself in dispute (S19-c, paraphrased). Any implementation offering a single column labelled MGA is offering a family of arithmetics under one label.\n\nTHIRD THING, AND IT IS AN ARITHMETIC TRAP FOR AN IMPLEMENTER. Gewirtz reports the practical paradox that computing sha'ot zemaniyot on the Magen Avraham's opinion requires first computing with the Gaon's endpoints, because the dawn and dusk offsets are themselves defined relative to sunrise and sunset (S26-d, paraphrased).\n\nWHAT THIS LEDGER DOES NOT ESTABLISH. The rollover of the halachic CALENDAR day — the evening boundary at which the date, Shabbat and festivals change — is a different question from the start of the twelve-fold daytime span, and no snippet in this ledger addresses it. It is recorded in gaps[] rather than supplied from memory.",
+  "divisionRule": "TWELVE, ALWAYS, WHATEVER THE DAY'S LENGTH. Nothing is rounded to sixty minutes.\n\nThe naming statement is Rema's gloss to Shulchan Arukh OC 233:1: ומשערינן שעות אלו לפי ענין היום ואף אם היום ארוך משערינן לי\"ב שעות והם נקראים שעות זמניות — we measure these hours according to the character of the day, and even if the day is long we measure it as twelve hours, and these are called sha'ot zemaniyot (S7-a; Maginei Eretz, Lemberg 1893, term expired, public domain in the United States). The fetcher records that Rema there cites Rambam's Commentary on the Mishnah, Berakhot ch. 1; that Commentary was not retrieved and is not relied on here.\n\nThe same rule independently, and two centuries earlier: Terumat ha-Deshen I:1 quotes a responsum received from one of the great ones — לחשוב היום לעולם רק לי\"ב שעות אפי' לימים ארוכים לענין פלג המנחה (S16-b; Warsaw 1882, term expired, PD-US) — rendered by Sefaria's CC0 community translation as \"daylight should always be split into twelve, even in the long summer days, in order to calculate Plag Hamincha\" (S16-c; CC0, quotable). Shulchan Aruch HaRav OC 58:3 gives the definitional sentence, that these hours are zemaniyot since every day, long or short, is divided into twelve (S17-b; Kehot, CC-BY-NC, paraphrased). Touger's footnote glosses them as one-twelfth of the duration of the daylight hours (S5-c; CC-BY-NC, paraphrased).\n\nTHE ARITHMETIC, WHICH IS NOT ITSELF IN DISPUTE IN THIS LEDGER:\n    shaah zemanit = (END − START) / 12\n    boundary(n)   = START + n × shaah zemanit,  n = 1…12\nSTART and END are supplied by the chosen opinion (see variants[]). Every disagreement recorded in this dossier is a disagreement about START and END, or about how to locate them, never about the division into twelve.\n\nTHE FRACTIONS THE SOURCES THEMSELVES STATE. Shulchan Arukh OC 58:1 calls the end of the third hour רביע היום, a quarter of the day (S6-a; CC0 English at S6-b). Rambam, Hilchot Tefillah 3:1, calls the end of the fourth hour שלישית היום, a third of the day (S4-a; Torat Emet digitisation declared public domain, underlying work 12th century, term expired). Those two fractions are the internal check that the division is proportional and not clock-based: 3/12 and 4/12.\n\nTHE NIGHT — THIS LEDGER IS THIN HERE AND SAYS SO. The only snippet that divides the night is the 1901–06 Jewish Encyclopedia's gloss on the term, describing \"periodical hours, whose length is equal to one-twelfth of either the day or the night, whichever is the longer\" (S23-g; published 1901–1906, term expired, public domain in the United States), which attributes the usage to Maimonides. That wording is the article's own and is odd on its face. No Tier A snippet in this ledger states the twelve-fold division of the night. A night column must not be built on S23-g alone; see gaps[].",
+  "hasRulerColumn": false,
+  "rulerColumnJustification": "FALSE — and the search that establishes it is in the ledger rather than asserted, because a fabricated confirmed gap is worse than a missing row.\n\nNo snippet retrieved assigns a planetary or any other ruler to a sha'ah zemanit. A seven-planet hour rotation DOES exist in rabbinic literature over the same twelve-hour daytime division. Bavli Shabbat 129b, in the bloodletting sugya, asks why one does not let blood on Tuesday and answers that Mars stands at the even hours; the hour-ruler premise is assumed there rather than spelled out (S18-a; the only digitisation retrieved is the William Davidson edition, CC-BY-NC, so this is paraphrased and not reproduced). Rashi supplies the rotation in full, and the Vilna Shas digitisation of Rashi is public domain (printed 1880–1886, term expired):\n    שעה ראשונה של ד' בשבת שימש שבתאי ובשניה צדק ואחריו מאדים ואחריו חמה ואחריו נוגה ואחריו כוכב ואחריו לבנה (S18-b)\n    נמצאו ז' המזלות לז' השעות וחוזרים חלילה לעולם (S18-c)\n    נמצא מאדים חוזר בו חלילה בשעה שמינית ביום והיא זוגות (S18-d)\nThat is the Saturn–Jupiter–Mars–Sun–Venus–Mercury–Moon rotation, cycling perpetually, explicitly indexed to numbered hours of the daytime.\n\nIt is not a ruler column and must not be used as one. It appears in an astrological/medical sugya about when to let blood, and nothing in this ledger applies it to the halachic prayer clock or names the ruler of a sha'ah zemanit. Per the maintainer's grid ruling of 2026-08-01 — the comparison is asymmetric and the absence is taught — zmanim renders NO ruler column. L21/L22 are the evidence that the question was asked; the corresponding gaps[] entry records the search. Every entry below omits the ruler property entirely rather than writing \"none\" or \"unattested\" into it, because a renderer reads the field and a filled field is a claim.",
+  "entries": [
+    {
+      "index": 1,
+      "name": "First seasonal hour of the day",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "0-1",
+        "landmarkAtElapsedHours": 0,
+        "landmarkKind": "start-of-span"
+      },
+      "quality": "ITS START IS THE START OF THE WHOLE SPAN, and which solar event that is, is the system's central dispute — so this boundary is a pair of times, not one. Magen Avraham OC 58:1 counts from alot ha-shachar (S10-a); the Gra counts from ha-netz ha-chamah as reported by Mishnah Berurah 58:4 (S11-a) and 443:8 (S12-a, S12-b). Rambam, Hilchot Tefillah 3:1, gives the morning prayer's mitzvah as beginning with ha-netz ha-chamah — תפלת השחר מצותה שיתחיל להתפלל עם הנץ החמה (S4-a).",
+      "note": "A second, finer question sits underneath the word \"sunrise\" itself. Magen Avraham OC 58:2 reads the Beit Yosef as implying that from when the sun begins to shine until its body has risen is an hour, and records a variant reading of a tenth of an hour: משמע בב\"י משיתחיל לזרוח עד שיעלה גוף השמש הוא שעה ויש גורסין כמו עישור שעה אחת (S10-b). Rambam's vatikin interval at Hilchot Kriat Shema 1:11 carries the same variant in the digitisation's own square brackets — ושעור זה כמו [עשור] שעה קדם שתעלה השמש (S4-c). Both are quotable: Lemberg-era Magen Avraham and the Torat Emet Rambam are declared public domain.",
+      "snippetIds": [
+        "S10-a",
+        "S11-a",
+        "S12-a",
+        "S12-b",
+        "S4-a",
+        "S10-b",
+        "S4-c",
+        "S7-a"
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Second seasonal hour of the day",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "1-2"
+      },
+      "quality": "No halachic landmark is fixed at this ordinal hour by any snippet in this ledger. The hour exists because the daytime span is divided into twelve (S7-a, Rema OC 233:1; S17-b, Shulchan Aruch HaRav OC 58:3; S16-b, Terumat ha-Deshen I:1) and this ledger says nothing further about it. The cell is empty by evidence.",
+      "note": "Empty by evidence, not by omission. Four daytime hours in this dossier carry no landmark from this ledger: 2, 5, 8 and 9. Round 1 of this research found landmarks at some of them from sources outside this ledger; those are recorded in gaps[] as things to re-fetch, and are left blank here rather than carried across.",
+      "snippetIds": [
+        "S7-a",
+        "S17-b",
+        "S16-b"
+      ]
+    },
+    {
+      "index": 3,
+      "name": "Third seasonal hour of the day",
+      "nameOriginal": "ג' שעות",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "2-3",
+        "landmarkAtElapsedHours": 3,
+        "landmarkKind": "end-of-hour"
+      },
+      "quality": "ITS END IS SOF ZMAN KRIAT SHEMA, the latest time for the morning Shema. Shulchan Arukh OC 58:1: ונמשך זמנה עד סוף ג' שעות שהוא רביע היום — it continues until the end of three hours, which is a quarter of the day (S6-a; Lemberg 1893, term expired, PD-US; Sefaria's CC0 English at S6-b). WHICH clock those three hours run on is the dispute this dossier exists to record: from alot ha-shachar per Magen Avraham OC 58:1 (S10-a), from ha-netz ha-chamah per the Gra as reported by Mishnah Berurah 58:4 (S11-a). This boundary is therefore two times on the same morning, and the gap between them is the widest practical consequence of the whole disagreement.",
+      "note": "Rambam gives the same limit at Hilchot Kriat Shema 1:11 — שעונתה עד סוף שלש שעות ביום — in a clause that concerns one who transgressed and delayed (S4-b; Torat Emet digitisation declared public domain, underlying work 12th century). The Shulchan Aruch HaRav counts these three hours from alot ha-shachar at OC 58:3 (S17-c) while the same author defines the day as netz-to-shki'ah at OC 443:4 (S17-a); Touger's footnote places him with the Vilna Gaon (S5-b). This dossier keeps all three and resolves none of them.",
+      "snippetIds": [
+        "S6-a",
+        "S6-b",
+        "S4-b",
+        "S10-a",
+        "S11-a",
+        "S17-c",
+        "S17-a",
+        "S5-b"
+      ]
+    },
+    {
+      "index": 4,
+      "name": "Fourth seasonal hour of the day",
+      "nameOriginal": "ארבע שעות",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "3-4",
+        "landmarkAtElapsedHours": 4,
+        "landmarkKind": "end-of-hour"
+      },
+      "quality": "ITS END IS THE LIMIT OF THE MORNING PRAYER FOR R. YEHUDA, and Rambam rules with him. Mishnah Berakhot 4:1: תפלת השחר, עד חצות. רבי יהודה אומר, עד ארבע שעות — the morning prayer, until chatzot; R. Yehuda says, until four hours (S1-a; Torat Emet Hebrew digitisation declared public domain, the Mishnah itself ancient). Rambam, Hilchot Tefillah 3:1: וזמנה עד סוף שעה רביעית שהיא שלישית היום — its time is until the end of the fourth hour, which is a third of the day (S4-a). The fraction the sources state is 4/12.",
+      "note": "A TRANSLATION ARTEFACT WORTH RECORDING, because it is exactly the ambiguity this dossier is about. The Hebrew of R. Yehuda's clause at S1-a fixes no anchor: it says four hours and stops. The William Davidson English rendering at S1-c supplies a sunrise anchor that the Hebrew does not carry. That rendering is CC-BY-NC and is therefore paraphrased here rather than reproduced. An implementer reading only the English would take the Gra's endpoints as the Mishnah's own, and the Mishnah does not say so.",
+      "snippetIds": [
+        "S1-a",
+        "S4-a",
+        "S1-c"
+      ]
+    },
+    {
+      "index": 5,
+      "name": "Fifth seasonal hour of the day",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "4-5"
+      },
+      "quality": "No halachic landmark is fixed at this ordinal hour by any snippet in this ledger. The hour exists because the daytime span is divided into twelve (S7-a, Rema OC 233:1; S17-b, Shulchan Aruch HaRav OC 58:3; S16-b, Terumat ha-Deshen I:1) and this ledger says nothing further about it. The cell is empty by evidence.",
+      "note": "Empty by evidence, not by omission. Four daytime hours in this dossier carry no landmark from this ledger: 2, 5, 8 and 9. Round 1 of this research found landmarks at some of them from sources outside this ledger; those are recorded in gaps[] as things to re-fetch, and are left blank here rather than carried across.",
+      "snippetIds": [
+        "S7-a",
+        "S17-b",
+        "S16-b"
+      ]
+    },
+    {
+      "index": 6,
+      "name": "Sixth seasonal hour of the day",
+      "nameOriginal": "חצות",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "5-6",
+        "landmarkAtElapsedHours": 6,
+        "landmarkKind": "end-of-hour"
+      },
+      "quality": "ITS END IS CHATZOT, the midpoint of the span and the first tanna's limit for the morning prayer: תפלת השחר, עד חצות (S1-a). Because chatzot here is 6/12 of the daytime span, it moves with the chosen endpoints exactly as every other boundary does; on the Magen Avraham's alot-to-tzeit span it is not the same instant as on the Gra's netz-to-shki'ah span.",
+      "note": "The name is the Mishnah's own word and is quoted from the Torat Emet Hebrew digitisation, declared public domain. This ledger carries no snippet identifying chatzot with solar transit or true local noon; that identification is a common one in the practical literature and it is recorded in gaps[] rather than asserted here.",
+      "snippetIds": [
+        "S1-a",
+        "S7-a"
+      ]
+    },
+    {
+      "index": 7,
+      "name": "Seventh seasonal hour of the day",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "6-7",
+        "landmarkAtElapsedHours": 6.5,
+        "landmarkKind": "mid-hour"
+      },
+      "quality": "MINCHA GEDOLA FALLS INSIDE THIS HOUR, AT ITS MIDPOINT — at six and a half hours, not at a boundary of the hour. Shulchan Arukh OC 233:1: מי שהתפלל תפלת המנחה לאחר שש שעות ומחצה ולמעלה יצא — one who prayed mincha from six and a half hours onward has fulfilled the obligation (S7-b; Lemberg 1893, term expired, PD-US). The label \"mincha gedola\" does not appear in the retrieved Hebrew and is not put in nameOriginal.",
+      "note": "A grid built on hour boundaries will not show this landmark, because it is not on one. Half-hour offsets are as much part of this system as whole hours: the same se'if gives the principal time of mincha from nine and a half hours, and plag at eleven hours less a quarter.",
+      "snippetIds": [
+        "S7-b",
+        "S7-a"
+      ]
+    },
+    {
+      "index": 8,
+      "name": "Eighth seasonal hour of the day",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "7-8"
+      },
+      "quality": "No halachic landmark is fixed at this ordinal hour by any snippet in this ledger. The hour exists because the daytime span is divided into twelve (S7-a, Rema OC 233:1; S17-b, Shulchan Aruch HaRav OC 58:3; S16-b, Terumat ha-Deshen I:1) and this ledger says nothing further about it. The cell is empty by evidence.",
+      "note": "Empty by evidence, not by omission. Four daytime hours in this dossier carry no landmark from this ledger: 2, 5, 8 and 9. Round 1 of this research found landmarks at some of them from sources outside this ledger; those are recorded in gaps[] as things to re-fetch, and are left blank here rather than carried across.",
+      "snippetIds": [
+        "S7-a",
+        "S17-b",
+        "S16-b"
+      ]
+    },
+    {
+      "index": 9,
+      "name": "Ninth seasonal hour of the day",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "8-9"
+      },
+      "quality": "No halachic landmark is fixed at this ordinal hour by any snippet in this ledger. The hour exists because the daytime span is divided into twelve (S7-a, Rema OC 233:1; S17-b, Shulchan Aruch HaRav OC 58:3; S16-b, Terumat ha-Deshen I:1) and this ledger says nothing further about it. The cell is empty by evidence.",
+      "note": "Empty by evidence, not by omission. Four daytime hours in this dossier carry no landmark from this ledger: 2, 5, 8 and 9. Round 1 of this research found landmarks at some of them from sources outside this ledger; those are recorded in gaps[] as things to re-fetch, and are left blank here rather than carried across.",
+      "snippetIds": [
+        "S7-a",
+        "S17-b",
+        "S16-b"
+      ]
+    },
+    {
+      "index": 10,
+      "name": "Tenth seasonal hour of the day",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "9-10",
+        "landmarkAtElapsedHours": 9.5,
+        "landmarkKind": "mid-hour"
+      },
+      "quality": "MINCHA KETANA FALLS INSIDE THIS HOUR, AT ITS MIDPOINT — the principal time of the afternoon prayer, from nine and a half hours until night: ועיקר זמנה מט' שעות ומחצה ולמעלה עד הלילה (S7-b). As at hour 7, the label \"mincha ketana\" is not in the retrieved Hebrew and is not put in nameOriginal.",
+      "note": "The se'if's phrase עד הלילה — until night — hands the end of this window to the nightfall question, which is where the ledger's densest disagreement sits: see variants[] on bein ha-shmashot and tzeit ha-kochavim, and contestedPoints[].",
+      "snippetIds": [
+        "S7-b",
+        "S7-a"
+      ]
+    },
+    {
+      "index": 11,
+      "name": "Eleventh seasonal hour of the day",
+      "nameOriginal": "פלג המנחה",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "10-11",
+        "landmarkAtElapsedHours": 10.75,
+        "landmarkKind": "three-quarters-through-hour"
+      },
+      "quality": "PLAG HA-MINCHA FALLS THREE-QUARTERS OF THE WAY THROUGH THIS HOUR — at ten and three-quarter elapsed hours. Shulchan Arukh OC 233:1: ולרבי יהודה עד פלג המנחה שהוא עד סוף י\"א שעות חסר רביע — and for R. Yehuda, until plag ha-mincha, which is until the end of eleven hours less a quarter (S7-c). Mishnah Berakhot 4:1 is the root: תפלת המנחה עד הערב. רבי יהודה אומר, עד פלג המנחה (S1-b).",
+      "note": "Plag is the boundary that forced the twelve-fold rule into the open. Terumat ha-Deshen I:1 reaches it by asking what to do when the day runs to some eighteen hours from alot ha-shachar to tzeit ha-kochavim in some lands at the height of summer (S16-a), and answers with the responsum that the day is always reckoned as twelve hours even on long days (S16-b, CC0 English at S16-c). The naming statement in Rema OC 233:1 (S7-a) sits in the same siman for the same reason.",
+      "snippetIds": [
+        "S7-c",
+        "S1-b",
+        "S16-a",
+        "S16-b",
+        "S16-c",
+        "S7-a"
+      ]
+    },
+    {
+      "index": 12,
+      "name": "Twelfth seasonal hour of the day",
+      "tier": "A",
+      "associations": {
+        "spanElapsedHours": "11-12",
+        "landmarkAtElapsedHours": 12,
+        "landmarkKind": "end-of-span"
+      },
+      "quality": "ITS END IS THE END OF THE WHOLE SPAN, and like the start it is a pair of times rather than one. On the Gra's scheme it is shki'at ha-chamah (S12-a, S17-a, S19-a, S25-a); on the Magen Avraham's it is tzeit ha-kochavim (S12-a, S5-a, S25-b) — and Gewirtz records that this evening endpoint is itself in dispute even within the Magen Avraham's scheme (S19-c), so \"tzeit\" here names a family of values and not one. Mishnah Berakhot 4:1 gives the plain limit of the afternoon prayer as עד הערב, until evening (S1-b).",
+      "note": "Everything the ledger holds about how this endpoint is located — the four-mil and five-mil intervals, the 18-, 22.5- and 24-minute mil, the 8.5° and 4.37° tzeit, the three-quarter-mil bein ha-shmashot, and the two-sunsets scheme reported in the name of Rabbeinu Tam — is set out in variants[] under the axes \"dusk-interval\" and \"nightfall\", each with its own snippet ids. It is deliberately not summarised into a single value here.",
+      "snippetIds": [
+        "S12-a",
+        "S17-a",
+        "S19-a",
+        "S25-a",
+        "S5-a",
+        "S25-b",
+        "S19-c",
+        "S1-b"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "endpoints-gra",
+      "axis": "day-endpoints",
+      "label": "Vilna Gaon: ha-netz ha-chamah to shki'at ha-chamah (sunrise to sunset)",
+      "authority": "The Vilna Gaon, as reported by Mishnah Berurah 443:8 (S12-b) and 58:4 (S11-a). Shulchan Aruch HaRav OC 443:4 states the same arithmetic in its own voice (S17-a). Touger's footnote to Hilchot Kriat Shema 1:11 groups the Shulchan Aruch HaRav with the Vilna Gaon (S5-b). Gewirtz (S19-a) and the Zemaneh Yosef implementers (S25-a) state it in English. NOTE ON PROVENANCE: the Gaon's own words for THIS proposition are not in this ledger — S14-a/b/c are his words on bein ha-shmashot at Beur HaGra OC 261:2, not on the endpoints of the twelve-fold span. Every attribution of the endpoints to the Gra here is a report of him.",
+      "arithmetic": "START = ha-netz ha-chamah (sunrise). END = shki'at ha-chamah (sunset). shaah = (sunset − sunrise) / 12. boundary(n) = sunrise + n × shaah. This is the column printed as GRA in luchot and implemented as the default seasonal hour in zmanim libraries.",
+      "tier": "A",
+      "snippetIds": [
+        "S12-b",
+        "S11-a",
+        "S17-a",
+        "S5-b",
+        "S19-a",
+        "S25-a",
+        "S12-a"
+      ]
+    },
+    {
+      "id": "endpoints-magen-avraham",
+      "axis": "day-endpoints",
+      "label": "Magen Avraham: alot ha-shachar to tzeit ha-kochavim (dawn to nightfall)",
+      "authority": "Magen Avraham OC 58:1 in his own words (S10-a). Mishnah Berurah 58:4 (S11-a) and 443:8, which assigns the scheme to many Acharonim (S12-a). Terumat ha-Deshen I:1 uses the same alot-to-tzeit day in the mid-15th century (S16-a), and the Zemaneh Yosef FAQ names the Terumat ha-Deshen alongside the Magen Avraham (S25-b). Touger (S5-a) and Gewirtz (S19-b) state it in English.",
+      "arithmetic": "START = alot ha-shachar. END = tzeit ha-kochavim. shaah = (tzeit − alot) / 12. boundary(n) = alot + n × shaah. THE ARITHMETIC IS NOT CLOSED BY THIS: neither alot nor tzeit is a single value — see the dawn-interval, dusk-interval and fixed-vs-degrees axes below, each of which yields a different MGA column.",
+      "tier": "A",
+      "keepBoth": "Gewirtz records that the evening endpoint of the Magen Avraham calculation is itself in dispute (S19-c). \"MGA\" is a family of arithmetics, not one.",
+      "caveat": "Gewirtz also reports that computing on this opinion requires first computing with the Gaon's endpoints, because the dawn and dusk offsets are defined relative to sunrise and sunset (S26-d).",
+      "snippetIds": [
+        "S10-a",
+        "S11-a",
+        "S12-a",
+        "S16-a",
+        "S25-b",
+        "S5-a",
+        "S19-b",
+        "S19-c",
+        "S26-d"
+      ]
+    },
+    {
+      "id": "dawn-4-mil-72min",
+      "axis": "dawn-interval",
+      "label": "Four mil at an 18-minute mil = 72 fixed minutes",
+      "authority": "Bavli Pesachim 94a, the baraita of R. Yehuda putting four mil between alot ha-shachar and ha-netz ha-chamah, and four between shki'ah and tzeit ha-kochavim (S2-b, S2-c; William Davidson edition, CC-BY-NC, paraphrased here, not reproduced). The mil is fixed at Shulchan Arukh OC 459:2: ושיעור מיל הוי רביעית שעה וחלק מעשרים מן השעה — a quarter of an hour and a twentieth of an hour (S8-a; Lemberg 1893, term expired, PD-US; Sefaria CC0 English at S8-b). The Jewish Encyclopedia derives the same 18 minutes from a 40-mil day of twelve hours and states R. Judah's figure as 4 mils = 72 minutes (S23-a, S23-d; 1901–1906, term expired, PD-US). Peninei Halakhah gives 72 minutes as the first of two practical schemes (S22-d2, paraphrased). The Jewish Action review points to the Chazon Ish OC 13 for the 40-mil-day view that justifies the 18-minute mil (S24-e, paraphrased; second-hand, and the Chazon Ish itself was not retrieved).",
+      "arithmetic": "¼ hour + 1/20 hour = 15 + 3 = 18 minutes per mil. 4 mil × 18 = 72 minutes. alot = sunrise − 72 min; tzeit = sunset + 72 min. Arithmetic reproducible from S8-a alone.",
+      "tier": "A",
+      "caveat": "The fetcher records that the four-mil baraita at Pesachim 94a is immediately followed by the sugya's concluding refutation formula, and locates it there (S2-d; William Davidson edition, CC-BY-NC, so it is cited and not reproduced). What that refutation bears on is not established by this ledger and is not asserted here.",
+      "snippetIds": [
+        "S2-b",
+        "S2-c",
+        "S8-a",
+        "S8-b",
+        "S23-a",
+        "S23-d",
+        "S22-d2",
+        "S24-e",
+        "S2-d"
+      ]
+    },
+    {
+      "id": "dawn-90min",
+      "axis": "dawn-interval",
+      "label": "Ninety fixed minutes — reached by two different routes, and this dossier keeps both",
+      "authority": "ROUTE 1, five mil at 18 minutes: Bavli Pesachim 94a, R. Yohanan reported by Rabba bar bar Hana, five mil from alot to netz (S2-a, paraphrased); the Jewish Encyclopedia states the full dawn period per R. Johanan as 5 mils, or 90 minutes (S23-c, PD-US). ROUTE 2, four mil at a 22.5-minute mil: Peninei Halakhah, footnote 1, gives ninety minutes on a 22.5-minute mil and observes that this is what is printed in many calendars (S22-d3, paraphrased).",
+      "arithmetic": "Route 1: 5 × 18 = 90. Route 2: 4 × 22.5 = 90. The two routes agree on the minute count and disagree on the mil, so they diverge immediately on every other quantity derived from a mil — including bein ha-shmashot at ¾ mil, which is 13.5 minutes on route 1 and 16.875 on route 2 (see the nightfall axis).",
+      "tier": "A",
+      "keepBoth": "Both derivations are attested and they are not the same claim. Merging them into \"90 minutes\" loses the mil, which is the parameter everything else is built on.",
+      "snippetIds": [
+        "S2-a",
+        "S23-c",
+        "S22-d3"
+      ]
+    },
+    {
+      "id": "mil-length-dispute",
+      "axis": "dawn-interval",
+      "label": "The length of a mil is itself in dispute: 18, 22.5 and 24 minutes",
+      "authority": "Peninei Halakhah, footnote 1, records those who say 18 minutes (citing Rambam's Commentary on Mishnah Berakhot 1:1) and those who say 22.5 (S22-d, paraphrased); the fetcher records the same sentence continuing to a 24-minute view. Shulchan Arukh OC 459:2 and the Jewish Encyclopedia give 18 (S8-a, S23-a). The Jewish Action review reports Ahron Notis working from a 22.5-minute mil (S24-c, paraphrased).",
+      "arithmetic": "The mil is the atom of this system. A 4-mil dawn is 72, 90 or 96 minutes as the mil is 18, 22.5 or 24; a 5-mil dawn is 90, 112.5 or 120. This dossier states the multiplications and asserts none of the products as the value.",
+      "tier": "C",
+      "caveat": "THE GRA'S OWN POSITION ON MIL-LENGTH IS NOT IN THIS LEDGER. The locus usually cited for it, Beur HaGra OC 459:2, was retrieved and contains a short remark about flour and kneading. See gaps[] — and see honestLimits, because this contradicts a claim in the phase-1 report and the contradiction is left open rather than resolved by the compiler.",
+      "snippetIds": [
+        "S22-d",
+        "S8-a",
+        "S23-a",
+        "S24-c"
+      ]
+    },
+    {
+      "id": "degrees-principle",
+      "axis": "fixed-vs-degrees",
+      "label": "The degree method: the fixed minute counts hold only for one place and one season",
+      "authority": "Mishnah Berurah 261:23 states the halachic warrant inside the classical literature: דלכ\"ע השעור דג' רבעי מיל משתנה לפי הזמן והמקום ולא נאמר זה בגמרא אלא באופק בבל ובזמן ניסן ותשרי — by all opinions the measure changes with time and place, and was said in the Gemara only for the horizon of Bavel in Nisan and Tishrei (S13-b; Warsaw 1884–1907, term expired, PD-US). Beur HaGra OC 261:2 says the same of bein ha-shmashot: באופק בבל ובזמן תקופת ניסן ותשרי (S14-c; Lemberg 1893, PD-US). The Biur Halacha reports the Gra to the same effect and adds that the interval lengthens in more northerly lands (S15-d). MyZmanim states that alos cannot be defined as a fixed amount of time before sunrise, attributing the ruling to the Gra and others, and that 72 minutes applies only to equinox days in Bavel and Eretz Yisrael (S21-d, S21-a, paraphrased). Gewirtz makes it a rule of thumb: fixed time intervals should always trigger suspicion (S19-d, paraphrased). Peninei Halakhah gives the operative instruction to compute the time the sun reaches 16.1° below the horizon each day (S22-a, paraphrased). The Jewish Action review reports Notis arguing that calendars and apps must use solar depression angles, because that method tracks observation and seasonal variation as a fixed offset cannot (S24-a, S24-b, paraphrased).",
+      "arithmetic": "Replace \"sunrise − 72 min\" with \"the moment the sun's centre is D degrees below the horizon\", solved per date and latitude. Gewirtz defines a depression angle as a measure of how far below the horizon the sun appears to have descended (S19-f, paraphrased).",
+      "tier": "A",
+      "caveat": "The classical sources cited here (S13-b, S14-c, S15-d) establish that the measure varies with place and season. They do not state a degree figure; every degree figure in this ledger comes from a Tier C practitioner or software source.",
+      "snippetIds": [
+        "S13-b",
+        "S14-c",
+        "S15-d",
+        "S21-d",
+        "S21-a",
+        "S19-d",
+        "S22-a",
+        "S24-a",
+        "S24-b",
+        "S19-f"
+      ]
+    },
+    {
+      "id": "degrees-16.1",
+      "axis": "fixed-vs-degrees",
+      "label": "16.1° — the degree equivalent of the 72-minute dawn",
+      "authority": "KosherJava, javadoc for getAlos16Point1Degrees: the calculation rests on a 72-minute dawn-to-sunrise interval, and the sun is 16.1° below the horizon 72 minutes before sunrise in Jerusalem around the equinox / equilux (S20-a, S20-b, paraphrased; LGPL-2.1, cite-only). MyZmanim derives the same figure by asking where the sun is 72 minutes before sunrise on an equinox day in Jerusalem (S21-b, paraphrased). Peninei Halakhah instructs computing it daily (S22-a).",
+      "arithmetic": "alot = the moment of 16.1° solar depression before sunrise; the Magen Avraham-type seasonal hour is then implemented as a 16.1°-to-16.1° span divided by twelve — KosherJava's getShaahZmanis16Point1Degrees states exactly that the day runs dawn to dusk (S20-j, paraphrased).",
+      "tier": "C",
+      "caveat": "The 16.1° figure is a CALIBRATION of the 72-minute opinion at one place and season, not an independent halachic position. Both sources that derive it say so.",
+      "snippetIds": [
+        "S20-a",
+        "S20-b",
+        "S21-b",
+        "S22-a",
+        "S20-j"
+      ]
+    },
+    {
+      "id": "degrees-19.8-or-19.75",
+      "axis": "fixed-vs-degrees",
+      "label": "19.8° or 19.75° — the degree equivalent of the 90-minute dawn, and the two published values disagree",
+      "authority": "KosherJava, javadoc for getAlos19Point8Degrees, gives 19.8° as the position of the sun 90 minutes before sunrise in Jerusalem around the equinox / equilux (S20-c, paraphrased). Peninei Halakhah's Hebrew footnote 1 gives 19.75 for calendars that compute amud ha-shachar at 90 minutes before netz in Nisan and Tishrei (S22-f, paraphrased).",
+      "arithmetic": "90-minute dawn expressed as a depression angle. The two sources give 19.8 and 19.75 for the same quantity.",
+      "tier": "C",
+      "keepBoth": "Both are attested. They are not reconciled here, and an engine offering this column should carry both or name which it uses.",
+      "snippetIds": [
+        "S20-c",
+        "S22-f"
+      ]
+    },
+    {
+      "id": "degrees-17.5",
+      "axis": "fixed-vs-degrees",
+      "label": "17.5° — an earlier \"first light\" definition of amud ha-shachar",
+      "authority": "Peninei Halakhah, Prayer 11:2, fourth paragraph: an alternative reading places amud ha-shachar earlier, when the sun reaches about 17.5° below the horizon (S22-e, paraphrased; CC-BY-NC, cite-only).",
+      "arithmetic": "alot = 17.5° solar depression before sunrise. Earlier than 16.1°, later than 19.8°.",
+      "tier": "C",
+      "snippetIds": [
+        "S22-e"
+      ]
+    },
+    {
+      "id": "bein-hashmashot-three-quarter-mil",
+      "axis": "nightfall",
+      "label": "Bein ha-shmashot at three-quarters of a mil",
+      "authority": "Bavli Shabbat 34b: the amoraic measure reported by Rabba in the name of Rav Yehuda in the name of Shmuel, which the sugya resolves as three quarters of a mil (S3-c, paraphrased; Davidson edition, CC-BY-NC). The same baraita carries R. Yehuda's reddening-east definition (S3-a), R. Nechemya's half-mil walk (S3-b) and R. Yosei's position that twilight has no quantifiable duration but is like the blink of an eye (S3-d) — four positions in one passage, all paraphrased here. Shulchan Arukh OC 261:2 fixes it: ושיעור זמן בין השמשות הוא ג' רבעי מיל שהם מהלך אלף ות\"ק אמות קודם הלילה — three quarters of a mil, which is a walk of 1500 amot before night (S9-a; Lemberg 1893, PD-US). Mishnah Berurah 261:23 glosses it: ג' רבעי מיל - והוא לערך רבע שעה — about a quarter of an hour (S13-a). The Jewish Encyclopedia gives Samuel's measure as ¾ mil = 13½ minutes and records another version at ⅔ mil = 12 minutes (S23-b; PD-US).",
+      "arithmetic": "¾ × 18 = 13.5 minutes. Mishnah Berurah's own gloss says about a quarter of an hour, i.e. about 15; the Jewish Encyclopedia says 13½ and records a 12-minute variant. Those are three published values for one measure and they are left as three.",
+      "tier": "A",
+      "keepBoth": "The Talmudic passage itself carries four incompatible definitions including one that denies the interval has a duration at all (S3-d). Any single-value implementation is a choice, not a reading.",
+      "snippetIds": [
+        "S3-c",
+        "S3-a",
+        "S3-b",
+        "S3-d",
+        "S9-a",
+        "S13-a",
+        "S23-b"
+      ]
+    },
+    {
+      "id": "two-sunsets-rabbeinu-tam",
+      "axis": "nightfall",
+      "label": "The two-sunsets scheme reported in the name of Rabbeinu Tam: 3¼ mil of day, then ¾ mil of bein ha-shmashot",
+      "authority": "Biur Halacha OC 261:2, s.v. מתחלת השקיעה: דההיא דפסחים הוא התחלת השקיעה משקיעת גוף השמש כשנכסה מעינינו ומאז עד צה\"כ ד' מילין — the Pesachim sunset is the first sunset, when the sun's body is hidden from our eyes, and from then to tzeit is four mil (S15-a); ומהתחלת השקיעה שהוא שקיעת גוף השמש עד סוף השקיעה הנ\"ל הוא יום והוא משך ג' מילין ורביע — and from the first sunset to the second is still day, an interval of three and a quarter mil (S15-b). Both from the he.wikisource digitisation Sefaria declares public domain; the underlying Biur Halacha is part of the Mishnah Berurah, Warsaw 1884–1907, term expired. Shulchan Arukh OC 261:2 carries the same 3¼-mil tosefet interval: והזמן הזה שהוא ג' מילין ורביע (S9-b).",
+      "arithmetic": "3¼ mil (still day) + ¾ mil (bein ha-shmashot) = 4 mil = 72 minutes at an 18-minute mil, from the first sunset to tzeit ha-kochavim.",
+      "tier": "A",
+      "caveat": "ATTRIBUTION LIMIT, BINDING. Tosafot to Pesachim 94a was sought and Sefaria holds no text at that ref. Rabbeinu Tam's position is present in this ledger only as the Biur Halacha reports it. Nothing here may be attributed to Tosafot directly.",
+      "snippetIds": [
+        "S15-a",
+        "S15-b",
+        "S9-b"
+      ]
+    },
+    {
+      "id": "gra-against-two-sunsets",
+      "axis": "nightfall",
+      "label": "The Gra against the two-sunsets scheme: bein ha-shmashot begins immediately at shki'ah",
+      "authority": "Beur HaGra OC 261:2, s.v. שהוא ג', in the Gaon's own words (Lemberg 1893, term expired, PD-US): דבה\"ש מתחיל מתחלת השקיעה תיכף עד הכסיף התחתון והוא ג' רביעי מיל באופק בבל ובזמן תקופת ניסן ותשרי — bein ha-shmashot begins immediately at the start of shki'ah and runs three quarters of a mil, and that measure holds for the horizon of Bavel at the Nisan and Tishrei tekufah (S14-c). His observational objection: והחוש מכחיש לכל רואה שמע\"ה הוא שיעור גדול הרבה מאוד על צה\"כ אחר השקיעה — the senses refute it for anyone who looks, since dawn is a far greater interval than nightfall after sunset (S14-a). The Biur Halacha marks the pivot to this view: אבל הגר\"א ז\"ל חולק על שיטה זו (S15-c).",
+      "arithmetic": "tzeit = sunset + ¾ mil (≈13.5 minutes at an 18-minute mil), against ≈72 minutes on the two-sunsets scheme. This is the largest single divergence in the ledger for one quantity.",
+      "tier": "A",
+      "keepBoth": "This and the two-sunsets scheme are both Tier A, both in their authors' own words or in a Tier A report, and they are not compatible. Both stand.",
+      "snippetIds": [
+        "S14-c",
+        "S14-a",
+        "S15-c"
+      ]
+    },
+    {
+      "id": "tzeit-8.5",
+      "axis": "nightfall",
+      "label": "8.5° — the degree equivalent of a 36-minute (2-mil) nightfall",
+      "authority": "KosherJava, javadoc for getTzaisGeonim8Point5Degrees: the sun's position 36 minutes after sunset in Jerusalem around the equinox / equilux is 8.5°, with the three-small-stars reading attributed in the same javadoc to R. Meir Posen, Ohr Meir (S20-d, paraphrased). MyZmanim derives the same figure from 2 mil = 36 minutes (S21-c, paraphrased). Gewirtz gives 8.5° as equating to 36 minutes after sunset in Israel at the spring equinox (S26-a, paraphrased). The Jewish Action reviewer states that contemporary calendars generally present −8.5° as the standard time to end Shabbat, grounding it on Shulchan Arukh OC 235:1 and 293:2 (S24-d, paraphrased; those two se'ifim were not themselves retrieved).",
+      "arithmetic": "2 mil × 18 = 36 minutes; calibrated at Jerusalem, equinox, to 8.5° depression.",
+      "tier": "C",
+      "snippetIds": [
+        "S20-d",
+        "S21-c",
+        "S26-a",
+        "S24-d"
+      ]
+    },
+    {
+      "id": "tzeit-4.37",
+      "axis": "nightfall",
+      "label": "4.37° — Notis's figure from a 22.5-minute mil, and the live dispute about it",
+      "authority": "Jewish Action (Orthodox Union), Summer 2025, Yaakov Hoffman reviewing Ahron Notis, The Great Z'manim Debate (Mosaica Press, 2022): on a 22.5-minute mil the ¾-mil nightfall is 16⅞ minutes, at which the sun is 4.37° below the horizon, extrapolated from the Gra's statement at Beur HaGra OC 261 that the measure is for Eretz Yisrael at the equinox (S24-c, paraphrased). The reviewer's counter-position is the 8.5° standard (S24-d).",
+      "arithmetic": "¾ × 22.5 = 16.875 minutes → 4.37° at Eretz Yisrael, equinox.",
+      "tier": "C",
+      "keepBoth": "A signed, named, present-day disagreement between two identified authorities on the same page. Both positions are recorded; neither is preferred.",
+      "snippetIds": [
+        "S24-c",
+        "S24-d"
+      ]
+    },
+    {
+      "id": "sunrise-sea-level",
+      "axis": "sunrise-definition",
+      "label": "Sea-level sunrise, and why degree-based zmanim are computed off it",
+      "authority": "KosherJava, AstronomicalCalendar javadoc: apparent sunrise uses 34 arcminutes of refraction plus 16 arcminutes for the sun's radius (S20-h, paraphrased), and the javadoc for getSeaLevelSunrise states the reason degree-based dawn and dusk are computed at sea level even when elevation is in use — they depend on the amount of visible light, which elevation does not affect (S20-g, paraphrased). LGPL-2.1, cite-only.",
+      "arithmetic": "34ʹ + 16ʹ ≈ 50ʹ, giving an apparent-sunrise zenith of 90.83333°. Degree-based dawn and dusk are then solved against the geometric horizon rather than the observer's.",
+      "tier": "C",
+      "snippetIds": [
+        "S20-h",
+        "S20-g"
+      ]
+    },
+    {
+      "id": "elevation-three-positions",
+      "axis": "sunrise-definition",
+      "label": "Elevation: three positions, and two calendars inside one tradition that disagree",
+      "authority": "ALL FOUR ATTRIBUTIONS IN THIS ROW ARE SECOND-HAND AND MUST STAY SO. KosherJava's ZmanimCalendar class-level javadoc attributes to R. Dovid Yehudah Bursztyn, Zmanim Kehilchasam 7th ed. ch. 2 §7 and §9, the position that no zmanim besides sunrise and sunset should use elevation (S20-e); to R. Yechiel Avrahom Zilber, Birur Halacha vol. 6 ch. 58, the position that elevation should be accounted for (S20-f); and to R. Yaakov Karp, Shimush Zekeinim ch. 1 p. 17, a third and distinct position, that obstructing horizons should be factored in (S20-i). None of Bursztyn, Zilber or Karp was retrieved. Separately, the Zemaneh Yosef FAQ reports that R. Ovadia Yosef told R. Shlomo Benizri and R. Asher Darshan to calculate all the zemanim with elevation included, which is the site's default inside Israel (S25-c), while R. Leeor Dahan's Amudeh Horaah calendar does not use elevation (S25-d).",
+      "arithmetic": "Sunrise/sunset shift with observer elevation; whether that shift propagates into the seasonal hour, and thence into every boundary, is the question. Gewirtz reports that at higher altitudes the sun appears to rise earlier and set later, with an impact in Jerusalem of a few minutes (S26-b), and that how and if this is to be dealt with in halakhah was, at least until recently, neither controversial nor material (S26-c); he also holds elevation to be only a rounding error compared with the impact of latitude (S19-e). All paraphrased; all in copyright.",
+      "tier": "C",
+      "keepBoth": "Three positions on elevation and a fourth on obstructed horizons, plus two calendars in one tradition that answer it differently. This is the axis the round-1 dossier under-recorded and it is left unresolved by design.",
+      "caveat": "THIS IS THE THINNEST AXIS IN THE LEDGER. The distinct visible-horizon / netz nir'eh method has no primary source here at all: the fetcher's attempt on chaitables.com failed at the connection level, and the only trace is KosherJava's single-line attribution to Karp (S20-i). See gaps[].",
+      "snippetIds": [
+        "S20-e",
+        "S20-f",
+        "S20-i",
+        "S25-c",
+        "S25-d",
+        "S26-b",
+        "S26-c",
+        "S19-e"
+      ]
+    },
+    {
+      "id": "sunrise-first-gleam-or-full-disc",
+      "axis": "sunrise-definition",
+      "label": "First gleam or full disc: a textual variant inside the classical literature",
+      "authority": "Magen Avraham OC 58:2: משמע בב\"י משיתחיל לזרוח עד שיעלה גוף השמש הוא שעה ויש גורסין כמו עישור שעה אחת — the Beit Yosef implies that from when the sun begins to shine until its body has risen is an hour, and some read a tenth of an hour (S10-b; PD-US). The same variant sits in Rambam's vatikin clause at Hilchot Kriat Shema 1:11, where the digitisation brackets the word: ושעור זה כמו [עשור] שעה קדם שתעלה השמש (S4-c).",
+      "arithmetic": "The disagreement is over an interval of an hour versus a tenth of an hour between first light on the disc and the disc fully clear of the horizon — i.e. over what event the word \"sunrise\" fixes before any degree or elevation question is asked.",
+      "tier": "A",
+      "snippetIds": [
+        "S10-b",
+        "S4-c"
+      ]
+    }
+  ],
+  "goldenValues": [
+    {
+      "label": "The mil, from the Shulchan Arukh, and the 72-minute dawn that follows",
+      "place": "Not place-dependent — a definition of a unit",
+      "date": "n/a",
+      "expected": "mil = ¼ hour + 1/20 hour = 15 + 3 = 18 minutes. 4 mil = 72 minutes; 5 mil = 90 minutes. The Jewish Encyclopedia reaches 18 minutes independently, as 1/40 of a 12-hour day's journey.",
+      "publishedIn": "Shulchan Arukh OC 459:2 (Maginei Eretz, Lemberg 1893 — term expired, PD-US), Hebrew at S8-a and Sefaria CC0 English at S8-b; Jewish Encyclopedia (1901–1906, term expired, PD-US) at S23-a, S23-c, S23-d.",
+      "snippetIds": [
+        "S8-a",
+        "S8-b",
+        "S23-a",
+        "S23-c",
+        "S23-d"
+      ]
+    },
+    {
+      "label": "72 minutes before sunrise = 16.1° solar depression",
+      "place": "Jerusalem",
+      "date": "Around the equinox / equilux — the sources give no calendar date",
+      "expected": "16.1° below the horizon. Two independent practitioner sources derive the same figure from the same 72-minute calibration.",
+      "publishedIn": "KosherJava Zmanim API, javadoc for getAlos16Point1Degrees (LGPL-2.1, cite-only) at S20-a and S20-b; R' Dovid Eisikowitz, \"Computation by Degrees Explained\", MyZmanim.com, 2004 (in copyright, cite-only) at S21-b.",
+      "snippetIds": [
+        "S20-a",
+        "S20-b",
+        "S21-b"
+      ]
+    },
+    {
+      "label": "90 minutes before sunrise = 19.8° — or 19.75°, and the two published values disagree",
+      "place": "Jerusalem",
+      "date": "Around the equinox / equilux; Peninei Halakhah says Nisan and Tishrei",
+      "expected": "KosherJava: 19.8°. Peninei Halakhah, Hebrew footnote: 19.75°. Both for the 90-minute dawn. Kept as two values, not averaged or reconciled.",
+      "publishedIn": "KosherJava, javadoc for getAlos19Point8Degrees (LGPL-2.1, cite-only) at S20-c; Eliezer Melamed, Peninei Halakhah, Prayer 11:2 Hebrew footnote 1 (CC-BY-NC, cite-only) at S22-f.",
+      "snippetIds": [
+        "S20-c",
+        "S22-f"
+      ]
+    },
+    {
+      "label": "36 minutes after sunset = 8.5° solar depression",
+      "place": "Jerusalem / Israel",
+      "date": "Around the equinox / equilux; Gewirtz specifies the spring equinox",
+      "expected": "8.5° below the horizon, from 2 mil × 18 minutes. Gewirtz records the same interval growing to about 42 minutes by summer in Israel — about 16%.",
+      "publishedIn": "KosherJava, javadoc for getTzaisGeonim8Point5Degrees (LGPL-2.1, cite-only) at S20-d; MyZmanim 2004 (cite-only) at S21-c; William Gewirtz, zemanim.net PDF p. 36 (self-published, in copyright, cite-only) at S26-a.",
+      "snippetIds": [
+        "S20-d",
+        "S21-c",
+        "S26-a"
+      ]
+    },
+    {
+      "label": "The seasonal spread a fixed offset cannot express",
+      "place": "Not stated in the retrieved snippet; the same footnote compares Tzfat with Jerusalem, and gives Tzfat about a minute and a half longer",
+      "date": "22 December and 22 June",
+      "expected": "From amud ha-shachar to ha-netz ha-chamah: 78 minutes at the height of winter (22 December), 88 minutes at the height of summer (22 June). A fixed 72- or 90-minute offset expresses neither.",
+      "publishedIn": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, second paragraph and Hebrew footnote 1 (CC-BY-NC, cite-only) at S22-b, S22-c, S22-g.",
+      "snippetIds": [
+        "S22-b",
+        "S22-c",
+        "S22-g"
+      ]
+    },
+    {
+      "label": "The latitude effect, as one source measures it",
+      "place": "Israel against Prague",
+      "date": "Spring equinox to summer",
+      "expected": "At 8.5°: Israel 36 → 42 minutes after sunset (about +16%); Prague 48 → 69 minutes (about +43%).",
+      "publishedIn": "William Gewirtz, zemanim.net PDF p. 36, \"Variation by season\" (self-published, in copyright, cite-only) at S26-a.",
+      "snippetIds": [
+        "S26-a"
+      ]
+    },
+    {
+      "label": "An 1901–06 degree conversion of the ¾-mil bein ha-shmashot",
+      "place": "Jerusalem, at the latitude the article itself states — 32° N",
+      "date": "Not stated",
+      "expected": "13½ minutes after sunset ≈ 3½° below the horizon. The same article gives astronomical twilight as ending at 18° below the horizon = 72 minutes.",
+      "publishedIn": "Jacobs & Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, 1901–1906 — term expired, PD-US) at S23-e and S23-f.",
+      "snippetIds": [
+        "S23-e",
+        "S23-f"
+      ]
+    },
+    {
+      "label": "Notis's 4.37° tzeit, and the counter-figure on the same page",
+      "place": "Eretz Yisrael",
+      "date": "Equinox",
+      "expected": "On a 22.5-minute mil, ¾ mil = 16⅞ minutes after sunset, at which the sun is 4.37° below the horizon. The reviewer answers that contemporary calendars generally present −8.5° as the standard.",
+      "publishedIn": "Yaakov Hoffman, review of Ahron Notis, The Great Z'manim Debate, Jewish Action (Orthodox Union), Summer 2025 (in copyright, cite-only) at S24-c and S24-d.",
+      "snippetIds": [
+        "S24-c",
+        "S24-d"
+      ]
+    },
+    {
+      "label": "The apparent-sunrise constant an implementation needs before any of the above",
+      "place": "Not place-dependent",
+      "date": "n/a",
+      "expected": "34 arcminutes of refraction + 16 arcminutes for the sun's radius ≈ 50ʹ, giving an apparent-sunrise zenith of 90.83333°.",
+      "publishedIn": "KosherJava Zmanim API, AstronomicalCalendar javadoc for getSunrise (LGPL-2.1, cite-only) at S20-h.",
+      "snippetIds": [
+        "S20-h"
+      ]
+    }
+  ],
+  "polarBehaviour": "WHAT THE LEDGER SAYS, AND NOTHING COMPUTED HERE. Round 1 published nine derived cut-off latitudes; not one of them is in this ledger and not one is carried forward. No latitude threshold in this dossier was calculated by the compiler.\n\nTHE GAON STATES THE FAILURE IN HIS OWN WORDS. Beur HaGra OC 261:2: ובמדינות הנוטין לצפון שע\"ה מתחיל בקיץ בחצי הלילה — in the lands inclining northward, alot ha-shachar begins in summer at midnight (S14-b; Lemberg 1893, term expired, public domain in the United States). The same comment carries his observational objection, that the senses refute the long-dawn reckoning for anyone who looks, since dawn is a far greater interval than the interval from sunset to nightfall (S14-a).\n\nTHE CLASSICAL WARRANT FOR A VARIABLE CLOCK. Mishnah Berurah 261:23: by all opinions the ¾-mil measure changes with time and place and was stated in the Gemara only for the horizon of Bavel in Nisan and Tishrei (S13-b). Beur HaGra says the same of bein ha-shmashot (S14-c). The Biur Halacha reports the Gra that the Gemara's measure was for Bavel or Eretz Yisrael and lengthens in more northerly lands (S15-d).\n\nTHE ONLY EXPLICIT LATITUDES IN THE LEDGER are the Jewish Encyclopedia's: beyond latitude 50°, between June 9 and July 9, and beyond 60°, between April 20 and August 18, dawn and twilight overlap each other (S23-h; 1901–1906, term expired, PD-US).\n\nMAGNITUDE, NOT THRESHOLD. Gewirtz gives the 8.5° interval growing about 16% across the season in Israel (36 to 42 minutes) against about 43% in Prague (48 to 69) (S26-a); holds elevation to be only a rounding error next to latitude, discussing the Amsterdam 48-versus-72-minute problem (S19-e); and records that explicit mention of latitude and its effect on twilight length does not appear in rabbinic literature until the 17th century (S19-h). Peninei Halakhah records that even within Israel, Tzfat's dawn interval runs about a minute and a half longer than Jerusalem's (S22-g). All in copyright; all paraphrased.\n\nCOMPILER'S NOTE, FLAGGED AS ARITHMETIC AND NOT AS A SOURCED CLAIM: a deeper depression angle becomes unreachable at a lower latitude than a shallower one, so the degree-based opinions fail before ordinary sunrise does — a 19.8° alot is lost while the sun is still rising. This ledger gives no latitude at which any particular angle fails, and this dossier supplies none. Anyone who needs those numbers must derive them and label them as derived.",
+  "contestedPoints": [
+    "THE ENDPOINTS OF THE TWELVE-FOLD SPAN. Magen Avraham OC 58:1 counts from alot ha-shachar (S10-a); the Gra counts from ha-netz ha-chamah, per Mishnah Berurah 58:4 (S11-a) and 443:8 (S12-a, S12-b). Mishnah Berurah 443:8 also rules that lechatchila one should be stringent per the alot-to-tzeit view (S12-b) — which is a practical ruling, not a resolution of the arithmetic. Both columns stand.",
+    "THE SHULCHAN ARUCH HARAV CONTRADICTS ITSELF ACROSS TWO SIMANIM, AND A THIRD SOURCE READS HIM A FOURTH WAY. OC 443:4 defines the day as netz-to-shki'ah (S17-a); OC 58:3 counts the three hours of Shema from alot ha-shachar (S17-c); Touger's footnote groups the Shulchan Aruch HaRav with the Vilna Gaon (S5-b). Recorded, not reconciled — this is the fetcher's flagged live conflict and it is preserved intact.",
+    "THE MAGEN AVRAHAM'S EVENING ENDPOINT IS ITSELF IN DISPUTE. Gewirtz states it plainly in a footnote (S19-c). \"Alot to tzeit\" therefore names a family of arithmetics, and any single MGA column silently picks one member of it.",
+    "THE LENGTH OF A MIL: 18 minutes (S8-a, S23-a), 22.5 (S22-d, S22-d3, S24-c) or 24 (recorded by the fetcher as the continuation of the sentence at S22-d, attributed there to a further view). Everything downstream — 72/90/96-minute dawns, 13.5/16.875-minute bein ha-shmashot, 8.5°/4.37° tzeit — forks here.",
+    "NINETY MINUTES IS REACHED TWO WAYS AND THEY ARE NOT THE SAME CLAIM: five mil at 18 minutes (S2-a, S23-c) and four mil at 22.5 (S22-d3). Agreeing on the product hides a disagreement about the unit.",
+    "19.8° (S20-c) AGAINST 19.75° (S22-f) for the same 90-minute dawn at the same place and season. Two published figures, both attested, not averaged.",
+    "BEIN HA-SHMASHOT HAS FOUR DEFINITIONS IN ONE TALMUDIC PASSAGE — the reddening east (S3-a), half a mil (S3-b), three quarters of a mil (S3-c), and R. Yosei's position that it has no measurable duration at all but is like the blink of an eye (S3-d) — and three published minute-values downstream: 13½ (S23-b), a variant 12 (S23-b), and Mishnah Berurah's gloss of about a quarter of an hour (S13-a).",
+    "WHEN BEIN HA-SHMASHOT BEGINS. The two-sunsets scheme reported in the name of Rabbeinu Tam puts 3¼ mil of full day after the sun's body sets (S15-a, S15-b, S9-b); the Gra holds it begins immediately at shki'ah (S14-c), the Biur Halacha marks him as disagreeing (S15-c), and the Gra adds an observational objection (S14-a). About 72 minutes against about 13½ for the same quantity.",
+    "DEGREES AGAINST FIXED MINUTES, AS A LIVE PRESENT-DAY DISPUTE BETWEEN NAMED PEOPLE. Notis argues calendars and apps must use depression angles (S24-a, S24-b) and derives 4.37° for tzeit (S24-c); Hoffman answers that contemporary calendars generally present −8.5° (S24-d). Gewirtz treats fixed intervals as a warning sign (S19-d); MyZmanim says alos cannot be defined as a fixed offset (S21-d).",
+    "ELEVATION: THREE POSITIONS PLUS A FOURTH ON OBSTRUCTED HORIZONS, all reported at second hand by KosherJava's javadoc — Bursztyn against elevation for anything but sunrise and sunset (S20-e), Zilber for it (S20-f), Karp for factoring obstructing horizons (S20-i). And two calendars inside one Sephardi tradition disagreeing in practice: elevation included per R. Ovadia Yosef as the implementers report him (S25-c), elevation not used in the Amudeh Horaah calendar (S25-d). Gewirtz meanwhile calls elevation a rounding error next to latitude (S19-e).",
+    "THE ENGLISH TRANSLATIONS ADD THINGS THE HEBREW DOES NOT SAY, AND AN IMPLEMENTER WILL INHERIT THEM. The Davidson rendering of Mishnah Berakhot 4:1 supplies a sunrise anchor for R. Yehuda's four hours that the Hebrew at S1-a does not carry (S1-c). Sefaria's CC0 translator appends a bracketed 18-minutes-per-mil gloss at OC 459:2 that is not in the Hebrew (S8-b), and at OC 261:2 appends a metric conversion and an approximate-60-minutes gloss that appear nowhere in the Hebrew of S9-a or S9-b (S9-c). These are the translators' additions, flagged by the fetcher, and they are not treated as data here.",
+    "THE MAGEN AVRAHAM HOUR IS IN PRACTICE COMPUTED FROM THE GRA'S ANCHORS. Gewirtz reports the paradox (S26-d): the dawn and dusk offsets that define the MGA span are themselves defined relative to sunrise and sunset. An engine that treats the two opinions as independent will get the dependency wrong."
+  ],
+  "gaps": [
+    {
+      "claimedAbsent": "The Vilna Gaon's own statement on the length of a mil, and on the endpoints of the twelve-fold day, at the locus usually cited for it — Beur HaGra, Shulchan Arukh Orach Chayim 459:2.",
+      "searchedWhere": [
+        "Sefaria API v3, ref Beur_HaGra_on_Shulchan_Arukh,_Orach_Chayim.459.2.1",
+        "Sefaria API v3, ref Beur_HaGra_on_Shulchan_Arukh,_Orach_Chayim.261.2 (retrieved successfully — see L16)"
+      ],
+      "searchTermsUsed": [
+        "Beur HaGra Orach Chayim 459:2",
+        "Beur HaGra Orach Chayim 261:2"
+      ],
+      "whatWasFound": "The 459:2 ref resolved and returned a short comment about flour and kneading — not about mil-length and not about the day's endpoints. The Gaon's substantive statement WAS found at OC 261:2 and is in the ledger as L16 (S14-a, S14-b, S14-c), but that comment is about bein ha-shmashot, not about the length of a mil. CONSEQUENCE, STATED PLAINLY: the widely repeated citation \"Biur HaGra OC 459:2\" for the Gra on mil-length is not confirmed by what Sefaria holds at that ref, and this dossier does not cite it. This DIRECTLY CONTRADICTS blocker 2 of research/horae/PHASE1-REPORT.md, which asserts that Beur HaGra on OC 459:2 sharply rejects the 18-minute reckoning and concludes a 22.5-minute mil, and quotes a Hebrew phrase to that effect. That phrase has no sid in this ledger and is therefore not reproduced here. One of the two retrievals is wrong. The compiler cannot adjudicate it from this ledger and does not.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Tosafot to Pesachim 94a — Rabbeinu Tam's two-sunsets argument in its own words.",
+      "searchedWhere": [
+        "Sefaria API v3, ref Tosafot_on_Pesachim.94a.4.1"
+      ],
+      "searchTermsUsed": [
+        "Tosafot on Pesachim 94a"
+      ],
+      "whatWasFound": "Sefaria returned \"We have no text for Tosafot on Pesachim 94a:4:1\" — the text is not digitised at that ref. Rabbeinu Tam's position is present in this ledger only as the Biur Halacha reports it (S15-a, S15-b). Every statement about it in this dossier is attributed to that report and never to Tosafot directly.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Any source in this ledger that assigns a planetary or other ruler to a sha'ah zemanit.",
+      "searchedWhere": [
+        "Sefaria API v3, Shabbat 129b (William Davidson edition) — the nearest thing in the Talmud to an hour-ruler assignment",
+        "Sefaria API v3, Rashi on Shabbat 129b (Vilna edition)"
+      ],
+      "searchTermsUsed": [
+        "Shabbat 129b bloodletting planetary hours",
+        "Rashi Shabbat 129b דקיימא ליה מאדים בזווי"
+      ],
+      "whatWasFound": "A complete seven-planet hour rotation, indexed to numbered hours of the same twelve-hour daytime division: Shabbat 129b assumes the premise (S18-a) and Rashi spells out the Saturn–Jupiter–Mars–Sun–Venus–Mercury–Moon cycle (S18-b, S18-c, S18-d). It sits in a bloodletting and astrological sugya. NOTHING in this ledger applies it to the halachic prayer clock, and no source names the ruler of a sha'ah zemanit. The search was made and it returned a real thing that is not the thing. hasRulerColumn is false and every entry omits the ruler property.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Modern secular peer-reviewed scholarship on the arithmetic of halachic seasonal hours — a genuine Tier B source.",
+      "searchedWhere": [
+        "Google Scholar / web search for peer-reviewed twilight and solar-depression work on halakhic times",
+        "Brill catalogue results for Sacha Stern"
+      ],
+      "searchTermsUsed": [
+        "peer-reviewed twilight solar depression halakhic hours",
+        "Sacha Stern Jewish calendar astronomy",
+        "rabbinic hours journal literature"
+      ],
+      "whatWasFound": "Sacha Stern's Brill volumes (Time, Astronomy, and Calendars in the Jewish Tradition, 2014; The Jewish Calendar Controversy of 921/2 CE, 2019) — all in copyright, paywalled, and about the CALENDAR rather than the hour, so not pursued. CONSEQUENCE, STATED RATHER THAN INFLATED: this ledger has no modern secular peer-reviewed source. The two entries the fetcher tagged B are Ḥakirah vol. 26 (a refereed journal of Jewish law with an academic apparatus, not a secular venue) and the 1901–06 Jewish Encyclopedia (a signed scholarly reference article, and a dated one). If the standard for B is modern secular peer review, this system has zero Tier B evidence.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "A primary source for the visible-horizon / netz nir'eh method — the third position on what \"sunrise\" names, distinct from both sea-level and elevation-adjusted sunrise.",
+      "searchedWhere": [
+        "chaitables.com (Chaim Keller) — the standard tool for visible-horizon sunrise tables",
+        "KosherJava ZmanimCalendar.java class-level javadoc"
+      ],
+      "searchTermsUsed": [
+        "chaitables visible horizon netz nireh",
+        "Shimush Zekeinim obstructing horizon zmanim"
+      ],
+      "whatWasFound": "chaitables.com failed at the connection level (curl returned 0 bytes, http=000; TLS or connection error). The only trace of the method in this ledger is KosherJava's one-line attribution of it to R. Yaakov Karp, Shimush Zekeinim ch. 1 p. 17 (S20-i), which could not be corroborated against Shimush Zekeinim itself. This is the substantive hole in the sunrise-definition axis and it is marked as such in variants[elevation-three-positions].",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "The Chabad / Ba'al ha-Tanya method in a Chabad source's own words — hanetz amiti, the 1.583° zenith constant, and the four-minutes-after-sunset Shabbat start.",
+      "searchedWhere": [
+        "chabad.org, \"About Our Zmanim Calculations\" (article_cdo/aid/3209349)",
+        "KosherJava source (the ZENITH_1_POINT_583 constant is visible there)",
+        "Gewirtz, Ḥakirah 26, p. 93 footnote 5"
+      ],
+      "searchTermsUsed": [
+        "Chabad zmanim calculations hanetz amiti",
+        "Baal HaTanya 1.583 zenith"
+      ],
+      "whatWasFound": "HTTP 403 Forbidden on both a direct curl with a browser user-agent and on WebFetch. The only substitute obtained is Gewirtz's report that the Seder Hakhnosat Shabbat printed in Chabad siddurim says explicitly that Shabbat begins four minutes after sunset (S19-g). The fetcher declined to quote the KosherJava constant because its halachic basis could not be corroborated from a Chabad source. This dossier therefore carries no Ba'al ha-Tanya variant row.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "Ḥayim Benish, HaZemanim BaHalachah — the standard modern reference on exactly this question.",
+      "searchedWhere": [
+        "Sefaria",
+        "general web retrieval"
+      ],
+      "searchTermsUsed": [
+        "HaZemanim BaHalachah Benish",
+        "Benish zemanim 21:6-9"
+      ],
+      "whatWasFound": "Not digitised in any reachable source; in copyright. It is cited by three separate sources in this ledger — Peninei Halakhah at 21:6–9, Gewirtz, and the Zemaneh Yosef FAQ — and is present here only at second hand. Anything attributed to Benish anywhere downstream must be phrased as \"X reports Benish as saying\", never as Benish.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "The rollover of the halachic CALENDAR day — the evening boundary at which the date, Shabbat and festivals change — and its relation to the start of the twelve-fold daytime span.",
+      "searchedWhere": [
+        "this dossier's own ledger (all 32 entries and the fetcher's attemptedAndFailed list)"
+      ],
+      "searchTermsUsed": [
+        "(none recorded — the fetcher did not report a search for the calendar-day boundary; the brief scoped this round to the opinions that change the clock)"
+      ],
+      "whatWasFound": "Nothing. No snippet in this ledger addresses Berakhot 26a, Shulchan Arukh OC 235:1, or any other locus for the evening rollover. Round 1 asserted it; this round has no evidence for it and therefore does not. THIS IS AN ABSENCE FROM THE LEDGER, NOT AN ABSENCE FROM THE LITERATURE, and it should not be read as a finding about Jewish law. It is a fetch that was never attempted.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "A Tier A statement that the NIGHT is divided into twelve seasonal hours.",
+      "searchedWhere": [
+        "this dossier's own ledger (all 32 entries)"
+      ],
+      "searchTermsUsed": [
+        "(none recorded — the fetcher's retrievals for the division rule returned daytime statements only)"
+      ],
+      "whatWasFound": "Only the 1901–06 Jewish Encyclopedia's gloss (S23-g), whose wording — one-twelfth of either the day or the night, whichever is the longer — is the article's own and is odd on its face. Rema (S7-a), Shulchan Aruch HaRav (S17-b) and Terumat ha-Deshen (S16-b) all speak of the day. A night column must not be built on S23-g alone. Again: an absence from this ledger, not from the literature.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "A source identifying chatzot with solar transit / true local noon.",
+      "searchedWhere": [
+        "this dossier's own ledger (all 32 entries)"
+      ],
+      "searchTermsUsed": [
+        "(none recorded — chatzot was reached through Mishnah Berakhot 4:1 rather than searched for directly)"
+      ],
+      "whatWasFound": "Only the word חצות in Mishnah Berakhot 4:1 (S1-a) and its position as 6/12 of the span by the division rule (S7-a). The common practical identification of chatzot with solar transit is not attested here and is not asserted. The two are not the same quantity on either the MGA or the Gra span unless the span is symmetric about transit, and no ledger source says it is.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "The Ohr HaChaim calendar's own introduction — the document the Zemaneh Yosef site states its Israel calculations replicate.",
+      "searchedWhere": [
+        "royzmanim.com/FAQ (retrieved; it describes and links the introduction)"
+      ],
+      "searchTermsUsed": [
+        "Ohr HaChaim calendar introduction elevation Ovadia Yosef"
+      ],
+      "whatWasFound": "Only the FAQ's characterisation of it (S25-c). The elevation-inclusive practice attributed to R. Ovadia Yosef is therefore reported by the implementers, not read in R. Ovadia Yosef's or the calendar's own words, and is labelled that way in variants[].",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "A licence-resolved digitisation of Mishnah Berurah 58:4.",
+      "searchedWhere": [
+        "Sefaria API v3 available_versions for Mishnah_Berurah.58.4",
+        "a retry pinning the public-domain \"On Your Way\" version"
+      ],
+      "searchTermsUsed": [
+        "Mishnah Berurah 58:4 versions",
+        "Mishnah Berurah On Your Way 58:4"
+      ],
+      "whatWasFound": "Exactly one Hebrew version, \"Wikitext\", licence \"unknown\"; the pinned retry returned nothing. The underlying work was published Warsaw 1884–1907, so the words are PD-US by expired term and are quoted here on that ground; the digitisation's status is treated as a transcription-accuracy caveat. This is the single most-cited snippet in the dossier (S11-a) and the caveat travels with it.",
+      "confidence": "confirmed-absent"
+    }
+  ],
+  "honestLimits": "WHAT THIS DOSSIER IS, AND WHAT IT REFUSES TO BE.\n\n1. NO TIER B EVIDENCE, ON A STRICT READING. The ledger contains no modern secular peer-reviewed source on this arithmetic. The two entries tagged B are Ḥakirah vol. 26 (refereed, but a journal of Jewish law rather than a secular venue) and the 1901–06 Jewish Encyclopedia (signed, scholarly, and 120 years old). Both are carried with their tier caveats attached rather than promoted. The system's evidential weight is Tier A primary and Tier C practitioner literature, with a thin Tier B seam.\n\n2. NO RULER COLUMN, AND THE SEARCH IS ON THE RECORD. hasRulerColumn is false; no entry carries a ruler property at all. Rashi's seven-planet hour rotation at Shabbat 129b (S18-b to S18-d) is real, is indexed to the same numbered daytime hours, and belongs to a bloodletting sugya — it is the evidence that the question was asked, not a column to fill. Per the maintainer's grid ruling the absence is part of the teaching.\n\n3. NO TIMES COMPUTED HERE. Every figure in goldenValues was published by a ledger source. Round 1's Hebcal and Astronomy-Engine times, its derived polar cut-off latitudes, and its 26° row are not carried forward, because no snippet in this ledger supports them. That is a real loss of usable regression data and it is stated as a loss.\n\n4. AN UNRESOLVED CONTRADICTION WITH THIS REPO'S OWN PHASE-1 REPORT. PHASE1-REPORT.md blocker 2 states that Beur HaGra on OC 459:2 sharply rejects the 18-minute reckoning and concludes a 22.5-minute mil, quoting Hebrew for it that has no sid in this ledger and is therefore not reproduced here. This round's fetcher retrieved that ref and found a short comment about flour and kneading. The 22.5-minute mil IS attested in this ledger, but from Peninei Halakhah (S22-d, S22-d3) and the Jewish Action review of Notis (S24-c) — not from the Gra. The compiler cannot adjudicate the retrieval conflict and has not. It is in gaps[] and it needs a human with the Lemberg volume.\n\n5. EVERYTHING IN THE ELEVATION AXIS IS SECOND-HAND. Bursztyn, Zilber, Karp, Benish, the Chazon Ish, Rabbeinu Tam and R. Ovadia Yosef are all present only as someone else reports them. Each is labelled that way in place, and none may be re-attributed directly downstream. The visible-horizon method has no primary source here at all.\n\n6. LICENCE. Verbatim text appears here only from sources verified as PD-US or CC0. The best English available on this subject — the William Davidson Talmud and Mishnah, Touger's Mishneh Torah, Peninei Halakhah, the Kehot Shulchan Aruch HaRav — is CC-BY-NC, which is not one of FRAMING §4.1's four verdicts, so it is cite-only and paraphrased throughout. The PD routes actually used are the Lemberg 1893, Warsaw 1882 and Vilna digitisations, the Warsaw 1884–1907 Mishnah Berurah and Biur Halacha, the Torat Emet Rambam and Mishnah, the 1901–06 Jewish Encyclopedia, and Sefaria's CC0 community translations.\n\n7. FOUR EMPTY HOURS, KEPT EMPTY. Hours 2, 5, 8 and 9 carry no halachic landmark from this ledger. Round 1, working from a wider source set, filled some of them. They are left blank here rather than carried across, because a row without a sid is not a row. The blanks are the honest shape of what was retrieved.\n\n8. THIS IS A LIVING PRACTICE AND IS DESCRIBED, NEVER PRESCRIBED. The dossier records what named authorities and named implementations state about the arithmetic of a clock. It makes no efficacy, medical or life-outcome claim of any kind, gives no instruction to any reader, and takes no position on any halachic question. Where sources conflict — and on this subject they conflict at almost every step — both positions are recorded and neither is preferred.",
+  "ledgerSources": [
+    {
+      "sid": "S1-a",
+      "ledgerId": "L1",
+      "cite": "Mishnah Berakhot 4:1. Hebrew: Torat Emet 357 digitisation; English: William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berakhot.4.1",
+      "tier": "A",
+      "locus": "Mishnah Berakhot 4:1, opening clause",
+      "pdBasis": "Hebrew digitisation carries Sefaria licence \"Public Domain\"; the Mishnah itself is ancient, term expired. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "תפלת השחר, עד חצות. רבי יהודה אומר, עד ארבע שעות."
+    },
+    {
+      "sid": "S1-b",
+      "ledgerId": "L1",
+      "cite": "Mishnah Berakhot 4:1. Hebrew: Torat Emet 357 digitisation; English: William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berakhot.4.1",
+      "tier": "A",
+      "locus": "Mishnah Berakhot 4:1, second clause",
+      "pdBasis": "Hebrew digitisation carries Sefaria licence \"Public Domain\"; the Mishnah itself is ancient, term expired. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "תפלת המנחה עד הערב. רבי יהודה אומר, עד פלג המנחה."
+    },
+    {
+      "sid": "S1-c",
+      "ledgerId": "L1",
+      "cite": "Mishnah Berakhot 4:1. Hebrew: Torat Emet 357 digitisation; English: William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berakhot.4.1",
+      "tier": "A",
+      "locus": "Mishnah Berakhot 4:1, Davidson English of the opening clause",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S2-a",
+      "ledgerId": "L2",
+      "cite": "Bavli Pesachim 94a. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Pesachim.94a",
+      "tier": "A",
+      "locus": "Pesachim 94a, R. Yohanan reported by Rabba bar bar Hana — the five-mil position",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S2-b",
+      "ledgerId": "L2",
+      "cite": "Bavli Pesachim 94a. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Pesachim.94a",
+      "tier": "A",
+      "locus": "Pesachim 94a, the baraita of R. Yehuda — the four-mil position",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S2-c",
+      "ledgerId": "L2",
+      "cite": "Bavli Pesachim 94a. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Pesachim.94a",
+      "tier": "A",
+      "locus": "Pesachim 94a, Davidson English of the R. Yehuda baraita",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S2-d",
+      "ledgerId": "L2",
+      "cite": "Bavli Pesachim 94a. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Pesachim.94a",
+      "tier": "A",
+      "locus": "Pesachim 94a, the sugya's concluding refutation, immediately after the four-mil baraita",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S3-a",
+      "ledgerId": "L3",
+      "cite": "Bavli Shabbat 34b. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Shabbat.34b",
+      "tier": "A",
+      "locus": "Shabbat 34b, the baraita defining bein hashmashot (R. Yehuda)",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S3-b",
+      "ledgerId": "L3",
+      "cite": "Bavli Shabbat 34b. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Shabbat.34b",
+      "tier": "A",
+      "locus": "Shabbat 34b, same baraita, R. Nechemya's measure",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S3-c",
+      "ledgerId": "L3",
+      "cite": "Bavli Shabbat 34b. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Shabbat.34b",
+      "tier": "A",
+      "locus": "Shabbat 34b, the amoraic dispute over the measure; resolved as three quarters of a mil",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S3-d",
+      "ledgerId": "L3",
+      "cite": "Bavli Shabbat 34b. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Shabbat.34b",
+      "tier": "A",
+      "locus": "Shabbat 34b, Davidson English, R. Yosei's position in the same baraita",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S4-a",
+      "ledgerId": "L4",
+      "cite": "Maimonides, Mishneh Torah, Hilchot Tefillah 3:1. Torat Emet 370 digitisation",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishneh_Torah,_Prayer_and_the_Priestly_Blessing.3.1",
+      "tier": "A",
+      "locus": "Mishneh Torah, Hilchot Tefillah 3:1, opening sentence",
+      "pdBasis": "Sefaria licence \"Public Domain\"; the underlying work is 12th-century, term expired. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "תפלת השחר מצותה שיתחיל להתפלל עם הנץ החמה וזמנה עד סוף שעה רביעית שהיא שלישית היום."
+    },
+    {
+      "sid": "S4-b",
+      "ledgerId": "L5",
+      "cite": "Maimonides, Mishneh Torah, Hilchot Kriat Shema 1:11. Torat Emet 370 digitisation",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishneh_Torah,_Reading_the_Shema.1.11",
+      "tier": "A",
+      "locus": "Mishneh Torah, Hilchot Kriat Shema 1:11, closing clause",
+      "pdBasis": "Sefaria licence \"Public Domain\"; the underlying work is 12th-century, term expired. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "שעונתה עד סוף שלש שעות ביום למי שעבר ואחר"
+    },
+    {
+      "sid": "S4-c",
+      "ledgerId": "L5",
+      "cite": "Maimonides, Mishneh Torah, Hilchot Kriat Shema 1:11. Torat Emet 370 digitisation",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishneh_Torah,_Reading_the_Shema.1.11",
+      "tier": "A",
+      "locus": "Mishneh Torah, Hilchot Kriat Shema 1:11, middle — the vatikin interval; square brackets are the digitisation's, marking a variant reading",
+      "pdBasis": "Sefaria licence \"Public Domain\"; the underlying work is 12th-century, term expired. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ושעור זה כמו [עשור] שעה קדם שתעלה השמש."
+    },
+    {
+      "sid": "S5-a",
+      "ledgerId": "L6",
+      "cite": "Eliyahu Touger, trans. & annotator, Mishneh Torah (Moznaim, Jerusalem, c.1986–c.2007) — editorial footnotes to Hilchot Kriat Shema 1:11",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishneh_Torah,_Reading_the_Shema.1.11",
+      "tier": "C",
+      "locus": "Touger's footnote 4 to Hilchot Kriat Shema 1:11 — the Magen Avraham's dawn-to-stars day",
+      "pdBasis": "Sefaria declares this version CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S5-b",
+      "ledgerId": "L6",
+      "cite": "Eliyahu Touger, trans. & annotator, Mishneh Torah (Moznaim, Jerusalem, c.1986–c.2007) — editorial footnotes to Hilchot Kriat Shema 1:11",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishneh_Torah,_Reading_the_Shema.1.11",
+      "tier": "C",
+      "locus": "Touger's footnote 4, the sentence immediately following S5-a — places the Shulchan Aruch HaRav and the Vilna Gaon on sunrise-to-sunset. NB conflicts with S17-c",
+      "pdBasis": "Sefaria declares this version CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S5-c",
+      "ledgerId": "L6",
+      "cite": "Eliyahu Touger, trans. & annotator, Mishneh Torah (Moznaim, Jerusalem, c.1986–c.2007) — editorial footnotes to Hilchot Kriat Shema 1:11",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishneh_Torah,_Reading_the_Shema.1.11",
+      "tier": "C",
+      "locus": "Touger's footnote 4 — the gloss of sha'ot zemaniyot as one-twelfth of the daylight duration",
+      "pdBasis": "Sefaria declares this version CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S6-a",
+      "ledgerId": "L7",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 58:1. Maginei Eretz, Lemberg 1893 (NLI NNL_ALEPH002084080); English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.58.1",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 58:1, first se'if",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ונמשך זמנה עד סוף ג' שעות שהוא רביע היום"
+    },
+    {
+      "sid": "S6-b",
+      "ledgerId": "L7",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 58:1. Maginei Eretz, Lemberg 1893 (NLI NNL_ALEPH002084080); English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.58.1",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 58:1, Sefaria Community Translation of S6-a; square-bracket glosses are the translator's",
+      "pdBasis": "Sefaria Community Translation, declared CC0 — a public-domain dedication by the rights-holder. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "It continues until the end of three [halachic] hours, which is a fourth of the day[light]."
+    },
+    {
+      "sid": "S7-a",
+      "ledgerId": "L8",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 233:1, with the gloss of Moses Isserles (Rema). Maginei Eretz, Lemberg 1893",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.233.1",
+      "tier": "A",
+      "locus": "Rema's gloss to Shulchan Arukh OC 233:1 — the naming statement; Rema cites Rambam's Commentary on the Mishnah, Berakhot ch. 1",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ומשערינן שעות אלו לפי ענין היום ואף אם היום ארוך משערינן לי\"ב שעות והם נקראים שעות זמניות"
+    },
+    {
+      "sid": "S7-b",
+      "ledgerId": "L8",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 233:1, with the gloss of Moses Isserles (Rema). Maginei Eretz, Lemberg 1893",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.233.1",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 233:1, opening — 6½ hours and 9½ hours",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "מי שהתפלל תפלת המנחה לאחר שש שעות ומחצה ולמעלה יצא ועיקר זמנה מט' שעות ומחצה ולמעלה עד הלילה"
+    },
+    {
+      "sid": "S7-c",
+      "ledgerId": "L8",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 233:1, with the gloss of Moses Isserles (Rema). Maginei Eretz, Lemberg 1893",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.233.1",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 233:1, continuing — plag hamincha",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ולרבי יהודה עד פלג המנחה שהוא עד סוף י\"א שעות חסר רביע"
+    },
+    {
+      "sid": "S8-a",
+      "ledgerId": "L9",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 459:2. Maginei Eretz, Lemberg 1893; English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.459.2",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 459:2 — the definition of the mil",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ושיעור מיל הוי רביעית שעה וחלק מעשרים מן השעה"
+    },
+    {
+      "sid": "S8-b",
+      "ledgerId": "L9",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 459:2. Maginei Eretz, Lemberg 1893; English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.459.2",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 459:2, Sefaria Community Translation. NB the translator appends a bracketed '[18min/1mil]' gloss not in the Hebrew",
+      "pdBasis": "Sefaria Community Translation, declared CC0 — a public-domain dedication by the rights-holder. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "The rate of a 'mil' is a quarter of an hour and a twentieth of an hour"
+    },
+    {
+      "sid": "S9-a",
+      "ledgerId": "L10",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 261:2, with Rema. Maginei Eretz, Lemberg 1893; English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.261.2",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 261:2, closing clause — bein hashmashot as 3/4 mil / 1500 amot",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ושיעור זמן בין השמשות הוא ג' רבעי מיל שהם מהלך אלף ות\"ק אמות קודם הלילה"
+    },
+    {
+      "sid": "S9-b",
+      "ledgerId": "L10",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 261:2, with Rema. Maginei Eretz, Lemberg 1893; English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.261.2",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 261:2, opening — the tosefet interval of 3¼ mil",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "וזמן תוספת זה הוא מתחלת השקיע' שאין השמש נראת על הארץ עד זמן בין השמשות והזמן הזה שהוא ג' מילין ורביע"
+    },
+    {
+      "sid": "S9-c",
+      "ledgerId": "L10",
+      "cite": "Joseph Karo, Shulchan Arukh, Orach Chayim 261:2, with Rema. Maginei Eretz, Lemberg 1893; English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.261.2",
+      "tier": "A",
+      "locus": "Shulchan Arukh OC 261:2, Sefaria Community Translation. WARNING recorded by the fetcher: the metric/imperial conversion and the '(this is approx. 60 minutes)' gloss are the translator's additions and appear nowhere in the Hebrew of S9-a/S9-b",
+      "pdBasis": "Sefaria Community Translation, declared CC0 — a public-domain dedication by the rights-holder. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "The time of bein hashemashos is 3/4 mil, which is like walking approximately 960 meters or .596 of a mile before nightfall."
+    },
+    {
+      "sid": "S10-a",
+      "ledgerId": "L11",
+      "cite": "Abraham Abele Gombiner, Magen Avraham to Orach Chayim 58:1 (pub. Dyhernfurth 1692; digitisation sourced to NLI NNL_ALEPH001722045)",
+      "url": "https://www.sefaria.org/api/v3/texts/Magen_Avraham.58.1",
+      "tier": "A",
+      "locus": "Magen Avraham OC 58:1, the whole se'if katan — the Magen Avraham's own words for the position later named after him",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work first published 1692; digitised imprint 19th-century (NLI). Term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "שלש שעות. נ\"ל דהכא לכ\"ע מנינן מעלות השחר"
+    },
+    {
+      "sid": "S10-b",
+      "ledgerId": "L12",
+      "cite": "Abraham Abele Gombiner, Magen Avraham to Orach Chayim 58:2",
+      "url": "https://www.sefaria.org/api/v3/texts/Magen_Avraham.58.2",
+      "tier": "A",
+      "locus": "Magen Avraham OC 58:2 — the textual variant on how long the sun's disc takes to clear the horizon",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work first published 1692; digitised imprint 19th-century (NLI). Term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "משמע בב\"י משיתחיל לזרוח עד שיעלה גוף השמש הוא שעה ויש גורסין כמו עישור שעה אחת"
+    },
+    {
+      "sid": "S11-a",
+      "ledgerId": "L13",
+      "cite": "Israel Meir Kagan (Chafetz Chaim), Mishnah Berurah 58:4 (pub. Warsaw 1884–1907). Digitisation: Wikitext, he.wikisource.org",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.58.4",
+      "tier": "A",
+      "locus": "Mishnah Berurah 58:4, s.v. ג' שעות — the cleanest single statement of the opposition",
+      "pdBasis": "PROVENANCE CAVEAT. Sefaria reports this digitisation's licence as \"unknown\" and it is the only Hebrew version held for this se'if katan. The underlying work was published Warsaw 1884–1907 — term expired, PD in the United States — so the words are quoted here on that ground; an unlicensed digitisation cannot create a new copyright in them. The digitisation's status is a transcription-accuracy caveat, not a copyright one.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ומונין אלו הג' שעות מזמן עמוד השחר כן כתב המ\"א ודעת הגר\"א משעת הנץ החמה"
+    },
+    {
+      "sid": "S12-a",
+      "ledgerId": "L14",
+      "cite": "Israel Meir Kagan, Mishnah Berurah 443:8. Digitisation: On Your Way (mobile.tora.ws)",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.443.8",
+      "tier": "A",
+      "locus": "Mishnah Berurah 443:8, s.v. עד שליש היום — the two endpoint schemes side by side",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work published Warsaw 1884–1907, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "וחושבין את היום מעלות השחר עד צאת הכוכבים כ\"כ הרבה אחרונים וי\"א דחושבין מהנץ החמה עד עת השקיעה"
+    },
+    {
+      "sid": "S12-b",
+      "ledgerId": "L14",
+      "cite": "Israel Meir Kagan, Mishnah Berurah 443:8. Digitisation: On Your Way (mobile.tora.ws)",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.443.8",
+      "tier": "A",
+      "locus": "Mishnah Berurah 443:8, immediately following S12-a",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work published Warsaw 1884–1907, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ודעת הגר\"א כמותם ולכתחלה טוב להחמיר כדעה א'"
+    },
+    {
+      "sid": "S13-a",
+      "ledgerId": "L15",
+      "cite": "Israel Meir Kagan, Mishnah Berurah 261:23. Digitisation: On Your Way (mobile.tora.ws)",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.261.23",
+      "tier": "A",
+      "locus": "Mishnah Berurah 261:23, opening",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work published Warsaw 1884–1907, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ג' רבעי מיל - והוא לערך רבע שעה."
+    },
+    {
+      "sid": "S13-b",
+      "ledgerId": "L15",
+      "cite": "Israel Meir Kagan, Mishnah Berurah 261:23. Digitisation: On Your Way (mobile.tora.ws)",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.261.23",
+      "tier": "A",
+      "locus": "Mishnah Berurah 261:23, later in the same se'if katan — the halachic warrant inside the classical literature for a degree-based rather than fixed-minute clock",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work published Warsaw 1884–1907, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "דלכ\"ע השעור דג' רבעי מיל משתנה לפי הזמן והמקום ולא נאמר זה בגמרא אלא באופק בבל ובזמן ניסן ותשרי"
+    },
+    {
+      "sid": "S14-a",
+      "ledgerId": "L16",
+      "cite": "Elijah ben Solomon (Vilna Gaon), Beur HaGra to Shulchan Arukh, Orach Chayim 261:2. Maginei Eretz, Lemberg 1893",
+      "url": "https://www.sefaria.org/api/v3/texts/Beur_HaGra_on_Shulchan_Arukh,_Orach_Chayim.261.2",
+      "tier": "A",
+      "locus": "Beur HaGra OC 261:2, s.v. שהוא ג' — the Gaon's observational objection",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "והחוש מכחיש לכל רואה שמע\"ה הוא שיעור גדול הרבה מאוד על צה\"כ אחר השקיעה"
+    },
+    {
+      "sid": "S14-b",
+      "ledgerId": "L16",
+      "cite": "Elijah ben Solomon (Vilna Gaon), Beur HaGra to Shulchan Arukh, Orach Chayim 261:2. Maginei Eretz, Lemberg 1893",
+      "url": "https://www.sefaria.org/api/v3/texts/Beur_HaGra_on_Shulchan_Arukh,_Orach_Chayim.261.2",
+      "tier": "A",
+      "locus": "Beur HaGra OC 261:2, immediately after S14-a — the Gaon's own statement of the high-latitude failure",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ובמדינות הנוטין לצפון שע\"ה מתחיל בקיץ בחצי הלילה"
+    },
+    {
+      "sid": "S14-c",
+      "ledgerId": "L16",
+      "cite": "Elijah ben Solomon (Vilna Gaon), Beur HaGra to Shulchan Arukh, Orach Chayim 261:2. Maginei Eretz, Lemberg 1893",
+      "url": "https://www.sefaria.org/api/v3/texts/Beur_HaGra_on_Shulchan_Arukh,_Orach_Chayim.261.2",
+      "tier": "A",
+      "locus": "Beur HaGra OC 261:2, continuing",
+      "pdBasis": "Digitised from a Maginei Eretz, Lemberg 1893 imprint — published before 1931, term expired; public domain in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "דבה\"ש מתחיל מתחלת השקיעה תיכף עד הכסיף התחתון והוא ג' רביעי מיל באופק בבל ובזמן תקופת ניסן ותשרי"
+    },
+    {
+      "sid": "S15-a",
+      "ledgerId": "L17",
+      "cite": "Israel Meir Kagan, Biur Halacha to Orach Chayim 261:2, s.v. מתחלת השקיעה. Digitisation from he.wikisource.org",
+      "url": "https://www.sefaria.org/api/v3/texts/Biur_Halacha.261.2.2",
+      "tier": "A",
+      "locus": "Biur Halacha OC 261:2 s.v. מתחלת השקיעה — Rabbeinu Tam's resolution as the Biur Halacha reports it",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work published Warsaw 1884–1907, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "דההיא דפסחים הוא התחלת השקיעה משקיעת גוף השמש כשנכסה מעינינו ומאז עד צה\"כ ד' מילין"
+    },
+    {
+      "sid": "S15-b",
+      "ledgerId": "L17",
+      "cite": "Israel Meir Kagan, Biur Halacha to Orach Chayim 261:2, s.v. מתחלת השקיעה. Digitisation from he.wikisource.org",
+      "url": "https://www.sefaria.org/api/v3/texts/Biur_Halacha.261.2.2",
+      "tier": "A",
+      "locus": "Biur Halacha OC 261:2, continuing — the 3¼ mil between first and second sunset is still full day",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work published Warsaw 1884–1907, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ומהתחלת השקיעה שהוא שקיעת גוף השמש עד סוף השקיעה הנ\"ל הוא יום והוא משך ג' מילין ורביע"
+    },
+    {
+      "sid": "S15-c",
+      "ledgerId": "L17",
+      "cite": "Israel Meir Kagan, Biur Halacha to Orach Chayim 261:2, s.v. מתחלת השקיעה. Digitisation from he.wikisource.org",
+      "url": "https://www.sefaria.org/api/v3/texts/Biur_Halacha.261.2.2",
+      "tier": "A",
+      "locus": "Biur Halacha OC 261:2 — the pivot to the opposing view",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work published Warsaw 1884–1907, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "אבל הגר\"א ז\"ל חולק על שיטה זו"
+    },
+    {
+      "sid": "S15-d",
+      "ledgerId": "L17",
+      "cite": "Israel Meir Kagan, Biur Halacha to Orach Chayim 261:2, s.v. מתחלת השקיעה. Digitisation from he.wikisource.org",
+      "url": "https://www.sefaria.org/api/v3/texts/Biur_Halacha.261.2.2",
+      "tier": "A",
+      "locus": "Biur Halacha OC 261:2, reporting the Gra's commentary",
+      "pdBasis": "Sefaria declares this version \"Public Domain\". Work published Warsaw 1884–1907, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "ששעור הגמרא נאמר רק על אופק בבל או א\"י ובמדינותינו שנוטה יותר לצפון מתארך יותר"
+    },
+    {
+      "sid": "S16-a",
+      "ledgerId": "L18",
+      "cite": "Israel Isserlein, Terumat HaDeshen, Part I §1 (first pub. Venice 1519). Digitisation: Warsaw 1882 (NLI NNL_ALEPH001175907); English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Terumat_HaDeshen,_Part_I.1",
+      "tier": "A",
+      "locus": "Terumat HaDeshen I:1, in the responsum's calculation of plag hamincha — the 15th-century locus for the alot-to-tzeit day",
+      "pdBasis": "Sefaria licence \"Public Domain\", digitised from a Warsaw 1882 imprint — published before 1931, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "כגון באמצע הקיץ שהיום מאריך ביש ארצות כמו י\"ח שעות מעלות השחר עד צאת הכוכבים"
+    },
+    {
+      "sid": "S16-b",
+      "ledgerId": "L18",
+      "cite": "Israel Isserlein, Terumat HaDeshen, Part I §1 (first pub. Venice 1519). Digitisation: Warsaw 1882 (NLI NNL_ALEPH001175907); English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Terumat_HaDeshen,_Part_I.1",
+      "tier": "A",
+      "locus": "Terumat HaDeshen I:1, quoting a responsum received from 'one of the great ones'",
+      "pdBasis": "Sefaria licence \"Public Domain\", digitised from a Warsaw 1882 imprint — published before 1931, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "לחשוב היום לעולם רק לי\"ב שעות אפי' לימים ארוכים לענין פלג המנחה"
+    },
+    {
+      "sid": "S16-c",
+      "ledgerId": "L18",
+      "cite": "Israel Isserlein, Terumat HaDeshen, Part I §1 (first pub. Venice 1519). Digitisation: Warsaw 1882 (NLI NNL_ALEPH001175907); English: Sefaria Community Translation",
+      "url": "https://www.sefaria.org/api/v3/texts/Terumat_HaDeshen,_Part_I.1",
+      "tier": "A",
+      "locus": "Terumat HaDeshen I:1, Sefaria Community Translation of S16-b",
+      "pdBasis": "Sefaria Community Translation, declared CC0 — a public-domain dedication by the rights-holder. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "daylight should always be split into twelve, even in the long summer days, in order to calculate Plag Hamincha"
+    },
+    {
+      "sid": "S17-a",
+      "ledgerId": "L19",
+      "cite": "Shneur Zalman of Liadi, Shulchan Aruch HaRav, Orach Chayim 443:4. Vocalized Edition, Kehot Publication Society",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh_HaRav,_Orach_Chayim.443.4",
+      "tier": "A",
+      "locus": "Shulchan Aruch HaRav OC 443:4 — the explicit sunrise-to-sunset arithmetic",
+      "pdBasis": "Sefaria declares this Kehot vocalized edition CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S17-b",
+      "ledgerId": "L20",
+      "cite": "Shneur Zalman of Liadi, Shulchan Aruch HaRav, Orach Chayim 58:3. Vocalized Edition, Kehot Publication Society",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh_HaRav,_Orach_Chayim.58.3",
+      "tier": "A",
+      "locus": "Shulchan Aruch HaRav OC 58:3 — the definitional sentence that these hours are zemaniyot",
+      "pdBasis": "Sefaria declares this Kehot vocalized edition CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S17-c",
+      "ledgerId": "L20",
+      "cite": "Shneur Zalman of Liadi, Shulchan Aruch HaRav, Orach Chayim 58:3. Vocalized Edition, Kehot Publication Society",
+      "url": "https://www.sefaria.org/api/v3/texts/Shulchan_Arukh_HaRav,_Orach_Chayim.58.3",
+      "tier": "A",
+      "locus": "Shulchan Aruch HaRav OC 58:3, the sentence immediately preceding S17-b — CONFLICT TO PRESERVE: here the three hours are counted from alot hashachar",
+      "pdBasis": "Sefaria declares this Kehot vocalized edition CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S18-a",
+      "ledgerId": "L21",
+      "cite": "Bavli Shabbat 129b. William Davidson Edition (Steinsaltz), Koren",
+      "url": "https://www.sefaria.org/api/v3/texts/Shabbat.129b",
+      "tier": "A",
+      "locus": "Shabbat 129b, the bloodletting sugya — Mars stands at the even hours; the hour-ruler premise is assumed, not spelled out",
+      "pdBasis": "William Davidson Edition declared CC-BY-NC by Sefaria — not one of FRAMING §4.1's four verdicts. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S18-b",
+      "ledgerId": "L22",
+      "cite": "Rashi to Bavli Shabbat 129b, s.v. דקיימא ליה מאדים בזווי. Vilna Edition (NLI NNL_ALEPH001300957)",
+      "url": "https://www.sefaria.org/api/v3/texts/Rashi_on_Shabbat.129b",
+      "tier": "A",
+      "locus": "Rashi to Shabbat 129b, s.v. דקיימא ליה מאדים בזווי — the seven-planet rotation",
+      "pdBasis": "Sefaria declares this Vilna edition \"Public Domain\"; the Vilna Shas was printed 1880–1886, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "שעה ראשונה של ד' בשבת שימש שבתאי ובשניה צדק ואחריו מאדים ואחריו חמה ואחריו נוגה ואחריו כוכב ואחריו לבנה"
+    },
+    {
+      "sid": "S18-c",
+      "ledgerId": "L22",
+      "cite": "Rashi to Bavli Shabbat 129b, s.v. דקיימא ליה מאדים בזווי. Vilna Edition (NLI NNL_ALEPH001300957)",
+      "url": "https://www.sefaria.org/api/v3/texts/Rashi_on_Shabbat.129b",
+      "tier": "A",
+      "locus": "Rashi to Shabbat 129b, immediately after S18-b",
+      "pdBasis": "Sefaria declares this Vilna edition \"Public Domain\"; the Vilna Shas was printed 1880–1886, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "נמצאו ז' המזלות לז' השעות וחוזרים חלילה לעולם"
+    },
+    {
+      "sid": "S18-d",
+      "ledgerId": "L22",
+      "cite": "Rashi to Bavli Shabbat 129b, s.v. דקיימא ליה מאדים בזווי. Vilna Edition (NLI NNL_ALEPH001300957)",
+      "url": "https://www.sefaria.org/api/v3/texts/Rashi_on_Shabbat.129b",
+      "tier": "A",
+      "locus": "Rashi to Shabbat 129b — confirms the rotation is indexed to numbered hours of the daytime",
+      "pdBasis": "Sefaria declares this Vilna edition \"Public Domain\"; the Vilna Shas was printed 1880–1886, term expired; PD in the United States. Quotable.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "נמצא מאדים חוזר בו חלילה בשעה שמינית ביום והיא זוגות"
+    },
+    {
+      "sid": "S19-a",
+      "ledgerId": "L23",
+      "cite": "William Gewirtz, \"A Categorization of Errors Encountered in the Study of Zemanim\", Ḥakirah 26 (2019), pp. 91–121",
+      "url": "https://hakirah.org/vol26Gewirtz.pdf",
+      "tier": "B",
+      "locus": "p. 93, numbered item 2 — the Gaon calculates halakhic hours from sunrise to sunset",
+      "pdBasis": "\"Ḥakirah 26 © 2019\" printed on p. 91 — in copyright. Cite-only. TIER CAVEAT: a refereed journal of Jewish law with an academic apparatus, not a secular peer-reviewed venue.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S19-b",
+      "ledgerId": "L23",
+      "cite": "William Gewirtz, \"A Categorization of Errors Encountered in the Study of Zemanim\", Ḥakirah 26 (2019), pp. 91–121",
+      "url": "https://hakirah.org/vol26Gewirtz.pdf",
+      "tier": "B",
+      "locus": "p. 93, the sentence immediately following S19-a — Magen Avraham uses alot ha-shachar as the morning endpoint. The fetcher confirmed this reading by viewing p. 93 as a rendered page image because the PDF text layer mangles the ḥ",
+      "pdBasis": "\"Ḥakirah 26 © 2019\" printed on p. 91 — in copyright. Cite-only. TIER CAVEAT: a refereed journal of Jewish law with an academic apparatus, not a secular peer-reviewed venue.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S19-c",
+      "ledgerId": "L23",
+      "cite": "William Gewirtz, \"A Categorization of Errors Encountered in the Study of Zemanim\", Ḥakirah 26 (2019), pp. 91–121",
+      "url": "https://hakirah.org/vol26Gewirtz.pdf",
+      "tier": "B",
+      "locus": "p. 93, footnote 6 — CONFLICT TO PRESERVE: the Magen Avraham's evening endpoint is itself in dispute",
+      "pdBasis": "\"Ḥakirah 26 © 2019\" printed on p. 91 — in copyright. Cite-only. TIER CAVEAT: a refereed journal of Jewish law with an academic apparatus, not a secular peer-reviewed venue.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S19-d",
+      "ledgerId": "L23",
+      "cite": "William Gewirtz, \"A Categorization of Errors Encountered in the Study of Zemanim\", Ḥakirah 26 (2019), pp. 91–121",
+      "url": "https://hakirah.org/vol26Gewirtz.pdf",
+      "tier": "B",
+      "locus": "p. 94, error Category 5 — fixed time intervals should always trigger suspicion",
+      "pdBasis": "\"Ḥakirah 26 © 2019\" printed on p. 91 — in copyright. Cite-only. TIER CAVEAT: a refereed journal of Jewish law with an academic apparatus, not a secular peer-reviewed venue.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S19-e",
+      "ledgerId": "L23",
+      "cite": "William Gewirtz, \"A Categorization of Errors Encountered in the Study of Zemanim\", Ḥakirah 26 (2019), pp. 91–121",
+      "url": "https://hakirah.org/vol26Gewirtz.pdf",
+      "tier": "B",
+      "locus": "p. 104 area — elevation is only a rounding error compared with latitude; discussing the Amsterdam 48-vs-72-minute problem",
+      "pdBasis": "\"Ḥakirah 26 © 2019\" printed on p. 91 — in copyright. Cite-only. TIER CAVEAT: a refereed journal of Jewish law with an academic apparatus, not a secular peer-reviewed venue.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S19-f",
+      "ledgerId": "L23",
+      "cite": "William Gewirtz, \"A Categorization of Errors Encountered in the Study of Zemanim\", Ḥakirah 26 (2019), pp. 91–121",
+      "url": "https://hakirah.org/vol26Gewirtz.pdf",
+      "tier": "B",
+      "locus": "p. 99 — defining a solar depression angle",
+      "pdBasis": "\"Ḥakirah 26 © 2019\" printed on p. 91 — in copyright. Cite-only. TIER CAVEAT: a refereed journal of Jewish law with an academic apparatus, not a secular peer-reviewed venue.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S19-g",
+      "ledgerId": "L23",
+      "cite": "William Gewirtz, \"A Categorization of Errors Encountered in the Study of Zemanim\", Ḥakirah 26 (2019), pp. 91–121",
+      "url": "https://hakirah.org/vol26Gewirtz.pdf",
+      "tier": "B",
+      "locus": "p. 93, footnote 5, on the Ba'al Ha-Tanya's Seder Hakhnosat Shabbat printed in Chabad siddurim",
+      "pdBasis": "\"Ḥakirah 26 © 2019\" printed on p. 91 — in copyright. Cite-only. TIER CAVEAT: a refereed journal of Jewish law with an academic apparatus, not a secular peer-reviewed venue.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S19-h",
+      "ledgerId": "L23",
+      "cite": "William Gewirtz, \"A Categorization of Errors Encountered in the Study of Zemanim\", Ḥakirah 26 (2019), pp. 91–121",
+      "url": "https://hakirah.org/vol26Gewirtz.pdf",
+      "tier": "B",
+      "locus": "p. 93, error Category 1 ('Latitude') — explicit mention of latitude did not occur until the 17th century",
+      "pdBasis": "\"Ḥakirah 26 © 2019\" printed on p. 91 — in copyright. Cite-only. TIER CAVEAT: a refereed journal of Jewish law with an academic apparatus, not a secular peer-reviewed venue.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-a",
+      "ledgerId": "L24",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — ZmanimCalendar.java javadoc, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ZmanimCalendar.java",
+      "tier": "C",
+      "locus": "javadoc for getAlos16Point1Degrees — the 72-minute basis",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-b",
+      "ledgerId": "L24",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — ZmanimCalendar.java javadoc, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ZmanimCalendar.java",
+      "tier": "C",
+      "locus": "javadoc for getAlos16Point1Degrees, immediately after S20-a — 16.1° in Jerusalem around the equinox / equilux",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-c",
+      "ledgerId": "L26",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — ComprehensiveZmanimCalendar.java, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ComprehensiveZmanimCalendar.java",
+      "tier": "C",
+      "locus": "javadoc for getAlos19Point8Degrees — 90 minutes before sunrise in Jerusalem, 19.8°",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-d",
+      "ledgerId": "L24",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — ZmanimCalendar.java javadoc, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ZmanimCalendar.java",
+      "tier": "C",
+      "locus": "javadoc for getTzaisGeonim8Point5Degrees — 36 minutes after sunset in Jerusalem, 8.5°; the same javadoc attributes the three-small-stars reading to R. Meir Posen, Ohr Meir",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-e",
+      "ledgerId": "L24",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — ZmanimCalendar.java javadoc, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ZmanimCalendar.java",
+      "tier": "C",
+      "locus": "ZmanimCalendar class-level javadoc, attributed to R. Dovid Yehudah Bursztyn, Zmanim Kehilchasam 7th ed. ch. 2 §7 (pp. 181–182) and §9 (pp. 186–187)",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-f",
+      "ledgerId": "L24",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — ZmanimCalendar.java javadoc, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ZmanimCalendar.java",
+      "tier": "C",
+      "locus": "ZmanimCalendar class-level javadoc, the opposing position, attributed to R. Yechiel Avrahom Zilber, Birur Halacha vol. 6 ch. 58 pp. 34 and 42",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-g",
+      "ledgerId": "L25",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — AstronomicalCalendar.java, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/AstronomicalCalendar.java",
+      "tier": "C",
+      "locus": "javadoc for getSeaLevelSunrise — why degree-based dawn/dusk is computed off sea-level sunrise",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-h",
+      "ledgerId": "L25",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — AstronomicalCalendar.java, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/AstronomicalCalendar.java",
+      "tier": "C",
+      "locus": "javadoc for getSunrise — the components of the ~50 arcminute adjustment",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-i",
+      "ledgerId": "L24",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — ZmanimCalendar.java javadoc, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ZmanimCalendar.java",
+      "tier": "C",
+      "locus": "ZmanimCalendar class-level javadoc — the third, distinct position, attributed to R. Yaakov Karp, Shimush Zekeinim ch. 1 p. 17",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S20-j",
+      "ledgerId": "L26",
+      "cite": "Eliyahu Hershfeld, KosherJava Zmanim API — ComprehensiveZmanimCalendar.java, master branch",
+      "url": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ComprehensiveZmanimCalendar.java",
+      "tier": "C",
+      "locus": "javadoc for getShaahZmanis16Point1Degrees — the Magen Avraham-type seasonal hour as a 16.1°-to-16.1° day split into twelve",
+      "pdBasis": "Copyright © 2004–2026 Eliyahu Hershfeld; library licensed LGPL-2.1 — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S21-a",
+      "ledgerId": "L27",
+      "cite": "R' Dovid Eisikowitz, 'Computation by Degrees Explained', MyZmanim.com, Av 5764 (2004)",
+      "url": "https://www.myzmanim.com/read/degrees.aspx",
+      "tier": "C",
+      "locus": "body, bulleted section 'Alos HaShachar' — the 72-minute figure applies only to the equinox days in Bavel and Eretz Yisrael",
+      "pdBasis": "Page footer \"Copyright © 2004 MyZmanim\" — in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S21-b",
+      "ledgerId": "L27",
+      "cite": "R' Dovid Eisikowitz, 'Computation by Degrees Explained', MyZmanim.com, Av 5764 (2004)",
+      "url": "https://www.myzmanim.com/read/degrees.aspx",
+      "tier": "C",
+      "locus": "body, 'Alos HaShachar' — the derivation of 16.1° from 72 minutes before sunrise on an equinox day in Jerusalem",
+      "pdBasis": "Page footer \"Copyright © 2004 MyZmanim\" — in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S21-c",
+      "ledgerId": "L27",
+      "cite": "R' Dovid Eisikowitz, 'Computation by Degrees Explained', MyZmanim.com, Av 5764 (2004)",
+      "url": "https://www.myzmanim.com/read/degrees.aspx",
+      "tier": "C",
+      "locus": "body, 'Tzes HaKochavim' — the derivation of 8.5° from 2 mil = 36 minutes",
+      "pdBasis": "Page footer \"Copyright © 2004 MyZmanim\" — in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S21-d",
+      "ledgerId": "L27",
+      "cite": "R' Dovid Eisikowitz, 'Computation by Degrees Explained', MyZmanim.com, Av 5764 (2004)",
+      "url": "https://www.myzmanim.com/read/degrees.aspx",
+      "tier": "C",
+      "locus": "body — alos cannot be defined as a fixed amount of time before sunrise, attributed to 'the Gra and others'",
+      "pdBasis": "Page footer \"Copyright © 2004 MyZmanim\" — in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-a",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, third paragraph — the operative instruction for the degree method",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-b",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, second paragraph — 78 minutes from amud hashachar to netz at the height of winter (22 December)",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-c",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, second paragraph, immediately after S22-b — 88 minutes at the height of summer (22 June)",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-d",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, footnote 1 — the disputed length of a mil (18, citing Rambam's Commentary on Mishnah Berakhot 1:1, and 22.5); the fetcher records the sentence continuing to a 24-minute view",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-d2",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, footnote 1 — the first practical scheme, 72 minutes at an 18-minute mil",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-d3",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, footnote 1 — the second scheme, 90 minutes at a 22.5-minute mil, printed in many calendars",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-e",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, fourth paragraph — the alternative 'first light' definition at about 17.5°",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-f",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, Hebrew footnote 1 — calendars using 90 minutes, at which the sun is 19.75° below the horizon. NB 19.75 here vs KosherJava's 19.8 at S20-c; both attested, not reconciled",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S22-g",
+      "ledgerId": "L28",
+      "cite": "Eliezer Melamed, Peninei Halakhah, Prayer 11:2, Yeshivat Har Bracha",
+      "url": "https://www.sefaria.org/api/v3/texts/Peninei_Halakhah,_Prayer.11.2",
+      "tier": "C",
+      "locus": "Peninei Halakhah, Prayer 11:2, Hebrew footnote 1 — Tzfat's dawn interval runs about a minute and a half longer than Jerusalem's",
+      "pdBasis": "Sefaria declares both versions CC-BY-NC — not a §4.1 verdict. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S23-a",
+      "ledgerId": "L29",
+      "cite": "Joseph Jacobs & Judah David Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, New York, 1901–1906)",
+      "url": "https://www.jewishencyclopedia.com/articles/14114-sun-rising-and-setting-of-the",
+      "tier": "B",
+      "locus": "section 'Dawn and Twilight' — the 40-mil day that yields the 18-minute mil",
+      "pdBasis": "Published 1901–1906, term expired; PD in the United States. TIER CAVEAT: a signed scholarly reference article, and a dated one. CAUTION recorded by the fetcher: the article cites the dawn sugya as \"Pes. 84a\"; the passage retrieved is at 94a.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "1 mil = 2,000 ells, or 1/40 part of a day's journey of 12 hours = 18 minutes"
+    },
+    {
+      "sid": "S23-b",
+      "ledgerId": "L29",
+      "cite": "Joseph Jacobs & Judah David Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, New York, 1901–1906)",
+      "url": "https://www.jewishencyclopedia.com/articles/14114-sun-rising-and-setting-of-the",
+      "tier": "B",
+      "locus": "section 'Dawn and Twilight', after the R. Nehemiah measure",
+      "pdBasis": "Published 1901–1906, term expired; PD in the United States. TIER CAVEAT: a signed scholarly reference article, and a dated one. CAUTION recorded by the fetcher: the article cites the dawn sugya as \"Pes. 84a\"; the passage retrieved is at 94a.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "Samuel gives the time as ¾ mil = 13½ minutes; another version places it at ⅔ mil = 12 minutes"
+    },
+    {
+      "sid": "S23-c",
+      "ledgerId": "L29",
+      "cite": "Joseph Jacobs & Judah David Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, New York, 1901–1906)",
+      "url": "https://www.jewishencyclopedia.com/articles/14114-sun-rising-and-setting-of-the",
+      "tier": "B",
+      "locus": "section 'Dawn and Twilight'",
+      "pdBasis": "Published 1901–1906, term expired; PD in the United States. TIER CAVEAT: a signed scholarly reference article, and a dated one. CAUTION recorded by the fetcher: the article cites the dawn sugya as \"Pes. 84a\"; the passage retrieved is at 94a.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "The full period of the dawn, according to R. Johanan, is 5 mils, or 90 minutes"
+    },
+    {
+      "sid": "S23-d",
+      "ledgerId": "L29",
+      "cite": "Joseph Jacobs & Judah David Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, New York, 1901–1906)",
+      "url": "https://www.jewishencyclopedia.com/articles/14114-sun-rising-and-setting-of-the",
+      "tier": "B",
+      "locus": "section 'Dawn and Twilight', immediately after S23-c",
+      "pdBasis": "Published 1901–1906, term expired; PD in the United States. TIER CAVEAT: a signed scholarly reference article, and a dated one. CAUTION recorded by the fetcher: the article cites the dawn sugya as \"Pes. 84a\"; the passage retrieved is at 94a.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "R. Judah fixes the time at 4 mils, or 72 minutes."
+    },
+    {
+      "sid": "S23-e",
+      "ledgerId": "L29",
+      "cite": "Joseph Jacobs & Judah David Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, New York, 1901–1906)",
+      "url": "https://www.jewishencyclopedia.com/articles/14114-sun-rising-and-setting-of-the",
+      "tier": "B",
+      "locus": "section 'Astronomical Twilight' — an 1901–06 degree conversion of the 3/4-mil bein hashmashot, calculated for Jerusalem at lat. 32° N",
+      "pdBasis": "Published 1901–1906, term expired; PD in the United States. TIER CAVEAT: a signed scholarly reference article, and a dated one. CAUTION recorded by the fetcher: the article cites the dawn sugya as \"Pes. 84a\"; the passage retrieved is at 94a.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "At the end of 13½ minutes after sunset the sun would be about 3½° below the horizon"
+    },
+    {
+      "sid": "S23-f",
+      "ledgerId": "L29",
+      "cite": "Joseph Jacobs & Judah David Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, New York, 1901–1906)",
+      "url": "https://www.jewishencyclopedia.com/articles/14114-sun-rising-and-setting-of-the",
+      "tier": "B",
+      "locus": "section 'Astronomical Twilight'",
+      "pdBasis": "Published 1901–1906, term expired; PD in the United States. TIER CAVEAT: a signed scholarly reference article, and a dated one. CAUTION recorded by the fetcher: the article cites the dawn sugya as \"Pes. 84a\"; the passage retrieved is at 94a.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "lasts till the sun has disappeared 18° below the horizon (= 72 minutes). This is known as the astronomical twilight"
+    },
+    {
+      "sid": "S23-g",
+      "ledgerId": "L29",
+      "cite": "Joseph Jacobs & Judah David Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, New York, 1901–1906)",
+      "url": "https://www.jewishencyclopedia.com/articles/14114-sun-rising-and-setting-of-the",
+      "tier": "B",
+      "locus": "section 'Astronomical Twilight' — the article's gloss on sha'ot zemanniyyot, attributing the 1⅕-periodical-hour twilight to Maimonides",
+      "pdBasis": "Published 1901–1906, term expired; PD in the United States. TIER CAVEAT: a signed scholarly reference article, and a dated one. CAUTION recorded by the fetcher: the article cites the dawn sugya as \"Pes. 84a\"; the passage retrieved is at 94a.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "periodical hours, whose length is equal to one-twelfth of either the day or the night, whichever is the longer"
+    },
+    {
+      "sid": "S23-h",
+      "ledgerId": "L29",
+      "cite": "Joseph Jacobs & Judah David Eisenstein, \"Sun, Rising and Setting of the\", The Jewish Encyclopedia (Funk & Wagnalls, New York, 1901–1906)",
+      "url": "https://www.jewishencyclopedia.com/articles/14114-sun-rising-and-setting-of-the",
+      "tier": "B",
+      "locus": "section 'Astronomical Twilight' — the high-latitude breakdown, with dates",
+      "pdBasis": "Published 1901–1906, term expired; PD in the United States. TIER CAVEAT: a signed scholarly reference article, and a dated one. CAUTION recorded by the fetcher: the article cites the dawn sugya as \"Pes. 84a\"; the passage retrieved is at 94a.",
+      "quotable": true,
+      "fetchedByFetcher": true,
+      "snippet": "beyond lat. 50°, between June 9 and July 9, and beyond 60°, between April 20 and Aug. 18, dawn and twilight overlap each other"
+    },
+    {
+      "sid": "S24-a",
+      "ledgerId": "L30",
+      "cite": "Yaakov Hoffman, review of Ahron Notis, The Great Z'manim Debate (Mosaica Press, 2022), Jewish Action (Orthodox Union), Summer 2025",
+      "url": "https://jewishaction.com/religion/jewish-law/the-great-zmanim-debate-the-history-the-science-and-the-lomdus/",
+      "tier": "C",
+      "locus": "body, fourth paragraph, reporting Notis's position with approval — calendars and apps must use solar depression angles",
+      "pdBasis": "Contemporary magazine article, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S24-b",
+      "ledgerId": "L30",
+      "cite": "Yaakov Hoffman, review of Ahron Notis, The Great Z'manim Debate (Mosaica Press, 2022), Jewish Action (Orthodox Union), Summer 2025",
+      "url": "https://jewishaction.com/religion/jewish-law/the-great-zmanim-debate-the-history-the-science-and-the-lomdus/",
+      "tier": "C",
+      "locus": "body, fourth paragraph, immediately after S24-a — the stated case for degrees over fixed minutes",
+      "pdBasis": "Contemporary magazine article, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S24-c",
+      "ledgerId": "L30",
+      "cite": "Yaakov Hoffman, review of Ahron Notis, The Great Z'manim Debate (Mosaica Press, 2022), Jewish Action (Orthodox Union), Summer 2025",
+      "url": "https://jewishaction.com/religion/jewish-law/the-great-zmanim-debate-the-history-the-science-and-the-lomdus/",
+      "tier": "C",
+      "locus": "body, fifth paragraph — Notis's 22.5-minute mil gives a 16⅞-minute nightfall, converted to 4.37°, on the Gra's statement (Biur HaGra OC 261) that the measure is for Eretz Yisrael at the equinox",
+      "pdBasis": "Contemporary magazine article, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S24-d",
+      "ledgerId": "L30",
+      "cite": "Yaakov Hoffman, review of Ahron Notis, The Great Z'manim Debate (Mosaica Press, 2022), Jewish Action (Orthodox Union), Summer 2025",
+      "url": "https://jewishaction.com/religion/jewish-law/the-great-zmanim-debate-the-history-the-science-and-the-lomdus/",
+      "tier": "C",
+      "locus": "body — the reviewer's counter-position, grounded on Shulchan Aruch OC 235:1 and 293:2",
+      "pdBasis": "Contemporary magazine article, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S24-e",
+      "ledgerId": "L30",
+      "cite": "Yaakov Hoffman, review of Ahron Notis, The Great Z'manim Debate (Mosaica Press, 2022), Jewish Action (Orthodox Union), Summer 2025",
+      "url": "https://jewishaction.com/religion/jewish-law/the-great-zmanim-debate-the-history-the-science-and-the-lomdus/",
+      "tier": "C",
+      "locus": "endnote 2 — the 40-mil sunrise-to-sunset view that justifies the 18-minute mil, citing Chazon Ish OC 13",
+      "pdBasis": "Contemporary magazine article, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S25-a",
+      "ledgerId": "L31",
+      "cite": "'Zemaneh Yosef' (royzmanim.com) FAQ — Sephardi zmanim calculator implementing the Ohr HaChaim and Amudeh Horaah calendars",
+      "url": "https://royzmanim.com/FAQ",
+      "tier": "C",
+      "locus": "FAQ, 'How do you calculate the zemanim?' — the Gra and many others divide the day into 12 from sunrise to sunset",
+      "pdBasis": "Contemporary website, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S25-b",
+      "ledgerId": "L31",
+      "cite": "'Zemaneh Yosef' (royzmanim.com) FAQ — Sephardi zmanim calculator implementing the Ohr HaChaim and Amudeh Horaah calendars",
+      "url": "https://royzmanim.com/FAQ",
+      "tier": "C",
+      "locus": "FAQ, immediately after S25-a — the Terumat Hadeshen, Magen Avraham and others split the day from Alot HaShachar to Tzeit HaCochavim",
+      "pdBasis": "Contemporary website, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S25-c",
+      "ledgerId": "L31",
+      "cite": "'Zemaneh Yosef' (royzmanim.com) FAQ — Sephardi zmanim calculator implementing the Ohr HaChaim and Amudeh Horaah calendars",
+      "url": "https://royzmanim.com/FAQ",
+      "tier": "C",
+      "locus": "FAQ — R. Ovadia Yosef's instruction to calculate all the zemanim with elevation included, attributed to R. Shlomo Benizri and R. Asher Darshan; stated to be the site's default inside Israel",
+      "pdBasis": "Contemporary website, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S25-d",
+      "ledgerId": "L31",
+      "cite": "'Zemaneh Yosef' (royzmanim.com) FAQ — Sephardi zmanim calculator implementing the Ohr HaChaim and Amudeh Horaah calendars",
+      "url": "https://royzmanim.com/FAQ",
+      "tier": "C",
+      "locus": "FAQ — the contrasting practice outside Israel: the Amudeh Horaah calendar (R. Leeor Dahan) did not use elevation",
+      "pdBasis": "Contemporary website, in copyright. Cite-only.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S26-a",
+      "ledgerId": "L32",
+      "cite": "William Gewirtz, untitled book-length treatment of zemanim, PDF at zemanim.net (173 pp.)",
+      "url": "https://zemanim.net/wp-content/uploads/2020/05/postzemanim.pdf",
+      "tier": "C",
+      "locus": "p. 36 area, 'Variation by season' — 8.5° equates to 36 minutes after sunset in Israel at the spring equinox, growing ~16% to 42 minutes by summer against ~43% (48 to 69 minutes) in Prague",
+      "pdBasis": "Self-published contemporary work, in copyright. Cite-only. Tagged C rather than B because it is self-published, unlike the same author's refereed Ḥakirah article.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S26-b",
+      "ledgerId": "L32",
+      "cite": "William Gewirtz, untitled book-length treatment of zemanim, PDF at zemanim.net (173 pp.)",
+      "url": "https://zemanim.net/wp-content/uploads/2020/05/postzemanim.pdf",
+      "tier": "C",
+      "locus": "p. 36, 'Variation by altitude'",
+      "pdBasis": "Self-published contemporary work, in copyright. Cite-only. Tagged C rather than B because it is self-published, unlike the same author's refereed Ḥakirah article.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S26-c",
+      "ledgerId": "L32",
+      "cite": "William Gewirtz, untitled book-length treatment of zemanim, PDF at zemanim.net (173 pp.)",
+      "url": "https://zemanim.net/wp-content/uploads/2020/05/postzemanim.pdf",
+      "tier": "C",
+      "locus": "p. 36, immediately after S26-b; footnote 69 points to Igrot Moshe OC 1:97 and to Shabbat 118b on Tiberias",
+      "pdBasis": "Self-published contemporary work, in copyright. Cite-only. Tagged C rather than B because it is self-published, unlike the same author's refereed Ḥakirah article.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    },
+    {
+      "sid": "S26-d",
+      "ledgerId": "L32",
+      "cite": "William Gewirtz, untitled book-length treatment of zemanim, PDF at zemanim.net (173 pp.)",
+      "url": "https://zemanim.net/wp-content/uploads/2020/05/postzemanim.pdf",
+      "tier": "C",
+      "locus": "p. 36, footnote 67 — the reported paradox that the Magen Avraham hour is in practice derived from the Gra's sunrise/sunset anchors",
+      "pdBasis": "Self-published contemporary work, in copyright. Cite-only. Tagged C rather than B because it is self-published, unlike the same author's refereed Ḥakirah article.",
+      "quotable": false,
+      "fetchedByFetcher": true,
+      "snippetWithheld": "Verbatim text withheld from this dossier: the source is cite-only under FRAMING §4.1 (see pdBasis). The fetcher's ledger holds the verbatim words at this sid for verification."
+    }
+  ],
+  "attemptedAndFailed": [
+    {
+      "cite": "Chabad.org, 'About Our Zmanim Calculations'",
+      "url": "https://www.chabad.org/library/article_cdo/aid/3209349/jewish/About-Our-Zmanim-Calculations.htm",
+      "outcome": "NOT OBTAINED — HTTP 403 Forbidden on direct curl with a browser user-agent and on WebFetch."
+    },
+    {
+      "cite": "MyZmanim.com, 'Definitions' help page",
+      "url": "https://myzmanim.com/help/definitions.aspx",
+      "outcome": "NOT OBTAINED — server returned an application error page."
+    },
+    {
+      "cite": "Chai Tables (Chaim Keller) — visible-horizon / netz nir'eh sunrise tables",
+      "url": "https://www.chaitables.com/",
+      "outcome": "NOT OBTAINED — connection failed outright (0 bytes, http=000; TLS/connection error)."
+    },
+    {
+      "cite": "Halachipedia, 'Zmanim'",
+      "url": "https://halachipedia.com/index.php?title=Zmanim",
+      "outcome": "NOT OBTAINED — HTTP 404 at that page title."
+    },
+    {
+      "cite": "KosherJava javadoc, ComplexZmanimCalendar",
+      "url": "https://kosherjava.com/zmanim/docs/api/com/kosherjava/zmanim/ComplexZmanimCalendar.html",
+      "outcome": "NOT OBTAINED — HTTP 404; the class was renamed upstream and the published javadoc URL is stale. Recorded because a citation to this URL would look plausible and resolve to nothing. Content recovered from GitHub raw source instead (L26)."
+    },
+    {
+      "cite": "Sefaria ref 'Magen Avraham on Shulchan Arukh, Orach Chayim 58:1'",
+      "url": "https://www.sefaria.org/api/v3/texts/Magen_Avraham_on_Shulchan_Arukh,_Orach_Chayim.58.1",
+      "outcome": "FABRICATION HAZARD, recorded deliberately. The ref does not error: Sefaria silently resolves it to the whole Magen Avraham and returns the commentary on siman 1, which is about the akedah and korbanot. The correct ref is the depth-2 \"Magen Avraham 58:1\", which is what L11 uses."
+    },
+    {
+      "cite": "Beur HaGra to Shulchan Arukh, Orach Chayim 459:2",
+      "url": "https://www.sefaria.org/api/v3/texts/Beur_HaGra_on_Shulchan_Arukh,_Orach_Chayim.459.2.1",
+      "outcome": "RETRIEVED BUT NOT AS EXPECTED — the comment there is a short remark about flour and kneading, not about mil-length or the day's endpoints. Do not cite Beur HaGra 459:2 for the endpoints or mil question on this evidence. See gaps[0]."
+    },
+    {
+      "cite": "Tosafot to Pesachim 94a",
+      "url": "https://www.sefaria.org/api/v3/texts/Tosafot_on_Pesachim.94a.4.1",
+      "outcome": "NOT OBTAINED — Sefaria returned \"We have no text for Tosafot on Pesachim 94a:4:1\"."
+    },
+    {
+      "cite": "Mishnah Berurah 58:4 in a digitisation with a resolved licence",
+      "url": "https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.58.4",
+      "outcome": "NOT OBTAINED — available_versions lists exactly one Hebrew version (\"Wikitext\", licence \"unknown\"); a retry pinning the PD \"On Your Way\" version returned nothing."
+    },
+    {
+      "cite": "Secular peer-reviewed scholarship specifically on the arithmetic of halachic seasonal hours",
+      "url": "https://www.google.com/search?q=peer-reviewed+twilight+solar+depression+halakhic+hours",
+      "outcome": "NOT OBTAINED — searches surfaced Sacha Stern's Brill volumes, all in copyright, paywalled, and about the calendar rather than the hour. Consequence: this ledger has no modern secular peer-reviewed source."
+    },
+    {
+      "cite": "Ḥayim Benish, HaZemanim BaHalachah",
+      "url": "https://www.sefaria.org/",
+      "outcome": "NOT OBTAINED — not digitised in any reachable source; in copyright. Cited by three separate ledger sources; present only at second hand."
+    },
+    {
+      "cite": "Ohr HaChaim calendar introduction",
+      "url": "https://royzmanim.com/FAQ",
+      "outcome": "NOT OBTAINED — only the FAQ's characterisation of it was retrieved, not the introduction itself."
+    }
+  ]
+}
