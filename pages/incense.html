@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incense &amp; Suffumigation | The Astrologer's Workbench</title>
+<meta name="description" content="The planetary suffumigations of Renaissance astral magic, indexed two ways — per planet as the sources give them, and per material across every planet that names it — with the ambiguities that a naive index would erase, and no quantity or preparation carried.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="picatrix/index.html">Picatrix</a> › Incense &amp; Suffumigation</p>
+  <h1>Incense &amp; Suffumigation</h1>
+  <p class="lede">What the astral-magic texts assign to each planet to be burned — recorded as the sources
+    name it, and indexed the other way round as well: <em>one material, every planet that claims it</em>.
+    That second view is the one a single grimoire cannot give you.</p>
+
+  <div class="callout science" id="inc-framing"></div>
+
+  <h2>Per planet</h2>
+  <p class="small muted">The substance is given as the text names it. <b>Quantity and process are withheld
+    by design</b>, not missing: this site carries at most two of {substance · quantity · process} for any
+    harm-flagged material, so the operable triple cannot be assembled from a page here.</p>
+  <div id="inc-planets"></div>
+
+  <h2>Per material</h2>
+  <p class="small muted">The same data read the other way. Composites are indexed as one material each —
+    this site does not carry their ingredient lists, and expanding them would invent entries it cannot cite.</p>
+  <div id="inc-materials"></div>
+
+  <h2>Where the traditions converge</h2>
+  <div id="inc-convergence"></div>
+
+  <h2>What is not settled</h2>
+  <p class="small muted">These are live disagreements, kept as disagreements. Where two texts name two
+    different things, both are recorded rather than reconciled into a tidier answer no source states.</p>
+  <div id="inc-questions"></div>
+
+  <h2>What this page contains, counted</h2>
+  <p class="small muted">Every count names its unit, because a number without its unit is how two correct
+    measurements start an argument.</p>
+  <div id="inc-census"></div>
+
+  <h2>Sources &amp; honesty</h2>
+  <p class="small muted" id="inc-source"></p>
+  <div class="callout"><span class="label">What this page is not</span>
+    It is a record of what historical texts assign, not an instruction. It names no quantity, no
+    preparation and no process parameter; it does not enumerate the ingredients of the two compound
+    recipes; and it makes no claim that any of it works. Several entries name toxic or animal-derived
+    substances and are marked as records rather than recipes — do not attempt any historical recipe.
+    The traditions documented here belong to the communities that carry them; this site claims
+    authorship of none of it.</div>
+</main>
+
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  import { initIncense } from '../assets/js/app/incense.js';
+  mountChrome('picatrix');
+  initIncense();
+</script>
+</body>
+</html>
