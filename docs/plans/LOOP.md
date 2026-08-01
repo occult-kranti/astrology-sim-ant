@@ -154,6 +154,50 @@ reasons is just a list and gets reordered by whoever is nearest.
    slugs because `confluence.js` quotes its keys. Assume nothing about shape;
    print it.*
 
+### ⚠ TOP OF QUEUE — the inherited-witness defect (verified 2026-08-01)
+
+**The shipped graph's weights are inverted, and some claims display a citation
+that is not among their sources.** Found by the RAG architecture round; every
+figure below I re-derived myself against `a7b3cf1`.
+
+`gen-opgraph.mjs:175` `citeText()` flattens an **entire record** — every string
+value at any depth — into one blob, and `witnessesFor()` substring-matches source
+anchors against that blob. So a procedure-claim nested in a work record inherits
+any source named anywhere in its parent, **including prose about a different
+procedure**.
+
+```
+procedure-claims                246
+  witnessesInherited: true      117  (47.6%)   mean weight 0.634
+  own evidence                  129             mean weight 0.556
+  inherited at weight >= 0.8     40
+```
+
+**Claims that inherited their evidence outrank claims that have their own.**
+That inverts the one thing the weighting rubric exists to do.
+
+Worked case, confirmed to the digit:
+
+```
+proc:baopuzi-3   weight 1.00 (maximum)   witnesses 4   inherited: true
+  citeText  "Pregadio 2006"
+  sources   13:S10 (Kohn) · 13:S19 (Donner/Stevenson) · 13:S5 (Ware) · 13:S6 (Wang Ming)
+  Pregadio is 13:S1 — NOT among this node's sources.
+```
+
+This is the fabricated-provenance class again — the fourth instance of the same
+shape — but this time **in shipped data, not in a research round**. The sound
+join is unaffected: `sources[] → OPGRAPH_META.sources` is 123 sources, 1,307
+refs, **0 dangling**, and `witnesses === sources.length` on 509/509. The rot is
+in how a claim acquires those sources, not in the resolution.
+
+Related, from the same round: **B14, the artery onto a stump** — `scripts/`
+holds exactly one `gen-*` script, while `bhava-phala.js` and `greatworks-east.js`
+declare themselves GENERATED. Those two cannot be rebuilt from tracked state.
+
+**Fix before any new dataset joins the artery**, because every dataset added
+under this rule inherits the flaw.
+
 ### The Horae track  *(maintainer-directed, runs alongside the graph queue)*
 
 **H0. The research protocol is hardened and must be used.** Phase 1 measured a
