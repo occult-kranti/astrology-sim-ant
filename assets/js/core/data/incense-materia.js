@@ -146,6 +146,58 @@ export const AMBIGUITIES = {
   },
 };
 
+// ============================================================================
+//  THE PRACTITIONER TABLE — a SECOND assignment set, and it disagrees.
+//
+//  The maintainer's earlier instrument ("The Week of Unequal Hours",
+//  planetary_hours.html) shipped its own per-planet incense table, described in
+//  its own footer as "the multi-source table of this project". It is a MODERN
+//  PRACTITIONER assignment — Tier C — and it is not the Picatrix/Agrippa table
+//  above. On five of seven planets the two disagree outright.
+//
+//  That disagreement is the most interesting thing either table contains, so
+//  both ship, attributed, and neither is corrected into the other. The v1 table
+//  is also unusually honest about itself: it marks Saturn's myrrh as a modern
+//  STAND-IN and says plainly that "Saturn's classical fumes are deliberately
+//  harsh" — i.e. it substituted a safe resin for the historical material. That
+//  is a substitution, not a reading of a text, and it is recorded as one.
+//
+//  DO NOT MERGE THE COLUMNS. A reader choosing between "frankincense for the
+//  Sun" (practitioner) and "the 31-spice compound and saffron" (Picatrix) is
+//  choosing between a living practice and a historical text, and the site's job
+//  is to make that choice visible rather than to make it for them.
+// ============================================================================
+export const PRACTITIONER_TABLE = {
+  _meta: {
+    tier: 'C',
+    label: 'Superseded working table (not a source)',
+    source: 'The Week of Unequal Hours (planetary_hours.html), this project\'s own earlier instrument, '
+      + 'whose footer calls it "the multi-source table of this project" without naming the sources.',
+    status: 'SUPERSEDED. NOT AN AUTHORITY FOR THIS SITE.',
+    caution: 'MAINTAINER RULING (2026-08-01): the site\'s assignments come from the BOOKS, cited — '
+      + 'Picatrix III.7 and Agrippa, Three Books II — and not from this project\'s own earlier '
+      + 'combinations. This table is retained ONLY as a documented contrast, because a comparison '
+      + 'corpus should show where its own past working assumptions diverged from its texts rather '
+      + 'than quietly delete them. Nothing on this site is derived from it, and no page presents it '
+      + 'as a tradition\'s assignment.',
+  },
+  Sun: { main: 'frankincense', alt: 'cinnamon' },
+  Moon: { main: 'oud / aloeswood', alt: 'camphor' },
+  Mercury: { main: 'mastic', alt: 'cinnamon sticks' },
+  Venus: { main: 'rose', alt: 'sandalwood' },
+  Mars: { main: "dragon's blood", alt: 'pepper (classical)' },
+  Jupiter: { main: 'saffron', alt: 'nutmeg' },
+  Saturn: {
+    main: 'myrrh',
+    alt: null,
+    substitution: true,
+    substitutionNote: 'The v1 table marks this a modern STAND-IN and states that Saturn\'s classical '
+      + 'fumes are deliberately harsh. It is a substitution for the historical material, not a '
+      + 'reading of it — which is exactly the honest thing to do and exactly the thing that must be '
+      + 'labelled rather than passed off as the tradition\'s own assignment.',
+  },
+};
+
 export const MATERIA_SOURCE =
   'Tokens read from assets/js/core/data/planetary-magic.js, whose own source line is '
   + '"Picatrix III.7; Agrippa, Three Books II". The tokenisation is hand-authored and reviewable; '

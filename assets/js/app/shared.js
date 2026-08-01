@@ -60,6 +60,7 @@ export const NAV_GROUPS = [
     ['pages/book2/index.html', 'Book II — Horary', 'book2'],
     ['pages/book3/index.html', 'Book III — Nativities', 'book3'],
     ['pages/picatrix/index.html', 'Picatrix — astral magic', 'picatrix'],
+    ['pages/incense.html', 'Incense & suffumigation — materia', 'incense'],
     ['pages/vedic/index.html', 'Vedic — Jyotiṣa (sidereal)', 'vedic'],
     ['pages/prasna.html', 'Praśna & KP sub-lords', 'prasna'],
     ['pages/muhurta.html', 'Muhūrta — Indian election', 'muhurta'],
@@ -116,6 +117,10 @@ export function currentSection() {
   if (m(/\/pages\/book1\/planetary-hours\.html$/)) return 'phours';
   if (m(/\/pages\/book2\/horary\.html$/)) return 'horary';
   if (m(/\/pages\/book3\/nativity\.html$/)) return 'nativity';
+  // Exact, and BEFORE the /pages/picatrix/ catch-all below: incense.html sits at
+  // pages/ root but is a Picatrix-adjacent materia page, so without its own line
+  // it would light up nothing at all.
+  if (m(/\/pages\/incense\.html$/)) return 'incense';
   if (m(/\/pages\/picatrix\/election\.html$/)) return 'election';
   if (m(/\/pages\/picatrix\/talisman\.html$/)) return 'talisman';
 

@@ -24,7 +24,9 @@
 // ============================================================================
 
 import { PLANETARY_MAGIC } from './data/planetary-magic.js';
-import { MATERIA_TOKENS, MATERIA, AMBIGUITIES, MATERIA_SOURCE } from './data/incense-materia.js';
+import {
+  MATERIA_TOKENS, MATERIA, AMBIGUITIES, MATERIA_SOURCE, PRACTITIONER_TABLE,
+} from './data/incense-materia.js';
 
 /** Chaldean order — the order the tradition itself uses, not alphabetical. */
 export const PLANET_ORDER = ['Saturn', 'Jupiter', 'Mars', 'Sun', 'Venus', 'Mercury', 'Moon'];
@@ -93,6 +95,65 @@ export function byMaterial() {
  */
 export function convergences() {
   return byMaterial().filter(m => m.planets.length > 1);
+}
+
+/**
+ * THE TWO TABLES, SIDE BY SIDE — the textual (Tier A/B, Picatrix III.7 +
+ * Agrippa) against the modern practitioner set (Tier C).
+ *
+ * `agrees` is deliberately CONSERVATIVE: it is true only when a practitioner
+ * material appears as a token in the textual entry. Anything else counts as a
+ * divergence, because a near-miss ("rose" vs "roses", "aloes" vs "aloeswood")
+ * is exactly the kind of thing a looser comparison would call agreement and be
+ * wrong about — see the aloes-pair ambiguity.
+ */
+export function tableComparison() {
+  return PLANET_ORDER.map(p => {
+    const textual = byPlanet().find(r => r.planet === p);
+    const prac = PRACTITIONER_TABLE[p] || null;
+    const tokens = textual ? textual.tokens.map(t => t.label.toLowerCase()) : [];
+    const pracMain = prac && prac.main ? prac.main.toLowerCase() : '';
+    const agrees = Boolean(pracMain) && tokens.some(t => t === pracMain);
+
+    // A bare "7 of 7 diverge" would overstate it, because two of the seven are
+    // not real disagreements about materials:
+    //   · a singular/plural or wording difference for the SAME substance;
+    //   · a material the texts do assign — but to a DIFFERENT planet, which is
+    //     a reassignment rather than a substitution and is far more interesting.
+    let nearMiss = null;
+    if (!agrees && pracMain) {
+      const loose = tokens.find(t =>
+        t.startsWith(pracMain) || pracMain.startsWith(t)
+        || t.replace(/s$/, '') === pracMain.replace(/s$/, ''));
+      if (loose) {
+        nearMiss = { kind: 'wording', body: `The texts give "${loose}" and the practitioner table "${pracMain}" — `
+          + 'almost certainly the same material under a different form, not a disagreement.' };
+      } else {
+        const elsewhere = PLANET_ORDER.filter(q => q !== p).find(q => {
+          const other = byPlanet().find(r => r.planet === q);
+          return other && other.tokens.some(t => t.label.toLowerCase() === pracMain);
+        });
+        if (elsewhere) {
+          nearMiss = { kind: 'reassigned', body: `The texts DO name "${pracMain}" — but they give it to `
+            + `${elsewhere}, not ${p}. The practitioner table has reassigned it, which is a different `
+            + 'claim from substituting something new.' };
+        }
+      }
+    }
+
+    return {
+      planet: p,
+      nearMiss,
+      textual: textual ? textual.substance : null,
+      textualTier: 'A/B — Picatrix III.7 · Agrippa II',
+      practitioner: prac ? prac.main : null,
+      practitionerAlt: prac ? prac.alt : null,
+      practitionerTier: 'C — modern working table',
+      substitution: Boolean(prac && prac.substitution),
+      substitutionNote: prac && prac.substitutionNote ? prac.substitutionNote : null,
+      agrees,
+    };
+  });
 }
 
 /** Every unresolved question this data carries. Rendered, never buried. */

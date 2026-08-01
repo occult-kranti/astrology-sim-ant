@@ -1487,3 +1487,66 @@ reached into this list twice and broke §4 both times, in the two most prominent
 Two further items from that survey — Betz's Julian epigraph and his closing aphorism about deception — have
 been **deleted from the working set entirely**. They are the two that kept getting reached for, and §6.1
 records why neither belongs on this site.
+
+---
+
+## §11 — THE DOCUMENTED-PRACTICE AMENDMENT
+
+**Adopted 2026-08-01.** Decision delegated to the builder by the maintainer and taken here explicitly,
+rather than allowed to arrive through a build round — which is the failure mode this section exists to
+prevent. A constitution that changes by accretion is not a constitution.
+
+### §11.1 — What changes
+
+The site moves from *describing that practices existed* to **documenting what the texts instruct, step by
+step, with every step carrying its locus**. Procedures may be set out in the sequence their source gives,
+with the source's own conditions — hour, day, direction, purity, materials.
+
+### §11.2 — What does NOT change, and this is the whole of it
+
+1. **§5 C-1, the operable triple, stands unaltered.** For any harm-flagged materia the site carries at
+   most two of {substance · quantity · process parameter}. A rite is documented in full; a **toxic
+   preparation is never dosed**. The three facts live in three typed fields so the third has nowhere to
+   sit, and a renderer that flattens them into prose re-creates the triple and is a defect.
+2. **§5 C-2, bodily-injury technique, stands unaltered.** Its existence, history, doctrine and locus are
+   described; the graded regimen is not transcribed as method.
+3. **No efficacy claim, ever.** Documenting an instruction is not endorsing an outcome. "The text directs
+   X" is permitted; "X works", "X will cause Y", and any medical or life-outcome claim are not.
+4. **The step is the unit and carries its own citation.** A step whose locus cannot be resolved does not
+   ship. This is §9's citation rule applied at finer grain, and it is what separates this turn from
+   simply publishing recipes.
+5. **Recension differences are content.** Where witnesses differ, both ship attributed. Merging them into
+   one clean procedure is the merged-conflict error the audits keep catching.
+6. **Completeness stays graded.** A procedure page states whether its source is complete, partial,
+   referenced or fragmentary, so a reader knows whether they are seeing a whole rite or a fragment.
+
+### §11.3 — Provenance: the books, not our own combinations
+
+**MAINTAINER RULING (2026-08-01).** Every assignment, correspondence and materia the site carries must
+come from a **named text at a named locus**. This project's own earlier working tables — assembled from
+unnamed "multi-source" combinations — are **not authorities** and may not be used as data. Where such a
+table is retained it is labelled superseded, shown only as a contrast, and nothing is derived from it.
+
+This is not pedantry about sourcing. A comparison corpus whose own house assignments leak into its
+tables can no longer tell the reader whether a convergence is a fact about the traditions or an artefact
+of its own past editing.
+
+### §11.4 — Licence, corrected
+
+The traditions documented here belong to the communities that carry them; the site claims authorship of
+none of it and says so on the page rather than in a footer. Copyright, however, is a separate question
+from cultural belonging, and conflating them gets it backwards in both directions:
+
+> A copyright sits on a **modern translator's English**, not on the tradition and not on the source text.
+
+The route is therefore the **public-domain sources directly** — the Latin *Picatrix* and the Arabic
+*Ghāyat al-Ḥakīm*, Freake 1651 for Agrippa, Mathers 1889, Preisendanz 1928, Budge 1905, Barrett 1801 —
+paraphrasing modern scholarship and citing it. This *widens* what may be documented rather than
+narrowing it, and it is the fix for §9.8 as well: the PD route **replaces** the in-copyright excerpts
+rather than merely deleting them.
+
+### §11.5 — The test this amendment must pass
+
+If a page under §11 could be lifted onto a site with no framing at all and read as instruction, it has
+failed. The documentation is of **what a text says to do**, addressed to a reader studying the text —
+never restated as an imperative to the reader, and never completing what the source withheld.

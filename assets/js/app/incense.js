@@ -16,7 +16,7 @@
 // ============================================================================
 
 import {
-  byPlanet, byMaterial, convergences, openQuestions, census,
+  byPlanet, byMaterial, convergences, openQuestions, census, tableComparison,
   INCENSE_SOURCE, INCENSE_FRAMING,
 } from '../core/incense.js';
 
@@ -127,6 +127,45 @@ function renderCensus(c) {
 }
 
 // ---------------------------------------------------------------------------
+//  5 · Text against practice — two tables, neither corrected into the other
+// ---------------------------------------------------------------------------
+function renderComparison(rows) {
+  const body = rows.map(r => {
+    const verdict = r.agrees
+      ? '<span class="badge badge--doc">agree</span>'
+      : r.nearMiss
+        ? `<span class="badge badge--plain">${r.nearMiss.kind === 'wording' ? 'same material' : 'reassigned'}</span>`
+        : '<span class="badge badge--plain">differs</span>';
+    const why = r.nearMiss
+      ? `<div class="small">${esc(r.nearMiss.body)}</div>`
+      : r.substitution
+        ? `<div class="small"><b>Declared substitution.</b> ${esc(r.substitutionNote || '')}</div>`
+        : '<span class="small muted">—</span>';
+    return `<tr>
+      <th scope="row">${esc(GLYPH[r.planet] || '')} ${esc(r.planet)}</th>
+      <td>${esc(r.textual || '—')}</td>
+      <td>${esc(r.practitioner || '—')}${r.practitionerAlt ? `<span class="small muted"> · ${esc(r.practitionerAlt)}</span>` : ''}</td>
+      <td>${verdict}</td>
+      <td>${why}</td>
+    </tr>`;
+  }).join('');
+
+  const real = rows.filter(r => !r.agrees && !r.nearMiss).length;
+  const near = rows.filter(r => !r.agrees && r.nearMiss).length;
+
+  return `<table class="tbl">
+      <thead><tr><th>Planet</th><th>The texts <span class="small muted">Tier A/B — cited, authoritative</span></th>
+        <th>Earlier working table <span class="small muted">Tier C — superseded, uncited</span></th><th></th><th>What the difference is</th></tr></thead>
+      <tbody>${body}</tbody></table>
+    <div class="callout"><span class="label">${real} real divergences, ${near} near-misses</span>
+      A blunt comparison would report all seven as disagreements. Most are not.
+      <b>The clearest case is a straight swap</b>: the texts give frankincense to Jupiter and saffron to
+      the Sun, and the practitioner table gives frankincense to the Sun and saffron to Jupiter. Mercury
+      is handed the mastic the texts assign to Venus. Those are <i>reassignments</i> of materials the
+      tradition does name — a different and more interesting claim than substituting something new.</div>`;
+}
+
+// ---------------------------------------------------------------------------
 export function initIncense() {
   const set = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
   const planets = byPlanet();
@@ -136,6 +175,7 @@ export function initIncense() {
   set('inc-planets', renderPlanets(planets));
   set('inc-materials', renderMaterials(mats));
   set('inc-convergence', renderConvergence(convergences(), mats));
+  set('inc-comparison', renderComparison(tableComparison()));
   set('inc-questions', openQuestions().map(q =>
     `<div class="callout"><span class="label">${esc(q.title)}</span> ${esc(q.body)}
       <div class="small"><i>Status: ${esc(q.status)}</i></div></div>`).join(''));
