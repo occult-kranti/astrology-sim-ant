@@ -154,6 +154,39 @@ reasons is just a list and gets reordered by whoever is nearest.
    slugs because `confluence.js` quotes its keys. Assume nothing about shape;
    print it.*
 
+### The Horae track  *(maintainer-directed, runs alongside the graph queue)*
+
+**H0. The research protocol is hardened and must be used.** Phase 1 measured a
+**21% fabrication-class rate** — 28 of 132 claims carried a citation that does
+not support them. Root cause: one agent both searched and wrote, and
+`fetched: true` was free text nothing checked. See
+[RESEARCH-PROTOCOL.md](horae/RESEARCH-PROTOCOL.md); enforced by
+`node scripts/research-validate.mjs --dir research/horae --strict`.
+**No Horae data enters the site until it passes.**
+
+**H1. HORARIUM — the per-hour, per-materia, per-location table.**
+[Spec](horae/HORARIUM-SPEC.md). Two traditions deep, with the materia column.
+Ships in three stages because two of its five columns do not exist:
+
+| stage | scope | blocker |
+|---|---|---|
+| 1 | Western hours + location + live refresh + materia | none — **can start now** |
+| 2 | + Vedic horā ruler column | horā's division rule is CONTESTED; research v2 must name it with a snippet |
+| 3 | + Vedic materia | nothing in the repo; needs its own research round |
+
+Stage 1 has one precondition: **resolve the Saturn `'opium, etc.'` row** (§4 of
+the spec) — it is the page's most prominent harm-flagged cell, its Picatrix
+III.7 citation is already queued as a suspected III.3 conflation, and Agrippa
+I.xliv names black poppy *seed*, which is not opium.
+
+**H2. Horae Mundi — the seven-system comparison.** The wider instrument.
+Phase 1 returned six dossiers, **all `overallUsable: false`**, so it is stopped
+at the research gate. Grid ruling (maintainer, 2026-08-01): **asymmetric, and
+the absence is taught** — only Vedic horā (Tier A) and Choghadiya (Tier C) get a
+ruler column; zmanim, shichen, Egyptian and Babylonian render none. Two parts
+are BLOCKED on acquiring a source and must not be built: the Babylonian watches,
+and the Picatrix column of the materials matrix.
+
 ### Next — the open defect queue
 
 3. **`picatrix-prayers.js` — FRAMING §9.8, and it is fully live.** Re-verified

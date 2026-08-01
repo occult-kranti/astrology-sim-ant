@@ -1,5 +1,17 @@
 # Master Plan — The Astrologer's Workbench (Lilly × Picatrix × Jyotiṣa)
 
+> ## ⚠ SUPERSEDED FOR PLANNING — last refreshed 2026-06-25
+>
+> **The live plan is [`docs/plans/LOOP.md`](docs/plans/LOOP.md)**: the current
+> queue with reasons, how a round runs, and the loop's own known defects. The
+> continuation prompt is [`docs/plans/HANDOFF.md`](docs/plans/HANDOFF.md).
+>
+> This file remains as the **coverage audit and the historical round log** —
+> rounds R28–R33 were planned here and the telemetry back-fills its claim counts
+> from this prose. Read it for what was built and why. **Do not take the
+> roadmap sections below as the current queue**; they predate the operative
+> graph, the tracked artery, the two-column ledger, and the Horae track.
+
 **Coverage audit + phased roadmap. Authoritative master plan, refreshed 2026-06-25.**
 
 This is the project's spine document. It supersedes the original vision plan (preserved in git

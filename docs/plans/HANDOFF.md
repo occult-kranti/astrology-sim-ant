@@ -117,6 +117,38 @@ looks exactly like a check that finds nothing wrong.
 
 ---
 
+## The Horae track — read this before touching it
+
+Two deliverables, one protocol, and a hard-won reason for the protocol.
+
+**The protocol is the point.** Horae phase 1 produced six dossiers and **not one
+was usable** — `overallUsable: false` across the board, 41 blockers. Measured
+from the run's own journal: **28 of 132 claims (21%) carried a citation that
+does not support them.** Not wrong facts — right facts with invented provenance,
+which survives spot-checking while the citation rots underneath.
+
+The cause was structural: one agent searched *and* wrote, so a citation recalled
+from training data was indistinguishable from one read off a page. The fix is
+[RESEARCH-PROTOCOL.md](horae/RESEARCH-PROTOCOL.md) — fetcher/compiler split,
+`snippet` required, gaps carry a search burden, field may not contradict its
+note — enforced by `scripts/research-validate.mjs`. **Run it with `--strict`
+before believing any dossier.**
+
+**H1 · HORARIUM** ([spec](horae/HORARIUM-SPEC.md)) — the per-hour, per-materia,
+per-location table, Western + Vedic. **Stage 1 (Western) is unblocked and is the
+best next build.** Stage 2 waits on the horā division rule, which is genuinely
+contested — two readings give different answers for the same moment, so it must
+not be guessed. Stage 3 (Vedic materia) has *nothing* in the repo to build on.
+
+**H2 · Horae Mundi** — the seven-system comparison, stopped at the research
+gate. Grid ruling: asymmetric, absence taught.
+
+**The trap in the materia column:** `planetary-magic.js` is built around FRAMING
+§5 C-1, the operable triple — `substance`, `quantity`, `processParam` live in
+three typed fields precisely so the third has nowhere to live. **Render the
+fields; never interpolate them into a sentence.** A prose template re-creates the
+triple in free text and defeats the whole design.
+
 ## Two open questions the next session should decide
 
 **D1 — the round numbering has collided twice.** `R33` is a MASTER-PLAN round and

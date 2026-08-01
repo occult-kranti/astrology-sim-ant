@@ -1,5 +1,12 @@
 # Master Plan v2 — refreshed (2026-06-25)
 
+> ## ⚠ SUPERSEDED FOR PLANNING
+>
+> **The live plan is [`docs/plans/LOOP.md`](docs/plans/LOOP.md)**; the
+> continuation prompt is [`docs/plans/HANDOFF.md`](docs/plans/HANDOFF.md).
+> Kept for its round log. The "REMAINING" section below is five weeks stale and
+> is not the queue.
+
 The original handoff plan (`ROADMAP.md`) is **executed through Phase T**. This file is the
 authoritative, current status + the remaining step-by-step work, including the two features
 added this round (Location service, Life Trajectory). Pairs with `COVERAGE.md` (audit),
