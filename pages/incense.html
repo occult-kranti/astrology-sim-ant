@@ -18,6 +18,24 @@
 
   <div class="callout science" id="inc-framing"></div>
 
+  <section class="inc-now" aria-label="The current planetary hour and its assigned materia">
+    <span class="inc-cap">This hour, now</span>
+    <div class="field-row" style="margin:.5rem 0">
+      <button type="button" class="btn sm" id="inc-geo">Use my location</button>
+      <div class="field"><label for="inc-lat">Lat °N</label><input id="inc-lat" type="number" step="0.01" value="40.71" style="width:7rem"></div>
+      <div class="field"><label for="inc-lon">Lon °E</label><input id="inc-lon" type="number" step="0.01" value="-74.01" style="width:7rem"></div>
+      <button type="button" class="btn sm" id="inc-recast">Recalculate</button>
+    </div>
+    <div class="field-row" id="inc-presets" style="gap:.4rem"></div>
+    <p class="small muted" id="inc-locnote">Coordinates stay in this browser; nothing is sent anywhere.</p>
+    <div id="inc-now-body"></div>
+    <div class="inc-ribbon" id="inc-ribbon" role="img" aria-label="The twenty-four unequal hours of this day"></div>
+    <p class="small muted">The hours are <b>unequal</b>: the day is divided in twelve from sunrise to sunset and
+      the night in twelve from sunset to sunrise, so they stretch and shrink with the season. The band above is
+      drawn to their real lengths. <b>This states what the texts assign to the hour's ruler — it is not an
+      instruction to burn anything.</b></p>
+  </section>
+
   <h2>Per planet</h2>
   <p class="small muted">The substance is given as the text names it. <b>Quantity and process are withheld
     by design</b>, not missing: this site carries at most two of {substance · quantity · process} for any

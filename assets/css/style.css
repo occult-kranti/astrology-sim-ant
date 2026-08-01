@@ -1395,3 +1395,29 @@ select { max-width: 100%; box-sizing: border-box; }
   .period-strip .lbl-quiet { display: none; }
   /* engravings, the dial, the moon and the epistemic hatches are MADE for print — they stay. */
 }
+
+/* ---- incense · the live hour panel -------------------------------------
+   Inherits the nocturne shape of the earlier hours instrument: a proportional
+   24-segment band whose widths ARE the real hour lengths, a needle at now, and
+   a gilt/dark split between day and night hours. */
+.inc-now { background: linear-gradient(180deg, rgba(27,33,71,.45), rgba(20,26,58,.25));
+  border: 1px solid rgba(200,162,75,.22); border-radius: 14px; padding: 1rem 1.1rem 1.2rem; margin: 1.2rem 0 1.6rem; }
+.inc-cap { font-family: var(--mono, monospace); font-size: .68rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold, #C8A24B); }
+.inc-nowline { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin: .6rem 0 .2rem; }
+.inc-glyph { font-size: 3rem; line-height: 1; color: #E8C874; text-shadow: 0 0 24px rgba(232,200,116,.3); }
+.inc-ruler { font-size: 1.25rem; }
+.inc-assign { margin-top: .2rem; }
+.inc-cd { margin-left: auto; text-align: right; }
+.inc-cd-t { font-family: var(--mono, monospace); font-size: 1.4rem; color: #E8C874; }
+.inc-ribbon { position: relative; display: flex; height: 40px; border-radius: 8px; overflow: hidden;
+  border: 1px solid rgba(200,162,75,.28); margin: .8rem 0 .3rem; background: rgba(7,9,23,.6); }
+.inc-seg { display: flex; align-items: center; justify-content: center; min-width: 0; overflow: hidden;
+  font-size: .78rem; border-right: 1px solid rgba(11,14,36,.7);
+  background: linear-gradient(180deg, rgba(200,162,75,.20), rgba(200,162,75,.07)); color: rgba(20,20,20,.75); }
+.inc-seg.night { background: linear-gradient(180deg, rgba(21,25,58,.9), rgba(11,14,36,.9)); color: rgba(199,208,232,.6); }
+.inc-seg.now { box-shadow: inset 0 0 0 2px #E8C874; }
+.inc-needle { position: absolute; top: -2px; bottom: -2px; width: 2px; background: #E8C874;
+  box-shadow: 0 0 8px rgba(232,200,116,.8); }
+@media (prefers-reduced-motion: reduce) { .inc-needle { transition: none; } }
+@media (max-width: 520px) { .inc-cd { margin-left: 0; text-align: left; } .inc-seg { font-size: .6rem; } }

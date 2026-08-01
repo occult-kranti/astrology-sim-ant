@@ -125,6 +125,42 @@ export async function run() {
       `ambiguity "${q.id}" needs a substantive body and a status`);
   }
 
+  // ---- 9 · the live panel's two load-bearing assumptions -----------------
+  // The panel derives each hour's END from the next hour's START, because
+  // hoursTable rows carry {hour, night, start, ruler} and NO `end`. That cost a
+  // render to discover; it is pinned here so a shape change fails in Node
+  // rather than as an empty panel in a browser.
+  {
+    const { hoursTable } = await import('../../assets/js/core/planetary-hours.js');
+    const t = hoursTable(new Date('2026-08-01T18:00:00Z'), 40.71, -74.01);
+    ok(Boolean(t && Array.isArray(t.rows)), 'hoursTable must return { rows: [...] }');
+    if (t && Array.isArray(t.rows)) {
+      ok(t.rows.length === 24, `hoursTable must return 24 hours, got ${t.rows.length}`);
+      const r = t.rows[0];
+      ok(r && 'start' in r && 'ruler' in r && 'night' in r,
+        'an hour row must carry start/ruler/night — the panel reads all three');
+      ok(!(r && 'end' in r),
+        'hoursTable rows now carry an `end`: the panel derives it from the NEXT row\'s start and '
+        + 'should be simplified to use the real field instead of shadowing it');
+      ok(Boolean(t.nextRise), 'hoursTable must return nextRise — the last hour ends there');
+    }
+  }
+
+  // materiaForRuler is what the live panel binds an hour's ruler to. It must
+  // resolve for all seven, or the panel silently renders no assignment.
+  {
+    const { materiaForRuler } = await import('../../assets/js/core/incense.js');
+    for (const p of ['Saturn', 'Jupiter', 'Mars', 'Sun', 'Venus', 'Mercury', 'Moon']) {
+      const m = materiaForRuler(p);
+      ok(Boolean(m && m.substance), `materiaForRuler("${p}") must resolve to a substance`);
+      if (m && m.harmFlag) {
+        ok(typeof m.harmNote === 'string' && m.harmNote.length > 20,
+          `materiaForRuler("${p}") is harm-flagged and must carry its note into the live panel`);
+      }
+    }
+    ok(materiaForRuler('Nonesuch') === null, 'materiaForRuler must return null for an unknown ruler');
+  }
+
   return { pass: failures.length === 0, failures };
 }
 

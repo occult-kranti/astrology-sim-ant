@@ -156,6 +156,35 @@ export function tableComparison() {
   });
 }
 
+/**
+ * The materia a given planetary ruler is ASSIGNED by the cited texts.
+ *
+ * Pure: takes a ruler name, returns the record. It deliberately does NOT take a
+ * clock — `core/**` may not read `Date`, so the caller supplies the hour and
+ * this module supplies only what the books say about its ruler.
+ *
+ * NOTE THE VERB, because it is the whole of FRAMING §11.5. The earlier
+ * instrument rendered this as "Burn dragon's blood" — an imperative addressed
+ * to the reader. This returns what a TEXT ASSIGNS to a ruler. The page states
+ * the assignment; it never tells anyone to light anything.
+ */
+export function materiaForRuler(ruler) {
+  const r = byPlanet().find(x => x.planet === ruler);
+  if (!r) return null;
+  return {
+    planet: r.planet,
+    substance: r.substance,
+    materia: r.materia,
+    harmFlag: r.harmFlag,
+    harmNote: r.harmNote,
+    tokens: r.tokens,
+    truncatedInSource: r.truncatedInSource,
+    truncationNote: r.truncationNote,
+    source: r.source,
+    governs: r.governs,
+  };
+}
+
 /** Every unresolved question this data carries. Rendered, never buried. */
 export function openQuestions() {
   return Object.entries(AMBIGUITIES).map(([id, a]) => ({ id, ...a }));

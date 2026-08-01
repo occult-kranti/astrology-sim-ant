@@ -17,8 +17,9 @@
 
 import {
   byPlanet, byMaterial, convergences, openQuestions, census, tableComparison,
-  INCENSE_SOURCE, INCENSE_FRAMING,
+  materiaForRuler, INCENSE_SOURCE, INCENSE_FRAMING,
 } from '../core/incense.js';
+import { hoursTable } from '../core/planetary-hours.js';
 
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -166,6 +167,121 @@ function renderComparison(rows) {
 }
 
 // ---------------------------------------------------------------------------
+//  6 · THIS HOUR, NOW — the live panel
+//
+//  Inherits the earlier instrument's shape (big glyph, ruler, countdown to the
+//  turn, proportional 24-segment ribbon with a needle) and changes ONE thing
+//  that matters: the verb. That page said "Burn dragon's blood". This one says
+//  what the TEXTS ASSIGN to the hour's ruler. FRAMING §11.5 — if the panel
+//  could be lifted onto a site with no framing and read as instruction, it has
+//  failed.
+//
+//  The clock lives here, never in core/**, which may not read Date.
+// ---------------------------------------------------------------------------
+const PRESETS = [['New York', 40.71, -74.01], ['London', 51.51, -0.13],
+  ['Cairo', 30.04, 31.24], ['Delhi', 28.61, 77.21], ['Tokyo', 35.68, 139.69]];
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+const fmtT = d => d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+let _tick = null;
+let _rows = null;
+
+function paintNow(lat, lon) {
+  const el = id => document.getElementById(id);
+  const now = new Date();
+  let table;
+  try { table = hoursTable(now, lat, lon); } catch (e) { table = null; }
+
+  if (!table || !table.rows || !table.rows.length) {
+    // Polar honesty, kept from the earlier instrument.
+    el('inc-now-body').innerHTML = '<p class="small muted">No sunrise and sunset bound a day at this '
+      + 'latitude right now, so the unequal-hours division is <b>undefined here</b> — not merely '
+      + 'unavailable. Try a lower latitude.</p>';
+    el('inc-ribbon').innerHTML = '';
+    return;
+  }
+  // hoursTable rows carry {hour, night, start, ruler} and NO `end`. Derive it:
+  // each hour ends where the next begins, and the last ends at the next sunrise.
+  // (Assuming an `end` cost a render; the shape is checked in the test.)
+  const rows = table.rows.map((r, i) => ({
+    ...r,
+    start: new Date(r.start),
+    end: new Date(i < table.rows.length - 1 ? table.rows[i + 1].start : table.nextRise),
+  }));
+  _rows = rows;
+  const cur = rows.find(r => r.start <= now && now < r.end) || rows[0];
+  const m = materiaForRuler(cur.ruler);
+  const day = rows[0].start, endOfDay = rows[rows.length - 1].end;
+  const span = endOfDay - day;
+
+  const left = Math.max(0, Math.floor((cur.end - now) / 1000));
+  const cd = `${Math.floor(left / 3600)}:${String(Math.floor(left / 60) % 60).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`;
+  const idx = rows.indexOf(cur);
+  const nxt = idx < rows.length - 1 ? rows[idx + 1] : null;
+
+  const assigned = m
+    ? `<div class="inc-assign">The texts assign to ${esc(cur.ruler)}: <b>${esc(m.substance)}</b>
+        <span class="small muted">— ${esc(m.source || '')}</span>
+        ${m.harmFlag ? `<div class="small"><b>⚠ Record, not a recipe.</b> ${esc(m.harmNote || '')}</div>` : ''}
+        ${m.truncatedInSource ? `<div class="small muted">${esc(m.truncationNote || '')}</div>` : ''}</div>`
+    : '';
+
+  el('inc-now-body').innerHTML = `
+    <div class="inc-nowline">
+      <span class="inc-glyph">${esc(GLYPH[cur.ruler] || '')}</span>
+      <div>
+        <div class="inc-ruler">Hour of ${esc(cur.ruler)} · ${cur.night ? 'Night' : 'Day'} ${esc(ROMAN[(idx % 12)])}</div>
+        ${assigned}
+      </div>
+      <div class="inc-cd"><div class="inc-cd-t">${esc(cd)}</div>
+        <div class="small muted">until the hour turns</div></div>
+    </div>
+    <p class="small muted">${esc(fmtT(cur.start))} – ${esc(fmtT(cur.end))}
+      ${nxt ? `· next: ${esc(GLYPH[nxt.ruler] || '')} ${esc(nxt.ruler)} at ${esc(fmtT(nxt.start))}` : ''}
+      · times in this device's zone.</p>`;
+
+  el('inc-ribbon').innerHTML = rows.map(r => {
+    const w = ((r.end - r.start) / span * 100).toFixed(3);
+    const isNow = r === cur;
+    return `<span class="inc-seg${r.night ? ' night' : ''}${isNow ? ' now' : ''}" style="width:${w}%"
+      title="${esc(r.ruler)} · ${esc(fmtT(r.start))}–${esc(fmtT(r.end))}">${esc(GLYPH[r.ruler] || '')}</span>`;
+  }).join('') + `<span class="inc-needle" style="left:${((now - day) / span * 100).toFixed(3)}%"></span>`;
+}
+
+function initNowPanel() {
+  const el = id => document.getElementById(id);
+  const host = el('inc-now-body');
+  if (!host) return;
+  el('inc-presets').innerHTML = PRESETS.map((p, i) =>
+    `<button type="button" class="btn sm" data-i="${i}">${esc(p[0])}</button>`).join('');
+
+  const recast = () => {
+    const lat = parseFloat(el('inc-lat').value), lon = parseFloat(el('inc-lon').value);
+    if (Number.isNaN(lat) || Number.isNaN(lon)) return;
+    paintNow(lat, lon);
+    if (_tick) clearInterval(_tick);
+    _tick = setInterval(() => paintNow(lat, lon), 1000);
+  };
+
+  el('inc-presets').addEventListener('click', e => {
+    const b = e.target.closest('button[data-i]'); if (!b) return;
+    const p = PRESETS[+b.dataset.i];
+    el('inc-lat').value = p[1]; el('inc-lon').value = p[2]; recast();
+  });
+  el('inc-recast').addEventListener('click', recast);
+  el('inc-geo').addEventListener('click', () => {
+    if (!navigator.geolocation) { el('inc-locnote').textContent = 'Geolocation unavailable — enter coordinates.'; return; }
+    navigator.geolocation.getCurrentPosition(pos => {
+      el('inc-lat').value = pos.coords.latitude.toFixed(2);
+      el('inc-lon').value = pos.coords.longitude.toFixed(2);
+      el('inc-locnote').textContent = 'Using your location. Coordinates stay in this browser.';
+      recast();
+    }, () => { el('inc-locnote').textContent = 'Location not shared — enter coordinates.'; });
+  });
+  recast();
+}
+
+// ---------------------------------------------------------------------------
 export function initIncense() {
   const set = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
   const planets = byPlanet();
@@ -181,4 +297,5 @@ export function initIncense() {
       <div class="small"><i>Status: ${esc(q.status)}</i></div></div>`).join(''));
   set('inc-census', renderCensus(census()));
   set('inc-source', esc(INCENSE_SOURCE));
+  initNowPanel();
 }
