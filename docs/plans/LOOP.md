@@ -195,8 +195,53 @@ Related, from the same round: **B14, the artery onto a stump** — `scripts/`
 holds exactly one `gen-*` script, while `bhava-phala.js` and `greatworks-east.js`
 declare themselves GENERATED. Those two cannot be rebuilt from tracked state.
 
-**Fix before any new dataset joins the artery**, because every dataset added
-under this rule inherits the flaw.
+**THE FIX IS DESIGNED, IMPLEMENTED AND VERIFIED — AND NOT SHIPPED.** It is held
+at `…/scratchpad/gen-opgraph-WITHCAP.mjs` and `og-artery-WITHCAP.mjs` because it
+cascades further than one round could close honestly. Everything below was
+measured, not estimated:
+
+*The cap.* In `computeWeight`, a claim whose witnesses are **all** inherited is
+treated as single-witness at best (`witness = min(raw, 0.5)`). The rubric's
+witness term asks how many independent witnesses attest **this assertion**;
+inherited witnesses attest the **work**, and a well-attested book is not evidence
+for one procedure inside it.
+
+*Measured result — the inversion closes:*
+
+```
+                 before            after
+inherited        117  mean 0.634   65  mean 0.491
+own evidence     129  mean 0.556  129  mean 0.556
+inherited >= 0.8  40                0
+proc:baopuzi-3   1.00 (parent 0.60)  0.50
+graph            509 nodes / 246 claims → 454 / 194
+```
+
+*Two secondary defects it exposed, both fixed in the held copy:*
+1. The shipped `witnessesInherited` flag used `.some()` while the cap keys on
+   `.every()`. A mixed-witness claim therefore shipped flagged-but-uncapped.
+   Both now use `every`.
+2. The anti-drift test rebuilds a witness list from `OPGRAPH_META.sources`, and
+   a **source record carries no notion of inheritance** — that is a property of
+   the claim's relation to the source. So the test recomputed uncapped and
+   reported drift that was not there. `computeWeight` now accepts an explicit
+   `allInherited`, which the test passes from the shipped flag.
+
+*Why it is not shipped — the cascade.* Capping drops 52 claims below the 0.40
+admission floor (`no-independent-witness` 89 → 144). That is the rubric working:
+a claim with only inherited, tertiary-tier evidence genuinely is weak. But the
+exclusions **empty out vocabulary terms**, and the invariants that guard
+"an empty term is not ceremony" then fire — 22 op-node violations
+(`consecration-of-object-talisman`, `divination-procedure` and others left with
+claims but no procedure-type node) plus 4 artery failures.
+
+**The remaining work is the cascade, not the cap:** decide whether an emptied
+vocabulary term is dropped, retained with a stated zero occupancy, or blocks the
+round — and make the op-node invariant agree. Do that first; the cap itself is
+already proven.
+
+**Nothing new joins the artery until this lands**, because every dataset added
+under the current rule inherits the flaw.
 
 ### The Horae track  *(maintainer-directed, runs alongside the graph queue)*
 
