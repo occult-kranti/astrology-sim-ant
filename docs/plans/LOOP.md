@@ -154,7 +154,50 @@ reasons is just a list and gets reordered by whoever is nearest.
    slugs because `confluence.js` quotes its keys. Assume nothing about shape;
    print it.*
 
-### ⚠ TOP OF QUEUE — the inherited-witness defect (verified 2026-08-01)
+### ✅ CLOSED — the inherited-witness defect (fixed and shipped 2026-08-01)
+
+**Shipped.** The cap is live, the cascade is closed, and the fix was in neither
+place I first looked. Kept below because the two dead ends are worth more than
+the answer: both were plausible, both were wrong, and the third guess only
+worked because the first two had been *tested* rather than argued about.
+
+*The actual cause.* A `procedure-type` node is an AGGREGATE — its witnesses are
+the union of its member claims' witnesses. Those arrived still carrying
+`inherited: true`, so the cap fired on the aggregate: `type:divination-procedure`
+computed `witness 0.5 × primary 0.6 = 0.30`, fell under the 0.40 floor, and was
+excluded while six live claims still carried its term. "Inherited" describes a
+CLAIM's relation to its work; it is meaningless for an aggregate whose whole
+evidence *is* its members'. The marker is now stripped on the way up.
+
+*Fixed at the cause, not around it* — not by relaxing the floor, not by
+special-casing the op-node invariant. The defect was in neither.
+
+```
+                 before        after
+inherited        117 @ 0.634    65 @ 0.491
+own evidence     129 @ 0.556   129 @ 0.556
+inherited >= 0.8  40             0
+proc:baopuzi-3   1.00          0.50   (parent work 0.60)
+graph            509 nodes     457 · 27 type nodes · 0 orphaned terms
+                               0 vocab-occupancy mismatches
+```
+
+Roadmap moved with it: B falls 217 → 169 affected, D rises 24 → 36.
+
+<details><summary>The two hypotheses that were killed on the way (kept)</summary>
+
+*H1 — a later pass rewrites `typeTerm`, so pass 6 counts the wrong term.*
+KILLED: all six claims had `retypePending: false`, no `retypeTarget`, and
+`typeAsFiled === typeTerm`. The term never changed.
+
+*H2 — the liveness prune drops the type node because its claims went first.*
+KILLED: the prune iterates `[...live].sort()`, `proc:` sorts before `type:`, and
+the claims survive — so its `used` test would have found them. That is what
+proved the node was excluded UPSTREAM of the prune, which is what pointed at the
+gate, which is what found it.
+</details>
+
+### ⚠ SUPERSEDED — the original diagnosis (kept for the record)
 
 **The shipped graph's weights are inverted, and some claims display a citation
 that is not among their sources.** Found by the RAG architecture round; every

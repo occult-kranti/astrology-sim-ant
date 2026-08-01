@@ -212,13 +212,39 @@ export function witnessesFor(record, sliceName, table) {
  * uncontested, carrying "(unverified)" -> 0.5 x 0.85 x 1.0 x 0.7 = 0.30 ->
  * BELOW FLOOR -> excluded automatically. The blockers become arithmetic.
  */
-export function computeWeight({ witnesses = [], label = 'documented', contested = null, flags = [] }) {
+// `allInherited` may be supplied explicitly by a caller that cannot see the
+// per-witness flags. The anti-drift test is exactly that caller: it rebuilds a
+// node's witness list from OPGRAPH_META.sources, and a SOURCE record carries no
+// notion of inheritance — inheritance is a property of the claim's relation to
+// the source, not of the source. Without this the test recomputes an uncapped
+// weight and reports drift that is not there.
+export function computeWeight({ witnesses = [], label = 'documented', contested = null, flags = [], allInherited: allInheritedIn } = {}) {
   const n = witnesses.length;
   const tiers = witnesses.map(w => w.tier);
-  const witness = n === 0 ? 0.0
+  const witnessRaw = n === 0 ? 0.0
     : n === 1 ? 0.5
       : n === 2 ? 0.8
         : (tiers.includes('primary') ? 1.0 : 0.8);
+
+  // ---- THE INHERITANCE CAP ------------------------------------------------
+  // A procedure-claim with no citation of its own inherits its WORK's whole
+  // witness list (see the fallback where claims are built). Before this cap
+  // those inherited witnesses scored exactly like the claim's own evidence,
+  // and the result inverted the rubric: 117 of 246 claims (47.6%) were
+  // inherited, and they OUTRANKED claims carrying their own evidence — mean
+  // 0.634 against 0.556, with 40 at weight >= 0.8. proc:baopuzi-3 reached
+  // weight 1.00 while the very work it was extracted from sat at 0.60.
+  //
+  // The rubric's witness term asks "how many independent witnesses attest THIS
+  // assertion". Inherited witnesses attest the WORK — that a book is well
+  // attested is not evidence that one procedure inside it is. So a claim whose
+  // witnesses are ALL inherited is treated as single-witness at best: it keeps
+  // its provenance and its place in the graph, and it can no longer outscore a
+  // claim that was actually cited.
+  const allInherited = allInheritedIn !== undefined
+    ? Boolean(allInheritedIn) && n > 0
+    : (n > 0 && witnesses.every(w => w && w.inherited));
+  const witness = allInherited ? Math.min(witnessRaw, 0.5) : witnessRaw;
   const primaryFactor = tiers.includes('tertiary') ? 0.6
     : tiers.includes('primary') ? 1.0
       : n ? 0.85 : 0.0;
@@ -231,6 +257,9 @@ export function computeWeight({ witnesses = [], label = 'documented', contested 
       : 1.0;
   return {
     witness, primaryFactor, contestFactor, flagFactor,
+    // Recorded so the gate's reason string can SAY the cap applied, rather than
+    // leaving a reader to wonder why a four-witness claim scored like a one.
+    witnessCappedByInheritance: allInherited && witnessRaw > 0.5 ? witnessRaw : undefined,
     weight: round2(witness * primaryFactor * contestFactor * flagFactor),
   };
 }
@@ -765,7 +794,24 @@ export function buildCandidates(inputs) {
       term: t.term, family: t.family,
       familyLabel: (vocab.families.find(f => f.id === t.family) || {}).label || t.family,
       gloss: t.gloss, occupancy: occupancy.get(t.term), warrant: t.warrant,
-      witnesses: dedupeWitnesses(claims.flatMap(c => c.witnesses)).slice(0, 8), flags: [],
+      // THE `inherited` MARKER IS STRIPPED ON THE WAY UP, and it has to be.
+      //
+      // A procedure-type node is an AGGREGATE: its witnesses are by construction
+      // the union of its member claims' witnesses. "Inherited" is a statement
+      // about a CLAIM's relation to its work — it means "this claim has no
+      // citation of its own". It is meaningless for an aggregate, whose whole
+      // evidence IS its members'.
+      //
+      // Leaving the marker on made the inheritance cap fire on type nodes, and
+      // that is a category error with teeth: type:divination-procedure computed
+      // witness 0.5 x primary 0.6 = 0.30, fell under the 0.40 floor, and was
+      // excluded — while six live claims still carried its term. That is the
+      // whole of the cascade (22 op-node violations + 4 artery failures) and it
+      // is fixed here rather than by relaxing the floor or special-casing the
+      // invariant, because the defect was never in either of those.
+      witnesses: dedupeWitnesses(claims.flatMap(c => c.witnesses))
+        .map(({ inherited, ...w }) => w).slice(0, 8),
+      flags: [],
     });
   }
 
@@ -1022,7 +1068,13 @@ function emitNode(n) {
   // (here and in gate.json) would triple this file for no fact the reader gains.
   o.sources = uniq((n.witnesses || []).map(sourceId)).sort();
   o.sourceTiers = uniq((n.witnesses || []).map(w => w.tier)).sort();
-  o.witnessesInherited = (n.witnesses || []).some(w => w.inherited) || undefined;
+  // EVERY, not SOME. This flag is the input the weight cap keys on, so its
+  // meaning must match the cap exactly: a claim with even one citation of its
+  // own has its own evidence and is not capped. When the two used different
+  // quantifiers, a mixed-witness claim shipped flagged-but-uncapped and the
+  // anti-drift test could not reproduce its weight.
+  o.witnessesInherited = ((n.witnesses || []).length > 0
+    && (n.witnesses || []).every(w => w && w.inherited)) || undefined;
   o.witnesses = (n.witnesses || []).length;
   o.flags = n.flags && n.flags.length ? n.flags : undefined;
   const ordered = {};
