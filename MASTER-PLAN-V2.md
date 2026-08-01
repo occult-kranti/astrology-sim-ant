@@ -2,7 +2,7 @@
 
 > ## ⚠ SUPERSEDED FOR PLANNING
 >
-> **The live plan is [`docs/plans/LOOP.md`](docs/plans/LOOP.md)**; the
+> **The live direction is [`MASTER-PLAN-V3.md`](MASTER-PLAN-V3.md); the round-level queue is [`docs/plans/LOOP.md`](docs/plans/LOOP.md)**; the
 > continuation prompt is [`docs/plans/HANDOFF.md`](docs/plans/HANDOFF.md).
 > Kept for its round log. The "REMAINING" section below is five weeks stale and
 > is not the queue.

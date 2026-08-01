@@ -2,7 +2,7 @@
 
 > ## ⚠ SUPERSEDED FOR PLANNING — last refreshed 2026-06-25
 >
-> **The live plan is [`docs/plans/LOOP.md`](docs/plans/LOOP.md)**: the current
+> **The live direction is [`MASTER-PLAN-V3.md`](MASTER-PLAN-V3.md); the round-level queue is [`docs/plans/LOOP.md`](docs/plans/LOOP.md)**: the current
 > queue with reasons, how a round runs, and the loop's own known defects. The
 > continuation prompt is [`docs/plans/HANDOFF.md`](docs/plans/HANDOFF.md).
 >
