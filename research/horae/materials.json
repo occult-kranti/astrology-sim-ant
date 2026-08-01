@@ -1,0 +1,490 @@
+{
+  "key": "materials",
+  "system": "The planetary materials matrix (Western/Islamicate) — the suffumigation, stone, metal, colour, angel/intelligence/spirit and offering assigned to each of the seven planetary rulers in the Latin Picatrix, Agrippa's Three Books of Occult Philosophy I–II, and the Heptameron of Peter de Abano.",
+
+  "scopeNote": "This dossier records MATERIALS, not a division of time. It has no arithmetic of its own: it is a lookup keyed on a ruling planet that some OTHER system (the planetary hour, the planetary day) has already determined. The repo's existing assets/js/core/planetary-hours.js supplies that ruler. Everything below is what the sources attach to the ruler once it is known.",
+
+  "dayStart": "SUNRISE, on the authority of the Heptameron's own table layout. Heptameron §XXV ('Tables of the Angels of the Hours, according to the course of the dayes' / 'DE ANGELIS HORARVM, secundum dierum rationem Tabulæ', Turner 1655) prints, for each weekday, twelve 'Hours of the day' FIRST and twelve 'Hours of the night' SECOND, and the first day-hour of each weekday carries that weekday's own planetary angel (Sunday day-hour 1 = Michael = Sun; Monday day-hour 1 = Gabriel = Moon). The weekday can therefore only begin with the first hour after sunrise. Joseph H. Peterson's editorial note to that section states the underlying scheme explicitly: the planets run Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars and repeat, and 'after the 12 hours of the day, the next hour — the first hour of the night — is associated with the following planet and day of the week.' NOTE THE CONFLICT, which is not resolved here: the Heptameron is a Latin Christian text whose ritual calendar sits inside an ecclesiastical day that in other contexts begins at sunset, and the Picatrix descends from an Arabic original (Ghāyat al-Ḥakīm) whose civil day begins at sunset. No source consulted for THIS dossier states a rule for reconciling them. The sunrise verdict above is a verdict about the Heptameron's hour tables only, and it is the only one the evidence gathered here supports.",
+
+  "divisionRule": "There is no division rule proper to the materials matrix — this is a finding, not an omission. The matrix is a FUNCTION OF a ruler, not a producer of one. The arithmetic that produces the ruler, and which this dossier depends on but does not restate, is the unequal-hours scheme already implemented in assets/js/core/planetary-hours.js: the interval from sunrise to sunset is divided into twelve equal day-hours and the interval from sunset to the next sunrise into twelve equal night-hours, so a day-hour and a night-hour are equal to each other only at the equinoxes; the first day-hour of each weekday is ruled by that weekday's planet (Sunday=Sun, Monday=Moon, Tuesday=Mars, Wednesday=Mercury, Thursday=Jupiter, Friday=Venus, Saturday=Saturn); and successive hours descend the Chaldean order Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon → (repeat), which after 24 hours lands on the next weekday's ruler. Peterson's note to Heptameron §XXV states this sequence in the source's own terms ('Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, and the sequence then repeats' — i.e. the same cycle entered at the Sun). The materials matrix then reads: given the ruling planet P, return P's row. Nothing in this dossier divides anything.",
+
+  "polarBehaviour": "UNDEFINED, and unaddressed by every source consulted. The division depends on a sunrise and a sunset; above the Arctic and below the Antarctic Circle there are dates with neither, and the twelve-day-hour / twelve-night-hour scheme has no value there. Neither Agrippa, nor the Heptameron, nor the Picatrix contemplates a latitude at which the Sun does not rise — all three are Mediterranean-to-North-European texts of the 9th–16th centuries. NO SOURCE SUPPLIES A FALLBACK, AND NONE IS INVENTED HERE. A consuming engine must surface the failure rather than substitute a civil-clock day: substituting one would be this site's own rule presented in the tradition's voice. Secondary consequence worth stating: the Heptameron's weekday PERFUME and weekday ANGEL TRIAD survive the polar case intact, because they key on the calendar weekday and not on the hour; only the HOUR-angel and hour-ruler columns fail. An engine can therefore degrade gracefully by dropping the hour columns and keeping the day columns, and should say that it has done so.",
+
+  "entries": [
+    {
+      "index": 1,
+      "name": "Saturn",
+      "nameOriginal": "Saturnus / שבתאי / زحل",
+      "transliteration": "Saturnus (Lat.); Shabbatai (Heb., as printed in Agrippa II.10); Zuḥal (Ar.)",
+      "ruler": "Saturn",
+      "tier": "A",
+      "sourceRef": "S1,S2,S3",
+      "quality": "Agrippa I.xxv assigns Saturn 'all dark, weighty, earthy things'; the chapter heading is 'What things are Saturnine, or under the power of Saturne.'",
+      "toxicFlag": "henbane (Hyoscyamus niger — tropane alkaloids, hyoscyamine and scopolamine); mandrake root (Mandragora spp. — the same tropane alkaloid class); black poppy seed (Papaver somniferum); blood of a bat and brain of a cat (raw animal tissue); AND SEPARATELY, at a different source, opium — see associations.picatrix_suffumigation_UNVERIFIED and gaps",
+      "note": "The repo's existing assets/js/core/data/planetary-magic.js gives Saturn's suffumigation as 'opium, etc.' and harm-notes it as opium. That value is NOT what Agrippa I.xliv says. Agrippa names the SEED OF BLACK POPPY, which is not opium: opium is the dried latex of the unripe capsule, a different part of the same plant with a different alkaloid load. Whether 'opium' is right for the Picatrix could not be verified from an authorized copy (see gaps). The two readings are kept apart below and are not merged.",
+      "associations": {
+        "agrippa_II_10_metal": "Lead",
+        "agrippa_II_10_stone": "The Onyx",
+        "agrippa_II_10_angel": "Zaphkiel (Peterson's reading; Freake's 1651 printed text reads 'Zaphiel' — Peterson's note 1 to the Scale of Seven records the variant)",
+        "agrippa_II_22_tableMetal": "Lead",
+        "agrippa_II_22_intelligence": "Agiel",
+        "agrippa_II_22_spirit": "Zazel",
+        "agrippa_II_22_divineNames": "Ab, Hod, Iah",
+        "agrippa_I_25_metals": "Lead, and Gold 'by reason of its weight', and the golden Marcasite",
+        "agrippa_I_25_stones": "The Onix, the Ziazaa, the Camonius, the Saphir, the brown Jasper, the Chalcedon, the Loadstone",
+        "agrippa_I_25_colourClass": "'all dark, weighty, earthy things' — a class of MATTER, not a garment colour",
+        "agrippa_I_44_compoundFume_substances": "seed of black Poppy; Henbane; root of Mandrake; the Loadstone; Myrrh; and (as the binder) the brain of a Cat or the blood of a Bat",
+        "agrippa_I_44_compoundFume_quantity": null,
+        "agrippa_I_44_compoundFume_processParam": null,
+        "agrippa_I_44_compoundFume_withheldReason": "Harm-flagged (FRAMING §5 C-1). Substance identity is recorded because the source names it. Quantity and process parameter are null so the operable triple cannot be assembled from this record. Agrippa's chapter does carry a preparation instruction; it is deliberately not transcribed, and the edition that carries it is named in sources.S1.",
+        "agrippa_I_44_normalised": false,
+        "agrippa_I_44_fumeClass": "'all odoriferous roots, as Pepper-wort root, &c. and the Frankincense tree'",
+        "agrippa_I_44_hermesAromatic": "Pepper-wort (the Saturn share of the seven-aromatic compound Agrippa attributes to Hermes)",
+        "heptameron_dayPerfume": "Sulphur (Lat. Sulphur), for Saturday",
+        "heptameron_dayAngelTriad": "Cassiel, Machatan, Uriel",
+        "heptameron_hourAngel": "Cassiel",
+        "heptameron_airKing": "Maymon",
+        "picatrix_colour_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_suffumigation_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_offering_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_prayerAngel_UNVERIFIED": "unattested here — the repo carries 'Heylil' from its own prior compilation (S9); not verified against an authorized copy in this pass"
+      }
+    },
+    {
+      "index": 2,
+      "name": "Jupiter",
+      "nameOriginal": "Iupiter / צדק / المشتري",
+      "transliteration": "Iupiter (Lat.); Tzedeq (Heb., as printed in Agrippa II.10); al-Mushtarī (Ar.)",
+      "ruler": "Jupiter",
+      "tier": "A",
+      "sourceRef": "S1,S2,S3",
+      "quality": "Agrippa I.xxvi assigns Jupiter things 'which respect the encrease, nourishment, and vegetation of the life'.",
+      "toxicFlag": "blood of a stork or a swallow, brain of a hart (raw animal tissue; bloodborne-pathogen exposure route). Storks and swallows are protected species under wildlife law in much of Europe and North America.",
+      "note": "The repo gives Jupiter's stone as 'sapphire/chalcedony'. Sapphire is Agrippa-attested for Jupiter (II.10 and I.xxvi). CHALCEDONY IS NOT: Agrippa gives the Chalcedon to SATURN at I.xxv. The chalcedony reading is left standing here as unattested-for-Jupiter rather than silently corrected or silently deleted.",
+      "associations": {
+        "agrippa_II_10_metal": "Tin",
+        "agrippa_II_10_stone": "The Saphir",
+        "agrippa_II_10_angel": "Zadkiel",
+        "agrippa_II_22_tableMetal": "Silver — NOT tin; see variants.V1",
+        "agrippa_II_22_intelligence": "Johphiel",
+        "agrippa_II_22_spirit": "Hismael",
+        "agrippa_II_22_divineNames": "Abba, El Ab",
+        "agrippa_I_26_metals": "Tin, Silver, and Gold, 'by reason of their temperateness'",
+        "agrippa_I_26_stones": "The Hyacinth, Beril, Saphir, tutia, the Emrald, green Jasper",
+        "agrippa_I_26_colourClass": "'aiery colours' (Peterson's reading of a corrupt passage; he glosses the Latin as 'permanently green and copper coloured')",
+        "agrippa_I_44_compoundFume_substances": "seed of Ash; Lignum-aloes; Storax; gum Benjamin (benzoin); the Lazule stone (lapis lazuli); the tops of the feathers of a Peacock; and (as the binder) the blood of a Stork, or a Swallow, or the brain of a Hart",
+        "agrippa_I_44_compoundFume_quantity": null,
+        "agrippa_I_44_compoundFume_processParam": null,
+        "agrippa_I_44_compoundFume_withheldReason": "Harm-flagged (FRAMING §5 C-1) on the animal-blood component. Substance only; quantity and process parameter null.",
+        "agrippa_I_44_normalised": false,
+        "agrippa_I_44_fumeClass": "'odoriferous fruits, as Nutmegs, Cloves'",
+        "agrippa_I_44_hermesAromatic": "Nutmeg",
+        "heptameron_dayPerfume": "Saffron (Lat. Crocus), for Thursday",
+        "heptameron_dayAngelTriad": "Sachiel, Castiel, Asasiel",
+        "heptameron_hourAngel": "Sachiel",
+        "heptameron_airKing": "Suth (Lat. Suth, Rex)",
+        "picatrix_colour_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_suffumigation_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_offering_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_prayerAngel_UNVERIFIED": "unattested here — the repo carries 'Raucayehil' from its own prior compilation (S9); not verified in this pass"
+      }
+    },
+    {
+      "index": 3,
+      "name": "Mars",
+      "nameOriginal": "Mars / מאדים / المريخ",
+      "transliteration": "Mars (Lat.); Madim (Heb., as printed in Agrippa II.10); al-Mirrīkh (Ar.)",
+      "ruler": "Mars",
+      "tier": "A",
+      "sourceRef": "S1,S2,S3",
+      "quality": "Agrippa I.xxvii assigns Mars 'all fiery, red, and sulphureous things'.",
+      "toxicFlag": "HIGHEST-RISK ROW IN THIS DOSSIER. Euphorbium (dried latex of Euphorbia resinifera — a severe vesicant and ocular/respiratory irritant); the roots of BOTH hellebores (black hellebore, Helleborus niger, cardiotoxic; and what the tradition calls white hellebore, Veratrum album, which carries cardiotoxic veratrum alkaloids — these are two unrelated genera sharing one archaic name, and confusing them is itself a documented poisoning pathway); sulphur (combustion yields sulphur dioxide, a respiratory irritant); AND HUMAN BLOOD ('the blood of a Man'), plus the blood of a black cat.",
+      "note": "Agrippa I.xliv is the only locus in this dossier that names human blood as an ingredient. It is recorded because the source names it and for no other reason. Note also the internal contradiction inside Agrippa's own chapter: the compound fume for Mars is euphorbium/bdellium/ammoniac/hellebore/loadstone/sulphur, but the SAME chapter's class-of-fume list gives Mars the sweet aromatic woods, and the Hermes list gives Mars lignum aloes. Agrippa does not reconcile these and neither does this dossier — see variants.V4.",
+      "associations": {
+        "agrippa_II_10_metal": "Iron",
+        "agrippa_II_10_stone": "The Diamond",
+        "agrippa_II_10_angel": "Camael",
+        "agrippa_II_22_tableMetal": "Iron, or a sword",
+        "agrippa_II_22_intelligence": "Graphiel",
+        "agrippa_II_22_spirit": "Barzabel (Freake 1651 spelling; the form 'Bartzabel' now in the repo is the later Golden Dawn / Crowley transliteration, not Agrippa's printed form)",
+        "agrippa_II_22_divineNames": "Adonay",
+        "agrippa_I_27_metals": "Iron, and red Brass",
+        "agrippa_I_27_stones": "The Diamond, Loadstone, the Blood-stone, the Jasper, 'the stone that consists of divers kinds', and the Amethist",
+        "agrippa_I_27_colourClass": "'all fiery, red, and sulphureous things'",
+        "agrippa_I_44_compoundFume_substances": "Euphorbium; Bdellium; gum Armoniack; the roots of both Hellebors; the Loadstone; Sulphur; and (as the binder) the brain of a Hart, the blood of a Man, and the blood of a black Cat",
+        "agrippa_I_44_compoundFume_quantity": null,
+        "agrippa_I_44_compoundFume_processParam": null,
+        "agrippa_I_44_compoundFume_withheldReason": "Harm-flagged (FRAMING §5 C-1) on multiple grounds — plant cardiotoxins, a vesicant, and human blood. Substance identity only. Agrippa's text carries a proportion phrase and a preparation form; NEITHER IS TRANSCRIBED HERE OR ANYWHERE, and the edition that carries them is named in sources.S1.",
+        "agrippa_I_44_normalised": false,
+        "agrippa_I_44_fumeClass": "'all odoriferous wood, as Sanders, Cypress, Lignum-balsaim, and Lignum-aloes'",
+        "agrippa_I_44_hermesAromatic": "Lignum-aloes",
+        "heptameron_dayPerfume": "Pepper (Lat. Piper), for Tuesday",
+        "heptameron_dayAngelTriad": "Samael, Satael, Amabiel",
+        "heptameron_hourAngel": "Samael",
+        "heptameron_airKing": "Samax",
+        "picatrix_colour_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_suffumigation_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps. The repo's 'aloes wood, (blood, hist.)' is its own prior compilation (S9).",
+        "picatrix_offering_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_prayerAngel_UNVERIFIED": "unattested here — the repo carries 'Raucahehil' from its own prior compilation (S9); note that this is near-identical to the repo's Jupiter value 'Raucayehil', which is a suspicious pair and is flagged in contestedPoints"
+      }
+    },
+    {
+      "index": 4,
+      "name": "Sun",
+      "nameOriginal": "Sol / שמש / الشمس",
+      "transliteration": "Sol (Lat.); Shemesh (Heb., as printed in Agrippa II.10); al-Shams (Ar.)",
+      "ruler": "Sun",
+      "tier": "A",
+      "sourceRef": "S1,S2,S3",
+      "quality": "Agrippa I.xxiii assigns the Sun, among the elements, 'the lucid flame'; among metals 'Gold by reason of its splendor'.",
+      "toxicFlag": "brain of an Eagle, blood of a white Cock (raw animal tissue; bloodborne-pathogen exposure route). Eagles are protected by statute in most jurisdictions — in the United States by the Bald and Golden Eagle Protection Act, which makes possession of eagle parts an offence.",
+      "note": "THE SUN'S STONE IS THE ONE CELL WHERE THE REPO AND AGRIPPA FLATLY DISAGREE. The repo gives the Sun 'diamond'. Agrippa gives the Sun the CARBUNCLE (II.10) and, at I.xxiii, Aetites, the 'eye of the Sun', the Carbuncle, the Chrysolite, Iris, Heliotropion and Pantaura — and gives the DIAMOND to MARS at both II.10 and I.xxvii. The repo's value is not attested at any Agrippa locus checked in this pass; its likely origin is the Picatrix, which could not be verified. Both readings stand; neither is deleted.",
+      "associations": {
+        "agrippa_II_10_metal": "Gold",
+        "agrippa_II_10_stone": "The Carbuncle",
+        "agrippa_II_10_angel": "Raphael — NOT Michael; see variants.V2, which is the single most consequential disagreement in this dossier",
+        "agrippa_II_22_tableMetal": "Gold",
+        "agrippa_II_22_intelligence": "Nachiel (the repo's 'Nakhiel' is a later transliteration)",
+        "agrippa_II_22_spirit": "Sorath",
+        "agrippa_II_22_divineNames": "Eloh",
+        "agrippa_I_23_metals": "Gold",
+        "agrippa_I_23_stones": "Aetites; the stone 'called the eye of the Sun'; the Carbuncle; the Chrysolite; Iris; Heliotropion (which Peterson glosses as bloodstone); Pyrophylus; and Pantaura, 'that stone most Solary, which Apollonius is reported to have found'",
+        "agrippa_I_23_colourClass": "stones 'which resemble the rayes of the Sun by their golden sparklings'",
+        "agrippa_I_44_compoundFume_substances": "Saffron; Amber-gryse (ambergris — Peterson's note: Latin 'ambra' is ambergris, a whale product, NOT fossil amber); Musk; Lignum-aloes; Lignum-balsaim; the fruit of the Laurell; Cloves; Myrrh; Frankincense; and (as the binder) the brain of an Eagle, or the blood of a white Cock",
+        "agrippa_I_44_compoundFume_quantity": null,
+        "agrippa_I_44_compoundFume_processParam": null,
+        "agrippa_I_44_compoundFume_withheldReason": "Harm-flagged (FRAMING §5 C-1) on the animal-tissue component and on the protected-species status of the eagle. Substance only.",
+        "agrippa_I_44_normalised": false,
+        "agrippa_I_44_fumeClass": "'all Gums, Frankincense, Mastick, Benjamin, Storax, Laudanum [labdanum, i.e. Cistus], Amber-gryse, and Musk'",
+        "agrippa_I_44_hermesAromatic": "Mastick",
+        "heptameron_dayPerfume": "Turner 1655 prints 'Red Wheat'; Turner 1665 corrects to 'Red Sanders' (red sandalwood). Latin: 'Sandalum rubeum'. THE 1655 READING IS A TRANSLATION ERROR — see variants.V3.",
+        "heptameron_dayAngelTriad": "Michael, Dardiel, Huratapel",
+        "heptameron_hourAngel": "Michael",
+        "heptameron_airKing": "Varcan (ministers: Tus, Andas, Cynabal; wind: the North wind)",
+        "picatrix_colour_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_suffumigation_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_offering_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_prayerAngel_UNVERIFIED": "The repo records the Sun as having NO Picatrix prayer-angel ('none; Sun direct'). That negative claim was not verified in this pass and is not confirmed here."
+      }
+    },
+    {
+      "index": 5,
+      "name": "Venus",
+      "nameOriginal": "Venus / נוגה / الزهرة",
+      "transliteration": "Venus (Lat.); Nogah (Heb., as printed in Agrippa II.10); al-Zuhara (Ar.)",
+      "ruler": "Venus",
+      "tier": "A",
+      "sourceRef": "S1,S2,S3",
+      "quality": "Agrippa I.xxviii assigns Venus stones 'of a fair, various, white, and green Colour'.",
+      "toxicFlag": "brain of sparrows, blood of pigeons (raw animal tissue; bloodborne-pathogen exposure route). Pigeon and other bird droppings/tissue additionally carry documented zoonotic risk.",
+      "note": "The repo's Venus stone 'emerald/coral' IS Agrippa-attested — both appear in the I.xxviii list. This is one of the cells where the repo turns out to be right and its own citation ('Picatrix III.7') turns out to be under-inclusive: the value is also, and checkably, in Agrippa Book I.",
+      "associations": {
+        "agrippa_II_10_metal": "Copper",
+        "agrippa_II_10_stone": "The Emrald",
+        "agrippa_II_10_angel": "Haniel",
+        "agrippa_II_22_tableMetal": "Silver — NOT copper; see variants.V1",
+        "agrippa_II_22_intelligence": "Hagiel",
+        "agrippa_II_22_spirit": "Kedemel",
+        "agrippa_II_22_divineNames": "present in the source; exact forms not captured in this pass — see gaps",
+        "agrippa_I_28_metals": "Silver, and Brass, both yellow and red",
+        "agrippa_I_28_stones": "The Berill, Chrysolite, Emrald, Saphir, green Jasper, Corneola (carnelian), the stone Aetites, the Lazull stone, Corall",
+        "agrippa_I_28_colourClass": "'all of a fair, various, white, and green Colour'",
+        "agrippa_I_44_compoundFume_substances": "Musk; Amber-gryse (ambergris); Lignum-aloes; red Roses; red Corall; and (as the binder) the brain of Sparrows and the blood of Pigeons",
+        "agrippa_I_44_compoundFume_quantity": null,
+        "agrippa_I_44_compoundFume_processParam": null,
+        "agrippa_I_44_compoundFume_withheldReason": "Harm-flagged (FRAMING §5 C-1) on the animal-tissue component. Substance only.",
+        "agrippa_I_44_normalised": false,
+        "agrippa_I_44_fumeClass": "'Flowers, as Roses, Violets, Saffron, and such like'",
+        "agrippa_I_44_hermesAromatic": "Saffron",
+        "heptameron_dayPerfume": "Turner prints 'Pepperwort'; Latin reads 'Costus'. PETERSON REJECTS TURNER'S RENDERING: 'Costus is probably Saussurea lappa, not pepperwort (lepidium).' See variants.V3.",
+        "heptameron_dayAngelTriad": "Anael, Rachiel, Sachiel",
+        "heptameron_hourAngel": "Anael",
+        "heptameron_airKing": "Sarabotes (Peterson's correction: Sarabotres)",
+        "picatrix_colour_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_suffumigation_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_offering_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_prayerAngel_UNVERIFIED": "unattested here — the repo carries 'Beyteyl' from its own prior compilation (S9); not verified in this pass"
+      }
+    },
+    {
+      "index": 6,
+      "name": "Mercury",
+      "nameOriginal": "Mercurius / כוכב / عطارد",
+      "transliteration": "Mercurius (Lat.); Kokhav (Heb., as printed in Agrippa II.10); ʿUṭārid (Ar.)",
+      "ruler": "Mercury",
+      "tier": "A",
+      "sourceRef": "S1,S2,S3",
+      "quality": "Agrippa I.xxix assigns Mercury stones 'of divers colours, and various figures naturally', and tastes 'various, strange, and mixed'.",
+      "toxicFlag": "brain of a Fox or Weasel, blood of a Pie/magpie (raw animal tissue; bloodborne-pathogen and zoonotic exposure route — foxes are a rabies-vector species in several regions). SEPARATELY: the METAL assigned to Mercury is quicksilver — elemental mercury — which is a potent neurotoxin whose vapour is readily absorbed by inhalation at room temperature. The repo's phrase 'fixed mercury' names an alchemical operation ON that metal; no process parameter for it is recorded here or anywhere on this site.",
+      "note": "Mercury is the row where the metal itself is the hazard rather than the incense. Agrippa II.22 permits the Mercury table to be made in 'Silver, tin, or yellow brass' — i.e. Agrippa himself does not require the operator to handle quicksilver, which is worth recording because it is the tradition supplying its own workaround.",
+      "associations": {
+        "agrippa_II_10_metal": "Quick-silver",
+        "agrippa_II_10_stone": "The Achates (agate)",
+        "agrippa_II_10_angel": "Michael — NOT Raphael; see variants.V2",
+        "agrippa_II_22_tableMetal": "Silver, tin, or yellow brass",
+        "agrippa_II_22_intelligence": "Tiriel",
+        "agrippa_II_22_spirit": "Taphthartharath",
+        "agrippa_I_29_metals": "Quick-silver, Tin, the Silver Marcasite",
+        "agrippa_I_29_stones": "The Emrald, Achates, red Marble, Topaze, 'and those which are of divers colours'",
+        "agrippa_I_29_colourClass": "'of divers colours, and various figures naturally'",
+        "agrippa_I_44_compoundFume_substances": "Mastick; Frankincense; Cloves; the Hearb Cinquefoile; the stone Achates; and (as the binder) the brain of a Fox or Weesel, and the blood of a Pie",
+        "agrippa_I_44_compoundFume_quantity": null,
+        "agrippa_I_44_compoundFume_processParam": null,
+        "agrippa_I_44_compoundFume_withheldReason": "Harm-flagged (FRAMING §5 C-1) on the animal-tissue component. Substance only.",
+        "agrippa_I_44_normalised": false,
+        "agrippa_I_44_fumeClass": "'all Pils of Wood and fruit, as Cinnamon, Lignum Cassia, Mace, Citron pill, and Bayberries, and whatsoever seeds are odoriferous'",
+        "agrippa_I_44_hermesAromatic": "Cinnamon",
+        "heptameron_dayPerfume": "Mastick (Lat. Mastix), for Wednesday",
+        "heptameron_dayAngelTriad": "Raphael, Miel, Seraphiel",
+        "heptameron_hourAngel": "Raphael",
+        "heptameron_airKing": "Mediat, or Modiat",
+        "picatrix_colour_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_suffumigation_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_offering_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_prayerAngel_UNVERIFIED": "unattested here — the repo carries 'Arquyl' from its own prior compilation (S9); not verified in this pass"
+      }
+    },
+    {
+      "index": 7,
+      "name": "Moon",
+      "nameOriginal": "Luna / לבנה / القمر",
+      "transliteration": "Luna (Lat.); Levanah (Heb., as printed in Agrippa II.10); al-Qamar (Ar.)",
+      "ruler": "Moon",
+      "tier": "A",
+      "sourceRef": "S1,S2,S3",
+      "quality": "Agrippa I.xxiv assigns the Moon things 'which are White', and stones 'that are White, and Green'.",
+      "toxicFlag": "white poppy seed (Papaver somniferum); camphor (neurotoxic — ingestion causes seizures, and it is a recognised paediatric poisoning agent); AND HUMAN BLOOD ('Menstruous blood'), or the blood of a Goose; plus the head of a dried Frog and the eyes of a Bull (raw animal tissue).",
+      "note": "This is the second of the two loci in Agrippa I.xliv that name human blood. Recorded because the source names it.",
+      "associations": {
+        "agrippa_II_10_metal": "Silver",
+        "agrippa_II_10_stone": "Crystall",
+        "agrippa_II_10_angel": "Gabriel",
+        "agrippa_II_22_tableMetal": "Silver when the operation is 'fortunate'; Lead when 'unfortunate' — the only planet for which Agrippa II.22 makes the table metal conditional on the intent of the operation",
+        "agrippa_II_22_intelligence": "Malcha betharsisim (Agrippa's fuller form runs on; the repo's 'Malka betharsisim' is a shortened transliteration)",
+        "agrippa_II_22_spirit": "Hasmodai",
+        "agrippa_I_24_metals": "Silver",
+        "agrippa_I_24_stones": "Crystall, the Silver Marcasite, 'all those stones that are White, and Green', and the stone Selenites",
+        "agrippa_I_24_colourClass": "'those things which are White'; stones 'White, and Green'",
+        "agrippa_I_44_compoundFume_substances": "the head of a Frog dryed; the eyes of a Bull; the seed of white Poppy; Frankincense; Camphir; and (as the binder) Menstruous blood, or the blood of a Goose",
+        "agrippa_I_44_compoundFume_quantity": null,
+        "agrippa_I_44_compoundFume_processParam": null,
+        "agrippa_I_44_compoundFume_withheldReason": "Harm-flagged (FRAMING §5 C-1) on the human-blood and animal-tissue components and on camphor. Substance only.",
+        "agrippa_I_44_normalised": false,
+        "agrippa_I_44_fumeClass": "'the leaves of all Vegetables, as the leaf Indum, the leaves of the Myrtle, and Bay-tree'",
+        "agrippa_I_44_hermesAromatic": "the Myrtle",
+        "heptameron_dayPerfume": "Aloes (Lat. Aloe), for Monday. Peterson records a manuscript variant: VRL 1115 fol. 103r reads 'Lignum aloes', which is a different substance from the aloe of Aloe vera.",
+        "heptameron_dayAngelTriad": "Gabriel, Michael, Samael",
+        "heptameron_hourAngel": "Gabriel",
+        "heptameron_airKing": "Arcan (ministers: Bilet, Missabu, Abuzaha/Abuzaba; wind: the West wind)",
+        "picatrix_colour_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_suffumigation_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps. The repo's '28-component lunar' is its own prior compilation (S9).",
+        "picatrix_offering_UNVERIFIED": "unattested — not verified from an authorized copy; see gaps",
+        "picatrix_prayerAngel_UNVERIFIED": "unattested here — the repo carries 'Celan' from its own prior compilation (S9); not verified in this pass"
+      }
+    }
+  ],
+
+  "variants": [
+    {
+      "id": "V1",
+      "label": "Agrippa contradicts himself on the planetary METAL: the Scale of Seven (II.10) against the planetary tables (II.22)",
+      "authority": "Agrippa, Three Books of Occult Philosophy, Book II ch. x and ch. xxii, in the Freake 1651 English translation as edited by Joseph H. Peterson",
+      "arithmetic": "A materials engine that exposes a single 'metal' column per planet WILL BE WRONG for three of the seven. Agrippa II.10 gives the seven metals as Lead, Tin, Iron, Gold, Copper, Quick-silver, Silver. Agrippa II.22 specifies the metal in which each planet's TABLE (kamea) is to be made, and for three planets it does not match: Jupiter's table is SILVER (not tin), Venus's table is SILVER (not copper), Mercury's table is 'Silver, tin, or yellow brass' (not quicksilver), and the Moon's table is silver when the work is fortunate but LEAD when it is unfortunate. Saturn (lead), Mars (iron, or a sword) and the Sun (gold) agree across both chapters. The correct data shape is therefore TWO metal fields keyed by locus — a 'metal of the planet' and a 'metal of the table' — and an engine must not collapse them.",
+      "sourceRef": "S2"
+    },
+    {
+      "id": "V2",
+      "label": "The Michael/Raphael swap: Agrippa's Scale of Seven against the Heptameron's hour-angels",
+      "authority": "The divergence is stated as such by Joseph H. Peterson, editor of the Heptameron digital edition, in his headnote to §XXV: the Heptameron 'combines the table of names of the hours with the table of angels, and swaps Raphael and Michael' relative to the manuscript sources he collates (CLM 849 and Vat. lat. Reg. 1115). The comparison is HIS, not this site's.",
+      "arithmetic": "Agrippa II.10 assigns RAPHAEL to the Sun and MICHAEL to Mercury. The Heptameron assigns MICHAEL to the Sun and RAPHAEL to Mercury — verifiable directly from its Sunday hour table, where day-hour 1 (a Sun hour by the Chaldean rule) reads Michael and day-hour 3 (a Mercury hour) reads Raphael, and from its weekday angel triads, which head Sunday with Michael and Wednesday with Raphael. THE TWO SYSTEMS ARE NOT RECONCILABLE AND MUST NOT BE MERGED. An engine that emits one 'angel of the Sun' has silently picked a side. The correct output names both, with the source of each.",
+      "sourceRef": "S2,S3,S4"
+    },
+    {
+      "id": "V3",
+      "label": "Two documented translator's errors in Turner's 1655 English Heptameron, both in the perfume column",
+      "authority": "Joseph H. Peterson, editorial notes to the Heptameron digital edition, at the Sunday and Friday perfume entries",
+      "arithmetic": "(a) SUNDAY. The Latin reads 'Sandalum rubeum' (red sandalwood). Turner's 1655 printing gives 'Red Wheat', having confused Latin 'sandalum' (sandalwood) with 'sandala' (a very white kind of wheat); Turner's own 1665 printing corrects this to 'Red Sanders'. Peterson cross-checks CLM 849 §37f.1, which reads 'assandalum croceum vel rubeum' — saffron-coloured or red sandalwood. (b) FRIDAY. The Latin reads 'Costus'; Turner renders it 'Pepperwort'; Peterson states that Costus is probably Saussurea lappa, not pepperwort (Lepidium). CONSEQUENCE FOR AN ENGINE: the edition must be a field, not a footnote. 'Heptameron, Sunday, red wheat' and 'Heptameron, Sunday, red sandalwood' are the same datum in two printings of the same translator, and a row that does not carry which printing it came from cannot be checked by anyone.",
+      "sourceRef": "S3,S4"
+    },
+    {
+      "id": "V4",
+      "label": "Agrippa I.xliv contains THREE mutually inconsistent suffumigation schemes in one chapter",
+      "authority": "Agrippa, Three Books of Occult Philosophy, Book I ch. xliv, Freake 1651, ed. Peterson. The observation that the three lists disagree is available to any reader of the chapter; no scholarly attribution is claimed for it beyond the text itself.",
+      "arithmetic": "Scheme 1 — the seven COMPOUND fumes, each a list of gums, plants and minerals bound with animal brain or blood. Scheme 2 — a CLASS of odoriferous matter per planet: roots to Saturn, fruits to Jupiter, woods to Mars, gums to the Sun, flowers to Venus, peels and seeds to Mercury, leaves to the Moon. Scheme 3 — the single seven-aromatic compound Agrippa attributes to HERMES: pepperwort (Saturn), nutmeg (Jupiter), lignum aloes (Mars), mastic (Sun), saffron (Venus), cinnamon (Mercury), myrtle (Moon). They conflict: saffron is Venus's in scheme 3 but heads the Sun's compound in scheme 1; lignum aloes is Mars's in scheme 3 but appears in the Sun's and Venus's compounds in scheme 1; frankincense appears under Saturn in scheme 2 ('the Frankincense tree') and under the Sun in scheme 2's gum list. An engine must expose the scheme as a field. Collapsing the three into one 'Agrippa suffumigation' column would fabricate a consensus Agrippa does not state.",
+      "sourceRef": "S1"
+    },
+    {
+      "id": "V5",
+      "label": "The Heptameron keys its perfume to the WEEKDAY; Agrippa keys his to the PLANET",
+      "authority": "Heptameron §§ 'The perfume of the Lords day' … 'The Fumigation of Saturday' (Turner 1655); Agrippa Book I ch. xliv",
+      "arithmetic": "This is a difference of granularity that a shared schema will hide. The Heptameron supplies exactly SEVEN perfumes, one per weekday, and none per hour — so within a Heptameron operation the perfume does not change when the planetary HOUR changes. Agrippa's fumes attach to the planet as such and therefore do change with the hour. An engine that renders 'the material for this hour' from a Heptameron row is asserting something the Heptameron does not say. Mapping the weekday perfumes onto planets (Sunday→Sun, Monday→Moon, Tuesday→Mars, Wednesday→Mercury, Thursday→Jupiter, Friday→Venus, Saturday→Saturn) is safe ONLY because the Heptameron itself names each day's planet in its Considerations section; it is not safe to run that mapping backwards into hours.",
+      "sourceRef": "S1,S3"
+    },
+    {
+      "id": "V6",
+      "label": "Spelling recensions of the Agrippa spirit-names: Freake 1651 against the modern occult-revival forms now in the repo",
+      "authority": "Agrippa Book II ch. xxii, Freake 1651 ed. Peterson, against assets/js/core/data/planetary-magic.js",
+      "arithmetic": "Freake prints Johphiel / Nachiel / Barzabel / Malcha betharsisim / Zaphiel (Peterson emends the last to Zaphkiel and records the emendation). The repo carries Iophiel / Nakhiel / Bartzabel / Malka betharsisim / Zaphkiel — forms standardised by the Golden Dawn and its successors, not by Agrippa's translator. These are not errors, but they are not Agrippa's printed text either, and a dossier that silently prints the modern forms under an Agrippa citation is miscited. Store the 1651 form as the cited value and the modern form as an alias.",
+      "sourceRef": "S2,S9"
+    },
+    {
+      "id": "V7",
+      "label": "The three spirit-name systems are three, and the repo currently describes two of them as one",
+      "authority": "Agrippa Book II ch. x and ch. xxii; Heptameron; and the header comment of assets/js/core/data/planetary-magic.js",
+      "arithmetic": "planetary-magic.js states that Angel, Intelligence and Spirit are 'roles WITHIN a single system' — 'Agrippa's ONE triad per planet'. THEY ARE NOT ONE LOCUS. The Intelligence and the Spirit come from Book II ch. xxii, where they belong to the planetary TABLE and are given with divine names and a metal. The Angel comes from Book II ch. x, the Scale of the Number Seven, where the row is labelled 'Seven Angels which stand in the presence of God' and has nothing to do with the tables. Whether Agrippa intended them as one system is a real question; that they are printed twelve chapters apart under different rubrics is a fact, and the citation must carry the chapter. A fourth set — the Heptameron's day-angel triads and air-kings — is a different system again, and a fifth — the Picatrix prayer-angels — is a fifth.",
+      "sourceRef": "S1,S2,S3,S9"
+    }
+  ],
+
+  "goldenValues": [
+    {
+      "label": "GV1 — Heptameron §XXV, Sunday, the twelve day-hour angels in order",
+      "place": "Any location at which the Sun rises and sets on the date (the table is place-independent; only the CLOCK TIMES of the boundaries depend on place, and those are the existing planetary-hours engine's business, not this dossier's)",
+      "date": "Any Sunday. Concrete instance for a test: 2026-08-02, which is a Sunday (verified).",
+      "expected": "Day-hours 1–12: Michael, Anael, Raphael, Gabriel, Cassiel, Sachiel, Samael, Michael, Anael, Raphael, Gabriel, Cassiel. Night-hours 1–12: Sachiel, Samael, Michael, Anael, Raphael, Gabriel, Cassiel, Sachiel, Samael, Michael, Anael, Raphael. This is fully derivable from the repo's existing Chaldean hour engine plus one lookup, so it tests BOTH: hoursTable() must return Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Sun, … for the day-hours of a Sunday, and the Heptameron angel map must be {Sun:Michael, Venus:Anael, Mercury:Raphael, Moon:Gabriel, Saturn:Cassiel, Jupiter:Sachiel, Mars:Samael}. The night sequence continuing into Jupiter at night-hour 1 is the check that the engine did not restart the cycle at sunset.",
+      "publishedIn": "Heptameron seu Elementa Magica, attrib. Peter de Abano, §XXV 'Tables of the Angels of the Hours, according to the course of the dayes', in the English translation of Robert Turner (London, 1655), with the Latin of the Marburg 1559 edition in parallel; digital edition by Joseph H. Peterson, Twilit Grotto Esoteric Archives, updated 14 April 2023. Peterson also prints the BF1579 variant readings (Yayn/Michael for Iayn/Michal, Sadedali for Sadelali, Barol for Baroli, Calerna for Calerua).",
+      "url": "https://www.esotericarchives.com/solomon/heptamer.htm"
+    },
+    {
+      "label": "GV2 — Heptameron §XXV, Monday, first eight day-hour and night-hour angels",
+      "place": "Place-independent, as GV1",
+      "date": "Any Monday. Concrete instance: 2026-08-03, which is a Monday (verified).",
+      "expected": "Day-hours 1–8: Gabriel, Cassiel, Sachiel, Samael, Michael, Anael, Raphael, Gabriel. Night-hours 1–8: Anael, Raphael, Gabriel, Cassiel, Sachiel, Samael, Michael, Anael. This is the second weekday and it catches an off-by-one in the weekday→first-hour-ruler map that GV1 alone cannot catch.",
+      "publishedIn": "Heptameron §XXV, Turner 1655, ed. Peterson (as GV1)",
+      "url": "https://www.esotericarchives.com/solomon/heptamer.htm"
+    },
+    {
+      "label": "GV3 — Heptameron, the seven weekday perfumes, with the 1655/1665 divergence",
+      "place": "Place-independent",
+      "date": "Date-independent (keyed on the calendar weekday only)",
+      "expected": "Sunday = 'Red Wheat' in Turner 1655 AND 'Red Sanders' in Turner 1665 (Lat. Sandalum rubeum) — a test must accept the edition as an input and return the matching string, and must NOT return one silently; Monday = Aloes (Lat. Aloe); Tuesday = Pepper (Lat. Piper); Wednesday = Mastick (Lat. Mastix); Thursday = Saffron (Lat. Crocus); Friday = Pepperwort (Lat. Costus, which Peterson identifies as probably Saussurea lappa rather than Lepidium); Saturday = Sulphur (Lat. Sulphur).",
+      "publishedIn": "Heptameron, 'The perfume of the Lords day' through 'The Fumigation of Saturday', Turner 1655 with 1665 corrections; Latin from Marburg 1559; ed. Peterson, who collates CLM 849 §37f, Vat. lat. Reg. 1115 fol. 103r, and BL Add. 3544 (as printed by Young 2014, p. 25)",
+      "url": "https://www.esotericarchives.com/solomon/heptamer.htm"
+    },
+    {
+      "label": "GV4 — Agrippa Book II ch. x, the Scale of the Number Seven: metals, stones, angels",
+      "place": "Place-independent",
+      "date": "Date-independent",
+      "expected": "Row order is Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon. Seven Metals of the Planets: Lead, Tin, Iron, Gold, Copper, Quick-silver, Silver. Seven Stones of the Planets: The Onyx, The Saphir, The Diamond, The Carbuncle, The Emrald, The Achates, Crystall. Seven Angels which stand in the presence of God: Zaphkiel, Zadkiel, Camael, Raphael, Haniel, Michael, Gabriel (Freake's printed text reads Zaphiel at the first position; Peterson emends to Zaphkiel and flags it in note 1). Seven Birds of the Planets: The Lapwing, The Eagle, The Vultur, The Swan, The Dove, The Stork, The Owle.",
+      "publishedIn": "Heinrich Cornelius Agrippa, Three Books of Occult Philosophy, Book II ch. x, in the English translation of J. F. (John Freake), London 1651; digital edition by Joseph H. Peterson, 2000, updated 4 July 2026",
+      "url": "https://www.esotericarchives.com/agrippa/op2.htm"
+    },
+    {
+      "label": "GV5 — Agrippa Book II ch. xxii, the planetary tables: table-metal, Intelligence, Spirit",
+      "place": "Place-independent",
+      "date": "Date-independent",
+      "expected": "Saturn — lead; Agiel; Zazel; divine names Ab, Hod, Iah. Jupiter — silver; Johphiel; Hismael; Abba, El Ab. Mars — iron or a sword; Graphiel; Barzabel; Adonay. Sun — gold; Nachiel; Sorath; Eloh. Venus — silver; Hagiel; Kedemel. Mercury — silver, tin or yellow brass; Tiriel; Taphthartharath. Moon — silver if fortunate, lead if unfortunate; Malcha betharsisim; Hasmodai. THE TEST THAT MATTERS: assert that the Jupiter, Venus and Mercury table-metals do NOT equal the Scale of Seven metals for those planets. That assertion is what stops a later round quietly merging the two columns.",
+      "publishedIn": "Agrippa, Three Books of Occult Philosophy, Book II ch. xxii, Freake 1651; ed. Peterson",
+      "url": "https://www.esotericarchives.com/agrippa/agripp2b.htm"
+    },
+    {
+      "label": "GV6 — Agrippa Book I ch. xliv, the seven-aromatic compound attributed to Hermes",
+      "place": "Place-independent",
+      "date": "Date-independent",
+      "expected": "Saturn = Pepper-wort; Jupiter = Nutmeg; Mars = Lignum-aloes; Sun = Mastick; Venus = Saffron; Mercury = Cinnamon; Moon = the Myrtle. Seven values, one substance each, no quantities and no process parameters anywhere in the expected output — a test may additionally assert that the returned object contains no numeric field and no unit token, which pins FRAMING §5 C-1 at the data layer for this dossier's least dangerous scheme as well as its worst.",
+      "publishedIn": "Agrippa, Three Books of Occult Philosophy, Book I ch. xliv 'The Composition of some fumes appropriated to the Planets', Freake 1651; ed. Peterson",
+      "url": "https://www.esotericarchives.com/agrippa/agripp1b.htm"
+    }
+  ],
+
+  "sources": [
+    {
+      "id": "S1",
+      "cite": "Heinrich Cornelius Agrippa von Nettesheim, Three Books of Occult Philosophy, Book I, chapters xxiii–xxix (things under the Sun, Moon, Saturn, Jupiter, Mars, Venus, Mercury), xliii (Of Perfumes, or Suffumigations, their manner, and power) and xliv (The Composition of some fumes appropriated to the Planets), in the English translation of 'J. F.' (John Freake), London: printed by R. W. for Gregory Moule, 1651. Digital edition by Joseph H. Peterson, Twilit Grotto Esoteric Archives.",
+      "locator": "Book I ch. xxiii–xxix, xliii–xliv. Fetched at https://www.esotericarchives.com/agrippa/agripp1b.htm (Book I part 2, covering ch. xviii–xliv) and https://www.esotericarchives.com/agrippa/agripp1c.htm (part 3, from ch. xlvi). Raw HTML was downloaded and read directly rather than summarised, because a summarising fetch of the same pages returned demonstrably wrong content.",
+      "tier": "A",
+      "pd": "Public domain in the United States. The Freake translation was published in 1651, far earlier than the 1930 threshold at which works entered the US public domain on 1 January 2026; the term has long expired. Peterson's editorial notes, glosses and emendations are HIS and are attributed to him wherever used, not reproduced as Agrippa.",
+      "fetched": true
+    },
+    {
+      "id": "S2",
+      "cite": "Agrippa, Three Books of Occult Philosophy, Book II, chapter x ('Of the number Seven, and the Scale thereof', containing the Scala septenarii) and chapter xxii ('Of the tables of the Planets, their vertues, forms, and what Divine names, Intelligencies, and Spirits are set to them'). Freake 1651; digital edition by Joseph H. Peterson, 2000, updated 4 July 2026.",
+      "locator": "Book II ch. x at https://www.esotericarchives.com/agrippa/op2.htm (Book II part 1); Book II ch. xxii at https://www.esotericarchives.com/agrippa/agripp2b.htm (Book II part 2, covering ch. xii–xxii). The Scale of Seven table was extracted from downloaded raw HTML and read row by row.",
+      "tier": "A",
+      "pd": "Public domain in the United States — 1651 publication, term long expired.",
+      "fetched": true
+    },
+    {
+      "id": "S3",
+      "cite": "Heptameron seu Elementa Magica, attributed to Petrus de Abano (Peter of Abano), in the English translation of Robert Turner, London 1655 (with the corrected readings of Turner's 1665 printing noted where they differ), printed in parallel with the Latin of the Marburg 1559 edition. Digital edition by Joseph H. Peterson, Twilit Grotto Esoteric Archives, updated 14 April 2023.",
+      "locator": "The 'Considerations' of each weekday (angel triads, air-kings, winds, and the perfume of each day) and §XXV, 'Tables of the Angels of the Hours, according to the course of the dayes'. Fetched from https://www.esotericarchives.com/solomon/heptamer.htm; raw HTML downloaded and read directly, because a summarising fetch of this page returned a fabricated hour-angel list.",
+      "tier": "A",
+      "pd": "Public domain in the United States. Turner's English translation was published in 1655 and the Latin Marburg edition in 1559; both terms expired centuries ago. The attribution to Peter of Abano (d. 1316) is itself disputed in the scholarship and is not endorsed here.",
+      "fetched": true
+    },
+    {
+      "id": "S4",
+      "cite": "Joseph H. Peterson, editorial apparatus to the Twilit Grotto Esoteric Archives editions of the Heptameron and of Agrippa — specifically his headnote to Heptameron §XXV (stating that the Heptameron combines the hour-name and hour-angel tables and swaps Raphael and Michael relative to CLM 849 and Vat. lat. Reg. 1115), his note at the Sunday perfume (the sandalum/sandala confusion in Turner 1655, corrected in 1665), his note at the Friday perfume (Costus is probably Saussurea lappa, not Lepidium), his note that Latin 'ambra' in Agrippa I.xliv is ambergris and not fossil amber, and his emendation of Freake's 'Zaphiel' to 'Zaphkiel'.",
+      "locator": "Notes in situ at the loci named, on the pages cited in S1–S3. Peterson collates CLM 849 (Munich, the necromancer's manual published by Richard Kieckhefer as Forbidden Rites, Penn State 1997), Vat. lat. Reg. 1115, Vat. lat. Reg. 1300, BF1579, and BL Add. 3544 as printed by Young 2014, p. 25.",
+      "tier": "B",
+      "pd": "Peterson's notes are IN COPYRIGHT and are used here as an attributed scholarly claim, not reproduced as text. Every comparative statement in this dossier's variants block that could be mistaken for the site's own philology is his and is named as his — FRAMING §2.4.",
+      "fetched": true
+    },
+    {
+      "id": "S5",
+      "cite": "John Michael Greer and Christopher Warnock (trans.), The Picatrix: Liber Rubeus Edition, Adocentyn Press / Renaissance Astrology, 2010–11, 312 pp., ISBN 978-1-257-77958. Also their Complete Picatrix: Liber Atratus Edition, ISBN 978-1-257-76785-4.",
+      "locator": "Book III chapter 7 — the chapter that carries the planetary invocations together with the sacrifices, prayers, suffumigations and garment colours. PAGE NUMBERS COULD NOT BE VERIFIED: no authorized copy was available in this pass, and the full-text copies circulating online are unauthorized reproductions of an in-copyright work and were deliberately not used.",
+      "tier": "A",
+      "pd": "IN COPYRIGHT — cite-only under FRAMING §4.1. NOT QUOTED, in any form, anywhere in this dossier. This is the edition the repo's existing assets/js/core/data/picatrix-prayers.js currently reproduces verbatim in its prayerExcerpt fields, which FRAMING §9.8 identifies as a live defect; this dossier does not repeat it.",
+      "fetched": false
+    },
+    {
+      "id": "S6",
+      "cite": "Dan Attrell and David Porreca (trans.), Picatrix: A Medieval Treatise on Astral Magic, translated from the Latin critical edition of David Pingree. Magic in History series. University Park, PA: Pennsylvania State University Press, 2019. xii + 372 pp. ISBN 978-0-271-08212-7.",
+      "locator": "Book III chapter 7, whose rubric covers attracting the virtues of the planets and the division of their influences among figures, sacrifices, prayers and suffumigations. PAGE NUMBERS COULD NOT BE VERIFIED in this pass — see gaps. Bibliographic data (pagination, ISBN, series, translator credit, Pingree as the Latin base text) was verified from the publisher's and reviewers' listings.",
+      "tier": "A",
+      "pd": "IN COPYRIGHT — cite-only under FRAMING §4.1. NOT QUOTED anywhere in this dossier.",
+      "fetched": false
+    },
+    {
+      "id": "S7",
+      "cite": "David Pingree (ed.), Picatrix: The Latin Version of the Ghāyat Al-Ḥakīm. Studies of the Warburg Institute 39. London: Warburg Institute, 1986.",
+      "locator": "The Latin critical text underlying S6, cited here as the edition where the complete text lives (FRAMING §4.4). Not consulted directly in this pass.",
+      "tier": "A",
+      "pd": "IN COPYRIGHT as an edition — cite-only. Named because a bounded record must always name the complete edition it points into.",
+      "fetched": false
+    },
+    {
+      "id": "S8",
+      "cite": "Richard Kieckhefer, Forbidden Rites: A Necromancer's Manual of the Fifteenth Century. University Park, PA: Pennsylvania State University Press, 1997. Cited by Peterson (S4) as the edition of CLM 849, the manuscript against which the Heptameron's perfume and hour tables are collated (e.g. Kieckhefer 1998 pp. 182–183 for the functions of the named hours; p. 300 for the Saturday conjuration).",
+      "locator": "CLM 849 §37f (the weekday suffumigations) and §37l (the hour tables), as cited in Peterson's apparatus. Not consulted directly in this pass; the page references are Peterson's, reported as his.",
+      "tier": "B",
+      "pd": "IN COPYRIGHT — cite-only.",
+      "fetched": false
+    },
+    {
+      "id": "S9",
+      "cite": "The repository's own prior compilation: assets/js/core/data/planetary-magic.js and research/SOURCE-DATA.md §4 ('Per-planet Picatrix talisman correspondences (compact)'), whose stated upstream is 'Renaissance Astrology / Christopher Warnock' together with Greer–Warnock and Attrell–Porreca.",
+      "locator": "assets/js/core/data/planetary-magic.js, the PLANETARY_MAGIC export; research/SOURCE-DATA.md §4 table.",
+      "tier": "C",
+      "pd": "The site's own text. Treated here as a TIER C practitioner-derived compilation and audited against the primary texts, NOT as evidence of what the Picatrix says. Where it diverges from Agrippa the divergence is recorded above and is not resolved.",
+      "fetched": true
+    }
+  ],
+
+  "gaps": [
+    "THE ENTIRE PICATRIX COLUMN IS UNVERIFIED. Colour, suffumigation, offering and prayer-angel were the four fields this dossier was specifically asked to take from the Picatrix, and not one of them could be verified against an authorized copy of either translation. Both Greer–Warnock and Attrell–Porreca are in copyright; neither was available in this pass; and the full-text copies circulating on academia.edu and archive.org are unauthorized reproductions of in-copyright works, so they were deliberately not used even to check a page number. Every Picatrix cell in this dossier is therefore marked unattested rather than filled. The values currently in the repo (Saturn 'opium, etc.', colours 'black', 'yellow/white', 'red', 'gold/yellow', 'white(/gold)', 'mixed (scribe)', 'silver/white', prayer-angels Heylil, Raucayehil, Raucahehil, Beyteyl, Arquyl, Celan) are carried as S9 tier-C compilation values only, and NOTHING in this dossier corroborates them.",
+    "PAGE NUMBERS FOR BOTH PICATRIX TRANSLATIONS. The task asked for book/chapter/page citations to Greer–Warnock and Attrell–Porreca. Book and chapter are established (III.7, whose rubric covering sacrifices, prayers and suffumigations was confirmed from secondary listings). PAGES ARE NOT, for either edition, for any planet. A citation without a page is not the citation that was asked for, and this is recorded as a failure rather than smoothed over.",
+    "AGRIPPA GIVES NO RITUAL GARMENT COLOUR. The Scale of the Number Seven (II.10) has rows for metals, stones, angels, birds, fishes, animals, bodily members and holes of the head — and NO colour row. The colour statements that do exist in Agrippa Book I ch. xxiii–xxix ('all dark, weighty, earthy things' for Saturn, 'all fiery, red, and sulphureous things' for Mars, 'a fair, various, white, and green Colour' for Venus, and so on) describe the CLASS OF MATTER that belongs to a planet, not what an operator wears. They are recorded as colourClass fields and must not be rendered in a 'colour' column beside a Picatrix garment colour, because they are not answering the same question.",
+    "AGRIPPA II.22 DIVINE NAMES FOR VENUS, MERCURY AND THE MOON were not captured verbatim in this pass. Saturn (Ab, Hod, Iah), Jupiter (Abba, El Ab), Mars (Adonay) and the Sun (Eloh) were. The Venus entry is recorded as 'present in the source; exact forms not captured' rather than left blank in a way that would read as absent from the source.",
+    "OFFERINGS AND SACRIFICES ARE ABSENT FROM THIS DOSSIER ALTOGETHER. The Picatrix III.7 rubric names sacrifices explicitly, and that is the locus where offerings would be found — and it is exactly the locus that could not be verified. Agrippa I.xliv and the Heptameron perfume sections do not supply offerings as a separate category. So the 'offerings' column requested by the task is EMPTY, and empty is the finding.",
+    "THE PICATRIX 'MIRROR OF THE PLANETS' ANGELS — flagged as a distinct third system in the repo's own planetary-magic.js header and never included there — remain not included here either, and for the same reason: no verifiable source.",
+    "NO ARABIC-SIDE VERIFICATION. The Picatrix is a Latin translation of the Arabic Ghāyat al-Ḥakīm, and the Ritter–Plessner German translation (1962) and the Arabic editions were not consulted. Where the Latin and Arabic traditions differ on a material, this dossier cannot say.",
+    "THE HEPTAMERON'S ATTRIBUTION TO PETER OF ABANO is doubted in the scholarly literature; this dossier records the attribution as the text's own claim and does not assess it, having consulted no study of the question."
+  ],
+
+  "contestedPoints": [
+    "WHICH ANGEL RULES THE SUN — Raphael (Agrippa II.10) or Michael (Heptameron)? Both are attested, in widely circulated texts, within four years of each other in English. Peterson frames it as the Heptameron swapping the two relative to its manuscript sources, which is a claim about the Heptameron's transmission, not a ruling on which is correct. A HUMAN MUST DECIDE whether the engine emits both with sources, or picks one and says so on the page. It must not pick one silently. The same choice binds Mercury, where the two names trade places.",
+    "WHETHER 'METAL' IS ONE COLUMN OR TWO. Agrippa gives a metal of the planet (II.10) and a metal of the planet's table (II.22) and they disagree for Jupiter, Venus, Mercury and the conditional case of the Moon. A single 'metal' field cannot be filled without choosing, and the choice is editorial, not textual.",
+    "WHICH TURNER PRINTING IS 'THE' HEPTAMERON. The 1655 Sunday perfume is a mistranslation the same translator corrected in 1665. A comparison page that prints 'Red Wheat' is faithful to the 1655 text and wrong about the Latin; one that prints 'Red Sanders' is right about the Latin and is not the 1655 text. The repo must decide which it is publishing, and label it.",
+    "WHETHER THE REPO'S SUN-STONE 'DIAMOND' SURVIVES. It is attested at no Agrippa locus checked here, and Agrippa twice gives the diamond to Mars. It may well be correct for the Picatrix — but that is precisely what could not be verified. Deleting it would discard a possibly-sound Picatrix datum; keeping it under the current source string 'Picatrix III.7; Agrippa, Three Books II' asserts an Agrippa attestation that does not exist. Both options are edits to shipped data and need a human.",
+    "WHETHER THE REPO'S SATURN SUFFUMIGATION SHOULD SAY 'OPIUM'. Agrippa I.xliv says the seed of black poppy, which is not opium. If 'opium' came from the Picatrix it may be right; if it came from a practitioner summary conflating poppy seed with opium latex, the repo is currently harm-noting a controlled substance that its own cited primary text does not name. This is a live accuracy question with a safety surface and it should not be settled by whoever writes the renderer.",
+    "WHETHER 'Raucayehil' (Jupiter) AND 'Raucahehil' (Mars) ARE TWO NAMES OR ONE CORRUPTED TWICE. They differ by a single letter in the repo's table and no primary source was reachable to check either. A transcription slip somewhere upstream is at least as likely as two genuinely near-identical angel names, and the pair should not be shipped as distinct data until someone reads an actual Picatrix.",
+    "WHETHER AGRIPPA'S THREE SUFFUMIGATION SCHEMES HAVE A PRIORITY ORDER. Agrippa presents the compound fumes, the class-of-matter list and the Hermes seven-aromatic in one chapter without ranking them. Practitioner literature routinely quotes the Hermes list as 'Agrippa's planetary incenses', which silently promotes the third scheme over the first two. That promotion is not in the text."
+  ],
+
+  "honestLimits": "This dossier records what three named books say the materials of the seven planets are. It does not establish that they are the materials of the seven planets, because there is nothing there to be established: planetary rulership of metals, stones and plants is a historical symbolic system with no demonstrated validity and no proposed mechanism, and burning a named resin at a named hour does nothing that burning it at any other hour does not do. What is checkable here is narrow and is stated as such — that a 1651 English Agrippa prints these words in these chapters, that a 1655 English Heptameron prints these, and that the two disagree in ways a reader can go and see. Everything the sources say about what these materials DO is reported as their claim, in their voice, and is carried by no one here. Three further limits are load-bearing. FIRST, THE PICATRIX COLUMN IS EMPTY. This dossier was commissioned to draw colours, suffumigations, offerings and prayer-angels from two named Picatrix translations, and it could verify none of them, because both are in copyright and the copies freely available are unauthorized. The empty cells are the honest output; the values sitting in the repo today rest on a tier-C compilation and are not corroborated by anything here. SECOND, THIS IS NOT A RECIPE AND CANNOT BE MADE INTO ONE. Agrippa's compound fumes name henbane, mandrake, poppy, hellebore, euphorbium and — twice — human blood. Substance identities are recorded because the sources name them; no quantity, no proportion, no preparation step and no process parameter appears in any field, for any planet, and none is derivable from what is here. That is a deliberate structural limit, not an oversight, and it is why several fields are explicitly null with a stated reason rather than absent. THIRD, THIS SYSTEM HAS NO CLOCK OF ITS OWN. It answers 'given this ruler, what materials', and something else must supply the ruler; where the Sun does not rise, that something else has no answer, and neither does this.",
+
+  "compiledOn": "2026-08-01",
+  "compiledFor": "Horae Mundi — phase 1 data dossier. Research file only; nothing under assets/ or pages/ was modified."
+}

@@ -1,0 +1,471 @@
+{
+  "key": "egyptian",
+  "system": "Egyptian hours of night and day — the twelve hours of the Amduat's night, and the day-hours",
+  "compiled": "2026-08-01",
+  "compiledBy": "Horae Mundi research agent (egyptian slice)",
+  "scopeNote": "This dossier records TWO things and refuses to merge them. (1) What the Amduat — the New Kingdom 'Book of the Hidden Chamber' — actually names for each of the twelve hours of the sun's night journey: the region/'City', the gate, and, where the text gives one, the hour-goddess. (2) What ancient Egyptian TIMEKEEPING actually was: decan-star risings, then water-clock month scales, then shadow tables — none of which is a modern clock, and none of which is the Amduat. The Amduat is a cosmographic and funerary composition, not a civil timetable, and nothing in this dossier licenses presenting it as one. No hour-lord table of the planetary/Chaldean type is attested here; the repo's assets/js/core/planetary-hours.js implements a different system with a different pedigree and MUST NOT be relabelled 'Egyptian'.",
+
+  "dayStart": "Dawn — first light, before sunrise — for the CIVIL day, on Richard A. Parker's determination: 'That the day in Egypt began at dawn, and was reckoned from one dawn to the next, has been fully demonstrated' (Parker, The Calendars of Ancient Egypt, SAOC 26, Chicago 1950, §32). This is contested: the alternative is sunrise, and the difference is not cosmetic — it shifts the Egyptian civil date assigned to a heliacal rising of Sothis and hence the Julian conversion (see contestedPoints). NOTE THE THREE DIFFERENT BOUNDARIES IN PLAY, which this system does not reconcile and neither should the page: (a) DAWN begins the civil day (Parker §32); (b) SUNRISE begins the twelve day-hours; (c) SUNSET begins the twelve night-hours, and is where the Karnak clepsydra was physically filled and started (Parker §208). A page that silently picks one and calls it 'the Egyptian day start' is asserting something no source asserts.",
+
+  "divisionRule": "TWELVE unequal (seasonal/temporal) hours of night, taken as sunset → next sunrise divided into twelve equal parts; and TWELVE unequal hours of day, taken as sunrise → sunset divided into twelve equal parts. Hour length therefore varies with date and latitude and day-hours and night-hours are unequal to each other except at equinox. THIS ARITHMETIC IS A MODERN RECONSTRUCTION, NOT AN ATTESTED EGYPTIAN PROCEDURE. What is attested for the pharaonic period is: (i) that the night carried twelve hours 'of varying length (depending on the time of the year)' marked by the risings of decan stars (Ainsworth 2018, p. 2, citing Dodd 2005 p. 67); (ii) that the decans in fact 'define uneven time intervals' because no real stars both rise heliacally on the right dates and rise at regular intervals through the night (Symons, in Miller & Symons eds., Down to the Hour, Brill 2019, as reported by Brack-Bernsen, BMCR 2020.11.44); (iii) that the Karnak clepsydra of Amenhotep III measured the night by twelve month-specific scales, filled at sunset, each scale's marks giving the successive hour boundaries (Parker SAOC 26 §208 and Fig. 17). Sunset-to-sunrise divided by twelve is the arithmetic a modern engine can compute; it is a MODEL OF the Egyptian night, and the page must say so in those words.",
+
+  "entries": [
+    {
+      "index": 1,
+      "phase": "day",
+      "hourOfPhase": 1,
+      "name": "Day hour 1",
+      "nameOriginal": "",
+      "transliteration": "",
+      "ruler": "unattested",
+      "tier": "C",
+      "sourceRef": "gap-dayhours",
+      "quality": "unattested-in-this-dossier",
+      "note": "No name, goddess or region for any of the twelve DAY hours was verified for this dossier. The Amduat is a night book and names nothing here. Day-hour material exists — the Book of the Day (Piankoff, Le Livre du Jour et de la Nuit, Cairo: IFAO, 1942, from the tomb of Ramesses VI) and the hour-liturgies of Pap. BM 10569 (Faulkner, 'An Ancient Egyptian Book of Hours', JEA 40, 1954; separate edition Griffith Institute, 1958) — but neither was fetched, so nothing is entered. An empty cell here is a finding, not an omission.",
+      "associations": { "phase": "day", "attestedInAmduat": false }
+    },
+    { "index": 2, "phase": "day", "hourOfPhase": 2, "name": "Day hour 2", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 3, "phase": "day", "hourOfPhase": 3, "name": "Day hour 3", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 4, "phase": "day", "hourOfPhase": 4, "name": "Day hour 4", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 5, "phase": "day", "hourOfPhase": 5, "name": "Day hour 5", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 6, "phase": "day", "hourOfPhase": 6, "name": "Day hour 6", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 7, "phase": "day", "hourOfPhase": 7, "name": "Day hour 7", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 8, "phase": "day", "hourOfPhase": 8, "name": "Day hour 8", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 9, "phase": "day", "hourOfPhase": 9, "name": "Day hour 9", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 10, "phase": "day", "hourOfPhase": 10, "name": "Day hour 10", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 11, "phase": "day", "hourOfPhase": 11, "name": "Day hour 11", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+    { "index": 12, "phase": "day", "hourOfPhase": 12, "name": "Day hour 12", "nameOriginal": "", "transliteration": "", "ruler": "unattested", "tier": "C", "sourceRef": "gap-dayhours", "quality": "unattested-in-this-dossier", "note": "See entry 1.", "associations": { "phase": "day", "attestedInAmduat": false } },
+
+    {
+      "index": 13,
+      "phase": "night",
+      "hourOfPhase": 1,
+      "name": "Ushem-hat-kheftiu-nu-Ra",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "Ushem-hat-kheftiu-nu-Ra (goddess of the hour)",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "attested; superseded romanisation",
+      "note": "Budge, at the close of his Chapter I (p. 20): '[The goddess of] the hour who guideth [this great god] through this Court is USHEM-HAT-KHEFTIU-NU-RA.' Region/'City' per the chapter heading: NET-RA. Two field-names are given inside this division and they are not the same: 'The name of this Field is MAATI' and 'NET-RA is the name of this Field, ARNEBAUI is the name of the guardian'. No gate is named for this division in Budge's rendering. The romanisation is Budge's own 1905 system and is superseded; no modern Egyptological transliteration was verified for this dossier, and none is guessed.",
+      "associations": { "phase": "night", "region": "Net-Ra", "fieldNames": ["Maati", "Net-Ra"], "fieldGuardian": "Arnebaui", "gate": "unattested", "budgePages": "3, 8-11, 20", "amduatHour": 1 }
+    },
+    {
+      "index": 14,
+      "phase": "night",
+      "hourOfPhase": 2,
+      "name": "Seshet-maket-neb-s",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "Seshet-maket-neb-s (hour)",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "attested; superseded romanisation",
+      "note": "Budge p. 43: 'The name of this hour is SESHET-MAKET-NEB-S.' Region per chapter heading: URNES. No gate named for this division in Budge.",
+      "associations": { "phase": "night", "region": "Urnes", "gate": "unattested", "budgePages": "21, 43", "amduatHour": 2 }
+    },
+    {
+      "index": 15,
+      "phase": "night",
+      "hourOfPhase": 3,
+      "name": "Tent-baiu",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "AMBIGUOUS — do not render as the third hour's goddess without an Egyptologist's ruling",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "ambiguous",
+      "note": "Budge p. 50, inside the Third Division: 'This great god paddleth through this Field towards the Hour TENT-BAIU.' Budge does NOT say this is the name of the third hour. Grammatically the god is paddling TOWARDS it, which is at least as consistent with the hour he is entering next (the fourth) as with the one he is in. This dossier therefore records the string, records the ambiguity, and assigns nothing. Region per chapter heading: NET-NEB-UA-KHEPER-AUT, glossed by Budge as 'the Water of the Lord One, the Creator of food'. The warder of this Field is named KHETRA. No gate named.",
+      "associations": { "phase": "night", "region": "Net-neb-ua-kheper-aut", "fieldWarder": "Khetra", "gate": "unattested", "budgePages": "44, 50", "amduatHour": 3 }
+    },
+    {
+      "index": 16,
+      "phase": "night",
+      "hourOfPhase": 4,
+      "name": "unattested",
+      "nameOriginal": "",
+      "transliteration": "",
+      "ruler": "unattested",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "confirmed gap in this witness",
+      "note": "CONFIRMED GAP. Budge's Chapter IV (Fourth Division) contains no 'name of the hour' statement and no 'name of the gate/city' statement at all — a full-text scan of the chapter for every occurrence of 'the name of' returns nothing. The region is known from the chapter heading only: ANKHET-KHEPERU. This is the sandy realm approached by zig-zag paths. Whether the Amduat itself names this hour and Budge simply did not render it is a question for Hornung's critical edition (cite-only here), not for this dossier to fill.",
+      "associations": { "phase": "night", "region": "Ankhet-kheperu", "gate": "unattested", "budgePages": "62", "amduatHour": 4 }
+    },
+    {
+      "index": 17,
+      "phase": "night",
+      "hourOfPhase": 5,
+      "name": "unattested",
+      "nameOriginal": "",
+      "transliteration": "",
+      "ruler": "unattested",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "confirmed gap in this witness",
+      "note": "CONFIRMED GAP, same scan as entry 16. Region per chapter heading: AMENT. This is the division Budge captions 'The Kingdom of Seker'.",
+      "associations": { "phase": "night", "region": "Ament", "gate": "unattested", "budgePages": "85", "amduatHour": 5 }
+    },
+    {
+      "index": 18,
+      "phase": "night",
+      "hourOfPhase": 6,
+      "name": "unattested",
+      "nameOriginal": "",
+      "transliteration": "",
+      "ruler": "unattested",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "confirmed gap in this witness",
+      "note": "CONFIRMED GAP for the hour name. Region per chapter heading: METCHET-MU-NEBT-TUAT. Budge's Chapter VI does name two chambers — HET-STAU-KHER-AHA and HET-TEMTET-RA — but no hour and no gate.",
+      "associations": { "phase": "night", "region": "Metchet-mu-nebt-Tuat", "chambers": ["Het-stau-kher-aha", "Het-temtet-Ra"], "gate": "unattested", "budgePages": "116", "amduatHour": 6 }
+    },
+    {
+      "index": 19,
+      "phase": "night",
+      "hourOfPhase": 7,
+      "name": "Kheftes-hau-hesqet-[neha]-hra",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "Kheftes-hau-hesqet-[neha]-hra (hour of the night)",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "attested; square brackets are Budge's own restoration",
+      "note": "Budge p. 140: 'The name of the gate of this City wherethrough passeth this god is RUTI-ASAR. The name of this City is THEPHET-SHETA. The name of the hour of the night which guideth this great god into it is KHEFTES-HAU-HESQET-[NEHA]-HRA.' The square brackets are Budge's — [NEHA] is his restoration, and it must be rendered as such, not silently absorbed. REGION NAME IS A TRAP: the printed chapter heading reads 'THEPHET-ASAR', but Budge's own ERRATA to the volume directs 'p. 139, l. 3, for \"Thephet-Asar\" read \"Thephet-shetat\"', and the running text at p. 140 gives 'THEPHET-SHETA'. Use the corrected form and record the printed one.",
+      "associations": { "phase": "night", "region": "Thephet-shetat", "regionAsPrintedUncorrected": "Thephet-Asar", "regionInRunningText": "Thephet-Sheta", "gate": "Ruti-Asar", "budgePages": "139-140", "amduatHour": 7, "erratum": "Budge's errata, p. 139 l. 3" }
+    },
+    {
+      "index": 20,
+      "phase": "night",
+      "hourOfPhase": 8,
+      "name": "Nebt-usha",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "Nebt-usha (Hour of the night)",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "attested; superseded romanisation",
+      "note": "Budge p. 162: 'The name of the gate of this City is AHA-AN-URT-NEF. The name of this City is TEBAT-NETERU-S. The name of the Hour of the night which guideth this great god is NEBT-USHA.'",
+      "associations": { "phase": "night", "region": "Tebat-neteru-s", "gate": "Aha-an-urt-nef", "budgePages": "161-162", "amduatHour": 8 }
+    },
+    {
+      "index": 21,
+      "phase": "night",
+      "hourOfPhase": 9,
+      "name": "Tuatet-maketet-en-neb-s",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "Tuatet-maketet-en-neb-s (Hour of the night)",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "attested; superseded romanisation",
+      "note": "Budge p. 187: 'The name of the gate of this City through which this god entereth ... is SAA-EM-KEB; the name of this City is BEST-ARU-ANKHET-KHEPERU; the name of the Hour of the night which guideth this great god is TUATET-MAKETET-EN-NEB-S.'",
+      "associations": { "phase": "night", "region": "Best-aru-ankhet-kheperu", "gate": "Saa-em-keb", "budgePages": "186-187", "amduatHour": 9 }
+    },
+    {
+      "index": 22,
+      "phase": "night",
+      "hourOfPhase": 10,
+      "name": "Tentenit-uheset-khak-abu",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "Tentenit-uheset-khak-abu (hour of the night)",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "attested; superseded romanisation",
+      "note": "Budge p. 208: 'The name of the door of this City through which this great god entereth is AA-KHERPU-MES-ARU. The name of this City is METET-QA-UTCHEBU. The name of the hour of the night which guideth this great god to the hidden paths of this City is TENTENIT-UHESET-KHAK-ABU.' Budge's word here is 'door', not 'gate'; kept as printed.",
+      "associations": { "phase": "night", "region": "Metet-qa-utchebu", "gate": "Aa-kherpu-mes-aru", "gateWordAsPrinted": "door", "budgePages": "207-208", "amduatHour": 10 }
+    },
+    {
+      "index": 23,
+      "phase": "night",
+      "hourOfPhase": 11,
+      "name": "Sebit-nebt-uaa-khesfet-seba-em-pert-f",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "Sebit-nebt-uaa-khesfet-seba-em-pert-f (hour of the night)",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "attested; superseded romanisation",
+      "note": "Budge p. 233: 'The name of the gate of this City through which this great god hath entered is SEKEN-TUATIU; the name of this City is RE-EN-QERERT-APT-KHATU; the name of the hour of the night which guideth this great god is SEBIT-NEBT-UAA-KHESFET-SEBA-EM-PERT-F.'",
+      "associations": { "phase": "night", "region": "Re-en-qerert-apt-khatu", "gate": "Seken-tuatiu", "budgePages": "232-233", "amduatHour": 11 }
+    },
+    {
+      "index": 24,
+      "phase": "night",
+      "hourOfPhase": 12,
+      "name": "Maa-nefert-Ra",
+      "nameOriginal": "",
+      "transliteration": "not verified — see note",
+      "ruler": "Maa-nefert-Ra (hour of the night wherein this god cometh into being)",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "quality": "attested; superseded romanisation; region name is a documented trap",
+      "note": "Budge p. 257: 'The name of the Gate of this City is THEN-NETERU. The name of this City is KHEPER-KEKIU-KHAU-MESTU. The name of the hour of the night wherein this god cometh into being is MAA-NEFERT-RA.' REGION NAME IS A TRAP, and this is the single most-propagated error in circulating Amduat hour tables: the printed chapter heading reads 'THE TWELFTH DIVISION OF THE TUAT, WHICH IS CALLED THEN-NETERU', but Budge's own ERRATA directs 'p. 256, l. 3, for \"Then-neteru\" read \"Kheper-kekiu-khau-mestu\"'. THEN-NETERU is the GATE, not the region. Any list whose twelfth region is 'Then-Neteru' is copying Budge's uncorrected heading.",
+      "associations": { "phase": "night", "region": "Kheper-kekiu-khau-mestu", "regionAsPrintedUncorrected": "Then-neteru", "gate": "Then-neteru", "budgePages": "256-257", "amduatHour": 12, "erratum": "Budge's errata, p. 256 l. 3" }
+    }
+  ],
+
+  "adjacentRegisters": [
+    {
+      "id": "twelve-goddesses-first-division",
+      "label": "The twelve goddesses of the FIRST division's upper register — NOT one goddess per hour",
+      "tier": "A",
+      "sourceRef": "budge-amtuat-1905",
+      "locator": "Budge 1905, The Book Am-Tuat, pp. 11-12 (upper register of the First Division)",
+      "asPrinted": "Twelve divine beings, in the form of women, who are described as 'the goddesses who guide the great god.' Their names are: 1. TENTENIT, 2. SBAI, 3. MAT-NEFERU-NEB-SET, 4. KHESEFET-SMATET, 5. KHUAI, 6. MAKET-ARI-S, 7. URT-AMT-TUAT, 8. HER-AB-UAA-SET, 9. MESPERIT, 10. USHEM-HAT-KHEFTIU-S, 11. SHESET-KERH-MAKET-NEB-S, 12. TESET-TESHERU.",
+      "whyItMatters": "All twelve of these stand in the FIRST hour, in one register, in a scene that also contains nine praising gods, nine singing apes and twelve fire-throwing serpents — the Amduat likes twelves. Budge nowhere maps them onto hours 1-12. Anyone assembling a complete 'goddess of hour N' table for all twelve hours from a public-domain source has, at minimum, a list of exactly the right length sitting in Hour 1 waiting to be misread. This dossier records the list, records that it is a single register of a single hour, and asserts NO mapping.",
+      "flaggedResemblance": "Three of these twelve names resemble hour-names attested elsewhere in the same work: no. 10 USHEM-HAT-KHEFTIU-S beside hour 1's USHEM-HAT-KHEFTIU-NU-RA; no. 11 SHESET-KERH-MAKET-NEB-S beside hour 2's SESHET-MAKET-NEB-S; no. 9 MESPERIT as a bare name. This resemblance is recorded as an observation about Budge's printed romanisations and NOTHING is concluded from it. Whether the register is a roster of the twelve hour-goddesses, a different dodecad, or an artefact of Budge's romanisation is a question for an Egyptologist working from Hornung's Texte zum Amduat, not for this compilation. FRAMING 2.4: where no scholar has made the comparison, there is no row."
+    }
+  ],
+
+  "variants": [
+    {
+      "id": "v1-seasonal-sunset-sunrise",
+      "label": "Seasonal-hour reconstruction (the engine default)",
+      "authority": "Modern reconstruction. Grounded in: night hours 'of varying length (depending on the time of the year)' (Ainsworth 2018 p. 2); the Karnak clepsydra filled at sunset with per-month scales whose marks give successive hour boundaries (Parker SAOC 26 §208).",
+      "arithmetic": "night = (next sunrise − sunset) / 12; day = (sunset − sunrise) / 12. Unequal, latitude- and date-dependent. This is arithmetically identical to the Chaldean seasonal division already implemented in assets/js/core/planetary-hours.js; only the LABELS and the provenance differ, and the page must not let identical arithmetic imply a shared system.",
+      "sourceRef": "parker-saoc26-1950"
+    },
+    {
+      "id": "v2-dayStart-dawn-vs-sunrise",
+      "label": "Civil day begins at dawn (Parker) vs at sunrise",
+      "authority": "Parker, SAOC 26 (1950) §32, for dawn: 'That the day in Egypt began at dawn, and was reckoned from one dawn to the next, has been fully demonstrated.' Sethe, quoted by Parker at §33, reaches morning-beginning by a different route (from the Sothic year and the star's visibility an hour before sunrise). The sunrise alternative remains live in the literature.",
+      "arithmetic": "Does NOT change hour lengths. Changes which calendar day an hour is labelled with, and — downstream — the Egyptian civil date assigned to a heliacal rising of Sothis and therefore its Julian conversion. An engine must expose the choice, not bury it.",
+      "sourceRef": "parker-saoc26-1950"
+    },
+    {
+      "id": "v3-full-darkness-night",
+      "label": "Did the decanal night-hours divide sunset→sunrise, or only the period of complete darkness?",
+      "authority": "UNRESOLVED IN THIS DOSSIER. The decans were observed stars; twilight suppresses star risings, so a decan-defined night plausibly excludes twilight and is materially shorter than sunset→sunrise. No source fetched for this dossier states the boundary. Neugebauer & Parker, Egyptian Astronomical Texts I (1960) and Neugebauer, 'The Egyptian Decans', Vistas in Astronomy 1 (1955) 47-51, are where to check; neither was obtained.",
+      "arithmetic": "If the night is instead (begin morning astronomical/nautical twilight − end evening twilight) / 12, EVERY night-hour boundary moves and the night hour becomes markedly shorter than the sunset→sunrise twelfth. At Luxor on 2026-12-21 the sunset→sunrise night is 13h28m; the sunset→sunrise span alone therefore already differs from any darkness-only span by roughly the two twilight arcs. The engine must not present the sunset→sunrise figure as if the question were settled.",
+      "sourceRef": "gap-fulldarkness"
+    },
+    {
+      "id": "v4-clepsydra-month-scales",
+      "label": "The Karnak clepsydra scheme — night length by CIVIL MONTH from a fixed table, not from the sky",
+      "authority": "Parker, SAOC 26 (1950) §§207-208 and Fig. 17, on the water clock of Amenhotep III from Karnak.",
+      "arithmetic": "Not astronomical at all. Twelve engraved scales, one per civil month; the vessel is filled to the brim at sunset; when the level falls to the first mark of that month's scale the second hour of the night begins, and so on. Night length is therefore a step function of the civil month, and because the Egyptian civil year wandered, the table drifts against the real sky. Parker: 'The shortest scale is that of II šmw and the longest IIII ꜣḫt' — i.e. shortest night in civil month 10, longest in civil month 4 — from which he concludes I ꜣḫt 1 was near the autumn equinox, about 5 October, in the time of Amenhotep III, and that the clock is therefore no evidence for a fixed Sothic year.",
+      "sourceRef": "parker-saoc26-1950"
+    },
+    {
+      "id": "v5-clepsydra-dating-dispute",
+      "label": "Which civil month carries the shortest night on the Karnak clepsydra — 10 (Parker) or 9 (von Lieven & Schomberg)?",
+      "authority": "Parker, SAOC 26 §208 (II šmw = month 10). Against: von Lieven and Schomberg, in Miller & Symons (eds.), Down to the Hour (Brill, 2019), reported by Brack-Bernsen, BMCR 2020.11.44: on their reading the clock's scale system 'predates prior estimates by approximately 250 years if month nine (rather than ten) corresponded to the summer solstice's shortest night'.",
+      "arithmetic": "One month's shift in which scale is shortest re-dates the scheme by roughly 250 years and turns the clepsydra from a contemporary instrument into an inherited, already-wrong table. KEEP BOTH POSITIONS. Do not resolve.",
+      "sourceRef": "bmcr-2020-11-44"
+    }
+  ],
+
+  "goldenValues": [
+    {
+      "label": "Day hours, winter solstice — Thebes/Luxor",
+      "place": "Luxor (ancient Thebes), Egypt — 25.6989 N, 32.6421 E; local civil time UTC+02:00 (Egypt Standard Time; no DST in December)",
+      "date": "2026-12-21",
+      "expected": "Published reference values (USNO): sunrise 06:31, sunset 17:04 local (04:31 / 15:04 UTC). Day span 10h33m00s; day-hour length 00:52:45. The twelve day-hour boundaries, local: 06:31:00, 07:23:45, 08:16:30, 09:09:15, 10:02:00, 10:54:45, 11:47:30, 12:40:15, 13:33:00, 14:25:45, 15:18:30, 16:11:15, end 17:04:00. Tolerance: the engine's own sunrise/sunset may differ from USNO by up to ~1 minute (USNO publishes to whole minutes and uses its own refraction/horizon model); assert boundaries to ±90 s and assert the twelve intervals equal to each other to ±1 s.",
+      "publishedIn": "U.S. Naval Observatory, Astronomical Applications Department — 'Sun and Moon Data for One Day' / Rise-Set-Transit-Twilight API v4.0.1. A work of the United States Government; public domain.",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-12-21&coords=25.6989,32.6421&tz=2"
+    },
+    {
+      "label": "Night hours, winter solstice — Thebes/Luxor",
+      "place": "Luxor (ancient Thebes), Egypt — 25.6989 N, 32.6421 E; UTC+02:00",
+      "date": "2026-12-21 sunset → 2026-12-22 sunrise",
+      "expected": "Published reference values (USNO): sunset 2026-12-21 17:04, sunrise 2026-12-22 06:32 local (15:04 / 04:32 UTC). Night span 13h28m00s; night-hour length 01:07:20. The twelve night-hour boundaries, local: 17:04:00, 18:11:20, 19:18:40, 20:26:00, 21:33:20, 22:40:40, 23:48:00, then 00:55:20, 02:02:40, 03:10:00, 04:17:20, 05:24:40, end 06:32:00 on 22 December. Same ±90 s tolerance. The engine's Amduat labels must run NET-RA → … → KHEPER-KEKIU-KHAU-MESTU across these twelve, in that order, with hours 4, 5, 6 carrying NO goddess name.",
+      "publishedIn": "U.S. Naval Observatory, Astronomical Applications Department, RSTT API v4.0.1 (US Government work; public domain). Two calls: 2026-12-21 and 2026-12-22.",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-12-22&coords=25.6989,32.6421&tz=2"
+    },
+    {
+      "label": "Day and night hours, March equinox — Thebes/Luxor (the near-equal case)",
+      "place": "Luxor (ancient Thebes), Egypt — 25.6989 N, 32.6421 E; UTC+02:00",
+      "date": "2026-03-20 (day) and 2026-03-20 sunset → 2026-03-21 sunrise (night)",
+      "expected": "USNO: 2026-03-20 sunrise 05:54, sunset 18:01; 2026-03-21 sunrise 05:53 local. DAY span 12h07m00s, hour length 01:00:35, boundaries 05:54:00, 06:54:35, 07:55:10, 08:55:45, 09:56:20, 10:56:55, 11:57:30, 12:58:05, 13:58:40, 14:59:15, 15:59:50, 17:00:25, end 18:01:00. NIGHT span 11h52m00s, hour length 00:59:20, boundaries 18:01:00, 19:00:20, 19:59:40, 20:59:00, 21:58:20, 22:57:40, 23:57:00, 00:56:20, 01:55:40, 02:55:00, 03:54:20, 04:53:40, end 05:53:00. This case pins the sign of the day/night asymmetry: even AT the equinox the day-hour is longer than the night-hour (60m35s vs 59m20s), because sunrise/sunset are refraction- and disc-defined, not geometric. An engine that returns exactly 60 minutes for both has substituted geometry for the published almanac.",
+      "publishedIn": "U.S. Naval Observatory, Astronomical Applications Department, RSTT API v4.0.1 (US Government work; public domain).",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-03-20&coords=25.6989,32.6421&tz=2"
+    },
+    {
+      "label": "Civil day start marker (dawn) — the declared, disclosed modelling choice",
+      "place": "Luxor (ancient Thebes), Egypt — 25.6989 N, 32.6421 E; UTC+02:00",
+      "date": "2026-12-21",
+      "expected": "If — and only if — the engine models Parker's 'dawn' as the begin of civil twilight (sun 6° below the horizon), the published value is 06:06 local (04:06 UTC); on 2026-03-20 it is 05:31 local. Assert to ±90 s. THIS IS A CONVENTION, NOT AN ATTESTATION: no Egyptian source specifies a solar depression angle, and equating Parker's 'dawn' with the −6° civil-twilight definition is a modern choice made by whoever writes the engine. The test must pin the choice so that it is visible and falsifiable, and the page must state it in words.",
+      "publishedIn": "U.S. Naval Observatory, Astronomical Applications Department, RSTT API v4.0.1, 'Begin Civil Twilight' (US Government work; public domain). Day-start doctrine: Parker, The Calendars of Ancient Egypt, SAOC 26 (Chicago, 1950), §32.",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-12-21&coords=25.6989,32.6421&tz=2"
+    },
+    {
+      "label": "Non-astronomical published table: the Karnak clepsydra's shortest and longest month-scales",
+      "place": "Karnak, Thebes — the water clock of Amenhotep III (Cairo Museum)",
+      "date": "reign of Amenhotep III (c. 14th century BC)",
+      "expected": "Parker's reading of the calibrations (Fig. 17): the SHORTEST night-scale is that of II šmw — civil month 10 — and the LONGEST is IIII ꜣḫt — civil month 4. A test can assert that any clepsydra lookup table shipped by the engine marks month 10 as shortest-night and month 4 as longest-night, and that the table is flagged as drifting against the real sky (Parker infers from it that I ꜣḫt 1 fell near the autumn equinox, about 5 October, under Amenhotep III). The test MUST ALSO assert that the competing reading is carried in the same data: von Lieven and Schomberg place the shortest-night month at 9, not 10, which re-dates the scheme by roughly 250 years. A build that ships only one of the two positions fails.",
+      "publishedIn": "Richard A. Parker, The Calendars of Ancient Egypt, Studies in Ancient Oriental Civilization 26 (Chicago: University of Chicago Press, 1950), §§207-208 and Fig. 17. Competing reading: von Lieven and Schomberg, in Kassandra Miller and Sarah Symons (eds.), Down to the Hour: Short Time in the Ancient Mediterranean and Near East (Brill, 2019), as reported in Lis Brack-Bernsen's review, BMCR 2020.11.44.",
+      "url": "https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/saoc26.pdf"
+    },
+    {
+      "label": "Twelve region names of the Amduat night, in order, with the two errata applied",
+      "place": "n/a — a text-derived string table, not a sky computation",
+      "date": "n/a",
+      "expected": "Hours 1-12: Net-Ra; Urnes; Net-neb-ua-kheper-aut; Ankhet-kheperu; Ament; Metchet-mu-nebt-Tuat; Thephet-shetat; Tebat-neteru-s; Best-aru-ankhet-kheperu; Metet-qa-utchebu; Re-en-qerert-apt-khatu; Kheper-kekiu-khau-mestu. A test must assert that entries 7 and 12 do NOT read 'Thephet-Asar' and 'Then-Neteru' — those are Budge's uncorrected chapter headings, corrected by his own printed errata, and they are the fingerprint of a table copied from an online transcription rather than from the book. A test must also assert that hour-goddess names for hours 4, 5 and 6 are the literal string 'unattested' and are never filled.",
+      "publishedIn": "E. A. Wallis Budge, The Egyptian Heaven and Hell, vol. I: The Book Am-Tuat (London: Kegan Paul, Trench, Trübner, 1905) — chapter headings pp. 3, 21, 44, 62, 85, 116, 139, 161, 186, 207, 232, 256; ERRATA (unnumbered leaf after the Contents): 'p. 139, l. 1 [l. 3], for \"Thephet-Asar\" read \"Thephet-shetat\"; p. 256, l. 3, for \"Then-neteru\" read \"Kheper-kekiu-khau-mestu\".' Public domain (published 1905).",
+      "url": "https://archive.org/details/theegyptianheave01budgiala"
+    }
+  ],
+
+  "polarBehaviour": "THE SYSTEM HAS NO POLAR BEHAVIOUR, BECAUSE IT HAS NO POLAR ATTESTATION. The defining events are sunset and sunrise. Above roughly 66.5° N/S they fail outright for part of the year: with no sunset there is no night to divide, and with no sunrise there is no day. The engine must REFUSE — return an explicit 'undefined at this latitude' and render the twenty-four cells empty — and must never fall back to a 24-hour or clock-hour division, because an extrapolation to a latitude no Egyptian ever observed from is a fabricated table wearing an ancient name. The honest floor is lower than the Arctic Circle: this scheme was built at Egyptian latitudes, Thebes ≈ 25.7° N, where the longest night exceeds the shortest by only about 25% (at Luxor, 13h28m against roughly 10h33m). At 55° N the same arithmetic still runs but produces night-hours nearly twice the length of day-hours in December — arithmetically valid, historically meaningless. Recommended: compute anywhere the sun rises and sets, and display a standing latitude note outside the band roughly 22°-32° N stating that no Egyptian instrument or text was calibrated for it.",
+
+  "sources": [
+    {
+      "id": "budge-amtuat-1905",
+      "cite": "E. A. Wallis Budge, The Egyptian Heaven and Hell, vol. I: The Book Am-Tuat, being 'The Book of what is in the Tuat' (London: Kegan Paul, Trench, Trübner & Co., 1905). Hieroglyphic text, translation and illustrations.",
+      "locator": "Chapter headings and hour/gate/city colophons at pp. 3, 8-11, 20, 21, 43, 44, 50, 62, 85, 116, 139-140, 161-162, 186-187, 207-208, 232-233, 256-257; the twelve goddesses of the first division at pp. 11-12; ERRATA leaf after the Contents. Full text fetched from the Internet Archive scan of the UCLA copy.",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Public domain in the United States: published 1905, i.e. before 1931, so the US term has expired (works published 1930 or earlier entered the US public domain on 1 January 2026). US determination only.",
+      "url": "https://archive.org/details/theegyptianheave01budgiala",
+      "qualityWarning": "SUPERSEDED WITNESS, and the dossier says so rather than hiding it. Budge's romanisations, his readings and his understanding of the composition are all outdated; the critical edition is Hornung's (see hornung-amduat), which is in copyright and is therefore cited here and never reproduced. Budge is used because he is the only complete, public-domain, English witness to the Amduat's per-hour naming. Per FRAMING §4.4 the public-domain constraint has selected the worst witness and the record states it."
+    },
+    {
+      "id": "sacred-texts-amtuat",
+      "cite": "Internet Sacred Text Archive, HTML transcription of Budge's Book of the Am-Tuat (chapters at /egy/bat/bat04.htm through bat15.htm; errata at /egy/bat/errata.htm).",
+      "locator": "bat04-bat15 fetched 2026-08-01; errata.htm fetched 2026-08-01 (HTTP 200); bat16.htm returns HTTP 404.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "The underlying text is Budge 1905 (public domain in the US). The transcription itself is a third-party web edition; used here as a clean reading aid and as the object of a propagation finding, not as an authority.",
+      "url": "https://sacred-texts.com/egy/bat/index.htm",
+      "qualityWarning": "USED AS EVIDENCE OF ERROR PROPAGATION. This transcription reproduces Budge's UNCORRECTED chapter headings — 'THEPHET-ASAR' for the seventh division and 'THEN-NETERU' for the twelfth — and its 'Errata' page carries a single note ('page 140: \"againt\"->\"against\"') rather than Budge's own printed errata, which correct exactly those two names. Both facts verified by direct fetch. Any online Amduat hour-table showing Thephet-Asar and Then-Neteru is downstream of an uncorrected transcription."
+    },
+    {
+      "id": "parker-saoc26-1950",
+      "cite": "Richard A. Parker, The Calendars of Ancient Egypt, Studies in Ancient Oriental Civilization 26 (Chicago: University of Chicago Press, 1950).",
+      "locator": "§32 (beginning of the day at dawn); §33 (Sethe's alternative derivation); §§207-208 and Fig. 17 (the Karnak water clock of Amenhotep III); §273 (the thirty-six decans as the stars rising during the twelve hours of the night through the thirty-six decades). Full PDF fetched from ISAC (University of Chicago) and read.",
+      "tier": "B",
+      "fetched": true,
+      "pd": "cite-only. Published 1950 and in copyright; ISAC distributes the PDF free of charge, which is access, not a licence. Paraphrased and page-cited here; the two short phrases reproduced are minimal factual quotations for identification. Not to be reproduced at length on the site without a licence check.",
+      "url": "https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/saoc26.pdf"
+    },
+    {
+      "id": "bmcr-2020-11-44",
+      "cite": "Lis Brack-Bernsen, review of Kassandra Miller and Sarah Symons (eds.), Down to the Hour: Short Time in the Ancient Mediterranean and Near East (Time, Astronomy, and Calendars 8; Leiden: Brill, 2019; ISBN 9789004373471), Bryn Mawr Classical Review 2020.11.44.",
+      "locator": "Sections on Symons's chapter (Egyptian astronomical timekeeping; decans define uneven intervals) and on von Lieven & Schomberg (the Karnak clepsydra, month-specific rows of holes, the month-9-vs-10 dating argument). Fetched 2026-08-01.",
+      "tier": "B",
+      "fetched": true,
+      "pd": "cite-only. Open access to read; in copyright. NOTE: this is a REVIEW, i.e. a secondary report of the underlying chapters. The chapters themselves (Symons; von Lieven & Schomberg, in Brill 2019) were not obtained. Any claim resting on this source is reported as 'as reported by the reviewer', never as the chapter's own wording.",
+      "url": "https://bmcr.brynmawr.edu/2020/2020.11.44/"
+    },
+    {
+      "id": "ainsworth-2018",
+      "cite": "Theresa Ainsworth, 'A Timeline of the Decans: From Egyptian Astronomical Timekeeping to Greco-Roman Melothesia', research essay submitted for the degree of Master of Arts, Graduate Program in Classics, Queen's University, Kingston, Ontario, September 2018 (supervisor: Daryn Lehoux).",
+      "locator": "p. 2 (night divided into twelve hours of varying length, decans as hour-markers, decade scheme); pp. 4-8 (diagonal star clocks: columns = decades, rows = hours 1-12; triangle decans; transit clocks and P. Carlsberg 1); pp. 10-13 (the decanal belt and Conman's rejection of it). PDF fetched and read.",
+      "tier": "B",
+      "fetched": true,
+      "pd": "cite-only. In copyright (© Theresa Ainsworth, 2018); open access via the Queen's institutional repository.",
+      "url": "https://queensu.scholaris.ca/bitstreams/83acf792-37ff-4142-b96c-911beb7e80f1/download",
+      "qualityWarning": "An unpublished graduate research essay, not a peer-reviewed article. It is used here as a careful, well-footnoted SIGNPOST to Neugebauer & Parker, Parker 1974, Symons 1999, Clagett and Conman — and its own footnotes are the citation of record, not its prose. Do not let it carry a claim alone where the underlying work can be cited instead."
+    },
+    {
+      "id": "neugebauer-parker-eat",
+      "cite": "Otto Neugebauer and Richard A. Parker, Egyptian Astronomical Texts, 3 vols. (Providence: Brown University Press / London: Lund Humphries, 1960-1969): I, The Early Decans (1960); II, The Ramesside Star Clocks (1964); III, Decans, Planets, Constellations and Zodiacs (1969). Also Otto Neugebauer, 'The Egyptian \"Decans\"', Vistas in Astronomy 1 (1955), 47-51.",
+      "locator": "EAT I, 26-29, 36-42, 57-58, 96, 150 (as cited by Ainsworth 2018).",
+      "tier": "A",
+      "fetched": false,
+      "pd": "cite-only; in copyright. NOT OBTAINED FOR THIS DOSSIER. This is the standard corpus for Egyptian astronomical timekeeping and it is the place where the question in variant v3 — whether the decanal night divided sunset-to-sunrise or only full darkness — must be settled. Every statement in this dossier that touches it is marked unresolved.",
+      "url": ""
+    },
+    {
+      "id": "hornung-amduat",
+      "cite": "Erik Hornung, Das Amduat: Die Schrift des verborgenen Raumes, Ägyptologische Abhandlungen 7 (Wiesbaden: Harrassowitz, 1963); Texte zum Amduat, 3 vols. (Aegyptiaca Helvetica 13-15, Geneva, 1987-1994); The Ancient Egyptian Books of the Afterlife, trans. David Lorton (Ithaca: Cornell University Press, 1999); The Egyptian Amduat: The Book of the Hidden Chamber (Zurich: Living Human Heritage Publications, 2007).",
+      "locator": "not obtained — no page cited, because no page was read.",
+      "tier": "A",
+      "fetched": false,
+      "pd": "cite-only; all in copyright. NEVER QUOTED HERE. This is the critical edition, and it is named because FRAMING §4.4 requires naming the modern edition even when the public-domain witness is the one being used. Anyone completing hours 4, 5 and 6, or supplying modern transliterations, goes here — not to this file.",
+      "url": ""
+    },
+    {
+      "id": "usno-rstt",
+      "cite": "United States Naval Observatory, Astronomical Applications Department, 'Sun and Moon Data for One Day' — Rise, Set, Transit and Twilight API, version 4.0.1.",
+      "locator": "Queried 2026-08-01 for 25.6989 N, 32.6421 E, tz=+2, on 2026-03-20, 2026-03-21, 2026-06-21, 2026-12-21 and 2026-12-22. Values recorded verbatim in goldenValues.",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Public domain: a work of the United States Government, prepared by officers or employees as part of their official duties (17 U.S.C. §105).",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-12-21&coords=25.6989,32.6421&tz=2",
+      "qualityWarning": "Published to whole minutes. The derived second-level hour boundaries in goldenValues are exact arithmetic on those whole-minute inputs; they are not a claim about the sky to the second. Tolerances are stated per golden value."
+    },
+    {
+      "id": "jequier-1894",
+      "cite": "Gustave Jéquier, Le Livre de ce qu'il y a dans l'Hadès: version abrégée publiée d'après les papyrus de Berlin et de Leyde (Paris: Bouillon, 1894).",
+      "locator": "Internet Archive item JequierGustave1894. IDENTIFIED BUT NOT COLLATED: the download attempted for this dossier returned a 404 for the mis-encoded filename and the item's OCR text was never obtained.",
+      "tier": "A",
+      "fetched": false,
+      "pd": "Public domain in the United States: published 1894, before 1931.",
+      "url": "https://archive.org/details/JequierGustave1894",
+      "qualityWarning": "THIS IS THE MOST VALUABLE UNFETCHED ITEM IN THE LIST. It is a second, independent, public-domain edition of the Amduat's abridged recension. Collating it against Budge would either corroborate the eight attested hour names or expose them as Budge's, and would be the cheapest available check on hours 4, 5 and 6. It is the first thing the next round should do."
+    },
+    {
+      "id": "piankoff-1942",
+      "cite": "Alexandre Piankoff, Le Livre du Jour et de la Nuit (Bibliothèque d'Étude 13; Cairo: Institut français d'archéologie orientale, 1942).",
+      "locator": "not obtained.",
+      "tier": "A",
+      "fetched": false,
+      "pd": "cite-only; status unresolved and not researched. NOT OBTAINED. Named because it is the edition of the Book of the Day — the composition that follows the sun through the twelve hours of the DAY, arranged beneath the body of Nut — and therefore the place where any day-hour naming would be found. The Book of the Day and the Book of the Night appear together only in the tomb of Ramesses VI.",
+      "url": ""
+    },
+    {
+      "id": "faulkner-1954",
+      "cite": "R. O. Faulkner, 'An Ancient Egyptian \"Book of Hours\"', Journal of Egyptian Archaeology 40 (1954), 34-39; separately, An Ancient Egyptian Book of Hours (Pap. Brit. Mus. 10569) (Oxford: Griffith Institute / University Press, 1958).",
+      "locator": "not obtained; catalogue and abstract only.",
+      "tier": "B",
+      "fetched": false,
+      "pd": "cite-only; in copyright. NOT OBTAINED. Named as the other place day-hours are attested: a Ptolemaic liturgical papyrus of invocations to be recited at the successive hours. If the page ever wants a day-hour column that is not empty, this and Piankoff 1942 are the two doors.",
+      "url": "https://journals.sagepub.com/doi/10.1177/030751335404000109"
+    },
+    {
+      "id": "borchardt-1920",
+      "cite": "Ludwig Borchardt, Die altägyptische Zeitmessung (Die Geschichte der Zeitmessung und der Uhren I.B; Berlin/Leipzig: de Gruyter, 1920).",
+      "locator": "not obtained.",
+      "tier": "A",
+      "fetched": false,
+      "pd": "Probably public domain in the United States (published 1920, before 1931) — but the volume was NOT obtained and the determination is therefore provisional, not a verdict.",
+      "url": "",
+      "qualityWarning": "This is the standard early publication of the interior calibrations of the Karnak clepsydra and is the source behind Parker's Fig. 17. It is named here because the widely repeated claim that the clepsydra's night-scales run from twelve to fourteen 'fingers' — implying a longest-to-shortest night ratio of 7:6 — was NOT verified for this dossier and is therefore NOT recorded as fact anywhere in this file. Do not ship that ratio until someone reads Borchardt or Ritner, 'Oriental Institute Museum Notes 16: Two Egyptian Clepsydrae', JNES 75.2 (2016), 361-389."
+    },
+    {
+      "id": "gap-dayhours",
+      "cite": "NO SOURCE. This id is used deliberately on the twelve day-hour entries to make their emptiness machine-visible.",
+      "locator": "n/a",
+      "tier": "C",
+      "fetched": false,
+      "pd": "n/a",
+      "url": ""
+    },
+    {
+      "id": "gap-fulldarkness",
+      "cite": "NO SOURCE. This id marks variant v3, the unresolved question of whether the decanal night ran sunset-to-sunrise or only through full darkness.",
+      "locator": "n/a",
+      "tier": "C",
+      "fetched": false,
+      "pd": "n/a",
+      "url": ""
+    }
+  ],
+
+  "gaps": [
+    "HOURS 4, 5 AND 6 HAVE NO GODDESS NAME IN THE PUBLIC-DOMAIN WITNESS. Budge's chapters IV, V and VI contain no 'name of the hour' statement — verified by scanning each chapter for every occurrence of the phrase 'the name of', which returns nothing for hours 4 and 5, and only two chamber-names (Het-stau-kher-aha, Het-temtet-Ra) for hour 6. Whether the Amduat itself names them and Budge omitted them is unresolved and must be checked in Hornung's Texte zum Amduat.",
+    "ALL TWELVE DAY-HOURS ARE EMPTY. Nothing — no name, no deity, no region — was verified for any hour of the day. The Amduat is a night composition. The day-hour material is in the Book of the Day (Piankoff 1942) and in the hour-liturgy of Pap. BM 10569 (Faulkner 1954/1958); neither was obtained. The 'twelve hours of day and twelve of night' symmetry is real as a division of the day; it is NOT a symmetry of attested NAMES, and a page that lays out 24 labelled cells will be inventing twelve of them.",
+    "GATE NAMES ARE MISSING FOR HOURS 1-6. Budge names gates/doors only for hours 7 (Ruti-Asar), 8 (Aha-an-urt-nef), 9 (Saa-em-keb), 10 (Aa-kherpu-mes-aru), 11 (Seken-tuatiu) and 12 (Then-neteru). The first six divisions carry field- and chamber-names in his rendering but no gate.",
+    "NO MODERN EGYPTOLOGICAL TRANSLITERATION IS RECORDED ANYWHERE IN THIS FILE. Every name in the entries is Budge's 1905 romanisation. The transliteration field is deliberately left as 'not verified' rather than back-formed, because back-forming a transliteration from a Victorian romanisation manufactures a philological datum.",
+    "THE DECANAL NIGHT'S BOUNDARIES ARE UNRESOLVED (variant v3). Neither Neugebauer & Parker's Egyptian Astronomical Texts nor Neugebauer's 1955 'The Egyptian Decans' was obtained, and no fetched source states whether the twelve decanal hours spanned sunset-to-sunrise or only the period of complete darkness. The engine's default (sunset-to-sunrise) is therefore a modelling choice standing on an open question.",
+    "THE KARNAK CLEPSYDRA'S ACTUAL SCALE VALUES WERE NOT OBTAINED. Parker's Figure 17 is an image and did not survive text extraction; Borchardt 1920 and Ritner's JNES 75.2 (2016) study were not read; the Schomberg paper in Berlin Studies of the Ancient World 53 was unreachable (connection refused on two attempts). The frequently repeated 12-to-14 'fingers' scheme is therefore recorded nowhere in this file as fact.",
+    "JÉQUIER 1894 — a second public-domain edition of the abridged Amduat — was identified but the download failed and it was never collated. This is the single cheapest outstanding check.",
+    "THE MET MUSEUM'S 'Telling Time in Ancient Egypt' essay was targeted twice and returned HTTP 429 both times; nothing from it is used.",
+    "NO SHADOW-CLOCK DATA. The shadow tables of the cenotaph of Seti I and the Ramesside shadow clocks are the third leg of Egyptian day-time measurement and are entirely absent here; nothing about DAY-hour measurement in this dossier rests on an Egyptian instrument."
+  ],
+
+  "contestedPoints": [
+    "DAWN OR SUNRISE? Parker (SAOC 26 §32) holds that the Egyptian day began at dawn and was reckoned dawn to dawn, and treats it as demonstrated. Sethe, whom Parker quotes at §33, reaches a morning start by a different argument (from the Sothic year, Sirius being visible an hour before sunrise). The sunrise alternative persists in the literature. The stake is real: the choice shifts the Egyptian civil date assigned to a heliacal rising of Sothis and therefore its Julian conversion, and by extension parts of the New Kingdom chronology. A human must rule on which the engine declares — and the page must print both.",
+    "WHICH BOUNDARY IS 'THE' EGYPTIAN DAY BOUNDARY? Three different ones are attested for three different purposes in the same civilisation: dawn for the civil day (Parker §32), sunrise for the day-hours, sunset for the night-hours and for filling the Karnak clepsydra (Parker §208). This dossier declines to pick. Someone must decide what the UI's 'day start' marker means, and say so on the page.",
+    "DID THE DECANAL NIGHT INCLUDE TWILIGHT? See variant v3 and the corresponding gap. Unresolved from fetched sources; materially changes every night-hour boundary.",
+    "THE KARNAK CLEPSYDRA'S DATE AND SCALE-MONTH. Parker (§208) reads the shortest night-scale as II šmw, civil month 10. Von Lieven and Schomberg (in Miller & Symons 2019, as reported by Brack-Bernsen, BMCR 2020.11.44) argue for month 9, which pushes the scheme back by roughly 250 years and makes the instrument an inherited, already-drifted table rather than a contemporary one. Both positions must be carried.",
+    "THE DECANAL BELT. Neugebauer and Parker placed the thirty-six decans along a band south of the ecliptic, inferred from a seventy-day invisibility requirement read out of P. Carlsberg 1. Joanne Conman ('It's About Time: Ancient Egyptian Cosmology', Studien zur Altägyptischen Kultur 31, 2003, 42-57) rejects the belt, argues that Neugebauer misread the Carlsberg papyrus on the Duat, and tests the seventy-day invisibility with planetarium software; Ainsworth (2018, pp. 11-13) reports that scholars have largely stayed with the belt while few have answered Conman's objections. This is upstream of hour-marking and is recorded because a page that explains WHY there are twelve night hours is standing on it.",
+    "ARE THE TWELVE GODDESSES OF THE FIRST DIVISION THE TWELVE HOUR-GODDESSES? Budge's first division carries a register of exactly twelve goddesses 'who guide the great god', and three of their names resemble hour-names attested elsewhere in the same work. This dossier records the resemblance and asserts no mapping. An Egyptologist must rule. Until one does, no engine may use that register to fill hours 4, 5 and 6.",
+    "WHETHER BUDGE'S EIGHT ATTESTED HOUR-NAMES SURVIVE MODERN COLLATION AT ALL. Every hour-name in this file is Budge's reading of a text now edited critically by Hornung. None was checked against Hornung, Jéquier, or Lefébure's plates. A human with access to Texte zum Amduat should verify all eight before any of them is rendered on a public page as 'the goddess of the Nth hour'."
+  ],
+
+  "honestLimits": "Ancient Egyptian timekeeping cannot be reproduced by a modern clock, and this page does not pretend otherwise. What is computed here is a MODEL: sunset to sunrise cut into twelve equal parts, and sunrise to sunset cut into twelve. No Egyptian ever computed an hour that way. The night was marked by watching decan stars rise — and no real stars both rise heliacally on the right dates and rise at even intervals, so the intervals those stars marked were uneven in a way this model does not reproduce. Later the night was measured by a stone vessel of water with twelve engraved scales, one per civil month, filled at sunset; because the Egyptian civil year drifted a quarter-day a year against the sun, those scales went wrong and stayed wrong, and one live scholarly argument is that the Karnak clock's scales were already two and a half centuries out of date when it was cut. The day was measured by shadows, for which this page carries no data at all. So the boundaries drawn here are astronomically defensible and historically anachronistic at the same time, and the gap between them is not small. Separately and more importantly: the Amduat is not a clock. It is a New Kingdom funerary and cosmographic composition about the sun's passage through the Duat, written for the walls of royal tombs. Its twelve hours are twelve regions of a journey, each with a gate and a name; they are not appointments, they are not hour-lords, and nothing in the text assigns a quality, a fortune or a use to any hour. Attaching the Amduat's names to clock times is the page's own act, and it is done as a labelling device for study, never as a reconstruction of what any Egyptian would have called that moment. The names themselves are thinner than they will look. Only eight of the twelve night-hours carry a goddess-name in the public-domain witness used here; hours four, five and six carry none, a ninth is ambiguous, and all twelve day-hours are empty. Those empty cells are the finding. Any table circulating online that shows a complete, tidy set of twelve hour-goddesses is not showing what this witness contains, and before it is believed its source should be named — because the same witness happens to contain, in its FIRST hour, a register of exactly twelve unassigned goddesses, and its two most-copied region names, 'Thephet-Asar' and 'Then-Neteru', are errors the author himself corrected on an errata leaf that the most-linked online transcription does not reproduce. Finally: no efficacy, no fortune, no advice. Nothing here says any hour is good or bad for anything. These are the names a dead civilisation gave to the parts of its night, recorded because they were written down, and for no other reason."
+}

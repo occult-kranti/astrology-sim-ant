@@ -1,0 +1,751 @@
+{
+  "key": "shichen",
+  "system": "Chinese shichen (十二時辰) — the twelve earthly-branch double-hours, as a FIXED CIVIL division of the whole nychthemeron, with the 刻 (ke) subdivision layer (100-ke before 1645, 96-ke after) and the almanac (通勝 / 通書) auspicious-hour layer laid over it",
+  "compiledOn": "2026-08-01",
+  "compiledFor": "Horae Mundi — comparative temporal rulership. Data dossier only; no code, no assets touched.",
+
+  "dayStart": "The shichen day begins at the START of 子時 (zǐ shí), i.e. at civil-clock 23:00 of the preceding Gregorian date, and the twelve divisions then run 23:00→01:00→03:00→… . This is the mainstream convention and the one the modern almanac and modern bazi practice use (子時換日). The anchor is NOT sunrise, NOT sunset and NOT any solar event: it is the midnight point, and 子 is named 夜半 ('mid-night') because it STRADDLES midnight rather than beginning at it. TWO ATTESTED DEPARTURES, both kept: (i) Sôma, Kawabata & Tanikawa (2004) find that in the Song dynasty the first double-hour BEGAN at 0h local time, so 子 = 00:00–02:00 and every division shifts one hour later [src: soma-2004, en-wiki-tct]; (ii) a modern minority of bazi practitioners, following 袁樹珊 (Yuan Shushan), change the DAY at 子正 (00:00) rather than at 子初 (23:00), so a birth at 23:30 keeps the current day's stem-branch — the 早子時/晚子時 (or 夜子時) dispute [src: lnka-zaozi, tier C]. The three positions are not reconciled here.",
+
+  "divisionRule": "ONE nychthemeron (晝夜, a full day-and-night) is divided into TWELVE EQUAL parts, each named for one of the twelve earthly branches (地支) in fixed order 子丑寅卯辰巳午未申酉戌亥. Each part is therefore exactly 1/12 of 24 hours = 2 hours of constant length, every day of the year, at every latitude. THE DIVISION IS OF THE WHOLE DAY, NOT OF DAYLIGHT. This is the structural point on which shichen differ from Greco-Roman planetary hours and from any seasonal-hour scheme: there is no separate count of day-hours and night-hours, no expansion in summer and contraction in winter, and no dependence on sunrise or sunset. The primary evidence is arithmetical and explicit: 隋書·天文志上 records that in Liang 天監 6 (507 CE) Emperor Wu found that '晝夜百刻，分配十二辰，辰得八刻，仍有餘分' — the hundred ke of the day-and-night, distributed over the twelve chen, give each chen eight ke with a remainder left over — and so reformed the day to 96 ke 'so that one chen has eight whole ke' (一辰有全刻八焉). A scheme that distributes a FIXED total (100 ke, then 96 ke) evenly over twelve chen is by construction a scheme of equal fixed divisions of the whole day [src: suishu-19]. The seasonal variation in the same source sits in a DIFFERENT place — in how the fixed ke are split between daylight and darkness ('冬至晝漏四十刻，夜漏六十刻。夏至晝漏六十刻，夜漏四十刻。春秋二分，晝夜各五十刻') — and in the 更 (gēng) night-watch layer, which IS variable. The chen themselves do not move. SUBDIVISION: each shichen is halved into 初 (chū, 'initial') and 正 (zhèng, 'central'), a practice the sources place from the late Tang into the Song, giving 24 half-shichen that align one-to-one with the 24 Western hours [src: en-wiki-tct, zh-wiki-shichen]. Below that sits the ke: under the 100-ke system a shichen is 8⅓ ke (each half-shichen 4⅙ ke, i.e. 4 大刻 plus a 小刻 of ⅙); under the 96-ke system a shichen is exactly 8 ke of 15 minutes, named 初初刻・初一刻・初二刻・初三刻・正初刻・正一刻・正二刻・正三刻, with 正初刻 also written 初四刻 and the NEXT shichen's 初初刻 also written 正四刻 [src: zh-wiki-ke, lin-2007].",
+
+  "structuralContrast": {
+    "vsPlanetaryHours": "The repo's assets/js/core/planetary-hours.js divides sunrise→sunset into 12 and sunset→sunrise into 12, so hour length varies with season and latitude and the day begins at sunrise. Shichen do NONE of that: 12 equal parts of one 24-hour span, day begins at 23:00 civil. A comparison view must not reuse the seasonal-hour machinery for shichen.",
+    "vsMuhurta": "The repo's assets/js/core/muhurta.js divides sunrise→sunset (and the night) into 15 muhūrtas plus octant kālas, all sunrise-anchored and therefore seasonal and latitude-sensitive. Shichen share neither the anchor nor the variability.",
+    "whatIsSeasonalInThisSystem": "Only two layers: (a) the daylight/darkness SPLIT of the fixed ke total (冬至 40/60, 夏至 60/40, equinoxes 50/50 per 隋書); and (b) the five 更 night-watches, which run dusk→dawn and are therefore variable — en-wiki-tct records Western-Han and post-102-CE schemes for adjusting the start of 一更 through the year. Neither touches the twelve chen."
+  },
+
+  "entries": [
+    {
+      "index": 1,
+      "name": "zi",
+      "nameOriginal": "子",
+      "transliteration": "zǐ",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — the shichen carries NO fixed ruler. Rulership in this system is not a property of the hour; it is assigned per-day by the almanac layer, as a function of the DAY's earthly branch (see variants.tongshu-huangdao and goldenValues gv-3/gv-4).",
+      "quality": "夜半 yèbàn, 'mid-night' — the division straddles midnight rather than beginning at it",
+      "note": "The name 夜半 is the reason the mainstream boundary is 23:00–01:00 and not 00:00–02:00: the hour is centred on midnight. Sôma et al. (2004) nonetheless find the Song dynasty began the first chen AT 0h. Both are recorded; neither is resolved here.",
+      "associations": {
+        "civilBoundary": "23:00–01:00",
+        "songVariantBoundary": "00:00–02:00 (Sôma, Kawabata & Tanikawa 2004; en-wiki-tct 'Song dynasty' column)",
+        "halves": { "chu": "23:00–00:00 (子初)", "zheng": "00:00–01:00 (子正)" },
+        "ke96": ["子初初刻 23:00", "子初一刻 23:15", "子初二刻 23:30", "子初三刻 23:45", "子正初刻 00:00", "子正一刻 00:15", "子正二刻 00:30", "子正三刻 00:45"],
+        "animal": "鼠 rat",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "子亦水也，其禽鼠也",
+        "phase": "水 water",
+        "phaseSource": "lunheng-14; wuxing-dayi-1",
+        "directionQuadrant": "north (北方亥子水也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "膽 Gallbladder",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Recorded as what the 子午流注 (zǐwǔ liúzhù) mnemonic assigns. NOT a health claim of any kind; see honestLimits."
+      }
+    },
+    {
+      "index": 2,
+      "name": "chou",
+      "nameOriginal": "丑",
+      "transliteration": "chǒu",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "雞鳴 jīmíng, 'cockcrow'",
+      "note": "Classical name attested in the Han name-set; the standard attribution is to 杜預's commentary on the 左傳 and I could not verify that locus — see gaps.",
+      "associations": {
+        "civilBoundary": "01:00–03:00",
+        "songVariantBoundary": "02:00–04:00",
+        "halves": { "chu": "01:00–02:00 (丑初)", "zheng": "02:00–03:00 (丑正)" },
+        "animal": "牛 ox",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "丑未亦土也，丑禽牛，未禽羊也",
+        "phase": "土 earth",
+        "phaseSource": "lunheng-14; wuxing-dayi-1",
+        "directionQuadrant": "north quadrant, earth of that quarter (北方…丑土也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "肝 Liver",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 3,
+      "name": "yin",
+      "nameOriginal": "寅",
+      "transliteration": "yín",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "平旦 píngdàn, 'daybreak / level dawn'",
+      "note": "The classical name refers to a solar phenomenon but the division does NOT track it: 平旦 sits at 03:00–05:00 by clock in every season. The names are descriptive residue of an earlier observational vocabulary, not a rule.",
+      "associations": {
+        "civilBoundary": "03:00–05:00",
+        "songVariantBoundary": "04:00–06:00",
+        "halves": { "chu": "03:00–04:00 (寅初)", "zheng": "04:00–05:00 (寅正)" },
+        "animal": "虎 tiger",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "寅木也，其禽虎也",
+        "phase": "木 wood",
+        "phaseSource": "lunheng-14; wuxing-dayi-1",
+        "directionQuadrant": "east (東方寅卯木也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "肺 Lung",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 4,
+      "name": "mao",
+      "nameOriginal": "卯",
+      "transliteration": "mǎo",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "日出 rìchū, 'sunrise'",
+      "note": "Named for sunrise, fixed at 05:00–07:00. At 40°N the actual sunrise falls outside 卯 for roughly half the year; the system does not care, and that is the point.",
+      "associations": {
+        "civilBoundary": "05:00–07:00",
+        "songVariantBoundary": "06:00–08:00",
+        "halves": { "chu": "05:00–06:00 (卯初)", "zheng": "06:00–07:00 (卯正)" },
+        "animal": "兔 rabbit",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "午、馬也，子、鼠也，酉、雞也，卯、兔也",
+        "phase": "木 wood",
+        "phaseSource": "wuxing-dayi-1",
+        "phaseNote": "NOT given for 卯 in 論衡 物勢, which supplies phases only for 寅戌丑未亥巳子午. The 卯=木 assignment here rests on 五行大義 卷一, not on 論衡.",
+        "directionQuadrant": "east (東方寅卯木也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "大腸 Large Intestine",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 5,
+      "name": "chen",
+      "nameOriginal": "辰",
+      "transliteration": "chén",
+      "tier": "A",
+      "sourceRef": "lunheng-66",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "食時 shíshí, 'mealtime'",
+      "note": "A REAL FINDING, and the most interesting cell in the table: 辰 is the ONE branch 論衡 物勢篇 does not give an animal. That chapter supplies eleven of the twelve (子鼠 丑牛 寅虎 卯兔 巳蛇 午馬 未羊 申猴 酉雞 戌犬 亥豕) and is silent on 辰. The dragon comes from a DIFFERENT chapter of the same work, 言毒篇: '辰為龍，巳為蛇，辰巳之位在東南'. So the earliest complete twelve-animal set in 論衡 is a reconstruction across two chapters, not a single list.",
+      "associations": {
+        "civilBoundary": "07:00–09:00",
+        "songVariantBoundary": "08:00–10:00",
+        "halves": { "chu": "07:00–08:00 (辰初)", "zheng": "08:00–09:00 (辰正)" },
+        "animal": "龍 dragon",
+        "animalSource": "lunheng-66",
+        "animalVerbatim": "辰為龍，巳為蛇，辰巳之位在東南",
+        "animalNotInMainChapter": true,
+        "phase": "土 earth",
+        "phaseSource": "wuxing-dayi-1",
+        "phaseNote": "Not given for 辰 in 論衡 物勢. 五行大義 卷一 supplies it: 東方寅卯木也…辰土也.",
+        "directionQuadrant": "east quadrant, earth of that quarter (五行大義 卷一) — BUT 論衡 言毒 places 辰巳 in the SOUTH-EAST (辰巳之位在東南). Both retained; the two are compatible at different granularities (quadrant vs 24-point compass) but no cited scholar reconciles them here.",
+        "directionSource": "wuxing-dayi-1; lunheng-66",
+        "meridian": "胃 Stomach",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 6,
+      "name": "si",
+      "nameOriginal": "巳",
+      "transliteration": "sì",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "隅中 yúzhōng, 'corner-noon' (mid-morning, the sun near but not at the meridian)",
+      "note": "隅中 also appears as one of the fifteen named solar stations of 淮南子·天文訓, an EARLIER and DIFFERENT scheme — see variants.huainanzi-15.",
+      "associations": {
+        "civilBoundary": "09:00–11:00",
+        "songVariantBoundary": "10:00–12:00",
+        "halves": { "chu": "09:00–10:00 (巳初)", "zheng": "10:00–11:00 (巳正)" },
+        "animal": "蛇 snake (論衡 writes 虵, a variant of 蛇)",
+        "animalSource": "lunheng-14; lunheng-66",
+        "animalVerbatim": "巳、火也，其禽虵也",
+        "phase": "火 fire",
+        "phaseSource": "lunheng-14; wuxing-dayi-1",
+        "directionQuadrant": "south (南方巳午火也 — 五行大義 卷一); 論衡 言毒 gives 辰巳 as south-east",
+        "directionSource": "wuxing-dayi-1; lunheng-66",
+        "meridian": "脾 Spleen",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 7,
+      "name": "wu",
+      "nameOriginal": "午",
+      "transliteration": "wǔ",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "日中 rìzhōng, 'midday'",
+      "note": "The 午 hour carries the single most quoted phrase in this system, 午時三刻 ('the third ke of the wu hour'). Lin Cong-yi (2007) computes it as 11:43:12–11:57:36 under the 100-ke system and 11:45–12:00 under the 96-ke system, and reads the phrase as 午初三刻 rather than 午正三刻. That is a published, reproducible conversion and is carried as goldenValues gv-6.",
+      "associations": {
+        "civilBoundary": "11:00–13:00",
+        "songVariantBoundary": "12:00–14:00",
+        "halves": { "chu": "11:00–12:00 (午初)", "zheng": "12:00–13:00 (午正)" },
+        "ke96": ["午初初刻 11:00", "午初一刻 11:15", "午初二刻 11:30", "午初三刻 11:45", "午正初刻 12:00", "午正一刻 12:15", "午正二刻 12:30", "午正三刻 12:45"],
+        "animal": "馬 horse",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "午亦火也，其禽馬也",
+        "phase": "火 fire",
+        "phaseSource": "lunheng-14; wuxing-dayi-1",
+        "directionQuadrant": "south (南方巳午火也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "心 Heart",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 8,
+      "name": "wei",
+      "nameOriginal": "未",
+      "transliteration": "wèi",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "日昳 rìdié (also read rìyì), 'the sun declining'",
+      "note": "READING VARIANCE: 昳 is given as dié in Chinese reference works and transliterated 'Rìyì' by en-wiki-tct. Both readings are recorded; no authority is preferred here.",
+      "associations": {
+        "civilBoundary": "13:00–15:00",
+        "songVariantBoundary": "14:00–16:00",
+        "halves": { "chu": "13:00–14:00 (未初)", "zheng": "14:00–15:00 (未正)" },
+        "ke96": ["未初初刻 13:00", "未初一刻 13:15", "未初二刻 13:30", "未初三刻 13:45", "未正初刻 14:00", "未正一刻 14:15", "未正二刻 14:30", "未正三刻 14:45"],
+        "animal": "羊 sheep/goat",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "丑未亦土也，丑禽牛，未禽羊也",
+        "phase": "土 earth",
+        "phaseSource": "lunheng-14; wuxing-dayi-1",
+        "directionQuadrant": "south quadrant, earth of that quarter (南方巳午火也…未土也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "小腸 Small Intestine",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 9,
+      "name": "shen",
+      "nameOriginal": "申",
+      "transliteration": "shēn",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "晡時 bǔshí, 'the time of the afternoon meal'",
+      "associations": {
+        "civilBoundary": "15:00–17:00",
+        "songVariantBoundary": "16:00–18:00",
+        "halves": { "chu": "15:00–16:00 (申初)", "zheng": "16:00–17:00 (申正)" },
+        "animal": "猴 monkey",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "巳、虵也，申、猴也",
+        "phase": "金 metal",
+        "phaseSource": "wuxing-dayi-1",
+        "phaseNote": "Not given for 申 in 論衡 物勢. 五行大義 卷一: 西方申酉金也.",
+        "directionQuadrant": "west (西方申酉金也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "膀胱 Bladder",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 10,
+      "name": "you",
+      "nameOriginal": "酉",
+      "transliteration": "yǒu",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "日入 rìrù, 'sunset'",
+      "note": "en-wiki-tct records that the first night-watch (一更) was standardised to fall at 酉正一刻 = 19:12 — an example of the VARIABLE gēng layer being pinned to a FIXED shichen coordinate.",
+      "associations": {
+        "civilBoundary": "17:00–19:00",
+        "songVariantBoundary": "18:00–20:00",
+        "halves": { "chu": "17:00–18:00 (酉初)", "zheng": "18:00–19:00 (酉正)" },
+        "animal": "雞 rooster",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "午、馬也，子、鼠也，酉、雞也，卯、兔也",
+        "phase": "金 metal",
+        "phaseSource": "wuxing-dayi-1",
+        "phaseNote": "Not given for 酉 in 論衡 物勢. 五行大義 卷一: 西方申酉金也.",
+        "directionQuadrant": "west (西方申酉金也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "腎 Kidney",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 11,
+      "name": "xu",
+      "nameOriginal": "戌",
+      "transliteration": "xū",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "黃昏 huánghūn, 'yellow dusk'",
+      "associations": {
+        "civilBoundary": "19:00–21:00",
+        "songVariantBoundary": "20:00–22:00",
+        "halves": { "chu": "19:00–20:00 (戌初)", "zheng": "20:00–21:00 (戌正)" },
+        "animal": "犬 dog (論衡's character; modern 狗)",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "戌、土也，其禽犬也",
+        "phase": "土 earth",
+        "phaseSource": "lunheng-14; wuxing-dayi-1",
+        "directionQuadrant": "west quadrant, earth of that quarter (西方申酉金也…戌土也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "心包 Pericardium",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    },
+    {
+      "index": 12,
+      "name": "hai",
+      "nameOriginal": "亥",
+      "transliteration": "hài",
+      "tier": "A",
+      "sourceRef": "suishu-19",
+      "ruler": "unattested — no fixed ruler; day-dependent almanac layer only",
+      "quality": "人定 réndìng, 'people settled' (the hour at which the household has gone quiet)",
+      "associations": {
+        "civilBoundary": "21:00–23:00",
+        "songVariantBoundary": "22:00–00:00",
+        "halves": { "chu": "21:00–22:00 (亥初)", "zheng": "22:00–23:00 (亥正)" },
+        "animal": "豕 pig (論衡's character; modern 豬)",
+        "animalSource": "lunheng-14",
+        "animalVerbatim": "亥、水也，其禽豕也",
+        "phase": "水 water",
+        "phaseSource": "lunheng-14; wuxing-dayi-1",
+        "directionQuadrant": "north (北方亥子水也 — 五行大義 卷一)",
+        "directionSource": "wuxing-dayi-1",
+        "meridian": "三焦 Triple Burner",
+        "meridianSource": "zhenjiu-dacheng-nazhi",
+        "meridianCaveat": "TIER C, UNVERIFIED PRIMARY. Not a health claim."
+      }
+    }
+  ],
+
+  "keSystemHistory": {
+    "summary": "The ke (刻) is the subdivision layer beneath the shichen, and it is the layer that actually moved. The shichen count never changed; the ke count changed at least five times.",
+    "events": [
+      {
+        "id": "ke-100-baseline",
+        "label": "The 100-ke baseline",
+        "when": "The standard through most of recorded practice; en-wiki-tct puts it as the usual definition 'until 1628'",
+        "value": "1 day = 100 ke; 1 ke = 14.4 min = 14 min 24 s; 1 shichen = 8⅓ ke",
+        "sourceRef": "suishu-19; en-wiki-tct",
+        "verbatim": "其法，總以百刻，分於晝夜。冬至晝漏四十刻，夜漏六十刻。夏至晝漏六十刻，夜漏四十刻。春秋二分，晝夜各五十刻。",
+        "note": "The 40/60 solstice split is a schematic figure. 60 ke × 14.4 min = 14.4 h of daylight at midsummer. 隋書 states no latitude for it. Sôma, Kawabata & Tanikawa (2004) independently find that Chinese daytime-length, sunrise/sunset and gnomon-shadow tables correspond to a standard latitude of about 34.5°N — I have NOT verified that the 40/60 figure is the datum they are describing, and no cited scholar is here connecting the two."
+      },
+      {
+        "id": "ke-120-xin",
+        "label": "120 ke under Wang Mang's Xin",
+        "when": "Han period; reported as a Han-era modification",
+        "value": "1 day = 120 ke",
+        "sourceRef": "zh-yue-ke; en-wiki-tct",
+        "tier": "C",
+        "note": "UNVERIFIED AGAINST A PRIMARY LOCUS. en-wiki-tct records that days of 96, 108 or 120 ke existed for short periods before 1628 but gives no dates; the Wang Mang attribution reached me only through tertiary sources. See gaps."
+      },
+      {
+        "id": "ke-96-liang",
+        "label": "FIRST 96-ke reform — Liang, 天監 6 (507 CE)",
+        "when": "507 CE",
+        "value": "1 day = 96 ke; 1 shichen = 8 whole ke",
+        "sourceRef": "suishu-19",
+        "tier": "A",
+        "verbatim": "至天監六年，武帝以晝夜百刻，分配十二辰，辰得八刻，仍有餘分。乃以晝夜為九十六刻，一辰有全刻八焉。",
+        "note": "THIS MATTERS FOR THE HEADLINE CLAIM. The 96-ke idea is not a Jesuit import: it was tried in 507 CE, eleven centuries early, and for exactly the same arithmetical reason — 100 does not divide by 12. Any page that presents 96 ke as a European contribution is wrong, and the 隋書 sentence is the proof."
+      },
+      {
+        "id": "ke-108-liang",
+        "label": "108 ke — Liang, 大同 10 (544 CE)",
+        "when": "544 CE",
+        "value": "1 day = 108 ke",
+        "sourceRef": "suishu-19",
+        "tier": "A",
+        "verbatim": "至大同十年，又改用一百八刻。依《尚書考靈曜》晝夜三十六頃之數，因而三之。",
+        "note": "Justified from the apocryphal 尚書考靈曜's 36 qǐng of day-and-night, tripled."
+      },
+      {
+        "id": "ke-100-chen",
+        "label": "Reversion to 100 ke — Chen, 天嘉 era (560–566 CE)",
+        "when": "天嘉 era of Chen Wendi",
+        "value": "1 day = 100 ke",
+        "sourceRef": "suishu-19",
+        "tier": "A",
+        "verbatim": "陳文帝天嘉中，亦命舍人硃史造漏，依古百刻為法。"
+      },
+      {
+        "id": "ke-96-qing",
+        "label": "THE 96-ke REFORM THAT STUCK — 時憲曆, Shunzhi 2 (1645)",
+        "when": "1645 (順治二年), with the 崇禎曆書 groundwork from the late Ming (c. 1628–1634)",
+        "value": "1 day = 96 ke; 1 ke = 15 min exactly; 1 shichen = 8 ke; 1 Western hour = 4 ke",
+        "sourceRef": "qingshigao-45; zh-wiki-ke; lin-2007",
+        "tier": "A",
+        "note": "This is the reform the brief asks about, and the clean '1645' story is NOT clean. See keSystemHistory.reformContested."
+      }
+    ],
+    "reformContested": {
+      "claim": "The 96-ke system was adopted in 1645 with the 時憲曆 and that was that.",
+      "whyItIsTooTidy": "清史稿·時憲志 records the reform being litigated at court for a quarter-century afterwards. Under Shunzhi the Jesuit Johann Adam Schall von Bell (湯若望) carried the new calendar. Then, in the Kangxi Calendar Case (康熙曆獄), Yang Guangxian (楊光先) had Schall condemned and Ferdinand Verbiest (南懷仁) exiled; the older methods were restored under Wu Mingxuan. 清史稿 卷45 preserves the ke question as a live item of that dispute — '康熙四年，議政王等言：每日百刻，新法改為九十六刻' (Kangxi 4 = 1665) — and then the vindication after the observatory trial: '圖海等赴觀象台測驗，南懷仁所言皆合…竊思百刻雖行之已久，但南懷仁九十六刻之法既合天象，自應頒用.' Tertiary accounts of the case report Yang Guangxian arguing that China's calendar uses 100 ke while the Western one uses 96, and that adopting the Western reckoning would shorten the dynasty's fortune — I have that argument at Tier C only and have not verified its wording in a primary source.",
+      "positions": [
+        { "position": "Promulgated 1645 with the 時憲曆", "sourceRef": "zh-wiki-ke; lin-2007; en-wiki-tct" },
+        { "position": "Still contested at court in Kangxi 4 (1665) and only settled after the Verbiest observatory trial of Kangxi 7–8 (1668–69)", "sourceRef": "qingshigao-45" }
+      ],
+      "resolution": "NOT RESOLVED HERE. Both are printed. An engine that offers a 'pre-reform / post-reform' toggle should not label the boundary a single year without saying whose account that year comes from.",
+      "furtherCaution": "en-wiki-tct dates the definition change to 1628 (the 崇禎曆書 project) rather than 1645 (promulgation). A third position, and also printed."
+    }
+  },
+
+  "variants": [
+    {
+      "id": "zi-straddles-midnight",
+      "label": "子 = 23:00–01:00 (mainstream)",
+      "authority": "Mainstream in every source consulted, classical and modern; the branch's own name 夜半 ('mid-night') presupposes it",
+      "arithmetic": "shichenIndex = floor(((civilHour + 1) mod 24) / 2); boundaries at odd hours 23,01,03,…,21",
+      "sourceRef": "en-wiki-tct; zh-wiki-shichen; suishu-19"
+    },
+    {
+      "id": "zi-begins-midnight-song",
+      "label": "子 = 00:00–02:00 (Song dynasty)",
+      "authority": "Sôma, Kawabata & Tanikawa (2004), PASJ 56(5):887–904 — 'the first double hour began at 0 hr local time' in the Song; carried as a separate column in en-wiki-tct",
+      "arithmetic": "shichenIndex = floor(civilHour / 2); boundaries at even hours 00,02,04,…,22",
+      "sourceRef": "soma-2004; en-wiki-tct"
+    },
+    {
+      "id": "ke-100",
+      "label": "100-ke subdivision (pre-1645)",
+      "authority": "隋書·天文志上 for the arithmetic; the standard before the Qing reform",
+      "arithmetic": "1 ke = 1/100 day = 14.4 min. 1 shichen = 8⅓ ke; each half-shichen = 4⅙ ke, i.e. four 大刻 plus one 小刻 of ⅙ ke. Ke boundaries therefore do NOT align with shichen boundaries and drift through the day.",
+      "sourceRef": "suishu-19; en-wiki-tct; zh-wiki-shichen"
+    },
+    {
+      "id": "ke-96",
+      "label": "96-ke subdivision (1645 onward)",
+      "authority": "時憲曆 / Qing official reckoning",
+      "arithmetic": "1 ke = 1/96 day = 15 min exactly. 1 shichen = 8 ke, named 初初刻・初一刻・初二刻・初三刻・正初刻・正一刻・正二刻・正三刻. 正初刻 is alternately written 初四刻; the NEXT shichen's 初初刻 is alternately written 正四刻. Below the ke, 新法算書 divides 1 刻 = 100 分 and 1 分 = 100 秒 (decimal, not sexagesimal). Notation examples preserved: 未初初刻零八十三分 (a point 83 fen after 未初初刻), 酉初四刻內九十三分六十秒.",
+      "sourceRef": "zh-wiki-ke; lin-2007"
+    },
+    {
+      "id": "ke-naming-both-conventions",
+      "label": "The two ke-naming conventions are ALIASES, not rival boundaries",
+      "authority": "zh-wiki-ke, citing 新法算書 and the Qing 時憲書 practice",
+      "arithmetic": "Convention A (0-indexed within each half): 初初刻・初一刻・初二刻・初三刻 / 正初刻・正一刻・正二刻・正三刻. Convention B (1–4 within each half, as reported by en-wiki-tct: '子初一刻' through '子正四刻'): the same eight slots renumbered. The reconciling fact is that 正初刻 is also called 初四刻 and the next shichen's 初初刻 is also called 正四刻 — i.e. the two schemes name the same instants. This was initially recorded here as a possible unresolved conflict and was RESOLVED by zh-wiki-ke; the resolution is at Tier C and would benefit from a primary check against a printed 時憲書.",
+      "sourceRef": "zh-wiki-ke; en-wiki-tct"
+    },
+    {
+      "id": "geng-night-watches",
+      "label": "更 (gēng) — the FIVE night watches, which ARE variable",
+      "authority": "en-wiki-tct, citing 隋書 and Petersen (1992) on the 102 CE clepsydra reform",
+      "arithmetic": "Five watches 一更…五更 (初更 as an alternate for the first) spanning night. en-wiki-tct reports the first gēng theoretically at sundown but standardised to 酉正一刻 = 19:12, with the interval between gēng at 1/10 of a day = 2 h 24 min. Seasonal adjustment schemes are recorded: in the Western Han (206 BCE–102 CE) 一更 moved back one ke every 9th day from winter to summer solstice and forward again; from 102 CE the 四分曆 scheme added or subtracted a ke whenever the sun moved 2.5° in declination.",
+      "note": "THIS is where seasonality lives in Chinese timekeeping. Do not merge it into the shichen layer. A comparison engine that wants a seasonal Chinese hour has the gēng, not the chen.",
+      "sourceRef": "en-wiki-tct"
+    },
+    {
+      "id": "hour-ganzhi-wushu-dun",
+      "label": "五鼠遁 — deriving the hour's STEM from the day's stem",
+      "authority": "Practitioner mnemonic, universally reported and mutually consistent across the Tier C sources consulted; the standard attribution is to 淵海子平, which I could NOT verify (see gaps)",
+      "arithmetic": "The sixty-term stem-branch cycle runs continuously over double-hours, anchored so that the 子 hour of a 甲 or 己 day is 甲子. Mnemonic: 甲己還加甲，乙庚丙作初，丙辛從戊起，丁壬庚子居，戊癸何方發，壬子是真途 — i.e. the 子-hour stem is 甲 on 甲/己 days, 丙 on 乙/庚 days, 戊 on 丙/辛 days, 庚 on 丁/壬 days, 壬 on 戊/癸 days. Closed form: hourStemIndex = ((dayStemIndex mod 5) * 2 + branchIndex) mod 10, with 甲=0 and 子=0. NOTE: this layer needs the DAY's stem-branch, which this system does not itself supply — see gaps.day-ganzhi.",
+      "sourceRef": "wushu-dun-c"
+    },
+    {
+      "id": "tongshu-huangdao",
+      "label": "ALMANAC LAYER — the 黃道 / 黑道 twelve spirits applied to the twelve hours",
+      "authority": "欽定協紀辨方書 (1741, imperially commissioned, 允祿 et al.), 卷32 六十日時辰定局 — a printed 60-day × 12-hour table. THIS IS ALMANAC MATERIAL, NOT CANONICAL COSMOLOGY, and the brief's instruction to label it as such is honoured: nothing in 隋書, 論衡 or 五行大義 assigns rulership to a shichen.",
+      "arithmetic": "The twelve spirits run in the fixed order 青龍・明堂・天刑・朱雀・金匱・天德(printed 寶光 in the 四庫全書 text)・白虎・玉堂・天牢・玄武(printed 元武)・司命・勾陳. 青龍 is seated on an hour determined by the DAY's earthly branch, by the mnemonic 寅申須加子，卯酉卻在寅，辰戌龍位上，巳亥午上存，子午臨申地，丑未戌上行 — i.e. day-branch 寅/申 → 青龍 at 子時; 卯/酉 → 寅; 辰/戌 → 辰; 巳/亥 → 午; 子/午 → 申; 丑/未 → 戌. The remaining eleven follow in order round the twelve hours. Closed form: anchorBranch = (dayBranchIndex * 2 + 8) mod 12 with 子=0; spiritIndex(h) = (h − anchorBranch + 12) mod 12. SIX are 黃道 (auspicious): 青龍・明堂・金匱・天德/寶光・玉堂・司命 — indices 0,1,4,5,7,10. SIX are 黑道: 天刑・朱雀・白虎・天牢・玄武・勾陳 — indices 2,3,6,8,9,11.",
+      "verification": "The closed form was CHECKED against the printed 協紀辨方書 卷32 table and reproduces the 甲子日 and 乙丑日 rows cell-for-cell. See goldenValues gv-3 and gv-4.",
+      "sourceRef": "xieji-32; suanzhun-huangdao"
+    },
+    {
+      "id": "tongshu-other-hour-layers",
+      "label": "ALMANAC LAYER — 貴登天門時 and 四大吉時",
+      "authority": "欽定協紀辨方書 卷32, two further sections after 六十日時辰定局",
+      "arithmetic": "貴登天門時定局 ('the noble ascends the gate of heaven') is tabulated by SOLAR TERM (雨水後 through 大寒後) crossed with the day's heavenly stem, giving the hours at which the male/female 貴人 stars occupy the favoured palaces — so unlike the 黃道 layer it IS seasonally keyed. 四大吉時定局 tabulates four auspicious hour-types by season against the day stem, with associated officials 勾陳・六合・天乙・太常. NEITHER is transcribed in detail here; both are named and located so a later round can go and get them.",
+      "sourceRef": "xieji-32"
+    },
+    {
+      "id": "modern-true-solar-time",
+      "label": "MODERN PRACTITIONER convention — 真太陽時 (true solar time) correction",
+      "authority": "Modern bazi practice, Tier C. Contested within that practice.",
+      "arithmetic": "Rather than reading the shichen off the civil clock, the practitioner converts the civil time to local apparent solar time — applying (a) a longitude correction against the standard meridian of the time zone (4 min per degree) and (b) the equation of time — and reads the shichen off THAT. The argument for it is that the classical water clock was set to local 夜半/日中 and so was local apparent time by construction, making the correction a restoration rather than an innovation. The argument against is that the classical texts state no such correction and the 96-ke Qing reckoning was itself a civil standard. BOTH POSITIONS ARE HELD BY LIVING PRACTITIONERS AND NEITHER IS ADOPTED HERE.",
+      "note": "STRUCTURALLY IMPORTANT: this variant is the ONLY thing that makes shichen location-dependent. Without it, shichen boundaries are identical in Beijing, Ürümqi and Hong Kong — which is exactly the objection the true-solar-time party raises, since Ürümqi and Beijing share UTC+8 while sitting ~30° of longitude apart, roughly two hours of apparent time.",
+      "sourceRef": "lnka-zaozi; schungs-zaozi"
+    },
+    {
+      "id": "zaozi-wanzi",
+      "label": "MODERN PRACTITIONER dispute — 早子時 / 晚子時 (夜子時) and where the day changes",
+      "authority": "Live dispute in modern bazi practice, Tier C on both sides",
+      "arithmetic": "Position 1 (子時換日, reported as mainstream): 23:00–01:00 is one 子 hour and the DAY-pillar changes at 23:00, so a birth at 23:30 on the 5th already carries the 6th's day stem-branch. Position 2 (早/晚子時, attributed to 袁樹珊 Yuan Shushan and reported as the minority): the day changes at 00:00 (子正); 23:00–24:00 is 晚子時/夜子時 and keeps the current day's stem-branch while taking the 子 branch for the hour. The two give different day pillars for anyone born in that one hour. The Tier C sources report that classical divinatory texts contain no worked example of Position 2 — I have NOT verified that negative claim.",
+      "sourceRef": "lnka-zaozi; schungs-zaozi"
+    },
+    {
+      "id": "huainanzi-15",
+      "label": "PREDECESSOR scheme — the fifteen solar stations of 淮南子·天文訓",
+      "authority": "淮南子 (c. 139 BCE), 天文訓",
+      "arithmetic": "NOT twelve. The Huainanzi tracks the sun through named places and gives FIFTEEN named time-divisions: 晨明・朏明・旦明・蚤食・晏食・隅中・正中・小還・𫗦時・大還・高舂・下舂・縣車・黃昏・定昏. Two of these (隅中, 黃昏) survive into the later twelve-name Han set; the rest do not. This is a genuinely different division of the day and is recorded so that nobody reads the twelve-name set back into the Western Han.",
+      "note": "NO SCHOLAR IS CITED HERE deriving the twelve from the fifteen, or the reverse. The two schemes are printed side by side and no direction of development is asserted.",
+      "sourceRef": "huainanzi-tianwen"
+    },
+    {
+      "id": "zodiac-earliest-attestation",
+      "label": "The twelve animals — what is actually attested, and where",
+      "authority": "論衡 (王充, c. 80 CE), chapters 物勢 and 言毒",
+      "arithmetic": "n/a — an attestation claim, not a computation",
+      "note": "TWO SEPARATE CLAIMS, kept separate. (1) VERIFIED: 論衡 物勢篇 gives eleven branch–animal pairs and is SILENT on 辰; 論衡 言毒篇 supplies 辰為龍. The complete twelve therefore exist in 論衡 only as a reconstruction across two chapters. (2) NOT VERIFIED, AND ATTRIBUTED, NOT ASSERTED: tertiary sources report that the Shuihudi 睡虎地 Qin daybook (日書, c. 217 BCE) and the Fangmatan 放馬灘 slips carry an earlier and PARTLY DIFFERENT animal–branch scheme, and that 論衡 is the earliest extant text with the modern set. I did not reach a primary or peer-reviewed statement of either claim, and this dossier makes no priority claim of its own.",
+      "sourceRef": "lunheng-14; lunheng-66"
+    }
+  ],
+
+  "polarBehaviour": "THE SHICHEN LAYER HAS NO POLAR FAILURE MODE, and that is a structural fact worth stating loudly in a comparison view. Because the twelve divisions are defined by clock time and not by any solar event, they are total functions of the civil timestamp: they are as well defined at Longyearbyen on 21 December as at the equator, and they are identical at both. Nothing degrades, nothing returns null, no fallback is needed. Contrast the two systems already in this repo: planetary-hours.js returns null when SearchRiseSet finds no sunrise or sunset, and any sunrise-anchored muhūrta scheme has the same problem. THE CONSEQUENCE FOR THE COMPARISON PAGE: the honest reading is not 'shichen are more robust'. It is that shichen ANSWER A DIFFERENT QUESTION — they are a civil calendar-of-the-day, not an observation of the sky — and a page that presents robustness as a virtue is comparing a clock to a sundial and awarding points. THE ADJACENT LAYERS DO DEGRADE, and must be flagged separately: (a) the 更 night-watches run dusk→dawn and are undefined wherever civil twilight does not occur, i.e. above roughly the Arctic and Antarctic circles in the relevant seasons; (b) the 隋書 daylight/darkness ke split (冬至 40/60 etc.) is a table computed for one standard latitude — Sôma et al. (2004) find the Chinese tables correspond to about 34.5°N — and is simply wrong elsewhere, not adjustable; (c) the modern 真太陽時 practitioner correction does NOT fail at the poles (the sun's hour angle is defined everywhere) but becomes meaningless as a civil convenience there.",
+
+  "goldenValues": [
+    {
+      "label": "gv-1 — the twelve fixed civil boundaries (mainstream 子-straddles-midnight convention)",
+      "place": "location-independent BY CONSTRUCTION; verify with Asia/Shanghai, Asia/Hong_Kong and Asia/Urumqi and assert all three return identical boundaries for the same civil wall-clock time",
+      "date": "any date; use 2026-08-01 as the fixture",
+      "expected": "子 23:00–01:00 | 丑 01:00–03:00 | 寅 03:00–05:00 | 卯 05:00–07:00 | 辰 07:00–09:00 | 巳 09:00–11:00 | 午 11:00–13:00 | 未 13:00–15:00 | 申 15:00–17:00 | 酉 17:00–19:00 | 戌 19:00–21:00 | 亥 21:00–23:00. Spot assertions: 14:30 → 未 (未正, i.e. the second half); 23:00:00 → 子 and it is the FIRST shichen of the following shichen-day; 22:59:59 → 亥.",
+      "publishedIn": "English Wikipedia, 'Traditional Chinese timekeeping', table of the twelve shí ('Traditional' column), fetched 2026-08-01; corroborated by 中文維基百科「時辰」, fetched 2026-08-01; and derivable from 隋書·天文志上 (96 ke over 12 chen = 8 ke = 2 h each, anchored at 夜半).",
+      "url": "https://en.wikipedia.org/wiki/Traditional_Chinese_timekeeping"
+    },
+    {
+      "label": "gv-2 — the Song-dynasty variant boundaries (子 begins at midnight)",
+      "place": "location-independent",
+      "date": "any date; use 2026-08-01",
+      "expected": "子 00:00–02:00 | 丑 02:00–04:00 | 寅 04:00–06:00 | 卯 06:00–08:00 | 辰 08:00–10:00 | 巳 10:00–12:00 | 午 12:00–14:00 | 未 14:00–16:00 | 申 16:00–18:00 | 酉 18:00–20:00 | 戌 20:00–22:00 | 亥 22:00–00:00. Spot assertion: 14:30 → 未 under BOTH conventions (a deliberately non-discriminating case); 23:30 → 子 under the mainstream convention but 亥 under the Song convention — that is the discriminating case a test must include.",
+      "publishedIn": "English Wikipedia, 'Traditional Chinese timekeeping', 'Song dynasty' column, fetched 2026-08-01; the underlying finding is Sôma, Kawabata & Tanikawa, 'Units of Time in Ancient China and Japan', PASJ 56(5):887–904 (2004) — 'the first double hour began at 0 hr local time'.",
+      "url": "https://en.wikipedia.org/wiki/Traditional_Chinese_timekeeping"
+    },
+    {
+      "label": "gv-3 — 協紀辨方書 卷32 六十日時辰定局, the 甲子日 row: the twelve 黃道/黑道 spirits by hour",
+      "place": "n/a — the table is keyed to the day's stem-branch, not to a place, which is precisely why it is a clean fixture: it tests the hour-spirit rule WITHOUT requiring a date→ganzhi mapping",
+      "date": "any 甲子 day",
+      "expected": "子=金匱(黃道) | 丑=寶光/天德(黃道) | 寅=白虎(黑道) | 卯=玉堂(黃道) | 辰=天牢(黑道) | 巳=元武/玄武(黑道) | 午=司命(黃道) | 未=勾陳(黑道) | 申=青龍(黃道) | 酉=明堂(黃道) | 戌=天刑(黑道) | 亥=朱雀(黑道). Therefore the 黃道 (auspicious) hours of a 甲子 day are 子・丑・卯・午・申・酉 and the 黑道 hours are 寅・辰・巳・未・戌・亥. THIS ROW WAS READ OFF THE PRINTED TABLE AND MATCHES THE CLOSED FORM CELL FOR CELL: day-branch 子 → 青龍 seated at 申 per the mnemonic 子午臨申地, then the fixed twelve-spirit order round the clock.",
+      "publishedIn": "欽定協紀辨方書 (Qīndìng Xiéjì Biànfāng Shū), 允祿 et al., imperially commissioned 1741, 卷三十二「六十日時辰定局」, in the 四庫全書 recension transcribed at Chinese Wikisource; fetched 2026-08-01",
+      "url": "https://zh.wikisource.org/zh-hant/%E6%AC%BD%E5%AE%9A%E5%8D%94%E7%B4%80%E8%BE%A8%E6%96%B9%E6%9B%B8_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B732"
+    },
+    {
+      "label": "gv-4 — 協紀辨方書 卷32, the 乙丑日 row (independent cross-check of the same rule)",
+      "place": "n/a — keyed to the day's stem-branch",
+      "date": "any 乙丑 day",
+      "expected": "子=天刑(黑道) | 丑=朱雀(黑道) | 寅=金匱(黃道) | 卯=寶光/天德(黃道) | 辰=白虎(黑道) | 巳=玉堂(黃道) | 午=天牢(黑道) | 未=元武/玄武(黑道) | 申=司命(黃道) | 酉=勾陳(黑道) | 戌=青龍(黃道) | 亥=明堂(黃道). Therefore the 黃道 hours of a 乙丑 day are 寅・卯・巳・申・戌・亥. Day-branch 丑 → 青龍 seated at 戌 per the mnemonic 丑未戌上行. ALL TWELVE CELLS MATCH THE CLOSED FORM. Two independent rows agreeing is the reason this rule is carried at all.",
+      "publishedIn": "欽定協紀辨方書, 允祿 et al., 1741, 卷三十二「六十日時辰定局」, 四庫全書 recension at Chinese Wikisource; fetched 2026-08-01",
+      "url": "https://zh.wikisource.org/zh-hant/%E6%AC%BD%E5%AE%9A%E5%8D%94%E7%B4%80%E8%BE%A8%E6%96%B9%E6%9B%B8_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B732"
+    },
+    {
+      "label": "gv-5 — 午時三刻 converted under both ke systems (the published worked example)",
+      "place": "location-independent",
+      "date": "n/a — a unit conversion",
+      "expected": "Under the 100-ke system (1 ke = 14 min 24 s, 午 beginning at 11:00): 午時三刻 = 11:43:12 to 11:57:36. Under the 96-ke system (1 ke = 15 min): 午時三刻 = 11:45 to 12:00. Reproduce as: startOffsetMinutes = 3 * (1440/100) = 43.2 and 3 * (1440/96) = 45. The author reads the phrase as 午初三刻 (the third ke of the FIRST half of 午), not 午正三刻 — record that reading as his, since the notation is ambiguous once 初/正 is in use.",
+      "publishedIn": "林聰益 (Lin Cong-yi, Southern Taiwan University of Science and Technology), 〈午時三刻是幾點？古中國的時間制度〉, 《科學發展》 (Science Development) no. 420, December 2007; republished on 科技大觀園 (Taiwan government science-education portal); fetched 2026-08-01",
+      "url": "https://scitechvista.nat.gov.tw/Article/c000003/detail?ID=588a04c7-1a5f-46f9-b3a3-f6ce16c3af17"
+    },
+    {
+      "label": "gv-6 — the eight named ke of one shichen under the 96-ke system, with the alias pair",
+      "place": "location-independent",
+      "date": "n/a — a unit convention",
+      "expected": "For 未時 (13:00–15:00): 未初初刻 13:00–13:15 | 未初一刻 13:15–13:30 | 未初二刻 13:30–13:45 | 未初三刻 13:45–14:00 | 未正初刻 14:00–14:15 | 未正一刻 14:15–14:30 | 未正二刻 14:30–14:45 | 未正三刻 14:45–15:00. ALIAS ASSERTIONS the test must also pin: 未正初刻 ≡ 未初四刻 (same instant 14:00), and 申初初刻 ≡ 未正四刻 (same instant 15:00). Spot: 14:30 → 未正二刻.",
+      "publishedIn": "中文維基百科「刻」, section on the eight ke of a shichen, citing 新法算書 and Qing 時憲書 practice; fetched 2026-08-01; corroborated by 林聰益, 《科學發展》 420 (2007)",
+      "url": "https://zh.wikipedia.org/zh-tw/%E5%88%BB"
+    },
+    {
+      "label": "gv-7 — the 五鼠遁 hour-stem grid (TIER C fixture — pin it, but label it)",
+      "place": "location-independent",
+      "date": "n/a — keyed to the day's heavenly stem",
+      "expected": "The 子-hour stem by day stem: 甲/己 day → 甲子; 乙/庚 → 丙子; 丙/辛 → 戊子; 丁/壬 → 庚子; 戊/癸 → 壬子. Then the sixty-cycle runs on: on a 甲 day, 子=甲子, 丑=乙丑, 寅=丙寅 … 亥=乙亥. Closed form to reproduce: hourStemIndex = ((dayStemIndex mod 5) * 2 + branchIndex) mod 10, 甲=0, 子=0. Verify against the mnemonic's five anchor cases and against cycle closure (the 亥 hour of a 癸 day is 癸亥).",
+      "publishedIn": "The mnemonic 甲己還加甲，乙庚丙作初，丙辛從戊起，丁壬庚子居，戊癸何方發，壬子是真途, reported identically across the practitioner sources consulted and conventionally attributed to 《淵海子平》 (Yuānhǎi Zǐpíng, Song–Ming). THE ATTRIBUTION IS UNVERIFIED: the Chinese Wikisource transcription of 淵海子平 is incomplete and does not carry this passage. Pin the arithmetic; do NOT present the locus as established.",
+      "url": "https://zh.wikisource.org/zh-hant/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3"
+    }
+  ],
+
+  "sources": [
+    {
+      "id": "suishu-19",
+      "cite": "魏徵 (Wei Zheng) et al., 《隋書》 (Book of Sui), completed 636 CE, 卷十九 志第十四 天文上, the 漏刻 (clepsydra) section. Chinese Wikisource transcription.",
+      "locator": "https://zh.wikisource.org/wiki/%E9%9A%8B%E6%9B%B8/%E5%8D%B719 — 漏刻 section. Passages used verbatim: 昔黃帝創觀漏水，制器取則，以分晝夜。/ 其法，總以百刻，分於晝夜。冬至晝漏四十刻，夜漏六十刻。夏至晝漏六十刻，夜漏四十刻。春秋二分，晝夜各五十刻。/ 至天監六年，武帝以晝夜百刻，分配十二辰，辰得八刻，仍有餘分。乃以晝夜為九十六刻，一辰有全刻八焉。/ 至大同十年，又改用一百八刻。依《尚書考靈曜》晝夜三十六頃之數，因而三之。/ 陳文帝天嘉中，亦命舍人硃史造漏，依古百刻為法。",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Public domain by age. Composed 636 CE; no copyright subsists in a seventh-century text. The Wikisource transcription is user-contributed and released under CC BY-SA / PD terms. Short technical passages quoted; these are historical-descriptive prose, not operative instruction."
+    },
+    {
+      "id": "lunheng-14",
+      "cite": "王充 (Wang Chong), 《論衡》 (Lunheng), c. 80 CE, 物勢篇 (chapter 14). Chinese Wikisource; cross-checked against Chinese Text Project.",
+      "locator": "https://zh.wikisource.org/wiki/%E8%AB%96%E8%A1%A1/14 and https://ctext.org/lunheng/wu-shi/zh sections [10]–[11]. Verbatim: 寅木也，其禽虎也；戌土也，其禽犬也；丑未亦土也，丑禽牛，未禽羊也。木勝土，故犬與牛羊為虎所服也。亥水也，其禽豕也；巳火也，其禽虵也；子亦水也，其禽鼠也；午亦火也，其禽馬也。/ 午、馬也，子、鼠也，酉、雞也，卯、兔也。… 亥、豕也，未、羊也，丑、牛也。… 巳、虵也，申、猴也。",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Public domain by age; composed c. 80 CE."
+    },
+    {
+      "id": "lunheng-66",
+      "cite": "王充, 《論衡》, 言毒篇 (chapter 66). Chinese Wikisource.",
+      "locator": "https://zh.wikisource.org/wiki/%E8%AB%96%E8%A1%A1/66 — verbatim: 辰為龍，巳為蛇，辰巳之位在東南。龍有毒，蛇有螫，故蝮有利牙，龍有逆鱗。",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Public domain by age; composed c. 80 CE."
+    },
+    {
+      "id": "wuxing-dayi-1",
+      "cite": "蕭吉 (Xiao Ji), 《五行大義》 (Wuxing Dayi), Sui dynasty, c. 594 CE, 卷第一, 第五「論九宮數」. Kyoto University Institute for Research in Humanities (人文科学研究所) digital text.",
+      "locator": "https://www.zinbun.kyoto-u.ac.jp/~takeda/kyoudou/gogyou/gogyoutaigi/gogyo_gogyo_01_g.html — verbatim: 北方亥子水也、生數一、丑土也、生數五…東方寅卯木也、生數三、辰土也、生數五…南方巳午火也、生數二、未土也、生數五…西方申酉金也、生數四、戌土也、生數五…",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Public domain by age; composed c. 594 CE. Used here as the source for ALL TWELVE branch/five-phase and branch/quadrant assignments, because 論衡 supplies only eight."
+    },
+    {
+      "id": "xieji-32",
+      "cite": "允祿 (Yunlu), 何國宗, 梅瑴成 et al., 《欽定協紀辨方書》 (Qinding Xieji Bianfang Shu), imperially commissioned, completed 1741 (乾隆六年), 卷三十二: 日表・六十日時辰定局・貴登天門時定局・四大吉時定局. 四庫全書 recension, Chinese Wikisource transcription.",
+      "locator": "https://zh.wikisource.org/zh-hant/%E6%AC%BD%E5%AE%9A%E5%8D%94%E7%B4%80%E8%BE%A8%E6%96%B9%E6%9B%B8_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B732 — 六十日時辰定局, rows 甲子日 and 乙丑日 read in full and used as goldenValues gv-3, gv-4.",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Public domain by age; compiled 1741. NOTE ON RECENSION: the 四庫全書 text prints 寶光 where other lists give 天德, and 元武 where other lists give 玄武. These are recorded as printed. The usual explanation for 元武 is Qing avoidance of 玄 (the Kangxi Emperor's personal name 玄燁); I could NOT verify that explanation for this text and it is listed under gaps rather than asserted."
+    },
+    {
+      "id": "qingshigao-45",
+      "cite": "趙爾巽 (Zhao Erxun) et al., 《清史稿》 (Draft History of Qing), 1928, 卷四十五 志二十 時憲一. Chinese Wikisource transcription.",
+      "locator": "https://zh.wikisource.org/wiki/%E6%B8%85%E5%8F%B2%E7%A8%BF/%E5%8D%B745 — verbatim: 康熙四年，議政王等言：每日百刻，新法改為九十六刻 / 圖海等赴觀象台測驗，南懷仁所言皆合…竊思百刻雖行之已久，但南懷仁九十六刻之法既合天象，自應頒用。 Also the 順治元年 Adam Schall (湯若望) memorial and the adoption of the name 時憲曆.",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Published 1928 — public domain in the United States (published before 1930; US term for pre-1930 publications has expired as of 1 January 2026 per the threshold recorded in FRAMING §4.3). Note this is a REPUBLICAN-ERA DRAFT history of the Qing, not a Qing document; it is Tier A as an official history but its compilers were writing at two centuries' remove from Shunzhi."
+    },
+    {
+      "id": "huainanzi-tianwen",
+      "cite": "《淮南子》 (Huainanzi), compiled under 劉安 (Liu An), c. 139 BCE, 天文訓 (Patterns of Heaven). Chinese Wikisource.",
+      "locator": "https://zh.wikisource.org/zh-hans/%E6%B7%AE%E5%8D%97%E5%AD%90/%E5%A4%A9%E6%96%87%E8%A8%93 — the sun's stations passage 日出於旸谷…至於蒙谷，是謂定昏, yielding fifteen named divisions: 晨明・朏明・旦明・蚤食・晏食・隅中・正中・小還・𫗦時・大還・高舂・下舂・縣車・黃昏・定昏.",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Public domain by age; compiled c. 139 BCE."
+    },
+    {
+      "id": "soma-2004",
+      "cite": "Sôma, Mitsuru; Kawabata, Kin-aki; Tanikawa, Kiyotaka, 'Units of Time in Ancient China and Japan', Publications of the Astronomical Society of Japan 56(5), 25 October 2004, pp. 887–904.",
+      "locator": "https://academic.oup.com/pasj/article/56/5/887/1502530 — used for: (a) the finding that the first double-hour began at 0h local time in the Song dynasty; (b) the subdivision of the day into 100 ke further divided into fen, with the number of fen per ke varying by dynasty; (c) the finding that Chinese daytime-length, sunrise/sunset and shadow-length data correspond to a standard latitude of about 34.5°N, later adopted in Japan.",
+      "tier": "B",
+      "fetched": true,
+      "pd": "cite-only. In copyright (2004). PARTIAL VERIFICATION ONLY: the fetch returned journal-page summary content, not the full article text; I have NOT read pp. 887–904 and cannot give page numbers for the individual findings above. Anyone building on this should get the article."
+    },
+    {
+      "id": "lin-2007",
+      "cite": "林聰益 (Lin Cong-yi), 南臺科技大學, 〈午時三刻是幾點？古中國的時間制度〉, 《科學發展》 (Science Development) no. 420, December 2007. Republished on 科技大觀園 (Taiwan's government science-communication portal).",
+      "locator": "https://scitechvista.nat.gov.tw/Article/c000003/detail?ID=588a04c7-1a5f-46f9-b3a3-f6ce16c3af17 — used for: the 100-ke (14.4 min) vs 96-ke (15 min) contrast; the Qing eight-ke naming 初初刻…正三刻; and the 午時三刻 conversion carried as gv-5. Also reports an earlier quartering of the shichen into 初・少・半・太.",
+      "tier": "B",
+      "fetched": true,
+      "pd": "cite-only. In copyright (2007), government-portal republication. Paraphrased and cited; no verbatim reproduction beyond short technical terms and figures, which are facts rather than expression."
+    },
+    {
+      "id": "en-wiki-tct",
+      "cite": "English Wikipedia, 'Traditional Chinese timekeeping', revision fetched 2026-08-01.",
+      "locator": "https://en.wikipedia.org/wiki/Traditional_Chinese_timekeeping — used for: the twelve-shí table with both the traditional (23:00-anchored) and Song (00:00-anchored) columns and the classical names; the statement that each shí is 1/12 of the interval between one midnight and the next; 8⅓ ke per shí with 大刻/小刻; the late-Tang/Song 初/正 halving; the gēng night-watches including the 19:12 standardisation, the 1/10-day interval and the Western-Han and post-102-CE seasonal adjustment schemes; and the dating of the ke redefinition to 1628. Its own reference list (Yabuuchi 1963; Sôma et al. 2004; Stephenson & Green 2002; Martzloff 2000; Petersen 1992; 隋書; 說文解字; 古今圖書集成) is recorded as onward leads.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "CC BY-SA. Tier C: a tertiary aggregator, used for the boundary TABLE (a set of arithmetic facts, low error surface, and corroborated independently by 隋書 and by zh-wiki-shichen) and never for an interpretive claim. Every interpretive claim taken from it is attributed onward to the scholar it cites."
+    },
+    {
+      "id": "zh-wiki-shichen",
+      "cite": "中文維基百科「時辰」, revision fetched 2026-08-01.",
+      "locator": "https://zh.wikipedia.org/zh-tw/%E6%97%B6%E8%BE%B0 — used for: corroboration of the twelve boundaries and classical names; the Song-era half-shichen definition 前四刻六分之一為時初，後四刻六分之一為時正 (i.e. 4⅙ ke per half). Its cited sources — 杜預's 左傳 commentary, 王應麟《玉海》, 《宋史·天文志》, 趙翼《陔餘叢考》, 張衍田《中國古代計時考》(2019), and the 睡虎地 and 清水溝 Han slips — are recorded as onward leads, all UNVERIFIED by me.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "CC BY-SA."
+    },
+    {
+      "id": "zh-wiki-ke",
+      "cite": "中文維基百科「刻」, revision fetched 2026-08-01.",
+      "locator": "https://zh.wikipedia.org/zh-tw/%E5%88%BB — used for: the 1 ke = 14.4 min figure; the statement 至順治二年（公元1645年）頒行時憲曆後，改為日96刻; the eight-ke names 初初刻・初一刻・初二刻・初三刻・正初刻・正一刻・正二刻・正三刻 with the aliases 正初刻又叫初四刻，下一時辰之初初刻又叫正四刻; and 新法算書's decimal subdivision 每刻一百分、每分一百秒. Cites 新法算書, 御製數理精蘊, 革象新書, 全史日至源流.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "CC BY-SA."
+    },
+    {
+      "id": "suanzhun-huangdao",
+      "cite": "算準網, 〈黄历上时辰吉凶的来历，青龙黄道的歌诀〉, fetched 2026-08-01. PRACTITIONER LITERATURE.",
+      "locator": "https://www.suanzhun.net/wannianli/1764.html — used for the hour-level 青龍 seating mnemonic 寅申需加子，卯酉却在寅。辰戌龍位上，巳亥午上存。子午臨申地，丑未戌上行。; the twelve-spirit order; and the 六黃道/六黑道 split. The page itself states the rule is 歷家 tradition and names NO classical source.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "cite-only. Presented strictly as practitioner literature. ITS RULE IS NOT TAKEN ON TRUST: it was tested against the Tier A printed table (xieji-32) and reproduces two independent rows exactly, which is why it is carried. Had it failed that test it would have been recorded as a discrepancy, not dropped."
+    },
+    {
+      "id": "wushu-dun-c",
+      "cite": "The 五鼠遁 / 日上起時 mnemonic 甲己還加甲，乙庚丙作初，丙辛從戊起，丁壬庚子居，戊癸何方發，壬子是真途, as reported concurrently by multiple practitioner sources (e.g. 易軒/OneTrinity 2011; 國易堂; vocus.cc), fetched at search level 2026-08-01. Conventionally attributed to 《淵海子平》.",
+      "locator": "https://onetrinity.wordpress.com/2011/11/08/五鼠遁與起時法/ and parallel practitioner pages. THE 淵海子平 LOCUS IS UNVERIFIED — the Chinese Wikisource transcription at https://zh.wikisource.org/zh-hant/%E6%B7%B5%E6%B5%B7%E5%AD%90%E5%B9%B3 is marked 此文檔未完成 and does not carry the passage.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "cite-only for the modern pages. The underlying Song–Ming text would be PD by age if the locus can be established, which it has not been."
+    },
+    {
+      "id": "zhenjiu-dacheng-nazhi",
+      "cite": "The 子午流注 納支 verse 肺寅大卯胃辰宮，脾巳心午小未中，申胱酉腎心包戌，亥焦子膽丑肝通, conventionally attributed to 楊繼洲 (Yang Jizhou), 《針灸大成》 (Zhenjiu Dacheng), 1601, 卷五, 十二經納干支歌. Reached at search level only, 2026-08-01.",
+      "locator": "Attribution reported by multiple secondary pages; the intended primary transcription at https://www.zysj.com.cn/lilunshuji/zhenjiudacheng/1043-8-4.html FAILED TO FETCH (expired TLS certificate). The method's earlier locus is reported as 何若愚/閻明廣, 《子午流注針經》, Jin dynasty, 1153 — also unverified.",
+      "tier": "C",
+      "fetched": false,
+      "pd": "cite-only pending verification. The 1601 text would be PD by age; the locus is not established. THE ORGAN/MERIDIAN COLUMN IN THIS DOSSIER RESTS ENTIRELY ON THIS UNVERIFIED SOURCE and is flagged as such on every entry."
+    },
+    {
+      "id": "lnka-zaozi",
+      "cite": "靈匣網, 〈命理基礎知識梳理03：真太陽時？早晚子時？平氣定氣？常見排盤問題解惑〉, fetched at search level 2026-08-01. PRACTITIONER LITERATURE.",
+      "locator": "https://www.lnka.tw/html/topic/39461.html — used for the 早子時/晚子時 and 真太陽時 disputes, and for the report that 袁樹珊 (Yuan Shushan) proposed changing the day at 子正 rather than 子初.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "cite-only. Living-tradition material: these are current disagreements among practising astrologers and are recorded as such, without adjudication and without exoticising register."
+    },
+    {
+      "id": "schungs-zaozi",
+      "cite": "〈早子夜子／真太陽時／平太陽時／中原標準時間〉, 命運的軌跡 (pixnet), fetched at search level 2026-08-01. PRACTITIONER LITERATURE.",
+      "locator": "https://schungs.pixnet.net/blog/post/57271203 — second, independent practitioner statement of the same two disputes, used only to establish that the disagreement is real and current rather than the position of one writer.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "cite-only."
+    },
+    {
+      "id": "hko-conversion-2026",
+      "cite": "Hong Kong Observatory, Gregorian–Lunar Calendar Conversion Table of 2026 (丙午 — year of the Horse), plain-text edition. Fetched 2026-08-01. CARRIED AS A CONFIRMED NEGATIVE.",
+      "locator": "https://www.hko.gov.hk/en/gts/time/calendar/text/files/T2026e.txt and the Chinese edition https://www.hko.gov.hk/tc/gts/time/calendar/text/files/T2026c.txt — four columns only (Gregorian date, lunar date, weekday, solar term). THE DAY'S 干支 IS NOT PRESENT in either edition; only the YEAR's 干支 (丙午) appears, in the title. This closes off the obvious official route to a day-ganzhi golden value; see gaps.",
+      "tier": "A",
+      "fetched": true,
+      "pd": "Hong Kong Government open data. Recorded here for the negative result, which is a finding."
+    },
+    {
+      "id": "ytliu-calendar",
+      "cite": "Yuk Tung Liu, 'Chinese Calendar' / 公曆和農曆日期對照 (722 BCE – 2200 CE), rules page fetched 2026-08-01.",
+      "locator": "https://ytliu0.github.io/ChineseCalendar/rules_chinese.html — states it follows GB/T 33661-2017 《農曆的編算和頒行》 (drafted by the Purple Mountain Observatory, CAS) and the scholarship of 張培瑜, 陳美東, 薄樹人, 胡鐵珠, 《中國古代曆法》 (中國科學技術出版社, 2008); notes that fixed-qi (定氣) solar terms apply from 順治二年 (1645) and mean-qi before. It DOES output the day's 干支. It states NO explicit epoch anchor for the sexagenary day count and makes NO claim about the count being unbroken — both checked and both absent.",
+      "tier": "C",
+      "fetched": true,
+      "pd": "cite-only. A carefully documented independent implementation, not an official publication; usable as a cross-check, NOT as the published authority a golden value requires."
+    }
+  ],
+
+  "gaps": [
+    "DAY STEM-BRANCH (日干支) — THE BIGGEST GAP, AND IT BLOCKS TWO LAYERS. Both the 五鼠遁 hour-stem rule and the 協紀辨方書 hour-spirit rule need the DAY's stem-branch, and this dossier does not supply a published, fetchable table mapping a Gregorian date to one. I checked the obvious official routes and they do not carry it: the Hong Kong Observatory's Gregorian–Lunar conversion tables (English and Chinese, 2026) give lunar date, weekday and solar term only, with the year's 干支 in the title and nothing per-day; Taiwan's 中央氣象署 astronomy download page lists sunrise/sunset, moonrise/moonset, star charts and solar-term dates, with no 日干支 product linked. The named scholarly authorities — 陳垣《二十史朔閏表》(1926, PD in the US) and 張培瑜《三千五百年曆日天象》 — I did not obtain. CONSEQUENCE: gv-3, gv-4 and gv-7 are deliberately keyed to a stem-branch (甲子日, 乙丑日, 甲 day) rather than to a calendar date, so that the hour layer can be tested WITHOUT this gap being closed first. Phase 2 must not paper over it by generating day-ganzhi from an unsourced formula.",
+    "THE MERIDIAN / ORGAN COLUMN IS UNVERIFIED AT PRIMARY LEVEL. Every organ association in entries[] rests on zhenjiu-dacheng-nazhi, whose primary transcription failed to fetch (expired TLS certificate on zysj.com.cn) and whose locus (針灸大成 卷五) reached me only through secondary pages. The earlier attribution to 《子午流注針經》 (1153) is equally unverified. This column should either be verified against a printed 針灸大成 or dropped. It should NOT ship at the same visual weight as the 論衡 and 五行大義 columns.",
+    "THE CLASSICAL TWELVE NAMES (夜半・雞鳴・平旦…) have no verified primary locus here. The standard attribution is to 杜預's commentary on the 左傳; zh-wiki-shichen cites it and I did not reach the commentary itself. The names are carried at Tier C for their attribution even though they are uncontroversial in substance.",
+    "五鼠遁's attribution to 《淵海子平》 is unverified — the Chinese Wikisource transcription is explicitly incomplete (此文檔未完成) and lacks the passage. The arithmetic is certain; the locus is not.",
+    "THE 120-KE EPISODE (Wang Mang / Xin) has no primary locus here. 隋書 卷19 gives me 507, 544 and the Chen restoration; it did not yield the 120-ke episode in the section I read. en-wiki-tct confirms that 96-, 108- and 120-ke days existed for short periods but supplies no dates. The Wang Mang attribution is tertiary only.",
+    "THE 元武/玄武 SPELLING in the 四庫全書 協紀辨方書 is recorded as printed, but I could NOT verify the usual explanation (Qing avoidance of 玄, the Kangxi Emperor's name 玄燁). What I did find is an unrelated Song precedent (真宗 avoiding 玄 → 真武). The taboo explanation is therefore NOT asserted.",
+    "THE 庚午日 ROW of 協紀辨方書 卷32 did not extract cleanly — the retrieval returned three spirits in one cell and a bare fragment in another, plainly a table-alignment artefact. Its anchor cells (子=金匱, 申=青龍, 酉=明堂, 戌=天刑, 亥=朱雀) do agree with the closed form, but the row is NOT offered as a golden value. Only the two rows that came back clean and complete are. A third row should be read off a page image before the rule is called fully validated.",
+    "SÔMA ET AL. (2004) WAS NOT READ IN FULL. The Song 0h-start finding, the varying fen-per-ke finding and the 34.5°N standard-latitude finding all come from journal-page summary content, not from pp. 887–904. No page numbers can be given for them, and anyone relying on the Song variant should obtain the article.",
+    "NO LATITUDE IS ATTACHED TO THE 隋書 40/60 SOLSTICE SPLIT by the source itself. The arithmetic (60 ke × 14.4 min = 14.4 h of midsummer daylight) is the source's own numbers, but the inference to a latitude is not made in 隋書, and I have deliberately not made it. Sôma et al.'s 34.5°N finding is adjacent but I have not verified that the 40/60 figure is among the data they analysed.",
+    "NO SCHOLAR IS CITED connecting the fifteen solar stations of 淮南子·天文訓 to the twelve-branch scheme in either direction. Both are printed; no development is asserted. Under the project's no-original-diffusion rule, there is no row until someone has published the comparison.",
+    "THE SHUIHUDI / FANGMATAN PRIORITY CLAIM about the twelve animals is tertiary only. That the Qin daybooks carry an earlier and partly different animal-branch scheme, and that 論衡 is the earliest extant witness to the modern set, are both REPORTED here as claims of others and neither is verified against a primary publication or a peer-reviewed study.",
+    "NO PUBLISHED TONG SHU PAGE FOR A NAMED CALENDAR DATE was obtained. The 協紀辨方書 table is keyed to the sexagenary day, which is better for testing, but it means this dossier carries no fixture of the form 'the almanac for such-and-such a printed year marks these hours auspicious on this date'. That would be the ideal end-to-end fixture and it is missing."
+  ],
+
+  "contestedPoints": [
+    "WHERE 子 BEGINS. Mainstream and near-universal: 子 straddles midnight, 23:00–01:00, and the branch's own name 夜半 presupposes it. Against: Sôma, Kawabata & Tanikawa (2004) find the Song dynasty began the first double-hour at 0h local time, giving 子 = 00:00–02:00 and shifting every division. A human must rule on whether the comparison page offers the Song reckoning as a selectable convention or footnotes it. It is not a rounding difference — it relabels every hour of the day.",
+    "WHEN THE 96-KE REFORM ACTUALLY TOOK. Three dated positions, all printed here: 1628 (en-wiki-tct dates the redefinition to the 崇禎曆書 project); 1645 (zh-wiki-ke, lin-2007 and most sources: promulgation of the 時憲曆 in 順治二年); and not-until-1668/69 (清史稿 卷45 shows the 100-vs-96 question still being argued at court in 康熙四年 = 1665 and settled only after the Verbiest observatory trial). A human must decide which the engine's pre/post-reform toggle uses, and the page must name whose date it is.",
+    "WHETHER THE 96-KE SYSTEM IS A EUROPEAN IMPORT. It is universally told that way, and the Jesuit role in 1645 is real. But 隋書 records the identical reform, for the identical arithmetical reason, in Liang 天監 6 (507 CE) — eleven centuries earlier. Whether that makes the Qing reform a re-adoption or an independent import is a real scholarly question and no cited scholar here answers it. The site must not answer it either.",
+    "THE 早子時 / 晚子時 DAY-CHANGE. Living dispute among practising bazi astrologers. Position 1 (reported mainstream): the day-pillar changes at 23:00. Position 2 (attributed to 袁樹珊, reported minority): it changes at 00:00, and 23:00–24:00 is 夜子時, taking the 子 branch but the current day's pillar. Anyone born in that one hour gets a different chart. Both positions cite classical authority against the other. A human must decide whether the engine defaults to one, offers both, or refuses to pick — and this is a living tradition, so the wrong default is a substantive editorial claim, not a UX choice.",
+    "TRUE SOLAR TIME. Whether the shichen should be read off the civil clock or off local apparent time is disputed within current practice. The stake is concrete: Ürümqi and Beijing share UTC+8 across roughly 30° of longitude, about two hours of apparent time, so the two conventions put a Ürümqi birth two shichen apart. The classical texts state no correction; the classical clepsydra was nonetheless set locally. Both readings are defensible and this dossier adopts neither.",
+    "THE READING OF 昳 IN 日昳. Given as dié in Chinese reference works, transliterated Rìyì by en-wiki-tct. A transliteration column has to choose. Someone should.",
+    "天德 vs 寶光 AS THE SIXTH SPIRIT. The 四庫全書 協紀辨方書 prints 寶光; most modern lists give 天德, and practitioner sources treat 寶光 as an alternate name for the same 黃道 spirit. Whether these are one spirit under two names or a recension difference is not established here.",
+    "WHETHER THE ALMANAC LAYER BELONGS IN THE SAME TABLE AS THE COSMOLOGY. 隋書, 論衡 and 五行大義 give the divisions, the animals and the phases and assign NO RULER TO ANY HOUR. Rulership enters only through the almanac, keyed to the day. Presenting a 'ruler' column beside the planetary-hours ruler column risks manufacturing a parallel the Chinese sources do not make. The brief asked for the Tong Shu layer clearly labelled as almanac-derived; this dossier does that, but a human should rule on whether it may share a column header with a system that genuinely has hour-lords."
+  ],
+
+  "honestLimits": "This system tells you what the sources say a two-hour slice of the day is called, what animal and which of the five phases the tradition attaches to it, and — from an eighteenth-century imperial almanac, and only from there — which of twelve spirits sits on that hour of that day. That is the whole of it, and none of it is a claim about what will happen. The twelve shichen are a naming convention for clock time. They are not an observation: 卯 is called 'sunrise' and runs 05:00 to 07:00 whether or not the sun rises, which at most latitudes it usually does not. Anything this page can compute about them is arithmetic on a timestamp, and arithmetic on a timestamp is checkable, which is the only reason it is here. What is NOT checkable is every association hanging off it. The animal, the phase, the direction and the almanac spirit are what named texts assign, reported in those texts' voice, and the site has no view on whether any of it corresponds to anything. The auspicious-hour layer in particular is a printed table, and reproducing a printed table is evidence about eighteenth-century Chinese almanac practice and about nothing else — the site does not suggest choosing an hour by it, and there is no affordance here for doing so. The organ column is weaker still: it is an unverified attribution to a 1601 acupuncture compendium, it is recorded because the tradition records it, and it is not health information in any sense. Nobody should read a claim about their body out of it. Three further limits the page must carry in its own voice rather than in a footnote. First, the numbers here are location-blind by construction: unlike every other system on this page, shichen do not know where you are, and if you want them to, you have entered a live disagreement among practitioners that this site does not settle. Second, the boundaries the page draws are a modern civil mapping; the classical instrument was a water clock set locally, and the 100-ke reckoning it used does not align with the 96-ke boundaries shown, so a Tang date and a Qing date are not being read on the same dial. Third, this is a living tradition — the almanac is in print and in daily use — and the arguments recorded here about where the day changes are current arguments among people who practise, not curiosities from a closed corpus. They are set out because they are unresolved, not because the site has resolved them."
+}

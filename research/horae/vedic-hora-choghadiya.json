@@ -1,0 +1,529 @@
+{
+  "key": "vedic-hora-choghadiya",
+  "system": "Vedic horā (the jyotiṣa planetary hour) and Choghadiya (the eightfold day/night division of the western-Indian pañcāṅga)",
+  "compiled": "2026-08-01",
+  "compiledBy": "research pass — dossier only; no engine code written",
+
+  "scopeNote": "TWO systems are documented here because they share one day-arc and one weekday-lord input, and a comparison page will render them together. They do NOT share a provenance profile: horā rests on a datable Sanskrit primary text with a public-domain critical translation (Tier A); Choghadiya rests entirely on contemporary practitioner almanacs (Tier C) and NO primary text for it was located. That asymmetry is the single most important finding in this file and must survive into the UI. The repo's existing Rāhu-kāla / Yamaghaṇṭa / Gulika octants and the 30 muhūrtas are deliberately NOT re-documented here.",
+
+  "dayStart": "SUNRISE, local and apparent, for both systems. The horā day and the Choghadiya day both begin at local sunrise and run to the NEXT local sunrise; the weekday (vāra) that selects the first lord is the sunrise-bounded vāra, not the civil-midnight one. Primary authority for the sunrise-bounded civil day and for the hour-lords: Sūrya-Siddhānta xii.78–79 with i.51–52 (Burgess 1860) [src: SS-BURGESS-1860]. Directly evidenced in the published tables: drikpanchang's Saturday 2026-08-01 New Delhi night horās and night Choghadiyas run past midnight to 05:43 on the calendar date Sunday 2026-08-02 while still carrying SATURDAY's sequence — i.e. the division day did not turn over at midnight [src: DRIK-HORA, DRIK-CHOG]. The repo's assets/js/core/planetary-hours.js and the VĀRA CORRECTION note in assets/js/core/muhurta.js already implement exactly this convention; no new day-start logic is required.",
+
+  "divisionRule": "TWO divisions off ONE pair of arcs. Let R = local sunrise, S = the following local sunset, R' = the next local sunrise. Day arc = S − R; night arc = R' − S. (1) HORĀ: day arc ÷ 12 and night arc ÷ 12, giving 24 unequal ('seasonal') horās. Boundary i of the day = R + i·(S−R)/12 for i = 0..12; boundary j of the night = S + j·(R'−S)/12 for j = 0..12. The lord of horā h (h = 0..23, counted continuously from sunrise) = CHALDEAN[(CHALDEAN.indexOf(varaLord) + h) mod 7], where CHALDEAN = [Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon] and varaLord = the lord of the sunrise-bounded weekday. The first horā of the day is therefore the weekday's own lord — this is the identity Sūrya-Siddhānta i.51–52 and its notes state explicitly. (2) CHOGHADIYA: day arc ÷ 8 and night arc ÷ 8, giving 8 + 8 slots. Boundary i of the day = R + i·(S−R)/8 for i = 0..8; boundary j of the night = S + j·(R'−S)/8 for j = 0..8. Slot NAMES come from the weekday tables in `entries[*].associations` — those tables are the sourced datum. DERIVED-AND-VERIFIED closed form (my derivation from the published tables, NOT a sourced statement — see contestedPoints): day slot k (k = 0..7) is lorded by CHALDEAN[(c0 + k) mod 7] and night slot k by CHALDEAN[(c0 + 5·(k+1)) mod 7], where c0 = CHALDEAN.indexOf(varaLord). This closed form was checked against all 112 published weekday cells (7 weekdays × 8 slots × day and night) and reproduced every one; script and output are recorded in the notes file. NOTE the arithmetic consequence: because 8 ≡ 1 (mod 7), the 8th slot of each half always repeats the 1st — every published table shows this and it is not an error.",
+
+  "horaChaldeanRelation": {
+    "arithmetic": "IDENTICAL, not merely similar. Same day-start (sunrise), same division (day arc ÷ 12, night arc ÷ 12, unequal), same lord recurrence (+1 step per hour through Saturn→Jupiter→Mars→Sun→Venus→Mercury→Moon), same seed (first hour of the day = the weekday's lord), same continuity across the sunset boundary. Verified numerically, not asserted: the repo's existing planetaryHour() constants (astro.js CHALDEAN, dignities-data.js DAY_RULERS) reproduce drikpanchang's published 24-lord Hora sequence and all 25 published boundary times for New Delhi 2026-08-01 exactly — see goldenValues GV2. There is no arithmetic difference for an engine to model: one code path serves both, and the divergence between the traditions is in the NAMES, the qualities and the uses, not in the clock.",
+    "historicalRelationAsserted": true,
+    "positions": [
+      {
+        "claim": "The Sanskrit horā is the Greek ὥρα, and the whole hour-lord system entered India from outside.",
+        "claimedBy": { "author": "W. D. Whitney (writing in the notes to Burgess's translation)", "work": "Translation of the Sûrya-Siddhânta, JAOS vol. VI", "year": 1860, "locus": "note to xii.78–79, pp. 252–253" },
+        "sourceRef": "SS-BURGESS-1860",
+        "tier": "B",
+        "note": "Whitney's authorship of the notes is stated in Burgess's own preface ('the main share of the work falling to Prof. Whitney — enriched the notes with much additional matter of value'). The same note explicitly attaches the hour-lord derivation to Ideler's Handbuch der mathematischen und technischen Chronologie i.178 ff."
+      },
+      {
+        "claim": "horā is a Greek loanword (ὥρα), one of a set of loanwords marking the Hellenistic transmission into Indian horoscopy in the early centuries CE.",
+        "claimedBy": { "author": "Martin Gansten", "work": "The Jewel of Annual Astrology (Hāyanaratna), Brill", "year": 2020, "locus": "introduction, §1 'Tājika and the History of Indian Astrology'" },
+        "sourceRef": "GANSTEN-2020",
+        "tier": "B",
+        "note": "IN COPYRIGHT — paraphrased, never quoted, per FRAMING §4. Gansten's section cites Pingree 1978/1981/1997/2001 as the underlying scholarship; I did not fetch Pingree directly (see gaps)."
+      },
+      {
+        "claim": "DISSENT, printed in the same volume: the Hindus were original in most elementary astronomical principles; the handful of Greek and Arabic terms in the Sanskrit systems were late introductions, and words shared by Greek and Sanskrit may descend from a common source rather than mark a borrowing. Burgess adduces Herodotus II.109 (that the Greeks received the twelvefold division of the day from the Babylonians) against a Greek origin, and holds the priority question to lie between the Hindus and the Chaldeans.",
+        "claimedBy": { "author": "Ebenezer Burgess", "work": "Translation of the Sûrya-Siddhânta, JAOS vol. VI", "year": 1860, "locus": "'Concluding Note by the Translator', pp. 382 ff., point 4 (on astrology)" },
+        "sourceRef": "SS-BURGESS-1860",
+        "tier": "B",
+        "note": "Burgess opens this note by saying his investigations led him to opinions differing from Whitney's. The disagreement is INTERNAL TO ONE PUBLIC-DOMAIN VOLUME and both halves are quotable. This is the cleanest available worked example of FRAMING §1.3 in this whole dossier — do not resolve it."
+      },
+      {
+        "claim": "TRADITION'S OWN ETYMOLOGY, incompatible with the loanword account: horā is ahorātra ('day-and-night') with its first and last syllables dropped.",
+        "claimedBy": { "author": "Bṛhat Parāśara Horā Śāstra 4.1–2, as reported by Wikipedia", "work": "Wikipedia, 'Brihat Parashara Hora Shastra' and 'Hora (astrology)'", "year": 2026, "locus": "BPHS 4.1–2" },
+        "sourceRef": "WP-BPHS",
+        "tier": "C",
+        "note": "UNVERIFIED AT THE PRIMARY LEVEL — I did not open BPHS 4.1–2 in any edition. Cite it as reported, not as read. The same derivation is repeated in site voice by drikpanchang's Hora page. Wikipedia records the philological objection that ahorātra → horā violates Sanskrit word-formation rules; it attributes that objection to no named scholar, so it is carried here as an unattributed objection, not as a scholarly position."
+      }
+    ],
+    "choghadiyaRelation": "NO SOURCE ASSERTS ANY HISTORICAL RELATIONSHIP between Choghadiya and the Chaldean/Hellenistic hour, and none is claimed here. What IS established is a structural fact I derived and verified: the day-Choghadiya lord sequence is the SAME recurrence as the horā (one Chaldean step per slot, seeded on the weekday lord) applied to eighths of the arc instead of twelfths. That is an observation about two published tables, not evidence of transmission, and under FRAMING §2.4 it may not be rendered as a transmission claim. direction: 'unknown'."
+  },
+
+  "entries": [
+    {
+      "index": 1,
+      "name": "Udveg",
+      "nameOriginal": "उद्वेग",
+      "transliteration": "udvega",
+      "tier": "C",
+      "ruler": "Sun",
+      "quality": "inauspicious",
+      "sourceRef": "MPAN-CHOG",
+      "note": "Sense of the Sanskrit: 'agitation, anxiety'. Also printed Udvega (drikpanchang), which labels it 'Bad'. Base-cycle position 0.",
+      "associations": {
+        "family": "choghadiya",
+        "baseCycleIndex": 0,
+        "dayStartsOnWeekday": ["Sunday"],
+        "nightStartsOnWeekday": ["Wednesday"],
+        "lordSourceRef": "MPAN-CHOG",
+        "qualitySourceRefs": ["MPAN-CHOG", "DRIK-CHOG", "ASTROSAGE-CHOG", "WP-CHOG"]
+      }
+    },
+    {
+      "index": 2,
+      "name": "Chal",
+      "nameOriginal": "चल / चर",
+      "transliteration": "cala / cara",
+      "tier": "C",
+      "ruler": "Venus",
+      "quality": "CONTESTED — 'neutral' (drikpanchang) vs 'good/auspicious' (mpanchang, astrosage, shubhpanchang, Wikipedia). Both kept; not resolved.",
+      "sourceRef": "MPAN-CHOG",
+      "note": "Two name-forms are in circulation and the sources do not agree: 'Chal' (Wikipedia, mpanchang prose, and the project brief) and 'Char'/'Chara' (drikpanchang, astrosage). Whether the underlying Sanskrit is cala or cara — both mean 'moving' — was NOT settled by any source consulted. Recorded unresolved. Base-cycle position 1.",
+      "associations": {
+        "family": "choghadiya",
+        "baseCycleIndex": 1,
+        "dayStartsOnWeekday": ["Friday"],
+        "nightStartsOnWeekday": ["Monday"],
+        "nameVariants": ["Chal", "Char", "Chara"],
+        "lordSourceRef": "MPAN-CHOG",
+        "qualitySourceRefs": ["MPAN-CHOG", "DRIK-CHOG", "ASTROSAGE-CHOG", "WP-CHOG"]
+      }
+    },
+    {
+      "index": 3,
+      "name": "Labh",
+      "nameOriginal": "लाभ",
+      "transliteration": "lābha",
+      "tier": "C",
+      "ruler": "Mercury",
+      "quality": "auspicious",
+      "sourceRef": "MPAN-CHOG",
+      "note": "Sense: 'gain, profit'. drikpanchang labels it 'Gain'. Base-cycle position 2.",
+      "associations": {
+        "family": "choghadiya",
+        "baseCycleIndex": 2,
+        "dayStartsOnWeekday": ["Wednesday"],
+        "nightStartsOnWeekday": ["Saturday"],
+        "lordSourceRef": "MPAN-CHOG",
+        "qualitySourceRefs": ["MPAN-CHOG", "DRIK-CHOG", "ASTROSAGE-CHOG", "WP-CHOG"]
+      }
+    },
+    {
+      "index": 4,
+      "name": "Amrit",
+      "nameOriginal": "अमृत",
+      "transliteration": "amṛta",
+      "tier": "C",
+      "ruler": "Moon",
+      "quality": "auspicious (graded best of the seven by every source consulted)",
+      "sourceRef": "MPAN-CHOG",
+      "note": "Sense: 'nectar of immortality'. drikpanchang labels it 'Best'. Base-cycle position 3.",
+      "associations": {
+        "family": "choghadiya",
+        "baseCycleIndex": 3,
+        "dayStartsOnWeekday": ["Monday"],
+        "nightStartsOnWeekday": ["Thursday"],
+        "lordSourceRef": "MPAN-CHOG",
+        "qualitySourceRefs": ["MPAN-CHOG", "DRIK-CHOG", "ASTROSAGE-CHOG", "WP-CHOG"]
+      }
+    },
+    {
+      "index": 5,
+      "name": "Kaal",
+      "nameOriginal": "काल",
+      "transliteration": "kāla",
+      "tier": "C",
+      "ruler": "Saturn",
+      "quality": "inauspicious",
+      "sourceRef": "MPAN-CHOG",
+      "note": "Sense: 'time; death'. drikpanchang labels it 'Loss'. Base-cycle position 4.",
+      "associations": {
+        "family": "choghadiya",
+        "baseCycleIndex": 4,
+        "dayStartsOnWeekday": ["Saturday"],
+        "nightStartsOnWeekday": ["Tuesday"],
+        "lordSourceRef": "MPAN-CHOG",
+        "qualitySourceRefs": ["MPAN-CHOG", "DRIK-CHOG", "ASTROSAGE-CHOG", "WP-CHOG"]
+      }
+    },
+    {
+      "index": 6,
+      "name": "Shubh",
+      "nameOriginal": "शुभ",
+      "transliteration": "śubha",
+      "tier": "C",
+      "ruler": "Jupiter",
+      "quality": "auspicious",
+      "sourceRef": "MPAN-CHOG",
+      "note": "Sense: 'auspicious, good'. drikpanchang labels it 'Good'. Base-cycle position 5.",
+      "associations": {
+        "family": "choghadiya",
+        "baseCycleIndex": 5,
+        "dayStartsOnWeekday": ["Thursday"],
+        "nightStartsOnWeekday": ["Sunday"],
+        "lordSourceRef": "MPAN-CHOG",
+        "qualitySourceRefs": ["MPAN-CHOG", "DRIK-CHOG", "ASTROSAGE-CHOG", "WP-CHOG"]
+      }
+    },
+    {
+      "index": 7,
+      "name": "Rog",
+      "nameOriginal": "रोग",
+      "transliteration": "roga",
+      "tier": "C",
+      "ruler": "Mars",
+      "quality": "inauspicious",
+      "sourceRef": "MPAN-CHOG",
+      "note": "Sense: 'disease'. drikpanchang labels it 'Evil'. NO EFFICACY OR HEALTH CLAIM IS CARRIED: this is the name of a time-slot in an almanac, recorded as such. Base-cycle position 6.",
+      "associations": {
+        "family": "choghadiya",
+        "baseCycleIndex": 6,
+        "dayStartsOnWeekday": ["Tuesday"],
+        "nightStartsOnWeekday": ["Friday"],
+        "lordSourceRef": "MPAN-CHOG",
+        "qualitySourceRefs": ["MPAN-CHOG", "DRIK-CHOG", "ASTROSAGE-CHOG", "WP-CHOG"]
+      }
+    },
+
+    {
+      "index": 8,
+      "name": "Horā of Saturn (Śani)",
+      "nameOriginal": "शनि होरा",
+      "transliteration": "śani-horā",
+      "tier": "A",
+      "ruler": "Saturn",
+      "quality": "unattested in any Tier A source consulted; the practitioner almanacs label it 'sluggish' [Tier C]",
+      "sourceRef": "SS-BURGESS-1860",
+      "note": "Chaldean position 0 — the head of the sequence named at Sūrya-Siddhānta xii.79 ('the regents of the hours occur in downward order from Saturn') and xii.31 (the order by distance from earth). The one-word quality labels are practitioner glosses only, and drikpanchang and shubhpanchang give them in identical wording, so they are probably NOT independent witnesses — treat as one Tier C source, not two.",
+      "associations": { "family": "hora", "chaldeanIndex": 0, "firstHoraOfWeekday": "Saturday", "qualityGlossSourceRefs": ["DRIK-HORA", "SHUBH-HORA"], "qualityGlossIndependent": false }
+    },
+    {
+      "index": 9,
+      "name": "Horā of Jupiter (Guru)",
+      "nameOriginal": "गुरु होरा",
+      "transliteration": "guru-horā",
+      "tier": "A",
+      "ruler": "Jupiter",
+      "quality": "unattested in any Tier A source consulted; almanacs: 'fruitful' [Tier C]",
+      "sourceRef": "SS-BURGESS-1860",
+      "note": "Chaldean position 1.",
+      "associations": { "family": "hora", "chaldeanIndex": 1, "firstHoraOfWeekday": "Thursday", "qualityGlossSourceRefs": ["DRIK-HORA", "SHUBH-HORA"], "qualityGlossIndependent": false }
+    },
+    {
+      "index": 10,
+      "name": "Horā of Mars (Maṅgala)",
+      "nameOriginal": "मङ्गल होरा",
+      "transliteration": "maṅgala-horā",
+      "tier": "A",
+      "ruler": "Mars",
+      "quality": "unattested in any Tier A source consulted; almanacs: 'aggressive' [Tier C]",
+      "sourceRef": "SS-BURGESS-1860",
+      "note": "Chaldean position 2.",
+      "associations": { "family": "hora", "chaldeanIndex": 2, "firstHoraOfWeekday": "Tuesday", "qualityGlossSourceRefs": ["DRIK-HORA", "SHUBH-HORA"], "qualityGlossIndependent": false }
+    },
+    {
+      "index": 11,
+      "name": "Horā of the Sun (Ravi)",
+      "nameOriginal": "रवि होरा",
+      "transliteration": "ravi-horā",
+      "tier": "A",
+      "ruler": "Sun",
+      "quality": "unattested in any Tier A source consulted; almanacs: 'vigorous' [Tier C]",
+      "sourceRef": "SS-BURGESS-1860",
+      "note": "Chaldean position 3.",
+      "associations": { "family": "hora", "chaldeanIndex": 3, "firstHoraOfWeekday": "Sunday", "qualityGlossSourceRefs": ["DRIK-HORA", "SHUBH-HORA"], "qualityGlossIndependent": false }
+    },
+    {
+      "index": 12,
+      "name": "Horā of Venus (Śukra)",
+      "nameOriginal": "शुक्र होरा",
+      "transliteration": "śukra-horā",
+      "tier": "A",
+      "ruler": "Venus",
+      "quality": "unattested in any Tier A source consulted; almanacs: 'beneficial' [Tier C]",
+      "sourceRef": "SS-BURGESS-1860",
+      "note": "Chaldean position 4.",
+      "associations": { "family": "hora", "chaldeanIndex": 4, "firstHoraOfWeekday": "Friday", "qualityGlossSourceRefs": ["DRIK-HORA", "SHUBH-HORA"], "qualityGlossIndependent": false }
+    },
+    {
+      "index": 13,
+      "name": "Horā of Mercury (Budha)",
+      "nameOriginal": "बुध होरा",
+      "transliteration": "budha-horā",
+      "tier": "A",
+      "ruler": "Mercury",
+      "quality": "unattested in any Tier A source consulted; almanacs: 'quick' [Tier C]",
+      "sourceRef": "SS-BURGESS-1860",
+      "note": "Chaldean position 5.",
+      "associations": { "family": "hora", "chaldeanIndex": 5, "firstHoraOfWeekday": "Wednesday", "qualityGlossSourceRefs": ["DRIK-HORA", "SHUBH-HORA"], "qualityGlossIndependent": false }
+    },
+    {
+      "index": 14,
+      "name": "Horā of the Moon (Soma/Candra)",
+      "nameOriginal": "चन्द्र होरा",
+      "transliteration": "candra-horā",
+      "tier": "A",
+      "ruler": "Moon",
+      "quality": "unattested in any Tier A source consulted; almanacs: 'gentle' [Tier C]",
+      "sourceRef": "SS-BURGESS-1860",
+      "note": "Chaldean position 6.",
+      "associations": { "family": "hora", "chaldeanIndex": 6, "firstHoraOfWeekday": "Monday", "qualityGlossSourceRefs": ["DRIK-HORA", "SHUBH-HORA"], "qualityGlossIndependent": false }
+    }
+  ],
+
+  "choghadiyaWeekdayTables": {
+    "note": "THE SOURCED DATUM. Transcribed from the published 7-weekday × 8-slot tables at mpanchang.com [MPAN-CHOG] and cross-checked slot-for-slot against drikpanchang's dated tables for three weekday/city combinations [DRIK-CHOG] and against astrosage's Saturday example [ASTROSAGE-CHOG]. All agree. Columns are Sunday..Saturday; rows are slots 1..8 from sunrise (day) / sunset (night).",
+    "baseCycleDay": ["Udveg", "Chal", "Labh", "Amrit", "Kaal", "Shubh", "Rog"],
+    "baseCycleDayLords": ["Sun", "Venus", "Mercury", "Moon", "Saturn", "Jupiter", "Mars"],
+    "baseCycleDayNote": "This is exactly the Chaldean order [Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon] rotated to begin at the Sun. Derived by me from the lord mapping; verified against all 112 published cells.",
+    "startIndexTable": {
+      "note": "THE EXACT STARTING-INDEX TABLE ASKED FOR. Index is 0-based into baseCycleDay. Day slot k takes baseCycleDay[(dayStart + k) mod 7]. Night slot k takes baseCycleDay[(nightStart − 2k) mod 7] — the night traverses the SAME seven-name cycle with a step of −2 rather than +1, which is what produces its different-looking order. Both stepping rules were verified against every published cell.",
+      "weekdayIndex": "0 = Sunday … 6 = Saturday (matches the repo's DAY_RULERS / VARA_LORDS indexing and Date#getUTCDay)",
+      "day":   [0, 3, 6, 2, 5, 1, 4],
+      "night": [5, 1, 4, 0, 3, 6, 2],
+      "dayStartName":   ["Udveg", "Amrit", "Rog", "Labh", "Shubh", "Chal", "Kaal"],
+      "nightStartName": ["Shubh", "Chal", "Kaal", "Udveg", "Amrit", "Rog", "Labh"],
+      "dayStartLord":   ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"],
+      "nightStartLord": ["Jupiter", "Venus", "Saturn", "Sun", "Moon", "Mars", "Mercury"],
+      "dayStartLordRule": "= the weekday's own lord (vāra lord). Sourced implicitly by every published table; also the same seed the horā uses.",
+      "nightStartLordRule": "DERIVED, NOT SOURCED: = the lord of the 5th weekday counted inclusively from the current one, i.e. VARA_LORDS[(wd + 4) mod 7]. Verified for all seven weekdays against the published tables. No source consulted states this rule in words — the sources print the table and say nothing about why."
+    },
+    "day": [
+      ["Udveg", "Amrit", "Rog",   "Labh",  "Shubh", "Chal",  "Kaal"],
+      ["Chal",  "Kaal",  "Udveg", "Amrit", "Rog",   "Labh",  "Shubh"],
+      ["Labh",  "Shubh", "Chal",  "Kaal",  "Udveg", "Amrit", "Rog"],
+      ["Amrit", "Rog",   "Labh",  "Shubh", "Chal",  "Kaal",  "Udveg"],
+      ["Kaal",  "Udveg", "Amrit", "Rog",   "Labh",  "Shubh", "Chal"],
+      ["Shubh", "Chal",  "Kaal",  "Udveg", "Amrit", "Rog",   "Labh"],
+      ["Rog",   "Labh",  "Shubh", "Chal",  "Kaal",  "Udveg", "Amrit"],
+      ["Udveg", "Amrit", "Rog",   "Labh",  "Shubh", "Chal",  "Kaal"]
+    ],
+    "night": [
+      ["Shubh", "Chal",  "Kaal",  "Udveg", "Amrit", "Rog",   "Labh"],
+      ["Amrit", "Rog",   "Labh",  "Shubh", "Chal",  "Kaal",  "Udveg"],
+      ["Chal",  "Kaal",  "Udveg", "Amrit", "Rog",   "Labh",  "Shubh"],
+      ["Rog",   "Labh",  "Shubh", "Chal",  "Kaal",  "Udveg", "Amrit"],
+      ["Kaal",  "Udveg", "Amrit", "Rog",   "Labh",  "Shubh", "Chal"],
+      ["Labh",  "Shubh", "Chal",  "Kaal",  "Udveg", "Amrit", "Rog"],
+      ["Udveg", "Amrit", "Rog",   "Labh",  "Shubh", "Chal",  "Kaal"],
+      ["Shubh", "Chal",  "Kaal",  "Udveg", "Amrit", "Rog",   "Labh"]
+    ]
+  },
+
+  "variants": [
+    {
+      "id": "V1-choghadiya-nominal-96min",
+      "label": "Choghadiya as a FIXED 96-minute (4-ghaṭī) block vs. as a PROPORTIONAL eighth of the day arc",
+      "authority": "The etymological gloss is universal — 'cho' (four) + 'ghaḍiyā' (ghaṭī of 24 min) = 96 min — and Wikipedia's lede even fixes the period at 98 minutes. But EVERY published table computes the proportional eighth instead, and drikpanchang states the day is 30 ghaṭī divided into 8, i.e. 3.75 ghaṭī, so 'four ghaṭī' is admitted as an approximation, not a definition.",
+      "arithmetic": "Fixed reading: slot length = 96 min from sunrise, giving 7.5 slots in a 12-hour day and a ragged remainder — NOT what any almanac prints. Proportional reading: slot length = (S−R)/8, seasonally variable. IMPLEMENT THE PROPORTIONAL READING; it is what all four published table sources produce and it is what the golden values pin. The fixed reading is recorded because it is the mistake the etymology invites, and a naive implementer following Wikipedia's lede number would ship it.",
+      "sourceRef": "WP-CHOG"
+    },
+    {
+      "id": "V2-sunrise-convention",
+      "label": "Publisher-to-publisher divergence in the sunrise/sunset used as input",
+      "authority": "Observed directly, same date and same city: for New Delhi on 2026-08-01, drikpanchang gives sunrise 05:42 / sunset 19:12 while mpanchang gives boundaries implying 05:45 / 19:07 — a ~3 and ~5 minute divergence that shifts every one of the sixteen Choghadiya boundaries.",
+      "arithmetic": "The division rule is not in dispute; the ARGUMENT to it is. Different almanacs use different solar-disc/refraction/altitude conventions, and none of the pages consulted states which. Consequence for the engine: boundary times are only as reproducible as the sunrise model, and cross-publisher agreement to the minute should NOT be expected or asserted. This is why the golden values below are specified to be tested by feeding the PUBLISHED sunrise/sunset in, rather than by re-deriving them.",
+      "sourceRef": "MPAN-CHOG"
+    },
+    {
+      "id": "V3-overlaid-dosa-periods",
+      "label": "Kālavelā / Vāravelā / Kālarātri overlaid on the Choghadiya grid",
+      "authority": "mpanchang prints its Saturday slots as 'Kaal Kaal Vela', 'Labh Vaar Vela', 'Kaal Vaar Vela' and 'Labh Kaal Ratri' — i.e. a SECOND, independent doṣa layer sharing the same eightfold grid. drikpanchang and astrosage print no such layer.",
+      "arithmetic": "NOT CHARACTERISED. I did not establish the rule that places Kālavelā/Vāravelā/Kālarātri, and I am not guessing it. Flagged so that phase 2 does not mistake these compound labels for Choghadiya name variants — they are a different system riding on the same boundaries. See gaps.",
+      "sourceRef": "MPAN-CHOG"
+    }
+  ],
+
+  "goldenValues": [
+    {
+      "label": "GV1 — Choghadiya, the clean case (BOTH arcs divide into exact whole minutes; all 18 boundaries reproduce with zero rounding ambiguity). USE THIS AS THE PRIMARY TEST.",
+      "place": "Ahmedabad, Gujarat, India (drikpanchang geoname-id 1279233; lat 23.0258 N, lon 72.5873 E, IST UTC+05:30)",
+      "date": "2026-08-15 (Saturday, weekday index 6)",
+      "publishedIn": "drikpanchang.com, 'Choghadiya, Chogadia, Chaughadia, Choghadiya Table for Ahmedabad, Gujarat, India' — dated page, fetched 2026-08-01",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html?date=15/08/2026&geoname-id=1279233",
+      "expected": "INPUT (take from the publication, do not re-derive): sunrise 06:16, sunset 19:12, next sunrise 06:16. Day arc = 776 min, ÷8 = 97 min exactly. Night arc = 664 min, ÷8 = 83 min exactly. DAY boundaries 06:16, 07:53, 09:30, 11:07, 12:44, 14:21, 15:58, 17:35, 19:12 with names Kaal, Shubh, Rog, Udveg, Chal, Labh, Amrit, Kaal. NIGHT boundaries 19:12, 20:35, 21:58, 23:21, 00:44(+1d), 02:07(+1d), 03:30(+1d), 04:53(+1d), 06:16(+1d) with names Labh, Udveg, Shubh, Amrit, Chal, Rog, Kaal, Labh. Verified: all 18 boundaries and all 16 names match the publication exactly, tolerance 0."
+    },
+    {
+      "label": "GV2 — Horā, all 24 lords and all 25 boundaries exact (round-half-up to whole minutes). Pins that the jyotiṣa horā IS the repo's existing planetaryHour().",
+      "place": "New Delhi, NCT, India (drikpanchang default geoname-id 1261481; lat 28.6139 N, lon 77.2090 E, IST UTC+05:30)",
+      "date": "2026-08-01 (Saturday, weekday index 6)",
+      "publishedIn": "drikpanchang.com, 'Shubha Horai / Hora' table for New Delhi — fetched 2026-08-01",
+      "url": "https://www.drikpanchang.com/muhurat/hora.html?geoname-id=1261481",
+      "expected": "INPUT: sunrise 05:42, sunset 19:12, next sunrise 05:43. Day arc = 810 min, ÷12 = 67.5 min. Night arc = 631 min, ÷12 = 52.5833 min. LORDS, 24 in order from sunrise: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars. DAY boundaries 05:42, 06:50, 07:57, 09:05, 10:12, 11:20, 12:27, 13:35, 14:42, 15:50, 16:57, 18:05, 19:12. NIGHT boundaries 19:12, 20:05, 20:57, 21:50, 22:42, 23:35, 00:28(+1d), 01:20(+1d), 02:13(+1d), 03:05(+1d), 03:58(+1d), 04:50(+1d), 05:43(+1d). Verified: all 25 boundaries and all 24 lords match exactly when boundaries are rounded half-up to the minute, tolerance 0."
+    },
+    {
+      "label": "GV3 — Choghadiya on a NON-Saturday. Pins the Wednesday starting offsets (day index 2 = Labh, night index 0 = Udveg), which GV1 and GV4 cannot.",
+      "place": "Udaipur, Rajasthan, India (drikpanchang geoname-id 1253986; lat 24.5854 N, lon 73.7125 E, IST UTC+05:30)",
+      "date": "2026-08-05 (Wednesday, weekday index 3)",
+      "publishedIn": "drikpanchang.com Choghadiya table for Udaipur — dated page, fetched 2026-08-01",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html?date=05/08/2026&geoname-id=1253986",
+      "expected": "INPUT: sunrise 06:05, sunset 19:17, next sunrise 06:06. Day arc = 792 min, ÷8 = 99 min exactly. NAMES day: Labh, Amrit, Kaal, Shubh, Rog, Udveg, Chal, Labh — assert these exactly. NAMES night: Udveg, Shubh, Amrit, Chal, Rog, Kaal, Labh, Udveg — assert these exactly. DAY boundaries 06:05, 07:44, 09:23, 11:02, 12:41, 14:20, 15:59, 17:38, 19:17 — verified exact, tolerance 0. NIGHT boundaries published as 19:17, 20:38, 21:59, 23:20, 00:41(+1d), 02:02(+1d), 03:23(+1d), 04:44(+1d), 06:06(+1d) — ASSERT WITH ±1 MINUTE TOLERANCE ONLY: night arc ÷ 8 = 81.125 min and my reconstruction from the whole-minute sunset/sunrise gives 00:42/02:03/03:24/04:45 for four of them. The 1-minute gap is the publication's own second-precision sunset and sunrise displayed rounded; it is NOT a disagreement about the rule. Do not chase it."
+    },
+    {
+      "label": "GV4 — Choghadiya, second Saturday city/date, independent of GV1. Night exact; day ±1 min for the same second-precision reason as GV3.",
+      "place": "New Delhi, NCT, India (geoname-id 1261481)",
+      "date": "2026-08-01 (Saturday, weekday index 6)",
+      "publishedIn": "drikpanchang.com Choghadiya table for New Delhi — fetched 2026-08-01",
+      "url": "https://www.drikpanchang.com/muhurat/choghadiya.html",
+      "expected": "INPUT: sunrise 05:42, sunset 19:12, next sunrise 05:43. NAMES day: Kaal, Shubh, Rog, Udveg, Chal, Labh, Amrit, Kaal. NAMES night: Labh, Udveg, Shubh, Amrit, Chal, Rog, Kaal, Labh. NIGHT boundaries 19:12, 20:31, 21:50, 23:09, 00:28(+1d), 01:46(+1d), 03:05(+1d), 04:24(+1d), 05:43(+1d) — verified exact under round-half-up, tolerance 0. DAY boundaries published 05:42, 07:24, 09:05, 10:46, 12:27, 14:09, 15:50, 17:31, 19:12 — ±1 MINUTE: day arc ÷ 8 = 101.25 min and round-half-up from the displayed 05:42/19:12 gives 07:23 and 14:08 for two of the nine."
+    },
+    {
+      "label": "GV5 — cross-publisher DISAGREEMENT, recorded as a golden value so a test pins the disagreement rather than silently averaging it.",
+      "place": "New Delhi, NCT, India",
+      "date": "2026-08-01 (Saturday)",
+      "publishedIn": "mpanchang.com Choghadiya table for New Delhi — fetched 2026-08-01",
+      "url": "https://www.mpanchang.com/muhurat/choghadiya/",
+      "expected": "Same date, same city, same NAMES as GV4 (Kaal, Shubh, Rog, Udveg, Char, Labh, Amrit, Kaal / Labh, Udveg, Shubh, Amrit, Char, Rog, Kaal, Labh) but DIFFERENT boundaries: day 05:45, 07:25, 09:06, 10:46, 12:26, 14:06, 15:46, 17:27, 19:07; night 19:07, 20:27, 21:46, 23:06, 00:26(+1d), 01:46(+1d), 03:06(+1d), 04:26(+1d), 05:46(+1d). The two publishers agree on the RULE and the NAMES and disagree on the SUNRISE by ~3 minutes. Assert the name agreement and assert that the boundary disagreement exists; do not assert either publisher is right."
+    }
+  ],
+
+  "polarBehaviour": "UNDEFINED, and no source addresses it. Both systems are defined exclusively by the interval sunrise→sunset and the interval sunset→next sunrise. Where the Sun does not rise or does not set — above the Arctic Circle and below the Antarctic Circle around the solstices — neither arc exists, no boundary can be computed, and there is no attested fallback: not one of the classical, scholarly or practitioner sources consulted mentions high latitudes at all, because none of these traditions was formulated for them. The honest behaviour is to REFUSE, and the repo already does it: planetaryHour() returns null when SearchRiseSet finds no event, and muhurtaReport() already surfaces an explicit 'polar day or night — the division is undefined there' error. Reuse that refusal verbatim; do not substitute civil midnight, do not substitute a 12-hour arc, do not interpolate from a neighbouring date. A SECOND, subtler failure needs saying because it degrades silently rather than erroring: at high but sub-polar latitudes the day arc can shrink to under two hours, so the eight Choghadiyas become slots of a dozen minutes and the twelve day-horās slots of under ten. That is arithmetically well-defined and completely unattested — no source sanctions it, and a UI that prints it without a warning is inventing usage. Flag any day whose day arc or night arc falls below (pick and state a threshold) as outside all attested usage.",
+
+  "sources": [
+    {
+      "id": "SS-BURGESS-1860",
+      "cite": "Ebenezer Burgess (trans.), assisted by the Committee of Publication of the American Oriental Society [the notes largely enlarged by W. D. Whitney, per Burgess's preface], 'Translation of the Sûrya-Siddhânta, A Text-Book of Hindu Astronomy; with Notes, and an Appendix', Journal of the American Oriental Society, vol. VI (New Haven, 1860).",
+      "tier": "A",
+      "fetched": true,
+      "locator": "xii.78–79 and the note thereto, pp. 252–253 (the hour-lords, and the horā = Greek ὥρα claim); xii.31 (the seven planets in order of distance from the earth = the Chaldean order); i.51–52 with its notes (finding the lord of the day; the derivation of the weekday from the 24 hours, referred to Ideler, Handbuch der mathematischen und technischen Chronologie i.178 ff.); 'Concluding Note by the Translator', pp. 382 ff., point 4 (Burgess's dissent from Whitney). Full OCR text fetched at https://archive.org/download/in.ernet.dli.2015.96668/2015.96668.Translation-Of-The-Surya-siddhanta_djvu.txt on 2026-08-01. The page number for the i.51–52 notes was not legible in the scan's running heads and is cited by chapter and verse only.",
+      "pd": "pd-us — published 1860 in JAOS vol. VI; the US copyright term for a work published in 1860 has long expired (the current threshold is 1930 and earlier, per Duke Law Center for the Study of the Public Domain, Public Domain Day 2026, as recorded in FRAMING §4.3). Quotable.",
+      "pdQuotes": [
+        {
+          "locus": "Sūrya-Siddhānta xii.78–79, Burgess trans., p. 252",
+          "text": "78. Counting downward from Saturn, the fourth successively is regent of the day; and the third, in like manner, is declared to be the regent of the year; 79. Reckoning upward from the moon are found, in succession, the regents of the months; the regents of the hours (horā) also, occur in downward order from Saturn.",
+          "textNote": "Obvious OCR damage silently normalised in three places ('tne'→'the', 'hard)i'→'(horā),', spacing). No word was supplied or altered."
+        },
+        {
+          "locus": "Whitney's note to xii.78–79, pp. 252–253",
+          "text": "…and the name of the hour, horā, which is the Greek [ὥρα], betraying the source whence the whole system was introduced into India.",
+          "textNote": "The Greek word is OCR-garbled in the scan and is restored in brackets from the context and from the same word's legible occurrence in the Concluding Note. Flagged rather than silently repaired."
+        }
+      ]
+    },
+    {
+      "id": "GANSTEN-2020",
+      "cite": "Martin Gansten, The Jewel of Annual Astrology: A Parallel Sanskrit-English Critical Edition of Balabhadra's Hāyanaratna (Brill, 2020; Indian reprint Motilal Banarsidass).",
+      "tier": "B",
+      "fetched": true,
+      "locator": "Introduction §1, 'Tājika and the History of Indian Astrology'. Consulted via the wisdomlib mirror at https://www.wisdomlib.org/hinduism/book/hayanaratna-the-jewel-of-annual-astrology/d/doc1500866.html on 2026-08-01. Gansten there states that the Sanskrit horā — used both for the art of horoscopy and for the ascendant — is itself a Greek loanword from ὥρα, within an account of the Hellenistic elements that entered Indian horoscopy in the early centuries CE; the section cites Pingree 1978, 1981, 1997 and 2001.",
+      "pd": "cite-only — in copyright (2020). PARAPHRASED THROUGHOUT; no sentence of Gansten is reproduced anywhere in this dossier or may be reproduced downstream."
+    },
+    {
+      "id": "DIKSHIT-1981",
+      "cite": "Sankar Balakrishna Dikshit, English translation of 'Bharatiya Jyotish Shastra' (History of Indian Astronomy), Part I (Kolkata: India Meteorological Department, Government of India, 1981), p. 138.",
+      "tier": "B",
+      "fetched": false,
+      "locator": "Cited by Wikipedia's 'Vāra (astronomy)' article as its authority for the horā/weekday derivation and for the rendering of Sūrya-Siddhānta xii.78–79. NOT FETCHED AND NOT VERIFIED — I could not obtain the volume. Carried as an unverified pointer only; nothing in this dossier rests on it.",
+      "pd": "cite-only — status unresolved; 1981 publication, not quoted."
+    },
+    {
+      "id": "WP-VARA",
+      "cite": "Wikipedia, 'Vāra (astronomy)'.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://en.wikipedia.org/wiki/V%C4%81ra_(astronomy) — fetched 2026-08-01. Gives the 24-horā division, the Chaldean sequence, the rule that a day is named for the planet of its first horā, and a rendering of SS xii.78–79. Its sole scholarly citation is DIKSHIT-1981.",
+      "pd": "cc-by-sa — paraphrased, attributed, not quoted at length."
+    },
+    {
+      "id": "WP-HORA",
+      "cite": "Wikipedia, 'Hora (astrology)'.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://en.wikipedia.org/wiki/Hora_(astrology) — fetched 2026-08-01. Treats horā as the predictive BRANCH of jyotiṣa (as against siddhānta and saṁhitā); records the BPHS 4.1–2 ahorātra etymology and an unattributed objection that it violates Sanskrit word formation. Article carries a citation-needed banner and has exactly one footnote.",
+      "pd": "cc-by-sa — paraphrased."
+    },
+    {
+      "id": "WP-BPHS",
+      "cite": "Wikipedia, 'Brihat Parashara Hora Shastra'.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://en.wikipedia.org/wiki/Brihat_Parashara_Hora_Shastra — fetched 2026-08-01. Source of the BPHS 4.1–2 ahorātra derivation AS REPORTED; also the statement that Western scholars prefer the Greek ὥρα derivation. The primary text was not consulted.",
+      "pd": "cc-by-sa — paraphrased."
+    },
+    {
+      "id": "WP-CHOG",
+      "cite": "Wikipedia, 'Choghadiya'.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://en.wikipedia.org/wiki/Choghadiya — fetched 2026-08-01. Gives the ÷8 rule and a worked example; fixes the period at 'ninety-eight minutes' in its lede while its own example computes ~90 min. CITATION HEALTH: the article carries maintenance banners for lacking inline citations (July 2012) and quality (March 2023), and its ONLY reference is Madan G. Chitkara, Encyclopaedia of Buddhism: Glossary of Buddhism Terms vol. 21 (APH Publishing, 2005), p. 87 — a Buddhist glossary, not a work on Hindu electional astrology. That is the entire published referencing of this system in the encyclopaedic literature I could reach.",
+      "pd": "cc-by-sa — paraphrased."
+    },
+    {
+      "id": "DRIK-CHOG",
+      "cite": "drikpanchang.com, 'Choghadiya, Chogadia, Chaughadia' dated tables.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "Three dated pages fetched 2026-08-01: New Delhi 2026-08-01 (https://www.drikpanchang.com/muhurat/choghadiya.html), Ahmedabad 2026-08-15 (…?date=15/08/2026&geoname-id=1279233), Udaipur 2026-08-05 (…?date=05/08/2026&geoname-id=1253986). Supplies the boundary times for GV1, GV3 and GV4, the day/night name orders, the quality labels (Best/Good/Gain/Neutral/Bad/Evil/Loss), and the statement that the sunrise-to-sunset span of 30 ghaṭī is divided into 8 so that each Choghadiya approximates 4 ghaṭī.",
+      "pd": "cite-only — in copyright; prose paraphrased, only the numeric tables recorded as data."
+    },
+    {
+      "id": "DRIK-HORA",
+      "cite": "drikpanchang.com, 'Shubha Horai' / Hora table.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://www.drikpanchang.com/muhurat/hora.html?geoname-id=1261481 — New Delhi 2026-08-01, fetched 2026-08-01. Supplies GV2 in full: 24 lords and 25 boundaries. Repeats the ahorātra etymology in site voice and observes that each weekday's first horā is that day's lord.",
+      "pd": "cite-only — in copyright; paraphrased."
+    },
+    {
+      "id": "MPAN-CHOG",
+      "cite": "mpanchang.com, Choghadiya page and its 7-weekday reference tables.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://www.mpanchang.com/muhurat/choghadiya/ — fetched 2026-08-01. THE SOURCE OF RECORD for the full 7×8 day and night weekday tables and for the name→planet mapping (Udveg=Sun, Labh=Mercury, Char=Venus, Rog=Mars, Shubh=Jupiter, Kaal=Saturn, Amrit=Moon). Also supplies GV5 and the Kālavelā/Vāravelā/Kālarātri overlay labels.",
+      "pd": "cite-only — in copyright; prose paraphrased, tables recorded as data."
+    },
+    {
+      "id": "ASTROSAGE-CHOG",
+      "cite": "astrosage.com, 'Choghadiya: Chogadia' page.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://www.astrosage.com/chogadia.asp — fetched 2026-08-01. Independent confirmation of the ÷8 rule and of the Saturday starts (day Kaal, night Laabh), and of the four-auspicious/three-inauspicious grading with Chal counted GOOD. Also the one source consulted that gives a REGIONAL provenance: it records the system as used mostly in the western states of India. Gives no source text and no date of origin.",
+      "pd": "cite-only — in copyright; paraphrased."
+    },
+    {
+      "id": "SHUBH-HORA",
+      "cite": "shubhpanchang.com, Hora page.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://shubhpanchang.com/hora — Saturday 2026-08-01, fetched 2026-08-01. Independent confirmation that the horās are UNEQUAL (sunrise→sunset ÷ 12 and sunset→next sunrise ÷ 12, explicitly not 60-minute hours), that the horā day begins at local sunrise, and that the first horā carries the weekday lord. Its one-word planet natures are word-for-word identical to drikpanchang's, so the two are probably not independent on that point.",
+      "pd": "cite-only — in copyright; paraphrased."
+    },
+    {
+      "id": "MYZODIAQ-HORA",
+      "cite": "myzodiaq.in, 'Hora Shastra: The Secret of Time and Planetary Energy in Vedic Astrology'.",
+      "tier": "C",
+      "fetched": true,
+      "locator": "https://www.myzodiaq.in/en/online-library/panchang/hora-and-choghadiya/hora-shastra-the-secret-of-time-and-planetary-energy-in-vedic-astrology — fetched 2026-08-01. RECORDED AS A NEGATIVE CONTROL, not as an authority: the page names the Chaldean order as Moon, Mercury, Venus, Sun, Mars, Jupiter, Saturn (ascending) and then works its Thursday example in the descending order, contradicting itself within one page; and it attributes the doctrine to the Bṛhat Parāśara Horā Śāstra without any chapter or verse. It is cited here only as evidence for how unreliable Tier C attribution of this material is.",
+      "pd": "cite-only — in copyright; paraphrased."
+    },
+    {
+      "id": "REPO-PLANETARY-HOURS",
+      "cite": "This repository: assets/js/core/planetary-hours.js, assets/js/core/astro.js (CHALDEAN, line 26), assets/js/core/data/dignities-data.js (DAY_RULERS, line 169), assets/js/core/data/vedic-data.js (VARA_LORDS/VARA_NAMES, lines 148–149), assets/js/core/muhurta.js (the VĀRA CORRECTION header note).",
+      "tier": "C",
+      "fetched": true,
+      "locator": "Read 2026-08-01. Used only to check that the constants already shipped reproduce the published jyotiṣa horā table — they do, exactly. Not a source for any claim about the tradition.",
+      "pd": "n/a — this repository's own code."
+    }
+  ],
+
+  "gaps": [
+    "NO PRIMARY TEXT FOR CHOGHADIYA WAS FOUND, and this is the headline gap. Not one of the sources consulted — four practitioner almanacs, Wikipedia, and targeted searches against the named Sanskrit muhūrta corpus (Muhūrta Cintāmaṇi, Muhūrta Mārtaṇḍa) — cites a Sanskrit verse, a chapter, an author or a date for the eightfold day/night division or for its seven names. Wikipedia's sole reference is a Buddhist-terms glossary. Every 'rooted in ancient Vedic texts' phrase encountered was unlocatable practitioner assertion with no locus behind it. Choghadiya must therefore ship as Tier C throughout, and the site must say plainly that no primary attestation was located. It may well exist in vernacular Gujarati/Marathi pañcāṅga literature that this pass could not reach; that is a reason to keep looking, not a reason to imply attestation.",
+    "The DATE and PLACE OF ORIGIN of Choghadiya are unattested. astrosage records that it is used mostly in western India; nothing consulted dates it, names a region of origin, or traces its spread. 'At least several centuries of continuous use' was asserted by one practitioner page with no evidence and is not carried.",
+    "The REASON for the night-Choghadiya offset is unattested. The tables are printed; no source consulted explains why the night sequence starts on the lord of the fifth weekday or steps −2 through the cycle. Both rules here are my derivation from the tables, verified against every cell but explained by nobody.",
+    "The BPHS 4.1–2 ahorātra etymology was NOT verified against any edition of the primary text. It is carried as reported by Wikipedia. Someone should open a real BPHS edition and either confirm the locus or strike the claim.",
+    "PINGREE WAS NOT READ. Gansten's Greek-loanword statement rests on Pingree 1978/1981/1997/2001; I fetched Gansten's summary but no Pingree text, and I have no Pingree page reference for horā specifically. The transmission claim is therefore carried at one remove.",
+    "The Kālavelā / Vāravelā / Kālarātri layer that mpanchang overlays on the same eightfold grid is UNCHARACTERISED. I did not establish which octants they occupy on which weekdays and did not guess. It is a separate system and needs its own pass — note the repo already has the adjacent Rāhu/Yama/Gulika octant tables, so this is likely a fourth member of that family rather than part of Choghadiya.",
+    "AN EQUAL-HOUR (fixed 60-minute) HORĀ VARIANT WAS SEARCHED FOR AND NOT FOUND. Every source consulted computes unequal seasonal horās. I am recording the negative result rather than inventing a variant: if such a usage exists, this pass did not find it.",
+    "NO ACADEMIC (Tier B) TREATMENT OF CHOGHADIYA WAS FOUND AT ALL. The Greek-loanword scholarship covers horā; nothing comparable exists in reach for Choghadiya. The two halves of this dossier are not evidentially comparable and the UI must not present them as if they were.",
+    "The one-word planet 'natures' attached to the horās (sluggish/fruitful/aggressive/vigorous/beneficial/quick/gentle) have NO Tier A or Tier B source. They appear in identical wording on two practitioner sites and should be treated as a single Tier C witness, or dropped.",
+    "Whether the Choghadiya name is cala or cara in Sanskrit is unresolved; sources print Chal, Char and Chara without comment."
+  ],
+
+  "contestedPoints": [
+    "DIRECTION OF TRANSMISSION FOR THE HORĀ — the central one, and it is contested INSIDE A SINGLE PUBLIC-DOMAIN VOLUME. Whitney's note to Sūrya-Siddhānta xii.78–79 says the word horā is the Greek ὥρα and that this betrays the source from which the whole hour-lord system entered India. Burgess's own Concluding Note, printed in the same 1860 JAOS volume, dissents: he holds the Hindus original in most elementary astronomical principles, treats the handful of Greek terms as late introductions or as shared Indo-European inheritance, cites Herodotus II.109 (the Greeks got the twelvefold day from the Babylonians) against a Greek origin, and locates the priority question between the Hindus and the Chaldeans. Modern scholarship (Gansten 2020, resting on Pingree) sides with Whitney. A HUMAN MUST RULE on how much weight the site gives the 1860 dissent: it is a genuine, attributable, contemporaneous scholarly disagreement AND it is 166 years old and superseded. My recommendation, for the maintainer to accept or reject: print both, date both, and say that the modern consensus follows Whitney — but do not delete Burgess, because a site that quotes a volume's translation while suppressing that same volume's translator's dissent is quoting selectively.",
+    "THE ETYMOLOGY OF horā — the tradition's own derivation (ahorātra minus its first and last syllables, BPHS 4.1–2) against the loanword derivation (Greek ὥρα). This is not a footnote: the ahorātra derivation is the tradition's assertion of indigenous origin and is still repeated in site voice by contemporary almanacs, while the loanword derivation is the philological consensus. Under FRAMING §1.3 both must be printed. A human must rule on the register: how to state the consensus without writing the living tradition's own account off as folk error (FRAMING §5). NOTE also that the objection reported against the ahorātra derivation — that it violates Sanskrit word formation — is attributed to no named scholar in the source I have, so it currently fails the §2.4 claimedBy test and cannot be rendered as a scholarly position until someone names one.",
+    "THE THREE SENSES OF horā, which practitioner sources routinely conflate and which the page must keep apart. (a) horā = the PLANETARY HOUR — the sense this dossier documents, attested at Sūrya-Siddhānta xii.79. (b) horā = the D-2 divisional chart, the half-sign, in the standard varga scheme. (c) horā-śāstra = the whole predictive/genethlialogical BRANCH of jyotiṣa, which is the sense in the TITLE Bṛhat Parāśara Horā Śāstra and the sense Wikipedia's 'Hora (astrology)' article documents. Several practitioner pages cite 'Bṛhat Parāśara Horā Śāstra' as the authority for the planetary hour purely on the strength of the word in its title — myzodiaq does exactly this and supplies no chapter or verse. I did NOT find any locus in BPHS for the planetary hour and do not assert there is none; I assert that the sources that invoke it give none. A human should decide whether to state that on the page.",
+    "THE QUALITY OF Chal/Chara — drikpanchang grades it 'Neutral'; mpanchang, astrosage, shubhpanchang and Wikipedia count it among the FOUR auspicious Choghadiyas. This changes a rendered label on one of seven rows, on every day of the week. Both positions kept; needs a display decision, not a truth decision.",
+    "WHETHER THE ARITHMETIC IDENTITY BETWEEN DAY-CHOGHADIYA AND HORĀ MAY BE SHOWN AT ALL. I verified that the day-Choghadiya lord sequence is the horā recurrence on eighths — same Chaldean step, same weekday seed — across all 112 published cells. It is a true and checkable statement about two published tables. But NO SOURCE MAKES THE COMPARISON, and FRAMING §2.4 says that where no scholar has made the comparison there is no row. A human must rule on whether a purely arithmetical, non-historical, self-verified structural observation is a 'transmission claim' under §2.4 or a computation note. My reading is that it is permissible ONLY if rendered as arithmetic with direction 'unknown' and with an explicit line saying no source asserts a historical relationship — but this is exactly the judgement §2.4 reserves, so it is escalated rather than decided.",
+    "TIER ASYMMETRY IN A SIDE-BY-SIDE COMPARISON. Putting a Tier A, 1500-year-old, primary-text-attested division (horā) in the same table as a Tier C, undated, primary-text-less almanac division (Choghadiya) risks lending the second the evidential dignity of the first — the failure FRAMING §5 C-6 names. A human must decide whether the tier badge alone is enough or whether Choghadiya needs a standing note on the comparison view itself."
+  ],
+
+  "honestLimits": "This page computes two divisions of the sunrise-bounded day as the sources define them, and nothing more. It does not claim, and no source cited here demonstrates, that any horā or any Choghadiya has any effect on any outcome whatever; the qualities printed — Amrit 'best', Rog 'disease', Kaal 'loss' — are the almanacs' own labels for their own slots, reproduced as records of what the almanacs say, and are not health, financial, safety or life-outcome claims in this site's voice. The two systems are not equally attested and the page says so on its face: the horā rests on a datable Sanskrit primary text with a public-domain critical translation, while for Choghadiya no primary text was located at all, its date and place of origin are unattested, and every table on this page for it comes from present-day almanac publishers. The starting-index tables are transcribed from those publishers; the closed-form rules that reproduce them are this compiler's derivation, verified against all 112 published cells and labelled as derived, because no source states them in words. Where the arithmetic of the jyotiṣa horā and the Hellenistic planetary hour coincide, this page shows the coincidence and stops: it reports that Whitney (1860) and Gansten (2020) argue a Greek origin for the word and the system, that Burgess (1860) argued against it in the same volume, and that the Bṛhat Parāśara Horā Śāstra derives the word from ahorātra instead — and it does not adjudicate between them or advance a transmission claim of its own. No source consulted asserts any relationship between Choghadiya and any non-Indian system, so none is asserted here. Boundary times are only as good as the sunrise used to compute them, and published Indian almanacs disagree with each other by several minutes on the same day in the same city; agreement to the minute with any one publisher is not a claim this page makes. Above the polar circles the defining events do not occur and this page returns nothing at all, because the traditions were not formulated for those latitudes and inventing a fallback would be inventing the tradition. jyotiṣa and the pañcāṅga are current daily practice for very large numbers of people; the descriptions here are of what practitioners and their almanacs say, recorded with the same precision as every historical layer on this site and with no claim that any of it works."
+}

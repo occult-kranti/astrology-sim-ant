@@ -1,0 +1,351 @@
+{
+  "key": "zmanim",
+  "system": "Jewish sha'ot zemaniyot (שעות זמניות, 'seasonal/proportional hours') — the halachic division of the daytime span into twelve equal parts, and of the night into twelve, so that an 'hour' lengthens in summer and shortens in winter. Every rabbinically fixed clock-time in Jewish law (latest Shema, latest Shacharit, chatzot, mincha gedola, mincha ketana, plag ha-mincha, the erev-Pesach chametz deadlines) is stated as a count of these hours. This is current religious practice for millions of people, computed daily by printed luchot, synagogue boards and phone apps; it is not a historical curiosity.",
+
+  "scopeNote": "The deliverable of this dossier is NOT one clock. It is the set of mutually incompatible arithmetics that halachic authorities apply to the same twelve-hour rule, and the exact points at which they diverge. A page that silently picks one is wrong on the face of it: printed luchot for a single city routinely carry three or four columns side by side, and a practitioner chooses by community and by posek. Where the sources conflict, both are recorded; nothing is resolved here.",
+
+  "dayStart": "TWO DIFFERENT THINGS START AT TWO DIFFERENT MOMENTS, and conflating them is the first error an implementer makes.\n\n(a) The halachic CALENDAR day begins in the evening, at nightfall. Bavli Berakhot 26a states the principle while discussing make-up prayers — one who erred and did not pray ma'ariv prays shacharit twice 'because it is one day, as it is written: and it was evening and it was morning, one day' (Gen. 1:5). Shulchan Aruch, Orach Chayim 235:1 fixes the practical boundary: the time of the evening Shema is from the emergence of three small stars (tzeit ha-kochavim); if one recited it before that, one repeats it without the blessings. So Shabbat, festivals and the date all turn over at night.\n\n(b) The DAYTIME SPAN over which the twelve sha'ot zemaniyot are counted begins at a MORNING event — and WHICH morning event is precisely the dispute this dossier exists to record. Magen Avraham, Orach Chayim 58:1 holds it begins at amud ha-shachar / alot ha-shachar (first light); the school of the Levush, Lechem Chamudot and Shiltei ha-Gibborim, with which the Vilna Gaon is aligned by Mishnah Berurah 443:8, holds it begins at ha-netz ha-chamah (sunrise). Mishnah Berurah 58:4 states both in one sentence: the three hours are counted from amud ha-shachar, so writes the Magen Avraham; and the opinion of the Gra is from the time of ha-netz ha-chamah.\n\nConsequence for an engine: 'day' in this system is a span with an explicitly disputed start and end, and the count of hours does NOT begin at the calendar rollover. There is no single dayStart. Any implementation must carry the opinion as a parameter.",
+
+  "divisionRule": "TWELVE. The daytime span is divided into twelve equal parts regardless of its absolute length; each part is one sha'ah zemanit. The night span is divided likewise into twelve. Nothing is rounded to a fixed 60 minutes.\n\nThe rule is stated verbatim by Rema (R. Moses Isserles) in his gloss to Shulchan Aruch, Orach Chayim 233:1: 'ומשערינן שעות אלו לפי ענין היום ואף אם היום ארוך משערינן לי\"ב שעות והם נקראים שעות זמניות וכן כל מקום ששערו חכמים בשעות משערינן בשעות אלו' — we measure these hours according to the condition of the day, and even if the day is long we measure it as twelve hours, and these are called sha'ot zemaniyot; and everywhere the Sages measured in hours, we measure in these hours. Rema cites the rule to Rambam's Commentary on the Mishnah, chapter 1 of Berakhot.\n\nMishnah Berurah 89:5 gives the worked arithmetic: if the day is eighteen hours long then a third of it is six hours; if the day is nine hours long then a third of it is three hours — 'for we always measure these hours according to the condition of the day, and they are called sha'ot zemaniyot, for the day is divided into twelve parts.'\n\nTHE ARITHMETIC, stated as a function:\n  shaah(opinion) = ( END(opinion) − START(opinion) ) / 12\n  boundary(n, opinion) = START(opinion) + n × shaah(opinion)\nwhere n is the count given by the halachic source (3 for latest Shema, 4 for latest Shacharit, 6 for chatzot, 6.5 for mincha gedola, 9.5 for mincha ketana, 10.75 for plag ha-mincha) and START/END are supplied by the opinion selected from `variants`. Every disagreement in this system is a disagreement about START and END. The count n is NOT disputed and is common to every column of every luach.\n\nWhere the 72- and 90-minute figures come from, in full: Bavli Pesachim 93b–94a records Rabbah bar bar Chana in the name of R. Yochanan that an average person walks ten parsa'ot in a day, 'from alot ha-shachar until ha-netz ha-chamah five mil, from the setting of the sun until the emergence of the stars five mil'; a baraita of R. Yehuda cited on 94a gives FOUR mil for each of those intervals instead of five. Shulchan Aruch, Orach Chayim 459:2, fixing the leavening interval, states that the measure of a mil is 'a quarter of an hour and a twentieth part of an hour' — 15 + 3 = 18 minutes. Hence 4 mil × 18 = 72 minutes and 5 mil × 18 = 90 minutes. Both are live; both are printed.",
+
+  "entries": [
+    {
+      "index": 1,
+      "name": "First seasonal hour of the day",
+      "nameOriginal": "שעה ראשונה",
+      "transliteration": "sha'ah rishonah",
+      "tier": "A",
+      "sourceRef": "sa-oc-58-1",
+      "ruler": "unattested",
+      "quality": "Opens the daytime count. Carries the preferred (vatikin) time for Shema and the Amidah: Shulchan Aruch, Orach Chayim 58:1 states that the choicest performance is to read Shema like the vatikin, who aimed to finish Shema and its blessings AT sunrise and to join the Amidah to it immediately at sunrise; Orach Chayim 89:1 sets the mitzvah of the morning Amidah as beginning with ha-netz ha-chamah. Bavli Berakhot 26a: 'the vatikin would complete it with ha-netz ha-chamah.'",
+      "note": "On the Magen Avraham reckoning this hour begins BEFORE sunrise, so sunrise falls inside it rather than at its start. That is not an anomaly to be smoothed over; it is the direct consequence of MGA 58:1."
+    },
+    {
+      "index": 2,
+      "name": "Second seasonal hour of the day",
+      "nameOriginal": "שעה שנייה",
+      "transliteration": "sha'ah sheniyah",
+      "tier": "A",
+      "sourceRef": "rema-oc-233-1",
+      "ruler": "unattested",
+      "quality": "unattested — no named halachic boundary falls at the start or end of this hour in any source consulted.",
+      "note": "EMPTY CELL, DELIBERATE. The classical sources name boundaries, not hours; hours 2 and 8 carry none. Leaving them blank is a finding about the shape of the system: it is a boundary-marking scheme, not a twelve-fold qualitative scheme like the Egyptian hours or the Chaldean planetary hours."
+    },
+    {
+      "index": 3,
+      "name": "Third seasonal hour of the day",
+      "nameOriginal": "שעה שלישית",
+      "transliteration": "sha'ah shelishit",
+      "tier": "A",
+      "sourceRef": "sa-oc-58-1",
+      "ruler": "unattested",
+      "quality": "ITS END IS SOF ZMAN KRIAT SHEMA — the latest time for the morning Shema. Mishnah Berakhot 1:2 and Shulchan Aruch, Orach Chayim 58:1: the time extends 'until the end of three hours, which is a quarter of the day'. Rambam, Mishneh Torah, Hilchot Kriat Shema 1:11 and 1:13.",
+      "note": "This is the single most-consulted boundary in the whole system and the one where the MGA/Gra gap is widest in practice. Magen Avraham 58:1 states, on this very clause: 'it seems to me that HERE all agree we count from alot ha-shachar.' Mishnah Berurah 58:4 answers that the Gra counts from ha-netz ha-chamah, and adds that for a lechatchilah practitioner the difference is moot because one may not delay in any case. Worked gap, Lakewood NJ 2026-03-21: Gra 10:01, MGA-72 09:25, MGA-16.1° 09:21, MGA-19.8° 09:11 — a 50-minute spread on one morning in one town."
+    },
+    {
+      "index": 4,
+      "name": "Fourth seasonal hour of the day",
+      "nameOriginal": "שעה רביעית",
+      "transliteration": "sha'ah revi'it",
+      "tier": "A",
+      "sourceRef": "sa-oc-89-1",
+      "ruler": "unattested",
+      "quality": "ITS END IS SOF ZMAN TEFILLAH — the latest time for the morning Amidah. Mishnah Berakhot 4:1 (R. Yehuda: 'until four hours'); Rambam, Hilchot Tefillah 3:1 ('until the end of the fourth hour, which is a third of the day'); Shulchan Aruch, Orach Chayim 89:1 (same, adding that one who erred and prayed after four hours until chatzot has the reward of prayer but not of prayer in its time). ALSO the erev-Pesach deadline for eating chametz on the 'third of the day' reckoning: Rema to Orach Chayim 443:1.",
+      "note": "Rema at 443:1 records a competing arithmetic for the SAME deadline: 'and some say until two hours before chatzot' (Terumat ha-Deshen §121). That converts a fraction-of-the-day rule into a fixed offset from a different anchor — see variants.komarno for the same move applied to Shema."
+    },
+    {
+      "index": 5,
+      "name": "Fifth seasonal hour of the day",
+      "nameOriginal": "שעה חמישית",
+      "transliteration": "sha'ah chamishit",
+      "tier": "A",
+      "sourceRef": "sa-oc-443-1",
+      "ruler": "unattested",
+      "quality": "On erev Pesach only: Shulchan Aruch, Orach Chayim 443:1 — the Sages forbade chametz two hours before the Torah deadline, i.e. from the start of the fifth hour; during the whole fifth hour benefit is still permitted and one may sell it to a non-Jew. From the start of the sixth hour benefit is forbidden too.",
+      "note": "Rema to 443:1: 'in a leap year, when the day is long, these four hours are according to the condition of the day' — an explicit Tier-A statement that the erev-Pesach hours are zemaniyot, not clock hours."
+    },
+    {
+      "index": 6,
+      "name": "Sixth seasonal hour of the day",
+      "nameOriginal": "שעה שישית",
+      "transliteration": "sha'ah shishit",
+      "tier": "A",
+      "sourceRef": "mishnah-ber-4-1",
+      "ruler": "unattested",
+      "quality": "ITS END IS CHATZOT (midday), the midpoint of the span. Mishnah Berakhot 4:1: 'the morning prayer until chatzot.' Rambam, Hilchot Tefillah 3:1: after four hours and until chatzot one has discharged the obligation but not prayed in its time. Shulchan Aruch, Orach Chayim 89:1 with Rema: after chatzot it is forbidden to pray shacharit at all. Its END also begins the erev-Pesach Torah-level chametz prohibition (Orach Chayim 443:1).",
+      "note": "CONTESTED DEFINITION. Chatzot as 6 × shaah after the start of the span is NOT identical to the sun's meridian transit, because the day lengthens or shortens between morning and evening. KosherJava exposes both (getChatzosHayomAsHalfDay vs astronomical chatzos) and notes that if astronomical chatzot is used, mincha gedola should arguably become half a proportional hour of AFTERNOON hours after transit rather than 6.5 morning hours after sunrise. In every asymmetric-day variant (ateret-torah, asym-16.1-to-7.083) chatzot is explicitly NOT midday. See contestedPoints."
+    },
+    {
+      "index": 7,
+      "name": "Seventh seasonal hour of the day",
+      "nameOriginal": "שעה שביעית",
+      "transliteration": "sha'ah shevi'it",
+      "tier": "A",
+      "sourceRef": "rambam-tef-3",
+      "ruler": "unattested",
+      "quality": "MINCHA GEDOLA falls at 6.5 hours, i.e. half an hour into this hour. Rambam, Hilchot Tefillah 3:2: because on an erev Pesach falling on erev Shabbat the daily offering was slaughtered at six and a half hours, they said that one who prays after six and a half hours has discharged the obligation; 3:4: 'the time of mincha gedola is from six and a half hours until nine and a half hours.' Shulchan Aruch, Orach Chayim 233:1. ITS END is the latest musaf per R. Yehuda: Mishnah Berakhot 4:1, 'until seven hours'.",
+      "note": "Rambam 3:3 records the Geonic view that of the two minchas only mincha gedola should be prayed as the optional one — an internal dispute about which of the two anchors is primary, recorded here because it is the tradition's own disagreement."
+    },
+    {
+      "index": 8,
+      "name": "Eighth seasonal hour of the day",
+      "nameOriginal": "שעה שמינית",
+      "transliteration": "sha'ah sheminit",
+      "tier": "A",
+      "sourceRef": "rema-oc-233-1",
+      "ruler": "unattested",
+      "quality": "unattested — no named halachic boundary falls at the start or end of this hour in any source consulted.",
+      "note": "EMPTY CELL, DELIBERATE. See entry 2."
+    },
+    {
+      "index": 9,
+      "name": "Ninth seasonal hour of the day",
+      "nameOriginal": "שעה תשיעית",
+      "transliteration": "sha'ah teshi'it",
+      "tier": "A",
+      "sourceRef": "rambam-tef-3",
+      "ruler": "unattested",
+      "quality": "MINCHA KETANA falls at 9.5 hours, i.e. half an hour into the tenth hour; the ninth hour is the last full hour of the mincha-gedola window. Rambam, Hilchot Tefillah 3:2: the daily offering was brought at nine and a half hours, so they fixed the time of mincha from nine and a half hours, and this is called mincha ketana. Shulchan Aruch, Orach Chayim 233:1: 'and its principal time is from nine and a half hours onwards.'",
+      "note": "Equivalent statement: 2.5 seasonal hours before the end of the span."
+    },
+    {
+      "index": 10,
+      "name": "Tenth seasonal hour of the day",
+      "nameOriginal": "שעה עשירית",
+      "transliteration": "sha'ah asirit",
+      "tier": "A",
+      "sourceRef": "sa-oc-233-1",
+      "ruler": "unattested",
+      "quality": "Contains mincha ketana at 9.5 hours (its start) and PLAG HA-MINCHA at 10.75 hours (three quarters of the way through). Mishnah Berakhot 4:1: R. Yehuda holds the afternoon prayer runs 'until plag ha-mincha'. Shulchan Aruch, Orach Chayim 233:1 states it as 'the end of eleven hours less a quarter'. Rambam, Hilchot Tefillah 3:4 states the same instant from the other end: mincha ketana runs 'until an hour and a quarter remains of the day'.",
+      "note": "Plag ha-mincha is the earliest moment at which Shabbat may be accepted and the evening prayer said (Shulchan Aruch, Orach Chayim 267:2; Rema to 261:2). Because it is defined by BOTH endpoints of the span it is the boundary most sensitive to the choice of variant: Shulchan Aruch 233:1 with Rema is followed by the qualification that one must be consistent — one may not both pray mincha until night (Rabbanan) and ma'ariv from plag (R. Yehuda) on the same day."
+    },
+    {
+      "index": 11,
+      "name": "Eleventh seasonal hour of the day",
+      "nameOriginal": "שעה אחת עשרה",
+      "transliteration": "sha'ah achat-esreh",
+      "tier": "A",
+      "sourceRef": "sa-oc-233-1",
+      "ruler": "unattested",
+      "quality": "Begins a quarter of an hour AFTER plag ha-mincha. No boundary of its own; it is named in the sources only as the coordinate of plag ('the end of eleven hours less a quarter', Orach Chayim 233:1).",
+      "note": "Recorded because the Shulchan Aruch's own phrasing counts from this hour backwards, not from the tenth hour forwards — the two formulations are arithmetically identical and both are printed."
+    },
+    {
+      "index": 12,
+      "name": "Twelfth seasonal hour of the day",
+      "nameOriginal": "שעה שתים עשרה",
+      "transliteration": "sha'ah shteim-esreh",
+      "tier": "A",
+      "sourceRef": "mb-233-14",
+      "ruler": "unattested",
+      "quality": "ITS END CLOSES THE DAYTIME SPAN — at shki'at ha-chamah (sunset) on the Gra reckoning, or at tzeit ha-kochavim on the Magen Avraham reckoning. Mishnah Berakhot 4:1: the afternoon prayer 'until evening' (Rabbanan).",
+      "note": "Mishnah Berurah 233:14 records that although the Mechaber and Rema imply mincha may be said after sunset up to near nightfall, many poskim hold mincha must be completed BEFORE sunset, i.e. while the sun is not yet hidden from our eyes, and that lechatchilah every person should be careful to do so — praying alone in time rather than with a minyan afterwards. The tradition's own internal dissent about its own boundary, recorded rather than resolved."
+    }
+  ],
+
+  "nightNote": "The night is divided into twelve sha'ot zemaniyot on the same rule, running from the end of the daytime span to its next beginning; chatzot ha-laylah is the midpoint. Magen Avraham 58 (on the 'one who rises early' clause) records a competing kabbalistic reckoning — the Zohar, Vayakhel p. 342, always counts the night as twelve hours whether in summer or winter — and states explicitly that this is NOT so with respect to prayer, 'as I wrote in siman 233'. Two counting systems for the night coexist in the same commentary, for different purposes. Recorded, not resolved.",
+
+  "variants": [
+    {
+      "id": "gra",
+      "label": "Vilna Gaon (and, earlier, Levush / Lechem Chamudot / Shiltei ha-Gibborim): sunrise to sunset",
+      "authority": "Vilna Gaon (R. Eliyahu of Vilna, 1720–1797), as reported by Mishnah Berurah 443:8 and 58:4. The same position is attributed by Magen Avraham 233:3 — decades before the Gra — to the Levush (R. Mordechai Yaffe), the Lechem Chamudot (R. Yom-Tov Lipmann Heller) and the Shiltei ha-Gibborim.",
+      "arithmetic": "START = ha-netz ha-chamah (sunrise); END = shki'at ha-chamah (sunset). shaah = (sunset − sunrise) / 12. All boundaries = sunrise + n × shaah. This is the column labelled 'GRA' in every printed luach and in every zmanim library.",
+      "sourceRef": "mb-443-8"
+    },
+    {
+      "id": "mga-72-fixed",
+      "label": "Magen Avraham: dawn to nightfall, taken as 72 FIXED clock minutes either side of sunrise/sunset",
+      "authority": "Magen Avraham (R. Avraham Gombiner, c.1635–1682), Orach Chayim 58:1 and 233:3, resting on Terumat ha-Deshen (R. Israel Isserlein) Part I §1. The reading of the 72 minutes as FIXED clock minutes in any season and any location is attributed by KosherJava to Machatzit ha-Shekel, Orach Chayim 235:3, and Pri Megadim, Orach Chayim 261:2 (see the Biur Halacha there), with Hazmanim ba-Halacha 17:3 and 17:5.",
+      "arithmetic": "START = sunrise − 72 min; END = sunset + 72 min. shaah = (END − START) / 12 = (daylight + 144 min) / 12 = shaah_gra + 12 min. Derivation of the 72: 4 mil (Bavli Pesachim 94a, baraita of R. Yehuda) × 18 min per mil (Shulchan Aruch, Orach Chayim 459:2: a quarter hour plus a twentieth of an hour).",
+      "sourceRef": "mga-58-1"
+    },
+    {
+      "id": "mga-90-fixed",
+      "label": "Magen Avraham day taken as 90 fixed minutes either side",
+      "authority": "The five-mil reading of Bavli Pesachim 93b–94a (Rabbah bar bar Chana in the name of R. Yochanan) rather than R. Yehuda's four-mil baraita. Widely printed for Jerusalem practice.",
+      "arithmetic": "START = sunrise − 90 min; END = sunset + 90 min. 5 mil × 18 min = 90 minutes.",
+      "sourceRef": "bavli-pes-93b-94a"
+    },
+    {
+      "id": "mga-16-1-deg",
+      "label": "Magen Avraham day, degree-based: sun 16.1° below the geometric horizon at both ends",
+      "authority": "Calibration, not a posek's number: 16.1° is the sun's depression 72 minutes before sunrise in JERUSALEM at the equinox/equilux. Its halachic warrant is Mishnah Berurah 261:23, which states that the Talmudic three-quarter-mil measure 'was said only for the horizon of Babylonia and at the season of Nisan and Tishrei, when days and nights are equal, and in our places, which incline to the northern side of the world, it lengthens much more'.",
+      "arithmetic": "START = the morning instant at which the sun's centre is 16.1° below the geometric horizon; END = the corresponding evening instant. shaah = (END − START) / 12. Not affected by observer elevation, because the depression angle is defined against the geometric (vacuum) horizon.",
+      "sourceRef": "mb-261-23"
+    },
+    {
+      "id": "mga-19-8-deg",
+      "label": "Magen Avraham day, degree-based: sun 19.8° below the geometric horizon at both ends",
+      "authority": "Same logic as 16.1°, calibrated instead on 90 minutes before sunrise in Jerusalem at the equinox/equilux.",
+      "arithmetic": "START/END = the instants at which the sun's centre is 19.8° below the geometric horizon. Fails to exist above roughly 46.8° N on the June solstice — see polarBehaviour.",
+      "sourceRef": "kosherjava"
+    },
+    {
+      "id": "mga-72-zmaniyos",
+      "label": "Magen Avraham day, with the 72 minutes themselves proportional (72 minutes zemaniyot = one tenth of the sunrise-to-sunset day)",
+      "authority": "Minchat Kohen, Ma'amar 2:4. Used, per KosherJava, in the calendars published by the Hisachdus ha-Rabbanim d'Artzot ha-Brit ve-Canada.",
+      "arithmetic": "offset = 1.2 × shaah_gra (because 72 min is one tenth of a 720-minute idealised day). START = sunrise − offset; END = sunset + offset. KosherJava records the physical objection in its own documentation: this makes the sunset-to-tzais interval shortest at the winter solstice and longest at the summer solstice, which does not match twilight behaviour, since the shortest twilight is at the equinox.",
+      "sourceRef": "kosherjava"
+    },
+    {
+      "id": "baal-hatanya",
+      "label": "Baal ha-Tanya: netz amiti to shki'ah amiti, a 1.583° dip",
+      "authority": "R. Shneur Zalman of Liadi (1745–1812), Seder Hachnasat Shabbat; used on Chabad calendars.",
+      "arithmetic": "START = the instant the sun's centre is 1.583° below the sea-level horizon in the morning ('true' sunrise, taken as the top of the disk disappearing at an elevation like the mountains of Eretz Yisrael); END = the corresponding evening instant. shaah = (END − START) / 12, always computed at sea level regardless of the observer's elevation. Associated tzeit: 6° (rounded up from a computed 5.83°).",
+      "sourceRef": "kosherjava"
+    },
+    {
+      "id": "ateret-torah",
+      "label": "Ateret Torah: asymmetric day — alos = one tenth of the day before sunrise, tzais = a fixed offset after sunset",
+      "authority": "Chacham Yosef Harari-Raful, Yeshivat Ateret Torah.",
+      "arithmetic": "START = sunrise − 1.2 × shaah_gra; END = sunset + a configurable fixed offset (KosherJava exposes it as a parameter rather than fixing it). shaah = (END − START) / 12. CONSEQUENCE, stated in the library's own documentation: with this system chatzot is NOT the moment the sun is at its highest.",
+      "sourceRef": "kosherjava"
+    },
+    {
+      "id": "asym-16-1-to-7-083",
+      "label": "Asymmetric day: starts at 16.1° dawn, ends at 7.083° nightfall",
+      "authority": "Attributed by Yisrael ve-ha-Zmanim vol. III, in the discussion of zman no. 22, p. 1015, to R. Yaakov al-Faraji (Shu\"t Maharif), R. Yehosef Schwarz (Divrei Yosef, in the name of R. Nosson Adler), the Ben Ish Chai (Shanah Alef, Vayakhel), R. Nissim Kaduri Chazan (Ma'aseh Nissim), R. Matzliach Mazuz (Shu\"t Ish Matzliach), Dr. Baruch (Berthold) Cohn's luach of 1899, and Shu\"t Teshuvot ve-Hanhagot vol. I nos. 55 and 307 (lechumra, in the name of the Maharil Diskin). Reported here at second hand: I did not open Yisrael ve-ha-Zmanim.",
+      "arithmetic": "START = morning 16.1° depression; END = evening 7.083° depression. shaah = (END − START) / 12. CONSEQUENCE: chatzot is not midday. This is the general family of 'early alos, early tzais' systems; many variants exist with different pairs of angles.",
+      "sourceRef": "kosherjava"
+    },
+    {
+      "id": "komarno",
+      "label": "Three FIXED clock hours before chatzot (the 'Komarno' reckoning for sof zman Shema)",
+      "authority": "Attributed by KosherJava to the Shach in Nekudot ha-Kesef (Yoreh De'ah 184), R. Moshe Lifshitz (Lechem Mishneh on Berakhot 1:2), the Yaavetz (Mor u-Ketziah, Orach Chayim 1; Lechem Shamayim, Berakhot 1:2; She'elot Yaavetz vol. 1 no. 40), R. Yitzchak Eizik of Komarno (Ma'aseh Oreg on Mishnayot Berakhot), Shevut Yaakov and Chatan Sofer; see Yisrael ve-ha-Zmanim vol. 1, 7:3, pp. 55–62. Reported at second hand.",
+      "arithmetic": "sof zman Shema = chatzot − 3 ORDINARY clock hours (not sha'ot zemaniyot). This is a different KIND of rule: it abandons the proportional division for this one boundary. Recorded because an engine that assumes every boundary is n × shaah will silently misrepresent it.",
+      "sourceRef": "kosherjava"
+    },
+    {
+      "id": "astronomical-chatzos",
+      "label": "Chatzot as the sun's meridian transit, with the two halves of the day measured separately",
+      "authority": "Not a named posek in the sources consulted; recorded as an implementation option that KosherJava exposes and documents as an accuracy question. R. Shlomo Zalman Auerbach (Halichot Shlomo, Mo'adim, Nisan–Av, ch. 9 no. 44, pp. 289–292) is cited by that documentation as questioning the common practice of taking chatzot ha-laylah as astronomical midnight, holding it should be the midpoint between sunset and alos; R. Moshe Sternbuch, Teshuvot ve-Hanhagot vol. VII ch. 1 p. 3, is cited as agreeing for Pesach night. Reported at second hand.",
+      "arithmetic": "chatzot = solar transit. Then sof zman Shema = sunrise + 3 × (chatzot − sunrise)/6; mincha gedola = chatzot + 0.5 × (sunset − chatzot)/6; plag = chatzot + 4.75 × (sunset − chatzot)/6. Morning and afternoon proportional hours are NOT equal on this scheme, because the day is lengthening or shortening.",
+      "sourceRef": "kosherjava"
+    },
+    {
+      "id": "elevation",
+      "label": "Sea-level (mishor) sunrise/sunset versus visible (nireh) sunrise/sunset",
+      "authority": "A live three-way dispute, not a settlement. R. Dovid Yehuda Bursztyn, Zmanim ke-Hilchatam, 7th ed., ch. 2 §7 (pp. 181–182) and §9 (pp. 186–187): no zman other than sunrise and sunset should use elevation. R. Yechiel Avraham Zilber, Birur Halacha vol. 6 ch. 58 pp. 34 and 42: elevation SHOULD be accounted for. R. Yaakov Karp, Shimush Zekeinim ch. 1 p. 17: obstructing horizons should be factored in. All three reported at second hand from KosherJava's documentation, which supplies the page references.",
+      "arithmetic": "Elevation h above sea level makes the geometric horizon dip, so sunrise is earlier and sunset later. Peninei Halakha (R. Eliezer Melamed), Prayer 11:6, gives the magnitude: at 800 m the sun is still visible at sunset about 4.6 minutes later than at sea level, and at sunrise about 4.6 minutes earlier. CONSEQUENCE FOR AN ENGINE: this cannot be applied uniformly. Degree-based zmanim (16.1°, 19.8°, 8.5°, 7.083°, 1.583°) are defined against the GEOMETRIC horizon and are unaffected by elevation by construction; fixed-minute and proportional zmanim shift with it. A table that applies one elevation policy to a whole column is misstating at least one of its rows.",
+      "sourceRef": "kosherjava"
+    },
+    {
+      "id": "tzeis-family",
+      "label": "Which nightfall closes the Magen Avraham day (and the calendar day)",
+      "authority": "Bavli Shabbat 34b is the root: R. Yehuda (from sunset while the eastern face reddens...), R. Nechemiah (the time to walk half a mil), R. Yose (the blink of an eye); Rabbah in the name of Rav Yehuda in the name of Shmuel: three quarters of a mil; Rav Yosef: two quarters. Shulchan Aruch, Orach Chayim 261:2 rules bein ha-shemashot at three quarters of a mil, and gives Rabbeinu Tam's tosefet interval as 'three mil and a quarter' from the beginning of shki'ah. Mishnah Berurah 261:23 records that many Rishonim, and the Gra with them, hold bein ha-shemashot begins immediately once the sun is hidden from our eyes and runs three quarters of a mil, after which three medium stars emerge and it is night by Torah law.",
+      "arithmetic": "Live values, all printed: 3/4 mil = 13.5 min (18-min mil, Orach Chayim 459:2); 24 min / 5.95° (Baal ha-Tanya's 18 + 4 + 2, per Hazmanim ba-Halacha vol. II ch. 50 no. 5 pp. 512–513) or 6° rounded; 7.083° (7° 5′, Baruch Cohn's luach of 1899, agreed to by R. David Zvi Hoffmann in Melamed le-Ho'il Orach Chayim 30 p. 36, and by Shu\"t Bnei Zion and Tenuvat Sadeh); 8.5° (three small stars, R. Meir Posen, Ohr Meir); Rabbeinu Tam 72 min / 16.1°; 90 min / 19.8°. Bein ha-shemashot of Rabbeinu Tam begins at 58.5 min after sunset (3.25 mil × 18) or 13.24° depression.",
+      "sourceRef": "sa-oc-261-2"
+    },
+    {
+      "id": "misheyakir",
+      "label": "Misheyakir — earliest tallit and tefillin — a qualitative test with no Tier A number",
+      "authority": "Shulchan Aruch, Orach Chayim 58:1 states the test and NOT a time: the morning Shema's time is 'from when one can see his somewhat-familiar acquaintance at a distance of four cubits and recognise him'. The degree values below are modern calibrations, not rulings.",
+      "arithmetic": "Values in circulation, all calibrated on Jerusalem at the equinox/equilux: 11.5° (≈52 min before sunrise), 11° (≈48 min), 10.2° (≈45 min). Later angle = later time = the stringent choice. NO PRIMARY SOURCE FIXES ANY OF THEM; see gaps.",
+      "sourceRef": "sa-oc-58-1"
+    }
+  ],
+
+  "goldenValues": [
+    {
+      "label": "Jerusalem, spring equinox — the calibration case (72 fixed minutes and 16.1° coincide, by construction)",
+      "place": "Jerusalem, Israel — 31.76904 N, 35.21633 E, elevation 0 (sea level), tz Asia/Jerusalem",
+      "date": "2026-03-21",
+      "expected": "sunrise 05:42; sunset 17:51; shaah zmanis (Gra) 60.77 min. GRA: sof zman Shema 08:44, sof zman tefillah 09:45, chatzot 11:47, mincha gedola 12:17, mincha ketana 15:19, plag ha-mincha 16:35. MGA 72 fixed min: alos 04:30, tzeis 19:03, sof zman Shema 08:08, sof zman tefillah 09:21. MGA 16.1°: sof zman Shema 08:08, sof zman tefillah 09:21. MGA 19.8°: sof zman Shema 07:59, sof zman tefillah 09:15. Misheyakir 11.5° 04:52; misheyakir 10.2° 04:58. Tzeis 7.083° 18:21; tzeis 8.5° 18:27; tzeis 6° (Baal ha-Tanya) 18:16; tzeis 72 min 19:03. Bein ha-shemashot (13.5 min before 7.083°) 18:07. All times local, rounded to the nearest minute.",
+      "publishedIn": "Hebcal zmanim API, hebcal.com, response version v1.4.2, retrieved 2026-08-01. Independently reproduced to the second by the repository's own vendored Astronomy Engine (assets/js/lib/astronomy.js): sunrise 05:41:56, sunset 17:51:09, Gra sof zman Shema 08:44:14, chatzot 11:46:33, plag 16:35:12, MGA-72 sof zman Shema 08:08:14, 16.1° alos 04:29:44.",
+      "url": "https://www.hebcal.com/zmanim?cfg=json&geonameid=281184&date=2026-03-21"
+    },
+    {
+      "label": "Lakewood, New Jersey, spring equinox — the case where the four opinions separate",
+      "place": "Lakewood, NJ 08701, USA — 40.072114 N, −74.204978 E, elevation 0, tz America/New_York",
+      "date": "2026-03-21",
+      "expected": "sunrise 06:58; sunset 19:10; shaah zmanis (Gra) 60.96 min. GRA: sof zman Shema 10:01, sof zman tefillah 11:02, chatzot 13:04, mincha gedola 13:35, mincha ketana 16:38, plag 17:54. MGA 72 fixed min: alos 05:46, tzeis 20:22, sof zman Shema 09:25, sof zman tefillah 10:38. MGA 16.1°: alos 05:38, sof zman Shema 09:21, sof zman tefillah 10:36. MGA 19.8°: sof zman Shema 09:11, sof zman tefillah 10:29. Misheyakir 11.5° 06:02; 10.2° 06:09. Tzeis 7.083° 19:43; 8.5° 19:50; 6° 19:37; 72 min 20:22. THE POINT OF THIS ROW: sof zman Shema spans 09:11–10:01, a 50-minute spread across four published columns for one town on one morning.",
+      "publishedIn": "Hebcal zmanim API, hebcal.com, response version v1.4.2, retrieved 2026-08-01. Independently reproduced with the repository's vendored Astronomy Engine: sunrise 06:58:30, sunset 19:09:58, Gra sof zman Shema 10:01:22, MGA-72 09:25:22, MGA-16.1° 09:21:07, MGA-19.8° 09:11:04.",
+      "url": "https://www.hebcal.com/zmanim?cfg=json&zip=08701&date=2026-03-21"
+    },
+    {
+      "label": "New York City, June solstice — the long-day stress case (shaah zmanis 75.5 min; MGA-72 shaah 87.5 min)",
+      "place": "New York City, NY, USA — 40.71427 N, −74.00597 E, elevation 0, tz America/New_York",
+      "date": "2026-06-21",
+      "expected": "sunrise 05:25; sunset 20:31; shaah zmanis (Gra) 75.47 min. GRA: sof zman Shema 09:11, sof zman tefillah 10:27, chatzot 12:58, mincha gedola 13:36, mincha ketana 17:22, plag 18:56. MGA 72 fixed min: alos 04:13, tzeis 21:43, shaah 87.47 min, sof zman Shema 08:35, sof zman tefillah 10:03. MGA 16.1°: alos 03:36, sof zman Shema 08:17. MGA 19.8°: alos 03:00, sof zman Shema 07:59. Misheyakir 11.5° 04:13; 10.2° 04:22. Tzeis 8.5° 21:21; 7.083° 21:12; 6° 21:04; 72 min 21:43. Sof zman Shema spread across the four columns: 07:59–09:11, seventy-two minutes.",
+      "publishedIn": "Hebcal zmanim API, hebcal.com, response version v1.4.2, retrieved 2026-08-01. Independently reproduced with the repository's vendored Astronomy Engine: sunrise 05:25:02, sunset 20:30:42, Gra sof zman Shema 09:11:27, plag 18:56:22, MGA-72 08:35:27, MGA-16.1° 08:16:48, MGA-19.8° 07:59:10.",
+      "url": "https://www.hebcal.com/zmanim?cfg=json&geonameid=5128581&date=2026-06-21"
+    },
+    {
+      "label": "Latitude cut-offs at which each depression angle ceases to occur on the June solstice — the test that catches a naive engine",
+      "place": "Computed for longitude 0, elevation 0, sun's centre depression below the geometric horizon",
+      "date": "2026-06-21",
+      "expected": "Highest northern latitude at which the sun still reaches the given depression: 0.833° (ordinary sunrise) 65.73 N; 6° 60.57 N; 7.083° 59.48 N; 8.5° 58.07 N; 10.2° 56.37 N; 11.5° 55.07 N; 16.1° 50.47 N; 19.8° 46.77 N; 26° 40.57 N. CONSEQUENCES A TEST SHOULD PIN: London (51.51 N) has NO 16.1° alos and NO 19.8° alos on the June solstice, so the whole degree-based Magen Avraham day is undefined there while the 72-fixed-minute day still computes. Stockholm (59.33 N) additionally loses 8.5°, 10.2° and 11.5°. Anchorage (61.22 N) loses even the 6° tzeis. New York City (40.71 N) cannot compute a 26° alos on the solstice. A correct engine returns an explicit 'does not occur', never a clamped or extrapolated time.",
+      "publishedIn": "Computed 2026-08-01 with the repository's vendored Astronomy Engine (assets/js/lib/astronomy.js, MIT), by bisection on latitude. These are derived values, not a published table — a test may reproduce them but must not cite them as anyone's ruling. The halachic responses to the situation are in polarBehaviour and are sourced separately.",
+      "url": ""
+    }
+  ],
+
+  "polarBehaviour": "The problem starts far south of the Arctic Circle, and it starts with the DEGREE-based opinions rather than with sunrise itself. On the June solstice the sun stops reaching 19.8° above about 46.8 N (south of Vienna), 16.1° above about 50.5 N (south of London), 8.5° above about 58.1 N, and 6° above about 60.6 N; ordinary sunrise survives to about 65.7 N. So an English or northern-European community loses the Magen Avraham degree-based day for weeks each summer while its sunrise-to-sunset day is perfectly well defined — one reason fixed-minute reckonings persist there. Above the Arctic Circle (66.56 N) sunrise and sunset themselves fail and every opinion in this dossier fails with them.\n\nHalacha has no consensus answer, and Star-K's survey (Rabbi Dovid Heber, Kashrus Kurrents, 'Halachos in Arctic & Polar Regions: When Does One Daven and Begin Shabbos?') records at least four incompatible ones:\n  • Minchat Elazar 4:42 — one should not live in or visit such places during the months when the sun is always up or always down.\n  • Tiferet Yisrael (Yachin u-Boaz on Mishnayot, Berakhot, end of ch. 1) — use the times of the place one came from; a traveller from Baltimore keeps Baltimore's times at the North Pole.\n  • Ben Ish Chai (Shu\"t Rav Pe'alim, Sod Yesharim 2:4) — when the sun is absent for twenty-four hours, treat 6:00 a.m. as sunrise and 6:00 p.m. as sunset; Shabbat then begins 18 minutes before 6:00 p.m. and ends at 7:12 p.m., 72 minutes after the replacement sunset.\n  • Mo'adim u-Zmanim vol. 2 §155 (in the glosses) — use the sun's lowest and highest points: in summer the day turns over at theoretical chatzot ha-laylah, in winter at theoretical chatzot ha-yom.\nThese are four different clocks, not four phrasings of one. An implementation must either expose the choice or refuse to compute; it must not pick.\n\nENGINE RULE THAT FOLLOWS: every boundary is a partial function. A depression-based zman returns 'does not occur on this date at this latitude'; a sunrise-based zman returns the same above the Arctic and Antarctic Circles. Clamping to midnight, extrapolating from a neighbouring date, or falling back silently to another opinion are all failures, and the third is the worst because it produces a plausible number attributable to nobody.",
+
+  "sources": [
+    { "id": "mishnah-ber-1-2", "cite": "Mishnah, Berakhot 1:2 — the morning Shema from when one can distinguish sky-blue from white (R. Eliezer: from sky-blue to leek-green).", "tier": "A", "locator": "Sefaria, Hebrew version 'Torat Emet 357', https://www.sefaria.org/api/v3/texts/Mishnah_Berakhot.1.2?version=hebrew", "pd": "Hebrew text public domain (ancient text; Sefaria labels this digitisation Public Domain). The English on the same page is the Koren/Steinsaltz William Davidson Edition, CC-BY-NC — NOT quotable under FRAMING §4.1, which permits only pd-us, cc0 and cc-by.", "fetched": true },
+    { "id": "mishnah-ber-4-1", "cite": "Mishnah, Berakhot 4:1 — morning prayer until chatzot (R. Yehuda: until four hours); afternoon prayer until evening (R. Yehuda: until plag ha-mincha); evening prayer has no fixed limit; musaf all day (R. Yehuda: until seven hours).", "tier": "A", "locator": "Sefaria, Hebrew version 'Torat Emet 357', https://www.sefaria.org/api/v3/texts/Mishnah_Berakhot.4.1?version=hebrew", "pd": "Hebrew digitisation labelled Public Domain by Sefaria; the text itself is 2nd-century.", "fetched": true },
+    { "id": "bavli-ber-26a", "cite": "Bavli, Berakhot 26a — the Mishnah of 4:1 with its gemara; the vatikin completed Shema at ha-netz ha-chamah; and the derivation of the day-unit from Gen. 1:5, 'and it was evening and it was morning, one day'.", "tier": "A", "locator": "Sefaria, https://www.sefaria.org/api/v3/texts/Berakhot.26a?version=hebrew (vocalized Aramaic, William Davidson Edition)", "pd": "The Vilna Shas printing (1880–86) is public domain in the US by pre-1930 publication; the Sefaria vocalized digitisation I actually read is CC-BY-NC and is therefore CITE-ONLY, not quotable. Cite the Vilna folio, do not reproduce Sefaria's text.", "fetched": true },
+    { "id": "bavli-pes-93b-94a", "cite": "Bavli, Pesachim 93b–94a — Rabbah bar bar Chana in the name of R. Yochanan: a person walks ten parsa'ot in a day, five mil from alot ha-shachar to ha-netz ha-chamah and five mil from sunset to the emergence of the stars; and R. Yehuda's baraita giving four mil for each. THE SOURCE OF BOTH THE 72- AND THE 90-MINUTE FIGURES.", "tier": "A", "locator": "Sefaria, https://www.sefaria.org/api/v3/texts/Pesachim.94a?version=hebrew and .93b", "pd": "Vilna Shas printing PD-US (pre-1930); the Sefaria vocalized text is CC-BY-NC and is cite-only.", "fetched": true },
+    { "id": "bavli-shab-34b", "cite": "Bavli, Shabbat 34b — the bein ha-shemashot baraita: R. Yehuda (reddening of the eastern face), R. Nechemiah (the time to walk half a mil), R. Yose (the blink of an eye); and the dispute of Rabbah and Rav Yosef in the name of Shmuel, three quarters of a mil versus two quarters.", "tier": "A", "locator": "Sefaria, https://www.sefaria.org/api/v3/texts/Shabbat.34b?version=hebrew", "pd": "Vilna Shas printing PD-US; Sefaria digitisation CC-BY-NC, cite-only.", "fetched": true },
+    { "id": "rambam-ks-1-11", "cite": "Rambam, Mishneh Torah, Hilchot Kriat Shema 1:11–13 — the ideal is to begin before ha-netz ha-chamah so as to finish the last blessing with sunrise; one who delayed has until the end of three hours of the day; after three hours one has not fulfilled it in its time.", "tier": "A", "locator": "Sefaria, Hebrew version 'Torat Emet 370', https://www.sefaria.org/api/v3/texts/Mishneh_Torah,_Reading_the_Shema.1.11?version=hebrew", "pd": "Hebrew digitisation labelled Public Domain. The Touger English on the same page is CC-BY-NC (© Moznaim) — cite-only, not quotable.", "fetched": true },
+    { "id": "rambam-tef-3", "cite": "Rambam, Mishneh Torah, Hilchot Tefillah u-Virkat Kohanim 3:1–4 — shacharit until the end of the fourth hour, which is a third of the day; mincha gedola from six and a half hours (the erev-Pesach-on-erev-Shabbat slaughter time); mincha ketana from nine and a half hours; and 3:4, mincha ketana runs 'until an hour and a quarter remains of the day'. THE TIER-A SOURCE FOR 6.5, 9.5 AND 10.75.", "tier": "A", "locator": "Sefaria, Hebrew 'Torat Emet 370', https://www.sefaria.org/api/v3/texts/Mishneh_Torah,_Prayer_and_the_Priestly_Blessing.3.1?version=hebrew (and .3.2, .3.3, .3.4)", "pd": "Hebrew digitisation labelled Public Domain by Sefaria.", "fetched": true },
+    { "id": "rambam-pham-ber-1", "cite": "Rambam, Commentary on the Mishnah, Berakhot ch. 1 — cited by Rema (Orach Chayim 233:1 and 443:1) as the source of the sha'ot zemaniyot rule itself.", "tier": "A", "locator": "Cited at second hand from Rema's own attribution; I did NOT retrieve this text.", "pd": "Medieval text; PD by age. Which modern edition would be quotable is not established here.", "fetched": false },
+    { "id": "sa-oc-58-1", "cite": "Shulchan Aruch, Orach Chayim 58:1 with Rema — the morning Shema from when one can recognise a somewhat-familiar acquaintance at four cubits; its time extends 'until the end of three hours, which is a quarter of the day'; the choicest practice is that of the vatikin, finishing Shema and its blessings at sunrise.", "tier": "A", "locator": "Sefaria, version 'Maginei Eretz: Shulchan Aruch Orach Chaim, Lemberg, 1893', https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.58.1?version=hebrew", "pd": "Published 1893 — public domain in the United States by pre-1930 publication; Sefaria labels the version Public Domain. Quotable.", "fetched": true },
+    { "id": "sa-oc-89-1", "cite": "Shulchan Aruch, Orach Chayim 89:1 with Rema — the morning Amidah begins at ha-netz ha-chamah; one who prayed from amud ha-shachar once the eastern face lightened has discharged it; its time extends to the end of four hours, which is a third of the day; after chatzot it may not be prayed at all.", "tier": "A", "locator": "Sefaria, Lemberg 1893 edition, https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.89.1?version=hebrew", "pd": "Lemberg 1893 — PD-US by pre-1930 publication. Quotable.", "fetched": true },
+    { "id": "sa-oc-233-1", "cite": "Shulchan Aruch, Orach Chayim 233:1 — mincha valid from six and a half hours, principal time from nine and a half hours, until night (Rabbanan) or until plag ha-mincha, 'the end of eleven hours less a quarter' (R. Yehuda); and the requirement to be consistent between the two opinions.", "tier": "A", "locator": "Sefaria, Lemberg 1893 edition, https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.233.1?version=hebrew", "pd": "Lemberg 1893 — PD-US. Quotable.", "fetched": true },
+    { "id": "rema-oc-233-1", "cite": "Rema's gloss to Shulchan Aruch, Orach Chayim 233:1 — THE DEFINITION: 'we measure these hours according to the condition of the day, and even if the day is long we measure it as twelve hours, and these are called sha'ot zemaniyot; and everywhere the Sages measured in hours we measure in these hours' (attributed by Rema to Rambam's Commentary on the Mishnah, Berakhot ch. 1).", "tier": "A", "locator": "Same page as sa-oc-233-1; the gloss is set as the 'הגה' after the Mechaber's text. Lemberg 1893.", "pd": "Lemberg 1893 — PD-US. Quotable.", "fetched": true },
+    { "id": "sa-oc-235-1", "cite": "Shulchan Aruch, Orach Chayim 235:1 — the time of the evening Shema is from the emergence of three small stars; on a cloudy day one waits until the doubt is resolved; if recited earlier one repeats it without the blessings. THE CALENDAR-DAY BOUNDARY IN PRACTICE.", "tier": "A", "locator": "Sefaria, Lemberg 1893 edition, https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.235.1?version=hebrew", "pd": "Lemberg 1893 — PD-US. Quotable.", "fetched": true },
+    { "id": "sa-oc-261-2", "cite": "Shulchan Aruch, Orach Chayim 261:2 — the tosefet interval runs from the beginning of shki'ah to bein ha-shemashot, 'three mil and a quarter'; and the measure of bein ha-shemashot is three quarters of a mil, the walking of 1500 cubits, before night. Rema: from plag ha-mincha one may accept Shabbat early.", "tier": "A", "locator": "Sefaria, Lemberg 1893 edition, https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.261.2?version=hebrew", "pd": "Lemberg 1893 — PD-US. Quotable.", "fetched": true },
+    { "id": "sa-oc-267-2", "cite": "Shulchan Aruch, Orach Chayim 267:2 — at plag ha-mincha one may light the Shabbat candles, accept Shabbat with the evening prayer and eat immediately; with a cross-reference to siman 233 for how plag ha-mincha is measured.", "tier": "A", "locator": "Sefaria, Lemberg 1893 edition, https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.267.2?version=hebrew", "pd": "Lemberg 1893 — PD-US. Quotable.", "fetched": true },
+    { "id": "sa-oc-443-1", "cite": "Shulchan Aruch, Orach Chayim 443:1 with Rema — chametz forbidden in benefit from six hours on the 14th; the Sages forbade it two hours earlier, from the start of the fifth hour. Rema: in a leap year, when the day is long, these four hours are according to the condition of the day, and one may eat chametz until a third of the day (Rambam, Commentary on the Mishnah, beginning of Berakhot; Mahari Weil), 'and some say until two hours before chatzot' (Terumat ha-Deshen §121).", "tier": "A", "locator": "Sefaria, Lemberg 1893 edition, https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.443.1?version=hebrew", "pd": "Lemberg 1893 — PD-US. Quotable.", "fetched": true },
+    { "id": "sa-oc-459-2", "cite": "Shulchan Aruch, Orach Chayim 459:2 — 'and the measure of a mil is a quarter of an hour and a twentieth part of an hour' (15 + 3 = 18 minutes). THE CONVERSION THAT TURNS 4 MIL INTO 72 MINUTES AND 5 MIL INTO 90.", "tier": "A", "locator": "Sefaria, Lemberg 1893 edition, https://www.sefaria.org/api/v3/texts/Shulchan_Arukh,_Orach_Chayim.459.2?version=hebrew", "pd": "Lemberg 1893 — PD-US. Quotable.", "fetched": true },
+    { "id": "terumat-hadeshen-1", "cite": "Terumat ha-Deshen (R. Israel Isserlein), Part I §1 — on communities praying ma'ariv three or four hours before nightfall. Contains, verbatim, the twelve-hour proportional reckoning and its span: '...on long days when the day is long in some lands like eighteen hours FROM ALOT HA-SHACHAR UNTIL TZEIT HA-KOCHAVIM...'. THE TEXT THE MAGEN AVRAHAM IS CITING.", "tier": "A", "locator": "Sefaria, version 'Warsaw 1882', https://www.sefaria.org/api/v3/texts/Terumat_HaDeshen,_Part_I_1?version=hebrew", "pd": "Warsaw 1882 printing — PD-US by pre-1930 publication; Sefaria labels it Public Domain. Quotable.", "fetched": true },
+    { "id": "mga-58-1", "cite": "Magen Avraham (R. Avraham Gombiner), Orach Chayim 58:1, on the words 'three hours' — 'it seems to me that HERE all agree we count from alot ha-shachar', with proofs from Berakhot 3a (Tosafot s.v. ela le-man de-gani) and from the gemara's question from David; 'and see what I wrote in siman 233'.", "tier": "A", "locator": "Sefaria, version 'Magen Avraham', https://www.sefaria.org/api/v3/texts/Magen_Avraham_58:1?version=hebrew", "pd": "Magen Avraham first printed 1692; the Sefaria version is labelled Public Domain. PD-US by age. Quotable.", "fetched": true },
+    { "id": "mga-233-3", "cite": "Magen Avraham, Orach Chayim 233:3, on Rema's word 'u-mesha'arinan' — 'in Terumat ha-Deshen it is implied that we measure FROM AMUD HA-SHACHAR UNTIL TZEIT HA-KOCHAVIM, and see what I wrote in siman 443; BUT IN THE LEVUSH AND IN THE LECHEM CHAMUDOT THEY WROTE THAT WE MEASURE FROM HA-NETZ HA-CHAMAH UNTIL ITS SETTING, and so wrote the Shiltei ha-Gibborim'; with a proof for the latter from Pesachim 93b that the time of slaughter is only until the beginning of shki'ah. THE SINGLE MOST IMPORTANT SOURCE IN THIS DOSSIER: the Magen Avraham himself records both schools and names the sunrise-to-sunset school, decades before the Vilna Gaon.", "tier": "A", "locator": "Sefaria, version 'Magen Avraham', https://www.sefaria.org/api/v3/texts/Magen_Avraham_233:3?version=hebrew", "pd": "PD-US by age; Sefaria version labelled Public Domain. Quotable.", "fetched": true },
+    { "id": "mga-261-9", "cite": "Magen Avraham, Orach Chayim 261:9, on 'three quarters of a mil' — 'and it is about a quarter of an hour before tzeit ha-kochavim'; the Bach's stringency from Sefer Yere'im, Mordechai and Agudah that night begins at the start of shki'ah; and a long quotation of Maharil responsum 163 on measuring plag ha-mincha and tosefet Shabbat by the day's own hours, ending 'and it implies that we reckon until tzeit ha-kochavim literally, and so wrote the Minchat Kohen; and see what I wrote in siman 233'.", "tier": "A", "locator": "Sefaria, https://www.sefaria.org/api/v3/texts/Magen_Avraham_261:9?version=hebrew", "pd": "PD-US by age; version labelled Public Domain. Quotable.", "fetched": true },
+    { "id": "mb-58-4", "cite": "Mishnah Berurah 58:4 — 'and we count these three hours from the time of amud ha-shachar, so writes the Magen Avraham; AND THE OPINION OF THE GRA IS FROM THE TIME OF HA-NETZ HA-CHAMAH; and as to lechatchilah there is no practical difference, since in any case one may not delay.' THE CLEANEST ONE-SENTENCE STATEMENT OF THE WHOLE DISPUTE.", "tier": "A", "locator": "Sefaria, https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.58.4?version=hebrew — NOTE: the version Sefaria served is titled 'Wikitext' with license 'unknown'.", "pd": "The Mishnah Berurah itself was published 1884–1907 and is PD-US by pre-1930 publication. The PARTICULAR DIGITISATION I read carries no stated licence, so it is treated as cite-only here; a quotable text must come from a scan of an original printing.", "fetched": true },
+    { "id": "mb-89-5", "cite": "Mishnah Berurah 89:5 — 'if the day is eighteen hours long then it is six hours, and when the day is nine hours long then it is three hours, for we always measure these hours according to the condition of the day, and they are called sha'ot zemaniyot, for the day divides into twelve parts'; plus the reason (the daily offering was never delayed past a third of the day).", "tier": "A", "locator": "Sefaria, https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.89.5?version=hebrew — version 'Wikitext', licence 'unknown'.", "pd": "Work PD-US (pre-1930); this digitisation unlicensed, therefore cite-only.", "fetched": true },
+    { "id": "mb-233-4", "cite": "Mishnah Berurah 233:4 — the fullest statement: the reckoning applies alike to mincha gedola, mincha ketana and plag; we divide the day, long or short, into twelve parts, each called an hour; AND 'as to the measure of the twelve hours of the day by which we measure, THERE IS A DISPUTE AMONG THE POSKIM: some say we reckon from amud ha-shachar until tzeit ha-kochavim — and so the Mechaber ruled without qualification in this siman and below in siman 443 — and some say we reckon the twelve hours from ha-netz ha-chamah until its shki'ah'; with the practical consequence spelled out for plag on each view.", "tier": "A", "locator": "Sefaria, version 'On Your Way', licence Public Domain, https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.233.4?version=hebrew", "pd": "Work published 1884–1907, PD-US by pre-1930 publication; Sefaria labels this digitisation Public Domain. Quotable.", "fetched": true },
+    { "id": "mb-233-14", "cite": "Mishnah Berurah 233:14 — the tradition's own dissent about its own boundary: although the Mechaber and Rema imply mincha may be prayed after shki'ah until near tzeit, 'there are many poskim who dispute this, and their opinion is that the time of mincha is only before sunset', so lechatchilah one must finish while the sun is not yet hidden from our eyes, and it is better to pray in time alone than afterwards with a congregation.", "tier": "A", "locator": "Sefaria, version 'On Your Way' (Public Domain), https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.233.14?version=hebrew", "pd": "PD-US; digitisation labelled Public Domain. Quotable.", "fetched": true },
+    { "id": "mb-261-23", "cite": "Mishnah Berurah 261:23 — three quarters of a mil 'is about a quarter of an hour'; the Shulchan Aruch here gives Rabbeinu Tam's view, but many Rishonim, AND THE GRA AGREED WITH THEM, hold bein ha-shemashot begins immediately once the sun is hidden from our eyes and lasts three quarters of a mil, after which three medium stars emerge and it is night by Torah law. AND, decisively for degree-based computation: 'all agree that the measure of three quarters of a mil changes according to the time and the place, and this was not said in the gemara except for the horizon of Babylonia and at the season of Nisan and Tishrei when days and nights are equal, and in our places, which incline to the northern side of the world, it lengthens much more.'", "tier": "A", "locator": "Sefaria, version 'On Your Way' (Public Domain), https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.261.23?version=hebrew", "pd": "PD-US; digitisation labelled Public Domain. Quotable.", "fetched": true },
+    { "id": "mb-443-8", "cite": "Mishnah Berurah 443:8 — 'and we reckon the day from alot ha-shachar until tzeit ha-kochavim, so write many Acharonim; and some say we reckon from ha-netz ha-chamah until the time of shki'ah, and up to a third of THAT measure it is permitted to eat chametz, and that is a leniency in our case; AND THE OPINION OF THE GRA IS LIKE THEM; and lechatchilah it is good to be stringent like the first opinion.' The explicit Tier-A attribution of sunrise-to-sunset to the Gra.", "tier": "A", "locator": "Sefaria, version 'On Your Way' (Public Domain), https://www.sefaria.org/api/v3/texts/Mishnah_Berurah.443.8?version=hebrew", "pd": "PD-US; digitisation labelled Public Domain. Quotable.", "fetched": true },
+    { "id": "biur-hagra", "cite": "Biur ha-Gra (the Vilna Gaon's own glosses) to Shulchan Aruch, Orach Chayim — the primary locus for the Gaon's position, conventionally cited at 261:2 and 459:2.", "tier": "A", "locator": "NOT OBTAINED. Sefaria's API returned 404 for 'Biur HaGra on Shulchan Arukh, Orach Chayim 459:2' and 261:2 and for 'Biur Halakhah on ... 58:1' and '261:2'; no alternative digitisation was located within this session.", "pd": "Would be PD-US by age (Gra d. 1797; standard printings pre-1930).", "fetched": false },
+    { "id": "kosherjava", "cite": "Eliyahu Hershfeld, KosherJava Zmanim library — ZmanimCalendar.java and ComprehensiveZmanimCalendar.java, master branch, © 2004–2026, LGPL 2.1. The most detailed machine-readable statement of the arithmetic in existence, with page-level citations to the halachic literature in the Javadoc.", "tier": "C", "locator": "https://raw.githubusercontent.com/KosherJava/zmanim/master/src/main/java/com/kosherjava/zmanim/ZmanimCalendar.java and .../ComprehensiveZmanimCalendar.java, both downloaded and read 2026-08-01; API docs at https://kosherjava.com/zmanim/docs/api/com/kosherjava/zmanim/ZmanimCalendar.html", "pd": "In copyright (LGPL 2.1). Code may be reused under the LGPL; the Javadoc PROSE is not public domain and is paraphrased here, never reproduced. PRACTITIONER/ENGINEERING LITERATURE — the poskim it cites (Bursztyn, Zilber, Karp, Benish, Manet, Posen, Shakow, Yisrael ve-ha-Zmanim, Hazmanim ba-Halacha) are reported at second hand and are flagged as such wherever used.", "fetched": true },
+    { "id": "hebcal", "cite": "Hebcal zmanim API and @hebcal/core Zmanim class documentation — the publication supplying the golden values.", "tier": "C", "locator": "https://www.hebcal.com/zmanim?cfg=json&geonameid=281184&date=2026-03-21 (and the two other URLs in goldenValues), response 'version':'v1.4.2', retrieved 2026-08-01; method definitions at https://hebcal.github.io/api/core/classes/Zmanim.html", "pd": "@hebcal/core is open-source; the site content is in copyright. Values are facts and are reproduced as data, not as text. PRACTITIONER/ENGINEERING SOFTWARE, not a halachic authority.", "fetched": true },
+    { "id": "stark-polar", "cite": "Rabbi Dovid Heber, 'Halachos in Arctic & Polar Regions: When Does One Daven and Begin Shabbos?', Kashrus Kurrents (Star-K Kosher Certification). Surveys Minchat Elazar 4:42, Tiferet Yisrael (Yachin u-Boaz, Berakhot end of ch. 1), Ben Ish Chai (Shu\"t Rav Pe'alim, Sod Yesharim 2:4) and Mo'adim u-Zmanim vol. 2 §155.", "tier": "C", "locator": "https://www.star-k.org/articles/kashrus-kurrents/515/when-does-one-pray-when-there-is-no-day/ — fetched 2026-08-01", "pd": "In copyright. Paraphrased; the four positions are attributed to their own loci, which the article supplies.", "fetched": true },
+    { "id": "peninei-11-6", "cite": "R. Eliezer Melamed, Peninei Halakha, Prayer 11:6 ('The Precise Times of Vatikin and Netz') — visible sunrise over an obstructed eastern horizon versus astronomical sunrise on a level horizon; at 800 m the sun is visible about 4.6 minutes later at sunset and 4.6 minutes earlier at sunrise. Footnotes cite Hazmanim ba-Halacha ch. 7.", "tier": "C", "locator": "https://ph.yhb.org.il/en/02-11-06/ — fetched 2026-08-01; the fetched page was partial and most footnotes were truncated.", "pd": "In copyright. Paraphrased only. CONTEMPORARY PRACTITIONER LITERATURE, labelled as such.", "fetched": true },
+    { "id": "wikipedia-zmanim", "cite": "Wikipedia, 'Zmanim' — used only for orientation and for the observation that misheyakir has 'no Talmudic or early sources as to when this time occurs'.", "tier": "C", "locator": "https://en.wikipedia.org/wiki/Zmanim — fetched 2026-08-01", "pd": "CC BY-SA. Tertiary; no claim in this dossier rests on it alone.", "fetched": true },
+    { "id": "cohn-1899", "cite": "Baruch (Berthold) Cohn, Tabellen enthaltend die Zeitangaben für den Beginn der Nacht und des Tages für die Breitengrade +66 bis −38 (Strasbourg, 1899) — the printed luach from which the 7° 5′ (7.083°) tzeit derives, based on observation of three medium stars; agreed to by R. David Zvi Hoffmann in Melamed le-Ho'il, Orach Chayim 30, p. 36.", "tier": "A", "locator": "NOT OBTAINED. The Frankfurt UB digitisation at https://sammlungen.ub.uni-frankfurt.de/freimann/content/titleinfo/983088 returned a bot-verification interstitial. Bibliographic details and the Hoffmann correspondence are reported at second hand from KosherJava's Javadoc.", "pd": "Published 1899 — would be PD-US by pre-1930 publication, and hence directly quotable, IF a scan can be obtained. A genuine published historical table; the best candidate for a second, non-software golden reference.", "fetched": false }
+  ],
+
+  "gaps": [
+    "THE VILNA GAON'S OWN WORDS WERE NOT OBTAINED. Every attribution of the sunrise-to-sunset day to the Gra in this dossier rests on Mishnah Berurah 58:4 and 443:8 — Tier A, but a report of the Gaon, not the Gaon. Sefaria's API returned 404 for Biur ha-Gra on Orach Chayim 459:2 and 261:2 and for Biur Halacha on 58:1 and 261:2. Until a scan of the Biur ha-Gra is read, the column every luach labels 'GRA' rests here on a secondary attestation.",
+    "RAMBAM'S COMMENTARY ON THE MISHNAH, BERAKHOT CH. 1 — the text Rema names as the source of the sha'ot zemaniyot rule at Orach Chayim 233:1 and 443:1 — was not retrieved. The rule is quoted here from Rema's gloss, i.e. from the citer, not the cited.",
+    "NO TIER B SOURCE WAS VERIFIED. Every arithmetic claim in this dossier rests on Tier A primary halachic texts or Tier C practitioner/engineering literature. Searches for peer-reviewed academic treatment of halachic twilight and of the seasonal-hour system returned nothing I could open and confirm; the one journal PDF located (Hakirah vol. 8, Dickman) turned out to be about the calendar, not zmanim. Sacha Stern's Calendar and Community (Oxford, 2001) is the obvious candidate for the day-boundary question and was NOT consulted. This is a real hole and it should be filled before the page ships.",
+    "MISHEYAKIR HAS NO PRIMARY NUMBER AT ALL, AND THAT IS THE FINDING. Shulchan Aruch, Orach Chayim 58:1 gives a qualitative recognition test and no time. The circulating values — 11.5°, 11°, 10.2° — are modern back-calibrations from 52, 48 and 45 minutes before sunrise in Jerusalem at the equinox, and no source consulted attributes any of them to a posek by name. Any cell in this row that is not marked as a calibration is a fabricated attribution.",
+    "COHN 1899 NOT READ. The Frankfurt UB scan is behind a bot check. Its bibliographic data and the Hoffmann correspondence are second-hand from KosherJava. Since it is the only PRINTED, PRE-1930, PUBLIC-DOMAIN published table identified in this dossier, obtaining it would give phase 2 a golden reference that is not a piece of software.",
+    "SHULCHAN ARUCH HA-RAV / SEDER HACHNASAT SHABBAT (Baal ha-Tanya) was not opened; the 1.583° and 6° figures are taken from KosherJava's reading of it and from a Chabad.org explanatory page that returned HTTP 403 to automated fetching.",
+    "THE ATERET TORAH TZAIS OFFSET IS NOT FIXED IN ANY SOURCE I READ. KosherJava exposes it as a settable parameter with no documented default in the material I extracted, so this variant cannot be computed at all without a communal luach to supply the number.",
+    "HEBCAL'S ROUNDING RULE IS INFERRED, NOT DOCUMENTED. Comparison against second-resolution recomputation shows nearest-minute rounding (e.g. chatzot 11:46:33 published as 11:47), but the API documentation I read does not state it. A phase-2 test must therefore compare rounded-to-minute values or allow ±1 minute, and should say which it is doing and why.",
+    "NO SOUTHERN-HEMISPHERE OR EQUATORIAL CASE WAS CHECKED. Every golden value is northern mid-latitude. The polar cut-offs were computed for the June solstice only; the December-solstice southern mirror was not verified.",
+    "THE SHAPE OF THE NIGHT HOURS IS UNDER-SOURCED HERE. The twelve night hours are asserted from Magen Avraham 58 and the structure of the system, but no boundary of practical halachic consequence other than chatzot ha-laylah and the evening Shema was traced to a locus in this session."
+  ],
+
+  "contestedPoints": [
+    "IS THE 'GRA' COLUMN ACTUALLY THE GRA'S? Magen Avraham 233:3 attributes sunrise-to-sunset to the Levush, the Lechem Chamudot and the Shiltei ha-Gibborim — all writing before the Vilna Gaon was born. Mishnah Berurah 443:8 says the Gra holds 'like them', i.e. joins an existing school. Every luach and every library nonetheless labels the column 'GRA'. A human must decide whether this page reproduces the conventional label, corrects it, or prints both — and whichever it does, the Magen Avraham's own attribution belongs on the page.",
+    "FIXED MINUTES, PROPORTIONAL MINUTES, OR DEGREES for the 72/90-minute intervals. Machatzit ha-Shekel (Orach Chayim 235:3) and Pri Megadim (Orach Chayim 261:2) are cited for fixed clock minutes in any season and place; the Minchat Kohen (Ma'amar 2:4) for minutes zemaniyot; and Mishnah Berurah 261:23 states in its own voice that the Talmudic measure was given for the horizon of Babylonia at the equinoxes and lengthens further north — which is an argument, from a Tier A source, for the degree-based school. All three are printed in current luchot. Nothing here settles it.",
+    "EQUINOX OR EQUILUX as the calibration date for every degree value. R. Meir Posen (Ohr Meir) holds the equilux; R. Yedidya Manet (Zmanei ha-Halacha le-Ma'aseh) and R. Yonah Mertzbuch hold the astronomical equinox. KosherJava puts the difference at about nine seconds for the 16.1° figure — trivial in minutes, but it means the 'canonical' angles are not canonical.",
+    "WHICH REFRACTION MODEL. KosherJava uses a global average of 34′ (0.566°) and computes the Baal ha-Tanya tzeis at 5.93°, rounded by most calendars to 5.95°; R. Yedidya Manet uses 31′ (0.516°) for Israel and lists 5.88°, a value he himself later questions. The published degree is therefore a function of an atmospheric assumption, and different luchot embed different assumptions.",
+    "SEA-LEVEL VERSUS VISIBLE SUNRISE. R. Dovid Yehuda Bursztyn (Zmanim ke-Hilchatam ch. 2) holds no zman other than sunrise and sunset should use elevation; R. Yechiel Avraham Zilber (Birur Halacha vol. 6 ch. 58) holds elevation should be accounted for; R. Yaakov Karp (Shimush Zekeinim ch. 1) holds obstructing horizons should be factored in. At 800 m the gap is about 4.6 minutes each way. There is no defensible single default.",
+    "IS CHATZOT THE MIDPOINT OR THE TRANSIT? Six proportional hours after the start of the span is not the sun's meridian crossing, because the day lengthens or shortens between morning and evening. If astronomical chatzot is adopted, then consistency arguably requires morning hours to be one sixth of sunrise-to-chatzot and afternoon hours one sixth of chatzot-to-sunset — i.e. UNEQUAL proportional hours within one day, which contradicts the plain sense of Rema at 233:1. R. Shlomo Zalman Auerbach (Halichot Shlomo, Mo'adim, Nisan–Av 9:44) and R. Moshe Sternbuch (Teshuvot ve-Hanhagot VII:1) are cited as taking the night midpoint to be the midpoint of sunset-to-alos rather than astronomical midnight, which is the same question at the other end of the clock.",
+    "ASYMMETRIC DAYS BREAK CHATZOT ENTIRELY. In the Ateret Torah system and in the alos-16.1°-to-tzais-7.083° family, chatzot is explicitly not midday, because the two ends of the span are not symmetric about the transit. A comparison table that prints a single 'chatzot' row across all columns is stating something false about at least two of them.",
+    "WHICH SHKI'AH ENDS THE GRA DAY. Magen Avraham 233:3 raises the problem directly: the Levush's 'setting' may mean the END of shki'ah, about a quarter hour before tzeit, while the proof from Pesachim 93b points to the BEGINNING of shki'ah, about an hour and a fifth before tzeit. The difference is roughly an hour on the endpoint of the whole span.",
+    "EREV PESACH USES A DIFFERENT KIND OF RULE IN THE SAME PARAGRAPH. Rema at Orach Chayim 443:1 gives both 'until a third of the day' (a fraction of the span) and 'until two hours before chatzot' (a fixed offset from an anchor, Terumat ha-Deshen §121). Mishnah Berurah 443:8 then layers the MGA/Gra span dispute on top of the first of them. Three arithmetics for one deadline.",
+    "THE KOMARNO RECKONING ABANDONS PROPORTIONALITY ALTOGETHER for sof zman Shema — three ORDINARY hours before chatzot. An engine built on the assumption that every boundary is n × shaah cannot express it, and a table that omits it is omitting a position with a substantial chain of attribution behind it.",
+    "WHAT TO DO WHERE THE SUN DOES NOT COOPERATE. Four incompatible answers are on the record (see polarBehaviour), from 'do not go there' to 'keep your home city's clock' to 'call 6 a.m. sunrise' to 'use the sun's high and low points'. This is not a rounding question; the four give different days."
+  ],
+
+  "honestLimits": "This page computes what a set of named halachic opinions imply for a given place and date. It is not a luach, it is not a psak, and nobody should use it to decide when to pray.\n\nThree specific limits, stated plainly.\n\nFIRST, THE ARITHMETIC IS DOWNSTREAM OF A CHOICE THIS PAGE CANNOT MAKE FOR ANYONE. Every number here is a function of which opinion is selected — sunrise-to-sunset or dawn-to-nightfall; 72 fixed minutes or 72 proportional minutes or 16.1 degrees; sea level or the observer's actual elevation; midpoint chatzot or transit chatzot. On one morning in one New Jersey town the published latest time for Shema ranges over fifty minutes across four columns that are all correct. Which column is yours is a question about your community and your posek, and this page has no view on it.\n\nSECOND, ASTRONOMICAL PRECISION IS NOT HALACHIC PRECISION. The engine can place the sun's centre 16.1 degrees below the geometric horizon to the second. It cannot tell you that 16.1 degrees is right: that number is a nineteenth- and twentieth-century back-calibration from a Talmudic walking-distance figure, converted through an eighteen-minute mil, calibrated on Jerusalem at a date that itself is disputed (equinox or equilux), through a refraction model that different luchot choose differently. Seconds of computed output rest on centuries of contested interpretation. A displayed time with a colon and two digits is a claim about arithmetic, not about the sky and not about the law.\n\nTHIRD, THE EMPTY CELLS AND THE FAILURES ARE PART OF THE ANSWER. Hours two and eight carry no named boundary and are shown blank. Misheyakir has no primary number and is shown as a calibration, not a ruling. Above about 50.5 degrees north the degree-based dawn simply does not occur in midsummer, and the page says so rather than producing a plausible substitute; above the Arctic Circle everything fails and halacha itself supplies four incompatible remedies rather than one. Where this page shows nothing, that is because the sources show nothing — and a page that filled those cells to look complete would be lying about the tradition in order to look tidy."
+}
