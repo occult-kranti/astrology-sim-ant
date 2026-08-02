@@ -161,7 +161,71 @@ export async function run() {
     ok(materiaForRuler('Nonesuch') === null, 'materiaForRuler must return null for an unknown ruler');
   }
 
+  // The horā suite runs inside this one so a single registration covers both
+  // and a Vedic failure cannot be silently unregistered.
+  const v = await runVedicHora();
+  for (const f of v.failures) failures.push('[vedic-hora] ' + f);
+
   return { pass: failures.length === 0, failures };
 }
 
 const txtLen = s => (typeof s === 'string' ? s.trim().length : 0);
+
+// ---------------------------------------------------------------------------
+//  The Vedic horā — a SEPARATE run() so a failure names the tradition it broke.
+//
+//  The load-bearing assertion is the CONVERGENCE. This site claims the horā and
+//  the Western planetary hour are the same arithmetic, and it claims it because
+//  al-Bīrūnī states it of the Indian system — not because two tables look alike.
+//  If the two engines ever disagree, either the claim is wrong or one engine
+//  drifted, and both are the kind of thing that must fail in Node rather than be
+//  discovered by a reader.
+// ---------------------------------------------------------------------------
+export async function runVedicHora() {
+  const failures = [];
+  const ok = (c, m) => { if (!c) failures.push(m); };
+  const { vedicHora, horaTable, HORA_ORDER } = await import('../../assets/js/core/vedic-hora.js');
+  const { planetaryHour } = await import('../../assets/js/core/planetary-hours.js');
+
+  ok(HORA_ORDER.join(',') === 'Saturn,Jupiter,Mars,Sun,Venus,Mercury,Moon',
+    'the descending graha order must match the sources; got ' + HORA_ORDER.join(','));
+
+  for (const [iso, lat, lon] of [
+    ['2026-08-01T18:00:00Z', 40.71, -74.01],
+    ['2026-01-15T03:00:00Z', 28.61, 77.21],
+    ['2026-05-05T11:30:00Z', -33.87, 151.21],
+  ]) {
+    const d = new Date(iso);
+    const h = vedicHora(d, lat, lon);
+    ok(Boolean(h), `vedicHora returned null at ${iso} ${lat},${lon}`);
+    if (!h) continue;
+    const w = planetaryHour(d, lat, lon);
+    ok(Boolean(w) && w.ruler === h.graha,
+      `CONVERGENCE BROKEN at ${iso}: planetary hour says ${w && w.ruler}, horā says ${h.graha}. `
+      + 'The site asserts these are the same arithmetic on al-Bīrūnī\'s authority; if they disagree '
+      + 'the claim is wrong or an engine has drifted.');
+    ok(h.indexInHalf === null || (h.indexInHalf >= 1 && h.indexInHalf <= 12),
+      `horā index ${h.indexInHalf} is outside 1..12 at ${iso} ${lat},${lon}`);
+    ok(h.materia === null && typeof h.materiaNote === 'string',
+      'the horā must carry materia null WITH a note — silence would read as "no such tradition"');
+    ok(h.tier === 'A' && typeof h.source === 'string' && h.source.length > 40,
+      'the horā must ship its Tier A citation');
+    const t = horaTable(d, lat, lon);
+    ok(Boolean(t) && t.rows.length === 24, 'horaTable must return 24 horās');
+    if (t) {
+      ok(t.rows[0].graha === t.dayLord,
+        `the first horā must be the day lord: got ${t.rows[0].graha}, day of ${t.dayLord}`);
+      for (let i = 1; i < t.rows.length; i += 1) {
+        ok(+t.rows[i].start === +t.rows[i - 1].end,
+          `horā ${i + 1} does not begin where horā ${i} ends — the day must tile exactly`);
+      }
+    }
+  }
+
+  // Polar: undefined, not merely unavailable.
+  ok(vedicHora(new Date('2026-06-21T12:00:00Z'), 78, 15) === null,
+    'above the arctic circle in June the seasonal division is UNDEFINED and must return null '
+    + 'rather than silently falling back to clock hours');
+
+  return { pass: failures.length === 0, failures };
+}

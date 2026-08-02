@@ -20,6 +20,7 @@ import {
   materiaForRuler, INCENSE_SOURCE, INCENSE_FRAMING,
 } from '../core/incense.js';
 import { hoursTable } from '../core/planetary-hours.js';
+import { vedicHora } from '../core/vedic-hora.js';
 
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -229,14 +230,21 @@ function paintNow(lat, lon) {
   // Under FRAMING §11.3 an empty cell is the only honest cell here. Filling it
   // from general knowledge is exactly the fabrication the whole protocol exists
   // to stop, and it would be indistinguishable on the page from a cited one.
-  const vedic = `<div class="inc-assign inc-vedic">
-      <b>Vedic horā</b> — this hour's ruler is ${esc(cur.ruler)} on the same Chaldean sequence
-      <span class="small muted">(the jyotiṣa horā runs the same order from sunrise)</span>.
-      <div class="small"><b>Materia: not carried.</b> This repo holds no Indian incense data —
-        no graha samidha, no nakṣatra-vanaspati, no remedial-herb table. Rather than fill the cell
-        from general knowledge, it stays empty: an invented assignment would look exactly like a
-        cited one. It needs its own sourced round (HORARIUM stage 3).</div>
-    </div>`;
+  const h = vedicHora(now, lat, lon);
+  const vedic = h
+    ? `<div class="inc-assign inc-vedic">
+        <b>Vedic horā</b> — ${esc(h.iast || h.graha)} <span class="small muted">${esc(h.devanagari || '')}</span>,
+        ${h.night ? 'night' : 'day'} horā ${esc(h.indexInHalf)} of 12
+        <span class="small muted">· day of ${esc(h.dayLord)}</span>
+        <div class="small muted">Same arithmetic as the hour above, and that is a <b>sourced</b> claim,
+          not an inference from the tables looking alike: al-Bīrūnī (c. AD 1030) reports the Indian
+          dominants as arranged by <i>horæ obliquæ temporales</i> — twelve by day, twelve by night.</div>
+        <div class="small"><b>Materia: not carried.</b> This repo holds no Indian incense data —
+          no graha samidha, no nakṣatra-vanaspati, no remedial-herb table. Rather than fill the cell
+          from general knowledge, it stays empty: an invented assignment would look exactly like a
+          cited one. It needs its own sourced round.</div>
+      </div>`
+    : '';
 
   const assigned = m
     ? `<div class="inc-assign">The texts assign to ${esc(cur.ruler)}: <b>${esc(m.substance)}</b>
