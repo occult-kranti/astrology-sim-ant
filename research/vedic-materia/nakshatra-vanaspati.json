@@ -1,0 +1,912 @@
+{
+  "key": "nakshatra-vanaspati",
+  "track": "COMPILER — the nakṣatra-vanaspati: the tree of each lunar mansion. Sanskrit name + locus for all 27 positions from two Sanskrit witnesses; botanical identification only where a ledger source supplies one; the modern divergences named cell by cell.",
+  "round": "R33 vedic-materia",
+  "compiled": "2026-08-01",
+  "compiledBy": "COMPILER role under docs/plans/horae/RESEARCH-PROTOCOL.md C3 (fetcher/compiler split). This file cites ONLY snippet ids present in the fetcher ledger persisted at ledgerSources[]. No source was introduced by the compiler. No citation was written from the compiler's own knowledge. Every positional count in this file was re-derived by counting the words of the quoted verses against the fetcher's own locus annotations before it was written down.",
+
+  "whatThisIs": "The nakṣatra-vanaspati (Skt. nakṣatra-vṛkṣa) is ONE tree assigned to ONE lunar mansion, twenty-seven in a fixed order from Aśvinī. Monier-Williams glosses nakṣatra-vṛkṣa as a tree consecrated to a nakṣatra (MW-1); Böhtlingk's shorter Wörterbuch gives the same (MW-2). It is NOT the samidha (homa fuel) list and it is NOT a dhūpa (incense) list, and this ledger carries direct textual evidence that those are separately indexed categories. (a) SAMIDHA: Atharvaveda-Pariśiṣṭa 26 is the pariśiṣṭa devoted specifically to samidhs (AVP-6); its series — arka, palāśa, madhuka, nyagrodha, udumbara, plakṣa, aśvattha, then gomaya and kuśa, nine members (AVP-7) — is indexed by the text's own next words to the GRAHAS beginning with the Sun, not to the nakṣatras (AVP-8); and the same pariśiṣṭa gives a third, wholly different indexing principle, samidh chosen by PURPOSE — puṣṭi, śānti, wealth, kingship (AVP-9). (b) NAKṢATRA-INDEXED PLANT MATTER THAT IS NOT THIS LIST: Atharvaveda-Pariśiṣṭa 1, the Nakṣatrakalpa (AVP-1), runs a nakṣatra series at chs. 42–45 that is a BATHING rite (nakṣatra-snāna, AVP-2), and its cells are plural and heterogeneous — Kṛttikā takes a leaf-infusion of three trees at once (AVP-3), Ārdrā takes resins and aromatics rather than a tree (AVP-4), and Śraviṣṭhā/Dhaniṣṭhā takes sandalwood (AVP-5) where the tree list gives śamī. A nakṣatra-indexed plant is therefore not automatically a nakṣatra-vṛkṣa. (c) THE MERGE IS DOCUMENTED IN THE PRESENT TENSE, NOT IN THE TEXTS: a commercial devotional supplier sells a product called 'Nakshatra Samidha' and defines it on the page as the woods of the trees representing the 27 nakṣatras, for use in homa (BHAKTI-1, BHAKTI-2). That is category (1) sold as category (2). (d) AND ONE HONEST QUALIFICATION, because the tidy separation is not the whole evidence: the Nārada Purāṇa itself uses a person's janma-nakṣatra tree as homa fuel, three times in one chapter (NARP-5, NARP-6, NARP-7). So a textual bridge from the tree list to fire-fuel does exist — but it is specific (the wood is taken from an individual's birth star, not from a graha index) and it sits inside a hostile-rite (abhicāra) chapter. It is not the generic commercial 'nakṣatra samidha'. The two facts are kept side by side rather than resolved. FINALLY, on register: this is a living practice — plantings of nakṣatra groves are current (WIKI-1; SONI-7) — and the site records what named texts say, claims no efficacy of any kind, and carries no quantity and no process parameter.",
+
+  "earliestTextCarryingTheList": "TWO witnesses carry the full 27, and THIS LEDGER DOES NOT ESTABLISH WHICH IS EARLIER. (1) Rājanighaṇṭu (Narahari), varga 2, vv. 2.41–2.46 in the GRETIL text of the Calcutta 1933 edition = vv. 33–38 in the Ānandāśrama Sanskrit Series no. 33, 1896, where the passage is a printed, titled section headed 'Nakṣatravṛkṣāḥ' (ANAND-1). It is the only witness that presents the list as an explicit doctrinal section, announces it ('now I shall state the nakṣatra trees, known from scripture' — RAJNI-1 = ANAND-2), states its own count and indexing rule ('these 27 trees have the nakṣatras as their deities, in order from Aśvinī; this is the nakṣatra-paddhati' — RAJNI-4), and names its own sources (RAJNI-6 = ANAND-11). It is also the only locus the 19th-century lexica knew: the sole textual citation in Böhtlingk's entry for nakṣatravṛkṣa is 'Rājan 2,41' (MW-3). (2) Nārada(-īya) Purāṇa, Pūrvabhāga 89.144–147, which carries the same 27 names in the same order (NARP-1 through NARP-4) — but EMBEDDED IN A DEVĪ NĀMĀVALI, in feminine epithet form, between the nakṣatra-deity series and the nakṣatra-yoni animal series. That it is the nakṣatra tree list is stated by the Motilal translation's own footnote (AITM-1) and supported by that edition's note that the immediately preceding series is the nakṣatra-deity list running Aśvinī to Pūṣan (AITM-3); the passage itself does not label the trees nakṣatra by nakṣatra. DATING: the Rājanighaṇṭu is placed in the 14th century by an aggregator page only (RDATE-1, RDATE-2), and the fetcher records that Meulenbeld could not be reached — treat the date as weakly sourced. For the Nārada Purāṇa, Hazra's early core is Pūrvabhāga chs. 1–41 and ch. 89 is OUTSIDE it (NDATE-1); Rocher holds the composition date of each Purāṇa unclear (NDATE-3); Wilson's low-end estimate is the 16th or 17th century (NDATE-4). NO SCHOLAR IN THIS LEDGER HAS COMPARED THE TWO PASSAGES OR STATED A PRIORITY, so this dossier states none (FRAMING §2.4). What can be said without inference is only this: Narahari's own verse names 'bṛhatsuśruta, nāradīya, nārāyaṇī' as the sources of the doctrine (RAJNI-6, ANAND-11), and a nāradīya text demonstrably carries it (NARP-1..4). The other two names he gives were searched for and not traced (see gaps).",
+
+  "whereTheModernVersionsDiverge": "The Sanskrit witnesses agree closely on the NAMES; the modern circulating tables diverge from them mainly in the BOTANICAL IDENTIFICATION of ambiguous names, and in six cells they contradict the Sanskrit outright. Flat contradictions: Uttara Bhādrapadā, where every Sanskrit witness has nimba/ariṣṭa and the mirrored modern tables have a palm — Corypha umbraculifera (WIKI-6), tāla-druma (NRR-2); Hasta, where both Tier A witnesses have ambaṣṭha-taru and the modern tables offer Spondias, Azadirachta, Jasminum (WIKI-4), āmrāta (NRR-1) and Sapindus mukorossi (AW-2); Jyeṣṭhā, where three Sanskrit readings (śambara / saralā / mocā) meet at least four further modern ones (WIKI-5, CI-2, AW-3, BHAKTI-3, NRR-4); Ārdrā, where the main verse has kṛṣṇa and the modern tables have agarwood (CI-4, BHAKTI-4, WIKI-3), red sanders (SONI-4, AW-1) or ebony (WIKI-3) — one Wikipedia cell offering three mutually exclusive binomials at once (WIKI-3) and one astrology-portal row internally inconsistent, naming 'Black Eaglewood' and then printing the binomial for red sanders (AW-1); Anurādhā, where kesara / kakubhā / nāgapuṣpa meet 'Bakula, Nagkesa' offered together (CI-3) and Mimusops elengi (AW-4); Viśākhā, where both Tier A witnesses have vikaṅkata and the 1896 editor's variant list has babbulī (ANAND-8). PROVENANCE OF THE MODERN TABLES: the most widely mirrored one, the Wikipedia 'Nakshatravana' table, cites NO Sanskrit text anywhere on the page, and its only substantive reference is a 2012 newspaper article (WIKI-8) which the fetcher could not open (HTTP 403). The one peer-reviewed paper retrieved names no Sanskrit primary text for its nakṣatra table either (SONI-7). The practitioner lists name no source at all (CI-1). So the divergence is not between two documented recensions; it is between a narrow, citable textual tradition and a broad modern circulation whose own provenance is largely unestablished.",
+
+  "quotationPolicy": "PD and quotable: the Sanskrit of the Rājanighaṇṭu (13th/14th-c. work; Calcutta 1933 and Ānandāśrama 1896 printings), the Sanskrit of the Nārada Purāṇa, the Atharvaveda-Pariśiṣṭas in Bolling & von Negelein 1909–10, the Bṛhatsaṃhitā in Kern 1865, Iyer's 1884 translation, Monier-Williams 1899 and pw 1879–89. NOTE that the GRETIL e-text FILES are distributed CC BY-NC-SA 4.0 even though the Sanskrit verses they carry are PD — attribution and licence note required if a file is reused. CITE-ONLY, never reproduced on a shipped page: the Motilal AITM translation (in copyright), Soni et al. 2023 (in copyright), and every practitioner/commercial page in the ledger. Wikipedia and Grokipedia-adjacent material: CC BY-SA 4.0 where used at all, attribution and licence note required. The ≤25-word verification extracts required by protocol C1 live in ledgerSources[] in this research file and go no further.",
+
+  "publicationConstraints": [
+    "This dossier is NOT a filled table and must not be rendered as one. 27 rows carry a Sanskrit name with a Tier A locus; only 8 carry any botanical binomial, and every one of those binomials is Tier B or Tier C. A renderer that prints a binomial column with 19 blanks is showing the evidence correctly; a renderer that fills them is committing protocol C2's fabricated-completion error.",
+    "The tier field on each entry grades the SANSKRIT NAME AT THE POSITION, which is Tier A. It does not grade the botanical identification. The botanical field carries its own tier inline so that field and prose cannot disagree (protocol C4).",
+    "Do not merge these rows into any samidha or dhūpa table, and do not label them 'Vedic plants'. Three categories, three textual homes; see whatThisIs.",
+    "Nārada Purāṇa 1,90.172 / 185 / 215 is DESCRIBED here and NOT QUOTED, and must not be quoted downstream. It pairs a target slot (the enemy) with an operative homa sequence and falls under FRAMING §5 C-5. Its existence, locus and category are the publishable facts.",
+    "Carry no quantity, no preparation and no process parameter for any plant in this dossier (FRAMING §5 C-1, §11.2.1). None is recorded here and none may be added.",
+    "No efficacy claim. Rājanighaṇṭu 2.41 calls these trees āyuṣya-da and 2.45 asserts a penalty for medicinal use of one's own birth-star tree; both are recorded as WHAT THE TEXT SAYS, and the site asserts nothing about outcomes (FRAMING §1.1, §11.2.3)."
+  ],
+
+  "entries": [
+    {
+      "forWhat": "Nakṣatra 1 — Aśvinī",
+      "sanskrit": "viṣadru (Rājanighaṇṭu 2.42) · kāraskarā (Nārada P. 1,89.144) · viṣamuṣṭi (Ānandāśrama 1896, editor's variant footnote)",
+      "devanagari": "विषद्रु (main verse, ANAND-3) · विषमुष्टि (footnote variant, ANAND-4)",
+      "english": "'poison-tree' (literal sense of the Sanskrit compound, not a plant identification). 'Strychnine' / Kanjiram / Yetti / Kuchala in the modern tables (WIKI-2, SONI-2).",
+      "botanical": "Strychnos nux-vomica — TIER B/C IDENTIFICATION ONLY (SONI-2, Tier B; WIKI-2, Tier C; STRY-1, Tier B for the plant-toxin link). No Tier A source in this ledger gives a binomial for any nakṣatra.",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "RAJNI-8", "NARP-1", "NAG-2", "ANAND-3", "ANAND-4", "SONI-2", "WIKI-2", "STRY-1", "SONI-3"],
+      "note": "The two Tier A witnesses use different names for what the Rājanighaṇṭu's own synonym verse makes one plant: at 9.142 that text lists kāraskara, kimpāka, viṣatindu and kālakūṭaka as names of viṣadruma (RAJNI-8), and kāraskarā is exactly the Nārada Purāṇa's first tree (NARP-1). The printed Nag witness confirms कारस्करामला at v. 144 by page image (NAG-2). This is the one cell where a name-level equivalence between the two Sanskrit witnesses is established BY A LEDGER SNIPPET rather than assumed.",
+      "variants": "viṣamuṣṭi in the unnamed 'granthāntara' list the 1896 Ānandāśrama editor prints in a footnote (ANAND-4).",
+      "toxicFlag": "TOXIC — flagged in the sources themselves. StatPearls: strychnine is a highly toxic alkaloid derived from Strychnos nux-vomica (STRY-1). Soni et al. state in their own table row that excess doses result in fits and death (SONI-3). The Sanskrit names are themselves poison-names: viṣa-dru 'poison-tree', and the Rājanighaṇṭu's synonym verse puts kālakūṭaka (a poison-name) in the same list (RAJNI-8). NO quantity, preparation or process parameter is carried here and none may be added.",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 2 — Bharaṇī",
+      "sanskrit": "dhātrī-taru (Rājanighaṇṭu 2.42) · āmalā (Nārada P. 1,89.144)",
+      "devanagari": "धात्रीतरु (ANAND-3)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-1", "NAG-2", "ANAND-3"],
+      "note": "Both Tier A witnesses give a name at position 2 and the names differ. THIS LEDGER CONTAINS NO SYNONYM VERSE EQUATING dhātrī WITH āmalā, so this dossier does not equate them; the reader is told there are two readings. The printed Nag witness confirms कारस्करामला at v. 144 (NAG-2), i.e. āmalā is print-attested for the Nārada reading. No botanical binomial for this position exists anywhere in the ledger.",
+      "variants": "The 1896 editor's footnote reading for Bharaṇī was not captured by the fetcher — the footnote snippets jump from nakṣatra 1 to nakṣatra 3. See gaps.",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 3 — Kṛttikā",
+      "sanskrit": "hema-dugdha (Rājanighaṇṭu 2.42) · uduṃbarā (Nārada P. 1,89.144) · audumbara (Ānandāśrama 1896 footnote)",
+      "devanagari": "हेमदुग्ध (ANAND-3) · औदुम्बर (footnote variant, ANAND-5)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "RAJNI-7", "NARP-1", "ANAND-3", "ANAND-5"],
+      "note": "THE STRONGEST CONVERGENCE IN THE LIST, and it is resolved from inside the Rājanighaṇṭu itself: at 11.126 that text glosses udumbara with kṣīra-vṛkṣa, hema-dugdha, sadā-phala and yajñīya (RAJNI-7), so the main verse's opaque hema-dugdha is its own udumbara. All three Sanskrit witnesses therefore agree at this position. No binomial in the ledger.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 4 — Rohiṇī",
+      "sanskrit": "jambū (Rājanighaṇṭu 2.42) · jaṃbukā (Nārada P. 1,89.144) · jambu-vṛkṣa (Ānandāśrama 1896 footnote)",
+      "devanagari": "जम्बू (ANAND-3) · जम्बुवृक्षः (footnote, ANAND-5)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-1", "ANAND-3", "ANAND-5"],
+      "note": "Three Sanskrit witnesses, one name. No binomial in the ledger.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 5 — Mṛgaśīrṣa",
+      "sanskrit": "khādira/khadira (Rājanighaṇṭu 2.42) · khadirā (Nārada P. 1,89.144) · khadira (Ānandāśrama 1896 footnote)",
+      "devanagari": "खादिर (ANAND-3) · खदिर (footnote, ANAND-5)",
+      "english": "Khatha (Hindi name given in the source, SONI-6)",
+      "botanical": "Senegalia catechu (= Acacia catechu), Fabaceae — TIER B IDENTIFICATION ONLY (SONI-6). No Tier A source in this ledger gives a binomial.",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-1", "ANAND-3", "ANAND-5", "SONI-6"],
+      "note": "Three Sanskrit witnesses, one name, and the one cell where a Tier B peer-reviewed paper's binomial sits on a name that is not contested between the witnesses.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 6 — Ārdrā",
+      "sanskrit": "kṛṣṇa (Rājanighaṇṭu 2.42) · kṛṣṇā (Nārada P. 1,89.144) · aguru (Ānandāśrama 1896 footnote)",
+      "devanagari": "कृष्ण (ANAND-3) · अगुरु (footnote, ANAND-5)",
+      "english": "agarwood / eaglewood / 'Krushnagus' in the modern lists (CI-4, BHAKTI-4, AW-1)",
+      "botanical": "CONTESTED, AND NO TIER A SOURCE IDENTIFIES IT. Three mutually exclusive binomials are offered by one Wikipedia cell — Diospyros melanoxylon / Pterocarpus santalinus / Aquilaria agallocha (WIKI-3, Tier C). Soni et al. assign Pterocarpus santalinus (SONI-4, Tier B). One astrology portal names 'Black Eaglewood' — an Aquilaria — and then prints the binomial for red sanders in the same row (AW-1, Tier C, internally inconsistent).",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "RAJNI-14", "NARP-1", "ANAND-3", "ANAND-5", "BHAKTI-4", "CI-4", "WIKI-3", "SONI-4", "AW-1", "CITES-2", "CITES-3", "CITES-4", "SONI-5"],
+      "note": "The main verse's kṛṣṇa, 'the black one', is a bare colour-word and the Rājanighaṇṭu's own nānārtha verse takes it in a different direction again — at 23.32 kṛṣṇa is glossed as kāśmīra-vṛkṣa (RAJNI-14). The modern agarwood reading descends not from the main verse but from the 1896 editor's variant footnote, which reads aguru at this position (ANAND-5), and it is that reading the practitioner sources carry as kṛṣṇāguru (BHAKTI-4) and 'Agar Wood or Krushnagus' (CI-4). This is the clearest case in the dossier of a modern table resolving a Sanskrit ambiguity in one direction and then presenting the result as the tradition.",
+      "variants": "aguru / kṛṣṇāguru (ANAND-5, BHAKTI-4, CI-4) against kṛṣṇa in both Tier A main texts; red sanders (SONI-4, AW-1); ebony (WIKI-3).",
+      "toxicFlag": "",
+      "protectedStatus": "PROTECTED ON EITHER MODERN READING, AND THE STATUS IS UNEVENLY VERIFIED. If the aguru/agarwood reading is taken: all agarwood-producing taxa are in CITES Appendix II, Aquilaria malaccensis listed 1994 and the rest of the genus subsequently (CITES-2), governed by annotation #14 agreed at CoP16 Bangkok 2013 (CITES-3), and the analysis notes wood chips traded for burning as incense wood (CITES-4). If the red sanders reading is taken: Soni et al. state in their own table that red chandan is endemic to India and considered worldwide endangered (SONI-5). CAVEAT ON THE EVIDENCE: the fetcher recorded that cites.org returned HTTP 403 on every route, so the Appendix-II status here rests on the IUCN/TRAFFIC CoP17 analysis and NOT on the official appendices, and the listings for Pterocarpus santalinus and Santalum album were NOT independently verified against CITES at all."
+    },
+    {
+      "forWhat": "Nakṣatra 7 — Punarvasu",
+      "sanskrit": "vaṃśa (Rājanighaṇṭu 2.42) · vaṃśā (Nārada P. 1,89.145) · veṇu (Ānandāśrama 1896 footnote)",
+      "devanagari": "वंश (ANAND-3) · वेणु (footnote, ANAND-6) · वंशा (Nag OCR, NAG-3)",
+      "english": "bamboo ('Bans' in the practitioner list, BHAKTI-4)",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-2", "NAG-3", "ANAND-3", "ANAND-6", "BHAKTI-4"],
+      "note": "vaṃśa and veṇu are both common bamboo-words and the practitioner list reads it as bamboo (BHAKTI-4), but THIS LEDGER CARRIES NO SYNONYM VERSE equating vaṃśa with veṇu, so the equation is recorded as the reading of the modern sources, not as a text-internal resolution. Note that the Nag printed witness for v. 145 exists in the ledger only as OCR, not as an image read (NAG-3).",
+      "variants": "veṇu (ANAND-6).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 8 — Puṣya",
+      "sanskrit": "aśvattha (Rājanighaṇṭu 2.42) · pippalā (Nārada P. 1,89.145) · pippala (Ānandāśrama 1896 footnote)",
+      "devanagari": "अश्वत्थ (ANAND-3) · पिप्पलः (footnote, ANAND-6) · पिप्पल (Nag OCR, NAG-3)",
+      "english": "'Pipal' in the practitioner list (BHAKTI-4)",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-2", "NAG-3", "ANAND-6", "ANAND-3", "BHAKTI-4"],
+      "note": "Two Sanskrit names at one position. They are conventionally the same tree and the practitioner list reads it that way (BHAKTI-4), but no synonym verse in this ledger equates aśvattha with pippala, so both readings stand. Relevant to the anti-conflation point: aśvattha also appears in the graha-indexed samidh series at AVP-7.",
+      "variants": "pippala (ANAND-6, NARP-2).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 9 — Āśleṣā",
+      "sanskrit": "nāga (Rājanighaṇṭu 2.42) · nāgā (Nārada P. 1,89.145) · campaka (Ānandāśrama 1896 footnote)",
+      "devanagari": "नाग (ANAND-3) · चम्पक (footnote, ANAND-6) · नागा (Nag OCR, NAG-3)",
+      "english": "'Naag Kesar' in the practitioner list (BHAKTI-4)",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-2", "NAG-3", "ANAND-3", "ANAND-6", "BHAKTI-4"],
+      "note": "Both Tier A witnesses have nāga; the 1896 editor's variant list has campaka, a different plant (ANAND-6). The practitioner list reads nāga as nāgakesara (BHAKTI-4), which is one of two live readings of that name — see also Anurādhā (17), where nāgapuṣpa turns up as the footnote's reading. This ledger does not settle it.",
+      "variants": "campaka (ANAND-6).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 10 — Maghā",
+      "sanskrit": "vaṭa (Rājanighaṇṭu 2.42) · rohiṇā (Nārada P. 1,89.145) · vaṭa (Ānandāśrama 1896 footnote)",
+      "devanagari": "वटः (ANAND-3) · वटो (footnote, ANAND-6)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "RAJNI-14", "NARP-2", "NAG-3", "ANAND-3", "ANAND-6"],
+      "note": "RESOLVED FROM INSIDE THE RĀJANIGHAṆṬU. The Nārada Purāṇa's rohiṇā looks like a stray until the Rājanighaṇṭu's own nānārtha verse at 23.32 supplies 'nyagrodho rohiṇaḥ smṛtaḥ' (RAJNI-14) — rohiṇa is a name of nyagrodha, the banyan, which is vaṭa. This is the second of only two positions where a ledger snippet reconciles the two Tier A witnesses rather than leaving them apart. Note the Nag OCR line for v. 145 renders this word रोरिणा, which the fetcher flags as an OCR error (NAG-3).",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 11 — Pūrva Phalgunī",
+      "sanskrit": "palāśa (Rājanighaṇṭu 2.42) · palāśakā (Nārada P. 1,89.145)",
+      "devanagari": "पलाशः (ANAND-3) · पलशका (Nag OCR, NAG-3)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-2", "NAG-3", "ANAND-3"],
+      "note": "Both Tier A witnesses agree. The 1896 editor's footnote reading for this position was not captured by the fetcher (see gaps). Relevant to the anti-conflation point: palāśa is also the second member of the graha-indexed samidh series (AVP-7) and is separately named as the samidh for puṣṭi-kāma in the purpose-indexed rule (AVP-9) — one plant, three indexing systems.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 12 — Uttara Phalgunī",
+      "sanskrit": "plakṣa (Rājanighaṇṭu 2.42) · pakṣakā (Nārada P. 1,89.145, as the e-text reads) · pāyarī, glossed in the margin as plakṣa-vṛkṣa (Ānandāśrama 1896 footnote)",
+      "devanagari": "प्लक्ष (ANAND-3) · पांयरी, marginal gloss पायरी = प्लक्षवृक्षः (footnote, ANAND-7)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-2", "ANAND-3", "ANAND-7", "NARP-9"],
+      "note": "The Nārada e-text's pakṣakā is most likely an orthographic slip for plakṣakā, and the GRETIL file's own header warns that the text still needs proof-reading (NARP-9) — but THAT IS AN INFERENCE AND IS LABELLED AS ONE, because the ledger's printed Nag witness for the second half of v. 145 is not present (NAG-3 covers only the first half, as OCR). The 1896 footnote's vernacular pāyarī is glossed by the editor himself as plakṣa-vṛkṣa (ANAND-7), so the variant list agrees with the main verse here. plakṣa is also the sixth member of the graha-indexed samidh series (AVP-7).",
+      "variants": "pāyarī (ANAND-7).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 13 — Hasta",
+      "sanskrit": "ambaṣṭha-taru (Rājanighaṇṭu 2.42) · ambaṣṭhā (Nārada P. 1,89.145) · jātī (Ānandāśrama 1896 footnote)",
+      "devanagari": "अम्बष्ठतरुः (ANAND-3) · जाती (footnote, ANAND-7)",
+      "english": "'Indian Soapberry' (AW-2); 'Aamraata' (NRR-1) — the modern English names disagree with each other.",
+      "botanical": "CONTESTED AND UNRESOLVED — at least four Tier C identifications and no Tier A or Tier B one. Spondias pinnata / Azadirachta indica / Jasminum grandiflorum offered together in one cell (WIKI-4); Sapindus mukorossi (AW-2).",
+      "tier": "A",
+      "snippetIds": ["RAJNI-2", "RAJNI-4", "NARP-2", "ANAND-3", "ANAND-7", "NRR-1", "WIKI-4", "AW-2"],
+      "note": "THE SANSKRIT IS STABLE AND THE MODERN TABLES ARE NOT. Both Tier A witnesses read ambaṣṭha; the 1896 variant list reads jātī, a jasmine; the mirrored modern tables offer Spondias, neem, jasmine and soapberry across four sources. Whatever ambaṣṭha-taru denotes, it is not settled by anything in this ledger, and the divergence in the modern tables is the visible consequence of that.",
+      "variants": "jātī (ANAND-7); āmrāta (NRR-1).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 14 — Citrā",
+      "sanskrit": "bilva (Rājanighaṇṭu 2.43) · bilvā (Nārada P. 1,89.145) · bilvaka (Ānandāśrama 1896 footnote)",
+      "devanagari": "बिल्वक (footnote, ANAND-7)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-2", "ANAND-7"],
+      "note": "Three Sanskrit witnesses, one name. No binomial in the ledger. Devanagari for the main verse at this position is not in the ledger — the Ānandāśrama snippets cover v. 34 (= trees 1–13) but not vv. 35–36.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 15 — Svātī",
+      "sanskrit": "arjuna (Rājanighaṇṭu 2.43) · arjunā (Nārada P. 1,89.145) · arjuna (Ānandāśrama 1896 footnote)",
+      "devanagari": "अर्जुनः (footnote, ANAND-7)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "RAJNI-11", "NARP-2", "ANAND-7"],
+      "note": "Three Sanskrit witnesses, one name. Bears on Jyeṣṭhā (18): the Rājanighaṇṭu's synonym verse at 9.116 lists śambara among the names of arjuna (RAJNI-11), so reading Jyeṣṭhā's śambara as arjuna would duplicate this position — which is one reason to prefer one of the other two readings there, and it is recorded as a reason rather than acted on.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 16 — Viśākhā",
+      "sanskrit": "vikaṅkata (Rājanighaṇṭu 2.43) · vikaṅkatā (Nārada P. 1,89.146) · babbulī (Ānandāśrama 1896 footnote — glyph reading flagged uncertain by the fetcher)",
+      "devanagari": "विकंकता (Nag, image-read, NAG-1) · बब्बुली (footnote, reading flagged, ANAND-8)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-3", "NAG-1", "ANAND-8", "NRR-3"],
+      "note": "Both Tier A witnesses read vikaṅkata and the Nārada reading is confirmed from the printed Nag page image (NAG-1). The 1896 variant list diverges to babbulī, and the fetcher flagged that glyph reading as uncertain — so this divergence is itself weakly evidenced. One practitioner list gives śruva-vṛkṣa (NRR-3); the ledger's annotation calls that a synonym of vikaṅkata, but THAT IS THE FETCHER'S OWN GLOSS IN A LOCUS FIELD, NOT A STATEMENT BY ANY SOURCE, and it is not treated here as attested.",
+      "variants": "babbulī (ANAND-8, uncertain reading); śruva-vṛkṣa (NRR-3).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 17 — Anurādhā",
+      "sanskrit": "kesara (Rājanighaṇṭu 2.43) · kakubhā (Nārada P. 1,89.146) · nāgapuṣpa (Ānandāśrama 1896 footnote)",
+      "devanagari": "ककुभा (Nag, image-read, NAG-1) · नागपुष्पं (footnote, ANAND-8)",
+      "english": "'Maulsari' (AW-4); 'Bakula, Nagkesa' given together (CI-3)",
+      "botanical": "Mimusops elengi — TIER C IDENTIFICATION ONLY (AW-4), and it identifies only one of the three Sanskrit readings.",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "RAJNI-9", "NARP-3", "NAG-1", "AITM-2", "ANAND-8", "CI-3", "AW-4"],
+      "note": "THREE SANSKRIT READINGS AND A TRANSLATION-LAYER DIVERGENCE ON TOP OF THEM. The Rājanighaṇṭu's kesara is glossed by its own nānārtha verse at 23.33 as bakula (RAJNI-9), which is what the modern Mimusops identification follows (AW-4). The Nārada Purāṇa has kakubhā, print-confirmed from the page image (NAG-1) — and the Motilal English translation prints 'Vakula' at that item (AITM-2), i.e. the translator has rendered a reading his own base text does not carry. A modern list papers over the whole thing by giving both bakula and nāgakesara in one cell (CI-3). Nothing in this ledger identifies kakubhā.",
+      "variants": "kakubhā (NARP-3, NAG-1) · nāgapuṣpa (ANAND-8) · 'Vakula' in the AITM English against its own Sanskrit (AITM-2).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 18 — Jyeṣṭhā",
+      "sanskrit": "śambara (Rājanighaṇṭu 2.43) · saralā (Nārada P. 1,89.146) · mocā (Ānandāśrama 1896 footnote)",
+      "devanagari": "सरला (Nag, image-read, NAG-1) · मोचा (footnote, ANAND-8)",
+      "english": "'Red Silk Cotton Tree' (CI-2); 'Silk cotton tree' (AW-3)",
+      "botanical": "IRRECONCILABLE ACROSS THE MODERN SOURCES, ALL TIER C. Salmalia malabarica (AW-3); Aporosa lindleyana / Calamus rotang / Calamus wightii offered together in one cell (WIKI-5).",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "RAJNI-9", "RAJNI-10", "RAJNI-11", "NARP-3", "NAG-1", "ANAND-8", "BHAKTI-3", "CI-2", "AW-3", "WIKI-5", "NRR-4"],
+      "note": "THE WORST CELL IN THE LIST, and it is contested three times over. (1) Between the witnesses: śambara / saralā / mocā are three different plants, and the Nārada reading saralā is print-confirmed by page image (NAG-1). (2) INSIDE THE RĀJANIGHAṆṬU ITSELF, which glosses śambara three incompatible ways in three separate nānārtha verses — as tāla at 23.33 (RAJNI-9), among the lodhra synonyms at 5.208 (RAJNI-10), and among the arjuna synonyms at 9.116 (RAJNI-11). The arjuna reading would duplicate Svātī (15). (3) In modern circulation: a practitioner supplier reads it lodhra (BHAKTI-3), two portals read it silk-cotton with the 1896 footnote (CI-2, AW-3), Wikipedia offers Aporosa or two Calamus species (WIKI-5), and a further blog gives a fifth name, 'Valaka' (NRR-4). NOTHING IN THIS LEDGER SETTLES IT, and any table that prints one value here is choosing.",
+      "variants": "saralā · mocā · lodhra · tāla · arjuna · silk cotton · Aporosa · Calamus · 'Valaka' — at least six distinct plants across nine sources.",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 19 — Mūla",
+      "sanskrit": "sarja (Rājanighaṇṭu 2.43) · sarjikā (Nārada P. 1,89.146) · rāla-vṛkṣaka (Ānandāśrama 1896 footnote)",
+      "devanagari": "सर्जिका (Nag, image-read, NAG-1) · रालवृक्षकः (footnote, ANAND-8)",
+      "english": "'Shaal' in the practitioner list (BHAKTI-3)",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-3", "NAG-1", "ANAND-8", "BHAKTI-3"],
+      "note": "All three Sanskrit witnesses point at the sarja/śāla resin-tree complex — sarja, sarjikā, and rāla, the resin-name — and the practitioner list reads it 'Shaal' (BHAKTI-3). But NO SYNONYM VERSE IN THIS LEDGER links rāla to sarja, and no source in the ledger gives a binomial for this position, so no binomial is written here even though one is widely circulated.",
+      "variants": "rāla-vṛkṣaka (ANAND-8).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 20 — Pūrva Āṣāḍhā",
+      "sanskrit": "vañjula (Rājanighaṇṭu 2.43) · vañjulā (Nārada P. 1,89.146) · vetra (Ānandāśrama 1896 footnote)",
+      "devanagari": "वञ्जुला (Nag, image-read, NAG-1) · वेत्रो (footnote, ANAND-9)",
+      "english": "'Jalvret' — jala-vetra — in the practitioner list (BHAKTI-3)",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "RAJNI-12", "RAJNI-13", "NARP-3", "NAG-1", "ANAND-9", "BHAKTI-3"],
+      "note": "AMBIGUOUS INSIDE THE RĀJANIGHAṆṬU, AND THE AMBIGUITY IS RESOLVED DIFFERENTLY BY DIFFERENT LATER SOURCES. That text glosses vañjula as vetasa/nicula at 9.106 (RAJNI-12) and as aśoka at 10.53 (RAJNI-13) — a reed and a tree. The 1896 variant list reads vetra here (ANAND-9) and a commercial supplier reads jala-vetra (BHAKTI-3), i.e. both take the reed branch of the ambiguity. Both Tier A witnesses have vañjula; only the derivative sources choose.",
+      "variants": "vetra / vetasa / nicula (ANAND-9, RAJNI-12, BHAKTI-3) against aśoka (RAJNI-13).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 21 — Uttara Āṣāḍhā",
+      "sanskrit": "pānasa (Rājanighaṇṭu 2.43) · panasā (Nārada P. 1,89.146) · nicula (Ānandāśrama 1896 footnote — a different plant)",
+      "devanagari": "पनसा (Nag, image-read, NAG-1) · निचुल (footnote, ANAND-9)",
+      "english": "'Panas' in the practitioner list (BHAKTI-3)",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "RAJNI-12", "NARP-3", "NAG-1", "ANAND-9", "BHAKTI-3"],
+      "note": "A REAL CONFLICT BETWEEN THE MAIN VERSE AND THE VARIANT LIST PRINTED BESIDE IT. Both Tier A witnesses read panasa; the 1896 editor's footnote reads nicula, which the Rājanighaṇṭu's own synonym verse at 9.106 puts in the vetasa/vañjula group (RAJNI-12) — i.e. the variant list appears to shift the reed one position, putting vetra at 20 and nicula at 21 where the main verse has vañjula at 20 and pānasa at 21. THAT SHIFT IS AN OBSERVATION ABOUT THE TWO LISTS AS THIS LEDGER RECORDS THEM, not a text-critical conclusion, and no scholar in the ledger has commented on it. The commercial supplier follows the main verse (BHAKTI-3).",
+      "variants": "nicula (ANAND-9).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 22 — Śravaṇa",
+      "sanskrit": "arka (Rājanighaṇṭu 2.43) · arkā (Nārada P. 1,89.146) · arka (Ānandāśrama 1896 footnote)",
+      "devanagari": "अर्का (Nag, image-read, NAG-1) · अर्कश्च (footnote, ANAND-9)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-3", "NAG-1", "ANAND-9", "AVP-7", "AVP-8"],
+      "note": "Three Sanskrit witnesses, one name. THE MOST IMPORTANT SINGLE CELL FOR THE ANTI-CONFLATION ARGUMENT: arka is also the FIRST member of the samidh series in Atharvaveda-Pariśiṣṭa 26,5.6cd–5.7ab (AVP-7), and that text's very next words index that series to the grahas beginning with the Sun (AVP-8) — where arka is the Sun's own name. The same plant therefore sits at nakṣatra 22 in one system and at graha 1 in a different one. That is exactly the coincidence that makes the modern merge look plausible, and it is the reason the categories have to be kept apart by their INDEX, not by their contents. No toxicity assessment for arka appears anywhere in this ledger and none is asserted here.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 23 — Dhaniṣṭhā",
+      "sanskrit": "śamī (Rājanighaṇṭu 2.43) · śamī (Nārada P. 1,89.146) · śamī (Ānandāśrama 1896 footnote)",
+      "devanagari": "शमी (Nag, image-read, NAG-1) · शमी (footnote, ANAND-9)",
+      "english": "'Shami' in the practitioner list (BHAKTI-3)",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-3", "NAG-1", "ANAND-9", "BHAKTI-3", "AVP-5"],
+      "note": "Four sources, one name — the flattest agreement in the list. ANTI-CONFLATION CONTRAST: for the same nakṣatra under its older name Śraviṣṭhā, the Nakṣatrakalpa's BATHING rule prescribes sandalwood, not śamī (AVP-5). Two nakṣatra-indexed plant systems, two different plants at the same mansion — which is the cleanest single demonstration in this ledger that a nakṣatra-indexed plant is not automatically a nakṣatra-vṛkṣa.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 24 — Śatabhiṣā (Śatatārakā)",
+      "sanskrit": "kadamba (Rājanighaṇṭu 2.43) · halipriyā (Nārada P. 1,89.146) · kadambaka (Ānandāśrama 1896 footnote)",
+      "devanagari": "हलिप्रिया (Nag, image-read, NAG-1) · कदम्बकः (footnote, ANAND-9)",
+      "english": "'Kadamb' in the practitioner list (BHAKTI-5)",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-3", "NAG-1", "ANAND-9", "BHAKTI-5"],
+      "note": "Two of the three Sanskrit witnesses read kadamba; the Nārada Purāṇa reads halipriyā, and THIS LEDGER CONTAINS NO SYNONYM VERSE EQUATING THEM, so this dossier does not equate them, however conventional the equation is. The practitioner source that gives Kadamb for this position misnames the nakṣatra itself, printing 'Ghanitha' where Śatabhiṣā belongs (BHAKTI-5) — recorded because it is a fair sample of the care taken by the commercial layer.",
+      "variants": "halipriyā (NARP-3, NAG-1), unidentified in this ledger.",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 25 — Pūrva Bhādrapadā",
+      "sanskrit": "āmra (Rājanighaṇṭu 2.43) · āmrakā (Nārada P. 1,89.146) · āmra (Ānandāśrama 1896 footnote)",
+      "devanagari": "आम्रका (Nag, image-read, NAG-1) · आम्रो (footnote, ANAND-10)",
+      "english": "",
+      "botanical": "",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-3", "NAG-1", "ANAND-10"],
+      "note": "Three Sanskrit witnesses, one name. No binomial in the ledger.",
+      "variants": "",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 26 — Uttara Bhādrapadā",
+      "sanskrit": "nimba (Rājanighaṇṭu 2.43) · nimbā (Nārada P. 1,89.147) · ariṣṭa (Ānandāśrama 1896 footnote)",
+      "devanagari": "अरिष्टो (footnote, ANAND-10)",
+      "english": "'Kudappana / Bajarbattu' in the Wikipedia table (WIKI-6) — a name for a palm, not for nimba",
+      "botanical": "Corypha umbraculifera — TIER C ONLY (WIKI-6), AND IT CONTRADICTS EVERY SANSKRIT WITNESS IN THIS LEDGER.",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-4", "ANAND-10", "WIKI-6", "NRR-2"],
+      "note": "THE FLATTEST CONTRADICTION BETWEEN THE TEXTUAL AND THE CIRCULATING TRADITION. All three Sanskrit witnesses give nimba or ariṣṭa; the most-mirrored modern table gives the talipot palm (WIKI-6) and a practitioner blog gives tāla-druma (NRR-2). No source in this ledger reconciles them and none explains where the palm reading came from. A renderer must show both and must not silently prefer either.",
+      "variants": "ariṣṭa (ANAND-10) · talipot palm / tāla (WIKI-6, NRR-2).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    },
+    {
+      "forWhat": "Nakṣatra 27 — Revatī",
+      "sanskrit": "madhuka-druma (Rājanighaṇṭu 2.43) · madhūkā (Nārada P. 1,89.147) · moha-vṛkṣa (Ānandāśrama 1896 footnote)",
+      "devanagari": "मोहवृक्षो (footnote, ANAND-10)",
+      "english": "'Butter Tree'; Eluppa / Iluppai / Moha / Mahua (WIKI-7)",
+      "botanical": "Madhuca longifolia / Madhuca indica — TIER C IDENTIFICATION ONLY (WIKI-7). It agrees with all three Sanskrit witnesses, which is not true of most cells.",
+      "tier": "A",
+      "snippetIds": ["RAJNI-3", "RAJNI-4", "NARP-4", "ANAND-10", "WIKI-7", "AITM-1"],
+      "note": "The list's closing item, and the one where the modern circulating table agrees with the Sanskrit rather than diverging from it. It is also the item the Motilal edition's footnote uses to bound the series — that footnote runs the twenty-seven tree names from kāraskara to madhūka (AITM-1), which is what identifies the Nārada Purāṇa passage as this list at all. The 1896 footnote closes its own list with the instruction that these are to be known from the birth-star (ANAND-10).",
+      "variants": "moha-vṛkṣa (ANAND-10).",
+      "toxicFlag": "",
+      "protectedStatus": ""
+    }
+  ],
+
+  "gaps": [
+    {
+      "claimedAbsent": "The Bṛhat Saṃhitā of Varāhamihira carries a per-nakṣatra tree list. IT DOES NOT — in the chapters where such a list would live.",
+      "searchedWhere": [
+        "GRETIL Bṛhatsaṃhitā TEI e-text (Kern-based, with K. variants), ch. 15 nakṣatravyūhādhyāya, read in full",
+        "same file, ch. 97 nakṣatrakarmaguṇādhyāya, read in full",
+        "same file, ch. 55 vṛkṣāyurveda, checked",
+        "wisdomlib reproduction of N. Chidambaram Iyer's 1884 English translation of ch. 15"
+      ],
+      "searchTermsUsed": ["nakṣatravyūha", "nakṣatrakarmaguṇa", "vṛkṣāyurveda", "taru", "vṛkṣa", "chapter-by-chapter read of ch. 15 and ch. 97"],
+      "whatWasFound": "Trees appear in ch. 15 only as CLASSES, never as one named tree per mansion: Viśākhā gets red-flowered and red-fruited trees alongside sesame and mung (BS-2), rendered by Iyer as growing trees yielding red flowers and red fruits and dealing in seeds and pulses (IYER-2); Puṣya gets grains and cane groves listed with occupations and commodities (BS-3); Mūla gets drugs and physicians and dealers in flowers, roots, fruits and seeds (BS-4, IYER-3). In ch. 97 tree PLANTING is prescribed under the dhruva (fixed) nakṣatras COLLECTIVELY — the three uttaras plus Rohiṇī — not tree by tree (BS-5). The chapter headings themselves are in the ledger (BS-1, BS-6). This matters because Varāhamihira is the text most often named in modern claims of antiquity for the nakṣatra-tree doctrine; the fetcher also records having declined to use a machine-generated encyclopedia page asserting the Bṛhat Saṃhitā connection, precisely because the full read contradicts it.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "The Agni Purāṇa carries a nakṣatra-tree list.",
+      "searchedWhere": ["GRETIL Agnipurāṇa TEI e-text, based on Rājendralāl Mitra's Bibliotheca Indica edition, Calcutta 1870–1879; whole downloaded file searched"],
+      "searchTermsUsed": ["nakṣatravṛkṣ", "co-occurrence test: any verse carrying four or more of the 27 tree names"],
+      "whatWasFound": "Zero occurrences of the search string in the whole file, and no verse carrying four or more of the 27 tree names (AGNI-2). Edition provenance recorded at AGNI-1.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "The Matsya Purāṇa carries a nakṣatra-tree list.",
+      "searchedWhere": ["GRETIL Matsyapurāṇa TEI e-text, adhyāyas 1–176 only, based on the Calcutta: Caukhamba Vidyabhavan 1954 edition; whole file searched"],
+      "searchTermsUsed": ["nakṣatravṛkṣ", "co-occurrence test: any verse carrying four or more of the 27 tree names"],
+      "whatWasFound": "Zero occurrences in adhyāyas 1–176, and no verse there carrying four or more of the tree names (MATSYA-2). BUT THE E-TEXT COVERS ONLY ADHYĀYAS 1–176 (MATSYA-1), so this is a partial check of the Purāṇa and is graded accordingly.",
+      "confidence": "probably-absent"
+    },
+    {
+      "claimedAbsent": "The Atharvaveda-Pariśiṣṭas carry the 27-tree nakṣatra list. THEY CARRY TWO OTHER NAKṢATRA/PLANT SYSTEMS INSTEAD.",
+      "searchedWhere": [
+        "GRETIL Atharvavedapariśiṣṭas TEI e-text, based on Bolling & von Negelein 1909–10; Pariśiṣṭa 1 (Nakṣatrakalpa) chs. 42–45 read",
+        "same file, Pariśiṣṭa 26 (the samidh pariśiṣṭa) read"
+      ],
+      "searchTermsUsed": ["nakṣatrakalpa", "nakṣatrasnāna", "samidh", "samidhāṃ", "vṛkṣa", "graha"],
+      "whatWasFound": "Pariśiṣṭa 1 opens the Nakṣatrakalpa (AVP-1) and its nakṣatra series at 42–45 is a BATHING rite whose substances are plural and heterogeneous — Kṛttikā a leaf-infusion of śirīṣa, aśvattha and vaṭa together (AVP-3), Ārdrā resins and aromatics (AVP-4), Śraviṣṭhā sandalwood (AVP-5) — not one tree per mansion (AVP-2). Pariśiṣṭa 26 is the pariśiṣṭa devoted to samidhs (AVP-6), and its series of nine (AVP-7) is indexed by the text's own following words to the grahas beginning with the Sun (AVP-8), with a further purpose-based rule alongside it (AVP-9). So the Atharvan material indexes plants by nakṣatra for bathing, and indexes fuel by graha and by purpose — three systems, none of them the nakṣatra-vṛkṣa list.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "The Nakṣatrakalpa's mantra layer (the 28 nakṣatreṣṭi mantras) assigns trees.",
+      "searchedWhere": ["manasataramgini, 'atharva-vedIya nakShatra kalpa sUktaM' (2008), which reproduces the 28 numbered nakṣatra mantras"],
+      "searchTermsUsed": ["nakshatra kalpa suktam", "nakṣatreṣṭi", "read of all 28 reproduced mantras"],
+      "whatWasFound": "The page reproduces 28 numbered nakṣatra mantras and contains NO tree assignments at all (MANASA-2). The same page reports that these mantras are not in the extant Paippalāda text and represent an independently preserved tradition found only in the Nakṣatrakalpa (MANASA-1). Tier C source; used only as a negative check.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Any Tier A source in this ledger identifies a nakṣatra tree by botanical binomial.",
+      "searchedWhere": ["every Tier A entry in the ledger: RAJNI-GRETIL, RAJNI-ANAND, NARP-GRETIL, NARP-NAG, AVPARIS, BRSAM-GRETIL, AGNIP-NEG, MATSYAP-NEG"],
+      "searchTermsUsed": ["read of every quoted snippet from every Tier A source in the ledger"],
+      "whatWasFound": "NONE. Sanskrit texts give Sanskrit plant names; the Rājanighaṇṭu resolves some of them into other Sanskrit names via its nānārtha verses (RAJNI-7, RAJNI-8, RAJNI-9, RAJNI-10, RAJNI-11, RAJNI-12, RAJNI-13, RAJNI-14) and the 1896 editor glosses one vernacular name with a Sanskrit one (ANAND-7). Every binomial in this dossier — eight positions in all — comes from Tier B (SONI-2, SONI-4, SONI-6, STRY-1, CITES-2) or Tier C (WIKI-2, WIKI-3, WIKI-4, WIKI-5, WIKI-6, WIKI-7, AW-1, AW-2, AW-3, AW-4). Nineteen of the twenty-seven positions have no binomial in this ledger from any tier, and this dossier leaves those cells empty rather than filling them.",
+      "confidence": "confirmed-absent"
+    },
+    {
+      "claimedAbsent": "Bṛhat-Suśruta and 'Nārāyaṇī' — two of the three works Narahari names as his sources for the doctrine — can be traced.",
+      "searchedWhere": ["open web search", "e-text repositories", "catalogue and scholarly-discussion searches"],
+      "searchTermsUsed": ["\"Brihat Susruta\" Narayaniya nakshatra trees", "Bṛhatsuśruta", "Nārāyaṇī nakṣatra vṛkṣa"],
+      "whatWasFound": "No e-text, edition, catalogue entry or scholarly discussion of a work titled Bṛhat-Suśruta was located, and nothing linking a 'Nārāyaṇī' to nakṣatra trees. The third name Narahari gives, nāradīya, WAS traced and verified (NARP-GRETIL, NARP-NAG, NARP-AITM). The source-naming verse itself is doubly attested — GRETIL 2.46 (RAJNI-6) and the 1896 printed page (ANAND-11) — so the NAMING is solid and only the referents are missing.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "Whether the nakṣatra-vṛkṣa section was carried forward into the later nighaṇṭu tradition after Narahari — specifically into Bhāvamiśra's 16th-century Bhāvaprakāśa-nighaṇṭu.",
+      "searchedWhere": ["GRETIL Bhāvamiśra, Bhāvaprakāśa TEI e-text"],
+      "searchTermsUsed": ["nakṣatravṛkṣa", "read of the available file"],
+      "whatWasFound": "The GRETIL file is only about 75 KB and its own header states it contains three chapters and is 'to be continued'. The nighaṇṭu section that would answer the question is not in the available text. THIS IS AN OPEN GAP, NOT A NEGATIVE RESULT, and it is the single most useful thing a follow-up round could close: it would establish whether the doctrine had a transmission life inside the nighaṇṭu genre or stops with Narahari.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "The provenance of the most widely mirrored modern 27-tree table (the Wikipedia 'Nakshatravana' page and its descendants).",
+      "searchedWhere": ["en.wikipedia.org 'Nakshatravana', full page including References", "the Deccan Herald article of 4 August 2012 cited there", "vedicvanas.com 'Nakshatra Vana'", "researchgate record 367530109 'Vedic and Puranic roots ... of Nakshatra vana'", "ScienceDirect S0254629922004483", "ijrpr.com 'Nakshatra-Based Medicinal Gardens' (2025)"],
+      "searchTermsUsed": ["Nakshatravana", "nakshatra vana", "nakshatra trees source text", "Vedic and Puranic roots nakshatra vana"],
+      "whatWasFound": "The Wikipedia page cites NO Sanskrit text anywhere, and its only substantive reference is the 2012 Deccan Herald article (WIKI-8) — which returned HTTP 403 and could not be read. Four further modern sources that claim or imply a textual pedigree were all unreachable: the ResearchGate 'Vedic and Puranic roots' paper (403), the South African Journal of Botany comparative paper (403, Elsevier), the IJRPR 2025 paper whose search snippets assert roots in 'Atharva Veda, Brihat Samhita, and Kalpa Sūtras' (403 — SO THAT ASSERTION IS UNVERIFIED AND IS NOT USED HERE), and vedicvanas.com (no retrievable body text). The one peer-reviewed paper that WAS retrieved names modern authors only and no Sanskrit locus for its nakṣatra table (SONI-7). SO THE PROVENANCE OF THE MOST-CIRCULATED TABLE IS UNESTABLISHED, NOT MERELY UNSTATED — which is a stronger and more useful finding than 'uncited'.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "Any Vedic Saṃhitā or Brāhmaṇa attestation of the doctrine. NOT SEARCHED — and this dossier will not claim absence.",
+      "searchedWhere": ["Atharvaveda-Pariśiṣṭas (post-Vedic appendices) only", "the Nakṣatrakalpa mantra layer via a secondary reproduction"],
+      "searchTermsUsed": ["nakṣatrakalpa", "nakṣatrasnāna", "samidh"],
+      "whatWasFound": "NOTHING, BECAUSE THE CORPUS WAS NOT SEARCHED. The fetcher checked the Atharvaveda-PARIŚIṢṬAS, which are appendices to the Atharvan tradition and not the Saṃhitā, and one blog reproducing the Nakṣatrakalpa mantras. No Ṛgveda, Yajurveda, Sāmaveda, Atharvaveda Saṃhitā, Brāhmaṇa, Āraṇyaka or Sūtra text was searched for this list. Modern sources assert an Atharvavedic root (the unreachable IJRPR paper); this ledger neither supports nor refutes that, and the honest state is 'not looked at'. Recorded as could-not-determine SO THAT NO LATER ROUND MISTAKES THIS DOSSIER'S SILENCE FOR A CONFIRMED ABSENCE.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "The Ānandāśrama 1896 editor's variant-list readings for nakṣatra 2 (Bharaṇī) and nakṣatra 11 (Pūrva Phalgunī).",
+      "searchedWhere": ["archive.org scan of the Ānandāśrama Sanskrit Series no. 33 (1896), p. 327 footnote, leaf image n334"],
+      "searchTermsUsed": ["page-image read of the footnote at p. 327", "section heading 'नक्षत्रवृक्षाः'"],
+      "whatWasFound": "The footnote WAS read from the page image and yielded readings for nakṣatras 1, 3–10 and 12–27 (ANAND-4 through ANAND-10), but the snippets captured skip positions 2 and 11. The main verse readings for those two positions are secure (ANAND-3, RAJNI-2). This is a small, closeable gap: a re-read of the same leaf image would settle it.",
+      "confidence": "could-not-determine"
+    },
+    {
+      "claimedAbsent": "A 28-fold tree list (i.e. one including Abhijit).",
+      "searchedWhere": ["Rājanighaṇṭu varga 2", "Nārada Purāṇa Pūrvabhāga 89", "Ānandāśrama 1896 footnote variant list", "manasataramgini's reproduction of the Nakṣatrakalpa mantras"],
+      "searchTermsUsed": ["saptaviṃśatiḥ", "aṣṭāviṃśati", "Abhijit", "count of items in each quoted verse"],
+      "whatWasFound": "Every located tree list is 27. The Rājanighaṇṭu says so in its own words — twenty-seven, in order from Aśvinī (RAJNI-4) — and the Motilal footnote counts twenty-seven for the Nārada passage (AITM-1); the 1896 footnote is numbered 1 to 27 (ANAND-4, ANAND-10). A 28-fold scheme does exist in the adjacent Atharvan material, where the Nakṣatrakalpa mantra set is 28 (MANASA-2), but it carries no trees. No 28-tree list was located.",
+      "confidence": "confirmed-absent"
+    }
+  ],
+
+  "contestedPoints": [
+    "WHICH WITNESS IS EARLIER — UNSETTLED, AND THIS DOSSIER TAKES NO POSITION. The Rājanighaṇṭu is dated to the 14th century by a Tier C aggregator page only (RDATE-1, RDATE-2), with Meulenbeld — the standard authority on its date — unreachable, so the fetcher explicitly flags the date as weakly sourced. The Nārada Purāṇa's ch. 89 sits OUTSIDE Hazra's pre-11th-century core of Pūrvabhāga chs. 1–41 (NDATE-1); Rocher holds every Purāṇa's composition date unclear (NDATE-3); Wilson's low-end estimate for the text is the 16th or 17th century (NDATE-4), which would make it LATER than Narahari. No scholar in this ledger has compared the two passages or stated a priority, so under FRAMING §2.4 none is stated here. What is on the record without inference: Narahari names nāradīya among his sources (RAJNI-6, ANAND-11) and a nāradīya text carries the list (NARP-1..4).",
+    "WHETHER THE NĀRADA PURĀṆA PASSAGE IS A TREE LIST AT ALL, OR A NĀMĀVALI THAT LATER READERS INDEXED AS ONE. The 27 names occur as feminine epithets of the Goddess, between the nakṣatra-deity series and the nakṣatra-yoni animal series (NARP-1 through NARP-4); the passage does not label them nakṣatra by nakṣatra. The identification is made by the Motilal edition's footnote (AITM-1) and supported by its note that the preceding series is the nakṣatra-deity list from Aśvinī to Pūṣan (AITM-3) — i.e. it is an EDITORIAL identification, Tier B, resting on position. It is corroborated by the fact that the Rājanighaṇṭu's independently stated list (RAJNI-4) matches it name for name at most positions, and by the same Purāṇa using the term nakṣatra-vṛkṣa as a live category elsewhere (NARP-5, NARP-6, NARP-7). Both readings are kept.",
+    "THE 19TH-CENTURY LEXICOGRAPHERS KNEW ONLY ONE LOCUS. Monier-Williams defines nakṣatra-vṛkṣa as a tree consecrated to a nakṣatra (MW-1), Böhtlingk's shorter Wörterbuch the same (MW-2), and the sole textual citation the latter gives is 'Rājan 2,41' (MW-3). Whether that reflects the doctrine's actual textual distribution or only the lexicographers' reading is not settled by anything here — but it is direct evidence that the circulation of this list in modern practice is far wider than its documented textual footprint.",
+    "JYEṢṬHĀ (18) IS UNRESOLVABLE ON THIS EVIDENCE. Three Sanskrit readings — śambara, saralā, mocā (RAJNI-3, NARP-3, NAG-1, ANAND-8) — plus a threefold internal ambiguity in the Rājanighaṇṭu's own glosses of śambara as tāla, lodhra and arjuna (RAJNI-9, RAJNI-10, RAJNI-11), plus at least four further modern readings (BHAKTI-3, CI-2, AW-3, WIKI-5, NRR-4). Every position is kept and none is preferred.",
+    "ĀRDRĀ (6) — THE SANSKRIT SAYS kṛṣṇa, THE MODERN TABLES SAY AGARWOOD, AND THE BRIDGE IS AN 1896 EDITOR'S FOOTNOTE. Main-verse kṛṣṇa (RAJNI-2, ANAND-3) is glossed kāśmīra-vṛkṣa by the same text (RAJNI-14); the variant list reads aguru (ANAND-5); modern sources read agarwood (BHAKTI-4, CI-4), red sanders (SONI-4, AW-1) or ebony (WIKI-3). All positions kept. Both leading modern identifications carry protection concerns (CITES-2, SONI-5), and the CITES evidence itself is partial (see honestLimits).",
+    "ANURĀDHĀ (17) CARRIES A DIVERGENCE INSIDE A TRANSLATION AS WELL AS BETWEEN TEXTS. The printed Nag page image reads kakubhā (NAG-1) and the GRETIL text agrees (NARP-3), while the Motilal English prints 'Vakula' at that item (AITM-2) — a reading its own base text does not carry. Meanwhile the Rājanighaṇṭu's kesara is glossed bakula by that text's own nānārtha verse (RAJNI-9), and the 1896 variant list reads nāgapuṣpa (ANAND-8). A modern list simply prints both bakula and nāgakesara (CI-3).",
+    "UTTARA BHĀDRAPADĀ (26): nimba/ariṣṭa in all three Sanskrit witnesses (RAJNI-3, NARP-4, ANAND-10) against a palm in the two most-mirrored modern tables (WIKI-6, NRR-2). Nothing in the ledger explains the substitution.",
+    "HASTA (13): ambaṣṭha-taru in both Tier A witnesses (RAJNI-2, NARP-2) against jātī in the variant list (ANAND-7) and four incompatible modern identifications (WIKI-4, NRR-1, AW-2).",
+    "UTTARA ĀṢĀḌHĀ (21) AND PŪRVA ĀṢĀḌHĀ (20) MAY BE OFFSET BY ONE IN THE VARIANT LIST. The main verse reads vañjula at 20 and pānasa at 21 (RAJNI-3); the 1896 footnote reads vetra at 20 and nicula at 21 (ANAND-9), and the Rājanighaṇṭu's own gloss puts vetasa and nicula in the same synonym group (RAJNI-12). Whether that is a one-position shift or two independent variants is NOT determined by anything in this ledger and no scholar in it has commented.",
+    "WHETHER THE NAKṢATRA TREE IS A SAMIDHA. In the modern market it is sold as one (BHAKTI-1, BHAKTI-2). In the Atharvan material it plainly is not — that corpus indexes samidh by graha (AVP-7, AVP-8) and by purpose (AVP-9). But the Nārada Purāṇa itself burns a person's birth-nakṣatra tree as homa fuel three times in one chapter (NARP-5, NARP-6, NARP-7). So the categories are distinct in their indexing and NOT hermetically sealed in practice, and both halves of that are on the record here rather than resolved into whichever is tidier.",
+    "TEXT-CRITICAL RELIABILITY OF THE NĀRADA E-TEXT. The GRETIL file's own header warns that after many corrections the text still needs proof-reading (NARP-9), and it was input by the Sansknet project (NARP-8). Printed confirmation from page images exists in this ledger for v. 144 (NAG-2) and v. 146 (NAG-1) but NOT for v. 145 — for which the ledger holds only an archive.org OCR line, itself visibly corrupt (रोरिणा for रोहिणा) and covering only the first half of the verse (NAG-3). Nakṣatras 12–15 of the Nārada list are therefore unconfirmed against print in this ledger.",
+    "WHAT THE RĀJANIGHAṆṬU CLAIMS FOR THESE TREES, RECORDED AS THE TEXT'S CLAIM AND NOTHING MORE. Its opening verse calls them to be honoured and āyuṣya-da, and ties that to nurturing and protecting them (RAJNI-1, ANAND-2); v. 2.45 asserts that a mortal who, blind with pride, makes medicines from the tree of his OWN birth-star loses longevity, prosperity, wife and son (RAJNI-5). These are reported as statements the text makes. THE SITE ASSERTS NO EFFICACY AND NO OUTCOME OF ANY KIND (FRAMING §1.1, §1.5, §11.2.3), and carries no quantity and no preparation."
+  ],
+
+  "honestLimits": "WHAT THIS DOSSIER ESTABLISHES: the 27-tree nakṣatra list is genuinely textually attested, at two loci, in Sanskrit, quotable and public-domain, and the Sanskrit name at each of the 27 positions can be cited to a text and a verse — with the Rājanighaṇṭu stating its own count and indexing rule in its own words (RAJNI-4) rather than requiring the reader to count. That is a stronger result than the round's brief anticipated. WHAT IT DOES NOT ESTABLISH, IN ORDER OF HOW MUCH IT MATTERS. (1) BOTANY. Nineteen of twenty-seven cells have NO botanical identification from any source in this ledger, and the eight that do are all Tier B or Tier C; no Tier A source identifies a single plant by binomial. A binomial column would be 70% fabrication. (2) DATE AND PRIORITY. Neither witness is securely dated and no scholar in this ledger has compared them, so 'the earliest text that carries the list' cannot be answered with one name — it is answered with two witnesses, their dating evidence, and a stated refusal to order them. The fetcher's own summary line calls the Nārada Purāṇa the earliest located witness; on the dating evidence in the same ledger (NDATE-1, NDATE-3, NDATE-4) that does not follow, and this dossier declines to carry it. (3) SYNONYM EQUATIONS. Where two witnesses give different Sanskrit names at the same position, this dossier equates them ONLY where a nānārtha verse in the ledger says so — which happens at exactly three positions (Aśvinī via RAJNI-8, Kṛttikā via RAJNI-7, Maghā via RAJNI-14). At Bharaṇī (dhātrī / āmalā), Puṣya (aśvattha / pippala), Punarvasu (vaṃśa / veṇu), Mūla (sarja / rāla), Śatabhiṣā (kadamba / halipriyā), Uttara Bhādrapadā (nimba / ariṣṭa) and Revatī (madhuka / mohavṛkṣa) the equations are conventional and probably right and ARE NOT MADE HERE, because making them without a sid is precisely the invented-attribution failure this protocol exists to stop. A reader who wants them made needs a nighaṇṭu the fetcher did not reach. (4) DEVANAGARI. The devanagari field is populated only where a ledger snippet carries the actual glyphs — which means the main verse for positions 1–13 (ANAND-3), the 1896 variant list for most positions, and the Nag page images for parts of the Nārada text. It is EMPTY for the main verse at positions 14–27 because the Ānandāśrama snippets stop at v. 34. Nothing was back-transliterated from IAST. (5) SCOPE OF THE NEGATIVE RESULTS. 'The Bṛhat Saṃhitā has no such list' is confirmed for chs. 15, 97 and 55, which is where it would be, not for a line-by-line read of all 106 chapters. The Matsya check covers adhyāyas 1–176 only. No Saṃhitā, Brāhmaṇa or Sūtra text was searched at all, so the widely repeated claim of an Atharvavedic root is neither supported nor refuted here — it is simply not looked at, and that is recorded as a gap rather than converted into an absence. (6) THE PROTECTED-SPECIES EVIDENCE IS PARTIAL. cites.org returned HTTP 403 on every route the fetcher tried, so agarwood's Appendix-II status rests on an IUCN/TRAFFIC CoP17 analysis rather than the official appendices, and the listings for Pterocarpus santalinus and Santalum album were never independently verified — only Soni et al.'s 'considered worldwide endangered' remark is on the record for red sanders. Any downstream page must carry that qualification with the flag. (7) ONE FETCHER GLOSS IS NOT EVIDENCE AND IS MARKED AS SUCH: the claim that śruva-vṛkṣa is a synonym of vikaṅkata appears in the ledger only inside a locus annotation (NRR-3), written by the fetcher, not stated by any source; it is reported here as the fetcher's gloss and not used as an identification. (8) FINALLY, THE COMPARATIVE MATERIAL IS ASYMMETRIC BY CONSTRUCTION. Six Tier C practitioner and commercial sources were fetched and two Tier B papers, against four Tier A Sanskrit texts. That is the right shape for the question asked — the point was to locate the textual floor under a very large modern circulation — but it means the modern-divergence findings rest on a convenience sample of what was reachable, and three of the modern sources most likely to carry a citation were unreachable behind HTTP 403.",
+
+  "ledgerSources": [
+    {
+      "id": "RAJNI-GRETIL",
+      "cite": "Narahari [alias Nṛsiṃha], Rājanighaṇṭu (Nighaṇṭurāja / Abhidhānacūḍāmaṇi), GRETIL TEI e-text, based on ed. Calcutta 1933: Siddheshvarayantra; input Oliver Hellwig. Varga 2 (Dharaṇyādivarga), vv. 2.41–2.46, plus internal synonym verses.",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_narahari-rAjanighaNTu.xml",
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "Sanskrit text itself public domain (13th/14th c. work, 1933 Calcutta edition). GRETIL e-text file distributed under CC BY-NC-SA 4.0 — attribution/licence note required if the file is reused, but the Sanskrit verses quoted are PD.",
+      "snippets": [
+        { "sid": "RAJNI-1", "text": "atha vakṣāmi nakṣatravṛkṣānāgamalakṣitān / pūjyān āyuṣyadāṃś caiva varddhanāt pālanād api", "locus": "Rajni_2.41 (opening of the nakṣatra-vṛkṣa passage)" },
+        { "sid": "RAJNI-2", "text": "viṣadrudhātrītaruhemadugdhā jambūs tathā khādirakṛṣṇavaṃśāḥ / aśvatthanāgau ca vaṭaḥ palāśaḥ plakṣas tathāmbaṣṭhataruḥ krameṇa", "locus": "Rajni_2.42 (trees 1–13, 'krameṇa' = in order)" },
+        { "sid": "RAJNI-3", "text": "bilvārjunau caiva vikaṅkato 'tha sakesarāḥ śambarasarjavañjulāḥ / sapānasārkāś ca śamīkadambās tathāmranimbau madhukadrumaḥ kramāt", "locus": "Rajni_2.43 (trees 14–27)" },
+        { "sid": "RAJNI-4", "text": "amī nakṣatradaivatyā vṛkṣāḥ syuḥ saptaviṃśatiḥ / aśvinyādikramād eṣām eṣā nakṣatrapaddhatiḥ", "locus": "Rajni_2.44 (explicit count 27, order from Aśvinī)" },
+        { "sid": "RAJNI-5", "text": "yas tv eteṣām ātmajanmarkṣabhājāṃ martyaḥ kuryād bheṣajādīn madāndhaḥ / tasyāyuṣyaṃ śrīkalatraṃ ca putro naśyaty", "locus": "Rajni_2.45 (what the text asserts about using one's own birth-star tree medicinally)" },
+        { "sid": "RAJNI-6", "text": "ācāryoktau sphuṭam atha bṛhatsuśrute nāradīye nārāyaṇyāṃ kvacid api tathānyatra tantrāntareṣu", "locus": "Rajni_2.46 (Narahari names his own sources for the doctrine)" },
+        { "sid": "RAJNI-7", "text": "udumbaraḥ kṣīravṛkṣo hemadugdhaḥ sadāphalaḥ / kālaskandho yajñayogyo yajñīyaḥ supratiṣṭhitaḥ", "locus": "Rajni_11.126 (same text glosses hemadugdha = udumbara, resolving item 3)" },
+        { "sid": "RAJNI-8", "text": "kāraskaras tu kimpāko viṣatindur viṣadrumaḥ / garadrumo ramyaphalaḥ kupākaḥ kālakūṭakaḥ", "locus": "Rajni_9.142 (viṣadruma = kāraskara, resolving item 1)" },
+        { "sid": "RAJNI-9", "text": "nārikele rasaphalastathā tāle tu śambaraḥ / vikaṅkato mṛduphale kesare bakulaḥ smṛtaḥ", "locus": "Rajni_23.33 (nānārtha: kesara = bakula; śambara = tāla)" },
+        { "sid": "RAJNI-10", "text": "tirīṭo lodhrako vṛkṣaḥ śambaro hastirodhrakaḥ", "locus": "Rajni_5.208 (śambara listed among lodhra synonyms)" },
+        { "sid": "RAJNI-11", "text": "arjunaḥ śambaraḥ pārthaś citrayodhī dhanaṃjayaḥ", "locus": "Rajni_9.116 (śambara also listed among arjuna synonyms — internal ambiguity)" },
+        { "sid": "RAJNI-12", "text": "vetaso niculo jñeyo vañjulo dīrghapatrakaḥ", "locus": "Rajni_9.106 (vañjula = vetasa = nicula)" },
+        { "sid": "RAJNI-13", "text": "aśokaḥ śokanāśaḥ syād viśoko vañjuladrumaḥ", "locus": "Rajni_10.53 (vañjula also = aśoka — second internal ambiguity)" },
+        { "sid": "RAJNI-14", "text": "kṛṣṇaḥ kāśmīravṛkṣe syāt viṣatindur viṣadrume / palāśe pattrakaḥ prokto nyagrodho rohiṇaḥ smṛtaḥ", "locus": "Rajni_23.32 (nānārtha: kṛṣṇa; also nyagrodha = rohiṇa, which matches Nārada P. item 10)" },
+        { "sid": "RAJNI-15", "text": "Calcutta 1933 : Siddheshvarayantra", "locus": "TEI header, sourceDesc/bibl (edition on which the e-text rests)" }
+      ]
+    },
+    {
+      "id": "RAJNI-ANAND",
+      "cite": "Rājanighaṇṭu, ed. Vaidya Nārāyaṇa Śarma Purandare, Ānandāśrama Sanskrit Series no. 33, 1896 (bound with Dhanvantarīya-nighaṇṭu). Varga 2, section (32) 'Nakṣatravṛkṣāḥ', vv. 33–38, pp. 327–328, with editor's footnote giving a variant list.",
+      "url": "https://archive.org/details/rajanighantuanddhanvantarinighantuvaidyanarayanasarmapurandareanandashram331896_936_v",
+      "fetchOutcome": "read-partial",
+      "tier": "A",
+      "pd": "Public domain — printed 1896, well before any subsisting copyright term; scan on Internet Archive.",
+      "snippets": [
+        { "sid": "ANAND-1", "text": "( ३२ ) नक्षत्रवृक्षाः।", "locus": "p. 327, section heading (leaf image n334) — the passage is a titled section, not an aside" },
+        { "sid": "ANAND-2", "text": "अथ वक्ष्यामि नक्षत्रवृक्षानागमलक्षितान् । पूज्यानायुष्यदांश्चैव वर्धनात्पालनादपि ॥ ३३ ॥", "locus": "p. 327, v. 33 (= GRETIL 2.41; note the differing verse numbering between editions)" },
+        { "sid": "ANAND-3", "text": "विषद्रुधात्रीतरुहेमदुग्धा जम्बूस्तथा खादिरकृष्णवंशाः । अश्वत्थनागौ च वटः पलाशः प्लक्षस्तथाऽम्बष्ठतरुः क्रमेण ॥ ३४ ॥", "locus": "p. 327, v. 34 (= GRETIL 2.42), read from page image" },
+        { "sid": "ANAND-4", "text": "ग्रन्थान्तरे नक्षत्रवृक्षनामानि । तद्यथा—नक्षत्रवृक्षाः क्रमशो ( १ अश्विनी ) विषमुष्टि—", "locus": "p. 327, editor's footnote marked '*' — 'the names of the nakṣatra trees in another book'" },
+        { "sid": "ANAND-5", "text": "( ३ कृत्तिका ) औदुम्बरो ( ४ रोहिणी ) जम्बुवृक्षः ( ५ मृगशीर्षम् ) खदिर( ६ आर्द्रा )श्चागरुर्मतः ॥ १ ॥", "locus": "p. 327 footnote, nakṣatras 3–6 (Ārdrā = aguru here, against 'kṛṣṇa' in the main text)" },
+        { "sid": "ANAND-6", "text": "( ७ पुनर्वसू ) वेणुश्च ( ८ पुष्यम् ) पिप्पलः प्रोक्त( ९ आश्लेषा )श्चम्पकश्च ( १० मघा ) वटो मतः", "locus": "p. 327 footnote, nakṣatras 7–10 (Āśleṣā = campaka, against 'nāga' in the main text)" },
+        { "sid": "ANAND-7", "text": "( १२ उत्तरा ) पांयरी ( १३ हस्तम् ) जाती ( १४ चित्रा ) बिल्वक( १५ स्वाती )श्चार्जुनः स्मृतः", "locus": "p. 327 footnote, nakṣatras 12–15 (Hasta = jātī, against 'ambaṣṭha-taru'); marginal gloss 'पायरी = प्लक्षवृक्षः'" },
+        { "sid": "ANAND-8", "text": "( १६ विशाखा ) बब्बुली ( १७ अनुराधा ) नागपुष्पं च ( १८ ज्येष्ठा ) मोचा च ( १९ मूलम् ) रालवृक्षकः", "locus": "p. 327 footnote, nakṣatras 16–19 (Jyeṣṭhā = mocā, against 'śambara'; Viśākhā glyph read as बब्बुली)" },
+        { "sid": "ANAND-9", "text": "( २० पूर्वाषाढा ) वेत्रो ( २१ उत्तराषाढा ) निचुल( २२ श्रवणम् )श्चार्कश्च ( २३ धनिष्ठा ) शमी चैव ( २४ शततारका ) कदम्बकः", "locus": "p. 327 footnote, nakṣatras 20–24 (U.Āṣāḍhā = nicula, against 'pānasa')" },
+        { "sid": "ANAND-10", "text": "( २५ पूर्वाभाद्रपदा ) आम्रोऽ( २६ उत्तराभाद्रपदा )रिष्टो ( २७ रेवती ) मोहवृक्षो ज्ञेया जन्मर्क्षतस्त्वमी", "locus": "p. 328 footnote, nakṣatras 25–27, closing with 'these are to be known from the birth-star'" },
+        { "sid": "ANAND-11", "text": "आचार्योक्तौ स्फुटमथ बृहत्सुश्रुते नारदीये नारायण्यां क्वचिदपि तथाऽन्यत्र तन्त्रान्तरेषु", "locus": "p. 328, v. 38 (= GRETIL 2.46), read from page image — printed witness for the source-naming verse" },
+        { "sid": "ANAND-12", "text": "[ २ द्वितीयो वर्गः ]   राजनिघण्टुः ।   ३२७", "locus": "p. 327 running head (recto); facing verso head reads '३२८   परिशिष्टो—   [ भूम्यादिर्द्वितीयो वर्गः ]'" }
+      ]
+    },
+    {
+      "id": "NARP-GRETIL",
+      "cite": "Nārada(-īya) Purāṇa, Pūrvabhāga, GRETIL e-text (Sansknet project input), 1,89.144–147 (the 27 trees, inside a Devī nāmāvali) and 1,90.172 / 185 / 215 (janma-nakṣatra tree wood used as homa fuel).",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_nAradapurANa.xml",
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "Purāṇic Sanskrit text is public domain. GRETIL file carries the standard GRETIL availability note; the e-text's own header warns it still needs proof-reading (see NARP-9).",
+      "snippets": [
+        { "sid": "NARP-1", "text": "ahirbudhnyā pūṣaṇī ca tathā kāraskarāmalā / uduṃbarā jaṃbukā ca khadirā kṛṣṇārūpiṇī", "locus": "NarP_1,89.144 — deity list ends (Ahirbudhnya, Pūṣan = 26,27), tree list begins: trees 1–6" },
+        { "sid": "NARP-2", "text": "vaṃśā ca pippalā nāgā rohiṇā ca palāśakā / pakṣakā ca tathāmbaṣṭhā bilvācārjunarūpiṇī", "locus": "NarP_1,89.145 — trees 7–15" },
+        { "sid": "NARP-3", "text": "vikaṅkatā ca kakubhā saralā cāpi sarjikā / vañjulā panasārkā ca śamī halipriyāmrakā", "locus": "NarP_1,89.146 — trees 16–25 (17 = kakubhā, 18 = saralā, 24 = halipriyā)" },
+        { "sid": "NARP-4", "text": "nimbā madhūkasaṃjñā cāpyaśvatthā ca gajāhvayā / nāginī sarpiṇī caiva śunī cāpi biḍālikī", "locus": "NarP_1,89.147 — trees 26–27 (nimbā, madhūkā), then the nakṣatra-yoni animal series begins" },
+        { "sid": "NARP-5", "text": "arāterjanmanakṣatravṛkṣendhanagate 'nale / tadyonipiśitaistaiśca havanānmṛtyukṛdripoḥ", "locus": "NarP_1,90.215 — the concept in ritual use: fire fuelled by an enemy's birth-nakṣatra tree" },
+        { "sid": "NARP-6", "text": "śatrornakṣatravṛkṣāgnau tatsamiddhistu homataḥ / sarṣapājyaplutābhiste praṇamantyeva pādayoḥ", "locus": "NarP_1,90.172 — nakṣatra-tree wood explicitly as samidh in an abhicāra context" },
+        { "sid": "NARP-7", "text": "evaṃ nakṣatravṛkṣotthavahnau taistairmadhuplutaiḥ", "locus": "NarP_1,90.185 — third occurrence of the term in the same chapter" },
+        { "sid": "NARP-8", "text": "Narada-Purana (or Naradiya-Purana), Part 1 Input by members of the Sansknet project", "locus": "TEI header, legacyheader block (provenance of the e-text)" },
+        { "sid": "NARP-9", "text": "After many corrections, the text is still in need of proof-reading!", "locus": "TEI header, legacyheader block — the e-text's own reliability caveat" }
+      ]
+    },
+    {
+      "id": "NARP-NAG",
+      "cite": "Nāradīya-Mahāpurāṇam (Nārada-Purāṇa), Sanskrit, Nag Publishers edition; Pūrvabhāga 89.144–147, scan leaf n448 (printed witness checked against the GRETIL e-text).",
+      "url": "https://archive.org/details/naradiya-maha-puranam-sanskrit-nag-publishers",
+      "fetchOutcome": "read-partial",
+      "tier": "A",
+      "pd": "Sanskrit text public domain; this particular typesetting is a modern reprint. Only the PD verses are quoted, from page images.",
+      "snippets": [
+        { "sid": "NAG-1", "text": "विकंकता च ककुभा सरला चापि सर्जिका", "locus": "leaf n448, v. 146 (page image, cropped and read) — printed reading is ककुभा, confirming GRETIL against the AITM translation's 'Vakula'" },
+        { "sid": "NAG-2", "text": "तथा कारस्करामला ॥", "locus": "leaf n448, v. 144 (page image) — printed reading kāraskarā + āmalā for nakṣatras 1–2" },
+        { "sid": "NAG-3", "text": "वंशा च पिप्पल नागा रोरिणा च पलशका", "locus": "leaf n448, v. 145 — archive.org OCR line (OCR imperfect: 'रोरिणा' for रोहिणा); flagged as OCR, not image-read" }
+      ]
+    },
+    {
+      "id": "NARP-AITM",
+      "cite": "The Nārada-Purāṇa, Part III, English translation, Ancient Indian Tradition and Mythology series, Motilal Banarsidass, Delhi (repr. 1997). Chapter Eightynine, vv. 141–150, p. 1300, with editorial footnote.",
+      "url": "https://archive.org/download/the-narada-purana-part-3/The%20Narada-Purana%2C%20Part%203_djvu.txt",
+      "fetchOutcome": "read-full",
+      "tier": "B",
+      "pd": "IN COPYRIGHT (Motilal Banarsidass). Quoted here only in ≤25-word fragments for verification; not for publication. OCR text layer, so wording may carry scan errors.",
+      "snippets": [
+        { "sid": "AITM-1", "text": "are the twentyseven names of trees named as Naksatra trees", "locus": "p. 1300, footnote 1 (full OCR line reads 'From KXéraskara to Madhika are the twentyseven names of trees named as Naksatra trees.')" },
+        { "sid": "AITM-2", "text": "(791) Vikankata, (792) Vakula, (793) Sarala, (794) Sarjika, (795) Vafijula, (796) Panasa, (797) Arka, (798) Sami, (799) Haripriya", "locus": "p. 1300, nāmāvali items 791–799 — translator reads 'Vakula' where both printed and e-text Sanskrit have ककुभा/kakubhā" },
+        { "sid": "AITM-3", "text": "Similarly, the lords of the constellation begin with Asvini and end with Pisani.", "locus": "p. 1300, footnote 3 — confirms the preceding series is the nakṣatra-deity list, i.e. the trees follow in nakṣatra order" },
+        { "sid": "AITM-4", "text": "CHAPTER EIGHTYNINE", "locus": "chapter heading preceding the passage (establishes Pūrvabhāga ch. 89)" }
+      ]
+    },
+    {
+      "id": "AVPARIS",
+      "cite": "Atharvavedapariśiṣṭas, based on the ed. G. M. Bolling & J. von Negelein, 'The Pariśiṣṭas of the Atharvaveda', Leipzig: Harrassowitz 1909–1910; GRETIL e-text (input Y. Ishii, rev. A. Griffiths). Pariśiṣṭa 1 (Nakṣatrakalpa) chs. 42–45; Pariśiṣṭa 26 (samidhs).",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_atharvavedapariziSTas.xml",
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "Bolling & Negelein 1909–1910 edition is public domain; Sanskrit text public domain.",
+      "snippets": [
+        { "sid": "AVP-1", "text": "atha nakṣatrakalpaṃ vyākhyāsyāmaḥ", "locus": "AVParis_1,1.1 — opening of the Nakṣatrakalpa (Pariśiṣṭa 1)" },
+        { "sid": "AVP-2", "text": "atha nakṣatrasnānānāṃ vidhiṃ vakṣyāmi sāṃpadam / grahadaivatapūjāṃ ca yeṣu yatra yathāvidhi", "locus": "AVParis_1,42.1 — the nakṣatra series in this text is a BATHING rite, not a tree assignment" },
+        { "sid": "AVP-3", "text": "kṛttikābhiḥ śirīṣasya aśvatthasya vaṭasya ca / snāpayet pattrabhaṅgena ya icched rājapūjitam", "locus": "AVParis_1,43.1 — Kṛttikā: three trees' leaf-infusion for bathing (a nakṣatra-plant link, but plural and for snāna)" },
+        { "sid": "AVP-4", "text": "śrīveṣṭakasarjarasatagarośīrapattrakaiḥ / ārdrāyāṃ vaṇijaḥ snātāḥ sulābhāṃs tu labhanti te", "locus": "AVParis_1,45 region, 1,43.4 — Ārdrā: resins and aromatics, not a single tree" },
+        { "sid": "AVP-5", "text": "śraviṣṭhābhir dhanakāmaṃ [tu] snāpayed yatra candanaiḥ", "locus": "AVParis_1,45.2 — Śraviṣṭhā (Dhaniṣṭhā): sandalwood for bathing; the tree list gives śamī for this nakṣatra" },
+        { "sid": "AVP-6", "text": "oṃ samidhāṃ saṃpravakṣyāmi pramāṇaṃ lakṣaṇaṃ śubham", "locus": "AVParis_26,1.1 — opening of the pariśiṣṭa devoted specifically to samidhs" },
+        { "sid": "AVP-7", "text": "arkaḥ palāśo madhuko nyagrodhodumbaras tathā / plakṣo 'śvattho gomayānikuśāś ca samidhaḥ kramāt", "locus": "AVParis_26,5.6cd–5.7ab — the samidh series in this text" },
+        { "sid": "AVP-8", "text": "yathākrameṇa samidha ādityādigraheṣu ca", "locus": "AVParis_26,5.7cd — the index of that samidh series is the GRAHAS beginning with the Sun, not the nakṣatras" },
+        { "sid": "AVP-9", "text": "puṣṭikāmaḥ palāśasya gṛhṇīyāc chāntikarmaṇi udumbarasya vittārthī vaṭāśvatthasya rājyadhīḥ", "locus": "AVParis_26,5.1 — samidh chosen by PURPOSE (puṣṭi, śānti, wealth, kingship), a third indexing principle" }
+      ]
+    },
+    {
+      "id": "BRSAM-GRETIL",
+      "cite": "Varāhamihira, Bṛhatsaṃhitā, GRETIL e-text (Kern-based, with K. variants). Chapter 15 (nakṣatravyūhādhyāya) and chapter 97 (nakṣatrakarmaguṇādhyāya) read in full; also ch. 55 (vṛkṣāyurveda) checked.",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_varAhamihira-bRhatsaMhitA.xml",
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "6th-century Sanskrit text, public domain; Kern's edition (1865) public domain.",
+      "snippets": [
+        { "sid": "BS-1", "text": "15 nakṣatravyūhādhyāyaḥ", "locus": "chapter heading — the chapter most often cited in modern claims that Varāhamihira gives nakṣatra trees" },
+        { "sid": "BS-2", "text": "indrāgnidaivate rakta^puṣpa^phala^śākhinaḥ sa^tila^mudgāḥ", "locus": "BS 15.14ab — Viśākhā: trees of a CLASS (red-flowered/red-fruited), not one named tree" },
+        { "sid": "BS-3", "text": "puṣye yava^godhūmāḥ śāli^ikṣu^vanāni mantriṇo bhūpāḥ", "locus": "BS 15.06ab — Puṣya: grains and cane groves, listed with occupations and commodities" },
+        { "sid": "BS-4", "text": "mūle bheṣaja^bhiṣajo gaṇamukhyāḥ kusuma^mūla^phala^*vārtāḥ", "locus": "BS 15.17ab — Mūla: drugs and physicians; again categories, not a mansion tree" },
+        { "sid": "BS-5", "text": "trīṇy uttarāṇi tebhyo rohiṇyaś ca dhruvāṇi taiḥ kuryāt / abhiṣeka^śānti^taru^nagara^dharma^bīja^dhruva^ārambhān", "locus": "BS 97.06 — tree PLANTING is prescribed under the dhruva (fixed) nakṣatras collectively, not tree-by-tree" },
+        { "sid": "BS-6", "text": "97 nakṣatrakarmaguṇādhyāyaḥ", "locus": "chapter heading — the other chapter that would carry such a list if it existed; it does not" }
+      ]
+    },
+    {
+      "id": "BRSAM-IYER",
+      "cite": "Varāhamihira, Bṛhat Saṃhitā ch. 15 'On the Nakṣatras (nakṣatra-vyūha)', English translation of N. Chidambaram Iyer (1884), as reproduced by wisdomlib.",
+      "url": "https://www.wisdomlib.org/hinduism/book/brihat-samhita/d/doc228916.html",
+      "fetchOutcome": "read-partial",
+      "tier": "B",
+      "pd": "Iyer's 1884 translation is public domain.",
+      "snippets": [
+        { "sid": "IYER-1", "text": "N. Chidambaram Iyer, 1884", "locus": "page header / translator credit" },
+        { "sid": "IYER-2", "text": "grow trees yielding red flowers and red fruits; be dealers in gingelly seeds, beans, cotton, black gram and chick peas", "locus": "ch. 15, v. 14 (Viśākhā) in Iyer's rendering — the only 'tree' content in the chapter is generic" },
+        { "sid": "IYER-3", "text": "dealers in flowers, roots, fruits and seeds", "locus": "ch. 15, v. 17 (Mūla) — again occupational, confirming the chapter carries no per-nakṣatra tree" }
+      ]
+    },
+    {
+      "id": "MW-NAKVRK",
+      "cite": "Monier-Williams, Sanskrit-English Dictionary, and Böhtlingk's Sanskrit-Wörterbuch in kürzerer Fassung, s.v. 'nakṣatravṛkṣa', as reproduced on wisdomlib.",
+      "url": "https://www.wisdomlib.org/definition/nakshatravriksha",
+      "fetchOutcome": "read-partial",
+      "tier": "B",
+      "pd": "Monier-Williams (1899) and pw (1879–1889) are public domain; wisdomlib is the reproduction layer actually fetched.",
+      "snippets": [
+        { "sid": "MW-1", "text": "a tree consecrated to a N°s", "locus": "Monier-Williams entry for nakṣatra-vṛkṣa (N°s = nakṣatras)" },
+        { "sid": "MW-2", "text": "ein einem Mondhause geweihter Baum", "locus": "Sanskrit-Wörterbuch in kürzerer Fassung entry, s.v. nakṣatravṛkṣa" },
+        { "sid": "MW-3", "text": "Rājan 2,41", "locus": "the sole textual citation given in the pw entry — i.e. the lexica themselves point only to Rājanighaṇṭu 2.41" }
+      ]
+    },
+    {
+      "id": "RAJNI-DATE",
+      "cite": "wisdomlib reference page for 'Rājanighaṇṭu' (author, date, alternative titles), drawing on Aufrecht's Catalogus Catalogorum and Cologne Digital Sanskrit Dictionaries.",
+      "url": "https://www.wisdomlib.org/definition/rajanighantu",
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "Aggregator page; the underlying lexica are PD, the page itself is a modern compilation.",
+      "snippets": [
+        { "sid": "RDATE-1", "text": "Narahari Pandita", "locus": "author field on the page" },
+        { "sid": "RDATE-2", "text": "14th century CE", "locus": "dating given on the page (note: the page itself gives conflicting section counts, '16 chapters' vs '24 sections')" },
+        { "sid": "RDATE-3", "text": "Abhidhānacūḍāmaṇi", "locus": "alternative title listed (also Nighaṇṭurāja, Dravyābhidhānagaṇasaṅgraha)" }
+      ]
+    },
+    {
+      "id": "NARP-DATE",
+      "cite": "Wikipedia, 'Narada Purana' — dating and structure, citing Wilson 1864, Hazra 1940, Rocher 1986, Dalal 2014.",
+      "url": "https://en.wikipedia.org/wiki/Narada_Purana",
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "CC BY-SA 4.0 (attribution + licence note required if reused). Reports Tier-B scholarship at second hand.",
+      "snippets": [
+        { "sid": "NDATE-1", "text": "the first 41 chapters of Purvabhaga and the first 37 chapters of Uttarabhaga", "locus": "dating section, reporting Hazra 1940 pp. 127–133 on what was composed before the 11th century — note ch. 89 is OUTSIDE this early core" },
+        { "sid": "NDATE-2", "text": "The Purvabhaga has four padas with the total of 125 chapters.", "locus": "structure section, citing Dalal 2014 p. 272" },
+        { "sid": "NDATE-3", "text": "the composition date of each Purana remains unclear", "locus": "dating section, citing Rocher 1986 p. 203" },
+        { "sid": "NDATE-4", "text": "both texts are of likely recent composition, probably 16th or 17th century", "locus": "dating section, citing Wilson 1864 pp. LI–LIII — the low-end estimate" }
+      ]
+    },
+    {
+      "id": "AGNIP-NEG",
+      "cite": "Agni-Purāṇa, GRETIL e-text based on the ed. Rājendralāl Mitra, Calcutta: Asiatic Society of Bengal 1870–1879 (Bibliotheca Indica 65,1–3); input Jun Takashima. Whole text searched.",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_agnipurANa.xml",
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "Mitra's 1870–79 edition is public domain.",
+      "snippets": [
+        { "sid": "AGNI-1", "text": "Agni-Purana Based on the edition by Rajendralal Mitra Calcutta : Asiatic Society of Bengal 1870-1879, 3 vols.", "locus": "TEI header, legacyheader — edition on which the searched text rests" },
+        { "sid": "AGNI-2", "text": "nakṣatravṛkṣ", "locus": "search string; zero occurrences in the whole downloaded file, and no verse in it carries four or more of the 27 tree names" }
+      ]
+    },
+    {
+      "id": "MATSYAP-NEG",
+      "cite": "Matsyapurāṇa, adhyāyas 1–176, GRETIL e-text based on the ed. Calcutta: Caukhamba Vidyabhavan, 1954; input Oliver Hellwig. Whole file searched.",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_matsyapurANa1-176.xml",
+      "fetchOutcome": "read-full",
+      "tier": "A",
+      "pd": "Purāṇic Sanskrit text public domain; the 1954 edition is a modern reprint of a PD text.",
+      "snippets": [
+        { "sid": "MATSYA-1", "text": "Matsyapurana, Adhyayas 1-176 Based on the ed. Calcutta: Caukhamba Vidyabhavan, 1954.", "locus": "TEI header, legacyheader — note the e-text covers only adhyāyas 1–176, so the check is partial for the whole Purāṇa" },
+        { "sid": "MATSYA-2", "text": "nakṣatravṛkṣ", "locus": "search string; zero occurrences in adhyāyas 1–176, and no verse there carries four or more of the 27 tree names" }
+      ]
+    },
+    {
+      "id": "MANASA-NK",
+      "cite": "manasataramgini (scholar-practitioner blog), 'atharva-vedIya nakShatra kalpa sUktaM', 20 July 2008 — the Atharvavedic nakṣatreṣṭi mantras.",
+      "url": "https://manasataramgini.wordpress.com/2008/07/20/nakshatra-kalpa-suktam/",
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "Blog post, all rights presumably reserved; quoted in short fragments only.",
+      "snippets": [
+        { "sid": "MANASA-1", "text": "They are not found in the extant paippalAda text and appear to represent an independently preserved tradition only found in nakShatra kalpa.", "locus": "body text, introducing the 28 nakṣatreṣṭi mantras" },
+        { "sid": "MANASA-2", "text": "the nakShatra kalpa", "locus": "the page reproduces 28 numbered nakṣatra mantras and contains NO tree assignments — a negative check on the Nakṣatrakalpa's mantra layer" }
+      ]
+    },
+    {
+      "id": "SONI2023",
+      "cite": "R. Soni, N. Singh, G. Singh & S. Raj, 'Significance of Plants in Vedic Astrology, their Socio-Religious Beliefs, Conservational and Therapeutic Aspects', Eco. Env. & Cons. 29(1), 2023, pp. 273–297. DOI 10.53550/EEC.2023.v29i01.043.",
+      "url": "https://www.envirobiotechjournals.com/EEC/volume29issue1/EEC-43.pdf",
+      "fetchOutcome": "read-partial",
+      "tier": "B",
+      "pd": "In copyright (EM International). Quoted in ≤25-word fragments for verification only. NOTE: the paper contains uncited efficacy language and names no Sanskrit primary text for the nakṣatra list.",
+      "snippets": [
+        { "sid": "SONI-1", "text": "Significance of Plants in Vedic Astrology, their Socio-Religious Beliefs, Conservational and Therapeutic Aspects", "locus": "title, p. 273" },
+        { "sid": "SONI-2", "text": "Ashwini | Strychnos nux vomica Kuchla (Loganiaceae)", "locus": "Table 3 'Details of plants that are associated with Nakshatra', row 1, p. 286" },
+        { "sid": "SONI-3", "text": "It is important to note that excess doses of Nux vomica results in fits and ultimately leads to death.", "locus": "Table 3, row 1 (Ashwini), p. 286 — toxicity flag in the source itself" },
+        { "sid": "SONI-4", "text": "Aadra | Pterocarpus santalinus Lal chandan (Fabaceae)", "locus": "Table 3, row 6, p. 287 — this paper assigns red sanders, not agarwood, to Ārdrā" },
+        { "sid": "SONI-5", "text": "Red chandan is endemic to India and considered worldwide endangered (Bulle et al., 2016)", "locus": "Table 3, row 6 (Aadra), p. 287 — protection flag in the source itself" },
+        { "sid": "SONI-6", "text": "Mrughshirsha | Senegalia catechu (=Acacia catechu) Khatha (Fabaceae)", "locus": "Table 3, row 5, p. 287" },
+        { "sid": "SONI-7", "text": "The practice of assigning people with a particular tree species according to lunar asterism like nakshatra Vana, navagraha vrukshas", "locus": "Introduction, p. 274 — the paper's framing; it cites modern authors only, no Sanskrit locus" }
+      ]
+    },
+    {
+      "id": "CITES-AGARWOOD",
+      "cite": "IUCN/TRAFFIC analysis of CoP17 Prop. 60, 'Amendment of the listings of Aquilaria spp. and Gyrinops spp. in Appendix II', pp. 1–2.",
+      "url": "http://www.trafficj.org/cop17/pdf/CoP17_Prop60_Analysis.pdf",
+      "fetchOutcome": "read-partial",
+      "tier": "B",
+      "pd": "IUCN/TRAFFIC document, freely published; quoted in short fragments.",
+      "snippets": [
+        { "sid": "CITES-1", "text": "Amendment of the listings of Aquilaria spp. and Gyrinops spp. in Appendix II", "locus": "p. 1, heading" },
+        { "sid": "CITES-2", "text": "All agarwood-producing taxa are currently included in Appendix II; Aquilaria malaccensis was listed in 1994, and the rest of the genus Aquilaria", "locus": "p. 1, Summary — bears on the aguru/kṛṣṇāguru assignment for Ārdrā" },
+        { "sid": "CITES-3", "text": "They are currently covered by annotation #14, agreed at CoP16 (Bangkok, 2013), including all parts and derivatives except", "locus": "p. 1, Summary — the annotation governing which parts are controlled" },
+        { "sid": "CITES-4", "text": "One of the major products in trade is wood chips, which may be traded for burning as 'incense wood'", "locus": "p. 1 — relevant to any incense/homa use of agarwood" }
+      ]
+    },
+    {
+      "id": "STRYCH-TOX",
+      "cite": "D. Menza & V. R. Lee, 'Strychnine Toxicity', StatPearls, NCBI Bookshelf (last update 29 March 2026).",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459306/",
+      "fetchOutcome": "read-partial",
+      "tier": "B",
+      "pd": "StatPearls is CC BY-NC-ND; short quotation for verification.",
+      "snippets": [
+        { "sid": "STRY-1", "text": "Strychnine is a highly toxic alkaloid derived from the Strychnos nux-vomica plant, which grows in Sri Lanka, India, and Australia.", "locus": "opening 'Continuing Education Activity'/Introduction — bears on the Aśvinī assignment (viṣadru/kāraskara/viṣamuṣṭi)" },
+        { "sid": "STRY-2", "text": "Strychnine Toxicity", "locus": "chapter title; authors Daniel Menza; Vincent R. Lee" }
+      ]
+    },
+    {
+      "id": "WIKI-NAKVANA",
+      "cite": "Wikipedia, 'Nakshatravana' (the Sringeri sacred grove) — the most widely mirrored modern 27-tree table, with Malayalam/Tamil vernacular names.",
+      "url": "https://en.wikipedia.org/wiki/Nakshatravana",
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "CC BY-SA 4.0 — attribution and licence note required if reused.",
+      "snippets": [
+        { "sid": "WIKI-1", "text": "Nakshatravana, also called Nakshatravanam or Nakshatravan, is a sacred grove in Sringeri, Karnataka, India.", "locus": "lead sentence" },
+        { "sid": "WIKI-2", "text": "Kanjiram/Yetti/Etti/Kuchala | Strychnine | Strychnos nux-vomica", "locus": "table row, Ashwini/Aswathy — agrees with Rājanighaṇṭu's viṣadru=kāraskara" },
+        { "sid": "WIKI-3", "text": "Diospyros melanoxylon/Pterocarpus santalinus/Aquilaria agallocha", "locus": "table row, Aardra/Thiruvathira — three mutually exclusive botanical identifications offered for one cell" },
+        { "sid": "WIKI-4", "text": "Spondias pinnata/Azadirachta indica/Jasminum grandiflorum", "locus": "table row, Hasta/Atham — diverges from Rājanighaṇṭu's ambaṣṭha-taru and from the 1896 footnote's jātī" },
+        { "sid": "WIKI-5", "text": "Aporosa lindleyana/Calamus rotang/Calamus wightii", "locus": "table row, Jyeshta/Ketta — diverges from both śambara (Rājanighaṇṭu) and mocā (1896 footnote) and saralā (Nārada P.)" },
+        { "sid": "WIKI-6", "text": "Kudappana | Bajarbattu | Corypha umbraculifera", "locus": "table row, Uttra Badrapada — talipot palm, against nimba/ariṣṭa in every Sanskrit witness located" },
+        { "sid": "WIKI-7", "text": "Eluppa/Iluppai/Moha/Mahua | Butter Tree | Madhuca longifolia/Madhuca indica", "locus": "table row, Revathi — agrees with madhuka/mohavṛkṣa in the Sanskrit witnesses" },
+        { "sid": "WIKI-8", "text": "\"Nakshatra vana— A treasure trove of plants\". Deccan Herald. 4 August 2012.", "locus": "References — the article's ONLY substantive source; no Sanskrit text is cited anywhere on the page" }
+      ]
+    },
+    {
+      "id": "BHAKTIPOOJA",
+      "cite": "bhaktipooja.com, product page 'Nakshatra Samidha' — commercial practitioner source selling nakṣatra-indexed homa woods.",
+      "url": "https://bhaktipooja.com/product/nakshatra-samidha/",
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "Commercial web page, all rights reserved; quoted in short fragments.",
+      "snippets": [
+        { "sid": "BHAKTI-1", "text": "Woods of trees that represents their respective constellation 'Nakshatra' are called 'Nakshatra Samidha' (27 Nakshatra and their kinds of wood).", "locus": "product description — DIRECT EVIDENCE of the modern merge of the nakṣatra-vṛkṣa list with the samidha category" },
+        { "sid": "BHAKTI-2", "text": "It is used in various rituals (Homa/Yagya). It can also be used on a daily pooja", "locus": "product description, continuation" },
+        { "sid": "BHAKTI-3", "text": "18. Lordh – Jeystha 19. Shaal – Mool 20. Jalvret – Purvashana 21. Panas – Uttarashada", "locus": "list items 18–21 — 'Lordh' (lodhra) for Jyeṣṭhā and 'Jalvret' (jala-vetra) for P.Āṣāḍhā resolve Rājanighaṇṭu's ambiguous śambara and vañjula exactly as that text's own nānārtha verses allow" },
+        { "sid": "BHAKTI-4", "text": "6. Krishnagur – Adara 7. Bans – Punarvasu 8. Pipal – Pushya 9. Naag Kesar – Ashlesha", "locus": "list items 6–9 — 'Krishnagur' (kṛṣṇāguru) for Ārdrā matches the 1896 footnote's agaru reading" },
+        { "sid": "BHAKTI-5", "text": "23. Shami – Ghanishta 24. Kadamb – Ghanitha", "locus": "list items 23–24 — the page misnames nakṣatra 24 (Śatabhiṣaj) as 'Ghanitha', an internal error worth recording" }
+      ]
+    },
+    {
+      "id": "NRAMESHRAO",
+      "cite": "nrameshrao.blogspot.com, 'Nakshatra Trees - 27 Nos', September 2023 — practitioner blog list.",
+      "url": "http://nrameshrao.blogspot.com/2023/09/nakshatra-trees-27-nos.html",
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "Blog, all rights reserved; short table-cell quotations only.",
+      "snippets": [
+        { "sid": "NRR-1", "text": "Hastha | Aamraata", "locus": "table row 13 — āmrāta (Spondias) for Hasta, agreeing with Wikipedia against Rājanighaṇṭu's ambaṣṭha" },
+        { "sid": "NRR-2", "text": "Uttara bhadrapada | Taladrumah", "locus": "table row 26 — tāla (palm) for U.Bhādrapadā, agreeing with Wikipedia's Corypha against nimba" },
+        { "sid": "NRR-3", "text": "Visakha | Sruvavrkash", "locus": "table row 16 — śruva-vṛkṣa, a synonym of vikaṅkata, agreeing with the Sanskrit witnesses" },
+        { "sid": "NRR-4", "text": "Jyeshta | Valaka", "locus": "table row 18 — a fourth distinct reading for Jyeṣṭhā" }
+      ]
+    },
+    {
+      "id": "COSMICINSIGHTS",
+      "cite": "blog.cosmicinsights.net, 'Nakshatra and Trees' — Vedic-astrology software vendor's list.",
+      "url": "https://blog.cosmicinsights.net/nakshatra-and-trees/",
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "Blog, all rights reserved; short quotations only.",
+      "snippets": [
+        { "sid": "CI-1", "text": "Every Nakshatra is associated with a tree. Here is the list of Nakshatras and the trees associated with them.", "locus": "introductory line — no source text named anywhere on the page" },
+        { "sid": "CI-2", "text": "Jyestha — Red Silk Cotton Tree", "locus": "list entry 18 — matches the 1896 Ānandāśrama footnote's मोचा (mocā = Bombax/Salmalia)" },
+        { "sid": "CI-3", "text": "Anuradha — Bakula, Nagkesa", "locus": "list entry 17 — carries BOTH readings that the Sanskrit witnesses split on (kesara/bakula vs nāgapuṣpa)" },
+        { "sid": "CI-4", "text": "Ardra — Agar Wood or Krushnagus", "locus": "list entry 6 — agarwood (CITES Appendix II; see CITES-2)" }
+      ]
+    },
+    {
+      "id": "ASTROWORLD",
+      "cite": "astroworld.co.in, 'नक्षत्र वृक्ष Plants & Trees of 27 Nakshatras (Stars)', by Prama Chopra (2011).",
+      "url": "https://www.astroworld.co.in/plants-trees-of-27-nakshatras-stars/",
+      "fetchOutcome": "read-partial",
+      "tier": "C",
+      "pd": "Astrology portal, all rights reserved; short table-cell quotations only.",
+      "snippets": [
+        { "sid": "AW-1", "text": "Ardra | Black Eaglewood | Pterocarpus santalinus", "locus": "table row 6 — internally inconsistent: 'eaglewood' is Aquilaria, the botanical name given is red sanders" },
+        { "sid": "AW-2", "text": "Hasta | Indian Soapberry | Sapindus mukorossi", "locus": "table row 13 — a fourth distinct identification for Hasta" },
+        { "sid": "AW-3", "text": "Jyeshtha | Silk cotton tree | Salmalia malabarica", "locus": "table row 18 — agrees with the 1896 footnote's mocā" },
+        { "sid": "AW-4", "text": "Anuradha | Maulsari | Mimusops elengi", "locus": "table row 17 — bakula, i.e. the reading Rājanighaṇṭu's own nānārtha verse supports for kesara" }
+      ]
+    },
+    {
+      "id": "FAILED-RG-367530109",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "S. Bhattacharya et al. (?), 'Vedic and Puranic roots and contemporary relevance of Nakshatra vana' (ResearchGate record 367530109) — the one paper found that claims to trace the concept to named Purāṇas.",
+      "url": "https://www.researchgate.net/publication/367530109_Vedic_and_Puranic_roots_and_contemporary_relevance_of_Nakshatra_vana",
+      "why": "HTTP 403 Forbidden on WebFetch. No open-access copy located under that title; a same-journal search surfaced a DIFFERENT paper (Soni et al. 2023, EEC 29(1):273–297) which I did retrieve. The Purāṇic-roots paper's actual citations remain unverified."
+    },
+    {
+      "id": "FAILED-SAJB",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "Sacred groves and nakshatravan trees — a comparative analysis (South African Journal of Botany, S0254629922004483).",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0254629922004483",
+      "why": "HTTP 403 Forbidden (Elsevier paywall/bot block). Could not read the table or its cited sources."
+    },
+    {
+      "id": "FAILED-IJRPR",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "'Nakshatra-Based Medicinal Gardens', Int. J. Research Publication and Reviews 6(8), 2025.",
+      "url": "https://ijrpr.com/uploads/V6ISSUE8/IJRPR51983.pdf",
+      "why": "HTTP 403 Forbidden on the PDF. Search snippets suggested it asserts roots in 'Atharva Veda, Brihat Samhita, and Kalpa Sūtras', but I could not open the paper to check whether any locus is given, so that claim is UNVERIFIED and should not be used."
+    },
+    {
+      "id": "FAILED-CITES-OFFICIAL",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "CITES Appendices I, II and III (official current text), cites.org.",
+      "url": "https://cites.org/eng/app/appendices.php",
+      "why": "HTTP 403 Forbidden via both curl and WebFetch; the appendices PDFs under /sites/default/files/eng/app/ also returned 403, and checklist.cites.org is a JavaScript app returning no text. Agarwood's Appendix-II status was therefore taken from the IUCN/TRAFFIC CoP17 Prop. 60 analysis instead (ledger CITES-AGARWOOD). Pterocarpus santalinus and Santalum album listings were NOT independently verified against CITES — only Soni et al.'s 'considered worldwide endangered' remark is on the record."
+    },
+    {
+      "id": "FAILED-DECCANHERALD",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "'Nakshatra vana— A treasure trove of plants', Deccan Herald, 4 August 2012 — the sole substantive reference behind the Wikipedia 'Nakshatravana' table.",
+      "url": "https://www.deccanherald.com/content/272111/nakshatra-vana-treasure-trove-plants.html",
+      "why": "HTTP 403 Forbidden. This matters: the most-mirrored modern 27-tree table rests on a source I could not open, so the provenance of that table is unestablished, not merely unstated."
+    },
+    {
+      "id": "FAILED-RAJNI-1882",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "Rājanighaṇṭu of Narahari Paṇḍita, Varanasi 1882, Kashi Sanskrit Press (Internet Archive scan, eGangotri digitisation).",
+      "url": "https://archive.org/details/ehad-rajanighantu-by-narahari-pandita-sanskrit-ayurveda",
+      "why": "The item's _djvu.txt OCR layer contains no Devanagari at all (it resolves the script to Latin noise), so this second 19th-century printed witness could not be text-searched. Not pursued to page images because the 1896 Ānandāśrama edition already gave a clean printed witness."
+    },
+    {
+      "id": "FAILED-NAG-FULLTEXT",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "Nāradīya-Mahāpurāṇam (Nag Publishers) — archive.org search-inside, to obtain the printed page number for Pūrvabhāga 89.144–147.",
+      "url": "https://ia902900.us.archive.org/fulltext/inside.php?item_id=naradiya-maha-puranam-sanskrit-nag-publishers",
+      "why": "API returned {\"error\":\"No hOCR or Abbyy file present\"}. Worked around by grepping the 28 MB _djvu.xml for the word coordinates, which gave scan leaf n448 but NOT the printed page number. The Nārada Purāṇa locus in the ledger is therefore by chapter/verse only, not by page of that edition."
+    },
+    {
+      "id": "FAILED-BHAVAPRAKASA",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "Bhāvamiśra, Bhāvaprakāśa (with the Bhāvaprakāśa-nighaṇṭu), GRETIL e-text.",
+      "url": "https://gretil.sub.uni-goettingen.de/gretil/corpustei/sa_bhAvamizra-bhAvaprakAza.xml",
+      "why": "The GRETIL file is only 75 KB and its own header says 'three chapters; to be continued'. The 16th-century nighaṇṭu that would show whether the nakṣatra-vṛkṣa section was carried forward after Narahari could therefore NOT be checked. This is an open gap, not a negative result."
+    },
+    {
+      "id": "FAILED-BRHATSUSRUTA",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "Bṛhat-Suśruta and 'Nārāyaṇī' — two of the three sources Narahari names at Rājanighaṇṭu 2.46 as carrying the nakṣatra-tree doctrine.",
+      "url": "https://www.google.com/search?q=%22Brihat+Susruta%22+Narayaniya+nakshatra+trees",
+      "why": "Repeated web searching found no e-text, edition, catalogue entry or scholarly discussion of a work titled Bṛhat-Suśruta, and nothing linking a 'Nārāyaṇī' to nakṣatra trees. The third name he gives, Nāradīya, WAS traced and verified (ledger NARP-GRETIL / NARP-NAG / NARP-AITM). The other two remain untraced."
+    },
+    {
+      "id": "FAILED-VEDICVANAS",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "vedicvanas.com, 'Nakshatra Vana' — temple-garden practitioner page.",
+      "url": "http://www.vedicvanas.com/nakshatra-vana/",
+      "why": "Page returned only the site title 'Vedic Vanas · Sacred Temple Gardens' with no body text retrievable; no list or citation could be quoted."
+    },
+    {
+      "id": "NOT-USED-GROKIPEDIA",
+      "fetchOutcome": "DELIBERATELY NOT FETCHED — persisted so the decision is re-walkable",
+      "cite": "Grokipedia, 'Nakshatravana' — surfaced repeatedly in searches and asserts that disputed nakṣatra-tree associations arise 'due to varying commentaries on texts like the Brihat Samhita'.",
+      "url": "https://grokipedia.com/page/Nakshatravana",
+      "why": "Not fetched and deliberately not used. It is machine-generated encyclopedic text with no editorial provenance, and its Bṛhat Saṃhitā claim is contradicted by my own full read of BS ch. 15 and 97 (ledger BRSAM-GRETIL). Recorded here so the claim is not mistaken for an unexamined source."
+    },
+    {
+      "id": "FAILED-MEULENBELD",
+      "fetchOutcome": "FAILED — persisted so the negative is re-walkable",
+      "cite": "Meulenbeld, G. J., A History of Indian Medical Literature (Groningen) — the standard authority on the date and sources of the Rājanighaṇṭu.",
+      "url": "https://www.wisdomlib.org/definition/rajanighantu",
+      "why": "Not available online in any fetchable form. The Rājanighaṇṭu's 14th-century dating in the ledger therefore rests only on a wisdomlib aggregator page (Tier C), not on Meulenbeld or on Aufrecht directly. The compiler should treat the date as weakly sourced."
+    }
+  ]
+}
