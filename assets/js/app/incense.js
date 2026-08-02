@@ -239,10 +239,16 @@ function paintNow(lat, lon) {
         <div class="small muted">Same arithmetic as the hour above, and that is a <b>sourced</b> claim,
           not an inference from the tables looking alike: al-Bīrūnī (c. AD 1030) reports the Indian
           dominants as arranged by <i>horæ obliquæ temporales</i> — twelve by day, twelve by night.</div>
-        <div class="small"><b>Materia: not carried.</b> This repo holds no Indian incense data —
-          no graha samidha, no nakṣatra-vanaspati, no remedial-herb table. Rather than fill the cell
-          from general knowledge, it stays empty: an invented assignment would look exactly like a
-          cited one. It needs its own sourced round.</div>
+        <div class="small"><b>Materia: not carried — and the reasons differ.</b>
+          A sourced round (2026-08-01) found three Indian plant traditions and established that
+          <b>two of them do not answer this question at all</b>:
+          <b>graha samidha</b> is homa <i>fuel</i>, not an incense, and
+          <b>nakṣatra-vanaspati</b> is indexed by lunar mansion rather than by the hour's ruler.
+          Only <b>graha dhūpa</b> is the same kind of claim as the column above — and there the
+          finding was a <b>documented absence</b>: no per-graha incense assignment survived
+          verification. So this cell is empty for two different reasons, and neither is "nobody
+          looked". Dropping the samidha list in here would merge a fuel with a suffumigation —
+          the exact error that round was convened to prevent.</div>
       </div>`
     : '';
 

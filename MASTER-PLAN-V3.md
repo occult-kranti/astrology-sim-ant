@@ -191,20 +191,67 @@ still bite.
 
 ---
 
+## 6b · Where this stands (2026-08-01)
+
+**Shipped since the turn began.** The incense page ([per planet + per material +
+the live hour](docs/plans/horae/HORARIUM-SPEC.md)) · the Vedic horā engine ·
+FRAMING §11 · the inherited-witness cap, which unblocked the artery.
+
+**The measured result of the protocol work**, across three research rounds:
+
+```
+fabricated-citation   15 → 0     merged-conflict   9 → 0
+verbatim-copyright     3 → 0     efficacy-claim    1 → 0
+dangling evidence    344 → 0     (C5: ledgers now persisted on disk)
+```
+
+The fetcher/compiler split closed the class it was built for. What remains is
+*precision* — a source correctly fetched and then over-read by a word or a
+number — which is cheaper to fix and still disqualifying for a page that prints
+"cited" beside every cell.
+
+**Three findings worth carrying forward.**
+
+1. **A category error can hide inside a correct fix.** The inherited-witness cap
+   was right, and it fired on `procedure-type` aggregates, whose witnesses are
+   by construction their members'. Two plausible diagnoses were tested and killed
+   before the third landed.
+2. **The conflation risk migrates to the renderer.** Three individually clean
+   Vedic dossiers could still be merged wrongly *at build time* by dropping a
+   homa fuel into a suffumigation cell. Clean data does not make a clean page.
+3. **A tier can grade the wrong thing.** 48 Tier A rows graded the *name↔graha
+   attribution*; the botanical identification — what a page actually prints — is
+   Tier A nowhere in that round.
+
 ## 7 · Order of work
 
 | # | what | state |
 |---|---|---|
-| 1 | Research protocol v2 result — did fabrication drop? | **running** |
-| 2 | Resolve Saturn `'opium, etc.'` | unblocked, small |
-| 3 | HORARIUM stage 1 — Western hours + materia, live | **unblocked** |
-| 4 | Graph+RAG plan synthesized, then phase 1 of it | **designing** |
-| 5 | Materia as graph nodes; the per-material view | after 4 |
-| 6 | Re-route the Picatrix materia column to PD sources | after 1 |
-| 7 | FRAMING amendment for the documented-practice turn | needs maintainer |
+| ✓ | Research protocol hardened; three rounds run | **done** |
+| ✓ | HORARIUM stage 1 — Western hours + materia, live | **shipped** |
+| ✓ | FRAMING amendment (§11) for the documented-practice turn | **adopted** |
+| ✓ | Inherited-witness cap; the artery unblocked | **shipped** |
+| ✓ | Vedic horā engine, convergence cited to al-Bīrūnī | **shipped** |
+| ✓ | Vedic materia sourced round | **done — verdict: do not render** |
+| 1 | **Resolve Saturn `'opium, etc.'`** — Agrippa I.xliv gives black poppy *seed*, and the Picatrix III.3/III.7 citation is queued as a suspected conflation | **next; unblocked, small** |
+| 2 | **Roadmap action A · second witness** — score 11.5, still top | unblocked |
+| 3 | Samidha's seven text edits (no new research needed) | unblocked |
+| 4 | Choghadiya — Tier C; golden values already in the v2 dossier, which says to *feed* sunrise/sunset in rather than compute | unblocked |
+| 5 | Graph+RAG phase 0 — ships zero bytes, names 40 inflated claims | plan done |
+| 6 | Materia as graph nodes; the per-material view | after 5 |
+| 7 | Re-route the Picatrix materia column to PD sources (§11.4) | unblocked |
 | 8 | Ritual programme — first procedure page, one text, end to end | after 7 |
 
-Carried, unchanged: apply the 81 corroboration witnesses (needs the five
-source-table shapes normalised first), and the §9.8 `picatrix-prayers.js` fix —
-which §2 now makes easier, since the PD route replaces the in-copyright excerpts
-rather than merely deleting them.
+**Two defects that outrank most of the above** and are not in the roadmap because
+the EIG proxy cannot see them:
+
+- **§9.8 `picatrix-prayers.js`** — verbatim in-copyright text reaching a
+  third-party API on every relevant request. §11.4's PD route now *replaces*
+  rather than merely deletes it, which makes this cheaper than when it was
+  queued.
+- **B14** — `bhava-phala.js` and `greatworks-east.js` declare themselves
+  GENERATED and cannot be rebuilt; no generator exists.
+
+Carried: the 81 corroboration witnesses, which still need the five source-table
+shapes normalised first (array-on-`key`, object map, array-on-`id`, and two bare
+string arrays — `proposedSourceId` means something different in each).
