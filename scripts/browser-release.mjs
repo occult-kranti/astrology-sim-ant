@@ -159,7 +159,11 @@ try {
       assert.equal(await page.locator('#cal-results').textContent(), '', 'invalid input clears stale calendar output');
       await page.locator('#cal-zone').fill('Asia/Kolkata');
       await submit(page, '#cal-form');
-      await textIncludes(page, '#cal-status', 'Asia/Kolkata');
+      // ICU versions may canonicalize Kolkata to its equivalent Calcutta alias.
+      // Keep the substantive UTC+05:30 result and successful recovery assertions.
+      await page.waitForFunction(() => /Asia\/(?:Kolkata|Calcutta)/.test(document.querySelector('#cal-status').textContent));
+      await textIncludes(page, '#cal-status', '17:30');
+      assert.equal(await page.locator('#cal-status').evaluate(el => el.classList.contains('cal-error')), false);
       await accessibility(page);
       await page.screenshot({ path: resolve(output, label + '-calendars.png'), fullPage: true });
       completed.push(label + ': civil calendars, J2000 JD, Gregorian/Julian Easter, Qibla, polar prayer case, validation recovery');
