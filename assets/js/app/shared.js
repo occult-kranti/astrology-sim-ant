@@ -52,6 +52,7 @@ export const NAV_GROUPS = [
     ['pages/handcalc.html', 'Cast a chart by hand', 'handcalc', 'By hand & meta'],
     ['pages/book1/dignities.html', 'Essential Dignities', 'dignities'],
     ['pages/book1/planetary-hours.html', 'Planetary Hours', 'phours'],
+    ['pages/calendars.html', 'Calendars, prayer & direction', 'calendars'],
     ['pages/picatrix/talisman.html', 'Talisman Workshop', 'talisman'],
     ['pages/autopilot.html', 'Grand Orchestrator (AI)', 'autopilot'],
   ] },
@@ -115,6 +116,7 @@ export function currentSection() {
   // Cast tools that physically live inside a Traditions folder — checked first.
   if (m(/\/pages\/book1\/dignities\.html$/)) return 'dignities';
   if (m(/\/pages\/book1\/planetary-hours\.html$/)) return 'phours';
+  if (m(/\/pages\/calendars\.html$/)) return 'calendars';
   if (m(/\/pages\/book2\/horary\.html$/)) return 'horary';
   if (m(/\/pages\/book3\/nativity\.html$/)) return 'nativity';
   // Exact, and BEFORE the /pages/picatrix/ catch-all below: incense.html sits at
@@ -485,12 +487,7 @@ export const CITIES = [
 ];
 
 // Build a chart Date (UTC) from local date/time fields and a UTC offset (hours).
-export function toUTC(dateStr, timeStr, offsetHours) {
-  const [y, mo, d] = dateStr.split('-').map(Number);
-  const [h, mi] = timeStr.split(':').map(Number);
-  // local time → UTC: subtract the offset
-  return new Date(Date.UTC(y, mo - 1, d, h, mi) - offsetHours * 3600000);
-}
+export { offsetToUTC as toUTC } from '../core/time.js';
 
 // Populate a <select> with the city list; on change set lat/lon/offset inputs.
 // Also injects a "📍 Use my location" button + a nearest-city status line right
@@ -529,7 +526,7 @@ export function wireCitySelect(sel, latIn, lonIn, offIn, timeFields = null) {
         if (timeFields.dateIn) timeFields.dateIn.value = f.date;
         if (timeFields.timeIn) timeFields.timeIn.value = f.time;
         const near = nearestCity(lat, lon);
-        if (offIn && near) offIn.value = near.offset;     // best-guess standard offset for the place
+        if (offIn) offIn.value = f.offset; // same DEVICE clock as the fields above
         if (typeof timeFields.afterGeo === 'function') timeFields.afterGeo();
       } catch (e) { /* non-fatal */ }
     };

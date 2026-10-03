@@ -150,7 +150,7 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
 
   // Dynamic root aria-label (D4): names the ascendant, counts, and the affordance.
   const nPlanets = Object.keys(chart.planets || {}).filter(n => chart.planets[n]).length;
-  const rootLabel = `Chart wheel: ${signOf(chart.asc).name} rising; ${nPlanets} planets, ${aspects.length} aspects. Interactive — planets are buttons.`;
+  const rootLabel = `Chart wheel: ${signOf(chart.asc).name} rising; ${nPlanets} planets, ${aspects.length} aspects. ${chart.system} houses. ${chart.houseWarning || ''} Interactive — planets are buttons.`;
   const svg = el('svg', {
     viewBox: `0 0 ${size} ${size}`, class: 'chart-wheel', role: 'img',
     'data-density': density, 'aria-label': rootLabel
@@ -347,6 +347,11 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
   }
 
   container.innerHTML = '';
+  if (chart.houseWarning) {
+    const warning = el('text', { x: size / 2, y: size - 3, 'text-anchor': 'middle', 'font-size': Math.max(9, size * .019), fill: 'currentColor' });
+    warning.textContent = chart.requestedSystem !== chart.system ? `${chart.system} houses · ${chart.requestedSystem} unavailable` : `${chart.system} houses · polar geometry`;
+    const title = el('title'); title.textContent = chart.houseWarning; warning.appendChild(title); svg.appendChild(warning);
+  }
   container.appendChild(svg);
   return svg;
 }

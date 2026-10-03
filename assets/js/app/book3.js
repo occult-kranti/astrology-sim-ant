@@ -3,7 +3,8 @@
 //  engine and adds the Lord of the Geniture (almuten of the whole figure) and a
 //  simplified humoral temperament estimate after Lilly's method.
 // ============================================================================
-import { castChart, formatLon, signOf, PLANET_GLYPHS } from '../core/astro.js';
+import { castChart, formatLon, signOf, PLANET_GLYPHS, untimedPositions, norm360 } from '../core/astro.js';
+import { zonedCivilDay, validLocation } from '../core/time.js';
 import { essentialDignity, accidentalDignity } from '../core/dignities.js';
 import { allAspects } from '../core/aspects.js';
 import { renderChart } from '../core/chart.js';
@@ -34,6 +35,10 @@ export async function initNativity() {
   $('n-lat').value = 51.5074; $('n-lon').value = -0.1278;
   $('n-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
   await mountEnh();
+  $('n-orb-mode').addEventListener('change', () => { $('n-orb').disabled = $('n-orb-mode').value !== 'fixed'; compute(); });
+  $('n-orb').addEventListener('change', compute);
+  $('n-system').addEventListener('change', compute);
+  $('n-certainty').addEventListener('change', () => { picker?.setTimeKnown($('n-certainty').value === 'known'); compute(); });
   try { initGlosstip(); } catch { /* non-fatal */ }
   compute();
 }
@@ -66,15 +71,56 @@ function pickerFallback(boxId, ids) {
 }
 
 function compute() {
-  const date = toUTC($('n-date').value, $('n-time').value, parseFloat($('n-offset').value) || 0);
+  try { return computeValidated(); } catch (error) {
+    $('n-summary').textContent = error.message;
+    $('n-summary').setAttribute('role', 'alert');
+    $('n-wheel').replaceChildren(); $('n-planets').replaceChildren();
+    $('n-lord').textContent = 'Unavailable until the input is corrected.';
+    $('n-temperament').textContent = ''; $('n-method').textContent = ''; lastSummary = 'Invalid input — no current chart.';
+    document.querySelectorAll('.vedic-panel, #n-explain-mount').forEach(el => { el.hidden = true; });
+  }
+}
+
+function computeValidated() {
+  if (picker && !picker.validate().ok) throw new RangeError('Correct the highlighted date, time, location or time-zone fields.');
+  $('n-summary').setAttribute('role', 'status');
+  const offset = Number($('n-offset').value);
+  const date = toUTC($('n-date').value, $('n-time').value, offset);
   const lat = parseFloat($('n-lat').value), lon = parseFloat($('n-lon').value);
-  if (isNaN(lat) || isNaN(lon)) return;
+  validLocation(lat, lon);
+  const known = $('n-certainty').value === 'known';
+  $('n-system').disabled = !known;
+  document.querySelectorAll('.vedic-panel, #n-explain-mount').forEach(el => { el.hidden = !known; });
+  if (!known) {
+    const fields = picker?.fields() || {};
+    const next = toUTC($('n-date').value, '00:00', 0); next.setUTCDate(next.getUTCDate() + 1);
+    const nextDate = next.toISOString().split('T')[0];
+    const day = fields.timeZone ? zonedCivilDay($('n-date').value, fields.timeZone) : { start: toUTC($('n-date').value, '00:00', offset), end: toUTC(nextDate, '00:00', offset) };
+    const { start, end } = day;
+    const result = untimedPositions(start, end);
+    $('n-summary').textContent = 'Birth time unknown — planetary positions across the selected civil day.';
+    $('n-method').textContent = result.method + ' ' + start.toISOString() + ' to ' + end.toISOString() + '.';
+    $('n-wheel').textContent = 'A timed chart cannot be drawn without a birth time. No ascendant, Midheaven, houses or Part of Fortune is calculated.';
+    $('n-lord').textContent = 'Unavailable without birth time and the associated houses and sect.';
+    $('n-temperament').textContent = 'Time-dependent interpretations are withheld.';
+    $('n-planet-head').innerHTML = '<tr><th scope="col">Planet</th><th scope="col">Midpoint position (approximate)</th><th scope="col">Sampled range across the day</th></tr>';
+    $('n-planets').innerHTML = Object.entries(result.planets).map(([name, p]) => `<tr><td>${G(name)} ${name}</td><td>${formatLon(p.longitude)}</td><td>${formatLon(norm360(p.longitude + p.minDelta))} → ${formatLon(norm360(p.longitude + p.maxDelta))}</td></tr>`).join('');
+    lastSummary = 'Unknown birth time: planetary ranges only.';
+    return;
+  }
+  $('n-planet-head').innerHTML = '<tr><th scope="col" class="l">Planet</th><th scope="col" class="l">Position</th><th scope="col">Ho.</th><th scope="col" class="num">Ess.</th><th scope="col" class="num">Acc.</th></tr>';
   const chart = castChart(date, lat, lon, $('n-system').value);
+  chart.timeZone = picker?.fields().timeZone || null;
+  chart.utcOffset = offset;
+  $('n-method').textContent = `${chart.system} houses · ${date.toISOString()} · geocentric tropical positions. ${chart.houseWarning || ''}`;
   const isDay = chart.isDay;
   try { if (!vedicUpdate) vedicUpdate = attachVedicPanel(); vedicUpdate(chart); } catch { /* non-fatal */ }
 
   const bodies = {}; for (const p of PL) bodies[p] = chart.planets[p];
-  const asps = allAspects(bodies);
+  const orb = $('n-orb-mode').value === 'fixed' ? Number($('n-orb').value) : null;
+  if ($('n-orb-mode').value === 'fixed' && $('n-orb').value === '') throw new RangeError('Enter a maximum aspect orb.');
+  const asps = allAspects(bodies, { orbOverride: orb });
+  $('n-method').textContent += orb === null ? ' Wheel aspects use Lilly’s sum-of-moieties rule; historical readings retain their own conventions.' : ` Wheel aspects use a fixed ${orb}° maximum orb; historical readings retain Lilly’s original orb conventions.`;
   renderWheel($('n-wheel'), chart, asps);
 
   $('n-summary').innerHTML = `<strong>${formatLon(chart.asc)}</strong> ascending · MC

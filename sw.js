@@ -32,7 +32,7 @@
 
 // Bump on every deploy that changes cached bytes. The date-ish tag makes stale
 // caches obvious in DevTools → Application → Cache Storage.
-const VERSION = 'awb-2026-07-30';
+const VERSION = 'awb-2026-10-03';
 const PRECACHE = `${VERSION}-shell`;
 const RUNTIME = `${VERSION}-runtime`;
 const CURRENT = new Set([PRECACHE, RUNTIME]);
@@ -60,6 +60,7 @@ const SHELL_PATHS = [
   'assets/css/style.css',
   'assets/search-index.json',
   'assets/js/app/shared.js',
+  'assets/js/core/time.js',
   'assets/js/app/sw-register.js',
   'assets/js/app/palette.js',
   'assets/js/app/autolink.js',

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendars, prayer times &amp; Qibla | The Astrologer's Workbench</title>
+  <meta name="description" content="Compare named civil calendars, convert Gregorian and Julian dates, calculate prayer times with explicit conventions, and find a numerical Qibla bearing.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/calendars.css">
+</head>
+<body>
+<main class="wrap calendars" id="content">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Calendars &amp; directions</p>
+  <h1>Calendars &amp; directions</h1>
+  <p class="lede">Compare dates, calculate prayer times, and find your bearing. Each result names the convention behind it.</p>
+  <nav class="calendar-jumps" aria-label="On this page"><a href="#civil-calendars">Calendar dates</a><a href="#prayer">Prayer &amp; Qibla</a><a href="#date-conversion">Julian &amp; Gregorian</a><a href="#easter">Easter</a><a href="#methods">Methods</a></nav>
+
+  <section id="civil-calendars" class="cal-panel" aria-labelledby="cal-title">
+    <h2 id="cal-title">One instant, several calendars</h2>
+    <p>Enter a UTC instant and choose the time zone whose civil date you want to compare. Supported years: 1900–2100.</p>
+    <form id="cal-form">
+      <div class="cal-fields"><div class="field"><label for="cal-date">Gregorian date in UTC</label><input id="cal-date" type="date" min="1900-01-01" max="2100-12-31" required></div><div class="field"><label for="cal-time">Time in UTC</label><input id="cal-time" type="time" required></div><div class="field cal-zone"><label for="cal-zone">Display time zone</label><input id="cal-zone" value="UTC" list="cal-zones" required spellcheck="false" autocomplete="off" aria-describedby="zone-help"></div></div>
+      <p id="zone-help" class="small muted">Use a time-zone name such as Asia/Kolkata, Europe/London, or UTC. Changing it can change the civil day.</p>
+      <div class="cal-actions"><button class="btn" type="submit">Compare dates</button><button class="btn-secondary" type="button" id="cal-now">Use current instant</button></div>
+    </form>
+    <p id="cal-status" role="status" aria-live="polite"></p>
+    <div id="cal-results" class="cal-results"></div>
+    <p class="cal-note">These are <strong>civil dates with a midnight boundary</strong>. Hebrew and Islamic religious days begin at sunset; this display does not determine that boundary or local observances. Browser calendar data can vary. An unsupported method is shown as unavailable.</p>
+  </section>
+
+  <section id="prayer" class="cal-panel" aria-labelledby="prayer-title">
+    <h2 id="prayer-title">Prayer times &amp; Qibla</h2>
+    <p>Calculated times for a named method and location. Compare with your community's timetable; local authorities may apply additional adjustments.</p>
+    <form id="prayer-form">
+      <div class="cal-fields"><div class="field"><label for="prayer-place">Place preset</label><select id="prayer-place"><option value="london">London, UK</option><option value="delhi">Delhi, India</option><option value="makkah">Makkah, Saudi Arabia</option><option value="newyork">New York, US</option><option value="sydney">Sydney, Australia</option><option value="tromso">Tromsø, Norway</option><option value="custom">Custom coordinates</option></select></div><div class="field"><label for="prayer-date">Local Gregorian date</label><input id="prayer-date" type="date" min="1900-01-01" max="2100-12-31" required></div><div class="field cal-zone"><label for="prayer-zone">Location time zone</label><input id="prayer-zone" value="Europe/London" list="cal-zones" required spellcheck="false"></div></div>
+      <div class="cal-fields"><div class="field"><label for="prayer-lat">Latitude (° north)</label><input id="prayer-lat" type="number" min="-90" max="90" step="any" value="51.5074" required></div><div class="field"><label for="prayer-lon">Longitude (° east)</label><input id="prayer-lon" type="number" min="-180" max="180" step="any" value="-0.1278" required></div><button class="btn-secondary" id="prayer-locate" type="button">Use my location</button></div>
+      <p id="prayer-location-status" class="small" role="status">Example location: London. West and south coordinates are negative. Coordinates stay in this browser.</p>
+      <div class="cal-fields"><div class="field cal-wide"><label for="prayer-method">Calculation method</label><select id="prayer-method"></select></div><div class="field"><label for="prayer-asr">Asr convention</label><select id="prayer-asr"><option value="Shafi">Standard shadow factor 1 (Shafi and others)</option><option value="Hanafi">Hanafi shadow factor 2</option></select></div></div>
+      <details class="cal-options"><summary>High-latitude and Isha settings</summary><div class="cal-fields"><div class="field"><label for="prayer-high">Twilight limit</label><select id="prayer-high"><option value="MiddleOfTheNight">Middle of the night</option><option value="SeventhOfTheNight">One seventh of the night</option><option value="TwilightAngle">Angle / 60 portion of the night</option></select></div><div class="field"><label for="prayer-isha">Extra Isha adjustment (minutes)</label><input id="prayer-isha" type="number" min="-120" max="120" step="1" value="0" required></div></div><p class="small">Where sunrise or sunset is absent, unresolved events stay unavailable. No substitute location or date is chosen. Moonsighting Committee uses its own seasonal twilight rules. Umm al-Qura uses 90 minutes after sunset; enter +30 only when your chosen Ramadan convention calls for 120 minutes. No Ramadan adjustment is automatic.</p></details>
+      <button class="btn" type="submit">Calculate times &amp; direction</button>
+    </form>
+    <p id="prayer-status" role="status" aria-live="polite"></p>
+    <div id="prayer-results"></div>
+    <div id="qibla-result" class="cal-qibla"></div>
+    <p class="cal-note">Qibla is an initial great-circle bearing clockwise from <strong>true north</strong>. This page does not use a compass or motion sensors. Magnetic compass readings need a local declination correction. The bearing is unavailable at the Kaaba, its antipode, and geographic poles.</p>
+  </section>
+
+  <div class="cal-columns">
+  <section id="date-conversion" class="cal-panel" aria-labelledby="convert-title">
+    <h2 id="convert-title">Julian, Gregorian &amp; JD</h2>
+    <p>Proleptic calendar arithmetic. Historical adoption dates differed by place; no reform gap is imposed.</p>
+    <form id="convert-form"><div class="cal-fields"><div class="field"><label for="convert-calendar">Input calendar</label><select id="convert-calendar"><option value="gregorian">Gregorian</option><option value="julian">Julian</option></select></div><div class="field"><label for="convert-date">Date (YYYY-MM-DD)</label><input id="convert-date" value="2000-01-01" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required aria-describedby="convert-help"></div><div class="field"><label for="convert-hour">UTC hour (decimal)</label><input id="convert-hour" type="number" min="0" max="23.999999" step="any" value="12" required></div></div><p id="convert-help" class="small muted">Years 0001–9999 CE. Julian dates can include leap days that Gregorian dates do not.</p><button class="btn" type="submit">Convert calendar date</button></form>
+    <form id="jd-form" class="cal-jd-form"><div class="field"><label for="convert-jd">Or enter a Julian day (JD)</label><input id="convert-jd" type="number" step="any" value="2451545" required></div><button class="btn-secondary" type="submit">Convert JD</button></form>
+    <div id="convert-result" role="status" aria-live="polite"></div>
+    <p class="cal-note">JD changes at noon UTC. JDN is the integer assigned to that civil date's noon. This arithmetic treats UTC as a uniform day and does not model leap seconds or convert to terrestrial time (TT).</p>
+  </section>
+  <section id="easter" class="cal-panel" aria-labelledby="easter-title">
+    <h2 id="easter-title">Easter by two conventions</h2>
+    <p>Compare Gregorian and Julian ecclesiastical computus. These rules use a tabular ecclesiastical Moon.</p>
+    <form id="easter-form"><div class="field"><label for="easter-year">Year (1583–4099)</label><input id="easter-year" type="number" min="1583" max="4099" step="1" value="2026" required></div><button class="btn" type="submit">Compare Easter dates</button></form>
+    <div id="easter-result" role="status" aria-live="polite"></div>
+    <p class="cal-note">Results are shown as Gregorian civil dates, with the Julian date alongside. A church's actual observance follows its own adopted convention; “Orthodox” does not name one universal rule.</p>
+  </section>
+  </div>
+
+  <section id="methods" class="cal-panel" aria-labelledby="methods-title"><h2 id="methods-title">Methods &amp; sources</h2><p>All calculations run locally. Calendar conversion reuses the Workbench's Julian-day arithmetic. Civil displays use your browser's <code>Intl.DateTimeFormat</code> with verified method IDs. Prayer times use a locally bundled, MIT-licensed <a href="https://github.com/batoulapps/adhan-js">Adhan 4.4.6 source snapshot</a>, with a documented UTC date adaptation.</p><ul><li><a href="https://aa.usno.navy.mil/faq/calendars">US Naval Observatory: calendars</a> and <a href="https://aa.usno.navy.mil/faq/easter">Easter conventions</a>.</li><li><a href="https://www.hebcal.com/converter?gd=3&amp;gm=10&amp;gy=2026&amp;g2h=1">Hebcal independent Hebrew reference date</a> and <a href="https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2026e.pdf">Hong Kong Observatory 2026 Chinese calendar</a>.</li><li><a href="../assets/vendor/adhan/METHODS.md">Adhan's method descriptions</a> and <a href="../assets/vendor/adhan/LICENSE">MIT license</a>.</li></ul><p class="small">These tools do not supply a complete regional Panchang, festival calendar, Jain calendar, or Sikh calendar. For existing instant Jyotisha elements see <a href="muhurta.html">Muhūrta</a>; instant elements alone do not establish observance dates. Research and verification: 2026-10-03.</p></section>
+  <datalist id="cal-zones"><option value="UTC"><option value="Europe/London"><option value="Europe/Istanbul"><option value="Asia/Kolkata"><option value="Asia/Riyadh"><option value="Asia/Shanghai"><option value="America/New_York"><option value="Australia/Sydney"><option value="Europe/Oslo"><option value="Pacific/Kiritimati"></datalist>
+  <noscript><p class="callout">Enable JavaScript to calculate results. Method explanations and source links remain available above.</p></noscript>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  import { initCulturalCalendars } from '../assets/js/app/cultural-calendars.js';
+  mountChrome('calendars');
+  initCulturalCalendars();
+</script>
+</body>
+</html>

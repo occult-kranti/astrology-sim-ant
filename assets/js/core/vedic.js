@@ -28,7 +28,7 @@ import {
   RASHI_SOURCE, NAKSHATRA_SOURCE, VIMSHOTTARI_SOURCE, DIGNITY_SOURCE, PANCHANGA_SOURCE,
   VARGA_SOURCE, ASHTAKAVARGA_SOURCE, SHADBALA_SOURCE,
 } from './data/vedic-data.js';
-import { planetaryHour } from './planetary-hours.js';
+import { planetaryHourForDay, sunriseDay } from './planetary-hours.js';
 import {
   GRAHA_MANTRAS, GRAHA_JAPA, GRAHA_DEVATAS, VARA as VARA_REMEDIES, NAKSHATRA_INFO,
   GRAHA_ASANA, VARA_ASANA, GRAHA_YANTRA, REMEDIES_FRAMING,
@@ -97,7 +97,7 @@ function vimshottari(moonSidLon, epoch, currentDate) {
 // ---------------------------------------------------------------------------
 //  Pañcāṅga — tithi, vāra, nakṣatra, yoga, karaṇa.
 // ---------------------------------------------------------------------------
-function panchanga(sunSidLon, moonSidLon, date) {
+function panchanga(sunSidLon, moonSidLon, day) {
   const elong = norm360(moonSidLon - sunSidLon);
   const tNum = Math.floor(elong / 12) + 1;                      // 1..30
   const paksha = tNum <= 15 ? 'Śukla (waxing)' : 'Kṛṣṇa (waning)';
@@ -108,10 +108,10 @@ function panchanga(sunSidLon, moonSidLon, date) {
   if (half === 1) karana = 'Kiṁstughna';
   else if (half >= 58) karana = ['Śakuni', 'Catuṣpāda', 'Nāga'][half - 58];
   else karana = KARANAS_MOVABLE[(half - 2) % 7];
-  const wd = date.getUTCDay();
+  const wd = day?.weekday;
   return {
     tithi: { num: tNum, name: tName, paksha },
-    vara: { name: VARA_NAMES[wd], lord: VARA_LORDS[wd] },        // civil weekday (Vedic vāra begins at sunrise — minor simplification)
+    vara: { name: wd == null ? 'Unavailable' : VARA_NAMES[wd], lord: wd == null ? null : VARA_LORDS[wd], method: day?.weekdayMethod || 'No sunrise-bounded day is available at this polar location/date.' },
     nakshatra: nakshatraOf(moonSidLon),
     yoga: { num: yNum, name: YOGAS[yNum - 1] },
     karana: { num: half, name: karana },
@@ -222,7 +222,7 @@ function shadbala(chart, sid, grahas, lagnaLon, ph) {
   const dayMs = 86400000, meanSunSpeed = 0.9856, sunSid = sid.Sun, t0 = chart.date.getTime();
   const yearLord = VARA_LORDS[new Date(t0 - (sunSid / meanSunSpeed) * dayMs).getUTCDay()];
   const monthLord = VARA_LORDS[new Date(t0 - ((sunSid % 30) / meanSunSpeed) * dayMs).getUTCDay()];
-  const varaLord = ph ? ph.dayRuler : VARA_LORDS[chart.date.getUTCDay()];
+  const varaLord = ph ? ph.dayRuler : null; // no invented UTC weekday when sunrise is unavailable
   const horaLord = ph ? ph.ruler : null;
   let tribhagaLord = null;
   if (ph) {
@@ -411,16 +411,17 @@ export function combustion(reading) {
 //  birth Moon's nakṣatra drive the birth practice. CULTURAL/DEVOTIONAL PRACTICE,
 //  DESCRIBED — NOT PRESCRIBED. The graha→āsana map is modern/syncretic (flagged).
 // ---------------------------------------------------------------------------
-function buildPractice(chart, grahas, lagnaR, dasha, shad, currentDate) {
-  const wd = (currentDate instanceof Date ? currentDate : new Date()).getUTCDay();
-  const vr = VARA_REMEDIES[wd], dayLord = vr.lord;
-  const dayM = GRAHA_MANTRAS[dayLord], dayA = GRAHA_ASANA[dayLord], dayY = GRAHA_YANTRA[dayLord];
+function buildPractice(chart, grahas, lagnaR, dasha, shad, currentDate, natalDay) {
+  const localDay = currentDate.getTime() === chart.date.getTime() ? natalDay : sunriseDay(currentDate, chart.latitude, chart.longitude, { timeZone: chart.timeZone, utcOffset: chart.utcOffset });
+  const wd = localDay?.weekday;
+  const vr = VARA_REMEDIES[wd] || { name: 'Unavailable without local sunrise', sanskrit: '—', lord: null, deity: '—', vrata: '—', colour: '—', offering: '—', source: 'No sunrise-bounded day at this location/date.' }, dayLord = vr.lord;
+  const dayM = GRAHA_MANTRAS[dayLord] || {}, dayA = GRAHA_ASANA[dayLord], dayY = GRAHA_YANTRA[dayLord];
   const vara = {
     name: vr.name, sanskrit: vr.sanskrit, graha: dayLord, deity: vr.deity, vrata: vr.vrata,
     colour: vr.colour, offering: vr.offering, popular: !!vr.popular,
-    mantra: dayM.namaIAST, bija: dayM.bijaIAST, japa: dayM.japa,
+    mantra: dayM.namaIAST || 'Unavailable', bija: dayM.bijaIAST || '—', japa: dayM.japa || '—',
     yoga: dayA ? `${dayA.primaryIAST} (${dayA.primaryEN})` : null,
-    yantra: dayY ? dayY.yantraName : null, source: vr.source,
+    yantra: dayY ? dayY.yantraName : null, source: vr.source, weekdayMethod: localDay?.weekdayMethod || null,
   };
   const focusGraha = (shad && shad.weakest) || lagnaR.lord;
   const fm = GRAHA_MANTRAS[focusGraha], fa = GRAHA_ASANA[focusGraha], fy = GRAHA_YANTRA[focusGraha];
@@ -577,16 +578,17 @@ export function castVedic(chart, opts = {}) {
     vargas[v.key] = m;
   }
 
-  const pancha = panchanga(sid.Sun, sid.Moon, date);
+  const localDay = sunriseDay(date, chart.latitude, chart.longitude, { timeZone: chart.timeZone, utcOffset: chart.utcOffset });
+  const pancha = panchanga(sid.Sun, sid.Moon, localDay);
   const dasha = vimshottari(sid.Moon, date, currentDate);
   const av = ashtakavarga(avRashi, lagnaR.index);
-  let ph = null; try { ph = planetaryHour(date, chart.latitude, chart.longitude); } catch { ph = null; }
+  const ph = planetaryHourForDay(date, localDay);
   const shad = shadbala(chart, sid, grahas, lagnaLon, ph);
   const yogas = detectYogas(grahas);
   // traditional daily (vāra) + birth-based devotional practice — derived from the
   // chart (weekday lord, weakest graha by Ṣaḍbala, Lagna lord, daśā lord, Moon
   // nakṣatra). Cultural/devotional practice, described — never prescribed.
-  const practice = buildPractice(chart, grahas, lagnaR, dasha, shad, currentDate);
+  const practice = buildPractice(chart, grahas, lagnaR, dasha, shad, currentDate, localDay);
 
   const citations = [
     'Sidereal positions = tropical (astronomy-engine) − Lahiri ayanāṁśa.',
@@ -601,7 +603,7 @@ export function castVedic(chart, opts = {}) {
     grahas, panchanga: pancha, vimshottari: dasha, vargas,
     navamsa: vargas.D9, ashtakavarga: av, shadbala: shad, yogas, practice,
     citations,
-    notes: 'Lahiri ayanāṁśa; whole-sign houses; Rāhu/Ketu from the mean node; full six-fold Ṣaḍbala (with documented JHora simplifications). JHora-modelled.',
+    notes: 'Linear Lahiri ayanāṁśa estimate anchored at J2000; whole-sign houses; Rāhu/Ketu from the mean node; six-fold Ṣaḍbala with documented approximations, not exact JHora equivalence. Instant Panchang elements do not establish regional festival dates. Vimśottarī uses a 365.2425-day year.',
   };
   // computed interpretive conclusions & advice (deterministic, described-not-prescribed)
   try { out.conclusions = buildVedicConclusions(out); } catch { out.conclusions = null; }

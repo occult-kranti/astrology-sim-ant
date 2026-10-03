@@ -88,6 +88,7 @@ export function renderVedicPanel(body, chart, opts = {}) {
     <h3 class="small" style="margin:.7rem 0 .2rem">Pañcāṅga</h3>
     <p class="small">Tithi <b>${esc(v.panchanga.tithi.name)}</b> (${esc(v.panchanga.tithi.paksha)}) · Vāra <b>${esc(v.panchanga.vara.name)}</b> (${esc(v.panchanga.vara.lord)}) ·
       Nakṣatra <b>${esc(v.panchanga.nakshatra.name)}</b> · Yoga <b>${esc(v.panchanga.yoga.name)}</b> · Karaṇa <b>${esc(v.panchanga.karana.name)}</b>.</p>
+    <p class="small muted">${esc(v.panchanga.vara.method)}. Tithi, nakṣatra, yoga and karaṇa are values at this instant, not a regional festival calendar.</p>
 
     <h3 class="small" style="margin:.7rem 0 .2rem">Vimśottarī daśā</h3>
     <div class="v-fig-dasha"></div>

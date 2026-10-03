@@ -22,14 +22,18 @@
     <input type="hidden" id="n-lat"><input type="hidden" id="n-lon">
     <input type="hidden" id="n-date"><input type="hidden" id="n-time"><input type="hidden" id="n-offset">
     <div class="field-row" style="margin-top:.8rem">
+      <div class="field"><label for="n-certainty">Birth time</label><select id="n-certainty"><option value="known">Known clock time</option><option value="unknown">Unknown — show the day's positions</option></select></div>
       <div class="field"><label for="n-system">Houses</label><select id="n-system">
         <option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option>
         <option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
+      <div class="field"><label for="n-orb-mode">Wheel aspect orbs</label><select id="n-orb-mode"><option value="traditional">Lilly's planetary moieties</option><option value="fixed">Fixed maximum orb</option></select></div>
+      <div class="field"><label for="n-orb">Maximum orb (degrees)</label><input id="n-orb" type="number" min="0" max="15" step="0.1" value="3" disabled style="width:7rem"></div>
       <button type="submit" class="btn">Cast nativity</button>
     </div>
   </form>
 
   <p id="n-summary" style="margin:1.1rem 0 .3rem; font-size:1.05rem" role="status" aria-live="polite"></p>
+  <p id="n-method" class="small muted"></p>
   <div id="n-actionbar"></div>
   <div class="chart-layout">
     <div id="n-wheel" class="card" style="padding:.6rem"></div>
@@ -44,11 +48,11 @@
   <section class="card panel" id="n-p-planets">
     <div class="panel-head"><h2 class="panel-title">The planets — dignity &amp; debility</h2>
       <a class="panel-anchor" href="#n-p-planets" aria-label="Link to this section">¶</a></div>
-    <div class="table-scroll"><table class="data"><thead><tr><th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th class="num">Ess.</th><th class="num">Acc.</th></tr></thead>
+    <div class="table-scroll"><table class="data"><thead id="n-planet-head"><tr><th class="l">Planet</th><th class="l">Position</th><th>Ho.</th><th class="num">Ess.</th><th class="num">Acc.</th></tr></thead>
       <tbody id="n-planets"></tbody></table></div>
   </section>
 
-  <div class="callout science"><span class="label">Note</span> A nativity is astronomically exact, but the
+  <div class="callout science"><span class="label">Method</span> Positions use Astronomy Engine's approximate astronomical model and the supplied time and place. A date without a birth time supports a range of planetary positions, not precise houses. The
     claim that it describes character or destiny has repeatedly failed controlled testing (the Carlson 1985
     <em>Nature</em> study; the “time-twins” cohort). This tool is for studying Lilly's method — see
     <a href="index.html">Book III</a> for what he does next with the figure.</div>
