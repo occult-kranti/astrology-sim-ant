@@ -29,6 +29,8 @@
 }
 
 * { box-sizing: border-box; }
+/* Component flex/grid display rules must not override HTML's hidden state. */
+[hidden]:not([hidden="until-found"]) { display: none !important; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0; font-family: var(--serif); color: var(--ink);
@@ -1289,6 +1291,18 @@ th.is-hot { background: var(--accent-wash); }
 .mp-chip-pick { cursor: pointer; }
 .mp-coords { margin: var(--sp-2) 0; }
 .mp-now { white-space: nowrap; }
+
+/* Coordinate details are themselves flex items. Their default intrinsic width
+   was set by the 22rem UTC-offset select, so max-width:100% on the select alone
+   resolved against an already oversized parent. Keep each nested row inside
+   the picker, then let its fields wrap and native controls shrink normally. */
+.mp-place-row, .mp-when-row, .mp-coords-row, .mp-group > .field-row {
+  width: 100%; min-width: 0; max-width: 100%;
+}
+.mp-coords { flex-basis: 100%; width: 100%; min-width: 0; max-width: 100%; }
+.calc .field { max-width: 100%; }
+.mp input, .mp select { max-width: 100%; }
+.mp-group > p { max-width: 100%; overflow-wrap: anywhere; }
 
 /* -- B1 action-bar sub-structure (manifest-b1 §2) -- */
 .ab-chip { display: inline-flex; align-items: center; gap: .3rem; font-family: var(--font-sans);

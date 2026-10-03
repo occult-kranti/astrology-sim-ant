@@ -1,46 +1,123 @@
-name: Deploy to GitHub Pages
-
-# Publishes the static site to GitHub Pages. `configure-pages` with
-# enablement:true turns Pages on automatically the first time this runs, so no
-# manual repository setting is required. Deploys from this feature branch.
+name: Verify and deploy Astrology Workbench
 
 on:
   push:
-    branches:
-      - claude/kind-noether-b17h3i
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
+# Pull requests only receive read access. Deployment privileges belong to the
+# separate job, which cannot run for a pull request or a non-main dispatch.
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment; cancel in-progress runs for the same ref.
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Calculation and source checks
+        run: |
+          node scripts/engine-test.mjs
+          node scripts/audit.mjs
+      - name: Install browser test tooling
+        # A test-only pinned dependency; never copied into the static artifact.
+        run: npm install --no-save --package-lock=false playwright@1.58.2
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Browser journeys under the Pages project path
+        run: node scripts/browser-release.mjs
+      - name: Keep browser verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-evidence
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Stage tracked static files and release identity
+        # git archive excludes ephemeral dependencies and local untracked files.
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          mkdir _site
+          git archive HEAD | tar -x -C _site
+          node --input-type=module <<'NODE'
+          import { writeFileSync, rmSync } from 'node:fs';
+          for (const path of ['.github', 'tests', 'scripts', 'tools', 'test-results', 'node_modules']) {
+            rmSync('_site/' + path, { recursive: true, force: true });
+          }
+          writeFileSync('_site/.nojekyll', '');
+          writeFileSync('_site/release.json', JSON.stringify({
+            commit: process.env.RELEASE_SHA,
+            generatedAt: new Date().toISOString(),
+            validation: 'node-and-playwright',
+          }, null, 2) + '\n');
+          NODE
+      - name: Upload validated Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
   deploy:
+    needs: verify
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure Pages (self-enable)
+      - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy validated artifact
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify published release identity
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+          RELEASE_SHA: ${{ github.sha }}
+        run: |
+          node --input-type=module <<'NODE'
+          const base = new URL(process.env.PAGE_URL);
+          if (base.protocol !== 'https:') throw new Error('Pages must use HTTPS for camera and sensors.');
+          let verified = false;
+          for (let attempt = 0; attempt < 15; attempt++) {
+            try {
+              const metadata = new URL('release.json', base);
+              metadata.searchParams.set('release', process.env.RELEASE_SHA);
+              const response = await fetch(metadata, { signal: AbortSignal.timeout(10000) });
+              const release = await response.json();
+              if (response.ok && release.commit === process.env.RELEASE_SHA) {
+                const home = await fetch(base, { signal: AbortSignal.timeout(10000) });
+                if (!home.ok) throw new Error('Published homepage is unavailable.');
+                verified = true;
+                console.log('Verified Pages release ' + release.commit + ' at ' + base.href);
+                break;
+              }
+            } catch (error) { console.log('Waiting for Pages publication: ' + error.message); }
+            await new Promise(resolve => setTimeout(resolve, 4000));
+          }
+          if (!verified) throw new Error('Published release identity did not match the tested commit.');
+          NODE

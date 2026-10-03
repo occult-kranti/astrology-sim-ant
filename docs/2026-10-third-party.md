@@ -1,0 +1,10 @@
+# Third-party components and references — 2026-10-03
+
+- **Astronomy Engine**: existing `assets/js/lib/astronomy.js`, 412,025 raw bytes, MIT notice preserved in file header. Upstream https://github.com/cosinekitty/astronomy. Retained instead of adding a second large planetary engine. No runtime network requirement.
+- **Adhan JS 4.4.6**: new `assets/vendor/adhan/`, MIT copyright/license, source snapshot, exact commit, adaptations and reproducible rebuild retained in `LICENSE`, `PROVENANCE.md`, `METHODS.md` and `rebuild.mjs`; transformed JavaScript sources are retained locally and the original TypeScript is identified by pinned upstream commit. Upstream https://github.com/batoulapps/adhan-js at `a2c4bda71352f43355b23448c6329df150ca0ec3`. Runtime ES modules ~39.6 KB raw; loaded by the calendar page only. UTC civil getters prevent device-zone dependence. No runtime API.
+- **Browser Intl/ICU/tzdb**: native calendar/time-zone capability, no shipped library. Available methods are verified by resolved calendar identifier. Browser data versions are an explicit dependency.
+- **Swiss Ephemeris**: https://github.com/aloistr/swisseph. AGPL/professional licensing. Not an application dependency; a separately compiled temporary command-line reference produced factual numeric house fixtures. No Swiss code distributed here. Before future integration, resolve licensing and browser packaging explicitly.
+- **Hebcal/HDate**: https://hebcal.github.io/api/hdate/index.html and public converter used as independently sourced reference values. No GPL HDate/core library bundled.
+- **USNO, Hong Kong Observatory, Astrodienst and retained Ankara timetable**: cited factual test references; no proprietary imagery, branding, copied ephemeris tables or product assets included. Each method document distinguishes freshly retrieved primary data from retained upstream transcription.
+
+The existing site's educational/noncommercial framing does not replace these component licenses. Source research into commercial astrology/sky products is workflow research only. No mandatory paid service or API was added.

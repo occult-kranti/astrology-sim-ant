@@ -15,11 +15,12 @@ const norm360 = x => ((x % 360) + 360) % 360;
 
 // --- The Lahiri (Chitrapaksha) ayanamsa --------------------------------------
 // We use LAHIRI (Citrāpakṣa) — the Indian government standard and the historic
-// JHora default. (Note: current JHora/PyJHora defaults to "True Puṣya", and
-// "True Citra" is another option; all three sit within ~1′ of Lahiri, far below
-// the 13°20′ nakṣatra / 3°20′ pada resolution at which a placement changes.)
+// JHora default. Other ayanamshas exist; their defaults and equivalence are
+// not verified here. Any small offset can change a placement near a boundary.
 // Linear model anchored at J2000.0 = 23.8531° (23°51′11″, ICRC value) with the
-// precessional rate ≈50.2877″/yr — accurate to ~1″ for modern dates.
+// precessional rate ≈50.2877″/yr. This is a LINEAR APPROXIMATION, not the full
+// Swiss/IAE precession implementation. A modern reference fixture is tested;
+// no one-arcsecond or broad historical accuracy guarantee is established.
 // Source: Lahiri ayanamsa, Indian Astronomical Ephemeris; Swiss Ephemeris;
 // P.V.R. Narasimha Rao (JHora). True-Puṣya/True-Citra are flagged alternatives.
 export const AYANAMSA_J2000 = 23.8531;          // degrees at 2000-01-01 12:00 TT

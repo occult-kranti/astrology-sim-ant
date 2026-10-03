@@ -23,9 +23,10 @@ function sep(a, b) { return Math.abs(((a - b + 540) % 360) - 180); }
 
 // Find the aspect (if any) between two bodies, with orb & applying/separating.
 // pA/pB are {lon, speed} objects; nameA/nameB used for moiety lookup.
-export function aspectBetween(nameA, pA, nameB, pB) {
+export function aspectBetween(nameA, pA, nameB, pB, { orbOverride = null } = {}) {
   const distance = sep(pA.lon, pB.lon);
-  const allowance = moiety(nameA) + moiety(nameB);
+  if (orbOverride !== null && (!Number.isFinite(orbOverride) || orbOverride < 0 || orbOverride > 15)) throw new RangeError('Aspect orb must be 0–15 degrees.');
+  const allowance = orbOverride ?? (moiety(nameA) + moiety(nameB));
   for (const asp of ASPECTS) {
     const orbOff = Math.abs(distance - asp.angle);
     if (orbOff <= allowance) {
@@ -48,12 +49,12 @@ export function aspectBetween(nameA, pA, nameB, pB) {
 }
 
 // All aspects among a set of named bodies {name: {lon, speed}}.
-export function allAspects(bodies) {
+export function allAspects(bodies, options = {}) {
   const names = Object.keys(bodies);
   const out = [];
   for (let i = 0; i < names.length; i++)
     for (let j = i + 1; j < names.length; j++) {
-      const a = aspectBetween(names[i], bodies[names[i]], names[j], bodies[names[j]]);
+      const a = aspectBetween(names[i], bodies[names[i]], names[j], bodies[names[j]], options);
       if (a) out.push({ from: names[i], to: names[j], ...a });
     }
   return out;

@@ -35,6 +35,7 @@
 import { CITIES, nowLocalFields } from './shared.js';
 import { attachGeolocate, nearestCity } from './location.js';
 import { eraAccuracy } from '../core/calendar.js';
+import { civilFields, resolveZonedTime } from '../core/time.js';
 
 // ---------------------------------------------------------------------------
 //  OFFSETS — 38 named UTC-offset rows. `value` is decimal hours; `dst` marks
@@ -122,15 +123,17 @@ export function validateMoment(fields = {}) {
   // required
   if (!date) errors.push({ field: 'date', message: 'Enter a date.' });
   if (!time) errors.push({ field: 'time', message: 'Enter a time (local clock time).' });
+  if (date && time) { try { civilFields(date, time); } catch (e) { errors.push({ field: 'date', message: e.message }); } }
   if (fields.lat === '' || fields.lat == null || Number.isNaN(lat)) errors.push({ field: 'lat', message: 'Enter a latitude.' });
   if (fields.lon === '' || fields.lon == null || Number.isNaN(lon)) errors.push({ field: 'lon', message: 'Enter a longitude.' });
 
   // ranges
   if (!Number.isNaN(lat) && (lat < -90 || lat > 90)) errors.push({ field: 'lat', message: 'Latitude must be between −90° and +90°.' });
   if (!Number.isNaN(lon) && (lon < -180 || lon > 180)) errors.push({ field: 'lon', message: 'Longitude must be between −180° and +180°.' });
-  if (!Number.isNaN(off)) {
+  if (!Number.isFinite(off)) errors.push({ field: 'offset', message: 'Enter a finite UTC offset or resolve a named time zone.' });
+  if (Number.isFinite(off)) {
     if (off < -12 || off > 14) errors.push({ field: 'offset', message: 'UTC offset must be between −12 and +14.' });
-    else if (Math.abs(off * 4 - Math.round(off * 4)) > 1e-9) errors.push({ field: 'offset', message: 'UTC offset must be in 15-minute steps.' });
+    else if (!fields.timeZone && Math.abs(off * 4 - Math.round(off * 4)) > 1e-9) errors.push({ field: 'offset', message: 'UTC offset must be in 15-minute steps; use a named zone for historical offsets.' });
   }
 
   // offset-vs-longitude sanity (advisory)
@@ -186,7 +189,13 @@ export function mountMomentPicker(container, opts = {}) {
   const mode = opts.mode || 'now';
   const ids = opts.ids || {};
   const persist = opts.persist || 'wb';
-  const onChange = typeof opts.onChange === 'function' ? opts.onChange : () => {};
+  const changed = typeof opts.onChange === 'function' ? opts.onChange : () => {};
+  const onChange = () => {
+    if (resolvingZone || !syncZone()) return;
+    const { errors } = validateMoment(currentFields());
+    if (errors.length) { showError(errors.map(e => e.message).join(' ') + ' Previous results have not been recalculated.'); return; }
+    showError(''); changed();
+  };
   const uid = persist + '-mp';
 
   // --- resolve legacy inputs; THROW if any configured id is missing ---------
@@ -245,6 +254,12 @@ export function mountMomentPicker(container, opts = {}) {
         <div class="field"><label for="${uid}-time">Time (local)</label><input id="${uid}-time" type="time"></div>
         ${showNow ? `<button type="button" class="btn-secondary sm mp-now" id="${uid}-now">⏱ Now</button>` : ''}
       </div>
+      <div class="field-row" style="margin-top:.7rem;flex-wrap:wrap">
+        <div class="field"><label for="${uid}-zonemode">Clock convention</label><select id="${uid}-zonemode"><option value="offset">Explicit UTC offset</option><option value="iana">Named time zone (historical DST)</option></select></div>
+        <div class="field" id="${uid}-zonebox" hidden><label for="${uid}-zone">IANA time zone</label><input id="${uid}-zone" type="text" placeholder="Europe/London" autocomplete="off" spellcheck="false" aria-describedby="${uid}-zonereadout"></div>
+        <div class="field" id="${uid}-foldbox" hidden><label for="${uid}-fold">Repeated clock time</label><select id="${uid}-fold"><option value="reject">Require a unique time</option><option value="earlier">Earlier occurrence</option><option value="later">Later occurrence</option></select></div>
+      </div>
+      <p class="small muted" id="${uid}-zonereadout">The UTC offset must match the selected place and historical date. A named zone can resolve daylight-saving changes; pre-1970 records may be incomplete.</p>
     </div>
     <p class="mp-hint" id="${uid}-hint" hidden></p>
     <p class="mp-error" id="${uid}-error" role="alert" hidden></p>`;
@@ -265,6 +280,38 @@ export function mountMomentPicker(container, opts = {}) {
   const nowBtn = $(`#${uid}-now`);
   const hintEl = $(`#${uid}-hint`);
   const errorEl = $(`#${uid}-error`);
+  const zoneMode = $(`#${uid}-zonemode`), zoneEl = $(`#${uid}-zone`), foldEl = $(`#${uid}-fold`);
+  const zoneReadout = $(`#${uid}-zonereadout`);
+  let resolvedInstant = null;
+  let resolvingZone = false;
+  function syncZone() {
+    if (resolvingZone) return true;
+    resolvedInstant = null;
+    if (zoneMode.value !== 'iana') { zoneEl.setCustomValidity(''); zoneReadout.textContent = 'Explicit UTC offset: verify that it matches the place and date, including historical daylight saving.'; return true; }
+    try {
+      const r = resolveZonedTime(dateEl.value, timeEl.value, zoneEl.value.trim(), { disambiguation: foldEl.value });
+      resolvedInstant = r.instant;
+      resolvingZone = true;
+      selectOffset(r.offsetHours);
+      resolvingZone = false;
+      zoneEl.setCustomValidity(''); showError('');
+      zoneReadout.textContent = `${zoneEl.value.trim()} · ${formatOffset(r.offsetHours)} · ${r.instant.toISOString()}${r.ambiguous ? ' · explicit ' + foldEl.value + ' occurrence' : ''}. Browser time-zone data; check historical records, especially before 1970.`;
+      return true;
+    } catch (e) {
+      resolvingZone = false;
+      zoneEl.setCustomValidity(e.message); showError(e.message + ' Previous results have not been recalculated.');
+      return false;
+    }
+  }
+  zoneMode.addEventListener('change', () => {
+    const useZone = zoneMode.value === 'iana';
+    $(`#${uid}-zonebox`).hidden = !useZone; $(`#${uid}-foldbox`).hidden = !useZone;
+    offSel.disabled = useZone; offNum.disabled = useZone;
+    if (useZone && !zoneEl.value) zoneEl.value = 'Etc/UTC';
+    onChange();
+  });
+  [zoneEl, foldEl].forEach(el => el.addEventListener('change', onChange));
+  fs.closest('form')?.addEventListener('submit', e => { if (!validate({ focusFirst: true }).ok) { e.preventDefault(); e.stopImmediatePropagation(); } }, true);
 
   // populate the offset select
   offSel.innerHTML = OFFSETS.map((o, i) => `<option value="${o.value}" data-i="${i}">${o.label}</option>`).join('')
@@ -405,25 +452,27 @@ export function mountMomentPicker(container, opts = {}) {
     const near = nearestCity(lat, lon);
     if (near) selectOffset(near.offset);
     if (mode !== 'birth') {   // "here AND now" — never for a birth moment
-      const f = nowLocalFields();
-      dateEl.value = f.date; timeEl.value = f.time;
-      setLegacy('date', f.date); setLegacy('time', f.time);
+      useDeviceClock(); // clock and offset must both come from the DEVICE zone
     }
     onChange();
   });
 
-  // --- Now ------------------------------------------------------------------
-  if (nowBtn) nowBtn.addEventListener('click', () => {
+  function useDeviceClock() {
+    zoneMode.value = 'offset';
+    $(`#${uid}-zonebox`).hidden = true; $(`#${uid}-foldbox`).hidden = true;
+    offSel.disabled = false; offNum.disabled = false;
     const f = nowLocalFields();
     dateEl.value = f.date; timeEl.value = f.time;
     setLegacy('date', f.date); setLegacy('time', f.time);
     selectOffset(f.offset);
-    onChange();
-  });
+  }
+
+  // --- Now ------------------------------------------------------------------
+  if (nowBtn) nowBtn.addEventListener('click', () => { useDeviceClock(); onChange(); });
 
   // --- validation surface ---------------------------------------------------
   function currentFields() {
-    return { lat: latEl.value, lon: lonEl.value, offset: offSel.value === 'custom' ? offNum.value : offSel.value, date: dateEl.value, time: timeEl.value };
+    return { lat: latEl.value, lon: lonEl.value, offset: offSel.value === 'custom' ? offNum.value : offSel.value, date: dateEl.value, time: timeEl.value, timeZone: zoneMode.value === 'iana' ? zoneEl.value.trim() : null, disambiguation: foldEl.value };
   }
   function showHint(msg) { hintEl.textContent = msg; hintEl.hidden = !msg; }
   function showError(msg) { errorEl.textContent = msg; errorEl.hidden = !msg; }
@@ -434,6 +483,7 @@ export function mountMomentPicker(container, opts = {}) {
 
   function validate({ focusFirst = false } = {}) {
     const { errors, hints } = validateMoment(currentFields());
+    if (!syncZone()) errors.push({ field: 'time', message: zoneEl.validationMessage });
     clearInvalid();
     if (errors.length) {
       showError(errors.map(e => e.message).join(' '));
@@ -451,6 +501,8 @@ export function mountMomentPicker(container, opts = {}) {
     validate,
     isValid: () => validate().ok,
     fields: currentFields,
+    instant: () => { if (!syncZone()) return null; return resolvedInstant; },
+    setTimeKnown(known) { timeEl.disabled = !known; if (!known) { timeEl.value = '12:00'; setLegacy('time', '12:00'); } },
     commitRecent() {
       const lat = Number(latEl.value), lon = Number(lonEl.value);
       if (Number.isNaN(lat) || Number.isNaN(lon)) return;

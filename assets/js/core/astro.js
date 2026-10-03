@@ -5,12 +5,13 @@
 //  Placidus, Whole-Sign and Equal), the mean lunar node, and planetary hours.
 //
 //  Positions come from astronomy-engine (Don Cross, MIT licence), a truncated
-//  VSOP87 model accurate to ~1 arc-minute — far below the resolution at which
-//  any sign, dignity or house placement changes. House and angle formulae are
-//  implemented here and validated against published reference vectors
-//  (see /data/ENGINE_VALIDATION.md).
+//  VSOP87 model with an upstream design target of ~1 arc-minute. Even a small
+//  uncertainty can change a sign/dignity/house assignment near a boundary.
+//  House and angle formulae are implemented here; validation evidence and
+//  limits are recorded in docs/2026-10-calculation-methods.md.
 // ============================================================================
 import * as Astronomy from '../lib/astronomy.js';
+import { validLocation } from './time.js';
 
 export const D2R = Math.PI / 180;
 export const R2D = 180 / Math.PI;
@@ -50,19 +51,14 @@ export function signOf(lon) {
 
 // "12°34' Leo" style label.
 export function formatLon(lon, withSeconds = false) {
-  const s = signOf(lon);
-  let d = s.degInSign;
-  const deg = Math.floor(d);
-  const mfloat = (d - deg) * 60;
-  const min = Math.floor(mfloat);
-  if (withSeconds) {
-    const sec = Math.round((mfloat - min) * 60);
-    return `${deg}°${String(min).padStart(2, '0')}'${String(sec).padStart(2, '0')}" ${s.name}`;
-  }
-  const minR = Math.round(mfloat);
-  // guard against rounding 60'
-  if (minR === 60) return `${deg + 1}°00' ${s.name}`;
-  return `${deg}°${String(minR).padStart(2, '0')}' ${s.name}`;
+  if (!Number.isFinite(lon)) throw new RangeError('Longitude must be finite.');
+  const unit = withSeconds ? 3600 : 60;
+  const total = Math.round(norm360(lon) * unit) % (360 * unit);
+  const sign = Math.floor(total / (30 * unit));
+  const within = total % (30 * unit), deg = Math.floor(within / unit);
+  const min = withSeconds ? Math.floor((within % 3600) / 60) : within % 60;
+  const tail = withSeconds ? `${String(within % 60).padStart(2, '0')}"` : '';
+  return `${deg}°${String(min).padStart(2, '0')}'${tail} ${SIGNS[sign]}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -74,6 +70,7 @@ export function formatLon(lon, withSeconds = false) {
 // speed is degrees/day (negative ⇒ retrograde).
 export function bodyPosition(name, date) {
   const body = BODY[name];
+  if (!body || !(date instanceof Date) || !Number.isFinite(date.getTime())) throw new RangeError('Choose a supported planet and valid UTC instant.');
   const lon = eclLonOfDate(body, date);
   // numerical speed: central difference over ±6 hours
   const dt = 0.25; // days
@@ -140,12 +137,14 @@ function placidusCusp(ramc, eps, phi, house) {
   }[house];
   let ra = cfg.ra0;
   for (let i = 0; i < 100; i++) {
-    const decl = Math.asin(Math.sin(er) * Math.sin(ra * D2R));
+    // RA is equatorial: tan(delta) = tan(epsilon) * sin(RA).
+    // asin(sin(epsilon)*sin(RA)) would incorrectly treat RA as longitude.
+    const decl = Math.atan(Math.tan(er) * Math.sin(ra * D2R));
     let arg = -Math.tan(pr) * Math.tan(decl);
     arg = Math.max(-1, Math.min(1, arg));
     const sa = Math.acos(arg) * R2D; // semi-diurnal arc, degrees
     const next = cfg.night
-      ? norm360(ramc + 180 - (house === 2 ? 2 / 3 : 1 / 3) * sa)
+      ? norm360(ramc + 180 - cfg.f * (180 - sa))
       : norm360(ramc + cfg.f * sa);
     if (Math.abs(((next - ra + 540) % 360) - 180) < 1e-9) { ra = next; break; }
     ra = next;
@@ -156,6 +155,10 @@ function placidusCusp(ramc, eps, phi, house) {
 // Compute all twelve house cusps and the four angles.
 // system: 'regiomontanus' (Lilly), 'placidus', 'whole', 'equal'.
 export function houses(date, latitude, longitude, system = 'regiomontanus') {
+  validLocation(latitude, longitude);
+  if (Math.abs(latitude) === 90) throw new RangeError('An ascendant and ordinary houses are undefined at the geographic poles. Choose a location below 90° latitude.');
+  if (!(date instanceof Date) || !Number.isFinite(date.getTime())) throw new RangeError('Enter a valid UTC instant.');
+  if (!['regiomontanus', 'placidus', 'whole', 'equal'].includes(system)) throw new RangeError('Choose a supported house system.');
   const eps = obliquity(date);
   const ramc = norm360(gast(date) + longitude); // local apparent sidereal time, degrees
   const mc = regioCusp(ramc, eps, latitude, 0);
@@ -170,7 +173,10 @@ export function houses(date, latitude, longitude, system = 'regiomontanus') {
   } else if (system === 'placidus') {
     cusps[1] = asc; cusps[10] = mc; cusps[7] = norm360(asc + 180); cusps[4] = norm360(mc + 180);
     // Placidus undefined near the poles — fall back to Regiomontanus there.
-    if (Math.abs(latitude) > 66) return houses(date, latitude, longitude, 'regiomontanus');
+    if (Math.abs(latitude) > 66) return {
+      ...houses(date, latitude, longitude, 'regiomontanus'), requestedSystem: 'placidus',
+      houseWarning: 'Placidus is unavailable above 66° in this implementation. The displayed cusps use Regiomontanus; select Whole Sign or Equal explicitly to compare.',
+    };
     cusps[11] = placidusCusp(ramc, eps, latitude, 11);
     cusps[12] = placidusCusp(ramc, eps, latitude, 12);
     cusps[2]  = placidusCusp(ramc, eps, latitude, 2);
@@ -183,7 +189,7 @@ export function houses(date, latitude, longitude, system = 'regiomontanus') {
       cusps[i] = regioCusp(ramc, eps, latitude, H);
     }
   }
-  return { asc, mc, desc: norm360(asc + 180), ic: norm360(mc + 180), cusps, ramc, obliquity: eps, system };
+  return { asc, mc, desc: norm360(asc + 180), ic: norm360(mc + 180), cusps, ramc, obliquity: eps, system, requestedSystem: system, houseWarning: Math.abs(latitude) > 66 ? 'Polar house geometry is sensitive; compare the selected convention and do not infer ordinary rising/setting behavior.' : null };
 }
 
 // Which house (1–12) does an ecliptic longitude fall in, given the cusps?
@@ -243,7 +249,26 @@ export function castChart(date, latitude, longitude, system = 'regiomontanus') {
   planets.SouthNode = { lon: norm360(nn + 180), lat: 0, speed: -0.0529, retrograde: true, house: houseOf(nn + 180, h.cusps) };
   const pof = partOfFortune(h.asc, planets.Sun.lon, planets.Moon.lon);
   planets.Fortune = { lon: pof, lat: 0, speed: 0, retrograde: false, house: houseOf(pof, h.cusps) };
-  // Day chart when the Sun is above the horizon (houses 7–12).
-  const isDay = planets.Sun.house >= 7;
-  return { date, latitude, longitude, ...h, planets, isDay };
+  // Sect follows the physical horizon, independently of a chosen house system.
+  // In whole-sign/equal houses a house boundary need not be the horizon.
+  const observer = new Astronomy.Observer(latitude, longitude, 0);
+  const sun = Astronomy.Equator(Astronomy.Body.Sun, date, observer, true, true);
+  const sunAltitude = Astronomy.Horizon(date, observer, sun.ra, sun.dec).altitude;
+  const isDay = sunAltitude >= 0; // geometric center, no refraction
+  return { date, latitude, longitude, ...h, planets, isDay, sunAltitude, sectMethod: 'geometric solar center above the horizon; no refraction' };
+}
+
+// A date-only birth record supports planetary positions across a civil day,
+// not angles or houses. Sampling bounds are explicitly estimates; no precise
+// chart, sect, dignity score, ascendant or house property is returned.
+export function untimedPositions(start, end) {
+  if (!(start instanceof Date) || !(end instanceof Date) || !Number.isFinite(start.getTime()) || !Number.isFinite(end.getTime()) || end <= start || end - start > 2 * 86400000) throw new RangeError('Choose a valid civil-day interval.');
+  const representative = new Date((start.getTime() + end.getTime()) / 2), planets = {};
+  for (const name of Object.keys(BODY)) {
+    const samples = Array.from({ length: 25 }, (_, i) => bodyPosition(name, new Date(start.getTime() + (end - start) * i / 24)));
+    const mid = bodyPosition(name, representative);
+    const deltas = samples.map(p => ((p.lon - mid.lon + 540) % 360) - 180);
+    planets[name] = { longitude: mid.lon, minDelta: Math.min(...deltas), maxDelta: Math.max(...deltas), retrogradeAtMidpoint: mid.retrograde };
+  }
+  return { timeKnown: false, start, end, representative, planets, method: 'Geocentric tropical positions at the civil-day midpoint; 25 sampled positions estimate the day range. Birth time unknown: angles, houses and time-dependent interpretations unavailable.' };
 }

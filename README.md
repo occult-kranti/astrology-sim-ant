@@ -19,7 +19,7 @@ the browser.
 |------|---------------|
 | **Home** | `index.html` — overview, "find your way", the three books, the tools, the science note |
 | **The Master Tool (the Workbench)** | `pages/workbench.html` — **the single master tool** (the old "Unified Master" now redirects here): one moment runs the **whole engine at once** (the `fullReading` spine) **plus the Vedic chart side by side** (toggle at the top), every panel cross-linked via the capability registry, with **JSON / Markdown / SVG / PNG export** and **on-device auto-save** (download the report to keep it). Its **AI assistant** (powered by **Claude**, your own key) sends the **whole reading as JSON** and offers two presets — **🔎 Interpret & advise** (a plain cross-system synthesis) and **📜 Codex** (evocative) — plus an agentic **"plan a working"** box and **in-browser engine tools** (Western, Vedic, and the Picatrix prayers); every reply has a **⤓ save**. See `WORKBENCH.md` and `docs/LOCAL-LLM.html`. |
-| **Jagannath Hora — Vedic (sidereal)** | `pages/vedic/index.html` — a **second, independent system**: the Vedic (Jyotiṣa) horoscope as JHora computes it — sidereal zodiac (Lahiri ayanāṁśa), whole-sign houses, the 27 nakṣatras, the **Vimśottarī daśā**, the **Pañcāṅga**, the divisional charts (**vargas** D1–D60), the **Aṣṭakavarga** (SAV), the **full six-fold Ṣaḍbala** (with Iṣṭa/Kaṣṭa), and the traditional **daily & birth practice** (mantra · japa · yoga · yantra · gem — *described, never prescribed*; the graha→āsana map flagged as a modern syncretism). A **🕉 Vedic view** toggle on every calculator shows it **side by side** with the Western chart. Engine in `core/vedic.js` + `core/data/vedic-data.js` + `core/data/vedic-remedies.js`, cited to Parāśara's BPHS and P.V.R. Narasimha Rao. |
+| **Jagannath Hora — Vedic (sidereal)** | `pages/vedic/index.html` — a **second, independent system**: a Vedic (Jyotiṣa) study implementation inspired by JHora, with documented approximations — sidereal zodiac (Lahiri ayanāṁśa), whole-sign houses, the 27 nakṣatras, the **Vimśottarī daśā**, the **Pañcāṅga**, the divisional charts (**vargas** D1–D60), the **Aṣṭakavarga** (SAV), the **full six-fold Ṣaḍbala** (with Iṣṭa/Kaṣṭa), and the traditional **daily & birth practice** (mantra · japa · yoga · yantra · gem — *described, never prescribed*; the graha→āsana map flagged as a modern syncretism). A **🕉 Vedic view** toggle on every calculator shows it **side by side** with the Western chart. Engine in `core/vedic.js` + `core/data/vedic-data.js` + `core/data/vedic-remedies.js`, cited to Parāśara's BPHS and P.V.R. Narasimha Rao. |
 | **Workflow & Chapter Map** | `pages/workflow.html` — every chapter of each book → concept → calculation → worked example → tool; the horary & nativity step-flows; the Picatrix election bridge |
 | **Tools hub** | `pages/tools.html` — every calculator in one place, with a "what each computes" table |
 | **Book I — Fundamentals** | hub, signs/planets/houses reference, **Master Tool** (now with a full **Cautions & chart-health** panel), **Essential Dignity Calculator**, **Planetary Hours**, **Degree Tables** |
@@ -103,12 +103,19 @@ PLAN.md                        the original plan and feature list
 
 ## Deployment
 
-Pushing to the development branch triggers `.github/workflows/pages.yml`, which
-self-enables GitHub Pages and publishes the site to
+Pushing to `main` triggers `.github/workflows/pages.yml`. Node validation and real browser journeys must pass before the protected Pages job publishes the site to
 `https://occult-kranti.github.io/astrology-sim-ant/`.
+
+## October 2026 calculator release
+
+The existing [nativity calculator](pages/book3/nativity.html) now supports explicit unknown birth time, IANA daylight-saving ambiguity handling, house-system warnings and configurable wheel aspect orbs. Placidus intermediate cusp formulas, horizon-based sect, date overflow and years 0–99 are corrected. The [calendar tools](pages/calendars.html) provide named civil calendars, Gregorian/Julian/JD conversion, Gregorian/Julian Easter, Qibla and local Adhan prayer calculations with method choices.
+
+Use [Skylens](https://occult-kranti.github.io/astro-sim-ant/) for the companion camera sky experience; it is a separate repository. See the [living roadmap](docs/2026-10-roadmap.md), [calculation methods](docs/2026-10-calculation-methods.md), [calendar methods](docs/2026-10-calendar-methods.md), [research matrix](docs/2026-10-research.md) and [verification/handoff](docs/2026-10-verification.md). Research breadth does not imply every cultural tradition has a validated calculator.
+
+Run `node scripts/engine-test.mjs` and `node scripts/audit.mjs`. Regenerate the local search index with `node scripts/build-search-index.mjs` after page changes. Browser checks and deployment status must be verified separately from a successful local Node run.
 
 ## Licence & credits
 
-Educational, non-commercial. Astronomy by Don Cross's astronomy-engine (MIT).
+Educational, non-commercial project framing. Third-party components retain their own licenses: astronomy-engine by Don Cross (MIT), and the new local Adhan prayer library (MIT; retained copyright and source provenance in `assets/vendor/adhan/`). See `docs/2026-10-third-party.md`.
 Text and tables after William Lilly, _Christian Astrology_ (1647), cross-checked
 against modern editions and traditional-astrology scholarship (see About & Sources).
