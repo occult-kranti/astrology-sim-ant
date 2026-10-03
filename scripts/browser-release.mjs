@@ -56,7 +56,16 @@ try {
       const link = document.querySelector('a.skip-link');
       return link && document.querySelector(link.getAttribute('href'));
     }), 'skip link resolves to existing main target');
-    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'no horizontal page overflow');
+    const layout = await page.evaluate(() => ({
+      viewport: innerWidth, document: document.documentElement.scrollWidth,
+      overflowing: [...document.querySelectorAll('body *')].map(el => {
+        const rect = el.getBoundingClientRect();
+        return { tag: el.tagName, id: el.id, classes: el.className?.baseVal ?? el.className,
+          left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width) };
+      }).filter(el => el.width && (el.right > innerWidth + 1 || el.left < -1))
+        .sort((a, b) => b.right - a.right).slice(0, 10),
+    }));
+    assert.ok(layout.document <= layout.viewport + 1, 'no horizontal page overflow: ' + JSON.stringify(layout));
   }
   for (const [label, viewport] of [['mobile', { width: 390, height: 844 }], ['desktop', { width: 1365, height: 900 }]]) {
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce', serviceWorkers: 'block' });
@@ -75,6 +84,7 @@ try {
     try {
       await page.goto(base + 'pages/book3/nativity.html', { waitUntil: 'domcontentloaded' });
       await page.locator('#wb-mp-date').waitFor();
+      assert.equal(await page.locator('#wb-mp-zonebox').isHidden(), true, 'named-zone controls are hidden in explicit-offset mode');
       await page.locator('#wb-mp-date').fill('2000-01-01');
       await page.locator('#wb-mp-time').fill('12:00');
       await page.locator('#wb-mp-coords > summary').click();
@@ -90,6 +100,10 @@ try {
       await textIncludes(page, '#n-wheel', 'No ascendant');
       assert.equal(await page.locator('#wb-mp-time').isDisabled(), true, 'unknown time input disabled');
       assert.equal(await page.locator('#n-planets tr').count(), 7, 'seven traditional planets have daily ranges');
+      const visibleActionText = await page.locator('#n-actionbar').evaluate(el =>
+        [...el.querySelectorAll('.action-bar')].filter(bar => bar.getClientRects().length && getComputedStyle(bar).display !== 'none')
+          .map(bar => bar.textContent).join(' '));
+      assert.doesNotMatch(visibleActionText, /rising|ascending|day birth|night birth/i, 'unknown time clears precise prior action-bar summary');
       await page.screenshot({ path: resolve(output, label + '-unknown-birth.png'), fullPage: true });
       await page.locator('#n-certainty').selectOption('known');
       await page.locator('#wb-mp-zonemode').selectOption('iana');

@@ -77,8 +77,15 @@ function compute() {
     $('n-wheel').replaceChildren(); $('n-planets').replaceChildren();
     $('n-lord').textContent = 'Unavailable until the input is corrected.';
     $('n-temperament').textContent = ''; $('n-method').textContent = ''; lastSummary = 'Invalid input — no current chart.';
+    hideReadingActions();
     document.querySelectorAll('.vedic-panel, #n-explain-mount').forEach(el => { el.hidden = true; });
   }
+}
+
+function hideReadingActions() {
+  // Refresh the summary before hiding so an earlier timed chart cannot remain
+  // in the action bar's DOM or reappear when its focus listener runs.
+  try { bar?.show?.(); bar?.hide?.(); } catch { /* optional enhancement */ }
 }
 
 function computeValidated() {
@@ -106,6 +113,7 @@ function computeValidated() {
     $('n-planet-head').innerHTML = '<tr><th scope="col">Planet</th><th scope="col">Midpoint position (approximate)</th><th scope="col">Sampled range across the day</th></tr>';
     $('n-planets').innerHTML = Object.entries(result.planets).map(([name, p]) => `<tr><td>${G(name)} ${name}</td><td>${formatLon(p.longitude)}</td><td>${formatLon(norm360(p.longitude + p.minDelta))} → ${formatLon(norm360(p.longitude + p.maxDelta))}</td></tr>`).join('');
     lastSummary = 'Unknown birth time: planetary ranges only.';
+    hideReadingActions();
     return;
   }
   $('n-planet-head').innerHTML = '<tr><th scope="col" class="l">Planet</th><th scope="col" class="l">Position</th><th scope="col">Ho.</th><th scope="col" class="num">Ess.</th><th scope="col" class="num">Acc.</th></tr>';
