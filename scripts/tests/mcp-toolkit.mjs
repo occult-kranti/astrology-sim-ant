@@ -27,12 +27,22 @@ export function run() {
     const lon=result.chart.planets.Sun.lon; assert.ok(lon<1||lon>359); assert.equal(result.reading,null);
     assert.throws(()=>callTool('workbench_chart',{...input,birth:{...input,timeKnown:false}}));
   });
+  test('remaining tool contracts preserve conventions and unavailable states',()=>{
+    assert.equal(callTool('workbench_katapayadi',{text:'śa'}).data.value,'5');
+    const calendar=callTool('workbench_calendar',{dateISO:'2024-04-23T12:00Z',calendar:'hebrew',timeZone:'UTC'}).data;
+    assert.equal(calendar.boundary,'civil-midnight'); assert.match(calendar.text,/5784/);
+    assert.equal(callTool('workbench_qibla',{lat:90,lon:0}).data.available,false);
+    const prayer=callTool('workbench_prayer_times',{date:'2026-01-01',latitude:51.5,longitude:0,timeZone:'Europe/London',method:'Karachi',asr:'Hanafi'}).data;
+    assert.equal(prayer.times.length,6);assert.equal(prayer.method,'Karachi');assert.equal(prayer.asr,'Hanafi');
+    assert.throws(()=>callTool('workbench_prayer_times',{date:'2026-02-30',latitude:0,longitude:0,timeZone:'UTC'}));
+  });
   test('scan limit validation, zero horizon and discoverable catalogue',()=>{
     const input={dateISO:'2026-01-01T00:00Z',lat:0,lon:0,operationKey:'love'};
     for(const extra of [{hoursAhead:169},{stepMinutes:0},{hoursAhead:168,stepMinutes:1}])assert.throws(()=>callTool('workbench_election',{...input,...extra}));
     assert.throws(()=>callTool('workbench_election',{...input,dateISO:'3000-12-31T23:59Z',hoursAhead:168,stepMinutes:1440}));
     assert.throws(()=>callTool('workbench_katapayadi',{text:'शुक्र'}));
     assert.ok(Array.isArray(callTool('workbench_election',{...input,hoursAhead:0}).data.windows));
+    assert.equal(callTool('workbench_election',{...input,dateISO:'2026-10-05T13:00:00+13:00',lat:-13.8333,lon:-171.75,hoursAhead:0}).data.inputs.utcOffset,13);
     assert.equal(new Set(TOOLS.map(t=>t.name)).size,11);
     assert.ok(callTool('workbench_catalogue',{}).data.capabilities.length>=81);
   });

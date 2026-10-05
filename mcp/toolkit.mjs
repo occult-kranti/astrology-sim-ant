@@ -1,5 +1,5 @@
 // Pure allowlisted calculations. No filesystem, account, clock, network or storage access.
-import { calculateContext, parseExplicitInstant } from '../assets/js/core/calculation-context.js';
+import { calculateContext, normalizeCalculationInput, parseExplicitInstant } from '../assets/js/core/calculation-context.js';
 import { createSymbolResult, SYMBOL_METHODS } from '../assets/js/core/symbols.js';
 import { renderSymbolSVG } from '../assets/js/core/viz/symbol-svg.js';
 import { normalizeSigilText } from '../assets/js/core/kamea.js';
@@ -61,10 +61,11 @@ export const TOOLS = [
   define('workbench_qibla', 'Initial great-circle bearing toward the Kaaba, degrees clockwise from true north; singular positions reported by the engine.', object(location, ['lat', 'lon']), args => ({ ...qibla(args.lat, args.lon), convention: 'True-north initial great-circle bearing; not a calibrated phone compass.' })),
   define('workbench_prayer_times', 'Adhan deterministic prayer times with explicit civil date, IANA zone, method, Asr and high-latitude convention. Polar unresolved results remain unavailable.', object({ date: string(10), latitude: location.lat, longitude: location.lon, timeZone: string(), method: enumeration(PRAYER_METHODS.map(m => m[0])), asr: enumeration(['Shafi', 'Hanafi']), highLatitude: enumeration(['MiddleOfTheNight', 'SeventhOfTheNight', 'TwilightAngle']), ishaAdjustment: integer(-120, 120) }, ['date', 'latitude', 'longitude', 'timeZone']), args => prayerTimes(args)),
   define('workbench_election', 'Bounded historical election scoring, not a prediction or advice. Up to 168 hours and 256 samples; returns ranked windows and source conventions.', object({ ...moment, operationKey: enumeration(OPERATIONS.map(o => o.key)), hoursAhead: number(0, 168), stepMinutes: number(1, 1440) }, ['dateISO', 'lat', 'lon', 'operationKey']), args => {
-    const start = parseExplicitInstant(args.dateISO), hoursAhead = args.hoursAhead ?? 72, stepMinutes = args.stepMinutes ?? 30;
+    const inputs = normalizeCalculationInput({ ...args, includeReading: false, includeVedic: false });
+    const start = parseExplicitInstant(inputs.dateISO), hoursAhead = args.hoursAhead ?? 72, stepMinutes = args.stepMinutes ?? 30;
     if (Math.floor(hoursAhead * 60 / stepMinutes) + 1 > METHODS.limits.scanSamples) throw new RangeError('MCP election scans allow 256 samples; shorten the horizon or increase stepMinutes.');
     parseExplicitInstant(new Date(start.getTime() + hoursAhead * 3600000).toISOString());
-    return { windows: findNextElection(args.operationKey, start, args.lat, args.lon, { hoursAhead, stepMinutes, system: args.system ?? 'regiomontanus', timeZone: args.timeZone, utcOffset: args.utcOffset }), convention: 'Existing editorial Lilly/Picatrix scoring; local sunrise-bounded planetary day; not outcome probabilities.' };
+    return { inputs, windows: findNextElection(args.operationKey, start, inputs.lat, inputs.lon, { hoursAhead, stepMinutes, system: inputs.system, timeZone: inputs.timeZone, utcOffset: inputs.utcOffset }), convention: 'Existing editorial Lilly/Picatrix scoring; local sunrise-bounded planetary day; not outcome probabilities.' };
   }),
 ];
 

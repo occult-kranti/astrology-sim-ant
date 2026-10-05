@@ -5,6 +5,6 @@ export default {
   async fetch(request, env) {
     if (!env.MCP_HOSTNAME || !env.MCP_ACCESS_TOKEN) return new Response('MCP host is not configured', { status: 503 });
     const handler = createHttpHandler({ hostname: env.MCP_HOSTNAME, token: env.MCP_ACCESS_TOKEN, remote: true });
-    try { return await handler.fetch(request); } finally { await handler.close(); }
+    try { const response = await handler.fetch(request); return new Response(await response.arrayBuffer(), { status: response.status, headers: response.headers }); } finally { await handler.close(); }
   },
 };

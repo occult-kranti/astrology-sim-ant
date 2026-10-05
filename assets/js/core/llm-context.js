@@ -24,7 +24,8 @@ import { GLOSSARY } from './data/glossary.js';
 import { castChart, signOf, formatLon } from './astro.js';
 import { essentialDignity, almuten } from './dignities.js';
 import { planetaryHour } from './planetary-hours.js';
-import { electionScore, rankNow, findNextElection, OPERATIONS } from './election.js';
+import { electionScore, rankNow, findNextElection, OPERATIONS, ELECTION_SCAN_LIMITS } from './election.js';
+import { parseExplicitInstant } from './calculation-context.js';
 import { talismanRecipe } from './talisman.js';
 import { annualProfection } from './profections.js';
 import { lifeTrajectory } from './trajectory.js';
@@ -199,7 +200,7 @@ export function buildContext(reading, opts = {}) {
   // Western one (the two zodiacs disagree by design; never conflate them).
   if (reading.vedic) {
     const vd = reading.vedic;
-    add(`VEDIC SYSTEM (sidereal / Jagannath Hora, Lahiri ayanāṁśa ${vd.ayanamsa}°) — a SECOND, INDEPENDENT reading to COMPARE with the Western chart above, never to merge. The astronomy is identical; only the zodiac (tropical−ayanāṁśa) and the methods differ.`, 'Parāśara BPHS / Jagannath Hora');
+    add(`VEDIC SYSTEM (sidereal / linear Lahiri study implementation, Lahiri ayanāṁśa ${vd.ayanamsa}°) — a SECOND, INDEPENDENT reading to COMPARE with the Western chart above, never to merge. The astronomy is identical; only the zodiac (tropical−ayanāṁśa) and the methods differ.`, 'Parāśara BPHS; implementation conventions in vedic.js');
     add(`Vedic Lagna ${vd.lagna.label} (lord ${vd.lagna.lord}); Lagna nakṣatra ${vd.lagna.nakshatra.name} pada ${vd.lagna.nakshatra.pada}.`, 'BPHS — the Lagna');
     for (const p of ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu']) {
       const g = vd.grahas[p]; if (!g) continue;
@@ -215,7 +216,7 @@ export function buildContext(reading, opts = {}) {
     add(`Sarvāṣṭakavarga total ${vd.ashtakavarga.savTotal} (checksum 337); strongest sign ${RASHI_NAMES[sav.indexOf(hi)]} (${hi} bindus), weakest ${RASHI_NAMES[sav.indexOf(lo)]} (${lo}). Avg 28 per sign.`, 'BPHS — Aṣṭakavarga');
     if (vd.shadbala && vd.shadbala.perGraha) {
       const s = vd.shadbala, st = s.perGraha[s.strongest], wk = s.perGraha[s.weakest];
-      add(`Ṣaḍbala (six-fold strength, rūpas): strongest ${s.strongest} (${st.totalRupa}, ${st.ratio}× its required ${st.required}); weakest ${s.weakest} (${wk.totalRupa}, ${wk.ratio}×). Full order ${s.order.join(' > ')}.`, 'BPHS Ch.27 — Ṣaḍbala (with documented JHora simplifications)');
+      add(`Ṣaḍbala (six-fold strength, rūpas): strongest ${s.strongest} (${st.totalRupa}, ${st.ratio}× its required ${st.required}); weakest ${s.weakest} (${wk.totalRupa}, ${wk.ratio}×). Full order ${s.order.join(' > ')}.`, 'BPHS Ch.27 — Ṣaḍbala (implementation approximations; no validated JHora equivalence)');
     }
     // daily (vāra) + birth-keyed traditional practice — CULTURAL/DEVOTIONAL, described, never prescribed.
     if (vd.practice) {
@@ -277,7 +278,7 @@ export function buildToolSchema() {
     type: 'function',
     function: {
       name: 'castVedic',
-      description: 'Compute the VEDIC (Jyotiṣa / sidereal, Jagannath Hora) horoscope — Lagna & 9 grahas (nakṣatra, bhāva, dignity), pañcāṅga, Vimśottarī daśā, key vargas, Sarvāṣṭakavarga and the six-fold Ṣaḍbala. A SEPARATE system from the Western chart. Uses the current chart if no date/lat/lon is given.',
+      description: 'Compute the VEDIC (Jyotiṣa / sidereal, linear Lahiri study implementation) horoscope — Lagna & 9 grahas (nakṣatra, bhāva, dignity), pañcāṅga, Vimśottarī daśā, key vargas, Sarvāṣṭakavarga and the six-fold Ṣaḍbala. A SEPARATE system from the Western chart. Uses the current chart if no date/lat/lon is given.',
       parameters: { type: 'object', properties: { date: { type: 'string' }, lat: { type: 'number' }, lon: { type: 'number' } }, required: [] },
     },
   });
@@ -359,7 +360,7 @@ export function buildToolSchema() {
     type: 'function',
     function: {
       name: 'vedicChart',
-      description: 'The VEDIC (Jyotiṣa / sidereal, Jagannath Hora) horoscope for a moment & place: Lagna & 9 grahas (nakṣatra, bhāva, dignity), the pañcāṅga, the running Vimśottarī daśā, the yogas, the Sarvāṣṭakavarga and the six-fold Ṣaḍbala. A SEPARATE system from the Western chart — compared, never merged.',
+      description: 'The VEDIC (Jyotiṣa / sidereal, linear Lahiri study implementation) horoscope for a moment & place: Lagna & 9 grahas (nakṣatra, bhāva, dignity), the pañcāṅga, the running Vimśottarī daśā, the yogas, the Sarvāṣṭakavarga and the six-fold Ṣaḍbala. A SEPARATE system from the Western chart — compared, never merged.',
       parameters: { type: 'object', properties: { dateISO: ISO, lat: LAT, lon: LON }, required: ['dateISO', 'lat', 'lon'] },
     },
   });
@@ -449,7 +450,98 @@ export function buildToolSchema() {
       }, required: [] },
     },
   });
+  return boundarySchemas(schema);
+}
+
+// The catalogue describes underlying engines; the assistant can only supply
+// JSON scalar inputs, never trusted precomputed charts. Keep advertised and
+// enforced browser-tool signatures together. No silent coercion or clamping.
+export const BROWSER_TOOL_LIMITS = Object.freeze({ maxConjunctionYears: 200, maxAgeYears: 150, maxTextLength: 2000 });
+const DATE_KEYS = new Set(['date', 'dateISO', 'birthISO', 'fromISO', 'aISO', 'bISO', 'currentDate', 'referenceDate']);
+function boundarySchemas(schema) {
+  const iso = { type: 'string', maxLength: 40, description: 'ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing.' };
+  const place = { date: iso, lat: { type: 'number', minimum: -90, maximum: 90 }, lon: { type: 'number', minimum: -180, maximum: 180 },
+    system: { type: 'string', enum: ['regiomontanus', 'placidus', 'whole', 'equal'] },
+    timeZone: { type: 'string', minLength: 1, maxLength: 120 }, utcOffset: { type: 'number', minimum: -24, maximum: 24 } };
+  const contextual = new Set(['annualProfection', 'lifeTrajectory', 'electionScore', 'talismanRecipe', 'rankNow', 'findNextElection', 'castVedic', 'vedicPractice', 'detectYogas']);
+  for (const tool of schema) {
+    const f = tool.function, p = f.parameters, props = p.properties;
+    p.additionalProperties = false;
+    if (contextual.has(f.name)) {
+      delete props.chart; delete props.birthChart; delete props.opts;
+      p.required = (p.required || []).filter(k => !['chart', 'birthChart', 'opts'].includes(k));
+      Object.assign(props, place);
+      f.description += ' Supply all of date+lat+lon, or omit all three to use the current page context. Arbitrary chart objects are not accepted.';
+    }
+    if (['castChart', 'planetaryHour', 'fullChart', 'vedicChart'].includes(f.name)) {
+      props.timeZone = place.timeZone; props.utcOffset = place.utcOffset; props.system = place.system;
+    }
+    if (['castVedic', 'vedicPractice', 'detectYogas', 'vedicChart', 'fullChart'].includes(f.name)) props.referenceDate = { ...iso, description: 'Evaluation instant for running periods/practice; defaults to current context chart date, then the supplied chart date. Never the machine clock.' };
+    if (f.name === 'detectYogas') props.kendraAlsoFromMoon = { type: 'boolean' };
+    if (f.name === 'findNextElection') props.stepMinutes = { type: 'number', minimum: 1, maximum: 1440 };
+    if (f.name === 'layoutConfluence') f.description = 'Query the historical atlas by year, lane, label or text; legacy export-name alias for confluence_atlas. Returns cited entries and transmission edges, not pixel layout coordinates.';
+    if (f.name === 'transitHits') props.fromISO.description = 'Explicit window start; may be omitted only when the page supplies a current chart.';
+    for (const [key, value] of Object.entries(props)) {
+      if (DATE_KEYS.has(key)) {
+        const detail = value.description;
+        Object.assign(value, iso);
+        if (detail && detail !== iso.description) value.description += ` ${detail}`;
+      }
+      if (value.type === 'string') value.maxLength ??= BROWSER_TOOL_LIMITS.maxTextLength;
+      if (/^(?:[ab]Lat|lat)$/.test(key)) Object.assign(value, { minimum: -90, maximum: 90 });
+      if (/^(?:[ab]Lon|lon)$/.test(key)) Object.assign(value,
+        ['essentialDignity', 'almuten', 'mansionOf', 'faceOf'].includes(f.name) ? { minimum: 0, maximum: 360 } : { minimum: -180, maximum: 180 });
+      if (['age', 'ageYears'].includes(key)) Object.assign(value, { minimum: 0, maximum: BROWSER_TOOL_LIMITS.maxAgeYears, ...(key === 'age' ? { type: 'integer' } : {}) });
+      if (['bhava', 'quesitedHouse'].includes(key)) Object.assign(value, { type: 'integer', minimum: 1, maximum: 12 });
+      if (key === 'kpNumber') Object.assign(value, { type: 'integer', minimum: 1, maximum: 249 });
+      if (['year', 'fromYear', 'toYear'].includes(key)) Object.assign(value, { type: 'integer', minimum: -1999, maximum: 3000 });
+      if (['yearFrom', 'yearTo'].includes(key)) Object.assign(value, { type: 'integer', minimum: -10000, maximum: 10000 });
+      if (key === 'months') Object.assign(value, { minimum: 1, maximum: 23 });
+      if (['hours', 'hoursAhead'].includes(key)) Object.assign(value, { minimum: 0, maximum: 168 });
+      if (key === 'hours') Object.assign(value, { type: 'integer', minimum: 1 }); // scanMoments' underlying zero means 24h
+      if (['operationKey', 'aim'].includes(key)) value.enum = OPERATIONS.map(o => o.key);
+      if (key === 'graha') value.enum = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Rahu', 'Ketu'];
+      if (key === 'tallies') Object.assign(value, { minItems: 16, maxItems: 16, items: { type: 'integer', minimum: 1, maximum: 1000000 } });
+      if (key === 'throws') Object.assign(value, { minItems: 6, maxItems: 6, items: { type: 'integer', enum: [6, 7, 8, 9] } });
+      if (key === 'seedDraws') Object.assign(value, { minItems: 1, maxItems: 3, uniqueItems: true, items: { type: 'integer', minimum: 0, maximum: 23 } });
+    }
+  }
   return schema;
+}
+
+function validateToolArguments(name, args) {
+  const spec = buildToolSchema().find(t => t.function.name === name)?.function.parameters;
+  if (!spec) throw new Error(`unknown tool: ${name}`);
+  const check = (value, s, key) => {
+    if (s.type === 'object') {
+      if (!value || typeof value !== 'object' || Array.isArray(value) || ![Object.prototype, null].includes(Object.getPrototypeOf(value))) throw new TypeError(`${key} must be a JSON object.`);
+      for (const required of s.required || []) if (!Object.hasOwn(value, required)) throw new TypeError(`${key}: missing argument "${required}".`);
+      for (const k of Object.keys(value)) {
+        if (!Object.hasOwn(s.properties, k)) throw new TypeError(`${key}: unsupported argument "${k}".`);
+        check(value[k], s.properties[k], k);
+      }
+    } else if (s.type === 'array') {
+      if (!Array.isArray(value) || value.length < (s.minItems ?? 0) || value.length > (s.maxItems ?? 64)) throw new TypeError(`${key} has an invalid array length.`);
+      for (let i = 0; i < value.length; i++) check(value[i], s.items, `${key}[${i}]`);
+      if (s.uniqueItems && new Set(value).size !== value.length) throw new RangeError(`${key} entries must be distinct.`);
+    } else if (s.type === 'number' || s.type === 'integer') {
+      if (!Number.isFinite(value) || (s.type === 'integer' && !Number.isInteger(value))) throw new TypeError(`${key} must be a finite ${s.type}.`);
+      if (value < (s.minimum ?? -Infinity) || value > (s.maximum ?? Infinity)) throw new RangeError(`${key} is outside the supported range.`);
+    } else if (s.type === 'string') {
+      if (typeof value !== 'string' || value.length < (s.minLength ?? 0) || value.length > (s.maxLength ?? BROWSER_TOOL_LIMITS.maxTextLength)) throw new TypeError(`${key} must be a bounded string.`);
+      if (DATE_KEYS.has(key)) parseExplicitInstant(value);
+      if (key === 'timeZone') new Intl.DateTimeFormat('en', { timeZone: value });
+    } else if (typeof value !== s.type) throw new TypeError(`${key} must be a ${s.type}.`);
+    if (s.enum && !s.enum.includes(value)) throw new RangeError(`${key} is not a supported choice.`);
+  };
+  check(args, spec, `tool ${name}`);
+  if (['date', 'lat', 'lon'].some(k => Object.hasOwn(args, k)) && spec.properties.date && spec.properties.lat && spec.properties.lon &&
+      !['date', 'lat', 'lon'].every(k => Object.hasOwn(args, k))) throw new TypeError('Supply date, lat and lon together.');
+  if (name === 'findNextElection' && Math.floor((args.hoursAhead ?? 72) * 60 / (args.stepMinutes ?? 30)) + 1 > ELECTION_SCAN_LIMITS.maxSamples) throw new RangeError('Election scan exceeds 2048 samples.');
+  if (name === 'greatConjunctions' && Math.abs(args.toYear - args.fromYear) > BROWSER_TOOL_LIMITS.maxConjunctionYears) throw new RangeError('Conjunction scan is limited to a 200-year span per call.');
+  if (name === 'annualChart' && args.year < parseExplicitInstant(args.birthISO).getUTCFullYear()) throw new RangeError('Annual-chart year precedes birth.');
+  if (name === 'castRunes' && args.seedDraws && args.seedDraws.length !== (args.count ?? 3)) throw new RangeError('seedDraws length must equal count.');
+  if (name === 'castRunes' && args.methodId && ((args.count ?? 3) === 1) !== (args.methodId === 'single')) throw new RangeError('Rune method must match count.');
 }
 
 // The set of tool names the dispatcher accepts (callable exports + the extras).
@@ -580,7 +672,7 @@ export function buildCodexPrompt(reading) {
   ];
   if (has('horary')) sections.push('Book II — the horary significators & the modes of perfection (querent, quesited, how/whether the matter perfects, and the timing)');
   if (has('natal')) sections.push('Book III — the life trajectory, the Lord of the Year, the personal Picatrix layer (the natal signatures, the profected year, the ruling works)');
-  if (has('vedic')) sections.push('The Vedic mirror (Jagannath Hora) — the sidereal Lagna & grahas by bhāva and nakṣatra, the Pañcāṅga, the running Vimśottarī daśā, the Ṣaḍbala (who is strong/weak) and the Sarvāṣṭakavarga — read AS A SEPARATE SYSTEM and explicitly COMPARED with the Western chart above (where do the two traditions AGREE, where do they DISAGREE by design?)');
+  if (has('vedic')) sections.push('The Vedic mirror (linear Lahiri study implementation) — the sidereal Lagna & grahas by bhāva and nakṣatra, the Pañcāṅga, the running Vimśottarī daśā, the Ṣaḍbala (who is strong/weak) and the Sarvāṣṭakavarga — read AS A SEPARATE SYSTEM and explicitly COMPARED with the Western chart above (where do the two traditions AGREE, where do they DISAGREE by design?)');
   if (reading && reading.vedic && reading.vedic.practice) sections.push('The day’s practice & the birth-keyed remedy (the vāra deity/mantra/observance for today, and the birth-keyed mantra/yoga/yantra the tradition lists for the weakest graha, the Lagna lord and the daśā lord) — recorded strictly as historical/cultural/devotional PRACTICE, never instruction; note that the graha→āsana map is a modern syncretism');
   return (
     'Compose "THE CODEX OF THIS HOUR" — a deep reading written in the grave, image-rich register of Hermes ' +
@@ -844,7 +936,8 @@ function slimVedic(v) {
   const nk = n => (n ? `${n.name} p${n.pada}` : null);
   const pa = v.panchanga || {}, dz = v.vimshottari || {}, av = v.ashtakavarga || {}, sb = v.shadbala || {};
   return {
-    system: 'vedic (sidereal / Jagannath Hora)', ayanamsa: v.ayanamsa,
+    system: 'vedic (sidereal / linear Lahiri study implementation)', ayanamsa: v.ayanamsa,
+    methodNote: sb.note || null,
     lagna: v.lagna ? `${v.lagna.label} (lord ${v.lagna.lord})` : null,
     grahas: Object.fromEntries(Object.entries(v.grahas || {}).map(([k, g]) => [k, { position: g.label, bhava: g.house, nakshatra: nk(g.nakshatra), dignity: g.dignity && g.dignity.state }])),
     panchanga: { tithi: pa.tithi && pa.tithi.name, vara: pa.vara && pa.vara.name, nakshatra: pa.nakshatra && pa.nakshatra.name, yoga: pa.yoga && pa.yoga.name, karana: pa.karana && pa.karana.name },
@@ -864,11 +957,29 @@ function slimVedic(v) {
 //  still historical-only — the system prompt enforces the framing.
 // ---------------------------------------------------------------------------
 export function runTool(name, args = {}, ctx = {}) {
+  validateToolArguments(name, args);
   const need = (k) => { if (args[k] == null) throw new Error(`tool ${name}: missing argument "${k}"`); return args[k]; };
+  const clockAt = value => {
+    const suffix = /([+-])(\d{2}):(\d{2})$/.exec(value);
+    const isoOffset = suffix ? (Number(suffix[2]) + Number(suffix[3]) / 60) * (suffix[1] === '-' ? -1 : 1) : null;
+    return { ...(args.timeZone ? { timeZone: args.timeZone } : {}),
+      ...(args.utcOffset != null || isoOffset != null ? { utcOffset: args.utcOffset ?? isoOffset } : {}) };
+  };
+  const chartAt = (value, lat, lon, system = 'regiomontanus') => ({ ...castChart(parseExplicitInstant(value), lat, lon, system), ...clockAt(value) });
+  const chartInContext = source => ({ ...source,
+    ...(args.system && args.system !== source.system ? castChart(source.date, source.latitude, source.longitude, args.system) : {}),
+    ...(args.timeZone ? { timeZone: args.timeZone } : {}), ...(args.utcOffset != null ? { utcOffset: args.utcOffset } : {}) });
+  const referenceFor = chart => args.referenceDate ? parseExplicitInstant(args.referenceDate) :
+    args.currentDate ? parseExplicitInstant(args.currentDate) : (ctx.chart?.date || chart.date);
+  const drawIndex = n => {
+    const k = ctx.rand(n);
+    if (!Number.isInteger(k) || k < 0 || k >= n) throw new RangeError('The supplied RNG must return an integer in [0,n).');
+    return k;
+  };
   const chartFromArgs = () => {
     if (args.date != null && args.lat != null && args.lon != null)
-      return castChart(new Date(args.date), args.lat, args.lon, args.system || 'regiomontanus');
-    if (ctx.chart) return ctx.chart;
+      return chartAt(args.date, args.lat, args.lon, args.system || 'regiomontanus');
+    if (ctx.chart) return chartInContext(ctx.chart);
     throw new Error(`tool ${name}: need a current chart or date+lat+lon`);
   };
   const slimChart = c => ({
@@ -876,7 +987,7 @@ export function runTool(name, args = {}, ctx = {}) {
     planets: Object.fromEntries(Object.entries(c.planets).map(([k, p]) => [k, { position: formatLon(p.lon), house: p.house, retrograde: !!p.retrograde }])),
   });
   const slimElection = e => ({
-    operation: e.operation.label, ruler: e.operation.ruler, verdict: e.verdict, score: e.score,
+    operation: e.operation.label, ruler: e.operation.ruler, verdict: e.verdict, score: e.score, scoreMethod: e.scoreMethod,
     gating: e.gating, reasons: e.reasons.slice(0, 8).map(r => ({ severity: r.severity, text: r.text, cite: r.cite })),
     moon: { sign: e.moon.sign, phase: e.moon.phase, mansion: e.moon.mansion, voidOfCourse: e.moon.voidOfCourse },
   });
@@ -886,10 +997,10 @@ export function runTool(name, args = {}, ctx = {}) {
   const safeLots = chart => { try { return (computeLots(chart).lots) || []; } catch { return []; } };
 
   switch (name) {
-    case 'castChart': return slimChart(castChart(new Date(need('date')), need('lat'), need('lon'), args.system || 'regiomontanus'));
+    case 'castChart': return slimChart(chartFromArgs());
     case 'eraLegis': return withCite(eraLegis(new Date(need('date')), { mode: args.mode }), ERA_LEGIS_CITATION);
     case 'solarStations': return withCite(solarStations(new Date(need('date')), need('lat'), need('lon')), RESH_CITATION);
-    case 'planetaryHour': return planetaryHour(new Date(need('date')), need('lat'), need('lon'));
+    case 'planetaryHour': return planetaryHour(parseExplicitInstant(args.date), args.lat, args.lon, clockAt(args.date));
     case 'essentialDignity': return essentialDignity(need('planet'), need('lon'), !!args.isDay);
     case 'almuten': return almuten(need('lon'), !!args.isDay);
     case 'mansionOf': return mansionOf(need('lon'));
@@ -899,21 +1010,27 @@ export function runTool(name, args = {}, ctx = {}) {
     // never executable `steps`. The key is `attestedSequence`, each entry is
     // third-person and attributed, and any harm note travels in the SAME object.
     case 'talismanRecipe': { const r = talismanRecipe(chartFromArgs(), need('operationKey')); return { aim: r.aim, planet: r.planet, verdict: r.verdict, materials: r.materials, attestedSequence: r.attestedSequence.map(s => ({ text: s.text, attributedTo: s.attributedTo, cite: s.cite })), harmNotes: r.harmNotes, voice: r.voice, disclaimer: r.disclaimer }; }
-    case 'annualProfection': return annualProfection(ctx.birthChart || chartFromArgs(), need('age'));
-    case 'lifeTrajectory': { const tj = lifeTrajectory(ctx.birthChart || chartFromArgs(), {}); return { natal: tj.natal, currentYear: tj.currentYear, rulingPlanets: tj.picatrix.rulingPlanets }; }
-    case 'rankNow': return rankNow(chartFromArgs()).map(r => ({ aim: r.operation.label, ruler: r.operation.ruler, verdict: r.verdict, score: r.score }));
-    case 'findNextElection': return findNextElection(need('operationKey'), args.date ? new Date(args.date) : (ctx.chart ? ctx.chart.date : new Date()), args.lat ?? (ctx.chart && ctx.chart.latitude), args.lon ?? (ctx.chart && ctx.chart.longitude), { hoursAhead: args.hoursAhead || 72 }).map(w => ({ start: w.start, end: w.end, bestScore: w.best, bestVerdict: w.bestVerdict }));
-    case 'castVedic': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return slimVedic(v); }
-    case 'vedicPractice': { const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() }); return v.practice; }
+    case 'annualProfection': return annualProfection(args.date ? chartFromArgs() : (ctx.birthChart ? chartInContext(ctx.birthChart) : chartFromArgs()), need('age'));
+    case 'lifeTrajectory': { const chart = args.date ? chartFromArgs() : (ctx.birthChart ? chartInContext(ctx.birthChart) : chartFromArgs()); const tj = lifeTrajectory(chart, { currentDate: referenceFor(chart) }); return { natal: tj.natal, currentYear: tj.currentYear, rulingPlanets: tj.picatrix.rulingPlanets }; }
+    case 'rankNow': return rankNow(chartFromArgs()).map(r => ({ aim: r.operation.label, ruler: r.operation.ruler, verdict: r.verdict, score: r.score, scoreMethod: r.scoreMethod }));
+    case 'findNextElection': {
+      const chart = chartFromArgs();
+      parseExplicitInstant(new Date(chart.date.getTime() + (args.hoursAhead ?? 72) * 3600000).toISOString());
+      return findNextElection(need('operationKey'), chart.date, chart.latitude, chart.longitude,
+        { hoursAhead: args.hoursAhead ?? 72, stepMinutes: args.stepMinutes ?? 30, system: chart.system, timeZone: chart.timeZone, utcOffset: chart.utcOffset })
+        .map(w => ({ start: w.start, end: w.end, bestScore: w.best, bestVerdict: w.bestVerdict, scoreMethod: w.peak.scoreMethod }));
+    }
+    case 'castVedic': { const chart = args.date != null ? chartAt(args.date, args.lat, args.lon, args.system || 'whole') : (ctx.birthChart ? chartInContext(ctx.birthChart) : chartFromArgs()); const referenceDate = referenceFor(chart); const v = castVedic(chart, { currentDate: referenceDate }); return { ...slimVedic(v), referenceDateISO: referenceDate.toISOString() }; }
+    case 'vedicPractice': { const chart = args.date != null ? chartAt(args.date, args.lat, args.lon, args.system || 'whole') : (ctx.birthChart ? chartInContext(ctx.birthChart) : chartFromArgs()); const referenceDate = referenceFor(chart); const v = castVedic(chart, { currentDate: referenceDate }); return { ...v.practice, referenceDateISO: referenceDate.toISOString() }; }
     case 'detectYogas': {
-      const v = castVedic(args.date != null ? castChart(new Date(args.date), need('lat'), need('lon'), 'whole') : (ctx.birthChart || ctx.chart || chartFromArgs()), { currentDate: new Date() });
+      const chart = args.date != null ? chartAt(args.date, args.lat, args.lon, args.system || 'whole') : (ctx.birthChart ? chartInContext(ctx.birthChart) : chartFromArgs()); const referenceDate = referenceFor(chart); const v = castVedic(chart, { currentDate: referenceDate });
       const found = detectYogas(v, { kendraAlsoFromMoon: !!args.kendraAlsoFromMoon })
         .filter(y => y.status === 'met' || y.status === 'conditional')
         .map(y => ({ id: y.id, name: y.name, family: y.family, status: y.status,
           conditions: (y.conditionResults || []).map(c => ({ met: c.met, detail: c.detail })),
           contested: y.contestedNote || null,
           positions: (y.positions || []).map(p => ({ label: p.label, outcome: p.outcome, detail: p.detail })) }));
-      return withCite({ lagna: `${v.lagna.label} (lord ${v.lagna.lord})`, yogas: found,
+      return withCite({ referenceDateISO: referenceDate.toISOString(), lagna: `${v.lagna.label} (lord ${v.lagna.lord})`, yogas: found,
         note: 'A contested yoga is reported "conditional" with EVERY position surfaced and none resolved — never a bare boolean.' },
         'Yoga rules per record (BPHS/Phaladīpikā/Sārāvalī/JP/UK/LP); Kāla-Sarpa flagged modern.');
     }
@@ -945,7 +1062,7 @@ export function runTool(name, args = {}, ctx = {}) {
     }
     case 'castGeomancy': {
       const tallies = Array.isArray(args.tallies) && args.tallies.length >= 16 ? args.tallies.slice(0, 16)
-        : (typeof ctx.rand === 'function' ? Array.from({ length: 16 }, () => ctx.rand(16) + 1) : null);
+        : (typeof ctx.rand === 'function' ? Array.from({ length: 16 }, () => drawIndex(16) + 1) : null);
       if (!tallies) throw new Error('castGeomancy: supply 16 tallies, or run where the app provides the random cast');
       const sh = castFromTallies(tallies);
       const j = geomanticJudgement(sh, args.quesitedHouse || 7);
@@ -961,9 +1078,9 @@ export function runTool(name, args = {}, ctx = {}) {
       if (typeof ctx.rand !== 'function') throw new Error('drawTarot: only available where the app provides the random shuffle');
       const spreadKey = args.spreadKey && SPREADS[args.spreadKey] ? args.spreadKey : 'three';
       const ids = DECK_IDS.slice();
-      for (let i = ids.length - 1; i > 0; i--) { const k = ctx.rand(i + 1); [ids[i], ids[k]] = [ids[k], ids[i]]; }
+      for (let i = ids.length - 1; i > 0; i--) { const k = drawIndex(i + 1); [ids[i], ids[k]] = [ids[k], ids[i]]; }
       const reversals = args.reversals !== false;
-      const draws = ids.slice(0, SPREADS[spreadKey].count).map(id => ({ id, reversed: reversals && ctx.rand(2) === 1 }));
+      const draws = ids.slice(0, SPREADS[spreadKey].count).map(id => ({ id, reversed: reversals && drawIndex(2) === 1 }));
       const r = tarotReading(spreadKey, draws);
       return {
         spread: r.spread.name,
@@ -975,7 +1092,7 @@ export function runTool(name, args = {}, ctx = {}) {
     }
     case 'castIChing': {
       const throws = Array.isArray(args.throws) && args.throws.length === 6 ? args.throws
-        : (typeof ctx.rand === 'function' ? Array.from({ length: 6 }, () => (ctx.rand(2) + 2) + (ctx.rand(2) + 2) + (ctx.rand(2) + 2)) : null);
+        : (typeof ctx.rand === 'function' ? Array.from({ length: 6 }, () => (drawIndex(2) + 2) + (drawIndex(2) + 2) + (drawIndex(2) + 2)) : null);
       if (!throws) throw new Error('castIChing: supply 6 line-throws (6–9), or run where the app provides the coin toss');
       const { lines, changing } = linesFromThrows(throws);
       const r = castIchingReading(lines, changing);
@@ -1001,19 +1118,21 @@ export function runTool(name, args = {}, ctx = {}) {
         page: (e.pages || [])[0] || null,
       }));
     case 'fullChart': {
-      const chart = castChart(new Date(need('dateISO')), need('lat'), need('lon'), args.system || 'regiomontanus');
-      const r = fullReading(chart, { quesitedHouse: args.quesitedHouse, operationKey: args.operationKey, vedicCurrentDate: new Date() });
-      return withCite(buildDataDigest(r), 'Composes Lilly CA Bk I–III + the Picatrix + the Vedic mirror (reading.js).');
+      const chart = chartAt(need('dateISO'), need('lat'), need('lon'), args.system || 'regiomontanus');
+      const r = fullReading(chart, { quesitedHouse: args.quesitedHouse, operationKey: args.operationKey, vedicCurrentDate: referenceFor(chart) });
+      return withCite({ ...buildDataDigest(r), referenceDateISO: referenceFor(chart).toISOString() }, 'Composes Lilly CA Bk I–III + the Picatrix + the Vedic mirror (reading.js).');
     }
     case 'vedicChart': {
-      const chart = castChart(new Date(need('dateISO')), need('lat'), need('lon'), 'whole');
-      return withCite(slimVedic(castVedic(chart, { currentDate: new Date() })), 'Parāśara BPHS / Jagannath Hora (vedic.js) — a SEPARATE sidereal system, compared never merged.');
+      const chart = chartAt(need('dateISO'), need('lat'), need('lon'), args.system || 'whole');
+      const referenceDate = referenceFor(chart);
+      return withCite({ ...slimVedic(castVedic(chart, { currentDate: referenceDate })), referenceDateISO: referenceDate.toISOString() }, 'Parāśara BPHS; linear Lahiri study implementation (vedic.js), not validated JHora equivalence.');
     }
     case 'transitHits': {
       const natal = castChart(new Date(need('birthISO')), need('lat'), need('lon'), 'regiomontanus');
-      const from = args.fromISO ? new Date(args.fromISO) : new Date();
-      const months = Math.min(23, Math.max(1, Number(args.months) || 12));
-      const to = new Date(from.getTime() + Math.min(720, months * 30.44) * 86400000);
+      const from = args.fromISO ? parseExplicitInstant(args.fromISO) : ctx.chart?.date;
+      if (!from) throw new Error('transitHits: supply fromISO or a current chart.');
+      const months = args.months ?? 12;
+      const to = parseExplicitInstant(new Date(from.getTime() + months * 30.44 * 86400000).toISOString());
       const tl = transitTimeline(natal, from, to);
       return withCite({
         window: { from: tl.window.startISO.slice(0, 10), to: tl.window.endISO.slice(0, 10), days: tl.window.days },
@@ -1051,7 +1170,7 @@ export function runTool(name, args = {}, ctx = {}) {
       }, (v.citations || [])[0] || 'Balabhadra, Hāyanaratna (tajika.js).');
     }
     case 'prasnaNow': {
-      const chart = castChart(new Date(need('dateISO')), need('lat'), need('lon'), 'whole');
+      const chart = chartAt(need('dateISO'), need('lat'), need('lon'), args.system || 'whole');
       const v = castVedic(chart);
       const j = prasnaJudgement(v, { quesitedHouse: args.quesitedHouse || 7, kpNumber: args.kpNumber, question: args.question });
       return withCite({
@@ -1077,7 +1196,8 @@ export function runTool(name, args = {}, ctx = {}) {
       }, (r.citations || [])[0] || 'Muhūrta Cintāmaṇi tradition (muhurta.js).');
     }
     case 'momentScan': {
-      const scan = scanMoments(new Date(need('fromISO')), Math.min(168, Math.max(1, Number(need('hours')) || 24)), need('lat'), need('lon'),
+      parseExplicitInstant(new Date(parseExplicitInstant(args.fromISO).getTime() + args.hours * 3600000).toISOString());
+      const scan = scanMoments(new Date(need('fromISO')), need('hours'), need('lat'), need('lon'),
         (args.aim ? { operationKey: args.aim } : {}));
       const rows = []; let prev = null;
       for (const r of scan.rows) {
@@ -1145,7 +1265,7 @@ export function runTool(name, args = {}, ctx = {}) {
         indices = args.seedDraws.map(n => n | 0);
       } else if (typeof ctx.rand === 'function') {
         const pool = Array.from({ length: 24 }, (_, i) => i);
-        for (let i = pool.length - 1; i > 0; i--) { const k = ctx.rand(i + 1); [pool[i], pool[k]] = [pool[k], pool[i]]; }
+        for (let i = pool.length - 1; i > 0; i--) { const k = drawIndex(i + 1); [pool[i], pool[k]] = [pool[k], pool[i]]; }
         indices = pool.slice(0, count);
       } else {
         throw new Error('castRunes: supply seedDraws (distinct indices 0–23), or run where the app provides the random draw');
@@ -1157,6 +1277,7 @@ export function runTool(name, args = {}, ctx = {}) {
         note: r.note,
       }, (Array.isArray(r.cite) ? r.cite[0] : r.cite) || 'Tacitus, Germania 10; the medieval rune poems (runes.js).');
     }
+    case 'layoutConfluence': // Registry's historical export name is the same bounded atlas query.
     case 'confluence_atlas': {
       const state = {};
       if (args.yearFrom != null) state.yearFrom = Number(args.yearFrom);
@@ -1632,7 +1753,7 @@ export function buildVedicYogasContext(x, opts = {}) {
   const facts = []; const add = (t, c) => t && facts.push({ text: t, cite: c || '' });
   const glossary = divinationGlossary(['Jyotiṣa']).slice(0, opts.maxGlossary ?? 99);
   if (!x) return { system: assembleSystem([], glossary, 'YOGA DETECTOR', JYOTISHI_PREAMBLE), facts: [], glossary };
-  add(`The sidereal chart, cast for ${String(x.momentUTC).replace('T', ' ').slice(0, 16)} UT${x.place ? ` at ${x.place.lat}°, ${x.place.lon}°` : ''}, ayanāṃśa ${x.ayanamsaName || x.ayanamsa}.`, 'castVedic (sidereal / Jagannath Hora)');
+  add(`The sidereal chart, cast for ${String(x.momentUTC).replace('T', ' ').slice(0, 16)} UT${x.place ? ` at ${x.place.lat}°, ${x.place.lon}°` : ''}, ayanāṃśa ${x.ayanamsaName || x.ayanamsa}.`, 'castVedic (sidereal / linear Lahiri study implementation)');
   if (x.lagna) add(`The lagna: ${x.lagna.sign}${x.lagna.sanskrit ? ` (${x.lagna.sanskrit})` : ''}, lord ${x.lagna.lord}.`, 'the ascendant of the moment');
   if (x.counts) add(`Of ${x.counts.total} classical yoga rules tested: ${x.counts.met} MET, ${x.counts.conditional} CONDITIONAL (contested — every position surfaced, none resolved), ${x.counts.notMet} not met. A contested yoga is NEVER reduced to a single boolean.`, 'a data-driven detector reading the rules as data');
   for (const y of (x.yogas || [])) {

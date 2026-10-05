@@ -1,0 +1,156 @@
+{
+  "method": "Tracked static extensions; initial graph follows literal static imports from inline HTML scripts, excludes dynamically loaded modules/assets/fonts; gzip level9 sum per file, not measured HTTP bytes.",
+  "deployable_static": {
+    "files": 402,
+    "raw_bytes": 12716675,
+    "sum_gzip9_bytes": 3590173
+  },
+  "assets_all": {
+    "files": 248,
+    "raw_bytes": 7147529,
+    "sum_gzip9_bytes": 2027955
+  },
+  "assets_js": {
+    "files": 237,
+    "raw_bytes": 6693378,
+    "sum_gzip9_bytes": 1892318
+  },
+  "index.html": {
+    "static_import_files": 10,
+    "raw_bytes": 210124,
+    "sum_gzip9_bytes": 75212,
+    "unresolved": [],
+    "largest": [
+      [
+        "assets/js/core/data/glossary.js",
+        101307
+      ],
+      [
+        "assets/js/app/shared.js",
+        34029
+      ],
+      [
+        "index.html",
+        18090
+      ],
+      [
+        "assets/js/app/art/engravings.js",
+        17675
+      ],
+      [
+        "assets/js/core/skyart.js",
+        13555
+      ],
+      [
+        "assets/js/app/art/icons.js",
+        8397
+      ],
+      [
+        "assets/js/core/time.js",
+        6552
+      ]
+    ]
+  },
+  "pages/workbench.html": {
+    "static_import_files": 86,
+    "raw_bytes": 2623644,
+    "sum_gzip9_bytes": 810324,
+    "unresolved": [],
+    "largest": [
+      [
+        "assets/js/core/data/confluence.js",
+        422115
+      ],
+      [
+        "assets/js/lib/astronomy.js",
+        412025
+      ],
+      [
+        "assets/js/core/llm-context.js",
+        202766
+      ],
+      [
+        "assets/js/core/data/bhava-phala.js",
+        162105
+      ],
+      [
+        "assets/js/core/registry.js",
+        126711
+      ],
+      [
+        "assets/js/core/data/glossary.js",
+        101307
+      ],
+      [
+        "assets/js/core/data/yoga-rules.js",
+        68902
+      ]
+    ]
+  },
+  "pages/picatrix/kameas.html": {
+    "static_import_files": 27,
+    "raw_bytes": 763303,
+    "sum_gzip9_bytes": 235215,
+    "unresolved": [],
+    "largest": [
+      [
+        "assets/js/lib/astronomy.js",
+        412025
+      ],
+      [
+        "assets/js/core/data/glossary.js",
+        101307
+      ],
+      [
+        "assets/js/app/shared.js",
+        34029
+      ],
+      [
+        "assets/js/core/election.js",
+        24173
+      ],
+      [
+        "assets/js/core/data/kameas.js",
+        17769
+      ],
+      [
+        "assets/js/app/art/engravings.js",
+        17675
+      ],
+      [
+        "assets/js/core/astro.js",
+        14873
+      ]
+    ]
+  },
+  "largest_assets": [
+    [
+      "assets/js/core/data/opgraph.js",
+      785578
+    ],
+    [
+      "assets/js/core/data/confluence.js",
+      422115
+    ],
+    [
+      "assets/js/lib/astronomy.js",
+      412025
+    ],
+    [
+      "assets/js/core/data/buddhist/dhammapada.js",
+      374338
+    ],
+    [
+      "assets/js/core/data/buddhist/mn118.js",
+      362978
+    ],
+    [
+      "assets/search-index.json",
+      253538
+    ],
+    [
+      "assets/js/core/llm-context.js",
+      202766
+    ]
+  ]
+}

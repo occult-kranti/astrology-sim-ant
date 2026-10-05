@@ -34,7 +34,7 @@ export function createHttpHandler({ hostname = '127.0.0.1', origin = null, token
           const { value, done } = await Promise.race([reader.read(), interrupted]);
           if (done) break;
           bytes += value.byteLength;
-          if (bytes > METHODS.limits.inputBytes) { await reader.cancel(); return deny('Request too large', 413); }
+          if (bytes > METHODS.limits.inputBytes) { void reader.cancel().catch(() => {}); return deny('Request too large', 413); }
           chunks.push(value);
         }
       } catch {
