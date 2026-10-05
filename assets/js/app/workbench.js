@@ -34,7 +34,7 @@ import { initGlosstip } from './glosstip.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
-const STATE_KEYS = ['date', 'time', 'offset', 'lat', 'lon', 'system', 'op', 'q', 'bdate', 'btime', 'boffset', 'blat', 'blon', 'zone', 'fold', 'bzone', 'bfold', 'sect'];
+const STATE_KEYS = ['date', 'time', 'offset', 'lat', 'lon', 'system', 'op', 'q', 'bdate', 'btime', 'boffset', 'blat', 'blon', 'zone', 'fold', 'bzone', 'bfold', 'sect', 'solar'];
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const G = p => PLANET_GLYPHS[p] || '';
@@ -52,6 +52,7 @@ let liveClock = null, assistantLoad = null, initializing = true, lastContext = n
 
 // --- last computed reading + a tiny subscription, for the assistant ---------
 let lastReading = null, lastChart = null, lastBirthChart = null, wheelSvg = null, vedicUpdate = null;
+let solarObserver = false;
 let sectAwareFortune = false;   // Lots toggle: Lilly's both-sects ⊕ (default) vs Ptolemaic night-reversal
 const readingSubs = [];
 export const getReading = () => lastReading;
@@ -89,6 +90,7 @@ export async function initWorkbench() {
   $('wb-op').addEventListener('change', () => run());
   applyState(shared);
 
+
   // Mount the moment-pickers + action bar (writes through to the legacy hidden ids),
   // then wire the export handlers onto whatever the bar (or fallback) rendered.
   await mountEnhancers();
@@ -96,6 +98,13 @@ export async function initWorkbench() {
   renderSaved();   // the on-device saved-readings list (auto-saved each compute)
 
   applyState(shared);
+  // A shared Studio UTC clock does not assert an observer civil zone.
+  $('wb-form').addEventListener('input', event => {
+    if (solarObserver && ['wb-mp-zone', 'wb-mp-zonemode', 'wb-mp-offset', 'wb-mp-off', 'wb-mp-offnum', 'wb-offset'].includes(event.target.id)) { solarObserver = false; $('wb-observer-zone-note').hidden = true; }
+  }, true);
+  $('wb-form').addEventListener('change', event => {
+    if (solarObserver && ['wb-mp-zone', 'wb-mp-zonemode', 'wb-mp-offset', 'wb-mp-off', 'wb-mp-offnum', 'wb-offset'].includes(event.target.id)) { solarObserver = false; $('wb-observer-zone-note').hidden = true; }
+  }, true);
 
   renderAssistantPlaceholder();
   $('wb-assistant-open')?.addEventListener('click', () => openAssistant());
@@ -146,6 +155,8 @@ function resetForm() {
 }
 
 function applyState(state) {
+  solarObserver = state.solar === '1';
+  if ($('wb-observer-zone-note')) $('wb-observer-zone-note').hidden = !solarObserver;
   for (const key of STATE_KEYS) {
     const element = $('wb-' + (key === 'q' ? 'horary-house' : key));
     if (element && state[key] != null) element.value = state[key];
@@ -261,7 +272,7 @@ function currentState() {
     bdate: $('wb-bdate').value, btime: $('wb-btime').value, boffset: $('wb-boffset').value,
     blat: $('wb-blat').value, blon: $('wb-blon').value,
     zone: pickerMain?.fields().timeZone || '', fold: pickerMain?.fields().disambiguation || 'reject',
-    bzone: pickerBirth?.fields().timeZone || '', bfold: pickerBirth?.fields().disambiguation || 'reject', sect: sectAwareFortune ? '1' : '0',
+    bzone: pickerBirth?.fields().timeZone || '', bfold: pickerBirth?.fields().disambiguation || 'reject', sect: sectAwareFortune ? '1' : '0', solar: solarObserver ? '1' : '0',
   };
 }
 
@@ -271,7 +282,7 @@ function calculationInput() {
     if (picker && !picker.validate().ok) throw new RangeError((prefix ? 'Birth' : 'Moment') + ' fields need correction.');
     const dateISO = (picker?.instant() || toUTC(state[prefix + 'date'], state[prefix + 'time'], state[prefix + 'offset'])).toISOString();
     return { dateISO, lat: Number(state[prefix + 'lat']), lon: Number(state[prefix + 'lon']), system,
-      timeZone: state[prefix + 'zone'] || null, utcOffset: Number(state[prefix + 'offset']), disambiguation: state[prefix + 'fold'] };
+      timeZone: !prefix && solarObserver ? null : state[prefix + 'zone'] || null, utcOffset: !prefix && solarObserver ? null : Number(state[prefix + 'offset']), disambiguation: state[prefix + 'fold'] };
   };
   for (const key of ['date', 'time', 'lat', 'lon', 'offset']) if (!String(state[key]).trim()) throw new RangeError('Complete the moment, coordinates and UTC offset.');
   const hasBirth = ['bdate', 'btime', 'blat', 'blon'].some(key => String(state[key]).trim());
@@ -758,11 +769,11 @@ function mountLiveClock() {
       // uses the lighter includeReading:false path for its faster chart view.
       const input = calculationInput();
       date.setUTCMilliseconds(0);
-      return calculateContext({ ...input, dateISO: date.toISOString(), timeZone: 'Etc/UTC', utcOffset: 0, disambiguation: 'reject', referenceDateISO: date.toISOString() });
+      return calculateContext({ ...input, dateISO: date.toISOString(), timeZone: solarObserver ? null : 'Etc/UTC', utcOffset: solarObserver ? null : 0, disambiguation: 'reject', referenceDateISO: date.toISOString() });
     },
     onResult: context => {
       const iso = context.inputs.dateISO;
-      const fields = { date: iso.split('T')[0], time: iso.slice(iso.indexOf('T') + 1, -5), offset: 0, timeZone: 'Etc/UTC', disambiguation: 'reject' };
+      const fields = { date: iso.split('T')[0], time: iso.slice(iso.indexOf('T') + 1, -5), offset: 0, timeZone: solarObserver ? null : 'Etc/UTC', disambiguation: 'reject' };
       if (pickerMain) pickerMain.setFields(fields);
       else for (const key of ['date', 'time', 'offset']) $('wb-' + key).value = fields[key];
       publishContext(context, { persist: false });

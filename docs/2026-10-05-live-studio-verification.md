@@ -12,7 +12,7 @@ Date: October 5, 2026. Repository: `occult-kranti/astrology-sim-ant`; candidate 
 
 ## Measured performance
 
-Same Linux Node24.19.0, Xeon8573C container. Static import traversal begins at the page's application module; dynamic imports, CSS/fonts, HTTP caching and actual browser timing are excluded. Byte counts are source bytes and summed per-file gzip level9, not a bundled transfer size. Raw evidence is in `docs/evidence/live-studio/`. These measurements describe candidate snapshot `bd170eb`, before subsequent mobile layout and MCP navigation repairs; they are not exact final-release transfer sizes.
+Same Linux Node24.19.0, Xeon8573C container. Static import traversal follows the page’s static script entries and inline module imports; dynamic imports, CSS/fonts, HTTP caching and actual browser timing are excluded. Byte counts are source bytes and summed per-file gzip level9, not a bundled transfer size. Raw evidence is in `docs/evidence/live-studio/`. These measurements describe candidate snapshot `bd170eb`, before subsequent mobile layout and MCP navigation repairs; they are not exact final-release transfer sizes.
 
 | Workload | Baseline | Candidate | Interpretation |
 |---|---:|---:|---|

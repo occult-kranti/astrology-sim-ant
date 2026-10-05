@@ -128,10 +128,19 @@ against modern editions and traditional-astrology scholarship (see About & Sourc
 
 The MCP backend is a separate Node/fetch-runtime process with 11 allowlisted tools. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
 
+### Observatory sessions: from the sky to a study record
+
+The existing [Studio](pages/studio.html) now follows **Observe → Cast → Compare → Symbol → Journal**. Capture a selected object in [SkyLens](https://occult-kranti.github.io/skylens/) and open its frozen time/place in the Studio; compare tropical and documented sidereal conventions, construct a planetary square, then save a source-linked journal snapshot. Return links preserve the selected object and Hindi naming preference without starting the camera or sensors.
+
+Choose a **Lilly, Agrippa, Hermetic or Newton study lens** to see relevant source passages, prompts and existing tools. Newton supplies an observation/hypothesis/measurement workflow, not an invented astrology algorithm. Planetary hours name the implemented sunrise/sunset division; alternative historical conventions remain distinct. See the [session roadmap](docs/2026-10-05-observatory-sessions.md) and [reviewed sources](docs/2026-10-05-study-sources.md).
+
+**Explain this snapshot** prepares a minimal, source-labelled AI packet. Exact coordinates, personal notes, the recorded question and entered symbol text are excluded unless selected. Review the outgoing request, then explicitly Send using your chosen provider—or copy/export it for your existing AI/MCP client. Browser API keys stay in memory, and changing context cancels stale answers. Journal records remain local; no cloud sync or camera-frame transfer is implied.
+
 ### Human actions and pending external checks
 
 - [ ] If using desktop MCP, install Node 22+, clone the full repository, run `npm ci` in `mcp/` and add the documented stdio command to your MCP client. No server account is needed.
 - [ ] To use remote MCP, connect the private Workbench plugin through **Plugins → Personal → Created by you** and complete OAuth. Published backend: [https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site](https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site); endpoint `https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site/mcp`. Then run a read-only `workbench_catalogue` call to verify the actual client connection. No new paid account is needed.
+- [ ] Optional browser AI: obtain your own Groq or Anthropic API access and enter a supported model/key in the Studio. Availability, quotas and billing are controlled by that provider; no account is needed for local tools or copying/exporting a study prompt. Do not commit keys. Real provider calls have not been verified with your account.
 - [ ] Check the Studio on an actual phone and with your screen reader: input controls, live/pause behavior, chart/text parity, orientation/reflow and SVG/PNG downloads. Browser automation is separate evidence.
 - [ ] Have a knowledgeable tradition-specific reviewer verify any new historical plate or regional method before expanding its validation claims. The catalogue intentionally distinguishes sourced arithmetic, editorial reconstructions and unimplemented methods.
 
