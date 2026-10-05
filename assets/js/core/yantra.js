@@ -106,7 +106,9 @@ export function yantraForGraha(name) {
 // Tokenise an IAST string into consonants (with value) and vowels, greedily
 // matching the longest consonant/vowel and skipping the ignorable marks.
 function tokenizeIAST(text) {
-  const s = String(text).toLowerCase();
+  // IAST commonly arrives with combining marks (copy/paste, keyboard input).
+  // Canonically equivalent spellings must reach the same consonant table.
+  const s = String(text).normalize('NFC').toLowerCase();
   const CS = KATAPAYADI.consonantsByLength;   // already longest-first
   const VS = KATAPAYADI.vowels;               // already longest-first
   const IG = new Set(KATAPAYADI.ignore);

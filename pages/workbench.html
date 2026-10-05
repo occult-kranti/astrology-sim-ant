@@ -12,6 +12,7 @@
 <main class="wrap">
   <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Cast</a> › The Workbench</p>
   <h1>The Workbench — every calculation, linked in one tool</h1>
+  <p><a class="btn" href="studio.html">Open Live Symbol Studio</a> <span class="small muted">A focused chart, square or name trace with explicit methods and snapshot exports.</span></p>
   <p class="lede">One moment and place runs the <b>whole engine at once</b> through a single composed reading
     (<code>fullReading</code>): the <b>figure</b>, the full <b>dignity ledger</b>, <b>aspects &amp; reception</b>,
     the <b>lots &amp; antiscia</b>, <b>chart health</b>, <b>horary perfection</b>, the Picatrix <b>election</b> layer,
@@ -32,6 +33,13 @@
     is held to the same framing. See <a href="about/index.html">Sources &amp; Science</a>.</div>
 
   <form id="wb-form" class="calc">
+    <div class="field-row" aria-label="Reading clock">
+      <button id="wb-live-start" type="button" class="btn">Start live</button>
+      <button id="wb-live-pause" type="button" class="btn-secondary" hidden>Pause live</button>
+      <button id="wb-live-resume" type="button" class="btn-secondary" hidden>Resume live</button>
+      <p id="wb-live-status" class="small muted" role="status">Frozen · choose a moment or start live.</p>
+    </div>
+    <p class="small muted">Live recalculates the current moment every five seconds. Editing inputs, saving or exporting freezes the displayed reading; live ticks do not create saved history.</p>
     <div id="wb-picker"></div>
     <!-- Legacy write-through: the moment-picker fills these hidden inputs by their historic ids. -->
     <input type="hidden" id="wb-lat"><input type="hidden" id="wb-lon">
@@ -136,6 +144,8 @@
   <section class="card panel" id="wb-assistant-card" data-rail="Ask the AI">
     <div class="panel-head"><h2 class="panel-title">Ask the Workbench — AI assistant (Groq free tier or Claude)</h2>
       <a class="panel-anchor" href="#wb-assistant-card" aria-label="Link to this section">¶</a></div>
+    <p class="small muted">Optional, separate from the <a href="studio.html#studioConnections">MCP calculation server</a>. Open the assistant to configure your provider; nothing is sent until you explicitly ask.</p>
+    <button id="wb-assistant-open" type="button" class="btn-secondary">Open AI assistant</button>
     <div id="wb-assistant"></div></section>
 
   <section class="card panel" id="wb-p-reference" data-rail="Reference index">
@@ -165,10 +175,8 @@
 <script type="module">
   import { mountChrome } from '../assets/js/app/shared.js';
   mountChrome('workbench');
-  import { initWorkbench, getReading, getContext, subscribeReading } from '../assets/js/app/workbench.js';
+  import { initWorkbench } from '../assets/js/app/workbench.js';
   initWorkbench();
-  import { initAssistant } from '../assets/js/app/assistant.js';
-  initAssistant({ getReading, getContext, subscribeReading });
   import { mountRail } from '../assets/js/app/rail.js';
   mountRail({ label: 'On this reading' });
 </script>

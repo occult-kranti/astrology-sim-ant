@@ -16,6 +16,7 @@
 const ROOT = new URL('../../../', import.meta.url).href.replace(/\/$/, '');
 const SW_URL = `${ROOT}/sw.js`;
 const SCOPE = `${ROOT}/`;
+const CACHE_PREFIX = 'awb-' + encodeURIComponent(new URL(SCOPE).pathname) + '-';
 
 let updating = false;   // true only after the user consents to reload
 
@@ -60,17 +61,16 @@ function doRegister() {
   });
 }
 
-// The kill path: unregister every worker + clear caches, from the page. Handy in
+// The kill path affects only this project scope and its cache namespace. Handy in
 // the console (`import('/assets/js/app/sw-register.js').then(m=>m.killServiceWorker())`)
 // and documented in docs/pwa.md alongside sw.js's KILL_SWITCH deploy path.
 export async function killServiceWorker() {
   try {
-    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-      navigator.serviceWorker.controller.postMessage({ type: 'KILL' });
-    }
     const regs = await navigator.serviceWorker.getRegistrations();
-    await Promise.all(regs.map(r => r.unregister()));
-    if (self.caches) { const keys = await caches.keys(); await Promise.all(keys.map(k => caches.delete(k))); }
+    const own = regs.filter(r => r.scope === SCOPE);
+    for (const reg of own) reg.active?.postMessage({ type: 'KILL' });
+    await Promise.all(own.map(r => r.unregister()));
+    if (self.caches) { const keys = await caches.keys(); await Promise.all(keys.filter(k => k.startsWith(CACHE_PREFIX)).map(k => caches.delete(k))); }
   } catch { /* best-effort */ }
 }
 

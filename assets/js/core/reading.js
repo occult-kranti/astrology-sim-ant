@@ -94,8 +94,11 @@ export function fullReading(chart, opts = {}) {
   const quesitedHouse = Number.isInteger(opts.quesitedHouse) && opts.quesitedHouse >= 1 && opts.quesitedHouse <= 12
     ? opts.quesitedHouse : null;
   const hasBirth = !!(opts.birth && opts.birth.chart);
+  const houseCitation = chart.system === 'regiomontanus' ? CITE.houses :
+    `Houses: ${chart.system}; see docs/2026-10-calculation-methods.md for the implemented convention.${chart.houseWarning ? ' ' + chart.houseWarning : ''}`;
 
-  const ph = safe(() => planetaryHour(chart.date, chart.latitude, chart.longitude));
+  const ph = Object.hasOwn(opts.precomputed || {}, 'planetaryHour') ? opts.precomputed.planetaryHour :
+    safe(() => planetaryHour(chart.date, chart.latitude, chart.longitude, { timeZone: chart.timeZone, utcOffset: chart.utcOffset }));
   const cites = new Set();
   const addCite = c => { if (c) cites.add(c); };
 
@@ -118,9 +121,9 @@ export function fullReading(chart, opts = {}) {
     planetaryHour: ph
       ? { ruler: ph.ruler, dayRuler: ph.dayRuler, hourNumber: ph.hourNumber, isNight: ph.isNight, hourLengthMinutes: ph.hourLengthMinutes }
       : null,
-    citations: [CITE.positions, CITE.houses, CITE.hours],
+    citations: [CITE.positions, houseCitation, CITE.hours],
   };
-  [CITE.positions, CITE.houses, CITE.hours].forEach(addCite);
+  [CITE.positions, houseCitation, CITE.hours].forEach(addCite);
 
   // ---- dignities: the Book-I ledger -----------------------------------------
   const perPlanet = {};
@@ -229,8 +232,8 @@ export function fullReading(chart, opts = {}) {
   }
 
   // ---- election (Picatrix) --------------------------------------------------
-  const selected = safe(() => electionScore(chart, operationKey));
-  const rankedNow = safe(() => rankNow(chart).map(r => ({
+  const selected = safe(() => electionScore(chart, operationKey, { planetaryHour: ph }));
+  const rankedNow = safe(() => rankNow(chart, { planetaryHour: ph }).map(r => ({
     key: r.operation.key, label: r.operation.label, ruler: r.operation.ruler, verdict: r.verdict, score: r.score,
   })), []);
   if (selected) selected.reasons.forEach(r => addCite(r.cite));
@@ -238,7 +241,7 @@ export function fullReading(chart, opts = {}) {
   addCite(CITE.election);
 
   // ---- talisman -------------------------------------------------------------
-  const talisman = safe(() => talismanRecipe(chart, operationKey));
+  const talisman = safe(() => talismanRecipe(chart, operationKey, { planetaryHour: ph }));
   if (talisman) (talisman.citations || []).forEach(addCite);
   addCite(CITE.talisman);
 
@@ -266,7 +269,8 @@ export function fullReading(chart, opts = {}) {
   if (opts.includeVedic !== false) {
     const vChart = hasBirth ? opts.birth.chart : chart;
     const vNow = opts.vedicCurrentDate instanceof Date ? opts.vedicCurrentDate : chart.date;
-    vedic = safe(() => castVedic(vChart, { currentDate: vNow }));
+    vedic = Object.hasOwn(opts.precomputed || {}, 'vedic') ? opts.precomputed.vedic :
+      safe(() => castVedic(vChart, { currentDate: vNow }));
     if (vedic) addCite(CITE.vedic);
   }
 
@@ -277,7 +281,9 @@ export function fullReading(chart, opts = {}) {
     generatedAt: opts.generatedAt || null,
     inputs: {
       date: chart.date, latitude: chart.latitude, longitude: chart.longitude,
-      system: chart.system, isDay, quesitedHouse, operationKey, hasBirth,
+      system: chart.system, requestedSystem: chart.requestedSystem || chart.system,
+      houseWarning: chart.houseWarning || null, isDay, quesitedHouse, operationKey, hasBirth,
+      sectAwareFortune: !!opts.sectAwareFortune,
     },
   };
 

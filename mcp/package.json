@@ -1,0 +1,16 @@
+{
+  "name": "astrologers-workbench-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node stdio.mjs",
+    "http": "node http.mjs",
+    "test": "node test-protocol.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "@modelcontextprotocol/node": "2.1.1"
+  }
+}

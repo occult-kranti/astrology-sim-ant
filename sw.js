@@ -5,7 +5,7 @@
  *
  *  Contract (every clause is load-bearing — read before editing):
  *    · VERSIONED CACHE NAMES — bump VERSION to invalidate; activate() deletes
- *      every cache whose name is not in the current set.
+ *      this project’s older version caches; other projects remain untouched.
  *    · PRECACHE THE SHELL — a small curated boot set (chrome + engine + index),
  *      fetched individually so one 404 can never fail the whole install.
  *    · LAZY RUNTIME CACHING — everything else is cached the first time it is
@@ -19,8 +19,8 @@
  *    · CONSENT-BASED UPDATES — a new worker waits; it never skipWaiting()s on
  *      its own. app/sw-register.js shows the site .toast; only the user's click
  *      posts {type:'SKIP_WAITING'}. A student mid-calculation is never reloaded.
- *    · KILL SWITCH — set KILL_SWITCH = true and deploy: the worker clears every
- *      cache and unregisters itself, handing all clients back to the network.
+ *    · KILL SWITCH — set KILL_SWITCH = true and deploy: the worker clears this project’s
+ *      caches and unregisters itself, handing all clients back to the network.
  *      The documented panic path (see docs/pwa.md).
  *    · RESPECTS http://localhost — on localhost/127.0.0.1 the worker installs
  *      but caches NOTHING and passes every request straight through, so the dev
@@ -32,14 +32,16 @@
 
 // Bump on every deploy that changes cached bytes. The date-ish tag makes stale
 // caches obvious in DevTools → Application → Cache Storage.
-const VERSION = 'awb-2026-10-03';
+const CACHE_PREFIX = 'awb-' + encodeURIComponent(new URL('./', self.location.href).pathname) + '-';
+const VERSION = CACHE_PREFIX + '2026-10-05';
+const ownsCache = name => name.startsWith(CACHE_PREFIX); // Never clear another project’s caches.
 const PRECACHE = `${VERSION}-shell`;
 const RUNTIME = `${VERSION}-runtime`;
 const CURRENT = new Set([PRECACHE, RUNTIME]);
 
 // ── THE PANIC PATH ──────────────────────────────────────────────────────────
 // Flip to true and redeploy to disarm the PWA for everyone: the next activate
-// wipes all caches and unregisters this worker. Clients fall back to plain
+// wipes this project’s caches and unregisters this worker. Clients fall back to plain
 // network on their following navigation. See docs/pwa.md.
 const KILL_SWITCH = false;
 
@@ -112,7 +114,7 @@ self.addEventListener('activate', event => {
       return;
     }
     const names = await caches.keys();
-    await Promise.all(names.map(n => (CURRENT.has(n) ? null : caches.delete(n))));
+    await Promise.all(names.map(n => (ownsCache(n) && !CURRENT.has(n) ? caches.delete(n) : null)));
     await self.clients.claim();
   })());
 });
@@ -174,7 +176,7 @@ async function staleWhileRevalidate(req) {
 
 async function clearAllCaches() {
   const names = await caches.keys();
-  await Promise.all(names.map(n => caches.delete(n)));
+  await Promise.all(names.filter(ownsCache).map(n => caches.delete(n)));
 }
 
 // ── MESSAGES ────────────────────────────────────────────────────────────────

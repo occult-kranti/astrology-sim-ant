@@ -9,10 +9,11 @@
 import { toUTC, nowLocalFields, VERDICT_LEGEND, autolinkResultPanels } from './shared.js';
 import { writeStateToURL, readStateFromURL, copyShareLink, downloadJSON, downloadSVG, svgToPNG,
   downloadMarkdown, saveReadingEntry, listSavedReadings, removeSavedReading } from './state.js';
-import { castChart, PLANET_GLYPHS } from '../core/astro.js';
+import { PLANET_GLYPHS } from '../core/astro.js';
 import { allAspects } from '../core/aspects.js';
 import { renderChart } from '../core/chart.js';
-import { fullReading } from '../core/reading.js';
+import { calculateContext } from '../core/calculation-context.js';
+import { createLiveClock } from './live-clock.js';
 import { REGISTRY, byId } from '../core/registry.js';
 import { HOUSES } from '../core/data/houses.js';
 import { OPERATIONS } from '../core/election.js';
@@ -33,7 +34,7 @@ import { initGlosstip } from './glosstip.js';
 
 const $ = id => document.getElementById(id);
 const PLANETS7 = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
-const STATE_KEYS = ['date', 'time', 'offset', 'lat', 'lon', 'system', 'op', 'q', 'bdate', 'btime', 'boffset', 'blat', 'blon'];
+const STATE_KEYS = ['date', 'time', 'offset', 'lat', 'lon', 'system', 'op', 'q', 'bdate', 'btime', 'boffset', 'blat', 'blon', 'zone', 'fold', 'bzone', 'bfold', 'sect'];
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const G = p => PLANET_GLYPHS[p] || '';
@@ -47,6 +48,7 @@ const rel = p => String(p).replace(/^pages\//, '');           // path from insid
 const motionOK = () => { try { return matchMedia('(prefers-reduced-motion: no-preference)').matches; } catch { return false; } };
 const ENH = {};
 let bar = null, pickerMain = null, pickerBirth = null;
+let liveClock = null, assistantLoad = null, initializing = true, lastContext = null;
 
 // --- last computed reading + a tiny subscription, for the assistant ---------
 let lastReading = null, lastChart = null, lastBirthChart = null, wheelSvg = null, vedicUpdate = null;
@@ -54,8 +56,8 @@ let sectAwareFortune = false;   // Lots toggle: Lilly's both-sects ⊕ (default)
 const readingSubs = [];
 export const getReading = () => lastReading;
 // the live engine context tool-calls need (the actual castChart objects).
-export const getContext = () => ({ chart: lastChart, birthChart: lastBirthChart });
-export const subscribeReading = cb => { readingSubs.push(cb); if (lastReading) { try { cb(lastReading); } catch { /* ignore */ } } };
+export const getContext = () => ({ ...(lastContext || {}), chart: lastChart, birthChart: lastBirthChart });
+export const subscribeReading = cb => { readingSubs.push(cb); if (lastReading) { try { cb(lastReading); } catch { /* ignore */ } } return () => { const i = readingSubs.indexOf(cb); if (i >= 0) readingSubs.splice(i, 1); }; };
 
 // Registry-driven header links for a panel: "how it's calculated" + dedicated tool.
 function regLinks(id) {
@@ -68,6 +70,8 @@ function regLinks(id) {
 }
 
 export async function initWorkbench() {
+  // Capture the incoming link before mounting any control can publish state.
+  const shared = readStateFromURL(STATE_KEYS);
   const f = nowLocalFields();
   $('wb-date').value = f.date; $('wb-time').value = f.time; $('wb-offset').value = f.offset;
   $('wb-lat').value = 51.5074; $('wb-lon').value = -0.1278;
@@ -81,6 +85,9 @@ export async function initWorkbench() {
 
   $('wb-form').addEventListener('submit', e => { e.preventDefault(); doCompute(); });
   $('wb-reset').addEventListener('click', () => resetForm());
+  $('wb-system').addEventListener('change', () => run());
+  $('wb-op').addEventListener('change', () => run());
+  applyState(shared);
 
   // Mount the moment-pickers + action bar (writes through to the legacy hidden ids),
   // then wire the export handlers onto whatever the bar (or fallback) rendered.
@@ -88,17 +95,13 @@ export async function initWorkbench() {
 
   renderSaved();   // the on-device saved-readings list (auto-saved each compute)
 
-  // restore shared state from the URL, if any
-  const s = readStateFromURL(STATE_KEYS);
-  const set = (k, id) => { if (s[k] != null && s[k] !== '') $(id).value = s[k]; };
-  set('date', 'wb-date'); set('time', 'wb-time'); set('offset', 'wb-offset');
-  set('lat', 'wb-lat'); set('lon', 'wb-lon'); set('system', 'wb-system');
-  set('op', 'wb-op'); set('q', 'wb-horary-house');
-  set('bdate', 'wb-bdate'); set('btime', 'wb-btime'); set('boffset', 'wb-boffset'); set('blat', 'wb-blat'); set('blon', 'wb-blon');
-  if (s.bdate) $('wb-birth-details').open = true;
+  applyState(shared);
 
   renderAssistantPlaceholder();
+  $('wb-assistant-open')?.addEventListener('click', () => openAssistant());
+  mountLiveClock();
   try { initGlosstip(); } catch { /* non-fatal: popovers degrade to plain gloss-links */ }
+  initializing = false;
   run();
 }
 
@@ -137,10 +140,22 @@ function doCompute() {
 
 function resetForm() {
   const f = nowLocalFields();
-  $('wb-date').value = f.date; $('wb-time').value = f.time; $('wb-offset').value = f.offset;
-  $('wb-lat').value = 51.5074; $('wb-lon').value = -0.1278;
-  for (const id of ['wb-blat', 'wb-blon', 'wb-bdate', 'wb-btime', 'wb-boffset']) { const e = $(id); if (e) e.value = ''; }
+  applyState({ ...f, lat: 51.5074, lon: -0.1278, zone: '', fold: 'reject', sect: '0',
+    bdate: '', btime: '', boffset: '', blat: '', blon: '', bzone: '', bfold: 'reject' });
   run();
+}
+
+function applyState(state) {
+  for (const key of STATE_KEYS) {
+    const element = $('wb-' + (key === 'q' ? 'horary-house' : key));
+    if (element && state[key] != null) element.value = state[key];
+  }
+  sectAwareFortune = state.sect === true || state.sect === '1' || state.sect === 'true';
+  const fields = prefix => ({ date: $('wb-' + prefix + 'date').value, time: $('wb-' + prefix + 'time').value,
+    offset: $('wb-' + prefix + 'offset').value, lat: $('wb-' + prefix + 'lat').value, lon: $('wb-' + prefix + 'lon').value,
+    timeZone: state[prefix + 'zone'] || null, disambiguation: state[prefix + 'fold'] || 'reject' });
+  pickerMain?.setFields(fields('')); pickerBirth?.setFields(fields('b'));
+  $('wb-birth-details').open = !!$('wb-bdate').value;
 }
 
 async function mountEnhancers() {
@@ -158,7 +173,7 @@ async function mountEnhancers() {
   const mount = (boxId, mode, ids) => {
     if (ENH.mp && ENH.mp.mountMomentPicker) {
       try {
-        return ENH.mp.mountMomentPicker($(boxId), { mode, label: mode === 'birth' ? 'Birth moment & place' : 'The moment & place', persist: 'wb', ids, onChange: () => run() });
+        return ENH.mp.mountMomentPicker($(boxId), { mode, label: mode === 'birth' ? 'Birth moment & place (optional; exact time required)' : 'The moment & place', persist: 'wb', idPrefix: mode === 'birth' ? 'wb-birth' : 'wb', optional: mode === 'birth', ids, onChange: () => run(), onInvalid: message => invalidate(message) });
       } catch { /* fall through to fallback */ }
     }
     revealPickerFallback(boxId, Object.values(ids)); return null;
@@ -171,7 +186,7 @@ async function mountEnhancers() {
     const summary = document.querySelector('#wb-birth-details summary');
     attachPersonPicker(summary,
       { bdate: $('wb-bdate'), btime: $('wb-btime'), boffset: $('wb-boffset'), blat: $('wb-blat'), blon: $('wb-blon') },
-      { onSelect: () => { $('wb-birth-details').open = true; run(); } });
+      { onSelect: () => { const state = currentState(); state.bzone = ''; state.bfold = 'reject'; applyState(state); $('wb-birth-details').open = true; run(); } });
   } catch { /* non-fatal */ }
 
   // --- action bar: Export ▾ (the six form buttons move here) + Copy link + Ask AI ---
@@ -184,7 +199,7 @@ async function mountEnhancers() {
     try {
       bar = ENH.ab.mountActionBar($('wb-actionbar'), {
         variant: 'tool', exports: exportsMenu, copyLinkId: 'wb-copy',
-        askAI: () => { const a = $('wb-assistant-card'); if (a) { a.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto' }); const ta = a.querySelector('textarea, input'); ta && ta.focus(); } },
+        askAI: () => openAssistant(),
         summary: r => barSummary(r),
       });
     } catch { bar = null; }
@@ -200,13 +215,13 @@ function barSummary(r) {
 }
 
 function wireExportHandlers() {
-  const on = (id, fn) => { const el = $(id); if (el && !el.dataset.wbwired) { el.dataset.wbwired = '1'; el.addEventListener('click', fn); } };
-  on('wb-copy', () => copyShareLink($('wb-status'), currentState()));
+  const on = (id, fn) => { const el = $(id); if (el && !el.dataset.wbwired) { el.dataset.wbwired = '1'; el.addEventListener('click', event => { if (liveClock?.state.running || liveClock?.state.status === 'suspended') liveClock.pause(); fn(event); }); } };
+  on('wb-copy', () => { if (lastReading) copyShareLink($('wb-status'), currentState()); });
   on('wb-json', () => { if (lastReading) downloadJSON(lastReading, 'workbench-reading.json'); });
   on('wb-md', () => { if (lastReading) downloadMarkdown(lastReading, 'workbench-reading.md'); });
-  on('wb-svg', () => downloadSVG(wheelSvg, 'chart.svg'));
-  on('wb-png', () => { svgToPNG(wheelSvg, 'chart.png').catch(() => { $('wb-status').textContent = 'Could not export PNG.'; }); });
-  on('wb-print', () => window.print());
+  on('wb-svg', () => { if (lastReading && wheelSvg) downloadSVG(wheelSvg, 'chart.svg'); });
+  on('wb-png', () => { if (lastReading && wheelSvg) svgToPNG(wheelSvg, 'chart.png').catch(() => { $('wb-status').textContent = 'Could not export PNG.'; }); });
+  on('wb-print', () => { if (lastReading) window.print(); });
 }
 
 // Fallbacks used only when the parallel-built modules are absent (worktree / offline failure).
@@ -245,35 +260,57 @@ function currentState() {
     op: $('wb-op').value, q: $('wb-horary-house').value,
     bdate: $('wb-bdate').value, btime: $('wb-btime').value, boffset: $('wb-boffset').value,
     blat: $('wb-blat').value, blon: $('wb-blon').value,
+    zone: pickerMain?.fields().timeZone || '', fold: pickerMain?.fields().disambiguation || 'reject',
+    bzone: pickerBirth?.fields().timeZone || '', bfold: pickerBirth?.fields().disambiguation || 'reject', sect: sectAwareFortune ? '1' : '0',
   };
 }
 
+function calculationInput() {
+  const state = currentState(), system = state.system;
+  const moment = (prefix, picker) => {
+    if (picker && !picker.validate().ok) throw new RangeError((prefix ? 'Birth' : 'Moment') + ' fields need correction.');
+    const dateISO = (picker?.instant() || toUTC(state[prefix + 'date'], state[prefix + 'time'], state[prefix + 'offset'])).toISOString();
+    return { dateISO, lat: Number(state[prefix + 'lat']), lon: Number(state[prefix + 'lon']), system,
+      timeZone: state[prefix + 'zone'] || null, utcOffset: Number(state[prefix + 'offset']), disambiguation: state[prefix + 'fold'] };
+  };
+  for (const key of ['date', 'time', 'lat', 'lon', 'offset']) if (!String(state[key]).trim()) throw new RangeError('Complete the moment, coordinates and UTC offset.');
+  const hasBirth = ['bdate', 'btime', 'blat', 'blon'].some(key => String(state[key]).trim());
+  if (hasBirth && ['bdate', 'btime', 'blat', 'blon', 'boffset'].some(key => !String(state[key]).trim())) throw new RangeError('Complete every birth field, including its exact time and UTC offset, or clear the optional birth fields. For unknown birth time, use the date-only Nativity tool.');
+  return { ...moment('', pickerMain), birth: hasBirth ? moment('b', pickerBirth) : null,
+    operationKey: state.op, quesitedHouse: state.q === '' ? null : Number(state.q), sectAwareFortune };
+}
+
+function setExportsEnabled(enabled) {
+  for (const id of ['wb-copy', 'wb-json', 'wb-md', 'wb-svg', 'wb-png', 'wb-print']) if ($(id)) $(id).disabled = !enabled;
+}
+
+function invalidate(message) {
+  if (initializing) return;
+  if (liveClock?.state.running || liveClock?.state.status === 'suspended') liveClock.pause();
+  lastReading = null; lastChart = null; lastBirthChart = null; lastContext = null; wheelSvg = null;
+  setExportsEnabled(false);
+  bar?.hide?.();
+  $('wb-status').textContent = `${message} Previous panels are a frozen earlier result; exports and assistant context are unavailable until the inputs are valid.`;
+  $('wb-status').dataset.contextInstant = '';
+  $('wb-json-view').textContent = 'No current calculation: correct the inputs before exporting.';
+  for (const cb of readingSubs) { try { cb(null); } catch { /* subscriber isolation */ } }
+}
+
 function run() {
-  const lat = parseFloat($('wb-lat').value), lon = parseFloat($('wb-lon').value);
-  if (isNaN(lat) || isNaN(lon)) { $('wb-status').textContent = 'Enter a latitude and longitude.'; return; }
-  const date = toUTC($('wb-date').value, $('wb-time').value, parseFloat($('wb-offset').value) || 0);
-  const system = $('wb-system').value;
-  const operationKey = $('wb-op').value || 'love';
-  const quesitedHouse = $('wb-horary-house').value ? parseInt($('wb-horary-house').value, 10) : null;
+  if (initializing) return;
+  if (liveClock?.state.running || liveClock?.state.status === 'suspended') liveClock.pause();
+  try { publishContext(calculateContext(calculationInput())); }
+  catch (error) { invalidate(error.message); }
+}
 
-  // optional birth chart → the natal/trajectory block
-  let birth = null;
-  const blat = parseFloat($('wb-blat').value), blon = parseFloat($('wb-blon').value);
-  if ($('wb-bdate').value && $('wb-btime').value && !isNaN(blat) && !isNaN(blon)) {
-    try {
-      const bdate = toUTC($('wb-bdate').value, $('wb-btime').value, parseFloat($('wb-boffset').value) || 0);
-      birth = { chart: castChart(bdate, blat, blon, system) };
-    } catch { birth = null; }
-  }
-
-  const chart = castChart(date, lat, lon, system);
-  const reading = fullReading(chart, { operationKey, quesitedHouse, birth, sectAwareFortune, generatedAt: new Date().toISOString() });
+function publishContext(context, { persist = true } = {}) {
+  const { chart, reading, birthChart } = context;
   // The 'read this chart aloud' narrative order (chart-ux §6): serialize the step
   // list onto the reading so the AI assistant, the JSON export and the Markdown
   // export inherit the site's canonical reading order for free.
   try { reading.narrative = narrateChart(reading); } catch { reading.narrative = []; }
-  lastReading = reading; lastChart = chart; lastBirthChart = birth ? birth.chart : null;
-  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ before: '#wb-horary-card' }); vedicUpdate(chart); } catch { /* non-fatal */ }
+  lastContext = context; lastReading = reading; lastChart = chart; lastBirthChart = birthChart;
+  try { if (!vedicUpdate) vedicUpdate = attachVedicPanel({ before: '#wb-horary-card' }); vedicUpdate(birthChart || chart, { currentDate: new Date(context.inputs.referenceDateISO), precomputedVedic: context.vedic, chartSource: birthChart ? 'birth' : 'moment' }); } catch { /* non-fatal */ }
 
   // chart wheel — through mountFigure + wireWheel + attachWheelRotate (with a plain fallback)
   try {
@@ -304,11 +341,14 @@ function run() {
   safe(() => autolinkResultPanels(['wb-explain-text', 'wb-summary', 'wb-lots', 'wb-aspects', 'wb-cautions',
     'wb-horary', 'wb-election', 'wb-talisman', 'wb-natal']));
 
-  writeStateToURL(currentState());
-  $('wb-status').textContent = '';
-  try { autoSave(reading); } catch { /* non-fatal: saving never blocks the reading */ }
-  try { pickerMain && pickerMain.commitRecent && pickerMain.commitRecent(); } catch { /* non-fatal */ }
-  try { pickerBirth && pickerBirth.commitRecent && $('wb-blat').value && pickerBirth.commitRecent(); } catch { /* non-fatal */ }
+  if (persist) writeStateToURL(currentState());
+  $('wb-status').textContent = context.methods.diagnostics.map(item => item.message).join(' ');
+  $('wb-status').dataset.contextInstant = context.inputs.dateISO;
+  setExportsEnabled(true);
+  if (persist) {
+    try { autoSave(reading); } catch { /* non-fatal: saving never blocks the reading */ }
+    try { pickerMain?.commitRecent(); pickerBirth?.commitRecent(); } catch { /* non-fatal */ }
+  }
   try { bar && bar.show && bar.show(reading); } catch { /* non-fatal */ }
   for (const cb of readingSubs) { try { cb(reading); } catch { /* ignore */ } }
 }
@@ -366,8 +406,7 @@ function renderSaved() {
 }
 function restoreSaved(key) {
   const e = listSavedReadings().find(x => x.key === key); if (!e || !e.state) return;
-  for (const [k, v] of Object.entries(e.state)) { const id = 'wb-' + (k === 'q' ? 'horary-house' : k); if ($(id) != null && v != null) $(id).value = v; }
-  if (e.state.bdate) $('wb-birth-details').open = true;
+  applyState({ bdate: '', btime: '', boffset: '', blat: '', blon: '', ...e.state });
   run();
 }
 
@@ -382,7 +421,7 @@ function renderSummary(r) {
     `${m.isDay ? 'a <b>day</b> chart' : 'a <b>night</b> chart'}` +
     (ph ? ` · planetary hour of <b>${esc(ph.ruler)}</b> ${G(ph.ruler)} (a ${esc(ph.dayRuler)}-day)` : '') +
     ` · chart health ${vbadge(r.cautions.verdict)}`;
-  $('wb-moment-cite').textContent = '— positions from astronomy-engine (~1′); Regiomontanus houses';
+  $('wb-moment-cite').textContent = `— positions from Astronomy Engine; ${m.system} houses${r.meta.inputs.houseWarning ? ' · ' + r.meta.inputs.houseWarning : ''}. Precision varies by epoch; see method notes.`;
 }
 
 // The chart-health verdict, lifted to a full-width banner right after the form
@@ -410,7 +449,7 @@ function renderEraBadge(chart) {
   const dT = tier.deltaTSeconds, sig = tier.deltaTSigmaSeconds;
   const fmt = s => s >= 3600 ? `${(s / 3600).toFixed(1)} h` : s >= 90 ? `${(s / 60).toFixed(1)} min` : `${Math.round(s)} s`;
   $('wb-moment-cite').textContent =
-    `— positions from astronomy-engine (~1′); Regiomontanus houses · HISTORICAL DATE, ${tier.label.toUpperCase()}: ` +
+    `— positions from Astronomy Engine; ${chart.system} houses${chart.houseWarning ? ' · ' + chart.houseWarning : ''} · HISTORICAL DATE, ${tier.label.toUpperCase()}: ` +
     tier.note + (dT != null ? ` ΔT ≈ ${fmt(dT)} (Espenak–Meeus), uncertainty ±${fmt(sig)} at this epoch (Morrison & Stephenson 2004).` : '') +
     (year < 1583 ? ' Dates are proleptic Gregorian — sources of this era record JULIAN dates; convert before casting (see the Chronology wing).' : '');
 }
@@ -687,7 +726,57 @@ function renderCitations(r) { $('wb-citations').innerHTML = '<b>Sources used in 
 
 function renderAssistantPlaceholder() {
   $('wb-assistant').innerHTML =
-    `<p class="small muted">An AI assistant attaches here to explain this reading in plain language, grounded in the
-      computed, cited facts above — and to plan historical "workings" using the engine tools. It uses <b>Claude</b>
-      (the Anthropic API) with <b>your own key</b>. See <a href="../docs/LOCAL-LLM.html">how it works</a>.</p>`;
+    `<p class="small muted">Open the optional assistant to explain this computed reading. Its provider settings and request controls load only when opened; no request is sent by opening it. See <a href="../docs/LOCAL-LLM.html">provider and privacy details</a>.</p>`;
+}
+
+async function openAssistant() {
+  if (liveClock?.state.running || liveClock?.state.status === 'suspended') liveClock.pause();
+  const button = $('wb-assistant-open');
+  if (button) button.disabled = true;
+  try {
+    if (!assistantLoad) assistantLoad = import('./assistant.js').then(module => {
+      module.initAssistant({ getReading, getContext, subscribeReading });
+      return module;
+    }).catch(error => { assistantLoad = null; throw error; });
+    await assistantLoad;
+    const card = $('wb-assistant-card');
+    card?.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto', block: 'start' });
+    card?.querySelector('textarea, input')?.focus();
+    if (button) button.textContent = 'Assistant opened';
+  } catch (error) {
+    $('wb-assistant').textContent = `Assistant could not load: ${error.message}. Use Open assistant to retry.`;
+  } finally { if (button) button.disabled = false; }
+}
+
+function mountLiveClock() {
+  liveClock = createLiveClock({ intervalMs: 5000,
+    onTick: date => {
+      // Full interpretive readings run at most every five seconds. Live Studio
+      // uses the lighter includeReading:false path for its faster chart view.
+      const input = calculationInput();
+      date.setUTCMilliseconds(0);
+      return calculateContext({ ...input, dateISO: date.toISOString(), timeZone: 'Etc/UTC', utcOffset: 0, disambiguation: 'reject', referenceDateISO: date.toISOString() });
+    },
+    onResult: context => {
+      const iso = context.inputs.dateISO;
+      const fields = { date: iso.split('T')[0], time: iso.slice(iso.indexOf('T') + 1, -5), offset: 0, timeZone: 'Etc/UTC', disambiguation: 'reject' };
+      if (pickerMain) pickerMain.setFields(fields);
+      else for (const key of ['date', 'time', 'offset']) $('wb-' + key).value = fields[key];
+      publishContext(context, { persist: false });
+      if ($('wb-live-status')) $('wb-live-status').textContent = `Live UTC · ${iso} · updates every 5 seconds; ticks are not saved.`;
+    },
+    onState: state => {
+      if ($('wb-live-start')) { $('wb-live-start').disabled = state.running; $('wb-live-start').hidden = state.status !== 'idle'; }
+      if ($('wb-live-pause')) { $('wb-live-pause').disabled = !state.running; $('wb-live-pause').hidden = !state.running; }
+      if ($('wb-live-resume')) { $('wb-live-resume').disabled = !['paused', 'error'].includes(state.status); $('wb-live-resume').hidden = !['paused', 'error'].includes(state.status); }
+      if ($('wb-live-status')) $('wb-live-status').textContent = state.status === 'running' ? 'Starting live UTC…' : state.status === 'suspended' ? 'Paused while this tab is hidden.' : state.status === 'error' ? 'Live calculation stopped: correct the inputs, then resume.' : 'Frozen snapshot. Start or resume to follow current UTC; editing pauses live updates.';
+    },
+    onError: error => invalidate(error.message),
+  });
+  $('wb-live-start')?.addEventListener('click', () => liveClock.start());
+  $('wb-live-pause')?.addEventListener('click', () => liveClock.pause());
+  $('wb-live-resume')?.addEventListener('click', () => liveClock.resume());
+  document.addEventListener('visibilitychange', () => { if (document.hidden) liveClock.suspend(); else if (liveClock.state.status === 'suspended') liveClock.resume(); });
+  window.addEventListener('pagehide', () => liveClock.stop());
+  liveClock.stop();
 }

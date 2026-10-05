@@ -31,15 +31,64 @@ const OPS_STORE = 'wb-operations';
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 let api = null, currentReading = null;
-let history = [], controller = null;
+let history = [], unsubscribeReading = null, unbindLifecycle = null;
+
+// One request owns the panel at a time. Aborting fetch alone is insufficient:
+// a buffered chunk or already-resolved promise may still reach its callback.
+// Tokens guard every UI/history write and every engine-tool execution.
+export function createAssistantRequests({ onCancel = () => {}, onChange = () => {} } = {}) {
+  let active = null, detach = () => {};
+  const current = token => active === token && !token.signal.aborted;
+  const cancel = (reason = 'Stopped.') => {
+    const previous = active;
+    active = null;
+    if (previous) { previous.controller.abort(); onCancel(previous, reason); }
+    onChange(false);
+  };
+  return {
+    begin(output) {
+      cancel('Replaced by a new request.');
+      const controller = new AbortController();
+      active = { controller, signal: controller.signal, output };
+      onChange(true);
+      return active;
+    },
+    current, cancel,
+    finish(token) { if (current(token)) { active = null; onChange(false); } },
+    bind(doc, win) {
+      detach();
+      const hidden = () => { if (doc.hidden) cancel('Stopped while the page is in the background.'); };
+      const leaving = () => cancel('Stopped when leaving the page.');
+      doc.addEventListener('visibilitychange', hidden);
+      win.addEventListener('pagehide', leaving);
+      detach = () => { doc.removeEventListener('visibilitychange', hidden); win.removeEventListener('pagehide', leaving); };
+      return () => { detach(); cancel(); };
+    },
+  };
+}
+const requests = createAssistantRequests({
+  onCancel: (job, reason) => { if (job.output?.isConnected) job.output.textContent = reason; },
+  onChange: busy => {
+    const stop = el('wb-asst-stop'); if (stop) stop.disabled = !busy;
+    const log = el('wb-asst-log'); if (log) log.setAttribute('aria-busy', String(busy));
+  },
+});
 const el = id => document.getElementById(id);
 
 export function initAssistant(_api) {
+  if (typeof unsubscribeReading === 'function') unsubscribeReading();
+  unbindLifecycle?.();
+  requests.cancel('Assistant reinitialized.');
+  unbindLifecycle = requests.bind(document, window);
   api = _api || {};
   currentReading = api.getReading ? api.getReading() : null;
   render();
-  if (api.subscribeReading) api.subscribeReading(r => { currentReading = r; refreshPreview(); });
+  if (api.subscribeReading) unsubscribeReading = api.subscribeReading(r => {
+    if (r !== currentReading) requests.cancel('Reading changed. Ask again for the updated chart.');
+    currentReading = r; refreshPreview();
+  });
   try { injectExplainChips(); } catch { /* non-fatal — the panels explain themselves */ }
+  return () => { if (typeof unsubscribeReading === 'function') unsubscribeReading(); unbindLifecycle?.(); };
 }
 
 // Drop a focused question into the chat box and bring it into view.
@@ -84,7 +133,7 @@ function injectExplainChips() {
 const lsGet = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch { /* ignore */ } };
 const lsDel = k => { try { localStorage.removeItem(k); } catch { /* ignore */ } };
-function recentOps() { try { return JSON.parse(lsGet(OPS_STORE) || '[]'); } catch { return []; } }
+function recentOps() { try { const values = JSON.parse(lsGet(OPS_STORE) || '[]'); return Array.isArray(values) ? values.filter(x => typeof x === 'string' && x.trim()).slice(0, 8) : []; } catch { return []; } }
 function saveOp(req) { lsSet(OPS_STORE, JSON.stringify([req, ...recentOps().filter(x => x !== req)].slice(0, 8))); }
 
 const provName = () => { const s = el('wb-asst-provider'); return s && PROVIDERS[s.value] ? s.value : 'anthropic'; };
@@ -133,7 +182,7 @@ function render() {
         <label class="small" style="display:flex;align-items:center;gap:.3rem"><input type="checkbox" id="wb-asst-remember"> remember on this device</label>
         <label class="small" id="wb-asst-tools-wrap" style="display:flex;align-items:center;gap:.3rem"><input type="checkbox" id="wb-asst-tools" checked> let the model run the engine tools (agentic; Claude only)</label>
       </div>
-      <p id="wb-asst-status" class="small muted" style="margin:.4rem 0 0">Paste your key and ask — nothing is sent until you do.</p>
+      <p id="wb-asst-status" role="status" aria-live="polite" class="small muted" style="margin:.4rem 0 0">Paste your key and ask — nothing is sent until you do.</p>
     </fieldset>
 
     <div class="field-row" style="gap:.4rem;margin:.2rem 0 .3rem;flex-wrap:wrap">
@@ -165,7 +214,7 @@ function render() {
     <div class="field-row" style="margin-top:.5rem;gap:.4rem">
       <textarea id="wb-asst-input" rows="2" placeholder="Ask about this reading… (e.g. “explain the chart-health verdict”)" style="flex:1 1 320px;min-width:240px"></textarea>
       <button type="button" class="btn" id="wb-asst-send">Send</button>
-      <button type="button" class="btn sm" id="wb-asst-stop">Stop</button>
+      <button type="button" class="btn sm" id="wb-asst-stop" disabled>Stop</button>
     </div>
 
     <details style="margin-top:.6rem"><summary class="small">What the model is told (the grounded facts)</summary>
@@ -173,17 +222,18 @@ function render() {
 
   el('wb-asst-provider').value = savedProv;
   onProviderChange();
-  el('wb-asst-provider').addEventListener('change', () => { lsSet(PROV_STORE, provName()); onProviderChange(); });
+  el('wb-asst-provider').addEventListener('change', () => { requests.cancel('Provider changed.'); lsSet(PROV_STORE, provName()); onProviderChange(); });
   el('wb-asst-plain').addEventListener('click', () => generatePlain());
   el('wb-asst-moment').addEventListener('click', () => generateMoment());
   el('wb-asst-synth').addEventListener('click', () => generateSynthesis());
   el('wb-asst-codex').addEventListener('click', () => generateCodex());
   el('wb-asst-plan').addEventListener('click', () => planOperation());
   el('wb-asst-send').addEventListener('click', () => send());
-  el('wb-asst-stop').addEventListener('click', () => { if (controller) controller.abort(); });
+  el('wb-asst-stop').addEventListener('click', () => requests.cancel());
+  el('wb-asst-model').addEventListener('change', () => requests.cancel('Model changed.'));
   el('wb-asst-input').addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); send(); } });
-  el('wb-asst-key').addEventListener('change', () => persistKey());
-  el('wb-asst-base').addEventListener('change', () => { lsSet(baseStore(), el('wb-asst-base').value.trim()); });
+  el('wb-asst-key').addEventListener('change', () => { requests.cancel('Credentials changed.'); persistKey(); });
+  el('wb-asst-base').addEventListener('change', () => { requests.cancel('Endpoint changed.'); lsSet(baseStore(), el('wb-asst-base').value.trim()); });
   el('wb-asst-remember').addEventListener('change', () => persistKey());
 
   renderRecentOps();
@@ -261,17 +311,17 @@ const scrollLog = () => { const l = el('wb-asst-log'); if (l) l.scrollTop = l.sc
 
 // dispatch a streaming chat to the selected provider; stream into `asstEl` and
 // record the turn in `history`. The transport itself lives in llm-core.js.
-async function streamChat(messages, system, asstEl, maxTokens = 3072) {
+async function streamChat(messages, system, asstEl, job, maxTokens = 3072) {
   const p = provCfg();
   asstEl.textContent = '';
   const full = await coreStreamChat({
     provider: p, url: p.url, baseUrl: p.custom ? (el('wb-asst-base').value || '') : '',
     model: el('wb-asst-model').value, key: getKey(),
-    system, messages, maxTokens, signal: controller.signal,
+    system, messages, maxTokens, signal: job.signal,
     extraHeaders: provName() === 'openrouter' ? openrouterHeaders(SITE_URLS && SITE_URLS.home) : null,
-    onDelta: t => { asstEl.textContent = t; scrollLog(); },
+    onDelta: t => { if (requests.current(job)) { asstEl.textContent = t; scrollLog(); } },
   });
-  history.push({ role: 'assistant', content: full });
+  if (requests.current(job)) history.push({ role: 'assistant', content: full });
   return full;
 }
 
@@ -282,16 +332,19 @@ function appRand(n) {
   catch { return Math.floor(Math.random() * n); }
 }
 
-async function claudeToolLoop(messages, system, asstEl) {
+async function claudeToolLoop(messages, system, asstEl, job) {
   const full = await coreToolLoop({
     url: provCfg().url, model: el('wb-asst-model').value, key: getKey(),
     system, messages, tools: toAnthropicTools(),
-    runTool: (name, input) => runTool(name, input, { ...(api.getContext ? api.getContext() : {}), rand: appRand }),
-    signal: controller.signal,
-    onText: t => { asstEl.textContent = t; scrollLog(); },
-    onToolNote: (name, input, result) => appendToolNote(name, input, result),
+    runTool: (name, input) => {
+      if (!requests.current(job)) throw new DOMException('Request stopped.', 'AbortError');
+      return runTool(name, input, { ...(api.getContext ? api.getContext() : {}), rand: appRand });
+    },
+    signal: job.signal,
+    onText: t => { if (requests.current(job)) { asstEl.textContent = t; scrollLog(); } },
+    onToolNote: (name, input, result) => { if (requests.current(job)) appendToolNote(name, input, result); },
   });
-  history.push({ role: 'assistant', content: full });
+  if (requests.current(job)) history.push({ role: 'assistant', content: full });
   return full;
 }
 
@@ -320,11 +373,12 @@ async function send() {
   history.push({ role: 'user', content: q });
   appendMsg('user', q);
   const asstEl = appendMsg('assistant', '…');
-  controller = new AbortController();
+  const job = requests.begin(asstEl);
   try {
-    const out = toolsOn() ? await claudeToolLoop(messages, system, asstEl) : await streamChat(messages, system, asstEl);
-    addSaveLink(asstEl, out, 'reply');
-  } catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
+    const out = toolsOn() ? await claudeToolLoop(messages, system, asstEl, job) : await streamChat(messages, system, asstEl, job);
+    if (requests.current(job)) addSaveLink(asstEl, out, 'reply');
+  } catch (e) { if (requests.current(job)) asstEl.textContent = e?.name === 'AbortError' ? '(stopped)' : 'Error: ' + (e?.message || 'request failed'); }
+  finally { requests.finish(job); }
 }
 
 function addSaveLink(bodyEl, text, name) {
@@ -346,11 +400,12 @@ async function oneClick(label, body, saveName, maxTokens = 6144) {
   appendMsg('user', label);
   history.push({ role: 'user', content: label });
   const asstEl = appendMsg('assistant', '…');
-  controller = new AbortController();
+  const job = requests.begin(asstEl);
   // free tiers count the reserved output against a tight per-minute cap
   const maxT = isFree() ? 3072 : maxTokens;
-  try { const out = await streamChat([{ role: 'user', content: body }], system, asstEl, maxT); addSaveLink(asstEl, out, saveName); }
-  catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
+  try { const out = await streamChat([{ role: 'user', content: body }], system, asstEl, job, maxT); if (requests.current(job)) addSaveLink(asstEl, out, saveName); }
+  catch (e) { if (requests.current(job)) asstEl.textContent = e?.name === 'AbortError' ? '(stopped)' : 'Error: ' + (e?.message || 'request failed'); }
+  finally { requests.finish(job); }
 }
 // On a free tier the big JSON digest would blow the per-minute token cap — the
 // numbered facts in the system prompt already ground the reading there.
@@ -386,10 +441,11 @@ async function planOperation() {
   appendMsg('user', '🜔 ' + req);
   history.push({ role: 'user', content: '🜔 ' + req });
   const asstEl = appendMsg('assistant', '…');
-  controller = new AbortController();
+  const job = requests.begin(asstEl);
   const messages = [{ role: 'user', content: buildOperationPrompt(currentReading, req) + dataBlockFor(currentReading) }];
   try {
-    const out = toolsOn() ? await claudeToolLoop(messages, system, asstEl) : await streamChat(messages, system, asstEl);
-    addSaveLink(asstEl, out, 'working');
-  } catch (e) { asstEl.textContent = (e && e.name === 'AbortError') ? '(stopped)' : 'Error: ' + (e && e.message ? e.message : 'request failed'); }
+    const out = toolsOn() ? await claudeToolLoop(messages, system, asstEl, job) : await streamChat(messages, system, asstEl, job);
+    if (requests.current(job)) addSaveLink(asstEl, out, 'working');
+  } catch (e) { if (requests.current(job)) asstEl.textContent = e?.name === 'AbortError' ? '(stopped)' : 'Error: ' + (e?.message || 'request failed'); }
+  finally { requests.finish(job); }
 }

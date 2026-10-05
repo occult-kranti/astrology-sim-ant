@@ -1,0 +1,57 @@
+/* Live Studio extends the existing DS2 study-desk vocabulary. */
+.studio { padding-bottom: var(--sp-6, 2rem); }
+.studio-intro { display:flex; align-items:center; justify-content:space-between; gap:var(--sp-5,1.5rem); flex-wrap:wrap; margin:1.4rem 0 1rem; }
+.studio-intro h1 { margin:.2rem 0 .6rem; }
+.studio-intro .lede { margin:0; max-width:40rem; }
+.studio-kicker { font:700 .72rem/1.5 var(--font-sans,var(--sans)); text-transform:uppercase; letter-spacing:.1em; color:var(--accent-strong,var(--link)); margin:0 0 .4rem; }
+.studio-frame { max-width:64rem; font-size:.88rem; border-left:3px solid var(--accent,var(--gold)); padding-left:1rem; margin-bottom:1.8rem; }
+.studio-context,.studio-result,.studio-saved,.studio-connections { border:1px solid var(--border,var(--rule)); background:var(--surface-card,var(--card)); border-radius:var(--rad-3,12px); padding:clamp(1rem,2.5vw,1.8rem); margin:1.3rem 0; }
+.studio-section-head { display:flex; gap:1rem; flex-wrap:wrap; align-items:baseline; justify-content:space-between; border-bottom:1px solid var(--border,var(--rule)); margin-bottom:1.2rem; padding-bottom:.5rem; }
+.studio-section-head h2 { margin:0 0 .5rem; }
+.studio-clock { margin:0 0 .5rem; font:600 .84rem/1.5 var(--font-sans,var(--sans)); font-variant-numeric:tabular-nums; color:var(--accent-strong,var(--link)); }
+.studio-clock[data-mode="live"]::before { content:'● '; }
+.studio-fields { display:grid; grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(0,1fr)); gap:1rem; margin:1.1rem 0 .7rem; }
+.studio-task-fields { grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
+.studio .field { min-width:0; }
+.studio input,.studio select { width:100%; min-width:0; max-width:100%; min-height:44px; box-sizing:border-box; }
+.studio button,.studio .btn-secondary,.studio summary { min-height:44px; }
+.studio-actions,.studio-export { display:flex; gap:.55rem; align-items:center; flex-wrap:wrap; margin:.8rem 0; }
+.studio-actions p { flex:1 1 260px; margin:0; }
+.studio button { cursor:pointer; }
+.studio button:disabled { cursor:not-allowed; opacity:.6; }
+.studio :focus-visible { outline:3px solid var(--focus,var(--gold)); outline-offset:3px; }
+.studio-check { display:flex; align-items:center; gap:.7rem; min-height:44px; font:500 .9rem/1.5 var(--font-sans,var(--sans)); }
+.studio-check input { flex:0 0 24px; width:24px; min-height:24px; height:24px; }
+#studioText { font-size:1.1rem; }
+#studioStatus[data-error="true"] { color:var(--bad-ink,var(--malefic)); font-weight:600; }
+#studioResultContext { max-width:30rem; margin:.2rem 0 .6rem; font-variant-numeric:tabular-nums; }
+.studio-spread { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:clamp(1rem,3vw,2.2rem); align-items:start; }
+.studio-figure { margin:0; min-width:0; }
+#studioFigure { width:100%; min-height:12rem; display:flex; align-items:center; justify-content:center; }
+#studioFigure svg { width:100%; max-width:540px; height:auto; }
+#studioFigureCaption { margin:.7rem 0; }
+.studio-reading h3 { margin-top:0; }
+.studio-reading dl { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); gap:.5rem .8rem; margin:0; }
+.studio-reading dt { color:var(--text-muted,var(--muted)); }
+.studio-reading dd { margin:0; overflow-wrap:anywhere; font-variant-numeric:tabular-nums; }
+.studio-reading ol,.studio-reading ul { padding-left:1.3rem; }
+.studio-reading table { width:100%; font-size:.86rem; table-layout:fixed; }
+.studio-reading th,.studio-reading td { overflow-wrap:anywhere; padding:.5rem .35rem; }
+.studio-trace { border-top:1px solid var(--border,var(--rule)); margin:1.2rem 0; padding-top:1rem; }
+.studio-trace input { max-width:36rem; display:block; }
+.studio-trace output { display:block; font-size:.85rem; }
+.studio-methods { border-top:1px solid var(--border,var(--rule)); padding-top:.6rem; margin-top:1.2rem; }
+.studio-methods summary,.studio-connections summary { cursor:pointer; font:600 .9rem/1.5 var(--font-sans,var(--sans)); display:list-item; padding:.65rem 0; }
+#studioMethods { font-size:.9rem; max-width:70ch; }
+#studioMethods p { margin:.7rem 0; }
+.studio-export { border-top:1px solid var(--border,var(--rule)); padding-top:1rem; }
+#studioSnapshots { list-style:none; padding:0; margin:0; }
+#studioSnapshots li { display:flex; justify-content:space-between; align-items:center; gap:.7rem; padding:.7rem 0; border-bottom:1px solid var(--border,var(--rule)); }
+#studioSnapshots button:first-child { text-align:left; flex:1; min-width:0; overflow-wrap:anywhere; }
+.studio-related { display:flex; gap:1rem 1.5rem; flex-wrap:wrap; margin:1.5rem 0; }
+.studio-connections pre { white-space:pre-wrap; overflow-wrap:anywhere; }
+.studio [hidden] { display:none!important; }
+.studio-number { font:600 clamp(2rem,5vw,3rem)/1.4 var(--font-serif,var(--serif)); overflow-wrap:anywhere; width:100%; text-align:center; }
+@media(max-width:760px) { .studio-spread { grid-template-columns:1fr; } .studio-fields { grid-template-columns:1fr 1fr; } .studio-fields>.field:first-child { grid-column:1/-1; } .studio input,.studio select { font-size:16px; } .studio-intro { gap:1rem; } }
+@media(max-width:420px) { .studio-fields { grid-template-columns:1fr; } .studio .studio-context,.studio .studio-result,.studio .studio-saved,.studio .studio-connections { padding:1rem .8rem; } .studio-export button { flex:1 1 135px; } .studio-reading dl { grid-template-columns:1fr; gap:.2rem; } .studio-reading dd { margin-bottom:.6rem; } }
+@media(prefers-reduced-motion:reduce) { .studio * { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }

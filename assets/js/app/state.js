@@ -81,11 +81,39 @@ export function downloadJSON(obj, filename = 'reading.json') {
 const HISTORY_KEY = 'wb-saved-readings';
 const lsGet = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch { /* quota / disabled */ } };
-export function listSavedReadings() { try { return JSON.parse(lsGet(HISTORY_KEY) || '[]'); } catch { return []; } }
+const plain = value => value !== null && typeof value === 'object' && !Array.isArray(value)
+  && [Object.prototype, null].includes(Object.getPrototypeOf(value));
+const scalar = value => value === null || typeof value === 'string' || typeof value === 'boolean' || (typeof value === 'number' && Number.isFinite(value));
+function flatRecord(value) {
+  if (!plain(value) || !Object.values(value).every(scalar)) return null;
+  return Object.fromEntries(Object.entries(value).filter(([key]) => !['__proto__', 'prototype', 'constructor'].includes(key)));
+}
+function readingRecord(value) {
+  if (!plain(value) || typeof value.key !== 'string' || !value.key.trim()) return null;
+  const state = flatRecord(value.state);
+  if (!state || (value.label != null && typeof value.label !== 'string') || (value.ts != null && typeof value.ts !== 'string')) return null;
+  return { key: value.key, label: value.label || value.key, ts: value.ts || '', state };
+}
+function storedCollection(key, normalize, identity) {
+  try {
+    const parsed = JSON.parse(lsGet(key) || '[]');
+    if (!Array.isArray(parsed)) return [];
+    const seen = new Set();
+    return parsed.map(normalize).filter(value => {
+      if (!value || seen.has(value[identity])) return false;
+      seen.add(value[identity]); return true;
+    });
+  } catch { return []; }
+}
+const safeCap = (cap, fallback) => Number.isInteger(cap) && cap > 0 && cap <= 200 ? cap : fallback;
+// Recovery is in-memory: reading a damaged collection does not overwrite it.
+// Keep valid siblings and their additive flat timezone/method state fields.
+export function listSavedReadings() { return storedCollection(HISTORY_KEY, readingRecord, 'key'); }
 // entry: { key, ts, label, state }. De-dupes by key, newest first, capped.
 export function saveReadingEntry(entry, cap = 30) {
-  if (!entry || !entry.key) return listSavedReadings();
-  const list = [entry, ...listSavedReadings().filter(e => e.key !== entry.key)].slice(0, cap);
+  const normalized = readingRecord(entry);
+  if (!normalized) return listSavedReadings();
+  const list = [normalized, ...listSavedReadings().filter(e => e.key !== normalized.key)].slice(0, safeCap(cap, 30));
   lsSet(HISTORY_KEY, JSON.stringify(list));
   return list;
 }
@@ -101,13 +129,22 @@ export function clearSavedReadings() { lsSet(HISTORY_KEY, '[]'); }
 //  date/time/place. Stored on-device only (nothing leaves the page). Used to
 //  personalise the natal & Picatrix layers ("tuned to a specific person").
 const PERSONS_KEY = 'wb-persons';
-export function listPersons() { try { return JSON.parse(lsGet(PERSONS_KEY) || '[]'); } catch { return []; } }
+function personRecord(value) {
+  const record = flatRecord(value);
+  if (!record || typeof record.name !== 'string' || !record.name.trim() || typeof record.id !== 'string' || !record.id.trim()) return null;
+  for (const key of ['bdate', 'btime', 'boffset', 'blat', 'blon', 'place']) {
+    if (record[key] != null && !['string', 'number'].includes(typeof record[key])) return null;
+  }
+  return record;
+}
+export function listPersons() { return storedCollection(PERSONS_KEY, personRecord, 'id'); }
 // person: { id, name, bdate, btime, boffset, blat, blon, place }
 export function savePerson(person, cap = 40) {
-  if (!person || !person.name) return listPersons();
+  if (!plain(person) || typeof person.name !== 'string' || !person.name.trim()) return listPersons();
   const id = person.id || ('p' + person.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + (person.bdate || ''));
-  const entry = { ...person, id };
-  const list = [entry, ...listPersons().filter(p => p.id !== id)].slice(0, cap);
+  const entry = personRecord({ ...person, id });
+  if (!entry) return listPersons();
+  const list = [entry, ...listPersons().filter(p => p.id !== id)].slice(0, safeCap(cap, 40));
   lsSet(PERSONS_KEY, JSON.stringify(list));
   return list;
 }
@@ -213,17 +250,62 @@ function isChartWheel(svgEl) {
   } catch { return false; }
 }
 
+const SVG_PAINT_PROPERTIES = ['fill', 'stroke', 'stroke-width', 'stroke-dasharray', 'stroke-dashoffset',
+  'stroke-linecap', 'stroke-linejoin', 'fill-rule', 'clip-rule', 'fill-opacity', 'stroke-opacity', 'opacity',
+  'color', 'font-family', 'font-size', 'font-weight', 'font-style', 'text-anchor', 'dominant-baseline',
+  'letter-spacing', 'visibility', 'display', 'stop-color', 'stop-opacity', 'flood-color', 'flood-opacity',
+  'paint-order', 'vector-effect', 'transform', 'transform-origin', 'transform-box'];
+
+// Capture computed paint from the real diagram before detaching it. Every
+// element gets literal values; page CSS, theme variables and remote fonts are
+// not dependencies of the serialized SVG. Geometry attributes remain unchanged.
+function freezeSVGPaint(source, clone) {
+  const view = source.ownerDocument?.defaultView;
+  const getStyle = view?.getComputedStyle?.bind(view) || globalThis.getComputedStyle;
+  if (typeof getStyle !== 'function') return false;
+  const originals = [source, ...source.querySelectorAll('*')], copies = [clone, ...clone.querySelectorAll('*')];
+  originals.forEach((element, index) => {
+    if (['style', 'title', 'desc', 'metadata'].includes(element.localName)) return;
+    const target = copies[index], paint = getStyle(element);
+    target.removeAttribute('style');
+    for (const property of SVG_PAINT_PROPERTIES) {
+      const value = paint.getPropertyValue(property);
+      if (value && !/var\s*\(/i.test(value)) target.style.setProperty(property, value);
+    }
+    for (const attribute of Array.from(target.attributes)) {
+      if (/^on/i.test(attribute.name)) target.removeAttribute(attribute.name);
+      else if (attribute.name !== 'style' && /var\s*\(/i.test(attribute.value)) {
+        const value = paint.getPropertyValue(attribute.name);
+        if (!value || /var\s*\(/i.test(value)) throw new Error(`Cannot resolve SVG paint: ${attribute.name}`);
+        target.setAttribute(attribute.name, value);
+      }
+    }
+  });
+  clone.querySelectorAll('style,script').forEach(node => node.remove());
+  return true;
+}
+
 // Serialize an <svg> element to a standalone SVG string (with the xmlns added).
 // For the chart wheel, the wheel stylesheet is embedded so the file is portable.
 export function svgToString(svgEl) {
+  if (!svgEl || typeof svgEl.cloneNode !== 'function') throw new Error('No SVG diagram to export.');
   const clone = svgEl.cloneNode(true);
   if (!clone.getAttribute('xmlns')) clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
   if (!clone.getAttribute('xmlns:xlink')) clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-  if (isChartWheel(svgEl)) {
+  if (!freezeSVGPaint(svgEl, clone) && isChartWheel(svgEl)) {
+    clone.querySelectorAll('style').forEach(node => node.remove());
     const doc = svgEl.ownerDocument || document;
     const styleEl = doc.createElementNS('http://www.w3.org/2000/svg', 'style');
     styleEl.textContent = WHEEL_EXPORT_CSS;
     clone.insertBefore(styleEl, clone.firstChild);
+  }
+  // A detached, already self-styled symbol needs no computed-style access.
+  // Other detached SVGs must not silently export unresolved theme variables.
+  for (const element of [clone, ...clone.querySelectorAll('*')]) {
+    if (element.localName === 'style' && /var\s*\(/i.test(element.textContent)) throw new Error('Attach the diagram before exporting its theme styles.');
+    for (const attribute of Array.from(element.attributes)) if (attribute.name === 'style' || SVG_PAINT_PROPERTIES.includes(attribute.name)) {
+      if (/var\s*\(/i.test(attribute.value)) throw new Error('SVG export contains unresolved theme styles.');
+    }
   }
   return new XMLSerializer().serializeToString(clone);
 }
@@ -240,10 +322,12 @@ export function svgToPNG(svgEl, filename = 'chart.png', scale = 2) {
   return new Promise((resolve, reject) => {
     if (!svgEl) return reject(new Error('no svg element'));
     try {
+      if (!Number.isFinite(scale) || scale < 1 || scale > 4) throw new Error('PNG scale must be between 1 and 4.');
       const str = svgToString(svgEl);
       const vb = svgEl.viewBox && svgEl.viewBox.baseVal;
       const w = (vb && vb.width) || svgEl.clientWidth || 540;
       const h = (vb && vb.height) || svgEl.clientHeight || 540;
+      if (![w, h].every(v => Number.isFinite(v) && v > 0) || w * h * scale * scale > 16777216) throw new Error('PNG exceeds the 16-megapixel export limit.');
       const blob = new Blob([str], { type: 'image/svg+xml;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const img = new Image();

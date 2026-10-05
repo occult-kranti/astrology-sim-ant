@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Symbol Studio | The Astrologer's Workbench</title>
+<meta name="description" content="Explore calculated Western and Vedic charts, planetary squares, Hebrew and Latin sigils, and letter values. Freeze a moment, inspect the method, and export a reproducible snapshot.">
+<link rel="stylesheet" href="../assets/css/style.css"><link rel="stylesheet" href="../assets/css/studio.css">
+</head>
+<body>
+<main class="wrap studio">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Live Symbol Studio</p>
+  <header class="studio-intro"><div><p class="studio-kicker">A working study desk</p><h1>Live Symbol Studio</h1><p class="lede">One moment. A chart, a square, or a name—made legible.</p></div><a class="btn-secondary" href="workbench.html">Open full Workbench</a></header>
+  <p class="studio-frame">The astronomy and arithmetic are calculated. Astrological and symbolic interpretations are traditional systems without demonstrated predictive or operative validity. <a href="about/index.html">Sources &amp; science</a>.</p>
+
+  <section class="studio-context" aria-labelledby="studioContextTitle">
+    <div class="studio-section-head"><h2 id="studioContextTitle">Your moment</h2><p id="studioClockStatus" class="studio-clock" role="status" data-mode="frozen">Frozen · loading initial moment…</p></div>
+    <div class="studio-actions"><button id="studioStartLive" type="button" class="btn">Start live</button><button id="studioPause" type="button" class="btn-secondary" hidden>Pause</button><button id="studioResume" type="button" class="btn-secondary" hidden>Resume live</button><span class="small muted">Live recalculates each minute. Saving is always explicit.</span></div>
+    <form id="studioForm">
+      <div class="studio-fields">
+        <div class="field"><label for="studioTime">Date and time · UTC</label><input id="studioTime" type="datetime-local" min="1900-01-01T00:00" max="2100-12-31T23:59:59" step="1" required aria-describedby="studioTimeHelp"></div>
+        <div class="field"><label for="studioLat">Latitude · ° north</label><input id="studioLat" type="number" min="-90" max="90" step="any" inputmode="decimal" required></div>
+        <div class="field"><label for="studioLon">Longitude · ° east</label><input id="studioLon" type="number" min="-180" max="180" step="any" inputmode="decimal" required></div>
+      </div>
+      <p id="studioTimeHelp" class="small muted">UTC, not device-local time. This studio supports 1900–2100. For historical clock zones or a birth chart, use the <a href="book3/nativity.html">Nativity calculator</a>.</p>
+      <div class="studio-actions"><button id="studioUseLocation" type="button" class="btn-quiet">Use my location</button><p id="studioLocationStatus" class="small muted">Demo coordinates: London. Set your own observer or request device location.</p></div>
+      <div class="studio-fields studio-task-fields">
+        <div class="field"><label for="studioTask">What would you like to study?</label><select id="studioTask"><option value="western">Western chart</option><option value="vedic">Vedic chart · Lahiri</option><option value="kamea">Planetary square &amp; sigil</option><option value="yantra">Navagraha square</option><option value="gematria">Hebrew letter values</option><option value="katapayadi">Kaṭapayādi · IAST letter values</option></select></div>
+        <div class="field" id="studioHousesField"><label for="studioHouses">Western house convention</label><select id="studioHouses"><option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option><option value="whole">Whole Sign</option><option value="equal">Equal</option></select></div>
+        <div class="field" id="studioVedicField" hidden><label for="studioVedicStyle">Vedic diagram</label><select id="studioVedicStyle"><option value="north">North Indian · fixed houses</option><option value="south">South Indian · fixed signs</option></select></div>
+        <div class="field" id="studioPlanetField" hidden><label for="studioPlanet">Planet / graha</label><select id="studioPlanet"></select></div>
+        <div class="field" id="studioSymbolMethodField" hidden><label for="studioSymbolMethod">Letter-value method</label><select id="studioSymbolMethod"></select></div>
+      </div>
+      <div id="studioTextField" class="field" hidden><label id="studioTextLabel" for="studioText">Name or text</label><input id="studioText" type="text" maxlength="256" autocomplete="off" dir="auto" aria-describedby="studioTextHelp"><p id="studioTextHelp" class="small muted"></p></div>
+      <div id="studioFollowField" hidden><label class="studio-check" for="studioFollowHour"><input id="studioFollowHour" type="checkbox">Follow the calculated planetary-hour ruler</label><p class="small muted">An explicit timing convention. Polar-day/night failures keep the last chosen planet and explain the missing hour. It does not change the letter-value method.</p></div>
+      <div class="studio-actions"><button id="studioApply" type="submit" class="btn">Update view</button><p id="studioStatus" class="small" role="status" aria-live="polite">Loading the shared calculation engine…</p></div>
+    </form>
+  </section>
+
+  <section class="studio-result" aria-labelledby="studioResultTitle" aria-busy="true">
+    <div class="studio-section-head"><div><p id="studioTradition" class="studio-kicker">Calculated locally</p><h2 id="studioResultTitle">The figure</h2></div><p id="studioResultContext" class="small muted"></p></div>
+    <div class="studio-spread"><figure class="studio-figure"><div id="studioFigure"><p>Preparing the figure…</p></div><figcaption id="studioFigureCaption" class="small muted"></figcaption></figure><section class="studio-reading" aria-labelledby="studioFactsTitle"><h3 id="studioFactsTitle">Read the calculation</h3><div id="studioFacts"></div></section></div>
+    <div id="studioTraceControls" class="studio-trace" hidden><label for="studioTraceStep">Trace frame</label><input id="studioTraceStep" type="range" min="0" max="1" step="1"><output id="studioTracePosition" for="studioTraceStep"></output><div class="studio-actions"><button id="studioTracePlay" type="button" class="btn-secondary">Play trace</button><button id="studioTraceReset" type="button" class="btn-quiet">Show complete trace</button></div><p class="small muted">Playback reveals the calculated path. It does not alter values. Reduced-motion mode uses the frame slider.</p></div>
+    <details class="studio-methods" open><summary>Method, sources &amp; limits</summary><div id="studioMethods"></div></details>
+    <div class="studio-export" aria-label="Snapshot actions"><button id="studioSaveSnapshot" type="button" class="btn">Save snapshot</button><button id="studioExportSVG" type="button" class="btn-secondary">Export frame SVG</button><button id="studioExportPNG" type="button" class="btn-secondary">Export frame PNG</button><button id="studioExportJSON" type="button" class="btn-secondary">Export snapshot JSON</button></div>
+    <p class="small muted">Exports capture the displayed UTC instant, inputs, method and trace frame. Saving or exporting pauses live updates.</p>
+  </section>
+
+  <section class="studio-saved" aria-labelledby="studioSavedTitle"><div class="studio-section-head"><h2 id="studioSavedTitle">Saved snapshots</h2><span class="small muted">On this device</span></div><ul id="studioSnapshots"><li>No saved studio snapshots yet.</li></ul><p id="studioStorageStatus" class="small muted">The studio keeps at most 12 snapshots. Existing Workbench readings and saved people are separate and remain unchanged.</p></section>
+
+  <section class="studio-connections" id="studioConnections" aria-labelledby="studioConnectionsTitle"><h2 id="studioConnectionsTitle">Connections</h2><p>All calculations above run locally. MCP connects a compatible external client to the project's calculation tools; the existing <a href="workbench.html#wb-assistant-card">BYOK AI assistant</a> is a separate integration.</p><details><summary>Set up an MCP client</summary><p id="studioMcpStatus">No MCP endpoint is connected by this page. No reading, birth data or key is sent automatically. A hosted endpoint has not been provisioned.</p><p>For a desktop client, clone the repository and run <code>npm install</code> inside its <code>mcp</code> directory. Configure a local stdio server with your actual absolute path:</p><pre><code id="studioMcpCommand">node /absolute/path/astrology-sim-ant/mcp/stdio.mjs</code></pre><button id="studioMcpCopy" type="button" class="btn-secondary">Copy setup command</button><p>A GitHub Pages site cannot run this process. For a separately deployed HTTP server and client configuration, follow the current setup instructions.</p><p><a id="studioMcpDocs" href="https://github.com/occult-kranti/astrology-sim-ant/blob/main/mcp/README.md">MCP setup and capabilities</a> · <a href="../docs/LOCAL-LLM.html">AI assistant setup</a></p><p class="small muted">Review the server address and outgoing fields before authorizing an external connection. Do not put credentials into chart links or exports.</p></details></section>
+  <nav class="studio-related" aria-label="Dedicated tools"><a href="picatrix/kameas.html">Kameas &amp; historical sources</a><a href="rasa.html">Yantra mathematics</a><a href="kabbalah.html">Gematria &amp; Kabbalah</a><a href="vedic/index.html">Full Vedic chart</a><a href="calendars.html">Calendars &amp; direction</a><a href="tools.html">All tools</a></nav>
+</main>
+<script type="module">import { mountChrome } from '../assets/js/app/shared.js'; mountChrome('studio');</script>
+<script type="module" src="../assets/js/app/studio.js"></script>
+</body>
+</html>
