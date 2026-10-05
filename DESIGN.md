@@ -19,3 +19,13 @@ Method choices are specific: Western house convention, sidereal Lahiri/whole-sig
 ## Verification
 
 Prior CI artifacts establish Nativity/Calendar visual identity only. The new Studio requires actual browser journeys at 320px, 390px, landscape and desktop/reflow. Verify restored input/result agreement, live/frozen transitions, no per-tick persistence/network, all figure/export types, malformed input, blocked storage, keyboard and native-hidden semantics. One integrated screenshot batch and one material repair confirmation bound visual review.
+
+## Connected session extension
+
+The same Studio route gains five task anchors: Observe, Cast, Compare, Symbol, Journal. The original six calculators stay reachable through their existing task selector. Task anchors guide a finite workflow without making hidden panels prerequisites or creating another navigation hub. Source lenses, comparison and measurement details use native disclosures; the primary figure remains the central artifact. The mobile reading rail is normal document flow, preserving viewing space.
+
+A captured sky banner states original time, coordinates, current/simulated provenance and whether the displayed calculation has since changed. Live/Frozen describes the local calculation clock, never an unimplemented cross-app connection. Question purpose disables live actions. Chart comparison aligns tropical and sidereal rows at one instant and retains separate house conventions. Journal actions save immutable snapshots; edits do not change older entries.
+
+Connection copy distinguishes fragment-based sky sharing from the full Workbench's query-based time/location transfer. The study assistant is loaded explicitly, preserves preview/request parity and stays visibly separate from external MCP setup. UI text never presents camera projection as image recognition, source authority as scientific validation, or numerical measurement differences as evidence of astrological efficacy.
+
+The preceding Studio/Workbench release passed its browser journeys and received a bounded visual repair confirmation. These new session interactions require their own integrated browser and visual gate; source checks alone do not establish their runtime usability.

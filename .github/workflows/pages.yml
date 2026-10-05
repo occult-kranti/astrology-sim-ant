@@ -63,6 +63,22 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Browser journeys under the Pages project path
         run: node scripts/browser-release.mjs
+      - name: Fetch pinned SkyLens integration fixture
+        env:
+          SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962
+          SKY_LENS_ROOT: ${{ runner.temp }}/skylens-session
+        run: |
+          git init "$SKY_LENS_ROOT"
+          git -C "$SKY_LENS_ROOT" remote add origin https://github.com/occult-kranti/skylens.git
+          git -C "$SKY_LENS_ROOT" fetch --depth=1 origin "$SKY_REVISION"
+          git -C "$SKY_LENS_ROOT" checkout --detach FETCH_HEAD
+          test "$(git -C "$SKY_LENS_ROOT" rev-parse HEAD)" = "$SKY_REVISION"
+      - name: Verify observing sessions and explicit AI disclosure
+        env:
+          SKY_LENS_ROOT: ${{ runner.temp }}/skylens-session
+        run: |
+          node scripts/check-sky-handoff.mjs
+          node scripts/browser-sessions.mjs
       - name: Keep browser verification evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -113,6 +129,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Use verified workflow artifacts for Pages
+        # This job explicitly has pages:write. The external GitHub integration
+        # can inspect this setting but cannot update it (403).
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
@@ -140,7 +162,8 @@ jobs:
                 const home = await fetch(base, { signal: AbortSignal.timeout(10000) });
                 if (!home.ok) throw new Error('Published homepage is unavailable.');
                 const studio = await fetch(new URL('pages/studio.html', base), { signal: AbortSignal.timeout(10000) });
-                if (!studio.ok || !(await studio.text()).includes('Live Symbol Studio')) throw new Error('Published Studio is unavailable.');
+                const studioHTML = await studio.text();
+                if (!studio.ok || !studioHTML.includes('Live Symbol Studio') || !studioHTML.includes('sessionJournal')) throw new Error('Published Studio/session journal is unavailable.');
                 const setup = await fetch(new URL('pages/mcp.html', base), { signal: AbortSignal.timeout(10000) });
                 if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
                 const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });

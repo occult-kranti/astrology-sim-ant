@@ -12,6 +12,9 @@ import { gematria, GEMATRIA_METHODS } from '../core/kabbalah.js';
 import { normalizeSigilText } from '../core/kamea.js';
 import { katapayadiDecode } from '../core/yantra.js';
 import { downloadJSON, downloadSVG, svgToPNG } from './state.js';
+import { parseSkyHandoff, buildSkyHandoff } from '../core/sky-handoff.js';
+import { createStudySession, readStudyJournal, appendStudySession, deleteStudySession, buildWorkbenchStudyURL, measurementDifference } from '../core/study-session.js';
+import { STUDY_LENSES, getStudyLens } from '../core/data/study-lenses.js';
 
 const $ = id => document.getElementById(id);
 const TASKS = ['western', 'vedic', 'kamea', 'yantra', 'gematria', 'katapayadi'];
@@ -22,12 +25,20 @@ const utc = value => new Date(value).toISOString().replace('T', ' ').replace('.0
 const defaults = () => ({ task: 'western', dateISO: new Date().toISOString(), lat: 51.5074, lon: -.1278,
   system: 'regiomontanus', style: 'north', planet: 'Saturn', method: 'latin', text: '', followHour: false, locationSource: 'demo' });
 let displayed = null, traceStep = null, traceTimer = null, current = defaults(), snapshots = [], pendingLocation = 0, resultCurrent = false;
+let observation = null, handoffError = '', studyAssistant = null, assistantLoad = null, comparison = null, journal = [];
+let journalStorage = null;
+try { journalStorage = localStorage; } catch { /* explicit journal actions report unavailable storage */ }
+const draftSessionId = crypto.randomUUID(), draftCreatedAt = new Date().toISOString();
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const node = (tag, text, cls) => { const el = document.createElement(tag); if (text != null) el.textContent = text; if (cls) el.className = cls; return el; };
 function status(message, error = false) { $('studioStatus').textContent = message; $('studioStatus').dataset.error = String(error); }
 function draft() {
   resultCurrent = false;
   ['studioSaveSnapshot', 'studioExportSVG', 'studioExportPNG', 'studioExportJSON', 'studioTracePlay', 'studioTraceReset', 'studioTraceStep'].forEach(id => $(id).disabled = true);
+  invalidateStudy('Calculation inputs changed. Prepare a new preview after updating the figure.');
+  $('sessionSave').disabled = $('sessionExport').disabled = true;
+  $('sessionSkyLink').setAttribute('aria-disabled', 'true'); $('sessionWorkbenchLink').setAttribute('aria-disabled', 'true');
+  if ($('sessionCompare').open) $('sessionCompareContext').textContent = 'Inputs changed. The comparison below belongs to the previous labeled snapshot; update the figure to compare the new inputs.';
 }
 function normalizationText(value) {
   if (!value) return '';
@@ -46,7 +57,7 @@ function validate(input) {
   if (input.task === 'kamea' && !PLANETS.includes(input.planet)) throw new Error('Choose one of the seven kamea planets.');
   return { task: input.task, dateISO: date.toISOString(), lat: input.lat, lon: input.lon, system: input.system,
     style: input.style, planet: input.planet, method: input.method, text: input.text,
-    followHour: input.followHour === true, locationSource: ['demo', 'device', 'manual', 'saved'].includes(input.locationSource) ? input.locationSource : 'saved' };
+    followHour: input.followHour === true, locationSource: ['demo', 'device', 'manual', 'saved', 'skylens'].includes(input.locationSource) ? input.locationSource : 'saved' };
 }
 function store(key, value) {
   try { localStorage.setItem(key, JSON.stringify(value)); return true; }
@@ -59,6 +70,11 @@ try {
     try { return [{ id: String(item.id).slice(0, 80), input: validate(item.input), traceStep: Number.isInteger(item.traceStep) && item.traceStep >= 0 && item.traceStep <= 256 ? item.traceStep : null }]; } catch { return []; }
   });
 } catch { $('studioStorageStatus').textContent = 'A saved Studio value was unavailable or invalid. Starting with a fresh moment; other Workbench data is unchanged.'; }
+try {
+  observation = parseSkyHandoff(location.hash);
+  if (observation) current = { ...defaults(), task: 'western', dateISO: observation.dateISO, lat: observation.lat, lon: observation.lon,
+    locationSource: observation.locationSource === 'demo' ? 'demo' : 'skylens' };
+} catch (error) { handoffError = `${error.message} The saved Studio inputs are unchanged.`; }
 
 function options(select, list, value) {
   select.replaceChildren(...list.map(item => { const option = node('option', item.label || item); option.value = item.id || item; return option; }));
@@ -87,7 +103,7 @@ function fill(input) {
   $('studioVedicStyle').value = input.style; $('studioText').value = input.text; $('studioFollowHour').checked = input.followHour;
   fields(); locationLabel(input);
 }
-function locationLabel(input) { $('studioLocationStatus').textContent = input.locationSource === 'demo' ? 'Demo coordinates: London. Set your own observer or request device location.' : `${input.locationSource === 'device' ? 'Device' : 'Entered / saved'} coordinates: ${input.lat.toFixed(4)}° north, ${input.lon.toFixed(4)}° east.`; }
+function locationLabel(input) { $('studioLocationStatus').textContent = input.locationSource === 'demo' ? `Demo coordinates: ${input.lat.toFixed(4)}° north, ${input.lon.toFixed(4)}° east. Choose an actual observer before treating this as your local sky.` : `${input.locationSource === 'device' ? 'Device' : input.locationSource === 'skylens' ? 'SkyLens captured' : 'Entered / saved'} coordinates: ${input.lat.toFixed(4)}° north, ${input.lon.toFixed(4)}° east.`; }
 function read() {
   const task = $('studioTask').value, rawDate = $('studioTime').value;
   if (!$('studioForm').reportValidity()) throw new Error('Complete the highlighted input before updating.');
@@ -149,6 +165,7 @@ function renderTrace() {
   $('studioTracePlay').disabled = reducedMotion.matches || count === 0;
 }
 function render(value) {
+  invalidateStudy('The displayed calculation changed. Prepare a new preview for this snapshot.'); comparison = null;
   stopTrace(); displayed = value; current = { ...value.input }; resultCurrent = true;
   ['studioSaveSnapshot', 'studioExportJSON', 'studioTraceReset', 'studioTraceStep'].forEach(id => $(id).disabled = false);
   const { input, context, result, followNote } = value;
@@ -210,7 +227,8 @@ function render(value) {
   $('studioResultTitle').textContent = title; $('studioFigureCaption').textContent = caption;
   $('studioExportSVG').disabled = $('studioExportPNG').disabled = !figure.querySelector('svg');
   document.querySelector('.studio-result').setAttribute('aria-busy', 'false');
-  status(followNote || `Calculated locally · ${utc(input.dateISO)}.`); clockLabel();
+  status(followNote || `Calculated locally · ${utc(input.dateISO)}.`); clockLabel(); renderSessionContext();
+  if ($('sessionCompare').open) renderComparison();
 }
 function clockLabel() {
   const state = clock.state.status, live = state === 'running';
@@ -218,6 +236,9 @@ function clockLabel() {
   $('studioClockStatus').textContent = `${live ? 'Live · refreshes each minute' : state === 'suspended' ? 'Suspended while page is hidden' : 'Frozen'}${displayed ? ` · ${utc(displayed.input.dateISO)}` : ''}`;
   $('studioStartLive').hidden = live || state === 'paused' || state === 'suspended';
   $('studioPause').hidden = !live; $('studioResume').hidden = !['paused', 'suspended', 'error'].includes(state);
+  const question = $('sessionPurpose').value === 'question';
+  $('studioStartLive').disabled = $('studioResume').disabled = question;
+  if (question) $('studioClockStatus').textContent = `Frozen question epoch${displayed ? ` · ${utc(displayed.input.dateISO)}` : ''}`;
 }
 const clock = createLiveClock({ intervalMs: 60000, onTick: date => calculate({ ...current, dateISO: date.toISOString() }),
   onResult: value => { traceStep = null; render(value); }, onState: clockLabel, onError: error => { draft(); status(`${error.message} Live updates stopped; the last valid result is still displayed.`, true); } });
@@ -255,8 +276,8 @@ $('studioForm').addEventListener('input', event => {
   if (['studioLat', 'studioLon'].includes(event.target.id)) { current.locationSource = 'manual'; pendingLocation++; $('studioUseLocation').disabled = false; $('studioLocationStatus').textContent = 'Entered coordinates. Choose Update view to calculate at this observer.'; }
   status('Inputs changed. Choose Update view to calculate; the displayed result retains its stated moment and method.');
 });
-$('studioStartLive').addEventListener('click', () => { try { current = read(); stopTrace(); clock.start(); } catch (error) { draft(); status(error.message, true); } });
-$('studioResume').addEventListener('click', () => { try { current = read(); stopTrace(); clock.resume(); } catch (error) { draft(); status(error.message, true); } });
+$('studioStartLive').addEventListener('click', () => { if ($('sessionPurpose').value === 'question') return; try { current = read(); stopTrace(); clock.start(); } catch (error) { draft(); status(error.message, true); } });
+$('studioResume').addEventListener('click', () => { if ($('sessionPurpose').value === 'question') return; try { current = read(); stopTrace(); clock.resume(); } catch (error) { draft(); status(error.message, true); } });
 $('studioPause').addEventListener('click', freeze);
 $('studioTraceStep').addEventListener('input', () => { freeze(); traceStep = Number($('studioTraceStep').value); renderTrace(); });
 $('studioTraceReset').addEventListener('click', () => { freeze(); traceStep = null; renderTrace(); });
@@ -304,6 +325,179 @@ $('studioMcpCopy')?.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText($('studioMcpCommand').textContent); $('studioMcpStatus').textContent = 'Setup command copied. Run it in your local MCP client after installing the server dependencies.'; }
   catch { $('studioMcpStatus').textContent = 'Clipboard access is unavailable. Select and copy the command shown below.'; }
 });
+
+// The session layer composes the existing calculators; it never owns another clock.
+function invalidateStudy(reason) { studyAssistant?.invalidate(reason); }
+function sessionStatus(message, error = false) { $('sessionJournalStatus').textContent = message; $('sessionJournalStatus').dataset.error = String(error); }
+function sessionRecord({ newIdentity = false, requireQuestion = true } = {}) {
+  if (!displayed || !resultCurrent) throw new Error('Update the calculation before using this session snapshot.');
+  if (requireQuestion && $('sessionPurpose').value === 'question' && !$('sessionQuestion').value.trim()) throw new Error('Record the question before saving or explaining a question chart.');
+  return createStudySession({ id: newIdentity ? crypto.randomUUID() : draftSessionId, createdAt: newIdentity ? new Date().toISOString() : draftCreatedAt,
+    input: displayed.input, traceStep, lens: $('sessionLens').value, purpose: $('sessionPurpose').value, title: $('sessionTitle').value.trim() || 'Untitled study',
+    question: $('sessionQuestion').value, observationNotes: $('sessionObservationNotes').value, hypothesis: $('sessionHypothesis').value, reflection: $('sessionReflection').value,
+    measurement: { expected: $('sessionExpected').value, observed: $('sessionObserved').value, uncertainty: $('sessionUncertainty').value,
+      unit: $('sessionUnit').value, method: $('sessionMeasurementMethod').value }, observation });
+}
+function sessionContext() {
+  if (!displayed || !resultCurrent) throw new Error('Update the displayed figure first.');
+  if (!comparison) comparison = calculateContext({ ...displayed.input, includeVedic: true, includeReading: false });
+  return comparison;
+}
+function skyRecord() {
+  const input = displayed.input;
+  const original = observation && input.dateISO === observation.dateISO && input.lat === observation.lat && input.lon === observation.lon;
+  return { dateISO: new Date(Math.floor(new Date(input.dateISO).getTime() / 1000) * 1000).toISOString(), lat: input.lat, lon: input.lon,
+    mode: original ? observation.mode : 'simulated', locationSource: input.locationSource === 'demo' ? 'demo' : 'selected',
+    object: observation?.object || null, names: observation?.names || 'bilingual' };
+}
+function renderSessionContext() {
+  if (!displayed) return;
+  const input = displayed.input, banner = $('sessionObservation');
+  banner.dataset.error = String(!!handoffError);
+  if (handoffError) banner.textContent = handoffError;
+  else if (observation) {
+    const same = new Date(input.dateISO).getTime() === new Date(observation.dateISO).getTime() && input.lat === observation.lat && input.lon === observation.lon;
+    banner.textContent = `Captured in SkyLens: ${utc(observation.dateISO)} · ${observation.lat.toFixed(4)}° N, ${observation.lon.toFixed(4)}° E · ${observation.mode === 'simulated' ? 'simulated sky' : 'then-current sky'} · ${observation.locationSource === 'demo' ? 'demo location' : 'selected location'}.${observation.object ? ` Selected: ${observation.object.name} (${observation.object.kind}); a contextual observation, not an automatic planetary correspondence.` : ''} ${same ? 'The displayed calculation uses this captured moment.' : 'The displayed calculation has changed; the original observation remains attached as provenance.'}`;
+  } else banner.textContent = 'No SkyLens observation attached. Use this Studio moment, or open the live sky and choose “Cast this sky moment”.';
+  $('sessionSave').disabled = $('sessionExport').disabled = !resultCurrent;
+  for (const id of ['sessionSkyLink', 'sessionWorkbenchLink']) $(id).setAttribute('aria-disabled', String(!resultCurrent));
+  if (resultCurrent) {
+    $('sessionSkyLink').href = buildSkyHandoff(skyRecord(), 'skylens');
+    try { $('sessionWorkbenchLink').href = buildWorkbenchStudyURL(sessionRecord({ requireQuestion: false })); }
+    catch { $('sessionWorkbenchLink').setAttribute('aria-disabled', 'true'); }
+  }
+}
+function receiveSkyFragment() {
+  let incoming;
+  try { incoming = parseSkyHandoff(location.hash); }
+  catch (error) {
+    freeze(); invalidateStudy('An invalid sky handoff was received.');
+    handoffError = `${error.message} The last valid calculation and current notes are unchanged.`;
+    renderSessionContext(); return;
+  }
+  // Ordinary stage anchors are not incoming sky records.
+  if (!incoming) return;
+  freeze(); invalidateStudy('A new frozen sky moment was imported. Prepare a new preview.');
+  observation = incoming; handoffError = '';
+  $('sessionPurpose').value = 'moment'; $('sessionQuestionField').hidden = true;
+  fill({ ...defaults(), task: 'western', dateISO: incoming.dateISO, lat: incoming.lat, lon: incoming.lon,
+    locationSource: incoming.locationSource === 'demo' ? 'demo' : 'skylens' });
+  traceStep = null;
+  try {
+    render(calculate(current));
+    sessionStatus('SkyLens moment imported frozen. The chart purpose is now moment study; existing note and question drafts remain available. Nothing was saved automatically.');
+  } catch (error) { draft(); status(error.message, true); renderSessionContext(); }
+}
+function renderLens() {
+  const lens = getStudyLens($('sessionLens').value), host = $('sessionLensContent'); host.replaceChildren();
+  if (!lens) return;
+  $('sessionLensSummary').textContent = `${lens.shortTitle} · method, prompts and sources`;
+  paragraph(host, lens.summary);
+  const prompts = node('ul'); lens.prompts.forEach(prompt => prompts.append(node('li', prompt))); host.append(prompts);
+  const sourceList = node('ul');
+  lens.sources.forEach(source => {
+    const row = node('li'), link = node('a', `${source.title}${source.section ? ` · ${source.section}` : ''}`); link.href = source.url;
+    row.append(link); paragraph(row, `${source.edition} · ${source.claimStatus}. ${source.note}`); sourceList.append(row);
+  });
+  host.append(node('h3', 'Inspect the sources'), sourceList);
+  const links = node('nav', null, 'studio-related'); links.setAttribute('aria-label', `${lens.shortTitle} dedicated tools`);
+  lens.tools.forEach(tool => { const link = node('a', tool.label); link.href = tool.path; links.append(link); }); host.append(links);
+}
+function renderComparison() {
+  const host = $('sessionCompareTable');
+  if (!resultCurrent) { $('sessionCompareContext').textContent = 'Update the figure before comparing these inputs.'; return; }
+  try {
+    const context = sessionContext(); host.replaceChildren();
+    $('sessionCompareContext').textContent = `${utc(context.inputs.dateISO)} · ${context.inputs.lat.toFixed(4)}° N, ${context.inputs.lon.toFixed(4)}° E. Western ${context.methods.houseSystem} houses; sidereal whole-sign houses.`;
+    if (!context.vedic) throw new Error('The Vedic comparison is unavailable for this moment.');
+    table(host, ['Planet', 'Tropical · Western house', 'Sidereal · whole-sign house'], Object.entries(context.chart.planets)
+      .filter(([name]) => PLANETS.includes(name)).map(([name, point]) => [name, `${formatLon(point.lon)} · house ${point.house}`, `${context.vedic.grahas[name].label} · house ${context.vedic.grahas[name].house}`]));
+    paragraph(host, `Ascendant: tropical ${formatLon(context.chart.asc)}; sidereal ${context.vedic.lagna.label}. Ayanamsha ${context.vedic.ayanamsa.toFixed(4)}° — documented linear Lahiri estimate.`);
+    paragraph(host, context.methods.houseWarning);
+  } catch (error) { host.replaceChildren(node('p', error.message)); }
+}
+function exportSession(record) {
+  const lens = getStudyLens(record.lens);
+  const context = calculateContext({ ...record.input, includeVedic: true, includeReading: false });
+  return { ...record, provenance: { ...(record.provenance || {}), methods: context.methods,
+    sources: lens.sources.map(source => ({ ...source })), sourceIds: lens.sources.map(source => source.id),
+    observationRole: 'Captured sky metadata is contextual evidence; no camera frame, sensor permission or visual recognition is included.' } };
+}
+function renderMeasurement() {
+  const result = measurementDifference({ expected: $('sessionExpected').value, observed: $('sessionObserved').value, unit: $('sessionUnit').value });
+  $('sessionMeasurementResult').textContent = result.status === 'numeric' ? `Difference: ${result.delta}${result.unit ? ` ${result.unit}` : ''} · ${result.convention}.` : result.status === 'descriptive' ? 'Descriptive values recorded. No numerical difference is calculated.' : 'Enter numeric expected and observed values to calculate their difference.';
+}
+function renderJournal() {
+  const host = $('sessionJournal'); host.replaceChildren();
+  if (!journal.length) { host.append(node('li', 'No saved sessions yet. Record an observation and save a snapshot to begin.')); return; }
+  journal.forEach(record => {
+    const row = node('li'), title = node('h4', record.title), summary = node('p', `${utc(record.input.dateISO)} · ${getStudyLens(record.lens)?.shortTitle || record.lens} · ${record.purpose}`), actions = node('div', null, 'studio-actions');
+    row.dataset.sessionId = record.id;
+    for (const [label, action] of [
+      ['Restore', () => restoreSession(record)],
+      ['Export JSON', () => { try { downloadJSON(exportSession(record), `study-${record.id}.json`); sessionStatus('Saved session exported with its methods and sources.'); } catch (error) { sessionStatus(error.message, true); } }],
+      ['Delete', () => { try { journal = deleteStudySession(journalStorage, record.id).records; renderJournal(); $('sessionSave').focus(); sessionStatus('Deleted this saved session. Other records are unchanged.'); } catch { sessionStatus('Could not change browser storage. The saved session remains available.', true); } }],
+    ]) { const control = node('button', label, 'btn-secondary'); control.type = 'button'; control.setAttribute('aria-label', `${label} session ${record.title}`); control.addEventListener('click', action); actions.append(control); }
+    row.append(title, summary, actions); host.append(row);
+  });
+}
+function restoreSession(record) {
+  freeze(); invalidateStudy('A saved session was restored. Prepare a new preview.');
+  observation = record.observation; handoffError = '';
+  $('sessionTitle').value = record.title; $('sessionPurpose').value = record.purpose; $('sessionLens').value = record.lens;
+  $('sessionQuestion').value = record.question; $('sessionObservationNotes').value = record.observationNotes;
+  $('sessionHypothesis').value = record.hypothesis; $('sessionReflection').value = record.reflection;
+  for (const [id, key] of [['sessionExpected','expected'],['sessionObserved','observed'],['sessionUncertainty','uncertainty'],['sessionUnit','unit'],['sessionMeasurementMethod','method']]) $(id).value = record.measurement[key];
+  $('sessionQuestionField').hidden = record.purpose !== 'question'; renderLens();
+  renderMeasurement();
+  fill(validate(record.input)); traceStep = record.traceStep ?? null;
+  try { render(calculate(current)); sessionStatus('Session restored as a frozen snapshot. Save again to create a separate record.'); $('studioContextTitle').scrollIntoView({ block: 'start' }); }
+  catch (error) { draft(); sessionStatus(error.message, true); }
+}
+for (const id of ['sessionTitle','sessionQuestion','sessionObservationNotes','sessionHypothesis','sessionReflection','sessionExpected','sessionObserved','sessionUncertainty','sessionUnit','sessionMeasurementMethod']) {
+  $(id).addEventListener('input', () => { invalidateStudy('Session notes changed. Prepare a new preview before sending.'); if (id === 'sessionQuestion') renderSessionContext(); if (['sessionExpected','sessionObserved','sessionUnit'].includes(id)) renderMeasurement(); });
+}
+$('sessionPurpose').addEventListener('change', () => {
+  freeze(); $('sessionQuestionField').hidden = $('sessionPurpose').value !== 'question';
+  invalidateStudy('The purpose changed. Prepare a new preview.'); clockLabel(); renderSessionContext();
+  sessionStatus($('sessionPurpose').value === 'question' ? 'Question epoch frozen. Record the question and set its received time explicitly.' : 'Moment study selected. Live time can be started explicitly.');
+});
+$('sessionLens').addEventListener('change', () => { invalidateStudy('The source lens changed. Prepare a new preview.'); renderLens(); renderSessionContext(); });
+$('sessionCompare').addEventListener('toggle', () => { invalidateStudy('Comparison scope changed. Prepare a new preview.'); if ($('sessionCompare').open) renderComparison(); });
+$('sessionCompareLink').addEventListener('click', () => { $('sessionCompare').open = true; });
+$('sessionSymbol').addEventListener('click', () => {
+  if (!resultCurrent) { status('Update the calculation before starting symbolic construction.', true); $('studioApply').focus(); return; }
+  freeze();
+  if (!['kamea','yantra','gematria','katapayadi'].includes(current.task)) { fill({ ...current, task: 'kamea', planet: PLANETS.includes(current.planet) ? current.planet : 'Saturn', method: 'latin', text: '' }); apply(); }
+  $('studioTask').focus(); $('studioTask').scrollIntoView({ block: 'center' });
+});
+for (const id of ['sessionSkyLink','sessionWorkbenchLink']) $(id).addEventListener('click', event => {
+  if (!resultCurrent || $(id).getAttribute('aria-disabled') === 'true') { event.preventDefault(); status('Update the calculation before transferring this moment.', true); return; }
+  freeze(); renderSessionContext();
+});
+$('sessionSave').addEventListener('click', () => {
+  freeze();
+  try { const record = sessionRecord({ newIdentity: true }); journal = appendStudySession(journalStorage, record).records; renderJournal(); sessionStatus('Journal snapshot saved with its moment, source lens and notes. Earlier snapshots are unchanged.'); }
+  catch (error) { sessionStatus(`Could not save: ${error.message} Your current notes remain on this page; export JSON to keep them.`, true); }
+});
+$('sessionExport').addEventListener('click', () => { freeze(); try { const record = sessionRecord(); downloadJSON(exportSession(record), `study-${record.id}.json`); sessionStatus('Session exported with exact inputs, methods and source references.'); } catch (error) { sessionStatus(error.message, true); } });
+$('sessionOpenAI').addEventListener('click', async () => {
+  freeze();
+  try {
+    sessionRecord(); $('sessionOpenAI').disabled = true;
+    if (!assistantLoad) assistantLoad = import('./session-study.js').catch(error => { assistantLoad = null; throw error; });
+    const module = await assistantLoad;
+    if (!studyAssistant) studyAssistant = module.mountSessionStudy($('sessionStudyHost'), { getSession: () => ({ session: sessionRecord(), context: { ...sessionContext(), studyComparison: $('sessionCompare').open } }) });
+    $('sessionOpenAI').textContent = 'Study assistant opened';
+    $('sessionStudyHost').querySelector('textarea,input,select,button')?.focus();
+  } catch (error) { sessionStatus(`Could not open study assistant: ${error.message}`, true); }
+  finally { $('sessionOpenAI').disabled = false; }
+});
+options($('sessionLens'), STUDY_LENSES.map(lens => ({ id: lens.id, label: lens.shortTitle })), 'lilly');
+const savedJournal = readStudyJournal(journalStorage); journal = savedJournal.records;
+if (savedJournal.error) sessionStatus(savedJournal.error, true);
+renderJournal(); renderLens();
+window.addEventListener('hashchange', receiveSkyFragment);
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     clock.suspend(); stopTrace(); pendingLocation++;
@@ -311,6 +505,6 @@ document.addEventListener('visibilitychange', () => {
     $('studioUseLocation').disabled = false;
   } else if (clock.state.status === 'suspended') clock.resume();
 });
-window.addEventListener('pagehide', () => { clock.stop(); stopTrace(); pendingLocation++; });
+window.addEventListener('pagehide', () => { clock.stop(); stopTrace(); pendingLocation++; studyAssistant?.destroy(); studyAssistant = null; });
 fill(current); renderSaved();
 try { render(calculate(current)); } catch (error) { draft(); status(error.message, true); document.querySelector('.studio-result').setAttribute('aria-busy', 'false'); }
