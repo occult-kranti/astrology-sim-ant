@@ -22,6 +22,7 @@ import {
 } from '../core/data/rasa-data.js';
 import { castChart } from '../core/astro.js';
 import { castVedic } from '../core/vedic.js';
+import { VARA_LORDS } from '../core/data/vedic-data.js';
 import { wireCitySelect, toUTC, nowLocalFields, autolinkResultPanels } from './shared.js';
 
 const $ = id => document.getElementById(id);
@@ -230,24 +231,31 @@ function wireSBC() {
 }
 
 function runSBC() {
-  const lat = parseFloat($('ry-sbc-lat').value), lon = parseFloat($('ry-sbc-lon').value);
-  const off = parseFloat($('ry-sbc-offset').value) || 0;
+  const lat = Number($('ry-sbc-lat').value), lon = Number($('ry-sbc-lon').value);
+  const offsetInput = $('ry-sbc-offset').value.trim();
+  const off = Number(offsetInput);
   const status = $('ry-sbc-status');
-  if (isNaN(lat) || isNaN(lon) || !$('ry-sbc-date').value || !$('ry-sbc-time').value) {
-    status.textContent = 'Enter a date, time and place first.'; return;
+  if (!$('ry-sbc-lat').value.trim() || !$('ry-sbc-lon').value.trim() || !Number.isFinite(lat) || Math.abs(lat) > 90 || !Number.isFinite(lon) || Math.abs(lon) > 180 || !offsetInput || !Number.isFinite(off) || Math.abs(off) > 24 || !$('ry-sbc-date').value || !$('ry-sbc-time').value) {
+    status.textContent = 'Enter a valid date, time, geographic coordinates and explicit UTC offset.';
+    $('ry-sbc-summary').innerHTML = ''; drawSBC(null); $('ry-sbc-vedha').innerHTML = ''; return;
   }
   status.textContent = '';
   let date, vedic;
   try {
     date = toUTC($('ry-sbc-date').value, $('ry-sbc-time').value, off);
-    vedic = castVedic(castChart(date, lat, lon, 'whole'));
+    const chart = castChart(date, lat, lon, 'whole');
+    chart.utcOffset = off;
+    vedic = castVedic(chart);
   } catch (e) {
-    $('ry-sbc-summary').innerHTML = '<p class="muted small">This moment could not be computed in this browser. Try “Now” or another date.</p>';
+    status.textContent = e.message || 'This moment could not be computed in this browser.';
+    $('ry-sbc-summary').innerHTML = '<p class="muted small">Check the date, time, coordinates and UTC offset.</p>';
     drawSBC(null); $('ry-sbc-vedha').innerHTML = ''; return;
   }
   const p = vedic.panchanga;
-  const wd = date.getUTCDay();
-  const wdAbbr = WD_ABBR[wd];
+  // Reuse the computed sunrise-based vāra; UTC midnight is a different day
+  // boundary. A polar unavailable value has no weekday cell to highlight.
+  const wd = VARA_LORDS.indexOf(p.vara.lord);
+  const wdAbbr = wd < 0 ? null : WD_ABBR[wd];
   // which grahas occupy which nakṣatra (num 1..27)
   const grahaByNak = {};
   for (const [name, g] of Object.entries(vedic.grahas)) {
@@ -262,11 +270,12 @@ function runSBC() {
     <ul class="clean small" style="margin:.2rem 0">
       <li><b>Moon</b> in <b>${esc(moonNak.sanskrit || moonNak.name)}</b> (nakṣatra ${moonNak.num}, pada ${moonNak.pada})</li>
       <li><b>Tithi</b> ${p.tithi.num} — ${esc(p.tithi.name)} → <b>${esc(tithiGroup)}</b> group cell</li>
-      <li><b>Vāra</b> ${esc(p.vara.name)} (${wdAbbr}) → weekday cell</li>
+      <li><b>Vāra</b> ${wdAbbr ? `${esc(p.vara.name)} (${wdAbbr}) → weekday cell` : 'Unavailable — no weekday cell highlighted'}</li>
       <li><b>Ayanāṁśa</b> ${esc(vedic.ayanamsaName)} ${vedic.ayanamsa}° (sidereal)</li>
     </ul>
     <p class="small muted" style="margin:.2rem 0 0">Highlighted: <span style="color:var(--link)">Moon's nakṣatra</span>,
-      every other graha's nakṣatra, the ${esc(tithiGroup)} tithi-cell and the ${wdAbbr} weekday-cell.</p>`;
+      every other graha's nakṣatra and the ${esc(tithiGroup)} tithi-cell${wdAbbr ? `, plus the ${wdAbbr} weekday-cell` : ''}.</p>
+    <p class="small muted" style="margin:.2rem 0 0"><b>Day boundary:</b> ${esc(p.vara.method)}.</p>`;
 
   drawSBC({ grahaByNak, moonNum: moonNak.num, tithiGroup, wdAbbr });
   renderVedha(moonNak, grahaByNak);
@@ -312,6 +321,7 @@ function drawSBC(hl) {
       <span style="color:var(--muted)">consonants (ring 2 ⚑)</span>
     </div>
     <p class="small muted" style="margin:.4rem 0 0">${esc(SBC.accuracyFlags.ring2)}</p>
+    <p class="small muted" style="margin:.2rem 0 0">${esc(SBC.accuracyFlags.weekdayTithi)}</p>
     <p class="small muted" style="margin:.2rem 0 0">${esc(SBC.cite)}</p>`;
 }
 

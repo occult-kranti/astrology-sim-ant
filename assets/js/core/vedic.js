@@ -138,8 +138,8 @@ function ashtakavarga(rashiByGraha, lagnaIndex) {
 
 // ---------------------------------------------------------------------------
 //  FULL six-fold Ṣaḍbala (Sthāna, Dig, Kāla, Ceṣṭā, Naisargika, Dṛk) per BPHS
-//  Ch.27, computed in VIRŪPAS (1 rūpa = 60). Faithful to JHora with documented
-//  simplifications (flagged in the returned `note`): Ceṣṭā via the eight
+//  Ch.27, computed in VIRŪPAS (1 rūpa = 60). Not numerically validated against
+//  JHora; simplifications (flagged in the returned `note`): Ceṣṭā via the eight
 //  motional-states speed mapping; declination via the β≈0 approximation;
 //  Abda/Māsa year/month lords from the Sun's sidereal position; Mercury counted
 //  benefic for Pakṣa/Dṛk. SEVEN grahas only (the nodes carry no Ṣaḍbala).
@@ -309,7 +309,7 @@ function shadbala(chart, sid, grahas, lagnaLon, ph) {
     perGraha: out, order: ranked, strongest: ranked[0], weakest: ranked[ranked.length - 1],
     timeLords: { yearLord, monthLord, varaLord, horaLord, tribhagaLord },
     units: 'virūpas (1 rūpa = 60 virūpas); required minimums in rūpas',
-    note: 'Full six-fold Ṣaḍbala (Sthāna, Dig, Kāla, Ceṣṭā, Naisargika, Dṛk) per BPHS Ch.27, in virūpas. Faithful to Jagannath Hora with documented simplifications: Ceṣṭā via the eight motional-states (speed) mapping; declination via the β≈0 approximation; the Abda/Māsa year/month lords from the Sun’s sidereal position (~1-day); Mercury counted benefic for Pakṣa/Dṛk. It reproduces the tradition’s own strength ranking — astrology has no demonstrated predictive validity.',
+    note: 'Six-fold Ṣaḍbala study implementation (Sthāna, Dig, Kāla, Ceṣṭā, Naisargika, Dṛk), referenced to BPHS Ch.27, in virūpas. Approximations: Ceṣṭā uses an eight-motional-state speed mapping; declination assumes β≈0; Abda/Māsa year/month lords use the Sun’s sidereal position (~1-day); Mercury is counted benefic for Pakṣa/Dṛk. These are this implementation’s component values and ranking, not validated numerical equivalence to Jagannatha Hora. Approximation and convention choices can change the ranking, especially near ties or thresholds. Astrology has no demonstrated predictive validity.',
   };
 }
 

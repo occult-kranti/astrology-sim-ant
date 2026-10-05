@@ -20,12 +20,15 @@ import { REGISTRY } from '../../assets/js/core/registry.js';
 const sha = s => createHash('sha256').update(s).digest('hex').slice(0, 16);
 
 // PIN-FIRST reference hashes — ṣaḍbala output captured from the pre-refactor
-// engine (git HEAD) and confirmed byte-identical after the R28 surfacing
-// refactor. Any future change that perturbs ṣaḍbala will break these.
+// engine and confirmed byte-identical after the R28 surfacing refactor.
+// 2026-10-05: exclude only the explanatory `note`, whose unvalidated JHora
+// equivalence claim was corrected. Restoring that old note reproduced all
+// original pins (7f622ad2070d575f, 4b08d8c2c3208782, 6472c9a3e603c194).
+// Every component, number, ordering and other field remains pinned.
 const SHADBALA_PIN = {
-  '1990-05-15T10:30:00.000Z@28.61,77.2': '7f622ad2070d575f',
-  '1975-12-02T06:15:00.000Z@19.07,72.87': '4b08d8c2c3208782',
-  '2001-08-23T23:45:00.000Z@51.51,-0.13': '6472c9a3e603c194',
+  '1990-05-15T10:30:00.000Z@28.61,77.2': 'f9aec3577b2454e5',
+  '1975-12-02T06:15:00.000Z@19.07,72.87': 'dc8cba4e303280ef',
+  '2001-08-23T23:45:00.000Z@51.51,-0.13': 'b29be1d4b7dab3f9',
 };
 
 // Build a synthetic castVedic-shaped reading with EXACT sidereal placements, so
@@ -203,7 +206,8 @@ export async function run() {
   ];
   for (const [d, la, lo] of pinCharts) {
     const key = `${d.toISOString()}@${la},${lo}`;
-    const h = sha(JSON.stringify(castVedic(castChart(d, la, lo, 'regiomontanus')).shadbala));
+    const { note, ...components } = castVedic(castChart(d, la, lo, 'regiomontanus')).shadbala;
+    const h = sha(JSON.stringify(components));
     ok(h === SHADBALA_PIN[key], `ṣaḍbala pin holds for ${key} (got ${h}, want ${SHADBALA_PIN[key]})`);
   }
 

@@ -1,12 +1,15 @@
 // ============================================================================
 //  kamea.js (app) — drives pages/picatrix/kameas.html: the seven planetary
-//  magic squares of Agrippa II.22, rendered as live SVG with the sigil of any
-//  name traced upon them (start-circle, end-bar, wave for a repeated cell),
+//  magic squares of Agrippa II.22, rendered as live SVG with explicit Latin or
+//  Hebrew name traces (start-circle, end-bar, wave for a repeated cell),
 //  plus each square's intelligence/spirit names, metal and recorded use.
-//  All rendering here; all math in core/kamea.js (pure, engine-tested).
+//  Results and diagrams use the shared pure symbols / symbol-svg modules.
 // ============================================================================
 import { KAMEAS, kameaByPlanet } from '../core/data/kameas.js';
-import { sigilFor, SIGIL_METHODS, validateKamea } from '../core/kamea.js';
+import { validateKamea } from '../core/kamea.js';
+import { createSymbolResult, SYMBOL_METHODS } from '../core/symbols.js';
+import { renderSymbolSVG } from '../core/viz/symbol-svg.js';
+import { downloadSVG, svgToPNG, downloadJSON } from './state.js';
 import { renderCastHour } from './cast-hour.js';
 import { autolinkResultPanels } from './shared.js';
 import { PLANET_GLYPHS } from '../core/astro.js';
@@ -15,52 +18,52 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 let planet = 'Saturn';
+let currentResult = null;
 
 export function initKameas() {
   try { renderCastHour('cast-hour'); } catch { /* non-fatal */ }
   $('km-planet').innerHTML = KAMEAS.map(k => `<option value="${k.planet}">${PLANET_GLYPHS[k.planet] || ''} ${k.planet} — ${k.order}×${k.order}</option>`).join('');
-  $('km-method').innerHTML = Object.entries(SIGIL_METHODS).map(([k, m]) => `<option value="${k}">${esc(m.label)}</option>`).join('');
+  $('km-method').innerHTML = SYMBOL_METHODS.kamea.map(m => `<option value="${m.id}">${esc(m.label)}</option>`).join('');
   $('km-planet').addEventListener('change', () => { planet = $('km-planet').value; render(); });
   $('km-form').addEventListener('submit', e => { e.preventDefault(); render(); });
   $('km-name').addEventListener('input', () => render());
   $('km-method').addEventListener('change', () => render());
+  $('km-svg').addEventListener('click', () => {
+    if (!currentResult) return;
+    try { downloadSVG($('km-square').querySelector('svg'), 'kamea.svg'); } catch (error) { $('km-status').textContent = error.message; }
+  });
+  $('km-png').addEventListener('click', () => {
+    if (!currentResult) return;
+    svgToPNG($('km-square').querySelector('svg'), 'kamea.png').catch(error => { $('km-status').textContent = error.message; });
+  });
+  $('km-json').addEventListener('click', () => { if (currentResult) downloadJSON(currentResult, 'kamea-method.json'); });
   render();
 }
 
 function render() {
   const k = kameaByPlanet(planet);
   if (!k) return;
-  const name = $('km-name').value.trim();
-  let sigil = null;
-  if (name) { try { sigil = sigilFor(name, k, { method: $('km-method').value }); } catch { sigil = null; } }
-  drawSquare(k, sigil);
-  renderInfo(k, sigil);
-}
-
-// the square + the traced sigil, in one SVG (perfect alignment)
-function drawSquare(k, sigil) {
-  const n = k.order, S = 480, PAD = 6, cell = (S - 2 * PAD) / n;
-  const cellXY = (row, col) => [PAD + col * cell + cell / 2, PAD + row * cell + cell / 2];
-  let g = '';
-  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
-    const [x, y] = [PAD + c * cell, PAD + r * cell];
-    g += `<rect x="${x}" y="${y}" width="${cell}" height="${cell}" fill="var(--dg-fill, var(--card))" stroke="var(--dg-grid, var(--rule))"/>`;
-    g += `<text x="${x + cell / 2}" y="${y + cell / 2}" font-size="${Math.max(10, cell * 0.34)}" text-anchor="middle" dominant-baseline="central" fill="var(--dg-label, var(--muted))">${k.rows[r][c]}</text>`;
+  const name = $('km-name').value;
+  currentResult = null;
+  try {
+    const result = createSymbolResult({ kind: 'kamea', planet, text: name, method: $('km-method').value });
+    const diagram = renderSymbolSVG(result);
+    $('km-square').innerHTML = diagram.svg;
+    const svg = $('km-square').querySelector('svg'); svg.style.width = '100%'; svg.style.height = 'auto';
+    currentResult = result;
+    const norm = result.normalization;
+    $('km-status').textContent = result.trace
+      ? `Normalized letters: ${norm.normalized}. ${norm.changes.length} case, separator or vowel-mark changes disclosed in the JSON export. ${result.method.note}`
+      : 'Square only. Enter a name in the alphabet selected above to trace its letters.';
+    $('km-name').removeAttribute('aria-invalid');
+    renderInfo(k, result.trace);
+  } catch (error) {
+    $('km-square').textContent = 'No diagram for this input.';
+    $('km-status').textContent = error.message || 'The input could not be traced.';
+    $('km-name').setAttribute('aria-invalid', 'true');
+    renderInfo(k, null);
   }
-  let trace = '';
-  if (sigil && sigil.steps.length) {
-    const pts = sigil.steps.map(s => cellXY(s.row, s.col));
-    if (pts.length > 1) trace += `<polyline points="${pts.map(p => p.map(v => v.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="var(--link)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>`;
-    const [sx, sy] = pts[0];
-    trace += `<circle cx="${sx}" cy="${sy}" r="${Math.max(6, cell * 0.14)}" fill="none" stroke="var(--link)" stroke-width="3"/>`;
-    const [ex, ey] = pts[pts.length - 1];
-    const dirIdx = pts.length > 1 ? pts.length - 2 : 0;
-    const ang = pts.length > 1 ? Math.atan2(ey - pts[dirIdx][1], ex - pts[dirIdx][0]) : 0;
-    const bl = Math.max(8, cell * 0.18);
-    trace += `<line x1="${(ex - bl * Math.sin(ang)).toFixed(1)}" y1="${(ey + bl * Math.cos(ang)).toFixed(1)}" x2="${(ex + bl * Math.sin(ang)).toFixed(1)}" y2="${(ey - bl * Math.cos(ang)).toFixed(1)}" stroke="var(--link)" stroke-width="3"/>`;
-    for (const s of sigil.steps) if (s.repeats > 1) { const [wx, wy] = cellXY(s.row, s.col); trace += `<path d="M ${wx - 10} ${wy + cell * 0.24} q 5 -6 10 0 q 5 6 10 0" fill="none" stroke="var(--link)" stroke-width="2"/>`; }
-  }
-  $('km-square').innerHTML = `<svg viewBox="0 0 ${S} ${S}" role="img" aria-label="The kamea of ${esc(k.planet)}${sigil ? ' with a traced sigil' : ''}" style="width:100%;max-width:${S}px">${g}${trace}</svg>`;
+  for (const id of ['km-svg', 'km-png', 'km-json']) $(id).disabled = !currentResult;
 }
 
 function renderInfo(k, sigil) {

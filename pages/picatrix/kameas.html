@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Planetary kameas &amp; sigils — the seven magic squares | The Astrologer's Workbench</title>
-<meta name="description" content="The seven planetary kameas (magic squares) exactly as Agrippa prints them (Three Books II.22) — Saturn 3×3 to the Moon 9×9, every row, column and diagonal verified live — with the intelligence and spirit names and their gematria, the engraving metals and recorded uses, and a live sigil tracer that draws any name on the square (Agrippa III.30, the aiq-bekar method). Historical magic of no demonstrated efficacy — described, never prescribed.">
+<meta name="description" content="Seven sourced planetary kameas, verified arithmetic, and explicit Latin or Hebrew letter-to-cell reconstructions. Inspect normalization and export SVG, PNG or method JSON. Historical symbolism for study, not demonstrated magical efficacy.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
@@ -16,7 +16,8 @@
     squares</b>, from Saturn's 3×3 to the Moon's 9×9, each cell-pattern summing alike in every row, column and diagonal —
     real, checkable mathematics that the tradition read as the planets' "divine numbers." From these squares the magicians
     derived the planetary <b>seals</b> and traced the <b>sigils</b> of spirit-names — a line drawn cell to cell through a
-    name's letter-values, begun with a circle and ended with a bar. Type any name below and watch the method work.</p>
+    name's letter-values, begun with a circle and ended with a bar. Choose Latin or Hebrew letters below and inspect
+    the stated reconstruction. These generated paths are not facsimiles of Agrippa's printed seals.</p>
 
   <div class="callout science"><span class="label">Honest note — please read</span>
     The <b>mathematics is real</b> — this page verifies every square live, and the engine's test suite proves all seven.
@@ -30,10 +31,18 @@
     <div class="field-row" style="align-items:flex-end">
       <div class="field" style="flex:0 1 260px"><label for="km-planet">The square</label><select id="km-planet"></select></div>
       <div class="field" style="flex:1 1 240px"><label for="km-name">Trace a name as a sigil (optional)</label>
-        <input id="km-name" type="text" placeholder="e.g. Gabriel" style="width:100%"></div>
+        <input id="km-name" type="text" maxlength="256" dir="auto" aria-describedby="km-alphabet km-status" placeholder="e.g. Gabriel" style="width:100%"></div>
       <div class="field" style="flex:0 1 320px"><label for="km-method">Letter-values</label><select id="km-method"></select></div>
     </div>
   </form>
+  <p id="km-alphabet" class="small muted">Latin modes accept A–Z; Hebrew modes accept Hebrew letters, with standard or explicitly selected final-letter values. Spacing, punctuation and Hebrew vowel marks are disclosed and ignored. Other scripts and digits are rejected. Maximum 256 characters.</p>
+  <p id="km-status" class="small" role="status" aria-live="polite"></p>
+  <div class="field-row" aria-label="Export this diagram">
+    <button type="button" class="btn-secondary" id="km-svg" disabled>Download SVG</button>
+    <button type="button" class="btn-secondary" id="km-png" disabled>Download PNG</button>
+    <button type="button" class="btn-secondary" id="km-json" disabled>Download method JSON</button>
+    <a class="btn-secondary" href="../studio.html">Open Live Symbol Studio</a>
+  </div>
 
   <section class="card">
     <div style="display:flex;flex-wrap:wrap;gap:1.2rem;align-items:flex-start">
@@ -41,15 +50,18 @@
       <div id="km-info" style="flex:1 1 320px;min-width:280px"></div>
     </div></section>
 
-  <section class="card"><h2 style="margin-top:0">How the tradition did it</h2>
+  <section class="card"><h2 style="margin-top:0">Sources and this reconstruction</h2>
     <p class="small">Agrippa prints the finished seals and characters beside each square but withholds the method —
       "the wise searcher … shall easily find out." The key he leaves is Book III ch. 30: the Hebrew alphabet laid on the
       <b>nine chambers</b> of <i>aiq bekar</i> (units 1–9, tens 10–90, hundreds 100–900), so any name becomes a run of
-      numbers; values beyond the square's range collapse to their chamber (300 → 3), and the line passes cell to cell —
+      numbers. This renderer reduces a value only while it exceeds the square's range: 300 → 30 → 3 on Saturn,
+      but 300 → 30 on the Sun's larger square. A digit-sum fallback is a disclosed modern convenience. The line passes cell to cell —
       a circle where it begins, a bar where it ends, a small wave where a cell repeats. The <b>intelligence</b> of each
       planet (its "good" mover) and its <b>spirit</b> (the raw daemon) bear gematria values keyed to the square itself —
       Nachiel 111 is the Sun-square's line-sum, Sorath 666 its total. The Latin letter-values offered above are a
-      <b>modern convenience</b> for study; the historical practice worked on the Hebrew spellings.</p>
+      <b>modern convenience</b> for study; the historical practice worked on the Hebrew spellings. Hebrew modes reuse
+      the site's sourced gematria table, with final-letter values explicitly selected. This combination remains a
+      modern computational reconstruction; it does not authenticate a historical seal.</p>
     <p class="small muted">Timing: the tradition engraved a kamea "when the planet was fortunate" — the very judgement the
       <a href="election.html">Election Engine</a> computes; the strip at the top of this page shows the present hour.
       See also the <a href="talisman.html">Talisman Workshop</a> for the full recipe, and Jung's

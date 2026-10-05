@@ -12,6 +12,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 const GL = { Sun: '☉', Moon: '☽', Mercury: '☿', Venus: '♀', Mars: '♂', Jupiter: '♃', Saturn: '♄', Rahu: '☊', Ketu: '☋' };
 const fmtDate = d => { try { return new Date(d).toISOString().slice(0, 10); } catch { return ''; } };
 const digClass = s => s === 'Exalted' || s === 'Own sign' || s === 'Mūlatrikoṇa' ? 'pos' : s === 'Debilitated' ? 'neg' : 'muted';
+const renderGenerations = new WeakMap();
 
 // Render the full sidereal reading for `chart` into `body`. opts.currentDate
 // selects the running daśā (the page/tool passes "now" for a birth chart).
@@ -20,8 +21,12 @@ const digClass = s => s === 'Exalted' || s === 'Own sign' || s === 'Mūlatriko�
 // casting a second time — one cast, one reading, no drift between what is
 // drawn and what is explained.
 export function renderVedicPanel(body, chart, opts = {}) {
+  const token = {};
+  renderGenerations.set(body, token);
+  opts = { ...opts, isCurrent: () => renderGenerations.get(body) === token };
   let v;
-  try { v = castVedic(chart, opts); } catch (e) { body.innerHTML = `<p class="muted">Vedic computation failed: ${esc(e.message)}</p>`; return null; }
+  try { v = Object.hasOwn(opts, 'precomputedVedic') ? opts.precomputedVedic : castVedic(chart, opts); } catch (e) { body.innerHTML = `<p class="muted">Vedic computation failed: ${esc(e.message)}</p>`; return null; }
+  if (!v) { body.innerHTML = '<p class="muted">Vedic calculation is unavailable for this input. No substitute result is displayed.</p>'; return null; }
 
   const grahaRows = Object.entries(v.grahas).map(([p, g]) => `<tr>
     <td>${GL[p] || ''} ${esc(p)}</td>
@@ -48,7 +53,7 @@ export function renderVedicPanel(body, chart, opts = {}) {
   const pr = v.practice;
   const practiceHtml = pr ? `
     <h3 class="small" style="margin:.8rem 0 .2rem">Practice — the day &amp; the birth <span class="muted small">(cultural/devotional · described, not prescribed)</span></h3>
-    <p class="small"><b>Today (${esc(pr.vara.name)} / ${esc(pr.vara.sanskrit)}, a ${esc(pr.vara.graha)}-vāra):</b>
+    <p class="small"><b>Reference day (${esc(pr.vara.name)} / ${esc(pr.vara.sanskrit)}, a ${esc(pr.vara.graha)}-vāra):</b>
       deity ${esc(pr.vara.deity)}${pr.vara.popular ? ' <span class="muted">(later/popular pairing)</span>' : ''}; ${esc(pr.vara.vrata)}; colour ${esc(pr.vara.colour)}.
       Mantra <b>${esc(pr.vara.mantra)}</b> <span class="muted">(bīja ${esc(pr.vara.bija)}; japa ${pr.vara.japa})</span>;
       yoga ${esc(pr.vara.yoga)} <span class="muted">(modern)</span>; ${esc(pr.vara.yantra)}.</p>
@@ -123,13 +128,13 @@ export function renderVedicPanel(body, chart, opts = {}) {
   // Figures are a progressive enhancement over the tables above (the tables stay
   // as the accessible/print text form). If the B2 viz kit is absent, the tables
   // simply remain. Never let a figure failure blank the reading.
-  try { mountVedicFigures(body, v, opts); } catch { /* non-fatal — tables are the covenant's text form */ }
+  mountVedicFigures(body, v, opts).catch(() => { /* tables remain the accessible fallback */ });
 
   // The R28 relation panels consume V1's surfaced vedic.js exports
   // (compoundRelations / grahaDrishti / combustion). They are dynamically
   // imported + guarded: if V1's surfacing refactor is not present the panels
   // simply stay empty and the tables above remain the reading's text form.
-  try { mountVedicRelations(body, v, chart); } catch { /* non-fatal */ }
+  mountVedicRelations(body, v, chart, opts).catch(() => { /* optional relations */ });
 
   return v;
 }
@@ -238,6 +243,7 @@ async function mountVedicFigures(body, v, opts) {
   const chartHost = body.querySelector('.v-fig-chart');
   if (chartHost) {
     const [chartMod, figMod] = await Promise.all([import('../core/vedic-chart.js'), figureMod()]).catch(() => [null, null]);
+    if (!opts.isCurrent()) return;
     if (chartMod && figMod && chartMod.northIndianChart) {
       const model = vedicChartModel(v);
       let style = 'north';
@@ -257,6 +263,7 @@ async function mountVedicFigures(body, v, opts) {
       // here we register a tip/card provider so the pin card reads the bhāva's
       // sign & grahas. The figWrap root is stable across N/S redraws.
       const inspectMod = await import('./viz/inspect.js').catch(() => null);
+      if (!opts.isCurrent()) return;
       if (inspectMod && inspectMod.registerFigure) {
         if (inspectMod.initInspect) inspectMod.initInspect();
         const signName = s => SIGN_EN[(s - 1 + 12) % 12] || '';
@@ -302,6 +309,7 @@ async function mountVedicFigures(body, v, opts) {
   const savHost = body.querySelector('.v-fig-sav');
   if (savHost) {
     const [htMod, figMod] = await Promise.all([import('../core/viz/heat-table.js'), figureMod()]).catch(() => [null, null]);
+    if (!opts.isCurrent()) return;
     if (htMod && figMod && htMod.heatTable) {
       const out = htMod.heatTable(savHeatModel(v));
       figMod.mountFigure(savHost, { html: out.html, textModel: out.textModel, ariaLabel: 'Aṣṭakavarga heat table' });
@@ -312,6 +320,7 @@ async function mountVedicFigures(body, v, opts) {
   const sbHost = body.querySelector('.v-fig-shadbala');
   if (sbHost) {
     const [barMod, figMod] = await Promise.all([import('../core/viz/score-bar.js'), figureMod()]).catch(() => [null, null]);
+    if (!opts.isCurrent()) return;
     if (barMod && figMod && barMod.scoreBar) {
       for (const spec of shadbalaBarSpecs(v)) {
         const out = barMod.scoreBar(spec);
@@ -326,6 +335,7 @@ async function mountVedicFigures(body, v, opts) {
   const dzHost = body.querySelector('.v-fig-dasha');
   if (dzHost) {
     const [tlMod, figMod] = await Promise.all([import('../core/viz/timeline-svg.js'), figureMod()]).catch(() => [null, null]);
+    if (!opts.isCurrent()) return;
     if (tlMod && figMod && tlMod.periodStrip) {
       const out = tlMod.periodStrip(vimshottariStripModel(v, now), { ariaLabel: 'Vimśottarī daśā timeline' });
       figMod.mountFigure(dzHost, { svg: out.svg, textModel: out.textModel, ariaLabel: 'Vimśottarī daśā timeline' });
@@ -347,8 +357,17 @@ export function createVedicPanel(opts = {}) {
     <div class="vedic-body"${opts.defaultOn ? '' : ' style="display:none"'}></div>`;
   const toggle = card.querySelector('.vedic-toggle');
   const bodyEl = card.querySelector('.vedic-body');
-  let lastChart = null, rendered = false;
-  const doRender = () => { if (lastChart) { renderVedicPanel(bodyEl, lastChart, { currentDate: opts.currentDate || new Date() }); rendered = true; } };
+  let lastChart = null, renderOpts = { ...opts };
+  const doRender = () => {
+    if (lastChart) {
+      renderVedicPanel(bodyEl, lastChart, { ...renderOpts, currentDate: renderOpts.currentDate || lastChart.date });
+      if (renderOpts.chartSource) {
+        const note = document.createElement('p'); note.className = 'small muted';
+        note.textContent = `Sidereal ${renderOpts.chartSource} chart at ${lastChart.latitude}° latitude, ${lastChart.longitude}° longitude · reference instant ${(renderOpts.currentDate || lastChart.date).toISOString()}. Day-boundary calculations use this chart’s location. Uses the same computed result as this reading’s export.`;
+        bodyEl.prepend(note);
+      }
+    }
+  };
   toggle.addEventListener('change', () => {
     bodyEl.style.display = toggle.checked ? '' : 'none';
     if (toggle.checked) doRender();
@@ -356,7 +375,7 @@ export function createVedicPanel(opts = {}) {
   if (opts.defaultOn) doRender();
   return {
     card,
-    update(chart) { lastChart = chart; rendered = false; if (toggle.checked) doRender(); },
+    update(chart, updateOpts = {}) { lastChart = chart; renderOpts = { ...opts, ...updateOpts }; if (toggle.checked) doRender(); },
   };
 }
 
@@ -498,9 +517,9 @@ function drishtiGridHtml(raw) {
     <p class="small muted">Graha-dṛṣṭi in virūpas (BPHS Ch. 26 graded scheme): every graha casts the 7th-house full aspect (60 virūpas); Mars additionally aspects the 4th/8th, Jupiter the 5th/9th, Saturn the 3rd/10th — a full/special aspect is boxed. The whole-sign (popular) vs graded (sphuṭa) presentation is itself contested; this shows the graded virūpas.</p>`;
 }
 
-async function mountVedicRelations(body, v, chart) {
+async function mountVedicRelations(body, v, chart, opts) {
   const vmod = await import('../core/vedic.js').catch(() => null);
-  if (!vmod) return;
+  if (!vmod || !opts.isCurrent()) return;
   const cands = [v, chart, v && v.grahas];
 
   // -- combustion (asta) flags on the graha table ----------------------------
@@ -528,6 +547,7 @@ async function mountVedicRelations(body, v, chart) {
       const model = relationHeatModel(tryCall(vmod.compoundRelations, cands));
       if (model) {
         const htMod = await import('../core/viz/heat-table.js').catch(() => null);
+        if (!opts.isCurrent()) return;
         if (htMod && htMod.heatTable) relHost.innerHTML = `<div class="vt-relmatrix">${htMod.heatTable(model).html}</div>`;
       }
     } catch { /* non-fatal */ }

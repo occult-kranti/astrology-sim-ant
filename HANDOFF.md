@@ -9,11 +9,7 @@ encode and its accuracy caveats*, read **`research/SOURCE-DATA.md`**. The long-f
 > ship · `research/SOURCE-DATA.md` = cited data + caveats · `MASTER-PLAN.md` = vision ·
 > `.claude/skills/` = automation (`verify-site`, `add-data-module`, `ship-bundle`, `accuracy-check`).
 >
-> **Two handoffs were reconciled.** A parallel handoff (`updatehandoff.bundle`) carried an
-> excellent forward plan + research data (now folded into `ROADMAP.md` and `SOURCE-DATA.md`) but
-> **stale environment notes** — it said `git push` returns 403 and to use Chromium at
-> `/opt/pw-browsers/...`. **In THIS container neither is true:** push works; use the puppeteer
-> Chromium (see §4 / the `verify-site` skill). When in doubt, trust this file for mechanics.
+> **Current environment evidence (2026-10-05):** the historical machine notes below are archival, not portable guarantees. Initial shell networking was unavailable; it was later enabled. Local Node, official MCP transports and Chromium checks now run successfully, with independent GitHub Actions release gates. Never expose credentials or assume a local source commit shares recovered remote ancestry. The remote/source tree match and live-studio release evidence are in `docs/2026-10-05-live-studio-roadmap.md` and the dated verification document.
 
 ---
 
@@ -21,11 +17,11 @@ encode and its accuracy caveats*, read **`research/SOURCE-DATA.md`**. The long-f
 
 An interactive, scientifically-honest study edition of **William Lilly's _Christian
 Astrology_ (1647)**, with a **real, verified astronomical engine** that runs entirely in the
-browser (no backend, no build step). The long-term target (see `MASTER-PLAN.md`) integrates
+browser (no frontend build step). The optional `mcp/` backend is a separate process; Pages cannot execute it. The long-term target (see `MASTER-PLAN.md`) integrates
 the **_Picatrix_** (astrological magic) via an **Election Engine** that reuses Lilly's
 machinery. The geometry is genuine; the interpretations are Lilly's, framed as history.
 
-## 2. Current state (this build)
+## 2. Historical build snapshot (superseded by dated release documentation)
 
 Done and **verified in a real browser (0 console errors on all 20 pages)**:
 

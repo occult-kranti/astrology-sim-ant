@@ -39,6 +39,8 @@ export const NAV_GROUPS = [
   // into their subgroups but nothing is added or removed.
   { label: 'Cast', key: 'cast', wide: true, items: [
     ['pages/workbench.html', 'The Workbench — Master Tool', 'workbench', 'This moment'],
+    ['pages/studio.html', 'Live Symbol Studio', 'studio'],
+    ['pages/mcp.html', 'Connect MCP', 'mcp'],
     ['pages/now.html', 'Right Now — live sky', 'now'],
     ['pages/book2/horary.html', 'Horary — a question', 'horary'],
     ['pages/picatrix/election.html', 'Election — choose a moment', 'election'],
@@ -154,6 +156,7 @@ export function currentSection() {
   if (m(/\/pages\/thelemic-times\.html$/)) return 'thelemictimes';
 
   // Cast (top-level tool pages).
+  if (m(/\/pages\/studio\.html$/)) return 'studio';
   if (m(/\/pages\/workbench\.html$/) || m(/\/pages\/master\.html$/)) return 'workbench';
   if (m(/\/pages\/autopilot\.html$/)) return 'autopilot';
   if (m(/\/pages\/now\.html$/)) return 'now';

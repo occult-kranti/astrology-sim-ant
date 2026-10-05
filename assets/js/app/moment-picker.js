@@ -146,7 +146,7 @@ export function validateMoment(fields = {}) {
   }
   // era accuracy — casting silent, study/illustrative advisory, out-of-range blocking
   if (date) {
-    const ym = /^(-?\d+)/.exec(date);
+    const ym = /^([+-]?\d+)/.exec(date);
     const year = ym ? parseInt(ym[1], 10) : NaN;
     if (!Number.isNaN(year)) {
       let era; try { era = eraAccuracy(year); } catch (e) { era = null; }
@@ -189,14 +189,19 @@ export function mountMomentPicker(container, opts = {}) {
   const mode = opts.mode || 'now';
   const ids = opts.ids || {};
   const persist = opts.persist || 'wb';
+  let muted = true;
   const changed = typeof opts.onChange === 'function' ? opts.onChange : () => {};
+  const invalid = typeof opts.onInvalid === 'function' ? opts.onInvalid : () => {};
+  const isEmpty = () => !!opts.optional && ['lat', 'lon', 'date', 'time'].every(k => !String(currentFields()[k]).trim());
   const onChange = () => {
-    if (resolvingZone || !syncZone()) return;
+    if (muted || resolvingZone) return;
+    if (isEmpty()) { showError(''); changed(); return; }
+    if (!syncZone()) { invalid(zoneEl.validationMessage); return; }
     const { errors } = validateMoment(currentFields());
-    if (errors.length) { showError(errors.map(e => e.message).join(' ') + ' Previous results have not been recalculated.'); return; }
+    if (errors.length) { const message = errors.map(e => e.message).join(' '); showError(message + ' Previous results have not been recalculated.'); invalid(message); return; }
     showError(''); changed();
   };
-  const uid = persist + '-mp';
+  const uid = (opts.idPrefix || persist) + '-mp';
 
   // --- resolve legacy inputs; THROW if any configured id is missing ---------
   const need = ['lat', 'lon', 'date', 'time', 'offset'];
@@ -213,6 +218,7 @@ export function mountMomentPicker(container, opts = {}) {
     const el = legacy[k];
     if (!el) return;
     el.value = v;
+    if (muted) return;
     try { el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true })); } catch (e) { /* */ }
   };
 
@@ -250,7 +256,7 @@ export function mountMomentPicker(container, opts = {}) {
     <div class="mp-group mp-when">
       <span class="mp-label" id="${uid}-whenlbl">When</span>
       <div class="mp-when-row">
-        <div class="field"><label for="${uid}-date">Date</label><input id="${uid}-date" type="date"></div>
+        <div class="field"><label for="${uid}-date">Date</label><input id="${uid}-date" type="date"><button type="button" class="btn-secondary sm" id="${uid}-historical">Type historical date</button></div>
         <div class="field"><label for="${uid}-time">Time (local)</label><input id="${uid}-time" type="time"></div>
         ${showNow ? `<button type="button" class="btn-secondary sm mp-now" id="${uid}-now">⏱ Now</button>` : ''}
       </div>
@@ -276,7 +282,17 @@ export function mountMomentPicker(container, opts = {}) {
   const offSel = $(`#${uid}-off`);
   const offNum = $(`#${uid}-offnum`);
   const dateEl = $(`#${uid}-date`);
+  function enableHistoricalDate() {
+    dateEl.type = 'text'; dateEl.placeholder = 'YYYY-MM-DD; 0000 = 1 BCE';
+    $(`#${uid}-historical`).hidden = true;
+  }
+  $(`#${uid}-historical`).addEventListener('click', () => { enableHistoricalDate(); dateEl.focus(); });
+  function setDateValue(value) {
+    if (/^[+-]|^0000-/.test(String(value))) enableHistoricalDate();
+    dateEl.value = value;
+  }
   const timeEl = $(`#${uid}-time`);
+  timeEl.step = '1'; // live snapshots and explicit restored clock seconds
   const nowBtn = $(`#${uid}-now`);
   const hintEl = $(`#${uid}-hint`);
   const errorEl = $(`#${uid}-error`);
@@ -344,7 +360,7 @@ export function mountMomentPicker(container, opts = {}) {
   // --- initialise from any pre-filled legacy values (share links) -----------
   if (legacy.lat.value) latEl.value = legacy.lat.value;
   if (legacy.lon.value) lonEl.value = legacy.lon.value;
-  if (legacy.date.value) dateEl.value = legacy.date.value;
+  if (legacy.date.value) setDateValue(legacy.date.value);
   if (legacy.time.value) timeEl.value = legacy.time.value;
   if (legacy.offset.value !== '') selectOffset(Number(legacy.offset.value));
 
@@ -482,11 +498,13 @@ export function mountMomentPicker(container, opts = {}) {
   const fieldEl = f => ({ lat: latEl, lon: lonEl, date: dateEl, time: timeEl, offset: offSel }[f] || null);
 
   function validate({ focusFirst = false } = {}) {
+    if (isEmpty()) { clearInvalid(); showError(''); return { ok: true, empty: true, errors: [], hints: [] }; }
     const { errors, hints } = validateMoment(currentFields());
     if (!syncZone()) errors.push({ field: 'time', message: zoneEl.validationMessage });
     clearInvalid();
     if (errors.length) {
       showError(errors.map(e => e.message).join(' '));
+      if (!muted) invalid(errors.map(e => e.message).join(' '));
       errors.forEach(e => { const el = fieldEl(e.field); if (el) { el.setAttribute('aria-invalid', 'true'); el.classList.add('is-invalid'); el.setAttribute('aria-describedby', errorEl.id); } });
       if (focusFirst) { const el = fieldEl(errors[0].field); if (el && el.focus) { if (el === latEl || el === lonEl) coords.open = true; el.focus(); } }
     } else showError('');
@@ -496,14 +514,42 @@ export function mountMomentPicker(container, opts = {}) {
   [latEl, lonEl, dateEl, timeEl].forEach(el => el.addEventListener('blur', () => validate()));
   offSel.addEventListener('blur', () => validate());
 
+  // Restore a complete saved moment in one transaction. Defaults to silent so
+  // hosts can restore main + optional birth before publishing either result.
+  function setFields(fields = {}, { notify = false } = {}) {
+    muted = true;
+    try {
+      for (const [key, el] of Object.entries({ lat: latEl, lon: lonEl, date: dateEl, time: timeEl })) {
+        if (fields[key] != null) { if (key === 'date') setDateValue(fields[key]); else el.value = fields[key]; setLegacy(key, fields[key]); }
+      }
+      if (fields.offset != null) {
+        if (fields.offset === '') { offSel.value = 'custom'; offNum.value = ''; offNum.hidden = false; setLegacy('offset', ''); }
+        else selectOffset(Number(fields.offset));
+      }
+      if (Object.hasOwn(fields, 'timeZone')) {
+        zoneMode.value = fields.timeZone ? 'iana' : 'offset'; zoneEl.value = fields.timeZone || '';
+      }
+      if (fields.disambiguation != null) foldEl.value = fields.disambiguation;
+      const useZone = zoneMode.value === 'iana';
+      $(`#${uid}-zonebox`).hidden = !useZone; $(`#${uid}-foldbox`).hidden = !useZone;
+      offSel.disabled = useZone; offNum.disabled = useZone;
+      if (!isEmpty()) syncZone();
+    } finally { muted = false; }
+    if (notify) onChange();
+  }
+  muted = false;
+
   // ---- public API ----------------------------------------------------------
   return {
     validate,
     isValid: () => validate().ok,
     fields: currentFields,
+    setFields,
+    isEmpty,
     instant: () => { if (!syncZone()) return null; return resolvedInstant; },
     setTimeKnown(known) { timeEl.disabled = !known; if (!known) { timeEl.value = '12:00'; setLegacy('time', '12:00'); } },
     commitRecent() {
+      if (isEmpty() || !validate().ok) return;
       const lat = Number(latEl.value), lon = Number(lonEl.value);
       if (Number.isNaN(lat) || Number.isNaN(lon)) return;
       const offset = offSel.value === 'custom' ? Number(offNum.value) : Number(offSel.value);
@@ -511,11 +557,7 @@ export function mountMomentPicker(container, opts = {}) {
       renderChips();
     },
     refresh() { renderChips(); },
-    setMoment({ date, time, offset } = {}) {
-      if (date != null) { dateEl.value = date; setLegacy('date', date); }
-      if (time != null) { timeEl.value = time; setLegacy('time', time); }
-      if (offset != null) selectOffset(Number(offset));
-    },
+    setMoment(fields = {}) { setFields(fields, { notify: true }); },
     el: fs,
   };
 }

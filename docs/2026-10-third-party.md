@@ -8,3 +8,9 @@
 - **USNO, Hong Kong Observatory, Astrodienst and retained Ankara timetable**: cited factual test references; no proprietary imagery, branding, copied ephemeris tables or product assets included. Each method document distinguishes freshly retrieved primary data from retained upstream transcription.
 
 The existing site's educational/noncommercial framing does not replace these component licenses. Source research into commercial astrology/sky products is workflow research only. No mandatory paid service or API was added.
+
+## October 5 Live Symbol Studio additions
+
+- **Official MCP TypeScript SDK:** server `2.3.1` and Node middleware `2.1.1`, Apache-2.0. Server/client release `2.3.1` published 2026-10-05; Node package remained `2.1.1`. Sources: https://github.com/modelcontextprotocol/typescript-sdk/releases/tag/v2.3.1 and the pinned package manifests under `packages/server` / `packages/middleware/node`. These dependencies belong only to the separate MCP process and are excluded from the Pages artifact. Transitive license files are retained by npm installation; the lockfile records exact versions/integrity.
+- **SVG renderer and live clock:** original application code reusing existing sourced squares; no SVG.js, canvas framework, PDF engine or copied proprietary images.
+- **Traditional source material:** Agrippa II.22 / III.30, existing Hebrew letter table and the modern printed navagraha source retain per-result citations. Historical letter arithmetic does not establish that a generated modern trace reproduces an attested historical seal. See the dated symbol/domain method documents.

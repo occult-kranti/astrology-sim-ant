@@ -1,0 +1,193 @@
+{
+  "method": "Tracked static extensions; initial graph follows literal static imports from inline HTML scripts, excludes dynamically loaded modules/assets/fonts; gzip level9 sum per file, not measured HTTP bytes. Studio also follows its explicit script src entry; baseline pages used inline module entry imports.",
+  "commit": "bd170eb5cd4891435fe26843d73fd767a732830b",
+  "deployable_static": {
+    "files": 410,
+    "raw_bytes": 12829338,
+    "sum_gzip9_bytes": 3628251
+  },
+  "assets_all": {
+    "files": 254,
+    "raw_bytes": 7242388,
+    "sum_gzip9_bytes": 2059769
+  },
+  "assets_js": {
+    "files": 242,
+    "raw_bytes": 6780643,
+    "sum_gzip9_bytes": 1921549
+  },
+  "index.html": {
+    "static_import_files": 10,
+    "raw_bytes": 210235,
+    "sum_gzip9_bytes": 75243,
+    "unresolved": [],
+    "largest": [
+      [
+        "assets/js/core/data/glossary.js",
+        101307
+      ],
+      [
+        "assets/js/app/shared.js",
+        34140
+      ],
+      [
+        "index.html",
+        18090
+      ],
+      [
+        "assets/js/app/art/engravings.js",
+        17675
+      ],
+      [
+        "assets/js/core/skyart.js",
+        13555
+      ],
+      [
+        "assets/js/app/art/icons.js",
+        8397
+      ],
+      [
+        "assets/js/core/time.js",
+        6552
+      ]
+    ]
+  },
+  "pages/workbench.html": {
+    "static_import_files": 57,
+    "raw_bytes": 1282145,
+    "sum_gzip9_bytes": 412970,
+    "unresolved": [],
+    "largest": [
+      [
+        "assets/js/lib/astronomy.js",
+        412025
+      ],
+      [
+        "assets/js/core/registry.js",
+        126711
+      ],
+      [
+        "assets/js/core/data/glossary.js",
+        101307
+      ],
+      [
+        "assets/js/app/workbench.js",
+        53524
+      ],
+      [
+        "assets/js/core/vedic.js",
+        42168
+      ],
+      [
+        "assets/js/app/shared.js",
+        34140
+      ],
+      [
+        "assets/js/app/vedic-panel.js",
+        32470
+      ]
+    ]
+  },
+  "pages/picatrix/kameas.html": {
+    "static_import_files": 34,
+    "raw_bytes": 861981,
+    "sum_gzip9_bytes": 270169,
+    "unresolved": [],
+    "largest": [
+      [
+        "assets/js/lib/astronomy.js",
+        412025
+      ],
+      [
+        "assets/js/core/data/glossary.js",
+        101307
+      ],
+      [
+        "assets/js/core/data/kabbalah-data.js",
+        37852
+      ],
+      [
+        "assets/js/app/shared.js",
+        34140
+      ],
+      [
+        "assets/js/core/election.js",
+        27245
+      ],
+      [
+        "assets/js/app/state.js",
+        19651
+      ],
+      [
+        "assets/js/core/data/kameas.js",
+        17769
+      ]
+    ]
+  },
+  "pages/studio.html": {
+    "static_import_files": 53,
+    "raw_bytes": 1135141,
+    "sum_gzip9_bytes": 366120,
+    "unresolved": [],
+    "largest": [
+      [
+        "assets/js/lib/astronomy.js",
+        412025
+      ],
+      [
+        "assets/js/core/data/glossary.js",
+        101307
+      ],
+      [
+        "assets/js/core/vedic.js",
+        42168
+      ],
+      [
+        "assets/js/core/data/kabbalah-data.js",
+        37852
+      ],
+      [
+        "assets/js/app/shared.js",
+        34140
+      ],
+      [
+        "assets/js/app/vedic-panel.js",
+        32470
+      ],
+      [
+        "assets/js/app/studio.js",
+        29531
+      ]
+    ]
+  },
+  "largest_assets": [
+    [
+      "assets/js/core/data/opgraph.js",
+      785578
+    ],
+    [
+      "assets/js/core/data/confluence.js",
+      422115
+    ],
+    [
+      "assets/js/lib/astronomy.js",
+      412025
+    ],
+    [
+      "assets/js/core/data/buddhist/dhammapada.js",
+      374338
+    ],
+    [
+      "assets/js/core/data/buddhist/mn118.js",
+      362978
+    ],
+    [
+      "assets/search-index.json",
+      255543
+    ],
+    [
+      "assets/js/core/llm-context.js",
+      212718
+    ]
+  ]
+}

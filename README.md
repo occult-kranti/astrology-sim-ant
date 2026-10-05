@@ -19,7 +19,7 @@ the browser.
 |------|---------------|
 | **Home** | `index.html` — overview, "find your way", the three books, the tools, the science note |
 | **The Master Tool (the Workbench)** | `pages/workbench.html` — **the single master tool** (the old "Unified Master" now redirects here): one moment runs the **whole engine at once** (the `fullReading` spine) **plus the Vedic chart side by side** (toggle at the top), every panel cross-linked via the capability registry, with **JSON / Markdown / SVG / PNG export** and **on-device auto-save** (download the report to keep it). Its **AI assistant** (powered by **Claude**, your own key) sends the **whole reading as JSON** and offers two presets — **🔎 Interpret & advise** (a plain cross-system synthesis) and **📜 Codex** (evocative) — plus an agentic **"plan a working"** box and **in-browser engine tools** (Western, Vedic, and the Picatrix prayers); every reply has a **⤓ save**. See `WORKBENCH.md` and `docs/LOCAL-LLM.html`. |
-| **Jagannath Hora — Vedic (sidereal)** | `pages/vedic/index.html` — a **second, independent system**: a Vedic (Jyotiṣa) study implementation inspired by JHora, with documented approximations — sidereal zodiac (Lahiri ayanāṁśa), whole-sign houses, the 27 nakṣatras, the **Vimśottarī daśā**, the **Pañcāṅga**, the divisional charts (**vargas** D1–D60), the **Aṣṭakavarga** (SAV), the **full six-fold Ṣaḍbala** (with Iṣṭa/Kaṣṭa), and the traditional **daily & birth practice** (mantra · japa · yoga · yantra · gem — *described, never prescribed*; the graha→āsana map flagged as a modern syncretism). A **🕉 Vedic view** toggle on every calculator shows it **side by side** with the Western chart. Engine in `core/vedic.js` + `core/data/vedic-data.js` + `core/data/vedic-remedies.js`, cited to Parāśara's BPHS and P.V.R. Narasimha Rao. |
+| **Jagannath Hora — Vedic (sidereal)** | `pages/vedic/index.html` — a **second, independent system**: a Vedic (Jyotiṣa) study implementation inspired by JHora, with documented approximations — sidereal zodiac (Lahiri ayanāṁśa), whole-sign houses, the 27 nakṣatras, the **Vimśottarī daśā**, the **Pañcāṅga**, the divisional charts (**vargas** D1–D60), the **Aṣṭakavarga** (SAV), an **approximate six-component Ṣaḍbala study model** (with Iṣṭa/Kaṣṭa), and the traditional **daily & birth practice** (mantra · japa · yoga · yantra · gem — *described, never prescribed*; the graha→āsana map flagged as a modern syncretism). A **🕉 Vedic view** toggle on every calculator shows it **side by side** with the Western chart. Engine in `core/vedic.js` + `core/data/vedic-data.js` + `core/data/vedic-remedies.js`, cited to Parāśara's BPHS and P.V.R. Narasimha Rao. |
 | **Workflow & Chapter Map** | `pages/workflow.html` — every chapter of each book → concept → calculation → worked example → tool; the horary & nativity step-flows; the Picatrix election bridge |
 | **Tools hub** | `pages/tools.html` — every calculator in one place, with a "what each computes" table |
 | **Book I — Fundamentals** | hub, signs/planets/houses reference, **Master Tool** (now with a full **Cautions & chart-health** panel), **Essential Dignity Calculator**, **Planetary Hours**, **Degree Tables** |
@@ -56,7 +56,7 @@ Validated with `node` + headless Chromium:
 - the twelve Regiomontanus cusps come out strictly in zodiacal order, and all house
   systems agree on the Asc/MC;
 - every term-row of the dignity table sums to **30°**;
-- all 13 pages load with **zero console errors** and all navigation links resolve.
+- the release browser harness sweeps every current HTML page and exercises the primary calculators; current results are recorded in the dated verification documents.
 
 ## Run it locally
 
@@ -110,7 +110,7 @@ Pushing to `main` triggers `.github/workflows/pages.yml`. Node validation and re
 
 The existing [nativity calculator](pages/book3/nativity.html) now supports explicit unknown birth time, IANA daylight-saving ambiguity handling, house-system warnings and configurable wheel aspect orbs. Placidus intermediate cusp formulas, horizon-based sect, date overflow and years 0–99 are corrected. The [calendar tools](pages/calendars.html) provide named civil calendars, Gregorian/Julian/JD conversion, Gregorian/Julian Easter, Qibla and local Adhan prayer calculations with method choices.
 
-Use [Skylens](https://occult-kranti.github.io/astro-sim-ant/) for the companion camera sky experience; it is a separate repository. See the [living roadmap](docs/2026-10-roadmap.md), [calculation methods](docs/2026-10-calculation-methods.md), [calendar methods](docs/2026-10-calendar-methods.md), [research matrix](docs/2026-10-research.md) and [verification/handoff](docs/2026-10-verification.md). Research breadth does not imply every cultural tradition has a validated calculator.
+Use [Skylens](https://occult-kranti.github.io/skylens/) for the companion camera sky experience; it is a separate repository. See the [living roadmap](docs/2026-10-roadmap.md), [calculation methods](docs/2026-10-calculation-methods.md), [calendar methods](docs/2026-10-calendar-methods.md), [research matrix](docs/2026-10-research.md) and [verification/handoff](docs/2026-10-verification.md). Research breadth does not imply every cultural tradition has a validated calculator.
 
 Run `node scripts/engine-test.mjs` and `node scripts/audit.mjs`. Regenerate the local search index with `node scripts/build-search-index.mjs` after page changes. Browser checks and deployment status must be verified separately from a successful local Node run.
 
@@ -119,3 +119,20 @@ Run `node scripts/engine-test.mjs` and `node scripts/audit.mjs`. Regenerate the 
 Educational, non-commercial project framing. Third-party components retain their own licenses: astronomy-engine by Don Cross (MIT), and the new local Adhan prayer library (MIT; retained copyright and source provenance in `assets/vendor/adhan/`). See `docs/2026-10-third-party.md`.
 Text and tables after William Lilly, _Christian Astrology_ (1647), cross-checked
 against modern editions and traditional-astrology scholarship (see About & Sources).
+
+## Live Symbol Studio and MCP
+
+**Pages connection page:** https://occult-kranti.github.io/astrology-sim-ant/pages/mcp.html — setup, endpoint copying and the searchable tool catalogue. This static page links to the separately hosted authenticated MCP process.
+
+[Live Symbol Studio](pages/studio.html) connects the existing chart, planetary-square and name-trace engines with explicit time/location/method controls, live or frozen calculation, pause/resume, text alternatives and SVG/PNG/JSON exports. [Tools](pages/tools.html) remains the directory for the broader study collection. See the [panel decisions and roadmap](docs/2026-10-05-live-studio-roadmap.md), [product brief](PRODUCT.md), [design contract](DESIGN.md) and [MCP setup](mcp/README.md).
+
+The MCP backend is a separate Node/fetch-runtime process with 11 allowlisted tools. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
+
+### Human actions and pending external checks
+
+- [ ] If using desktop MCP, install Node 22+, clone the full repository, run `npm ci` in `mcp/` and add the documented stdio command to your MCP client. No server account is needed.
+- [ ] To use remote MCP, connect the private Workbench plugin through **Plugins → Personal → Created by you** and complete OAuth. Published backend: [https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site](https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site); endpoint `https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site/mcp`. Then run a read-only `workbench_catalogue` call to verify the actual client connection. No new paid account is needed.
+- [ ] Check the Studio on an actual phone and with your screen reader: input controls, live/pause behavior, chart/text parity, orientation/reflow and SVG/PNG downloads. Browser automation is separate evidence.
+- [ ] Have a knowledgeable tradition-specific reviewer verify any new historical plate or regional method before expanding its validation claims. The catalogue intentionally distinguishes sourced arithmetic, editorial reconstructions and unimplemented methods.
+
+GitHub Pages Actions are already enabled; no repeat account setup is required for the frontend.

@@ -13,9 +13,35 @@ permissions:
   contents: read
 
 jobs:
+  mcp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned MCP dependencies
+        working-directory: mcp
+        run: |
+          if test -f package-lock.json; then npm ci --ignore-scripts; else npm install --ignore-scripts; fi
+      - name: Verify real MCP transports and shared tools
+        run: |
+          node scripts/tests/mcp-toolkit.mjs
+          npm test --prefix mcp
+      - name: Keep MCP lock and verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcp-evidence
+          path: mcp/package-lock.json
+          retention-days: 14
+
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout candidate
         uses: actions/checkout@v4
@@ -29,6 +55,7 @@ jobs:
         run: |
           node scripts/engine-test.mjs
           node scripts/audit.mjs
+          node scripts/round-ledger.mjs --check
       - name: Install browser test tooling
         # A test-only pinned dependency; never copied into the static artifact.
         run: npm install --no-save --package-lock=false playwright@1.58.2
@@ -54,7 +81,7 @@ jobs:
           git archive HEAD | tar -x -C _site
           node --input-type=module <<'NODE'
           import { writeFileSync, rmSync } from 'node:fs';
-          for (const path of ['.github', 'tests', 'scripts', 'tools', 'test-results', 'node_modules']) {
+          for (const path of ['.github', 'tests', 'scripts', 'tools', 'test-results', 'node_modules', 'mcp']) {
             rmSync('_site/' + path, { recursive: true, force: true });
           }
           writeFileSync('_site/.nojekyll', '');
@@ -71,7 +98,7 @@ jobs:
           path: _site
 
   deploy:
-    needs: verify
+    needs: [verify, mcp]
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -112,6 +139,13 @@ jobs:
               if (response.ok && release.commit === process.env.RELEASE_SHA) {
                 const home = await fetch(base, { signal: AbortSignal.timeout(10000) });
                 if (!home.ok) throw new Error('Published homepage is unavailable.');
+                const studio = await fetch(new URL('pages/studio.html', base), { signal: AbortSignal.timeout(10000) });
+                if (!studio.ok || !(await studio.text()).includes('Live Symbol Studio')) throw new Error('Published Studio is unavailable.');
+                const setup = await fetch(new URL('pages/mcp.html', base), { signal: AbortSignal.timeout(10000) });
+                if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
+                const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
+                const catalogue = await catalogueResponse.json();
+                if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || catalogue.tools?.length !== 11) throw new Error('Published MCP catalogue is missing or invalid.');
                 verified = true;
                 console.log('Verified Pages release ' + release.commit + ' at ' + base.href);
                 break;

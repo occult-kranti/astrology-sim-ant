@@ -1,0 +1,502 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "mcp/toolkit.mjs",
+  "transport": "streamable-http",
+  "endpoint": "https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site/mcp",
+  "authentication": "Private Sites OAuth; use the provisioned Astrologer’s Workbench MCP plugin.",
+  "staticPageIsMcpServer": false,
+  "tools": [
+    {
+      "name": "workbench_catalogue",
+      "description": "Search existing study capabilities and direct tool links; catalogue presence does not mean an MCP calculation is implemented.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 160
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_chart",
+      "description": "Compute explicit-time Western chart, planetary hour and optional Vedic chart through the same context as the Studio. Unknown birth time requires date-only Nativity, not guessed houses.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          },
+          "disambiguation": {
+            "type": "string",
+            "enum": [
+              "reject",
+              "earlier",
+              "later"
+            ]
+          },
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "maxLength": 40,
+                "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "timeZone": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "utcOffset": {
+                "type": "number",
+                "minimum": -24,
+                "maximum": 24
+              },
+              "disambiguation": {
+                "type": "string",
+                "enum": [
+                  "reject",
+                  "earlier",
+                  "later"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon"
+            ],
+            "additionalProperties": false
+          },
+          "referenceDateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "includeVedic": {
+            "type": "boolean"
+          },
+          "sectAwareFortune": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_symbol",
+      "description": "Generate a validated planetary kamea/name trace or sourced navagraha square with standalone SVG, accessible text, exact inputs and method provenance.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "kamea",
+              "yantra"
+            ]
+          },
+          "planet": {
+            "type": "string",
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mercury",
+              "Venus",
+              "Mars",
+              "Jupiter",
+              "Saturn",
+              "Rahu",
+              "Ketu"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "latin",
+              "aiq",
+              "hebrew-standard",
+              "hebrew-gadol",
+              "navagraha"
+            ]
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 240,
+            "maximum": 1200
+          },
+          "traceStep": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 256
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_gematria",
+      "description": "Hebrew standard or final-form mispar gadol letter arithmetic. Unsupported alphabets are rejected; no inferred spiritual outcome.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "gadol"
+            ]
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_katapayadi",
+      "description": "Decode Sanskrit consonant numerals with the existing NFC-normalized IAST table and right-to-left digit convention; output states ignored characters.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calendar",
+      "description": "Convert an explicit instant to a selected civil calendar. Midnight boundary is disclosed; not religious observance determination. ICU data varies by runtime.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "calendar": {
+            "type": "string",
+            "enum": [
+              "hebrew",
+              "islamic-civil",
+              "islamic-umalqura",
+              "chinese",
+              "buddhist",
+              "indian"
+            ]
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          }
+        },
+        "required": [
+          "dateISO",
+          "calendar"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_julian_day",
+      "description": "Convert validated Gregorian or Julian civil date to astronomical Julian Day and both civil calendars (years 1–9999).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "calendar": {
+            "type": "string",
+            "enum": [
+              "gregorian",
+              "julian"
+            ]
+          },
+          "utcHours": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 23.999999
+          }
+        },
+        "required": [
+          "date"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_easter",
+      "description": "Ecclesiastical Easter using explicitly selected Gregorian or Julian computus; not an observed lunar date.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "integer",
+            "minimum": 1583,
+            "maximum": 4099
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "gregorian",
+              "julian"
+            ]
+          }
+        },
+        "required": [
+          "year"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_qibla",
+      "description": "Initial great-circle bearing toward the Kaaba, degrees clockwise from true north; singular positions reported by the engine.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          }
+        },
+        "required": [
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_prayer_times",
+      "description": "Adhan deterministic prayer times with explicit civil date, IANA zone, method, Asr and high-latitude convention. Polar unresolved results remain unavailable.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "maxLength": 10
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "MuslimWorldLeague",
+              "NorthAmerica",
+              "Egyptian",
+              "Karachi",
+              "UmmAlQura",
+              "MoonsightingCommittee",
+              "Turkey"
+            ]
+          },
+          "asr": {
+            "type": "string",
+            "enum": [
+              "Shafi",
+              "Hanafi"
+            ]
+          },
+          "highLatitude": {
+            "type": "string",
+            "enum": [
+              "MiddleOfTheNight",
+              "SeventhOfTheNight",
+              "TwilightAngle"
+            ]
+          },
+          "ishaAdjustment": {
+            "type": "integer",
+            "minimum": -120,
+            "maximum": 120
+          }
+        },
+        "required": [
+          "date",
+          "latitude",
+          "longitude",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_election",
+      "description": "Bounded historical election scoring, not a prediction or advice. Up to 168 hours and 256 samples; returns ranked windows and source conventions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          },
+          "disambiguation": {
+            "type": "string",
+            "enum": [
+              "reject",
+              "earlier",
+              "later"
+            ]
+          },
+          "operationKey": {
+            "type": "string",
+            "enum": [
+              "love",
+              "wealth",
+              "honour",
+              "knowledge",
+              "journey",
+              "victory",
+              "healing",
+              "protection",
+              "binding",
+              "banishing",
+              "endings"
+            ]
+          },
+          "hoursAhead": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 168
+          },
+          "stepMinutes": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 1440
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "operationKey"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

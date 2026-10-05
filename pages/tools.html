@@ -7,13 +7,20 @@
 <meta name="description" content="Every interactive calculator in one place: the Book I Master Tool, the Horary Chart Calculator, the Essential Dignity Calculator, Planetary Hours, the Nativity Calculator and the degree-table lookups — each built on a verified astronomical engine.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
+<style>
+.tool-filter-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:end}.tool-filter-row .field{flex:1 1 190px;min-width:0}.tool-filter-row select,.tool-filter-row button{min-height:44px;font-size:1rem;max-width:100%}.tool-card[hidden],.grid[data-filter-empty][hidden],h2[data-filter-heading][hidden]{display:none!important}
+</style>
 </head>
 <body>
 <main class="wrap">
   <p class="crumb"><a href="../index.html">Home</a> › <a href="about/index.html">Reference</a> › Tools</p>
   <h1>Tools &amp; Calculators</h1>
   <p class="lede">Working calculators, gathered in one place: astronomical positions, traditional chart methods and cultural calendars. Each tool names its method and assumptions.
-    Start with the <b>Master Tool</b> if you want everything about a moment at once.</p>
+    Start with <a href="studio.html">Live Symbol Studio</a> for one focused figure, or the <b>Workbench</b> for a full reading.</p>
+
+  <section class="callout" aria-labelledby="studio-tool-title"><h2 id="studio-tool-title">A moment, a method, a figure</h2><p>Western and Vedic charts, seven planetary squares with Latin or Hebrew name traces, nine navagraha squares, gematria and Kaṭapayādi. Follow live time, freeze the result, inspect its calculation and export a reproducible snapshot.</p><a class="btn" href="studio.html">Open Live Symbol Studio</a></section>
+
+  <section class="callout" aria-labelledby="tool-filter-title"><h2 id="tool-filter-title">Find a tool</h2><div class="tool-filter-row"><div class="field"><label for="toolsTask">Your task</label><select id="toolsTask"><option value="all">All tasks</option><option value="chart">Cast or compare a chart</option><option value="timing">Explore timing &amp; cycles</option><option value="symbol">Study symbols &amp; arithmetic</option><option value="study">Read methods &amp; traditions</option></select></div><div class="field"><label for="toolsTradition">Tradition</label><select id="toolsTradition"><option value="all">All traditions</option><option value="western">Western astrology &amp; Hermetic</option><option value="vedic">Jyotiṣa &amp; Indian</option><option value="hebrew">Hebrew letter systems</option><option value="other">Other / comparative study</option></select></div><button id="toolsReset" type="button" class="btn-secondary">Show all tools</button></div><p id="toolsFilterStatus" class="small muted" role="status">All tool cards shown. Calendar links, source references and comparison tables remain available below.</p></section>
 
   <div class="callout science"><span class="label">Honest note</span>
     The mathematics is real and reproducible. The <em>interpretations</em> are Lilly's, presented for historical
@@ -573,6 +580,42 @@
 <script type="module">
   import { mountChrome } from '../assets/js/app/shared.js';
   mountChrome('tools');
+  const cards = [...document.querySelectorAll('.tool-card')];
+  const paths = {
+    chart: new Set(['workbench.html','trajectory.html','autopilot.html','vedic/index.html','book1/master.html','book2/horary.html','book3/nativity.html','book3/master.html','handcalc.html','transits.html','synastry.html','prasna.html','tajika.html','tithi-pravesha.html','kuta.html']),
+    timing: new Set(['book1/planetary-hours.html','timelords.html','transits.html','picatrix/election.html','now.html','thelemic-times.html','muhurta.html','moments.html','cycles.html','chronology/index.html','tithi-pravesha.html']),
+    symbol: new Set(['picatrix/kameas.html','picatrix/talisman.html','kabbalah.html','rasa.html','geomancy.html','tarot.html','iching.html','runes.html']),
+    vedic: new Set(['prasna.html','muhurta.html','tajika.html','tithi-pravesha.html','kuta.html','rasa.html','moments.html']),
+    other: new Set(['autopilot.html','geomancy.html','tarot.html','iching.html','runes.html','chronology/index.html','cycles.html'])
+  };
+  function categories(card) {
+    const path = card.getAttribute('href');
+    const tasks = ['chart','timing','symbol'].filter(task => paths[task].has(path));
+    if (!tasks.length) tasks.push('study');
+    const traditions = path === 'workbench.html' || path === 'autopilot.html' ? ['western','vedic','other'] : path === 'kabbalah.html' ? ['hebrew','western'] : path.startsWith('vedic/') || path.startsWith('yoga/') || path.startsWith('abhichara/') || paths.vedic.has(path) ? ['vedic'] : path.startsWith('jung/') || paths.other.has(path) ? ['other'] : ['western'];
+    return {tasks,traditions};
+  }
+  const groups = [...new Set(cards.map(card => card.parentElement))];
+  function filter() {
+    const task = document.getElementById('toolsTask').value, tradition = document.getElementById('toolsTradition').value;
+    let shown = 0;
+    cards.forEach(card => { const c = categories(card); card.hidden = !(task === 'all' || c.tasks.includes(task)) || !(tradition === 'all' || c.traditions.includes(tradition)); if (!card.hidden) shown++; });
+    groups.forEach(group => {
+      const empty = ![...group.querySelectorAll('.tool-card')].some(card => !card.hidden);
+      group.dataset.filterEmpty = String(empty); group.hidden = empty;
+      const heading = group.previousElementSibling;
+      if (heading?.tagName === 'H2') { heading.dataset.filterHeading = ''; heading.hidden = empty; }
+    });
+    document.getElementById('toolsFilterStatus').textContent = `${shown} of ${cards.length} tool cards shown.${shown ? '' : ' No tool cards match both filters. Try Show all tools.'} Calendar links, source references and comparison tables remain available.`;
+  }
+  function reset() { document.getElementById('toolsTask').value = 'all'; document.getElementById('toolsTradition').value = 'all'; filter(); }
+  document.getElementById('toolsTask').addEventListener('change', filter);
+  document.getElementById('toolsTradition').addEventListener('change', filter);
+  document.getElementById('toolsReset').addEventListener('click', reset);
+  // Existing deep links and chapter jumps always reveal their original sections.
+  document.getElementById('tool-jump').addEventListener('click', reset);
+  window.addEventListener('hashchange', reset);
+  filter();
 </script>
 </body>
 </html>

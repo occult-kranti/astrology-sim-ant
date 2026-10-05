@@ -23,7 +23,7 @@
 import { norm360, signOf, castChart } from './astro.js';
 import { essentialDignity, accidentalDignity } from './dignities.js';
 import { chartCautions } from './cautions.js';
-import { planetaryHour, dayRuler } from './planetary-hours.js';
+import { planetaryHour } from './planetary-hours.js';
 import { DOMICILE } from './data/dignities-data.js';
 import { mansionOf } from './data/lunar-mansions.js';
 import { faceOf } from './data/decan-faces.js';
@@ -73,6 +73,36 @@ export const OPERATIONS = [
   { key: 'endings',   label: 'Endings & release',        ruler: 'Saturn',  polarity: 'decrease', book: 'Picatrix III (Saturn)',  keywords: ['separation', 'wasting', 'destruction'], stars: ['Deneb Algedi'] },
 ];
 export const operationByKey = k => OPERATIONS.find(o => o.key === k);
+
+export const ELECTION_SCORING_NOTE = 'The numeric weights, colour thresholds and named-aim mappings are application editorial choices combining cited historical rules, not a canonical Picatrix or Lilly scoring formula or a probability of outcomes.';
+
+// Bounds apply before any ephemeris work, including headless/tool callers.
+export const ELECTION_SCAN_LIMITS = Object.freeze({
+  maxHoursAhead: 168, minStepMinutes: 1, maxStepMinutes: 1440, maxSamples: 2048,
+});
+function scanRange(fromDate, lat, lon, hoursAhead, stepMinutes) {
+  if (!(fromDate instanceof Date) || !Number.isFinite(fromDate.getTime())) throw new RangeError('Scan start must be a valid Date.');
+  if (!Number.isFinite(lat) || Math.abs(lat) > 90 || !Number.isFinite(lon) || Math.abs(lon) > 180) throw new RangeError('Scan latitude/longitude must be finite geographic coordinates.');
+  const limit = ELECTION_SCAN_LIMITS;
+  if (!Number.isFinite(hoursAhead) || hoursAhead < 0 || hoursAhead > limit.maxHoursAhead) throw new RangeError(`Scan hoursAhead must be 0–${limit.maxHoursAhead}.`);
+  if (!Number.isFinite(stepMinutes) || stepMinutes < limit.minStepMinutes || stepMinutes > limit.maxStepMinutes) throw new RangeError(`Scan stepMinutes must be ${limit.minStepMinutes}–${limit.maxStepMinutes}.`);
+  const steps = Math.floor(hoursAhead * 60 / stepMinutes);
+  if (steps + 1 > limit.maxSamples) throw new RangeError(`Scan exceeds ${limit.maxSamples} samples; shorten the interval or increase the step.`);
+  if (!Number.isFinite(new Date(fromDate.getTime() + hoursAhead * 3600000).getTime())) throw new RangeError('Scan end is outside the supported Date range.');
+  return steps;
+}
+function clockOptions(chart = {}, opts = {}) {
+  const timeZone = opts.timeZone ?? chart.timeZone ?? null;
+  const utcOffset = opts.utcOffset ?? chart.utcOffset ?? null;
+  if (timeZone != null && (typeof timeZone !== 'string' || !timeZone.trim())) throw new RangeError('Choose a valid IANA time zone.');
+  if (timeZone != null) new Intl.DateTimeFormat('en', { timeZone });
+  if (utcOffset != null && (!Number.isFinite(utcOffset) || Math.abs(utcOffset) > 24)) throw new RangeError('UTC offset must be finite hours from −24 to +24.');
+  return { timeZone, utcOffset };
+}
+function chartHour(chart, opts) {
+  return opts.planetaryHour !== undefined ? opts.planetaryHour :
+    planetaryHour(chart.date, chart.latitude, chart.longitude, clockOptions(chart, opts));
+}
 
 // ---------------------------------------------------------------------------
 //  Via combusta — configurable bounds with the Spica benefic exception.
@@ -152,11 +182,12 @@ export function electionScore(chart, operationKey, opts = {}) {
   const add = (delta, severity, text, cite) => { score += delta; reasons.push({ severity, text, cite, delta }); };
 
   // --- planetary hour & day (operate in the ruling planet's hour) ----------
-  const ph = opts.planetaryHour || planetaryHour(chart.date, chart.latitude, chart.longitude);
-  const dRuler = dayRuler(chart.date);
-  const hourMatch = ph && ph.ruler === op.ruler;
+  const ph = chartHour(chart, opts);
+  const dRuler = ph?.dayRuler ?? null;
+  const hourMatch = !!ph && ph.ruler === op.ruler;
   const dayMatch = dRuler === op.ruler;
-  if (hourMatch && dayMatch) add(+3, 'good', `It is both the day AND hour of ${op.ruler} — the strongest timing for this work.`, CITE.hour);
+  if (!ph) add(0, 'caution', 'Planetary day and hour are unavailable: no complete sunrise-bounded interval is available for these inputs. No weekday timing score is assigned.', CITE.hour);
+  else if (hourMatch && dayMatch) add(+3, 'good', `It is both the day AND hour of ${op.ruler} — the strongest timing for this work.`, CITE.hour);
   else if (hourMatch) add(+2, 'good', `It is the hour of ${op.ruler}, the ruler of this work.`, CITE.hour);
   else if (dayMatch) add(+1, 'note', `It is the day of ${op.ruler} but not its hour — wait for ${op.ruler}'s hour for best effect.`, CITE.hour);
   else add(-1, 'caution', `It is neither the day nor hour of ${op.ruler} — timing is weak.${ph ? ` (Now: hour of ${ph.ruler}, day of ${dRuler}.)` : ''}`, CITE.hour);
@@ -274,9 +305,10 @@ export function electionScore(chart, operationKey, opts = {}) {
   reasons.sort((a, b) => RANK[b.severity] - RANK[a.severity]);
 
   return {
-    operation: op, verdict, label, score, gating,
+    operation: op, verdict, label, score, scoreMethod: ELECTION_SCORING_NOTE, gating,
     ruler: { planet: op.ruler, essential: ed.total, peregrine: ed.peregrine },
-    hour: ph ? { ruler: ph.ruler, dayRuler: dRuler, hourMatch, dayMatch } : null,
+    hour: ph ? { ruler: ph.ruler, dayRuler: dRuler, hourMatch, dayMatch, weekday: ph.weekday,
+      weekdayMethod: ph.weekdayMethod, sunrise: ph.sunrise } : null,
     moon: {
       lon: moon.lon, sign: signOf(moon.lon).name, speed: spd, phase: phase.label,
       mansion: { num: mansion.num, name: mansion.name, use: mansion.use },
@@ -294,7 +326,7 @@ export function electionScore(chart, operationKey, opts = {}) {
 //  rankNow — score EVERY operation for one moment, best first (the dashboard).
 // ---------------------------------------------------------------------------
 export function rankNow(chart, opts = {}) {
-  const ph = planetaryHour(chart.date, chart.latitude, chart.longitude);
+  const ph = chartHour(chart, opts);
   const VRANK = { green: 2, amber: 1, red: 0 };
   return OPERATIONS
     .map(o => electionScore(chart, o.key, { ...opts, planetaryHour: ph }))
@@ -310,17 +342,22 @@ export function rankNow(chart, opts = {}) {
 export function findNextElection(operationKey, fromDate, lat, lon, opts = {}) {
   const hoursAhead = opts.hoursAhead ?? 72;
   const stepMin = opts.stepMinutes ?? 30;
+  const steps = scanRange(fromDate, lat, lon, hoursAhead, stepMin);
+  const timing = clockOptions({}, opts);
+  // Retain the legacy empty-result contract for unknown operations, without
+  // repeatedly casting charts that cannot be scored. Tool wrappers use enums.
+  if (!operationByKey(operationKey)) return [];
   const system = opts.system || 'regiomontanus';
   const minVerdict = opts.minVerdict || 'amber'; // 'amber' includes amber+green
   const ok = v => (minVerdict === 'green' ? v === 'green' : v !== 'red');
 
   const windows = [];
   let cur = null;
-  const steps = Math.ceil((hoursAhead * 60) / stepMin);
   for (let i = 0; i <= steps; i++) {
     const t = new Date(fromDate.getTime() + i * stepMin * 60000);
     let res;
-    try { res = electionScore(castChart(t, lat, lon, system), operationKey, opts); }
+    // A cached hour belongs to one instant; never reuse it throughout a scan.
+    try { res = electionScore(castChart(t, lat, lon, system), operationKey, { ...opts, ...timing, planetaryHour: undefined }); }
     catch { res = null; }
     if (res && ok(res.verdict)) {
       if (!cur) cur = { start: t, end: t, best: res.score, bestVerdict: res.verdict, peak: res };
@@ -344,24 +381,25 @@ export function findNextElection(operationKey, fromDate, lat, lon, opts = {}) {
 export function nextAuspiciousTime(fromDate, lat, lon, opts = {}) {
   const hoursAhead = opts.hoursAhead ?? 48;
   const stepMin = opts.stepMinutes ?? 20;
+  const steps = scanRange(fromDate, lat, lon, hoursAhead, stepMin);
+  const timing = clockOptions({}, opts);
   const system = opts.system || 'regiomontanus';
   const RANK = { red: 0, amber: 1, green: 2 };
   const want = RANK[opts.target] ?? RANK.amber;
   const baseline = (() => {
     try {
       const c = castChart(fromDate, lat, lon, system);
-      const ph = planetaryHour(fromDate, lat, lon);
+      const ph = planetaryHour(fromDate, lat, lon, timing);
       return chartCautions(c, { hourRuler: ph && ph.ruler });
     } catch { return null; }
   })();
   const base = baseline ? RANK[baseline.verdict] : -1;
-  const steps = Math.ceil((hoursAhead * 60) / stepMin);
   for (let i = 1; i <= steps; i++) {
     const t = new Date(fromDate.getTime() + i * stepMin * 60000);
     let cau;
     try {
       const c = castChart(t, lat, lon, system);
-      const ph = planetaryHour(t, lat, lon);
+      const ph = planetaryHour(t, lat, lon, timing);
       cau = chartCautions(c, { hourRuler: ph && ph.ruler });
     } catch { continue; }
     // the next moment that both meets the target AND improves on right now

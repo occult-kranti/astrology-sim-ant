@@ -19,9 +19,37 @@
 //  demonstrated efficacy, recorded for study — described, never prescribed.
 // ============================================================================
 import { KAMEAS, kameaByPlanet } from './data/kameas.js';
+import { HEBREW_LETTERS } from './data/kabbalah-data.js';
+
+export const SYMBOL_LIMITS = Object.freeze({ textCodePoints: 256, traceSteps: 256, maxSquareOrder: 9 });
+export class SymbolInputError extends Error {
+  constructor(code, message, details = {}) { super(message); this.name = 'SymbolInputError'; this.code = code; this.details = details; }
+}
+const hebrewCharacters = new Set(HEBREW_LETTERS.flatMap(l => [l.char, l.finalChar].filter(Boolean)));
+// No transliteration is guessed. Punctuation/spacing and Hebrew vowel marks
+// are explicitly reported; foreign letters and digits are rejected.
+export function normalizeSigilText(text, alphabet = 'latin') {
+  if (typeof text !== 'string') throw new SymbolInputError('text-type', 'Enter text as a string.');
+  if (!['latin', 'hebrew'].includes(alphabet)) throw new SymbolInputError('alphabet', 'Choose Latin or Hebrew.');
+  if (Array.from(text).length > SYMBOL_LIMITS.textCodePoints) throw new SymbolInputError('text-limit', 'Use at most 256 characters.');
+  const nfc = text.normalize('NFC'), changes = [], unsupported = [], letters = [];
+  Array.from(nfc).forEach((character, index) => {
+    const accepted = alphabet === 'latin' ? /^[A-Za-z]$/.test(character) : hebrewCharacters.has(character);
+    if (accepted) {
+      const value = alphabet === 'latin' ? character.toUpperCase() : character;
+      letters.push(value); if (value !== character) changes.push({ index, character, action: 'uppercase', value });
+    } else if (/^[\s\p{P}]$/u.test(character) || (alphabet === 'hebrew' && /^[\u0591-\u05bd\u05bf\u05c1-\u05c2\u05c4-\u05c5\u05c7]$/.test(character))) {
+      changes.push({ index, character, action: 'ignored separator or vowel mark', value: '' });
+    } else unsupported.push({ index, character });
+  });
+  const normalization = { original: text, nfc, alphabet, normalized: letters.join(''), changes, unsupported };
+  if (unsupported.length) throw new SymbolInputError('unsupported-characters', `Use ${alphabet === 'latin' ? 'Latin A–Z' : 'Hebrew letters'} for this method. Unsupported: ${[...new Set(unsupported.map(v => v.character))].join(' ')}`, normalization);
+  return normalization;
+}
 
 // --- the provable mathematics ------------------------------------------------
 export function validateKamea(rows) {
+  if (!Array.isArray(rows) || !rows.length || rows.length > SYMBOL_LIMITS.maxSquareOrder || !rows.every(Array.isArray)) return { ok: false, errors: ['expected a nonempty square of at most order 9'] };
   const n = rows.length;
   const errors = [];
   if (!rows.every(r => r.length === n)) return { ok: false, errors: ['not square'] };
@@ -54,7 +82,8 @@ export const SIGIL_METHODS = {
   aiq: { label: 'Latin letters on the 1–9 / 10–90 / 100–800 ladder (aiq-bekar style)', note: 'An analogue of the Hebrew aiq-bekar “nine chambers”; still a Latin adaptation, flagged as such.' },
 };
 export function letterValues(text, method = 'latin') {
-  const letters = String(text).toUpperCase().replace(/[^A-Z]/g, '').split('');
+  if (!Object.hasOwn(SIGIL_METHODS, method)) throw new SymbolInputError('method', 'Choose a supported Latin letter-value method.');
+  const letters = Array.from(normalizeSigilText(text).normalized);
   if (method === 'aiq') {
     return letters.map(ch => {
       const i = ch.charCodeAt(0) - 65;                     // 0..25
@@ -69,6 +98,7 @@ export function letterValues(text, method = 'latin') {
 // collapse powers of ten first (300 → 30 → 3), then fall back to summing the
 // digits (a modern convenience, flagged in the method note).
 export function reduceToCell(value, nCells) {
+  if (!Number.isSafeInteger(value) || value < 1 || !Number.isSafeInteger(nCells) || nCells < 1) throw new SymbolInputError('cell-value', 'Cell reduction requires positive safe integers.');
   let v = value, guard = 0;
   while (v > nCells && guard++ < 24) {
     if (v % 10 === 0) v = v / 10;
@@ -82,23 +112,33 @@ export function reduceToCell(value, nCells) {
 // resolved to its cell (row, col, 0-indexed) on the square. Consecutive
 // duplicate cells collapse (the tradition marked a repeated letter with a small
 // wave rather than a new stroke — we note it).
-export function sigilFor(text, kamea, opts = {}) {
-  const method = opts.method || 'latin';
+export function sigilFromValues(values, kamea) {
+  if (!kamea || !validateKamea(kamea.rows).ok || kamea.order !== kamea.rows.length) throw new SymbolInputError('square', 'Choose a valid sourced kamea.');
+  if (!Array.isArray(values) || !values.length || values.length > SYMBOL_LIMITS.traceSteps) throw new SymbolInputError('empty-trace', 'A trace requires 1–256 accepted letters.');
   const n = kamea.order, nCells = n * n;
   const pos = new Map();
   kamea.rows.forEach((row, r) => row.forEach((v, c) => pos.set(v, { row: r, col: c })));
   const steps = [];
-  for (const lv of letterValues(text, method)) {
+  const letterTrace = [];
+  for (const lv of values) {
+    if (!lv || typeof lv.letter !== 'string' || !lv.letter) throw new SymbolInputError('letter-value', 'Every trace value needs a letter.');
     const cellValue = reduceToCell(lv.value, nCells);
     const p = pos.get(cellValue);
+    letterTrace.push({ letter: lv.letter, value: lv.value, cellValue, row: p.row, col: p.col });
     const prev = steps[steps.length - 1];
     if (prev && prev.row === p.row && prev.col === p.col) { prev.repeats = (prev.repeats || 1) + 1; prev.letters += lv.letter; continue; }
     steps.push({ letter: lv.letter, letters: lv.letter, value: lv.value, cellValue, row: p.row, col: p.col, repeats: 1 });
   }
+  return { planet: kamea.planet, order: n, steps, letterTrace };
+}
+
+export function sigilFor(text, kamea, opts = {}) {
+  const method = opts.method === undefined ? 'latin' : opts.method;
+  const normalization = normalizeSigilText(text);
+  const trace = sigilFromValues(letterValues(text, method), kamea);
   return {
-    text: String(text), method, methodNote: (SIGIL_METHODS[method] || SIGIL_METHODS.latin).note,
-    planet: kamea.planet, order: n, steps,
-    note: 'The sigil begins with a small circle and ends with a cross-bar; a repeated cell is marked with a wave. Historical practice traced HEBREW names by gematria (Agrippa III.30; the Golden Dawn drew spirit-sigils this way on the kameas) — Latin letter-values are a modern adaptation, used here for study.',
+    ...trace, text, method, methodNote: SIGIL_METHODS[method].note, normalization,
+    note: 'A modern Latin adaptation of a practice associated with Hebrew gematria: start circle, end bar and repeated-cell wave. Values above the square range lose trailing powers of ten, then use digit sums if needed. This reconstruction is not a facsimile of Agrippa’s finished historical seals.',
     cite: 'Agrippa, Three Books of Occult Philosophy II.22 (the tables) & III.30 (the characters); the Golden Dawn practice of planetary sigils.',
   };
 }
