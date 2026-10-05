@@ -129,6 +129,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Use verified workflow artifacts for Pages
+        # This job explicitly has pages:write. The external GitHub integration
+        # can inspect this setting but cannot update it (403).
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:

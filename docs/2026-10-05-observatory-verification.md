@@ -41,7 +41,7 @@ The session AI panel remains a dynamic import. There is no claimed FCP, phone FP
 
 ## Publication and remaining checks
 
-Workbench CI pins SkyLens source `2b2aa089009db3ddedc2256a7a5456b402b23962` outside the Pages artifact, verifies adapter parity and runs the cross-app journeys. Release the receiving Studio first, then merge [SkyLens PR10](https://github.com/occult-kranti/skylens/pull/10). Both workflows verify their exact published SHA in `release.json`; Workbench also checks the session journal and MCP setup/catalogue.
+Workbench CI pins SkyLens source `2b2aa089009db3ddedc2256a7a5456b402b23962` outside the Pages artifact, verifies adapter parity and runs the cross-app journeys. Release the receiving Studio first, then merge [SkyLens PR10](https://github.com/occult-kranti/skylens/pull/10). Both workflows verify their exact published SHA in `release.json`; Workbench also checks the session journal and MCP setup/catalogue. Inspection found Workbench still used legacy branch publication; the deployment job explicitly selects workflow artifacts using its declared pages:write permission. The external GitHub integration can read this setting but its direct update returned403; no wider credential was requested.
 
 - Studio: https://occult-kranti.github.io/astrology-sim-ant/pages/studio.html
 - MCP setup: https://occult-kranti.github.io/astrology-sim-ant/pages/mcp.html
