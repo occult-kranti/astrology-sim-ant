@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Connect MCP | The Astrologer's Workbench</title>
+  <meta name="description" content="Connect the Workbench's private MCP server, browse its 11 calculation tools, or use the same engines locally in Live Symbol Studio.">
+  <link rel="stylesheet" href="../assets/css/style.css"><link rel="stylesheet" href="../assets/css/studio.css">
+  <style>.mcp-connection{max-width:64rem;margin-inline:auto}.mcp-connection code{overflow-wrap:anywhere}.mcp-connection pre{white-space:pre-wrap;overflow-wrap:anywhere}.mcp-tool-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:1rem}.mcp-tool-list article{border-block-start:1px solid var(--line,#d7cbb2);padding-block:1rem}.mcp-tool-list h3{font-size:1rem;overflow-wrap:anywhere}.mcp-connection button,.mcp-connection .btn{min-height:44px}.mcp-connection input{width:100%;min-height:44px}.mcp-connection section{margin-block:2rem}.mcp-endpoint{padding:1rem;border:1px solid var(--line,#d7cbb2);border-radius:.5rem;background:var(--paper,#fffdf8)}.mcp-actions{display:flex;gap:.6rem;flex-wrap:wrap}</style>
+</head>
+<body>
+<main class="wrap mcp-connection" id="content">
+  <p class="crumb"><a href="../index.html">Home</a> › <a href="tools.html">Tools</a> › Connect MCP</p>
+  <p class="eyebrow">Your workbench, in your client</p><h1>Connect the calculation tools</h1>
+  <p class="lede">Use the same charts, symbolic diagrams and calendar methods from a compatible MCP client. Or keep working locally in <a href="studio.html">Live Symbol Studio</a>.</p>
+  <section aria-labelledby="connect-title"><h2 id="connect-title">Private remote connection</h2>
+    <p>The backend is published and requires your OAuth sign-in. This connection page is hosted on GitHub Pages; the MCP server runs on the linked private backend because Pages cannot execute server code.</p>
+    <div class="mcp-endpoint"><label for="mcpEndpoint"><strong>MCP server endpoint</strong></label><input id="mcpEndpoint" readonly value="https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site/mcp" aria-describedby="mcpEndpointHelp"><p id="mcpEndpointHelp" class="small muted">Streamable HTTP · authenticated requests · 11 read-only calculation tools</p><div class="mcp-actions"><button class="btn" id="mcpCopyEndpoint" type="button">Copy endpoint</button><a class="btn-secondary" href="https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site">Open private backend</a></div></div>
+    <ol><li>Open <strong>Plugins → Personal → Created by you</strong> in ChatGPT and choose <strong>Astrologer’s Workbench MCP</strong>.</li><li>Install or connect the plugin and complete the OAuth sign-in for your private backend.</li><li>Ask your client to call <code>workbench_catalogue</code> with <code>{}</code>. This read-only call verifies your connection.</li></ol>
+    <p id="mcpConnectionStatus" role="status" aria-live="polite">This page does not connect or send personal inputs automatically. A successful server deployment is separate from your client’s connection status.</p>
+  </section>
+  <section aria-labelledby="local-title"><h2 id="local-title">Local desktop alternative</h2><p>No hosting account is needed. Install Node 22+, clone the whole repository and run <code>npm ci</code> in its <code>mcp/</code> directory. Configure your client with the actual path:</p><pre><code>{"mcpServers":{"workbench":{"command":"node","args":["/absolute/path/astrology-sim-ant/mcp/stdio.mjs"]}}}</code></pre><p><a href="https://github.com/occult-kranti/astrology-sim-ant/blob/main/mcp/README.md">Full client and server setup</a> · <a href="https://github.com/occult-kranti/astrology-sim-ant/blob/main/docs/2026-10-05-mcp-deployment.md">Deployment and verification evidence</a></p></section>
+  <section aria-labelledby="catalogue-title"><h2 id="catalogue-title">The tool catalogue</h2><label for="mcpFilter">Find a calculation</label><input id="mcpFilter" type="search" placeholder="Try chart, sigil, calendar or prayer"><p id="mcpCatalogueStatus" role="status" aria-live="polite">Loading the local tool catalogue…</p><div id="mcpTools" class="mcp-tool-list"></div><noscript><p>Enable JavaScript to filter the catalogue, or read the <a href="https://github.com/occult-kranti/astrology-sim-ant/blob/main/mcp/README.md">complete tool list</a>.</p></noscript></section>
+  <section aria-labelledby="methods-title"><h2 id="methods-title">Inputs, methods and privacy</h2><p>Tools calculate only the arguments you explicitly supply. They do not read this browser’s saved births, notes or API keys. Your chosen client may retain its conversation.</p><p>Use ISO instants with <code>Z</code> or an explicit offset and geographic degrees. Unknown birth time cannot support precise houses. Election scans, text and response sizes are bounded. Read <code>workbench://methods</code> in your client for engine conventions, sources and limits.</p><p>Astronomical measurements, traditional interpretations and generated symbolic geometry remain distinct. Calibration checks time, location and method choices; it does not infer spiritual effectiveness.</p><p><a href="../assets/data/mcp-catalogue.json">Download the static catalogue JSON</a> — discovery and setup data, not an executable MCP endpoint.</p></section>
+</main>
+<script type="module">import { mountChrome } from '../assets/js/app/shared.js'; mountChrome('mcp');</script>
+<script type="module" src="../assets/js/app/mcp-connect.js"></script>
+</body>
+</html>

@@ -1758,6 +1758,7 @@ try {
 // outer, one-line version that keeps working if that module is ever refactored.
 // A missing script is also a failure — the artery may not quietly disappear.
 for (const [script, what] of [
+  ['scripts/build-mcp-catalogue.mjs', 'static MCP connection catalogue matches the actual tool definitions'],
   ['scripts/gen-opgraph.mjs', 'assets/js/core/data/opgraph.js is exactly gen-opgraph.mjs\'s output'],
   ['scripts/seed-opgraph-gate.mjs', 'research/opgraph/gate.json is exactly what its decisions produce'],
 ]) {

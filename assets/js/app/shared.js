@@ -40,6 +40,7 @@ export const NAV_GROUPS = [
   { label: 'Cast', key: 'cast', wide: true, items: [
     ['pages/workbench.html', 'The Workbench — Master Tool', 'workbench', 'This moment'],
     ['pages/studio.html', 'Live Symbol Studio', 'studio'],
+    ['pages/mcp.html', 'Connect MCP', 'mcp'],
     ['pages/now.html', 'Right Now — live sky', 'now'],
     ['pages/book2/horary.html', 'Horary — a question', 'horary'],
     ['pages/picatrix/election.html', 'Election — choose a moment', 'election'],

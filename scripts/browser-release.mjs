@@ -19,7 +19,9 @@ async function loadPlaywright() {
     catch { return import('/opt/codex/cua_node/lib/node_modules/playwright/index.mjs'); }
   }
 }
-const { chromium } = await loadPlaywright();
+const playwright = await loadPlaywright();
+const chromium = playwright.chromium || playwright.default?.chromium;
+if (!chromium) throw new Error('Playwright entry does not expose Chromium; use the pinned playwright package.');
 const prefix = '/astrology-sim-ant/';
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css',
   '.json': 'application/json', '.webmanifest': 'application/manifest+json', '.svg': 'image/svg+xml',
@@ -42,6 +44,9 @@ const server = createServer(async (request, response) => {
 let browser, failure;
 const completed = [], pageSweep = [], journeyTimings = [], downloadEvidence = [];
 const started = performance.now();
+const phase = process.env.BROWSER_PHASE || 'all';
+if (!['all', 'calculators', 'workbench', 'studio', 'connections', 'assistant', 'pages'].includes(phase)) throw new Error('Unknown BROWSER_PHASE.');
+const selected = value => phase === 'all' || phase === value;
 try {
   await new Promise((ok, no) => { server.once('error', no); server.listen(0, '127.0.0.1', ok); });
   const origin = 'http://127.0.0.1:' + server.address().port;
@@ -63,6 +68,11 @@ try {
     }), 'skip link resolves to existing main target');
     const layout = await page.evaluate(() => ({
       viewport: innerWidth, document: document.documentElement.scrollWidth,
+      workbenchBounds: ['wb-horary-house', 'wb-moment', 'wb-wheel', 'wb-p-figure', 'wb-horary-card'].flatMap(id => {
+        const el = document.getElementById(id); if (!el) return [];
+        const r = el.getBoundingClientRect(), css = getComputedStyle(el);
+        return [{ id, left: r.left, right: r.right, width: r.width, minWidth: css.minWidth, maxWidth: css.maxWidth }];
+      }),
       overflowing: [...document.querySelectorAll('body *')].map(el => {
         const rect = el.getBoundingClientRect();
         return { tag: el.tagName, id: el.id, classes: el.className?.baseVal ?? el.className,
@@ -122,7 +132,7 @@ try {
     assert.ok(pixels.width >= 200 && pixels.height >= 200 && pixels.colors > 4 && pixels.nontransparentPixels > 500, 'PNG contains a rendered diagram: ' + JSON.stringify(pixels));
     downloadEvidence.push({ label: label + '-decoded', ...pixels });
   }
-  for (const [label, viewport] of [['mobile', { width: 390, height: 844 }], ['desktop', { width: 1365, height: 900 }]]) {
+  for (const [label, viewport] of [['mobile', { width: 390, height: 844 }], ['desktop', { width: 1365, height: 900 }]].filter(() => selected('calculators'))) {
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce', serviceWorkers: 'block' });
     const external = [], errors = [], missing = [];
     await context.route('**/*', route => {
@@ -230,7 +240,7 @@ try {
       throw error;
     } finally { await context.close(); }
   }
-  for (const [label, viewport] of [['workbench-mobile', { width: 390, height: 844 }], ['workbench-desktop', { width: 1365, height: 900 }]]) {
+  for (const [label, viewport] of [['workbench-small', { width: 320, height: 568 }], ['workbench-mobile', { width: 390, height: 844 }], ['workbench-desktop', { width: 1365, height: 900 }]].filter(() => selected('workbench'))) {
     const start = performance.now();
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce', serviceWorkers: 'block', acceptDownloads: true });
     const errors = [], external = [], missing = [];
@@ -325,7 +335,7 @@ try {
     ['studio-small', { width: 320, height: 568 }, 1], ['studio-mobile', { width: 390, height: 844 }, 1],
     ['studio-landscape', { width: 844, height: 390 }, 1], ['studio-desktop', { width: 1365, height: 900 }, 1],
     ['studio-reflow', { width: 640, height: 512 }, 2], // CSS reflow emulation; not browser zoom or a physical device
-  ]) {
+  ].filter(() => selected('studio'))) {
     const start = performance.now();
     const context = await browser.newContext({ viewport, deviceScaleFactor, reducedMotion: 'reduce', serviceWorkers: 'block', acceptDownloads: true });
     const errors = [], external = [], missing = [];
@@ -351,7 +361,7 @@ try {
     try {
       await page.goto(base + 'pages/studio.html', { waitUntil: 'networkidle' });
       await page.locator('#studioFigure svg').waitFor();
-      await page.locator('#studioTime').fill('2026-01-01T00:00:00');
+      await page.locator('#studioTime').fill('2026-01-01T00:00');
       await page.locator('#studioLat').fill('51.5'); await page.locator('#studioLon').fill('0');
       await usable(page, '#studioApply'); await page.locator('#studioApply').click();
       await textIncludes(page, '#studioResultContext', '2026-01-01 00:00:00 UTC');
@@ -425,7 +435,7 @@ try {
       await page.locator('#studioApply').click(); await textIncludes(page, '#studioMethods', 'modern printed');
       await page.locator('#studioFollowHour').check();
       await page.locator('#studioLat').fill('78.2232'); await page.locator('#studioLon').fill('15.6469');
-      await page.locator('#studioTime').fill('2026-06-21T12:00:00'); await page.locator('#studioApply').click();
+      await page.locator('#studioTime').fill('2026-06-21T12:00'); await page.locator('#studioApply').click();
       await textIncludes(page, '#studioMethods', 'unavailable');
       assert.equal(await page.locator('#studioPlanet').inputValue(), 'Sun', 'polar hour failure retains the explicitly chosen square');
       if (label === 'studio-desktop') {
@@ -458,9 +468,64 @@ try {
     } finally { journeyTimings.push({ label, milliseconds: Math.round(performance.now() - start) }); await context.close(); }
   }
 
+  for (const [label, viewport] of [['mcp-small', { width: 320, height: 568 }], ['mcp-mobile', { width: 390, height: 844 }]].filter(() => selected('connections'))) {
+    const context = await browser.newContext({ viewport, reducedMotion: 'reduce', serviceWorkers: 'block', permissions: ['clipboard-read', 'clipboard-write'] });
+    const errors = [], external = [], missing = [], start = performance.now();
+    await context.route('**/*', route => {
+      const url = new URL(route.request().url());
+      if (url.origin === origin || ['data:', 'blob:'].includes(url.protocol)) return route.continue();
+      external.push(url.href); return route.abort('blockedbyclient');
+    });
+    const page = await context.newPage(); page.setDefaultTimeout(15000);
+    page.on('pageerror', error => errors.push(error.message));
+    page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+    page.on('response', response => { if (response.status() >= 400) missing.push(response.status() + ' ' + response.url()); });
+    try {
+      const catalogueResponse = page.waitForResponse(response => response.url() === base + 'assets/data/mcp-catalogue.json');
+      await page.goto(base + 'pages/mcp.html', { waitUntil: 'networkidle' });
+      const catalogue = await (await catalogueResponse).json();
+      assert.equal(catalogue.staticPageIsMcpServer, false, 'static discovery is distinct from the executable MCP backend');
+      assert.equal(catalogue.tools.length, 11);
+      assert.equal(new Set(catalogue.tools.map(tool => tool.name)).size, 11);
+      assert.ok(catalogue.tools.every(tool => tool.inputSchema.type === 'object' && tool.inputSchema.additionalProperties === false && Array.isArray(tool.inputSchema.required)), 'published catalogue carries strict input schemas');
+      assert.equal(await page.locator('#mcpEndpoint').inputValue(), catalogue.endpoint);
+      assert.equal(new URL(catalogue.endpoint).protocol, 'https:');
+      assert.equal(new URL(catalogue.endpoint).pathname, '/mcp');
+      await textIncludes(page, 'main', 'Pages cannot execute server code');
+      await textIncludes(page, '#mcpConnectionStatus', 'does not connect or send personal inputs automatically');
+      assert.equal(await page.locator('#mcpTools article').count(), 11);
+      await page.locator('#mcpFilter').fill('gematria');
+      assert.equal(await page.locator('#mcpTools article').count(), 1);
+      await textIncludes(page, '#mcpTools', 'workbench_gematria');
+      await page.locator('#mcpFilter').fill('no-such-tool-qa');
+      assert.equal(await page.locator('#mcpTools article').count(), 0);
+      await textIncludes(page, '#mcpCatalogueStatus', 'Try a broader search');
+      await page.locator('#mcpFilter').fill('');
+      assert.equal(await page.locator('#mcpTools article').count(), 11);
+      await usable(page, '#mcpCopyEndpoint'); await page.locator('#mcpCopyEndpoint').click();
+      await textIncludes(page, '#mcpConnectionStatus', 'Endpoint copied');
+      assert.equal(await page.evaluate(() => navigator.clipboard.readText()), catalogue.endpoint, 'copy writes the actual endpoint');
+      await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+        writeText: async () => { throw new DOMException('Clipboard denied for test', 'NotAllowedError'); },
+      } }));
+      await page.locator('#mcpCopyEndpoint').click();
+      await textIncludes(page, '#mcpConnectionStatus', 'Clipboard access is unavailable');
+      assert.equal(await page.locator('#mcpEndpoint').evaluate(el => document.activeElement === el && el.selectionStart === 0 && el.selectionEnd === el.value.length), true, 'clipboard denial selects endpoint for manual copy');
+      await accessibility(page);
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.screenshot({ path: resolve(output, label + '-connection.png'), fullPage: false });
+      assert.deepEqual(errors, [], 'MCP setup page has no console or uncaught errors');
+      assert.deepEqual(missing, [], 'local catalogue loads under project prefix');
+      assert.deepEqual(external, [], 'reading/filtering/copying connection setup does not contact the backend');
+      completed.push(label + ': strict local catalogue, filter/empty/reset, truthful hosting status, clipboard and manual fallback, no automatic connection');
+    } catch (error) {
+      await page.screenshot({ path: resolve(output, label + '-failure.png'), fullPage: true }).catch(() => {}); throw error;
+    } finally { journeyTimings.push({ label, milliseconds: Math.round(performance.now() - start) }); await context.close(); }
+  }
+
   // Deliberately deferred provider replies prove the DOM-level race handling.
   // Only this test-only fetch implementation sees a fake key; no API is called.
-  {
+  if (selected('assistant')) {
     const context = await browser.newContext({ viewport: { width: 1365, height: 900 }, reducedMotion: 'reduce', serviceWorkers: 'block' });
     const external = [], errors = [];
     await context.route('**/*', route => {
@@ -487,11 +552,33 @@ try {
       await page.goto(base + 'pages/workbench.html', { waitUntil: 'networkidle' });
       await page.locator('#wb-wheel svg').waitFor();
       await page.locator('#wb-assistant-open').click();
+      await page.evaluate(() => {
+        window.__qaAssistantEvents = [];
+        for (const type of ['pointerdown', 'mousedown', 'focusout', 'focusin', 'mouseup', 'click']) {
+          document.addEventListener(type, event => {
+            const target = event.target;
+            if (!target?.closest?.('#wb-assistant-card') && !target?.closest?.('.action-bar')) return;
+            const send = document.querySelector('#wb-asst-send');
+            const rect = send?.getBoundingClientRect();
+            window.__qaAssistantEvents.push({ type, target: target.id || target.tagName,
+              active: document.activeElement?.id, inputLength: document.querySelector('#wb-asst-input')?.value.length,
+              point: [event.clientX, event.clientY], sendBox: rect && [rect.x, rect.y, rect.width, rect.height],
+              barHidden: document.querySelector('.action-bar')?.hidden });
+            if (window.__qaAssistantEvents.length > 30) window.__qaAssistantEvents.shift();
+          }, true);
+        }
+      });
       await page.locator('#wb-asst-key').fill('qa-fake-key-never-transmitted');
       assert.equal(await page.evaluate(() => window.__qaProviderRequests.length), 0, 'opening and entering credentials never sends a request');
       const send = async (text, count) => {
         await page.locator('#wb-asst-input').fill(text);
         await page.locator('#wb-asst-send').click();
+        const pointer = await page.evaluate(() => ({
+          down: window.__qaAssistantEvents.findLast(event => event.type === 'pointerdown' && event.target === 'wb-asst-send'),
+          click: window.__qaAssistantEvents.findLast(event => event.type === 'click'),
+        }));
+        assert.equal(pointer.click?.target, 'wb-asst-send', 'textarea blur must not move or cover the Send click target');
+        assert.deepEqual(pointer.down?.sendBox, pointer.click?.sendBox, 'Send geometry remains stable through pointerdown, focusout and click');
         await page.waitForFunction(n => window.__qaProviderRequests.length === n, count);
       };
       await send('First reading question', 1);
@@ -531,13 +618,23 @@ try {
       assert.deepEqual(errors, [], 'request cancellation produces no uncaught exception');
       completed.push('assistant: explicit send only; replacement/Stop/hidden/provider abort; stale UI/history blocked; key persistence opt-in');
     } catch (error) {
-      await page.screenshot({ path: resolve(output, 'assistant-failure.png'), fullPage: true }).catch(() => {});
+      const diagnostic = await page.evaluate(() => ({
+        provider: document.querySelector('#wb-asst-provider')?.value,
+        mainStatus: document.querySelector('#wb-status')?.textContent,
+        assistantStatus: document.querySelector('#wb-asst-status')?.textContent,
+        log: document.querySelector('#wb-asst-log')?.textContent,
+        requestCount: window.__qaProviderRequests?.length,
+        events: window.__qaAssistantEvents,
+      })).catch(() => ({}));
+      console.error('ASSISTANT DIAGNOSTIC ' + JSON.stringify({ ...diagnostic, errors, external }));
+      await page.locator('#wb-assistant-card').screenshot({ path: resolve(output, 'assistant-failure.png') }).catch(() => {});
       throw error;
     } finally { await context.close(); }
   }
 
   // The repository's universal gate requires every HTML entry point, not
   // just the calculator journeys. Reuse this pinned Playwright installation.
+  if (selected('pages')) {
   const htmlPages = [];
   async function collectHTML(dir = root) {
     for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -578,6 +675,7 @@ try {
   await sweepContext.close();
   assert.deepEqual(pageSweep.filter(item => !item.passed), [], 'all HTML entry points have zero console/page/request errors and valid chrome');
   completed.push('full static site sweep: ' + pageSweep.length + ' HTML entries under the Pages prefix');
+  }
   console.log(completed.map(item => 'PASS ' + item).join('\n'));
 } catch (error) {
   failure = error; console.error(error);
@@ -585,7 +683,7 @@ try {
   await browser?.close();
   if (server.listening) await new Promise(ok => server.close(ok));
   await writeFile(resolve(output, 'browser-results.json'), JSON.stringify({
-    timestamp: new Date().toISOString(), completed, pageSweep, journeyTimings, downloadEvidence, elapsedMilliseconds: Math.round(performance.now() - started), passed: !failure,
+    timestamp: new Date().toISOString(), phase, completeReleaseRun: phase === 'all' && !failure, completed, pageSweep, journeyTimings, downloadEvidence, elapsedMilliseconds: Math.round(performance.now() - started), passed: !failure,
     failure: failure ? String(failure.stack || failure) : null,
   }, null, 2));
 }

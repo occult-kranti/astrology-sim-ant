@@ -1317,7 +1317,7 @@ th.is-hot { background: var(--accent-wash); }
 .ab-menu-item:hover, .ab-menu-item:focus { background: var(--surface-inset); }
 .ab-ai { white-space: nowrap; }
 .ab-top { margin-left: .2rem; }
-.action-bar.ab-typing, .ab-typing { display: none; }   /* hidden while an assistant textarea has focus */
+.action-bar.ab-typing { visibility: hidden; pointer-events: none; } /* retain flow during textarea blur */
 
 /* -- B1 palette sub-structure (manifest-b1 §2) -- */
 .cmdk-form { margin: 0; }

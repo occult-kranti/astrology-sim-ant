@@ -373,6 +373,8 @@ function renderWheel(container, chart, aspects, reading) {
   if (ENH.fig && ENH.fig.mountFigure) {
     try {
       const svgEl = renderChart(document.createElement('div'), chart, aspects, { size: 520 });
+      // Preserve angle-label bounds without moving the scientific geometry.
+      svgEl.setAttribute('viewBox', '-24 -24 568 568');
       container.innerHTML = '';
       ENH.fig.mountFigure(container, { svg: svgEl.outerHTML, ariaLabel: 'Chart wheel — planets are buttons', caption: '' });
       const mounted = container.querySelector('svg');
@@ -384,6 +386,7 @@ function renderWheel(container, chart, aspects, reading) {
   }
   renderChart(container, chart, aspects, { size: 520 });
   wheelSvg = container.querySelector('svg');
+  wheelSvg?.setAttribute('viewBox', '-24 -24 568 568');
 }
 
 // --- save / publish ---------------------------------------------------------

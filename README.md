@@ -122,14 +122,16 @@ against modern editions and traditional-astrology scholarship (see About & Sourc
 
 ## Live Symbol Studio and MCP
 
+**Pages connection page:** https://occult-kranti.github.io/astrology-sim-ant/pages/mcp.html — setup, endpoint copying and the searchable tool catalogue. This static page links to the separately hosted authenticated MCP process.
+
 [Live Symbol Studio](pages/studio.html) connects the existing chart, planetary-square and name-trace engines with explicit time/location/method controls, live or frozen calculation, pause/resume, text alternatives and SVG/PNG/JSON exports. [Tools](pages/tools.html) remains the directory for the broader study collection. See the [panel decisions and roadmap](docs/2026-10-05-live-studio-roadmap.md), [product brief](PRODUCT.md), [design contract](DESIGN.md) and [MCP setup](mcp/README.md).
 
 The MCP backend is a separate Node/fetch-runtime process with 11 allowlisted tools. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
 
 ### Human actions and pending external checks
 
-- [ ] If using desktop MCP, install Node 22+, clone the full repository, run `npm ci` in `mcp/` after the committed lockfile is available, and add the documented stdio command to your MCP client. No server account is needed.
-- [ ] For a remote ChatGPT MCP connection, choose/provide an authenticated MCP hosting environment and its OAuth integration. A static Pages URL cannot host MCP. The current session's unreachable network proxy blocks source publication to a separate backend host; no remote endpoint is claimed live. No paid service has been created.
+- [ ] If using desktop MCP, install Node 22+, clone the full repository, run `npm ci` in `mcp/` and add the documented stdio command to your MCP client. No server account is needed.
+- [ ] To use remote MCP, connect the private Workbench plugin through **Plugins → Personal → Created by you** and complete OAuth. Published backend: [https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site](https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site); endpoint `https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site/mcp`. Then run a read-only `workbench_catalogue` call to verify the actual client connection. No new paid account is needed.
 - [ ] Check the Studio on an actual phone and with your screen reader: input controls, live/pause behavior, chart/text parity, orientation/reflow and SVG/PNG downloads. Browser automation is separate evidence.
 - [ ] Have a knowledgeable tradition-specific reviewer verify any new historical plate or regional method before expanding its validation claims. The catalogue intentionally distinguishes sourced arithmetic, editorial reconstructions and unimplemented methods.
 

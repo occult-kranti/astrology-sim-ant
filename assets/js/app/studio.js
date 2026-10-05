@@ -160,17 +160,24 @@ function render(value) {
   let title, caption;
   if (input.task === 'western') {
     title = 'The Western figure'; caption = 'Tropical positions, house cusps and Ptolemaic aspects. Exact longitudes and house assignments are listed alongside.';
-    renderChart(figure, context.chart, allAspects(context.chart.planets), { size: 540 });
+    const wheel = renderChart(figure, context.chart, allAspects(context.chart.planets), { size: 540 });
+    // Labels extend beyond the ring's original canvas. Enlarge only the viewport;
+    // no plotted coordinate, house cusp, aspect or calculation changes.
+    wheel.setAttribute('viewBox', '-24 -24 588 588');
     pairs(facts, [['Ascendant', formatLon(context.chart.asc)], ['Midheaven', formatLon(context.chart.mc)], ['House convention', context.chart.system]]);
     table(facts, ['Point', 'Longitude', 'House'], Object.entries(context.chart.planets).map(([name, p]) => [name + (p.retrograde ? ' · retrograde' : ''), formatLon(p.lon), p.house]));
     paragraph(methods, `${context.methods.engine}. Tropical zodiac. House convention: ${context.methods.houseSystem}; requested ${context.methods.requestedHouseSystem}. Fortune uses Lilly’s both-sects formula; lunar nodes are mean.`);
     paragraph(methods, context.methods.houseWarning); paragraph(methods, context.methods.accuracy);
   } else if (input.task === 'vedic') {
-    title = 'The Vedic figure'; caption = input.style === 'north' ? 'North Indian diagram: houses stay fixed; sign numbers change.' : 'South Indian diagram: signs stay fixed; houses follow the lagna.';
-    const rendered = (input.style === 'north' ? northIndianChart : southIndianChart)(vedicChartModel(context.vedic), { size: 480, title: 'D1 · Rāśi' });
+    title = 'The Vedic figure'; caption = input.style === 'north' ? 'North Indian diagram: houses stay fixed; sign numbers change.' : 'South Indian diagram: signs stay fixed; small corner numbers identify houses counted from the marked lagna.';
+    const rendered = (input.style === 'north' ? northIndianChart : southIndianChart)(vedicChartModel(context.vedic), { size: 480, title: 'D1 · Rāśi', houseNumbers: true });
     trustedSVG(rendered.svg);
     pairs(facts, [['Lagna', context.vedic.lagna.label], ['Ayanamsha', `${context.vedic.ayanamsa.toFixed(4)}°`]]);
     table(facts, ['Graha', 'Sidereal position', 'House'], Object.entries(context.vedic.grahas).map(([name, p]) => [name + (p.retrograde && !['Rahu', 'Ketu'].includes(name) ? ' · retrograde' : ''), p.label, p.house]));
+    const houseKey = node('details'), houseSummary = node('summary', 'All 12 houses · diagram text alternative'), houseList = node('ol');
+    rendered.textModel.forEach(line => houseList.append(node('li', line)));
+    houseKey.append(houseSummary, node('p', 'This key follows the diagram’s rounded whole-degree labels. The planetary table above retains the calculated degrees and minutes.'), houseList);
+    facts.append(houseKey);
     paragraph(methods, `${context.methods.vedic.ayanamsha}. Whole-sign houses; mean Rahu/Ketu. This is the project’s documented approximation, not an exact Swiss Ephemeris or Jagannatha Hora match.`);
     paragraph(methods, context.methods.accuracy);
   } else if (result?.grid) {

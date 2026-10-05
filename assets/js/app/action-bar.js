@@ -116,10 +116,11 @@ export function mountActionBar(host, opts = {}) {
   const topBtn = barEl.querySelector('.ab-top');
   if (topBtn) topBtn.addEventListener('click', () => { try { window.scrollTo({ top: 0, behavior: motionOK() ? 'smooth' : 'auto' }); } catch (e) { window.scrollTo(0, 0); } });
 
-  // hide the bar while an assistant textarea is focused (self-contained; the
-  // action bar and a bottom chat input must not fight at 390 px — flow risk 6).
+  // Hide interaction while typing, but retain the bar's layout space. Removing
+  // it from layout made the Send button move on textarea blur, between a real
+  // pointerdown and mouseup, so the click never reached Send.
   let shown = false, typing = false;
-  const applyVis = () => { barEl.hidden = !shown || typing; barEl.classList.toggle('ab-typing', typing); };
+  const applyVis = () => { barEl.hidden = !shown; barEl.classList.toggle('ab-typing', typing); };
   document.addEventListener('focusin', e => { if (e.target && e.target.tagName === 'TEXTAREA') { typing = true; applyVis(); } });
   document.addEventListener('focusout', e => { if (e.target && e.target.tagName === 'TEXTAREA') { typing = false; applyVis(); } });
 

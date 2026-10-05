@@ -5,7 +5,9 @@ import { createHttpHandler } from './http-handler.mjs';
 const init={jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:'2025-11-25',capabilities:{},clientInfo:{name:'workbench-release-test',version:'1.0.0'}}};
 const handler=createHttpHandler();
 const req=(body,options={})=>new Request(options.url||'http://127.0.0.1:3001/mcp',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json, text/event-stream','MCP-Protocol-Version':'2025-11-25',...options.headers},body:JSON.stringify(body)});
-async function rpc(body){const response=await handler.fetch(req(body));assert.equal(response.status,200);return response.json();}
+async function rpc(body){const response=await handler.fetch(req(body));assert.equal(response.status,200);const text=await response.text();
+  if(response.headers.get('content-type')?.includes('text/event-stream')) return JSON.parse(text.split('\n').filter(line=>line.startsWith('data: ')).map(line=>line.slice(6)).join('\n'));
+  return JSON.parse(text);}
 try{
   assert.equal((await rpc(init)).result.serverInfo.name,'astrologers-workbench');
   const listed=await rpc({jsonrpc:'2.0',id:2,method:'tools/list',params:{}});

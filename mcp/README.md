@@ -8,12 +8,12 @@ Install Node 22 or newer, clone the **whole repository**, then:
 
 ```sh
 cd astrology-sim-ant/mcp
-npm install
+npm ci
 npm test
 node stdio.mjs
 ```
 
-Once a lockfile is present use `npm ci`. The stdio process waits for an MCP client; stdout is reserved for the protocol. Add this to a client that supports MCP stdio, replacing the path:
+The committed lockfile pins the tested dependency tree. The stdio process waits for an MCP client; stdout is reserved for the protocol. Add this to a client that supports MCP stdio, replacing the path:
 
 ```json
 {"mcpServers":{"workbench":{"command":"node","args":["/absolute/path/astrology-sim-ant/mcp/stdio.mjs"]}}}
@@ -27,7 +27,10 @@ The client explicitly sends tool arguments. Nothing reads your browser's saved b
 
 `worker.mjs` is a web-standard fetch-runtime adapter for an independently hosted backend. Supply **server-side** `MCP_HOSTNAME` and a random `MCP_ACCESS_TOKEN` of at least 32 characters; bundle the SDK and imported repository modules with your runtime's tooling. It requires HTTPS and an exact host; bearer authentication is checked before MCP processing. Keep these environment secrets out of Pages, Git commits and client-side JS. Rotate them in the hosting service. Set request/CPU limits in that service too. No hosting account or service has been purchased.
 
-**Deployment status:** remote hosting is not yet provisioned. The execution environment cannot reach its configured network proxy, so a hosted backend has not been pushed or verified. This adapter's bearer authentication is not an OAuth implementation. A ChatGPT remote connection needs an appropriately hosted OAuth-protected MCP endpoint; do not enter the GitHub Pages URL as an MCP URL. Local stdio and protocol tests are separate evidence from a successful ChatGPT connection.
+**Deployment status:** the private OAuth-protected Sites backend is published at [https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site](https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site), with MCP endpoint `https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site/mcp`. Sites deployment `appgdep_6ac40e6478ac8191a932072e480b317b` succeeded from backend source `f82e8ecbff9b24f09bcb70bb342c9d81155c8da9`. `sites-worker.mjs` uses Sites' authenticated identity headers behind its private access policy; the generic bearer adapter above is a separate optional deployment path.
+
+Connect the provisioned Workbench plugin under **Plugins → Personal → Created by you** and complete OAuth. If it has not appeared, use the published Site's connection controls when available; do not enter the Pages frontend URL as an MCP URL. A real client tool invocation remains pending your authenticated connection; source and bundled Worker tests verify all 11 tool results and authentication/input guards.
+
 
 ## Tools and contracts
 
