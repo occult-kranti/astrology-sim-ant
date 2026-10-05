@@ -9,7 +9,7 @@ encode and its accuracy caveats*, read **`research/SOURCE-DATA.md`**. The long-f
 > ship · `research/SOURCE-DATA.md` = cited data + caveats · `MASTER-PLAN.md` = vision ·
 > `.claude/skills/` = automation (`verify-site`, `add-data-module`, `ship-bundle`, `accuracy-check`).
 >
-> **Current environment evidence (2026-10-05):** the historical machine notes below are archival, not portable guarantees. This session can read/write locally and use the authorized GitHub connector, but the configured shell network proxy is unreachable. Browser and dependency installation checks run in GitHub Actions. Never expose credentials or assume a local source commit shares recovered remote ancestry. The remote/source tree match and live-studio release evidence are in `docs/2026-10-05-live-studio-roadmap.md` and the dated verification document.
+> **Current environment evidence (2026-10-05):** the historical machine notes below are archival, not portable guarantees. Initial shell networking was unavailable; it was later enabled. Local Node, official MCP transports and Chromium checks now run successfully, with independent GitHub Actions release gates. Never expose credentials or assume a local source commit shares recovered remote ancestry. The remote/source tree match and live-studio release evidence are in `docs/2026-10-05-live-studio-roadmap.md` and the dated verification document.
 
 ---
 

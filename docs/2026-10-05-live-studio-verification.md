@@ -12,7 +12,7 @@ Date: October 5, 2026. Repository: `occult-kranti/astrology-sim-ant`; candidate 
 
 ## Measured performance
 
-Same Linux Node24.19.0, Xeon8573C container. Static import traversal begins at the page's application module; dynamic imports, CSS/fonts, HTTP caching and actual browser timing are excluded. Byte counts are source bytes and summed per-file gzip level9, not a bundled transfer size. Raw evidence is in `docs/evidence/live-studio/`.
+Same Linux Node24.19.0, Xeon8573C container. Static import traversal begins at the page's application module; dynamic imports, CSS/fonts, HTTP caching and actual browser timing are excluded. Byte counts are source bytes and summed per-file gzip level9, not a bundled transfer size. Raw evidence is in `docs/evidence/live-studio/`. These measurements describe candidate snapshot `bd170eb`, before subsequent mobile layout and MCP navigation repairs; they are not exact final-release transfer sizes.
 
 | Workload | Baseline | Candidate | Interpretation |
 |---|---:|---:|---|
@@ -30,9 +30,11 @@ CPU conditions: London2026-01-01T09:00Z; chart/Vedic20 warmups then5 rounds×200
 ## Verification ledger
 
 - Pure suites run locally:13 shared-context groups,11 symbolic-method groups,11 symbol/export/storage groups,7 lifecycle groups,6 MCP toolkit groups,8 strict browser-tool boundary groups, plus existing engine and independent October calculation/calendar fixtures. Engine aggregator includes nested suites, so its printed check-line total is not an independent-test count.
-- Static audit:117 HTML pages and243 JS files, zero link/import problems before the final boundary module. Generated operation graph and seed checks remain part of the engine gate; round-ledger content is current (C1/C2 pass; C3 lacks sufficient historical evidence and is not silently declared passed).
-- Initial shell networking was blocked; access was later enabled. Official SDK HTTP and stdio tests now pass locally, and real Chromium completed the natal, calendar, Workbench and all five Studio viewport journeys. A real action-bar focus shift swallowed the assistant Send click; it was reproduced from pointer events, repaired by preserving layout, and the focused assistant journey now passes. Visual repairs pad angle labels, expose Vedic houses and remove the obstructing mobile rail. The final full sweep, including the new Pages MCP setup page, is in progress.
-- Candidate CI run [37367056407](https://github.com/occult-kranti/astrology-sim-ant/actions/runs/37367056407): pending at initial documentation write. Final results, repairs and exact deployed SHA will replace this status before handoff.
+- Static audit:118 HTML pages and244 JS files, zero link/import problems. Generated operation graph and seed checks remain part of the engine gate; round-ledger content is current (C1/C2 pass; C3 lacks sufficient historical evidence and is not silently declared passed).
+- Official SDK HTTP and stdio tests pass locally. The final Chromium run at source `ce8534b` passed all 15 focused journey/viewport groups and 118/118 HTML entries in 285,353ms. It includes 320px initial and expanded-birth layouts, five Studio viewports, actual pointer Send/cancellation, exports, saved-state recovery, MCP catalogue/search/clipboard fallback, Pages subpaths and zero page/request/console errors. [Raw browser evidence](evidence/live-studio/browser-release.json) records all pages and download checks. This is automated browser evidence, not physical-device alignment or observed user research.
+- Material browser findings were repaired: Send no longer shifts on focus, chart angle labels fit, Vedic houses have text alternatives, the mobile rail leaves the viewing area, and long Workbench reference/save controls wrap at320px. The final root visual confirmation inspected Workbench, Studio and MCP narrow screenshots.
+- Earlier candidate CI failed on the now-repaired narrow layout. The final release is governed by [PR3 checks](https://github.com/occult-kranti/astrology-sim-ant/pull/3/checks) and the [Pages workflow](https://github.com/occult-kranti/astrology-sim-ant/actions/workflows/pages.yml). Deployment requires both calculation/browser and MCP jobs. The post-deployment job independently checks the exact commit in [live release.json](https://occult-kranti.github.io/astrology-sim-ant/release.json), Studio HTML, MCP connection HTML and the11-tool manifest; no local build is treated as publication.
+- Pages entry points: [Live Symbol Studio](https://occult-kranti.github.io/astrology-sim-ant/pages/studio.html) and [Connect MCP](https://occult-kranti.github.io/astrology-sim-ant/pages/mcp.html). The latter is a static connection/catalogue interface for the separately deployed private backend.
 
 ## Remaining external verification
 

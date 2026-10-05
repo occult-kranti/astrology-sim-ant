@@ -141,6 +141,11 @@ jobs:
                 if (!home.ok) throw new Error('Published homepage is unavailable.');
                 const studio = await fetch(new URL('pages/studio.html', base), { signal: AbortSignal.timeout(10000) });
                 if (!studio.ok || !(await studio.text()).includes('Live Symbol Studio')) throw new Error('Published Studio is unavailable.');
+                const setup = await fetch(new URL('pages/mcp.html', base), { signal: AbortSignal.timeout(10000) });
+                if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
+                const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
+                const catalogue = await catalogueResponse.json();
+                if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || catalogue.tools?.length !== 11) throw new Error('Published MCP catalogue is missing or invalid.');
                 verified = true;
                 console.log('Verified Pages release ' + release.commit + ' at ' + base.href);
                 break;

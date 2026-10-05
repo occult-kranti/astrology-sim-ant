@@ -33,6 +33,7 @@ Reproduce the checked bundle locally with `npm ci`, `npm run build`, and `node s
 - Confirmed legacy MCP 2025-11-25 SSE responses remain readable before the per-request server closes.
 - Confirmed user identity values do not appear in tool results.
 - Confirmed all 70 source hashes match the current Workbench and the source pushed to Sites matches the returned commit SHA.
+- A root unauthenticated HTTPS request to the live `/mcp` endpoint returned401 Unauthorized; no identity header was injected.
 - Native Sites deployment succeeded with MCP enabled. This verifies publication; it does not claim an OAuth client has already connected.
 
 Worker JavaScript is **743,859 bytes**, measured after minification with esbuild 0.27.4. The deployment archive is **244,487 bytes** including legal notices and manifest. Archive SHA-256: `82811dc5a825ee23689c4b774fa7f3bac8e7ce59212385147a0d0ccbf3a8592c`. These are backend build sizes, not a frontend load-time or phone-performance claim.

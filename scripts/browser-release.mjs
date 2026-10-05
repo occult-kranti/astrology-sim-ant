@@ -75,10 +75,17 @@ try {
       }),
       overflowing: [...document.querySelectorAll('body *')].map(el => {
         const rect = el.getBoundingClientRect();
+        let visibleLeft = rect.left, visibleRight = rect.right;
+        for (let parent = el.parentElement; parent; parent = parent.parentElement) {
+          if (!parent.getClientRects().length || getComputedStyle(parent).overflowX === 'visible') continue;
+          const bounds = parent.getBoundingClientRect();
+          visibleLeft = Math.max(visibleLeft, bounds.left + parent.clientLeft);
+          visibleRight = Math.min(visibleRight, bounds.left + parent.clientLeft + parent.clientWidth);
+        }
         return { tag: el.tagName, id: el.id, classes: el.className?.baseVal ?? el.className,
-          left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width) };
-      }).filter(el => el.width && (el.right > innerWidth + 1 || el.left < -1))
-        .sort((a, b) => b.right - a.right).slice(0, 10),
+          left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width), visibleLeft, visibleRight };
+      }).filter(el => el.width && el.visibleRight > el.visibleLeft && (el.visibleRight > innerWidth + 1 || el.visibleLeft < -1))
+        .sort((a, b) => b.visibleRight - a.visibleRight).slice(0, 10),
     }));
     assert.ok(layout.document <= layout.viewport + 1, 'no horizontal page overflow: ' + JSON.stringify(layout));
   }
@@ -270,6 +277,15 @@ try {
       assert.equal(await page.locator('#wb-asst-key').count(), 0, 'AI connection waits for explicit opening');
       assert.equal(await page.locator('#wb-birth-mp-date').count(), 1, 'birth picker has independent IDs');
       assert.equal(await page.locator('#wb-mp-date').count(), 1, 'main picker ID is unique');
+      if (viewport.width === 320) {
+        await accessibility(page);
+        const birthDetails = page.locator('#wb-birth-mp-date').locator('xpath=ancestor::details[1]');
+        assert.equal(await birthDetails.evaluate(el => el.open), false, 'optional birth inputs start collapsed');
+        await birthDetails.locator(':scope > summary').click();
+        assert.equal(await birthDetails.evaluate(el => el.open), true, 'real disclosure opens optional birth inputs');
+        await accessibility(page);
+        await birthDetails.locator(':scope > summary').click();
+      }
       await page.locator('#wb-mp-zonemode').selectOption('iana');
       await page.locator('#wb-mp-zone').fill('America/New_York');
       await page.locator('#wb-mp-date').fill('2024-11-03');
