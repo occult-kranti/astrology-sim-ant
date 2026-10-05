@@ -129,12 +129,17 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Use verified workflow artifacts for Pages
-        # This job explicitly has pages:write. The external GitHub integration
-        # can inspect this setting but cannot update it (403).
+      - name: Inspect Pages publication source
+        # Updating this repository setting requires owner administration access:
+        # both the integration and pages:write job received 403 on PUT. Existing
+        # artifact deployment is authorized separately and still verified below.
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow
+        run: |
+          publication_source=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type)
+          if test "$publication_source" != workflow; then
+            echo "::warning::Owner action: Settings > Pages > Source > GitHub Actions. Legacy branch builds remain enabled; this job deploys and verifies its tested artifact."
+          fi
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
