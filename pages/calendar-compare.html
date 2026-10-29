@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compare one moment | The Astrologer's Workbench</title>
+  <meta name="description" content="Compare civil calendar dates, astronomical positions and documented cultural time conventions for the same chosen instant and location.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/calendar-observatory.css">
+</head>
+<body>
+<main class="wrap observatory-compare" id="content">
+  <p class="crumb"><a href="../index.html">Today</a> / Compare one moment</p>
+  <header class="obs-page-heading">
+    <p class="obs-eyebrow">THE CALENDAR OBSERVATORY</p>
+    <h1>One moment.<br>Many ways of keeping time.</h1>
+    <p class="lede">Choose a time and place. Read the calendars side by side, then inspect what their rules share—and where they differ.</p>
+    <p class="obs-framing">Astronomical calculations and calendar conventions are separated from symbolic interpretation. These are study readings, not demonstrated predictions.</p>
+  </header>
+
+  <section class="obs-input-section" aria-labelledby="obs-choose-heading">
+    <div class="obs-section-heading"><span class="obs-number" aria-hidden="true">01</span><h2 id="obs-choose-heading">Choose the moment</h2></div>
+    <form id="obs-form" novalidate>
+      <div class="obs-primary-fields">
+        <div class="field"><label for="obs-date">Local date</label><input id="obs-date" name="date" type="date" min="1900-01-01" max="2100-12-31" required></div>
+        <div class="field"><label for="obs-time">Local clock time</label><input id="obs-time" name="time" type="time" step="1" required></div>
+        <div class="field"><label for="obs-zone">Time zone</label><input id="obs-zone" name="zone" value="Europe/London" list="obs-zones" spellcheck="false" autocomplete="off" required aria-describedby="obs-zone-help"></div>
+      </div>
+      <p class="obs-help" id="obs-zone-help">Use the location's IANA zone. Its daylight-saving rules determine the UTC instant; coordinates do not select a time zone automatically.</p>
+      <div class="obs-location-fields">
+        <div class="field"><label for="obs-place">Location preset</label><select id="obs-place"><option value="london">London, United Kingdom</option><option value="delhi">Delhi, India</option><option value="makkah">Makkah, Saudi Arabia</option><option value="newyork">New York, United States</option><option value="shanghai">Shanghai, China</option><option value="sydney">Sydney, Australia</option><option value="tromso">Tromsø, Norway</option><option value="custom">Custom coordinates</option></select></div>
+        <div class="field"><label for="obs-lat">Latitude °N</label><input id="obs-lat" type="number" min="-90" max="90" step="any" value="51.5074" inputmode="decimal" required></div>
+        <div class="field"><label for="obs-lon">Longitude °E</label><input id="obs-lon" type="number" min="-180" max="180" step="any" value="-0.1278" inputmode="decimal" required></div>
+      </div>
+      <p class="obs-help" id="obs-location-status" role="status">London is an example observer, not your detected location. South and west coordinates are negative.</p>
+      <details class="obs-method-options">
+        <summary>Calculation conventions <span>Houses, prayer methods &amp; repeated clock times</span></summary>
+        <div class="obs-options-grid">
+          <div class="field"><label for="obs-system">Western houses</label><select id="obs-system"><option value="regiomontanus">Regiomontanus · Lilly</option><option value="placidus">Placidus</option><option value="whole">Whole sign</option><option value="equal">Equal</option></select></div>
+          <div class="field"><label for="obs-fold">If this clock time occurs twice</label><select id="obs-fold"><option value="reject">Ask me to choose</option><option value="earlier">Earlier occurrence</option><option value="later">Later occurrence</option></select></div>
+          <div class="field"><label for="obs-method">Prayer calculation</label><select id="obs-method"></select></div>
+          <div class="field"><label for="obs-asr">Asr shadow factor</label><select id="obs-asr"><option value="Shafi">Standard · factor 1</option><option value="Hanafi">Hanafi · factor 2</option></select></div>
+          <div class="field"><label for="obs-high">High-latitude twilight rule</label><select id="obs-high"><option value="MiddleOfTheNight">Middle of the night</option><option value="SeventhOfTheNight">One seventh of the night</option><option value="TwilightAngle">Twilight angle / 60</option></select></div>
+        </div>
+        <p class="obs-help">No substitute date or place is chosen when a solar event is absent. Prayer methods and community timetables can differ. Sidereal calculations use the engine's documented Lahiri convention.</p>
+      </details>
+      <div class="obs-actions"><button type="submit" class="btn" id="obs-update">Compare this moment</button><button type="button" class="btn-secondary" id="obs-now">Use current time</button><button type="button" class="btn-secondary" id="obs-locate">Use my location</button></div>
+      <p class="obs-help">Calculations run on this device. Your coordinates are not automatically saved or sent to an AI service.</p>
+    </form>
+    <p id="obs-status" class="obs-status" role="status" aria-live="polite"></p>
+    <div id="obs-error" class="obs-error" role="alert" hidden></div>
+  </section>
+
+  <div id="obs-results" hidden>
+    <nav class="obs-result-nav" aria-label="Comparison sections"><a href="#obs-calendar-heading">Dates</a><a href="#obs-readings-heading">Readings</a><a href="#obs-connections-heading">Connections</a><a href="#obs-assistant">Ask &amp; explain</a><a href="#obs-sources-heading">Sources</a></nav>
+    <section class="obs-context" aria-labelledby="obs-context-heading">
+      <div><p class="obs-eyebrow">FROZEN COMPARISON</p><h2 id="obs-context-heading">The same instant, throughout</h2></div>
+      <dl id="obs-context-values"></dl>
+      <p class="obs-help" id="obs-stale" hidden>Inputs have changed. These results retain the moment printed above. Compare again to update.</p>
+    </section>
+
+    <section class="obs-results-section" aria-labelledby="obs-calendar-heading">
+      <div class="obs-section-heading"><span class="obs-number" aria-hidden="true">02</span><div><h2 id="obs-calendar-heading">Calendar dates</h2><p>Different names for the selected civil day. A civil display does not establish a religious observance.</p></div></div>
+      <div id="obs-calendars" class="obs-calendar-list"></div>
+    </section>
+
+    <section class="obs-results-section" aria-labelledby="obs-readings-heading">
+      <div class="obs-section-heading"><span class="obs-number" aria-hidden="true">03</span><div><h2 id="obs-readings-heading">Read the conventions</h2><p>Separate systems, kept in view together. Shared inputs do not make their interpretations equivalent.</p></div></div>
+      <div class="obs-reading-grid" id="obs-readings"></div>
+    </section>
+
+    <section class="obs-comparison-section" aria-labelledby="obs-connections-heading">
+      <h2 id="obs-connections-heading">Connections &amp; differences</h2>
+      <div id="obs-connections"></div>
+      <div id="obs-prompts" class="obs-study-prompts"></div>
+    </section>
+
+    <section id="obs-assistant" aria-label="AI study assistant"></section>
+
+    <section class="obs-export-section" aria-labelledby="obs-keep-heading">
+      <h2 id="obs-keep-heading">Keep exploring this moment</h2>
+      <p>The Workbench preserves this instant, observer time zone and coordinates. The Vedic chart opens the same instant using UTC input fields; its weekday convention can differ. Verify each destination's own method controls after opening.</p>
+      <div id="obs-tool-links" class="obs-tool-links"></div>
+      <div class="obs-actions"><button class="btn-secondary" type="button" id="obs-json">Download JSON</button><button class="btn-secondary" type="button" id="obs-markdown">Download reading</button><button class="btn-secondary" type="button" id="obs-share">Copy comparison link</button></div>
+      <p class="obs-help">A shared link includes the selected date, coordinates and conventions. Share only a location you intend to disclose.</p>
+      <p id="obs-export-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="obs-sources-section" aria-labelledby="obs-sources-heading">
+      <h2 id="obs-sources-heading">Methods, sources &amp; limits</h2>
+      <div id="obs-limitations"></div>
+      <ol id="obs-sources"></ol>
+      <p><a href="calendars.html">Open the detailed calendar, prayer &amp; conversion tools →</a></p>
+      <p class="obs-help">No tool here represents every culture or every regional lineage. Unimplemented methods remain research work; a matching weekday, planet or lunar phase is not independent confirmation of a prediction.</p>
+    </section>
+  </div>
+  <datalist id="obs-zones"><option value="UTC"><option value="Europe/London"><option value="Asia/Kolkata"><option value="Asia/Riyadh"><option value="Asia/Shanghai"><option value="America/New_York"><option value="Australia/Sydney"><option value="Europe/Oslo"><option value="Pacific/Kiritimati"></datalist>
+  <noscript><p class="callout">Enable JavaScript to calculate a comparison. The <a href="calendars.html#methods">calendar methods</a> and <a href="read.html">source books</a> remain available for reading.</p></noscript>
+</main>
+<script type="module">
+  import { mountChrome } from '../assets/js/app/shared.js';
+  import { initCalendarObservatory } from '../assets/js/app/calendar-observatory.js';
+  mountChrome('calendar-compare');
+  initCalendarObservatory();
+</script>
+</body>
+</html>

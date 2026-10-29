@@ -1,0 +1,2051 @@
+{
+  "schemaVersion": 1,
+  "branch": "feat/mobile-calendar-observatory",
+  "baseCommit": "5f030c0e2998c0276a0549707b5578614ccdf7d9",
+  "testedReceipt": "docs/evidence/calendar-observatory/final-native-inputs/receipt.json",
+  "testedReceiptSHA256": "4ea3b490c1807d1b20dfb28bb12c50737e3c7019fbb13e13d94c933d7579a965",
+  "independentReviewSHA256": "d17a0c67486ed03160a68096a80882b68c04828185d536fd006c32c4dde21dd1",
+  "allStagedProductFilesMatchTestedBytes": true,
+  "productFileCount": 406,
+  "stagedChangedFilesBeforeReceipt": 239,
+  "checks": [
+    {
+      "path": "assets/css/buddhist.css",
+      "sha256": "29c0e49ff5b7dc1aa969e0d12fa12756f1748307ea80f3292900c4684cf21a0e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/calendar-observatory.css",
+      "sha256": "886e13c9035fb002a931b56470ce3a2e84865ab702896dd064042d6d4f9eec65",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/calendars.css",
+      "sha256": "c3dee20841e01cfe4c336055f68bfe56a3b6f0068ea60514c322e062e4f3400f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/compare.css",
+      "sha256": "62284f8a68f97781965aecd53c456bbd1e84f22d9bfd6136e6dffbd7210c724b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/confluence.css",
+      "sha256": "8ee29e730e88fbecf1db163c7cc78b1c866f655e80e938bd8d4d656980084496",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/observatory-home.css",
+      "sha256": "584db766096c750e53d961d1755867aa815ee742af426abb61c1954f59cac7a4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/observatory.css",
+      "sha256": "a798d1045754d20c2875623ad5e123b021658ecd029fca4ed10479662252e56b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/opgraph.css",
+      "sha256": "b2cdbd271849217f7bdbe1d10f8320a158c90f22651ed3e86b5211fc5865f959",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/practices.css",
+      "sha256": "53fdd5fad0fda9a17d58f940e7e3868124d19d173d1591dc91f69323edddad74",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/studio.css",
+      "sha256": "da516d80c105ce467846db02ca381dbe7b5f9b2d85725212de1e28a03c6da328",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/style.css",
+      "sha256": "81643ae77e9a0994114646f5623728288678281560965c0ae37f78c8a7fb75cb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/thelemic.css",
+      "sha256": "8541bba91288b41fdcd5288dd30f93d3c2898fae1887f8af269616a632df7689",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/vedic-tools.css",
+      "sha256": "79ef453dfae848f4d9fc2e0027aeaba78cf4aa51a400a395e2519747f85eee2c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/css/yoga.css",
+      "sha256": "0ec560c95177f280bf264edbd51a4a7d012df2e450eac68c4eb387360d91ecc0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/data/mcp-catalogue.json",
+      "sha256": "c83c24a86227e0189a6a82d03bfa2c8c9496fd254f2e44e49127331e968aa0b4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/abhichara.js",
+      "sha256": "d7397a75d5807322511ee4f6ee6f5012201be1dd5c4779ce094ff1b7f5c40426",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/action-bar.js",
+      "sha256": "81440ab4bf049bc67e68958227444d23f610c89b165bed705cd738fa1532f4e4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/art/adopt.js",
+      "sha256": "bb617f0fd9d1261997be3f12aaeef7b17f5f319bbec6de45e1124f8ca68062be",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/art/engravings.js",
+      "sha256": "3b49267301acb8cca7e9d2c3d099d266f34735cc5024a32bc84e2d238de7e5c0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/art/icons.js",
+      "sha256": "3d5ab7bb5904a8d7f6947172af78a9aded88ca801d21509b3cb573e23afcbef0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/assistant.js",
+      "sha256": "54ce2e2bf9ae49c5ed5e6bb3c693f50c4106afde4c293747f15489c6603258d9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/autolink.js",
+      "sha256": "3892fdabca59f186009917353e44292bf69a7be7be75fc0afddbef85e1bbcdec",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/autopilot.js",
+      "sha256": "9932ee9b4d14a0a82183e0364b6d37ea21a5cb3e71c42e7ca8bd9e94b933d0e5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/book1-master.js",
+      "sha256": "576514ca77397139c14a1a8548204bce790b783b1140145e0e5c743d53926146",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/book1.js",
+      "sha256": "82f0083e4405427398035b8281a773fd307f538e463553fa6fc77dad93a4ae08",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/book3-master.js",
+      "sha256": "d6485af4edd01529901e9ddcb7796dc8f1f4cae5b6858c3446b7142ba4b023a7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/book3.js",
+      "sha256": "4df0f43cb36be26ce5357b4f206ec7ff82c85d0de8dbd4740b2277faea84625a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/buddhist.js",
+      "sha256": "62e96555ef594046edb0499a765c2f7d870dc75ef8210969dca87080830bff9b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/calendar-assistant.js",
+      "sha256": "798758035f54b97ce2df0f1d09832505d9d4e0798f16678b45b277d23bb8400e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/calendar-observatory.js",
+      "sha256": "088651937bb81438aa4ad57c32d3c583957bebdb15cce086a4aadb09f4711298",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/cast-hour.js",
+      "sha256": "d23c027a03aac18f27d2fec4af44f9d1d71cfdd37bcc8e11f7c1f76f1ed5e413",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/chronology.js",
+      "sha256": "444fa839e5274d0e39d83b35d28ddb529a5de5dccdc79ede29ea7f6d2af3eee9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/compare.js",
+      "sha256": "b8442c0354498acadc3092aa4282ccba7f99fc382f670d3c2f495a44f205c84f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/confluence-nav.js",
+      "sha256": "bf0ef7d92e2370115618035e4218da58aac56090ce07ee83302baeb69a9a476d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/confluence.js",
+      "sha256": "43780578843a530089e5a0389524aab7428d155e7c6583e1d5bfa37223a33421",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/cultural-calendars.js",
+      "sha256": "f6b8d8414e686d870d4a5a664a40f6c6b66e58342dd5ecbda9d79a27fe3810af",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/cycles.js",
+      "sha256": "bbb56958647a1f556c4a2a743a919f0338bc464fa1a3ffce7d0b9a2407640f9e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/dial.js",
+      "sha256": "c71d428e77a8745fc19053bcf50207f2cb8f036ceca762348dfda0786111ada1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/divination-assistant.js",
+      "sha256": "8de1c9db00e3da314030e31baac24078ada0069b372daa15d839f8a9087b36c6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/election-tool.js",
+      "sha256": "59f9f46d22ad2925e8f6c102de37eac31275f198da7c7a607d4f92cc01904b53",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/experiment.js",
+      "sha256": "9e0aeb6795405ff215b20404d88637231d391e9092882206615467e599231a65",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/explain-block.js",
+      "sha256": "0e740bf9123e04a3a179eddaa11b215ee42b4843be768851081708534a3bd9e9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/geomancy.js",
+      "sha256": "c47c241c6be608b4b836e2ab7d29bf66058a6f6f4d39ffb0004b28989db7bb10",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/glosstip.js",
+      "sha256": "e1d79fa28de46615b689836b2a8aea5bce91a1d1583dce109462b1d9e5b22d6d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/greatworks-east.js",
+      "sha256": "38da1bf51b2107021b26c93ece24bd8a5572d1f8b728351252e1e1583c124956",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/greatworks.js",
+      "sha256": "f88f54bab6c120c03b50c1b68fe958b66fa9e5dfc11df6c9c7af4e2ef32ce84a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/handcalc.js",
+      "sha256": "036748572cc5e3d393cd6efcfcfcf5572affee0bf1e6012dd7dd9ae32e6eb2cc",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/horary-houses.js",
+      "sha256": "c6365a27ae2844e37906682aaa6828bfa2d45e405b413f0db18e0e9846b38c4a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/horary.js",
+      "sha256": "000c986eecd370fb7863239bbd114172a8bb438b2a7c5b3605f5196642596e41",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/iching.js",
+      "sha256": "1b64f32f262af5b8613d7dedd284a80231dd5d094a43055503ce32f2f6b99ad6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/incense.js",
+      "sha256": "d369252a55742f0ddf4560e27f697d3db71bb420a365711fac5b91457a737194",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/jung-tool.js",
+      "sha256": "21f2f3f4155a5756f3665851f33e1b8b0e8c3b1dcf2207fcc96ba595e843e7be",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/jung.js",
+      "sha256": "addde7be9c82f519ca270c7b677919deae01ee9bb3fa363a42c3f599158573e2",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/kabbalah.js",
+      "sha256": "3e59038657160227201a04c7ab8faa3892706306576f0fba82cdc34f36deb1d8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/kamea.js",
+      "sha256": "0dbb5186ca58584f609b60d71bc323de340ad7d2e48badc16b79371bf20752a8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/kuta.js",
+      "sha256": "69849e93e070a8e4dea7659e2c15cbc3f819e1ff70dd688a08bc490441a4f1c9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/learn.js",
+      "sha256": "2ca08f94cbadfca020d5893568112f5015f71033af5e8351e836525a631dd632",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/library.js",
+      "sha256": "96d65fddef80341ca8486eb94ffd03fb9cc82169f0e9bb844b8e44a27168e1fe",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/live-clock.js",
+      "sha256": "09cf8630c3eba0919283dbc4294d1f16628813cbc3757ba23864b5802ca2926a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/llm-core.js",
+      "sha256": "011791ae48cf41cefca589ec79289145ef60c5dccf6b1112bc64269e4c006789",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/local-config.js",
+      "sha256": "8a06ae1c9f49698e875cbd563d6c82bbe420ba25a14424826123b9435ba681dd",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/location.js",
+      "sha256": "712f37893d90e800db8464dafde10a8ebefa92ced9641f6a45acae3625db905a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/mcp-connect.js",
+      "sha256": "97ff0ae7a2f19507d1bd4462f9d7b3a4930d4af087a0a659d58709a61744946e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/moment-picker.js",
+      "sha256": "b38d5770c3158cd57285c1ef66f66b4470250189639098d7a24bda36764187fc",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/moments.js",
+      "sha256": "6f4fbbd90c9fe7fdcc3c6eccdfcb6c124bae914e91dfb3857d2df6f382b35091",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/motion.js",
+      "sha256": "6b655c8ab4beefae08cf987f36bfe5ea47959eac68497c6e1621697c136b17c1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/muhurta.js",
+      "sha256": "a9397e28fb36c38cd6a1684faba410cc243f0ac6b57448af2fe585b58919c42b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/narrate.js",
+      "sha256": "bef14b7a000b83cb939ed520b1eca5645e247b50cfafef95fdd4eb8ed8b22cbe",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/next-up.js",
+      "sha256": "cb13b4d28ba950be5a321036ec087f0eb90d5ab271010a20fb980b8bb80e0f7a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/now.js",
+      "sha256": "03e7d40c63d3f015f6f4ff81601d79562830f9c777df02d4b0e238e1317b8c67",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/observatory-home.js",
+      "sha256": "6b2f7144d000843d4987c5881c57421c4a7d14ce84e5b1ab85f1158448d5cbfb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/opgraph.js",
+      "sha256": "95e27fe4a83c0cded4d8db0dbf5f9129cef0d6a0be8f884fe344179ac4092ba0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/palette.js",
+      "sha256": "1d4f27f8a45a897698b38a01ef3385ee2c9ce812c64801885e655b2b436177fc",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/person.js",
+      "sha256": "0e17f9558406e8f68bca4fe7ca709553bff5cc8ed912051cd769ed8b9ccc94bf",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/picatrix-prayers.js",
+      "sha256": "b20f628bf6a6f69c7d5d159189bb6ad484846d5aa778b4678f09c8eac8c181c1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/practices-art.js",
+      "sha256": "16f035ed37b02a1242f370a7b58c520b48ec1fff0761e5c0ab61ae797e259dc9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/practices.js",
+      "sha256": "21052c1686155a1c9deb6c69641846b713f6e27df9d1f029974b345f21cba8a2",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/prasna.js",
+      "sha256": "1e0fd03dd48d4d858dcc8f5b328cb9fe751a5666d13aa837bfe00368f8f4a068",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/rail.js",
+      "sha256": "690819a60faf0d0d8cb78de5230cfc013c9127a320f74f7992ddf84c05d4e859",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/rasa.js",
+      "sha256": "5c350f59f1646f538f94eaf022a266802e07b1d2fb15c5b7e3486f81ed591129",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/runes.js",
+      "sha256": "497f439574442374ba91c284f3099e0b0cc6863ff39c0fa11cdb050a4a49d91c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/session-study.js",
+      "sha256": "a249e812488825b25739fbd8eb19c4c0977d4e37dc2fbfdf0cc59ae7be4103da",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/shared.js",
+      "sha256": "5f4da8674cb119637a15b16acb33cb67b897c9a891a1f42db571e99bee9c5085",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/state.js",
+      "sha256": "08c643fd90c6ba4e413e3d46892f2dad0c6e25d2dbc0e2b85b860770b997ea28",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/structure.js",
+      "sha256": "e07a48831c3cd452cad4775bcbd99ad252c0abde3d66d05d29fdf251712f40ab",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/studio.js",
+      "sha256": "b982e73341035e39b665082a1eb5b235f0f76dd147058862e570b3e45d3af35c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/sw-register.js",
+      "sha256": "07bb44fb668496501c615a57b3809a91101e216af3a9151cbe8cfe534d6f63e1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/synastry.js",
+      "sha256": "c366fbf0be7fcf711f64b3f16ec9241cdf82f436f04f31102189c26b043fe4a6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/tajika.js",
+      "sha256": "14434dc5f450619beb6e8cf65a6fd3a737d06afa59eb3d175291dc4f4503322c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/talisman.js",
+      "sha256": "b9f440c69f067dd9291e666041285a9f4cc0ab7235860f43ff6b209c61bcc3c5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/tarot.js",
+      "sha256": "1638c575ffa9b4c6dbd732fb4b5ee4a70c214221e1300efae19d01a28f7dd6aa",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/thelemic-times.js",
+      "sha256": "45ca8e6788e6367ea3391ae3996c4cbd2abde253c8b9a1d7ae11dea9228af7f7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/timelords.js",
+      "sha256": "c381d8d43ac11aa42e868d1383940b8a32be4d65a240c560540b9159b82c701d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/tithi-pravesha.js",
+      "sha256": "87cf6b19d0712bf661279ebb40509101c7e9c83e7c32127b8cd41c2ef6229ca6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/trajectory.js",
+      "sha256": "ea896fa722d06c79fc01cccdd80f046894fd1fb36ba26c4dc1d4d331eadec97b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/transits.js",
+      "sha256": "6ae1655484ef96722e5365216a7343d0c20b9b1401e0f99b272abf9d11f2c514",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/vedic-course.js",
+      "sha256": "9670ebd91c1d5f08c14f087026f2f581aedf25eea1b0d9daab207eff71a79b95",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/vedic-delineation.js",
+      "sha256": "da3a3d3ca399ded2c5d24ab99d57c67dac867b24ee32c9eebc29937a655f13a9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/vedic-panel.js",
+      "sha256": "81b567deea903fb71c7eb34074af6560ac5dc3078e6e221c05d4234959baedf7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/vedic-yogas.js",
+      "sha256": "353daf0e2ce92b982ea29b6e2bcd635624d0de8f4a6cbf60e9bc1756a76dc7f5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/vedic.js",
+      "sha256": "2a9665dc38eaeb46c282526967f4775f7c1f378c37a9849e54f5f96f9e2ceea4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/viz/brush.js",
+      "sha256": "510fbc8f6f54dd00afb4dcae313adf9422bb4660946cab9919bc5651d22cee2d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/viz/figure.js",
+      "sha256": "e2d526ae7cfec5f48fb6d059cc33e815234491dae51a02b9a6215c06eafa8452",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/viz/inspect.js",
+      "sha256": "5a2cbd6155f73ccdb7abcfab99fc96f03def5da512c2e6a6b89cf26ec56fc625",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/viz/wheel-interact.js",
+      "sha256": "5e79ae726d46b2c9f1dda70402f2db9f19febc85e9eb21a65326371295f4ae30",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/wheel-rotate.js",
+      "sha256": "1c1474191ffc4c1bdc46eb2c8e484b0b698d92baa77552eda80e619f1185850e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/workbench.js",
+      "sha256": "072267bdc3a35b8d2234032491cb75e558590f13ee7f43b082e1211e8dd7d8b0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/worked-charts.js",
+      "sha256": "e0d52a61ad42ccaeb397ca74b1380ca0ee46f603bdebe12ff961a84e45bf8ae3",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/app/yoga.js",
+      "sha256": "b63fc1458f8f3d5dd0d802bcda8b0c4174640084bd87d7efea42b2b478048cb5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/abhichara.js",
+      "sha256": "2bb1749f60d0cba4ffff3c73ac184e654a3de4335395571afbaeff21c9cf168d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/aspects.js",
+      "sha256": "837e71a913479605b776414018f3a17b210eaf3aad221b72bbc63d3e0a6f98be",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/astro.js",
+      "sha256": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/buddhist.js",
+      "sha256": "71698dcf5b6df157173620d1a1a105ddbba8ef05fd89bb7537d605ab98da705a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/calculation-context.js",
+      "sha256": "64dcdd37c99a2d6a7a6cc03aaca3a8a22af1e4d3851d8c94e782d9b30ba95378",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/calendar-observatory.js",
+      "sha256": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/calendar-study-packet.js",
+      "sha256": "30e79430ccb785dbffafd3895eec0df96e0c67be6a02d9d8c1f7369c2a7faab1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/calendar.js",
+      "sha256": "a23bc2ae59d96a82bccc62a1c794d0ae5327eaf8599e9f0fdfb4c78166a5ee8f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/cautions.js",
+      "sha256": "a5a592bdec86c5927c97961d6ceb54783e25685bb8dd094a18794463e23d52b7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/chart-from-positions.js",
+      "sha256": "ac6bcae7a3227ed7ddd3e27bd56421cbf4fef852b0c37478173b262f51bf7b33",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/chart.js",
+      "sha256": "0afc0373e8f6ccc56c12b34c888b9d51c19bd47040141a9a0456bfb8d8ded9a8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/confluence.js",
+      "sha256": "152a1d3f18f9b804c41c4c565d45af34552b7300b37f52e4e798fa6c7d14318e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/considerations.js",
+      "sha256": "3ba3a4a7d83574ac475de691d833d45be12d7d4f84ccb32f86e55f54ea56a19e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/cultural-calendars.js",
+      "sha256": "ee9afb48652dbfdc5d91ea6d9c91d19d70cb6b98c84b5ef63a1a17e9312e9630",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/cycles.js",
+      "sha256": "c55821bea0d7b8617f7c2961991d2f57dc5f3f909b7e26713d2bbd9032d3260a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/abhichara-data.js",
+      "sha256": "5f4c56bc8c7a7dac97b4369124477795c506f7909a2efcf68041caae1d26bcdd",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/behenian-stars.js",
+      "sha256": "1c9e818453cde3e7a9f313542deb981e8266e823b5844f2967821212b1c2d9e2",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/bhava-phala.js",
+      "sha256": "4c602736397a95700272df8368f0c513dda54a9e7db920cd2de8625d7fac5fe3",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/buddhist/dhammapada.js",
+      "sha256": "ac175ce93c42e9c4ad1b2571fe9146fd745d43d8c384d4171b69cbd35445ddcb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/buddhist/heart.js",
+      "sha256": "987e1b3632e839a475f0e58ca3ca0eb0aabb8b1bc808b46dd0ab5b24d4ca7d4f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/buddhist/index.js",
+      "sha256": "ee5f2b9a42bdc0195252106dfd034cf98b2368b66732d28742f4d47582da873e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/buddhist/metta.js",
+      "sha256": "b6ba32bb44e86c147296b55cde567e05379c4d2d5c1d23997274bd87a9cee359",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/buddhist/mn118.js",
+      "sha256": "8086e2757e17c102ab63d9c8faec7a39d2733765d304b0eabeb0fd7cbfc38dc6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/chronology.js",
+      "sha256": "872052e0e37f98aca2372de2a6d0d15a4df24c1ece3fbf8482465ce3c872c08b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/competitors.js",
+      "sha256": "b01854b9fa1e81738504c43b53e4a53e988414fb8e0c4665a098e0ea13744dc6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/confluence.js",
+      "sha256": "27e651075114490670dc0345692483bbcdf03a89eed1a53d3694e17f4c68028f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/cycles-data.js",
+      "sha256": "357e6dfbb698cba4ad4bd8aa1bfcf5dc0c35bc0808353493b588e388fb58bdd9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/decan-faces.js",
+      "sha256": "3fdb925148381a68005c7f2adc8d617cc59e9addfead988e4a78ec2ed2a66f34",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/degree-tables.js",
+      "sha256": "f22d6f61440b73523a192b2382a84538407dbe906f75a4d038c99acc57eaf77d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/dignities-data.js",
+      "sha256": "dd0b0931fdaab1f58ad49a1bbbedc4eed978792af153fc00dd247e4c2c7aa191",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/geomantic-figures.js",
+      "sha256": "7b055273fe5110e7e8c1b985d90943e5c9a88a82a87c4339f3df745b23b605c6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/glossary.js",
+      "sha256": "fa988dc9706606d020681d57d5d773f416354c88e42ec063b9bfb85ce08faa64",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/greatworks-east.js",
+      "sha256": "8122c3d72022d9f5c207d2dfcb2a0a178105af121fbd773d40c2e745d3515970",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/greatworks.js",
+      "sha256": "52e526ac88772837a9446de41ce08131ae2a9e2d3380c36352efc3d9d72dcd58",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/handcalc-data.js",
+      "sha256": "e5db2729d09df27c56481e40f6b3314652c617bdbbe591fb99a6e64c5a48db76",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/horary-house-judgement.js",
+      "sha256": "18f6266d49b6a23ca2a654b4ae0f4805d3fba64138f6847ca862b1f68b629451",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/houses.js",
+      "sha256": "9c7566eda637bd45c96ae427109cf00903415002cd7773edccfcdec377bcb7b8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/iching-hexagrams.js",
+      "sha256": "10f03dc79d0043c6bf24f8e612b0602004e3aaf7ecf5e25c8147ea1acda352e0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/incense-materia.js",
+      "sha256": "a4bfe9c573d9939af8785534f7972f121e1357c881b16611e8d1c56ceec3464b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/jung-astrology.js",
+      "sha256": "3850ae2d286df87b2f177952030a240d894a509f22d033dec6de2dcc93326495",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/kabbalah-data.js",
+      "sha256": "3bfa0d2399ed2ef834c5cc425b25a35c8d987dff621717669ec7efc2380473d4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/kameas.js",
+      "sha256": "01f0eb78dd7562b8795fe8ea865134699c2ef36a795bfc9ac0ba9f5d06c470bb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/kuta-data.js",
+      "sha256": "0166882212482f120e14aef08376915990097b0bdaacfb89f9fcb89e4f2d6c98",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/lunar-mansions.js",
+      "sha256": "cb50300c0c46de0b7091c7fcbe1774d8352808e57168231ca88553ee726c87ff",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/mansion-images.js",
+      "sha256": "d276fa79059c1d7ea65a67293624e981b4236ab38ae79ec169f29d9559c4b92f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/muhurta-data.js",
+      "sha256": "5f7f7f4beb3975a048fea9289bb632c75f14f46c0f4cc0f38d9b6c5c1127ee7c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/opgraph.js",
+      "sha256": "eddff24a8344872e98c3e217d049550dd3d8d517eb5226f113ae5e5f2f47116c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/picatrix-prayers.js",
+      "sha256": "626f3979d8c28cb2e87c78e22ab17548c4495719d8980218bbc204868d6acaeb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/planet-images.js",
+      "sha256": "9aab203a5fabc650c741779cb19a2f9caaa07b0f4b098ccf099153766d2f53bb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/planetary-magic.js",
+      "sha256": "941ff73b095b25047f9c08b94b871aa7546ba60a0c9020655f256327e13fc2e9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/planets.js",
+      "sha256": "c48b6b8e3a647e09b955db2d8e05e73051d734687e2add1675aa9a4ad51193af",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/practices/mudras.js",
+      "sha256": "e3b9b12805a8cffad80333bf7f594aad082c2e24bfdc26b40f02f6ec929490b6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/practitioners.js",
+      "sha256": "1562b4153f997cc420b714221600d4941e5f16f305250cb2de75004f48a611ec",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/prasna-data.js",
+      "sha256": "3183cc27404e0f554d4d9184a7fcfe1df59ae71affee3dbad61256b5dacf0a58",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/rasa-data.js",
+      "sha256": "5448cd39df238376df337cda3592ae55d2a18362799129d5dfe53b1b726541de",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/runes-data.js",
+      "sha256": "0cbf82eed2951d4c6ed33c28f53f1169fbff3a8d0f4580e84edaf3e316b3409d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/signs.js",
+      "sha256": "a86c5e1d25bb9295105211bb150d176bb141ecb0ae6faae4bbe3b34f8800541e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/study-lenses.js",
+      "sha256": "80922adcb34967250145de0affaeacc2c081e0a8d03981aadb7277b40cbcb41f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/tajika-data.js",
+      "sha256": "95e45235884ed8fd1f6a7716288d8aebe1d53ab37924cc064bf8ef66b5b30e88",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/tarot-deck.js",
+      "sha256": "a44102ce048043441c9b4522603285876212fd4dfac91ef45c0acaca343b52d7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/vedic-data.js",
+      "sha256": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/vedic-remedies.js",
+      "sha256": "29056fa5597f82184f349fead9c6fe37acc8a7f9ba312d96e125f5fa2f8c205f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/worked-charts.js",
+      "sha256": "99fd92f05926a5d0314c2945be323226960cbaaf7c90d291dff2e2b13813cbb8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/yoga-rules.js",
+      "sha256": "7c8add1b14d6009ad301c0bda455df57cfd2a1e947965af80f40aa30269f82aa",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/yogasutra/meta.js",
+      "sha256": "5ba4041a587648bdb752a14e17198b85e09afd51d5b28372dbd4215d9f45136a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/yogasutra/pada1.js",
+      "sha256": "9200508f3cd769c2071fead6012cbe8a2f2273d7cc13e5787a70a1e8b6bcdfc8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/yogasutra/pada2.js",
+      "sha256": "a74948b532c03662e96e22f4a01a706ba2e930918e337924913799c922e8c673",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/yogasutra/pada3.js",
+      "sha256": "73478fa361f6f0a72a130701478eb1401a7add617a853cf9e554fd6db8f47ae3",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/data/yogasutra/pada4.js",
+      "sha256": "ad30c917d143677722fe44c249b361360ae83ce7f4c37275cf2c4a1d53aa122b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/dignities.js",
+      "sha256": "618cb3436f16a67f9886fa6f6f66f60d98e3159b64c5305411611205f3e5e35f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/directions.js",
+      "sha256": "e5a5de088e02f8a9f47c1fd9433e69840cb129b0eafbc98736c8648344eca5ad",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/election.js",
+      "sha256": "381c42699d387d6a66aa2717507d3e2c927764ff79e45771abc33ba4a3da0e66",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/explain/horary.js",
+      "sha256": "ccdee23018274b4724271048bef953f90e01567693efeec7a8c164e7b0cfaecb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/explain/narrate.js",
+      "sha256": "f201247275a74f30fa2e28d1062fbb1cebaed141746571779bef3dd9e46a83d1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/explain/nativity.js",
+      "sha256": "b8ee3294ac860cbc271c00690100a451f8d1ce3899253454319705744e7d3050",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/explain/util.js",
+      "sha256": "ddeabe19e2245d0b32924fdda527516e39d5e1711caf928aff479b839ead73d1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/explain/workbench.js",
+      "sha256": "189dc49c1d69eb28b37cf57c25ae9c028dd08b1dffb7610d206cb014b65daadf",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/firdaria.js",
+      "sha256": "1ddf947c35d26074d9d3cba030738b0e2589be1bc7a0726e20c6b35d091b327d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/geomancy.js",
+      "sha256": "878bcdf7cd33c765230322608a67ed004382bd5ae87d4267a654b76b779346c4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/handcalc.js",
+      "sha256": "4455af6af9715d17cda920d1d93b22ce23dac5e5e4cae10134de17e1bc17cbe0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/horary-judge.js",
+      "sha256": "56e0f00b84d10e01a8b9f3a714d847ce69949cd079923703b628113f93be82c0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/hyleg.js",
+      "sha256": "51c210680d27f118cbe497bc7e7fc94c954662f7482620770475d42c22a82345",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/iching.js",
+      "sha256": "b1ef7f9d268b97b8e3dc39eebd69f6c60d17d09c650804b63d1534c413d9077c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/incense.js",
+      "sha256": "3dbb1c55781c98f4bc0ce99885d4e5a135eec413fade288b41de8c9df1a378b6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/instant-boundary.js",
+      "sha256": "ae41bd2705e2cbadb7ab6845301bc8d3d81f05637ab411238f27b995260fc5f1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/jung.js",
+      "sha256": "8793a511a89f2eb2ccdef004cc9d401cc09877df88f504ccff66414e09c09e8d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/kabbalah.js",
+      "sha256": "6700af7dc70a9fbf39b2590a7bd74559c8560b1192a34cb455c5bd80d4932a0f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/kamea.js",
+      "sha256": "1b039f08dda2a36dc348aa52e4acc18131034f824dcb7d481410ac1b4be56004",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/kp.js",
+      "sha256": "05fadd825c100d1a83497977b7dfe600ff3de47f55cabcc0166477d3d7a16beb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/kuta.js",
+      "sha256": "8f7224f5afbbab1c5c58af8a1d953f5f728877d864ff92d1f237f1e1b3cfd82d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/llm-context.js",
+      "sha256": "c0f2c07229ec8be52e04e01e2a84394553fb287896dac62f460bd2da1491c449",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/lots.js",
+      "sha256": "ebc727461edd12d797ebea896a2662623dca37a37917d8d4abd1400141729e2d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/moments.js",
+      "sha256": "905e6e28f65219726f56a384c1895c2fc96b8d4882ab1462c718dd46acf601c1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/muhurta.js",
+      "sha256": "dc460a0a99cf81ba593636aba55835bc6804c2f88a1c9d9a2d9db9c283ff32e2",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/natal-topics.js",
+      "sha256": "b8c7cf646429f246a1e02c2eccdd2927d2d7aa9c500426d3c8e824d4b32aec1c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/observatory-schedule.js",
+      "sha256": "6b8d879dc6832cc72da4d504809503db24c34875b1237661474f4149f1df5c9c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/opgraph.js",
+      "sha256": "a1773fbb71e8f13c948b5e446b4ceff6b95aba4b42fea4ade49c2b1deb7a2ee7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/perfection.js",
+      "sha256": "611337c7baa356e6d2c31a3e3f7c3e73dd08741a25c77f89029dd3f23a919493",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/personalization.js",
+      "sha256": "d62a58bd6609e42b43e93155b96e21c28f25b3e268fc058cfa12441a5a456280",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/planetary-hours.js",
+      "sha256": "ca46d1a4ff21914211d278c1b65564cfc78579fb93e451cd05a772cc8eda8db4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/practices.js",
+      "sha256": "b818e8eb8bdceef8e13ccbc80dda374be9e6416220de98d15d0087f523999f27",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/prasna.js",
+      "sha256": "8ab26344a4a82d929d5ce0a8a960a0d2dff8904b05abd008ad40f052538894d9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/profections.js",
+      "sha256": "fa3185c5dcecb1c5764938ed33cf754459dcddeda70a96206ad55ccb7ff554a4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/progressions.js",
+      "sha256": "ecebec1aed8ad21e2a2aa3947f51c00385fd3640133db47db17137286cbf4547",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/reading.js",
+      "sha256": "85ee807015b2fa8e48809e54efadd94162f36c5dc0a97a044d0891d79a01566b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/rectification.js",
+      "sha256": "8d69a49e921c09dfda1adcf76d7a9bb586efb48ac9c6a82e7a57e1eba0a57bee",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/registry.js",
+      "sha256": "459b33a9762793390ef7ab26b89abf59eb1659dd74671c35f5e2da88248e4121",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/releasing.js",
+      "sha256": "069fe2bc57bc404309c03994b0ed58a265796c171ab1c40cadd79b155d0ccc75",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/returns.js",
+      "sha256": "7c69aa865d0aac07f7b4bf921a8f0cad5a098ca944b5d5a0b5ab3819ee26ad5f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/runes.js",
+      "sha256": "acd2d907215f98a7612ea81133c333db2032f2ffefd45bb345c07004e558af81",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/sky-handoff.js",
+      "sha256": "760c62a4f901a21e8459c1ced506666ec030ebc9952c3dd6c9647e7e941225b7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/skyart.js",
+      "sha256": "247fd39a7a47d64d5009425b5f86be8247b7f19abd04fbecda6e59b8f2d1952d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/solar-return.js",
+      "sha256": "e4c40fc1ebe020131c8cfa0a7ce3ef271010ba0e00c1e359127bb1160b89ec28",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/study-packet.js",
+      "sha256": "7c34faf54d4a62be5e3f31b4a6760ee3fdbb316cdd8a132a0d0f55c23e0929e6",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/study-session.js",
+      "sha256": "a2def50ebffcdb35bc65de6245dd1bfa46913fcf2ea4b668e5ee803fadd00002",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/symbols.js",
+      "sha256": "a7baf27d1e909133087a981d7dacb51ed8a33da9e5b37dd91e33ac9fc4e266f7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/synastry.js",
+      "sha256": "f6bd82ea8878fda558181b3d8574fa48f5d405cd0463c25674fa2f5c0601a482",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/tajika.js",
+      "sha256": "fc1dc1f00dd816e01ef3ce11077a14448cc05c544b0d1d9fe380442dd17f3da7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/talisman.js",
+      "sha256": "89d0ac97b5ffd56f751e198dc1f11c6cffc8fe58bd859dd2c88fc6e3deb7a337",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/tarot.js",
+      "sha256": "a99156cc163eb8e4dff63b818153b26e279b4cc1add4dccd2e8bfcf656d8b689",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/thelemic.js",
+      "sha256": "68dd1a0d7ca7fdee7c6dbd64ee40952bacedba88614cc8e5a0cfd1d00e29b18f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/time.js",
+      "sha256": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/tithi-pravesha.js",
+      "sha256": "0a30206801a8c75d9d96a1f3beec2a6c4381e7bae88694ccefd62a964eeff218",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/trajectory.js",
+      "sha256": "f7928d2809d50c0079fb3563fa597f8da11a2ec8253217b3f2b2e695a1e28909",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/transits.js",
+      "sha256": "11ec7f90efc29d1385e91b950ae21734f39c77b59d0aed0dfa1bc4e2c54d6087",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/vedic-chart.js",
+      "sha256": "23539210c2dc48ea042f902f81803b6d10a5cdca5bd64dd8ede864e40cffd63d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/vedic-hora.js",
+      "sha256": "da7d69d5d268064ed16092af7a6268b4d95d531af050ab98ebce7caa8d86c3bb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/vedic.js",
+      "sha256": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/viz/grid-model.js",
+      "sha256": "23338b67c8f8470b197319b01384f376b6e115346beb374f7a046e75961a999c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/viz/heat-table.js",
+      "sha256": "ff1ffb1b470d8236c1c0de0d79a7670469343d6a8f504bd6d1a34365ac835265",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/viz/scale.js",
+      "sha256": "c44695dd1a5898bf8a244895ac9319ffb50dc7b856f81433d51c8bc2b6f3429e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/viz/score-bar.js",
+      "sha256": "25c0db348904a08ece2c0757cec70e7a16810e4f7a06322435dc6a7ca8bf6df3",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/viz/svg.js",
+      "sha256": "118f5324fd3f5caa28eda46eb462a1f974c08a375c0f00742a0ac8ccd3e3811e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/viz/symbol-svg.js",
+      "sha256": "fa74ac3744baf6406aa7597e3291f17feea952a16b0fdc865223b606321d5a44",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/viz/timeline-svg.js",
+      "sha256": "8f9650d9f49f65076f098df12ce7c4fe6619ab71882c911f2acc6b5ff5d45fdb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/viz/wheel-model.js",
+      "sha256": "c304fd709fdc0142c68483195a29f4de58f4691f15140411c7705f8f7b3bd6d7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/yantra.js",
+      "sha256": "9864ddfc26bda1d07f3203d31cc9c63ef3a3571257b7f01d8df265a2cae78f94",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/yogas.js",
+      "sha256": "57ef494725b8bed8ed0eca7e74698891749856e378a5d27c132aad82c28d18ca",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/core/yogasutra.js",
+      "sha256": "8f2ac53f59adbea93908198f82b1589ae82eb0f44bbf439a081895c763b1fd60",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/js/lib/astronomy.js",
+      "sha256": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/search-index.json",
+      "sha256": "2481117264712b959ad6d3a3a5f96a15407eca5f6aeb7ec0264e587f239f7729",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/Adhan.js",
+      "sha256": "0326893cd2c4994f9a67bc1008ab54a2678a728e3123e01ce6b4d111008d09f0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/Astronomical.js",
+      "sha256": "fde941a806a3958efa96b20ec4f9dfd6052d2c0ffbbe6d3d670dbb8e32f44b08",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/CalculationMethod.js",
+      "sha256": "25fe507d157eb462913f9d552c527b4fd34023f1965129f5d31ce380c1cada21",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/CalculationParameters.js",
+      "sha256": "2389ac64c932c3a287bb7fdf13e6585b763781e7e59d9676039d409c83da3401",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/Coordinates.js",
+      "sha256": "0233d695243aa554199115df9c1e3d6c84e66699ac6bef531e4e6cf4e13c8cc4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/DateUtils.js",
+      "sha256": "ecbe2737fb91fdbe6fe8be92600f6817f1b2e6e4fddd14233f94c4d89aa366d5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/HighLatitudeRule.js",
+      "sha256": "35a9be5d9b49c10210477b81ba1c98450ac99a58e5125c45cba3398fb68f2778",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/LICENSE",
+      "sha256": "60ff1bbadcc093e0d224364b6ed1a439e9b8f8f05a4dd59c45c91d340b728136",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/METHODS.md",
+      "sha256": "7afa3e0c1533feb2405e35a705d738ada6e383a3c73802e9864c471d8ea3c2ec",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/Madhab.js",
+      "sha256": "644398adb646260a337b34cab2277a3c2f798f064d9cb968f670aeaa857506f4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/MathUtils.js",
+      "sha256": "b888fd77de0ebaa9c218d27a8f859555bcf32a89e974b6a1f4aeea9c61dd1d89",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/PROVENANCE.md",
+      "sha256": "66b2a5b5aa0c1c13cb6a8b9016b59d112214a69f5e1d988a2287b3620564a394",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/PolarCircleResolution.js",
+      "sha256": "ae218b4dccdf083afcde1b85494947c72d928e5430683a4d3013261e20b95a07",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/Prayer.js",
+      "sha256": "a13792a407bca56ca24f480c7f0f54fc4dd0324fce83e56d53ae4bfd9e22a922",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/PrayerTimes.js",
+      "sha256": "45c1936d2f96229e9b80b113531be4e71b537da10f76aad0e28035ee94f5cb4d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/Qibla.js",
+      "sha256": "3467a2c6816172a7b17379011e0a005ca60e0211ffba99d8fd5344f640db67fb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/Rounding.js",
+      "sha256": "c610a7340967a9f33835be8dc87ef54aa11aeae2f09cb9e60bb643536d31deeb",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/Shafaq.js",
+      "sha256": "60046362337cf7849af983e33033fc81fc48dcf40826a916517e696e19d06838",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/SolarCoordinates.js",
+      "sha256": "0f139365902bc82ffcf96cec7278e8afc41835ae8e040a97ff351fe0c99ad98e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/SolarTime.js",
+      "sha256": "9fff93b5fc7d745a0e946ac99dae17429a1441fac6280585c49eccdda3f5fa5d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/SunnahTimes.js",
+      "sha256": "507876f09d121eedb3b411aa52ad482ec706167517ecc8edd1e7dc72d4676fe8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/TimeComponents.js",
+      "sha256": "f081f2ed06e0c5086ee1d60238e40a58b714e608feed49ae5f931b4d14d5ec0d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/TypeUtils.js",
+      "sha256": "975718c044ac299b9ea5eefc931f0fc7dd3af5c957f7f7d153d8e26a4045f8f2",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/adhan/rebuild.mjs",
+      "sha256": "fc62f344da1e747d21b511468bbcf8ed1be751c92da2011fc897e319c6625874",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/d3-ticks/LICENSE",
+      "sha256": "3e6849627f74ff73c257a3ae1efb574015d94fc1035c05ec3c15805165efcbc4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "assets/vendor/d3-ticks/ticks.js",
+      "sha256": "1475d544bcc3f6234533b01af94b5849677d5a695ab62fc71fdd095a9401aca5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "index.html",
+      "sha256": "6e3b37491440d85b3365f4d39e8e1ef66098135944d7202e1f1856ae2d60b7ca",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "80e5edd1acf97cdce73a72eb0141c524a9667d5f5643db25ad34fb70dc023058",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/http-handler.mjs",
+      "sha256": "610fcc4a2f61adabd0a82c977339e5fb91f2c94e6205f84daae271295e19acd1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/http.mjs",
+      "sha256": "dab25fcaba5f16b662f8d1b178bbdf3ae8bb297441d7c3c316c204e2cf7b8d36",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/package-lock.json",
+      "sha256": "92e48ae56bd90233664b1fc2673fe02ed87b0b8bb186e4fc34dd631e63cc6904",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/package.json",
+      "sha256": "f1a5396fd50dad6408d93abe085f619b6840f693cf02ba0421967823cbe10b08",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/server.mjs",
+      "sha256": "e8b2201cf250da6701f8d354b8edb574e2cee06f484cc46830736a587177f426",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/sites-worker.mjs",
+      "sha256": "d591c7276c6eac5305c5334d6c0e84ccab39f1aeecc3c23aed084b653ecd4d01",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/stdio.mjs",
+      "sha256": "a7d590e29c13e1212b8c38cf9c34bf63f141272050da67bd6bf07d63a77db95a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/test-protocol.mjs",
+      "sha256": "3bd3798242a05928882e2eeaccc774a3bb6ee5b7998f96dfec947637e9dce11f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/toolkit.mjs",
+      "sha256": "7282206c0e3eb6eb33a69e07f0179c6e4e29b8aafcd57bc1eef89fd67ef7db66",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "mcp/worker.mjs",
+      "sha256": "9ae0f41fda7b49c98f8e35222e2427fdf5150d9d07849f73e3e92341946ee66b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/abhichara/atharvan.html",
+      "sha256": "8b8f1b5e07fdfb6103693972e696e0f9ead0c9641d97a45308c3f04f77c42352",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/abhichara/index.html",
+      "sha256": "95bb396dbfbe1840d4abac0b9d0ec4744c32ac08acaec3114166a3b41af7d7c5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/abhichara/six-acts.html",
+      "sha256": "40c76f60bdd7d6380cf94b100b168a46f75a6255da3aea05a696ad1a4fe2bd4a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/abhichara/sources.html",
+      "sha256": "b325412233acc447e67756e89a0c42aba17dca28e3d7aa72752757130225b848",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/about/index.html",
+      "sha256": "6655bb75d48d437858f0d0872a3ad8715d837431e18af2148a884f1deb36c753",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/autopilot.html",
+      "sha256": "45d3271b5058725249a7abf26acaefaebaf6934316a5d145572ed0efdb90eae5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/basics.html",
+      "sha256": "51894a6ea529b72ba1a5a6c9cd0565ef5e37c20b80961fcd1faf11d9b6d41d9a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book1/degrees.html",
+      "sha256": "6db62446cdb31ad3f5d45309aba98a8b9f009baec4ed917b35a41cd8acd7cbce",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book1/dignities.html",
+      "sha256": "d97f4db47742389da47be7f5f5f7411b1c07a7a97458d8aa8fdec401aa2f80b3",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book1/index.html",
+      "sha256": "edc7a476a03cc9b93c56c5322a6037f697f12abbc86062cd98164274edad832b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book1/master.html",
+      "sha256": "b87eabbab38bbab70817cf2bd2921bf890d656b20cfb9caa6306f9425443b35b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book1/planetary-hours.html",
+      "sha256": "52c84bbe964b85e9885b8a9215d4dccf6964ebc68f38860ec1eec38088acfe56",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book1/reference.html",
+      "sha256": "2ad50a65c693c923baeaab9864c65652befb56ab69616c73b13fb0f36df9e02e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book2/considerations.html",
+      "sha256": "29a71d208203fd9436fe1f0ca52721fd461d8b027e0df7b47933597aef0a8ed4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book2/examples.html",
+      "sha256": "15245afef17b43721ce5bff3633199d348960e09d8fae1936f18eb66303925d2",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book2/horary.html",
+      "sha256": "356b4209ab971aede557939840f8b6f5315a16eeec388c45dbe376bc50da6949",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book2/houses.html",
+      "sha256": "f64063afa06d2a3dafe54810248ce910e3f9a63ed8b1cf415ca6acd8d0d16e9f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book2/index.html",
+      "sha256": "7d5e67ee98c4fb698a7b4833834b2a2d42f384aba4ae3fdeeb6824446a9825be",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book3/index.html",
+      "sha256": "5c33277655ac1039673aea98596242c004ecfcdb597685c182b56291a9227fc8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book3/master.html",
+      "sha256": "65c38e9d953cfd10ab779a207ad464554babd871e586384d946ffa97e4e512f7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/book3/nativity.html",
+      "sha256": "8640363e513946c4b27e62c69c520e784c41eb76d90a58f37528a377f51d761b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/buddhist/dhammapada.html",
+      "sha256": "396c843a2df3b0525a571693aa2a86ee41a3d2db138437ebf4bb76cde96f27e7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/buddhist/heart.html",
+      "sha256": "6fc50112a14c2760eaad3c8cf12d5d27c45e56c5fff699ecfd9f7508343b4b77",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/buddhist/index.html",
+      "sha256": "fb04eb2c9c76c1c5c4dd4a8665e83036bd51e9f3d1b7cad5dee64d3a79109820",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/buddhist/metta.html",
+      "sha256": "0aee378f11855113f055fa6197f5d96c226dee2a507805f742377e5700539f54",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/buddhist/mn118.html",
+      "sha256": "7d972b86a6a148a94de883436bec63d6f19af90b345ab26adc38405035827049",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/buddhist/sources.html",
+      "sha256": "5e19c76e95cc433dbc09cb90f05cb8843286078aa55c4679974854f4e1d5a336",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/calendar-compare.html",
+      "sha256": "4a4222e9eea03747cd921f6dd55d48a8e2f2e5b37e4ec9ca9909fda12bf912bf",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/calendars.html",
+      "sha256": "1254f938206f8c97c259b3b2b0f93e2770076ef6460032d8fde23da79d57979b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/chronology/alchemy.html",
+      "sha256": "dbef2115427e47d2a5cbeca340fbd4e1986b3d33a8f33340b3a7abfbdee63b6a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/chronology/field-guide.html",
+      "sha256": "f810406feea4d9f8031ab81792aadca0bfdaf8e13c67038d685830d98af651e7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/chronology/hermetica.html",
+      "sha256": "7c0ed635cf495dcc6dcd9301e4b1cdb4a1cd5055958af4d2b9c36d5498f295ef",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/chronology/index.html",
+      "sha256": "04cb98002f447c011fbb2c926d012e920aadfa5ed4a380d8d791ac243612d794",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/chronology/library.html",
+      "sha256": "5def4521263e6b3da022174dbeddd1ba234109108ee46a216ce8368a0ab1e43e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/chronology/rituals.html",
+      "sha256": "53020a995258cda4b0694d28ee55145ae8e97acf06ce445ea883fe78b95e7caa",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/compare.html",
+      "sha256": "4d05b7887611ecafea813e4a327a3a266b2f07dd20f80dd96ed0f0ebb6dc755e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/confluence.html",
+      "sha256": "3b4155dd740a896a11c7d259c2373939edb16c6f52d38604a89ca498b77d3731",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/contents.html",
+      "sha256": "3953a2bb50917891f5324152003ad5bb461e086dd0d8f8c274e7cac5301e2c9c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/cycles.html",
+      "sha256": "e1f33d8f5a5dad9e25da34957068dcb5bda90b2802fb130bc2fb487e1a1513e7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/experiment.html",
+      "sha256": "6c0a84266154f59b204f8071e8022a76f89779f653ae71e93c6db0b2dfe40e6c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/geomancy.html",
+      "sha256": "75cc63ce39b5f2296779794e58e7dfe0ff5e1ec53f9417b2e2a9672cb90ed820",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/glossary.html",
+      "sha256": "5c0c8194065f1e694e9311062ade1b5636aecb54c589d6a178a391c75dcadd2b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/agrippa.html",
+      "sha256": "017dc909a4b7e9ee0a5c39db25a70a654f430d5cd6509814a2462ca774e2cc51",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/crowley.html",
+      "sha256": "1063e41b063b9e3f29f34e51d6ec5ec6c7e08d3d536a0edecfddd798f05526d4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/dee.html",
+      "sha256": "809a5573fd00d75ce308adf3476d3562657ae9b4f79d6f7f7745c5965331d524",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/east.html",
+      "sha256": "8164eaa960cb5b598f2da9b02f75cb7573e6e92c8ec59cc3e003176e05d1cf6a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/hall.html",
+      "sha256": "c8c497788581cbec2ab0f0562b0c352b196851a381b923ef9775e39807246385",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/hermetica.html",
+      "sha256": "f85ae32ca9383f675412756a8a045f16b870496fc6cb285712ebf227ad21d06b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/index.html",
+      "sha256": "cef64dada141833ac838101f115fbbff19845a648306697bf8313cd05475ec4c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/kin.html",
+      "sha256": "d09ac3d9f680839f8dd9b6ab7ed585e665d66646b8500ec43a8cb20d61da6485",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/varahamihira.html",
+      "sha256": "f782b2dc316bb35cfc333e8f3baf35e6f3f3f7470238df0487f3837fb7aebdbd",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/vivekananda.html",
+      "sha256": "f1a50fa95d2cb87d765f6c9ae1eecd2dd97bd2824fd65f67650074c444be115c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/greatworks/yogananda.html",
+      "sha256": "74aa601e9f4a2635081405dded1dbd6c5f24544ef78d64d4f912234019342c21",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/handcalc.html",
+      "sha256": "105cedec030eac6cc681f5eb4c9a8baac23db7850d34bfc9f23fc10ad717f042",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/how-it-works.html",
+      "sha256": "9f7732c923921be4715835de47ba2df7156f761bc6592d7efa1aea4f417c4539",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/iching.html",
+      "sha256": "33f90f6b94b59207aed8425f50b9ee23a695e18526ac53f57ac87c0885b689b0",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/incense.html",
+      "sha256": "0aeaad7f405bf66500e9c024e738b85e1dd9974d9e4c37a3c3997e2eda3a997a",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/interpret.html",
+      "sha256": "77df5c24136474c326c972d0b13c9560fdef91ee5994cf6b0eacccafec57529f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/jung/experiment.html",
+      "sha256": "4b86727bd621eff2c9cd2db0ed10db9edbc80f3709c828fbbb5fe8ff915b963c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/jung/index.html",
+      "sha256": "3772010b432faabb56110cd4ff4e3b02e47244842f14a95ef67cb900729547fc",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/jung/sources.html",
+      "sha256": "ecc9f88933eb39e4ef22c87e0cb3ca4ad5a38c5e122801015fc5f3358f1b7be8",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/jung/theory.html",
+      "sha256": "27f64c02a111ea161226c181ad46cfc26745a27115ca85fe659b9dd24cbdbd42",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/jung/timeline.html",
+      "sha256": "57e7ed8b29a70e92ac045b313b915ac791a361c7cb33bb8992cba23f9a9f257d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/jung/tool.html",
+      "sha256": "e44f94fa7a11ff358b86f6cc8b21d25128ea1a89ff98691377668763f5de5f22",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/kabbalah.html",
+      "sha256": "403f3f57e599b0706263c27fa61a0c9b55b62dc1e5e5e6aa6ff11bd277c442c7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/kuta.html",
+      "sha256": "50233deccaaa43722743e272a49429669713cb26f7dc2539ba856c4fed93bf8e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/learn.html",
+      "sha256": "b904e3ec5ce568ffaedee826e267f87756367ae86deb0e07cccd86bd622a8f9b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/library/esoteric.html",
+      "sha256": "b7b8196d54a8c8b5b443af38fb9c830a88139e154f37611efbc35081c3c7a255",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/library/index.html",
+      "sha256": "40b0eb57975838e89e4d5554383fab689c0418eea71bef50ae3d007fd1bde408",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/library/indian.html",
+      "sha256": "3d85c4f26427582cd77be30ea941e91cf702c8c2c48319323de104759b72984d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/library/western.html",
+      "sha256": "d7f8b715ecd6288e047178806aaec722d292a0038a73cc5557121a623093d3a7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/master.html",
+      "sha256": "834b40801c526a28f9afccbf0133c625d8b49d29d52dff55740a0839f698f484",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/mcp.html",
+      "sha256": "569ac34e122d8feadf1853fb5643db7963163a86763a426b763b19edcd4f9fdf",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/moments.html",
+      "sha256": "16312996eb9a15716bb4bc4a808973f277524d3bb5dec669ffdcab9e82e0efd9",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/muhurta.html",
+      "sha256": "4cff5b4cc2c982ddbfb745ff04e5a4eff8530a9d2fbf243181560658f3d12d27",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/now.html",
+      "sha256": "650ba95c5aae346f273f4d43a852af270bb842d9b7721730b46a2f34930efb82",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/opgraph.html",
+      "sha256": "bbc3619d3b9fd4a93aea09bfc67d550311cdbc6861af9755d43eed6bbbc3b056",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/correspondences.html",
+      "sha256": "b02dd02622b983e0b62d69a2e9dc3d54543b0f878efb1f8c626520084df948dc",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/election.html",
+      "sha256": "7403ef601406decdb1fdd901a73d82b40d6f5892b3d852effe7bb51844d83739",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/faces.html",
+      "sha256": "387183fba024884d72b17594c19494b4cc55305785ebe4eec556b3ceaaa3ca7b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/index.html",
+      "sha256": "7d1f4f41b19fa092cb49b06e18e498cda18b3cb02655e9f9114faad81f412be5",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/kameas.html",
+      "sha256": "0e15fa294a5a472c9f7ec54d858f71bd64927723b0b8570c11ce657f60fe448f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/mansions.html",
+      "sha256": "f50651e76f49cee7b1f22e9200b79112f0f1df86eaa007f8a9e7840e23859625",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/prayers.html",
+      "sha256": "8addd94bab5b342e35715062777741bec5c927df11e95b67ed83b4c6f6e2c326",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/stars.html",
+      "sha256": "b778f042b85308e0e4e36c1e8c53b44d5c7dc66167cf1836fb271175ae19bcee",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/picatrix/talisman.html",
+      "sha256": "8e32ed794e79bf4933b465b68b08119a634762f3d26565c42168df408f602531",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/practices/index.html",
+      "sha256": "6f102788c41ce4032e998f57bfcedbbca635d8a0d1735233c1a8100e7596b7bd",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/practices/mudras.html",
+      "sha256": "38b10255da5059bea2eb67e113fa91a8872946f8fd56805a3a711dbc36544c46",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/prasna.html",
+      "sha256": "c6226e4b126e1b0a3b884bec7400f5ab2b102543a5fa36622fcb43484000e462",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/rasa.html",
+      "sha256": "662132d1c9c180b6fb1b7fc5cfa8db1e4d0f77b14fa4eb7761c3e1badc20dbf2",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/read.html",
+      "sha256": "271a234af1e21e48914236c008b713aef889f5d1e22213c3406d0969324e570f",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/roadmap.html",
+      "sha256": "5e67dd9a364578a4de314c77579679197578d5fcd2b07c434ccdd4352243cbd3",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/runes.html",
+      "sha256": "5d1dbf002c8d2e3ebf27ba1de8c8a5ed30f5c5dc7344f6d8c9faaedec5aa6984",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/structure.html",
+      "sha256": "8f066b593ccaf9c290424ac5c1e0d809070289cffef1240129de008685161973",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/studio.html",
+      "sha256": "d789ff197b7af09821fc82fa0270efbfc94fcec222f72ffc23286c9f1cfd104b",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/synastry.html",
+      "sha256": "8c882574a6a6bebc6bc0b2d7142aaea24a6ec308191c8dd42d48d0da05c75bcf",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/tajika.html",
+      "sha256": "da57e1f82a957d5b7b238323634a1fd464150a29f082dd6bf1ca9b32f6fdf09c",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/tarot.html",
+      "sha256": "1e10411fc191b2103423ade0ae0a50b4f110e6389fa52754807902920b965c06",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/thelemic-times.html",
+      "sha256": "0d7d333d5ab8005b51bb25764cbc42248036ba5dae7879bb3b182b1c6944d156",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/timelords.html",
+      "sha256": "d4f90fd5b5d76f8cb358ae6eb90d8211aec6ddfded002b794d48471619f30e0e",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/tithi-pravesha.html",
+      "sha256": "af8b648508da1cb4123b4682a1c322da80e9526b13df13f602b5898971a759bc",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/tools.html",
+      "sha256": "3cfd3201d0153825c286f24d7b1fb55bbeb5a9fe388cecdfcac76b450e5d5318",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/trajectory.html",
+      "sha256": "10b9b8573d27dba9886226d3483c049bd7f1a98ee5c52da22fd535b0647dda70",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/transits.html",
+      "sha256": "bcebbf2a8a8c9533c648c86e9e4c30e1f34f8398031cc017a55c0d3faa17c4ca",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/vedic/course.html",
+      "sha256": "58d6b7ac5abc197a51d41d9bf280acca000a69ff87f7a80e4ec105785eada1a4",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/vedic/delineation.html",
+      "sha256": "f621b382b522b591a5756ea831e23e7cc391d82f6b36819ede6eedf0d619a945",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/vedic/index.html",
+      "sha256": "8224827330863330702d1388cf9977aae0a1340a9a221e942ec4221b235ce509",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/vedic/yogas.html",
+      "sha256": "621092b555278500fa945bd6e87fbc5932766227a74a2fe95219f4d375f77a46",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/workbench.html",
+      "sha256": "7a1bb59cf5b62ff244ed148a7315247d92e67beca9cd7e275d26634e2f4ea54d",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/workflow.html",
+      "sha256": "8c43524c757199d2d4a4f2857f994cd21535f7b1c29f3a07308112a470a45a08",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/yoga/index.html",
+      "sha256": "a68cdbfb251983dff9e8ab9a26b77007ae42d73c150a48637b8c4b632b335be1",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/yoga/pada1.html",
+      "sha256": "d285155e65ae7a4412329755161907da47a834a9248cbfeb10c5f71d522d80fd",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/yoga/pada2.html",
+      "sha256": "80ac86adf350a04821772f13970f6cb271d8100b1c70ee58c7224d491b116ea7",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/yoga/pada3.html",
+      "sha256": "01bcc1301f55d458f93364eb51e8b09755abed2ff4a235bbbe2cb13f7ea4c720",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/yoga/pada4.html",
+      "sha256": "788c2adc0177794cf5a68cf8d4dae4c614c83b7d1e54e0cef04a8830e3154251",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/yoga/sources.html",
+      "sha256": "4ab63859cbe726bbf4ba0733a3ade14ea24ce1be5d01487d967adb8b4fe27756",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "pages/yoga/theory.html",
+      "sha256": "3cdf052543e63eb16b94fe2d3cf05391956629feebb317073e2e0d248ae17699",
+      "matchesTestedBytes": true
+    },
+    {
+      "path": "sw.js",
+      "sha256": "6db145f637b472701c5cd5bb34ea30a161e6212240a80bd08b0d626c3a7a65fc",
+      "matchesTestedBytes": true
+    }
+  ],
+  "optionalWhitespaceReview": {
+    "exitCode": 2,
+    "findings": [
+      "assets/js/core/instant-boundary.js:25: new blank line at EOF",
+      "docs/2026-10-calendar-observatory-panel.md:46: new blank line at EOF"
+    ],
+    "disposition": "Nonfunctional final blank lines retained to preserve the exact reviewed source bytes. This check is not a required CI gate."
+  }
+}

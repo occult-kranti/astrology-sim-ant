@@ -43,8 +43,24 @@ export function run() {
     assert.throws(()=>callTool('workbench_katapayadi',{text:'शुक्र'}));
     assert.ok(Array.isArray(callTool('workbench_election',{...input,hoursAhead:0}).data.windows));
     assert.equal(callTool('workbench_election',{...input,dateISO:'2026-10-05T13:00:00+13:00',lat:-13.8333,lon:-171.75,hoursAhead:0}).data.inputs.utcOffset,13);
-    assert.equal(new Set(TOOLS.map(t=>t.name)).size,11);
+    assert.equal(new Set(TOOLS.map(t=>t.name)).size,13);
     assert.ok(callTool('workbench_catalogue',{}).data.capabilities.length>=81);
+  });
+  test('cross-calendar tools preserve explicit context, privacy and finite horizons',()=>{
+    const input={dateISO:'2026-10-29T12:00:00Z',lat:51.5,lon:0,timeZone:'Europe/London'};
+    const result=callTool('workbench_compare_moment',input);
+    assert.equal(result.data.context.dateISO,'2026-10-29T12:00:00.000Z');
+    assert.deepEqual(result,callTool('workbench_compare_moment',input));
+    for(const extra of [{dateISO:'2026-10-29'},{timeZone:'Not/AZone'},{lat:91},{unknown:true}])assert.throws(()=>callTool('workbench_compare_moment',{...input,...extra}));
+    for(const days of [0,15,1.1,Infinity])assert.throws(()=>callTool('workbench_calendar_outlook',{...input,days}));
+    assert.throws(()=>callTool('workbench_compare_moment',{dateISO:input.dateISO,lat:0,lon:0}));
+    const outlook=callTool('workbench_calendar_outlook',{...input,dateISO:'2026-10-31T12:00Z',timeZone:'America/New_York',lat:40.71,lon:-74,days:14});
+    assert.equal(outlook.data.rows.length,14);
+    assert.ok(new TextEncoder().encode(JSON.stringify(outlook)).length<1500000);
+    const legacy=['workbench_catalogue','workbench_chart','workbench_symbol','workbench_gematria','workbench_katapayadi','workbench_calendar','workbench_julian_day','workbench_easter','workbench_qibla','workbench_prayer_times','workbench_election'];
+    for(const name of legacy)assert.ok(TOOLS.some(t=>t.name===name),name);
+    assert.equal(TOOLS.filter(t=>!legacy.includes(t.name)).length,2);
+    assert.ok(TOOLS.every(t=>t.inputSchema.additionalProperties===false));
   });
   return {pass:!failures.length,passed,failures};
 }

@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-29T21:49:57.431918+00:00",
+  "candidate": {
+    "branch": "feat/mobile-calendar-observatory",
+    "baseCommit": "5f030c0e2998c0276a0549707b5578614ccdf7d9",
+    "authority": "Current product file hashes, not an uncommitted future commit identifier",
+    "productManifest": "docs/evidence/calendar-observatory/final-native-inputs/receipt.json",
+    "productFileCount": 406,
+    "currentProductMatchesFinalRun": true
+  },
+  "decision": {
+    "recommendation": "Release the branch with documented limits",
+    "threeReviewLoopsComplete": true,
+    "allRequiredModernPhasesPassed": true,
+    "singleAllModePassed": false,
+    "publicationVerified": false,
+    "humanTraditionReview": false,
+    "realPhoneOrScreenReader": false
+  },
+  "results": {
+    "observatory": {
+      "routeViewportLoads": 354,
+      "checks": 121,
+      "runtimeAndConsoleErrors": 0,
+      "missingResources": 0,
+      "outgoingRequests": 0,
+      "productUnchanged": true
+    },
+    "modernRelease": {
+      "isolatedPhases": 6,
+      "userJourneys": 15,
+      "HTMLFiles": 119,
+      "sumSerialMilliseconds": 333513
+    },
+    "engine": "Full current engine gate passed; exact retained log",
+    "independentArithmeticAssertions": 24,
+    "studioSessions": 5,
+    "skyHandoffFixtures": 6,
+    "staticAudit": {
+      "HTML": 119,
+      "JS": 256,
+      "problems": 0
+    },
+    "legacyPuppeteer": {
+      "exitCode": 0,
+      "HTML": 119,
+      "pageErrors": 0,
+      "structuredDrivesExecuted": 9,
+      "historicalDescriptorWarnings": 2,
+      "proseDrivesNotExecuted": 89
+    },
+    "newHomepageDefaultContrastPairs": 7
+  },
+  "materialLimits": [
+    "Old all-mode runner failed and was boundedly stopped; all six isolated phases passed and CI now uses them. The long-lived browser lifecycle cause remains unconfirmed.",
+    "Two legacy Puppeteer descriptor warnings are not counted as passed semantic assertions; current Workbench flows have separate modern tests.",
+    "Historical round-ledger C3 remains not evaluable and old claim counts are unverified.",
+    "Civil runtime conventions are not all-cultural observance calendars or validated predictions; unimplemented regional methods and primary-text verification remain explicit.",
+    "New MCP tools are verified locally; deployment of the separately hosted server and a real ChatGPT client connection are not verified.",
+    "No real AI provider call, personal-account access, screen reader or physical-phone test is claimed."
+  ],
+  "sourceTestBindings": {
+    ".github/workflows/pages.yml": {
+      "sha256": "3631d9e6a93cac25c6620bd4f5dc8effface9001a39964f64af5bc2075545b20",
+      "bytes": 9185
+    },
+    "scripts/browser-observatory.mjs": {
+      "sha256": "5fe5cc2e50bd05b992eb5f9a8e88b8058824e496e8563a260bc73031360b5cf2",
+      "bytes": 20286
+    },
+    "scripts/browser-release.mjs": {
+      "sha256": "2e919ac1b61ab98f4ff51c64974fdb1248b5102e55c8d4f9f80ae0ca23c1e233",
+      "bytes": 51011
+    },
+    "scripts/browser-sessions.mjs": {
+      "sha256": "863bab194923412cf58b26369a40a6dfc3c7e80f33c200ed4ed7055359d92232",
+      "bytes": 28040
+    },
+    "scripts/browser-verify.mjs": {
+      "sha256": "7a597092b09708d9a6afa3e56c67c78e265d63e6f08d7e28a4b0fcc67027ff7f",
+      "bytes": 14020
+    },
+    "scripts/engine-test.mjs": {
+      "sha256": "a826e02c973b5541bc7efe032ba712a91c658f9f92c3b4b3e0265a6ec38b3c5e",
+      "bytes": 145608
+    },
+    "scripts/audit.mjs": {
+      "sha256": "2cb1c70fa92da499b407f0197f04a96044acee50ab8703e88be6d628468f2597",
+      "bytes": 1951
+    },
+    "scripts/round-ledger.mjs": {
+      "sha256": "71cd2021b00a38dd59da078782ad380b04259b945b5ec5680c674423a9456d64",
+      "bytes": 16516
+    },
+    "scripts/check-sky-handoff.mjs": {
+      "sha256": "c7a780b8f04992e537f96c26364420dd5c9f4e4528d31371cb7aef1e0f41cd62",
+      "bytes": 955
+    },
+    "scripts/tests/calendar-observatory.mjs": {
+      "sha256": "da9a118110262bd0b37ff5634c32a7fad96e69806933451b8f1b240d1cd38dd2",
+      "bytes": 13110
+    },
+    "scripts/tests/calendar-study-packet.mjs": {
+      "sha256": "a65b6496e828cc99069d5e9a400ce6da0a4ed9225973e96ef363a42e8827eeb0",
+      "bytes": 4185
+    },
+    "scripts/tests/observatory-schedule.mjs": {
+      "sha256": "711f84f52d320f6181bc92fc9188f889aedfd573fdf6456b4ce631f10efb337b",
+      "bytes": 1451
+    },
+    "scripts/tests/workbench-lifecycle.mjs": {
+      "sha256": "ce5befa5be5825f9420dd7d80a1b677f69c5029e225e778aff85cb2a4473c2ee",
+      "bytes": 7079
+    },
+    "scripts/tests/mcp-toolkit.mjs": {
+      "sha256": "851c6f7082d1e62c70d2fe60ebd9a896ba04ab2ff79a8356cdcb8b1801378ca0",
+      "bytes": 5647
+    },
+    "mcp/test-protocol.mjs": {
+      "sha256": "3bd3798242a05928882e2eeaccc774a3bb6ee5b7998f96dfec947637e9dce11f",
+      "bytes": 5908
+    },
+    "mcp/toolkit.mjs": {
+      "sha256": "7282206c0e3eb6eb33a69e07f0179c6e4e29b8aafcd57bc1eef89fd67ef7db66",
+      "bytes": 13242
+    },
+    "mcp/package.json": {
+      "sha256": "f1a5396fd50dad6408d93abe085f619b6840f693cf02ba0421967823cbe10b08",
+      "bytes": 365
+    },
+    "mcp/package-lock.json": {
+      "sha256": "92e48ae56bd90233664b1fc2673fe02ed87b0b8bb186e4fc34dd631e63cc6904",
+      "bytes": 2967
+    },
+    "scripts/build-mcp-catalogue.mjs": {
+      "sha256": "bc20b920ab9da72853b0e4dbbe065cfad7988e119bbf44b37f79f7b9b2133f7c",
+      "bytes": 1356
+    },
+    "scripts/build-search-index.mjs": {
+      "sha256": "54a394334b9578035dccc8e7520980c70af2125de3d163c35de5a35525d106c7",
+      "bytes": 5121
+    }
+  },
+  "evidenceBindings": {
+    "docs/evidence/calendar-observatory/final-native-inputs/receipt.json": {
+      "sha256": "4ea3b490c1807d1b20dfb28bb12c50737e3c7019fbb13e13d94c933d7579a965",
+      "bytes": 236726
+    },
+    "docs/evidence/calendar-observatory/browser-release-aggregate.json": {
+      "sha256": "7433990fcdd8d1ab2a60c8942b04f9dc3e8c759eeafe53c8547449a3d0970636",
+      "bytes": 5127
+    },
+    "docs/evidence/calendar-observatory/browser-release-all-interrupted.json": {
+      "sha256": "9dc16093238cf1514af0b5939cd9a215ed931414d8537fe25bbe6d914c6c0a96",
+      "bytes": 14666
+    },
+    "docs/evidence/calendar-observatory/engine-final.log": {
+      "sha256": "75022d8b600435e146c21e60eef652677cef3679f274e48fe5fca9f1363a517d",
+      "bytes": 40145
+    },
+    "docs/evidence/calendar-observatory/sessions-final.json": {
+      "sha256": "3cf8b7c38373a496dd2e2259aec5ee10cbe3947a46c00b85276e78ac8c6b773a",
+      "bytes": 3062
+    },
+    "docs/evidence/calendar-observatory/round2-engine.json": {
+      "sha256": "6dbfeea829464e7ab8caf2a6dd1e6fc6371f8318a062b6d31fbc48b23ad6fd17",
+      "bytes": 1476
+    },
+    "docs/evidence/calendar-observatory/verify-engine.mjs": {
+      "sha256": "b6ceeacaac0a0b01a4860d97301cc53ea6497793395d012a0aecd1dcfba2f7ae",
+      "bytes": 3708
+    },
+    "docs/evidence/calendar-observatory/legacy-browser-final.json": {
+      "sha256": "a49e29aab9e68381fc6f571e02034eaddcff0500980c415805f9b3184427d331",
+      "bytes": 1514
+    },
+    "docs/evidence/calendar-observatory/legacy-browser-final.log": {
+      "sha256": "8e4d6b4cd3bc1e114f931999980419b954bf750ac00816ca6fe05b8c946a1454",
+      "bytes": 6675
+    },
+    "docs/evidence/calendar-observatory/native-input-verification.json": {
+      "sha256": "fbe3ce404a72c9bff4c5e6dd7062e87fc76c77f188db3f788a641fde580124b3",
+      "bytes": 1555
+    },
+    "docs/evidence/calendar-observatory/final-contrast.json": {
+      "sha256": "7a352e1e3773a9423557a8c1f7eb576d976b09e83b86ce486965e81445883a99",
+      "bytes": 2027
+    },
+    "docs/evidence/calendar-observatory/favicon-source-delta.json": {
+      "sha256": "b0649ad1eaedc10310c924c8786dd0c057165a289e90ac961b158e1556325913",
+      "bytes": 366
+    },
+    "docs/evidence/calendar-observatory/browser-release-calculators/browser-results.json": {
+      "sha256": "421ba44daeaa7ea777be4758a484cca4743089923c5d191eb1af8b13546cacff",
+      "bytes": 659
+    },
+    "docs/evidence/calendar-observatory/browser-release-workbench/browser-results.json": {
+      "sha256": "3866f20710f2bd3c10b4c2c0d0dffa0c2eceb7cde249ddb07a0535683cc4a259",
+      "bytes": 1715
+    },
+    "docs/evidence/calendar-observatory/browser-release-studio/browser-results.json": {
+      "sha256": "4c61c3808b5812371ab1d5d09f01681fb51dbbad32305fbf426915557739074d",
+      "bytes": 1981
+    },
+    "docs/evidence/calendar-observatory/browser-release-connections/browser-results.json": {
+      "sha256": "9cbfb13f5296a51d742ffec841e4129abfe4273379f730383114e53be9af0ed3",
+      "bytes": 684
+    },
+    "docs/evidence/calendar-observatory/browser-release-assistant/browser-results.json": {
+      "sha256": "5d8d7dd53ec34e6114b24b650c8329a2e22179e4e18c262f0b5b3906454336ad",
+      "bytes": 385
+    },
+    "docs/evidence/calendar-observatory/browser-release-pages/browser-results.json": {
+      "sha256": "c35330112d8f4110d4740dd05b32f55227812005c56f2ff06a24a49c826aeec7",
+      "bytes": 14972
+    }
+  },
+  "reviewDocumentBindings": {
+    "docs/2026-10-calendar-observatory-panel.md": {
+      "sha256": "40d25bf20d452ce8e799e21bed03668770f11efe8912ce5177457ac3bdc3ef70",
+      "bytes": 8816
+    },
+    "docs/2026-10-calendar-observatory-verification.md": {
+      "sha256": "8b07efac750908dcfcc0243bca2ffa251c3e3143237e097f317457249453b2f9",
+      "bytes": 8850
+    }
+  },
+  "excludedFromBinding": [
+    "This release-binding file itself",
+    "Future root-owned staged-source.json or publication receipts to avoid circular dependencies"
+  ]
+}

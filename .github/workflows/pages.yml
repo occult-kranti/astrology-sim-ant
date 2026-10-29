@@ -62,7 +62,18 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Browser journeys under the Pages project path
-        run: node scripts/browser-release.mjs
+        # Separate browser lifetimes retain every journey and page assertion.
+        # A long-lived local all-mode run exhausted tab creation after a redirect
+        # failure; all six isolated phases passed on the corrected candidate.
+        run: |
+          set -euo pipefail
+          for browser_phase in calculators workbench studio connections assistant pages; do
+            BROWSER_PHASE="$browser_phase" BROWSER_OUTPUT="test-results/$browser_phase" node scripts/browser-release.mjs
+          done
+      - name: Mobile observatory, weekly refresh and comparison journeys
+        env:
+          OBS_OUTPUT: test-results/observatory
+        run: node scripts/browser-observatory.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962
@@ -173,7 +184,10 @@ jobs:
                 if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
                 const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
                 const catalogue = await catalogueResponse.json();
-                if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || catalogue.tools?.length !== 11) throw new Error('Published MCP catalogue is missing or invalid.');
+                const required = ['workbench_compare_moment', 'workbench_calendar_outlook'];
+                if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || catalogue.tools?.length !== 13 || !required.every(name => catalogue.tools.some(tool => tool.name === name))) throw new Error('Published MCP catalogue is missing or invalid.');
+                const comparison = await fetch(new URL('pages/calendar-compare.html', base), { signal: AbortSignal.timeout(10000) });
+                if (!comparison.ok || !(await comparison.text()).includes('obs-form')) throw new Error('Published calendar comparison is unavailable.');
                 verified = true;
                 console.log('Verified Pages release ' + release.commit + ' at ' + base.href);
                 break;

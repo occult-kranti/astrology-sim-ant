@@ -1,4 +1,5 @@
 // Pure allowlisted calculations. No filesystem, account, clock, network or storage access.
+import { compareMoment, buildCalendarOutlook } from '../assets/js/core/calendar-observatory.js';
 import { calculateContext, normalizeCalculationInput, parseExplicitInstant } from '../assets/js/core/calculation-context.js';
 import { createSymbolResult, SYMBOL_METHODS } from '../assets/js/core/symbols.js';
 import { renderSymbolSVG } from '../assets/js/core/viz/symbol-svg.js';
@@ -26,8 +27,9 @@ export const METHODS = Object.freeze({
   vedic: 'Separate sidereal whole-sign chart, linear Lahiri estimate and mean nodes. Approximated strength components disclosed; not JHora equivalence.',
   symbolic: SYMBOL_METHODS,
   calendars: CALENDARS,
+  comparison: 'One explicit UTC instant, IANA zone and observer across independently named calendar and zodiac conventions. Civil calendar rows are not religious observance decisions; differences are not scored as agreement or predictive reliability.',
   calibration: 'Validate UTC instant, observer location and explicit conventions; never alter positions to match an interpretation.',
-  limits: { inputBytes: 65536, outputBytes: 1500000, scanSamples: 256, scanHours: 168, textCodePoints: 256 },
+  limits: { inputBytes: 65536, outputBytes: 1500000, scanSamples: 256, scanHours: 168, textCodePoints: 256, outlookDays: 14 },
   privacy: 'No account, tracking, saved records or outbound requests. Only explicitly supplied tool arguments are calculated; MCP client/provider may retain their conversation.',
   sources: ['https://github.com/cosinekitty/astronomy', 'https://www.esotericarchives.com/agrippa/agripp2b.htm', 'https://github.com/batoulapps/adhan-js', 'https://github.com/occult-kranti/astrology-sim-ant/tree/main/docs'],
 });
@@ -56,6 +58,8 @@ export const TOOLS = [
     return { ...result, method: 'Existing katapayadi table; input NFC normalization; inspect consonant trace and ignored characters.' };
   }),
   define('workbench_calendar', 'Convert an explicit instant to a selected civil calendar. Midnight boundary is disclosed; not religious observance determination. ICU data varies by runtime.', object({ dateISO: instant, calendar: enumeration(CALENDARS.map(c => c.id)), timeZone: string() }, ['dateISO', 'calendar']), args => ({ ...calendarAtInstant(parseExplicitInstant(args.dateISO), args.calendar, args.timeZone || 'UTC'), method: CALENDARS.find(c => c.id === args.calendar) })),
+  define('workbench_compare_moment', 'Compare one explicit instant and observer across supported civil calendars, tropical and approximate Lahiri sidereal conventions, planetary hours and method-labelled prayer times. Does not predict outcomes or determine religious observances.', object({ dateISO: instant, ...location, timeZone: string(), system: moment.system, prayerMethod: enumeration(PRAYER_METHODS.map(m => m[0])), asr: enumeration(['Shafi', 'Hanafi']), highLatitude: enumeration(['MiddleOfTheNight', 'SeventhOfTheNight', 'TwilightAngle']) }, ['dateISO', 'lat', 'lon', 'timeZone']), args => compareMoment(args)),
+  define('workbench_calendar_outlook', 'Compute 1–14 bounded daily calendar/sky study snapshots in an explicit IANA zone. Local civil dates retain DST semantics; sampled labels are not exact transition times or validated forecasts.', object({ dateISO: instant, ...location, timeZone: string(), system: moment.system, prayerMethod: enumeration(PRAYER_METHODS.map(m => m[0])), asr: enumeration(['Shafi', 'Hanafi']), highLatitude: enumeration(['MiddleOfTheNight', 'SeventhOfTheNight', 'TwilightAngle']), startDate: string(10), days: integer(1, 14), sampleTime: string(5) }, ['dateISO', 'lat', 'lon', 'timeZone']), args => buildCalendarOutlook(args)),
   define('workbench_julian_day', 'Convert validated Gregorian or Julian civil date to astronomical Julian Day and both civil calendars (years 1–9999).', object({ date: string(10), calendar: enumeration(['gregorian', 'julian']), utcHours: number(0, 23.999999) }, ['date']), args => fromJD(civilToJD(args.date, args.calendar, args.utcHours))),
   define('workbench_easter', 'Ecclesiastical Easter using explicitly selected Gregorian or Julian computus; not an observed lunar date.', object({ year: integer(1583, 4099), method: enumeration(['gregorian', 'julian']) }, ['year']), args => easter(args.year, args.method)),
   define('workbench_qibla', 'Initial great-circle bearing toward the Kaaba, degrees clockwise from true north; singular positions reported by the engine.', object(location, ['lat', 'lon']), args => ({ ...qibla(args.lat, args.lon), convention: 'True-north initial great-circle bearing; not a calibrated phone compass.' })),

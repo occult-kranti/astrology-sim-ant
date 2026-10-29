@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-29T21:49:19.049290+00:00",
+  "command": "node scripts/browser-verify.mjs with the documented local server and isolated Puppeteer tooling",
+  "exitCode": 0,
+  "applicationAndDocumentationHTML": 119,
+  "pageErrors": 0,
+  "structuredDrivesExecuted": 9,
+  "assertionWarnings": 2,
+  "warnings": [
+    {
+      "check": "dial arrow keys move the bound input",
+      "observed": "Legacy .dial input[type=\"number\"] descriptor had no target; inputChanged observed null\u2192null.",
+      "status": "historical-descriptor-warning; not counted as a passed semantic assertion"
+    },
+    {
+      "check": "recents chip round-trip",
+      "observed": "Legacy #wb-lat expectation12.34 observed51.5074; current Workbench journey is tested separately.",
+      "status": "historical-descriptor-warning; not counted as a passed semantic assertion"
+    }
+  ],
+  "proseDrivesDocumentedOnly": 89,
+  "reducedMotion": [
+    "Workbench and Timelords:0active animations; button transform none",
+    "Finished or idle non-filling transition records do not count as running motion; running, pending and paused records still fail."
+  ],
+  "mobile390": [
+    "home",
+    "now",
+    "yoga",
+    "workbench",
+    "timelords"
+  ],
+  "print": [
+    "home",
+    "timelords"
+  ],
+  "log": "docs/evidence/calendar-observatory/legacy-browser-final.log",
+  "logSHA256": "8e4d6b4cd3bc1e114f931999980419b954bf750ac00816ca6fe05b8c946a1454",
+  "passWithWarnings": true,
+  "humanOrScreenReaderTest": false
+}

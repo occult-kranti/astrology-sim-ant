@@ -1750,6 +1750,15 @@ for (const suite of ['live-symbols', 'study-session']) {
   } catch (error) { ok(false, `${suite}: FAIL ` + String(error.stderr || error.message).slice(0, 400)); }
 }
 
+// Cross-calendar source/context and civil-week regression checks use the same
+// pure engines as the browser and MCP, without a host clock or live provider.
+for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-study-packet']) {
+  try {
+    execFileSync(process.execPath, [`scripts/tests/${suite}.mjs`], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] });
+    ok(true, `${suite}: PASS`);
+  } catch (error) { ok(false, `${suite}: FAIL ` + String(error.stderr || error.message).slice(0, 400)); }
+}
+
 // --- THE ARTERY GATE (R34) -------------------------------------------------
 // A generated data module that no longer matches its generator is the failure
 // mode this repo has been unable to see: five earlier modules name generators

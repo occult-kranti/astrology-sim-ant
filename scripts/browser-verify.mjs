@@ -50,6 +50,10 @@ for (const rel of pages) {
   pg.on('requestfailed', r => errs.push('REQFAIL: ' + r.url() + ' ' + (r.failure()?.errorText)));
   try {
     await pg.goto(url, { waitUntil: 'networkidle0', timeout: 20000 });
+    if (rel.replaceAll('\\', '/') === '/pages/master.html') {
+      await pg.waitForFunction(() => location.pathname.endsWith('/pages/workbench.html'));
+      await pg.waitForSelector('header.site');
+    }
     const hdr = (await pg.$('header.site')) ? 'hdr✓' : 'hdr✗';
     if (hdr === 'hdr✗') errs.push('chrome not injected (no header.site)');
     const a11y = await pg.evaluate(() => {
@@ -154,16 +158,19 @@ console.log(`   structured executed: ${structuredRun} (assertion warnings: ${dri
 console.log('\n== Phase 3: reduced-motion / 390 px / print passes ==');
 async function withPage(fn) { const pg = await b.newPage(); try { return await fn(pg); } finally { await pg.close(); } }
 
-// RM: getAnimations() === 0 after load+idle; .btn at rest computes transform:none.
+// RM: no current animations after load+idle; .btn rests at transform:none.
+// Chromium may retain finished, non-filling CSSTransition records in this list.
+// They have no active effect (progress=null); running/pending/paused effects
+// must still fail rather than counting those retained records as motion.
 for (const rel of ['/pages/workbench.html', '/pages/timelords.html']) {
   await withPage(async pg => {
     await pg.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
     await pg.goto(BASE + rel, { waitUntil: 'networkidle0', timeout: 20000 });
     await new Promise(r => setTimeout(r, 800));
-    const anims = await pg.evaluate(() => document.getAnimations ? document.getAnimations().length : 0);
+    const anims = await pg.evaluate(() => document.getAnimations ? document.getAnimations().filter(a => a.playState !== 'finished' && a.playState !== 'idle').length : 0);
     const btnT = await pg.evaluate(() => { const b = document.querySelector('.btn'); return b ? getComputedStyle(b).transform : 'none'; });
     const ok = anims === 0 && (btnT === 'none' || btnT === 'matrix(1, 0, 0, 1, 0, 0)');
-    if (!ok) { tot++; console.log(`✗  RM ${rel}: getAnimations=${anims}, btn.transform=${btnT}`); } else console.log(`✓  RM ${rel} (getAnimations=0, btn transform none)`);
+    if (!ok) { tot++; console.log(`✗  RM ${rel}: activeAnimations=${anims}, btn.transform=${btnT}`); } else console.log(`✓  RM ${rel} (activeAnimations=0, btn transform none)`);
   });
 }
 

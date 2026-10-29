@@ -1,5 +1,60 @@
 # Handoff notes — for the next model/build
 
+## Calendar Observatory branch — 29 October 2026
+
+Current development: `feat/mobile-calendar-observatory`, based on `5f030c0`.
+The redesign preserves all 117 original application routes and adds
+`pages/calendar-compare.html`. Read the new dated research, plan, AI, panel and
+verification documents linked at the top of README before changing its methods.
+
+The frontend remains a zero-build static ES-module site. Run from this checkout:
+
+```bash
+python3 -m http.server 8030 --bind 127.0.0.1
+node scripts/engine-test.mjs
+node scripts/audit.mjs
+node scripts/round-ledger.mjs --check
+npm ci --ignore-scripts --prefix mcp
+npm test --prefix mcp
+```
+
+For browser gates use the existing Playwright installation, or the workflow's
+pinned `playwright@1.58.2` with its Chromium. Run `scripts/browser-release.mjs`
+and `scripts/browser-observatory.mjs`. Integration journeys additionally use
+SkyLens commit `2b2aa089009db3ddedc2256a7a5456b402b23962` via `SKY_LENS_ROOT`;
+do not substitute a moving branch and call it the pinned test.
+Regenerate the source-backed catalogues with
+`node scripts/build-mcp-catalogue.mjs` and `node scripts/build-search-index.mjs`
+when their inputs change. The service worker version is bumped for this release;
+its lifecycle fixture derives the current version while retaining obsolete-cache
+and other-project preservation checks.
+
+`calendar-observatory.js` owns pure, bounded same-instant comparisons and
+1–14 local-date snapshots. `instant-boundary.js` isolates unchanged strict parsing;
+`calculation-context.js` re-exports the prior public API. The homepage aligns its
+two groups to Monday–Sunday using `observatory-schedule.js`. Live refresh reads
+the actual unambiguous instant rather than re-resolving a repeated wall clock.
+Dirty/frozen inputs suspend automatic updates and invalidate export/AI packets.
+No timer runs while the site is closed, and no unattended cloud job is claimed.
+
+All new symbolic quality rows are historical classifications, not active outcome
+verdicts. Opening-portion yoga rules have `applicability: timing-unresolved`;
+primary-text verification is incomplete, and modern secondary provenance and
+citation flags must remain visible. Civil conversions do not infer sunset days,
+observed crescents, festivals, personal births, or every culture's calendar.
+
+The new ChatGPT flow previews/copies/exports a minimal source-labelled packet.
+It makes no provider call, inherits no ChatGPT session, and excludes geographic
+information by default. The source MCP now has 13 tools; the previously hosted
+remote endpoint has not been redeployed or authenticated as part of this branch.
+Do not claim its two new tools are remotely available until separately verified.
+No Supabase connection is needed or present. Existing saved records and older
+assistants retain their own documented formats and behaviour.
+
+The branch and PR are review artifacts. The existing workflow publishes only
+verified `main`; creating this branch does not replace the production website.
+Retained historical handoff notes below refer to earlier releases.
+
 This file is the **environment + architecture + ship-procedure** truth. For *what to build
 next and in what order*, read **`ROADMAP.md`** (the reconciled, phased plan). For *the data to
 encode and its accuracy caveats*, read **`research/SOURCE-DATA.md`**. The long-form vision is

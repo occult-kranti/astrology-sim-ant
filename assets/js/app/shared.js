@@ -25,7 +25,8 @@ import { adoptArt } from './art/adopt.js';
 // duplicating the catalogue (read-only imports; the array itself is not mutated).
 export const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
-    ['index.html', 'Home', 'home'],
+    ['index.html', 'Today — the calendar observatory', 'home'],
+    ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
     ['pages/basics.html', 'The Basics — every concept', 'basics'],
     ['pages/learn.html', 'Learn — astrology & the math', 'learn'],
     ['pages/interpret.html', 'How to read results', 'interpret'],
@@ -119,6 +120,7 @@ export function currentSection() {
   if (m(/\/pages\/book1\/dignities\.html$/)) return 'dignities';
   if (m(/\/pages\/book1\/planetary-hours\.html$/)) return 'phours';
   if (m(/\/pages\/calendars\.html$/)) return 'calendars';
+  if (m(/\/pages\/calendar-compare\.html$/)) return 'calendarcompare';
   if (m(/\/pages\/book2\/horary\.html$/)) return 'horary';
   if (m(/\/pages\/book3\/nativity\.html$/)) return 'nativity';
   // Exact, and BEFORE the /pages/picatrix/ catch-all below: incense.html sits at
@@ -206,12 +208,21 @@ function groupOf(key) {
 
 export function mountChrome(activeKey = '') {
   const active = currentSection() || activeKey;
+  // One shared presentation layer covers every preserved route. Relative URLs
+  // resolve from this module so nested pages and project-path hosting agree.
+  document.body.classList.add('observatory-shell');
+  if (!document.querySelector('link[data-observatory-style]')) {
+    const style = document.createElement('link');
+    style.rel = 'stylesheet'; style.href = R('assets/css/observatory.css');
+    style.dataset.observatoryStyle = 'true'; document.head.appendChild(style);
+  }
   // accessibility: a skip link + a target id on <main>
   const skip = document.createElement('a');
   skip.className = 'skip-link'; skip.href = '#content'; skip.textContent = 'Skip to content';
   document.body.prepend(skip);
   const mainEl = document.querySelector('main');
   if (mainEl && !mainEl.id) mainEl.id = 'content';
+  if (mainEl) skip.href = '#' + mainEl.id;
 
   const header = document.createElement('header');
   header.className = 'site';
@@ -219,13 +230,15 @@ export function mountChrome(activeKey = '') {
   header.innerHTML = `<div class="wrap">
     <a class="brand" href="${R('index.html')}">
       <span class="mark" aria-hidden="true">✶</span>
-      <span><b>The Astrologer's Workbench</b><small>Lilly · Picatrix · Jyotiṣa · the oracles — computed honestly, for study</small></span>
+      <span><b>The Astrologer's Workbench</b><small>One sky. Many ways of keeping time.</small></span>
     </a>
+    <a class="ob-header-today" href="${R('index.html')}"${active === 'home' ? ' aria-current="page"' : ''}>Today</a>
+    <a class="ob-header-compare" href="${R('pages/calendar-compare.html')}"${active === 'calendarcompare' ? ' aria-current="page"' : ''}>Compare a moment</a>
     <button class="cmdk-btn" type="button" aria-label="Search the site (Ctrl-K)"><svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg></button>
     <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav"><span class="nav-toggle-bars" aria-hidden="true"></span></button>
     <nav id="site-nav" class="main" aria-label="Primary">${NAV_GROUPS.map(g =>
       `<div class="nav-group${g.key === activeGroup ? ' has-current' : ''}" data-group="${g.key}">` +
-        `<button type="button" class="nav-group-btn" id="navbtn-${g.key}" aria-haspopup="true" aria-expanded="false" aria-controls="navmenu-${g.key}">` +
+        `<button type="button" class="nav-group-btn" id="navbtn-${g.key}" aria-expanded="false" aria-controls="navmenu-${g.key}">` +
           `${g.label}<span class="nav-caret" aria-hidden="true">▾</span></button>` +
         `<div class="nav-menu${g.wide ? ' wide' : ''}" id="navmenu-${g.key}" aria-label="${g.label}">${g.items.map(([href, label, key, kicker]) =>
           (kicker ? `<b class="nav-menu-kicker">${kicker}</b>` : '') +
@@ -233,6 +246,23 @@ export function mountChrome(activeKey = '') {
       `</div>`).join('')}
     </nav></div>`;
   document.body.prepend(header);
+
+  // A small task bar keeps the main destinations within reach on phones. The
+  // Menu control opens the same disclosure navigation, never a second registry.
+  const mobileNav = document.createElement('nav');
+  mobileNav.className = 'ob-mobile-nav'; mobileNav.setAttribute('aria-label', 'Quick navigation');
+  const navIcon = path => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${path}"/></svg>`;
+  const quick = [
+    ['index.html', 'Today', 'home', 'M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6 7 7m10 10 1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z'],
+    ['pages/calendar-compare.html', 'Compare', 'calendarcompare', 'M4 4h6v16H4zM14 4h6v16h-6zM7 8h0m10 0h0M7 12h0m10 0h0'],
+    ['pages/tools.html', 'Tools', 'tools', 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z'],
+    ['pages/library/index.html', 'Library', 'library', 'M3 4h7l2 2 2-2h7v15h-7l-2 2-2-2H3zM12 6v15'],
+  ];
+  mobileNav.innerHTML = quick.map(([href, label, key, path]) =>
+    `<a href="${R(href)}"${key === active ? ' aria-current="page"' : ''}>${navIcon(path)}<span>${label}</span></a>`).join('') +
+    `<button type="button" class="ob-menu-button" aria-controls="site-nav" aria-expanded="false">${navIcon('M4 6h16M4 12h16M4 18h16')}<span>Menu</span></button>`;
+  document.body.appendChild(mobileNav);
+  const mobileMenu = mobileNav.querySelector('.ob-menu-button');
 
   // ---- Mobile drawer: the whole grouped bar collapses behind a hamburger below
   // the breakpoint. CSS hides the toggle (and lays the bar out horizontally)
@@ -250,7 +280,9 @@ export function mountChrome(activeKey = '') {
   if (navToggle && navEl) {
     const setDrawer = open => {
       navEl.classList.toggle('open', open); navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); if (!open) closeMenus(null);
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      mobileMenu.setAttribute('aria-expanded', String(open));
+      if (!open) closeMenus(null);
       // DS3: spring the drawer in AFTER the state flip (truth first). Guarded by a
       // dynamic motion.js import — degrades to the instant open when absent/RM.
       if (open) import('./motion.js').then(m => { if (m.motionOK && m.motionOK()) m.animatePresence(navEl, 'in', m.SPRINGS.gentle, 'y', 8); }).catch(() => {});
@@ -258,6 +290,11 @@ export function mountChrome(activeKey = '') {
     navToggle.addEventListener('click', () => setDrawer(!navEl.classList.contains('open')));
     navEl.addEventListener('click', e => { if (e.target.closest('a')) setDrawer(false); });   // collapse after picking a destination
     navToggle._setDrawer = setDrawer;
+    mobileMenu.addEventListener('click', () => {
+      const open = !navEl.classList.contains('open');
+      setDrawer(open);
+      if (open) { header.scrollIntoView({ block: 'start', behavior: 'instant' }); navEl.querySelector('.nav-group-btn')?.focus(); }
+    });
   }
 
   // ---- Mega-menu dropdowns (disclosure pattern): the group button toggles its
@@ -290,7 +327,7 @@ export function mountChrome(activeKey = '') {
     if (e.key !== 'Escape') return;
     const openG = groupEls.find(g => g.classList.contains('open'));
     if (openG) { openG.classList.remove('open'); const b = openG.querySelector('.nav-group-btn'); if (b) { b.setAttribute('aria-expanded', 'false'); b.focus(); } }
-    else if (navToggle && navToggle._setDrawer && navEl.classList.contains('open')) navToggle._setDrawer(false);
+    else if (navToggle && navToggle._setDrawer && navEl.classList.contains('open')) { navToggle._setDrawer(false); navToggle.focus(); }
   });
   document.addEventListener('click', e => { if (!e.target.closest('.nav-group')) closeMenus(null); });
 
@@ -309,7 +346,7 @@ export function mountChrome(activeKey = '') {
       (Lilly's <i>Christian Astrology</i>, 1647, and the <i>Picatrix</i>), the Indian
       systems (Jyotiṣa, praśna, muhūrta), the oracles and the esoteric wings —
       every figure on a verified astronomical engine, every claim cited.</div>
-    <div><b style="color:#e9dfc4">Study the Books</b>
+    <details class="ob-footer-library"><summary>Study the Books</summary>
       <ul class="clean small">
         <li><a href="${R('pages/book1/index.html')}">Book I — An Introduction to Astrology</a></li>
         <li><a href="${R('pages/book2/index.html')}">Book II — Resolution of All Questions</a></li>
@@ -323,7 +360,7 @@ export function mountChrome(activeKey = '') {
         <li><a href="${R('pages/buddhist/index.html')}">The Buddhist scriptures — a curated canon, word by word</a></li>
         <li><a href="${R('pages/greatworks/index.html')}">The Great Works — author→book→chapter study guides</a></li>
         <li><a href="${R('pages/library/index.html')}">The Practitioners' Library — the people &amp; the books</a></li>
-      </ul></div>
+      </ul></details>
     <div><b style="color:#e9dfc4">Explore</b>
       <ul class="clean small">
         <li><a href="${R('pages/basics.html')}">Start — the Basics &amp; the path</a></li>
@@ -382,6 +419,9 @@ export function mountChrome(activeKey = '') {
       <a href="${R('pages/about/index.html')}">About & Sources</a>.</p>
   </div>`;
   document.body.appendChild(footer);
+  // Long book links remain available, with a native disclosure on phones.
+  const footerBooks = footer.querySelector('.ob-footer-library');
+  if (footerBooks) footerBooks.open = window.matchMedia('(min-width: 881px)').matches;
 
   // ---- DS3 art layer: inject the icon sprite (so every <use href="#i-*"> and
   // the epistemic <pattern> refs resolve) and swap wing-hero emoji watermarks

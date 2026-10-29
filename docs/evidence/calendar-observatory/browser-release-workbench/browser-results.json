@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-10-29T21:46:34.446Z",
+  "phase": "workbench",
+  "completeReleaseRun": false,
+  "completed": [
+    "workbench-small: independent Sun fixture, malformed-state recovery, lazy AI, distinct pickers, zone/fold/sect restore, export, invalid draft and live/pause",
+    "workbench-mobile: independent Sun fixture, malformed-state recovery, lazy AI, distinct pickers, zone/fold/sect restore, export, invalid draft and live/pause",
+    "workbench-desktop: independent Sun fixture, malformed-state recovery, lazy AI, distinct pickers, zone/fold/sect restore, export, invalid draft and live/pause"
+  ],
+  "pageSweep": [],
+  "journeyTimings": [
+    {
+      "label": "workbench-small",
+      "milliseconds": 8108
+    },
+    {
+      "label": "workbench-mobile",
+      "milliseconds": 4271
+    },
+    {
+      "label": "workbench-desktop",
+      "milliseconds": 4610
+    }
+  ],
+  "downloadEvidence": [
+    {
+      "label": "workbench-small-reading",
+      "filename": "workbench-reading.json",
+      "bytes": 87882
+    },
+    {
+      "label": "workbench-mobile-reading",
+      "filename": "workbench-reading.json",
+      "bytes": 87882
+    },
+    {
+      "label": "workbench-desktop-reading",
+      "filename": "workbench-reading.json",
+      "bytes": 87882
+    },
+    {
+      "label": "workbench-desktop-svg",
+      "filename": "chart.svg",
+      "bytes": 434503
+    },
+    {
+      "label": "workbench-desktop-png",
+      "filename": "chart.png",
+      "bytes": 295619
+    },
+    {
+      "label": "workbench-desktop-decoded",
+      "width": 1136,
+      "height": 1136,
+      "colors": 8675,
+      "nontransparentPixels": 1290496
+    }
+  ],
+  "elapsedMilliseconds": 17665,
+  "passed": true,
+  "failure": null
+}

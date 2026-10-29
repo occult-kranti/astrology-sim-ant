@@ -76,7 +76,10 @@ export async function run() {
   const prefix = 'awb-' + encodeURIComponent('/astrology-sim-ant/') + '-';
   function workerHarness() {
     const listeners = {}, removed = [], navigated = [];
-    const names = [prefix + '2020-01-01-shell', prefix + '2026-10-05-shell', prefix + '2026-10-05-runtime', 'skylens-v1', 'awb-%2Fother-project%2F-2020-shell', 'unrelated-cache'];
+    const source = readFileSync(new URL('../../sw.js', import.meta.url), 'utf8');
+    const tag = /const VERSION = CACHE_PREFIX \+ '([^']+)'/.exec(source)?.[1];
+    assert.ok(tag, 'fixture uses the actual current cache tag');
+    const names = [prefix + '2020-01-01-shell', prefix + tag + '-shell', prefix + tag + '-runtime', 'skylens-v1', 'awb-%2Fother-project%2F-2020-shell', 'unrelated-cache'];
     const self = { location: new URL('sw.js', scope), addEventListener: (name, fn) => { listeners[name] = fn; },
       registration: { unregister: async () => true }, clients: { claim: async () => {}, matchAll: async () => [{ url: scope, navigate: url => navigated.push(url) }] } };
     const caches = { keys: async () => names, delete: async name => { removed.push(name); return true; } };

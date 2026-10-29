@@ -1,4 +1,42 @@
-# Christian Astrology — the interactive William Lilly
+# The Astrologer's Workbench — Calendar Observatory
+
+The mobile-first Calendar Observatory is developed on `feat/mobile-calendar-observatory`.
+The homepage now starts with a time and place, computes the current reading, and samples
+this Monday–Sunday week and the next at local noon. **Follow the present** refreshes
+locally every minute while open and on return; editing a moment freezes it. No server,
+API key, geolocation permission or Supabase account is needed for these calculations.
+
+The new [calendar comparison](pages/calendar-compare.html) aligns **13 named civil-calendar
+displays**, tropical and approximate Lahiri sidereal charts, instant Pañcāṅga limbs,
+traditional Muhūrta classifications, temporal planetary hours, and method-selected prayer
+times at one explicit instant. It shows shared derivations, differing day boundaries,
+sources, approximations and unavailable methods. This is a bounded implementation,
+not a calculator for every culture: regional observances, lunar sightings, Tibetan,
+Maya, Balinese and other specialist systems remain **TBD**. Five added runtime calendar
+conversions retain pending independent-fixture labels. Traditional readings are attributed
+study material, not validated predictions or personal advice.
+
+All 117 original application routes, existing engines, dedicated calculators, browser
+records and source books are retained. Shared navigation and component presentation
+are redesigned across the site; **Today · Compare · Tools · Library · Menu** provide
+the mobile path. The original homepage collection remains in an expandable section.
+
+The new assistant supplies an explicitly labelled local rule-based explanation, then
+an optional preview/copy/export workflow for ChatGPT. It cannot inherit this conversation
+or account. Coordinates and geographic outputs are excluded by default. The repository's
+MCP implementation adds `workbench_compare_moment` and `workbench_calendar_outlook`
+to the 11 existing tools. Its 13-tool stdio/HTTP source is tested separately from the
+previously hosted remote backend; the latter must be updated before claiming those
+new tools are live remotely. Supabase is optional future authenticated sync, not a
+prerequisite or a connected service in this release.
+
+Read the [source/book research and full route inventory](docs/2026-10-calendar-observatory-research.md),
+[flows and integration plan](docs/2026-10-calendar-observatory-plan.md),
+[AI/MCP boundaries](docs/2026-10-calendar-observatory-ai.md),
+[three review loops](docs/2026-10-calendar-observatory-panel.md), and
+[verification](docs/2026-10-calendar-observatory-verification.md).
+
+## Christian Astrology — the interactive William Lilly
 
 An interactive, scientifically-honest study edition of **William Lilly's _Christian
 Astrology_ (1647)** — the first complete astrology textbook written in English. It

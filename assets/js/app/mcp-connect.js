@@ -22,5 +22,8 @@ try {
   if (!response.ok) throw new Error('Catalogue unavailable');
   const data = await response.json();
   if (!Array.isArray(data.tools) || data.tools.some(t => !t.name || typeof t.description !== 'string' || !Array.isArray(t.inputSchema?.required))) throw new Error('Catalogue invalid');
-  catalogue = data.tools; render();
+  catalogue = data.tools;
+  const versionStatus = byId('mcpVersionStatus');
+  if (versionStatus) versionStatus.textContent = `${catalogue.length} tools are available in the current source. ${data.remoteToolAvailability || 'Verify the remote tools/list response in your authenticated client.'}`;
+  render();
 } catch { byId('mcpCatalogueStatus').textContent = 'The catalogue could not load. The setup instructions and source tool list remain available above.'; }

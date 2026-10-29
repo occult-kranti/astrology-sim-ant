@@ -29,7 +29,7 @@ The client explicitly sends tool arguments. Nothing reads your browser's saved b
 
 **Deployment status:** the private OAuth-protected Sites backend is published at [https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site](https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site), with MCP endpoint `https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site/mcp`. Sites deployment `appgdep_6ac40e6478ac8191a932072e480b317b` succeeded from backend source `f82e8ecbff9b24f09bcb70bb342c9d81155c8da9`. `sites-worker.mjs` uses Sites' authenticated identity headers behind its private access policy; the generic bearer adapter above is a separate optional deployment path.
 
-Connect the provisioned Workbench plugin under **Plugins → Personal → Created by you** and complete OAuth. If it has not appeared, use the published Site's connection controls when available; do not enter the Pages frontend URL as an MCP URL. A real client tool invocation remains pending your authenticated connection; source and bundled Worker tests verify all 11 tool results and authentication/input guards.
+Connect the provisioned Workbench plugin under **Plugins → Personal → Created by you** and complete OAuth. If it has not appeared, use the published Site's connection controls when available; do not enter the Pages frontend URL as an MCP URL. A real client tool invocation remains pending your authenticated connection; the earlier deployment documented 11 tools. The current branch adds two local tools below; remote availability requires a new authenticated tools/list check after deployment. Local source and official-SDK tests are separate from remote readiness.
 
 
 ## Tools and contracts
@@ -41,6 +41,10 @@ Connect the provisioned Workbench plugin under **Plugins → Personal → Create
 - `workbench_calendar`, `workbench_julian_day`, `workbench_easter`: civil conversion and named computus conventions.
 - `workbench_qibla`, `workbench_prayer_times`: true-north bearing and Adhan method choices.
 - `workbench_election`: bounded historical scoring (168 hours, 256 samples maximum).
+- `workbench_compare_moment`: one explicit instant/observer across named civil calendar, sky, zodiac, planetary-hour and prayer conventions.
+- `workbench_calendar_outlook`: 1–14 daily timezone-resolved study snapshots, not validated forecasts.
+
+The current source has thirteen tools. The static catalogue describes this source; it does not establish that the previously deployed private backend has been updated. See [the Calendar Observatory AI contract](../docs/2026-10-calendar-observatory-ai.md) for explicit ChatGPT packet handoff, default geographic-data exclusion, local rule-based explanations and remote-version limits.
 
 Read `workbench://methods` for engine, source, range and provenance metadata. All tools are read-only, deterministic for supplied inputs and make no outbound requests. Unknown keys, unsupported methods, implicit-local datetimes and non-finite inputs are rejected. Expensive scans and text are bounded. MCP uses a tighter 256-sample election cap than the local engine’s 2048; synchronous calculation runs to completion within a call, so cancellation cannot interrupt an already-running arithmetic loop. There is no unbounded scan. The catalogue is broader than the exposed MCP allowlist: it is not a promise that every practice has a validated callable implementation.
 

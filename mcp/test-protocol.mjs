@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { TOOLS } from './toolkit.mjs';
 import { createHttpHandler } from './http-handler.mjs';
 const init={jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:'2025-11-25',capabilities:{},clientInfo:{name:'workbench-release-test',version:'1.0.0'}}};
 const handler=createHttpHandler();
@@ -11,11 +12,17 @@ async function rpc(body){const response=await handler.fetch(req(body));assert.eq
 try{
   assert.equal((await rpc(init)).result.serverInfo.name,'astrologers-workbench');
   const listed=await rpc({jsonrpc:'2.0',id:2,method:'tools/list',params:{}});
-  assert.equal(listed.result.tools.length,11);
+  assert.equal(listed.result.tools.length,TOOLS.length);
   const calculated=await rpc({jsonrpc:'2.0',id:3,method:'tools/call',params:{name:'workbench_gematria',arguments:{text:'חי'}}});
   assert.equal(calculated.result.structuredContent.data.total,18);
   const invalid=await rpc({jsonrpc:'2.0',id:4,method:'tools/call',params:{name:'workbench_election',arguments:{dateISO:'2026-01-01T00:00Z',lat:0,lon:0,operationKey:'love',stepMinutes:0}}});
   assert.ok(invalid.error||invalid.result?.isError);
+  const comparison=await rpc({jsonrpc:'2.0',id:6,method:'tools/call',params:{name:'workbench_compare_moment',arguments:{dateISO:'2026-10-29T12:00:00Z',lat:51.5,lon:0,timeZone:'Europe/London'}}});
+  assert.equal(comparison.result.structuredContent.data.context.dateISO,'2026-10-29T12:00:00.000Z');
+  const outlook=await rpc({jsonrpc:'2.0',id:7,method:'tools/call',params:{name:'workbench_calendar_outlook',arguments:{dateISO:'2026-10-29T12:00:00Z',lat:51.5,lon:0,timeZone:'Europe/London',days:2}}});
+  assert.equal(outlook.result.structuredContent.data.rows.length,2);
+  const tooLong=await rpc({jsonrpc:'2.0',id:8,method:'tools/call',params:{name:'workbench_calendar_outlook',arguments:{dateISO:'2026-10-29T12:00:00Z',lat:0,lon:0,timeZone:'UTC',days:15}}});
+  assert.ok(tooLong.error||tooLong.result?.isError);
   const resource=await rpc({jsonrpc:'2.0',id:5,method:'resources/read',params:{uri:'workbench://methods'}});
   assert.equal(JSON.parse(resource.result.contents[0].text).limits.scanSamples,256);
   assert.equal((await handler.fetch(req(init,{url:'http://evil.example/mcp'}))).status,403);
@@ -51,7 +58,7 @@ const send=message=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>re
 try{
   assert.equal((await send(init)).result.serverInfo.name,'astrologers-workbench');
   child.stdin.write(JSON.stringify({jsonrpc:'2.0',method:'notifications/initialized'})+'\n');
-  assert.equal((await send({jsonrpc:'2.0',id:2,method:'tools/list',params:{}})).result.tools.length,11);
+  assert.equal((await send({jsonrpc:'2.0',id:2,method:'tools/list',params:{}})).result.tools.length,TOOLS.length);
   const result=await send({jsonrpc:'2.0',id:3,method:'tools/call',params:{name:'workbench_symbol',arguments:{kind:'yantra',planet:'Sun'}}});
   assert.match(result.result.structuredContent.data.presentation.svg,/<svg/);
   console.log('PASS stdio initialize/list/call with real child-process protocol');
