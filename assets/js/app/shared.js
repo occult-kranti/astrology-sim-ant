@@ -27,6 +27,7 @@ export const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
     ['index.html', 'Today — the calendar observatory', 'home'],
     ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
+    ['pages/world-events.html', 'World events — dates & historical readings', 'worldevents'],
     ['pages/basics.html', 'The Basics — every concept', 'basics'],
     ['pages/learn.html', 'Learn — astrology & the math', 'learn'],
     ['pages/interpret.html', 'How to read results', 'interpret'],
@@ -41,6 +42,7 @@ export const NAV_GROUPS = [
   { label: 'Cast', key: 'cast', wide: true, items: [
     ['pages/workbench.html', 'The Workbench — Master Tool', 'workbench', 'This moment'],
     ['pages/studio.html', 'Live Symbol Studio', 'studio'],
+    ['pages/sigil-studio.html', 'Create sigils & mandalas', 'sigilstudio'],
     ['pages/mcp.html', 'Connect MCP', 'mcp'],
     ['pages/now.html', 'Right Now — live sky', 'now'],
     ['pages/book2/horary.html', 'Horary — a question', 'horary'],
@@ -97,6 +99,7 @@ export const NAV_GROUPS = [
     ['pages/glossary.html', 'Glossary & Dictionary', 'glossary'],
     ['pages/compare.html', 'Compare — this site vs others', 'compare'],
     ['pages/tools.html', 'Compare the tools', 'tools'],
+    ['pages/standards.html', 'Standards & working examples', 'standards'],
     ['pages/library/index.html', 'The Library', 'library'],
     ['pages/about/index.html', 'Sources & Science', 'about'],
     ['pages/roadmap.html', 'The Roadmap — planned', 'roadmap'],
@@ -121,6 +124,9 @@ export function currentSection() {
   if (m(/\/pages\/book1\/planetary-hours\.html$/)) return 'phours';
   if (m(/\/pages\/calendars\.html$/)) return 'calendars';
   if (m(/\/pages\/calendar-compare\.html$/)) return 'calendarcompare';
+  if (m(/\/pages\/sigil-studio\.html$/)) return 'sigilstudio';
+  if (m(/\/pages\/world-events\.html$/)) return 'worldevents';
+  if (m(/\/pages\/standards\.html$/)) return 'standards';
   if (m(/\/pages\/book2\/horary\.html$/)) return 'horary';
   if (m(/\/pages\/book3\/nativity\.html$/)) return 'nativity';
   // Exact, and BEFORE the /pages/picatrix/ catch-all below: incense.html sits at

@@ -74,6 +74,10 @@ jobs:
         env:
           OBS_OUTPUT: test-results/observatory
         run: node scripts/browser-observatory.mjs
+      - name: Sigils, explainable hours, standards and world events
+        env:
+          EXPANSION_OUTPUT: test-results/studio-expansion
+        run: node scripts/browser-studio-expansion.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962

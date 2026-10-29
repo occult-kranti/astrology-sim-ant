@@ -1,0 +1,40 @@
+/* Source-led daily/hourly study, sharing the Observatory's restrained palette. */
+.day-guidance { margin-block: 1.5rem; color: var(--ob-ink, #25332f); min-width: 0; }
+.day-guidance :is(h3,h4,h5,h6) { line-height: 1.35; margin-block: .75rem .5rem; overflow-wrap: anywhere; }
+.day-guidance h3 { font-size: 1.45rem; }
+.day-guidance h4 { font-size: 1.15rem; }
+.day-guidance h5 { font: 600 1rem/1.45 var(--sans, sans-serif); }
+.day-guidance h6 { font: 600 .95rem/1.5 var(--sans, sans-serif); }
+.day-guidance p { margin-block: .55rem; overflow-wrap: anywhere; }
+.dg-context { font-size: .9rem; font-variant-numeric: tabular-nums; }
+.dg-intro { max-width: 78ch; }
+.dg-overview { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; margin-block: 1rem; }
+.dg-tradition { border-top: 3px solid var(--ob-line, #d8d9cf); padding-top: .35rem; min-width: 0; }
+.dg-compact-item { padding-block: .65rem; }
+.dg-compact-item + .dg-compact-item { border-top: 1px solid var(--ob-line, #d8d9cf); }
+.dg-class { display: inline-block; font: 600 .8rem/1.5 var(--sans,sans-serif); }
+.dg-favorable { color: #31593e; }
+.dg-caution { color: #8b432a; }
+.dg-neutral { color: #4b5652; }
+.dg-unavailable { color: #675441; }
+.dg-action { border-inline-start: 3px solid var(--ob-line, #d8d9cf); padding-inline-start: .65rem; }
+.dg-note { color: var(--ob-soft, #59615b); font-size: .875rem; line-height: 1.65; }
+.dg-tension { padding: .75rem; background: #f3eee2; border-inline-start: 3px solid #8a692d; }
+.dg-error, .dg-unavailable-note { color: #7e3927; padding: .75rem; background: #f9eee6; }
+.day-guidance details { margin-block: .65rem; border: 1px solid var(--ob-line, #d8d9cf); border-radius: 4px; padding: .65rem .85rem; min-width: 0; }
+.day-guidance summary { min-height: 32px; cursor: pointer; padding-block: .35rem; font-weight: 600; line-height: 1.55; overflow-wrap: anywhere; }
+.day-guidance summary:focus-visible { outline: 3px solid var(--ob-focus, #246a8b); outline-offset: 3px; }
+.dg-measurements { display: grid; grid-template-columns: minmax(8rem, .6fr) minmax(0, 1.4fr); margin-block: .5rem 1rem; gap: .35rem .8rem; font-size: .875rem; }
+.dg-measurements dt { font-weight: 600; overflow-wrap: anywhere; }
+.dg-measurements dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.dg-source-list { font-size: .875rem; padding-inline-start: 1.25rem; }
+.dg-source-list li { margin-block: .5rem; overflow-wrap: anywhere; }
+.dg-hour > summary { font-variant-numeric: tabular-nums; }
+.dg-hourly-results[aria-busy="true"] { min-height: 2rem; }
+@media (max-width: 850px) { .dg-overview { grid-template-columns: 1fr; gap: .4rem; } }
+@media (max-width: 450px) {
+  .day-guidance details { padding-inline: .65rem; }
+  .dg-measurements { grid-template-columns: 1fr; gap: .2rem; }
+  .dg-measurements dd { margin-block-end: .6rem; }
+}
+@media (forced-colors: active) { .dg-class { border: 1px solid CanvasText; padding-inline: .25rem; } }

@@ -1,0 +1,103 @@
+// Real-browser event agenda checks under the GitHub Pages project subpath.
+// No live provider, location, external-source or political prediction call.
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { dirname, extname, resolve, sep } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createHash } from 'node:crypto';
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const output = resolve(process.env.EVENTS_OUTPUT || '/workspace/setup-validation/world-events/browser');
+await mkdir(output, { recursive: true });
+const playwright = await import(process.env.PLAYWRIGHT_PKG ? pathToFileURL(resolve(process.env.PLAYWRIGHT_PKG)).href : '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.js');
+const chromium = playwright.chromium || playwright.default?.chromium;
+const prefix = '/astrology-sim-ant/';
+const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json' };
+const server = createServer(async (request, response) => {
+  try {
+    const url = new URL(request.url, 'http://localhost');
+    if (!url.pathname.startsWith(prefix)) return response.writeHead(404).end();
+    const rel = decodeURIComponent(url.pathname.slice(prefix.length)) || 'index.html', path = resolve(root, rel);
+    if (!path.startsWith(root + sep) || rel.split('/').some(p => p.startsWith('.'))) return response.writeHead(403).end();
+    response.writeHead(200, { 'Content-Type': mime[extname(path)] || 'application/octet-stream', 'Cache-Control': 'no-store' }); response.end(await readFile(path));
+  } catch { response.writeHead(404).end(); }
+});
+await new Promise(ok => server.listen(0, '127.0.0.1', ok));
+const origin = `http://127.0.0.1:${server.address().port}`, base = origin + prefix;
+let browser, checks = 0; const errors = [], unexpectedRequests = [], checked = [], downloads = [];
+const check = (actual, expected, message) => { assert.deepEqual(actual, expected, message); checks++; checked.push(message); };
+try {
+  browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH || '/usr/bin/chromium', args: ['--no-sandbox'] });
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 }, acceptDownloads: true });
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('request', request => { if (!request.url().startsWith(origin) && !request.url().startsWith('data:')) unexpectedRequests.push(request.url()); });
+  await page.goto(base + 'pages/world-events.html?date=2026-10-29');
+  await page.waitForFunction(() => document.querySelector('#we-count')?.textContent.startsWith('15 '));
+  check(await page.locator('.we-event').count(), 15, 'default snapshot has fifteen supported records');
+  check(await page.locator('#we-window-status').innerText().then(t => t.includes('Frozen reference date')), true, 'incoming date freezes the reference');
+  check(await page.locator('#we-coverage .we-coverage-row').count(), 27, 'all country/institution coverage rows remain inspectable');
+  const us = page.locator('[data-event-id="us-congressional-general-2026"]');
+  await us.locator('summary').click(); await us.locator('[data-study-event]').click();
+  check(await page.locator('#we-study').isHidden(), true, 'event does not silently acquire an astrology timestamp');
+  check(await page.locator('#we-sample-status').innerText().then(t => /Acknowledge/.test(t)), true, 'noon assumption must be explicit');
+  await page.locator('#we-zone').fill('America/New_York'); await page.locator('#we-lat').fill('40.7'); await page.locator('#we-lon').fill('-74'); await page.locator('#we-sample-ack').check();
+  await us.locator('[data-study-event]').click();
+  check(await page.locator('#we-study').isVisible(), true, 'acknowledged noon sample renders');
+  check(await page.locator('#we-study-context').innerText().then(t => t.includes('2026-11-03T17:00:00.000Z')), true, 'selected noon resolves the New York post-DST instant');
+  check(await page.locator('#we-study-context').innerText().then(t => t.includes('not a poll-opening')), true, 'event-time limitation remains beside the sample');
+  check(await page.locator('#we-study-guidance .dg-hour').count(), 0, 'hourly guidance is not eagerly computed');
+  const compare = await page.locator('#we-study-context a').getAttribute('href');
+  check(new URL(compare).searchParams.get('zone'), 'America/New_York', 'exact sample comparison link retains observer zone');
+  await page.locator('#we-lat').fill('41'); check(await page.locator('#we-study').isHidden(), true, 'observer edit invalidates study and AI packet');
+  await page.locator('#we-country').selectOption('US'); check(await page.locator('#we-ics').isDisabled(), true, 'edited filters disable old calendar export');
+  await us.locator('[data-study-event]').click(); check(await page.locator('#we-sample-status').innerText().then(t => t.startsWith('Update the agenda')), true, 'old event button cannot bypass stale filters');
+  await page.locator('#we-filter-form button[type="submit"]').click(); check(await page.locator('.we-event').count(), 1, 'US filter includes only the supported national date');
+  await page.locator('#we-provisional').check(); await page.locator('#we-filter-form button[type="submit"]').click(); check(await page.locator('.we-event').count(), 2, 'conditional runoff is opt-in');
+  const provisional = page.locator('[data-event-id="us-louisiana-house-runoff-2026"]'); await provisional.locator('summary').click();
+  check(await provisional.innerText().then(t => t.includes('Only if a House runoff is necessary')), true, 'conditional occurrence is not presented as established');
+  const pending = page.waitForEvent('download'); await page.locator('#we-ics').click(); const download = await pending;
+  const bytes = await readFile(await download.path()), ics = bytes.toString();
+  check(ics.split('\r\n').filter(line => line === 'BEGIN:VEVENT').length, 2, 'download matches actual filtered event set');
+  check(ics.includes('DTSTART;VALUE=DATE:20261103'), true, 'actual downloaded election keeps date-only precision');
+  check(ics.includes('STATUS:TENTATIVE'), true, 'conditional runoff is tentative in actual ICS');
+  check(ics.includes('41° N'), false, 'actual ICS does not include the selected observer coordinate');
+  downloads.push({ filename: download.suggestedFilename(), bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') });
+  await page.locator('#we-country').selectOption('all'); await page.locator('#we-category').selectOption('campaign'); await page.locator('#we-reference').fill('2026-12-01'); await page.locator('#we-filter-form button[type="submit"]').click();
+  check(await page.locator('.we-event').count(), 1, 'overlapping campaign remains available');
+  const campaign = page.locator('[data-event-id="un-women-16-days-2026"]'); await campaign.locator('summary').click();
+  check(await campaign.innerText().then(t => t.includes('Ongoing at the start')), true, 'overlap is labelled with original start date');
+  await page.locator('#we-study-date-un-women-16-days-2026').fill('2026-12-10'); await campaign.locator('[data-study-event]').click();
+  check(await page.locator('#we-study-context').innerText().then(t => t.includes('2026-12-10T17:00:00.000Z')), true, 'explicit campaign sample uses selected published-range day');
+  await page.locator('#we-study-date-un-women-16-days-2026').fill('2026-12-11'); check(await page.locator('#we-study').isHidden(), true, 'editing campaign study date invalidates prior result');
+  await campaign.locator('[data-study-event]').click(); check(await page.locator('#we-sample-status').innerText().then(t => t.includes('within the event')), true, 'out-of-range campaign sample rejected');
+  await page.locator('#we-country').selectOption('AR'); await page.locator('#we-category').selectOption('all'); await page.locator('#we-filter-form button[type="submit"]').click();
+  check(await page.locator('.we-empty').innerText().then(t => t.includes('does not establish')), true, 'empty country selection does not claim absence of events');
+  await page.goto(base + 'pages/world-events.html?date=2026-10-29'); await page.waitForFunction(() => document.querySelector('#we-count')?.textContent.startsWith('15 '));
+  for (const width of [320, 390, 1280]) {
+    await page.setViewportSize({ width, height: 844 });
+    const layout = await page.evaluate(() => ({ viewport: innerWidth, document: document.documentElement.scrollWidth, dateWidth: document.querySelector('#we-reference').getBoundingClientRect().width }));
+    check(layout.document <= layout.viewport + 1, true, `no page overflow at ${width}px`);
+    if (width <= 390) check(layout.dateWidth >= width - 75, true, `native date input has full readable width at ${width}px`);
+    await page.screenshot({ path: resolve(output, `agenda-${width}.png`), fullPage: true });
+    if (width <= 390) await page.screenshot({ path: resolve(output, `agenda-${width}-first.png`) });
+  }
+  const clocked = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  let snapshotRequests = 0;
+  clocked.on('pageerror', error => errors.push(error.message));
+  clocked.on('request', request => { if (request.url().endsWith('assets/data/world-events.json')) snapshotRequests++; });
+  await clocked.clock.install({ time: new Date('2026-10-29T23:59:30Z') });
+  await clocked.goto(base + 'pages/world-events.html');
+  await clocked.waitForFunction(() => document.querySelector('#we-count')?.textContent.startsWith('15 '));
+  check(await clocked.locator('#we-reference').inputValue(), '2026-10-29', 'current mode uses explicitly labelled UTC civil date');
+  await clocked.clock.runFor(61000);
+  check(await clocked.locator('#we-reference').inputValue(), '2026-10-30', 'open current mode advances at UTC date rollover');
+  await clocked.locator('#we-reference').fill('2026-10-29'); await clocked.locator('#we-filter-form button[type="submit"]').click();
+  await clocked.clock.fastForward(86400000);
+  check(await clocked.locator('#we-reference').inputValue(), '2026-10-29', 'user-selected reference stays frozen at later rollovers');
+  check(snapshotRequests, 1, 'window automation does not pretend to revalidate or refetch official source facts');
+  await clocked.close();
+  check(await page.locator('main input,main select').evaluateAll(els => els.every(el => el.labels?.length)), true, 'every event-page form control has a native label');
+  check(errors, [], 'no browser runtime errors'); check(unexpectedRequests, [], 'no external provider, source or location request');
+  await writeFile(resolve(output, 'verification.json'), JSON.stringify({ status: 'pass', checks, checked, errors, unexpectedRequests, downloads }, null, 2) + '\n');
+  console.log(`PASS world-events browser: ${checks} checks`);
+} finally { await browser?.close(); await new Promise(ok => server.close(ok)); }

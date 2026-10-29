@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-29T22:37:13.508371+00:00",
+  "checks": [
+    {
+      "command": [
+        "node",
+        "scripts/audit.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "[audit] 122 HTML, 264 JS scanned. Problems: 0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "scripts/build-specialist-profiles.mjs",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "{\"mode\":\"check\",\"calendarProfiles\":13,\"catalogueBookProfiles\":34,\"additionalBookProfiles\":11,\"totalProfiles\":58,\"artifacts\":59,\"changed\":0}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "scripts/round-ledger.mjs",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "[round-ledger] --check: ROUND-LEDGER.md is current.\n\nC1 ok \u2014 trailing-3 (R33r, R34, R35): 52 domain, 25 tooling.\nC2 ok \u2014 trailing-3 domain ratio 0.68 (floor 0.20).\nC3 NOT EVALUABLE \u2014 2 of the last 5 rounds carry a curation census (graph.excluded / graph.ejected). C3 cannot pass by default.\nNOTE \u2014 3 of the 3 rounds in the C1/C2 window carry (unverified) claim counts (amendment E). The stop condition is computed from figures no script re-derived.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

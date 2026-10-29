@@ -1,5 +1,13 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+The new [Sigil & Mandala Studio](pages/sigil-studio.html) creates editable intention sigils, traces all seven sourced planetary squares, and composes original geometric mandalas. It exports SVG, PNG and reproducible JSON recipes, and builds a paper study setup from a chosen moment, calendar and source lens. The AI gallery contains an image actually generated in this development conversation, with [provenance](assets/img/studio/PROVENANCE.json). The local vector generator is procedural. ChatGPT image generation uses an explicit preview/copy/open handoff; an optional protected [server image adapter](mcp/sigil-image-provider.mjs) is implemented and tested with a fake provider, but requires deployment, server credentials and a model enabled for that account. It does not inherit a ChatGPT login.
+
+Daily readings now expose independent favorable, caution, neutral and unresolved historical rules, exact planetary inputs, thresholds and sources. Suggested actions are optional modern reflection exercises. Expand a day for hourly samples with real daylight-saving folds, gaps and partial-hour changes; the classes apply to each sampled instant, not the full hour or day. Civil calendar labels do not receive an invented auspiciousness score. Edit a place or date to invalidate exports and links until recalculation.
+
+[World events](pages/world-events.html) supplies a rolling two-calendar-month agenda of source-verified elections and international observances, a named-country coverage ledger, date-only iCalendar export and explicit observer/noon study samples. The window updates locally; source verification dates remain visible. These historical readings do not forecast election winners or outcomes, and a missing entry is not proof that a country has no upcoming event.
+
+The [Standards lab](pages/standards.html) provides 16 working examples of reusable time, calendar, astronomy, prayer, SVG, interchange, provenance, MCP and backend contracts. It includes 13 calendar-method and 45 source-work profiles, with reusable repository skills and agent task packets. Profiles are implementation/research instructions, not claims that 58 experts ran or that every book was read cover to cover. Database and provider examples clearly identify their deployment status. See the [source and standards ledger](docs/2026-10-studio-sources-standards.md), [AI/studio methods](docs/2026-10-symbolic-studio-ai.md), [event sources](docs/2026-10-world-events-sources.md), [four-round panel](docs/2026-10-studio-expansion-panel.md) and [verification](docs/2026-10-studio-expansion-verification.md).
+
 The mobile-first Calendar Observatory is developed on `feat/mobile-calendar-observatory`.
 The homepage now starts with a time and place, computes the current reading, and samples
 this Monday–Sunday week and the next at local noon. **Follow the present** refreshes
@@ -164,7 +172,7 @@ against modern editions and traditional-astrology scholarship (see About & Sourc
 
 [Live Symbol Studio](pages/studio.html) connects the existing chart, planetary-square and name-trace engines with explicit time/location/method controls, live or frozen calculation, pause/resume, text alternatives and SVG/PNG/JSON exports. [Tools](pages/tools.html) remains the directory for the broader study collection. See the [panel decisions and roadmap](docs/2026-10-05-live-studio-roadmap.md), [product brief](PRODUCT.md), [design contract](DESIGN.md) and [MCP setup](mcp/README.md).
 
-The MCP backend is a separate Node/fetch-runtime process with 11 allowlisted tools. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
+The current repository MCP backend is a separate Node/fetch-runtime process with 13 allowlisted tools. The previously hosted 11-tool service requires a separate update; this source change does not deploy it. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
 
 ### Observatory sessions: from the sky to a study record
 

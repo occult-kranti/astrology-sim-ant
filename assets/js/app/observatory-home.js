@@ -2,6 +2,8 @@ import { mountChrome } from './shared.js';
 import { compareMoment, buildCalendarOutlook, observatoryInputFromLocal } from '../core/calendar-observatory.js';
 import { localClockFields, mondayOfWeek, outlookCacheKey } from '../core/observatory-schedule.js';
 import { mountCalendarAssistant } from './calendar-assistant.js';
+import { mountDayGuidance } from './day-guidance.js';
+import { buildDayGuidance } from '../core/day-guidance.js';
 
 mountChrome('home');
 const $=id=>document.getElementById(id);
@@ -13,6 +15,9 @@ const places={
 };
 let comparison=null,outlook=null,cacheKey=null,dirty=false,busy=false,timer=null,revision=0;
 const assistant=mountCalendarAssistant($('homeAssistant'),{getComparison:()=>comparison});
+const dayGuide=mountDayGuidance($('homeDayGuide'),null);
+const dayMounts=new Map();
+let renderedOutlook=null,renderedDate=null,weekGuidanceInvalidated=false;
 
 function compareURL(snapshot) {
   const c=snapshot.context,url=new URL('../../../pages/calendar-compare.html',import.meta.url);
@@ -25,6 +30,9 @@ function setError(message) {
 }
 function disableStale() {
   dirty=true; revision++; comparison=null; assistant.update(null);
+  dayGuide.update(null); for(const entry of dayMounts.values()) entry.mount.update(null);weekGuidanceInvalidated=true;
+  $('homeOutlookStale').hidden=false;$('homeOutlook').dataset.stale='true';
+  document.querySelectorAll('a.home-day').forEach(a=>{if(a.hasAttribute('href'))a.dataset.currentHref=a.href;a.removeAttribute('href');a.setAttribute('aria-disabled','true');});
   $('homeDownload').disabled=true;
   $('homeCompare').setAttribute('aria-disabled','true');
   $('homeStatus').textContent='Inputs changed. Update reading to calculate this moment; the previous display is retained below.';
@@ -51,19 +59,44 @@ function renderSummary(s) {
   $('homeCompare').href=compareURL(s); $('homeCompare').removeAttribute('aria-disabled');
 }
 function renderOutlook(result,selectedDate) {
+  $('homeOutlookStale').hidden=true;delete $('homeOutlook').dataset.stale;
+  document.querySelectorAll('a.home-day').forEach(a=>{if(a.dataset.currentHref)a.href=a.dataset.currentHref;delete a.dataset.currentHref;a.removeAttribute('aria-disabled');});
+  if(renderedOutlook===result&&renderedDate===selectedDate) {
+    if(weekGuidanceInvalidated) for(const entry of dayMounts.values()) entry.mount.update(entry.snapshot);
+    weekGuidanceInvalidated=false;
+    $('homeDownload').disabled=false;
+    return;
+  }
+  for(const entry of dayMounts.values()) entry.mount.destroy(); dayMounts.clear();
+  renderedOutlook=result;renderedDate=selectedDate;weekGuidanceInvalidated=false;
   const html=row=>{
     const parts=row.localDate.split('-'),label=`${parts[2]}/${parts[1]}`;
     if(row.status!=='available') return `<article class="home-day"><time datetime="${esc(row.localDate)}">${esc(label)}</time><span><strong class="home-day-title">Sample unavailable</strong><span class="home-day-meta">${esc(row.reason)}</span></span></article>`;
     const s=row.snapshot,p=s.vedic.panchanga,change=row.changesFromPreviousSample.find(x=>x.startsWith('Tropical Moon:'))||row.changesFromPreviousSample.find(x=>x.startsWith('Nakṣatra:'));
     const classification=s.vedic.traditionalScreens?.limbs.tithi;
-    return `<a class="home-day" href="${esc(compareURL(s))}"${row.localDate===selectedDate?' aria-current="date"':''}><time datetime="${esc(row.localDate)}">${esc(row.weekday.slice(0,3))}<small>${esc(label)}</small></time><span><span class="home-day-title">${esc(s.astronomy.phaseLabel)}</span><span class="home-day-meta">Tropical Moon ${esc(s.western.moon.sign)} · sidereal ${esc(s.vedic.moon.sign)}<br>${esc(p.tithi.name)} · ${esc(p.nakshatra.name)}${classification?`<br>Traditional tithi class: ${esc(classification.class)}${classification.meaning?` (${esc(classification.meaning)})`:''}`:''}</span>${change?`<span class="home-day-change">Changed since prior sample: ${esc(change)}</span>`:''}</span><span aria-hidden="true">↗</span></a>`;
+    return `<div class="home-day-entry"><a class="home-day" href="${esc(compareURL(s))}"${row.localDate===selectedDate?' aria-current="date"':''}><time datetime="${esc(row.localDate)}">${esc(row.weekday.slice(0,3))}<small>${esc(label)}</small></time><span><span class="home-day-title">${esc(s.astronomy.phaseLabel)}</span><span class="home-day-meta">Tropical Moon ${esc(s.western.moon.sign)} · sidereal ${esc(s.vedic.moon.sign)}<br>${esc(p.tithi.name)} · ${esc(p.nakshatra.name)}${classification?`<br>Traditional tithi class: ${esc(classification.class)}${classification.meaning?` (${esc(classification.meaning)})`:''}`:''}</span>${change?`<span class="home-day-change">Changed since prior sample: ${esc(change)}</span>`:''}</span><span aria-hidden="true">↗</span></a><p class="home-day-action" data-day-action="${esc(row.localDate)}"></p><details class="home-day-details" data-day="${esc(row.localDate)}"><summary>Recommendations, rules &amp; hourly detail</summary><div class="home-day-guide"></div></details></div>`;
   };
   $('weekThis').innerHTML=result.rows.slice(0,7).map(html).join('');
   $('weekNext').innerHTML=result.rows.slice(7,14).map(html).join('');
+  for(const row of result.rows.filter(row=>row.status==='available')) {
+    const details=document.querySelector(`[data-day="${row.localDate}"]`);
+    const guide=buildDayGuidance(row.snapshot);
+    const items=guide.traditions?.flatMap(t=>t.items||[])||[];
+    const highlighted=['favorable','caution'].map(kind=>items.find(item=>item.classification===kind)).filter(Boolean);
+    if(!highlighted.length&&items.length) highlighted.push(items[0]);
+    const action=document.querySelector(`[data-day-action="${row.localDate}"]`);
+    action.textContent=highlighted.map(item=>`At noon · ${item.classification}: ${item.title}. ${typeof item.optionalAction==='string'?item.optionalAction:item.optionalAction?.text||''}`).join(' ');
+    details.addEventListener('toggle',()=>{
+      if(details.open&&!dayMounts.has(row.localDate)) {
+        const mount=mountDayGuidance(details.querySelector('.home-day-guide'),dirty?null:row.snapshot);
+        dayMounts.set(row.localDate,{mount,snapshot:row.snapshot});
+      }
+    });
+  }
   const short=date=>new Intl.DateTimeFormat('en',{month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(date+'T12:00:00Z'));
   $('home-this-title').textContent=`This week · ${short(result.rows[0].localDate)}–${short(result.rows[6].localDate)}`;
   $('home-next-title').textContent=`Next week · ${short(result.rows[7].localDate)}–${short(result.rows[13].localDate)}`;
-  $('homeOutlookMethod').textContent=`Local-noon snapshots, Monday–Sunday · ${result.context.timeZone}. Each day opens the complete comparison. Changes refer to sampled positions, not exact transition times or whole-day forecasts. Day links include the selected coordinates.`;
+  $('homeOutlookMethod').textContent=`Local-noon snapshots, Monday–Sunday · ${result.context.timeZone}. Favorable and caution describe separate historical rules at noon; actions are optional modern reflection prompts. Expand a day for its rules and hourly samples. Changes are not exact transition times or whole-day forecasts. Day links include the selected coordinates.`;
   $('homeDownload').disabled=false;
 }
 
@@ -95,10 +128,10 @@ async function calculate({automatic=false}={}) {
     }
     if(token!==revision) return;
     comparison=next; outlook=nextOutlook; cacheKey=key; dirty=false;
-    renderSummary(comparison); renderOutlook(outlook,next.context.localDate); assistant.update(comparison);
+    renderSummary(comparison); renderOutlook(outlook,next.context.localDate); assistant.update(comparison);dayGuide.update(comparison);
     $('homeStatus').textContent=`${$('homeClockMode').value==='live'?'Following the present · refreshes every minute while open':'Frozen moment'} · ${next.context.localLabel} · ${input.timeZone} · ${next.context.dateISO}. Location: ${input.lat}°, ${input.lon}°. Nothing sent to a server.`;
   } catch(error) {
-    comparison=null; assistant.update(null); $('homeDownload').disabled=true; $('homeCompare').setAttribute('aria-disabled','true');
+    comparison=null; assistant.update(null);dayGuide.update(null);for(const entry of dayMounts.values()) entry.mount.update(null);weekGuidanceInvalidated=true; $('homeDownload').disabled=true; $('homeCompare').setAttribute('aria-disabled','true');
     dirty=true; setError(error.message||'The calculation could not be completed. Correct the inputs and update again.');
     $('homeStatus').textContent='Calculation paused. Earlier results, if present, are retained and do not represent the edited inputs.';
   } finally {
@@ -119,9 +152,10 @@ $('homePlace').addEventListener('change',()=>{
   disableStale();
 });
 $('homeCompare').addEventListener('click',event=>{if(!comparison) {event.preventDefault();setError('Update the reading before opening the comparison for these inputs.');}});
+$('homeOutlook').addEventListener('click',event=>{if(dirty&&event.target.closest('a.home-day')) {event.preventDefault();$('homeOutlookStale').hidden=false;}});
 $('homeDownload').addEventListener('click',()=>{
   if(!outlook||!comparison||dirty) return;
-  const packet={...outlook,exportedAt:new Date().toISOString(),privacy:'Contains selected coordinates and time zone. Share deliberately.'};
+  const packet={...outlook,rows:outlook.rows.map(row=>row.status==='available'?{...row,studyGuidance:buildDayGuidance(row.snapshot)}:row),exportedAt:new Date().toISOString(),privacy:'Contains selected coordinates and time zone. Share deliberately.'};
   const url=URL.createObjectURL(new Blob([JSON.stringify(packet,null,2)],{type:'application/json'})),a=document.createElement('a');
   a.href=url;a.download=`calendar-outlook-${outlook.startDate}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 });

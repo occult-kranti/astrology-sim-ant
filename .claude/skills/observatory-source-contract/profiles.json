@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "note": "Authored bounded family/source metadata. Additional book records are generated from the existing Great Works catalogues; this file is not evidence of new passage reading.",
+  "calendars": [
+    {
+      "id": "gregory",
+      "title": "Gregorian civil calendar",
+      "method": "Proleptic Gregorian civil date in an explicit IANA zone; midnight boundary.",
+      "validation": "Inherited selected arithmetic fixtures. No universal historical adoption-gap reconstruction."
+    },
+    {
+      "id": "julian",
+      "title": "Julian civil calendar",
+      "method": "Local Gregorian civil day → JDN → proleptic Julian; noon JDN convention distinct from midnight civil day.",
+      "validation": "Inherited selected conversion fixtures. Not a Julian-church observance authority or universal adoption history."
+    },
+    {
+      "id": "hebrew",
+      "title": "Hebrew civil calendar",
+      "method": "Runtime Intl hebrew, selected-zone civil midnight; preserve month/era parts.",
+      "validation": "Inherited selected daytime fixtures; no sunset date, Israel/diaspora policy or full-range religious validation."
+    },
+    {
+      "id": "islamic-civil",
+      "title": "Islamic tabular civil calendar",
+      "method": "Runtime Intl islamic-civil arithmetic convention, selected-zone civil midnight.",
+      "validation": "Runtime support checked; independent display-date fixtures pending. Not crescent sighting or local religious authority."
+    },
+    {
+      "id": "islamic-umalqura",
+      "title": "Islamic Umm al-Qura civil calendar",
+      "method": "Runtime Intl islamic-umalqura data/convention; preserve support and range caveats.",
+      "validation": "Runtime support checked; independent display-date fixtures pending. Table/fallback and local authority can differ."
+    },
+    {
+      "id": "chinese",
+      "title": "Chinese lunisolar civil calendar",
+      "method": "Runtime Intl chinese; preserve relatedYear, named/leap month, selected-zone civil day.",
+      "validation": "Inherited selected HKO UTC+8 fixtures. Not Korean/Vietnamese/BaZi/Tibetan equivalence or full-range independent validation."
+    },
+    {
+      "id": "buddhist",
+      "title": "Thai Buddhist civil calendar",
+      "method": "Runtime Intl buddhist, modern Thai civil era, selected-zone civil midnight.",
+      "validation": "Inherited selected modern fixture; not Buddhist religious observance or historical Thai new-year reconstruction."
+    },
+    {
+      "id": "indian",
+      "title": "Indian national Saka calendar",
+      "method": "Runtime Intl indian, Indian national solar civil date.",
+      "validation": "Inherited selected fixtures. Not regional Hindu lunar/festival or Balinese Saka calendar."
+    },
+    {
+      "id": "persian",
+      "title": "Persian runtime civil calendar",
+      "method": "Runtime Intl persian, selected-zone civil date; state runtime version/convention.",
+      "validation": "Runtime support only; independent date fixtures pending. Do not equate astronomical/tabular variants or claim Iranian civil-authority policy."
+    },
+    {
+      "id": "coptic",
+      "title": "Coptic civil calendar",
+      "method": "Runtime Intl coptic, selected-zone civil midnight.",
+      "validation": "Runtime support only; independent date fixtures pending. Complete ecclesiastical feasts/fasts are not implemented."
+    },
+    {
+      "id": "ethiopic",
+      "title": "Ethiopic civil calendar",
+      "method": "Runtime Intl ethiopic era, selected-zone civil midnight; not ethiopic-amete-alem.",
+      "validation": "Runtime support only; independent date fixtures pending. No complete Ethiopian/Eritrean liturgical determination."
+    },
+    {
+      "id": "japanese",
+      "title": "Japanese era civil calendar",
+      "method": "Runtime Intl japanese; modern Gregorian-style month/day with named imperial era.",
+      "validation": "Runtime support only; independent era-boundary fixtures pending. Not a premodern lunisolar Japanese calendar."
+    },
+    {
+      "id": "roc",
+      "title": "ROC / Minguo civil calendar",
+      "method": "Runtime Intl roc; Gregorian-style month/day and Taiwan civil-era numbering.",
+      "validation": "Runtime support only; independent fixtures pending. Different era naming is not an independent astronomical model."
+    }
+  ],
+  "extraBooks": [
+    {
+      "id": "lilly-christian-astrology",
+      "title": "Christian Astrology",
+      "author": "William Lilly",
+      "edition": "1647 engine/source tradition; distinct 1659 second-edition opening/contents study lens.",
+      "source": "assets/js/core/data/study-lenses.js",
+      "locator": "Existing LIL-CA-1659-SCOPE and LIL-CA-I-METHOD; chart erection contents pp.33–44, considerations p.121, significators p.123, perfection p.124.",
+      "rights": "Retain 1647/1659 distinction and modern editorial rights. Fresh automated Wikisource/selected Skyscript PDF requests failed; no full-book reading or fresh numerical-threshold collation claimed.",
+      "flags": "Do not treat a printed-position discrepancy as resolved. Horary, nativity and a current moment chart are different tasks."
+    },
+    {
+      "id": "picatrix",
+      "title": "Picatrix / Ghāyat al-Ḥakīm",
+      "author": "Complex Arabic/Latin transmission; attribution is not settled by a title.",
+      "edition": "Existing source references include Pingree Latin and Attrell/Porreca modern English; modern translations copyrighted.",
+      "source": "assets/js/core/data/picatrix-prayers.js",
+      "locator": "Inspect exact existing chapter citations in lunar-mansion, planet-image and Picatrix prayer data; no complete new passage collation.",
+      "rights": "Cite/paraphrase copyrighted modern translations; no copied plates or extended translated text.",
+      "flags": "Application election weights are editorial; symbolic claims have no demonstrated efficacy. Do not prescribe hazardous materia or ritual actions."
+    },
+    {
+      "id": "vedic-bphs",
+      "title": "Bṛhat Parāśara Horā Śāstra and named Parāśarī study methods",
+      "author": "Parāśara attribution; composite text/edition questions remain.",
+      "edition": "Existing BPHS/Rao/Indian ephemeris references; choose actual edition and chapter before a new textual claim.",
+      "source": "assets/js/core/data/vedic-data.js",
+      "locator": "Existing Vedic data: rāśis, 27 nakṣatras, varga rules; Aṣṭakavarga references chapters66–67. Inspect per-record source status.",
+      "rights": "No modern copyrighted translation imported by this profile.",
+      "flags": "Linear Lahiri, whole-sign houses, mean nodes and approximate study components remain explicit. No JHora equivalence or regional festival-calendar claim."
+    },
+    {
+      "id": "muhurta-cintamani",
+      "title": "Muhūrta Cintāmaṇi and inherited quality screens",
+      "author": "Rāma Daivajña attribution in existing catalogue.",
+      "edition": "Existing modern summaries and cited editions; verse-level primary collation incomplete.",
+      "source": "assets/js/core/data/muhurta-data.js",
+      "locator": "Inspect TITHI_SCREEN, YOGA_SCREEN, KARANA_SCREEN, NAKSHATRA_CLASSES and their exact citations/flags.",
+      "rights": "Modern secondary websites/editions retain rights; cite-only unless separately permitted.",
+      "flags": "Do not label opening-portion avoidance active without limb start/end calculation. New observatory outputs retain ruleVerdict separately from timing-unresolved applicability."
+    },
+    {
+      "id": "newton-opticks",
+      "title": "Opticks · Query31 method lens",
+      "author": "Isaac Newton",
+      "edition": "1730 fourth English edition, Query31 pp.404–405; existing Gutenberg source lens.",
+      "source": "assets/js/core/data/study-lenses.js",
+      "locator": "NEW-OPT-Q31 and NEW-K28-CATALOGUE records; distinguish analysis/synthesis from astrology.",
+      "rights": "Use edition-specific existing source record; no new full-book reading claimed.",
+      "flags": "A Newton-inspired expected/observed journal is modern, not a Newton astrology engine or validation of occult effects."
+    },
+    {
+      "id": "patanjali-yoga-sutras",
+      "title": "Yoga Sūtras / Pātañjalayogaśāstra",
+      "author": "Patañjali attribution; dating/unified-authorship debate remains.",
+      "edition": "Existing RamaPrasada1912, Woods1914 and named source layers in YS_META.",
+      "source": "assets/js/core/data/yogasutra/meta.js",
+      "locator": "Four pādas; edition totals194/195/196 and III.22/IV.16 variants remain separate.",
+      "rights": "Rights per root, translation and gloss layer. Modern translations are not universally public domain.",
+      "flags": "Catalogue contemplative/siddhi claims as the text’s claims, not clinical or paranormal efficacy. This is textual study, not a calendar converter."
+    },
+    {
+      "id": "buddhist-texts",
+      "title": "Buddhist study texts · separate recensions and layers",
+      "author": "Named Pāli/Sanskrit textual traditions; no single author identity inferred.",
+      "edition": "Sujato CC0 Metta/MN118/Dhammapada layers; Müller1894 HeartSūtra translation; inspect per-layer metadata.",
+      "source": "assets/js/core/data/buddhist/index.js",
+      "locator": "Snp1.8/Khp9; MN118; Dhammapada1–75(vaggas1–5); shorter HeartSūtra with contested metadata.",
+      "rights": "Preserve root/translation/gloss licence fields; CC0 for one layer does not license every edition.",
+      "flags": "Do not call Thai Buddhist civil calendar a complete Buddhist observance system; no therapeutic/predictive endorsement."
+    },
+    {
+      "id": "yijing",
+      "title": "Yijing / Book of Changes",
+      "author": "Traditional composite text; name the supplied translation.",
+      "edition": "Inspect existing hexagram data citations and translation rights before quotation.",
+      "source": "assets/js/core/data/iching-hexagrams.js",
+      "locator": "Existing hexagram/line records, not a newly read complete classic.",
+      "rights": "Translation/edition-specific rights; do not assume ancient root means every English rendering is public domain.",
+      "flags": "Casting is a symbolic study procedure, not a deterministic forecast or Chinese calendar algorithm."
+    },
+    {
+      "id": "tarot",
+      "title": "Tarot traditions and deck source records",
+      "author": "Name the deck/author/school; do not universalize correspondences.",
+      "edition": "Existing deck data and practitioner catalogue; exact source/deck rights apply.",
+      "source": "assets/js/core/data/tarot-deck.js",
+      "locator": "Existing tarot-deck records and catalogue; no new complete-book or plate reading claimed.",
+      "rights": "Deck artwork, modern text and historical editions require separate rights; avoid copying protected plates.",
+      "flags": "Letter/trump and astrological correspondences can disagree across schools. Preserve variants and symbolic status."
+    },
+    {
+      "id": "runes",
+      "title": "Elder Futhark source traditions",
+      "author": "Historical inscriptions/poems vs modern divination authors must be separated.",
+      "edition": "Inspect existing rune data/citations; do not invent one ancient divination manual.",
+      "source": "assets/js/core/data/runes-data.js",
+      "locator": "Existing per-rune records and source qualifications.",
+      "rights": "Root inscription, modern image and modern translation rights differ.",
+      "flags": "Modern cast/spread meanings are not automatically ancient practice or validated prediction."
+    },
+    {
+      "id": "kabbalah",
+      "title": "Kabbalah / letter-number methods",
+      "author": "Named Jewish source tradition distinct from later Hermetic adaptations.",
+      "edition": "Existing Kabbalah data and Agrippa III.30 source record; exact edition before text claims.",
+      "source": "assets/js/core/data/kabbalah-data.js",
+      "locator": "Standard vs gadol final-letter values; nine chambers; existing source metadata.",
+      "rights": "Modern translations, commentary and artwork retain independent rights.",
+      "flags": "Standard gematria and modern kamea reduction are distinct computations; arithmetic identity is not proof of spiritual efficacy."
+    }
+  ]
+}

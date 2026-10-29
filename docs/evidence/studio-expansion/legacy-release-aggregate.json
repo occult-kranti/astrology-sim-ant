@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-29T22:32:28.688146+00:00",
+  "strategy": "All six supported isolated browser phases; no one-process all-mode success claimed",
+  "pass": true,
+  "phases": [
+    {
+      "phase": "calculators",
+      "receipt": "docs/evidence/studio-expansion/legacy-release-calculators.json",
+      "sha256": "5ed116ab3712abbd9eaca6cfcc87ad770245450814dd7a72a9feb45b05120a2d",
+      "elapsedMilliseconds": 4648,
+      "journeys": 4,
+      "HTML": 0
+    },
+    {
+      "phase": "workbench",
+      "receipt": "docs/evidence/studio-expansion/legacy-release-workbench.json",
+      "sha256": "5bf511159d59b224afd9c186156504d2da33d8efae8d607cb7875e3e4268b67d",
+      "elapsedMilliseconds": 10957,
+      "journeys": 3,
+      "HTML": 0
+    },
+    {
+      "phase": "studio",
+      "receipt": "docs/evidence/studio-expansion/legacy-release-studio.json",
+      "sha256": "0b26b09c79d361aaa4af5163a7f8dd802862697504baac918bfeeb08fdcac7d8",
+      "elapsedMilliseconds": 16098,
+      "journeys": 5,
+      "HTML": 0
+    },
+    {
+      "phase": "connections",
+      "receipt": "docs/evidence/studio-expansion/legacy-release-connections.json",
+      "sha256": "06b2a4c1d5797204820a665cbf9fc29d13b522190c19c74f3c1cd3d9fc8e196b",
+      "elapsedMilliseconds": 2642,
+      "journeys": 2,
+      "HTML": 0
+    },
+    {
+      "phase": "assistant",
+      "receipt": "docs/evidence/studio-expansion/legacy-release-assistant.json",
+      "sha256": "f68cacc91f501e8f96d9af2c0efb9dd19273b735203733d18db95fb60e98834c",
+      "elapsedMilliseconds": 2073,
+      "journeys": 1,
+      "HTML": 0
+    },
+    {
+      "phase": "pages",
+      "receipt": "docs/evidence/studio-expansion/legacy-release-pages.json",
+      "sha256": "9fa1a8f103e01275e5827ec3df7f2d71322eb2712bfd7095027744e576d9703c",
+      "elapsedMilliseconds": 270151,
+      "journeys": 0,
+      "HTML": 122
+    }
+  ],
+  "journeys": 15,
+  "HTML": 122,
+  "serialMilliseconds": 306569
+}

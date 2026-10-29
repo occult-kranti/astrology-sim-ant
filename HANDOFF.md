@@ -1,5 +1,17 @@
 # Handoff notes — for the next model/build
 
+## Symbolic studio and explainable almanac extension — 29 October 2026
+
+Continue on `feat/mobile-calendar-observatory`; this work extends the previous review branch. New routes are `pages/sigil-studio.html`, `pages/world-events.html` and `pages/standards.html`. The older Live Symbol Studio and every existing calculator remain separate and intact.
+
+`core/sigil-design.js` reuses the existing squares/symbol engines, provides deterministic geometry and source-labelled paper study recipes. Artwork from `image_gen` is in `assets/img/studio/`, separately identified from procedural SVG output. The optional `mcp/sigil-image-provider.mjs` is a standalone protected adapter, not a mounted MCP tool or live service; configure its model on the server and never insert provider keys into the static app.
+
+`core/day-guidance.js` composes selected existing rule engines without their aggregate score. `app/day-guidance.js` exports `mountDayGuidance(container, comparisonOrInput)` with `update(null)` invalidation and `destroy()`. Hourly work is lazy, partitions real local civil days, and preserves repeated/absent clocks. Opening-portion yoga remains timing-unresolved. No fixed-star alignment is inferred; the displayed rules name what they actually use. Editorial reflection actions are distinct from source quotations. Homepage weekly links lose their href while inputs are stale and are restored only after a valid calculation.
+
+World event dates retain precision, source status, coverage and review age. A local-noon chart requires explicit acknowledgement and an observer; it is not a poll-opening or outcome timestamp. Annual observances and conditional elections remain labelled. Rechecking a URL does not establish the event fact is still current.
+
+Standards and specialist task contracts live in `core/data/observatory-standards.js` and `.claude/skills/`, with reusable agent templates. Keep generated profile outputs synchronized through their committed builder. Node checks are registered in `scripts/engine-test.mjs`; new mobile/export/privacy journeys run through `scripts/browser-studio-expansion.mjs`. Preserve all prior engine, audit, browser and MCP gates. Read the dated source, panel and verification documents linked in README before making stronger interpretation, coverage, deployment or AI claims.
+
 ## Calendar Observatory branch — 29 October 2026
 
 Current development: `feat/mobile-calendar-observatory`, based on `5f030c0`.

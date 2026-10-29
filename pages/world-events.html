@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World events &amp; study dates | The Astrologer's Workbench</title>
+  <meta name="description" content="A source-labelled international agenda of selected elections, international days and campaigns, with explicit coverage limits and optional historical chart-study context.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/world-events.css">
+  <link rel="stylesheet" href="../assets/css/day-guidance.css">
+</head>
+<body>
+<main class="wrap world-events no-autolink" id="content">
+  <p class="crumb"><a href="../index.html">Today</a> / World events</p>
+  <header class="we-heading"><p class="we-eyebrow">A PUBLIC-DATE AGENDA</p><h1>The next two months,<br>in context.</h1><p class="lede">Explore selected elections and international days. Inspect the source date, then choose your own place for an optional historical chart study.</p><p class="we-framing">Event dates are factual records. A chosen astrology sample does not predict an election winner or an event outcome. This curated list is not a complete global calendar.</p></header>
+
+  <section class="we-controls" aria-labelledby="we-window-title">
+    <h2 id="we-window-title">Choose the window</h2>
+    <form id="we-filter-form">
+      <div class="we-filter-grid">
+        <div class="field"><label for="we-reference">Reference date · Gregorian</label><input id="we-reference" type="date" min="1900-01-01" max="2100-10-31" required></div>
+        <div class="field"><label for="we-country">Event jurisdiction</label><select id="we-country"><option value="all">All jurisdictions &amp; worldwide days</option></select></div>
+        <div class="field"><label for="we-category">Category</label><select id="we-category"><option value="all">All categories</option><option value="election">Elections</option><option value="international-day">International days</option><option value="campaign">Campaigns</option></select></div>
+      </div>
+      <label class="we-check"><input type="checkbox" id="we-provisional"> Include conditional or provisional dates</label>
+      <div class="we-actions"><button class="btn" type="submit">Update agenda</button><button class="btn-secondary" type="button" id="we-live">Use current UTC date</button></div>
+    </form>
+    <p id="we-window-status" role="status" aria-live="polite">Loading the local source snapshot…</p>
+    <p id="we-freshness" class="we-note"></p>
+    <p class="we-note">The window advances while current-date mode is open. Source research does not refresh automatically; a closed static website does not run a background source check.</p>
+    <div class="we-actions"><button class="btn-secondary" id="we-ics" type="button" disabled>Download calendar · ICS</button><button class="btn-secondary" id="we-json" type="button" disabled>Download filtered JSON</button></div>
+    <p class="we-note">Downloads contain public event dates and source links. ICS entries are all-day records with no observer coordinates or invented event time. Importing this file is a snapshot, not a live calendar subscription.</p>
+    <p id="we-export-status" role="status" aria-live="polite"></p>
+  </section>
+
+  <div id="we-error" class="we-error" role="alert" hidden></div>
+  <section aria-labelledby="we-agenda-title" class="we-agenda-section"><div class="we-section-heading"><h2 id="we-agenda-title">Selected upcoming dates</h2><p id="we-count" class="we-note"></p></div><div id="we-agenda"></div></section>
+
+  <section class="we-observer" aria-labelledby="we-observer-title">
+    <p class="we-eyebrow">OPTIONAL · CHOOSE A STUDY OBSERVER</p><h2 id="we-observer-title">A date is not one instant.</h2>
+    <p>An election can span many polling places and time zones. An international day has no unique worldwide start. For study, explicitly choose <strong>12:00 noon in a named observer zone</strong>; this is your sample, not the source event's timestamp.</p>
+    <form id="we-observer-form">
+      <div class="we-observer-grid"><div class="field"><label for="we-place">Observer preset</label><select id="we-place"><option value="london">London · example observer</option><option value="delhi">Delhi · example observer</option><option value="newyork">New York · example observer</option><option value="sydney">Sydney · example observer</option><option value="custom">Custom observer</option></select></div><div class="field"><label for="we-zone">Observer IANA time zone</label><input id="we-zone" value="Europe/London" spellcheck="false" list="we-zones" required></div><div class="field"><label for="we-lat">Latitude °N</label><input id="we-lat" type="number" min="-90" max="90" step="any" value="51.5074" required inputmode="decimal"></div><div class="field"><label for="we-lon">Longitude °E</label><input id="we-lon" type="number" min="-180" max="180" step="any" value="-0.1278" required inputmode="decimal"></div></div>
+      <label class="we-check we-ack"><input type="checkbox" id="we-sample-ack"> I choose local noon at this observer as a study sample. It is not the event time or an outcome forecast.</label>
+    </form>
+    <p class="we-note">No location is detected or saved automatically. South and west coordinates are negative. Select an event's “Study a noon sample” button after acknowledging the assumption.</p>
+    <p id="we-sample-status" role="status" aria-live="polite"></p>
+  </section>
+  <section id="we-study" class="we-study" aria-labelledby="we-study-title" hidden><h2 id="we-study-title">Selected event study</h2><div id="we-study-context"></div><div id="we-study-guidance"></div><div id="we-study-ai"></div></section>
+
+  <section class="we-coverage-section" aria-labelledby="we-coverage-title"><h2 id="we-coverage-title">What this agenda covers</h2><p>The major-country research cohort names the 19 sovereign countries conventionally listed in the G20, with the European Union and African Union shown separately as institutions. This is a declared coverage target, not a claim that all their events were reviewed. Additional researched jurisdictions are labelled alongside them.</p><p class="we-note">A zero count means no matching supported entry in this snapshot. It does not establish that the jurisdiction has no election, holiday or other event.</p><details><summary>Inspect every jurisdiction and its source-review limits</summary><div id="we-coverage" class="we-coverage-list"></div></details></section>
+  <section class="we-sources-section" aria-labelledby="we-sources-title"><h2 id="we-sources-title">Sources &amp; freshness</h2><p>Official pages and their date-relevant passages were inspected in a bounded research pass. A returned page can be stale, a challenge or a soft 404; those failures remain recorded and do not support an event.</p><details><summary>Inspect request status, date support and source caveats</summary><div id="we-sources"></div></details><p><a href="../docs/2026-10-world-events-sources.md">Read the research and verification ledger →</a></p><p class="we-note">Primary-text verification of the inherited astrological quality rules remains incomplete. Event sources establish public dates, not the predictive validity of a symbolic interpretation.</p></section>
+  <datalist id="we-zones"><option value="UTC"><option value="Europe/London"><option value="America/New_York"><option value="Asia/Kolkata"><option value="Asia/Taipei"><option value="America/Lima"><option value="Australia/Melbourne"><option value="Africa/Banjul"></datalist>
+  <noscript><p class="callout">Enable JavaScript to filter dates and calculate study samples. The <a href="../docs/2026-10-world-events-sources.md">source ledger</a> remains available.</p></noscript>
+</main>
+<script type="module" src="../assets/js/app/world-events.js"></script>
+</body>
+</html>

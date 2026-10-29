@@ -44,6 +44,7 @@ Must print `0 errors` and `hdr✓` on every page.
 ```bash
 node scripts/gen-opgraph.mjs --check       # exit 1 = the generated data module has drifted
 node scripts/seed-opgraph-gate.mjs --check # exit 1 = gate.json is not what its decisions produce
+node scripts/build-specialist-profiles.mjs --check # specialist registry and skills match named sources
 ```
 Each rebuilds its output in memory and compares it to the committed bytes, so **hand-editing
 `assets/js/core/data/opgraph.js` or `research/opgraph/gate.json` is a failure, not a silent

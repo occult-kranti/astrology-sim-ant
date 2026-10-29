@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "round": 3,
+  "reviewer": "calendar-engine independent cross-review",
+  "checkedAt": "2026-10-29T22:18:59.881Z",
+  "sourceHashes": {
+    "assets/js/core/data/observatory-standards.js": "327ac9f278680a398bd59d8dcbf696524f6a7526e9ef03a685c8a418fcb7ef8f",
+    "assets/js/core/world-events.js": "dbf3ba31eb22ff66f4860dd480005a287ed87347cd32813ce582da3494e561fc",
+    "assets/data/world-events.json": "182e0780a7711bc3b178081194337cfd864afefc1f64c57224d72b58de8be4fc",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/app/day-guidance.js": "021c31f9195ea4e60cdf2718e4b4ce174be46eecf7307d54977194a7fbf13b0a",
+    "assets/css/day-guidance.css": "840131b72666a94534dd02833135def47b2415f8d6634c24c0a0ee69bed46aea",
+    "scripts/tests/day-guidance.mjs": "ba621d1c97e7b36d582e0f26455c66f4d5a65825b2ae0ad7d9cd6ae6da943ee4"
+  },
+  "checks": [
+    {
+      "pass": true,
+      "label": "Strict study timestamp rejects 2026-02-30T12:00:00Z"
+    },
+    {
+      "pass": true,
+      "label": "Strict study timestamp rejects 2026-10-29T12:00:00"
+    },
+    {
+      "pass": true,
+      "label": "Strict study timestamp rejects 2026-10-29"
+    },
+    {
+      "pass": true,
+      "label": "Export requires an explicit creation timestamp"
+    },
+    {
+      "pass": true,
+      "label": "Study ICS output is host-zone independent"
+    },
+    {
+      "pass": true,
+      "label": "Offset appointment normalizes to exact UTC"
+    },
+    {
+      "pass": true,
+      "label": "Creation time remains distinct from appointment"
+    },
+    {
+      "pass": true,
+      "label": "Multilingual study ICS content lines stay within75octets"
+    },
+    {
+      "pass": true,
+      "label": "Study title cannot inject a VEVENT"
+    },
+    {
+      "pass": true,
+      "label": "Public window advances two calendar months"
+    },
+    {
+      "pass": true,
+      "label": "Leap-year month clamp is exact"
+    },
+    {
+      "pass": true,
+      "label": "Every public occurrence retains date-only precision"
+    },
+    {
+      "pass": true,
+      "label": "Source-review expiry remains independent of live window arithmetic"
+    },
+    {
+      "pass": true,
+      "label": "Actual-source world-event ICS uses75octetUTF8folds"
+    },
+    {
+      "pass": true,
+      "label": "Public dates gain no event clock or invented civil zone"
+    },
+    {
+      "pass": true,
+      "label": "Actual filtered occurrences map one-to-one to VEVENTS"
+    },
+    {
+      "pass": true,
+      "label": "Published campaign inclusive end becomes correct exclusive ICS date"
+    },
+    {
+      "pass": true,
+      "label": "A date-only event cannot silently become a noon chart"
+    },
+    {
+      "pass": true,
+      "label": "Explicit observer noon is labelled a study assumption, not election timestamp"
+    },
+    {
+      "pass": true,
+      "label": "Reviewed inputs remained byte-identical during independent checks"
+    }
+  ],
+  "passed": 20,
+  "total": 20,
+  "productDirty": false,
+  "sourceScope": "Calendrical/time/ICS contracts only; primary event source authority is reviewed by separate source agents.",
+  "guidanceRegression": {
+    "tests": 48,
+    "testSourceSha256": "ba621d1c97e7b36d582e0f26455c66f4d5a65825b2ae0ad7d9cd6ae6da943ee4",
+    "basis": "Existing executed48checks and10Chromium checks retained because guide product bytes unchanged; no new independent48-test claim."
+  },
+  "remainingLimits": [
+    "No physical calendar-app import or human tradition-authority validation performed.",
+    "No event outcome predictions or exact public event timestamps inferred."
+  ]
+}

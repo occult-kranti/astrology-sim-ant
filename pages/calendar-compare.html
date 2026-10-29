@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/calendar-observatory.css">
+  <link rel="stylesheet" href="../assets/css/day-guidance.css">
 </head>
 <body>
 <main class="wrap observatory-compare" id="content">
@@ -53,7 +54,7 @@
   </section>
 
   <div id="obs-results" hidden>
-    <nav class="obs-result-nav" aria-label="Comparison sections"><a href="#obs-calendar-heading">Dates</a><a href="#obs-readings-heading">Readings</a><a href="#obs-connections-heading">Connections</a><a href="#obs-assistant">Ask &amp; explain</a><a href="#obs-sources-heading">Sources</a></nav>
+    <nav class="obs-result-nav" aria-label="Comparison sections"><a href="#obs-calendar-heading">Dates</a><a href="#obs-readings-heading">Readings</a><a href="#obs-day-guidance">Day &amp; hours</a><a href="#obs-connections-heading">Connections</a><a href="#obs-assistant">Ask &amp; explain</a><a href="#obs-sources-heading">Sources</a></nav>
     <section class="obs-context" aria-labelledby="obs-context-heading">
       <div><p class="obs-eyebrow">FROZEN COMPARISON</p><h2 id="obs-context-heading">The same instant, throughout</h2></div>
       <dl id="obs-context-values"></dl>
@@ -76,6 +77,7 @@
       <div id="obs-prompts" class="obs-study-prompts"></div>
     </section>
 
+    <section id="obs-day-guidance" aria-label="Rule explanations and hourly study"></section>
     <section id="obs-assistant" aria-label="AI study assistant"></section>
 
     <section class="obs-export-section" aria-labelledby="obs-keep-heading">
