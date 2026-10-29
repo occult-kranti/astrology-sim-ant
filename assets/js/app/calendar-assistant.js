@@ -17,6 +17,12 @@ export function mountCalendarAssistant(container, { getComparison = () => null }
   disclosure.append(include, document.createTextNode(' Include selected coordinates, time zone and civil-calendar rows'));
   const disclosureHelp = element('p', 'Off by default: exact coordinates, zone, civil-date labels, houses, prayer and planetary-hour times. UTC and geocentric positions remain visible. Notes, saved births and credentials are always excluded.', 'small muted');
   disclosureHelp.id = `${id}-disclosure`; include.setAttribute('aria-describedby', disclosureHelp.id);
+  const guidanceDisclosure = element('label', '', 'ca-disclosure'), includeGuidance = element('input');
+  includeGuidance.type = 'checkbox'; includeGuidance.id = `${id}-guidance`;
+  guidanceDisclosure.htmlFor = includeGuidance.id;
+  guidanceDisclosure.append(includeGuidance, document.createTextNode(' Include sampled historical rules, measured inputs and source qualifications'));
+  const guidanceHelp = element('p', 'A separate choice: include the rule evidence behind this reading. With location off, only geocentric rules are included; temporal-hour and local-clock details stay excluded. Optional actions remain labelled modern editorial reflections.', 'small muted');
+  guidanceHelp.id = `${id}-guidance-help`; includeGuidance.setAttribute('aria-describedby', guidanceHelp.id);
   const questionLabel = element('label', 'Question for ChatGPT (optional)'), question = element('textarea');
   question.id = `${id}-question`; question.maxLength = 1000; question.rows = 3;
   question.placeholder = 'For example: Why do the tropical and sidereal signs differ?';
@@ -34,13 +40,13 @@ export function mountCalendarAssistant(container, { getComparison = () => null }
   const status = element('p', 'Calculate a moment to prepare its study packet.', 'ca-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
   const local = element('div', '', 'ca-local'), localTitle = element('h3', 'Ask about the methods'), localNote = element('p', 'Local rule-based explanations · no language model or network request'), topicLabel = element('label', 'Choose a study question'), topic = element('select'), explain = element('button', 'Explain locally', 'btn-secondary'), answer = element('p');
   topic.id = `${id}-topic`; topicLabel.htmlFor = topic.id;
-  for (const [value, label] of [['differences', 'Why do the readings differ?'], ['similarities', 'What do these systems share?'], ['boundaries', 'When does the day begin?'], ['sources', 'Which sources support this?'], ['privacy', 'What data would I share?']]) { const o = element('option', label); o.value = value; topic.append(o); }
+  for (const [value, label] of [['differences', 'Why do the readings differ?'], ['similarities', 'What do these systems share?'], ['guidance', 'Which measured rules explain this sample?'], ['disagreements', 'Why can favorable and caution coexist?'], ['boundaries', 'When does the day begin?'], ['sources', 'Which sources support this?'], ['privacy', 'What data would I share?']]) { const o = element('option', label); o.value = value; topic.append(o); }
   explain.type = 'button'; answer.setAttribute('role', 'status');
   const sourceLinks = element('ul', '', 'ca-source-links'); sourceLinks.hidden = true;
   local.append(localTitle, localNote, topicLabel, topic, explain, answer, sourceLinks);
   const style = element('style');
   style.textContent = '.ca-panel{border-block:1px solid var(--line,#cfc7b8);padding-block:1rem;margin-block:1.5rem}.ca-panel summary{font-size:1.1rem;font-weight:700;min-height:44px;cursor:pointer}.ca-panel textarea{display:block;box-sizing:border-box;width:100%;max-width:100%;font:inherit;min-height:5rem;padding:.75rem;overflow-wrap:anywhere}.ca-panel label{display:block;margin-block:.8rem .35rem;font-weight:600}.ca-panel .ca-disclosure{display:flex;align-items:flex-start;gap:.7rem;font-weight:400;min-height:44px}.ca-panel .ca-disclosure input{width:1.3rem;height:1.3rem;flex:0 0 auto;margin-block:.1rem}.ca-actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-block:1rem}.ca-panel button,.ca-panel select,.ca-panel .btn-secondary{min-height:44px;font-size:1rem}.ca-panel select{max-width:100%;margin-block-end:.75rem}.ca-panel button:disabled{opacity:.55;cursor:not-allowed}.ca-status{min-height:1.5em}.ca-local{border-block-start:1px solid var(--line,#cfc7b8);margin-block-start:1rem;padding-block-start:1rem}.ca-local h3{margin-block-start:0}.ca-panel :focus-visible{outline:3px solid var(--accent,#8c3f26);outline-offset:3px}';
-  details.append(summary, intro, local, disclosure, disclosureHelp, questionLabel, question, prepare, previewLabel, preview, actions, handoffHelp, status);
+  details.append(summary, intro, local, disclosure, disclosureHelp, guidanceDisclosure, guidanceHelp, questionLabel, question, prepare, previewLabel, preview, actions, handoffHelp, status);
   container.replaceChildren(style, details);
   let comparison = null, selectedFingerprint = null, packet = null, destroyed = false;
   const clear = message => { packet = null; preview.value = ''; copy.disabled = download.disabled = true; answer.textContent = ''; sourceLinks.replaceChildren(); sourceLinks.hidden = true; status.textContent = message; };
@@ -55,15 +61,16 @@ export function mountCalendarAssistant(container, { getComparison = () => null }
   const preparePacket = () => {
     const candidate = current(); if (!candidate) return false;
     try {
-      packet = buildCalendarStudyPacket(candidate, { includeLocation: include.checked });
+      packet = buildCalendarStudyPacket(candidate, { includeLocation: include.checked, includeGuidance: includeGuidance.checked });
       preview.value = buildCalendarStudyPrompt(packet, question.value).text;
       copy.disabled = download.disabled = false;
-      status.textContent = 'Preview prepared locally. Review the exact outgoing text. Nothing has been sent.';
+      status.textContent = `Preview prepared locally.${packet.guidance ? ` ${packet.guidance.rules.length} historical rules included; ${include.checked ? 'selected observer disclosed' : 'observer and temporal-hour context excluded'}.` : ' Historical rule evidence is excluded.'} Review the exact outgoing text. Nothing has been sent.`;
       return true;
     } catch (error) { clear(`Could not prepare the packet: ${error.message}`); return false; }
   };
   prepare.addEventListener('click', preparePacket);
   include.addEventListener('change', () => clear('Disclosure choice changed. Prepare a new preview before copying.'));
+  includeGuidance.addEventListener('change', () => clear('Rule-evidence choice changed. Prepare a new preview before copying.'));
   question.addEventListener('input', () => clear('Question changed. Prepare a new preview before copying.'));
   copy.addEventListener('click', async () => {
     if (!current() || !packet) return;
@@ -87,7 +94,7 @@ export function mountCalendarAssistant(container, { getComparison = () => null }
   explain.addEventListener('click', () => {
     const candidate = current(); if (!candidate) return;
     try {
-      const localPacket = buildCalendarStudyPacket(candidate, { includeLocation: include.checked });
+      const localPacket = buildCalendarStudyPacket(candidate, { includeLocation: include.checked, includeGuidance: includeGuidance.checked || ['guidance', 'disagreements'].includes(topic.value) });
       answer.textContent = answerCalendarStudyQuestion(localPacket, topic.value).text;
       sourceLinks.replaceChildren(...localPacket.sources.map(source => {
         const li = element('li'), a = element('a', `[${source.id}] ${source.title}`);

@@ -7,6 +7,8 @@ import { parseExplicitInstant } from '../core/instant-boundary.js';
 import { downloadBlob, downloadJSON } from './state.js';
 import { mountDayGuidance } from './day-guidance.js';
 import { buildDayGuidance } from '../core/day-guidance.js';
+import { buildComparisonEvidence } from '../core/comparison-evidence.js';
+import { mountComparisonEvidence } from './comparison-evidence.js';
 
 const $ = id => document.getElementById(id);
 const PRESETS = Object.freeze({
@@ -37,17 +39,19 @@ export function calendarComparisonToMarkdown(result) {
   const c = result.context || {}, lines = ['# Calendar Observatory — one moment', '', `UTC instant: ${c.dateISO || c.instant || ''}`, `Zone: ${c.timeZone || ''}`, `Latitude / longitude: ${c.lat ?? ''}, ${c.lon ?? ''}`, '', '> Calendar arithmetic and astronomical geometry do not validate symbolic predictions. Religious observances can use different day boundaries and local rulings.', '', '## Calendar dates', ''];
   for (const item of result.calendars || []) lines.push(`### ${item.label || item.id}`, '', String(item.text || item.value || item.reason || 'Unavailable'), '', `Method: ${textValue(item.method)}`, `Boundary: ${textValue(item.boundary)}`, ...list(item.limitations).map(value => `- ${textValue(value)}`), '');
   lines.push('## Historical guidance and optional reflection actions', '', '> These rules classify this sample only. Suggested actions are modern editorial prompts, not book quotations or outcome predictions.', '', '```json', JSON.stringify(buildDayGuidance(result), null, 2), '```', '', '## Full source-labelled comparison', '', '```json', JSON.stringify(result, null, 2), '```');
+  lines.push('', '## Shared calculations and different conventions', '', '```json', JSON.stringify(buildComparisonEvidence(result), null, 2), '```');
   return lines.join('\n');
 }
 
 export function initCalendarObservatory() {
   let activeComparison = null, displayedComparison = null, currentInput = null, assistant = null, active = true, locationRequest = 0;
   const dayGuide=mountDayGuidance($('obs-day-guidance'),null);
+  const connectionGuide=mountComparisonEvidence($('obs-comparison-evidence'),null);
   const status = message => { $('obs-status').textContent = message; };
   const error = message => { $('obs-error').hidden = !message; $('obs-error').textContent = message || ''; };
   const setExports = enabled => ['obs-json', 'obs-markdown', 'obs-share'].forEach(id => { $(id).disabled = !enabled; });
   const dirty = () => {
-    activeComparison = null; currentInput = null; assistant?.update(null);dayGuide.update(null); setExports(false);
+    activeComparison = null; currentInput = null; assistant?.update(null);dayGuide.update(null);connectionGuide.update(null); setExports(false);
     $('obs-stale').hidden = !displayedComparison; $('obs-export-status').textContent = '';
     $('obs-tool-links').replaceChildren(); error('');
     status('Inputs changed. Choose Compare this moment to update the frozen comparison.');
@@ -208,13 +212,13 @@ export function initCalendarObservatory() {
     art.href='sigil-studio.html?'+new URLSearchParams({at:input.dateISO,lat:String(input.lat),lon:String(input.lon),zone:input.timeZone});host.append(art);
   }
   function run({ focusError = false } = {}) {
-    activeComparison = null; currentInput = null; assistant?.update(null);dayGuide.update(null); setExports(false); error('');
+    activeComparison = null; currentInput = null; assistant?.update(null);dayGuide.update(null);connectionGuide.update(null); setExports(false); error('');
     FIELD_IDS.forEach(id => $(id).removeAttribute('aria-invalid'));
     try {
       const input = readInput(), result = compareMoment(input);
       activeComparison = displayedComparison = result; currentInput = input;
       renderContext(result, input); renderCalendars(result); renderReadings(result); renderConnections(result); renderSources(result); renderToolLinks(input);
-      $('obs-results').hidden = false; setExports(true); assistant?.update(result);dayGuide.update(result);
+      $('obs-results').hidden = false; setExports(true); assistant?.update(result);dayGuide.update(result);connectionGuide.update(result);
       status(`Comparison calculated locally for ${input.dateISO.replace('.000Z', 'Z')}. All panels use this one instant; unavailable methods remain labelled.`);
       window.dispatchEvent(new CustomEvent('calendar-observatory:comparison', { detail: result }));
     } catch (err) {
@@ -253,7 +257,7 @@ export function initCalendarObservatory() {
     }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
   });
   const guardedExport = fn => { if (!activeComparison || !currentInput) { $('obs-export-status').textContent = 'Compare the current inputs before exporting.'; return; } try { fn(activeComparison, currentInput); } catch (err) { $('obs-export-status').textContent = err.message || 'Export unavailable. Try JSON download.'; } };
-  $('obs-json').addEventListener('click', () => guardedExport(result => downloadJSON({...result,studyGuidance:buildDayGuidance(result)}, 'calendar-comparison.json')));
+  $('obs-json').addEventListener('click', () => guardedExport(result => downloadJSON({...result,studyGuidance:buildDayGuidance(result),comparisonEvidence:buildComparisonEvidence(result)}, 'calendar-comparison.json')));
   $('obs-markdown').addEventListener('click', () => guardedExport(result => downloadBlob(new Blob([calendarComparisonToMarkdown(result)], { type: 'text/markdown;charset=utf-8' }), 'calendar-comparison.md')));
   $('obs-share').addEventListener('click', () => guardedExport(async (_result, input) => {
     const url = new URL(location.href); url.search = new URLSearchParams({ at: input.dateISO, lat: String(input.lat), lon: String(input.lon), zone: input.timeZone, system: input.system, method: input.prayerMethod, asr: input.asr, high: input.highLatitude }).toString(); url.hash = '';

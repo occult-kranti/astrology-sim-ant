@@ -1,5 +1,8 @@
 import { pathToFileURL } from 'node:url';
+import { readFileSync } from 'node:fs';
 import { CALENDARS, civilToJD, fromJD, formatCivil, parseCivil, utcInstant, calendarSupported, calendarAtInstant, easter, qibla, KAABA, prayerTimes } from '../../assets/js/core/cultural-calendars.js';
+
+const chineseLeapFixtures = JSON.parse(readFileSync(new URL('./fixtures/chinese-leap-month-2025.json', import.meta.url), 'utf8'));
 
 export async function run() {
   const failures = []; let count = 0;
@@ -38,6 +41,22 @@ export async function run() {
   if (calendarSupported('chinese')) {
     const lunar = calendarAtInstant(utcInstant('2026-02-17', '04:00'), 'chinese', 'Asia/Shanghai');
     ok(part(lunar,'day') === '1' && /First|1/.test(part(lunar,'month')) && part(lunar,'relatedYear') === '2026', 'HKO Chinese New Year 2026');
+    // Fresh independent HKO + Taiwan CWA tables; both use UTC+8. These selected
+    // dates exercise a repeated month, not just a New Year. Receipts and actual
+    // reading scope: docs/2026-10-ensemble-calendar.md. Locale wording may vary,
+    // but the displayed leap month must stay distinguishable from month six.
+    for (const fixture of chineseLeapFixtures.dates) {
+      for (const zone of chineseLeapFixtures.timeZones) {
+        const result = calendarAtInstant(utcInstant(fixture.gregorian, '04:00'), 'chinese', zone);
+        const month = part(result, 'month');
+        ok(part(result, 'day') === String(fixture.day) && part(result, 'relatedYear') === '2025' && new RegExp(fixture.monthPattern).test(month), `HKO/CWA ${fixture.gregorian} lunar month/day in ${zone}`);
+        ok(/bis|leap/i.test(month) === fixture.leap, `HKO/CWA ${fixture.gregorian} preserves leap-month distinction in ${zone}`);
+      }
+    }
+    const beforeLeap = calendarAtInstant(new Date('2025-07-24T15:59:59.999Z'), 'chinese', 'Asia/Hong_Kong');
+    const startLeap = calendarAtInstant(new Date('2025-07-24T16:00:00.000Z'), 'chinese', 'Asia/Hong_Kong');
+    ok(part(beforeLeap, 'day') === '30' && !/bis|leap/i.test(part(beforeLeap, 'month')), 'HKO/CWA regular sixth month ends before UTC+8 civil midnight');
+    ok(part(startLeap, 'day') === '1' && /bis|leap/i.test(part(startLeap, 'month')), 'HKO/CWA leap sixth month begins at UTC+8 civil midnight');
   } else ok(false, 'Verification runtime must support Chinese for independent fixtures');
   const buddhist = calendarAtInstant(utcInstant('2026-10-03'), 'buddhist');
   ok(part(buddhist,'year') === '2569', 'Modern Thai Buddhist civil year +543');
@@ -46,6 +65,10 @@ export async function run() {
   ok(CALENDARS.every(c => typeof calendarSupported(c.id) === 'boolean'), 'Calendar support is detected explicitly');
   ok(!calendarSupported('made-up-calendar'), 'Silent Intl fallback detected');
   throws(() => calendarAtInstant(new Date(), 'hebrew', 'Not/AZone'), 'Invalid IANA zone rejected');
+  throws(() => calendarAtInstant(new Date('1900-01-01T00:00:00Z'), 'buddhist', 'Pacific/Honolulu'), 'UTC-in-range instant with observer civil year 1899 rejected');
+  throws(() => calendarAtInstant(new Date('2100-12-31T23:30:00Z'), 'buddhist', 'Pacific/Kiritimati'), 'UTC-in-range instant with observer civil year 2101 rejected');
+  ok(calendarAtInstant(new Date('1900-01-01T12:00:00Z'), 'buddhist', 'Pacific/Honolulu').supported, 'Lower range boundary remains usable after observer midnight');
+  ok(calendarAtInstant(new Date('2100-12-31T09:59:59Z'), 'buddhist', 'Pacific/Kiritimati').supported, 'Upper range boundary remains usable before observer midnight');
   const west = calendarAtInstant(utcInstant('2026-10-03', '01:00'), 'hebrew', 'America/Los_Angeles');
   ok(part(west,'day') === '21', 'Civil-day display follows selected zone across midnight');
   // Independent Qibla regression values from Adhan source tests, not this implementation.

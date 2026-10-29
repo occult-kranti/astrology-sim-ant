@@ -4,6 +4,7 @@ import { localClockFields, mondayOfWeek, outlookCacheKey } from '../core/observa
 import { mountCalendarAssistant } from './calendar-assistant.js';
 import { mountDayGuidance } from './day-guidance.js';
 import { buildDayGuidance } from '../core/day-guidance.js';
+import { mountComparisonEvidence } from './comparison-evidence.js';
 
 mountChrome('home');
 const $=id=>document.getElementById(id);
@@ -16,6 +17,13 @@ const places={
 let comparison=null,outlook=null,cacheKey=null,dirty=false,busy=false,timer=null,revision=0;
 const assistant=mountCalendarAssistant($('homeAssistant'),{getComparison:()=>comparison});
 const dayGuide=mountDayGuidance($('homeDayGuide'),null);
+let connections=null;
+function updateConnections(value) {if(connections&&(!value||$('homeConnections').open)) connections.update(value);}
+$('homeConnections').addEventListener('toggle',()=>{
+  if(!$('homeConnections').open) return;
+  if(!connections) connections=mountComparisonEvidence($('homeComparisonEvidence'),comparison);
+  else connections.update(comparison);
+});
 const dayMounts=new Map();
 let renderedOutlook=null,renderedDate=null,weekGuidanceInvalidated=false;
 
@@ -30,6 +38,7 @@ function setError(message) {
 }
 function disableStale() {
   dirty=true; revision++; comparison=null; assistant.update(null);
+  updateConnections(null);
   dayGuide.update(null); for(const entry of dayMounts.values()) entry.mount.update(null);weekGuidanceInvalidated=true;
   $('homeOutlookStale').hidden=false;$('homeOutlook').dataset.stale='true';
   document.querySelectorAll('a.home-day').forEach(a=>{if(a.hasAttribute('href'))a.dataset.currentHref=a.href;a.removeAttribute('href');a.setAttribute('aria-disabled','true');});
@@ -128,10 +137,10 @@ async function calculate({automatic=false}={}) {
     }
     if(token!==revision) return;
     comparison=next; outlook=nextOutlook; cacheKey=key; dirty=false;
-    renderSummary(comparison); renderOutlook(outlook,next.context.localDate); assistant.update(comparison);dayGuide.update(comparison);
+    renderSummary(comparison); renderOutlook(outlook,next.context.localDate); assistant.update(comparison);dayGuide.update(comparison);updateConnections(comparison);
     $('homeStatus').textContent=`${$('homeClockMode').value==='live'?'Following the present · refreshes every minute while open':'Frozen moment'} · ${next.context.localLabel} · ${input.timeZone} · ${next.context.dateISO}. Location: ${input.lat}°, ${input.lon}°. Nothing sent to a server.`;
   } catch(error) {
-    comparison=null; assistant.update(null);dayGuide.update(null);for(const entry of dayMounts.values()) entry.mount.update(null);weekGuidanceInvalidated=true; $('homeDownload').disabled=true; $('homeCompare').setAttribute('aria-disabled','true');
+    comparison=null; assistant.update(null);dayGuide.update(null);updateConnections(null);for(const entry of dayMounts.values()) entry.mount.update(null);weekGuidanceInvalidated=true; $('homeDownload').disabled=true; $('homeCompare').setAttribute('aria-disabled','true');
     dirty=true; setError(error.message||'The calculation could not be completed. Correct the inputs and update again.');
     $('homeStatus').textContent='Calculation paused. Earlier results, if present, are retained and do not represent the edited inputs.';
   } finally {

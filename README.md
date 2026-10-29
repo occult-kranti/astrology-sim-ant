@@ -1,5 +1,9 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+The latest [six-member, three-round review](docs/2026-10-ensemble-panel.md) adds a numerical dependency inspector to Today and Compare, safe sigil recipe replay, paired event studies, and clearer mobile standards workflows. Inspect exactly which solar/lunar inputs two readings share, where their rules differ, and which source passages were actually checked. Chinese 2025 leap-month boundaries now have selected HKO and Taiwan CWA fixtures; the seven pending calendar-family validation statuses remain unchanged. See the [final verification](docs/2026-10-ensemble-verification.md) and the linked method reports for evidence and remaining limits.
+
+Import a bounded JSON drawing recipe in the [Sigil Studio](pages/sigil-studio.html) to inspect and replay its geometry with an explicit unverified-provenance label. Compare two [world events](pages/world-events.html) using acknowledged local-noon samples, actual elapsed hours and shortest signed angular differences. The assistant now has a separate, default-off rule-evidence option; locally recalculated rules include their inputs, sources, thresholds and unresolved conditions. These additions describe calculations and source differences without assigning predictive validity to agreement.
+
 The new [Sigil & Mandala Studio](pages/sigil-studio.html) creates editable intention sigils, traces all seven sourced planetary squares, and composes original geometric mandalas. It exports SVG, PNG and reproducible JSON recipes, and builds a paper study setup from a chosen moment, calendar and source lens. The AI gallery contains an image actually generated in this development conversation, with [provenance](assets/img/studio/PROVENANCE.json). The local vector generator is procedural. ChatGPT image generation uses an explicit preview/copy/open handoff; an optional protected [server image adapter](mcp/sigil-image-provider.mjs) is implemented and tested with a fake provider, but requires deployment, server credentials and a model enabled for that account. It does not inherit a ChatGPT login.
 
 Daily readings now expose independent favorable, caution, neutral and unresolved historical rules, exact planetary inputs, thresholds and sources. Suggested actions are optional modern reflection exercises. Expand a day for hourly samples with real daylight-saving folds, gaps and partial-hour changes; the classes apply to each sampled instant, not the full hour or day. Civil calendar labels do not receive an invented auspiciousness score. Edit a place or date to invalidate exports and links until recalculation.
@@ -32,8 +36,8 @@ the mobile path. The original homepage collection remains in an expandable secti
 The new assistant supplies an explicitly labelled local rule-based explanation, then
 an optional preview/copy/export workflow for ChatGPT. It cannot inherit this conversation
 or account. Coordinates and geographic outputs are excluded by default. The repository's
-MCP implementation adds `workbench_compare_moment` and `workbench_calendar_outlook`
-to the 11 existing tools. Its 13-tool stdio/HTTP source is tested separately from the
+MCP implementation adds `workbench_compare_moment`, `workbench_calendar_outlook`
+and `workbench_explain_guidance` to the 11 original tools. Its 14-tool stdio/HTTP source is tested separately from the
 previously hosted remote backend; the latter must be updated before claiming those
 new tools are live remotely. Supabase is optional future authenticated sync, not a
 prerequisite or a connected service in this release.
@@ -172,7 +176,7 @@ against modern editions and traditional-astrology scholarship (see About & Sourc
 
 [Live Symbol Studio](pages/studio.html) connects the existing chart, planetary-square and name-trace engines with explicit time/location/method controls, live or frozen calculation, pause/resume, text alternatives and SVG/PNG/JSON exports. [Tools](pages/tools.html) remains the directory for the broader study collection. See the [panel decisions and roadmap](docs/2026-10-05-live-studio-roadmap.md), [product brief](PRODUCT.md), [design contract](DESIGN.md) and [MCP setup](mcp/README.md).
 
-The current repository MCP backend is a separate Node/fetch-runtime process with 13 allowlisted tools. The previously hosted 11-tool service requires a separate update; this source change does not deploy it. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
+The current repository MCP backend is a separate Node/fetch-runtime process with 14 allowlisted tools. The previously hosted 11-tool service requires a separate update; this source change does not deploy it. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
 
 ### Observatory sessions: from the sky to a study record
 

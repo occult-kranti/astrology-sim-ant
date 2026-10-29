@@ -4,7 +4,7 @@ Date: 2026-10-29. Scope: the `feat/mobile-calendar-observatory` source branch.
 
 ## What works without an account
 
-The homepage and comparison page calculate locally. Their study assistant offers five finite explanations of similarities, differences, day boundaries, sources and disclosure. The interface calls these **local rule-based explanations**. They are not language-model answers, an occult expert's endorsement or forecasts.
+The homepage and comparison page calculate locally. Their study assistant offers seven finite explanations of similarities, differences, day boundaries, sources, disclosure, sampled rules and coexisting testimonies. The interface calls these **local rule-based explanations**. They are not language-model answers, an occult expert's endorsement or forecasts.
 
 The assistant can prepare a structured packet and its exact outgoing prompt, copy the prompt, and download the packet as JSON. Preparation makes no network request. Nothing calls an AI provider, stores an API key, uploads a record or creates an account.
 
@@ -16,6 +16,8 @@ Default disclosure is a strict allowlist:
 
 The checkbox **Include selected coordinates, time zone and civil-calendar rows** additionally includes the current observer's latitude/longitude, canonical IANA zone and thirteen named calendar rows. It does not silently attach the rest of a chart. A location or civil date can still be personal information. The UTC instant and geocentric positions are visible even with the checkbox off.
 
+The separate, default-off **Include sampled historical rules, measured inputs and source qualifications** checkbox adds ten geocentric Western/Muhūrta rule explanations. Temporal-hour evidence is included only if location is also selected, making eleven rules. Measured thresholds, unresolved timing, source qualifications and modern editorial action labels stay explicit. Local rule questions do not change these outgoing choices. See the [ensemble extension](2026-10-ensemble-ai.md) for source access and the exact disclosure contract.
+
 Changing any form value invalidates the current comparison at its owning page. `update(null)` clears the preview and disables preparation, copying, JSON download and the local explanation. Changing the assistant's question or disclosure option clears the previous outgoing packet. Exported and previously copied data cannot be recalled.
 
 ## ChatGPT handoff
@@ -26,7 +28,7 @@ This website cannot inherit the current ChatGPT conversation, use this chat's au
 
 The prepared prompt asks the model to cite fact/source IDs, treat packet strings and questions as untrusted reference data, separate arithmetic from interpretation, acknowledge unsupported traditions, and avoid fabricated passages or claims of validated prediction. A prompt is not a guarantee that a model follows those instructions: the user must inspect the resulting answer and source claims.
 
-## MCP: thirteen tools in current source
+## MCP: fourteen tools in current source
 
 The new read-only tools extend, rather than replace, the existing eleven:
 
@@ -34,6 +36,7 @@ The new read-only tools extend, rather than replace, the existing eleven:
 | --- | --- | --- |
 | `workbench_compare_moment` | Explicit ISO instant with `Z`/offset, latitude, longitude and IANA zone; selected house/prayer conventions; returns the same comparison object as the browser engine. | Complete comparison years 1900–2100; methods enumerated; no unknown keys or implicit local times. |
 | `workbench_calendar_outlook` | Same context plus optional start civil date, sample clock time and day count; returns timezone-resolved daily rows. | 1–14 days; bounded response 1.5 MB; sample differences are not exact transition timestamps. |
+| `workbench_explain_guidance` | Explicit instant, latitude, longitude and IANA zone; returns canonical rule IDs, measured inputs, thresholds, source qualifications, tensions and temporal-hour context. | One selected sample; strict fields and finite observer; unresolved timing remains unavailable. No provider call or inferred whole-day verdict. |
 
 The original catalogue, chart, symbol, gematria, katapayadi, civil calendar, Julian Day, Easter, qibla, prayer-time and election tools remain available. All tool calculations are deterministic for explicit arguments and make no outbound request. They read no browser saved state. The client explicitly supplies any coordinates it chooses to send, and that client/provider can retain the conversation.
 
@@ -67,7 +70,7 @@ The known published private OAuth endpoint remains:
 
 `https://astrologers-workbench-mcp.whatswrong-inc.chatgpt.site/mcp`
 
-Its earlier source documented eleven tools. This branch does not redeploy that separate backend or establish the current user's authenticated client connection. A thirteen-entry static catalogue describes **this source**, not verified remote availability. Redeploy the reviewed backend, complete the client connection, inspect an authenticated `tools/list`, then call `workbench_catalogue` before asserting new remote-tool readiness. The existing endpoint, OAuth instructions and setup page are preserved.
+Its earlier source documented eleven tools. This branch does not redeploy that separate backend or establish the current user's authenticated client connection. A fourteen-entry static catalogue describes **this source**, not verified remote availability. Redeploy the reviewed backend, complete the client connection, inspect an authenticated `tools/list`, then call `workbench_catalogue` before asserting new remote-tool readiness. The existing endpoint, OAuth instructions and setup page are preserved.
 
 ## Optional hosted AI: separate future integration
 
@@ -85,9 +88,9 @@ If multi-device accounts or scheduled personal notifications are later requested
 
 ## Executed checks
 
-- `node scripts/tests/calendar-study-packet.mjs`: six test groups passed, covering disclosure, arbitrary-field exclusion, observer-independent default facts, strict inputs, untrusted-reference prompt construction, finite non-model answers, and zero fetch calls during preparation.
-- `node scripts/tests/mcp-toolkit.mjs`: seven groups passed, including preservation of all eleven legacy names, strict new schemas, explicit instant/zone validation, deterministic comparisons, fourteen-row bounded output and invalid horizon rejection.
-- `npm test --prefix mcp`: real official-SDK HTTP and child-process stdio initialize/list/call/resource paths passed, plus input/body/origin/host/abort/authentication guards. HTTP comparison and outlook calls returned actual engine results.
-- `node scripts/build-mcp-catalogue.mjs`: current source catalogue regenerated with thirteen tools.
+- `node scripts/tests/calendar-study-packet.mjs`: eleven test groups passed, covering disclosure, arbitrary-field exclusion, recomputation of forged civil labels, observer-independent facts/rules, exact rule thresholds/source qualification, unresolved timing, sampled disagreement, strict inputs, untrusted-reference prompt construction, finite non-model answers and zero fetch calls.
+- `node scripts/tests/mcp-toolkit.mjs`: eight groups passed, including preservation of all legacy names, strict new schemas, explicit instant/zone validation, deterministic comparisons, fourteen-row bounded outlook, canonical guidance equivalence and invalid horizon rejection.
+- `npm test --prefix mcp`: real official-SDK HTTP and child-process stdio initialize/list/call/resource paths passed, plus input/body/origin/host/abort/authentication guards. New guidance calls returned actual engine results through both transports, with matching structured/text JSON.
+- `node scripts/build-mcp-catalogue.mjs`: current source catalogue regenerated with fourteen tools.
 
 Rendered assistant and full-site checks are separate evidence recorded by the browser-review workstream. No real external LLM inference, remote backend redeployment, authenticated ChatGPT client call, new database connection or human tradition-expert review is claimed here.

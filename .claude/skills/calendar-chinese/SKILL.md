@@ -15,7 +15,7 @@ Runtime Intl chinese; preserve relatedYear, named/leap month, selected-zone civi
 
 ## Actual validation boundary
 
-Inherited selected HKO UTC+8 fixtures. Not Korean/Vietnamese/BaZi/Tibetan equivalence or full-range independent validation. Astrology has no demonstrated predictive validity. A civil-date label does not authorize religious observance or a personal forecast.
+Selected HKO UTC+8 fixtures plus 2025 leap-sixth-month boundaries checked against HKO and Taiwan CWA issuing authorities; see docs/2026-10-ensemble-calendar.md. Not Korean/Vietnamese/BaZi/Tibetan equivalence or full-range independent validation. Astrology has no demonstrated predictive validity. A civil-date label does not authorize religious observance or a personal forecast.
 
 ## Canonical implementation and sources
 

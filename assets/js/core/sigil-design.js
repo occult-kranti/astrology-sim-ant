@@ -6,6 +6,7 @@ import { mulberry32 } from './skyart.js';
 import { compareMoment } from './calendar-observatory.js';
 import { getStudyLens } from './data/study-lenses.js';
 
+export const SIGIL_RECIPE_MAX_BYTES = 512 * 1024;
 export const SIGIL_MODES = Object.freeze(['intention', 'planetary', 'mandala']);
 export const SIGIL_PLANETS = Object.freeze(['Saturn', 'Jupiter', 'Mars', 'Sun', 'Venus', 'Mercury', 'Moon']);
 export const SIGIL_PALETTES = Object.freeze({
@@ -20,6 +21,7 @@ const MODES = {
   mandala: { title: 'Geometric mandala', status: 'Contemporary radial rosette', method: 'Seeded repeated Bézier petals, polygonal rings and rotational symmetry. This nonsectarian geometric artwork is not a lineage-specific Hindu or Buddhist ritual mandala.' },
 };
 const own = (o, k) => Object.hasOwn(o, k);
+const onlyKeys = (object, keys, label) => { if (!plain(object) || Object.keys(object).some(key => !keys.includes(key))) throw new TypeError(`${label} contains unsupported fields.`); };
 const plain = v => v && typeof v === 'object' && !Array.isArray(v);
 const num = (v, min, max, label, integer = false) => {
   if (!Number.isFinite(v) || v < min || v > max || (integer && !Number.isInteger(v))) throw new RangeError(`${label} must be ${integer ? 'an integer' : 'a number'} from ${min} to ${max}.`);
@@ -38,7 +40,7 @@ function normalize(input) {
   const text = input.text ?? ''; if (typeof text !== 'string' || Array.from(text).length > 160) throw new RangeError('Use at most 160 characters.');
   const planet = input.planet ?? 'Sun'; if (!SIGIL_PLANETS.includes(planet)) throw new RangeError('Choose one of the seven planetary squares.');
   const method = input.method ?? 'latin'; if (!SYMBOL_METHODS.kamea.some(m => m.id === method)) throw new RangeError('Choose a supported letter-value method.');
-  const palette = input.palette ?? 'ink'; if (!own(SIGIL_PALETTES, palette)) throw new RangeError('Choose a supported palette.');
+  const palette = input.palette ?? 'ink'; if (typeof palette !== 'string' || !own(SIGIL_PALETTES, palette)) throw new RangeError('Choose a supported palette.');
   if (input.showGrid != null && typeof input.showGrid !== 'boolean') throw new TypeError('Show construction must be a boolean.');
   const book = input.book ?? 'agrippa'; if (!getStudyLens(book)) throw new RangeError('Choose a supported source-study lens.');
   const calendar = input.calendar ?? 'gregory'; if (!SIGIL_CALENDARS.includes(calendar)) throw new RangeError('Choose a supported civil calendar.');
@@ -135,26 +137,36 @@ export function makeSigilRecipe(result, options = {}) {
   return recipe;
 }
 
-export function reproduceSigilRecipe(recipe) {
-  if (!plain(recipe) || recipe.kind !== 'sigil-drawing-recipe' || recipe.schemaVersion !== 1 || !SIGIL_MODES.includes(recipe.mode) || !plain(recipe.style) || !own(SIGIL_PALETTES, recipe.style.palette)) throw new TypeError('Unsupported drawing recipe.');
+export function reproduceSigilRecipe(recipe, { imported = false } = {}) {
+  if (typeof imported !== 'boolean') throw new TypeError('Imported provenance must be a boolean.');
+  onlyKeys(recipe, ['schemaVersion','kind','algorithmVersion','mode','planet','style','seed','geometry','sourceIds','sources','claimStatus','privacy','privateInputs','privateStudySetup'], 'Drawing recipe');
+  onlyKeys(recipe.style, ['palette','rotation','stroke'], 'Recipe style');
+  for (const key of ['claimStatus','privacy']) if (recipe[key] != null && (typeof recipe[key] !== 'string' || recipe[key].length > 3000)) throw new TypeError('Recipe labels must be bounded text.');
+  if (!plain(recipe) || recipe.kind !== 'sigil-drawing-recipe' || recipe.schemaVersion !== 1 || !SIGIL_MODES.includes(recipe.mode) || !plain(recipe.style) || typeof recipe.style.palette !== 'string' || !own(SIGIL_PALETTES, recipe.style.palette)) throw new TypeError('Unsupported drawing recipe.');
   const rotation = num(recipe.style.rotation, 0, 359, 'Recipe rotation'), stroke = num(recipe.style.stroke, .5, 7, 'Recipe line weight');
   if (!Array.isArray(recipe.geometry) || recipe.geometry.length < 1 || recipe.geometry.length > 1200) throw new RangeError('A drawing recipe needs 1–1200 bounded shapes.');
   num(recipe.seed, 0, 4294967295, 'Recipe seed', true);
   if (!Array.isArray(recipe.sourceIds) || recipe.sourceIds.length > 30 || recipe.sourceIds.some(v => typeof v !== 'string' || !/^[A-Z][A-Z0-9-]{0,80}$/.test(v))) throw new TypeError('Unsupported source identifiers.');
   if (recipe.algorithmVersion !== '1.0') throw new TypeError('Unsupported drawing algorithm version.');
-  if (!Array.isArray(recipe.sources) || recipe.sources.length > 30) throw new TypeError('Source records are required.');
+  if (new Set(recipe.sourceIds).size !== recipe.sourceIds.length) throw new TypeError('Source identifiers must be unique.');
+  if (!Array.isArray(recipe.sources) || recipe.sources.length !== recipe.sourceIds.length || new Set(recipe.sources.map(s => s?.id)).size !== recipe.sources.length) throw new TypeError('Source records are required.');
   const sources = recipe.sources.map(source => {
     if (!plain(source) || !recipe.sourceIds.includes(source.id)) throw new TypeError('Source record does not match its identifier.');
+    onlyKeys(source, ['id','title','url','section','edition','status','note'], 'Source record');
     const record = {};
     for (const key of ['id','title','url','section','edition','status','note']) {
       if (source[key] == null) continue;
       if (typeof source[key] !== 'string' || source[key].length > 5000) throw new TypeError('Source fields must be bounded text.');
       record[key] = source[key];
     }
-    if (record.url && !/^https:\/\//.test(record.url)) throw new TypeError('Source URLs must use HTTPS.');
+    if (record.url) {
+      let url; try { url = new URL(record.url); } catch { throw new TypeError('Source URLs must be valid HTTPS URLs.'); }
+      if (url.protocol !== 'https:' || url.username || url.password) throw new TypeError('Source URLs must use HTTPS without credentials.');
+    }
     return record;
   });
   if (recipe.mode === 'planetary' && !SIGIL_PLANETS.includes(recipe.planet)) throw new TypeError('A planetary recipe needs its sourced planet.');
+  if (recipe.mode !== 'planetary' && recipe.planet !== null) throw new TypeError('A nonplanetary recipe must declare a null planet.');
   const palette = SIGIL_PALETTES[recipe.style.palette], title = recipe.mode === 'planetary' ? `${recipe.planet} · ${MODES[recipe.mode].title}` : MODES[recipe.mode].title;
   const p = value => {
     if (!Array.isArray(value) || value.length !== 2) throw new TypeError('A drawing point needs two finite numbers.');
@@ -162,6 +174,9 @@ export function reproduceSigilRecipe(recipe) {
   };
   const shapes = recipe.geometry.map(shape => {
     if (!plain(shape) || !['primary', 'secondary', 'accent'].includes(shape.role)) throw new TypeError('Unsupported drawing shape.');
+    const fields = { circle: ['kind','role','width','center','radius'], number: ['kind','role','width','center','size','value'], line: ['kind','role','width','points','closed'], petal: ['kind','role','width','points'] };
+    if (!own(fields, shape.kind)) throw new TypeError('Unsupported drawing primitive.');
+    onlyKeys(shape, fields[shape.kind], 'Drawing shape');
     const color = palette[shape.role], width = round(stroke * num(shape.width, .1, 4, 'Shape line weight'));
     if (shape.kind === 'circle') { const [x, y] = p(shape.center), r = num(shape.radius, .1, 300, 'Circle radius'); return `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${color}" stroke-width="${width}"/>`; }
     if (shape.kind === 'number') { const [x, y] = p(shape.center); return `<text x="${x}" y="${y}" fill="${color}" text-anchor="middle" dominant-baseline="central" font-size="${num(shape.size, 5, 50, 'Number size')}">${num(shape.value, 1, 81, 'Square number', true)}</text>`; }
@@ -171,9 +186,44 @@ export function reproduceSigilRecipe(recipe) {
     if (shape.kind === 'petal' && points.length === 7) { const [a,b,c,d,e,f,g] = points; return `<path d="M ${a.join(' ')} C ${b.join(' ')} ${c.join(' ')} ${d.join(' ')} C ${e.join(' ')} ${f.join(' ')} ${g.join(' ')} Z" fill="none" stroke="${color}" stroke-width="${width}"/>`; }
     throw new TypeError('Unsupported drawing primitive.');
   }).join('');
-  const description = `${MODES[recipe.mode].status}. Deterministic seed ${recipe.seed}; ${recipe.geometry.length} construction primitives. Procedural artwork; no AI renderer or magical efficacy claimed.`;
+  const description = `${imported ? 'Imported numeric drawing; its declared construction and source claims have not been authenticated.' : MODES[recipe.mode].status}. Deterministic seed ${recipe.seed}; ${recipe.geometry.length} construction primitives. Procedural artwork; no AI renderer or magical efficacy claimed.`;
   const metadata = { schemaVersion: 1, algorithmVersion: recipe.algorithmVersion, mode: recipe.mode, planet: recipe.planet, seed: recipe.seed, style: { palette: recipe.style.palette, rotation, stroke }, sourceIds: recipe.sourceIds, sources };
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640" role="img" aria-labelledby="sigil-title sigil-desc" font-family="Georgia,serif"><title id="sigil-title">${escapeXML(title)}</title><desc id="sigil-desc">${escapeXML(description)}</desc><metadata>${escapeXML(JSON.stringify(metadata))}</metadata><rect width="640" height="640" fill="${palette.paper}"/><g transform="rotate(${rotation} 320 320)">${shapes}</g></svg>`;
+  if (imported) metadata.importStatus = 'Unverified file provenance; numeric primitives validated locally, not historical authenticity.';
+  const idPrefix = imported ? 'sigil-import' : 'sigil';
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640" role="img" aria-labelledby="${idPrefix}-title ${idPrefix}-desc" font-family="Georgia,serif"><title id="${idPrefix}-title">${escapeXML(title)}</title><desc id="${idPrefix}-desc">${escapeXML(description)}</desc><metadata>${escapeXML(JSON.stringify(metadata))}</metadata><rect width="640" height="640" fill="${palette.paper}"/><g transform="rotate(${rotation} 320 320)">${shapes}</g></svg>`;
+}
+
+// Imported source claims are data supplied by a file, never a source validation.
+// No supplied SVG, HTML or private study prose is inserted or executed.
+export function inspectSigilRecipeJSON(text) {
+  if (typeof text !== 'string' || new TextEncoder().encode(text).byteLength > SIGIL_RECIPE_MAX_BYTES) throw new RangeError('Choose a JSON recipe no larger than 512 KiB.');
+  let input; try { input = JSON.parse(text); } catch { throw new TypeError('The file is not valid JSON. Choose a drawing recipe exported by this studio.'); }
+  const originalSVG = reproduceSigilRecipe(input);
+  const recipe = {};
+  for (const key of ['schemaVersion','kind','algorithmVersion','mode','planet','style','seed','geometry','sourceIds','sources','claimStatus']) if (own(input, key)) recipe[key] = input[key];
+  recipe.privacy = 'Original phrase, observer and supplied study prose omitted. Numeric geometry may still encode phrase information. Imported source claims are unverified.';
+  let restoredInputs = null, restoreReason = 'This file omits original inputs. Replay its geometry; the original phrase, drawing controls and observer cannot be inferred safely.';
+  const containsPrivateInputs = own(input, 'privateInputs') || own(input, 'privateStudySetup');
+  if (own(input, 'privateInputs')) {
+    try {
+      const regenerated = createSigilDesign(input.privateInputs);
+      // Compare the actual rendered drawing, excluding source metadata/title.
+      // A source citation changing between editions cannot authenticate the file.
+      if (regenerated.svg.slice(regenerated.svg.indexOf('<rect ')) !== originalSVG.slice(originalSVG.indexOf('<rect '))) throw new Error('Stored inputs do not reproduce this drawing.');
+      restoredInputs = JSON.parse(JSON.stringify(regenerated.inputs));
+      restoreReason = 'Stored inputs reproduce this numeric drawing. Restore them only if you choose to reveal the original phrase and observer in the editable controls. The supplied study prose is discarded and recalculated locally.';
+    } catch { restoreReason = 'Stored private inputs are invalid or do not reproduce the drawing. The geometry can be replayed, but those inputs will not be restored.'; }
+  }
+  return freeze({ kind: 'sigil-recipe-inspection', recipe, svg: reproduceSigilRecipe(recipe, { imported: true }), declaredMode: input.mode, primitiveCount: input.geometry.length, containsPrivateInputs, canRestoreInputs: !!restoredInputs, restoredInputs, restoreReason, sourceStatus: 'Unverified file provenance. Numeric rendering is checked; historical authenticity and source claims are not authenticated.' });
+}
+
+export function restoreSigilRecipeInputs(inspection) {
+  if (inspection?.kind !== 'sigil-recipe-inspection' || !inspection.canRestoreInputs || !inspection.restoredInputs) throw new TypeError('This recipe has no matching editable inputs to restore.');
+  // Revalidate before returning controls; caller-provided inspection objects are
+  // not a substitute for the pure engine boundary.
+  const current = inspectSigilRecipeJSON(JSON.stringify({ ...inspection.recipe, privateInputs: inspection.restoredInputs }));
+  if (!current.canRestoreInputs) throw new TypeError('Stored inputs no longer reproduce this drawing.');
+  return JSON.parse(JSON.stringify(current.restoredInputs));
 }
 
 export function buildSigilImagePrompt(result, { includePrivate = false } = {}) {

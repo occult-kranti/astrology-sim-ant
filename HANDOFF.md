@@ -1,5 +1,19 @@
 # Handoff notes — for the next model/build
 
+## Six-member, three-round improvement pass — 29 October 2026
+
+Continue on `feat/mobile-calendar-observatory`, extending baseline `3be3d46`. Read the [panel ledger](docs/2026-10-ensemble-panel.md), [verification](docs/2026-10-ensemble-verification.md), and five linked method/source reports before expanding claims. These are six AI-agent roles with bounded source reading; selected passages, source failures and unresolved authority questions remain explicit.
+
+`core/comparison-evidence.js` recomputes the canonical context and explains frame offsets, circular residuals, shared lunar derivations and differing conventions. Its app component supports stale invalidation, lazy homepage mounting and same-observer focus preservation. It is included in comparison JSON/Markdown. Shared inputs are dependencies, not independent corroboration; exact partition boundaries retain the engine's floating-point qualification.
+
+Recipe import validates bounded geometry and strict field types, never inserts supplied SVG, and labels imported provenance unverified. Private restoration requires explicit consent and a geometry match. AI packets independently recompute civil rows and rules; location and rule-evidence controls are separate and default off. The default minimal packet remains unchanged. Source MCP now has 14 tools including `workbench_explain_guidance`; hosted deployment/authentication and external inference are separate work.
+
+Two-event study samples preserve source precision, acknowledged observer-local civil noon, actual UTC elapsed hours and shortest signed angular displacement. Event records/review dates were not refreshed by this comparison feature. Mobile tables use named keyboard scroll regions and overflow hints. Standards validation uses the canonical engine, with direct profile navigation, search recovery and stale-task clearing.
+
+Direct civil conversion now checks both UTC and observer-local1900–2100 years. Selected Chinese2025 leap-sixth-month fixtures cite HKO and Taiwan CWA as distinct issuing authorities. Seven pending-family statuses remain unchanged. Edit `.claude/skills/observatory-source-contract/profiles.json` before regenerating profiles; never hand-edit generated profiles. The common specialist contract now covers imported provenance, strict schemas and source/table discrepancies.
+
+Preserve all inherited gates. The new `scripts/browser-ensemble.mjs` exercises five workflows at320/390/1365px, validates actual downloads and binds its driver/product hashes. It is wired into Pages CI. Run it after final asset generation with `PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium` when using this environment's installed browser. The `ensemble` evidence directory records this pass separately from prior releases. PR #5 remains a review branch; production publication still requires verified main.
+
 ## Symbolic studio and explainable almanac extension — 29 October 2026
 
 Continue on `feat/mobile-calendar-observatory`; this work extends the previous review branch. New routes are `pages/sigil-studio.html`, `pages/world-events.html` and `pages/standards.html`. The older Live Symbol Studio and every existing calculator remain separate and intact.
@@ -57,9 +71,9 @@ observed crescents, festivals, personal births, or every culture's calendar.
 
 The new ChatGPT flow previews/copies/exports a minimal source-labelled packet.
 It makes no provider call, inherits no ChatGPT session, and excludes geographic
-information by default. The source MCP now has 13 tools; the previously hosted
+information by default. The source MCP now has 14 tools; the previously hosted
 remote endpoint has not been redeployed or authenticated as part of this branch.
-Do not claim its two new tools are remotely available until separately verified.
+Do not claim its three added tools are remotely available until separately verified.
 No Supabase connection is needed or present. Existing saved records and older
 assistants retain their own documented formats and behaviour.
 

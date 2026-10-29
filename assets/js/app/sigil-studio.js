@@ -1,4 +1,4 @@
-import { createSigilDesign, makeSigilRecipe, buildSigilImagePrompt, SIGIL_PALETTES } from '../core/sigil-design.js';
+import { createSigilDesign, makeSigilRecipe, buildSigilImagePrompt, inspectSigilRecipeJSON, restoreSigilRecipeInputs, SIGIL_RECIPE_MAX_BYTES, SIGIL_PALETTES } from '../core/sigil-design.js';
 import { downloadBlob, downloadJSON } from './state.js';
 const $ = id => document.getElementById(id);
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text != null) node.textContent = String(text); if (className) node.className = className; return node; };
@@ -115,6 +115,87 @@ $('sg-copy-prompt').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(text); if (active && token === epoch && text === $('sg-prompt-preview').value) $('sg-prompt-status').textContent = 'Image prompt copied. Open your chat, attach the reference and explicitly send it. Nothing was sent here.'; }
   catch { if (active && token === epoch && text === $('sg-prompt-preview').value) { $('sg-prompt-preview').focus(); $('sg-prompt-preview').select(); $('sg-prompt-status').textContent = 'Clipboard access is unavailable. Select and copy the preview manually.'; } }
 });
+// A separate inspection/replay surface: importing a file never silently replaces
+// the current design or treats its source claims as authenticated history.
+let imported = null, importEpoch = 0, importImage = null, importURL = null;
+const importStatus = text => { $('sg-recipe-status').textContent = text; };
+function cancelImportPNG() {
+  if (importImage) { importImage.onload = importImage.onerror = null; importImage.src = ''; importImage = null; }
+  if (importURL) { URL.revokeObjectURL(importURL); importURL = null; }
+}
+function resetImport() {
+  importEpoch++; imported = null; cancelImportPNG(); $('sg-recipe-inspect').disabled = false;
+  $('sg-recipe-result').hidden = true; $('sg-recipe-error').hidden = true; $('sg-recipe-preview').replaceChildren();
+  $('sg-recipe-consent').checked = false; $('sg-recipe-consent').disabled = true; $('sg-recipe-restore').disabled = true;
+  for (const id of ['sg-recipe-svg','sg-recipe-png','sg-recipe-json']) $(id).disabled = true;
+}
+$('sg-recipe-file').addEventListener('change', () => { resetImport(); importStatus('File selected. Inspect it before replaying; your current drawing is unchanged.'); });
+$('sg-recipe-inspect').addEventListener('click', async () => {
+  const file = $('sg-recipe-file').files?.[0]; resetImport();
+  const token = importEpoch, drawEpoch = epoch;
+  cancelImportPNG(); $('sg-recipe-error').hidden = true; $('sg-recipe-inspect').disabled = true;
+  importStatus('Reading the bounded JSON file locally…');
+  try {
+    if (!file) throw new TypeError('Choose a JSON drawing recipe first.');
+    if (file.size > SIGIL_RECIPE_MAX_BYTES) throw new RangeError('Choose a JSON recipe no larger than 512 KiB.');
+    const text = await file.text();
+    if (!active || token !== importEpoch) return;
+    if (drawEpoch !== epoch) { importStatus('The current design changed while the file was being read. Inspect the file again when ready.'); return; }
+    const inspection = inspectSigilRecipeJSON(text);
+    imported = inspection;
+    // Only the same strict numeric renderer used by the local generator emits SVG.
+    // The imported provenance annotation is generated locally, never trusted from JSON.
+    $('sg-recipe-preview').innerHTML = inspection.svg;
+    $('sg-recipe-caption').textContent = `Imported ${inspection.declaredMode} geometry · ${inspection.primitiveCount} primitives. ${inspection.sourceStatus}`;
+    $('sg-recipe-sources').textContent = JSON.stringify(inspection.recipe.sources, null, 2);
+    $('sg-recipe-restore-help').textContent = inspection.restoreReason;
+    $('sg-recipe-consent').checked = false; $('sg-recipe-consent').disabled = !inspection.canRestoreInputs;
+    $('sg-recipe-restore').disabled = true; $('sg-recipe-result').hidden = false;
+    for (const id of ['sg-recipe-svg','sg-recipe-png','sg-recipe-json']) $(id).disabled = false;
+    importStatus(`Recipe replayed locally. ${inspection.containsPrivateInputs ? 'This file contains private input or study fields; none have been placed in the editable controls.' : 'Original phrase and observer are absent; they have not been guessed.'} Your current design is unchanged.`);
+  } catch (error) {
+    if (!active || token !== importEpoch) return;
+    $('sg-recipe-error').textContent = error.message || 'The recipe could not be inspected.'; $('sg-recipe-error').hidden = false;
+    importStatus('File inspection failed. Your current drawing and controls are unchanged.');
+  } finally { if (active && token === importEpoch) $('sg-recipe-inspect').disabled = false; }
+});
+function currentImport() { if (!active || !imported) { importStatus('Inspect a valid JSON recipe first.'); return null; } return imported; }
+$('sg-recipe-svg').addEventListener('click', () => { const result = currentImport(); if (!result) return; downloadBlob(new Blob([result.svg], { type: 'image/svg+xml;charset=utf-8' }), `replayed-${result.declaredMode}-${result.recipe.seed}.svg`); importStatus('Numeric SVG replay downloaded with an unverified-file provenance annotation. Private input and study fields omitted.'); });
+$('sg-recipe-json').addEventListener('click', () => { const result = currentImport(); if (!result) return; downloadJSON(result.recipe, `replayed-${result.declaredMode}-${result.recipe.seed}.json`); importStatus('Drawing recipe downloaded without original phrase, observer or supplied study prose. Source claims remain unverified; geometry can still encode information.'); });
+$('sg-recipe-png').addEventListener('click', () => {
+  const result = currentImport(); if (!result) return; cancelImportPNG();
+  const token = importEpoch, image = new Image(); importImage = image;
+  const url = URL.createObjectURL(new Blob([result.svg], { type: 'image/svg+xml' })); importURL = url;
+  importStatus('Rendering the imported numerical drawing locally…');
+  image.onload = () => {
+    if (!active || token !== importEpoch || result !== imported) { cancelImportPNG(); return; }
+    const canvas = document.createElement('canvas'); canvas.width = canvas.height = 1280; const context = canvas.getContext('2d');
+    if (!context) { cancelImportPNG(); importStatus('PNG rendering unavailable; the replay SVG is still available.'); return; }
+    context.drawImage(image, 0, 0, 1280, 1280);
+    canvas.toBlob(blob => { if (!active || token !== importEpoch || result !== imported) return; if (blob) { downloadBlob(blob, `replayed-${result.declaredMode}-${result.recipe.seed}.png`); importStatus('Imported numeric drawing exported as PNG. File provenance remains unverified.'); } else importStatus('PNG rendering failed; the replay SVG remains available.'); }, 'image/png');
+    cancelImportPNG();
+  };
+  image.onerror = () => { cancelImportPNG(); if (active && token === importEpoch) importStatus('PNG rendering failed; the replay SVG remains available.'); };
+  image.src = url;
+});
+$('sg-recipe-consent').addEventListener('change', () => { $('sg-recipe-restore').disabled = !imported?.canRestoreInputs || !$('sg-recipe-consent').checked; });
+$('sg-recipe-restore').addEventListener('click', () => {
+  const inspection = currentImport(); if (!inspection || !$('sg-recipe-consent').checked) return;
+  try {
+    const input = restoreSigilRecipeInputs(inspection), result = createSigilDesign(input);
+    // Both validation and regeneration succeed before any controls are changed.
+    invalidate();
+    document.querySelector(`input[name="sg-mode"][value="${input.mode}"]`).checked = true;
+    for (const key of ['text','planet','method','seed','symmetry','rings','rotation','stroke','palette','book','calendar']) $(`sg-${key}`).value = input[key];
+    $('sg-grid').checked = input.showGrid;
+    for (const [key,id] of [['dateISO','sg-instant'],['lat','sg-lat'],['lon','sg-lon'],['timeZone','sg-zone']]) $(id).value = input.moment[key];
+    $('sg-private').checked = false; modeLabels(); current = displayed = result; render(result); setActions(true);
+    $('sg-recipe-consent').checked = false; $('sg-recipe-restore').disabled = true;
+    status('Matching private inputs restored by your explicit choice. The drawing and study sheet were recalculated locally; private-data export remains off.');
+    importStatus('Editable controls restored and sources recalculated. The independent file replay remains labelled as unverified provenance.');
+  } catch (error) { $('sg-recipe-error').textContent = error.message; $('sg-recipe-error').hidden = false; importStatus('Inputs could not be restored. Your current design remains unchanged.'); }
+});
+window.addEventListener('pagehide', () => { importEpoch++; cancelImportPNG(); $('sg-recipe-inspect').disabled = false; });
 window.addEventListener('pagehide', () => { active = false; invalidate(); });
 window.addEventListener('pageshow', () => { active = true; });
 let incomingError = null;

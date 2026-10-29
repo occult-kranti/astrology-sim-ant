@@ -1,0 +1,315 @@
+{
+  "reviewer": "calendar_precision",
+  "round": 2,
+  "executedAt": "2026-10-29T23:01:03.358Z",
+  "runtime": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "tz": "2026b"
+  },
+  "fileHashes": [
+    {
+      "path": "assets/js/core/comparison-evidence.js",
+      "sha256": "10ce5451c758941715158e300b5d5445e524a4af33dc6aff0ae6c7da68d5ab21"
+    },
+    {
+      "path": "assets/js/app/comparison-evidence.js",
+      "sha256": "16dc95119f70ae3f22022df50c91f0db0ce9bdc52c4c356b212c49c26e3deb7b"
+    },
+    {
+      "path": "assets/js/core/vedic.js",
+      "sha256": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278"
+    },
+    {
+      "path": "assets/js/core/data/vedic-data.js",
+      "sha256": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Wrap: Moon1 minus Sun359 is2 degrees",
+      "pass": true
+    },
+    {
+      "name": "Reverse wrap: Moon359 minus Sun1 is358 degrees",
+      "pass": true
+    },
+    {
+      "name": "Exact representable partition fixture 0",
+      "pass": true
+    },
+    {
+      "name": "Common frame subtraction cancels at 0",
+      "pass": true
+    },
+    {
+      "name": "Exact representable partition fixture 6",
+      "pass": true
+    },
+    {
+      "name": "Common frame subtraction cancels at 6",
+      "pass": true
+    },
+    {
+      "name": "Exact representable partition fixture 12",
+      "pass": true
+    },
+    {
+      "name": "Common frame subtraction cancels at 12",
+      "pass": true
+    },
+    {
+      "name": "Exact representable partition fixture 22.5",
+      "pass": true
+    },
+    {
+      "name": "Common frame subtraction cancels at 22.5",
+      "pass": true
+    },
+    {
+      "name": "Exact representable partition fixture 180",
+      "pass": true
+    },
+    {
+      "name": "Common frame subtraction cancels at 180",
+      "pass": true
+    },
+    {
+      "name": "Exact representable partition fixture 337.5",
+      "pass": true
+    },
+    {
+      "name": "Common frame subtraction cancels at 337.5",
+      "pass": true
+    },
+    {
+      "name": "Exact representable partition fixture 360",
+      "pass": true
+    },
+    {
+      "name": "Common frame subtraction cancels at 360",
+      "pass": true
+    },
+    {
+      "name": "Equal arc away from machine precision 13.333333323333333",
+      "pass": true
+    },
+    {
+      "name": "Equal arc away from machine precision 13.333333343333335",
+      "pass": true
+    },
+    {
+      "name": "Equal arc away from machine precision 359.99999999",
+      "pass": true
+    },
+    {
+      "name": "Equal arc away from machine precision 360.00000001",
+      "pass": true
+    },
+    {
+      "name": "Machine-precision behavior matches canonical; report explicit caveat",
+      "pass": true,
+      "detail": [
+        {
+          "inputDegrees": 13.333333333333334,
+          "algebraicIndex": 2,
+          "explainerIndex": 1,
+          "canonicalIndex": 1
+        },
+        {
+          "inputDegrees": 53.333333333333336,
+          "algebraicIndex": 5,
+          "explainerIndex": 4,
+          "canonicalIndex": 4
+        }
+      ]
+    },
+    {
+      "name": "Delhi before sunrise full-precision frame residuals",
+      "pass": true
+    },
+    {
+      "name": "Delhi before sunrise canonical lunar partitions",
+      "pass": true
+    },
+    {
+      "name": "Delhi before sunrise explicit selected civil boundary",
+      "pass": true
+    },
+    {
+      "name": "Delhi before sunrise canonical sunrise weekday",
+      "pass": true
+    },
+    {
+      "name": "Delhi before sunrise no independent confirmation claim",
+      "pass": true
+    },
+    {
+      "name": "Delhi after sunrise full-precision frame residuals",
+      "pass": true
+    },
+    {
+      "name": "Delhi after sunrise canonical lunar partitions",
+      "pass": true
+    },
+    {
+      "name": "Delhi after sunrise explicit selected civil boundary",
+      "pass": true
+    },
+    {
+      "name": "Delhi after sunrise canonical sunrise weekday",
+      "pass": true
+    },
+    {
+      "name": "Delhi after sunrise no independent confirmation claim",
+      "pass": true
+    },
+    {
+      "name": "Polar midsummer full-precision frame residuals",
+      "pass": true
+    },
+    {
+      "name": "Polar midsummer canonical lunar partitions",
+      "pass": true
+    },
+    {
+      "name": "Polar midsummer explicit selected civil boundary",
+      "pass": true
+    },
+    {
+      "name": "Polar midsummer canonical sunrise weekday",
+      "pass": true
+    },
+    {
+      "name": "Polar midsummer no independent confirmation claim",
+      "pass": true
+    },
+    {
+      "name": "New York fold first full-precision frame residuals",
+      "pass": true
+    },
+    {
+      "name": "New York fold first canonical lunar partitions",
+      "pass": true
+    },
+    {
+      "name": "New York fold first explicit selected civil boundary",
+      "pass": true
+    },
+    {
+      "name": "New York fold first canonical sunrise weekday",
+      "pass": true
+    },
+    {
+      "name": "New York fold first no independent confirmation claim",
+      "pass": true
+    },
+    {
+      "name": "New York fold second full-precision frame residuals",
+      "pass": true
+    },
+    {
+      "name": "New York fold second canonical lunar partitions",
+      "pass": true
+    },
+    {
+      "name": "New York fold second explicit selected civil boundary",
+      "pass": true
+    },
+    {
+      "name": "New York fold second canonical sunrise weekday",
+      "pass": true
+    },
+    {
+      "name": "New York fold second no independent confirmation claim",
+      "pass": true
+    },
+    {
+      "name": "UTC date across Hong Kong midnight full-precision frame residuals",
+      "pass": true
+    },
+    {
+      "name": "UTC date across Hong Kong midnight canonical lunar partitions",
+      "pass": true
+    },
+    {
+      "name": "UTC date across Hong Kong midnight explicit selected civil boundary",
+      "pass": true
+    },
+    {
+      "name": "UTC date across Hong Kong midnight canonical sunrise weekday",
+      "pass": true
+    },
+    {
+      "name": "UTC date across Hong Kong midnight no independent confirmation claim",
+      "pass": true
+    },
+    {
+      "name": "Before sunrise differs from next civil weekday",
+      "pass": true
+    },
+    {
+      "name": "Polar sunrise-based results remain unavailable",
+      "pass": true
+    }
+  ],
+  "results": [
+    {
+      "name": "Delhi before sunrise",
+      "civil": "2026-10-29",
+      "vara": "Budhavāra",
+      "varaStatus": "available",
+      "planetaryHourStatus": "available"
+    },
+    {
+      "name": "Delhi after sunrise",
+      "civil": "2026-10-29",
+      "vara": "Guruvāra",
+      "varaStatus": "available",
+      "planetaryHourStatus": "available"
+    },
+    {
+      "name": "Polar midsummer",
+      "civil": "2026-06-21",
+      "vara": "Unavailable",
+      "varaStatus": "unavailable",
+      "planetaryHourStatus": "unavailable"
+    },
+    {
+      "name": "New York fold first",
+      "civil": "2026-11-01",
+      "vara": "Śanivāra",
+      "varaStatus": "available",
+      "planetaryHourStatus": "available"
+    },
+    {
+      "name": "New York fold second",
+      "civil": "2026-11-01",
+      "vara": "Śanivāra",
+      "varaStatus": "available",
+      "planetaryHourStatus": "available"
+    },
+    {
+      "name": "UTC date across Hong Kong midnight",
+      "civil": "2025-07-25",
+      "vara": "Guruvāra",
+      "varaStatus": "available",
+      "planetaryHourStatus": "available"
+    }
+  ],
+  "machinePrecisionFinding": [
+    {
+      "inputDegrees": 13.333333333333334,
+      "algebraicIndex": 2,
+      "explainerIndex": 1,
+      "canonicalIndex": 1
+    },
+    {
+      "inputDegrees": 53.333333333333336,
+      "algebraicIndex": 5,
+      "explainerIndex": 4,
+      "canonicalIndex": 4
+    }
+  ],
+  "claimBoundary": "Internal formula and canonical-engine comparison only; no independent ephemeris/tradition validation."
+}

@@ -13,6 +13,7 @@ try{
   assert.equal((await rpc(init)).result.serverInfo.name,'astrologers-workbench');
   const listed=await rpc({jsonrpc:'2.0',id:2,method:'tools/list',params:{}});
   assert.equal(listed.result.tools.length,TOOLS.length);
+  assert.equal(listed.result.tools.find(t=>t.name==='workbench_explain_guidance').annotations.readOnlyHint,true);
   const calculated=await rpc({jsonrpc:'2.0',id:3,method:'tools/call',params:{name:'workbench_gematria',arguments:{text:'חי'}}});
   assert.equal(calculated.result.structuredContent.data.total,18);
   const invalid=await rpc({jsonrpc:'2.0',id:4,method:'tools/call',params:{name:'workbench_election',arguments:{dateISO:'2026-01-01T00:00Z',lat:0,lon:0,operationKey:'love',stepMinutes:0}}});
@@ -23,6 +24,11 @@ try{
   assert.equal(outlook.result.structuredContent.data.rows.length,2);
   const tooLong=await rpc({jsonrpc:'2.0',id:8,method:'tools/call',params:{name:'workbench_calendar_outlook',arguments:{dateISO:'2026-10-29T12:00:00Z',lat:0,lon:0,timeZone:'UTC',days:15}}});
   assert.ok(tooLong.error||tooLong.result?.isError);
+  const guidance=await rpc({jsonrpc:'2.0',id:9,method:'tools/call',params:{name:'workbench_explain_guidance',arguments:{dateISO:'2026-10-29T12:00:00Z',lat:28.61391,lon:77.20901,timeZone:'Asia/Kolkata'}}});
+  const yoga=guidance.result.structuredContent.data.traditions.flatMap(t=>t.items).find(r=>r.id==='DG-J-YOGA');
+  assert.equal(yoga.classification,'unavailable');assert.equal(yoga.computed.applicableAtInstant,null);
+  assert.equal(yoga.thresholds.openingTimingComputed,false);
+  assert.deepEqual(JSON.parse(guidance.result.content.find(c=>c.type==='text').text),guidance.result.structuredContent);
   const resource=await rpc({jsonrpc:'2.0',id:5,method:'resources/read',params:{uri:'workbench://methods'}});
   assert.equal(JSON.parse(resource.result.contents[0].text).limits.scanSamples,256);
   assert.equal((await handler.fetch(req(init,{url:'http://evil.example/mcp'}))).status,403);
@@ -61,5 +67,8 @@ try{
   assert.equal((await send({jsonrpc:'2.0',id:2,method:'tools/list',params:{}})).result.tools.length,TOOLS.length);
   const result=await send({jsonrpc:'2.0',id:3,method:'tools/call',params:{name:'workbench_symbol',arguments:{kind:'yantra',planet:'Sun'}}});
   assert.match(result.result.structuredContent.data.presentation.svg,/<svg/);
+  const guidance=await send({jsonrpc:'2.0',id:4,method:'tools/call',params:{name:'workbench_explain_guidance',arguments:{dateISO:'2024-04-08T18:17:00Z',lat:51.5,lon:0,timeZone:'Europe/London'}}});
+  assert.ok(guidance.result.structuredContent.data.tensions.some(t=>t.id==='DG-TENSION-CAZIMI-SOURCES'&&t.sourceIds.includes('DG-AGRIPPA-29')));
+  assert.deepEqual(JSON.parse(guidance.result.content.find(c=>c.type==='text').text),guidance.result.structuredContent);
   console.log('PASS stdio initialize/list/call with real child-process protocol');
 }finally{child.stdin.end();child.kill('SIGTERM');}

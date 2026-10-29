@@ -6,7 +6,7 @@
   "authentication": "Private Sites OAuth; use the provisioned Astrologer’s Workbench MCP plugin.",
   "staticPageIsMcpServer": false,
   "catalogueScope": "Current repository source; local stdio/HTTP tools. Remote backend may run an earlier revision.",
-  "remoteToolAvailability": "Not reverified for this branch. Previously deployed backend exposed 11 tools; compare/outlook require backend deployment and an authenticated tools/list check.",
+  "remoteToolAvailability": "Not reverified for this branch. Previously deployed backend exposed 11 tools; comparison, outlook and guidance explanation require backend deployment and an authenticated tools/list check.",
   "tools": [
     {
       "name": "workbench_catalogue",
@@ -417,6 +417,50 @@
           "sampleTime": {
             "type": "string",
             "maxLength": 5
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_explain_guidance",
+      "description": "Explain historical rule classes at one explicit UTC instant and supplied observer. Returns calculated planetary inputs, thresholds, source status, coexisting testimonies and optional modern reflection actions. Includes the supplied location and temporal-hour context; no stored data, external model, whole-day verdict or outcome prediction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
           }
         },
         "required": [

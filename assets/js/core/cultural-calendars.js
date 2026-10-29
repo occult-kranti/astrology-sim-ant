@@ -64,8 +64,13 @@ export function calendarAtInstant(date, id, timeZone = 'UTC') {
   if (!(date instanceof Date) || !Number.isFinite(date.getTime())) throw new RangeError('Enter a valid instant.');
   const zone = validateZone(timeZone);
   if (!CALENDARS.some(c => c.id === id)) throw new RangeError('Unsupported calendar method.');
-  if (!calendarSupported(id)) return { supported: false, id, text: 'This browser does not support this calendar.' };
   if (date.getUTCFullYear() < 1900 || date.getUTCFullYear() > 2100) throw new RangeError('Civil calendar display is supported for 1900–2100.');
+  // The supported range applies to both the UTC instant and the observer's
+  // civil date. At the date line, one can be in range while the other is not.
+  // Match compareMoment rather than letting this direct API display 1899/2101.
+  const localYear = Number(new Intl.DateTimeFormat('en-u-ca-gregory-nu-latn', { timeZone: zone, year: 'numeric' }).formatToParts(date).find(part => part.type === 'year').value);
+  if (localYear < 1900 || localYear > 2100) throw new RangeError('The observer-zone civil date must also be within 1900–2100.');
+  if (!calendarSupported(id)) return { supported: false, id, text: 'This browser does not support this calendar.' };
   const formatter = new Intl.DateTimeFormat('en', { calendar: id, timeZone: zone, year: 'numeric', month: 'long', day: 'numeric', era: 'short' });
   return { supported: true, id, text: formatter.format(date), parts: formatter.formatToParts(date), timeZone: zone, boundary: 'civil-midnight' };
 }

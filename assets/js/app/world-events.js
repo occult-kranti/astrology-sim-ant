@@ -1,5 +1,5 @@
 import { mountChrome } from './shared.js';
-import { worldEventsWindow, worldEventsFreshness, worldEventStudySample, worldEventsToICS } from '../core/world-events.js';
+import { worldEventsWindow, worldEventsFreshness, worldEventStudySample, compareWorldEventSamples, worldEventsToICS } from '../core/world-events.js';
 import { mountDayGuidance } from './day-guidance.js';
 import { mountCalendarAssistant } from './calendar-assistant.js';
 import { downloadBlob, downloadJSON } from './state.js';
@@ -11,13 +11,16 @@ const human = value => String(value).replace(/[-_]/g, ' ').replace(/^./, c => c.
 const dateLabel = value => new Intl.DateTimeFormat('en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(value + 'T12:00:00Z'));
 const nowDate = () => new Date().toISOString().slice(0, 10);
 const PRESETS = { london: [51.5074, -.1278, 'Europe/London'], delhi: [28.6139, 77.209, 'Asia/Kolkata'], newyork: [40.7128, -74.006, 'America/New_York'], sydney: [-33.8688, 151.2093, 'Australia/Sydney'] };
-let dataset = null, displayedWindow = null, currentStudy = null, live = true, timer = null, active = true;
+let dataset = null, displayedWindow = null, currentStudy = null, currentPair = null, live = true, timer = null, active = true, pairTableSequence = 0;
+const pairResizeObserver = typeof ResizeObserver === 'function' ? new ResizeObserver(updatePairScrollRegions) : null;
 const guidance = mountDayGuidance($('we-study-guidance'), null);
 const assistant = mountCalendarAssistant($('we-study-ai'), { getComparison: () => currentStudy?.comparison || null });
 const exportsEnabled = yes => ['we-ics', 'we-json'].forEach(id => { $(id).disabled = !yes; });
 const showError = message => { $('we-error').hidden = !message; $('we-error').textContent = message || ''; };
+const clearPair = message => { currentPair = null; pairResizeObserver?.disconnect(); pairTableSequence = 0; $('we-pair-result').hidden = true; $('we-pair-result').replaceChildren(); $('we-pair-json').disabled = true; if (message) $('we-pair-status').textContent = message; };
 const clearStudy = message => {
   currentStudy = null; guidance.update(null); assistant.update(null); $('we-study').hidden = true;
+  clearPair(message || 'Choose two current agenda records to compare them at the selected observer.');
   if (message) $('we-sample-status').textContent = message;
 };
 function sourceLink(source) { const a = node('a', source.title); a.href = source.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; }
@@ -74,6 +77,71 @@ function renderAgenda(window) {
     body.append(node('p', 'Uses the observer and explicit noon acknowledgement below. No event clock or outcome is inferred.', 'we-note'));
     details.append(body); host.append(details);
   }
+  renderPairChoices(window);
+}
+function selectedPairEvent(side) { return displayedWindow?.occurrences.find(event => event.occurrenceId === $(`we-pair-${side}`).value); }
+function updatePairDate(side) {
+  const event = selectedPairEvent(side), input = $(`we-pair-date-${side}`), description = $(`we-pair-description-${side}`);
+  if (!event) { input.value = ''; input.readOnly = true; description.textContent = ''; return; }
+  const max = event.endDateInclusive || event.date;
+  input.min = event.date; input.max = max; input.readOnly = !event.endDateInclusive;
+  if (!input.value || input.value < event.date || input.value > max || input.readOnly) input.value = event.ongoingAtWindowStart ? displayedWindow.referenceDate : event.date;
+  description.textContent = `${event.title} · ${human(event.scheduleStatus)} · ${event.date}${event.endDateInclusive ? ' through ' + event.endDateInclusive : ''} · date-only source record.`;
+}
+function renderPairChoices(window) {
+  for (const side of ['a', 'b']) {
+    const select = $(`we-pair-${side}`), prior = select.value, placeholder = node('option', side === 'a' ? 'Choose an event' : 'Choose a different event'); placeholder.value = '';
+    select.replaceChildren(placeholder);
+    for (const event of window.occurrences) { const option = node('option', `${event.date} · ${event.title}`); option.value = event.occurrenceId; select.append(option); }
+    select.value = window.occurrences.some(event => event.occurrenceId === prior) ? prior : '';
+    updatePairDate(side);
+  }
+}
+function updatePairScrollRegions() {
+  for (const wrap of $('we-pair-result').querySelectorAll('.we-pair-table-wrap')) {
+    const hint = $(wrap.getAttribute('aria-describedby'));
+    if (hint) hint.hidden = !(wrap.clientWidth > 0 && wrap.scrollWidth > wrap.clientWidth + 1);
+  }
+}
+function pairTable(caption, rows, headings) {
+  const block = node('div', null, 'we-pair-table-block'), hint = node('p', 'Scroll the table horizontally to compare all columns. With a keyboard, focus the table region and use the Left and Right arrow keys.', 'we-pair-scroll-hint we-note');
+  hint.id = `we-pair-scroll-${++pairTableSequence}`; hint.hidden = true;
+  const wrap = node('div', null, 'we-pair-table-wrap'), table = node('table', null, 'we-pair-table'), head = node('thead'), header = node('tr'), body = node('tbody');
+  wrap.tabIndex = 0; wrap.setAttribute('role', 'region'); wrap.setAttribute('aria-label', caption); wrap.setAttribute('aria-describedby', hint.id);
+  table.append(node('caption', caption)); for (const heading of headings) { const th = node('th', heading); th.scope = 'col'; header.append(th); } head.append(header);
+  for (const cells of rows) { const tr = node('tr'); cells.forEach((value, index) => { const cell = node(index === 0 ? 'th' : 'td'); if (index === 0) cell.scope = 'row'; if (typeof value === 'string') cell.textContent = value; else cell.append(value); tr.append(cell); }); body.append(tr); }
+  table.append(head, body); wrap.append(table); block.append(hint, wrap); return block;
+}
+function renderPair(result) {
+  const host = $('we-pair-result'); host.replaceChildren();
+  const heading = node('h3', 'Two samples, with their assumptions'); heading.id = 'we-pair-result-title'; heading.tabIndex = -1; host.append(heading);
+  host.append(node('p', `Both use observer ${result.observer.lat}° N, ${result.observer.lon}° E, ${result.observer.timeZone}. The actual interval from A to B is ${result.elapsedHours.toFixed(2)} UTC hours; a negative value means B is earlier.`, 'we-study-context'));
+  const context = node('div', null, 'we-pair-result-context');
+  result.samples.forEach((sample, index) => { const article = node('article'); article.append(node('h4', `${index === 0 ? 'A' : 'B'} · ${sample.event.title}`), node('p', `Source precision: date-only · ${human(sample.event.scheduleStatus)}. Selected study date ${sample.selectedStudyDate}, 12:00 civil clock in ${sample.timeZone}.`), node('p', `Resolved sample: ${sample.sampledAtUTC}`, 'we-note'));
+    const refs = node('p', 'Date sources: '); sample.event.sources.forEach((source, i) => { if (i) refs.append(document.createTextNode(' · ')); refs.append(sourceLink(source)); }); article.append(refs);
+    const link = node('a', 'Open this sample’s full calendar comparison →'), url = new URL('pages/calendar-compare.html', ROOT), c = sample.comparison.context; url.search = new URLSearchParams({ at: c.dateISO, lat: String(c.lat), lon: String(c.lon), zone: c.timeZone, system: c.system }); link.href = url.href; article.append(link); context.append(article);
+  }); host.append(context);
+  const signed = value => `${value > 0 ? '+' : ''}${value.toFixed(3)}`;
+  host.append(pairTable('Calculated quantities · B minus A', result.measures.map(row => { const label = node('span', row.label); label.append(node('span', row.rule, 'we-pair-rule')); return [label, `${row.first.toFixed(3)}${row.id === 'illumination' ? '%' : '°'}`, `${row.second.toFixed(3)}${row.id === 'illumination' ? '%' : '°'}`, `${signed(row.difference)} ${row.unit}`]; }), ['Quantity and method', 'Sample A', 'Sample B', 'Difference']));
+  host.append(pairTable('Derived labels · inspect shared inputs', result.categories.map(row => { const label = node('span', row.label); label.append(node('span', row.rule, 'we-pair-rule')); return [label, row.first, row.second, row.sameLabel == null ? 'Unavailable comparison' : row.sameLabel ? 'Same label' : 'Different labels']; }), ['Convention', 'Sample A', 'Sample B', 'Label comparison']));
+  const dates = node('details'); dates.append(node('summary', 'Compare all civil-calendar displays')); dates.addEventListener('toggle', updatePairScrollRegions);
+  dates.append(pairTable('Civil display labels do not assign auspiciousness', result.calendars.map(row => { const label = node('span', row.label); label.append(node('span', `${row.first.method}. ${row.first.validation}. Civil boundary: ${row.first.boundary}.`, 'we-pair-rule')); return [label, row.first.text, row.second.text, row.sameDisplay == null ? 'Unavailable' : row.sameDisplay ? 'Same display label' : 'Different display labels']; }), ['Calendar and method', 'Sample A', 'Sample B', 'Display comparison'])); host.append(dates);
+  const sources = node('details'), list = node('ul'); sources.append(node('summary', 'Calculation sources and qualifications'));
+  for (const source of result.sources) { const li = node('li'), link = node('a', source.title); link.href = new URL(source.url, ROOT).href; li.append(link); list.append(li); } sources.append(list); host.append(sources);
+  const limits = node('ul', null, 'we-note'); result.limitations.forEach(limit => limits.append(node('li', limit))); host.append(limits); host.hidden = false;
+  for (const wrap of host.querySelectorAll('.we-pair-table-wrap')) { pairResizeObserver?.observe(wrap); pairResizeObserver?.observe(wrap.querySelector('table')); }
+  updatePairScrollRegions(); heading.focus();
+}
+function comparePair() {
+  clearStudy();
+  try {
+    if (!displayedWindow) throw new RangeError('Update the agenda for the edited filters before comparing samples.');
+    const first = selectedPairEvent('a'), second = selectedPairEvent('b');
+    if (!first || !second) throw new RangeError('Choose two events from the current agenda.');
+    if (!$('we-lat').value.trim() || !$('we-lon').value.trim()) throw new RangeError('Complete both observer coordinates.');
+    currentPair = compareWorldEventSamples(first, second, { acknowledged: $('we-sample-ack').checked, lat: Number($('we-lat').value), lon: Number($('we-lon').value), timeZone: $('we-zone').value.trim(), firstStudyDate: $('we-pair-date-a').value, secondStudyDate: $('we-pair-date-b').value });
+    renderPair(currentPair); $('we-pair-json').disabled = false; $('we-pair-status').textContent = 'Two noon study samples compared locally. These are calculated differences, not event forecasts or statistical correlations.';
+  } catch (error) { clearPair(error.message); if (!$('we-sample-ack').checked) $('we-sample-ack').focus(); else { $('we-pair-status').tabIndex = -1; $('we-pair-status').focus(); } }
 }
 function renderWindow() {
   if (!dataset) return;
@@ -125,8 +193,12 @@ $('we-ics').addEventListener('click', () => {
   catch (error) { $('we-export-status').textContent = error.message; }
 });
 $('we-json').addEventListener('click', () => { if (displayedWindow) downloadJSON(displayedWindow, `world-events-${displayedWindow.referenceDate}.json`); });
+$('we-pair-form').addEventListener('submit', event => { event.preventDefault(); comparePair(); });
+$('we-pair-form').addEventListener('input', event => { clearPair('Comparison inputs changed. Compare again before exporting.'); if (event.target.id === 'we-pair-a') updatePairDate('a'); if (event.target.id === 'we-pair-b') updatePairDate('b'); });
+$('we-pair-json').addEventListener('click', () => { if (!currentPair) return; downloadJSON(currentPair, 'world-event-study-comparison.json'); $('we-pair-status').textContent = 'Comparison downloaded with both explicit samples, selected observer coordinates and source qualifications.'; });
 function tick() { if (!active || document.hidden || !live || !dataset) return; const current = nowDate(); if ($('we-reference').value !== current) { $('we-reference').value = current; renderWindow(); } }
 document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
+window.addEventListener('resize', updatePairScrollRegions);
 window.addEventListener('pagehide', () => { active = false; clearInterval(timer); });
 window.addEventListener('pageshow', event => { active = true; if (event.persisted) { timer = setInterval(tick, 60000); tick(); } });
 async function init() {

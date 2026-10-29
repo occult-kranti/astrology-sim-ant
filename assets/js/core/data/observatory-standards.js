@@ -114,7 +114,7 @@ const specialistProfiles = [
     "title": "Chinese lunisolar civil calendar",
     "scope": "Implemented civil-calendar family; not a forecast or universal observance authority.",
     "method": "Runtime Intl chinese; preserve relatedYear, named/leap month, selected-zone civil day.",
-    "validation": "Inherited selected HKO UTC+8 fixtures. Not Korean/Vietnamese/BaZi/Tibetan equivalence or full-range independent validation.",
+    "validation": "Selected HKO UTC+8 fixtures plus 2025 leap-sixth-month boundaries checked against HKO and Taiwan CWA issuing authorities; see docs/2026-10-ensemble-calendar.md. Not Korean/Vietnamese/BaZi/Tibetan equivalence or full-range independent validation.",
     "path": ".claude/skills/calendar-chinese/SKILL.md"
   },
   {

@@ -103,7 +103,7 @@ try{
    const preview=assistant.locator('textarea[readonly]');let prompt=await preview.inputValue();check(prompt.includes('calendar-study-packet')&&!prompt.includes('40.7128')&&!prompt.includes('America/New_York')&&!prompt.includes('-74.006'),'default AI packet omits observer location and zone '+width);
    check((await assistant.getByRole('link',{name:'Open ChatGPT'}).getAttribute('href'))==='https://chatgpt.com/','ChatGPT link has no packet query or automatic send '+width);
    await assistant.getByRole('button',{name:'Explain locally'}).click();check((await assistant.locator('.ca-local').textContent()).includes('linear Lahiri'),'local deterministic explanation is available '+width);
-   await assistant.locator('input[type=checkbox]').check();check(await preview.inputValue()==='','disclosure change clears old preview '+width);
+   await assistant.getByRole('checkbox',{name:'Include selected coordinates, time zone and civil-calendar rows',exact:true}).check();check(await preview.inputValue()==='','disclosure change clears old preview '+width);
    await assistant.getByRole('button',{name:'Prepare preview',exact:true}).click();prompt=await preview.inputValue();check(prompt.includes('40.7128')&&prompt.includes('America/New_York'),'explicit disclosure includes selected observer '+width);
    await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw new DOMException('Fixture denial','NotAllowedError');}}}));
    await assistant.getByRole('button',{name:'Copy prompt',exact:true}).click();await includes(page,'#obs-assistant .ca-status','Clipboard access is unavailable');

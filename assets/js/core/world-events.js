@@ -126,6 +126,42 @@ export function worldEventStudySample(event, { acknowledged = false, lat, lon, t
     caution: 'This local-noon observer chart is a chosen study sample. It is not a poll-opening, closing, result, national-capital or globally unique event instant. Historical classifications do not predict election winners or event outcomes.', comparison };
 }
 
+/** Compare two independently selected public-date study samples. A two-point
+ * difference is not a statistical correlation, accumulated orbital travel or
+ * evidence that an event was caused by the measured sky. */
+export function compareWorldEventSamples(firstEvent, secondEvent, options = {}) {
+  for (const event of [firstEvent, secondEvent]) {
+    if (!event || typeof event.occurrenceId !== 'string' || !event.occurrenceId || !Array.isArray(event.sourceIds) || !event.sourceIds.length) throw new TypeError('Choose two sourced event occurrences from the current agenda.');
+    text(event.occurrenceId, 'event occurrence identity', 130); event.sourceIds.forEach(id => text(id, 'event source identity', 100));
+    text(event.title, 'event title', 300);
+  }
+  if (firstEvent.occurrenceId === secondEvent.occurrenceId) throw new RangeError('Choose two different event occurrences.');
+  const common = { acknowledged: options.acknowledged, lat: options.lat, lon: options.lon, timeZone: options.timeZone, system: options.system ?? 'regiomontanus' };
+  const first = worldEventStudySample(firstEvent, { ...common, studyDate: options.firstStudyDate ?? firstEvent.date });
+  const second = worldEventStudySample(secondEvent, { ...common, studyDate: options.secondStudyDate ?? secondEvent.date });
+  const a = first.comparison, b = second.comparison;
+  const circularDifference = (start, end) => ((end - start + 540) % 360) - 180;
+  const quantity = (id, label, valueA, valueB, unit, rule, sourceIds, circular = false) => ({ id, label, first: valueA, second: valueB, difference: circular ? circularDifference(valueA, valueB) : valueB - valueA, unit, rule, sourceIds });
+  const measures = [
+    quantity('sun-longitude', 'Tropical Sun longitude', a.astronomy.sunLongitude, b.astronomy.sunLongitude, 'degrees', 'Apparent geocentric ecliptic longitude; shortest signed B−A difference in [−180°,180°).', ['OBS-ASTRONOMY'], true),
+    quantity('moon-longitude', 'Tropical Moon longitude', a.astronomy.moonLongitude, b.astronomy.moonLongitude, 'degrees', 'Apparent geocentric ecliptic longitude; two-point displacement, not total lunar travel.', ['OBS-ASTRONOMY'], true),
+    quantity('elongation', 'Moon–Sun elongation', a.astronomy.moonSunElongation, b.astronomy.moonSunElongation, 'degrees', 'Moon longitude minus Sun longitude modulo 360°; shortest signed B−A difference.', ['OBS-ASTRONOMY'], true),
+    quantity('illumination', 'Lunar disc illuminated', a.astronomy.moonIlluminatedFraction * 100, b.astronomy.moonIlluminatedFraction * 100, 'percentage points', 'Each sample is percent illuminated; difference is B−A percentage points, not a percentage change.', ['OBS-ASTRONOMY']),
+  ];
+  const categories = [
+    { id: 'phase', label: 'Broad lunar phase sector', first: a.astronomy.phaseLabel, second: b.astronomy.phaseLabel, rule: 'Eight centered 45° elongation sectors; not exact phase-transition times.', sourceIds: ['OBS-ASTRONOMY'] },
+    { id: 'tithi', label: 'Tithi at the sample', first: `${a.vedic.panchanga.tithi.num} · ${a.vedic.panchanga.tithi.name} · ${a.vedic.panchanga.tithi.paksha}`, second: `${b.vedic.panchanga.tithi.num} · ${b.vedic.panchanga.tithi.name} · ${b.vedic.panchanga.tithi.paksha}`, rule: 'Twelve-degree Moon−Sun elongation divisions. Shared elongation is a mathematical dependency, not independent agreement with the phase row.', sourceIds: ['OBS-VEDIC', 'OBS-ASTRONOMY'] },
+    { id: 'planetary-hour', label: 'Temporal planetary-hour ruler', first: a.planetaryHours.status === 'available' ? a.planetaryHours.ruler : 'Unavailable', second: b.planetaryHours.status === 'available' ? b.planetaryHours.ruler : 'Unavailable', rule: 'The existing sunrise-to-sunset/night twelve-part convention. 12:00 civil noon is not necessarily solar noon or a temporal-hour boundary; polar absence remains unavailable.', sourceIds: ['OBS-HOURS'] },
+  ].map(row => ({ ...row, sameLabel: row.first === 'Unavailable' || row.second === 'Unavailable' ? null : row.first === row.second }));
+  const describeEvent = event => ({ id: event.id, occurrenceId: event.occurrenceId, title: event.title, precision: event.precision, date: event.date, endDateExclusive: event.endDateExclusive, scheduleStatus: event.scheduleStatus, sourceIds: [...event.sourceIds], sources: (event.sources || []).map(source => ({ id: source.id, title: source.title, url: source.url, status: source.status, checkedAt: source.checkedAt })) });
+  const calendars = a.calendars.map(left => { const right = b.calendars.find(row => row.id === left.id); return { id: left.id, label: left.label, first: { text: left.text, status: left.status, method: left.method, boundary: left.boundary, validation: left.validation }, second: right ? { text: right.text, status: right.status, method: right.method, boundary: right.boundary, validation: right.validation } : { text: 'Unavailable', status: 'unavailable' }, sameDisplay: left.status === 'available' && right?.status === 'available' ? left.text === right.text : null, sourceIds: [...new Set([...(left.sourceIds || []), ...(right?.sourceIds || [])])] }; });
+  return { schemaVersion: 1, kind: 'two-event-study-sample-comparison', observer: { lat: a.context.lat, lon: a.context.lon, timeZone: a.context.timeZone, system: a.context.system },
+    samples: [{ event: describeEvent(firstEvent), ...first }, { event: describeEvent(secondEvent), ...second }],
+    elapsedHours: (new Date(second.sampledAtUTC) - new Date(first.sampledAtUTC)) / 3600000,
+    measures, categories, calendars, sources: a.sources,
+    limitations: ['Both charts use the same explicitly selected observer and 12:00 civil clock on their selected dates. Different IANA offsets can make the elapsed interval differ from a multiple of 24 hours.', 'These are two-point differences, not correlations, significance tests, accumulated orbital travel or a ranking of favorable events.', 'Shared phase/tithi inputs do not provide independent corroboration. Matching labels can occur at different underlying positions.', 'Public event dates, source qualifications and conditional status are preserved. Neither sample is an asserted event timestamp or outcome forecast.', 'The JSON export includes the selected observer, zone and full source-labelled sample calculations. Share it deliberately.'] };
+}
+
 // RFC 5545 TEXT escaping and 75-octet content-line folding. Iterating Unicode
 // code points keeps a multi-byte UTF-8 character intact across a folded line.
 export function escapeICSText(value) { return String(value).replace(/\\/g, '\\\\').replace(/\r\n|\r|\n/g, '\\n').replace(/;/g, '\\;').replace(/,/g, '\\,'); }
