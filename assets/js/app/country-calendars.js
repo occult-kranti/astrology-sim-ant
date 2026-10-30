@@ -13,6 +13,7 @@ const node = (tag, text, className) => { const item = document.createElement(tag
 const arr = value => Array.isArray(value) ? value : [];
 const nonempty = value => value == null || value === '' ? 'Unavailable' : String(value);
 const readable = value => String(value ?? '').replaceAll('-', ' ');
+const calendarStatus = row => { const badge = node('span', row?.status === 'available' ? 'Calculated civil label' : 'Unavailable', 'ch-calendar-status'); badge.dataset.status = row?.status === 'available' ? 'available' : 'unavailable'; badge.title = 'Calculation availability only; no calendar agreement or favorable outcome is inferred.'; return badge; };
 const xml = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 const sourceAnchor = id => `ch-source-${id}`;
 const degrees = value => Number.isFinite(value) ? `${value.toFixed(3)}°` : 'Unavailable';
@@ -182,7 +183,7 @@ export function initCountryCalendars() {
         const row = item.civilComparison.rows.find(candidate => candidate.id === id), cell = node('td');
         if (!row) cell.append(node('p','Unavailable','ch-unavailable'),node('small',item.civilComparison.reason));
         else {
-          cell.append(node('p',nonempty(row.text)),node('small',readable(row.status)));
+          cell.append(node('p',nonempty(row.text)),calendarStatus(row));
           const notes = node('div'); notes.append(node('p',row.method),node('p',`Verification: ${nonempty(row.validation)}`),list(row.limitations),citations(row.sourceIds)); cell.append(detail('Method & limits',notes));
         }
         tr.append(cell);
@@ -208,7 +209,7 @@ export function initCountryCalendars() {
           const source = comparison.sources.find(value => value.id === sourceId), href = safeSourceURL(source?.url);
           if (href) { const a = node('a', source.title || sourceId); a.href = href; notes.append(a, node('br')); }
         }
-        limits.append(detail('Read convention & source limits', notes)); tr.append(name, node('td', row.status === 'available' ? row.text : 'Unavailable'), limits); body.append(tr);
+        const value = node('td'); value.append(node('p', row.status === 'available' ? row.text : 'Unavailable'), calendarStatus(row)); tr.dataset.calendarId = row.id; tr.dataset.calculationStatus = row.status; limits.append(detail('Read convention & source limits', notes)); tr.append(name, value, limits); body.append(tr);
       }
       table.append(head, body); $('ch-sample-calendar-table').replaceChildren(table);
       wrapper.dataset.dateIso = sample.dateISO; $('ch-house-plate').dataset.dateIso = sample.dateISO;
@@ -228,7 +229,7 @@ export function initCountryCalendars() {
     $('ch-sample-position').textContent = `Sample ${index+1} of ${day.samples.length}. ${SYSTEMS[sample?.houseSystem] || 'Unavailable geometry'}.`;
     $('ch-sample-index').setAttribute('aria-valuetext',sample ? `Assumed ${sample.localTime}, sample ${index+1} of ${day.samples.length}` : 'Unavailable');
     $('ch-sample-prev').disabled = index <= 0; $('ch-sample-next').disabled = index >= day.samples.length-1;
-    $('ch-sample-warnings').textContent = [sample?.reason,...arr(sample?.warnings)].filter(Boolean).join(' ');
+    $('ch-sample-warnings').textContent = [sample?.reason,...arr(sample?.warnings), available ? 'This stored chart contains twelve house cusps only. Planet-to-planet relationships are unavailable here; an unknown founding clock remains an assumption.' : 'No planetary relationships are inferred from an unresolved sample.'].filter(Boolean).join(' ');
     const table = node('table'), head = node('thead'), header = node('tr'); header.append(node('th','House / angle'),node('th','Tropical longitude')); head.append(header); const body = node('tbody');
     for (const [label,value] of [['Ascendant',sample?.ascendantDegrees],['Midheaven',sample?.midheavenDegrees],...Array.from({length:12},(_,i)=>[`House ${i+1}`,sample?.cusps?.[i]])]) { const tr=node('tr'), th=node('th',label); th.scope='row'; tr.append(th,node('td',degrees(value))); body.append(tr); }
     table.append(head,body); $('ch-cusp-table').replaceChildren(table);
@@ -426,7 +427,8 @@ function initCountryEventResearch() {
       const body = node('div'); body.append(node('p', row.method), list(row.limitations));
       for (const id of row.sourceIds) if (methodMap.has(id)) body.append(sourceLink(methodMap.get(id)), node('br'));
       method.append(detail('Method & source limits', body));
-      return [row.label, row.status === 'available' ? row.text : 'Unavailable', method];
+      const value = node('div'); value.append(node('p', row.status === 'available' ? row.text : 'Unavailable'), calendarStatus(row));
+      return [row.label, value, method];
     }), 'Stored civil-date conversions at the explicitly assumed instant'));
   }
   function renderFeatures(row, sample) {

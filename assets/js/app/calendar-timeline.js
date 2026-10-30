@@ -2,6 +2,8 @@
 // presentation. Input changes terminate their worker and invalidate all exports.
 import { downloadBlob } from './state.js';
 import { mountDateNavigator } from './date-wayfinding.js';
+import { buildChartRelationshipModel } from '../core/chart-relationships.js';
+import { mountRelationshipInspector, relationPresentation } from './chart-relationships.js';
 import { COUNTRY_EVENT_COUNTRIES } from '../core/data/country-event-research.js';
 const ROOT = new URL('../../../', import.meta.url);
 const $ = id => document.getElementById(id);
@@ -22,6 +24,97 @@ const details = (title, content) => { const d = node('details'); d.append(node('
 const safeURL = raw => { if (!raw) return null; try { const u = new URL(raw, ROOT); return ['http:', 'https:'].includes(u.protocol) && !u.username && !u.password ? u.href : null; } catch { return null; } };
 const sourceLink = source => { const n = node(safeURL(source.url || source.sourceUrl) ? 'a' : 'span', source.title || source.label || source.id); const url = safeURL(source.url || source.sourceUrl); if (url) { n.href = url; if (new URL(url).origin !== location.origin) { n.target = '_blank'; n.rel = 'noopener noreferrer'; } } return n; };
 const citations = ids => { const div = node('div', null, 'ct-citations'); for (const id of arr(ids)) { const a = node('a', id); a.href = '#ct-source-' + id; a.addEventListener('click', () => { const target = $('ct-source-' + id); if (target) target.closest('details').open = true; }); div.append(a); } return div; };
+
+const relationshipModels = new WeakMap();
+const relationshipPlates = new WeakMap();
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+/** Add an inspectable relationship layer over the exact, already drawn positions.
+ * No ephemeris, calendar conversion or source date is calculated by pointer input.
+ */
+export function mountCalendarTimelineRelationships(host, frame, mode = 'tropical', options = {}) {
+  if (!host || !frame?.sky || !frame?.context) return null;
+  const existing = relationshipPlates.get(host);
+  if (existing) { existing.setFrame(frame, mode, options); return existing; }
+  const doc = host.ownerDocument;
+  const panel = doc.createElement('section'); panel.id = host.id + '-relationships';
+  const frameNote = doc.createElement('p'); frameNote.className = 'chart-relationship-frame-note';
+  const inspectorHost = doc.createElement('div'); panel.append(frameNote, inspectorHost); host.after(panel);
+  let currentFrame = frame, currentMode = mode, currentOptions = options, inspector = null;
+  let currentModel = null, layer = null, edgeNodes = new Map(), bodyNodes = new Map(), lastView = null;
+  const originalOpacity = new WeakMap();
+  const svgNode = (tag, attributes = {}) => { const item = doc.createElementNS(SVG_NS, tag); for (const [key, value] of Object.entries(attributes)) item.setAttribute(key, String(value)); return item; };
+  function modelFor(nextFrame, nextOptions) {
+    const clockNote = nextOptions.clockNote || 'Selected study instant. These relationships do not establish an historical event clock or an outcome.';
+    let records = relationshipModels.get(nextFrame); if (!records) { records = new Map(); relationshipModels.set(nextFrame, records); }
+    if (!records.has(clockNote)) records.set(clockNote, buildChartRelationshipModel({ sky:nextFrame.sky, comparison:nextFrame.comparison, vedicPlanets:nextFrame.charts?.vedic?.planets || null, vedicContext:nextFrame.context, clockNote }));
+    const model = records.get(clockNote), ids = new Set(arr(currentMode === 'sidereal' ? nextFrame.charts?.vedic?.planets : nextFrame.sky.bodies).map(body => body.id));
+    return { ...model, bodies:model.bodies.filter(body => ids.has(body.id)), relations:model.relations.filter(relation => relation.bodyIds.every(id => ids.has(id))) };
+  }
+  function restoreBodies() {
+    for (const marker of bodyNodes.values()) {
+      const opacity = originalOpacity.get(marker);
+      if (opacity == null) marker.removeAttribute('opacity'); else marker.setAttribute('opacity', opacity);
+      marker.removeAttribute('data-relationship-emphasis');
+    }
+  }
+  function highlight(payload) {
+    const active = payload && !lastView?.disabled ? edgeNodes.get(payload.relationId) : null;
+    restoreBodies();
+    for (const [id, edge] of edgeNodes) {
+      const chosen = Boolean(active && id === payload.relationId);
+      edge.line.setAttribute('stroke-width', chosen ? '3.2' : '1.3');
+      edge.line.setAttribute('opacity', active ? chosen ? '1' : '.18' : '.7');
+      edge.group.setAttribute('data-highlighted', String(chosen));
+      for (const halo of edge.halos) halo.setAttribute('opacity', chosen ? '1' : '0');
+    }
+    if (active) for (const [id, marker] of bodyNodes) {
+      const related = payload.bodyIds.includes(id); marker.setAttribute('data-relationship-emphasis', related ? 'related' : 'subdued');
+      if (!related) marker.setAttribute('opacity', '.3');
+    }
+  }
+  function draw(view) {
+    lastView = view; const svg = host.querySelector('svg'); if (!svg) return;
+    restoreBodies(); layer?.remove(); edgeNodes = new Map(); bodyNodes = new Map();
+    for (const marker of svg.querySelectorAll('[data-body]')) { bodyNodes.set(marker.dataset.body, marker); if (!originalOpacity.has(marker)) originalOpacity.set(marker, marker.getAttribute('opacity')); }
+    layer = svgNode('g', { 'data-chart-relationships':currentMode, 'aria-hidden':'true' });
+    const defs = svgNode('defs'); layer.append(defs);
+    for (const relation of view.relations) {
+      const markers = relation.bodyIds.map(id => bodyNodes.get(id)), circles = markers.map(marker => marker?.querySelector('circle'));
+      if (circles.length !== 2 || circles.some(circle => !circle)) continue;
+      const points = circles.map(circle => ({ x:Number(circle.getAttribute('cx')), y:Number(circle.getAttribute('cy')) }));
+      if (points.some(p => !Number.isFinite(p.x) || !Number.isFinite(p.y))) continue;
+      const visual = relationPresentation(relation.type), [a,b] = points, dx=b.x-a.x, dy=b.y-a.y, distance=Math.hypot(dx,dy), trim=distance>30?13:0;
+      const d=distance<.1?`M ${a.x} ${a.y} C ${a.x+30} ${a.y-35} ${b.x-30} ${b.y-35} ${b.x} ${b.y}`:`M ${a.x+dx/distance*trim} ${a.y+dy/distance*trim} L ${b.x-dx/distance*trim} ${b.y-dy/distance*trim}`;
+      const group = svgNode('g', { 'data-chart-relation':relation.id, 'data-method-id':relation.methodId, 'data-relationship-type':relation.type });
+      const line = svgNode('path', { d, fill:'none', stroke:visual.color, 'stroke-width':'1.3', 'stroke-linecap':'round', opacity:'.7', 'vector-effect':'non-scaling-stroke', 'pointer-events':'none' });
+      if (visual.dash) line.setAttribute('stroke-dasharray', visual.dash);
+      if (relation.directed) {
+        const arrowId=panel.id+'-arrow-'+edgeNodes.size, marker=svgNode('marker',{id:arrowId,viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'});
+        marker.append(svgNode('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:visual.color}));defs.append(marker);line.setAttribute('marker-end',`url(#${arrowId})`);
+      }
+      const hit = svgNode('path', { d, fill:'none', stroke:'transparent', 'stroke-width':'16', 'pointer-events':view.disabled?'none':'stroke', 'vector-effect':'non-scaling-stroke' });hit.style.cursor='pointer';
+      const title=svgNode('title');title.textContent=relation.label;group.append(title,line,hit);
+      const halos=points.map(p=>svgNode('circle',{cx:p.x,cy:p.y,r:17,fill:'none',stroke:visual.color,'stroke-width':2,opacity:0,'pointer-events':'none','vector-effect':'non-scaling-stroke'}));group.append(...halos);layer.append(group);edgeNodes.set(relation.id,{group,line,halos});
+    }
+    const firstBody=svg.querySelector('[data-body]');if(firstBody?.parentNode===svg)svg.insertBefore(layer,firstBody);else svg.append(layer);
+    const selected=currentModel.relations.find(relation=>relation.id===(view.selectedId||view.previewId));
+    highlight(selected?{relationId:selected.id,bodyIds:selected.bodyIds}:null);
+  }
+  const enter = event => { const edge=event.target.closest?.('[data-chart-relation]');if(edge&&host.contains(edge))inspector?.preview(edge.dataset.chartRelation); };
+  const leave = event => { const edge=event.target.closest?.('[data-chart-relation]'), next=event.relatedTarget?.closest?.('[data-chart-relation]');if(edge&&edge!==next)inspector?.clearPreview(); };
+  const choose = event => { const edge=event.target.closest?.('[data-chart-relation]');if(edge&&host.contains(edge)&&!lastView?.disabled)inspector?.setSelection(edge.dataset.chartRelation); };
+  host.addEventListener('pointerover',enter);host.addEventListener('pointerout',leave);host.addEventListener('click',choose);
+  const api = {
+    setFrame(nextFrame,nextMode='tropical',nextOptions={}) { currentFrame=nextFrame;currentMode=nextMode;currentOptions=nextOptions;currentModel=modelFor(currentFrame,currentOptions);
+      frameNote.textContent=currentFrame.context.dateISO+' · '+(currentMode==='sidereal'?'Linear-Lahiri sidereal positions. Lilly aspects and reception keep their tropical rule frame.':'Apparent geocentric tropical positions.')+' Only pairs with both bodies plotted are listed.';
+      if(inspector)inspector.update({model:currentModel,disabled:Boolean(currentOptions.disabled)});else inspector=mountRelationshipInspector(inspectorHost,{id:panel.id,model:currentModel,bodyId:null,compact:true,disabled:Boolean(currentOptions.disabled),onChange:draw,onHighlight:highlight});
+    },
+    update(patch={}) { if (Object.keys(patch).length === 1 && Object.hasOwn(patch, 'disabled') && Boolean(patch.disabled) === lastView?.disabled) return; inspector?.update(patch); },
+    destroy() { inspector?.destroy();layer?.remove();restoreBodies();panel.remove();host.removeEventListener('pointerover',enter);host.removeEventListener('pointerout',leave);host.removeEventListener('click',choose);relationshipPlates.delete(host); },
+  };
+  relationshipPlates.set(host,api);api.setFrame(frame,mode,options);return api;
+}
 
 /** Pure SVG geometry over canonical coordinates, safe to import without a DOM. */
 export function calendarTimelinePlateSVG(frame, mode = 'tropical') {
@@ -53,7 +146,8 @@ export function initCalendarTimeline() {
   let grid = null, frame = null, worker = null, revision = 0, selectedIndex = 0, busy = false, request = null, active = true, history = null, marker = null;
   const selectedFamilies = new Set(), main = document.querySelector('.calendar-timeline');
   const sourceRows = new Map(), dateNavigators = new Map();
-  let navigationFocus = null, highlightSelection = null;
+  let navigationFocus = null, highlightSelection = null, tropicalRelationships = null, siderealRelationships = null;
+  function clearRelationships() { tropicalRelationships?.destroy(); siderealRelationships?.destroy(); tropicalRelationships = siderealRelationships = null; }
   function clearDateNavigators() { for (const nav of dateNavigators.values()) nav.destroy(); dateNavigators.clear(); }
   function dateLane(host, id, label, row = null) {
     host.id=id;
@@ -87,6 +181,7 @@ export function initCalendarTimeline() {
   function exportsEnabled(enabled) { $('ct-json').disabled = !enabled; $('ct-csv').disabled = !enabled; }
   function controls() {
     const navigable = Boolean(grid && request);
+    for (const inspector of [tropicalRelationships, siderealRelationships]) inspector?.update({disabled:!active||busy||frame?.status!=='available'});
     for (const nav of dateNavigators.values()) nav.update({disabled:!navigable||busy||!frame});
     $('ct-date').disabled = !navigable; $('ct-slider').disabled = !navigable;
     $('ct-prev').disabled = !navigable || selectedIndex <= 0;
@@ -98,7 +193,7 @@ export function initCalendarTimeline() {
   }
   function stop() { revision++; worker?.terminate(); worker = null; busy = false; controls(); }
   function invalidate(message = 'Settings changed. Apply them to calculate the updated moment.') {
-    stop(); clearDateNavigators(); frame = null; grid = null; request = null; $('ct-pending-space').hidden = true; $('ct-output').hidden = true; $('ct-output').removeAttribute('data-date-iso');
+    stop(); clearDateNavigators(); clearRelationships(); frame = null; grid = null; request = null; $('ct-pending-space').hidden = true; $('ct-output').hidden = true; $('ct-output').removeAttribute('data-date-iso');
     $('ct-stale').hidden = false; $('ct-error').hidden = true; $('ct-unavailable').hidden = true; $('ct-export-status').textContent = ''; exportsEnabled(false);
     $('ct-atlas-link').href = new URL('pages/calendar-atlas.html', ROOT).href;
     $('ct-sources').replaceChildren(node('p', 'Apply the updated settings to display their source records.', 'ct-note')); sourceRows.clear();
@@ -164,6 +259,8 @@ export function initCalendarTimeline() {
     $('ct-output').dataset.dateIso = c.dateISO;
     $('ct-instant').textContent = `${c.dateISO}\n${c.localDate} · ${c.localTime} · ${c.timeZone}\n${decimal(c.lat, 4)}° N · ${decimal(c.lon, 4)}° E`;
     $('ct-tropical').innerHTML = calendarTimelinePlateSVG(result, 'tropical'); $('ct-sidereal').innerHTML = calendarTimelinePlateSVG(result, 'sidereal');
+    tropicalRelationships = mountCalendarTimelineRelationships($('ct-tropical'), result, 'tropical', {clockNote:`Explicit study sample at ${c.localTime} in ${c.timeZone}; no event time or whole-day judgment is inferred.`});
+    siderealRelationships = mountCalendarTimelineRelationships($('ct-sidereal'), result, 'sidereal', {clockNote:`Explicit study sample at ${c.localTime} in ${c.timeZone}; no event time or whole-day judgment is inferred.`});
     $('ct-tropical-system').textContent = SYSTEMS[tropical.actualSystem] || tropical.actualSystem;
     $('ct-tropical-caption').textContent = `Ten calculated bodies; twelve ${SYSTEMS[tropical.actualSystem] || tropical.actualSystem} house cusps. Requested: ${SYSTEMS[tropical.requestedSystem] || tropical.requestedSystem}.${tropical.warning ? ' ' + tropical.warning : ''}`;
     $('ct-sidereal-caption').textContent = `Seven traditional bodies and two mean lunar nodes. Whole-sign houses; linear Lahiri estimate ${degrees(vedic.ayanamsha.degrees)}. This approximation is not exact JHora equivalence.`;
@@ -272,7 +369,7 @@ export function initCalendarTimeline() {
   $('ct-cancel').addEventListener('click', () => { stop(); frame = null; $('ct-pending-space').hidden = true; $('ct-output').hidden = true; $('ct-output').removeAttribute('data-date-iso'); $('ct-sources').replaceChildren(node('p', 'Calculation cancelled. Apply settings or choose a date to restore its source records.', 'ct-note')); exportsEnabled(false); state('cancelled', 'Calculation cancelled. Choose another date or Apply settings to restart.'); });
   $('ct-reset').addEventListener('click', () => { marker = null; $('ct-history-assumption').hidden = true; $('ct-observer-assumption').hidden=true; fillSettings(DEFAULTS); apply(DEFAULTS.startDate); });
   $('ct-json').addEventListener('click', () => exportResult('json')); $('ct-csv').addEventListener('click', () => exportResult('csv'));
-  window.addEventListener('pagehide', () => { active = false; stop(); frame = null; exportsEnabled(false); });
+  window.addEventListener('pagehide', () => { active = false; stop(); clearRelationships(); frame = null; exportsEnabled(false); });
   window.addEventListener('pageshow', event => { active = true; if (event.persisted) apply(); });
   const linked=new URLSearchParams(location.search),initial={...DEFAULTS};let initialDate=DEFAULTS.startDate,linkError='';
   if(linked.has('countryObserver')) {
