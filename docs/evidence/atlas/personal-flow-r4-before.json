@@ -1,0 +1,24 @@
+{
+  "round": 4,
+  "scope": "390px personal integrated known/unknown/edit/cancel/clear and return claims",
+  "checks": [
+    "Birth disclosure starts optional, collapsed, empty and unknown-time",
+    "Optional birth control opens by keyboard",
+    "Known-time reading labels the actual resolved UTC birth",
+    "Real solar/lunar recurrence output is visible when requested",
+    "Return scope distinguishes annual solar, next tropical lunar and unavailable variants"
+  ],
+  "sources": {
+    "/assets/css/personal-calendar.css": "fa8f4148dd270715cd871a2d6fa07a9825c6f48fa026bdf6632e99776be8b2d2",
+    "/assets/css/calendar-search.css": "b3f842a2fd2b71bd4772e3259785218d433a91d526ef4a17fb8c840543191569",
+    "/assets/js/app/calendar-search.js": "8a564779338fee33e7bf5b2f9dc2ae2bbb4092d4e1bc7a5061ddb265773f64e4",
+    "/assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "/assets/js/app/personal-calendar.js": "14f602f27719feb20944a2bea29c542ab27e57f29d43ad0abb8ee4a636e20dcb",
+    "/assets/js/core/personal-calendar.js": "06a25c33883c74ba23ceab1df7f9131c03eeaf6e0f79471671308a5d29f4a812"
+  },
+  "errors": [],
+  "external": [],
+  "screenshots": [],
+  "verdict": "BLOCK",
+  "failure": "AssertionError [ERR_ASSERTION]: Visible personal fields/actions retain44px targets and16px text\n    at check (file:///tmp/atlas-r4-personal.mjs:8:36)\n    at file:///tmp/atlas-r4-personal.mjs:24:2\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)"
+}

@@ -1,0 +1,1143 @@
+{
+  "schemaVersion": 1,
+  "title": "Calendar Observatory — curated international public dates",
+  "reviewedAt": "2026-10-29T22:17:04.277Z",
+  "freshnessDays": 14,
+  "researchReferenceDate": "2026-10-29",
+  "coverageDefinition": "Named research cohort: 19 conventional G20 sovereign countries plus EU/African Union institutional targets, with additional inspected jurisdictions. Membership reference requests were unavailable/unreadable; no contemporary membership change was independently certified.",
+  "method": "Bounded official-source requests through the inherited proxy with normal TLS verification. Date-relevant HTML, one PDF and public embedded calendar JSON were inspected by AI source readers. Short excerpts and hashes retained; no candidate profiling or election-outcome model.",
+  "sourceRequestCount": 38,
+  "sources": [
+    {
+      "id": "EL-fec2026",
+      "title": "2026 Congressional Primary Dates and Candidate Filing Deadlines for Ballot Access",
+      "publisher": "United States Federal Election Commission",
+      "url": "https://www.fec.gov/resources/cms-content/documents/2026pdates.pdf",
+      "originalURL": "https://www.fec.gov/resources/cms-content/documents/2026pdates.pdf",
+      "checkedAt": "2026-10-29T22:06:07.175276Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "General Election Date 11/03/2026",
+      "translation": null,
+      "support": "Header explicitly states the national congressional general election date. Louisiana House runoff row lists 12/12 under RUNOFF DATE (IF NECESSARY).",
+      "sourceDated": "2026-05-18",
+      "limitations": [
+        "The document states Dates Subject to Change and Data as of 5/18/2026. Retrieval on 29 October is not a new state-by-state confirmation.",
+        "This is a federal congressional schedule, not a complete calendar of state/local elections or polling-place opening times."
+      ],
+      "sha256": "9a5d4ec0ba2b69daf2f510ef79bca0ca381ab699255ac5adb971b9672d517251",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-iec-home",
+      "title": "IEC official homepage",
+      "publisher": "Independent Electoral Commission, The Gambia",
+      "url": "https://iec.gm/",
+      "originalURL": "https://iec.gm/",
+      "checkedAt": "2026-10-29T22:06:07.176058Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "5th December 2026 Presidential Election",
+      "translation": null,
+      "support": "Main dated election heading and forthcoming-election forum text name 5 December 2026.",
+      "sourceDated": null,
+      "limitations": [
+        "Homepage countdown includes a generic Election in Progress string; that widget is not used to determine whether voting has started.",
+        "Official dated event and 15 October news pages below give stronger event-specific support."
+      ],
+      "sha256": "c83e789e0a697aee24d37bca742a3fad8c8b8b4acbbda93051fc42330f8afc98",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-cik-home",
+      "title": "CEC English homepage",
+      "publisher": "Central Election Commission, Bulgaria",
+      "url": "https://www.cik.bg/en/",
+      "originalURL": "https://www.cik.bg/en/",
+      "checkedAt": "2026-10-29T22:06:07.176775Z",
+      "httpStatus": 200,
+      "status": "read-no-date-support",
+      "excerpt": "Next session of CEC:",
+      "translation": null,
+      "support": "Discovery only. Its English news is old; it is not used as support for the election date.",
+      "sourceDated": null,
+      "limitations": [
+        "English homepage does not provide the current upcoming-election date in the inspected main text. Native-language current decision is used instead."
+      ],
+      "sha256": "0b6b0b32235036e6ee4bba819f95e105cd960dba39bba66b2235f3596261cd31",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-iec-presidential-event",
+      "title": "Presidential Election Day",
+      "publisher": "Independent Electoral Commission, The Gambia",
+      "url": "https://iec.gm/event/presidential-election-day/",
+      "originalURL": "https://iec.gm/event/presidential-election-day/",
+      "checkedAt": "2026-10-29T22:06:41.769005Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "Presidential Election Day December 5, 2026 08:00 - 17:00 The Gambia",
+      "translation": null,
+      "support": "Dedicated official event gives the election day.",
+      "sourceDated": null,
+      "limitations": [
+        "Event page lists 08:00–17:00 but no explicit time-zone identifier. The research feature should keep this as a date-only event and should not assume a nationwide or individual polling-place instant."
+      ],
+      "sha256": "e47d482f071b8db2eae3d564ee324bcaf9e4e0e7eac4a1dc02c1318d866c570d",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-iec-oct15-preparations",
+      "title": "IEC Officials Discuss Electoral Preparations Ahead of December 5, 2026 Presidential Election",
+      "publisher": "Independent Electoral Commission, The Gambia",
+      "url": "https://iec.gm/iec-officials-discuss-electoral-preparations-ahead-of-december-5-2026-presidential-election/",
+      "originalURL": "https://iec.gm/iec-officials-discuss-electoral-preparations-ahead-of-december-5-2026-presidential-election/",
+      "checkedAt": "2026-10-29T22:06:41.769534Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "ahead of Election Day on 5 December 2026.",
+      "translation": null,
+      "support": "Dated official news independently reiterates the date on the dedicated event page.",
+      "sourceDated": "2026-10-15",
+      "limitations": [
+        "Preparation notice verifies the listed date, not an outcome, candidate preference or election-day status."
+      ],
+      "sha256": "74decaf5c4ff718772d3e62245c50faf48ad1cc85bb86bc5e395321d4b547a73",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-cik-bg-home",
+      "title": "CEC Bulgarian homepage",
+      "publisher": "Central Election Commission, Bulgaria",
+      "url": "https://www.cik.bg/",
+      "originalURL": "https://www.cik.bg/",
+      "checkedAt": "2026-10-29T22:06:41.769937Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "за новия избор (втори тур) за президент и вицепрезидент на републиката на 1 ноември 2026 г.",
+      "translation": "for the new election (second round) for president and vice-president of the republic on 1 November 2026",
+      "support": "Current official home page links 29 October decision 425 and names the second-round date.",
+      "sourceDated": null,
+      "limitations": [
+        "Native-language text read with an AI translation/paraphrase; this is not a certified translation.",
+        "First-round 25 October is before the reference window and must not be listed as upcoming."
+      ],
+      "sha256": "aef59954fb0735e2a2c0eba9587a4cabbd7aa5da9a23cd86a5601ce3653eeb30",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-cik-round2-decision425",
+      "title": "Решение № 425-ПВР, 29 October 2026",
+      "publisher": "Central Election Commission, Bulgaria",
+      "url": "https://www.cik.bg/bg/decisions/425/2026-10-29",
+      "originalURL": "https://www.cik.bg/bg/decisions/425/2026-10-29",
+      "checkedAt": "2026-10-29T22:07:56.569184Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "за новия избор (втори тур) за президент и вицепрезидент на републиката на 1 ноември 2026 г.",
+      "translation": "for the new election (second round) for president and vice-president of the republic on 1 November 2026",
+      "support": "Decision subject explicitly identifies the presidential/vice-presidential second round on 1 November; the decision concerns overseas polling commissions.",
+      "sourceDated": "2026-10-29",
+      "limitations": [
+        "Only the subject and date-relevant introductory/operative paragraphs were read; personal appointments and all annex rows were not independently audited.",
+        "No election outcome or candidate judgment is extracted."
+      ],
+      "sha256": "fa964de099b84972b5913643c49bee8f35c8e6206570294c3d92ea96d64b1638",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-vec2026",
+      "title": "2026 state election",
+      "publisher": "Victorian Electoral Commission, Australia",
+      "url": "https://www.vec.vic.gov.au/voting/2026-state-election",
+      "originalURL": "https://www.vec.vic.gov.au/voting/2026-state-election",
+      "checkedAt": "2026-10-29T22:07:56.570015Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "Saturday 28 November Election day - voting open 8 am to 6 pm",
+      "translation": null,
+      "support": "Official 2026 state election timeline names Saturday 28 November as election day.",
+      "sourceDated": null,
+      "limitations": [
+        "This is the state of Victoria, not an Australian federal election.",
+        "Only date and scope are used. Electoral information elsewhere on the source page is not copied as product voting advice.",
+        "The date-only event should use a separately labelled study sample rather than treating noon as the election start."
+      ],
+      "sha256": "6a5ed85da9c84f976f9e3e0942e8b713e4c77fbb66b7e53f2a2bcff1963b220d",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-aec-calendar",
+      "title": "404 - Sauce not found",
+      "publisher": "Australian Electoral Commission",
+      "url": "https://www.aec.gov.au/Elections/election-dates.htm",
+      "originalURL": "https://www.aec.gov.au/Elections/election-dates.htm",
+      "checkedAt": "2026-10-29T22:07:56.570433Z",
+      "httpStatus": 200,
+      "status": "read-no-date-support",
+      "excerpt": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+      "translation": null,
+      "support": "No upcoming-event claim supported. HTTP 200 is a soft 404.",
+      "sourceDated": null,
+      "limitations": [
+        "Do not count this response as successful federal election-calendar verification."
+      ],
+      "sha256": "e659c7d7f6f6b049e7af2610d44410c66f3282818e7d04e56fa7a930df841d83",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-nz-vote2026",
+      "title": "2026 general election public URL — access challenge response",
+      "publisher": "New Zealand Electoral Commission",
+      "url": "https://vote.nz/2026-general-election/",
+      "originalURL": "https://vote.nz/2026-general-election/",
+      "checkedAt": "2026-10-29T22:11:43.250257Z",
+      "httpStatus": 200,
+      "status": "read-no-date-support",
+      "excerpt": null,
+      "translation": null,
+      "support": "No date verified. Response body is a 212-byte Incapsula script challenge with no substantive election text.",
+      "sourceDated": null,
+      "limitations": [
+        "HTTP 200 does not establish election-calendar access. No challenge, cookie, proxy or direct-route bypass attempted.",
+        "The proposed 7 November date remains unverified by this subtask and is not added as an event."
+      ],
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-tw-cec-english",
+      "title": "CEC English homepage",
+      "publisher": "Central Election Commission, Taiwan",
+      "url": "https://web.cec.gov.tw/english",
+      "originalURL": "https://web.cec.gov.tw/english",
+      "checkedAt": "2026-10-29T22:11:43.250844Z",
+      "httpStatus": 200,
+      "status": "read-no-date-support",
+      "excerpt": "Freedom House 2026 Report: Taiwan Scores 93, Ranks 2nd in Asia for Global Freedom",
+      "translation": null,
+      "support": "Discovery only. No 2026 local election date was present in inspected English main text or serialized content.",
+      "sourceDated": null,
+      "limitations": [
+        "Not used as election-date evidence. Native official calendar record below supplies the date."
+      ],
+      "sha256": "877f9028c6f78889638d1f2cab07a8ca6994145c1c28b82366c40824c62bf7fe",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-pe-onpe",
+      "title": "ONPE institutional homepage",
+      "publisher": "Oficina Nacional de Procesos Electorales, Peru",
+      "url": "https://www.gob.pe/onpe",
+      "originalURL": "https://www.gob.pe/onpe",
+      "checkedAt": "2026-10-29T22:11:43.251261Z",
+      "httpStatus": 200,
+      "status": "read-no-date-support",
+      "excerpt": "Asistencia técnica de la ONPE permitirá que más de dos mil centros poblados elijan sus auto...",
+      "translation": null,
+      "support": "Discovery page links the date-specific 28 October release used below.",
+      "sourceDated": null,
+      "limitations": [
+        "No regional-runoff date established. The linked local-centre election is a different process."
+      ],
+      "sha256": "43bb6439f52a8809e7471ecf231d61c486ab1840a8a7b13f61820585e6e8b737",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-nz-ec2026",
+      "title": "2026 general election alternate official page — access challenge response",
+      "publisher": "New Zealand Electoral Commission",
+      "url": "https://elections.nz/democracy-in-nz/about-elections/2026-general-election/",
+      "originalURL": "https://elections.nz/democracy-in-nz/about-elections/2026-general-election/",
+      "checkedAt": "2026-10-29T22:12:25.045576Z",
+      "httpStatus": 200,
+      "status": "read-no-date-support",
+      "excerpt": null,
+      "translation": null,
+      "support": "No date verified. Normal public-page request returned the same 212-byte Incapsula script challenge.",
+      "sourceDated": null,
+      "limitations": [
+        "This was a normal second official URL supplied for inspection, not an attempt to solve or evade a challenge.",
+        "No New Zealand election event is included without source-readable date support."
+      ],
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "EL-tw-cec-central",
+      "title": "CEC official Chinese homepage — serialized election calendar",
+      "publisher": "Central Election Commission, Taiwan",
+      "url": "https://web.cec.gov.tw/central",
+      "originalURL": "https://web.cec.gov.tw/central",
+      "checkedAt": "2026-10-29T22:12:25.046184Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "\"20261128\",\"115年地方公職人員選舉投票\"",
+      "translation": "Voting for the year-115 local public-office elections (ROC year 115 is 2026). The explicit serialized date is 20261128.",
+      "support": "The public homepage HTML includes a calendarList containing calendarId 56, date 20261128 and the local-election title. Values were decoded with JSON parsing and indexed references, without executing site code or making extra API calls.",
+      "sourceDated": null,
+      "limitations": [
+        "The visible homepage shows only a nearby-week calendar; the future date was read from the official serialized calendar state.",
+        "Native Chinese title translated/paraphrased by an AI agent, not a certified translator.",
+        "This is local public-office voting across jurisdictions, not a presidential election, and does not define a single event instant."
+      ],
+      "sha256": "a711da3b42bd1fdfa1cf4ef0b800730dd430b58a5723a029df1124205ba56de6",
+      "evidenceLocation": "public __NUXT_DATA__ JSON script, calendarList record",
+      "decodedCalendarRecords": [
+        {
+          "calendarId": 56,
+          "date": "20261128",
+          "title": "115年地方公職人員選舉投票"
+        }
+      ]
+    },
+    {
+      "id": "EL-pe-onpe-centros2026",
+      "title": "Asistencia técnica de la ONPE permitirá que más de dos mil centros poblados elijan sus autoridades",
+      "publisher": "Oficina Nacional de Procesos Electorales, Peru",
+      "url": "https://www.gob.pe/institucion/onpe/noticias/1464686-asistencia-tecnica-de-la-onpe-permitira-que-mas-de-dos-mil-centros-poblados-elijan-sus-autoridades",
+      "originalURL": "https://www.gob.pe/institucion/onpe/noticias/1464686-asistencia-tecnica-de-la-onpe-permitira-que-mas-de-dos-mil-centros-poblados-elijan-sus-autoridades",
+      "checkedAt": "2026-10-29T22:12:25.046690Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "este 1 de noviembre de 2026, la elección de autoridades en 2,262 centros poblados.",
+      "translation": "on 1 November 2026, the election of authorities in 2,262 populated centres.",
+      "support": "Dated ONPE press release explicitly states the date and local-centre scope; municipal provincial authorities organize these elections with ONPE technical assistance.",
+      "sourceDated": "2026-10-28",
+      "limitations": [
+        "This is a local-centre authority election, not the regional governor runoff or a national presidential election. No Peru regional-runoff date was independently established.",
+        "Lima is only an illustrative study observer; it does not represent every affected centre.",
+        "Source describes Huachipa hours separately, but no single national election timestamp is inferred."
+      ],
+      "sha256": "34773c5185c5b3356e4e00fce33933f4f28cfaa9c3aa05b036d39055788ea8de",
+      "evidenceLocation": null,
+      "decodedCalendarRecords": null
+    },
+    {
+      "id": "AG-children-unicef-alt",
+      "title": "children-unicef-alt",
+      "url": "https://www.unicef.org/world-childrens-day-2026",
+      "originalURL": "https://www.unicef.org/world-childrens-day-2026",
+      "checkedAt": "2026-10-29T22:08:18.483200Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 404: Not Found",
+      "limitations": []
+    },
+    {
+      "id": "AG-children-unicef-world",
+      "title": "children-unicef-world",
+      "url": "https://www.unicef.org/child-rights-convention/world-childrens-day",
+      "originalURL": "https://www.unicef.org/child-rights-convention/world-childrens-day",
+      "checkedAt": "2026-10-29T22:08:18.483806Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 404: Not Found",
+      "limitations": []
+    },
+    {
+      "id": "AG-philosophy-unesco",
+      "title": "World Philosophy Day",
+      "url": "https://www.unesco.org/en/days/philosophy",
+      "originalURL": "https://www.unesco.org/en/days/philosophy",
+      "checkedAt": "2026-10-29T22:08:18.484261Z",
+      "httpStatus": 200,
+      "status": "conflicting-page-elements",
+      "excerpt": "each year, on the third Thursday of November",
+      "support": "The date-relevant passage was inspected; the annual rule, rather than a themed programme or event timestamp, is used.",
+      "limitations": [
+        "The page heading reads 20 November, while the explicit third-Thursday annual rule and a dated 19 November 2026 programme in the body agree. Use the cited rule-derived date; do not copy the heading as a fixed annual date."
+      ],
+      "sha256": "b08689155039b5b4064c6595b5ecb320d7126c72e01acd1b8b57a33fa805f27e"
+    },
+    {
+      "id": "AG-violence-unesco",
+      "title": "International Day for the Elimination of Violence against Women",
+      "url": "https://www.unesco.org/en/days/elimination-violence-against-women",
+      "originalURL": "https://www.unesco.org/en/days/elimination-violence-against-women",
+      "checkedAt": "2026-10-29T22:08:18.484597Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "to establish November 25 as the International Day for the Elimination of Violence Against Women",
+      "support": "The date-relevant passage was inspected; the annual rule, rather than a themed programme or event timestamp, is used.",
+      "limitations": [],
+      "sha256": "71880845179e9e97f9cd7f0656419e633ea79dd282e4edc607234ecc6c6aae71"
+    },
+    {
+      "id": "AG-persons-disability-who",
+      "title": "International Day of Persons with Disabilities",
+      "url": "https://www.who.int/campaigns/international-day-of-persons-with-disabilities",
+      "originalURL": "https://www.who.int/campaigns/international-day-of-persons-with-disabilities",
+      "checkedAt": "2026-10-29T22:08:19.235904Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "celebrated every year on 3 December",
+      "support": "The date-relevant passage was inspected; the annual rule, rather than a themed programme or event timestamp, is used.",
+      "limitations": [],
+      "sha256": "29aa9634a9971d5944662030160d5233503baa2ba24398561915fc48190c6fe9"
+    },
+    {
+      "id": "AG-human-rights-ohchr-about",
+      "title": "Human Rights Day",
+      "url": "https://www.ohchr.org/en/about-us/human-rights-day",
+      "originalURL": "https://www.ohchr.org/en/about-us/human-rights-day",
+      "checkedAt": "2026-10-29T22:08:19.937470Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "Human Rights Day is observed by the international community every year on 10 December",
+      "support": "The date-relevant passage was inspected; the annual rule, rather than a themed programme or event timestamp, is used.",
+      "limitations": [],
+      "sha256": "5912c8f69484f14308ed5449761668fa01541d75368c7b964b6eb28d0f5569e0"
+    },
+    {
+      "id": "AG-migrants-iom",
+      "title": "migrants-iom",
+      "url": "https://www.iom.int/international-migrants-day",
+      "originalURL": "https://www.iom.int/international-migrants-day",
+      "checkedAt": "2026-10-29T22:08:20.349248Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 403: Forbidden",
+      "limitations": []
+    },
+    {
+      "id": "AG-science-peace",
+      "title": "World Science Day for Peace and Development",
+      "url": "https://www.unesco.org/en/days/science-peace-development",
+      "originalURL": "https://www.unesco.org/en/days/science-peace-development",
+      "checkedAt": "2026-10-29T22:07:17.815515Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "Celebrated every 10 November, World Science Day for Peace and Development highlights the important role of science in society",
+      "support": "The date-relevant passage was inspected; the annual rule, rather than a themed programme or event timestamp, is used.",
+      "limitations": [],
+      "sha256": "b1eb7cfc2b52bd9e4626270a701b4385ee030d656a560006fc6f7f845c04557c"
+    },
+    {
+      "id": "AG-children-unicef",
+      "title": "children-unicef",
+      "url": "https://www.unicef.org/world-childrens-day",
+      "originalURL": "https://www.unicef.org/world-childrens-day",
+      "checkedAt": "2026-10-29T22:07:17.816081Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 404: Not Found",
+      "limitations": []
+    },
+    {
+      "id": "AG-aids-who",
+      "title": "World AIDS Day",
+      "url": "https://www.who.int/campaigns/world-aids-day",
+      "originalURL": "https://www.who.int/campaigns/world-aids-day",
+      "checkedAt": "2026-10-29T22:07:17.816469Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "1 December is World AIDS Day",
+      "support": "The date-relevant passage was inspected; the annual rule, rather than a themed programme or event timestamp, is used.",
+      "limitations": [],
+      "sha256": "46a970ce841ac65523c9a53a8c8158600f1a572ce0bde6d8a80869847ea1b6a1"
+    },
+    {
+      "id": "AG-diabetes-who",
+      "title": "World Diabetes Day",
+      "url": "https://www.who.int/campaigns/world-diabetes-day",
+      "originalURL": "https://www.who.int/campaigns/world-diabetes-day",
+      "checkedAt": "2026-10-29T22:07:17.816852Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "14 November is World Diabetes Day",
+      "support": "The date-relevant passage was inspected; the annual rule, rather than a themed programme or event timestamp, is used.",
+      "limitations": [],
+      "sha256": "3e9537de03f0c5f10711ca8d5cfb6779137e188222cc6f4aef2481179f9c4061"
+    },
+    {
+      "id": "AG-tolerance-unesco",
+      "title": "International Day for Tolerance",
+      "url": "https://www.unesco.org/en/days/tolerance",
+      "originalURL": "https://www.unesco.org/en/days/tolerance",
+      "checkedAt": "2026-10-29T22:07:18.228563Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "proclaiming 16 November as International Day for Tolerance",
+      "support": "The date-relevant passage was inspected; the annual rule, rather than a themed programme or event timestamp, is used.",
+      "limitations": [],
+      "sha256": "d0bfb84a33dcd9c7c883f4a7015de2f21677a575a0b19c929eca2f288f995462"
+    },
+    {
+      "id": "AG-human-rights-ohchr",
+      "title": "human-rights-ohchr",
+      "url": "https://www.ohchr.org/en/get-involved/campaign/everyday-essentials",
+      "originalURL": "https://www.ohchr.org/en/get-involved/campaign/human-rights-day",
+      "checkedAt": "2026-10-29T22:07:18.304737Z",
+      "httpStatus": 200,
+      "status": "read-no-date-support",
+      "excerpt": "",
+      "support": "The generic Human Rights Day URL redirected to a themed campaign page. No date claim in this dataset relies on this response; the separate official about-page supplies the annual date.",
+      "limitations": [],
+      "sha256": "0242b1b75286717a888080fc88e4f1e11913bee815d22050a0299fe644988704"
+    },
+    {
+      "id": "AG-violence-women",
+      "title": "UN Women — 16 Days of Activism 2026",
+      "url": "https://www.unwomen.org/en/what-we-do/ending-violence-against-women/unite/theme",
+      "originalURL": "https://www.unwomen.org/en/get-involved/16-days-of-activism",
+      "checkedAt": "2026-10-29T22:07:19.412963Z",
+      "httpStatus": 200,
+      "status": "verified-date-support",
+      "excerpt": "From 25 November to 10 December 2026, mark the 16 Days of Activism against Gender-Based Violence",
+      "support": "The current official programme explicitly states both endpoints and the year 2026.",
+      "limitations": [],
+      "sha256": "2e3a6320ba6db79343206b3c66a7054cdaa996246e6d21c8745df6cccbbafd37"
+    },
+    {
+      "id": "AG-volunteers",
+      "title": "volunteers",
+      "url": "https://www.unv.org/international-volunteer-day",
+      "originalURL": "https://www.unv.org/international-volunteer-day",
+      "checkedAt": "2026-10-29T22:07:19.746963Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 403: Forbidden",
+      "limitations": []
+    },
+    {
+      "id": "AG-care-support",
+      "title": "care-support",
+      "url": "https://www.un.org/en/observances/care-and-support-day",
+      "originalURL": "https://www.un.org/en/observances/care-and-support-day",
+      "checkedAt": "2026-10-29T22:06:51.198445Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 403: Forbidden",
+      "limitations": []
+    },
+    {
+      "id": "AG-cities",
+      "title": "cities",
+      "url": "https://www.un.org/en/observances/cities-day",
+      "originalURL": "https://www.un.org/en/observances/cities-day",
+      "checkedAt": "2026-10-29T22:06:51.199001Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 403: Forbidden",
+      "limitations": []
+    },
+    {
+      "id": "AG-journalists",
+      "title": "journalists",
+      "url": "https://www.un.org/en/observances/end-impunity-crimes-against-journalists",
+      "originalURL": "https://www.un.org/en/observances/end-impunity-crimes-against-journalists",
+      "checkedAt": "2026-10-29T22:06:51.199392Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 403: Forbidden",
+      "limitations": []
+    },
+    {
+      "id": "AG-children",
+      "title": "children",
+      "url": "https://www.un.org/en/observances/world-childrens-day",
+      "originalURL": "https://www.un.org/en/observances/world-childrens-day",
+      "checkedAt": "2026-10-29T22:06:51.199781Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 403: Forbidden",
+      "limitations": []
+    },
+    {
+      "id": "AG-human-rights",
+      "title": "human-rights",
+      "url": "https://www.un.org/en/observances/human-rights-day",
+      "originalURL": "https://www.un.org/en/observances/human-rights-day",
+      "checkedAt": "2026-10-29T22:06:51.463512Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 403: Forbidden",
+      "limitations": []
+    },
+    {
+      "id": "AG-international-days",
+      "title": "international-days",
+      "url": "https://www.un.org/en/observances/list-days-weeks",
+      "originalURL": "https://www.un.org/en/observances/list-days-weeks",
+      "checkedAt": "2026-10-29T22:06:51.524009Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 403: Forbidden",
+      "limitations": []
+    },
+    {
+      "id": "AG-g20-membership-dfat",
+      "title": "g20-membership-dfat",
+      "url": "https://www.dfat.gov.au/trade/organisations/g20",
+      "originalURL": "https://www.dfat.gov.au/trade/organisations/g20",
+      "checkedAt": "2026-10-29T22:12:03.343589Z",
+      "httpStatus": null,
+      "status": "failed-access",
+      "excerpt": "",
+      "support": "HTTP Error 503: Service Unavailable",
+      "limitations": []
+    },
+    {
+      "id": "AG-g20-membership",
+      "title": "g20-membership",
+      "url": "https://www.gov.br/planalto/en/g20/about-the-g20",
+      "originalURL": "https://www.gov.br/planalto/en/g20/about-the-g20",
+      "checkedAt": "2026-10-29T22:10:59.961835Z",
+      "httpStatus": 200,
+      "status": "read-no-date-support",
+      "excerpt": "",
+      "support": "HTTP 200 body is a JavaScript/human-verification challenge. No membership fact was extracted; no challenge was solved.",
+      "limitations": [],
+      "sha256": "2a0b6ca9635a49b35e40144b3387ab9db5b81071c7f9e177c339d80a8f07f7a6"
+    }
+  ],
+  "events": [
+    {
+      "id": "bg-presidential-runoff-2026",
+      "title": "Bulgaria presidential and vice-presidential election — second round",
+      "date": "2026-11-01",
+      "category": "election",
+      "countryCodes": [
+        "BG"
+      ],
+      "scope": "national · BG",
+      "scheduleStatus": "scheduled",
+      "summary": "Official CEC decision identifies the presidential and vice-presidential second round. The inspected date-relevant text was translated by an AI reader.",
+      "condition": null,
+      "sourceIds": [
+        "EL-cik-round2-decision425",
+        "EL-cik-bg-home"
+      ],
+      "notes": [
+        "Source confirms second round; first-round 25 October is past relative to 29 October.",
+        "Any noon sample is chosen for study and is not an election timestamp."
+      ]
+    },
+    {
+      "id": "pe-centros-poblados-2026",
+      "title": "Peru populated-centre local authority elections",
+      "date": "2026-11-01",
+      "category": "election",
+      "countryCodes": [
+        "PE"
+      ],
+      "scope": "local-centres · PE",
+      "scheduleStatus": "scheduled",
+      "summary": "ONPE’s dated release names voting in populated centres. This local process is distinct from a regional-governor runoff.",
+      "condition": null,
+      "sourceIds": [
+        "EL-pe-onpe-centros2026"
+      ],
+      "notes": [
+        "ONPE 28 October release states 1 November voting in 2,262 populated centres.",
+        "These elections are organized by provincial municipalities with ONPE technical assistance; they are not the regional governor runoff."
+      ]
+    },
+    {
+      "id": "philosophy-unesco",
+      "title": "World Philosophy Day",
+      "annual": {
+        "month": 11,
+        "weekday": 4,
+        "nth": 3,
+        "fromYear": 2026
+      },
+      "category": "international-day",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide observance",
+      "scheduleStatus": "annual-rule",
+      "summary": "Date calculated from UNESCO’s explicit third-Thursday rule. Its body also names a 19 November 2026 event; the page heading says 20 November and is retained as a source conflict.",
+      "sourceIds": [
+        "AG-philosophy-unesco"
+      ],
+      "notes": [
+        "The page heading reads 20 November, while the explicit third-Thursday annual rule and a dated 19 November 2026 programme in the body agree. Use the cited rule-derived date; do not copy the heading as a fixed annual date."
+      ]
+    },
+    {
+      "id": "us-congressional-general-2026",
+      "title": "United States congressional general election",
+      "date": "2026-11-03",
+      "category": "election",
+      "countryCodes": [
+        "US"
+      ],
+      "scope": "national-federal · US",
+      "scheduleStatus": "scheduled",
+      "summary": "The FEC lists the congressional general election date. Its table is dated 18 May 2026 and explicitly says dates are subject to change.",
+      "condition": null,
+      "sourceIds": [
+        "EL-fec2026"
+      ],
+      "notes": [
+        "FEC source data dated 18 May; dates subject to change notice retained.",
+        "This national date spans multiple time zones and does not define one event instant."
+      ]
+    },
+    {
+      "id": "science-peace",
+      "title": "World Science Day for Peace and Development",
+      "annual": {
+        "month": 11,
+        "day": 10,
+        "fromYear": 2026
+      },
+      "category": "international-day",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide observance",
+      "scheduleStatus": "annual-rule",
+      "summary": "An annual UNESCO observance of science in society. No particular local event clock or 2026 programme is inferred.",
+      "sourceIds": [
+        "AG-science-peace"
+      ],
+      "notes": []
+    },
+    {
+      "id": "diabetes-who",
+      "title": "World Diabetes Day",
+      "annual": {
+        "month": 11,
+        "day": 14,
+        "fromYear": 2026
+      },
+      "category": "international-day",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide observance",
+      "scheduleStatus": "annual-rule",
+      "summary": "The WHO campaign page states the annual date; the agenda does not provide medical advice.",
+      "sourceIds": [
+        "AG-diabetes-who"
+      ],
+      "notes": []
+    },
+    {
+      "id": "tolerance-unesco",
+      "title": "International Day for Tolerance",
+      "annual": {
+        "month": 11,
+        "day": 16,
+        "fromYear": 2026
+      },
+      "category": "international-day",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide observance",
+      "scheduleStatus": "annual-rule",
+      "summary": "An annual international observance named by UNESCO’s account of UN General Assembly resolution 51/95.",
+      "sourceIds": [
+        "AG-tolerance-unesco"
+      ],
+      "notes": []
+    },
+    {
+      "id": "violence-unesco",
+      "title": "International Day for the Elimination of Violence against Women",
+      "annual": {
+        "month": 11,
+        "day": 25,
+        "fromYear": 2026
+      },
+      "category": "international-day",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide observance",
+      "scheduleStatus": "annual-rule",
+      "summary": "The annual date is supported by UNESCO’s source account. Individual programmes and their clocks vary.",
+      "sourceIds": [
+        "AG-violence-unesco"
+      ],
+      "notes": []
+    },
+    {
+      "id": "un-women-16-days-2026",
+      "title": "16 Days of Activism against Gender-Based Violence",
+      "date": "2026-11-25",
+      "endDateInclusive": "2026-12-10",
+      "category": "campaign",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide campaign",
+      "scheduleStatus": "scheduled",
+      "summary": "UN Women’s official 2026 campaign runs from 25 November through 10 December. The date range is inclusive; it does not imply one worldwide activity or event clock.",
+      "sourceIds": [
+        "AG-violence-women"
+      ],
+      "notes": [
+        "This campaign range overlaps two annual international days; the entries are different public-date records, not independent astrological confirmations."
+      ]
+    },
+    {
+      "id": "au-victoria-state-2026",
+      "title": "Victoria state election, Australia",
+      "date": "2026-11-28",
+      "category": "election",
+      "countryCodes": [
+        "AU"
+      ],
+      "scope": "Victoria · AU",
+      "scheduleStatus": "scheduled",
+      "summary": "The Victorian Electoral Commission lists the state election date. This is a Victoria state event, not an Australian federal election.",
+      "condition": null,
+      "sourceIds": [
+        "EL-vec2026"
+      ],
+      "notes": [
+        "A regional/state election, not a federal election.",
+        "Noon sample is not the official start; opening hours are retained only in the source receipt."
+      ]
+    },
+    {
+      "id": "tw-local-public-office-2026",
+      "title": "Taiwan local public-office elections",
+      "date": "2026-11-28",
+      "category": "election",
+      "countryCodes": [
+        "TW"
+      ],
+      "scope": "nationwide-local · TW",
+      "scheduleStatus": "scheduled",
+      "summary": "Taiwan’s official CEC public calendar data identifies the local public-office election date. This is not a presidential election.",
+      "condition": null,
+      "sourceIds": [
+        "EL-tw-cec-central"
+      ],
+      "notes": [
+        "Date decoded from the official homepage public calendarList record, calendarId 56."
+      ]
+    },
+    {
+      "id": "aids-who",
+      "title": "World AIDS Day",
+      "annual": {
+        "month": 12,
+        "day": 1,
+        "fromYear": 2026
+      },
+      "category": "international-day",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide observance",
+      "scheduleStatus": "annual-rule",
+      "summary": "The WHO campaign page states the annual date. The agenda does not invent a 2026 campaign theme.",
+      "sourceIds": [
+        "AG-aids-who"
+      ],
+      "notes": []
+    },
+    {
+      "id": "persons-disability-who",
+      "title": "International Day of Persons with Disabilities",
+      "annual": {
+        "month": 12,
+        "day": 3,
+        "fromYear": 2026
+      },
+      "category": "international-day",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide observance",
+      "scheduleStatus": "annual-rule",
+      "summary": "An annual UN observance documented by WHO. Local activities are not individually enumerated.",
+      "sourceIds": [
+        "AG-persons-disability-who"
+      ],
+      "notes": []
+    },
+    {
+      "id": "gm-presidential-2026",
+      "title": "The Gambia presidential election",
+      "date": "2026-12-05",
+      "category": "election",
+      "countryCodes": [
+        "GM"
+      ],
+      "scope": "national · GM",
+      "scheduleStatus": "scheduled",
+      "summary": "The Independent Electoral Commission’s event page and a dated preparation notice identify this election day.",
+      "condition": null,
+      "sourceIds": [
+        "EL-iec-presidential-event",
+        "EL-iec-oct15-preparations",
+        "EL-iec-home"
+      ],
+      "notes": [
+        "Official event and dated 15 October preparation notice agree on 5 December.",
+        "Retain date-only precision even though the event page prints unzoned opening hours."
+      ]
+    },
+    {
+      "id": "human-rights-ohchr-about",
+      "title": "Human Rights Day",
+      "annual": {
+        "month": 12,
+        "day": 10,
+        "fromYear": 2026
+      },
+      "category": "international-day",
+      "countryCodes": [
+        "GLOBAL"
+      ],
+      "scope": "Worldwide observance",
+      "scheduleStatus": "annual-rule",
+      "summary": "The official OHCHR account states the annual date and its historical establishment.",
+      "sourceIds": [
+        "AG-human-rights-ohchr-about"
+      ],
+      "notes": []
+    },
+    {
+      "id": "us-louisiana-house-runoff-2026",
+      "title": "Louisiana United States House runoff — if necessary",
+      "date": "2026-12-12",
+      "category": "election",
+      "countryCodes": [
+        "US"
+      ],
+      "scope": "Louisiana · US",
+      "scheduleStatus": "provisional",
+      "summary": "The FEC table lists this runoff date only if necessary. Whether any runoff will occur is not established by this snapshot.",
+      "condition": "Only if a House runoff is necessary under the applicable election rules; occurrence has not been established.",
+      "sourceIds": [
+        "EL-fec2026"
+      ],
+      "notes": [
+        "The FEC table explicitly labels the runoff column IF NECESSARY.",
+        "This is not confirmation that a runoff will take place in every or any district."
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "id": "AR",
+      "name": "Argentina",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "AU",
+      "name": "Australia",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "curated-events-present",
+      "note": "Only Victoria state election supported here. The attempted federal-calendar URL was a soft 404; federal coverage is not established."
+    },
+    {
+      "id": "BR",
+      "name": "Brazil",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "CA",
+      "name": "Canada",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "CN",
+      "name": "China",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "FR",
+      "name": "France",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "DE",
+      "name": "Germany",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "IN",
+      "name": "India",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "ID",
+      "name": "Indonesia",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "IT",
+      "name": "Italy",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "JP",
+      "name": "Japan",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "KR",
+      "name": "Republic of Korea",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "MX",
+      "name": "Mexico",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "RU",
+      "name": "Russian Federation",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "SA",
+      "name": "Saudi Arabia",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "ZA",
+      "name": "South Africa",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "TR",
+      "name": "Türkiye",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "GB",
+      "name": "United Kingdom",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "not-reviewed-in-this-pass",
+      "note": "No independent election-authority source check in this bounded pass. No verified event in this snapshot does not mean no election or other event occurs."
+    },
+    {
+      "id": "US",
+      "name": "United States",
+      "cohort": "Named major-country cohort · G20 sovereign-country target",
+      "status": "curated-events-present",
+      "note": "Federal congressional date source inspected; state and local completeness is not established."
+    },
+    {
+      "id": "EU",
+      "name": "European Union",
+      "cohort": "Institutional coverage target · not a country",
+      "status": "institutional-scope-only",
+      "note": "No institution-specific upcoming date was independently researched in this bounded pass. Worldwide observances are listed separately."
+    },
+    {
+      "id": "AFRICAN_UNION",
+      "name": "African Union",
+      "cohort": "Institutional coverage target · not a country",
+      "status": "institutional-scope-only",
+      "note": "No institution-specific upcoming date was independently researched in this bounded pass. Worldwide observances are listed separately."
+    },
+    {
+      "id": "BG",
+      "name": "Bulgaria",
+      "cohort": "Additional researched election jurisdiction",
+      "status": "curated-events-present",
+      "note": "Only the explicitly scoped official event date(s) in this dataset were inspected; no exhaustive national or local coverage is claimed."
+    },
+    {
+      "id": "GM",
+      "name": "The Gambia",
+      "cohort": "Additional researched election jurisdiction",
+      "status": "curated-events-present",
+      "note": "Only the explicitly scoped official event date(s) in this dataset were inspected; no exhaustive national or local coverage is claimed."
+    },
+    {
+      "id": "PE",
+      "name": "Peru",
+      "cohort": "Additional researched election jurisdiction",
+      "status": "curated-events-present",
+      "note": "Only the explicitly scoped official event date(s) in this dataset were inspected; no exhaustive national or local coverage is claimed."
+    },
+    {
+      "id": "TW",
+      "name": "Taiwan · election jurisdiction",
+      "cohort": "Additional researched election jurisdiction",
+      "status": "curated-events-present",
+      "note": "Only the explicitly scoped official event date(s) in this dataset were inspected; no exhaustive national or local coverage is claimed."
+    },
+    {
+      "id": "NZ",
+      "name": "New Zealand",
+      "cohort": "Additional attempted election-source check",
+      "status": "sources-unavailable",
+      "note": "Two official source requests returned small human-verification challenge pages. A proposed 7 November 2026 date remains unverified here and is not included as an event."
+    },
+    {
+      "id": "GLOBAL",
+      "name": "Worldwide observances",
+      "cohort": "Official international days and campaign dates",
+      "status": "global-observances",
+      "note": "A selected set of date rules from UNESCO, WHO, OHCHR and UN Women. Main UN pages returned access errors. This is not the full UN observance calendar or a list of every local activity."
+    }
+  ],
+  "limitations": [
+    "Curated dates only: six confirmed election-date records, one optional conditional runoff, eight annual observance rules and one dated campaign range.",
+    "Annual projections start in 2026; no earlier historical observance coverage is implied.",
+    "Source availability and a fresh research timestamp do not guarantee that future schedules have not changed. Verify the issuing authority before operational use.",
+    "No date-only event is assigned an inferred capital, poll-opening, closing, result or global event timestamp.",
+    "No comprehensive country/holiday/festival/election coverage or astrological outcome validity is claimed."
+  ]
+}

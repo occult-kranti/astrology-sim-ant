@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "a170499",
+  "createdAt": "2026-10-29T22:07:42.397Z",
+  "sources": {
+    "pages/studio.html": "d789ff197b7af09821fc82fa0270efbfc94fcec222f72ffc23286c9f1cfd104b",
+    "assets/js/app/studio.js": "b982e73341035e39b665082a1eb5b235f0f76dd147058862e570b3e45d3af35c",
+    "assets/js/core/symbols.js": "a7baf27d1e909133087a981d7dacb51ed8a33da9e5b37dd91e33ac9fc4e266f7",
+    "assets/js/core/kamea.js": "1b039f08dda2a36dc348aa52e4acc18131034f824dcb7d481410ac1b4be56004",
+    "assets/js/core/election.js": "381c42699d387d6a66aa2717507d3e2c927764ff79e45771abc33ba4a3da0e66",
+    "assets/js/core/practices.js": "b818e8eb8bdceef8e13ccbc80dda374be9e6416220de98d15d0087f523999f27",
+    "assets/js/core/registry.js": "459b33a9762793390ef7ab26b89abf59eb1659dd74671c35f5e2da88248e4121"
+  },
+  "records": [
+    {
+      "width": 320,
+      "route": "pages/studio.html",
+      "input": {
+        "task": "kamea",
+        "planet": "Saturn",
+        "method": "latin",
+        "text": "AAB"
+      },
+      "facts": "Order\n3 × 3\nEvery row / column / main diagonal\n15\nTotal\n45\nValidation\nPassed arithmetic checks\nNormalized letters\nAAB\nLetter\tValue → cell\tRow / column\nA\t1 → 1\t3 / 2\nA\t1 → 1\t3 / 2\nB\t2 → 2\t1 / 3",
+      "image": "baseline-symbol-320.png",
+      "layout": {
+        "viewport": 320,
+        "scrollWidth": 320
+      },
+      "errors": [],
+      "externalRequests": []
+    },
+    {
+      "width": 1365,
+      "route": "pages/studio.html",
+      "input": {
+        "task": "kamea",
+        "planet": "Saturn",
+        "method": "latin",
+        "text": "AAB"
+      },
+      "facts": "Order\n3 × 3\nEvery row / column / main diagonal\n15\nTotal\n45\nValidation\nPassed arithmetic checks\nNormalized letters\nAAB\nLetter\tValue → cell\tRow / column\nA\t1 → 1\t3 / 2\nA\t1 → 1\t3 / 2\nB\t2 → 2\t1 / 3",
+      "image": "baseline-symbol-1365.png",
+      "layout": {
+        "viewport": 1365,
+        "scrollWidth": 1365
+      },
+      "errors": [],
+      "externalRequests": []
+    }
+  ],
+  "scope": "Actual existing square-and-trace UI and relevant source contracts; not a new full-site baseline sweep"
+}

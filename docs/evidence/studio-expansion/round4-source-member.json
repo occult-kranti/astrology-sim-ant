@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "round": 4,
+  "role": "Book/cultural sources, standards and specialist instruction profiles",
+  "status": "PASS within reviewed source/provenance scope",
+  "basis": "Final independent source-member report and completed source ledger; not a new claim of full-book reading or human authority endorsement",
+  "findings": [
+    "16 standards and58profiles rendered; implementation/request-preview/template states remain distinct",
+    "Sigil source edition/section metadata and source-qualified image/trace distinctions preserved",
+    "Previously suspected source-prefix issue independently retracted; actual rendered local links preserve Pages prefix and return200",
+    "Primary-passage, newIntl fixture, source rights and provider/database/deployment limits remain explicit"
+  ],
+  "retractedFinding": {
+    "claim": "Day-guidance ROOT drops project prefix",
+    "result": "Disconfirmed: its own URL-valued ROOT has trailing slash; no URL patch justified"
+  },
+  "sourceHashes": {
+    "assets/js/core/data/observatory-standards.js": "327ac9f278680a398bd59d8dcbf696524f6a7526e9ef03a685c8a418fcb7ef8f",
+    "assets/js/app/standards.js": "f4f8b02c5e52dcd3b8ac4d8d860b5038677a1484a976b10ab04bdecb3f505379",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/app/day-guidance.js": "50acbb444e6488b92bad2a1175b6d49da62c5d885bedf588e89aea50eb9e026e",
+    "assets/js/core/sigil-design.js": "ed80cdf6523050cc302a119f5c400999128e23fb9fdd552b64fef694919224c0",
+    "assets/js/app/sigil-studio.js": "7a9bfc3a1ae4514121beefc8af92fc2c7ced60deaaa70b624a076c1d921edc43",
+    "docs/2026-10-studio-sources-standards.md": "800cd60c1d6223c9b816399ac9c1a5931e32ece2d9ef0fdec94f039e663d7101"
+  },
+  "verificationLimits": [
+    "AI-agent source review; not licensed/human practitioner approval",
+    "Existing337standards checks retained against unchanged source; not reported as newly rerun by QA",
+    "No paid API call, hosted database or authenticated remote client verified"
+  ]
+}

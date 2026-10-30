@@ -26,8 +26,16 @@ flag discrepancies in-data.** This skill operationalizes that.
    - **Time-varying** (star longitudes) → store a catalog epoch + compute live (precession
      ≈50.29″/yr); the snapshot is only a cross-check.
 5. **Output**: a one-line verdict + the citation string to paste into the data record, e.g.
-   `source: 'Agrippa, Three Books II.47 (esotericarchives)'` and, if needed,
-   `sourceNote: 'Sirius nature Jup+Mars (Agrippa) vs Venus (Lilly fixed-star table)'`.
+   `source: 'Agrippa, Three Books II.31 (esotericarchives), greater Dog-star'` and, if needed,
+   `sourceNote: 'The selected II.31 passage calls the greater Dog-star Venereal; historical printed zodiacal positions are not current catalogue coordinates.'`.
+
+   Source correction, 30 October 2026: the previous illustrative Sirius example
+   attributed Jupiter+Mars to Agrippa and Venus to Lilly without a checked locator.
+   Fresh reading of Agrippa II.31 contradicts that Agrippa attribution. Do not
+   propagate the old example as a verified variant. The existing Behenian data's
+   Venus association is retained; consult `docs/2026-10-sky-sources.md` for the
+   actual passage and reading scope. A different author's association needs its
+   own checked source before it becomes an encoded alternative.
 
 ## Known load-bearing caveats (already validated — keep these)
 - **Behenian:** Alkaid is the canonical 15th; **Fomalhaut is a Royal star, not a Behenian**

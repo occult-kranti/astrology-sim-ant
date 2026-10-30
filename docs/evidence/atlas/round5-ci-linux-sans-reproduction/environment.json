@@ -1,0 +1,22 @@
+{
+  "purpose": "Old-product failure reproduction with a verified ordinary Linux sans font; not a full clone of GitHub runner image.",
+  "baselineCommit": "6c62c10",
+  "playwrightVersion": "1.58.2",
+  "browserVersion": "145.0.7632.6",
+  "actualFonts": [
+    {
+      "familyName": "DejaVu Sans",
+      "postScriptName": "DejaVuSans",
+      "isCustomFont": false,
+      "glyphCount": 66
+    }
+  ],
+  "rowHeights": [
+    230.75,
+    230.75,
+    230.75
+  ],
+  "fontconfig": "fontconfig.xml: available DejaVu/Liberation fonts, Math TeX fallback excluded",
+  "command": "FONTCONFIG_FILE=/tmp/atlas-ci-dejavu-fonts.conf PLAYWRIGHT_BROWSERS_PATH=/tmp/atlas-ci-browsers PLAYWRIGHT_PKG=/tmp/atlas-ci-playwright/node_modules/playwright/index.mjs ATLAS_PHASE=research ATLAS_OUTPUT=<evidence-directory> node scripts/browser-atlas.mjs",
+  "limits": "Actual CI font remains unknown from its original receipt. This controlled probe establishes the same failure mechanism under verified DejaVu Sans."
+}

@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "method": "Normal permitted HTTPS access; retain all attempted URLs and failures. Full bodies remain outside repository.",
+  "downloads": [
+    {
+      "id": "apollo11",
+      "url": "https://www.nasa.gov/mission/apollo-11/",
+      "retrievedAt": "2026-10-29T23:37:03.628979+00:00",
+      "status": 200,
+      "finalURL": "https://www.nasa.gov/mission/apollo-11/",
+      "bytes": 393600,
+      "sha256": "a0a8c1918ebbffdf6c1640b0ddfb50a03efc0890017673ff4ad70d0cd564a225",
+      "initialTextExtractionError": "No module named 'bs4'",
+      "textExtractionRecovery": "Python standard-library HTMLParser; successful extraction and selected-passage reading recorded separately"
+    },
+    {
+      "id": "sputnik",
+      "url": "https://www.nasa.gov/history/sputnik/",
+      "retrievedAt": "2026-10-29T23:37:03.629600+00:00",
+      "status": 200,
+      "finalURL": "https://www.nasa.gov/history/sputnik/",
+      "bytes": 2468,
+      "sha256": "5955ce55430e1444e96f0a82c3aabe2fb40dac6abda253c707be86eece985622",
+      "initialTextExtractionError": "No module named 'bs4'",
+      "textExtractionRecovery": "Python standard-library HTMLParser; successful extraction and selected-passage reading recorded separately"
+    },
+    {
+      "id": "gagarin",
+      "url": "https://www.un.org/en/observances/human-spaceflight-day",
+      "retrievedAt": "2026-10-29T23:37:03.629985+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "uncharter",
+      "url": "https://www.un.org/en/about-us/history-of-the-un/1941-1950",
+      "retrievedAt": "2026-10-29T23:37:03.630375+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "udhr",
+      "url": "https://www.un.org/en/about-us/universal-declaration-of-human-rights",
+      "retrievedAt": "2026-10-29T23:37:03.630812+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "challenger",
+      "url": "https://www.nasa.gov/history/35-years-ago-remembering-challenger-and-her-crew/",
+      "retrievedAt": "2026-10-29T23:37:03.910757+00:00",
+      "status": 200,
+      "finalURL": "https://www.nasa.gov/history/35-years-ago-remembering-challenger-and-her-crew/",
+      "bytes": 317777,
+      "sha256": "ffc2acaa9bccab2de4f93c747b5273c625dc9892de753bb771b4095a6c2f147f",
+      "initialTextExtractionError": "No module named 'bs4'",
+      "textExtractionRecovery": "Python standard-library HTMLParser; successful extraction and selected-passage reading recorded separately"
+    },
+    {
+      "id": "chernobyl",
+      "url": "https://www.iaea.org/newscenter/focus/chernobyl",
+      "retrievedAt": "2026-10-29T23:37:03.923834+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "gagarin-nasa",
+      "url": "https://www.nasa.gov/history/60-years-ago-yuri-gagarin-becomes-the-first-human-in-space/",
+      "retrievedAt": "2026-10-29T23:40:43.845386+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "udhr-ohchr",
+      "url": "https://www.ohchr.org/en/universal-declaration-of-human-rights",
+      "retrievedAt": "2026-10-29T23:40:43.846109+00:00",
+      "status": 200,
+      "finalURL": "https://www.ohchr.org/en/universal-declaration-of-human-rights",
+      "bytes": 142007,
+      "sha256": "650f4da9b9fbca10cfa06205b6d0164269e7774fd2012b65178fb3f8ce590802"
+    },
+    {
+      "id": "sputnik-nasa",
+      "url": "https://www.nasa.gov/history/65-years-ago-sputnik-1-sparks-the-space-race/",
+      "retrievedAt": "2026-10-29T23:40:43.846487+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "apollo8",
+      "url": "https://www.nasa.gov/mission/apollo-8/",
+      "retrievedAt": "2026-10-29T23:40:43.847105+00:00",
+      "status": 200,
+      "finalURL": "https://www.nasa.gov/mission/apollo-8/",
+      "bytes": 368286,
+      "sha256": "08ddd7a3a5f4b285600b53951ffadf6c5f816c90f96631a280f7b49ea0d3a4e6"
+    },
+    {
+      "id": "sputnik-chronology",
+      "url": "https://www.nasa.gov/history/sputnik/chronology.html",
+      "retrievedAt": "2026-10-29T23:41:14.939469+00:00",
+      "status": 200,
+      "bytes": 3613,
+      "sha256": "54560a19a7ae7dcc94d95b8af47a995ec1e8b5ffac4cb7e7c88883fcbe385854"
+    },
+    {
+      "id": "apollo8-orbit",
+      "url": "https://www.nasa.gov/history/50-years-ago-apollo-8-in-lunar-orbit/",
+      "retrievedAt": "2026-10-29T23:41:15.382469+00:00",
+      "status": 200,
+      "bytes": 274891,
+      "sha256": "a96b0a72167c8c9682349741838890a577737057d86a051a8053c796e9d30898"
+    }
+  ],
+  "encodedSourceIds": [
+    "udhr-ohchr",
+    "sputnik-chronology",
+    "apollo8-orbit",
+    "apollo11",
+    "challenger"
+  ],
+  "unencodedReasons": {
+    "sputnik": "Index only; chronology followed and read",
+    "apollo8": "Mission index; specific lunar-orbit article followed and read",
+    "gagarin": "HTTP403; no factual encoding",
+    "uncharter": "HTTP403; no factual encoding",
+    "udhr": "HTTP403; OHCHR institutional page separately read",
+    "chernobyl": "HTTP404; no factual encoding",
+    "gagarin-nasa": "HTTP404; no factual encoding",
+    "sputnik-nasa": "HTTP404; actual legacy chronology used"
+  },
+  "readingDepth": "See core/data/calendar-search-events.js section/readingDepth per retained source; no full book or source collection reading claimed.",
+  "round2ModeratorDownloads": [
+    {
+      "id": "un-history",
+      "url": "https://www.un.org/en/about-us/history-of-the-un",
+      "retrievedAt": "2026-10-29T23:49:19.593701+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "d-day",
+      "url": "https://www.iwm.org.uk/history/the-story-of-d-day",
+      "retrievedAt": "2026-10-29T23:49:19.594474+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "who-timeline",
+      "url": "https://www.who.int/news/item/27-04-2020-who-timeline---covid-19",
+      "retrievedAt": "2026-10-29T23:49:19.594919+00:00",
+      "status": 200,
+      "finalUrl": "https://www.who.int/news/item/27-04-2020-who-timeline---covid-19",
+      "sha256": "d75de5396b8c3f29cd9bd9d07762c50cd16a28796ba9cbe32e8d7299bf7cb607",
+      "bytes": 110645
+    },
+    {
+      "id": "india-independence",
+      "url": "https://www.nationalarchives.gov.uk/education/resources/independence-india/",
+      "retrievedAt": "2026-10-29T23:49:19.595514+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "germany-surrender",
+      "url": "https://www.archives.gov/milestone-documents/surrender-of-germany",
+      "retrievedAt": "2026-10-29T23:50:46.278333+00:00",
+      "status": 200,
+      "finalUrl": "https://www.archives.gov/milestone-documents/surrender-of-germany",
+      "sha256": "00126bb53c861edb7574b42879c7a291af23cccfbe94a7e427e429f1dc8f52ad",
+      "bytes": 39000
+    },
+    {
+      "id": "d-day-facts",
+      "url": "https://www.iwm.org.uk/history/the-10-things-you-need-to-know-about-d-day",
+      "retrievedAt": "2026-10-29T23:50:46.279137+00:00",
+      "status": 200,
+      "finalUrl": "https://www.iwm.org.uk/history/second-world-war/d-day/10-things-you-need-to-know-about-d-day",
+      "sha256": "8d94ca26cb22c9687da13792b08a92ce65b39f945c9e846d2cbc8ed5a31f923d",
+      "bytes": 116625
+    }
+  ],
+  "round2Reading": "Source member independently read retained WHO characterization paragraph and archival-version notice, IWM introduction/item1, and NARA Reims signing plus separate Berlin signing paragraph; no full linked collections read."
+}

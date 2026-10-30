@@ -1,0 +1,44 @@
+{
+  "kind": "independent-R3-personal-worker-lifecycle",
+  "checks": [
+    "Native worker completes three actual samples",
+    "Recorded birth computes only after explicit apply",
+    "Public search JSON excludes 1990-07-15",
+    "Public search JSON excludes 28.61391",
+    "Public search JSON excludes 77.20901",
+    "Public search JSON excludes Asia/Calcutta",
+    "Public search JSON excludes birthInput",
+    "Actual personal default download is method metadata without birth",
+    "Disclosure change invalidates reviewed preview",
+    "Explicit reviewed private download includes requested input",
+    "Applying birth creates no local/session storage",
+    "Birth enters neither URL nor Worker request",
+    "Editing birth removes stale private results and download",
+    "Editing birth resets private disclosure",
+    "Clear empties private form fields",
+    "Controlled late old native result cannot replace newer running job",
+    "Controlled late delivery after cancellation cannot revive exports",
+    "Cancellation actually terminates native worker",
+    "Controlled delayed File.text cannot apply after context revision",
+    "Imported provenance remains unverified after actual application",
+    "Oversized import rejects before replacing existing events",
+    "getValue is frozen; public refresh(null) retains applied memory input but clears result",
+    "clear/destroy remove callback value and component DOM",
+    "No external network request during workflows",
+    "No uncaught browser error"
+  ],
+  "servedSourceHashes": {
+    "/assets/js/app/calendar-search.js": "a8ee4649539144f36c725205837d9ebb7c52a61237c066976683d973b3ce29bc",
+    "/assets/js/core/calendar-search.js": "27f33f444492015d755b2b5c4c4944055457e66679588ecda7ea5cca08d15920",
+    "/assets/js/app/personal-calendar.js": "14f602f27719feb20944a2bea29c542ab27e57f29d43ad0abb8ee4a636e20dcb",
+    "/assets/js/core/personal-calendar.js": "06a25c33883c74ba23ceab1df7f9131c03eeaf6e0f79471671308a5d29f4a812",
+    "/assets/js/workers/calendar-search-worker.js": "0895f5c200e9c4b73d0b3c2f6b00e57e23acd9b858e777a6566ca3f0e72bc020"
+  },
+  "controlledDelays": [
+    "A File.text promise is held until the test explicitly releases it.",
+    "Previously recorded native Worker results are dispatched to old listeners to simulate late delivery; no fabricated calculation data used."
+  ],
+  "external": [],
+  "errors": [],
+  "verdict": "PASS"
+}

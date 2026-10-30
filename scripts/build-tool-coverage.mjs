@@ -1,0 +1,10 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { getToolGuide } from '../assets/js/core/tool-guide.js';
+import { TOOLS } from '../mcp/toolkit.mjs';
+const guide=getToolGuide(),names=new Set(TOOLS.map(x=>x.name)),check=process.argv.includes('--check');
+for(const row of guide.rows)for(const name of row.support.mcpTools)if(!names.has(name))throw new Error(`Guide ${row.id} promises missing MCP tool ${name}`);
+const rows=guide.rows.map(row=>({id:row.id,title:row.title,pages:row.pages,localFunctionInputs:row.localFunctionInputs,inputContractNote:row.inputContractNote,mcpContracts:row.mcpContracts,mcpTools:row.support.mcpTools,outputPaths:row.support.outputPaths,scope:row.support.scope,browserFunction:row.support.browserFunction,source:row.source,execution:row.support.mcpTools.length?'named-source-adapter':'guide-and-local-workflow'}));
+const data={schemaVersion:1,kind:'tool-coverage',capabilities:rows.length,mcpTools:TOOLS.length,capabilitiesWithNamedAdapters:rows.filter(x=>x.mcpTools.length).length,guideOnlyCapabilities:rows.filter(x=>!x.mcpTools.length).length,localGuideRoutes:new Set(rows.flatMap(x=>x.pages)).size,hostedMCP:'Not established by local source coverage; verify tools/list on the deployed revision.',note:'A named adapter can expose a documented subset. Output paths and scope distinguish it from the full local page or every function option. Source validation and numerical consistency are separate.',rows};
+const path=new URL('../docs/2026-10-sky-tool-coverage.json',import.meta.url),bytes=JSON.stringify(data,null,2)+'\n';
+if(check){if(readFileSync(path,'utf8')!==bytes)throw new Error('Stale tool coverage. Run node scripts/build-tool-coverage.mjs.');}else writeFileSync(path,bytes);
+console.log(JSON.stringify({mode:check?'check':'generate',capabilities:data.capabilities,mcpTools:data.mcpTools,withNamedAdapters:data.capabilitiesWithNamedAdapters,guideOnly:data.guideOnlyCapabilities,routes:data.localGuideRoutes}));

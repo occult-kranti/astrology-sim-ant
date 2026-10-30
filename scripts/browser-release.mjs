@@ -9,7 +9,7 @@ import { performance } from 'node:perf_hooks';
 import { dirname, extname, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const output = resolve(root, 'test-results');
+const output = process.env.BROWSER_OUTPUT ? resolve(process.env.BROWSER_OUTPUT) : resolve(root, 'test-results');
 await mkdir(output, { recursive: true });
 async function loadPlaywright() {
   if (process.env.PLAYWRIGHT_PKG) return import(pathToFileURL(resolve(process.env.PLAYWRIGHT_PKG)).href);
@@ -501,15 +501,16 @@ try {
       await page.goto(base + 'pages/mcp.html', { waitUntil: 'networkidle' });
       const catalogue = await (await catalogueResponse).json();
       assert.equal(catalogue.staticPageIsMcpServer, false, 'static discovery is distinct from the executable MCP backend');
-      assert.equal(catalogue.tools.length, 11);
-      assert.equal(new Set(catalogue.tools.map(tool => tool.name)).size, 11);
+      const sourceTools = (await import('../mcp/toolkit.mjs')).TOOLS;
+      assert.deepEqual(catalogue.tools.map(tool => tool.name).sort(), sourceTools.map(tool => tool.name).sort(), 'catalogue names match the reviewed server source');
+      assert.equal(new Set(catalogue.tools.map(tool => tool.name)).size, sourceTools.length);
       assert.ok(catalogue.tools.every(tool => tool.inputSchema.type === 'object' && tool.inputSchema.additionalProperties === false && Array.isArray(tool.inputSchema.required)), 'published catalogue carries strict input schemas');
       assert.equal(await page.locator('#mcpEndpoint').inputValue(), catalogue.endpoint);
       assert.equal(new URL(catalogue.endpoint).protocol, 'https:');
       assert.equal(new URL(catalogue.endpoint).pathname, '/mcp');
       await textIncludes(page, 'main', 'Pages cannot execute server code');
       await textIncludes(page, '#mcpConnectionStatus', 'does not connect or send personal inputs automatically');
-      assert.equal(await page.locator('#mcpTools article').count(), 11);
+      assert.equal(await page.locator('#mcpTools article').count(), sourceTools.length);
       await page.locator('#mcpFilter').fill('gematria');
       assert.equal(await page.locator('#mcpTools article').count(), 1);
       await textIncludes(page, '#mcpTools', 'workbench_gematria');
@@ -517,7 +518,7 @@ try {
       assert.equal(await page.locator('#mcpTools article').count(), 0);
       await textIncludes(page, '#mcpCatalogueStatus', 'Try a broader search');
       await page.locator('#mcpFilter').fill('');
-      assert.equal(await page.locator('#mcpTools article').count(), 11);
+      assert.equal(await page.locator('#mcpTools article').count(), sourceTools.length);
       await usable(page, '#mcpCopyEndpoint'); await page.locator('#mcpCopyEndpoint').click();
       await textIncludes(page, '#mcpConnectionStatus', 'Endpoint copied');
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), catalogue.endpoint, 'copy writes the actual endpoint');
@@ -674,6 +675,9 @@ try {
     page.on('response', response => { if (response.status() >= 400) errors.push('HTTP ' + response.status() + ' ' + response.url()); });
     try {
       await page.goto(base + path, { waitUntil: 'networkidle', timeout: 30000 });
+      if (path === 'pages/master.html') {
+        await page.waitForURL(base + 'pages/workbench.html', { waitUntil: 'networkidle' });
+      }
       await page.locator('header.site').waitFor({ timeout: 10000 });
       assert.equal(await page.locator('main').count(), 1, 'one main landmark');
       assert.ok(await page.locator('nav.main[aria-label]').count(), 'labelled navigation');

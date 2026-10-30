@@ -1,0 +1,125 @@
+{
+  "retrievedAt": "2026-10-30T01:21:52.328423+00:00",
+  "source": "NASA JPL Horizons observer quantity31, geocenter500@399, target centers",
+  "frame": "Observer-centered IAU76/80 ecliptic-of-date apparent longitude and latitude, with light-time, gravitational deflection and stellar aberrations; not exactly the same precession/nutation/relativity model as bundled Astronomy Engine",
+  "units": "degrees",
+  "fixtures": [
+    {
+      "body": "Sun",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 216.5780701,
+      "latitude": 0.0001709,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "39776a716de34975119e22c87118e33683f29fc29cd5b439b2949cd1ae42d3be",
+      "responseFile": "horizons-Sun-2026-10-30.json"
+    },
+    {
+      "body": "Moon",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 88.7292754,
+      "latitude": 4.296386,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27301%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "3ca01692bd1e5c65d1e362d1b30f4f5035848bc338837061aed5556a77d5f97a",
+      "responseFile": "horizons-Moon-2026-10-30.json"
+    },
+    {
+      "body": "Mercury",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 228.6218792,
+      "latitude": -2.0864,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27199%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "5197ca016f8b0fffb64e6629fd26dc3e5259f66ecec070c1f5f16316baee1b06",
+      "responseFile": "horizons-Mercury-2026-10-30.json"
+    },
+    {
+      "body": "Venus",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 207.2929873,
+      "latitude": -5.3359871,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27299%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "d0edff1ddddf2416f8da43731245993ff7f353ad153c166981d44898f1c2600d",
+      "responseFile": "horizons-Venus-2026-10-30.json"
+    },
+    {
+      "body": "Mars",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 137.607935,
+      "latitude": 1.5589411,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27499%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "c7ae657f5dc355dd502e47c7320e49340d84c563c450b0a1b8717f22447dac1d",
+      "responseFile": "horizons-Mars-2026-10-30.json"
+    },
+    {
+      "body": "Jupiter",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 144.075455,
+      "latitude": 0.68334,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27599%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "85df23d6f36a0706640879513aa80998bb4d0e52e8636a6c0220dee954e0a932",
+      "responseFile": "horizons-Jupiter-2026-10-30.json"
+    },
+    {
+      "body": "Saturn",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 9.414388,
+      "latitude": -2.6892382,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27699%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "a4a150c2db86702f699baf18516098435ff7f3d83d6698e3d5a6d591cdd156a0",
+      "responseFile": "horizons-Saturn-2026-10-30.json"
+    },
+    {
+      "body": "Uranus",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 64.7477392,
+      "latitude": -0.1514885,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27799%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "78f4b0736c6e6f72d2311fe47c86b84f8d2e46d1db8aac6210a727a58aee4603",
+      "responseFile": "horizons-Uranus-2026-10-30.json"
+    },
+    {
+      "body": "Neptune",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 2.1265297,
+      "latitude": -1.4152309,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27899%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "f41e963eac51a0124f06a9381b2919dd317e52546559bd5fa4e830b927606d82",
+      "responseFile": "horizons-Neptune-2026-10-30.json"
+    },
+    {
+      "body": "Pluto",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "longitude": 303.1143228,
+      "latitude": -4.2739994,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27999%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "e481409d10585bb05cc3a825e9f32ae03d7581bdaeb091a1d2ba3fd77c8b2ee4",
+      "responseFile": "horizons-Pluto-2026-10-30.json"
+    },
+    {
+      "body": "Sun",
+      "dateISO": "1900-01-01T00:00:00Z",
+      "longitude": 280.1532941,
+      "latitude": 6.48e-05,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%271900-01-01+00%3A00%27&STOP_TIME=%271900-01-01+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "37344b9984c8090d1bc8889f219285ff0265fbc5d220b9da844796bd0920ca58",
+      "responseFile": "horizons-Sun-1900-01-01.json"
+    },
+    {
+      "body": "Neptune",
+      "dateISO": "2000-01-01T00:00:00Z",
+      "longitude": 303.1752432,
+      "latitude": 0.2351174,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27899%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272000-01-01+00%3A00%27&STOP_TIME=%272000-01-01+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "d008bd1b7cead3cec04245bdb0562fb8905e6d08548eaa0e0337780ca68aa6f5",
+      "responseFile": "horizons-Neptune-2000-01-01.json"
+    },
+    {
+      "body": "Pluto",
+      "dateISO": "2100-12-31T00:00:00Z",
+      "longitude": 33.3846656,
+      "latitude": -16.8754213,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27999%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272100-12-31+00%3A00%27&STOP_TIME=%272100-12-31+00%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "0e0a3769fb0790d63f4ffd1642f0a7cba50f97ddda5d29bb9eec95b4de576abe",
+      "responseFile": "horizons-Pluto-2100-12-31.json"
+    }
+  ]
+}

@@ -1,0 +1,591 @@
+{
+  "schemaVersion": 1,
+  "phase": "journeys",
+  "startedAt": "2026-10-29T21:23:41.149Z",
+  "source": {
+    "baseCommit": "5f030c0e2998c0276a0549707b5578614ccdf7d9",
+    "rootIsImmutableBaseline": false
+  },
+  "environment": {
+    "browser": "Chromium",
+    "serviceWorkers": "blocked",
+    "reducedMotion": "reduce",
+    "screenReader": false,
+    "realPhone": false,
+    "version": "154.0.8037.57"
+  },
+  "sweeps": [],
+  "screenshots": [
+    {
+      "path": "journey-320-home.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      }
+    },
+    {
+      "path": "journey-320-compare.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      }
+    },
+    {
+      "path": "journey-390-home.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "journey-390-compare.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "journey-1365-home.png",
+      "viewport": {
+        "width": 1365,
+        "height": 900
+      }
+    },
+    {
+      "path": "journey-1365-compare.png",
+      "viewport": {
+        "width": 1365,
+        "height": 900
+      }
+    }
+  ],
+  "checks": [
+    {
+      "label": "London is explicit default example 320",
+      "pass": true
+    },
+    {
+      "label": "homepage Monday week alignment 320",
+      "pass": true
+    },
+    {
+      "label": "download succeeds: #homeDownload",
+      "pass": true
+    },
+    {
+      "label": "actual 14-day export 320",
+      "pass": true
+    },
+    {
+      "label": "every day is local-noon calculated snapshot 320",
+      "pass": true
+    },
+    {
+      "label": "automatic midnight/Monday week rollover 320",
+      "pass": true
+    },
+    {
+      "label": "no implicit permissions 320",
+      "pass": true,
+      "details": {
+        "location": 0,
+        "camera": 0,
+        "motion": 0
+      }
+    },
+    {
+      "label": "homepage 320 reflow",
+      "pass": true,
+      "details": {
+        "width": 320,
+        "scrollWidth": 320,
+        "main": 1,
+        "header": true,
+        "title": "Today & the weeks ahead — The Astrologer's Workbench",
+        "h1": "One moment.Many ways to read it.",
+        "skip": true
+      }
+    },
+    {
+      "label": "home AI preview prepared locally 320",
+      "pass": true
+    },
+    {
+      "label": "date edit freezes live clock 320",
+      "pass": true
+    },
+    {
+      "label": "stale home export disabled 320",
+      "pass": true
+    },
+    {
+      "label": "stale home AI preview cleared 320",
+      "pass": true
+    },
+    {
+      "label": "home DST recovery 320",
+      "pass": true
+    },
+    {
+      "label": "original collection preserved and reachable 320",
+      "pass": true
+    },
+    {
+      "label": "incoming exact instant resolves actual DST occurrence 320",
+      "pass": true
+    },
+    {
+      "label": "13 named civil conventions rendered 320",
+      "pass": true
+    },
+    {
+      "label": "download succeeds: #obs-json",
+      "pass": true
+    },
+    {
+      "label": "JSON exports actual displayed context 320",
+      "pass": true
+    },
+    {
+      "label": "exported methods and day boundaries 320",
+      "pass": true
+    },
+    {
+      "label": "default AI packet omits observer location and zone 320",
+      "pass": true
+    },
+    {
+      "label": "ChatGPT link has no packet query or automatic send 320",
+      "pass": true
+    },
+    {
+      "label": "local deterministic explanation is available 320",
+      "pass": true
+    },
+    {
+      "label": "disclosure change clears old preview 320",
+      "pass": true
+    },
+    {
+      "label": "explicit disclosure includes selected observer 320",
+      "pass": true
+    },
+    {
+      "label": "clipboard failure provides selected manual-copy text 320",
+      "pass": true
+    },
+    {
+      "label": "question edit clears copied preview 320",
+      "pass": true
+    },
+    {
+      "label": "edited comparison disables stale exports and links 320",
+      "pass": true
+    },
+    {
+      "label": "ambiguous fold error associated with choice 320",
+      "pass": true
+    },
+    {
+      "label": "gap error retains entered date and time 320",
+      "pass": true
+    },
+    {
+      "label": "comparison 320 reflow",
+      "pass": true,
+      "details": {
+        "width": 320,
+        "scrollWidth": 320,
+        "main": 1,
+        "header": true,
+        "title": "Compare one moment | The Astrologer's Workbench",
+        "h1": "One moment.Many ways of keeping time.",
+        "skip": true
+      }
+    },
+    {
+      "label": "comparison JSON 320 target reachable and unobscured",
+      "pass": true,
+      "details": {
+        "width": 288,
+        "height": 44,
+        "hit": true
+      }
+    },
+    {
+      "label": "location permission only after explicit click 320",
+      "pass": true
+    },
+    {
+      "label": "mobile dock opens complete navigation 320",
+      "pass": true
+    },
+    {
+      "label": "Escape closes group 320",
+      "pass": true
+    },
+    {
+      "label": "Escape closes drawer 320",
+      "pass": true
+    },
+    {
+      "label": "invalid incoming link is held, not replaced by now 320",
+      "pass": true
+    },
+    {
+      "label": "London is explicit default example 390",
+      "pass": true
+    },
+    {
+      "label": "homepage Monday week alignment 390",
+      "pass": true
+    },
+    {
+      "label": "download succeeds: #homeDownload",
+      "pass": true
+    },
+    {
+      "label": "actual 14-day export 390",
+      "pass": true
+    },
+    {
+      "label": "every day is local-noon calculated snapshot 390",
+      "pass": true
+    },
+    {
+      "label": "automatic midnight/Monday week rollover 390",
+      "pass": true
+    },
+    {
+      "label": "no implicit permissions 390",
+      "pass": true,
+      "details": {
+        "location": 0,
+        "camera": 0,
+        "motion": 0
+      }
+    },
+    {
+      "label": "homepage 390 reflow",
+      "pass": true,
+      "details": {
+        "width": 390,
+        "scrollWidth": 390,
+        "main": 1,
+        "header": true,
+        "title": "Today & the weeks ahead — The Astrologer's Workbench",
+        "h1": "One moment.Many ways to read it.",
+        "skip": true
+      }
+    },
+    {
+      "label": "home AI preview prepared locally 390",
+      "pass": true
+    },
+    {
+      "label": "date edit freezes live clock 390",
+      "pass": true
+    },
+    {
+      "label": "stale home export disabled 390",
+      "pass": true
+    },
+    {
+      "label": "stale home AI preview cleared 390",
+      "pass": true
+    },
+    {
+      "label": "home DST recovery 390",
+      "pass": true
+    },
+    {
+      "label": "original collection preserved and reachable 390",
+      "pass": true
+    },
+    {
+      "label": "incoming exact instant resolves actual DST occurrence 390",
+      "pass": true
+    },
+    {
+      "label": "13 named civil conventions rendered 390",
+      "pass": true
+    },
+    {
+      "label": "download succeeds: #obs-json",
+      "pass": true
+    },
+    {
+      "label": "JSON exports actual displayed context 390",
+      "pass": true
+    },
+    {
+      "label": "exported methods and day boundaries 390",
+      "pass": true
+    },
+    {
+      "label": "default AI packet omits observer location and zone 390",
+      "pass": true
+    },
+    {
+      "label": "ChatGPT link has no packet query or automatic send 390",
+      "pass": true
+    },
+    {
+      "label": "local deterministic explanation is available 390",
+      "pass": true
+    },
+    {
+      "label": "disclosure change clears old preview 390",
+      "pass": true
+    },
+    {
+      "label": "explicit disclosure includes selected observer 390",
+      "pass": true
+    },
+    {
+      "label": "clipboard failure provides selected manual-copy text 390",
+      "pass": true
+    },
+    {
+      "label": "question edit clears copied preview 390",
+      "pass": true
+    },
+    {
+      "label": "edited comparison disables stale exports and links 390",
+      "pass": true
+    },
+    {
+      "label": "ambiguous fold error associated with choice 390",
+      "pass": true
+    },
+    {
+      "label": "gap error retains entered date and time 390",
+      "pass": true
+    },
+    {
+      "label": "comparison 390 reflow",
+      "pass": true,
+      "details": {
+        "width": 390,
+        "scrollWidth": 390,
+        "main": 1,
+        "header": true,
+        "title": "Compare one moment | The Astrologer's Workbench",
+        "h1": "One moment.Many ways of keeping time.",
+        "skip": true
+      }
+    },
+    {
+      "label": "comparison JSON 390 target reachable and unobscured",
+      "pass": true,
+      "details": {
+        "width": 163.96875,
+        "height": 44,
+        "hit": true
+      }
+    },
+    {
+      "label": "location permission only after explicit click 390",
+      "pass": true
+    },
+    {
+      "label": "mobile dock opens complete navigation 390",
+      "pass": true
+    },
+    {
+      "label": "Escape closes group 390",
+      "pass": true
+    },
+    {
+      "label": "Escape closes drawer 390",
+      "pass": true
+    },
+    {
+      "label": "invalid incoming link is held, not replaced by now 390",
+      "pass": true
+    },
+    {
+      "label": "London is explicit default example 1365",
+      "pass": true
+    },
+    {
+      "label": "homepage Monday week alignment 1365",
+      "pass": true
+    },
+    {
+      "label": "download succeeds: #homeDownload",
+      "pass": true
+    },
+    {
+      "label": "actual 14-day export 1365",
+      "pass": true
+    },
+    {
+      "label": "every day is local-noon calculated snapshot 1365",
+      "pass": true
+    },
+    {
+      "label": "automatic midnight/Monday week rollover 1365",
+      "pass": true
+    },
+    {
+      "label": "no implicit permissions 1365",
+      "pass": true,
+      "details": {
+        "location": 0,
+        "camera": 0,
+        "motion": 0
+      }
+    },
+    {
+      "label": "homepage 1365 reflow",
+      "pass": true,
+      "details": {
+        "width": 1365,
+        "scrollWidth": 1365,
+        "main": 1,
+        "header": true,
+        "title": "Today & the weeks ahead — The Astrologer's Workbench",
+        "h1": "One moment.Many ways to read it.",
+        "skip": true
+      }
+    },
+    {
+      "label": "home AI preview prepared locally 1365",
+      "pass": true
+    },
+    {
+      "label": "date edit freezes live clock 1365",
+      "pass": true
+    },
+    {
+      "label": "stale home export disabled 1365",
+      "pass": true
+    },
+    {
+      "label": "stale home AI preview cleared 1365",
+      "pass": true
+    },
+    {
+      "label": "home DST recovery 1365",
+      "pass": true
+    },
+    {
+      "label": "original collection preserved and reachable 1365",
+      "pass": true
+    },
+    {
+      "label": "incoming exact instant resolves actual DST occurrence 1365",
+      "pass": true
+    },
+    {
+      "label": "13 named civil conventions rendered 1365",
+      "pass": true
+    },
+    {
+      "label": "download succeeds: #obs-json",
+      "pass": true
+    },
+    {
+      "label": "JSON exports actual displayed context 1365",
+      "pass": true
+    },
+    {
+      "label": "exported methods and day boundaries 1365",
+      "pass": true
+    },
+    {
+      "label": "default AI packet omits observer location and zone 1365",
+      "pass": true
+    },
+    {
+      "label": "ChatGPT link has no packet query or automatic send 1365",
+      "pass": true
+    },
+    {
+      "label": "local deterministic explanation is available 1365",
+      "pass": true
+    },
+    {
+      "label": "disclosure change clears old preview 1365",
+      "pass": true
+    },
+    {
+      "label": "explicit disclosure includes selected observer 1365",
+      "pass": true
+    },
+    {
+      "label": "clipboard failure provides selected manual-copy text 1365",
+      "pass": true
+    },
+    {
+      "label": "question edit clears copied preview 1365",
+      "pass": true
+    },
+    {
+      "label": "edited comparison disables stale exports and links 1365",
+      "pass": true
+    },
+    {
+      "label": "ambiguous fold error associated with choice 1365",
+      "pass": true
+    },
+    {
+      "label": "gap error retains entered date and time 1365",
+      "pass": true
+    },
+    {
+      "label": "comparison 1365 reflow",
+      "pass": true,
+      "details": {
+        "width": 1365,
+        "scrollWidth": 1365,
+        "main": 1,
+        "header": true,
+        "title": "Compare one moment | The Astrologer's Workbench",
+        "h1": "One moment.Many ways of keeping time.",
+        "skip": true
+      }
+    },
+    {
+      "label": "comparison JSON 1365 target reachable and unobscured",
+      "pass": true,
+      "details": {
+        "width": 145.734375,
+        "height": 44,
+        "hit": true
+      }
+    },
+    {
+      "label": "location permission only after explicit click 1365",
+      "pass": true
+    },
+    {
+      "label": "invalid incoming link is held, not replaced by now 1365",
+      "pass": true
+    },
+    {
+      "label": "live known instant is not rejected as ambiguous wall time",
+      "pass": true
+    },
+    {
+      "label": "live fold retains follow-present mode",
+      "pass": true
+    },
+    {
+      "label": "zero browser runtime exceptions",
+      "pass": true,
+      "details": []
+    },
+    {
+      "label": "zero missing local resources",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "missing": [],
+  "finishedAt": "2026-10-29T21:23:53.054Z",
+  "pass": true
+}

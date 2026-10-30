@@ -1,0 +1,13 @@
+{
+  "round": 2,
+  "checks": [
+    "criterion addition independent of reversed searchrange",
+    "event association succeeds with reversed searchrange",
+    "association actual exportedrequest omits searchrange",
+    "criterion addition ignores oversized range and invalid searchresultcap",
+    "association ignores oversized range and invalid searchresultcap",
+    "no runtime errors"
+  ],
+  "errors": [],
+  "pass": true
+}

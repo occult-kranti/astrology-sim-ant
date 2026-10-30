@@ -1,0 +1,88 @@
+{
+  "round": 4,
+  "scope": "390px personal integrated known/unknown/edit/cancel/clear and return claims",
+  "checks": [
+    "Birth disclosure starts optional, collapsed, empty and unknown-time",
+    "Optional birth control opens by keyboard",
+    "Known-time reading labels the actual resolved UTC birth",
+    "Real solar/lunar recurrence output is visible when requested",
+    "Return scope distinguishes annual solar, next tropical lunar and unavailable variants",
+    "Visible personal fields/actions retain44px targets and16px text",
+    "390px integrated page has no horizontal page overflow",
+    "Switching to unknown removes prior timed output before recomputation",
+    "Unknown-time reading describes the real25-hour interval and estimated arcs",
+    "Unknown-time result does not preserve numerical ascendant or da\u015b\u0101 from prior record",
+    "Unknown-time return is visibly withheld despite prior known-time request",
+    "Public cancellation clears personal comparison but truthfully retains applied memory input",
+    "Clear explicitly erases known and unknown birth form fields",
+    "No uncaught browser errors or external requests"
+  ],
+  "sources": {
+    "/assets/css/calendar-search.css": "a80f5519fd3f8c1012c3ab9854de104065c84d8cdbe16c052a0fb9bf737f12c2",
+    "/assets/css/personal-calendar.css": "ca5d7419b165e9aa71fab5f115989f8d486d073d4c3c21590d4fcfd2db1f388a",
+    "/assets/js/app/calendar-search.js": "12aa71c06359cdefb46142d6d4bbc0846a4874e819504e8d361cf38e98f55733",
+    "/assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "/assets/js/app/personal-calendar.js": "14f602f27719feb20944a2bea29c542ab27e57f29d43ad0abb8ee4a636e20dcb",
+    "/assets/js/core/personal-calendar.js": "06a25c33883c74ba23ceab1df7f9131c03eeaf6e0f79471671308a5d29f4a812"
+  },
+  "errors": [],
+  "external": [],
+  "screenshots": [
+    "atlas-r4-personal-known390.png",
+    "atlas-r4-personal-unknown390.png"
+  ],
+  "visibleControlMetrics": [
+    {
+      "height": 52.765625,
+      "font": 16
+    },
+    {
+      "height": 50.765625,
+      "font": 16
+    },
+    {
+      "height": 52.765625,
+      "font": 16
+    },
+    {
+      "height": 46.78125,
+      "font": 16
+    },
+    {
+      "height": 50.765625,
+      "font": 16
+    },
+    {
+      "height": 50.765625,
+      "font": 16
+    },
+    {
+      "height": 46.78125,
+      "font": 16
+    },
+    {
+      "height": 45.171875,
+      "font": 16
+    },
+    {
+      "height": 49.171875,
+      "font": 16
+    },
+    {
+      "height": 49.171875,
+      "font": 16
+    },
+    {
+      "height": 49.171875,
+      "font": 16
+    }
+  ],
+  "verdict": "ACCEPT",
+  "postRunReview": {
+    "finding": "Shared observatory action styles loaded later reduced personal action labels to 14.4px. Parent/body text and form inputs were already 16px.",
+    "initialInferenceCorrection": "Initial body-inheritance inference was disproved by computed ancestor styles. A trial base font reset did not fix action buttons and was removed.",
+    "acceptedFix": "Only .pc-panel button[type][data-pc-action]{font-size:1rem} added to beat the later shared button specificity.",
+    "visualInspection": "Known/unknown return screenshots inspected at 390\u00d7844; readable wrapping and no page overflow.",
+    "evidenceLimit": "Local Chromium, synthetic birth data; not a human study or a hosted deployment."
+  }
+}

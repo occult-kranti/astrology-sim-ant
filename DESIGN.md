@@ -1,5 +1,32 @@
 # Workbench design direction
 
+## Calendar Observatory revision — 2026-10-29
+
+The redesign branch uses an ivory paper, dark green ink, rust actions and muted
+gold rules, with serif headings and readable sans-serif controls. The shared
+`observatory.css` layer changes presentation across existing pages without
+changing their route IDs, numerical engines or saved formats. The earlier Studio
+contracts below still describe their interactions; this section supersedes their
+navy-navigation presentation where the new shared shell applies.
+
+Mobile starts with Today, Compare, Tools, Library and Menu in a bottom dock,
+alongside the compact header's search and complete grouped navigation. The full
+feature catalogue is retained. Tables and large diagrams scroll locally when
+necessary; ordinary content reflows. Controls target at least 44px with 16px form
+text. Native date/time fields occupy a full row below 480px so complete dates,
+seconds and day periods remain visible. Sticky chrome, keyboard focus, reduced
+motion and print output are checked alongside the numerical results.
+
+The homepage composes an editable context, current source-labelled reading,
+two-week almanac, study paths and optional AI disclosure. Comparison aligns the
+same instant across named methods, keeping boundaries and validation notes near
+each result. Details reveal secondary provenance without turning an untimed
+classification into an active instruction. Editing invalidates exports and AI
+previews while retaining the previous labelled result for recovery.
+
+See `.design/observatory-mobile.md` and the dated Observatory verification/panel
+documents for the actual browser evidence and remaining scope limitations.
+
 Updated 2026-10-05. Live Studio surface mode: **Operate**. Preserve the incumbent scholarly study-desk identity: parchment page, navy navigation, gold actions, serif titles, sans-serif controls and monospaced exact values. Use the existing DS2 semantic tokens and renderer conventions, without a new framework or font service.
 
 ## Layout

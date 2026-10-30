@@ -1,0 +1,20 @@
+{
+  "round": 1,
+  "role": "astronomy-and-timeline",
+  "recordedAt": "2026-10-30T01:39:22.877Z",
+  "command": "node scripts/tests/sky-dynamics.mjs",
+  "pass": true,
+  "count": 116,
+  "failures": [],
+  "files": {
+    "assets/js/core/sky-dynamics.js": "d23fac77f7083fcf61da386a9c4d5f7534a99c1bb9feb7b21e930bc20d3804c3",
+    "assets/js/workers/sky-timeline-worker.js": "dc6fbbce1a6e13da985ea2e360dbdf9aa7c150254b3ef11aa0857cf0754c78ad",
+    "assets/js/core/data/bright-star-catalog.js": "96c1634518bb7dab2b01b8d54064ac0908aae2eb4b7727d3360f1cb770dc333c",
+    "assets/js/core/data/bright-star-catalog.LICENSE.md": "d86c52efdfdbd65c2219a5fe4a7113241185333954037c29c2bcca12d19088c0",
+    "scripts/tests/sky-dynamics.mjs": "365972ac219f7bfee2a34436d77d785ab99424cc95dc67d86981ae8f6b986ba6",
+    "scripts/tests/fixtures/sky-horizons-angles.json": "f8b4a0ff1a5c04d4049148746b4b1b7e127eff805acac53c117256d94b012f61",
+    "scripts/tests/fixtures/sky-horizons-vectors.json": "6c0c000129ab722a091e4a84688a89464b1cc89ce3218e5461ffa47a7f7ccc97",
+    "scripts/tests/fixtures/sky-stars-erfa.json": "2047cc7e1e318e20ddfbf5f7a1999c57591c0e9db4fb9c4d98533a25a225c2b7"
+  },
+  "scope": "Core and worker controller checks; no browser, full-range astrometry or observational outcome validation claimed."
+}

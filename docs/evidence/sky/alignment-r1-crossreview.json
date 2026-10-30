@@ -1,0 +1,289 @@
+{
+  "recordedAt": "2026-10-30T01:41:27.007Z",
+  "scope": "Round 1 independent read-only cross-review; not final acceptance. Other owners are implementing concurrently.",
+  "checks": [
+    {
+      "label": "alignment canonical parity reject",
+      "passed": true,
+      "synchronization": {
+        "status": "unresolved",
+        "clockMode": "same-local-clock",
+        "sameInstant": null,
+        "sameLocalClock": null,
+        "sameZone": false,
+        "elapsedSeconds": null,
+        "base": {
+          "instantUTC": "2026-11-01T01:30:00.456Z",
+          "timeZone": "UTC",
+          "localDate": "2026-11-01",
+          "localTime": "01:30:00.456",
+          "offsetSeconds": 0
+        },
+        "comparison": null,
+        "comparisonTimeZone": "America/New_York",
+        "disambiguation": "reject",
+        "ambiguous": true,
+        "candidatesUTC": [
+          "2026-11-01T05:30:00.456Z",
+          "2026-11-01T06:30:00.456Z"
+        ],
+        "code": "AMBIGUOUS_TIME",
+        "reason": "This clock time occurs twice in the comparison zone. Choose earlier or later; no occurrence has been inferred.",
+        "geographicZoneMatch": "not-verified",
+        "geographicZoneExplanation": "Clock conversion is verified against runtime IANA data. No time-zone polygon database verifies that these coordinates belong to that zone. Coordinates stay fixed in this clock comparison.",
+        "providerSync": "not-connected",
+        "providerExplanation": "These calculations align inside this page. Downloading an iCalendar file is a manual import, not a connected or automatically updating calendar subscription."
+      }
+    },
+    {
+      "label": "alignment canonical parity earlier",
+      "passed": true,
+      "synchronization": {
+        "status": "different-instant",
+        "clockMode": "same-local-clock",
+        "sameInstant": false,
+        "sameLocalClock": true,
+        "sameZone": false,
+        "elapsedSeconds": 14400,
+        "base": {
+          "instantUTC": "2026-11-01T01:30:00.456Z",
+          "timeZone": "UTC",
+          "localDate": "2026-11-01",
+          "localTime": "01:30:00.456",
+          "offsetSeconds": 0
+        },
+        "comparison": {
+          "instantUTC": "2026-11-01T05:30:00.456Z",
+          "timeZone": "America/New_York",
+          "localDate": "2026-11-01",
+          "localTime": "01:30:00.456",
+          "offsetSeconds": -14400
+        },
+        "comparisonTimeZone": "America/New_York",
+        "disambiguation": "earlier",
+        "ambiguous": true,
+        "candidatesUTC": [
+          "2026-11-01T05:30:00.456Z",
+          "2026-11-01T06:30:00.456Z"
+        ],
+        "code": null,
+        "reason": null,
+        "geographicZoneMatch": "not-verified",
+        "geographicZoneExplanation": "Clock conversion is verified against runtime IANA data. No time-zone polygon database verifies that these coordinates belong to that zone. Coordinates stay fixed in this clock comparison.",
+        "providerSync": "not-connected",
+        "providerExplanation": "These calculations align inside this page. Downloading an iCalendar file is a manual import, not a connected or automatically updating calendar subscription."
+      }
+    },
+    {
+      "label": "alignment canonical parity later",
+      "passed": true,
+      "synchronization": {
+        "status": "different-instant",
+        "clockMode": "same-local-clock",
+        "sameInstant": false,
+        "sameLocalClock": true,
+        "sameZone": false,
+        "elapsedSeconds": 18000,
+        "base": {
+          "instantUTC": "2026-11-01T01:30:00.456Z",
+          "timeZone": "UTC",
+          "localDate": "2026-11-01",
+          "localTime": "01:30:00.456",
+          "offsetSeconds": 0
+        },
+        "comparison": {
+          "instantUTC": "2026-11-01T06:30:00.456Z",
+          "timeZone": "America/New_York",
+          "localDate": "2026-11-01",
+          "localTime": "01:30:00.456",
+          "offsetSeconds": -18000
+        },
+        "comparisonTimeZone": "America/New_York",
+        "disambiguation": "later",
+        "ambiguous": true,
+        "candidatesUTC": [
+          "2026-11-01T05:30:00.456Z",
+          "2026-11-01T06:30:00.456Z"
+        ],
+        "code": null,
+        "reason": null,
+        "geographicZoneMatch": "not-verified",
+        "geographicZoneExplanation": "Clock conversion is verified against runtime IANA data. No time-zone polygon database verifies that these coordinates belong to that zone. Coordinates stay fixed in this clock comparison.",
+        "providerSync": "not-connected",
+        "providerExplanation": "These calculations align inside this page. Downloading an iCalendar file is a manual import, not a connected or automatically updating calendar subscription."
+      }
+    },
+    {
+      "label": "alignment rejects birth",
+      "passed": true
+    },
+    {
+      "label": "alignment rejects birthDate",
+      "passed": true
+    },
+    {
+      "label": "alignment rejects savedRecords",
+      "passed": true
+    },
+    {
+      "label": "alignment rejects timeKnown",
+      "passed": true
+    },
+    {
+      "label": "alignment rejects variantIds",
+      "passed": true
+    },
+    {
+      "label": "alignment rejects clockMode",
+      "passed": true
+    },
+    {
+      "label": "alignment rejects dateISO",
+      "passed": true
+    },
+    {
+      "label": "alignment rejects timeZone",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_positions rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_essential_dignity rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_almuten rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_planetary_hours rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_profections rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_life_trajectory rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_lunar_mansions rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_decan_faces rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_election rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_talisman rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_confluence_atlas rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_era_legis rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_liber_resh_stations rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_yoga_detector rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_bhava_phala rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "workbench_calc_comparison rejects unknown private fields",
+      "passed": true
+    },
+    {
+      "label": "prayer choices and intersection canonical parity",
+      "passed": true
+    },
+    {
+      "label": "planetary hours preserves named zone",
+      "passed": true
+    }
+  ],
+  "passingChecks": 29,
+  "findings": [
+    {
+      "id": "alignment-MCP-life-before-birth",
+      "severity": "P1",
+      "observation": {
+        "age": 0,
+        "lordOfYear": "Saturn",
+        "profectedSign": "Capricorn",
+        "activatedHouse": 1,
+        "solarReturn": {
+          "instant": "2020-10-30T01:18:45.000Z",
+          "asc": 157.83771412597935,
+          "mc": 60.66265319369029,
+          "sunHouse": 3
+        }
+      },
+      "recommendation": "Reject evaluation before birth in the new stateless adapter; consider the declared age bounds."
+    },
+    {
+      "id": "alignment-MCP-polar-house-fallback",
+      "severity": "P2",
+      "observation": {
+        "requested": "placidus",
+        "actual": "regiomontanus",
+        "wrapperKeys": [
+          "capabilityId",
+          "source",
+          "sourceStatus",
+          "result",
+          "method",
+          "limitations"
+        ],
+        "resultKeys": [
+          "asc",
+          "mc",
+          "isDay",
+          "system",
+          "planets"
+        ]
+      },
+      "recommendation": "Expose requested versus actual house system and canonical fallback warning in wrapper context."
+    },
+    {
+      "id": "alignment-MCP-polar-solar-stations",
+      "severity": "P2",
+      "observation": {
+        "citation": "Liber Resh vel Helios, sub figurâ CC (Aleister Crowley, 1911; The Equinox I(6)) — public domain.",
+        "caveat": "Historical symbolic system of NO demonstrated validity — described, never prescribed. The astronomy is real (computed); the meanings are the tradition’s. For a FUTURE date this is what the sky will actually do and what the tradition WOULD say — never a real prediction; for a PAST date, what the tradition WOULD have said."
+      },
+      "recommendation": "Expose unavailable status/reason and UTC search-date convention rather than a citation-only result."
+    }
+  ],
+  "sourceAtStart": {
+    "assets/js/core/calendar-alignment.js": "b8ffe4c9f6b66db91e07443dc6cb7dac68ff286e7ee1c44ba8227da0309c8baa",
+    "mcp/toolkit.mjs": "448a8d5cafce583be899bdc2ec255dce158956126984a85544a131ef0c40d4d8",
+    "mcp/registry-adapters.mjs": "89cfe1d838dcf5e051415f93db235033ac44b3d3ce7f6ff0782a8f675be5c7c3",
+    "assets/js/core/tool-guide.js": "a0824893ecc50ca7e8b41381bb75bc668906118ef0e52e5b3bca83d299980405",
+    "assets/js/core/llm-context.js": "c0f2c07229ec8be52e04e01e2a84394553fb287896dac62f460bd2da1491c449"
+  },
+  "sourceAtEnd": {
+    "assets/js/core/calendar-alignment.js": "b8ffe4c9f6b66db91e07443dc6cb7dac68ff286e7ee1c44ba8227da0309c8baa",
+    "mcp/toolkit.mjs": "448a8d5cafce583be899bdc2ec255dce158956126984a85544a131ef0c40d4d8",
+    "mcp/registry-adapters.mjs": "89cfe1d838dcf5e051415f93db235033ac44b3d3ce7f6ff0782a8f675be5c7c3",
+    "assets/js/core/tool-guide.js": "a0824893ecc50ca7e8b41381bb75bc668906118ef0e52e5b3bca83d299980405",
+    "assets/js/core/llm-context.js": "c0f2c07229ec8be52e04e01e2a84394553fb287896dac62f460bd2da1491c449"
+  },
+  "sourceChangedDuringRun": []
+}

@@ -195,12 +195,18 @@ export function transitTimeline(natalChart, startDate, endDate, opts = {}) {
 
   for (const body of bodies) {
     const stepMs = (body === 'Moon' ? 0.25 : (opts.stepDays || 1)) * DAY_MS;
+    if (!Number.isFinite(stepMs) || stepMs <= 0 || Math.ceil((t1 - t0) / stepMs) > 10000) {
+      throw new RangeError('Transit sampling needs a positive finite step and at most 10000 intervals per body.');
+    }
 
     // Sample the light longitude once per step across the whole window; reuse
     // the grid for every natal point / aspect / target of this body.
     const times = [];
     const lons = [];
-    for (let t = t0; t <= t1 + 1; t += stepMs) {
+    // Include the actual endpoint even when the last interval is shorter than
+    // one sample step. Otherwise a short window had only its starting point,
+    // and every crossing in the final partial day (Moon: 6h) was omitted.
+    for (let t = t0; ; t += stepMs) {
       const tt = Math.min(t, t1);
       times.push(tt);
       lons.push(lonOfDate(body, new Date(tt)));

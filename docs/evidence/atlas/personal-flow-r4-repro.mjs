@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import playwright from '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.js';
+const browser=await playwright.chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
+const context=await browser.newContext({viewport:{width:390,height:844},serviceWorkers:'block'}),page=await context.newPage();
+const report={round:4,scope:'390px personal integrated known/unknown/edit/cancel/clear and return claims',checks:[],sources:{},errors:[],external:[],screenshots:[]},reads=[];
+const check=(value,label)=>{assert.ok(value,label);report.checks.push(label);};
+page.on('pageerror',error=>report.errors.push(error.message));
+page.on('response',r=>{if(/\/(?:calendar-search|personal-calendar)\.(?:js|css)$/.test(r.url()))reads.push(r.body().then(body=>{report.sources[new URL(r.url()).pathname]=createHash('sha256').update(body).digest('hex');}));});
+await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.origin==='http://127.0.0.1:8137'||['data:','blob:'].includes(u.protocol))return route.continue();report.external.push(u.href);return route.abort();});
+try{
+ await page.goto('http://127.0.0.1:8137/pages/calendar-search.html');const p=page.locator('#cs-personal');await p.locator('.pc-panel').waitFor();
+ check(await p.locator('.pc-panel').getAttribute('open')===null&&await p.locator('[data-pc-field=date]').inputValue()===''&&!await p.locator('[data-pc-field=timeKnown]').isChecked(),'Birth disclosure starts optional, collapsed, empty and unknown-time');
+ await page.locator('#cs-end').fill('2026-10-31');await page.locator('#cs-run').click();await page.waitForFunction(()=>!document.querySelector('#cs-json').disabled);await page.locator('[data-sample-date]').first().click();
+ await p.locator('.pc-panel>summary').focus();await page.keyboard.press('Enter');check(await p.locator('.pc-panel').getAttribute('open')!==null,'Optional birth control opens by keyboard');
+ await p.locator('[data-pc-field=date]').fill('1990-07-15');await p.locator('[data-pc-field=timeZone]').fill('Asia/Kolkata');await p.locator('[data-pc-field=timeKnown]').check();
+ await p.locator('[data-pc-field=time]').fill('12:30');await p.locator('[data-pc-field=lat]').fill('28.61391');await p.locator('[data-pc-field=lon]').fill('77.20901');await p.locator('[data-pc-field=includeReturns]').check();await p.locator('[data-pc-action=apply]').click();
+ check((await p.locator('[data-pc=results]').innerText()).includes('Recorded birth instant: 1990-07-15T07:00:00.000Z'),'Known-time reading labels the actual resolved UTC birth');
+ await p.locator('.pc-return>summary').click();const known=await p.locator('.pc-return').innerText();
+ check(known.includes('Solar return: 2026-')&&known.includes('Lunar return: 2026-'),'Real solar/lunar recurrence output is visible when requested');
+ check(known.includes('selected UTC year, which can precede')&&known.includes('Not a Moon-phase or sidereal return'),'Return scope distinguishes annual solar, next tropical lunar and unavailable variants');
+ const sizes=await p.locator('input:not([type=checkbox]),select,button').evaluateAll(els=>els.filter(e=>e.getClientRects().length).map(e=>({height:e.getBoundingClientRect().height,font:parseFloat(getComputedStyle(e).fontSize)})));
+ report.visibleControlMetrics=sizes;
+ check(sizes.every(s=>s.height>=44&&s.font>=16),'Visible personal fields/actions retain44px targets and16px text');
+ check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'390px integrated page has no horizontal page overflow');
+ await p.locator('.pc-return').evaluate(el=>el.scrollIntoView({block:'center'}));await page.screenshot({path:'/tmp/atlas-r4-personal-known390.png'});report.screenshots.push('atlas-r4-personal-known390.png');
+ await p.locator('[data-pc-field=timeKnown]').uncheck();check(await p.locator('[data-pc=results]').innerText()===''&&await p.locator('.pc-exact').isHidden(),'Switching to unknown removes prior timed output before recomputation');
+ await p.locator('[data-pc-field=date]').fill('2026-10-25');await p.locator('[data-pc-field=timeZone]').fill('Europe/London');await p.locator('[data-pc-action=apply]').click();
+ const unknown=await p.locator('[data-pc=results]').innerText();check(unknown.includes('25 actual hours')&&unknown.includes('not exact natal positions'),'Unknown-time reading describes the real25-hour interval and estimated arcs');
+ check(!unknown.includes('Ascendant:')&&!unknown.includes('Traditional Vimśottarī label:'),'Unknown-time result does not preserve numerical ascendant or daśā from prior record');
+ await p.locator('.pc-return>summary').click();check((await p.locator('.pc-return').innerText()).includes('Exact natal Moon longitude is unknown'),'Unknown-time return is visibly withheld despite prior known-time request');
+ await p.locator('[data-pc=results]').evaluate(el=>el.scrollIntoView({block:'start'}));await page.screenshot({path:'/tmp/atlas-r4-personal-unknown390.png'});report.screenshots.push('atlas-r4-personal-unknown390.png');
+ await page.locator('#cs-advanced').check();await page.locator('#cs-start').fill('1900-01-01');await page.locator('#cs-end').fill('2100-12-31');await page.locator('#cs-mode').selectOption('brute');await page.locator('#cs-run').click();await page.locator('#cs-cancel').click();
+ check(await p.locator('[data-pc=results]').innerText()===''&&await p.locator('[data-pc-field=date]').inputValue()==='2026-10-25'&&(await p.locator('[data-pc=status]').innerText()).includes('Select a valid public calendar moment'),'Public cancellation clears personal comparison but truthfully retains applied memory input');
+ await p.locator('[data-pc-action=clear]').click();check(await p.locator('[data-pc-field=date]').inputValue()===''&&await p.locator('[data-pc-field=timeZone]').inputValue()===''&&await p.locator('[data-pc-field=time]').inputValue()===''&&await p.locator('[data-pc-field=lat]').inputValue()==='','Clear explicitly erases known and unknown birth form fields');
+ check(report.errors.length===0&&report.external.length===0,'No uncaught browser errors or external requests');report.verdict='ACCEPT';
+}catch(e){report.verdict='BLOCK';report.failure=e.stack;throw e;}finally{await Promise.allSettled(reads);await writeFile('/tmp/atlas-r4-personal-report.json',JSON.stringify(report,null,2));await browser.close();console.log(JSON.stringify({verdict:report.verdict,checks:report.checks.length,failure:report.failure?.split('\n')[0]}));}

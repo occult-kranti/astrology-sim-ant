@@ -1,0 +1,107 @@
+{
+  "round": 2,
+  "reviewer": "calendar_precision",
+  "executedAt": "2026-10-29T23:59:14.801Z",
+  "verdict": "ACCEPT",
+  "checks": [
+    {
+      "name": "Unknown-time half-open interval 2100-12-31 UTC",
+      "pass": true
+    },
+    {
+      "name": "Unknown-time no fabricated chart or returns 2100-12-31",
+      "pass": true
+    },
+    {
+      "name": "Unknown-time half-open interval 2026-11-01 America/New_York",
+      "pass": true
+    },
+    {
+      "name": "Unknown-time no fabricated chart or returns 2026-11-01",
+      "pass": true
+    },
+    {
+      "name": "Unknown-time half-open interval 2026-10-04 Australia/Lord_Howe",
+      "pass": true
+    },
+    {
+      "name": "Unknown-time no fabricated chart or returns 2026-10-04",
+      "pass": true
+    },
+    {
+      "name": "Rejected ambiguous, missing or unsupported UTC birth 1900-01-01 Asia/Tokyo",
+      "pass": true
+    },
+    {
+      "name": "Rejected ambiguous, missing or unsupported UTC birth 2100-12-31 Pacific/Honolulu",
+      "pass": true
+    },
+    {
+      "name": "Rejected ambiguous, missing or unsupported UTC birth 2026-11-01 America/New_York",
+      "pass": true
+    },
+    {
+      "name": "Rejected ambiguous, missing or unsupported UTC birth 2026-03-08 America/New_York",
+      "pass": true
+    },
+    {
+      "name": "Offsets stay signed angular degrees",
+      "pass": true
+    },
+    {
+      "name": "Solar return is selected UTC year, may precede selected moment",
+      "pass": true
+    },
+    {
+      "name": "Lunar return strictly after selected moment, 32-day bounded",
+      "pass": true
+    },
+    {
+      "name": "Default personal export omits birth record and derived results",
+      "pass": true
+    },
+    {
+      "name": "MCP exact parity with selected public export and named prayer controls",
+      "pass": true
+    },
+    {
+      "name": "MCP forwards all prayer conventions",
+      "pass": true
+    },
+    {
+      "name": "MCP selected result excludes internal full comparison",
+      "pass": true
+    },
+    {
+      "name": "MCP shared plate quantities explicitly scoped",
+      "pass": true
+    },
+    {
+      "name": "MCP rejects unknown/private request metadata",
+      "pass": true
+    },
+    {
+      "name": "Seven pending civil validation categories remain",
+      "pass": true
+    }
+  ],
+  "fileHashes": [
+    {
+      "path": "assets/js/core/calendar-atlas.js",
+      "sha256": "763195d3d9e1defba8d8c2b9a966675934f5f6c3e00f0cac689b30c73aa631a4"
+    },
+    {
+      "path": "scripts/tests/calendar-atlas.mjs",
+      "sha256": "935a4e5f3f73f38f8c5cdbf3c9bea2e121151ed24114b53da311af37f8650c8f"
+    },
+    {
+      "path": "assets/js/core/personal-calendar.js",
+      "sha256": "06a25c33883c74ba23ceab1df7f9131c03eeaf6e0f79471671308a5d29f4a812"
+    },
+    {
+      "path": "mcp/toolkit.mjs",
+      "sha256": "f5b868b4be506a4759fc371399b09848963ef2c8a228f5d2f18e1baa3daf54e6"
+    }
+  ],
+  "limits": "Behavioral/internal-engine review only; no new independent ephemeris or predictive validation. Browser/transport gates are separate root/QA evidence."
+}

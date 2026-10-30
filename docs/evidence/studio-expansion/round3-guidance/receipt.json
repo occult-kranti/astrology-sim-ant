@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "phase": "guidance",
+  "round": "3",
+  "startedAt": "2026-10-29T22:18:43.520Z",
+  "checks": [
+    {
+      "label": "hourly work is lazy 320",
+      "pass": true
+    },
+    {
+      "label": "autumn day retains both clock occurrences 320",
+      "pass": true
+    },
+    {
+      "label": "hourly sample not treated as interval-long rule 320",
+      "pass": false
+    }
+  ],
+  "downloads": [],
+  "screenshots": [],
+  "errors": [],
+  "missing": [],
+  "externalRequests": [],
+  "source": {
+    "testScriptSHA256": "8b04d31044e09239be52bfa4c4269c82e12894574ac3af2fc8f68f307d7131d8",
+    "productAtStartSHA256": "7f672a16c7d51f677368958a03dd7a704aeb33c47c2c24d07888081885a1a09e"
+  },
+  "limits": {
+    "realProviderCalled": false,
+    "physicalPhone": false,
+    "screenReader": false
+  },
+  "browser": "154.0.8037.57",
+  "failure": {
+    "message": "hourly sample not treated as interval-long rule 320",
+    "stack": "AssertionError [ERR_ASSERTION]: hourly sample not treated as interval-long rule 320\n    at check (file:///workspace/astrology-sim-ant/scripts/browser-studio-expansion.mjs:25:105)\n    at guidance (file:///workspace/astrology-sim-ant/scripts/browser-studio-expansion.mjs:34:880)\n    at async file:///workspace/astrology-sim-ant/scripts/browser-studio-expansion.mjs:37:463"
+  },
+  "finishedAt": "2026-10-29T22:18:45.068Z",
+  "pass": false
+}

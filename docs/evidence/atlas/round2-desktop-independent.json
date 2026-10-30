@@ -1,0 +1,25 @@
+{
+  "round": 2,
+  "checks": [
+    "OR within weekday values yields two samples",
+    "AND across weekday/calendar criteria yields26October only",
+    "selected moment carries explicit public method context",
+    "event signature requires explicit unknown-time acknowledgment",
+    "event signature visibly conditions subsequent search",
+    "unknown birth uses actual25hour civil interval",
+    "unknown birth withholds exact houses and returns",
+    "known ambiguous birth does not silently choose fold",
+    "chosen earlier birth fold resolves explicitly",
+    "switch back to unknown does not reuse clock houses",
+    "no browser runtime errors"
+  ],
+  "findings": [
+    {
+      "id": "R2-SEARCH-INDEPENDENT-RANGE",
+      "evidence": "End date must not precede start date.",
+      "trigger": "valid event set, criteria and acknowledgment; unrelated search endDate before startDate; association blocked despite copy declaring independence"
+    }
+  ],
+  "errors": [],
+  "pass": true
+}

@@ -44,6 +44,11 @@ Must print `0 errors` and `hdr✓` on every page.
 ```bash
 node scripts/gen-opgraph.mjs --check       # exit 1 = the generated data module has drifted
 node scripts/seed-opgraph-gate.mjs --check # exit 1 = gate.json is not what its decisions produce
+node scripts/build-specialist-profiles.mjs --check # specialist registry and skills match named sources
+node scripts/build-mcp-catalogue.mjs --check # connection help matches actual MCP tool definitions
+node scripts/build-sky-reference.mjs --check # local retrieval pack matches authored source records
+node scripts/build-tool-coverage.mjs --check # guide execution coverage matches actual callable tools
+node scripts/build-mcp-coverage.mjs --check # browser adapter map matches reviewed backend metadata
 ```
 Each rebuilds its output in memory and compares it to the committed bytes, so **hand-editing
 `assets/js/core/data/opgraph.js` or `research/opgraph/gate.json` is a failure, not a silent

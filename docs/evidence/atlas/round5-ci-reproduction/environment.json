@@ -1,0 +1,30 @@
+{
+  "purpose": "Controlled reproduction of the remote row-height failure; not an assertion that CI uses this actual font.",
+  "baselineCommit": "6c62c10",
+  "baselineProduct": "git archive into /tmp/atlas-ci-before; updated diagnostic driver copied into snapshot; no product patch applied",
+  "playwrightVersion": "1.58.2",
+  "browserVersion": "145.0.7632.6",
+  "fontconfig": "fontconfig.xml copied from the isolated config used by the browser",
+  "actualRuleFont": [
+    {
+      "familyName": "DejaVu Math TeX Gyre",
+      "postScriptName": "DejaVuMathTeXGyre-Regular",
+      "isCustomFont": false,
+      "glyphCount": 66
+    }
+  ],
+  "result": {
+    "pass": false,
+    "checksBeforeStop": 40,
+    "rowHeights": [
+      230.75,
+      230.75,
+      230.75
+    ]
+  },
+  "command": "FONTCONFIG_FILE=/tmp/atlas-ci-fonts.conf PLAYWRIGHT_BROWSERS_PATH=/tmp/atlas-ci-browsers PLAYWRIGHT_PKG=/tmp/atlas-ci-playwright/node_modules/playwright/index.mjs ATLAS_PHASE=research ATLAS_ROUND=5-ci-failure-reproduction ATLAS_OUTPUT=<evidence-directory> node scripts/browser-atlas.mjs",
+  "limits": [
+    "The isolated config selects an installed fallback font; it reproduces the observed height but does not identify the GitHub runner font.",
+    "The diagnostic driver includes computed cell/group metrics and failure screenshots; the original semantic assertion remains <=220px."
+  ]
+}

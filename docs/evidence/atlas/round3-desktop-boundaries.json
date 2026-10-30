@@ -1,0 +1,35 @@
+{
+  "round": 3,
+  "checks": [
+    "hostile imported title is literal and unverified in preview",
+    "source URL remains explicit link without markup execution",
+    "actual CSV escapes hostile title within structured settings",
+    "CSV source stays caller supplied and excludes arbitrary import/birth fields",
+    "no exported CSV cell starts with executable formula marker",
+    "unsafe source import rejected without replacing active events",
+    "ranking requires one explicit tradition count",
+    "one-tradition ranking metadata preserves partial unknown counts",
+    "rendered ranking identifies measure and avoids outcome maxima",
+    "ordering descends known count with explicit date ties",
+    "actual ranked CSV preserves chosen count and missingness",
+    "actual clipboard shares public moment and excludes private birth context",
+    "no imported markup execution/runtime error",
+    "no automatic external source requests"
+  ],
+  "errors": [],
+  "external": [],
+  "sourceHashes": {
+    "assets/js/app/calendar-search.js": "a8ee4649539144f36c725205837d9ebb7c52a61237c066976683d973b3ce29bc",
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/app/calendar-atlas.js": "a8a2f0860db4471eb032c1aeb8ecc04ea5fa747cbff95618e4e8a6eb9ef2570d",
+    "assets/js/app/personal-calendar.js": "14f602f27719feb20944a2bea29c542ab27e57f29d43ad0abb8ee4a636e20dcb"
+  },
+  "pass": true,
+  "finalSourceHashes": {
+    "assets/js/app/calendar-search.js": "a8ee4649539144f36c725205837d9ebb7c52a61237c066976683d973b3ce29bc",
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/app/calendar-atlas.js": "a8a2f0860db4471eb032c1aeb8ecc04ea5fa747cbff95618e4e8a6eb9ef2570d",
+    "assets/js/app/personal-calendar.js": "14f602f27719feb20944a2bea29c542ab27e57f29d43ad0abb8ee4a636e20dcb"
+  },
+  "unchanged": true
+}

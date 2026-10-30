@@ -1,0 +1,94 @@
+{
+  "status": "pass-and-owner-hold",
+  "checkedAt": "2026-10-29T22:25:05.685937+00:00",
+  "sourceFiles": [
+    {
+      "path": "pages/world-events.html",
+      "sha256": "703e40af5e0453686b74010482cd08b8a6967c6cf6bfa337828e24c14c99c9d9"
+    },
+    {
+      "path": "assets/js/app/world-events.js",
+      "sha256": "25e85fb0c069bb28b24e20e58c13449e3ddedfa780d115badbc2e7c64602ebf5"
+    },
+    {
+      "path": "assets/css/world-events.css",
+      "sha256": "be552b000a4d198f1b0368e454baa6ea54861eaedcd280fc2cdaace416b1d512"
+    },
+    {
+      "path": "assets/data/world-events.json",
+      "sha256": "182e0780a7711bc3b178081194337cfd864afefc1f64c57224d72b58de8be4fc"
+    },
+    {
+      "path": "assets/js/core/world-events.js",
+      "sha256": "dbf3ba31eb22ff66f4860dd480005a287ed87347cd32813ce582da3494e561fc"
+    },
+    {
+      "path": "scripts/tests/world-events.mjs",
+      "sha256": "2145bc7800f3739ab077a6d3c45a775ff27906043c2bf7bbf8a6e2511a6c6dda"
+    },
+    {
+      "path": "scripts/browser-world-events.mjs",
+      "sha256": "87c03045fbf111cdba05a2212a3688bea40669fd8cac30b52df3f4200ee9eea8"
+    },
+    {
+      "path": "scripts/refresh-world-events.py",
+      "sha256": "b447359933849568041b96fb0003cb0375439d320f7388983826831379049a43"
+    },
+    {
+      "path": "docs/2026-10-world-events-sources.md",
+      "sha256": "b950f48eb3676716958274f2a075336a1b7b1e5495f9ed8fb812879d41bcd50e"
+    },
+    {
+      "path": "research/elections-2026-10-sources.json",
+      "sha256": "202892de1a7e16b1872ebc3efb3297818c275b91e5fa30cdf3a89cb99573d9f6"
+    }
+  ],
+  "sourceSnapshot": {
+    "reviewedAt": "2026-10-29T22:17:04.277Z",
+    "sources": 38,
+    "eventsIncludingConditional": 16,
+    "coverageRows": 27,
+    "datePrecision": "date-only; no event timestamp inferred"
+  },
+  "checks": {
+    "core": 56,
+    "browser": 38,
+    "electionSourceReceipt": 54,
+    "browserPageErrors": [],
+    "browserUnexpectedExternalRequests": []
+  },
+  "availabilityProbe": {
+    "schemaVersion": 1,
+    "datasetReviewedAt": "2026-10-29T22:17:04.277Z",
+    "method": "One HTTPS availability request per selected source, inherited proxy and normal TLS; bounded body and timeout, no retries.",
+    "claimVerification": "not-performed",
+    "note": "Availability or byte equality does not establish that a schedule remains current. Inspect changed text and source date support; this script never updates event records, source verification or the public review timestamp.",
+    "receipts": [
+      {
+        "id": "EL-fec2026",
+        "url": "https://www.fec.gov/resources/cms-content/documents/2026pdates.pdf",
+        "probedAt": "2026-10-29T22:18:34.325376+00:00",
+        "claimVerification": "not-performed",
+        "status": "received",
+        "httpStatus": 200,
+        "bytes": 226820,
+        "finalURL": "https://www.fec.gov/resources/cms-content/documents/2026pdates.pdf",
+        "sha256": "9a5d4ec0ba2b69daf2f510ef79bca0ca381ab699255ac5adb971b9672d517251",
+        "matchesCapturedBody": true
+      }
+    ]
+  },
+  "rootIntegrationCrossReview": {
+    "homeSHA": "6ea0d8b69219b5391af5637b606aa1645a5e6fc0a7648bf0f18d26572215f0f9",
+    "compareSHA": "67e6fd22bbb136e266a42d501c14212016dafc6025667fcf930c0fd67616a229",
+    "status": "source-review-pass",
+    "findings": "Stale weekly hrefs removed and guarded, restored only after valid context; cache hit restores invalidated mounts; home JSON embeds per-row studyGuidance; Markdown retains source-labelled guidance with sample/editorial scope."
+  },
+  "limits": [
+    "No exhaustive worldwide/country calendar",
+    "No NZ date verified from challenge pages",
+    "No predictive election outcome claim",
+    "No automatic source-fact renewal",
+    "No external calendar import or physical-phone/screen-reader test"
+  ]
+}

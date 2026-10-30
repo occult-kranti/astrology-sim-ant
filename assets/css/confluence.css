@@ -511,3 +511,18 @@
   /* the ledger is the print view; keep the journey badge legible on paper */
   .cfl-journeys .cfl-jbadge { border:1px solid #000 !important; }
 }
+
+/* A wrapped mobile toolbar can exceed the viewport. Let it scroll in normal
+   flow so the ledger, source guide and keyboard targets remain reachable.
+   The era strip then clears only the site header, not an absent sticky bar.
+   Keep the measured toolbar chain unchanged for the desktop dock. */
+@media (max-width:1099px) {
+  .cfl-page .cfl-toolbar { position:static; top:auto; z-index:auto; }
+  .cfl-page .cfl-ledger-era { top:var(--sticky-top); }
+}
+/* Tool-guide shortcuts must clear the full desktop sticky stack. The shared
+   shell consumes this variable without imposing Confluence's layout elsewhere. */
+.cfl-page { --tool-guide-scroll-margin:calc(var(--sticky-top) + var(--cfl-toolbar-h) + 1rem); }
+@media (max-width:1099px) {
+  .cfl-page { --tool-guide-scroll-margin:7rem; }
+}

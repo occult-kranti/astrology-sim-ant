@@ -1,0 +1,46 @@
+{
+  "round": 5,
+  "scope": "Read-only source structure and narrow selected-export/source probes; no new browser",
+  "checks": [
+    "pages/calendar-atlas.html: unique original submit/status inside form, keyboard return and error target",
+    "pages/calendars/western.html: unique original submit/status inside form, keyboard return and error target",
+    "pages/calendars/vedic.html: unique original submit/status inside form, keyboard return and error target",
+    "pages/calendars/egyptian.html: unique original submit/status inside form, keyboard return and error target",
+    "pages/calendars/hebrew.html: unique original submit/status inside form, keyboard return and error target",
+    "pages/calendars/chinese.html: unique original submit/status inside form, keyboard return and error target",
+    "UI retains selected-export helper and source readingDepth, with no private getValue serialization",
+    "Calculation error retains stale-output marker and keyboard error focus",
+    "Held R4 atlas application and CSS hashes unchanged",
+    "Selected export includes only requested method and excludes full comparison",
+    "Shared plate longitudes equal canonical calculation",
+    "Current solar-term output has 24 events and historical IANA qualification",
+    "Selected source preserves limited reading-depth statement"
+  ],
+  "hashes": {
+    "assets/js/app/calendar-atlas.js": "614dfd5654e334ef24990a896232dae4e379995ae0fc5d91a46234c9bfe4eba8",
+    "assets/css/calendar-atlas.css": "2b6bfb761bb5671c4a3da25da67c5482df502c927d74eb1ce11fdc2c427bbc03",
+    "assets/js/core/calendar-atlas.js": "917ff26c071b78a665cea9bdf145abd584cb8b2f2fbf5a7203099e91a25d62f6",
+    "pages/calendar-atlas.html": "28b8698f1c0ffa2979ff016dc3a420399025735edb4f560168bc6df5735b30c0",
+    "pages/calendars/western.html": "7f835e2fe8b83b0c8be2d454c995b5a84dbfcc963a74d5f92475f94e13d00792",
+    "pages/calendars/vedic.html": "f10e3c5f54ddb1cdfe0f2c7d508c440fc97f972f4c236ed9c9f5f71c08472a82",
+    "pages/calendars/egyptian.html": "fcc07638f32ed2405c955a8be1fdc6b6871532c5ae9e88d8e571b607800cd6ad",
+    "pages/calendars/hebrew.html": "4e4f1b515019d7d1a26d41e11250560885adbc6d172ef0f1db5147be52b36981",
+    "pages/calendars/chinese.html": "d38c193817a14af49c9a3253024e8db7fc16abc220688a5524f95b098b2e5d9d"
+  },
+  "pass": true,
+  "harnessNote": "Initial standalone probe used invalid guessed prayer enum strings; corrected to the actual visible Shafi/MiddleOfTheNight values before the successful run. No product edits.",
+  "limitations": [
+    "Does not replace independent R5 real-browser receipt",
+    "No physical device, screen-reader or actual browser-zoom certification",
+    "No predictive efficacy inference"
+  ],
+  "independentFinalReceipt": {
+    "path": "round5-final/receipt.json",
+    "sha256": "c1fadd75a25bc16481a763ee73ba63f7be840f5bfafa259e87be198e4a98ccf7",
+    "checks": 612,
+    "downloads": 85,
+    "pass": true,
+    "sourceMatch": "All nine atlas route/app/CSS/core hashes checked against final browser receipt"
+  },
+  "verdict": "ACCEPT"
+}

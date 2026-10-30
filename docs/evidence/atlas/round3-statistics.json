@@ -1,0 +1,236 @@
+{
+  "round": 3,
+  "executedAt": "2026-10-30T00:10:00.020Z",
+  "checks": [
+    {
+      "name": "duplicate records do not become unique event dates",
+      "pass": true,
+      "actual": 4
+    },
+    {
+      "name": "unique event dates",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "duplicate event dates",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "event by offset control rows",
+      "pass": true,
+      "actual": 8
+    },
+    {
+      "name": "unique control dates retain repeats explicitly",
+      "pass": true,
+      "actual": 6
+    },
+    {
+      "name": "two unique control dates also occur in event set",
+      "pass": true,
+      "actual": 2
+    },
+    {
+      "name": "pooled event denominator omits unresolved fold",
+      "pass": true,
+      "actual": {
+        "total": 4,
+        "observed": 3,
+        "missing": 1,
+        "matched": 3,
+        "rate": 1
+      }
+    },
+    {
+      "name": "pooled control denominator preserves repeated dates",
+      "pass": true,
+      "actual": {
+        "total": 8,
+        "observed": 8,
+        "missing": 0,
+        "matched": 6,
+        "rate": 0.75
+      }
+    },
+    {
+      "name": "pooled descriptive difference",
+      "pass": true,
+      "actual": 0.25
+    },
+    {
+      "name": "pooled descriptive frequency ratio",
+      "pass": true,
+      "actual": 1.3333333333333333
+    },
+    {
+      "name": "paired denominator -7",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "excluded pair -7",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "paired event frequency -7",
+      "pass": true,
+      "actual": {
+        "total": 3,
+        "observed": 3,
+        "missing": 0,
+        "matched": 3,
+        "rate": 1
+      }
+    },
+    {
+      "name": "paired control frequency -7",
+      "pass": true,
+      "actual": {
+        "total": 3,
+        "observed": 3,
+        "missing": 0,
+        "matched": 3,
+        "rate": 1
+      }
+    },
+    {
+      "name": "paired difference is zero, distinct from pooled -7",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "paired denominator 7",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "excluded pair 7",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "paired event frequency 7",
+      "pass": true,
+      "actual": {
+        "total": 3,
+        "observed": 3,
+        "missing": 0,
+        "matched": 3,
+        "rate": 1
+      }
+    },
+    {
+      "name": "paired control frequency 7",
+      "pass": true,
+      "actual": {
+        "total": 3,
+        "observed": 3,
+        "missing": 0,
+        "matched": 3,
+        "rate": 1
+      }
+    },
+    {
+      "name": "paired difference is zero, distinct from pooled 7",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "zero-control frequency ratio is unavailable, not infinity",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "zero-control denominator status is explicit",
+      "pass": true,
+      "actual": "undefined-zero-control-frequency"
+    },
+    {
+      "name": "Western light/proximity and Vedic tithi/karana retained in one shared input group",
+      "pass": true,
+      "actual": [
+        "DG-J-KARANA",
+        "DG-J-TITHI",
+        "DG-W-LIGHT",
+        "DG-W-SOLAR"
+      ]
+    },
+    {
+      "name": "dependency note states nonindependence",
+      "pass": true,
+      "actual": "Shared inputs; not independent observations"
+    },
+    {
+      "name": "no inferential p-value or risk estimate in association root",
+      "pass": true,
+      "actual": false
+    },
+    {
+      "name": "unsafe source URL rejected javascript:alert(1)",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "name": "unsafe source URL rejected data:text/html,evil",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "name": "unsafe source URL rejected https://user:secret@example.com/",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "name": "caller cannot authenticate source status",
+      "pass": true,
+      "actual": "caller-supplied; independently verify the linked date"
+    },
+    {
+      "name": "unknown private fields discarded",
+      "pass": true,
+      "actual": false
+    },
+    {
+      "name": "prototype remains unpolluted",
+      "pass": true
+    },
+    {
+      "name": "unsupported Chinese generic year is rejected, not a silent known nonmatch",
+      "pass": true,
+      "actual": true
+    },
+    {
+      "name": "explicit related Gregorian year can be searched",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "related Gregorian year remains named in exported criterion",
+      "pass": true,
+      "actual": "calendar:chinese:relatedYear"
+    },
+    {
+      "name": "inspected product sources unchanged during probe",
+      "pass": true,
+      "actual": {
+        "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+        "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+        "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9"
+      }
+    }
+  ],
+  "source": {
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9"
+  },
+  "probeSHA256": "41f67f8548d342ae819c9c69d4f5c48d0fbc4d8a60c2daacb73a37be41eb2f9c",
+  "limits": [
+    "Manual expectations are for these specified finite civil-date fixtures, not general predictive validation.",
+    "Pooled event×offset and paired-offset estimands differ; neither is an independent randomized baseline.",
+    "No browser or actual third-party request was made by this probe."
+  ]
+}

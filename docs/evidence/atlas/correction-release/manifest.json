@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-30T01:04:22.490341+00:00",
+  "baseline": "6c62c1006366bfbd91e9bfa9e494b5f4830d72d9",
+  "changeScope": "One calendar-search CSS nowrap rule; additional browser diagnostics and verification documentation. No numerical engine or data changes.",
+  "commands": [
+    {
+      "gate": "audit",
+      "startedAt": "2026-10-30T00:56:40Z",
+      "finishedAt": "2026-10-30T00:56:40.381089+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/audit.mjs"
+      ]
+    },
+    {
+      "gate": "engine",
+      "startedAt": "2026-10-30T00:56:40Z",
+      "finishedAt": "2026-10-30T00:56:53.735172+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/engine-test.mjs"
+      ]
+    },
+    {
+      "gate": "opgraph",
+      "startedAt": "2026-10-30T00:56:53Z",
+      "finishedAt": "2026-10-30T00:56:53.852612+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/gen-opgraph.mjs",
+        "--check"
+      ]
+    },
+    {
+      "gate": "opgraph-gate",
+      "startedAt": "2026-10-30T00:56:53Z",
+      "finishedAt": "2026-10-30T00:56:53.964004+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/seed-opgraph-gate.mjs",
+        "--check"
+      ]
+    },
+    {
+      "gate": "profiles",
+      "startedAt": "2026-10-30T00:56:53Z",
+      "finishedAt": "2026-10-30T00:56:54.025732+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/build-specialist-profiles.mjs",
+        "--check"
+      ]
+    },
+    {
+      "gate": "round-ledger",
+      "startedAt": "2026-10-30T00:56:54Z",
+      "finishedAt": "2026-10-30T00:56:54.071572+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/round-ledger.mjs",
+        "--check"
+      ]
+    },
+    {
+      "gate": "all-pages",
+      "startedAt": "2026-10-30T00:56:54Z",
+      "finishedAt": "2026-10-30T01:02:16.378888+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "PUPPETEER_PKG=/workspace/astrology-browser-tools/node_modules/puppeteer/lib/cjs/puppeteer/puppeteer.js",
+        "CHROME_PATH=/usr/bin/chromium",
+        "BASE=http://127.0.0.1:8030",
+        "node",
+        "scripts/browser-verify.mjs"
+      ]
+    }
+  ],
+  "allExitZero": true,
+  "qualifiedCarryForward": "Other release journeys and actual MCP transports passed locally and in the first CI run before the atlas row-height failure; the fresh pushed-head CI will run them again.",
+  "legacyWarnings": "Two inherited structured-descriptor warnings remain; 129 pages have zero page errors.",
+  "artifacts": {
+    "all-pages.txt": "34995483c9b062effa718b5db081b2aa9e3d97218444d84f2a4e9aa83e2dd388",
+    "audit.txt": "def550eabd431eb495ee8ce297fc149d85f6dc2434dfafa9a22fa049519992a1",
+    "engine.txt": "f09058a7d7cbf55aebc770479779633300289bebe01d06903d0c68d0a66b2a6b",
+    "opgraph-gate.txt": "86a5750f85773ac53bb9243707c1c2afcf12d3fdb5a006d959d39e21da2aec80",
+    "opgraph.txt": "2de1f7ae09372b16bc121674312d753fd40112c9067aab5e007678451b81f01a",
+    "profiles.txt": "dab69f9788bfb29fad20fe487b0aab9e874d3b6059e0e018f75dd6b83a8dbe8b",
+    "round-ledger.txt": "257071c40843eb0affe38462f30ddc795922ddf4bfb0f83cf87b2915161b7089",
+    "run-required.sh": "f80113ff11c1fffe1006f60173db25b40d5caaed162caa79aa819009f7796dc3"
+  }
+}

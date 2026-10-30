@@ -1,0 +1,77 @@
+{
+  "createdAt": "2026-10-29T21:30:50.898Z",
+  "scope": "Default text pairs on new homepage only; not a whole-site or all-state contrast audit",
+  "pairs": [
+    {
+      "selector": "body",
+      "color": "rgb(37, 51, 47)",
+      "background": "rgb(247, 245, 238)",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "contrastRatio": 12.082545715147525,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".home-framing",
+      "color": "rgb(89, 100, 92)",
+      "background": "rgb(247, 245, 238)",
+      "fontSize": "11.84px",
+      "fontWeight": "400",
+      "contrastRatio": 5.658256640946947,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "selector": "#homeRefresh",
+      "color": "rgb(255, 255, 255)",
+      "background": "rgb(133, 67, 46)",
+      "fontSize": "14.4px",
+      "fontWeight": "600",
+      "contrastRatio": 7.395349558519778,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "selector": "#homeCompare",
+      "color": "rgb(37, 51, 47)",
+      "background": "rgb(238, 234, 221)",
+      "fontSize": "14.4px",
+      "fontWeight": "600",
+      "contrastRatio": 10.95167064775756,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".home-day-meta",
+      "color": "rgb(89, 100, 92)",
+      "background": "rgb(247, 245, 238)",
+      "fontSize": "12.16px",
+      "fontWeight": "400",
+      "contrastRatio": 5.658256640946947,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "selector": ".home-fact-label",
+      "color": "rgb(89, 100, 92)",
+      "background": "rgb(247, 245, 238)",
+      "fontSize": "10.4px",
+      "fontWeight": "700",
+      "contrastRatio": 5.658256640946947,
+      "threshold": 4.5,
+      "pass": true
+    },
+    {
+      "selector": "header.site .brand",
+      "color": "rgb(37, 51, 47)",
+      "background": "rgb(255, 254, 250)",
+      "fontSize": "16px",
+      "fontWeight": "600",
+      "contrastRatio": 13.0608951198183,
+      "threshold": 4.5,
+      "pass": true
+    }
+  ],
+  "pass": true
+}

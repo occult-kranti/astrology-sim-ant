@@ -1,0 +1,110 @@
+{
+  "round": 5,
+  "reviewer": "calendar_precision",
+  "executedAt": "2026-10-30T00:28:29.140872+00:00",
+  "verdict": "ACCEPT",
+  "scope": "Read-only artifact/source/handoff acceptance after formal freeze. No new product changes, numerical suite, external fetch or browser execution by this member. Actual final browser execution is credited to experience_review.",
+  "checks": [
+    {
+      "name": "assets/js/core/calendar-atlas.js matches independent R4 review, final browser snapshot and current disk",
+      "pass": true
+    },
+    {
+      "name": "assets/js/app/calendar-atlas.js matches independent R4 review, final browser snapshot and current disk",
+      "pass": true
+    },
+    {
+      "name": "assets/css/calendar-atlas.css matches independent R4 review, final browser snapshot and current disk",
+      "pass": true
+    },
+    {
+      "name": "pages/calendars/chinese.html matches independent R4 review, final browser snapshot and current disk",
+      "pass": true
+    },
+    {
+      "name": "scripts/tests/calendar-atlas.mjs unchanged since independent R4 review",
+      "pass": true
+    },
+    {
+      "name": "docs/evidence/atlas/calendar-source-access.json unchanged since independent R4 review",
+      "pass": true
+    },
+    {
+      "name": "All446 product manifest entries identical between designated R4 and R5 receipts",
+      "pass": true
+    },
+    {
+      "name": "Final browser driver matches actual held script",
+      "pass": true
+    },
+    {
+      "name": "Final browser receipt hash matches binding",
+      "pass": true
+    },
+    {
+      "name": "Final receipt records612 successful assertions and85 downloads",
+      "pass": true
+    },
+    {
+      "name": "Final browser run has no product drift/errors/missing resources/external requests",
+      "pass": true
+    },
+    {
+      "name": "Chinese term inspector exposes24 events and named reference zone at all four tested widths",
+      "pass": true
+    },
+    {
+      "name": "solar-term inspector retains historical time-zone qualification at all four tested widths",
+      "pass": true
+    },
+    {
+      "name": "selected export omits buried unselected comparison and method records at all four tested widths",
+      "pass": true
+    },
+    {
+      "name": "selected source-reading depth visible at all four tested widths",
+      "pass": true
+    },
+    {
+      "name": "Final solar inspector screenshot bytes match the actually viewed R4 final screenshot",
+      "pass": true
+    }
+  ],
+  "passed": 16,
+  "failures": [],
+  "artifacts": [
+    {
+      "path": "docs/evidence/atlas/round5-final/receipt.json",
+      "sha256": "c1fadd75a25bc16481a763ee73ba63f7be840f5bfafa259e87be198e4a98ccf7"
+    },
+    {
+      "path": "docs/evidence/atlas/final-source-binding.json",
+      "sha256": "b4d6af3c5e7e91f3a72fb6f60e61c064a7e317a380ac44e4ca92b0eeff1069a4"
+    },
+    {
+      "path": "docs/evidence/atlas/round5-final/solar-terms-1440.png",
+      "sha256": "f52204b4e5286662e57ee41fb97307ae414991da1adf72598e21412cb0acd75f"
+    },
+    {
+      "path": "docs/evidence/atlas/calendar-review-round4.json",
+      "sha256": "fc633db17e18d58953faf1b3f7232b1bad122b578dd4686f8ae7bd64d4cb5e52"
+    },
+    {
+      "path": "docs/evidence/atlas/calendar-source-access.json",
+      "sha256": "a4c5a08ce0e7367f736131732c96b35b4d47433b4f4d1d1004bb561e1d0a439b"
+    }
+  ],
+  "reviewedScope": [
+    "Read README/HANDOFF current atlas scope and selected public serialization contract.",
+    "Read source records and own methods ledger; no full-book, all-variant or full-range accuracy claim.",
+    "Final solar inspector image is byte-identical to the actually viewed final R4 image; it retains selected2026 validation scope, historical IANA offset qualification and named UTC/reference/observer fields.",
+    "R4 independent90 atlas checks and38 bounded checks remain the executed numerical basis; R5 checks only frozen evidence linkage."
+  ],
+  "remainingLimits": [
+    "Seven pending independent civil-display fixture categories unchanged: islamic-civil,islamic-umalqura,persian,coptic,ethiopic,japanese,roc.",
+    "Seven atlas implementations unavailable: regional Vedic months/festivals, two ancient Egyptian reconstructions, Hebrew sunset-day observance, Kabbalistic interpretation, BaZi and observed-crescent religious date.",
+    "Independent solar-term time fixtures cover2026 only; HKO supplies independent day-level entries, not another minute-level source.",
+    "Runtime tzdata/Intl behavior, named astronomical approximations and traditional-rule limitations remain.",
+    "No human cultural validation, full-book reading, physical-device audit, predictive efficacy or hosted deployment inferred."
+  ]
+}

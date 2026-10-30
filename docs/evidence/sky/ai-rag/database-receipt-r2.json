@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "pass": true,
+  "engine": "@electric-sql/pglite 0.5.13; PostgreSQL in WASM",
+  "hostedSupabase": false,
+  "remoteCredentialsUsed": false,
+  "migrationSHA256": "a5e2c2bb82921ee610380064a1d5b771c8b08d6015401575691eb2ee7c51b1fc",
+  "seedSHA256": "e622e4048f192216d6fc49221a9038694c36dbcadc21380bc14db7ccd6811839",
+  "checks": [
+    {
+      "label": "Migration and curated seed execute in PostgreSQL",
+      "pass": true
+    },
+    {
+      "label": "anon can read only published reference rows",
+      "pass": true
+    },
+    {
+      "label": "anon cannot select the unpublished fixture",
+      "pass": true
+    },
+    {
+      "label": "anon insert denied",
+      "pass": true
+    },
+    {
+      "label": "anon update denied",
+      "pass": true
+    },
+    {
+      "label": "anon delete denied",
+      "pass": true
+    },
+    {
+      "label": "anon can call the invoker retrieval function",
+      "pass": true
+    },
+    {
+      "label": "anon excessive result count rejected",
+      "pass": true
+    },
+    {
+      "label": "authenticated can read only published reference rows",
+      "pass": true
+    },
+    {
+      "label": "authenticated cannot select the unpublished fixture",
+      "pass": true
+    },
+    {
+      "label": "authenticated insert denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated update denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated delete denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated can call the invoker retrieval function",
+      "pass": true
+    },
+    {
+      "label": "authenticated excessive result count rejected",
+      "pass": true
+    },
+    {
+      "label": "Empty retrieval returns no fabricated source",
+      "pass": true
+    },
+    {
+      "label": "Unsupported retrieval returns no fabricated source",
+      "pass": true
+    },
+    {
+      "label": "Query text is parameterized data, not SQL",
+      "pass": true
+    }
+  ],
+  "evaluation": [
+    {
+      "query": "same-sign combustion cazimi",
+      "expected": "SKY-CH-LILLY-SOLAR",
+      "localTop3": [
+        "SKY-CH-LILLY-SOLAR",
+        "SKY-CH-RAO-NAKSHATRA",
+        "SKY-CH-AGRIPPA-SOLAR"
+      ],
+      "postgresTop3": [
+        "SKY-CH-LILLY-SOLAR"
+      ],
+      "localHit": true,
+      "postgresHit": true
+    },
+    {
+      "query": "planetary hours sunrise polar",
+      "expected": "SKY-CH-AGRIPPA-HOURS",
+      "localTop3": [
+        "SKY-CH-AGRIPPA-HOURS",
+        "SKY-CH-RAO-HORA",
+        "SKY-CH-ESA-SIRIUS"
+      ],
+      "postgresTop3": [],
+      "localHit": true,
+      "postgresHit": false
+    },
+    {
+      "query": "tithi worked example Moon Sun",
+      "expected": "SKY-CH-RAO-TITHI",
+      "localTop3": [
+        "SKY-CH-RAO-TITHI",
+        "SKY-CH-DEPENDENCIES",
+        "SKY-CH-LILLY-SOLAR"
+      ],
+      "postgresTop3": [
+        "SKY-CH-RAO-TITHI"
+      ],
+      "localHit": true,
+      "postgresHit": true
+    },
+    {
+      "query": "nakshatra ayanamsha sidereal tropical",
+      "expected": "SKY-CH-RAO-NAKSHATRA",
+      "localTop3": [
+        "SKY-CH-RAO-NAKSHATRA",
+        "SKY-CH-DEPENDENCIES"
+      ],
+      "postgresTop3": [],
+      "localHit": true,
+      "postgresHit": false
+    },
+    {
+      "query": "calendar mismatch dependency",
+      "expected": "SKY-CH-DEPENDENCIES",
+      "localTop3": [
+        "SKY-CH-DEPENDENCIES"
+      ],
+      "postgresTop3": [],
+      "localHit": true,
+      "postgresHit": false
+    },
+    {
+      "query": "astrolabe circular projection 3D",
+      "expected": "SKY-CH-ART",
+      "localTop3": [
+        "SKY-CH-ART"
+      ],
+      "postgresTop3": [],
+      "localHit": true,
+      "postgresHit": false
+    }
+  ],
+  "summary": {
+    "localHits": 6,
+    "postgresHits": 2,
+    "cases": 6,
+    "scope": "Six authored regression questions, not held-out evaluation. BM25 uses overlap; SQL websearch requires query terms unless OR is requested. No model-generated answers assessed."
+  }
+}

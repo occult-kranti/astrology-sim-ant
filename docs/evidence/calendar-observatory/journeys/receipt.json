@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "phase": "journeys",
+  "startedAt": "2026-10-29T21:23:04.981Z",
+  "source": {
+    "baseCommit": "5f030c0e2998c0276a0549707b5578614ccdf7d9",
+    "rootIsImmutableBaseline": false
+  },
+  "environment": {
+    "browser": "Chromium",
+    "serviceWorkers": "blocked",
+    "reducedMotion": "reduce",
+    "screenReader": false,
+    "realPhone": false,
+    "version": "154.0.8037.57"
+  },
+  "sweeps": [],
+  "screenshots": [
+    {
+      "path": "journey-320-home.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      }
+    }
+  ],
+  "checks": [
+    {
+      "label": "London is explicit default example 320",
+      "pass": true
+    },
+    {
+      "label": "homepage Monday week alignment 320",
+      "pass": true
+    },
+    {
+      "label": "download succeeds: #homeDownload",
+      "pass": true
+    },
+    {
+      "label": "actual 14-day export 320",
+      "pass": true
+    },
+    {
+      "label": "every day is local-noon calculated snapshot 320",
+      "pass": true
+    },
+    {
+      "label": "automatic midnight/Monday week rollover 320",
+      "pass": true
+    },
+    {
+      "label": "no implicit permissions 320",
+      "pass": true,
+      "details": {
+        "location": 0,
+        "camera": 0,
+        "motion": 0
+      }
+    },
+    {
+      "label": "homepage 320 reflow",
+      "pass": true,
+      "details": {
+        "width": 320,
+        "scrollWidth": 320,
+        "main": 1,
+        "header": true,
+        "title": "Today & the weeks ahead — The Astrologer's Workbench",
+        "h1": "One moment.Many ways to read it.",
+        "skip": true
+      }
+    },
+    {
+      "label": "home AI preview prepared locally 320",
+      "pass": true
+    },
+    {
+      "label": "date edit freezes live clock 320",
+      "pass": true
+    },
+    {
+      "label": "stale home export disabled 320",
+      "pass": true
+    },
+    {
+      "label": "stale home AI preview cleared 320",
+      "pass": true
+    },
+    {
+      "label": "home DST recovery 320",
+      "pass": true
+    },
+    {
+      "label": "original collection preserved and reachable 320",
+      "pass": true
+    },
+    {
+      "label": "incoming exact instant resolves actual DST occurrence 320",
+      "pass": true
+    },
+    {
+      "label": "13 named civil conventions rendered 320",
+      "pass": true
+    },
+    {
+      "label": "download succeeds: #obs-json",
+      "pass": true
+    },
+    {
+      "label": "JSON exports actual displayed context 320",
+      "pass": true
+    },
+    {
+      "label": "exported methods and day boundaries 320",
+      "pass": true
+    },
+    {
+      "label": "default AI packet omits observer location and zone 320",
+      "pass": true
+    },
+    {
+      "label": "ChatGPT link has no packet query or automatic send 320",
+      "pass": true
+    },
+    {
+      "label": "local deterministic explanation is available 320",
+      "pass": true
+    },
+    {
+      "label": "disclosure change clears old preview 320",
+      "pass": true
+    },
+    {
+      "label": "explicit disclosure includes selected observer 320",
+      "pass": true
+    },
+    {
+      "label": "clipboard failure provides selected manual-copy text 320",
+      "pass": true
+    },
+    {
+      "label": "question edit clears copied preview 320",
+      "pass": true
+    },
+    {
+      "label": "edited comparison disables stale exports and links 320",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "missing": [],
+  "failure": {
+    "message": "locator.selectOption: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#obs-fold')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"obs-fold\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    40 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+    "stack": "locator.selectOption: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#obs-fold')\u001b[22m\n\u001b[2m    - locator resolved to <select id=\"obs-fold\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    40 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /workspace/astrology-sim-ant/scripts/browser-observatory.mjs:106:136"
+  },
+  "finishedAt": "2026-10-29T21:23:27.175Z",
+  "pass": false
+}

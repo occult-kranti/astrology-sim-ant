@@ -3,33 +3,83 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Astrologer's Workbench — Western & Indian astrology, the oracles & the esoteric arts, computed honestly</title>
+<title>Today &amp; the weeks ahead — The Astrologer's Workbench</title>
 <meta name="description" content="A scientifically-honest study and calculation edition of the whole tradition: Western astrology (Lilly's Christian Astrology, 1647, and the Picatrix's astral magic), the Indian systems (Jyotiṣa, praśna, muhūrta, tājika), the divinatory oracles (geomancy, tarot, I Ching, runes) and the esoteric wings (Kabbalah, Jung, the Yoga Sūtras, the Hermetic chronology) — every figure computed on a verified astronomical engine, every rule cited, every calculation explained step by step, all framed as history and never as prediction.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0e1430">
 <meta name="no-next-up" content="home is its own funnel">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/observatory-home.css">
+<link rel="stylesheet" href="assets/css/day-guidance.css">
+<link rel="stylesheet" href="assets/css/comparison-evidence.css">
 </head>
 <body>
-<section class="hero">
-  <div class="wrap">
-    <h1>The Astrologer's Workbench</h1>
-    <p class="sub">Lilly · Picatrix · Jyotiṣa · the oracles — historical systems, computed for study</p>
-    <p>Begin with an observed moment. Cast a chart, compare its conventions, construct a sourced symbol and keep
-      a study journal. <b>Live Symbol Studio</b> connects these tasks to SkyLens, with explicit snapshots and an
-      optional source-aware AI assistant. The dedicated calculators and study texts remain available for deeper work.</p>
-    <p style="margin-top:1.4rem">
-      <a class="btn" href="pages/studio.html">Begin a study →</a>
-      <a class="btn ghost" href="https://occult-kranti.github.io/skylens/">Open live SkyLens</a>
-    </p>
-    <p style="margin-top:.6rem">
-      <a href="pages/workbench.html" style="color:#f0e8d2">Open the full Workbench</a> · <a href="pages/basics.html" style="color:#f0e8d2">New here? Start with the Basics</a>
-    </p>
-  </div>
-</section>
+<main class="wrap observatory-home" id="observatory-home">
+  <header class="home-intro">
+    <p class="eyebrow">THE CALENDAR OBSERVATORY</p>
+    <h1>One moment.<br><em>Many ways to read it.</em></h1>
+    <p class="home-deck">Choose a place and a day. Follow the sky through this week and next, then compare the calendars, calculations and traditions that give it meaning.</p>
+    <p class="home-framing">Astronomy is calculated. Readings describe named traditions for study; they have no demonstrated predictive validity.</p>
+    <p><a href="pages/calendar-atlas.html">Explore the desktop Calendar Atlas</a> · <a href="pages/calendar-search.html">Search dates &amp; event patterns</a></p>
+  </header>
 
-<main class="wrap">
+  <section class="home-context" aria-labelledby="home-context-title">
+    <div class="home-section-head"><h2 id="home-context-title">Your moment &amp; place</h2><span class="home-local-note">Calculated on your device</span></div>
+    <form id="homeContext">
+      <div class="home-primary-fields">
+        <label>Place<select id="homePlace" name="place">
+          <option value="london">London · United Kingdom</option><option value="delhi">Delhi · India</option><option value="newyork">New York · United States</option><option value="beijing">Beijing · China</option><option value="cairo">Cairo · Egypt</option><option value="jerusalem">Jerusalem</option><option value="tokyo">Tokyo · Japan</option><option value="sydney">Sydney · Australia</option><option value="mexico">Mexico City · Mexico</option><option value="custom">Custom coordinates</option>
+        </select></label>
+        <label>Date<input id="homeDate" name="date" type="date" min="1900-01-01" max="2100-12-31" required></label>
+        <label>Local time<input id="homeTime" name="time" type="time" step="1" required></label>
+        <label>Clock<select id="homeClockMode" name="clock"><option value="live">Follow the present</option><option value="frozen">Keep this moment</option></select></label>
+      </div>
+      <details class="home-location-details" id="homeLocationDetails"><summary>Coordinates, time zone &amp; clock changes</summary>
+        <div class="home-detail-fields">
+          <label>Latitude<input id="homeLat" name="latitude" type="number" step="any" min="-90" max="90" value="51.5074" required></label>
+          <label>Longitude<input id="homeLon" name="longitude" type="number" step="any" min="-180" max="180" value="-0.1278" required></label>
+          <label>IANA time zone<input id="homeZone" name="zone" type="text" value="Europe/London" required spellcheck="false" autocapitalize="none"></label>
+          <label>Repeated local time<select id="homeFold" name="fold"><option value="reject">Ask me if the clock repeats</option><option value="earlier">Earlier occurrence</option><option value="later">Later occurrence</option></select></label>
+        </div>
+        <p class="small">London is the initial example, not your detected location. Coordinates and time zone are independent inputs. No location permission or cloud account is needed.</p>
+      </details>
+      <div class="home-actions"><button type="submit" id="homeRefresh" class="btn">Update reading</button><a class="btn ghost" id="homeCompare" href="pages/calendar-compare.html">Compare all supported calendars →</a></div>
+    </form>
+    <p id="homeStatus" class="home-status" role="status" aria-live="polite">Preparing the current moment in London…</p>
+    <p id="homeError" class="home-error" role="alert" hidden></p>
+  </section>
+
+  <section class="home-current" aria-labelledby="home-current-title">
+    <div class="home-section-head"><div><p class="eyebrow">AT THE SELECTED MOMENT</p><h2 id="home-current-title">Today's reading</h2></div><a href="pages/studio.html">Open the study studio ↗</a></div>
+    <div id="homeSummary" class="home-summary" aria-busy="true"><p>Loading the local calculation engine…</p></div>
+    <div id="homeTraditions" class="home-traditions"></div>
+    <details id="homeConnections" class="home-traditions"><summary>Trace the shared calculations and different rules</summary><div id="homeComparisonEvidence"></div></details>
+    <div id="homeDayGuide" aria-label="Explainable guidance for the selected moment"></div>
+    <p class="home-comparison-note">Shared sky quantities can appear in different rulebooks. Similar names or simultaneous changes do not establish equivalent meanings, independent agreement or predictive accuracy.</p>
+  </section>
+
+  <section class="home-outlook" id="homeOutlook" aria-labelledby="home-outlook-title">
+    <div class="home-section-head"><div><p class="eyebrow">A CALCULATED ALMANAC</p><h2 id="home-outlook-title">This week &amp; next</h2></div><button type="button" id="homeDownload" class="btn ghost" disabled>Export 14-day JSON</button></div>
+    <p id="homeOutlookMethod" class="home-outlook-method">One snapshot at local noon per day, Monday–Sunday, in the selected time zone. These are sampled positions and traditional study prompts, not exact transition times or validated forecasts.</p>
+    <p id="homeOutlookStale" class="home-error" role="status" hidden>Previous date and place shown. Update the reading to restore day links and hourly details for the edited inputs.</p>
+    <div class="home-week-layout"><section class="home-week" aria-labelledby="home-this-title"><h3 id="home-this-title">This week</h3><div id="weekThis"><p>Preparing seven daily snapshots…</p></div></section><section class="home-week" aria-labelledby="home-next-title"><h3 id="home-next-title">Next week</h3><div id="weekNext"><p>Preparing seven daily snapshots…</p></div></section></div>
+    <p class="small home-auto-note">Follow the present refreshes while this page is open and again when you return. Calculations remain local. A closed browser does not run a background forecast service.</p>
+  </section>
+
+  <section class="home-study-paths" aria-labelledby="home-study-title"><div><p class="eyebrow">KEEP EXPLORING</p><h2 id="home-study-title">A desk for every kind of study.</h2><p>Every existing calculator, source text and saved study remains part of the Workbench.</p></div>
+    <div class="home-path-list">
+      <a href="pages/sigil-studio.html"><span><strong>Create sigils &amp; mandalas</strong><small>Editable geometry, source-labelled setups and ChatGPT image prompts</small></span><span aria-hidden="true">↗</span></a>
+      <a href="pages/world-events.html"><span><strong>World events &amp; historical readings</strong><small>Upcoming elections, international days and explicit study moments</small></span><span aria-hidden="true">↗</span></a>
+      <a href="pages/standards.html"><span><strong>Standards &amp; working examples</strong><small>Reusable time, calendar, art, exchange and AI components</small></span><span aria-hidden="true">↗</span></a>
+      <a href="pages/tools.html"><span><strong>Tools &amp; calculators</strong><small>Charts, timing, calendars and symbolic systems</small></span><span aria-hidden="true">↗</span></a>
+      <a href="pages/workbench.html"><span><strong>The full Workbench</strong><small>Compose, inspect and export a complete reading</small></span><span aria-hidden="true">↗</span></a>
+      <a href="pages/library/index.html"><span><strong>Books &amp; traditions</strong><small>Lilly, Jyotiṣa, Picatrix and the broader library</small></span><span aria-hidden="true">↗</span></a>
+      <a href="pages/mcp.html"><span><strong>Connect your AI tools</strong><small>Source-labelled packets and an optional MCP server</small></span><span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+  <section class="home-assistant-section" aria-labelledby="home-ai-title"><p class="eyebrow">READ WITH CONTEXT</p><h2 id="home-ai-title">Ask about this moment</h2><div id="homeAssistant"><p>Preparing source-labelled study context…</p></div></section>
+  <details id="collection" class="home-full-collection"><summary>Explore the full original collection</summary><div class="home-legacy-collection">
 
   <div class="callout science">
     <span class="label">Read this first — an honest note</span>
@@ -286,11 +336,9 @@
     </div>
   </div>
 
+</div></details>
+<noscript><p>The calculators need JavaScript. All source books and the <a href="pages/contents.html">complete page index</a> remain available.</p></noscript>
 </main>
-
-<script type="module">
-  import { mountChrome } from './assets/js/app/shared.js';
-  mountChrome('home');
-</script>
+<script type="module" src="assets/js/app/observatory-home.js"></script>
 </body>
 </html>

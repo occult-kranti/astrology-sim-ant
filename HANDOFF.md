@@ -1,5 +1,117 @@
 # Handoff notes — for the next model/build
 
+## Interactive sky, source interpretations and tool coverage — 30 October 2026
+
+Continue on `feat/mobile-calendar-observatory`, extending `fb656a8047e93b8d49227d92aa9edc3e9b1fce50`, in draft PR #5. Read the new [plan](docs/2026-10-sky-plan.md), [panel ledger](docs/2026-10-sky-panel.md) and [verification](docs/2026-10-sky-verification.md). This is a separate multi-round pass with the same six independent AI-agent perspectives; numerical claims and review counts in older sections below refer to those historical revisions. The coverage JSON and generated MCP catalogue are authoritative for current capability/tool counts.
+
+`sky-dynamics.js` and its worker supply ten apparent geocentric bodies, true heliocentric J2000 vectors, 20 licensed modern catalogue stars, opt-in historical longitude-only markers, and bounded calculated timelines. The frame and accuracy distinctions in [the method report](docs/2026-10-sky-dynamics.md) are load-bearing. Do not double-rotate sidereal overlay sectors, connect coarse lunar points into a misleading trajectory, or label a numerically solved event infinitely precise. The HYG extract has a separate CC BY-SA notice; it is not relicensed as application code.
+
+`sky-explorer.js` extends the existing atlas and all five family pages. Deep chart is the default; the original Sun–Moon view, exports and birth panel remain. Dirty moment/selection/comparison inputs invalidate dependent plots, prompts and exports. The applied comparison zone/mode/fold policy must reach AI packets exactly; a fallback to the default same-zone comparison is a real regression. `calendar-alignment.js` distinguishes same instant, same wall clock, geographic zone correctness and external-provider connection. ICS export is a manual study marker, not an authenticated synchronization service.
+
+`sky-interpretation.js` reuses canonical facts and records selected Lilly/Agrippa/Rao rules, source differences and input certainty. New readings distinguish textual same-sign combustion from legacy separation-only behavior, and Rao's equal sunrise-day hours from Agrippa's reported daylight/night hours. See [source reading and rights](docs/2026-10-sky-sources.md); no full-book reading or human tradition authority is claimed. The reusable `.claude/skills/sky-interpretation-review/SKILL.md` captures these review rules.
+
+The new sky assistant provides local deterministic readings and a separate optional provider response. It requires an exact preview and explicit send, keeps provider keys in memory, omits observer-dependent information by default, cancels on context changes, and inspects citation identifiers without claiming semantic truth. `shared.js` mounts a separate, collapsed tool guide using actual registry routes; that guide never scrapes current charts or saved records. Strict MCP adapters recompute from explicit arguments, and asynchronous tools retain an awaited response envelope. Preserve method fallback, source limits and explicit oracle draws. Renderers and reference-only entries remain distinct from callable calculations.
+
+The local retrieval corpus and optional Supabase full-text-search migration are described in [AI/RAG setup](docs/2026-10-sky-ai-rag.md). Neither a local SQL test nor a prepared migration is a hosted deployment. Regenerate MCP discovery, adapter coverage, tool coverage, the source-reference pack and search index from their authored inputs; run their `--check` gates before freezing. No real provider inference or model fine-tuning is established by mocked transport tests.
+
+Three review rounds are complete, with six final scope acceptances. The unchanged-source combined sky suite passed 3,417 checks and inspected 302 downloads across four widths, including 117 guide visits. The dated panel/verification reports retain earlier failures and their corrections; all 25 required release commands passed, with two inherited descriptor warnings retained. Release evidence is under `docs/evidence/sky/release-gates/`; exact-head remote CI belongs to the PR/delivery record. Preserve all inherited gates and run `scripts/browser-sky.mjs` as well as the retained atlas/site/MCP suites. Keep at most two Chromium processes active. Prefer CI-pinned Playwright 1.58.2/Chromium 145 and record actual platform fonts. A draft PR is separate from production Pages, hosted MCP and Supabase deployment.
+
+## Desktop calendar atlas and event laboratory — 29–30 October 2026
+
+Continue on `feat/mobile-calendar-observatory`, extending `0d115c9`, in draft PR #5. The new [five-round atlas ledger](docs/2026-10-atlas-panel.md) and [verification](docs/2026-10-atlas-verification.md) are separate from the earlier review passes below. Six independent AI-agent roles provide source, calculation, implementation and cross-review evidence; they are not human cultural authorities. The [plan](docs/2026-10-atlas-plan.md) records flows and deliberately unavailable scope.
+
+Seven new routes add `pages/calendar-atlas.html`, `pages/calendar-search.html` and five `pages/calendars/` family pages. The zero-build static stack and all original routes remain. The atlas has seven families and 32 variants, including 24 Chinese solar terms with selected 2026 CWA minute/HKO day fixtures. Seven variant implementations remain unavailable; this is distinct from the seven pending civil-family validation statuses, which are unchanged. `exportCalendarAtlas` is the public serialization boundary: it retains only selected rows/methods/referenced sources plus explicitly named shared astronomy. Do not export internal `.comparison` accidentally.
+
+`personal-calendar.js` keeps known and unknown birth times distinct. Unknown time samples 25 points through the actual zoned civil day, ending one millisecond before its exclusive boundary; it does not infer an ascendant, houses, exact returns or Vimśottarī sequence. Exact-time returns are opt-in. Birth data is memory-only, omitted from default public URLs and exports, and never implicitly sent to an AI provider.
+
+`calendar-search.js` and its worker own bounded local scans, exact-grid reference/optimized equality, source-qualified event signatures and descriptive shifted-control comparisons. Default windows allow 366 dates; advanced scans explicitly allow up to the supported 1900–2100 grid. Returned rows are capped separately from scanned/matched totals. Missing/ambiguous samples, cancellation, stale results, control overlap and shared inputs stay visible. Nine event examples are a documented convenience set, not a representative outcome dataset. See the reusable `.claude/skills/date-event-search-review/SKILL.md` and its agent template before extending inference or ranking.
+
+At that historical atlas revision, source MCP had **15 read-only allowlisted tools**, including `workbench_calendar_atlas` with selected-method output and explicit prayer options. It rejects birth fields. Actual stdio/HTTP tests are separate from hosted service availability; the earlier hosted service has not been updated by this branch. Pages only serves the frontend.
+
+All five atlas rounds are complete, with six explicit final acceptances. The frozen atlas gate passed 612 checks and inspected 85 downloads; 20 local release commands passed, including both 129-page browser sweeps. The legacy harness retains two documented descriptor warnings, and the historical ledger retains C3 NOT EVALUABLE. Initial CI exposed a font-dependent ranked-row height failure. The CSS correction retains full count text within horizontal scrolling; corrected Chromium 145 runs passed 612 full checks and 178 focused DejaVu checks. Seven required local gate commands, including the 129-page sweep, passed again. Read the verification report’s reopened R5 section and corrected source binding rather than treating the initial local run as proof of remote success. The new `scripts/browser-atlas.mjs` is wired into Pages verification alongside all inherited engine, browser, MCP and pinned SkyLens gates. Final acceptance requires an unchanged product/driver snapshot and actual exported-byte checks. Keep no more than two Chromium processes active in this environment. Regenerate search/MCP catalogues after relevant changes. Review-branch CI and production deployment remain separate; this task does not merge or publish main. Counts and status statements in the historical snapshots below describe those earlier revisions; that atlas revision had 15 MCP tools. The current generated catalogue supersedes this historical count.
+
+
+## Previous six-member, three-round improvement pass — 29 October 2026
+
+Continue on `feat/mobile-calendar-observatory`, extending baseline `3be3d46`. Read the [panel ledger](docs/2026-10-ensemble-panel.md), [verification](docs/2026-10-ensemble-verification.md), and five linked method/source reports before expanding claims. These are six AI-agent roles with bounded source reading; selected passages, source failures and unresolved authority questions remain explicit.
+
+`core/comparison-evidence.js` recomputes the canonical context and explains frame offsets, circular residuals, shared lunar derivations and differing conventions. Its app component supports stale invalidation, lazy homepage mounting and same-observer focus preservation. It is included in comparison JSON/Markdown. Shared inputs are dependencies, not independent corroboration; exact partition boundaries retain the engine's floating-point qualification.
+
+Recipe import validates bounded geometry and strict field types, never inserts supplied SVG, and labels imported provenance unverified. Private restoration requires explicit consent and a geometry match. AI packets independently recompute civil rows and rules; location and rule-evidence controls are separate and default off. The default minimal packet remains unchanged. Source MCP now has 14 tools including `workbench_explain_guidance`; hosted deployment/authentication and external inference are separate work.
+
+Two-event study samples preserve source precision, acknowledged observer-local civil noon, actual UTC elapsed hours and shortest signed angular displacement. Event records/review dates were not refreshed by this comparison feature. Mobile tables use named keyboard scroll regions and overflow hints. Standards validation uses the canonical engine, with direct profile navigation, search recovery and stale-task clearing.
+
+Direct civil conversion now checks both UTC and observer-local1900–2100 years. Selected Chinese2025 leap-sixth-month fixtures cite HKO and Taiwan CWA as distinct issuing authorities. Seven pending-family statuses remain unchanged. Edit `.claude/skills/observatory-source-contract/profiles.json` before regenerating profiles; never hand-edit generated profiles. The common specialist contract now covers imported provenance, strict schemas and source/table discrepancies.
+
+Preserve all inherited gates. The new `scripts/browser-ensemble.mjs` exercises five workflows at320/390/1365px, validates actual downloads and binds its driver/product hashes. It is wired into Pages CI. Run it after final asset generation with `PLAYWRIGHT_EXECUTABLE_PATH=/usr/bin/chromium` when using this environment's installed browser. The `ensemble` evidence directory records this pass separately from prior releases. PR #5 remains a review branch; production publication still requires verified main.
+
+## Symbolic studio and explainable almanac extension — 29 October 2026
+
+Continue on `feat/mobile-calendar-observatory`; this work extends the previous review branch. New routes are `pages/sigil-studio.html`, `pages/world-events.html` and `pages/standards.html`. The older Live Symbol Studio and every existing calculator remain separate and intact.
+
+`core/sigil-design.js` reuses the existing squares/symbol engines, provides deterministic geometry and source-labelled paper study recipes. Artwork from `image_gen` is in `assets/img/studio/`, separately identified from procedural SVG output. The optional `mcp/sigil-image-provider.mjs` is a standalone protected adapter, not a mounted MCP tool or live service; configure its model on the server and never insert provider keys into the static app.
+
+`core/day-guidance.js` composes selected existing rule engines without their aggregate score. `app/day-guidance.js` exports `mountDayGuidance(container, comparisonOrInput)` with `update(null)` invalidation and `destroy()`. Hourly work is lazy, partitions real local civil days, and preserves repeated/absent clocks. Opening-portion yoga remains timing-unresolved. No fixed-star alignment is inferred; the displayed rules name what they actually use. Editorial reflection actions are distinct from source quotations. Homepage weekly links lose their href while inputs are stale and are restored only after a valid calculation.
+
+World event dates retain precision, source status, coverage and review age. A local-noon chart requires explicit acknowledgement and an observer; it is not a poll-opening or outcome timestamp. Annual observances and conditional elections remain labelled. Rechecking a URL does not establish the event fact is still current.
+
+Standards and specialist task contracts live in `core/data/observatory-standards.js` and `.claude/skills/`, with reusable agent templates. Keep generated profile outputs synchronized through their committed builder. Node checks are registered in `scripts/engine-test.mjs`; new mobile/export/privacy journeys run through `scripts/browser-studio-expansion.mjs`. Preserve all prior engine, audit, browser and MCP gates. Read the dated source, panel and verification documents linked in README before making stronger interpretation, coverage, deployment or AI claims.
+
+## Calendar Observatory branch — 29 October 2026
+
+Current development: `feat/mobile-calendar-observatory`, based on `5f030c0`.
+The redesign preserves all 117 original application routes and adds
+`pages/calendar-compare.html`. Read the new dated research, plan, AI, panel and
+verification documents linked at the top of README before changing its methods.
+
+The frontend remains a zero-build static ES-module site. Run from this checkout:
+
+```bash
+python3 -m http.server 8030 --bind 127.0.0.1
+node scripts/engine-test.mjs
+node scripts/audit.mjs
+node scripts/round-ledger.mjs --check
+npm ci --ignore-scripts --prefix mcp
+npm test --prefix mcp
+```
+
+For browser gates use the existing Playwright installation, or the workflow's
+pinned `playwright@1.58.2` with its Chromium. Run `scripts/browser-release.mjs`
+and `scripts/browser-observatory.mjs`. Integration journeys additionally use
+SkyLens commit `2b2aa089009db3ddedc2256a7a5456b402b23962` via `SKY_LENS_ROOT`;
+do not substitute a moving branch and call it the pinned test.
+Regenerate the source-backed catalogues with
+`node scripts/build-mcp-catalogue.mjs` and `node scripts/build-search-index.mjs`
+when their inputs change. The service worker version is bumped for this release;
+its lifecycle fixture derives the current version while retaining obsolete-cache
+and other-project preservation checks.
+
+`calendar-observatory.js` owns pure, bounded same-instant comparisons and
+1–14 local-date snapshots. `instant-boundary.js` isolates unchanged strict parsing;
+`calculation-context.js` re-exports the prior public API. The homepage aligns its
+two groups to Monday–Sunday using `observatory-schedule.js`. Live refresh reads
+the actual unambiguous instant rather than re-resolving a repeated wall clock.
+Dirty/frozen inputs suspend automatic updates and invalidate export/AI packets.
+No timer runs while the site is closed, and no unattended cloud job is claimed.
+
+All new symbolic quality rows are historical classifications, not active outcome
+verdicts. Opening-portion yoga rules have `applicability: timing-unresolved`;
+primary-text verification is incomplete, and modern secondary provenance and
+citation flags must remain visible. Civil conversions do not infer sunset days,
+observed crescents, festivals, personal births, or every culture's calendar.
+
+The new ChatGPT flow previews/copies/exports a minimal source-labelled packet.
+It makes no provider call, inherits no ChatGPT session, and excludes geographic
+information by default. The source MCP now has 14 tools; the previously hosted
+remote endpoint has not been redeployed or authenticated as part of this branch.
+Do not claim its three added tools are remotely available until separately verified.
+No Supabase connection is needed or present. Existing saved records and older
+assistants retain their own documented formats and behaviour.
+
+The branch and PR are review artifacts. The existing workflow publishes only
+verified `main`; creating this branch does not replace the production website.
+Retained historical handoff notes below refer to earlier releases.
+
 This file is the **environment + architecture + ship-procedure** truth. For *what to build
 next and in what order*, read **`ROADMAP.md`** (the reconciled, phased plan). For *the data to
 encode and its accuracy caveats*, read **`research/SOURCE-DATA.md`**. The long-form vision is

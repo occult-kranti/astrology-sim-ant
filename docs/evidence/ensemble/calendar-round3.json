@@ -1,0 +1,106 @@
+{
+  "round": 3,
+  "reviewer": "calendar_precision",
+  "executedAt": "2026-10-29T23:11:46.896386+00:00",
+  "verdict": "ACCEPT",
+  "scope": "Final owned calendar code and numeric/dependency boundary explanation; no browser review in this round",
+  "tests": [
+    {
+      "command": "node scripts/tests/cultural-calendars.mjs",
+      "result": "PASS",
+      "checks": 80
+    },
+    {
+      "command": "node scripts/tests/calendar-observatory.mjs",
+      "result": "PASS",
+      "checks": 59
+    },
+    {
+      "command": "node scripts/tests/comparison-evidence.mjs",
+      "result": "PASS",
+      "checks": 44
+    }
+  ],
+  "fileHashes": [
+    {
+      "path": "assets/js/core/cultural-calendars.js",
+      "sha256": "819804fe10ac53afee33dbf65ff2cc8bea1841c32870d9c421b77481caf0cf55"
+    },
+    {
+      "path": "scripts/tests/cultural-calendars.mjs",
+      "sha256": "712005dc928b18073d1607edf6f9e457ab4354e41ee1872a4d7015666853a295"
+    },
+    {
+      "path": "scripts/tests/fixtures/chinese-leap-month-2025.json",
+      "sha256": "5d06d42f0b002419c2e4009bdec5ea5cb9de64f3a1e1c04a39889041f987fcfe"
+    },
+    {
+      "path": "assets/js/core/comparison-evidence.js",
+      "sha256": "10ce5451c758941715158e300b5d5445e524a4af33dc6aff0ae6c7da68d5ab21"
+    },
+    {
+      "path": "assets/js/app/comparison-evidence.js",
+      "sha256": "b8937d233f932695e38c1ea0f3101d38c289bdd9ad1be74e80eec3377905e165"
+    },
+    {
+      "path": "scripts/tests/comparison-evidence.mjs",
+      "sha256": "3be6bd4a42b4bf9aaeaf6947ad38df907948bce383d8c58bab7e29d9a5528839"
+    },
+    {
+      "path": "assets/js/core/calendar-observatory.js",
+      "sha256": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9"
+    },
+    {
+      "path": "scripts/tests/calendar-observatory.mjs",
+      "sha256": "da9a118110262bd0b37ff5634c32a7fad96e69806933451b8f1b240d1cd38dd2"
+    }
+  ],
+  "frozenSourceReceipts": [
+    {
+      "id": "hko2025",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2025e.pdf",
+      "expectedSha256": "2fd4da167d25c376809888bfee0da74dcc01e66822afd8bd9ee803e2f8373f54",
+      "actualSha256": "2fd4da167d25c376809888bfee0da74dcc01e66822afd8bd9ee803e2f8373f54",
+      "matchesReceipt": true,
+      "readingDepth": "Selected calendar table rows read and rendered page visually inspected; no full-book claim"
+    },
+    {
+      "id": "hko2025-chinese",
+      "url": "https://www.hko.gov.hk/tc/gts/time/calendar/pdf/files/2025.pdf",
+      "expectedSha256": "4037b1060e379c3f554408f6ab2aae4319707e3db7ae50febec068c6b9e8f87b",
+      "actualSha256": "4037b1060e379c3f554408f6ab2aae4319707e3db7ae50febec068c6b9e8f87b",
+      "matchesReceipt": true,
+      "readingDepth": "Selected calendar table rows read and rendered page visually inspected; no full-book claim"
+    },
+    {
+      "id": "cwa2025",
+      "url": "https://www.cwa.gov.tw/Data/astronomy/2025cal.pdf",
+      "expectedSha256": "785f9ea9465f5508d723a1b83bf7df1bc65fa3a8798709f9688ed553d7f356fb",
+      "actualSha256": "785f9ea9465f5508d723a1b83bf7df1bc65fa3a8798709f9688ed553d7f356fb",
+      "matchesReceipt": true,
+      "readingDepth": "Selected calendar table rows read and rendered page visually inspected; no full-book claim"
+    }
+  ],
+  "pendingIndependentDisplayFixtures": [
+    "islamic-civil",
+    "islamic-umalqura",
+    "persian",
+    "coptic",
+    "ethiopic",
+    "japanese",
+    "roc"
+  ],
+  "acceptedCorrections": [
+    "Direct API checks both UTC year and observer civil year within 1900–2100",
+    "Four independently published HKO/CWA leap-month date fixtures, two UTC+8 zones, exact civil-midnight boundary",
+    "Comparison report and visible formula section explain rounded endpoints and inherited floating-point boundary uncertainty"
+  ],
+  "remainingLimits": [
+    "Selected reference dates are not full-range validation",
+    "Intl output remains runtime-dependent",
+    "No religious observance or regional festival inference",
+    "Internal transform/partition agreement is not independent ephemeris or predictive validation",
+    "Exact lunar limb transition search and full Panchanga remain unavailable",
+    "No new full-book or human tradition expertise claim"
+  ]
+}

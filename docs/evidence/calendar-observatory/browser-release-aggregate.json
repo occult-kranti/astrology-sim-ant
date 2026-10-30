@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-29T21:47:47.488512+00:00",
+  "pass": true,
+  "strategy": "All six supported browser phases in separate processes; no single all-mode success is claimed.",
+  "requiredPhases": [
+    "calculators",
+    "workbench",
+    "studio",
+    "connections",
+    "assistant",
+    "pages"
+  ],
+  "phases": [
+    {
+      "phase": "calculators",
+      "path": "docs/evidence/calendar-observatory/browser-release-calculators/browser-results.json",
+      "sha256": "421ba44daeaa7ea777be4758a484cca4743089923c5d191eb1af8b13546cacff",
+      "passed": true,
+      "completed": [
+        "mobile: known/unknown natal precision and real New York DST gap/fold workflow",
+        "mobile: civil calendars, J2000 JD, Gregorian/Julian Easter, Qibla, polar prayer case, validation recovery",
+        "desktop: known/unknown natal precision and real New York DST gap/fold workflow",
+        "desktop: civil calendars, J2000 JD, Gregorian/Julian Easter, Qibla, polar prayer case, validation recovery"
+      ],
+      "pageCount": 0,
+      "elapsedMilliseconds": 11291
+    },
+    {
+      "phase": "workbench",
+      "path": "docs/evidence/calendar-observatory/browser-release-workbench/browser-results.json",
+      "sha256": "3866f20710f2bd3c10b4c2c0d0dffa0c2eceb7cde249ddb07a0535683cc4a259",
+      "passed": true,
+      "completed": [
+        "workbench-small: independent Sun fixture, malformed-state recovery, lazy AI, distinct pickers, zone/fold/sect restore, export, invalid draft and live/pause",
+        "workbench-mobile: independent Sun fixture, malformed-state recovery, lazy AI, distinct pickers, zone/fold/sect restore, export, invalid draft and live/pause",
+        "workbench-desktop: independent Sun fixture, malformed-state recovery, lazy AI, distinct pickers, zone/fold/sect restore, export, invalid draft and live/pause"
+      ],
+      "pageCount": 0,
+      "elapsedMilliseconds": 17665
+    },
+    {
+      "phase": "studio",
+      "path": "docs/evidence/calendar-observatory/browser-release-studio/browser-results.json",
+      "sha256": "4c61c3808b5812371ab1d5d09f01681fb51dbbad32305fbf426915557739074d",
+      "passed": true,
+      "completed": [
+        "studio-small: charts/squares/letter totals, trace frame, save/reload, strict alphabet, polar hour, exports and live/pause",
+        "studio-mobile: charts/squares/letter totals, trace frame, save/reload, strict alphabet, polar hour, exports and live/pause",
+        "studio-landscape: charts/squares/letter totals, trace frame, save/reload, strict alphabet, polar hour, exports and live/pause",
+        "studio-desktop: charts/squares/letter totals, trace frame, save/reload, strict alphabet, polar hour, exports and live/pause",
+        "studio-reflow: charts/squares/letter totals, trace frame, save/reload, strict alphabet, polar hour, exports and live/pause"
+      ],
+      "pageCount": 0,
+      "elapsedMilliseconds": 23221
+    },
+    {
+      "phase": "connections",
+      "path": "docs/evidence/calendar-observatory/browser-release-connections/browser-results.json",
+      "sha256": "9cbfb13f5296a51d742ffec841e4129abfe4273379f730383114e53be9af0ed3",
+      "passed": true,
+      "completed": [
+        "mcp-small: strict local catalogue, filter/empty/reset, truthful hosting status, clipboard and manual fallback, no automatic connection",
+        "mcp-mobile: strict local catalogue, filter/empty/reset, truthful hosting status, clipboard and manual fallback, no automatic connection"
+      ],
+      "pageCount": 0,
+      "elapsedMilliseconds": 6264
+    },
+    {
+      "phase": "assistant",
+      "path": "docs/evidence/calendar-observatory/browser-release-assistant/browser-results.json",
+      "sha256": "5d8d7dd53ec34e6114b24b650c8329a2e22179e4e18c262f0b5b3906454336ad",
+      "passed": true,
+      "completed": [
+        "assistant: explicit send only; replacement/Stop/hidden/provider abort; stale UI/history blocked; key persistence opt-in"
+      ],
+      "pageCount": 0,
+      "elapsedMilliseconds": 5385
+    },
+    {
+      "phase": "pages",
+      "path": "docs/evidence/calendar-observatory/browser-release-pages/browser-results.json",
+      "sha256": "c35330112d8f4110d4740dd05b32f55227812005c56f2ff06a24a49c826aeec7",
+      "passed": true,
+      "completed": [
+        "full static site sweep: 119 HTML entries under the Pages prefix"
+      ],
+      "pageCount": 119,
+      "elapsedMilliseconds": 269687
+    }
+  ],
+  "sumSerialPhaseMilliseconds": 333513,
+  "completedJourneyCount": 15,
+  "staticHTMLCount": 119,
+  "priorAllMode": {
+    "path": "docs/evidence/calendar-observatory/browser-release-all-interrupted.json",
+    "passed": false,
+    "completeReleaseRun": false,
+    "elapsedMilliseconds": 1164186,
+    "completedJourneys": 15,
+    "pageSweepCount": 81,
+    "failures": [
+      "Legacy delayed redirect navigation race (corrected in harness).",
+      "Failed to open new tab (Target.createTarget); long-lived browser/lifecycle cause is unconfirmed."
+    ],
+    "termination": "The owned original runner PID was sent SIGTERM at the bounded19-minute failure budget; no unrelated processes were targeted."
+  }
+}

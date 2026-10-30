@@ -1,0 +1,72 @@
+{
+  "checks": 16,
+  "passed": 16,
+  "results": [
+    {
+      "pass": true,
+      "label": "Comparison JSON guidance uses the exported comparison instant"
+    },
+    {
+      "pass": true,
+      "label": "JSON retains all source rules and unresolved Parigha"
+    },
+    {
+      "pass": true,
+      "label": "Markdown preserves rules and editorial-action qualifications"
+    },
+    {
+      "pass": true,
+      "label": "Edited comparison blocks stale exports"
+    },
+    {
+      "pass": true,
+      "label": "All available weekly rows retain their own sample guidance"
+    },
+    {
+      "pass": true,
+      "label": "Weekly export keeps source IDs and editorial action status"
+    },
+    {
+      "pass": true,
+      "label": "Dirty homepage removes all stale weekly hrefs and disables download"
+    },
+    {
+      "pass": true,
+      "label": "Dirty homepage clears old sample guidance"
+    },
+    {
+      "pass": true,
+      "label": "Successful recalculation restores all fourteen usable day links"
+    },
+    {
+      "pass": true,
+      "label": "Recalculated export uses the newly selected local calendar week"
+    },
+    {
+      "pass": true,
+      "label": "Live minute update preserves the open hour, nested rule section and selected source rule"
+    },
+    {
+      "pass": true,
+      "label": "Same-day update reuses hourly calculations instead of rerunning them"
+    },
+    {
+      "pass": true,
+      "label": "Rendered local source links retain the actual Pages project prefix"
+    },
+    {
+      "pass": true,
+      "label": "Every rendered local guidance source route returns HTTP200"
+    },
+    {
+      "pass": true,
+      "label": "Changing observer key does not restore an old observer hour selection"
+    },
+    {
+      "pass": true,
+      "label": "Changed export and stale-context journeys have no runtime page errors"
+    }
+  ],
+  "errors": [],
+  "scope": "R4 changed export/staleness paths; real Chromium320CSSpx; no screen reader/physical phone"
+}

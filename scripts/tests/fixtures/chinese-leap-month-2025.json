@@ -1,0 +1,26 @@
+{
+  "method": "Intl chinese civil display; selected UTC+8 reference dates, not full-range or observance validation",
+  "timeZones": ["Asia/Hong_Kong", "Asia/Taipei"],
+  "sources": [
+    {
+      "authority": "Hong Kong Observatory",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2025e.pdf",
+      "sha256": "2fd4da167d25c376809888bfee0da74dcc01e66822afd8bd9ee803e2f8373f54",
+      "section": "2025 Gregorian-Lunar Calendar Conversion Table, July/August rows; Chinese edition explicitly labels 閏六月",
+      "sameAuthorityChineseEdition": "https://www.hko.gov.hk/tc/gts/time/calendar/pdf/files/2025.pdf",
+      "chineseEditionSha256": "4037b1060e379c3f554408f6ab2aae4319707e3db7ae50febec068c6b9e8f87b"
+    },
+    {
+      "authority": "Taiwan Central Weather Administration",
+      "url": "https://www.cwa.gov.tw/Data/astronomy/2025cal.pdf",
+      "sha256": "785f9ea9465f5508d723a1b83bf7df1bc65fa3a8798709f9688ed553d7f356fb",
+      "section": "中華民國114年日曆資料表, page 1 July/August grids: 6/30, 閏6/1, 閏6/29, 7/2"
+    }
+  ],
+  "dates": [
+    { "gregorian": "2025-07-24", "monthPattern": "Sixth|6", "day": 30, "leap": false },
+    { "gregorian": "2025-07-25", "monthPattern": "Sixth|6", "day": 1, "leap": true },
+    { "gregorian": "2025-08-22", "monthPattern": "Sixth|6", "day": 29, "leap": true },
+    { "gregorian": "2025-08-24", "monthPattern": "Seventh|7", "day": 2, "leap": false }
+  ]
+}

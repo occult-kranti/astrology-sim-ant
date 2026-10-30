@@ -1,0 +1,53 @@
+{
+  "retrievedAt": "2026-10-30T01:25:36.799888+00:00",
+  "source": "NASA JPL Horizons geometric heliocentric vector, center500@10",
+  "frame": "J2000 ecliptic ICRF, no light-time or aberration correction",
+  "units": "AU",
+  "timeScale": "UT explicitly requested; UTC after 1962 according to Horizons documentation.",
+  "fixtures": [
+    {
+      "body": "Earth",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "timeScale": "UT (UTC for the post-1962 reference date)",
+      "x": 0.8013991990802928,
+      "y": 0.5866821621213462,
+      "z": -4.310208256786777e-05,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&EPHEM_TYPE=%27VECTORS%27&TIME_TYPE=%27UT%27&CENTER=%27500%4010%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&VEC_CORR=%27NONE%27&OUT_UNITS=%27AU-D%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "193095d7bc04dffdc933ca8bebd182995c6126d2e39b36d034f32027a7e3dbf6",
+      "responseFile": "horizons-vector-Earth-2026-10-30.json"
+    },
+    {
+      "body": "Mars",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "timeScale": "UT (UTC for the post-1962 reference date)",
+      "x": -0.2617962074683914,
+      "y": 1.570000954240319,
+      "z": 0.03932070043231884,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27499%27&EPHEM_TYPE=%27VECTORS%27&TIME_TYPE=%27UT%27&CENTER=%27500%4010%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&VEC_CORR=%27NONE%27&OUT_UNITS=%27AU-D%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "9694924c9102cc3fd3d672482878623aff8c049d71bd391c51994563f58caea0",
+      "responseFile": "horizons-vector-Mars-2026-10-30.json"
+    },
+    {
+      "body": "Neptune",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "timeScale": "UT (UTC for the post-1962 reference date)",
+      "x": 29.83246621325282,
+      "y": 1.471550475979357,
+      "z": -0.7177856098831977,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27899%27&EPHEM_TYPE=%27VECTORS%27&TIME_TYPE=%27UT%27&CENTER=%27500%4010%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&VEC_CORR=%27NONE%27&OUT_UNITS=%27AU-D%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "d30c683b159eb32050d2e27209c11d7dcaad7601659b9b727c1f30822ae466e5",
+      "responseFile": "horizons-vector-Neptune-2026-10-30.json"
+    },
+    {
+      "body": "Pluto",
+      "dateISO": "2026-10-30T00:00:00Z",
+      "timeScale": "UT (UTC for the post-1962 reference date)",
+      "x": 20.04190243333089,
+      "y": -29.33916124813858,
+      "z": -2.657074164218586,
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27999%27&EPHEM_TYPE=%27VECTORS%27&TIME_TYPE=%27UT%27&CENTER=%27500%4010%27&START_TIME=%272026-10-30+00%3A00%27&STOP_TIME=%272026-10-30+00%3A01%27&STEP_SIZE=%271+m%27&REF_PLANE=%27ECLIPTIC%27&REF_SYSTEM=%27ICRF%27&VEC_CORR=%27NONE%27&OUT_UNITS=%27AU-D%27&CSV_FORMAT=%27YES%27",
+      "responseSHA256": "14745a6e25d0403fd070b88a3e4ff082971ec5684375b95c698b69c9a0dacd73",
+      "responseFile": "horizons-vector-Pluto-2026-10-30.json"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "round": 4,
+  "reviewer": "Calendar methods and explainable-guidance AI engineering panel member",
+  "reviewedAt": "2026-10-29T22:26:07.329398+00:00",
+  "verdict": "PASS within the explicitly reviewed scope",
+  "sourceHashes": {
+    "assets/js/core/data/observatory-standards.js": "327ac9f278680a398bd59d8dcbf696524f6a7526e9ef03a685c8a418fcb7ef8f",
+    "assets/js/core/world-events.js": "dbf3ba31eb22ff66f4860dd480005a287ed87347cd32813ce582da3494e561fc",
+    "assets/data/world-events.json": "182e0780a7711bc3b178081194337cfd864afefc1f64c57224d72b58de8be4fc",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/app/day-guidance.js": "50acbb444e6488b92bad2a1175b6d49da62c5d885bedf588e89aea50eb9e026e",
+    "assets/css/day-guidance.css": "840131b72666a94534dd02833135def47b2415f8d6634c24c0a0ee69bed46aea",
+    "scripts/tests/day-guidance.mjs": "ba621d1c97e7b36d582e0f26455c66f4d5a65825b2ae0ad7d9cd6ae6da943ee4",
+    "assets/js/app/calendar-observatory.js": "67e6fd22bbb136e266a42d501c14212016dafc6025667fcf930c0fd67616a229",
+    "assets/js/app/observatory-home.js": "6ea0d8b69219b5391af5637b606aa1645a5e6fc0a7648bf0f18d26572215f0f9",
+    "index.html": "fe951cb9802c7cf61641a8e24bdf33c07cdfc886d7436d66d42ff80e2723286f",
+    "pages/calendar-compare.html": "3cf4e46fd2746466a997b177ce42ac05a953a59922bd12358442e7eacaae441d"
+  },
+  "unchangedFromRound3": {
+    "assets/js/core/data/observatory-standards.js": true,
+    "assets/js/core/world-events.js": true,
+    "assets/data/world-events.json": true,
+    "assets/js/core/day-guidance.js": true,
+    "assets/js/app/day-guidance.js": false,
+    "assets/css/day-guidance.css": true,
+    "scripts/tests/day-guidance.mjs": true
+  },
+  "newBrowserEvidence": {
+    "path": "/tmp/calendar-panel-round4-final-browser.json",
+    "scriptPath": "/tmp/calendar-panel-round4-final-browser.mjs",
+    "scriptSha256": "73602957d9fd7bb202a27003be5451408d728ff4d8a13b901178f3b323887aa2",
+    "passed": 16,
+    "checks": 16,
+    "errors": []
+  },
+  "retainedChecks": {
+    "round3IndependentCalendarICS": {
+      "passed": 20,
+      "receipt": "/tmp/calendar-panel-round3.json",
+      "basis": "Standards helper, world-event core and public dataset bytes unchanged."
+    },
+    "dayEngine": {
+      "passed": 48,
+      "basis": "Pure day-guidance engine and its test bytes unchanged."
+    },
+    "earlierFocusedMobile": {
+      "passed": 10,
+      "basis": "Earlier executed mount/lazy-hourly/invalidation/destroy checks; app subsequently changed only to preserve nested open state, covered by current16 checks."
+    }
+  },
+  "materialFixes": [
+    {
+      "finding": "Minute updates recreated nested open hourly disclosures.",
+      "decision": "Restore open hour and nested rule state only for an identical hourly cache key; keep daily disclosure state separate.",
+      "file": "assets/js/app/day-guidance.js",
+      "verifiedBy": "Current browser checks11,12,15."
+    }
+  ],
+  "retractedFinding": {
+    "finding": "Claimed day-guidance source links lost Pages prefix.",
+    "result": "Not reproduced: its own URL-valued ROOT already has a trailing slash. Reviewer retracted the report. Actual rendered links and HTTP200 verified; no URL mutation."
+  },
+  "remainingLimits": [
+    "AI engineering review; no human practitioner endorsement, human usability study or screen-reader/physical-phone validation.",
+    "No independent fresh Lilly numeric-passage collation or empirical astrological outcome validation.",
+    "No actual third-party calendar-app import tested; RFC5545 text/date/time checks are computational evidence."
+  ]
+}

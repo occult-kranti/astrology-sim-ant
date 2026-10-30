@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "phase": "all",
+  "round": "3",
+  "startedAt": "2026-10-29T22:21:13.063Z",
+  "checks": [
+    {
+      "label": "sigil 320 reflow and landmarks",
+      "pass": true,
+      "details": {
+        "viewport": 320,
+        "scroll": 320,
+        "main": 1,
+        "header": true,
+        "skip": true
+      }
+    },
+    {
+      "label": "intention is labelled modern 320",
+      "pass": true
+    },
+    {
+      "label": "intention SVG 320 download completed",
+      "pass": true
+    },
+    {
+      "label": "intention SVG 320 nonempty artifact",
+      "pass": true
+    },
+    {
+      "label": "SVG metadata and safe numeric drawing 320",
+      "pass": true
+    },
+    {
+      "label": "default recipe 320 download completed",
+      "pass": true
+    },
+    {
+      "label": "default recipe 320 nonempty artifact",
+      "pass": true
+    },
+    {
+      "label": "default recipe omits original phrase and observer 320",
+      "pass": true
+    },
+    {
+      "label": "repeat SVG 320 download completed",
+      "pass": true
+    },
+    {
+      "label": "repeat SVG 320 nonempty artifact",
+      "pass": true
+    },
+    {
+      "label": "unchanged recipe yields byte-identical SVG 320",
+      "pass": true
+    },
+    {
+      "label": "local PNG 320 download completed",
+      "pass": true
+    },
+    {
+      "label": "local PNG 320 nonempty artifact",
+      "pass": true
+    },
+    {
+      "label": "sigil 320 PNG signature",
+      "pass": true
+    },
+    {
+      "label": "sigil 320 actual drawing pixels",
+      "pass": true,
+      "details": {
+        "width": 1280,
+        "height": 1280,
+        "colors": 480
+      }
+    },
+    {
+      "label": "image prompt retains exact diagram authority 320",
+      "pass": true
+    },
+    {
+      "label": "disclosure edit invalidates prompt 320",
+      "pass": true
+    },
+    {
+      "label": "explicit private recipe 320 download completed",
+      "pass": true
+    },
+    {
+      "label": "explicit private recipe 320 nonempty artifact",
+      "pass": true
+    },
+    {
+      "label": "explicit private export matches selected input 320",
+      "pass": true
+    },
+    {
+      "label": "input edits disable stale design exports 320",
+      "pass": true
+    },
+    {
+      "label": "unsupported script has visible recoverable error 320",
+      "pass": true
+    },
+    {
+      "label": "Saturn line sum shown with construction 320",
+      "pass": false
+    }
+  ],
+  "downloads": [
+    {
+      "label": "intention SVG 320",
+      "filename": "symbolic-intention-20261029.svg",
+      "bytes": 6833,
+      "sha256": "6b36343567b79752802b14b3ec87f5555896bab20f3bbde6038ac7e20cf92839"
+    },
+    {
+      "label": "default recipe 320",
+      "filename": "symbolic-intention-20261029.json",
+      "bytes": 8705,
+      "sha256": "31eed899ee79dc867cf712f8c83b6bfaca304b1d32978d9a9110adc47f8f2463"
+    },
+    {
+      "label": "repeat SVG 320",
+      "filename": "symbolic-intention-20261029.svg",
+      "bytes": 6833,
+      "sha256": "6b36343567b79752802b14b3ec87f5555896bab20f3bbde6038ac7e20cf92839"
+    },
+    {
+      "label": "local PNG 320",
+      "filename": "symbolic-intention-20261029.png",
+      "bytes": 189288,
+      "sha256": "b8b43fb4d5e11ab6f861c053da18c6d8ebf8e77793b92f6b7643fc0379e01d16"
+    },
+    {
+      "label": "explicit private recipe 320",
+      "filename": "symbolic-intention-20261029.json",
+      "bytes": 13382,
+      "sha256": "f67fded7fe686a89330f55ec2684758798bbfa94feb502756a9fb369e0c34331"
+    }
+  ],
+  "screenshots": [],
+  "errors": [],
+  "missing": [],
+  "externalRequests": [],
+  "source": {
+    "testScriptSHA256": "8ce140677ffdd6c3be8b1e0d25ca9401a191227536da14261de0316064743b72",
+    "productAtStartSHA256": "07642472fe35f791605043abba60230991280610edd4e133d5c472fbd59882de"
+  },
+  "limits": {
+    "realProviderCalled": false,
+    "physicalPhone": false,
+    "screenReader": false
+  },
+  "browser": "154.0.8037.57",
+  "failure": {
+    "message": "Saturn line sum shown with construction 320",
+    "stack": "AssertionError [ERR_ASSERTION]: Saturn line sum shown with construction 320\n    at check (file:///workspace/astrology-sim-ant/scripts/browser-studio-expansion.mjs:25:105)\n    at sigil (file:///workspace/astrology-sim-ant/scripts/browser-studio-expansion.mjs:33:2411)\n    at async file:///workspace/astrology-sim-ant/scripts/browser-studio-expansion.mjs:37:420"
+  },
+  "finishedAt": "2026-10-29T22:21:15.464Z",
+  "pass": false
+}
