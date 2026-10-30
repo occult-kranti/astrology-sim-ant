@@ -34,6 +34,17 @@ export const MCP_ADAPTER_COVERAGE = {
     ],
     "scope": "Only four existing WORKED_CHARTS keys; historical reconstruction with record caveats, equal-cusp/mean-motion limits and no invented UTC date."
   },
+  "country-history": {
+    "mcpTools": [
+      "workbench_country_history"
+    ],
+    "outputPaths": [
+      "data.records",
+      "data.sources",
+      "data.limitations"
+    ],
+    "scope": "One to six curated past historical markers. Civil labels use explicitly assumed local noon; optional bounded historical-day samples show house geometry only. Unknown event clocks, unsupported dates and source qualifications remain explicit. No future dates, objectives, country rankings or inferred national nativity."
+  },
   "cycles": {
     "mcpTools": [
       "workbench_cycles"

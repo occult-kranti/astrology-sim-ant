@@ -1,0 +1,76 @@
+{
+  "round": 2,
+  "reviewer": "west source agent",
+  "reviewedOwner": "east source agent",
+  "checkedAt": "2026-10-30T07:51:23.636Z",
+  "verdict": "accept within stated historical-source/date-only scope",
+  "blockingFindings": [],
+  "bindings": {
+    "assets/js/core/data/country-history-east.js": "9e28a95a1bc56c7e80007f62dcefeb35e9282e32d9ea72ad075a3d621d87d045",
+    "docs/2026-10-country-history-east.md": "07b8b21d27d6ab94be205a8b8ded08c44136a1b983ca0c6d22a2b0fc45a93d70",
+    "docs/evidence/country-history/east/source-access.json": "f8f692aff33edea97d18112ae786e6182289727a708abca79bce8cc5bd129b68"
+  },
+  "records": 8,
+  "sources": 10,
+  "reading": [
+    "UK Indian Independence Act section 1 (retained source HTML/text)",
+    "Official Indian Constitution Preamble and Article 394 (retained original PDF extraction)",
+    "MSU primary-document sovereignty translation opening, renewed USSR clause",
+    "Russian constitutional concluding/transitional provision and WIPO adoption/commencement metadata",
+    "Iran country-study paragraphs: March 30\u201331 referendum, April 1 proclamation, December 2\u20133 constitutional referendum",
+    "Iran WIPO 1979 metadata: entry into force December 3, distinct adoption field October 24",
+    "Iran Constitute English calendar discrepancy",
+    "WIPO Persian constitutional scan page 9 visually inspected: tenth and eleventh Farvardin; first and second Jumada al-Ula"
+  ],
+  "observations": [
+    "All event clocks remain null/date-only",
+    "Referendum spans retained alongside explicitly selected closing date",
+    "Iran Gregorian date narrative not misrepresented as a verified conversion of Persian calendar labels",
+    "Entry-into-force label attributed to WIPO, separate from independent referendum narrative",
+    "Single-source, mirror, revision-edition and shared-provenance limits retained",
+    "Editorial cities not represented as exact venues or national capitals"
+  ],
+  "limits": [
+    "No full constitutional or archival corpus reading",
+    "No independent general calendar-conversion validation",
+    "No browser/engine check in this cross-review",
+    "AI review, not human Persian-language or historical certification"
+  ],
+  "sourceBodyHashChecks": [
+    {
+      "fetchId": "india-independence-act",
+      "sha256": "1658e7d0f9325b4b57778b4f18d23886a0a4a6729c338b7191af9370835a673f",
+      "status": "matches retained source receipt"
+    },
+    {
+      "fetchId": "india-official-constitution-pdf",
+      "sha256": "819ba7adc5e5ae4063f26c82472283ba682ddb662e5a7f864cf26984d99b26ed",
+      "status": "matches retained source receipt"
+    },
+    {
+      "fetchId": "india-pib-factsheet",
+      "sha256": "47214fadb411160adcd76d64e1edb982eaa893bf5ec668c01d3aaeedf1f6119a",
+      "status": "matches retained source receipt"
+    },
+    {
+      "fetchId": "russia-sovereignty-msu-current",
+      "sha256": "a2fcf168bb74a8aa4d447dfa8363e07159ca46630126c69d805257ad3b1ad9f1",
+      "status": "matches retained source receipt"
+    },
+    {
+      "fetchId": "russia-constitution-constitute",
+      "sha256": "033987407336e76a0256305fedf6e75ac84427b23225bceb254f03eb1832b336",
+      "status": "matches retained source receipt"
+    },
+    {
+      "fetchId": "russia-wipo-constitution",
+      "sha256": "dc070aba7646b9b33a0ad115ba4e3eda40d90f335c0aad504ab09c42b47d5b5c",
+      "status": "matches retained source receipt"
+    },
+    {
+      "fetchId": "IR-WIPO-FA",
+      "sha256": "d50cb4accc4cc17d63d0d535ab085a78f85847be332f448e572c6e23d9c068be",
+      "status": "matches retained source receipt"
+    }
+  ]
+}

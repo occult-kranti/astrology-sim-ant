@@ -1,0 +1,28 @@
+{
+  "round": 2,
+  "scope": "Pre-freeze source-contract integration check; not a held-candidate or browser check",
+  "status": "pass",
+  "checkedAt": "2026-10-30T08:00:57.880Z",
+  "bindings": {
+    "assets/js/core/country-history.js": "cb9a5da31433db9283cbd236f1ab140093e9ff3f5a8658efaaf03042294dd222",
+    "assets/js/core/data/country-history-west.js": "b04d3d8156b50b8ed4a02ea76ab42e7b189bd96662b8b8050689941c62c224a3"
+  },
+  "selectedRecords": [
+    "usa-declaration-adopted-1776",
+    "israel-declaration-1948",
+    "israel-provisional-authority-1948",
+    "israel-un-admission-1949",
+    "palestine-pnc-declaration-1988",
+    "palestine-un-observer-state-2012"
+  ],
+  "assertions": [
+    "Date-only null local clocks survive computation",
+    "Civil reference instant is explicitly assumed and separate from source record",
+    "Pre-1900 U.S. record retains no calculated civil rows or reference instant",
+    "House sensitivity remains not-requested by default",
+    "No chart property exported",
+    "Blocked original sources preserve access-unavailable status",
+    "Unverified Algiers qualification survives export",
+    "Arbitrary future date input rejected"
+  ]
+}

@@ -1524,6 +1524,57 @@ export const MCP_TOOL_CONTRACTS = {
     ],
     "additionalProperties": false
   },
+  "workbench_country_history": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "recordIds"
+    ],
+    "properties": {
+      "recordIds": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 6,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": [
+            "usa-independence-resolution-1776",
+            "usa-declaration-adopted-1776",
+            "usa-constitution-signed-1787",
+            "israel-declaration-1948",
+            "israel-provisional-authority-1948",
+            "israel-un-admission-1949",
+            "palestine-pnc-declaration-1988",
+            "palestine-un-observer-state-2012",
+            "india-independence-1947",
+            "india-constitution-adoption-1949",
+            "india-constitution-commencement-1950",
+            "russia-sovereignty-declaration-1990",
+            "russia-constitution-adoption-1993",
+            "iran-republic-referendum-conclusion-1979",
+            "iran-republic-proclamation-1979",
+            "iran-constitution-commencement-1979"
+          ]
+        },
+        "description": "One to six distinct curated historical event records."
+      },
+      "houseSystem": {
+        "type": "string",
+        "enum": [
+          "regiomontanus",
+          "placidus",
+          "whole",
+          "equal"
+        ],
+        "description": "Named house geometry convention for explicitly assumed historical day samples; defaults to regiomontanus."
+      },
+      "includeDaySensitivity": {
+        "type": "boolean",
+        "description": "Include bounded clock-sensitivity samples as assumptions, never recovered event times; defaults to false."
+      }
+    }
+  },
   "workbench_cycles": {
     "type": "object",
     "properties": {
@@ -4363,6 +4414,7 @@ export const MCP_TOOL_CONTRACTS = {
           "civil-calendars",
           "calendar-comparison",
           "calendar-atlas",
+          "country-history",
           "event-horizon",
           "calendar-search",
           "sigil-design",

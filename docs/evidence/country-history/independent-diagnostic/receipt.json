@@ -1,0 +1,484 @@
+{
+  "schemaVersion": 1,
+  "round": "diagnostic",
+  "startedAt": "2026-10-30T08:02:20.805Z",
+  "checks": [
+    {
+      "label": "all sixteen variants in six entity groups 390",
+      "pass": true
+    },
+    {
+      "label": "complete separate house, civic and method references 390",
+      "pass": true
+    },
+    {
+      "label": "day geometry is opt-in 390",
+      "pass": true
+    },
+    {
+      "label": "initial 390 document fits viewport and landmarks exist",
+      "pass": true,
+      "details": {
+        "width": 390,
+        "scroll": 390,
+        "main": 1,
+        "skip": true,
+        "controls": [
+          {
+            "id": "ch-compare",
+            "width": 324,
+            "height": 44,
+            "scroll": 322,
+            "client": 322
+          },
+          {
+            "id": "ch-reset",
+            "width": 188.9375,
+            "height": 44,
+            "scroll": 187,
+            "client": 187
+          },
+          {
+            "id": "ch-clear",
+            "width": 129.71875,
+            "height": 44,
+            "scroll": 128,
+            "client": 128
+          },
+          {
+            "id": "ch-house-system",
+            "width": 324,
+            "height": 45.1875,
+            "scroll": 322,
+            "client": 322
+          },
+          {
+            "id": "ch-json",
+            "width": 155.203125,
+            "height": 44,
+            "scroll": 153,
+            "client": 153
+          },
+          {
+            "id": "ch-csv",
+            "width": 155.21875,
+            "height": 44,
+            "scroll": 153,
+            "client": 153
+          },
+          {
+            "id": "tool-guide-1-tool",
+            "width": 358,
+            "height": 46.78125,
+            "scroll": 356,
+            "client": 356
+          },
+          {
+            "id": "",
+            "width": 180.03125,
+            "height": 44,
+            "scroll": 178,
+            "client": 178
+          },
+          {
+            "id": "",
+            "width": 158.78125,
+            "height": 44,
+            "scroll": 157,
+            "client": 157
+          },
+          {
+            "id": "",
+            "width": 182.65625,
+            "height": 44,
+            "scroll": 181,
+            "client": 181
+          }
+        ]
+      }
+    },
+    {
+      "label": "initial 390 control labels remain contained with 44px interaction height",
+      "pass": true
+    },
+    {
+      "label": "default 390 JSON download completes",
+      "pass": true
+    },
+    {
+      "label": "default 390 JSON bytes exist and omit private storage",
+      "pass": true
+    },
+    {
+      "label": "default 390 actual JSON bytes equal canonical browser result",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV download completes",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV bytes exist and omit private storage",
+      "pass": true
+    },
+    {
+      "label": "default 390 actual CSV bytes equal declared serializer",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV has every record, calendar row and sample, including unavailable statuses",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV exact source record and unknown clock usa-independence-resolution-1776",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV rows keep complete source metadata usa-independence-resolution-1776",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV full precision samples agree with JSON usa-independence-resolution-1776",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV calendar values and assumptions agree with JSON usa-independence-resolution-1776",
+      "pass": true
+    },
+    {
+      "label": "default 390 pre-1900 record exports no fabricated reference or sample",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV exact source record and unknown clock israel-declaration-1948",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV rows keep complete source metadata israel-declaration-1948",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV full precision samples agree with JSON israel-declaration-1948",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV calendar values and assumptions agree with JSON israel-declaration-1948",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV exact source record and unknown clock india-independence-1947",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV rows keep complete source metadata india-independence-1947",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV full precision samples agree with JSON india-independence-1947",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV calendar values and assumptions agree with JSON india-independence-1947",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV exact source record and unknown clock russia-sovereignty-declaration-1990",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV rows keep complete source metadata russia-sovereignty-declaration-1990",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV full precision samples agree with JSON russia-sovereignty-declaration-1990",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV calendar values and assumptions agree with JSON russia-sovereignty-declaration-1990",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV exact source record and unknown clock iran-republic-referendum-conclusion-1979",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV rows keep complete source metadata iran-republic-referendum-conclusion-1979",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV full precision samples agree with JSON iran-republic-referendum-conclusion-1979",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV calendar values and assumptions agree with JSON iran-republic-referendum-conclusion-1979",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV exact source record and unknown clock palestine-pnc-declaration-1988",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV rows keep complete source metadata palestine-pnc-declaration-1988",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV full precision samples agree with JSON palestine-pnc-declaration-1988",
+      "pass": true
+    },
+    {
+      "label": "default 390 CSV calendar values and assumptions agree with JSON palestine-pnc-declaration-1988",
+      "pass": true
+    },
+    {
+      "label": "default comparison has six separate entities and no house samples 390",
+      "pass": true
+    },
+    {
+      "label": "default 390 every selected record has a visible source sheet",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible date, clock, place and source-calendar qualifications usa-independence-resolution-1776",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification usa-independence-resolution-1776: This date is outside the canonical 1900–",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification usa-independence-resolution-1776: Primary transcription and historical acc",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification usa-independence-resolution-1776: The resolution was proposed on June 7; t",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification usa-independence-resolution-1776: City coordinates are rounded editorial r",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible date, clock, place and source-calendar qualifications israel-declaration-1948",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification israel-declaration-1948: The declaration date and its legal-effec",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification israel-declaration-1948: The original Hebrew manuscript and an ex",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification israel-declaration-1948: City coordinates are rounded editorial r",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible date, clock, place and source-calendar qualifications india-independence-1947",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification india-independence-1947: Single directly inspected primary legal ",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification india-independence-1947: Royal assent on 18 July 1947 is a differ",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification india-independence-1947: Coordinates are rounded editorial city r",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible date, clock, place and source-calendar qualifications russia-sovereignty-declaration-1990",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification russia-sovereignty-declaration-1990: Single checked documentary lineage: acad",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification russia-sovereignty-declaration-1990: Presidential Library retrieval reached a",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification russia-sovereignty-declaration-1990: Coordinates are rounded editorial city r",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible date, clock, place and source-calendar qualifications iran-republic-referendum-conclusion-1979",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification iran-republic-referendum-conclusion-1979: The full source span is 1979-03-30 throu",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification iran-republic-referendum-conclusion-1979: Persian primary text and a mirrored inst",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification iran-republic-referendum-conclusion-1979: The English Constitute reproduction prin",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification iran-republic-referendum-conclusion-1979: Coordinates are rounded editorial city r",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible date, clock, place and source-calendar qualifications palestine-pnc-declaration-1988",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification palestine-pnc-declaration-1988: The exact day is checked in the later UN",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification palestine-pnc-declaration-1988: The attempted original UN-transmitted 19",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification palestine-pnc-declaration-1988: Algiers is a historical meeting-city ref",
+      "pass": true
+    },
+    {
+      "label": "default 390 visible source qualification palestine-pnc-declaration-1988: City coordinates are rounded editorial r",
+      "pass": true
+    },
+    {
+      "label": "default 390 all rendered citation anchors resolve",
+      "pass": true,
+      "details": []
+    },
+    {
+      "label": "default 390 citation opens its exact source with reading depth and rights",
+      "pass": true
+    },
+    {
+      "label": "pre-1900 source record remains visibly unavailable 390",
+      "pass": true
+    },
+    {
+      "label": "calendar table is keyboard-scrollable 390",
+      "pass": false
+    }
+  ],
+  "downloads": [
+    {
+      "label": "default 390 JSON",
+      "filename": "downloads/001-historical-country-calendar-study.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 138224,
+      "sha256": "e2e7fc21177a083c1aad14477314ea915c4418bcd573d11aabea4f7d3dfda268",
+      "compressedBytes": 13400,
+      "compressedSHA256": "c66d03d56375ec32bc65859cda4ac87303f6d665f999eaa530825b5b87992cc4"
+    },
+    {
+      "label": "default 390 CSV",
+      "filename": "downloads/002-historical-country-calendar-study.csv.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 1133711,
+      "sha256": "879c098914adbe43f374554da20d9158b3af4c11fdc73b414b76e536bdc22a95",
+      "compressedBytes": 29017,
+      "compressedSHA256": "cd185e5ce690e04e4a5c9ecafbc51d7eb4de9102695b77a4200c475cb2a45751"
+    }
+  ],
+  "screenshots": [
+    "first-390.png",
+    "failure-390.png"
+  ],
+  "fonts": [
+    {
+      "label": "heading 390",
+      "selector": ".ch-heading h1",
+      "metrics": {
+        "font": "500 32px / 34.24px \"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "bounds": {
+          "x": 16,
+          "y": 172.859375,
+          "width": 358,
+          "height": 68.46875,
+          "top": 172.859375,
+          "right": 374,
+          "bottom": 241.328125,
+          "left": 16
+        },
+        "scrollWidth": 358,
+        "clientWidth": 358
+      },
+      "platformFonts": [
+        {
+          "familyName": "Liberation Serif",
+          "postScriptName": "LiberationSerif",
+          "isCustomFont": false,
+          "glyphCount": 48
+        }
+      ]
+    },
+    {
+      "label": "button 390",
+      "selector": "#ch-compare",
+      "metrics": {
+        "font": "14.4px / 18.72px Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "fontFamily": "Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "bounds": {
+          "x": 33,
+          "y": 820.484375,
+          "width": 324,
+          "height": 44,
+          "top": 820.484375,
+          "right": 357,
+          "bottom": 864.484375,
+          "left": 33
+        },
+        "scrollWidth": 322,
+        "clientWidth": 322
+      },
+      "platformFonts": [
+        {
+          "familyName": "Noto Sans",
+          "postScriptName": "NotoSans-Regular",
+          "isCustomFont": false,
+          "glyphCount": 24
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "externalRequests": [],
+  "requestFailures": [],
+  "source": {
+    "driversAtStart": {
+      "scripts/browser-country-history.mjs": "f2afb3e98e4af6669d17c82d0cf4f711f13eea6084c4d638800ce3c56cdccb10",
+      "scripts/tests/country-history-independent.mjs": "abd92b780c3863250aa669ce87b30d756a3604ead7a2b7ce5727ce8ce96cd2c6"
+    },
+    "productAtStartSHA256": "3dca2175692bb1773e7bd2cba4756ee3a475264310e9732cd0ac230c0e54120c",
+    "productAtEndSHA256": "3dca2175692bb1773e7bd2cba4756ee3a475264310e9732cd0ac230c0e54120c",
+    "driversAtEnd": {
+      "scripts/browser-country-history.mjs": "f2afb3e98e4af6669d17c82d0cf4f711f13eea6084c4d638800ce3c56cdccb10",
+      "scripts/tests/country-history-independent.mjs": "abd92b780c3863250aa669ce87b30d756a3604ead7a2b7ce5727ce8ce96cd2c6"
+    },
+    "changedFiles": [],
+    "changedDrivers": [],
+    "driftAllowed": true
+  },
+  "limits": {
+    "historicalSourceTruth": false,
+    "historicalTimezoneValidation": false,
+    "realProvider": false,
+    "physicalPhone": false,
+    "screenReader": false,
+    "humanUsabilityResearch": false
+  },
+  "browser": "145.0.7632.6",
+  "failure": {
+    "message": "calendar table is keyboard-scrollable 390",
+    "stack": "AssertionError [ERR_ASSERTION]: calendar table is keyboard-scrollable 390\n    at check (file:///workspace/astrology-sim-ant/scripts/browser-country-history.mjs:27:124)\n    at journey (file:///workspace/astrology-sim-ant/scripts/browser-country-history.mjs:90:136)\n    at async file:///workspace/astrology-sim-ant/scripts/browser-country-history.mjs:116:29"
+  },
+  "pass": false,
+  "acceptanceEligible": false,
+  "completedAt": "2026-10-30T08:02:22.179Z",
+  "checkCount": 70
+}

@@ -1,0 +1,123 @@
+// Independent browser acceptance: actual downloads, semantic provenance,
+// keyboard recovery, responsive layout, source/driver hashes, retained receipts.
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+import { readFile, readdir, mkdir, writeFile } from 'node:fs/promises';
+import { resolve, dirname, extname, sep } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createHash } from 'node:crypto';
+import { gzipSync } from 'node:zlib';
+
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const output=resolve(root,process.env.COUNTRY_OUTPUT||process.env.COUNTRY_HISTORY_OUTPUT||'docs/evidence/country-history/current');
+const widths=(process.env.COUNTRY_HISTORY_WIDTHS||'320,390,1440,1920').split(',').map(Number);
+assert.ok(widths.every(w=>Number.isInteger(w)&&w>=320&&w<=2560));
+const sha=body=>createHash('sha256').update(body).digest('hex');
+async function files(dir){const out=[];for(const e of await readdir(resolve(root,dir),{withFileTypes:true})){if(e.name.startsWith('.')||e.name==='node_modules')continue;const p=dir+'/'+e.name;if(e.isDirectory())out.push(...await files(p));else out.push(p);}return out;}
+async function product(){const paths=['index.html','sw.js','manifest.webmanifest',...await files('assets'),...await files('pages'),...(await files('mcp')).filter(p=>/\.(mjs|json)$/.test(p))];return Object.fromEntries(await Promise.all(paths.sort().map(async p=>[p,sha(await readFile(resolve(root,p)))])));}
+const drivers=['scripts/browser-country-history.mjs','scripts/tests/country-history-independent.mjs'];
+async function driverHashes(){return Object.fromEntries(await Promise.all(drivers.map(async p=>[p,sha(await readFile(resolve(root,p)))])));}
+await mkdir(output,{recursive:true});
+await writeFile(resolve(output,'driver.mjs'),await readFile(fileURLToPath(import.meta.url)));
+const before=await product(), driversBefore=await driverHashes();
+const receipt={schemaVersion:1,round:process.env.COUNTRY_HISTORY_ROUND||'candidate',startedAt:new Date().toISOString(),checks:[],downloads:[],screenshots:[],fonts:[],errors:[],missing:[],externalRequests:[],requestFailures:[],source:{driversAtStart:driversBefore,productAtStartSHA256:sha(JSON.stringify(before))},limits:{historicalSourceTruth:false,historicalTimezoneValidation:false,realProvider:false,physicalPhone:false,screenReader:false,humanUsabilityResearch:false}};
+const prefix='/astrology-sim-ant/',mime={'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.svg':'image/svg+xml','.md':'text/plain','.woff2':'font/woff2','.webmanifest':'application/manifest+json'};
+const server=createServer(async(req,res)=>{try{const u=new URL(req.url,'http://localhost');if(!u.pathname.startsWith(prefix))return res.writeHead(404).end();let rel=decodeURIComponent(u.pathname.slice(prefix.length));if(!rel||rel.endsWith('/'))rel+='index.html';const path=resolve(root,rel);if(!path.startsWith(root+sep)||rel.split('/').some(p=>p.startsWith('.')))return res.writeHead(403).end();const body=await readFile(path);res.writeHead(200,{'Content-Type':mime[extname(path)]||'application/octet-stream','Content-Length':body.length,'Cache-Control':'no-store'}).end(body);}catch{res.writeHead(404).end('Not found');}});
+let browser,base,origin,failure;
+const check=(value,label,details)=>{receipt.checks.push({label,pass:!!value,...(details!==undefined?{details}:{})});assert.ok(value,label+(details!==undefined?' '+JSON.stringify(details):''));};
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const sentinel='COUNTRY_HISTORY_PRIVATE_STORAGE_SENTINEL_20261030';
+async function context(width){
+  const c=await browser.newContext({viewport:{width,height:900},locale:'en-US',reducedMotion:'reduce',serviceWorkers:'block',acceptDownloads:true});
+  await c.route('**/*',route=>{const u=new URL(route.request().url());if(u.origin===origin||['data:','blob:'].includes(u.protocol))return route.continue();receipt.externalRequests.push(u.href);return route.abort('blockedbyclient');});
+  await c.addInitScript(value=>{for(const key of ['birthProfile','wb-saved-readings','privateNotes','providerKey'])localStorage.setItem(key,value);window.__countryPermissionCalls=0;Object.defineProperty(navigator,'geolocation',{configurable:true,value:{getCurrentPosition:()=>{window.__countryPermissionCalls++;}}});},sentinel);
+  const page=await c.newPage();page.setDefaultTimeout(20000);
+  page.on('requestfailed',r=>receipt.requestFailures.push({width,url:r.url(),error:r.failure()?.errorText}));
+  page.on('pageerror',e=>receipt.errors.push({width,url:page.url(),message:e.message}));
+  page.on('console',m=>{if(m.type()==='error')receipt.errors.push({width,url:page.url(),message:m.text(),kind:'console'});});
+  page.on('response',r=>{if(r.status()>=400)receipt.missing.push({width,url:r.url(),status:r.status()});});
+  return {c,page};
+}
+async function shot(page,label,selector){if(selector)await page.locator(selector).evaluate(el=>el.scrollIntoView({block:'start',behavior:'instant'}));const filename=label+'.png';await page.screenshot({path:resolve(output,filename)});receipt.screenshots.push(filename);}
+async function download(page,selector,label){const waiting=page.waitForEvent('download');await page.locator(selector).click();const item=await waiting;check(await item.failure()===null,label+' download completes');const body=await readFile(await item.path()),compressed=gzipSync(body),filename='downloads/'+String(receipt.downloads.length+1).padStart(3,'0')+'-'+item.suggestedFilename()+'.gz';await mkdir(resolve(output,'downloads'),{recursive:true});await writeFile(resolve(output,filename),compressed);receipt.downloads.push({label,filename,encoding:'gzip; expands to exact downloaded bytes',bytes:body.length,sha256:sha(body),compressedBytes:compressed.length,compressedSHA256:sha(compressed)});check(body.length>40&&!body.includes(Buffer.from(sentinel)),label+' bytes exist and omit private storage');return body;}
+function parseCSV(text){const rows=[];let row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'&&text[i+1]==='"'){cell+='"';i++;}else if(c==='"')quoted=false;else cell+=c;}else if(c==='"')quoted=true;else if(c===','){row.push(cell);cell='';}else if(c==='\n'){row.push(cell.replace(/\r$/,''));rows.push(row);row=[];cell='';}else cell+=c;}assert.equal(quoted,false);assert.equal(row.length,0);return rows;}
+async function exported(page,label){
+  const jsonBytes=await download(page,'#ch-json',label+' JSON'), data=JSON.parse(jsonBytes);
+  const expected=await page.evaluate(async({base,selection})=>{const {buildCountryHistoryStudy}=await import(base+'assets/js/core/country-history.js');return buildCountryHistoryStudy(selection);},{base,selection:data.selection});
+  check(same(data,expected)&&jsonBytes.toString()===JSON.stringify(expected,null,2),label+' actual JSON bytes equal canonical browser result');
+  const csvBytes=await download(page,'#ch-csv',label+' CSV'), expectedCSV=await page.evaluate(async({base,data})=>{const {countryStudyCSV}=await import(base+'assets/js/app/country-calendars.js');return countryStudyCSV(data);},{base,data});
+  check(csvBytes.toString()===expectedCSV,label+' actual CSV bytes equal declared serializer');
+  const table=parseCSV(csvBytes.toString()),header=table.shift(),rows=table.map(values=>{assert.equal(values.length,header.length);return Object.fromEntries(header.map((key,i)=>[key,values[i]]));});
+  const expectedCount=data.records.reduce((n,r)=>n+1+Math.max(1,r.civilComparison.rows.length)+Math.max(1,r.daySensitivity.samples.length),0);
+  check(rows.length===expectedCount,label+' CSV has every record, calendar row and sample, including unavailable statuses');
+  for(const item of data.records){
+    const recordRows=rows.filter(r=>r.record_id===item.record.id),record=recordRows.find(r=>r.row_type==='record');
+    check(!!record&&same(JSON.parse(record.record_json),item.record)&&same(JSON.parse(record.sources_json),data.sources)&&same(JSON.parse(record.source_ids_json),item.record.sourceIds)&&record.source_event_clock===''&&record.event_time_status==='date-only',label+' CSV exact source record and unknown clock '+item.record.id);
+    check(recordRows.every(r=>same(JSON.parse(r.record_json),item.record)&&same(JSON.parse(r.sources_json),data.sources)),label+' CSV rows keep complete source metadata '+item.record.id);
+    const samples=recordRows.filter(r=>r.row_type==='assumed-house-sample');
+    check(samples.length===item.daySensitivity.samples.length&&samples.every((r,i)=>{const s=item.daySensitivity.samples[i];return r.sample_utc===s.dateISO&&r.sample_local_time===s.localTime&&r.assumption===s.assumptionNote&&r.ascendant_degrees===(s.ascendantDegrees==null?'':String(s.ascendantDegrees))&&r.midheaven_degrees===(s.midheavenDegrees==null?'':String(s.midheavenDegrees))&&same(JSON.parse(r.cusps_degrees_json),s.cusps)&&r.actual_house_system===s.houseSystem;}),label+' CSV full precision samples agree with JSON '+item.record.id);
+    const calendars=recordRows.filter(r=>r.row_type==='calendar');
+    check(calendars.length===item.civilComparison.rows.length&&calendars.every((r,i)=>{const v=item.civilComparison.rows[i];return r.calendar_id===v.id&&r.calendar_text===v.text&&r.calendar_validation===v.validation&&same(JSON.parse(r.calendar_parts_json),v.parts)&&r.civil_reference_utc===item.civilComparison.reference.dateISO&&r.assumption===item.civilComparison.reference.assumption;}),label+' CSV calendar values and assumptions agree with JSON '+item.record.id);
+    if(item.record.date<'1900-01-01')check(recordRows.some(r=>r.row_type==='calendar-unavailable'&&r.status==='unavailable'&&r.civil_reference_utc==='')&&samples.length===0,label+' pre-1900 record exports no fabricated reference or sample');
+  }
+  return data;
+}
+async function selectRecords(page,ids){const all=await page.locator('#ch-record-picker input').evaluateAll(els=>els.map(e=>e.value));for(const id of all)await page.locator('#ch-record-'+id).setChecked(ids.includes(id));}
+async function calculate(page){await page.locator('#ch-compare').click();await page.waitForFunction(()=>!document.querySelector('#ch-json').disabled);check(await page.locator('#ch-error').isHidden(),'valid study shows no error');check(await page.locator('#ch-ledger-title').evaluate(el=>document.activeElement===el),'completed explicit comparison focuses its ledger heading');}
+async function stale(page,label){check(await page.locator('#ch-json').isDisabled()&&await page.locator('#ch-csv').isDisabled()&&await page.locator('#ch-ledger').isHidden()&&await page.locator('#ch-sensitivity-output').isHidden()&&await page.locator('#ch-stale').isVisible(),label+' clears visible output and disables exports');}
+async function layout(page,label){const m=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,main:document.querySelectorAll('main').length,skip:!!document.querySelector(document.querySelector('.skip-link')?.getAttribute('href')||'#missing'),controls:[...document.querySelectorAll('.country-history button,.country-history select')].filter(e=>e.getClientRects().length).map(e=>({id:e.id,width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height,scroll:e.scrollWidth,client:e.clientWidth}))}));check(m.scroll<=m.width+1&&m.main===1&&m.skip,label+' document fits viewport and landmarks exist',m);check(m.controls.every(c=>c.height>=43&&c.scroll<=c.client+2),label+' control labels remain contained with 44px interaction height');}
+async function fonts(page,selector,label){const client=await page.context().newCDPSession(page);try{await client.send('DOM.enable');await client.send('CSS.enable');const doc=await client.send('DOM.getDocument'),item=await client.send('DOM.querySelector',{nodeId:doc.root.nodeId,selector});receipt.fonts.push({label,selector,metrics:await page.locator(selector).evaluate(el=>({font:getComputedStyle(el).font,fontFamily:getComputedStyle(el).fontFamily,bounds:el.getBoundingClientRect().toJSON(),scrollWidth:el.scrollWidth,clientWidth:el.clientWidth})),platformFonts:(await client.send('CSS.getPlatformFontsForNode',{nodeId:item.nodeId})).fonts});}finally{await client.detach();}}
+async function verifyVisible(page,data,label){
+  check(await page.locator('.ch-record-sheet').count()===data.records.length,label+' every selected record has a visible source sheet');
+  for(const [index,item] of data.records.entries()){const card=page.locator('.ch-record-sheet').nth(index),text=await card.innerText();check(text.includes(item.record.date)&&text.includes('event clock unknown')&&text.includes(item.record.time.qualification)&&text.includes(item.record.eventPlace.label)&&text.includes(item.record.originalCalendar),label+' visible date, clock, place and source-calendar qualifications '+item.record.id);for(const note of item.record.notes)check(text.includes(note),label+' visible source qualification '+item.record.id+': '+note.slice(0,40));}
+  const bad=await page.locator('.country-history a[href^="#ch-source-"]').evaluateAll(links=>links.filter(a=>!document.getElementById(a.hash.slice(1))).map(a=>a.href));check(!bad.length,label+' all rendered citation anchors resolve',bad);
+  const link=page.locator('#ch-record-context .ch-citations a').first(),href=await link.getAttribute('href');await link.click();check(await page.locator(href).isVisible()&&(await page.locator(href).innerText()).includes('Reading:')&&(await page.locator(href).innerText()).includes('Rights:'),label+' citation opens its exact source with reading depth and rights');
+}
+async function verifySample(page,item,index,label){
+  await page.locator('#ch-sample-record').selectOption(item.record.id);await page.locator('#ch-sample-index').fill(String(index));await page.locator('#ch-sample-index').dispatchEvent('input');const s=item.daySensitivity.samples[index];
+  const values=await page.locator('#ch-cusp-table tbody td').allTextContents(),expected=[s.ascendantDegrees,s.midheavenDegrees,...s.cusps].map(x=>x.toFixed(3)+'°');
+  check(same(values,expected)&&await page.locator('#ch-cusp-table tbody tr').count()===14,label+' all twelve displayed cusps and both angles equal selected canonical sample');
+  check((await page.locator('#ch-sample-context').innerText()).includes(s.dateISO)&&(await page.locator('#ch-sample-context').innerText()).includes(s.assumptionNote)&&(await page.locator('#ch-sample-index').getAttribute('aria-valuetext')).includes('Assumed'),label+' sample clock and accessible slider keep assumption visible');
+  check(await page.locator('.ch-house-svg').count()===1&&!(await page.locator('.ch-house-svg').innerHTML()).match(/NaN|Infinity/),label+' sample diagram is finite and present');
+}
+async function journey(width){const {c,page}=await context(width);try{
+  await page.goto(base+'pages/country-calendars.html');await page.waitForFunction(()=>!document.querySelector('#ch-json').disabled);const all=await page.locator('#ch-record-picker input').evaluateAll(els=>els.map(e=>e.value));
+  check(all.length===16&&await page.locator('.ch-country').count()===6,'all sixteen variants in six entity groups '+width);check(await page.locator('.ch-house-reference').count()===12&&await page.locator('.ch-task').count()===4&&await page.locator('.ch-method').count()===5,'complete separate house, civic and method references '+width);
+  check(!(await page.locator('#ch-sensitivity').isChecked())&&await page.locator('#ch-sensitivity-output').isHidden(),'day geometry is opt-in '+width);
+  await layout(page,'initial '+width);await fonts(page,'.ch-heading h1','heading '+width);await fonts(page,'#ch-compare','button '+width);await page.evaluate(()=>scrollTo(0,0));await shot(page,'first-'+width);
+  let data=await exported(page,'default '+width);check(data.records.length===6&&new Set(data.records.map(x=>x.record.countryId)).size===6&&data.records.every(x=>!x.daySensitivity.samples.length),'default comparison has six separate entities and no house samples '+width);await verifyVisible(page,data,'default '+width);
+  const us=data.records.find(r=>r.record.countryId==='usa');check(us.civilComparison.status==='unavailable'&&us.record.date<'1900-01-01'&&(await page.locator('#ch-calendar-table').innerText()).includes('Unavailable'),'pre-1900 source record remains visibly unavailable '+width);
+  const region=page.locator('#ch-calendar-table');await region.focus();await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('#ch-calendar-table').scrollLeft>0);check(await region.evaluate(e=>document.activeElement===e&&e.scrollWidth>e.clientWidth&&e.scrollLeft>0),'calendar table is keyboard-scrollable '+width);
+  await page.locator('#ch-sensitivity').check();await stale(page,'sensitivity edit '+width);await calculate(page);
+  for(const house of ['regiomontanus','placidus','whole','equal']){
+    if(house!=='regiomontanus'){await page.locator('#ch-house-system').selectOption(house);await stale(page,'house edit '+house+' '+width);await calculate(page);}
+    data=await exported(page,house+' sensitivity '+width);const modern=data.records.find(r=>r.daySensitivity.samples.length);check(data.selection.houseSystem===house&&modern.daySensitivity.samples.every(s=>s.requestedHouseSystem===house&&s.houseSystem===house&&s.cusps.length===12),'actual download retains selected system and twelve cusps '+house+' '+width);
+    await verifySample(page,modern,0,house+' first '+width);check(await page.locator('#ch-sample-prev').isDisabled(),'first sample bounds previous '+house+' '+width);
+    await page.locator('#ch-sample-index').focus();await page.keyboard.press('End');check(await page.locator('#ch-sample-index').inputValue()==='24'&&await page.locator('#ch-sample-next').isDisabled(),'keyboard End reaches final included sample '+house+' '+width);await verifySample(page,modern,24,house+' last '+width);
+    await page.locator('#ch-sample-index').focus();await page.keyboard.press('Home');await page.keyboard.press('ArrowRight');check(await page.locator('#ch-sample-index').inputValue()==='1','native keyboard Home and ArrowRight navigate samples '+house+' '+width);
+    await page.locator('#ch-sample-next').click();check(await page.locator('#ch-sample-index').inputValue()==='2','next button advances one sample '+house+' '+width);await page.locator('#ch-sample-prev').click();check(await page.locator('#ch-sample-index').inputValue()==='1','previous button reverses one sample '+house+' '+width);
+  }
+  await shot(page,'sample-'+width,'.ch-sensitivity-section');await shot(page,'sample-controls-'+width,'.ch-sample-reading');await layout(page,'sample '+width);
+  await page.locator('#ch-sample-record').selectOption(us.record.id);check(await page.locator('#ch-sample-work').isHidden()&&await page.locator('#ch-sample-unavailable').isVisible()&&(await page.locator('#ch-sample-unavailable').innerText()).match(/1900|range/i),'pre-1900 sample has an unavailable reason and no visible chart '+width);await shot(page,'unavailable-'+width,'.ch-sensitivity-section');
+  await page.locator('#ch-clear').click();await stale(page,'clear '+width);await page.locator('#ch-compare').click();check(await page.locator('#ch-error').isVisible()&&(await page.locator('#ch-error').innerText()).includes('contains 0')&&await page.locator('#ch-error').evaluate(e=>document.activeElement===e),'zero selection error is visible and focused '+width);
+  await selectRecords(page,all);await page.locator('#ch-compare').click();check((await page.locator('#ch-error').innerText()).includes('contains 16')&&await page.locator('#ch-json').isDisabled(),'all sixteen can be inspected but over-six comparison rejects without truncation '+width);
+  for(let start=0;start<all.length;start+=6){const selected=all.slice(start,start+6);await selectRecords(page,selected);await calculate(page);const part=await exported(page,'variant batch '+start+' '+width);check(same(part.selection.recordIds,selected),'each selected variant retained in declared order '+start+' '+width);await verifyVisible(page,part,'variant batch '+start+' '+width);}
+  await page.locator('#ch-reset').click();await stale(page,'reset '+width);check((await page.locator('#ch-selection-count').innerText()).startsWith('6 of 6'),'reset restores one record per country '+width);await calculate(page);
+  // Interrupt the two-animation-frame calculation handoff by changing an input
+  // in the same task. A cancelled revision must not revive its prior exports.
+  await page.evaluate(()=>{document.querySelector('#ch-form').requestSubmit();const select=document.querySelector('#ch-house-system');select.value='whole';select.dispatchEvent(new Event('change',{bubbles:true}));});await page.waitForFunction(()=>!document.querySelector('#ch-compare').disabled);await stale(page,'in-flight input change '+width);await calculate(page);check((await exported(page,'recovered '+width)).selection.houseSystem==='whole','replacement calculation uses current assumptions '+width);
+  await page.addStyleTag({content:'.country-history{--sans:"DejaVu Sans",sans-serif;font-family:"DejaVu Serif",serif!important}.country-history h1,.country-history h2,.country-history h3{font-family:"DejaVu Serif",serif!important}'});await layout(page,'DejaVu fallback '+width);await fonts(page,'.ch-heading h1','DejaVu heading '+width);await fonts(page,'#ch-compare','DejaVu button '+width);await shot(page,'fallback-'+width,'.ch-selection');
+  const links=await page.locator('#ch-sources a').evaluateAll(els=>els.map(e=>e.href));check(links.every(url=>/^https?:/.test(url)),'rendered sources use ordinary web references '+width);for(const url of new Set(links.filter(u=>new URL(u).origin===origin))){const response=await page.request.get(url);check(response.status()===200&&url.startsWith(base),'local source resolves under Pages prefix '+width+' '+url.slice(base.length));}
+  check(await page.evaluate(()=>window.__countryPermissionCalls)===0,'study never requests geolocation '+width);
+}catch(error){await shot(page,'failure-'+width).catch(()=>{});throw error;}finally{await c.close();}}
+try{
+  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));origin='http://127.0.0.1:'+server.address().port;base=origin+prefix;
+  const pkg=await import(process.env.PLAYWRIGHT_PKG?pathToFileURL(resolve(process.env.PLAYWRIGHT_PKG)).href:'playwright');browser=await(pkg.chromium||pkg.default.chromium).launch({headless:true});receipt.browser=browser.version();
+  for(const width of widths)await journey(width);
+  check(receipt.errors.length===0,'no runtime or console errors',receipt.errors);check(receipt.missing.length===0,'no missing local responses',receipt.missing);check(receipt.requestFailures.length===0,'no failed requests',receipt.requestFailures);check(receipt.externalRequests.length===0,'no implicit external requests',receipt.externalRequests);
+}catch(error){failure=error;receipt.failure={message:error.message,stack:error.stack};}finally{
+  await browser?.close();await new Promise(resolve=>server.close(resolve));const after=await product(),driversAfter=await driverHashes();receipt.source.productAtEndSHA256=sha(JSON.stringify(after));receipt.source.driversAtEnd=driversAfter;receipt.source.changedFiles=[...new Set([...Object.keys(before),...Object.keys(after)])].filter(p=>before[p]!==after[p]);receipt.source.changedDrivers=drivers.filter(p=>driversBefore[p]!==driversAfter[p]);receipt.source.driftAllowed=process.env.COUNTRY_HISTORY_ALLOW_EDITS==='1';
+  if((receipt.source.changedFiles.length||receipt.source.changedDrivers.length)&&!receipt.source.driftAllowed){failure??=Error('Product or verification driver changed during browser run');receipt.failure??={message:failure.message};}
+  receipt.pass=!failure;receipt.acceptanceEligible=receipt.pass&&!receipt.source.changedFiles.length&&!receipt.source.changedDrivers.length&&!receipt.source.driftAllowed;receipt.completedAt=new Date().toISOString();receipt.checkCount=receipt.checks.length;
+  await writeFile(resolve(output,'source-before.json'),JSON.stringify(before,null,2)+'\n');await writeFile(resolve(output,'source-after.json'),JSON.stringify(after,null,2)+'\n');await writeFile(resolve(output,'receipt.json'),JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify({pass:receipt.pass,acceptanceEligible:receipt.acceptanceEligible,checks:receipt.checkCount,downloads:receipt.downloads.length,errors:receipt.errors.length,changedFiles:receipt.source.changedFiles,receipt:resolve(output,'receipt.json'),failure:receipt.failure?.message},null,2));if(failure)process.exitCode=1;
+}

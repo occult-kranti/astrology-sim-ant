@@ -1,0 +1,345 @@
+{
+  "schemaVersion": 1,
+  "task": "Historical country reference dates: India, Russia, Iran",
+  "reviewDate": "2026-10-30",
+  "method": "Normal HTTP retrieval through inherited configured proxy with TLS verification. Source bytes stay temporary; only metadata, hashes, bounded excerpts and findings are retained.",
+  "limits": [
+    "A successful HTTP response is not proof that a historical passage was returned. Reading status is separate.",
+    "A SHA256 identifies retrieved bytes; it is not a guarantee of historical truth, permanent availability or independent corroboration.",
+    "No full PDF, constitutional translation or copyrighted page artwork is included.",
+    "Date-only records have no normalized event instant. Editorial reference cities and IANA zones do not supply historical event times."
+  ],
+  "sources": [
+    {
+      "id": "india-independence-act",
+      "url": "https://www.legislation.gov.uk/ukpga/Geo6/10-11/30/enacted",
+      "finalUrl": "https://www.legislation.gov.uk/ukpga/Geo6/10-11/30/enacted",
+      "accessedAt": "2026-10-30T07:29:37.146174+00:00",
+      "status": 200,
+      "contentType": "text/html;charset=utf-8",
+      "bytes": 95347,
+      "sha256": "1658e7d0f9325b4b57778b4f18d23886a0a4a6729c338b7191af9370835a673f",
+      "sourceId": "COUNTRY-IN-INDEPENDENCE-ACT",
+      "readingStatus": "passage-inspected",
+      "finding": "Section 1 appoints 15 August 1947 for independent Dominion status."
+    },
+    {
+      "id": "india-official-constitution-pdf",
+      "url": "https://cdnbbsr.s3waas.gov.in/s380537a945c7aaa788ccfcdf1b99b5d8f/uploads/2024/07/20240716890312078.pdf",
+      "finalUrl": "https://cdnbbsr.s3waas.gov.in/s380537a945c7aaa788ccfcdf1b99b5d8f/uploads/2024/07/20240716890312078.pdf",
+      "accessedAt": "2026-10-30T07:34:22.665165+00:00",
+      "status": 200,
+      "contentType": "application/pdf",
+      "bytes": 2413611,
+      "sha256": "819ba7adc5e5ae4063f26c82472283ba682ddb662e5a7f864cf26984d99b26ed",
+      "sourceId": "COUNTRY-IN-CONSTITUTION",
+      "readingStatus": "passage-inspected",
+      "finding": "2024 edition; Preamble PDF p.32 names 26 November 1949; Article 394 PDF p.283 names 26 January 1950 for remaining provisions."
+    },
+    {
+      "id": "india-pib-factsheet",
+      "url": "https://pib.gov.in/FactsheetDetails.aspx?Id=148584&lang=1&reg=3",
+      "finalUrl": "https://www.pib.gov.in/FactsheetDetails.aspx?Id=148584&lang=1&reg=3",
+      "accessedAt": "2026-10-30T07:34:22.665715+00:00",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 152438,
+      "sha256": "47214fadb411160adcd76d64e1edb982eaa893bf5ec668c01d3aaeedf1f6119a",
+      "sourceId": "COUNTRY-IN-PIB",
+      "readingStatus": "passage-inspected",
+      "finding": "Opening retrospective paragraph agrees on adoption and commencement dates."
+    },
+    {
+      "id": "india-constitution-constitute",
+      "url": "https://www.constituteproject.org/constitution/India_2016?lang=en",
+      "finalUrl": "https://www.constituteproject.org/constitution/India_2016?lang=en",
+      "accessedAt": "2026-10-30T07:30:34.741465+00:00",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 1242037,
+      "sha256": "a17f08a05c05c7799b6d5113caa02b288311805077a9a52bc8977159c1efa427",
+      "sourceId": null,
+      "readingStatus": "passage-inspected-not-selected",
+      "finding": "2016 text agrees with the later directly retrieved official constitution; not counted as another original document."
+    },
+    {
+      "id": "russia-sovereignty-msu-current",
+      "url": "https://soviethistory.msu.edu/1991/eltsin-and-russian-sovereignty/eltsin-and-russian-sovereignty-texts/russian-state-sovereignty/",
+      "finalUrl": "https://soviethistory.msu.edu/1991/eltsin-and-russian-sovereignty/eltsin-and-russian-sovereignty-texts/russian-state-sovereignty/",
+      "accessedAt": "2026-10-30T07:36:43.176776+00:00",
+      "status": 200,
+      "contentType": "text/html",
+      "bytes": 39462,
+      "sha256": "a2fcf168bb74a8aa4d447dfa8363e07159ca46630126c69d805257ad3b1ad9f1",
+      "sourceId": "COUNTRY-RU-SOVEREIGNTY",
+      "readingStatus": "passage-inspected",
+      "finding": "Document heading gives 12 June 1990. Declaration envisages a renewed USSR."
+    },
+    {
+      "id": "russia-law-msu-archive",
+      "url": "https://web.archive.org/web/20250101000000id_/https://soviethistory.msu.edu/1991-2/eltsin-and-russian-sovereignty/eltsin-and-russian-sovereignty-texts/russian-state-sovereignty/",
+      "finalUrl": "https://web.archive.org/web/20250104004051id_/https://soviethistory.msu.edu/1991-2/eltsin-and-russian-sovereignty/eltsin-and-russian-sovereignty-texts/russian-state-sovereignty/",
+      "accessedAt": "2026-10-30T07:35:01.604692+00:00",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 112228,
+      "sha256": "c116ce286eddce27190550d2ec3468cc0a1ba0c0e894174f5a33d326ba287d74",
+      "sourceId": null,
+      "readingStatus": "passage-inspected-archived-copy",
+      "finding": "Archived 2025 copy of the same MSU documentary lineage; not independent corroboration."
+    },
+    {
+      "id": "russia-constitution-constitute",
+      "url": "https://www.constituteproject.org/constitution/Russia_2014?lang=en",
+      "finalUrl": "https://www.constituteproject.org/constitution/Russia_2014?lang=en",
+      "accessedAt": "2026-10-30T07:30:34.742230+00:00",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 220966,
+      "sha256": "033987407336e76a0256305fedf6e75ac84427b23225bceb254f03eb1832b336",
+      "sourceId": "COUNTRY-RU-CONSTITUTION",
+      "readingStatus": "passage-inspected",
+      "finding": "Section Two paragraph 1 names 12 December 1993 as adoption and distinguishes publication/entry into force."
+    },
+    {
+      "id": "russia-wipo-constitution",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/21035",
+      "finalUrl": "https://www.wipo.int/wipolex/en/legislation/details/21035",
+      "accessedAt": "2026-10-30T07:36:22.519655+00:00",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 147072,
+      "sha256": "dc070aba7646b9b33a0ad115ba4e3eda40d90f335c0aad504ab09c42b47d5b5c",
+      "sourceId": "COUNTRY-RU-WIPO",
+      "readingStatus": "metadata-inspected",
+      "finding": "WIPO RU342 metadata: adoption 12 December 1993; entry into force 25 December 1993."
+    },
+    {
+      "id": "india-profile",
+      "url": "https://knowindia.india.gov.in/profile/",
+      "accessedAt": "2026-10-30T07:29:37.144875+00:00",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "sourceId": null,
+      "readingStatus": "access-failed",
+      "finding": "Proxy tunnel returned 403. No policy bypass attempted."
+    },
+    {
+      "id": "india-code-constitution",
+      "url": "https://www.indiacode.nic.in/bitstream/123456789/15240/1/constitution_of_india.pdf",
+      "accessedAt": "2026-10-30T07:30:34.740168+00:00",
+      "error": "The read operation timed out",
+      "sourceId": null,
+      "readingStatus": "access-failed",
+      "finding": "Read timeout; no source body available."
+    },
+    {
+      "id": "india-legislative-constitution",
+      "url": "https://legislative.gov.in/constitution-of-india/",
+      "finalUrl": "https://www.legislative.gov.in/constitution-of-india",
+      "accessedAt": "2026-10-30T07:30:34.740722+00:00",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 8655,
+      "sha256": "d8cead921b57c1726c9b2ad0d239d496569b0024eec263e6f8ece218871b25d0",
+      "sourceId": null,
+      "readingStatus": "app-shell-only",
+      "finding": "HTTP 200 returned a Next.js shell without readable constitutional content."
+    },
+    {
+      "id": "russia-kremlin-constitution",
+      "url": "https://en.kremlin.ru/structure/constitution",
+      "accessedAt": "2026-10-30T07:29:37.146608+00:00",
+      "error": "HTTP Error 503: Service Unavailable",
+      "sourceId": null,
+      "readingStatus": "access-failed",
+      "finding": "HTTP 503; no page-reading claim."
+    },
+    {
+      "id": "russia-sovereignty-prlib",
+      "url": "https://www.prlib.ru/en/history/619308",
+      "finalUrl": "https://www.prlib.ru/challenge-en.html?redirect=/en/history/619308",
+      "accessedAt": "2026-10-30T07:36:43.177425+00:00",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 5479,
+      "sha256": "2057189ef4037212b34f87055336c1485bcacb36e9d7887e9f8c2f98ae9fb79c",
+      "sourceId": null,
+      "readingStatus": "browser-challenge",
+      "finding": "HTTP 200 redirected to a browser security check; historical passage not read."
+    },
+    {
+      "id": "russia-constitution-mid",
+      "url": "https://mid.ru/en/foreign_policy/official_documents/-/asset_publisher/CptICkB6BZ29/content/id/571508",
+      "finalUrl": "https://mid.ru/en/foreign_policy/official_documents/-/asset_publisher/CptICkB6BZ29/content/id/571508",
+      "accessedAt": "2026-10-30T07:33:06.818092+00:00",
+      "status": 200,
+      "contentType": "text/html",
+      "bytes": 301,
+      "sha256": "567fc1f5bcf3b1dd1ebd41ac3cbe25ea9b0dcd6443165baae135c6ce2cd593e9",
+      "sourceId": null,
+      "readingStatus": "request-rejected",
+      "finding": "HTTP 200 body was a request-rejected page, not the constitution."
+    },
+    {
+      "id": "IR-WIPO",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/7697",
+      "resolvedUrl": "https://www.wipo.int/wipolex/en/legislation/details/7697",
+      "accessedAt": "2026-10-30T07:33:35.150973+00:00",
+      "httpStatus": 200,
+      "bytes": 39088,
+      "sha256": "96f317deebb2d6cdd76ec22e5d226e3f073fafcd4b187f7e697763306c3a90ec",
+      "readingScope": "Selected historical-date and metadata passages only; full constitution or country study not read.",
+      "sourceId": null,
+      "readingStatus": "selected-passage-or-metadata-inspected",
+      "selectedExcerpts": [
+        "Amended: July 28, 1989; Entry into force: December 3, 1979; Adopted: October 24, 1979"
+      ]
+    },
+    {
+      "id": "IR-WIPO-1979",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/14260",
+      "resolvedUrl": "https://www.wipo.int/wipolex/en/legislation/details/14260",
+      "accessedAt": "2026-10-30T07:33:34.726279+00:00",
+      "httpStatus": 200,
+      "bytes": 35302,
+      "sha256": "92e7bcef7b3ab2e7bc6fa7ef9d30b8fd5693fb9a733b523087eb9d0133d9b7f9",
+      "readingScope": "Selected historical-date and metadata passages only; full constitution or country study not read.",
+      "sourceId": "COUNTRY-IR-WIPO",
+      "readingStatus": "selected-passage-or-metadata-inspected",
+      "selectedExcerpts": [
+        "Entry into force: December 3, 1979; Adopted: October 24, 1979"
+      ]
+    },
+    {
+      "id": "IR-COUNTRYSTUDY",
+      "url": "https://countrystudies.us/iran/24.htm",
+      "resolvedUrl": "https://countrystudies.us/iran/24.htm",
+      "accessedAt": "2026-10-30T07:33:34.475372+00:00",
+      "httpStatus": 200,
+      "bytes": 6976,
+      "sha256": "a21f6271b1550ca9246a970d6c424fc3052474e0cca4a6d43f8ead817ae39454",
+      "readingScope": "Selected historical-date and metadata passages only; full constitution or country study not read.",
+      "title": "Iran — The Revolution — The New Constitution",
+      "institution": "Library of Congress country-study text; retrieved from CountryStudies.us reproduction, not Library of Congress domain",
+      "findings": [
+        "National referendum on governmental form held March30–31,1979.",
+        "Khomeini proclaimed establishment of Islamic Republic onApril1,1979.",
+        "Constitution approved by referendum December2–3,1979; assembly completed work November15."
+      ],
+      "locator": "Opening paragraph (March referendum and April proclamation); following constitutional-assembly paragraph (December referendum).",
+      "independence": "Independent institutional historical account relative to Iranian constitutional text and WIPO metadata; host attribution not independently checked against LoC original because original-domain requests403.",
+      "rights": "Short date fragments and factual paraphrases only; no full chapter retained in repository.",
+      "edition": "Helen Chapin Metz,editor,Iran:A Country Study.Washington:GPO for the Library of Congress,1987; attribution verified on mirror index only.",
+      "sourceId": "COUNTRY-IR-STUDY",
+      "readingStatus": "passage-inspected-mirror",
+      "selectedExcerpts": [
+        "March 30 and 31, 1979",
+        "April 1, 1979",
+        "December 2 and 3, 1979"
+      ]
+    },
+    {
+      "id": "IR-ICL",
+      "url": "https://www.servat.unibe.ch/icl/ir00000_.html",
+      "resolvedUrl": "https://www.servat.unibe.ch/icl/ir00000_.html",
+      "accessedAt": "2026-10-30T07:33:35.489685+00:00",
+      "httpStatus": 200,
+      "bytes": 133585,
+      "sha256": "772acac7f81de73d849b6c8f44d1be15bad178b496abab9a1f7e4612aea76792",
+      "readingScope": "Selected historical-date and metadata passages only; full constitution or country study not read.",
+      "sourceId": null,
+      "readingStatus": "selected-passage-or-metadata-inspected",
+      "selectedExcerpts": [
+        "Effective since: 3 Dec 1979; Amended on: 28 July 1989"
+      ]
+    },
+    {
+      "id": "IR-CONSTITUTE",
+      "url": "https://www.constituteproject.org/constitution/Iran_1989",
+      "resolvedUrl": "https://www.constituteproject.org/constitution/Iran_1989",
+      "accessedAt": "2026-10-30T07:33:34.573329+00:00",
+      "httpStatus": 200,
+      "bytes": 235295,
+      "sha256": "1d87fb0f057caf02273a9ab61d9e77301e37487f4361283db9a37106dee48a44",
+      "readingScope": "Selected historical-date and metadata passages only; full constitution or country study not read.",
+      "sourceId": "COUNTRY-IR-CONSTITUTE-VARIANT",
+      "readingStatus": "passage-inspected-discrepant-translation",
+      "selectedExcerpts": [
+        "Farwardîn 9 and 10 in the year1358",
+        "[March 29 and30,1979]"
+      ]
+    },
+    {
+      "id": "IR-LONDON",
+      "url": "https://london.mfa.ir/en/newsview/528854/celebrating-islamic-republic-day-in-its-fortieths-anniversary",
+      "accessedAt": "2026-10-30T07:34:23.391317+00:00",
+      "error": "HTTP Error 307: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nTemporary Redirect",
+      "sourceId": null,
+      "readingStatus": "access-failed"
+    },
+    {
+      "id": "IR-CULTURE",
+      "url": "https://en.irancultura.it/April-1st--Islamic-Republic-Day-of-Iran/",
+      "accessedAt": "2026-10-30T07:34:20.237548+00:00",
+      "error": "HTTP Error 403: Forbidden",
+      "sourceId": null,
+      "readingStatus": "access-failed"
+    },
+    {
+      "id": "IR-WIPO-FA",
+      "url": "https://wipolex-res.wipo.int/edocs/lexdocs/laws/fa/ir/ir001fa.pdf",
+      "accessedAt": "2026-10-30T07:35:55.432859+00:00",
+      "httpStatus": 200,
+      "bytes": 892713,
+      "sha256": "d50cb4accc4cc17d63d0d535ab085a78f85847be332f448e572c6e23d9c068be",
+      "retrieval": "Actual page-provided PDF iframe link; temporary signed query omitted.",
+      "locator": "Article 1 continuation, printed p.9 (PDF page9); page8 contains beginning of Article1.",
+      "readingScope": "Article1 date passage extracted and visually checked on rendered page9; end-of-document inspected for revision date; no full constitutional reading.",
+      "finding": "Persian Article1 states referendum on10 and11 Farvardin1358 (Solar Hijri), corresponding to1 and2 Jumada al-Ula1399 (lunar Hijri). It gives no Gregorian equivalent in that passage. Exact1989 revision month/day not verified.",
+      "excerpt": "همه پرسی دهم و یازدهم فروردین ماه یکهزار و سیصد و پنجاه و هشت هجری شمسی",
+      "rights": "Only short date excerpt and source metadata retained; fullPDF remains temporary and must not be copied into repository.",
+      "sourceId": "COUNTRY-IR-CONSTITUTION-FA",
+      "readingStatus": "passage-inspected",
+      "retrievalQualification": "PDF retrieved through the actual WIPO page-provided iframe URL; signed query deliberately omitted. Stable URL may resolve differently later."
+    },
+    {
+      "id": "IR-LOC-ORIGINAL-UNAVAILABLE",
+      "url": "https://www.loc.gov/rr/frd/cs/pdf/CS_Iran.pdf",
+      "accessedAt": "2026-10-30",
+      "httpStatus": 403,
+      "readingStatus": "access-failed; original institutional scan not read",
+      "sha256": null,
+      "notes": [
+        "CountryStudies.us text identifies Library of Congress as source; no claim that this original PDF was successfully retrieved."
+      ],
+      "sourceId": null
+    },
+    {
+      "id": "IR-LOC-TILE-UNAVAILABLE",
+      "url": "https://tile.loc.gov/storage-services/master/frd/frdcstdy/ir/irancountrystudy00curt/irancountrystudy00curt.pdf",
+      "accessedAt": "2026-10-30",
+      "httpStatus": 403,
+      "readingStatus": "access-failed; archival scan not read",
+      "sha256": null,
+      "sourceId": null
+    },
+    {
+      "id": "IR-COUNTRYSTUDY-INDEX",
+      "url": "https://countrystudies.us/iran/",
+      "resolvedUrl": "https://countrystudies.us/iran/",
+      "accessedAt": "2026-10-30T07:38:42.741524+00:00",
+      "httpStatus": 200,
+      "bytes": 9530,
+      "sha256": "7f4ea1f766f0a3fd9dde0421aa53c94305a5a9a508dd201597c1f72ee9cee653",
+      "readingScope": "Opening title/editor/publication attribution and contents; not full book.",
+      "title": "Iran — Country Study index",
+      "finding": "Mirror index attributes book to Helen Chapin Metz, editor; Iran: A Country Study; Washington: GPO for the Library of Congress,1987.",
+      "notes": [
+        "Attribution read from mirror index, not independently verified against inaccessible original LoC scan.",
+        "Same book family as IR-COUNTRYSTUDY; this index is bibliographic context, not an independent witness."
+      ],
+      "sourceId": null,
+      "readingStatus": "metadata-inspected-mirror"
+    }
+  ]
+}

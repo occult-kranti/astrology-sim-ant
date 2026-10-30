@@ -1,0 +1,238 @@
+{
+  "round": 3,
+  "reviewer": "country_sources_east",
+  "reviewDate": "2026-10-30",
+  "verdict": "ACCEPT",
+  "scope": "Held integrated India, Russia and Iran historical source records and their civil/assumed-sampling output; no browser or publication acceptance",
+  "checks": [
+    {
+      "label": "Eight reviewed east records survive aggregate catalogue unchanged",
+      "pass": true
+    },
+    {
+      "label": "All ten reviewed source metadata objects survive aggregate catalogue unchanged",
+      "pass": true
+    },
+    {
+      "label": "All eight integrated historical records remain exact copies with unknown source clocks",
+      "pass": true
+    },
+    {
+      "label": "Civil reference noon is disclosed separately and does not become an event clock or chart",
+      "pass": true
+    },
+    {
+      "label": "Exported historical source metadata retains reading, rights, locator and uncertainty",
+      "pass": true
+    },
+    {
+      "label": "India Article 394: remaining provisions, earlier provisions and distinct adoption date preserved",
+      "pass": true
+    },
+    {
+      "label": "Russia: sovereignty remains within USSR; December 12 adoption is separate from December 25 commencement",
+      "pass": true
+    },
+    {
+      "label": "Iran: closing day preserves full March 30–31 span and original Persian labels",
+      "pass": true
+    },
+    {
+      "label": "Iran: proclamation remains single-source mirror assertion; commencement legal label remains WIPO metadata",
+      "pass": true
+    },
+    {
+      "label": "Rounded editorial cities are kept separate from measured venues and historical time evidence",
+      "pass": true
+    },
+    {
+      "label": "Opt-in geometry keeps all sample times explicitly assumed and source clocks unknown",
+      "pass": true
+    },
+    {
+      "label": "Relevant product and source bytes stayed unchanged throughout held-candidate review",
+      "pass": true
+    }
+  ],
+  "sourceHashes": {
+    "assets/js/core/country-history.js": "cb9a5da31433db9283cbd236f1ab140093e9ff3f5a8658efaaf03042294dd222",
+    "assets/js/core/data/country-history-records.js": "f3836c142357b50b32ef3550d1e41cf475e7d2d10fc40c0c6559a8d90020aadf",
+    "assets/js/core/data/country-history-east.js": "9e28a95a1bc56c7e80007f62dcefeb35e9282e32d9ea72ad075a3d621d87d045",
+    "assets/js/core/data/country-history-west.js": "b04d3d8156b50b8ed4a02ea76ab42e7b189bd96662b8b8050689941c62c224a3",
+    "assets/js/app/country-calendars.js": "28a96906b054ecf1cfe11b6e70bc94b7fd09d291750f88227a41de9dfac29f3f",
+    "docs/2026-10-country-history-east.md": "07b8b21d27d6ab94be205a8b8ded08c44136a1b983ca0c6d22a2b0fc45a93d70",
+    "docs/evidence/country-history/east/source-access.json": "f8f692aff33edea97d18112ae786e6182289727a708abca79bce8cc5bd129b68"
+  },
+  "postReviewHashes": {
+    "assets/js/core/country-history.js": "cb9a5da31433db9283cbd236f1ab140093e9ff3f5a8658efaaf03042294dd222",
+    "assets/js/core/data/country-history-records.js": "f3836c142357b50b32ef3550d1e41cf475e7d2d10fc40c0c6559a8d90020aadf",
+    "assets/js/core/data/country-history-east.js": "9e28a95a1bc56c7e80007f62dcefeb35e9282e32d9ea72ad075a3d621d87d045",
+    "assets/js/core/data/country-history-west.js": "b04d3d8156b50b8ed4a02ea76ab42e7b189bd96662b8b8050689941c62c224a3",
+    "assets/js/app/country-calendars.js": "28a96906b054ecf1cfe11b6e70bc94b7fd09d291750f88227a41de9dfac29f3f",
+    "docs/2026-10-country-history-east.md": "07b8b21d27d6ab94be205a8b8ded08c44136a1b983ca0c6d22a2b0fc45a93d70",
+    "docs/evidence/country-history/east/source-access.json": "f8f692aff33edea97d18112ae786e6182289727a708abca79bce8cc5bd129b68"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "cldr": "48.0",
+    "tz": "2026b"
+  },
+  "outputs": [
+    {
+      "request": {
+        "recordIds": [
+          "india-independence-1947",
+          "india-constitution-adoption-1949",
+          "india-constitution-commencement-1950",
+          "russia-sovereignty-declaration-1990",
+          "russia-constitution-adoption-1993",
+          "iran-republic-referendum-conclusion-1979"
+        ]
+      },
+      "sha256": "54abdbc410e5fbddeb37a2cb781e571247a21360c41b16ef2fca0f5634381a76",
+      "records": [
+        {
+          "id": "india-independence-1947",
+          "date": "1947-08-15",
+          "timeStatus": "date-only",
+          "sourceClock": null,
+          "civilStatus": "available",
+          "civilReferenceStatus": "declared-reference-assumption",
+          "sourceIds": [
+            "COUNTRY-IN-INDEPENDENCE-ACT"
+          ]
+        },
+        {
+          "id": "india-constitution-adoption-1949",
+          "date": "1949-11-26",
+          "timeStatus": "date-only",
+          "sourceClock": null,
+          "civilStatus": "available",
+          "civilReferenceStatus": "declared-reference-assumption",
+          "sourceIds": [
+            "COUNTRY-IN-CONSTITUTION",
+            "COUNTRY-IN-PIB"
+          ]
+        },
+        {
+          "id": "india-constitution-commencement-1950",
+          "date": "1950-01-26",
+          "timeStatus": "date-only",
+          "sourceClock": null,
+          "civilStatus": "available",
+          "civilReferenceStatus": "declared-reference-assumption",
+          "sourceIds": [
+            "COUNTRY-IN-CONSTITUTION",
+            "COUNTRY-IN-PIB"
+          ]
+        },
+        {
+          "id": "russia-sovereignty-declaration-1990",
+          "date": "1990-06-12",
+          "timeStatus": "date-only",
+          "sourceClock": null,
+          "civilStatus": "available",
+          "civilReferenceStatus": "declared-reference-assumption",
+          "sourceIds": [
+            "COUNTRY-RU-SOVEREIGNTY"
+          ]
+        },
+        {
+          "id": "russia-constitution-adoption-1993",
+          "date": "1993-12-12",
+          "timeStatus": "date-only",
+          "sourceClock": null,
+          "civilStatus": "available",
+          "civilReferenceStatus": "declared-reference-assumption",
+          "sourceIds": [
+            "COUNTRY-RU-CONSTITUTION",
+            "COUNTRY-RU-WIPO"
+          ]
+        },
+        {
+          "id": "iran-republic-referendum-conclusion-1979",
+          "date": "1979-03-31",
+          "timeStatus": "date-only",
+          "sourceClock": null,
+          "civilStatus": "available",
+          "civilReferenceStatus": "declared-reference-assumption",
+          "sourceIds": [
+            "COUNTRY-IR-STUDY",
+            "COUNTRY-IR-CONSTITUTION-FA",
+            "COUNTRY-IR-CONSTITUTE-VARIANT"
+          ]
+        }
+      ]
+    },
+    {
+      "request": {
+        "recordIds": [
+          "iran-republic-proclamation-1979",
+          "iran-constitution-commencement-1979"
+        ]
+      },
+      "sha256": "50cb33a55a16132d38459b9afd6e609f67593a343dab14d864e463b9b06a183f",
+      "records": [
+        {
+          "id": "iran-republic-proclamation-1979",
+          "date": "1979-04-01",
+          "timeStatus": "date-only",
+          "sourceClock": null,
+          "civilStatus": "available",
+          "civilReferenceStatus": "declared-reference-assumption",
+          "sourceIds": [
+            "COUNTRY-IR-STUDY"
+          ]
+        },
+        {
+          "id": "iran-constitution-commencement-1979",
+          "date": "1979-12-03",
+          "timeStatus": "date-only",
+          "sourceClock": null,
+          "civilStatus": "available",
+          "civilReferenceStatus": "declared-reference-assumption",
+          "sourceIds": [
+            "COUNTRY-IR-WIPO",
+            "COUNTRY-IR-STUDY"
+          ]
+        }
+      ]
+    },
+    {
+      "request": {
+        "recordIds": [
+          "india-constitution-commencement-1950",
+          "russia-constitution-adoption-1993",
+          "iran-republic-referendum-conclusion-1979"
+        ],
+        "includeDaySensitivity": true,
+        "houseSystem": "regiomontanus"
+      },
+      "sha256": "dac648464e6c3a338436a73003ed190147d0aba079df97d3c13f455f2a4631ee",
+      "samples": [
+        {
+          "id": "india-constitution-commencement-1950",
+          "count": 25,
+          "status": "available"
+        },
+        {
+          "id": "russia-constitution-adoption-1993",
+          "count": 25,
+          "status": "available"
+        },
+        {
+          "id": "iran-republic-referendum-conclusion-1979",
+          "count": 25,
+          "status": "available"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Selected historical passages reviewed in R1 and independently cross-checked in R2; no new full-book, manuscript or archival collection reading.",
+    "Source-access and single-source limitations remain; no unsupported source was promoted to passage-inspected.",
+    "Civil/house output checked for source/assumption separation, not independent numerical validation of historical calendars, ephemerides or historical IANA offsets.",
+    "No browser, physical-device, external-provider, publication or deployment claim."
+  ]
+}

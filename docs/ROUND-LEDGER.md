@@ -40,7 +40,8 @@ A `—` is a figure that does not exist, and it is never rendered as a zero.
 | R34 | 2026-07-30 | 2 *(unverified)* | 12 *(unverified)* | 0.14 | clean 0/0/0 |
 | R35 | 2026-07-31 | 2 *(unverified)* | 9 *(unverified)* | 0.18 | clean 0/0/0 |
 | R36 | 2026-10-30 | 6 *(unverified)* | 10 *(unverified)* | 0.38 | clean 0/0/0 |
-| **all scorable** | | **103** | **73** | **0.59** | |
+| R37 | 2026-10-30 | 6 *(unverified)* | 7 *(unverified)* | 0.46 | clean 0/0/0 |
+| **all scorable** | | **109** | **80** | **0.58** | |
 
 *3 superseding correction row(s) are on file: `rounds.jsonl` keeps every line and this table
 renders the newest row per round. A log may be corrected; it is never rewritten.*
@@ -56,8 +57,8 @@ renders the newest row per round. A log may be corrected; it is never rewritten.
 This run computed:
 
 ```
-C1 ok — trailing-3 (R34, R35, R36): 10 domain, 31 tooling.
-C2 ok — trailing-3 domain ratio 0.24 (floor 0.20).
+C1 ok — trailing-3 (R35, R36, R37): 14 domain, 26 tooling.
+C2 ok — trailing-3 domain ratio 0.35 (floor 0.20).
 C3 NOT EVALUABLE — 2 of the last 5 rounds carry a curation census (graph.excluded / graph.ejected). C3 cannot pass by default.
 NOTE — 3 of the 3 rounds in the C1/C2 window carry (unverified) claim counts (amendment E). The stop condition is computed from figures no script re-derived.
 exit 0

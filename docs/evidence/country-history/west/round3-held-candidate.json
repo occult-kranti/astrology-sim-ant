@@ -1,0 +1,104 @@
+{
+  "round": 3,
+  "status": "accepted within source/date-only export scope",
+  "checkedAt": "2026-10-30T08:08:06.384Z",
+  "reviewer": "west source agent",
+  "productFrozen": true,
+  "bindingsBefore": {
+    "assets/js/core/data/country-history-west.js": "b04d3d8156b50b8ed4a02ea76ab42e7b189bd96662b8b8050689941c62c224a3",
+    "assets/js/core/data/country-history-records.js": "f3836c142357b50b32ef3550d1e41cf475e7d2d10fc40c0c6559a8d90020aadf",
+    "assets/js/core/country-history.js": "cb9a5da31433db9283cbd236f1ab140093e9ff3f5a8658efaaf03042294dd222",
+    "assets/js/app/country-calendars.js": "28a96906b054ecf1cfe11b6e70bc94b7fd09d291750f88227a41de9dfac29f3f",
+    "pages/country-calendars.html": "a24738fd14468e8daa7a4a5f7f007e46761721a90b803abcbac3c30ac73efbee"
+  },
+  "bindingsAfter": {
+    "assets/js/core/data/country-history-west.js": "b04d3d8156b50b8ed4a02ea76ab42e7b189bd96662b8b8050689941c62c224a3",
+    "assets/js/core/data/country-history-records.js": "f3836c142357b50b32ef3550d1e41cf475e7d2d10fc40c0c6559a8d90020aadf",
+    "assets/js/core/country-history.js": "cb9a5da31433db9283cbd236f1ab140093e9ff3f5a8658efaaf03042294dd222",
+    "assets/js/app/country-calendars.js": "28a96906b054ecf1cfe11b6e70bc94b7fd09d291750f88227a41de9dfac29f3f",
+    "pages/country-calendars.html": "a24738fd14468e8daa7a4a5f7f007e46761721a90b803abcbac3c30ac73efbee"
+  },
+  "authoredWestRecords": 8,
+  "authoredWestSources": 15,
+  "exportRecordEquality": "all 8 JSON-roundtripped record projections equal reviewed authored records",
+  "exportSourceEquality": "all referenced historical source nodes equal reviewed authored source metadata",
+  "unsupportedUS": [
+    {
+      "id": "usa-independence-resolution-1776",
+      "date": "1776-07-02",
+      "coverage": "unavailable",
+      "civilReference": null,
+      "civilRows": 0,
+      "houseSamples": 0
+    },
+    {
+      "id": "usa-declaration-adopted-1776",
+      "date": "1776-07-04",
+      "coverage": "unavailable",
+      "civilReference": null,
+      "civilRows": 0,
+      "houseSamples": 0
+    },
+    {
+      "id": "usa-constitution-signed-1787",
+      "date": "1787-09-17",
+      "coverage": "unavailable",
+      "civilReference": null,
+      "civilRows": 0,
+      "houseSamples": 0
+    }
+  ],
+  "assumedSensitivity": {
+    "id": "israel-declaration-1948",
+    "date": "1948-05-14",
+    "sourceTime": {
+      "status": "date-only",
+      "localTime": null,
+      "qualification": "The checked sources support a civil date. No exact local clock or UTC instant is established; Noon must not be treated as the historical event time."
+    },
+    "reference": {
+      "dateISO": "1948-05-14T10:00:00.000Z",
+      "localDate": "1948-05-14",
+      "localTime": "12:00:00",
+      "timeZone": "Asia/Jerusalem",
+      "timeStatus": "declared-reference-assumption",
+      "assumption": "12:00 local civil reference only; not a sourced event time or an inferred national birth time."
+    },
+    "status": "available",
+    "day": {
+      "startISO": "1948-05-13T22:00:00.000Z",
+      "endExclusiveISO": "1948-05-14T22:00:00.000Z",
+      "elapsedHours": 24
+    },
+    "samples": 25,
+    "allSamplesExplicitAssumptions": true,
+    "houseConvention": "regiomontanus"
+  },
+  "preservedUncertainty": [
+    "USA July 2 shares NARA institutional provenance",
+    "1949 UN admission original inaccessible; accessible UN Library catalogue is single institutional source",
+    "1988 exact proclamation day checked in later UN resolution; mission narrative supports month/year",
+    "Original 1988 annex unavailable; Algiers venue unverified",
+    "1949 UN exact venue unverified",
+    "Source-stated Hebrew labels do not validate historical sunset reconstruction",
+    "UK statutory earlier-Order-in-Council clause retained",
+    "No exact event clock, borders, capitals, legitimacy or unique national birth inferred"
+  ],
+  "additionalChecks": [
+    "Three U.S. records have no replacement date/reference/geometry",
+    "All five supported records expose 13 civil rows and an explicitly assumed reference instant",
+    "Declaration and legal-effect milestones remain distinct",
+    "Palestine observer State marker remains distinct from full membership",
+    "Two failed-original source statuses survive serialization",
+    "Unknown record and arbitrary future-date inputs rejected",
+    "No product file hash changed during review"
+  ],
+  "notClaimed": [
+    "browser validation",
+    "download event or downloaded-file inspection",
+    "publication/deployment",
+    "general astronomical or calendar accuracy certification",
+    "independent collation of inaccessible originals",
+    "human historical or language authority"
+  ]
+}
