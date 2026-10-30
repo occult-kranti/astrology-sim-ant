@@ -1,0 +1,88 @@
+{
+  "generatedAt": "2026-10-30T15:59:06.235Z",
+  "reviewRound": 3,
+  "scope": "Held revised source/unit/precision semantic check plus declared static source/renderer review. No new source acquisition, browser, HKO fixture or broader tradition validity claim.",
+  "heldInputsUnchanged": true,
+  "heldManifest": {
+    "heldAt": "2026-10-30T15:59:04.052518+00:00",
+    "authorization": "Root supplied final core/UI hashes after shared held-frame CSV serializer change; comparisons and source data retain reviewed hashes.",
+    "inputs": [
+      {
+        "path": "assets/js/core/newton-chronology.js",
+        "sha256": "525601f45eb8c04fb3ff08b854d8c91628f60c4232f2a57dd305119ff8f51339"
+      },
+      {
+        "path": "assets/js/app/newton-chronology.js",
+        "sha256": "71bb494d028a96be36c8c6dcd28da22794293122dcbc9d3752f303ae375391bc"
+      },
+      {
+        "path": "assets/js/core/data/eschatology-comparisons.js",
+        "sha256": "154b5eb83426f844a9611967569c5ab2598e84ac4924da94b6a5ed0f83407b49"
+      },
+      {
+        "path": "assets/js/core/data/newton-chronology-sources.js",
+        "sha256": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393"
+      },
+      {
+        "path": "pages/newton-chronology.html",
+        "sha256": "a1ab7041ab1a84f5343d2ec655aaad127c623a6e52c41f3a0010bcf5a818d852"
+      },
+      {
+        "path": "mcp/newton-chronology-adapters.mjs",
+        "sha256": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd"
+      }
+    ]
+  },
+  "passed": 21,
+  "checks": [
+    "two distinct source arguments",
+    "2060 conditional lower only",
+    "2370 separate upper only",
+    "no reconstructed exact source dates",
+    "symbolic day to year step remains interpretive premise",
+    "360-day arithmetic does not pretend physical solar year",
+    "four unresolved/source-state variants stay uncalculated",
+    "unresolved variants cannot be selected as scenarios",
+    "source closure for chronology and variants",
+    "comparative Newton row names interpreted period",
+    "comparison dates do not feed astronomy or scenario selection",
+    "study frame labels chosen clock as assumption",
+    "study frame removes editorial purpose and guidance payloads",
+    "computus only projects named date conventions",
+    "frame JSON retains uncertainty and separate year argument",
+    "all frame source IDs close over exported source list",
+    "no belief or country field influences frame",
+    "Maya and Hindu reference claims remain unlike instants",
+    "revised full-year metadata distinguishes year from selected day",
+    "short quotations identify normalized editorial view",
+    "literal source states identify editorial view without repairing deleted draft"
+  ],
+  "inputs": [
+    {
+      "path": "assets/js/core/newton-chronology.js",
+      "sha256": "525601f45eb8c04fb3ff08b854d8c91628f60c4232f2a57dd305119ff8f51339"
+    },
+    {
+      "path": "assets/js/core/data/newton-chronology-sources.js",
+      "sha256": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393"
+    },
+    {
+      "path": "assets/js/core/data/eschatology-comparisons.js",
+      "sha256": "154b5eb83426f844a9611967569c5ab2598e84ac4924da94b6a5ed0f83407b49"
+    },
+    {
+      "path": "mcp/newton-chronology-adapters.mjs",
+      "sha256": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd"
+    },
+    {
+      "path": "pages/newton-chronology.html",
+      "sha256": "a1ab7041ab1a84f5343d2ec655aaad127c623a6e52c41f3a0010bcf5a818d852"
+    },
+    {
+      "path": "assets/js/app/newton-chronology.js",
+      "sha256": "71bb494d028a96be36c8c6dcd28da22794293122dcbc9d3752f303ae375391bc"
+    }
+  ],
+  "driverSHA256": "bee58f1bdc61c91b8e3350667cc369fbc54792c993b18d83f66ce1919349fdc3",
+  "comparisonSourceCount": 19
+}

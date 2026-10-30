@@ -1,0 +1,55 @@
+{
+  "reviewRound": 3,
+  "reviewType": "static-renderer-source-inspection",
+  "generatedAt": "2026-10-30T16:00:04.415716+00:00",
+  "findingsResolved": [
+    "Name Newton interpreted1260-year referent in comparison prose",
+    "Distinguish survey-year precision from chosen-day precision",
+    "Render divine-year quantities as labeled unanchored durations",
+    "Expose comparative unassessed coverage in UI"
+  ],
+  "inspectedConditions": [
+    "Comparison unknown dates display explicit unknown/not-supplied text; null is not converted into an epoch.",
+    "Year-only2060 is printed as a year with its qualifier, not passed to a civil-date formatter.",
+    "Historical Maya exact date is retained with reported-correspondence qualifier.",
+    "Authority scope and selected/full-work reading distinction are visible per comparison.",
+    "Source inspector accepts readingDepth and readingScope, both hash key conventions, literal citation, qualifications and rights.",
+    "Hindu quantities render as labeled divine-year quantities with epoch unspecified and no civil end date calculated; raw JSON removed.",
+    "The source-only2370 branch and unresolved variants cannot trigger out-of-range or invented exploration.",
+    "January1 is explicitly identified as the initial chosen sample, not a source-supplied day.",
+    "Comparative coverage and all notAssessed items are rendered in implementation limits.",
+    "Source JSON preserves full comparison records and coverage separately from observer-specific study records.",
+    "Normalized quotation and literal-transcription views plus conditional historical-anchor meaning remain visible beside the argument.",
+    "UI delegates held-frame CSV serialization to the core without introducing a new chronology claim; serializer retains assumption, context, source records and limits. Actual browser-download parity belongs to QA."
+  ],
+  "browserExecuted": false,
+  "sourceAcquisitionAdded": false,
+  "inputs": [
+    {
+      "path": "assets/js/core/newton-chronology.js",
+      "sha256": "525601f45eb8c04fb3ff08b854d8c91628f60c4232f2a57dd305119ff8f51339"
+    },
+    {
+      "path": "assets/js/app/newton-chronology.js",
+      "sha256": "71bb494d028a96be36c8c6dcd28da22794293122dcbc9d3752f303ae375391bc"
+    },
+    {
+      "path": "assets/js/core/data/eschatology-comparisons.js",
+      "sha256": "154b5eb83426f844a9611967569c5ab2598e84ac4924da94b6a5ed0f83407b49"
+    },
+    {
+      "path": "assets/js/core/data/newton-chronology-sources.js",
+      "sha256": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393"
+    },
+    {
+      "path": "pages/newton-chronology.html",
+      "sha256": "a1ab7041ab1a84f5343d2ec655aaad127c623a6e52c41f3a0010bcf5a818d852"
+    },
+    {
+      "path": "mcp/newton-chronology-adapters.mjs",
+      "sha256": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd"
+    }
+  ],
+  "inspectedRendererSnapshot": "/workspace/analysis/newton-calendar/comparisons/round3-held-app.js",
+  "heldInputsUnchanged": true
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2060e.pdf",
+    "status": 200,
+    "bytes": 256977,
+    "sha256": "e2852a80049fd141d33ac88f57f5d458c1b9f765a60b76e9840e9969360ad7b5",
+    "retrievedAt": "2026-10-30T15:39:23.956687+00:00",
+    "title": "Gregorian-Lunar Calendar Conversion Table of 2060 (Geng-chen year of the Dragon)",
+    "authority": "Hong Kong Observatory",
+    "readingStatus": "Selected January, February, March and December cells inspected in layout text and rendered PDF by root; no full-table validation.",
+    "rights": "Official source linked; protected table artwork/PDF not redistributed. Selected date facts only.",
+    "source": "Hong Kong Observatory, 2060 Gregorian\u2013Lunar conversion table, p.1, selected cells."
+  },
+  "sampleConvention": {
+    "time": "12:00",
+    "timeZone": "Asia/Hong_Kong",
+    "fixedUTCOffsetForTheseSamples": "+08:00",
+    "calendar": "chinese"
+  },
+  "fixtures": [
+    {
+      "date": "2060-01-01",
+      "month": "Eleventh Month",
+      "day": "28",
+      "source": "Hong Kong Observatory, 2060 Gregorian\u2013Lunar conversion table, p.1, selected cells.",
+      "sourceNote": "Day28 is printed; month11 is inferred from the immediately following day29/day30 and the printed start of month12 on4January. The January1 cell does not itself print month11."
+    },
+    {
+      "date": "2060-01-04",
+      "month": "Twelfth Month",
+      "day": "1",
+      "source": "Hong Kong Observatory, 2060 Gregorian\u2013Lunar conversion table, p.1, selected cells."
+    },
+    {
+      "date": "2060-02-02",
+      "month": "First Month",
+      "day": "1",
+      "source": "Hong Kong Observatory, 2060 Gregorian\u2013Lunar conversion table, p.1, selected cells."
+    },
+    {
+      "date": "2060-02-29",
+      "month": "First Month",
+      "day": "28",
+      "source": "Hong Kong Observatory, 2060 Gregorian\u2013Lunar conversion table, p.1, selected cells."
+    },
+    {
+      "date": "2060-03-03",
+      "month": "Second Month",
+      "day": "1",
+      "source": "Hong Kong Observatory, 2060 Gregorian\u2013Lunar conversion table, p.1, selected cells."
+    },
+    {
+      "date": "2060-12-23",
+      "month": "Twelfth Month",
+      "day": "1",
+      "source": "Hong Kong Observatory, 2060 Gregorian\u2013Lunar conversion table, p.1, selected cells."
+    }
+  ],
+  "scope": "Six selected month/day fixtures only. Does not validate the entire year, every runtime, regional observance, full Chinese astrology or a prophecy."
+}

@@ -1,0 +1,731 @@
+✓ equinox Sun near 0° Aries (got 0°00' Aries)
+✓ solstice Sun near 0° Cancer (got Gemini 30.0°)
+✓ Saturn in Gemini → Belly
+✓ Moon in Aries → Head & knees
+✓ essentialDignity returns {total, rows}
+✓ almuten of Asc resolves a planet
+✓ accidentalDignity returns a total
+✓ cautions verdict is green/amber/red (got red)
+✓ 28 lunar mansions (got 28)
+✓ mansionOf boundaries (0->1, 359.9->28)
+✓ mansion arc = 360/28
+✓ every mansion has source + use
+✓ >=15 canonical Behenian stars
+✓ Alkaid present and canonical (not modern)
+✓ Fomalhaut, if present, flagged modern
+✓ Algol ~56.43° at 2020 (got 56.43)
+✓ Algol precesses ~1° over 72yr
+✓ every Behenian star has source
+✓ starsInAspect returns an array
+✓ 36 decan faces (got 36)
+✓ Aries-1 face = Mars, decan 1
+✓ last face = Pisces decan 3
+✓ face rulers match dignities-data FACES
+✓ every face has image + source
+✓ 7 planets in PLANETARY_MAGIC
+✓ Venus's Agrippa angel = Haniel
+✓ every planet has governs + suffumigation + source + agrippa.angel
+✓ >=10 operations, each with ruler+keywords+polarity
+✓ Moon at 210° is in active via combusta
+✓ Moon at 100° is not in via combusta
+✓ Moon on Spica (~204°) is in-zone but exempt (active=false)
+✓ moonPhase returns waxing boolean
+✓ moonDispositor resolves a planet
+✓ electionScore verdict valid (got red)
+✓ every election reason has severity+text+cite
+✓ election reports the Moon mansion
+✓ election reports the planetary hour
+✓ election reports the planet correspondences
+✓ rankNow scores all 11 operations
+✓ rankNow is sorted by verdict (best first)
+✓ findNextElection returns an array
+✓ each window has start <= end
+✓ windows ranked by best score
+✓ nextAuspiciousTime: null or a later amber/green moment
+✓ electionScore exposes a gating array
+✓ a gating failure forbids a green verdict
+✓ no operation is green over a gating failure
+✓ Part of Fortune default = Asc + Moon - Sun (both sects)
+✓ sect-aware night Part of Fortune reverses to Asc + Sun - Moon
+✓ generalized lot(asc,B,C) = Asc + B - C
+✓ profection year 0 -> 1st house
+✓ profection year 0 -> Asc sign
+✓ profection 12-year cycle
+✓ lordOfYear is a planet
+✓ monthly profection month 0 = lord of year
+✓ solar return Sun matches natal Sun (diff 0.0004°)
+✓ solar return instant is in target year
+✓ hyleg is a valid candidate (got Ascendant)
+✓ hyleg lists candidates examined
+✓ hyleg documents reason + assumptions (contested technique)
+✓ alcocoden gives years when a planet is found
+✓ Naibod: 1 year per 0.9856° arc
+✓ Ptolemy key: 1°=1yr
+✓ directInZodiac direct arc 10->40 = 30°
+✓ directionsToAngles sorted ascending, all <= 90yr
+✓ recipe: love -> Venus
+✓ recipe has materials (suffumigation/metal/stone)
+✓ recipe spirits: Venus Agrippa angel Haniel
+✓ recipe reports the Moon mansion
+✓ recipe has >=6 cited, attributed entries in attestedSequence
+✓ recipe no longer exposes an imperative `steps` array
+✓ recipe collects citations
+✓ recipe carries an election verdict
+✓ talisman disclaimer present
+✓ allRecipes covers every operation
+✓ ageBetween 1990-05-15 -> 2026-06-25 = 36
+✓ ageBetween clamps to 0 before birth
+✓ trajectory: Lord of Geniture is a planet
+✓ trajectory: timeline has exactly one current year
+✓ trajectory: directions is an array
+✓ trajectory: >=1 ruling planet
+✓ trajectory: affinities is an array
+✓ trajectory: recommended talisman is null or has an aim
+✓ trajectory: citations collected
+✓ nearestCity returns a name (got London, UK)
+✓ nearestCity returns a numeric distance
+✓ fullReading returns all core blocks
+✓ fullReading: horary & natal null without their opts
+✓ fullReading is JSON-serializable (round-trips)
+✓ fullReading collects a flat citations array
+✓ fullReading carries the canonical HONEST_FRAMING
+✓ fullReading reuses antiscion (not re-derived)
+✓ fullReading.cautions has a verdict
+✓ fullReading reports the Lord of the Geniture
+✓ fullReading.election ranks every operation
+✓ fullReading includes the Vedic (sidereal) block with SAV 337
+✓ fullReading: quesitedHouse populates the horary block
+✓ fullReading: birth chart populates the natal/trajectory block
+✓ registry OP_KEYS matches election.js OPERATIONS
+✓ every registry export resolves (372 checked)
+✓ every registry page & how-it-works anchor resolves
+✓ every registry glossary term exists in GLOSSARY
+✓ toToolSchema well-formed for every callable capability (16)
+✓ encodeState drops empty/null values
+✓ decodeState round-trips the kept keys
+✓ LLM preamble embeds the canonical HONEST_FRAMING
+✓ buildContext system locks the honest framing
+✓ buildContext returns labelled facts
+✓ buildContext system carries the computed facts
+✓ buildContext includes a relevant glossary
+✓ buildToolSchema is well-formed
+✓ toolNames lists the callable tools
+✓ runTool(electionScore) returns a verdict + reasons
+✓ runTool(mansionOf) returns a mansion
+✓ runTool(rankNow) returns ranked aims
+✓ runTool refuses an unknown tool
+✓ toAnthropicTools maps to {name,description,input_schema}
+✓ buildCodexPrompt is Hermetic + keeps the honest caveat
+✓ buildCodexPrompt includes the natal section when birth data present
+✓ buildOperationPrompt directs tool use + cites the live tool
+✓ buildOperationPrompt keeps the honest caveat
+✓ Lahiri ayanamsa ~24.22° in 2026 (got 24.223)
+✓ nakshatraOf(0) = Ashwini pada 1
+✓ nakshatraOf(359.9) = Revati (27)
+✓ D9 of 11° Gemini → Capricorn (book vector)
+✓ D9 of 19° Scorpio → Sagittarius (book vector)
+✓ D10 of 10° Gemini → Virgo (book vector)
+✓ D10 of 19° Scorpio → Capricorn (book vector)
+✓ D24 of 11° Gemini → Aries (book vector)
+✓ D24 of 19° Scorpio → Libra (book vector)
+✓ D60 of 12°58′ Scorpio → Sagittarius (book vector)
+✓ castVedic returns all blocks
+✓ castVedic has all 9 grahas
+✓ each graha has nakshatra, dignity, whole-sign house
+✓ Ashtakavarga SAV checksum = 337 (got 337)
+✓ Vimśottarī start lord is a graha
+✓ Vimśottarī has a positive balance & exactly one current mahā
+✓ panchanga tithi 1–30 & yoga 1–27
+✓ yogas detected
+✓ castVedic is JSON-serializable
+✓ 16 geomantic figures (got 16)
+✓ all 16 figures have a distinct dot-pattern (a complete bijection)
+✓ Via=1111, Populus=2222
+✓ Carcer=1221, Coniunctio=2112 (the non-trivial palindromes)
+✓ exactly 8 even figures can stand as Judge (got 8)
+✓ reversedOf is an involution (a↔b)
+✓ addFigures(Via,Via) = Populus (1+1 even → double)
+✓ addFigures(Via,Populus) = Via (1+2 odd → single)
+✓ the Judge is ALWAYS an even figure over 500 casts (odd Judges: 0)
+✓ castShield returns daughters, nieces, judge & reconciler
+✓ Daughter 1 is the transposition of the Mothers’ heads
+✓ geomancyHouses lays 12 figures
+✓ geomanticJudgement returns a tone + significators + lines
+✓ a 1st-house self-question skips spurious perfection and is judged on the Judge + house figure
+✓ self-questions span all tones, not the old always-affirmed degeneracy ({"affirmed":150,"qualified":370,"denied":80})
+✓ 78-card deck (got 78)
+✓ 22 majors + 56 minors (got 22+56)
+✓ all 78 card ids are distinct
+✓ each suit has 14 cards (Ace–Ten + 4 courts)
+✓ every minor card carries a capitalised suit-element
+✓ Fool=0, World=21
+✓ like elements reinforce
+✓ Fire+Air friendly, Fire+Water contrary
+✓ spreads include the 10-card Celtic Cross
+✓ tarotReading lays 3 cards, honours reversal, reads 2 dignities
+✓ tarotReading reports a balance + summary
+✓ drawSpread refuses a wrong-length draw
+✓ the Celtic Cross crossing card is never reversed (read upright either way)
+✓ 64 hexagrams + 8 trigrams (got 64+8)
+✓ all 64 hexagrams have a distinct 6-line pattern (a complete bijection)
+✓ every hexagram has 6 lines and 6 line-texts
+✓ #1 Qian all-yang, #2 Kun all-yin
+✓ Earth-over-Heaven=11 (Peace), Heaven-over-Earth=12 (Standstill)
+✓ trigrams: qian=111, kun=000
+✓ asymmetric trigrams canonical: zhen=100, gen=001, xun=011, dui=110
+✓ every hexagram’s derived trigrams match its named lower/upper fields
+✓ linesFromThrows: 9,7,8,6,7,8 → lines 110010, changing 100100
+✓ linesFromThrows rejects an out-of-range throw
+✓ relating hexagram = the primary with moving lines flipped
+✓ nuclear of Qian=Qian, of Kun=Kun
+✓ castReading reports the moving lines + cited lines
+✓ no moving lines → no relating hexagram, stable guidance
+✓ buildGeomancyContext keeps the honest framing
+✓ buildGeomancyContext grounds the Judge + facts
+✓ buildGeomancyContext pulls the geomancy glossary + diviner persona
+✓ buildTarotContext keeps the framing + grounds the drawn cards
+✓ geomancy interpret prompt keeps the caveat
+✓ tarot interpret + geomancy data block well-formed
+✓ tarot data block is well-formed
+✓ buildIchingContext keeps the framing + grounds the hexagram
+✓ iching interpret prompt + data block well-formed
+✓ buildJungContext installs the first-person Jung persona ON the honest framing
+✓ buildJungContext grounds the positions + pulls the Jung glossary
+✓ the Jung codebook prompt is first-person + step-by-step (0–10) + keeps the honest close
+✓ jung data block + persona are well-formed
+✓ buildContext numbers the facts [F1..] and appends the cite-bound contract
+✓ the divination & Jung contexts are cite-bound too
+✓ Jung's nativity: Sun Leo, Moon Taurus, Asc Aquarius (got Leo/Taurus/Aquarius)
+✓ jungianReading: 7 planets, each with archetype + citation
+✓ Jung's famous Sol–Luna square is detected (got Square)
+✓ jungianReading reports the function balance + flags post-Jungian doctrine
+✓ crossAspects: a chart against itself yields exact conjunctions
+✓ jungAspectHits reports the three classic marriage aspects
+✓ experiment data: 3 batches summing to the total pairs
+✓ expectedRate(8°) = 16/360
+✓ null model: Moon☌Moon rate ≈ 4.4% (got 4.5%)
+✓ experimentBatch refuses to run without an injected rand
+✓ Platonic month ≈ 2148 yr (got 2147.6)
+✓ the vernal point is late in Pisces (80.7%)
+✓ Lahiri Aquarius entry in the 25th century (got AD 2440) + the competing datings listed
+✓ the Jung timeline entries all carry citations
+✓ seven planetary archetypes
+✓ 7 planetary kameas (got 7)
+✓ EVERY kamea grid is a valid magic square (rows/columns/diagonals + 1..n² bijection)
+✓ every kamea’s stated constant & total match the computed ones
+✓ anchor constants: Saturn 15, Sun total 666, Moon 369
+✓ Kedemel = 175 with the 1651 misprint flagged in-record
+✓ the Moon’s three names carried, its corrupt printed Hebrew flagged
+✓ reduceToCell collapses powers of ten then digit-sums (300→3; 45→9)
+✓ sigilFor(GABRIEL, Moon) traces deterministically (G→7 … L→12)
+✓ a repeated cell collapses into one step with a repeat marker
+✓ the sigil result flags the Latin adaptation honestly
+✓ aiq-style ladder: A=1, Z=800
+✓ toolNames lists the three oracle tools
+✓ oracle tool schemas exist and carry the honest framing
+✓ runTool(castGeomancy) casts and judges via ctx.rand
+✓ castGeomancy with explicit tallies is deterministic (judge: Gain (Acquisitio, favorable))
+✓ runTool(drawTarot) lays a 3-card spread via ctx.rand
+✓ castIChing with explicit throws is deterministic (9,7,8,6,7,8 → #60 with 2 moving lines)
+✓ oracle tools refuse to run without a caller-supplied random source or explicit input
+✓ GOLDEN: Sun at J2000 ≈ 280.37° (got 280.37°)
+✓ GOLDEN: Sun in Capricorn at J2000
+✓ GOLDEN: Lahiri ayanāṁśa at J2000 ≈ 23.85° (got 23.853°)
+✓ GOLDEN: Jung’s completed age at J2000 = 124
+✓ GOLDEN: profection at age 124 → the 5th house (124 mod 12 = 4 signs on)
+✓ GOLDEN: fullReading composes every block (figure→talisman + horary + natal + vedic)
+✓ GOLDEN: chart-health verdict valid
+✓ GOLDEN: the horary block carries significators + perfection for house 7
+✓ GOLDEN: the house-by-house judgement gives a valid tone
+✓ GOLDEN: the natal leg reads Jung at age 124
+✓ GOLDEN: the Vedic SAV checksum holds (337)
+✓ GOLDEN: the composed reading is JSON-serializable
+✓ GOLDEN: the plain-words codebook has 12 steps for the full reading (got 12)
+✓ GOLDEN: the codebook puts the honest frame FIRST (truncation-safe)
+✓ GOLDEN: the codebook demands all five plain-words labels
+✓ GOLDEN: the plain-words codebook keeps the honest framing
+✓ GOLDEN: the grounded context is cite-bound
+✓ the oracle interpret prompts end with the plain-words coda
+✓ calendar: the Gregorian reform anchor (Julian 1582-10-04 = JDN 2299160; next day Gregorian 1582-10-15)
+✓ calendar: Julian 1582-10-04 → Gregorian 1582-10-14
+✓ calendar GOLDEN: John Dee, Julian 1527-07-13 = proleptic Gregorian 1527-07-23 (+10 days)
+✓ calendar GOLDEN: Thales eclipse, Julian −584-05-28 = Gregorian −584-05-22 = JDN 1507900 (−6 days; 1 BCE = year 0)
+✓ calendar: England 1752 — Julian 09-02 (JDN 2361221) followed by Gregorian 09-14 (11 days dropped)
+✓ calendar: external anchors (J2000 = JDN 2451545; MJD 0 = JDN 2400001)
+✓ calendar: JDN round-trips hold across ≈ −2000 BCE…2132 CE (both calendars, ~1100 samples each)
+✓ calendar: utcDate survives the JS years-0–99 remap trap
+✓ calendar: ISO date forms
+✓ calendar: ΔT(−700) ≈ 20,301 s with σ ≈ 508 s (Espenak–Meeus; Morrison & Stephenson 2004)
+✓ calendar: era-accuracy tiers (casting 1600–2200 · study 500–1600 & 2200–3000 · illustrative −1999–500 · refuse outside)
+✓ calendar: the tier citation records that the engine README states no year range
+✓ chronology: 8 eras (got 8)
+✓ chronology: 43 entries (got 43)
+✓ chronology: every label is documented/disputed/debunked/conspiracy
+✓ chronology: every entry has >=1 source string
+✓ chronology: every referenced era id exists
+✓ chronology: every entry has title/body/dateText/sortYear
+✓ chronology: day-datable cast moments present (got 6)
+✓ chronology: every cast entry's calendar field is julian or gregorian
+✓ chronology: every cast has numeric y/m/d/hour/lat/lon + place + note
+✓ chronology: every cast year is inside the computable era range
+✓ chronology: the Dee cast entry (Julian 1527) is present
+✓ chronology: Dee Julian 1527-07-13 → Gregorian 1527-07-23 (expect 1527-07-23)
+✓ chronology: JSON round-trip is lossless
+✓ chronology: CHRONOLOGY_CITATION present
+✓ 13 golden conjunctions (got 13)
+✓ great conjunction 2020-12-21 @ 300.487° reproduced ±1d ±0.2° (got 300.484)
+✓ great conjunction 2000-05-28 @ 52.724° reproduced ±1d ±0.2° (got 52.725)
+✓ great conjunction 1980-12-31 @ 189.497° reproduced ±1d ±0.2° (got 189.495)
+✓ great conjunction 1981-03-04 @ 188.105° reproduced ±1d ±0.2° (got 188.103)
+✓ 1981-03-04 (triple middle pass) both retrograde
+✓ great conjunction 1981-07-24 @ 184.934° reproduced ±1d ±0.2° (got 184.932)
+✓ great conjunction 1961-02-18 @ 295.199° reproduced ±1d ±0.2° (got 295.195)
+✓ great conjunction 1940-08-08 @ 44.456° reproduced ±1d ±0.2° (got 44.456)
+✓ great conjunction 1940-10-20 @ 42.464° reproduced ±1d ±0.2° (got 42.466)
+✓ 1940-10-20 (triple middle pass) both retrograde
+✓ great conjunction 1941-02-15 @ 39.123° reproduced ±1d ±0.2° (got 39.124)
+✓ great conjunction 1901-11-28 @ 283.994° reproduced ±1d ±0.2° (got 283.993)
+✓ great conjunction 1842-01-26 @ 278.901° reproduced ±1d ±0.2° (got 278.900)
+✓ great conjunction 1623-07-16 @ 126.607° reproduced ±1d ±0.2° (got 126.604)
+✓ great conjunction 1603-12-18 @ 248.316° reproduced ±1d ±0.2° (got 248.314)
+✓ 7 BCE triple: 3 crossings, all Pisces (got 3: Pisces,Pisces,Pisces)
+✓ 7 BCE separations 55–75′ — never a visual merger (got 61.4, 61.1, 65.6)
+✓ 7 BCE middle pass both retrograde
+✓ 1980–81 Libra triple flagged as one-off reversion
+✓ synodic period 19.859 Julian yr
+✓ mean advance 242.98° tropical / 242.70° sidereal (frame-tagged)
+✓ full return 960 yr medieval vs Kepler 794 yr (40 conjunctions)
+✓ 7 J–S triples 1200–2400, next 2238–39
+✓ mean series anchored 2020 → 300.487°
+✓ mean series advances exactly +242.98° tropical per step
+✓ eclipse 1715-05-03 solar: ground truth total, peak within 1 day (got total)
+✓ eclipse 1715-05-03: classical limits say certain/possible (got certain, D=7.86°)
+✓ eclipse 1919-05-29 solar: ground truth total, peak within 1 day (got total)
+✓ eclipse 1919-05-29: classical limits say certain/possible (got certain, D=3.26°)
+✓ eclipse 2017-08-21 solar: ground truth total, peak within 1 day (got total)
+✓ eclipse 2017-08-21: classical limits say certain/possible (got certain, D=4.66°)
+✓ eclipse 2023-10-14 solar: ground truth annular, peak within 1 day (got annular)
+✓ eclipse 2023-10-14: classical limits say certain/possible (got certain, D=3.74°)
+✓ eclipse 2024-04-08 solar: ground truth total, peak within 1 day (got total)
+✓ eclipse 2024-04-08: classical limits say certain/possible (got certain, D=3.78°)
+✓ eclipse 2018-07-27 lunar: ground truth total, peak within 1 day (got total)
+✓ eclipse 2018-07-27: classical limits say certain/possible (got certain, D=1.13°)
+✓ eclipse 2019-01-21 lunar: ground truth total, peak within 1 day (got total)
+✓ eclipse 2019-01-21: classical limits say certain/possible (got certain, D=4.09°)
+✓ eclipse 2022-05-16 lunar: ground truth total, peak within 1 day (got total)
+✓ eclipse 2022-05-16: classical limits say certain/possible (got certain, D=2.78°)
+✓ eclipse 2022-11-08 lunar: ground truth total, peak within 1 day (got total)
+✓ eclipse 2022-11-08: classical limits say certain/possible (got certain, D=2.62°)
+✓ eclipse NEGATIVE 2023-06-18 (solar): rejected by both layers (D=53.66°)
+✓ eclipse NEGATIVE 2023-01-06 (lunar): rejected by both layers (D=64.61°)
+✓ cycles-data: every record has .cite
+✓ cycles-data: 15°21′/15°31′ classical solar-limit discrepancy flagged UNRESOLVED in ECLIPSE_LIMITS
+✓ cycles-data: hijacked domain cited nowhere
+✓ conjunctionsBetween refuses outside −1999…3000 (citing eraAccuracy)
+✓ firdaria day boundaries: Sun 0-10 … Mars 63-70, NN 70-73, SN 73-75
+✓ firdaria night 'end': Moon 0-9 … Mercury 57-70, NN 70-73, SN 73-75
+✓ firdaria night 'afterMars' (Bonatti): NN 39-42, SN 42-44, Sun 44-54, Venus 54-62, Mercury 62-75
+✓ firdaria Sun-major subs: 7 equal 10/7-yr parts, Sun→Venus→Mercury→Moon→Saturn→Jupiter→Mars
+✓ firdaria node majors have subs === null
+✓ currentFirdaria(30.5): Mercury major / Venus sub (7th sub, 29.143-31)
+✓ ZR sign years sum to 211
+✓ ZR Capricorn = 27 (half of half of the Moon’s 108 — Valens IV.6), Aquarius 30, Cancer 25
+✓ ZR Cancer L1 from 2012-01-01: 25×360 = 9000 d, ends 2036-08-22 (2036-08-22, NOT 2037-01-01)
+✓ ZR Cancer L1: first 12 L2s Cancer 25m … Gemini 20m, cumulative 211 months
+✓ ZR loosing of the bond: 13th L2 = CAPRICORN (opposite sign) at month 211, then Aquarius, Pisces…
+✓ ZR Cancer L1 L2 chain truncated at month 300 (the parent’s end)
+✓ ZR loosing-eligible L1 signs (number ≥ 19): Gemini, Cancer, Leo, Virgo, Capricorn, Aquarius
+✓ ZR unit table matches Valens IV.10 (Mars 37.5d/3d3h · Sun 47.5d/3d23h · Moon 62.5d/5d5h · Aqu 75d/6d6h · Cap 67.5d/5d15h · Jup 30d/2d12h · Ven 20d/1d16h · Mer 50d/4d4h)
+✓ ZR distributionAge(11,903 d) = 33 yr + 23 d (Valens IV.9)
+✓ progressed Sun at 30 = natal + 30.52° (28.6–30.6)
+✓ progressed Moon at 30 = natal + 399.3° (395 ± 5, mod 360 handled)
+✓ progressions at age 0 reproduce the natal MC & Asc to < 0.01°
+✓ naibodArc(30) = 29.56942° (29.5694 ± 0.0001)
+✓ ageFromDates: 1990-01-05 → 2020-01-05 ≈ 30 tropical years
+✓ AI cycles: the grounded context is cite-bound
+✓ AI cycles: interpret prompt keeps the honest framing + the plain-words coda
+✓ AI timelords: the grounded context is cite-bound
+✓ AI timelords: the current-firdaria fact carries the computed lords
+✓ AI timelords: honest close + the plain-words coda
+✓ moment finder: the honest frame is step 0, FIRST
+✓ moment finder: computed windows are embedded with real UT times (never the model's guess)
+✓ moment finder: honest framing + five-part coda locked in
+✓ moment finder: the empty-scan case is stated honestly
+✓ KP table has exactly 249 entries (got 249)
+✓ exactly 6 split subs (12 flagged half-entries)
+✓ the 6 splits sit at 0° Ta/Cn/Vi/Sc/Cp/Pi
+✓ split pattern: Rāhu sub in Sun stars, Moon sub in Jupiter stars
+✓ KP arcs tile 0°→360° with no gaps or overlaps
+✓ KP arc widths sum to 360°
+✓ Aśvinī ladder at the verified boundaries (Ketu →0°46′40″, Venus →3°00′, Sun →3°40′ …)
+✓ KP No.1 = Aries Ashwini Ketu/Ketu (published row, re-derived)
+✓ KP No.10 = Aries Bharani Venus/Venus (published row, re-derived)
+✓ KP No.22 = Aries Krittika Sun/Rahu (published row, re-derived)
+✓ KP No.23 = Taurus Krittika Sun/Rahu (published row, re-derived)
+✓ KP No.40 = Taurus Mrigashira Mars/Jupiter (published row, re-derived)
+✓ KP No.76 = Cancer Ashlesha Mercury/Ketu (published row, re-derived)
+✓ KP No.108 = Virgo Uttara Phalguni Sun/Saturn (published row, re-derived)
+✓ KP No.124 = Virgo Chitra Mars/Saturn (published row, re-derived)
+✓ No.124 ends EXACTLY at 30° Virgo — Citrā never splits (Mars+Rāhu+Jupiter+Saturn = 400′)
+✓ KP No.125 = Libra Chitra Mars/Mercury (published row, re-derived)
+✓ KP No.200 = Capricorn Shravana Moon/Mercury (published row, re-derived)
+✓ KP No.249 = Pisces Revati Mercury/Saturn (published row, re-derived)
+✓ subLordOf round-trips kpForNumber at arc start & midpoint
+✓ kpForNumber rejects out-of-range numbers
+✓ BJ II.5: elongation 90° → benefics {Jup,Ven,Moon,Merc}, malefics {Sun,Mars,Sat}
+✓ elongation 270° → the waning Moon joins the malefics
+✓ Rāhu/Ketu malefic only under the flagged Phaladīpikā extension
+✓ ārūḍha: east→{Meṣa,Vṛṣabha}, SE→Mithuna, none→null
+✓ prasnaJudgement returns testimonies (got 9)
+✓ every testimony carries a cite
+✓ verdicts & leaning use the fixed vocabularies
+✓ the locked caveat + cited out-of-scope layers (omens, breath, tāmbūla…) ride along
+✓ testimony counts reconcile
+✓ KP horary number 125 fixes the praśna lagna at 0° Libra
+✓ kpSignificators: 12 cusps + 9 grahas, lagna sub-lord consistent with subLordOf
+✓ KP convention flags (Placidus, ayanāṁśa, +1″, nodes) stored in-data
+✓ muhūrta: 30 slots
+✓ muhūrta: the 30 slots partition sunrise→next-sunrise exactly (no gaps, monotone)
+✓ muhūrta: every slot = its arc/15 within 1 ms
+✓ muhūrta: Abhijit is slot 8, midpoint = the mid-day point (±2 min)
+✓ muhūrta: Brāhma is slot 29
+✓ muhūrta: contested flags on #16 Girīśa, #22 Agni and the Abhijit weekday exception (both positions kept)
+✓ muhūrta: every data record carries .cite
+✓ muhūrta: the three verified octant tables are intact
+✓ muhūrta: Gulika = Saturn's part — the lord-derivation reproduces the table for all 7 weekdays
+✓ muhūrta: Monday kālas = octants 2/4/6 of the real day (sunrise-bounded vāra)
+✓ muhūrta: synthetic avoid-day flags all four screens negative, with cites
+✓ muhūrta: nine avoided yogas; Vajra = 3 ghaṭīs (the verified correction); mahā-doṣa tier = 17 + 27
+✓ muhūrta: report composes with the honest caveat + citations
+✓ muhūrta: scanDay overlays the kālas on day rows only
+✓ muntha: (Leo,25)→Virgo, (Leo,0)→Leo, (Leo,12)→Leo
+✓ muntha ~2.5°/month attributed to Tājikamuktāvali-as-quoted-by-Balabhadra
+✓ saham vector 1: 205.0 = Libra 25, no +30
+✓ saham vector 2: 120 → +30 → 150.0 = Virgo 0
+✓ saham vector 3 (night, swapped): 260.0 = Sagittarius 20
+✓ saham between-check: degree- and sign-granular readings agree on all vectors
+✓ deeptāṁśa orbs = 15/12/8/7/9/7/9 (Mars 8, not the vedastro-12 error)
+✓ deeptāṁśa record: Rāhu-12 variant flagged, Mars-12 error recorded, primary rule verbatim, half-sum flagged unverified
+✓ Mars Ar10/Saturn Le15: itthaśāla (gap 5 ≤ own orbs & half-sum 8.5); aspects.js agrees applying
+✓ Mars Ar15°30′: STILL itthaśāla (past <1°, ancient commentator) while aspects.js applying=false — documented divergence
+✓ Mars Ar16: īsarāpha (1° past, Tājikabhūṣaṇa 4.10)
+✓ Tājika aspects: none at 2/6/8/12; Vāmana strengths ¼ (3/11), ½ (4/10), ¾ (5/9), full (7)
+✓ Tājika triplicity lords day Sun/Venus/Saturn/Venus · night Jupiter/Moon/Mercury/Mars
+✓ computeSahams: core dozen; Puṇya = 205 on the day vector
+✓ night: Bhrātṛ & Putra unreversed; Gaurava uses the EXPLICIT night form (not a mechanical reversal)
+✓ Sāmarthya: Mars-rules-Lagna exception (Aries lagna) → Jupiter − Mars + Asc at all times
+✓ Mitra between-check point = Venus
+✓ varṣa-praveśa: annual SIDEREAL Sun = natal sidereal Sun to <0.01° (Δ 3.8e-4)
+✓ sidereal return later than the tropical return of the same year
+✓ varṣeśvara: exactly five candidates; chosen among them
+✓ varṣeśvara aspect precondition respected (dispute fallback flagged when it fires)
+✓ aspect table 21 pairs; ikkavāla/induvāra mutually exclusive
+✓ all 12 sahams computed on the live annual chart
+✓ tajika-data: every record has .cite
+✓ contested flag: Viśvanātha (Prakāśikā 1629) rejects the +30° correction — in-data
+✓ contested flag: Mitra "lot of the teacher" phrasing ambiguity — in-data
+✓ contested flag: the four-way no-aspect varṣeśvara dispute — in-data
+✓ moments: 48 h / 30-min steps = 97 rows
+✓ moments: every row has all five columns populated
+✓ moments: the muhūrta at every step matches muhurtasOf directly (day cache is boundary-exact)
+✓ moments: kāla flags only in the day arc & match kalas() directly
+✓ moments: the Lilly verdict at step 0 = electionScore on a directly-cast chart
+✓ moments: hoursAhead is capped at 168 (a week)
+✓ moments: the honest caveat — separate rulebooks / coincidence of conventions / described, never prescribed
+✓ moments: explicit aim honoured; unknown aim throws
+✓ AI Indian mirror: all three grounded contexts are cite-bound
+✓ AI Indian mirror: the Jyotiṣa-historian voice keeps the locked framing + compare-never-merge
+✓ AI Indian mirror: all three interpret prompts carry the honest close + the plain-words coda
+✓ 10 sephiroth
+✓ the 7 planetary sephiroth = the kamea set Saturn..Moon exactly
+✓ every planetary sephira joins a real kamea
+✓ Kether/Chokmah/Malkuth: no planet + flagged variants note (outer planets never adopted)
+✓ 22 paths
+✓ path partition {3 mothers, 7 doubles, 12 simples}
+✓ every path connects two valid distinct sephiroth
+✓ alphabet standard values = the canonical 1..400 list
+✓ the 22 path letters = the full alphabet
+✓ finals 500..900 present as the flagged mispar-gadol variant
+✓ gematria vectors: echad 13, ahavah 13, chai 18, YHVH 26
+✓ all worked examples verify
+✓ mispar-gadol variant: amen 91 standard / 741 with final-nun 700
+✓ non-Hebrew characters ignored
+✓ kamea-cell reuse: 300 collapses to 3 on the 3×3 (aiq-bekar)
+✓ pathBetween(1,6) = path 13 Gimel / High Priestess
+✓ pathBetween order-insensitive; no 1–10 path on the Kircher tree
+✓ pathsAt(1) = 11,12,13
+✓ SY spread: 4 columns; GD flagged matches-no-manuscript; Zohar flagged uncertain
+✓ Karr clincher quote present
+✓ disputes present: tzaddi, agrippa, westcott, outer-planets, gra-zohar
+✓ all 7 double paths flag the SY planet-spread dispute
+✓ every gdTrump resolves in tarot-deck.js with matching name, number, hebrew & astro
+✓ every kabbalah record carries .cite
+✓ 24 staves, no blank rune (got 24/24)
+✓ 24 unique rune ids
+✓ transliteration bijection {f,u,þ,a,r,k,g,w,h,n,i,j,ï,p,z,s,t,b,e,m,l,ŋ,d,o} in futhark order
+✓ 24 unique codepoints, all within U+16A0..16FF
+✓ gebo codepoint is U+16B7 (not the futhorc CEN)
+✓ no U+16B3 (futhorc CEN) anywhere — primary or variant
+✓ every rune char matches its codepoint
+✓ display variants only on positions 9,16,22 (ᚺ/ᚻ, ᛊ/ᛋ, ᛜ/ᛝ)
+✓ 3 ættir × 8 staves
+✓ aett formula floor((pos-1)/8)+1 holds for all 24
+✓ poem coverage OE 24/24, Norse 16, none without a poem (got OE 24, Norse 16, none-less 0)
+✓ OE-only staves are exactly {gebo,wunjo,perþo,algiz,ehwaz,ingwaz,dagaz,oþala}
+✓ >=7 contested staves (got 9)
+✓ both order flags present (ï/p and dagaz/oþala)
+✓ castFromDraws tacitus → 3 labelled staves
+✓ single & three-rune methods flagged modern
+✓ castFromDraws rejects dupes, out-of-range, wrong counts, unknown method & non-integers
+✓ FRAMING mentions Blum + Caesar + 'only detailed'
+✓ AI runes: the grounded context is cite-bound
+✓ AI runes: the context keeps the attested/modern split + the Tacitus prototype frame
+✓ AI runes: the interpret prompt carries the honest close + the plain-words coda
+✓ AI runes: the data block is well-formed
+✓ yantra: all 9 navagraha squares magic, constants 15..39 step 3
+✓ yantra: navagraha grand total 729 (got 729)
+✓ yantra: Chautisa most-perfect — rows/cols/diags + broken diagonals + 2×2 blocks + corner quads all = 34
+✓ yantra: Varāhamihira square rows/cols/diagonals = 18
+✓ yantra: yantraForGraha resolves English & Sanskrit, unknown → null
+✓ kaṭapayādi: verified vectors decode (Dhīraśaṅkarābharaṇam→29, Mechakalyāṇī→65, π verse→314159265358979324)
+✓ kaṭapayādi: encode→decode round-trips
+✓ Sarvatobhadra: 81 cells — 28 nakṣatras + 16 vowels + 20 consonants + 12 rāśis + 5 tithi/vāra
+✓ Sarvatobhadra: all 16 vowels lie on the two main diagonals
+✓ Sarvatobhadra: Aśvinī is the 6th cell of the top row
+✓ Sarvatobhadra: centre = Pūrṇā + Saturday
+✓ Sarvatobhadra: tithi pentads partition 1..30 exactly
+✓ Sarvatobhadra: vedha lookup returns front + two diagonals
+✓ rasa-data: every record carries .cite
+✓ rasa-data: Nāgārjuna "alchemical ghost" dispute flagged
+✓ rasa-data: navagraha grids flagged as the modern printed tradition
+✓ rasa-data: Sarvatobhadra ring-2 accuracy flag + contested vedha rules recorded
+✓ hand-calc Vector A: ST@midnight ~17h32m04.5s (got 17h 32m 04.5s)
+✓ hand-calc Vector A: UT interval = 12h30m
+✓ hand-calc Vector A: 9.8565 rule reproduces engine LST to ~0.0s
+✓ hand-calc Vector A: 10s book rule = +1.8s vs engine
+✓ hand-calc: plog reproduces DeVore .22034 / .50035
+✓ hand-calc: table-top plog(1 min) = 3.1584
+✓ hand-calc: DeVore sum -> 4°33'57" (~4°34')
+✓ hand-calc Vector B: Moon linear-interp error ~2.67' (got 2.67')
+✓ hand-calc Vector B: Moon prop-log ~= linear (a shortcut, not an accuracy gain)
+✓ hand-calc Vector B: Sun linear-interp error < 0.05' (got -0.001')
+✓ hand-calc: mini-ephemeris midnight positions == bodyPosition at 0h UT
+✓ hand-calc Vector D: grid brackets = ST rows 17°/18° RAMC × lat 40/41
+✓ hand-calc Vector D: double-interp ASC within 0.5' of engine (got 0.051')
+✓ hand-calc Vector D: engine ASC ~2°38' Leo
+✓ hand-calc Vector D: engine MC ~18°31' Aries
+✓ hand-calc: acceleration constants flagged (10 teach · 9.8565 exact · 9.8333 imprecise)
+✓ transits: Saturn conj natal Sun found within +/-1 day of the fine-scan (2018-12-23)
+✓ transits: all 558 rows recompute to offset < 0.01° (max 3.95e-6)
+✓ transits: a retrograde triple-pass (passCount===3) is detected
+✓ transits: the transiting Moon is excluded by default
+✓ transits: a window > ~2 years is refused
+✓ synastry T7: A.Sun 10° / B.Moon 192° = Opposition orb 2.0
+✓ synastry T8: A.Venus 45° / B.Mars 105° = Sextile orb 0.0
+✓ synastry grid symmetric under chart swap (A×B transpose == B×A)
+✓ synastry aspect count (19) matches direct double-loop (19)
+✓ synastry house overlays sum to 7 planets each way
+✓ returns: natal-anchored year has exactly 13 lunar returns (got 13)
+✓ returns: Saturn return pass count 1 or 3 (got 1)
+✓ orchestrator: toAnthropicTools() exposes every new tool
+✓ orchestrator: toolNames() lists every new tool
+✓ orchestrator: listCapabilities returns >=40 entries (got 99)
+✓ orchestrator: runTool(fullChart) → serializable + citation + caveat
+✓ orchestrator: runTool(vedicChart) → serializable + citation + caveat
+✓ orchestrator: runTool(transitHits) → serializable + citation + caveat
+✓ orchestrator: runTool(synastryPair) → serializable + citation + caveat
+✓ orchestrator: runTool(annualChart) → serializable + citation + caveat
+✓ orchestrator: runTool(prasnaNow) → serializable + citation + caveat
+✓ orchestrator: runTool(muhurtaDay) → serializable + citation + caveat
+✓ orchestrator: runTool(momentScan) → serializable + citation + caveat
+✓ orchestrator: runTool(greatConjunctions) → serializable + citation + caveat
+✓ orchestrator: runTool(timelords) → serializable + citation + caveat
+✓ orchestrator: runTool(castRunes) → serializable + citation + caveat
+✓ orchestrator: castRunes deterministic under identical ctx.rand
+✓ orchestrator: castRunes refuses without ctx.rand or seedDraws (purity)
+✓ orchestrator: prompt puts the honest frame FIRST
+✓ orchestrator: prompt contains 'never a real prediction'
+✓ orchestrator: prompt gives the tool-PLAN instructions
+✓ orchestrator: prompt embeds the PLAIN coda
+✓ orchestrator: persona + caveat honest
+✓ abhichara: six acts in canonical MMU order
+✓ abhichara: list-variants incl. Sivadatta 7-body + Tantrasārasaṃgraha
+✓ abhichara: both season schemes present (BPK 3.6-7 + U 1.28), conflict:true
+✓ abhichara: DIRECTIONS_DEITIES promoted to VERIFIED — 6 rows (act→direction+deity), 2 sources, candidates retained
+✓ abhichara: 19-item apparatus schema + cite
+✓ abhichara: every act/variant/hymn/text record has .cite
+✓ abhichara: RITU_BY_RASHI Makara→śiśira, Mīna & Meṣa→vasanta (Vasanta-at-Mīna convention)
+✓ abhichara: screen returns prescriptions + 4 matches + conflictNote + caveat
+✓ abhichara: māraṇa → śarad season, dark fortnight, sword mudrā
+✓ abhichara: mid-January ṛtu = śiśira (sidereal-solar convention)
+✓ abhichara: mid-July ṛtu = grīṣma/varṣā (consistent)
+✓ abhichara: no imperative procedural language in a screen; caveat states it changes nothing real
+✓ YS: ALL_SUTRAS length 196 (got 196)
+✓ YS: Books I/II = 51/55
+✓ YS: Book III = 56/55, one variant
+✓ YS: Book IV = 34 / 33 (Bhoja)
+✓ YS: edition totals 196/195/194 (got 196/195/194)
+✓ YS: sutraByRef('I.2').iast contains 'yogaś'
+✓ YS: sutraByRef('II.29') ends 'eight aids.'
+✓ YS: searchSutras('kaivalya') >= 3 (got 5)
+✓ YS: exactly one variant record, num null
+✓ YS: Book IV keeps 33 in Bhoja
+✓ YS: every record has a non-empty src
+✓ YS: no Vedic accents in any record
+✓ YS: YS_CITATION present
+✓ YS: every record has bhashyaSrc XOR (variant && bhashya===null)
+✓ YS: exactly one bhashya===null (the variant)
+✓ YS: every non-variant record has a non-empty bhashya
+✓ YS: every bhashyaSrc is exactly 'after the Vyāsa-bhāṣya, trans. Woods (1914)'
+✓ PRACTITIONERS >= 60 (got 133)
+✓ library: all three domains present
+✓ library: every record has name + tier + >=1 work with {title, year}
+✓ library: every record has verified + cite
+✓ library: every methodSteps present is a non-empty ordered list with a methodSource
+✓ library: omits 'Bruce Robertson'
+✓ library: Greer's 21 Ways include 'Synthesis'
+✓ library: the Dummett record carries a tierNote
+✓ library: DuQuette flags describe the pseudepigraphic framing, no fabricated quote
+✓ library: TIER_DEFS carries the practitioner-recognition definition
+✓ library: JOURNALS present for every domain
+✓ library: TIER_VOCAB_NOTE (Dummett/Kaplan) + method note dated 2026-07-16
+✓ library: PRACTITIONERS_BY_DOMAIN index built for every domain
+✓ Great Works: >=6 authors (got 9)
+✓ Great Works: Hall STOAA has 45 chapters (got 45)
+✓ Great Works: Corpus Hermeticum carries the CH XV numbering-gap flag
+✓ Great Works: CH XV shown as a gap, never renumbered
+✓ Great Works: every work (23) has a pdStatus
+✓ Great Works: every author has a studyPath with >=4 steps
+✓ Great Works: every siteMapping/studyPath link resolves (198 checked, 0 broken)
+✓ Great Works: refuted field-guide.html mapping absent
+✓ Great Works: refuted "solar cycles engine" + off-by-one II.39–44 absent
+✓ Great Works: Emerald Tablet not mapped to alchemy.html
+✓ Great Works: Book of Thoth + Regardie are cite-only (quoteSafe:false)
+✓ Great Works: Fourth Book flagged spurious
+✓ Great Works: GW_CITATION + GW_METHOD_NOTE present
+✓ TP natal E0 = 345.8722 (expect 345.8722)
+✓ TP natal tithi 29 + Sun sidereal Virgo (got 29, Virgo)
+✓ TP 2026 solar window has exactly 1 match (got 1)
+✓ TP 2026 = 2026-10-09T11:56:16.977Z (within 2h of 2026-10-09 11:56 UT)
+✓ TP 2026 tithi 29, Sun Virgo, unambiguous
+✓ TP 2025 = 2025-09-20T14:22:52.303Z (within 2h of 2025-09-20 14:23 UT)
+✓ TP ~2026-09-10 match is in Leo (correctly excluded from the solar window)
+✓ TP anchor note flags the missing classical anchor
+✓ kūṭa A = [1,2,3,4,5,6,7,0] total 28 (expect 1,2,3,4,5,6,7,0 = 28)
+✓ kūṭa A nāḍī note = Antya
+✓ kūṭa B saravali total 25 (expect 25.0)
+✓ kūṭa B bhakūṭa-doṣa cancellation noted (points stay 0)
+✓ kūṭa B common total = 24.0
+✓ porutham C rajju VETO (both Kaṇṭha)
+✓ porutham C rāśi 5/9 contradiction shown both ways
+✓ porutham C dina fail (Tamil) + mahendra pass
+✓ yoni invariants: diagonal 4s, 7 enemy pairs 0, 2 asymmetric (expect 2)
+✓ kūṭa Sagittarius scores via the flagged completion AND throws with it disabled
+✓ kuta-data: every table record + every per-kūṭa result carries a .cite
+✓ Confluence: 190 entries (got 190)
+✓ Confluence: 9 lanes in the exact fixed order/ids
+✓ Confluence: all entry slugs unique
+✓ Confluence: every edge endpoint resolves to a real slug (no dangling)
+✓ Confluence: every entry lane/kind/label is in its enum
+✓ Confluence: sortYearEnd >= sortYear wherever present
+✓ Confluence: every contested entry carries >=2 positions
+✓ Confluence: every siteLink href exists on disk (0 missing)
+✓ Confluence: timeScale(1) monotonic across [-1600, 2030] (sampled every 50y)
+✓ Confluence: timeScale(1) totalHeight > 3000 (got 3626)
+✓ Confluence: layoutConfluence deterministic (two calls deep-equal)
+✓ Confluence: no two same-lane same-row nodes overlap in y
+✓ Confluence: layout places every node and every edge
+✓ Confluence: filterEntries({crossingsOnly}) non-empty subset of all slugs (65)
+✓ Confluence: filterEntries({}) returns all 190 slugs
+✓ Confluence: threadFrom("sirr-i-akbar") reaches "oupnekhat"
+✓ Confluence: entryBySlug hydrates a real slug and returns null otherwise
+✓ Confluence: confluenceStats totals match the raw entry/edge/lane/cross-lane counts
+✓ ui3-motion-controls: PASS
+✓ ui3-viz: PASS
+✓ ui3-art: PASS
+✓ ui3-hosts-west: PASS
+✓ ui3-hosts-east: PASS
+✓ ui3-atlas: PASS
+✓ r28-vedic-core: PASS
+✓ r28-vedic-ui: PASS
+✓ r28-explain: PASS
+✓ r28-atlas-labels: PASS
+✓ r28-pwa-search: PASS
+✓ r29-vedic-course: PASS
+✓ r29-narrate: PASS
+✓ r29-thelemic: PASS
+✓ r30-buddhist-core: PASS
+✓ r30-buddhist-ui: PASS
+✓ r30-compare: PASS
+✓ r31-practices-core: PASS
+✓ r31-practices-ui: PASS
+✓ r31-dhammapada: PASS
+✓ r32-atlas-east: PASS
+✓ r32-east-core: PASS
+✓ r32-east-ui: PASS
+✓ r33-vedic-ai: PASS
+✓ r33-vedic-page: PASS
+✓ og-framing: PASS
+✓ og-engine: PASS
+✓ og-page: PASS
+✓ og-artery: PASS
+✓ og-eig: PASS
+✓ incense: PASS
+✓ 2026-10-calculations: PASS
+✓ cultural-calendars: PASS
+✓ workbench-context: PASS
+✓ symbolic-methods: PASS
+✓ workbench-lifecycle: PASS
+✓ mcp-toolkit: PASS
+✓ tool-boundary: PASS
+✓ study-packet: PASS
+✓ live-symbols: PASS
+✓ study-session: PASS
+✓ calendar-observatory: PASS
+✓ observatory-schedule: PASS
+✓ calendar-study-packet: PASS
+✓ day-guidance: PASS
+✓ sigil-design: PASS
+✓ sigil-image-provider: PASS
+✓ observatory-standards: PASS
+✓ world-events: PASS
+✓ comparison-evidence: PASS
+✓ calendar-atlas: PASS
+✓ personal-calendar: PASS
+✓ calendar-search: PASS
+✓ sky-dynamics: PASS
+✓ sky-interpretation: PASS
+✓ calendar-alignment: PASS
+✓ tool-guide: PASS
+✓ sky-assistant: PASS
+✓ sky-chat-client: PASS
+✓ chart-mcp: PASS
+✓ calendar-mcp: PASS
+✓ oracle-mcp: PASS
+✓ observatory-mcp: PASS
+✓ study-mcp: PASS
+✓ horizon-astronomy: PASS
+✓ horizon-observances: PASS
+✓ horizon-ranking: PASS
+✓ horizon-independent: PASS
+✓ horizon-integration-independent: PASS
+✓ horizon-mcp: PASS
+✓ horizon-loader: PASS
+✓ country-history: PASS
+✓ country-history-independent: PASS
+✓ calendar-timeline: PASS
+✓ calendar-timeline-independent: PASS
+✓ newton-chronology: PASS
+✓ assets/data/country-events/verify.mjs: PASS
+✓ scripts/test-newton-chronology-independent.mjs: PASS
+✓ artery: historical country research derivatives match the frozen accepted inputs without refitting
+✓ artery: complete horizon preset matches its transitive scientific source graph and manifest checksums
+✓ artery: calendar and source-work specialist profiles match their source registry
+✓ artery: static MCP connection catalogue matches the actual tool definitions
+✓ artery: local source retrieval artifacts match their authored source records
+✓ artery: tool guide execution coverage matches the actual registry and MCP allowlist
+✓ artery: browser adapter coverage matches the reviewed backend adapter metadata
+✓ artery: assets/js/core/data/opgraph.js is exactly gen-opgraph.mjs's output
+✓ artery: research/opgraph/gate.json is exactly what its decisions produce
+
+[engine-test] all passed

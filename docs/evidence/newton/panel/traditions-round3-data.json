@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-10-30T15:59:04.197Z",
+  "round": "round3-data",
+  "scope": "Headless comparison/schema/source-body checks; not browser, human authority or predictive validation.",
+  "passed": 25,
+  "checks": [
+    "11 unique selected comparisons",
+    "9 family scopes",
+    "19 unique source records",
+    "every comparison has a literal citation",
+    "every source has citation/url/locator",
+    "all comparison source IDs resolve",
+    "all records serialize without precision loss",
+    "all records recursively frozen",
+    "every calculator explicitly unimplemented here",
+    "no ranking, physical mechanism or universal authority",
+    "unknown dates retain null values",
+    "only two non-unknown attributed date claims",
+    "Newton lower-bound year, not January 1",
+    "Newton primary reuses one source-owner object",
+    "Maya date is reported historical correspondence",
+    "Maya pair retains single institution lineage",
+    "yuga values retain divine units and unknown epoch",
+    "Greek and Roman sequences stay distinct",
+    "Egyptian scope is late antique and not pharaonic consensus",
+    "Pike letter remains unauthenticated with no archive ID",
+    "Thelema and LHP remain separately scoped",
+    "6 inherited sources retain reading status",
+    "fresh source SHA256 matches actual retrieved bodies",
+    "coverage explicitly incomplete and without new date rules",
+    "lookup missing/invalid returns null"
+  ],
+  "inputs": [
+    {
+      "path": "/workspace/astrology-sim-ant/assets/js/core/data/eschatology-comparisons.js",
+      "sha256": "154b5eb83426f844a9611967569c5ab2598e84ac4924da94b6a5ed0f83407b49"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/docs/2026-10-eschatology-comparisons.md",
+      "sha256": "a2d93adb9815b0c624035ba5d89c2c40f9f1af5ab92fe1c65ab9e10a13e07fae"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/js/core/data/newton-chronology-sources.js",
+      "sha256": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393"
+    }
+  ],
+  "driver": {
+    "path": "/workspace/analysis/newton-calendar/comparisons/check.mjs",
+    "sha256": "38879653380ef11580d80a0263ca4d254297799933754a12aa863c7b1db08849"
+  }
+}

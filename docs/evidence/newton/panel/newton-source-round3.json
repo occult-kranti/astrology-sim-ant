@@ -1,0 +1,202 @@
+{
+  "reviewer": "/root/timeline_sources",
+  "round": 3,
+  "bindingRevision": 2,
+  "supersedes": {
+    "file": "source-round3-core-ui-review-superseded-pre-csv.json",
+    "sha256": "3c862c05ca4c2f6e7a3b23c7256c223d9b34f45bd39df9d7af3413c708b7b9e9",
+    "reason": "Final shared CSV serializer and context-row correction changed core and renderer bytes; source claims unchanged."
+  },
+  "completedAt": "2026-10-30T15:59:16.039Z",
+  "scope": "Independent source-boundary review of actual core and UI renderer code, plus bounded core execution. Not browser, visual, full-book, paleographical or predictive validation.",
+  "hashesBefore": {
+    "assets/js/core/data/newton-chronology-sources.js": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393",
+    "assets/js/core/newton-chronology.js": "525601f45eb8c04fb3ff08b854d8c91628f60c4232f2a57dd305119ff8f51339",
+    "assets/js/app/newton-chronology.js": "71bb494d028a96be36c8c6dcd28da22794293122dcbc9d3752f303ae375391bc",
+    "assets/js/app/newton-chronology-worker.js": "65ed824802b0e8065cb54ce7bed2b1ae5a1ec002505f80835d4a180f8ee4a5f9",
+    "pages/newton-chronology.html": "a1ab7041ab1a84f5343d2ec655aaad127c623a6e52c41f3a0010bcf5a818d852",
+    "mcp/newton-chronology-adapters.mjs": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd"
+  },
+  "hashesAfter": {
+    "assets/js/core/data/newton-chronology-sources.js": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393",
+    "assets/js/core/newton-chronology.js": "525601f45eb8c04fb3ff08b854d8c91628f60c4232f2a57dd305119ff8f51339",
+    "assets/js/app/newton-chronology.js": "71bb494d028a96be36c8c6dcd28da22794293122dcbc9d3752f303ae375391bc",
+    "assets/js/app/newton-chronology-worker.js": "65ed824802b0e8065cb54ce7bed2b1ae5a1ec002505f80835d4a180f8ee4a5f9",
+    "pages/newton-chronology.html": "a1ab7041ab1a84f5343d2ec655aaad127c623a6e52c41f3a0010bcf5a818d852",
+    "mcp/newton-chronology-adapters.mjs": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd"
+  },
+  "filesStable": true,
+  "retainedPrimaryLociBoundToPriorReading": [
+    {
+      "file": "yahuda7-3g-diplomatic.html",
+      "sha256": "1b43ad85c9721378d676d2b9a3fde7e22401482555dfed012bcf07fabc577318",
+      "loci": [
+        "par78 deleted blockstrike-n",
+        "par81 active1260days and conditional800/2060"
+      ]
+    },
+    {
+      "file": "yahuda7-3o-normal.html",
+      "sha256": "e63379dff87977ed03b3108062dfcf5bfedac19164c578c762c83824b4e1053c",
+      "loci": [
+        "par35 upper commencement70",
+        "par41 2132/2370",
+        "par42 unfinished2060",
+        "par43 begin2090/1374"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "Two distinct machine scenarios",
+      "status": "pass",
+      "evidence": [
+        "newton-2060-lower-bound",
+        "newton-2370-upper-bound"
+      ]
+    },
+    {
+      "name": "2060 directional lower bound",
+      "status": "pass",
+      "evidence": {
+        "precision": "year-bound",
+        "lowerInclusiveCEYear": 2060,
+        "upperInclusiveCEYear": null,
+        "conditionalCEYear": null,
+        "exactDate": null,
+        "exactInstantUTC": null
+      }
+    },
+    {
+      "name": "2370 directional upper bound, separate period",
+      "status": "pass",
+      "evidence": {
+        "precision": "year-bound",
+        "lowerInclusiveCEYear": null,
+        "upperInclusiveCEYear": 2370,
+        "conditionalCEYear": null,
+        "exactDate": null,
+        "exactInstantUTC": null
+      }
+    },
+    {
+      "name": "Both conditional sums agree with stated source years",
+      "status": "pass",
+      "evidence": [
+        "800 + 1260 = 2060",
+        "70 + 2300 = 2370"
+      ]
+    },
+    {
+      "name": "No exact source day or instant",
+      "status": "pass",
+      "evidence": "Event date/clock and interval date/instant remain null."
+    },
+    {
+      "name": "Symbolic calculation distinguished from physical conversion",
+      "status": "pass",
+      "evidence": "42×30 and 3.5×360 return symbolic days; interpretive mapping separate."
+    },
+    {
+      "name": "Bounds explicitly not one forecast interval",
+      "status": "pass",
+      "evidence": "Separate qualifications retained in each scenario."
+    },
+    {
+      "name": "All four variants remain source-only",
+      "status": "pass",
+      "evidence": "No computed or repaired result field."
+    },
+    {
+      "name": "1290 line preserves begin and reversed numbers",
+      "status": "pass",
+      "evidence": "Compared with retained normalized par43 and diplomatic reading."
+    },
+    {
+      "name": "Unfinished2060 line not completed",
+      "status": "pass",
+      "evidence": "Compared with retained normalized par42."
+    },
+    {
+      "name": "Deleted draft explicitly distinguished from active paragraph",
+      "status": "pass",
+      "evidence": "Checked diplomatic par78 blockstrike-n markup and active par81."
+    },
+    {
+      "name": "2370 sky exploration disabled",
+      "status": "pass",
+      "evidence": "Chronological branch remains readable beyond 1900–2100 sky range."
+    },
+    {
+      "name": "Primary scenario/variant source references resolve",
+      "status": "pass",
+      "evidence": "All selected primary references in returned catalogue."
+    },
+    {
+      "name": "Modern frame clearly labels assumed date and clock",
+      "status": "pass",
+      "evidence": "One explicit sample only; no year-survey or browser run in this review."
+    },
+    {
+      "name": "Modern sample has no historical-year outcome application",
+      "status": "pass",
+      "evidence": {
+        "calendarRows": 13,
+        "geocentricBodies": 10,
+        "historicalYearClaimApplied": false,
+        "outcomeScoreCalculated": false
+      }
+    },
+    {
+      "name": "Renderer shows direction, qualifications, and unresolved explanation",
+      "status": "pass",
+      "evidence": "Manual inspection of renderBranch, not browser proof."
+    },
+    {
+      "name": "Renderer blocks unsupported/source-only exploration",
+      "status": "pass",
+      "evidence": "Manual inspection branch button condition."
+    },
+    {
+      "name": "Initial January1 explicitly an assumption",
+      "status": "pass",
+      "evidence": "Static renderer/page copy review."
+    },
+    {
+      "name": "Every chronology source has a literal citation",
+      "status": "pass",
+      "evidence": []
+    },
+    {
+      "name": "Quote view rendered beside short quotation",
+      "status": "pass",
+      "evidence": "Renderer explicitly attributes normalized quotation view."
+    },
+    {
+      "name": "Literal text view rendered for source-only variants",
+      "status": "pass",
+      "evidence": "Variant view remains beside unresolved wording."
+    },
+    {
+      "name": "Conditional historical anchor meaning rendered",
+      "status": "pass",
+      "evidence": "Year and historically attributed meaning are visible together."
+    },
+    {
+      "name": "Held candidate matches requested corrected files",
+      "status": "pass",
+      "evidence": "Core, renderer and page are exact candidate bytes."
+    }
+  ],
+  "counts": {
+    "pass": 23,
+    "fail": 0
+  },
+  "findings": [],
+  "resolvedRound2Findings": [
+    "NC-CIVIL literal implementation citation now present.",
+    "Quotation/transcription view now rendered beside claim.",
+    "Conditional anchor year and historical meaning now rendered together."
+  ],
+  "acceptance": "Final CSV-corrected candidate accepted within source-historian scope: all19 prior checks plus4 corrected-candidate checks pass. No source/date/bound conflation found. Stable exact file hashes. No new primary acquisition or manuscript-image reading; primary data unchanged. Browser interactions, visual gap marks and atomic acceptance are separately reviewed by UI/QA."
+}

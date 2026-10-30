@@ -1,0 +1,554 @@
+{
+  "kind": "independent-newton-chronology-semantics",
+  "startedAt": "2026-10-30T16:02:32.871Z",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "sourceBefore": {
+    "assets/js/core/newton-chronology.js": "525601f45eb8c04fb3ff08b854d8c91628f60c4232f2a57dd305119ff8f51339",
+    "assets/js/core/data/newton-chronology-sources.js": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393",
+    "assets/js/core/data/eschatology-comparisons.js": "154b5eb83426f844a9611967569c5ab2598e84ac4924da94b6a5ed0f83407b49",
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/calendar.js": "a23bc2ae59d96a82bccc62a1c794d0ae5327eaf8599e9f0fdfb4c78166a5ee8f",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/data/country-event-research.js": "d36fe41452fcde5f088d75728b70dcc1806eb8562200a247144f52d93fd618e8",
+    "mcp/newton-chronology-adapters.mjs": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd",
+    "scripts/test-newton-chronology-independent.mjs": "654d9c794e7c6589df227b1992424b326e9453abd77c5a019911d5b522b31f0a"
+  },
+  "checks": [
+    {
+      "label": "Two separately directed source bounds; arithmetic never invents a day",
+      "pass": true
+    },
+    {
+      "label": "Symbolic360-day equation and interpretive day-year mapping remain different operations",
+      "pass": true
+    },
+    {
+      "label": "One-year anchor sensitivity is explicitly modern and does not select a true endpoint",
+      "pass": true
+    },
+    {
+      "label": "All four source-only variants stay noncalculable and unrepaired",
+      "pass": true
+    },
+    {
+      "label": "Historical source records retain citations, exact loci, edition/reading scope and rights",
+      "pass": true
+    },
+    {
+      "label": "Independent Julian leap/century date 1900-2-29",
+      "pass": true
+    },
+    {
+      "label": "Independent Julian leap/century date 1900-3-1",
+      "pass": true
+    },
+    {
+      "label": "Independent Julian leap/century date 2000-2-29",
+      "pass": true
+    },
+    {
+      "label": "Independent Julian leap/century date 2100-2-29",
+      "pass": true
+    },
+    {
+      "label": "J2000 noon day-number convention is not UTC midnight",
+      "pass": true
+    },
+    {
+      "label": "One selected instant,13 civil labels,10 bodies and12 canonical cusps regiomontanus",
+      "pass": true
+    },
+    {
+      "label": "One selected instant,13 civil labels,10 bodies and12 canonical cusps placidus",
+      "pass": true
+    },
+    {
+      "label": "One selected instant,13 civil labels,10 bodies and12 canonical cusps whole",
+      "pass": true
+    },
+    {
+      "label": "One selected instant,13 civil labels,10 bodies and12 canonical cusps equal",
+      "pass": true
+    },
+    {
+      "label": "Observer change changes house geometry while shared geocentric sky remains same",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock preserved without substitute 2026-03-08 America/New_York",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock preserved without substitute 2026-11-01 America/New_York",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock preserved without substitute 2011-12-30 Pacific/Apia",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock preserved without substitute 1900-01-01 Pacific/Auckland",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock preserved without substitute 2100-12-31 Pacific/Honolulu",
+      "pass": true
+    },
+    {
+      "label": "Repeated clock explicit occurrence earlier",
+      "pass": true
+    },
+    {
+      "label": "Repeated clock explicit occurrence later",
+      "pass": true
+    },
+    {
+      "label": "Independent selected HKO2060 month/day fixture 2060-01-01",
+      "pass": true
+    },
+    {
+      "label": "Independent selected HKO2060 month/day fixture 2060-01-04",
+      "pass": true
+    },
+    {
+      "label": "Independent selected HKO2060 month/day fixture 2060-02-02",
+      "pass": true
+    },
+    {
+      "label": "Independent selected HKO2060 month/day fixture 2060-02-29",
+      "pass": true
+    },
+    {
+      "label": "Independent selected HKO2060 month/day fixture 2060-03-03",
+      "pass": true
+    },
+    {
+      "label": "Independent selected HKO2060 month/day fixture 2060-12-23",
+      "pass": true
+    },
+    {
+      "label": "Complete366-day2060 survey with13slots each and no inferred whole-day verdict",
+      "pass": true
+    },
+    {
+      "label": "Calendar month changes reconstructed from stored parts; none become observances",
+      "pass": true
+    },
+    {
+      "label": "Full-year solved quarters separate from sampled sign/calendar changes",
+      "pass": true
+    },
+    {
+      "label": "Only two named computus projections; no published authority schedule or exact ritual clock",
+      "pass": true
+    },
+    {
+      "label": "Gregorian survey leap-century coverage 1900",
+      "pass": true
+    },
+    {
+      "label": "Gregorian survey leap-century coverage 2000",
+      "pass": true
+    },
+    {
+      "label": "Gregorian survey leap-century coverage 2100",
+      "pass": true
+    },
+    {
+      "label": "Skipped final civil date does not abort year astronomy or erase date slot",
+      "pass": true
+    },
+    {
+      "label": "Annual DST gap remains one of365 slots with all13 unavailable calendar entries",
+      "pass": true
+    },
+    {
+      "label": "Actual serializers preserve canonical frame, full-precision charts and exact source set",
+      "pass": true
+    },
+    {
+      "label": "Year serializers preserve every date/calendar and source metadata with no truncation",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 0",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 0",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 1",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 1",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 2",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 2",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 3",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 3",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 4",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 4",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 5",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 5",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 6",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 6",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 7",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 7",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 8",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 8",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 9",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 9",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 10",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 10",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 11",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 11",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 12",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 12",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 13",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 13",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 14",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 14",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 15",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 15",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 16",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 16",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 17",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 17",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 18",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 18",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 19",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 19",
+      "pass": true
+    },
+    {
+      "label": "core rejects malformed/undeclared request 20",
+      "pass": true
+    },
+    {
+      "label": "MCP rejects malformed/undeclared request 20",
+      "pass": true
+    },
+    {
+      "label": "Required explicit study input date",
+      "pass": true
+    },
+    {
+      "label": "Required explicit study input time",
+      "pass": true
+    },
+    {
+      "label": "Required explicit study input timeZone",
+      "pass": true
+    },
+    {
+      "label": "Required explicit study input lat",
+      "pass": true
+    },
+    {
+      "label": "Required explicit study input lon",
+      "pass": true
+    },
+    {
+      "label": "Required explicit study input system",
+      "pass": true
+    },
+    {
+      "label": "Required explicit study input disambiguation",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection null",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection []",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection {\"year\":0}",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection {\"scenarioIds\":[]}",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection {\"scenarioIds\":[\"unknown\"]}",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection {\"scenarioIds\":[\"newton-2060-lower-bound\",\"newton-2060-lower-bound\"]}",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection {\"scenarioIds\":\"newton-2060-lower-bound\"}",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection {\"anchor\":800,\"period\":1260}",
+      "pass": true
+    },
+    {
+      "label": "Chronology rejects invented/ambiguous scenario selection {\"scenarioIds\":[\"newton-1290-unresolved-line\",\"newton-2132-unreconstructed-lower-bound\",\"newton-2060-unfinished-upper-bound\",\"newton-deleted-1260-years-draft\"]}",
+      "pass": true
+    },
+    {
+      "label": "Nested scenario array rejects accessors/customiteration/holes/subclass 0",
+      "pass": true
+    },
+    {
+      "label": "Nested scenario array rejects accessors/customiteration/holes/subclass 1",
+      "pass": true
+    },
+    {
+      "label": "Nested scenario array rejects accessors/customiteration/holes/subclass 2",
+      "pass": true
+    },
+    {
+      "label": "Nested scenario array rejects accessors/customiteration/holes/subclass 3",
+      "pass": true
+    },
+    {
+      "label": "No request accessor or iterator was invoked",
+      "pass": true
+    },
+    {
+      "label": "Survey rejects unsupported year 0",
+      "pass": true
+    },
+    {
+      "label": "Survey rejects unsupported year 1899",
+      "pass": true
+    },
+    {
+      "label": "Survey rejects unsupported year 2101",
+      "pass": true
+    },
+    {
+      "label": "Survey rejects unsupported year 2370",
+      "pass": true
+    },
+    {
+      "label": "Survey rejects unsupported year 2060",
+      "pass": true
+    },
+    {
+      "label": "Survey rejects unsupported year 2060.5",
+      "pass": true
+    },
+    {
+      "label": "Survey rejects unsupported year NaN",
+      "pass": true
+    },
+    {
+      "label": "Survey rejects unsupported year Infinity",
+      "pass": true
+    },
+    {
+      "label": "Null-prototype data objects accepted without implicit extra context",
+      "pass": true
+    },
+    {
+      "label": "Bounded MCP equals source chronology and one canonical frame; no year survey",
+      "pass": true
+    },
+    {
+      "label": "Country catalogue preserves28records/23sourcegroups/22analysisgroups and date-only clocks",
+      "pass": true
+    },
+    {
+      "label": "Stored country usa hash,completecalendars,control math and no latent belief output",
+      "pass": true
+    },
+    {
+      "label": "Stored country israel hash,completecalendars,control math and no latent belief output",
+      "pass": true
+    },
+    {
+      "label": "Stored country india hash,completecalendars,control math and no latent belief output",
+      "pass": true
+    },
+    {
+      "label": "Stored country russia hash,completecalendars,control math and no latent belief output",
+      "pass": true
+    },
+    {
+      "label": "Stored country iran hash,completecalendars,control math and no latent belief output",
+      "pass": true
+    },
+    {
+      "label": "Stored country palestine hash,completecalendars,control math and no latent belief output",
+      "pass": true
+    },
+    {
+      "label": "Stored country ukraine hash,completecalendars,control math and no latent belief output",
+      "pass": true
+    },
+    {
+      "label": "Country summary retains missing Jyotisha and nonidentifiability without chance/absence claims",
+      "pass": true
+    },
+    {
+      "label": "Source and independent driver hashes remained held",
+      "pass": true
+    }
+  ],
+  "sourceAfter": {
+    "assets/js/core/newton-chronology.js": "525601f45eb8c04fb3ff08b854d8c91628f60c4232f2a57dd305119ff8f51339",
+    "assets/js/core/data/newton-chronology-sources.js": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393",
+    "assets/js/core/data/eschatology-comparisons.js": "154b5eb83426f844a9611967569c5ab2598e84ac4924da94b6a5ed0f83407b49",
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/calendar.js": "a23bc2ae59d96a82bccc62a1c794d0ae5327eaf8599e9f0fdfb4c78166a5ee8f",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/data/country-event-research.js": "d36fe41452fcde5f088d75728b70dcc1806eb8562200a247144f52d93fd618e8",
+    "mcp/newton-chronology-adapters.mjs": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd",
+    "scripts/test-newton-chronology-independent.mjs": "654d9c794e7c6589df227b1992424b326e9453abd77c5a019911d5b522b31f0a"
+  },
+  "finishedAt": "2026-10-30T16:02:48.983Z",
+  "count": 122,
+  "failures": [],
+  "pass": true,
+  "acceptanceEligible": true
+}

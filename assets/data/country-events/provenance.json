@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-30",
+  "acceptedSnapshot": {
+    "path": "accepted-research.json.gz",
+    "bytes": 149922,
+    "sha256": "000bb218f8015d3b6eaf8318c7d36044064d155b738d87143569aac60ea0c22a",
+    "decodedSHA256": "712df12fb0fdd527a8394c6f42c7c25cb427865f71637a77a45f3403da0e59dc"
+  },
+  "originalArtifactBindings": [
+    {
+      "path": "sources/west.json",
+      "bytes": 35673,
+      "sha256": "685f2857d1b9427709ea2f77aa6d8e81d839aa91ac790e788ac3c362fb9d6c3d"
+    },
+    {
+      "path": "sources/east.json",
+      "bytes": 36814,
+      "sha256": "b7344b9d13c5e67607579ec66648917edf146be53abca615cb02a3a86d324bf0"
+    },
+    {
+      "path": "sources/europe.json",
+      "bytes": 34512,
+      "sha256": "230fa09d4ded1c83a7979b3dde45490673eaa8cfbc9f79cf71d87c8c3abedf6b"
+    },
+    {
+      "path": "cases.json",
+      "bytes": 1396,
+      "sha256": "5fe26eef826aa6c2c071dc8eea8f0658bf330c568a6bd12a829592740fe23421"
+    },
+    {
+      "path": "history-protocol.md",
+      "bytes": 8548,
+      "sha256": "4e74160b162c86b19670b23c2bfd29d0d69c0380abb20b4e82f0da22b38ca2d3"
+    },
+    {
+      "path": "results/history-protocol-amendment-1.md",
+      "bytes": 2373,
+      "sha256": "7283783948553d1a1d19019ac45024187e4e55bd4c76930ec0539cdf1c5b1eca"
+    },
+    {
+      "path": "results/history-protocol-amendment-2.md",
+      "bytes": 1467,
+      "sha256": "3cbd2b177b957ce7d0ae884ce8275eba9c5f50da6400a59670da1f6194adb621"
+    },
+    {
+      "path": "results/history-audit.json",
+      "bytes": 5399385,
+      "sha256": "61bb343379530e0246800aac4b3b2246548ad7bee8e120ca400e13ce5fe75e38"
+    },
+    {
+      "path": "results/history-manifest.json",
+      "bytes": 12123,
+      "sha256": "bc3e78076bd102a131120e6cee84831fe8c5d91715af8bb57761a74f07144e98"
+    },
+    {
+      "path": "results/history-samples.jsonl.gz",
+      "bytes": 6186523,
+      "sha256": "9e7d8cc06dc5614c82c10edf4f6f00544741d432a870031a3938c5be54c182a1"
+    },
+    {
+      "path": "results/history-outcomes.json",
+      "bytes": 229170,
+      "sha256": "965c8683ba32434ab8da3e2b06e2a9ad39ae029ccdabf958381a643031d6faac"
+    },
+    {
+      "path": "review/final-held-receipt.json",
+      "bytes": 21545,
+      "sha256": "3fb2bb34e1a4f383a15bac80496f8330aca05fd078fdb3b6a055000d24132af4"
+    }
+  ],
+  "scientificSourceBinding": {
+    "roots": [
+      "assets/js/core/calendar-observatory.js",
+      "assets/js/core/day-guidance.js",
+      "assets/js/core/horizon-ranking.js",
+      "assets/js/core/astro.js",
+      "assets/js/core/time.js"
+    ],
+    "files": [
+      {
+        "path": "assets/js/core/aspects.js",
+        "sha256": "837e71a913479605b776414018f3a17b210eaf3aad221b72bbc63d3e0a6f98be"
+      },
+      {
+        "path": "assets/js/core/astro.js",
+        "sha256": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab"
+      },
+      {
+        "path": "assets/js/core/calendar-observatory.js",
+        "sha256": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9"
+      },
+      {
+        "path": "assets/js/core/calendar.js",
+        "sha256": "a23bc2ae59d96a82bccc62a1c794d0ae5327eaf8599e9f0fdfb4c78166a5ee8f"
+      },
+      {
+        "path": "assets/js/core/considerations.js",
+        "sha256": "3ba3a4a7d83574ac475de691d833d45be12d7d4f84ccb32f86e55f54ea56a19e"
+      },
+      {
+        "path": "assets/js/core/cultural-calendars.js",
+        "sha256": "819804fe10ac53afee33dbf65ff2cc8bea1841c32870d9c421b77481caf0cf55"
+      },
+      {
+        "path": "assets/js/core/data/dignities-data.js",
+        "sha256": "dd0b0931fdaab1f58ad49a1bbbedc4eed978792af153fc00dd247e4c2c7aa191"
+      },
+      {
+        "path": "assets/js/core/data/muhurta-data.js",
+        "sha256": "5f7f7f4beb3975a048fea9289bb632c75f14f46c0f4cc0f38d9b6c5c1127ee7c"
+      },
+      {
+        "path": "assets/js/core/data/vedic-data.js",
+        "sha256": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b"
+      },
+      {
+        "path": "assets/js/core/data/vedic-remedies.js",
+        "sha256": "29056fa5597f82184f349fead9c6fe37acc8a7f9ba312d96e125f5fa2f8c205f"
+      },
+      {
+        "path": "assets/js/core/day-guidance.js",
+        "sha256": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b"
+      },
+      {
+        "path": "assets/js/core/dignities.js",
+        "sha256": "618cb3436f16a67f9886fa6f6f66f60d98e3159b64c5305411611205f3e5e35f"
+      },
+      {
+        "path": "assets/js/core/horizon-ranking.js",
+        "sha256": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08"
+      },
+      {
+        "path": "assets/js/core/instant-boundary.js",
+        "sha256": "ae41bd2705e2cbadb7ab6845301bc8d3d81f05637ab411238f27b995260fc5f1"
+      },
+      {
+        "path": "assets/js/core/muhurta.js",
+        "sha256": "dc460a0a99cf81ba593636aba55835bc6804c2f88a1c9d9a2d9db9c283ff32e2"
+      },
+      {
+        "path": "assets/js/core/planetary-hours.js",
+        "sha256": "ca46d1a4ff21914211d278c1b65564cfc78579fb93e451cd05a772cc8eda8db4"
+      },
+      {
+        "path": "assets/js/core/time.js",
+        "sha256": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579"
+      },
+      {
+        "path": "assets/js/core/vedic.js",
+        "sha256": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278"
+      },
+      {
+        "path": "assets/js/lib/astronomy.js",
+        "sha256": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7"
+      },
+      {
+        "path": "assets/vendor/adhan/Adhan.js",
+        "sha256": "0326893cd2c4994f9a67bc1008ab54a2678a728e3123e01ce6b4d111008d09f0"
+      },
+      {
+        "path": "assets/vendor/adhan/Astronomical.js",
+        "sha256": "fde941a806a3958efa96b20ec4f9dfd6052d2c0ffbbe6d3d670dbb8e32f44b08"
+      },
+      {
+        "path": "assets/vendor/adhan/CalculationMethod.js",
+        "sha256": "25fe507d157eb462913f9d552c527b4fd34023f1965129f5d31ce380c1cada21"
+      },
+      {
+        "path": "assets/vendor/adhan/CalculationParameters.js",
+        "sha256": "2389ac64c932c3a287bb7fdf13e6585b763781e7e59d9676039d409c83da3401"
+      },
+      {
+        "path": "assets/vendor/adhan/Coordinates.js",
+        "sha256": "0233d695243aa554199115df9c1e3d6c84e66699ac6bef531e4e6cf4e13c8cc4"
+      },
+      {
+        "path": "assets/vendor/adhan/DateUtils.js",
+        "sha256": "ecbe2737fb91fdbe6fe8be92600f6817f1b2e6e4fddd14233f94c4d89aa366d5"
+      },
+      {
+        "path": "assets/vendor/adhan/HighLatitudeRule.js",
+        "sha256": "35a9be5d9b49c10210477b81ba1c98450ac99a58e5125c45cba3398fb68f2778"
+      },
+      {
+        "path": "assets/vendor/adhan/Madhab.js",
+        "sha256": "644398adb646260a337b34cab2277a3c2f798f064d9cb968f670aeaa857506f4"
+      },
+      {
+        "path": "assets/vendor/adhan/MathUtils.js",
+        "sha256": "b888fd77de0ebaa9c218d27a8f859555bcf32a89e974b6a1f4aeea9c61dd1d89"
+      },
+      {
+        "path": "assets/vendor/adhan/PolarCircleResolution.js",
+        "sha256": "ae218b4dccdf083afcde1b85494947c72d928e5430683a4d3013261e20b95a07"
+      },
+      {
+        "path": "assets/vendor/adhan/Prayer.js",
+        "sha256": "a13792a407bca56ca24f480c7f0f54fc4dd0324fce83e56d53ae4bfd9e22a922"
+      },
+      {
+        "path": "assets/vendor/adhan/PrayerTimes.js",
+        "sha256": "45c1936d2f96229e9b80b113531be4e71b537da10f76aad0e28035ee94f5cb4d"
+      },
+      {
+        "path": "assets/vendor/adhan/Qibla.js",
+        "sha256": "3467a2c6816172a7b17379011e0a005ca60e0211ffba99d8fd5344f640db67fb"
+      },
+      {
+        "path": "assets/vendor/adhan/Rounding.js",
+        "sha256": "c610a7340967a9f33835be8dc87ef54aa11aeae2f09cb9e60bb643536d31deeb"
+      },
+      {
+        "path": "assets/vendor/adhan/Shafaq.js",
+        "sha256": "60046362337cf7849af983e33033fc81fc48dcf40826a916517e696e19d06838"
+      },
+      {
+        "path": "assets/vendor/adhan/SolarCoordinates.js",
+        "sha256": "0f139365902bc82ffcf96cec7278e8afc41835ae8e040a97ff351fe0c99ad98e"
+      },
+      {
+        "path": "assets/vendor/adhan/SolarTime.js",
+        "sha256": "9fff93b5fc7d745a0e946ac99dae17429a1441fac6280585c49eccdda3f5fa5d"
+      },
+      {
+        "path": "assets/vendor/adhan/SunnahTimes.js",
+        "sha256": "507876f09d121eedb3b411aa52ad482ec706167517ecc8edd1e7dc72d4676fe8"
+      },
+      {
+        "path": "assets/vendor/adhan/TimeComponents.js",
+        "sha256": "f081f2ed06e0c5086ee1d60238e40a58b714e608feed49ae5f931b4d14d5ec0d"
+      }
+    ],
+    "sha256": "f150078914f8f311ab57e3e2efce565d0f28da15eada5005cc4c50846ef2cd09"
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "platform": "linux",
+    "architecture": "x64"
+  },
+  "projection": [
+    "All28 historical records retain every original field; embedded sources are deduplicated and replaced with exact sourceIds plus literal source citations. Conservative analysisGroupId is imported from the accepted audit.",
+    "All186 source-marker/assumed-clock rows retain profile numerators, denominators, missingness, control score arrays, ties and descriptive deltas. Overlap flags keep source event/group/date references.",
+    "Only the distinct event-marker samples are bundled; thirteen calendar label rows keep method, boundary, source and limitation fields while tokenized display parts are omitted. Sky and planetary-hour snapshots are retained. Full1323-sample archive remains external.",
+    "Original profile definitions, calculation sources, global counts and primary grouped descriptions are imported exactly. No feature, outcome classifier, new date search, refit, p-value or conditional tail diagnostic is introduced.",
+    "Source bodies, copyrighted reports and screenshots are not copied. Only existing metadata, short factual paraphrases and computed snapshots are published. Existing software/vendor licenses remain unchanged.",
+    "The global summary keeps the accepted clock-sensitivity counts; detailed per-record sensitivity rows are omitted because each marker and clock comparison is already retained in its country chunk."
+  ],
+  "rights": "Historical and calculation source metadata retain original attribution and reading scope. No claim of a new license over underlying source works.",
+  "source": "Source-qualified historical audit completed30October2026; named original hashes bind this compact derivative."
+}
