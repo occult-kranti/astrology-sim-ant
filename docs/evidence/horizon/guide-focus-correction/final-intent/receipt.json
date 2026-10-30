@@ -1,0 +1,2642 @@
+{
+  "browser": "145.0.7632.6",
+  "source": {
+    "assets/js/app/shared.js": "4e34f3daf0c299158061ca51acd91988c2d648f2d40ace4e9aa1e5c82abdac05",
+    "assets/js/app/trajectory.js": "ea896fa722d06c79fc01cccdd80f046894fd1fb36ba26c4dc1d4d331eadec97b",
+    "pages/trajectory.html": "10b9b8573d27dba9886226d3483c049bd7f1a98ee5c52da22fd535b0647dda70"
+  },
+  "cases": [
+    {
+      "width": 320,
+      "delayed": true,
+      "intent": "wheel",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 270.5,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 3420.375,
+            "width": 288,
+            "height": 78.8125,
+            "top": 3420.375,
+            "right": 304,
+            "bottom": 3499.1875,
+            "left": 16
+          },
+          "scrollY": 0,
+          "height": 4873,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 323.80000001192093,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.65625,
+            "width": 288,
+            "height": 78.8125,
+            "top": 273.65625,
+            "right": 304,
+            "bottom": 352.46875,
+            "left": 16
+          },
+          "scrollY": 3903,
+          "height": 7821,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 476.30000001192093,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.65625,
+            "width": 288,
+            "height": 78.8125,
+            "top": 273.65625,
+            "right": 304,
+            "bottom": 352.46875,
+            "left": 16
+          },
+          "scrollY": 3903,
+          "height": 7821,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 591,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 23.65625,
+            "width": 288,
+            "height": 78.8125,
+            "top": 23.65625,
+            "right": 304,
+            "bottom": 102.46875,
+            "left": 16
+          },
+          "scrollY": 4153,
+          "height": 7821,
+          "visibleHit": false,
+          "topTag": "DIV",
+          "topClass": "wrap",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 689,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 24.359375,
+            "width": 288,
+            "height": 78.8125,
+            "top": 24.359375,
+            "right": 304,
+            "bottom": 103.171875,
+            "left": 16
+          },
+          "scrollY": 11647,
+          "height": 15460,
+          "visibleHit": false,
+          "topTag": "DIV",
+          "topClass": "wrap",
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1192.4000000059605,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 24.359375,
+            "width": 288,
+            "height": 78.8125,
+            "top": 24.359375,
+            "right": 304,
+            "bottom": 103.171875,
+            "left": 16
+          },
+          "scrollY": 11647,
+          "height": 15460,
+          "visibleHit": false,
+          "topTag": "DIV",
+          "topClass": "wrap",
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 1,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 16,
+          "y": 298.3125,
+          "width": 288,
+          "height": 46.78125,
+          "top": 298.3125,
+          "right": 304,
+          "bottom": 345.09375,
+          "left": 16
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1257.2000000178814,
+        "focused": true,
+        "rect": {
+          "x": 16,
+          "y": 273.359375,
+          "width": 288,
+          "height": 78.8125,
+          "top": 273.359375,
+          "right": 304,
+          "bottom": 352.171875,
+          "left": 16
+        },
+        "scrollY": 11398,
+        "height": 15460,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 310.7000000178814,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 314,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 322.09999999403954,
+          "scrollY": 4048,
+          "summaryY": 128.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 338.7000000178814,
+          "scrollY": 3903,
+          "summaryY": 273.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 505.7000000178814,
+          "scrollY": 4153,
+          "summaryY": 23.65625
+        },
+        {
+          "kind": "mutation",
+          "at": 612.7000000178814,
+          "scrollY": 4321,
+          "summaryY": 24.453125,
+          "ready": false
+        },
+        {
+          "kind": "mutation",
+          "at": 648.2000000178814,
+          "scrollY": 11647,
+          "summaryY": 24.359375,
+          "ready": true
+        },
+        {
+          "kind": "scroll",
+          "at": 685.3000000119209,
+          "scrollY": 11647,
+          "summaryY": 24.359375
+        },
+        {
+          "kind": "focus",
+          "at": 1195.7000000178814,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "focus",
+          "at": 1243.7000000178814,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1245,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1255.5,
+          "scrollY": 11542,
+          "summaryY": 129.359375
+        }
+      ],
+      "screenshot": "trajectory-320-wheel-0.png"
+    },
+    {
+      "width": 390,
+      "delayed": true,
+      "intent": "wheel",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 217.2999999821186,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 2894.625,
+            "width": 358,
+            "height": 49.796875,
+            "top": 2894.625,
+            "right": 374,
+            "bottom": 2944.421875,
+            "left": 16
+          },
+          "scrollY": 0,
+          "height": 4275,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 276.69999998807907,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 428.89999997615814,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 545.1999999880791,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 23.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 23.203125,
+            "right": 374,
+            "bottom": 73,
+            "left": 16
+          },
+          "scrollY": 3605,
+          "height": 6939,
+          "visibleHit": false,
+          "topTag": "SMALL",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 620.2999999821186,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 23.078125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 23.078125,
+            "right": 374,
+            "bottom": 72.875,
+            "left": 16
+          },
+          "scrollY": 9780,
+          "height": 13238,
+          "visibleHit": false,
+          "topTag": "SMALL",
+          "topClass": "",
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1122.3999999761581,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 23.078125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 23.078125,
+            "right": 374,
+            "bottom": 72.875,
+            "left": 16
+          },
+          "scrollY": 9780,
+          "height": 13238,
+          "visibleHit": false,
+          "topTag": "SMALL",
+          "topClass": "",
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 3,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 16,
+          "y": 273.625,
+          "width": 358,
+          "height": 46.78125,
+          "top": 273.625,
+          "right": 374,
+          "bottom": 320.40625,
+          "left": 16
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1192.8999999761581,
+        "focused": true,
+        "rect": {
+          "x": 16,
+          "y": 273.078125,
+          "width": 358,
+          "height": 49.796875,
+          "top": 273.078125,
+          "right": 374,
+          "bottom": 322.875,
+          "left": 16
+        },
+        "scrollY": 9530,
+        "height": 13238,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 262.39999997615814,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 265.5,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 275,
+          "scrollY": 3499,
+          "summaryY": 129.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 291.5,
+          "scrollY": 3355,
+          "summaryY": 273.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 458.2999999821186,
+          "scrollY": 3605,
+          "summaryY": 23.203125
+        },
+        {
+          "kind": "mutation",
+          "at": 562,
+          "scrollY": 3774,
+          "summaryY": 23,
+          "ready": false
+        },
+        {
+          "kind": "mutation",
+          "at": 594.1999999880791,
+          "scrollY": 9780,
+          "summaryY": 23.078125,
+          "ready": true
+        },
+        {
+          "kind": "scroll",
+          "at": 617.6999999880791,
+          "scrollY": 9780,
+          "summaryY": 23.078125
+        },
+        {
+          "kind": "focus",
+          "at": 1125,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "scroll",
+          "at": 1141.5,
+          "scrollY": 9748,
+          "summaryY": 55.078125
+        },
+        {
+          "kind": "focus",
+          "at": 1177.199999988079,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1178.199999988079,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1191.5,
+          "scrollY": 9674,
+          "summaryY": 129.078125
+        }
+      ],
+      "screenshot": "trajectory-390-wheel-1.png"
+    },
+    {
+      "width": 1440,
+      "delayed": true,
+      "intent": "wheel",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 196.90000000596046,
+          "focused": false,
+          "rect": {
+            "x": 138.390625,
+            "y": 3159.296875,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 3159.296875,
+            "right": 1301.609375,
+            "bottom": 3209.09375,
+            "left": 138.390625
+          },
+          "scrollY": 0,
+          "height": 4268,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 244.5,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.265625,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.265625,
+            "right": 1301.609375,
+            "bottom": 203.0625,
+            "left": 138.390625
+          },
+          "scrollY": 3542,
+          "height": 5981,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 396.5,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.265625,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.265625,
+            "right": 1301.609375,
+            "bottom": 203.0625,
+            "left": 138.390625
+          },
+          "scrollY": 3542,
+          "height": 5981,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 510.40000000596046,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": -96.734375,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": -96.734375,
+            "right": 1301.609375,
+            "bottom": -46.9375,
+            "left": 138.390625
+          },
+          "scrollY": 3792,
+          "height": 5981,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 582.3000000119209,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": -97.171875,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": -97.171875,
+            "right": 1301.609375,
+            "bottom": -47.375,
+            "left": 138.390625
+          },
+          "scrollY": 7356,
+          "height": 9662,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1083.7000000178814,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": -97.171875,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": -97.171875,
+            "right": 1301.609375,
+            "bottom": -47.375,
+            "left": 138.390625
+          },
+          "scrollY": 7356,
+          "height": 9662,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 0,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 138.390625,
+          "y": 111.59375,
+          "width": 1163.21875,
+          "height": 46.78125,
+          "top": 111.59375,
+          "right": 1301.609375,
+          "bottom": 158.375,
+          "left": 138.390625
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1143.9000000059605,
+        "focused": true,
+        "rect": {
+          "x": 138.390625,
+          "y": 152.828125,
+          "width": 1163.21875,
+          "height": 49.796875,
+          "top": 152.828125,
+          "right": 1301.609375,
+          "bottom": 202.625,
+          "left": 138.390625
+        },
+        "scrollY": 7106,
+        "height": 9662,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 236.30000001192093,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 239,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 242,
+          "scrollY": 3542,
+          "summaryY": 153.265625
+        },
+        {
+          "kind": "scroll",
+          "at": 425.5,
+          "scrollY": 3792,
+          "summaryY": -96.734375
+        },
+        {
+          "kind": "mutation",
+          "at": 526,
+          "scrollY": 3850,
+          "summaryY": -97.078125,
+          "ready": false
+        },
+        {
+          "kind": "mutation",
+          "at": 558.0999999940395,
+          "scrollY": 7356,
+          "summaryY": -97.171875,
+          "ready": true
+        },
+        {
+          "kind": "scroll",
+          "at": 577.9000000059605,
+          "scrollY": 7356,
+          "summaryY": -97.171875
+        },
+        {
+          "kind": "focus",
+          "at": 1086.4000000059605,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "scroll",
+          "at": 1092.2000000178814,
+          "scrollY": 7313,
+          "summaryY": -54.171875
+        },
+        {
+          "kind": "focus",
+          "at": 1128.4000000059605,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1129.4000000059605,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1141.9000000059605,
+          "scrollY": 7106,
+          "summaryY": 152.828125
+        }
+      ],
+      "screenshot": "trajectory-1440-wheel-2.png"
+    },
+    {
+      "width": 320,
+      "delayed": true,
+      "intent": "PageDown",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 226.30000001192093,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 3420.375,
+            "width": 288,
+            "height": 78.8125,
+            "top": 3420.375,
+            "right": 304,
+            "bottom": 3499.1875,
+            "left": 16
+          },
+          "scrollY": 0,
+          "height": 4873,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 278.90000000596046,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.65625,
+            "width": 288,
+            "height": 78.8125,
+            "top": 273.65625,
+            "right": 304,
+            "bottom": 352.46875,
+            "left": 16
+          },
+          "scrollY": 3903,
+          "height": 7821,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 430.59999999403954,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.65625,
+            "width": 288,
+            "height": 78.8125,
+            "top": 273.65625,
+            "right": 304,
+            "bottom": 352.46875,
+            "left": 16
+          },
+          "scrollY": 3903,
+          "height": 7821,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 536.5999999940395,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": -245.34375,
+            "width": 288,
+            "height": 78.8125,
+            "top": -245.34375,
+            "right": 304,
+            "bottom": -166.53125,
+            "left": 16
+          },
+          "scrollY": 4422,
+          "height": 7821,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 622.0999999940395,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": -457.640625,
+            "width": 288,
+            "height": 78.8125,
+            "top": -457.640625,
+            "right": 304,
+            "bottom": -378.828125,
+            "left": 16
+          },
+          "scrollY": 12129,
+          "height": 15460,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1124.2000000178814,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": -457.640625,
+            "width": 288,
+            "height": 78.8125,
+            "top": -457.640625,
+            "right": 304,
+            "bottom": -378.828125,
+            "left": 16
+          },
+          "scrollY": 12129,
+          "height": 15460,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 1,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 16,
+          "y": 394.3125,
+          "width": 288,
+          "height": 46.78125,
+          "top": 394.3125,
+          "right": 304,
+          "bottom": 441.09375,
+          "left": 16
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1195.7000000178814,
+        "focused": true,
+        "rect": {
+          "x": 16,
+          "y": 273.359375,
+          "width": 288,
+          "height": 78.8125,
+          "top": 273.359375,
+          "right": 304,
+          "bottom": 352.171875,
+          "left": 16
+        },
+        "scrollY": 11398,
+        "height": 15460,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 264,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 267.09999999403954,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 277.09999999403954,
+          "scrollY": 4048,
+          "summaryY": 128.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 293.59999999403954,
+          "scrollY": 3903,
+          "summaryY": 273.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 443.7000000178814,
+          "scrollY": 3910,
+          "summaryY": 266.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 460.40000000596046,
+          "scrollY": 3952,
+          "summaryY": 224.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 477,
+          "scrollY": 4034,
+          "summaryY": 142.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 493.7000000178814,
+          "scrollY": 4151,
+          "summaryY": 25.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 510.30000001192093,
+          "scrollY": 4288,
+          "summaryY": -111.34375
+        },
+        {
+          "kind": "scroll",
+          "at": 527.9000000059605,
+          "scrollY": 4422,
+          "summaryY": -245.34375
+        },
+        {
+          "kind": "scroll",
+          "at": 547.3000000119209,
+          "scrollY": 4530,
+          "summaryY": -353.34375
+        },
+        {
+          "kind": "mutation",
+          "at": 554,
+          "scrollY": 4699,
+          "summaryY": -353.546875,
+          "ready": false
+        },
+        {
+          "kind": "mutation",
+          "at": 596.4000000059605,
+          "scrollY": 12025,
+          "summaryY": -353.640625,
+          "ready": true
+        },
+        {
+          "kind": "scroll",
+          "at": 619.7000000178814,
+          "scrollY": 12096,
+          "summaryY": -424.640625
+        },
+        {
+          "kind": "scroll",
+          "at": 621.3000000119209,
+          "scrollY": 12129,
+          "summaryY": -457.640625
+        },
+        {
+          "kind": "focus",
+          "at": 1127.300000011921,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "scroll",
+          "at": 1128.300000011921,
+          "scrollY": 11551,
+          "summaryY": 120.359375
+        },
+        {
+          "kind": "focus",
+          "at": 1180.300000011921,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1181.9000000059605,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1193.7000000178814,
+          "scrollY": 11542,
+          "summaryY": 129.359375
+        }
+      ],
+      "screenshot": "trajectory-320-PageDown-3.png"
+    },
+    {
+      "width": 390,
+      "delayed": true,
+      "intent": "PageDown",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 185.7000000178814,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 2894.625,
+            "width": 358,
+            "height": 49.796875,
+            "top": 2894.625,
+            "right": 374,
+            "bottom": 2944.421875,
+            "left": 16
+          },
+          "scrollY": 0,
+          "height": 4275,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 258.59999999403954,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 410.40000000596046,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 515.7000000178814,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": -255.796875,
+            "width": 358,
+            "height": 49.796875,
+            "top": -255.796875,
+            "right": 374,
+            "bottom": -206,
+            "left": 16
+          },
+          "scrollY": 3884,
+          "height": 6939,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 593,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": -457.921875,
+            "width": 358,
+            "height": 49.796875,
+            "top": -457.921875,
+            "right": 374,
+            "bottom": -408.125,
+            "left": 16
+          },
+          "scrollY": 10261,
+          "height": 13238,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1095.7000000178814,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": -457.921875,
+            "width": 358,
+            "height": 49.796875,
+            "top": -457.921875,
+            "right": 374,
+            "bottom": -408.125,
+            "left": 16
+          },
+          "scrollY": 10261,
+          "height": 13238,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 3,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 16,
+          "y": 394.625,
+          "width": 358,
+          "height": 46.78125,
+          "top": 394.625,
+          "right": 374,
+          "bottom": 441.40625,
+          "left": 16
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1159.5,
+        "focused": true,
+        "rect": {
+          "x": 16,
+          "y": 273.078125,
+          "width": 358,
+          "height": 49.796875,
+          "top": 273.078125,
+          "right": 374,
+          "bottom": 322.875,
+          "left": 16
+        },
+        "scrollY": 9530,
+        "height": 13238,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 236.30000001192093,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 239.2000000178814,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 241.40000000596046,
+          "scrollY": 3499,
+          "summaryY": 129.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 257.80000001192093,
+          "scrollY": 3355,
+          "summaryY": 273.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 424.5,
+          "scrollY": 3364,
+          "summaryY": 264.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 441.09999999403954,
+          "scrollY": 3409,
+          "summaryY": 219.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 457.7000000178814,
+          "scrollY": 3494,
+          "summaryY": 134.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 474.30000001192093,
+          "scrollY": 3614,
+          "summaryY": 14.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 491,
+          "scrollY": 3752,
+          "summaryY": -123.796875
+        },
+        {
+          "kind": "scroll",
+          "at": 507.7000000178814,
+          "scrollY": 3884,
+          "summaryY": -255.796875
+        },
+        {
+          "kind": "scroll",
+          "at": 526.7000000178814,
+          "scrollY": 3989,
+          "summaryY": -360.796875
+        },
+        {
+          "kind": "mutation",
+          "at": 531.0999999940395,
+          "scrollY": 4158,
+          "summaryY": -361,
+          "ready": false
+        },
+        {
+          "kind": "mutation",
+          "at": 563.9000000059605,
+          "scrollY": 10164,
+          "summaryY": -360.921875,
+          "ready": true
+        },
+        {
+          "kind": "scroll",
+          "at": 589.3000000119209,
+          "scrollY": 10231,
+          "summaryY": -427.921875
+        },
+        {
+          "kind": "scroll",
+          "at": 592,
+          "scrollY": 10261,
+          "summaryY": -457.921875
+        },
+        {
+          "kind": "focus",
+          "at": 1098.2000000178814,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "scroll",
+          "at": 1099,
+          "scrollY": 9627,
+          "summaryY": 176.078125
+        },
+        {
+          "kind": "focus",
+          "at": 1144.5,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1145.5999999940395,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1158.0999999940395,
+          "scrollY": 9674,
+          "summaryY": 129.078125
+        }
+      ],
+      "screenshot": "trajectory-390-PageDown-4.png"
+    },
+    {
+      "width": 1440,
+      "delayed": true,
+      "intent": "PageDown",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 211.09999999403954,
+          "focused": false,
+          "rect": {
+            "x": 138.390625,
+            "y": 3159.296875,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 3159.296875,
+            "right": 1301.609375,
+            "bottom": 3209.09375,
+            "left": 138.390625
+          },
+          "scrollY": 0,
+          "height": 4268,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 275.2000000178814,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.265625,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.265625,
+            "right": 1301.609375,
+            "bottom": 203.0625,
+            "left": 138.390625
+          },
+          "scrollY": 3542,
+          "height": 5981,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 427.2000000178814,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.265625,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.265625,
+            "right": 1301.609375,
+            "bottom": 203.0625,
+            "left": 138.390625
+          },
+          "scrollY": 3542,
+          "height": 5981,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 531.8000000119209,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": -369.734375,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": -369.734375,
+            "right": 1301.609375,
+            "bottom": -319.9375,
+            "left": 138.390625
+          },
+          "scrollY": 4065,
+          "height": 5981,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 605.7000000178814,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": -577.171875,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": -577.171875,
+            "right": 1301.609375,
+            "bottom": -527.375,
+            "left": 138.390625
+          },
+          "scrollY": 7836,
+          "height": 9662,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1107.4000000059605,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": -577.171875,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": -577.171875,
+            "right": 1301.609375,
+            "bottom": -527.375,
+            "left": 138.390625
+          },
+          "scrollY": 7836,
+          "height": 9662,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 0,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 138.390625,
+          "y": 394.59375,
+          "width": 1163.21875,
+          "height": 46.78125,
+          "top": 394.59375,
+          "right": 1301.609375,
+          "bottom": 441.375,
+          "left": 138.390625
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1182.9000000059605,
+        "focused": true,
+        "rect": {
+          "x": 138.390625,
+          "y": 152.828125,
+          "width": 1163.21875,
+          "height": 49.796875,
+          "top": 152.828125,
+          "right": 1301.609375,
+          "bottom": 202.625,
+          "left": 138.390625
+        },
+        "scrollY": 7106,
+        "height": 9662,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 252.59999999403954,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 255.40000000596046,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 257.59999999403954,
+          "scrollY": 3542,
+          "summaryY": 153.265625
+        },
+        {
+          "kind": "scroll",
+          "at": 440.80000001192093,
+          "scrollY": 3550,
+          "summaryY": 145.265625
+        },
+        {
+          "kind": "scroll",
+          "at": 457.40000000596046,
+          "scrollY": 3594,
+          "summaryY": 101.265625
+        },
+        {
+          "kind": "scroll",
+          "at": 474.09999999403954,
+          "scrollY": 3677,
+          "summaryY": 18.265625
+        },
+        {
+          "kind": "scroll",
+          "at": 490.7000000178814,
+          "scrollY": 3795,
+          "summaryY": -99.734375
+        },
+        {
+          "kind": "scroll",
+          "at": 507.40000000596046,
+          "scrollY": 3932,
+          "summaryY": -236.734375
+        },
+        {
+          "kind": "scroll",
+          "at": 524.0999999940395,
+          "scrollY": 4065,
+          "summaryY": -369.734375
+        },
+        {
+          "kind": "scroll",
+          "at": 543.0999999940395,
+          "scrollY": 4172,
+          "summaryY": -476.734375
+        },
+        {
+          "kind": "mutation",
+          "at": 548.2000000178814,
+          "scrollY": 4229,
+          "summaryY": -476.078125,
+          "ready": false
+        },
+        {
+          "kind": "mutation",
+          "at": 581,
+          "scrollY": 7735,
+          "summaryY": -476.171875,
+          "ready": true
+        },
+        {
+          "kind": "scroll",
+          "at": 601.0999999940395,
+          "scrollY": 7804,
+          "summaryY": -545.171875
+        },
+        {
+          "kind": "scroll",
+          "at": 603.5999999940395,
+          "scrollY": 7836,
+          "summaryY": -577.171875
+        },
+        {
+          "kind": "focus",
+          "at": 1110,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "scroll",
+          "at": 1111.0999999940395,
+          "scrollY": 7030,
+          "summaryY": 228.828125
+        },
+        {
+          "kind": "focus",
+          "at": 1160.300000011921,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1161.2000000178814,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1174.2000000178814,
+          "scrollY": 7106,
+          "summaryY": 152.828125
+        }
+      ],
+      "screenshot": "trajectory-1440-PageDown-5.png"
+    },
+    {
+      "width": 390,
+      "delayed": true,
+      "intent": "leave",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 175.90000000596046,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 2894.625,
+            "width": 358,
+            "height": 49.796875,
+            "top": 2894.625,
+            "right": 374,
+            "bottom": 2944.421875,
+            "left": 16
+          },
+          "scrollY": 0,
+          "height": 4275,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 223.90000000596046,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 376.5,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 482.80000001192093,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 553.9000000059605,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 809.078125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 809.078125,
+            "right": 374,
+            "bottom": 858.875,
+            "left": 16
+          },
+          "scrollY": 8994,
+          "height": 13238,
+          "visibleHit": false,
+          "topTag": "NAV",
+          "topClass": "ob-mobile-nav",
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1055.7000000178814,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 809.078125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 809.078125,
+            "right": 374,
+            "bottom": 858.875,
+            "left": 16
+          },
+          "scrollY": 8994,
+          "height": 13238,
+          "visibleHit": false,
+          "topTag": "NAV",
+          "topClass": "ob-mobile-nav",
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 3,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SUMMARY",
+        "rect": {
+          "x": 16,
+          "y": 774.078125,
+          "width": 358,
+          "height": 49.796875,
+          "top": 774.078125,
+          "right": 374,
+          "bottom": 823.875,
+          "left": 16
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1123.7000000178814,
+        "focused": true,
+        "rect": {
+          "x": 16,
+          "y": 273.078125,
+          "width": 358,
+          "height": 49.796875,
+          "top": 273.078125,
+          "right": 374,
+          "bottom": 322.875,
+          "left": 16
+        },
+        "scrollY": 9530,
+        "height": 13238,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 216.30000001192093,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 219.2000000178814,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 222.30000001192093,
+          "scrollY": 3499,
+          "summaryY": 129.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 238.90000000596046,
+          "scrollY": 3355,
+          "summaryY": 273.203125
+        },
+        {
+          "kind": "focus",
+          "at": 379.7000000178814,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 552.7000000178814,
+          "scrollY": 8994,
+          "summaryY": 809.078125
+        },
+        {
+          "kind": "focus",
+          "at": 1057.800000011921,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1058.5999999940395,
+          "scrollY": 9017,
+          "summaryY": 786.078125
+        },
+        {
+          "kind": "scroll",
+          "at": 1072.5,
+          "scrollY": 9029,
+          "summaryY": 774.078125
+        },
+        {
+          "kind": "focus",
+          "at": 1108.5,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1109.300000011921,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1122.300000011921,
+          "scrollY": 9674,
+          "summaryY": 129.078125
+        }
+      ],
+      "screenshot": "trajectory-390-leave-6.png"
+    },
+    {
+      "width": 320,
+      "delayed": true,
+      "intent": "outside-pointer",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 165.19999998807907,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 3420.375,
+            "width": 288,
+            "height": 78.8125,
+            "top": 3420.375,
+            "right": 304,
+            "bottom": 3499.1875,
+            "left": 16
+          },
+          "scrollY": 0,
+          "height": 4873,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 224.40000000596046,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.65625,
+            "width": 288,
+            "height": 78.8125,
+            "top": 273.65625,
+            "right": 304,
+            "bottom": 352.46875,
+            "left": 16
+          },
+          "scrollY": 3903,
+          "height": 7821,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 375.90000000596046,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.65625,
+            "width": 288,
+            "height": 78.8125,
+            "top": 273.65625,
+            "right": 304,
+            "bottom": 352.46875,
+            "left": 16
+          },
+          "scrollY": 3903,
+          "height": 7821,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 480.59999999403954,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 273.65625,
+            "width": 288,
+            "height": 78.8125,
+            "top": 273.65625,
+            "right": 304,
+            "bottom": 352.46875,
+            "left": 16
+          },
+          "scrollY": 3903,
+          "height": 7821,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 557.7999999821186,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 991.359375,
+            "width": 288,
+            "height": 78.8125,
+            "top": 991.359375,
+            "right": 304,
+            "bottom": 1070.171875,
+            "left": 16
+          },
+          "scrollY": 10680,
+          "height": 15460,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1059.5999999940395,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 991.359375,
+            "width": 288,
+            "height": 78.8125,
+            "top": 991.359375,
+            "right": 304,
+            "bottom": 1070.171875,
+            "left": 16
+          },
+          "scrollY": 10680,
+          "height": 15460,
+          "visibleHit": false,
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 1,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 16,
+          "y": 403.3125,
+          "width": 288,
+          "height": 46.78125,
+          "top": 403.3125,
+          "right": 304,
+          "bottom": 450.09375,
+          "left": 16
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1141.7999999821186,
+        "focused": true,
+        "rect": {
+          "x": 16,
+          "y": 273.359375,
+          "width": 288,
+          "height": 78.8125,
+          "top": 273.359375,
+          "right": 304,
+          "bottom": 352.171875,
+          "left": 16
+        },
+        "scrollY": 11398,
+        "height": 15460,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 204.69999998807907,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 207.5,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 208.09999999403954,
+          "scrollY": 4048,
+          "summaryY": 128.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 223.59999999403954,
+          "scrollY": 3903,
+          "summaryY": 273.65625
+        },
+        {
+          "kind": "scroll",
+          "at": 547.6999999880791,
+          "scrollY": 10680,
+          "summaryY": 991.359375
+        },
+        {
+          "kind": "focus",
+          "at": 1076.699999988079,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1077.5,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1080,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "scroll",
+          "at": 1090.9000000059605,
+          "scrollY": 11542,
+          "summaryY": 129.359375
+        },
+        {
+          "kind": "focus",
+          "at": 1126.5,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1127.199999988079,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1140.4000000059605,
+          "scrollY": 11542,
+          "summaryY": 129.359375
+        }
+      ],
+      "screenshot": "trajectory-320-outside-pointer-7.png"
+    },
+    {
+      "width": 390,
+      "delayed": true,
+      "intent": "outside-pointer",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 171.60000002384186,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 2894.625,
+            "width": 358,
+            "height": 49.796875,
+            "top": 2894.625,
+            "right": 374,
+            "bottom": 2944.421875,
+            "left": 16
+          },
+          "scrollY": 0,
+          "height": 4275,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 212.80000001192093,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 365.80000001192093,
+          "focused": true,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 470.90000000596046,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 273.203125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 273.203125,
+            "right": 374,
+            "bottom": 323,
+            "left": 16
+          },
+          "scrollY": 3355,
+          "height": 6939,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 547.5,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 809.078125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 809.078125,
+            "right": 374,
+            "bottom": 858.875,
+            "left": 16
+          },
+          "scrollY": 8994,
+          "height": 13238,
+          "visibleHit": false,
+          "topTag": "NAV",
+          "topClass": "ob-mobile-nav",
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1049.9000000059605,
+          "focused": false,
+          "rect": {
+            "x": 16,
+            "y": 809.078125,
+            "width": 358,
+            "height": 49.796875,
+            "top": 809.078125,
+            "right": 374,
+            "bottom": 858.875,
+            "left": 16
+          },
+          "scrollY": 8994,
+          "height": 13238,
+          "visibleHit": false,
+          "topTag": "NAV",
+          "topClass": "ob-mobile-nav",
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 3,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 16,
+          "y": 347.625,
+          "width": 358,
+          "height": 46.78125,
+          "top": 347.625,
+          "right": 374,
+          "bottom": 394.40625,
+          "left": 16
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1129.6000000238419,
+        "focused": true,
+        "rect": {
+          "x": 16,
+          "y": 273.078125,
+          "width": 358,
+          "height": 49.796875,
+          "top": 273.078125,
+          "right": 374,
+          "bottom": 322.875,
+          "left": 16
+        },
+        "scrollY": 9530,
+        "height": 13238,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 205.60000002384186,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 208.30000001192093,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 211.40000000596046,
+          "scrollY": 3499,
+          "summaryY": 129.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 227.80000001192093,
+          "scrollY": 3355,
+          "summaryY": 273.203125
+        },
+        {
+          "kind": "scroll",
+          "at": 544.8000000119209,
+          "scrollY": 8994,
+          "summaryY": 809.078125
+        },
+        {
+          "kind": "focus",
+          "at": 1064,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1064.7000000178814,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1067.1000000238419,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "scroll",
+          "at": 1078.4000000059605,
+          "scrollY": 9674,
+          "summaryY": 129.078125
+        },
+        {
+          "kind": "focus",
+          "at": 1113.7000000178814,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1114.300000011921,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1128.2000000178814,
+          "scrollY": 9674,
+          "summaryY": 129.078125
+        }
+      ],
+      "screenshot": "trajectory-390-outside-pointer-8.png"
+    },
+    {
+      "width": 1440,
+      "delayed": true,
+      "intent": "outside-pointer",
+      "errors": [],
+      "snapshots": [
+        {
+          "phase": "before-click",
+          "at": 207.90000000596046,
+          "focused": false,
+          "rect": {
+            "x": 138.390625,
+            "y": 3159.296875,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 3159.296875,
+            "right": 1301.609375,
+            "bottom": 3209.09375,
+            "left": 138.390625
+          },
+          "scrollY": 0,
+          "height": 4268,
+          "visibleHit": false,
+          "trajectoryReady": false,
+          "hash": ""
+        },
+        {
+          "phase": "after-click",
+          "at": 253.59999999403954,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.265625,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.265625,
+            "right": 1301.609375,
+            "bottom": 203.0625,
+            "left": 138.390625
+          },
+          "scrollY": 3542,
+          "height": 5981,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "before-release",
+          "at": 409.7000000178814,
+          "focused": true,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.265625,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.265625,
+            "right": 1301.609375,
+            "bottom": 203.0625,
+            "left": 138.390625
+          },
+          "scrollY": 3542,
+          "height": 5981,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-user-intent",
+          "at": 515.4000000059605,
+          "focused": false,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.265625,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.265625,
+            "right": 1301.609375,
+            "bottom": 203.0625,
+            "left": 138.390625
+          },
+          "scrollY": 3542,
+          "height": 5981,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": false,
+          "hash": "#tool-assistant"
+        },
+        {
+          "phase": "after-render",
+          "at": 593.4000000059605,
+          "focused": false,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.828125,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.828125,
+            "right": 1301.609375,
+            "bottom": 203.625,
+            "left": 138.390625
+          },
+          "scrollY": 7105,
+          "height": 9662,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": true,
+          "hash": ""
+        },
+        {
+          "phase": "settled",
+          "at": 1096.7000000178814,
+          "focused": false,
+          "rect": {
+            "x": 138.390625,
+            "y": 153.828125,
+            "width": 1163.21875,
+            "height": 49.796875,
+            "top": 153.828125,
+            "right": 1301.609375,
+            "bottom": 203.625,
+            "left": 138.390625
+          },
+          "scrollY": 7105,
+          "height": 9662,
+          "visibleHit": true,
+          "topTag": "SUMMARY",
+          "topClass": "",
+          "trajectoryReady": true,
+          "hash": ""
+        }
+      ],
+      "beforeReleaseCorrections": 0,
+      "afterReleaseCorrections": [],
+      "rearmed": {
+        "inside": true,
+        "tag": "SELECT",
+        "rect": {
+          "x": 138.390625,
+          "y": 318.59375,
+          "width": 1163.21875,
+          "height": 46.78125,
+          "top": 318.59375,
+          "right": 1301.609375,
+          "bottom": 365.375,
+          "left": 138.390625
+        },
+        "visibleHit": true
+      },
+      "repeatedShortcut": {
+        "at": 1188.0999999940395,
+        "focused": true,
+        "rect": {
+          "x": 138.390625,
+          "y": 152.828125,
+          "width": 1163.21875,
+          "height": 49.796875,
+          "top": 152.828125,
+          "right": 1301.609375,
+          "bottom": 202.625,
+          "left": 138.390625
+        },
+        "scrollY": 7106,
+        "height": 9662,
+        "visibleHit": true,
+        "topTag": "SUMMARY",
+        "topClass": "",
+        "trajectoryReady": true,
+        "hash": "#tool-assistant"
+      },
+      "trace": [
+        {
+          "kind": "focus",
+          "at": 247.30000001192093,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 249.90000000596046,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 252.09999999403954,
+          "scrollY": 3542,
+          "summaryY": 153.265625
+        },
+        {
+          "kind": "scroll",
+          "at": 588,
+          "scrollY": 7105,
+          "summaryY": 153.828125
+        },
+        {
+          "kind": "focus",
+          "at": 1121.300000011921,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1121.9000000059605,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1126.0999999940395,
+          "tag": "SELECT",
+          "id": "tool-guide-1-tool"
+        },
+        {
+          "kind": "scroll",
+          "at": 1135.800000011921,
+          "scrollY": 7106,
+          "summaryY": 152.828125
+        },
+        {
+          "kind": "focus",
+          "at": 1172.9000000059605,
+          "tag": "A",
+          "id": ""
+        },
+        {
+          "kind": "focus",
+          "at": 1174,
+          "tag": "SUMMARY",
+          "id": ""
+        },
+        {
+          "kind": "scroll",
+          "at": 1185.7000000178814,
+          "scrollY": 7106,
+          "summaryY": 152.828125
+        }
+      ],
+      "screenshot": "trajectory-1440-outside-pointer-9.png"
+    }
+  ]
+}

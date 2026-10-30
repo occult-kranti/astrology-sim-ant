@@ -10,10 +10,11 @@ import {createHash} from 'node:crypto';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const output=resolve(root,process.env.SKY_OUTPUT||'docs/evidence/sky/current');
 const phase=process.env.SKY_PHASE||'all';
-assert.ok(['all','chart','timeline','alignment','assistant','guides'].includes(phase),'known sky phase');
+assert.ok(['all','chart','timeline','alignment','assistant','guides','guide-layout'].includes(phase),'known sky phase');
 const widths=(process.env.SKY_WIDTHS||'320,390,1440,1920').split(',').map(Number);
 assert.ok(widths.every(width=>Number.isInteger(width)&&width>=320&&width<=2560),'valid widths');
 await mkdir(output,{recursive:true});
+await writeFile(resolve(output,'driver.mjs'),await readFile(fileURLToPath(import.meta.url)));
 const pkg=process.env.PLAYWRIGHT_PKG?await import(pathToFileURL(resolve(process.env.PLAYWRIGHT_PKG)).href):await import('playwright').catch(()=>import('/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.js'));
 const chromium=pkg.chromium||pkg.default?.chromium;
 const sha=body=>createHash('sha256').update(body).digest('hex');
@@ -215,7 +216,7 @@ async function guides(width){
   for(const route of selectedRoutes){
    const expected=guide.rows.filter(row=>row.pages.includes(route)),visit={route,width,expectedCapabilityIds:expected.map(row=>row.id),completed:false};(report.guideVisits??=[]).push(visit);await page.goto(base+route);visit.actualURL=page.url();const host=page.locator('#tool-assistant');await host.locator('.ta-panel').waitFor();
    check(await host.count()===1,'single shared tool guide mounts on '+route+' '+width);
-   const shortcut=page.locator('.tool-guide-shortcut a');check(await shortcut.count()===1,'tool guide is discoverable from the page heading '+route+' '+width);await shortcut.click();await page.evaluate(()=>new Promise(requestAnimationFrame));const summary=host.locator('.ta-panel > summary'),navigation=await host.evaluate(el=>({open:el.querySelector('.ta-panel').open,summaryFocused:document.activeElement===el.querySelector('.ta-panel > summary'),activeTag:document.activeElement?.tagName,activeId:document.activeElement?.id,activeText:document.activeElement?.textContent?.slice(0,120)}));if(!navigation.open||!navigation.summaryFocused){await page.keyboard.press('Tab');navigation.afterTab=await page.evaluate(()=>({tag:document.activeElement?.tagName,id:document.activeElement?.id,text:document.activeElement?.textContent?.slice(0,120)}));await shot(page,'failure-guide-focus-'+width,'#tool-assistant');}check(navigation.open&&navigation.summaryFocused,'heading shortcut opens and focuses the actual tool guide '+route+' '+width,navigation);const sb=await summary.boundingBox(),hb=await page.locator('header.site').boundingBox();check(sb.y>=hb.y+hb.height-1,'guide shortcut does not hide focused summary below sticky navigation '+route+' '+width,{summary:sb,header:hb});const hit=await summary.evaluate(el=>{const r=el.getBoundingClientRect(),top=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return{visibleHit:!!top&&(top===el||el.contains(top)),topTag:top?.tagName,topId:top?.id,topClass:top?.className};});check(hit.visibleHit,'focused guide summary is not obscured by a page toolbar '+route+' '+width,hit);const select=host.getByLabel('Tool on this page',{exact:true});await page.keyboard.press('Tab');check(await select.evaluate(el=>document.activeElement===el),'keyboard continues from guide summary to its tool selector '+route+' '+width);const actual=await select.locator('option').evaluateAll(options=>options.map(option=>option.value));
+   const shortcut=page.locator('.tool-guide-shortcut a');check(await shortcut.count()===1,'tool guide is discoverable from the page heading '+route+' '+width);await shortcut.click();await page.evaluate(()=>new Promise(requestAnimationFrame));const summary=host.locator('.ta-panel > summary'),navigation=await host.evaluate(el=>({open:el.querySelector('.ta-panel').open,summaryFocused:document.activeElement===el.querySelector('.ta-panel > summary'),activeTag:document.activeElement?.tagName,activeId:document.activeElement?.id,activeText:document.activeElement?.textContent?.slice(0,120)}));if(!navigation.open||!navigation.summaryFocused){await page.keyboard.press('Tab');navigation.afterTab=await page.evaluate(()=>({tag:document.activeElement?.tagName,id:document.activeElement?.id,text:document.activeElement?.textContent?.slice(0,120)}));await shot(page,'failure-guide-focus-'+width,'#tool-assistant');}check(navigation.open&&navigation.summaryFocused,'heading shortcut opens and focuses the actual tool guide '+route+' '+width,navigation);const sb=await summary.boundingBox(),hb=await page.locator('header.site').boundingBox();check(sb.y>=hb.y+hb.height-1,'guide shortcut does not hide focused summary below sticky navigation '+route+' '+width,{summary:sb,header:hb});const hit=await summary.evaluate(el=>{const r=el.getBoundingClientRect(),top=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return{visibleHit:!!top&&(top===el||el.contains(top)),rect:r.toJSON(),viewport:{width:innerWidth,height:innerHeight},topTag:top?.tagName,topId:top?.id,topClass:top?.className};});if(!hit.visibleHit)await shot(page,'failure-guide-visibility-'+route.replace(/[^a-z0-9]+/gi,'-')+'-'+width);check(hit.visibleHit,'focused guide summary is not obscured by a page toolbar '+route+' '+width,hit);const select=host.getByLabel('Tool on this page',{exact:true});await page.keyboard.press('Tab');check(await select.evaluate(el=>document.activeElement===el),'keyboard continues from guide summary to its tool selector '+route+' '+width);const actual=await select.locator('option').evaluateAll(options=>options.map(option=>option.value));
    check(JSON.stringify(actual)===JSON.stringify(expected.map(row=>row.id)),'guide selector matches the registered tools on '+route+' '+width);
    const rect=await host.boundingBox();check(rect.x>=0&&rect.x+rect.width<=width+1,'tool guide fits its route viewport '+route+' '+width,rect);
    if(width>=1100){const grid=await host.evaluate(el=>{const p=el.parentElement,s=getComputedStyle(p),r=p.getBoundingClientRect();return{withRail:p.matches('main.with-rail')&&s.display==='grid',left:r.left+parseFloat(s.paddingLeft)+parseFloat(s.borderLeftWidth),right:r.right-parseFloat(s.paddingRight)-parseFloat(s.borderRightWidth)};});if(grid.withRail)check(Math.abs(rect.x-grid.left)<2&&Math.abs(rect.x+rect.width-grid.right)<2,'desktop guide spans the content and rail columns '+route+' '+width,{guide:rect,grid});}
@@ -246,10 +247,48 @@ async function guides(width){
  }finally{await c.close();}
 }
 
+// Hold an actual progressive-enhancement module to reproduce the observed
+// focus race deterministically. Native layout/scroll anchoring remains active.
+async function guideLayout(width){
+ if(![320,390].includes(width))return;
+ for(const userScroll of[false,true]){
+  const {c,page}=await context(width);let release,intercepted;
+  const held=new Promise(resolve=>{release=resolve;}),requested=new Promise(resolve=>{intercepted=resolve;});
+  const entry={width,userScroll,route:'pages/trajectory.html',completed:false};(report.guideLayoutCases??=[]).push(entry);
+  await c.addInitScript(()=>{window.__qaGuideScrollCalls=[];const native=window.scrollBy;window.scrollBy=function(...args){window.__qaGuideScrollCalls.push({at:performance.now(),args});return native.apply(this,args);};});
+  await page.route('**/assets/js/app/person.js',async route=>{intercepted();await held;await route.continue().catch(()=>{});},{times:1});
+  const geometry=()=>page.locator('#tool-assistant .ta-panel > summary').evaluate(el=>{const r=el.getBoundingClientRect(),header=document.querySelector('header.site').getBoundingClientRect();const hits=[r.top+1,r.top+r.height/2,r.bottom-1].map(y=>{const hit=document.elementFromPoint(r.left+r.width/2,y);return!!hit&&(hit===el||el.contains(hit));});return{rect:r.toJSON(),viewport:{width:innerWidth,height:innerHeight},headerBottom:header.bottom,focused:document.activeElement===el,visible:r.left>=0&&r.right<=innerWidth&&r.top>=header.bottom&&r.bottom<=innerHeight&&hits.every(Boolean),hits,scrollY,calls:window.__qaGuideScrollCalls.length};});
+  try{
+   await page.goto(base+'pages/trajectory.html');await page.locator('#tool-assistant .ta-panel').waitFor();
+   let timer;try{await Promise.race([requested,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Actual deferred person module was not requested')),10000);})]);}finally{clearTimeout(timer);}
+   check(await page.locator('#tj-summary strong').count()===0,'actual trajectory calculation is still pending before guide activation '+width+' '+userScroll);
+   await page.locator('.tool-guide-shortcut a').click();await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+   entry.before=await geometry();check(entry.before.focused&&entry.before.visible,'ordinary guide shortcut is focused and unobscured before deferred rendering '+width+' '+userScroll,entry.before);
+   if(userScroll){
+    await page.mouse.move(width/2,400);await page.mouse.wheel(0,-900);
+    await page.waitForFunction(()=>document.querySelector('#tool-assistant .ta-panel > summary').getBoundingClientRect().top>=innerHeight);
+    entry.afterIntent=await geometry();check(entry.afterIntent.focused&&!entry.afterIntent.visible&&entry.afterIntent.scrollY<entry.before.scrollY-100,'native wheel deliberately leaves the focused guide below the viewport '+width,entry.afterIntent);
+   }
+   release();
+   await page.waitForFunction(()=>document.querySelector('#tj-summary strong')&&document.querySelector('#tj-timeline')?.textContent.trim()&&document.querySelector('#tj-picatrix')?.textContent.trim(),{},{timeout:30000});
+   await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+   entry.after=await geometry();
+   if(userScroll){
+    check(entry.after.focused&&entry.after.calls===entry.afterIntent.calls,'late real trajectory rendering does not pull back a deliberately scrolled guide '+width,{before:entry.afterIntent,after:entry.after});
+    await page.keyboard.press('Tab');await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    const focus=await focusedGuideControl(page);check(focus.inside&&focus.visibleHit&&await page.locator('#tool-assistant select').evaluate(el=>document.activeElement===el),'next native Tab rearms unobscured guide focus after deliberate scrolling '+width,focus);
+   }else check(entry.after.focused&&entry.after.visible,'focused guide stays visible after the actual deferred trajectory render '+width,entry.after);
+   entry.scrollCalls=await page.evaluate(()=>window.__qaGuideScrollCalls);entry.completed=true;
+   await shot(page,'trajectory-guide-'+(userScroll?'intent-rearmed-':'late-layout-')+width);
+  }catch(error){entry.failure=error.message;entry.geometry=await geometry().catch(()=>null);await shot(page,'failure-trajectory-guide-'+(userScroll?'intent-':'layout-')+width).catch(()=>{});throw error;}
+  finally{release();await c.close();}
+ }
+}
+
 try{
  await new Promise((ok,no)=>{server.once('error',no);server.listen(0,'127.0.0.1',ok);});origin='http://127.0.0.1:'+server.address().port;base=origin+prefix;
  browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH}:{}),args:['--no-sandbox']});report.browser=browser.version();report.runtime={nodeVersion:process.version,platform:process.platform};
- for(const width of widths){if(selected('chart'))await chart(width);if(selected('timeline'))await timeline(width);if(selected('alignment'))await alignment(width);if(selected('assistant'))await assistant(width);if(selected('guides'))await guides(width);}
+ for(const width of widths){if(selected('chart'))await chart(width);if(selected('timeline'))await timeline(width);if(selected('alignment'))await alignment(width);if(selected('assistant'))await assistant(width);if(selected('guides'))await guides(width);if(selected('guide-layout')||phase==='guides')await guideLayout(width);}
  const after=await product();report.source.productFiles=after;report.source.changedDuringRun=[...new Set([...Object.keys(before),...Object.keys(after)])].filter(p=>before[p]!==after[p]);
  if(report.source.changedDuringRun.length&&process.env.SKY_ALLOW_EDITS==='1')report.limits.unfrozenCandidate=true;else check(!report.source.changedDuringRun.length,'product unchanged during verification',report.source.changedDuringRun);
  check(report.source.testScriptSHA256===sha(await readFile(fileURLToPath(import.meta.url))),'test driver unchanged during verification');

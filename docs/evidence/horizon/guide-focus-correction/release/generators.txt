@@ -1,0 +1,40 @@
+[gen-opgraph] --check OK — the committed module is exactly this generator's output.
+[seed-gate] --check OK.
+{"mode":"check","calendarProfiles":13,"catalogueBookProfiles":34,"additionalBookProfiles":11,"totalProfiles":58,"artifacts":59,"changed":0}
+Generated static connection catalogue: 73 tools.
+{"mode":"check","chunks":13,"sources":12,"jsonlSHA256":"918659911ecad38bf3854ec4f1ecb9d8f796808fb4fae4944116ed916c08eacd","trainingPerformed":false}
+{"mode":"check","capabilities":96,"mcpTools":73,"withNamedAdapters":77,"guideOnly":19,"routes":91}
+{"mode":"check","capabilities":37,"adapterTools":35,"inputContracts":73}
+{
+  "pass": true,
+  "datasetId": "horizon-2031-0d63dab6c7ef-d864022eff6c",
+  "sourceFiles": 46,
+  "parts": 4,
+  "totalBytes": 35146692,
+  "counts": {
+    "days": 1525,
+    "cases": 3,
+    "totalSamples": 4575,
+    "processedSamples": 4575,
+    "availableSamples": 4575,
+    "unavailableSamples": 0,
+    "calendarRows": 59475,
+    "availableCalendarRows": 59475,
+    "profileResults": 18300,
+    "rankableProfileResults": 17114,
+    "observanceRows": 1011,
+    "uniqueObservances": 337,
+    "eventCount": 5883,
+    "truncated": false
+  },
+  "runtime": {
+    "environment": "node",
+    "node": "24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "icu": "78.3",
+    "cldr": "48.0",
+    "tz": "2026b"
+  },
+  "mode": "check",
+  "recalculated": false
+}

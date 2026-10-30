@@ -1,0 +1,37 @@
+{
+  "mainRun": 41012464661,
+  "mainCommit": "cf4d936a177952d4999dc1c39d7882f64f5acb66",
+  "mainReceiptSHA256": "daac44b6a9c395a5c58bb779915ef92888ea7de0f6d1199d80d3c79346d4f2ea",
+  "precedingPassedPRRun": 41010888567,
+  "precedingPassedPRReceiptSHA256": "9aac6737fe1b105f3b13f715a4bda26009f6ca2225d76188350663f4696e579d",
+  "exactSameProductFiles": 488,
+  "exactSameDriverSHA256": "9c0d8a0c6ee4654f1fef4467fb33af76d4509ceac478cd3c4a2f0b6d302b92df",
+  "runtimeErrors": [],
+  "sourceDrift": [],
+  "failedCheck": {
+    "label": "focused guide summary is not obscured by a page toolbar pages/trajectory.html 390",
+    "pass": false,
+    "details": {
+      "visibleHit": false
+    }
+  },
+  "precedingGeometryCheck": {
+    "label": "guide shortcut does not hide focused summary below sticky navigation pages/trajectory.html 390",
+    "pass": true,
+    "details": {
+      "summary": {
+        "x": 16,
+        "y": 900.71875,
+        "width": 358,
+        "height": 49.796875
+      },
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 77
+      }
+    }
+  },
+  "finding": "Focused summary is below viewport, not shown to be covered: y900.71875,height49.796875 in390x900. Cause under diagnosis; no rerun/exception added."
+}
