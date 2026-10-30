@@ -1,0 +1,23 @@
+{
+  "round": 2,
+  "mode": "fresh-context-review",
+  "reviewer": "timeline_review",
+  "status": "passed-with-correction-applied",
+  "checkedAt": "2026-10-30T09:07:17.788427+00:00",
+  "recordsReviewed": 12,
+  "sourceModuleSha256": "ced23203de8a5eca796d58baac085652d84fc3ec9b1977e51bec20973db55fb4",
+  "finding": "Belfast package scope was bilateral; corrected all three markers to multi-party while retaining country tags.",
+  "checks": [
+    "Null event clocks, zones and coordinates",
+    "Signature / effect / registration distinction",
+    "Simla selected scan heading",
+    "Egypt selected entry-into-force footnote",
+    "Jordan 5775 / 5755 variant retained",
+    "Duplicate treaty hosts counted as one lineage"
+  ],
+  "limits": [
+    "AI independent cross-review, not a human historian certification.",
+    "No full treaty-volume, all-language, astronomical or browser review."
+  ],
+  "ownerRefinementAfterReview": "UN Charter signature explicitly counts UN certified copy and NARA archival description as one original lineage; final held review checks this updated module."
+}

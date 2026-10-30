@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-30T09:32:42.587Z",
+  "kind": "bounded-final-review-addendum",
+  "accepted": true,
+  "previousReceipt": {
+    "path": "docs/evidence/calendar-timeline/review/final-acceptance.json",
+    "sha256": "00a18d1dbec01aff81ab5294309e154c76f06b9e111bc0bdf2da81a6afbc606b",
+    "preserved": true
+  },
+  "changedFiles": [
+    {
+      "path": "assets/css/calendar-timeline.css",
+      "previousSha256": "81d95d16cc4231d9276071a0f56828f23e2c5286b5f919c12157ee02b9d570a1",
+      "currentSha256": "bcc3ed1ecc0b2028b6084357ebbf04a6b8d9cc63a211fc948bfacf37bf8213ac"
+    },
+    {
+      "path": "assets/js/core/data/timeline-study-tasks.js",
+      "previousSha256": "5075bd60932363d6c2b15fffdcee093ec51e556751a428364271e5e511ee89d9",
+      "currentSha256": "0eeebc1d445844db95c4e9e8f38f2f6c4fe0b2035019c74eea4e2bf5d52d3d46"
+    }
+  ],
+  "currentSourceHashes": {
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/data/timeline-history.js": "1828e00a160513f767bf49b37c1301679f46b18bb2592193f86416184ac4b7a1",
+    "assets/js/core/data/timeline-study-tasks.js": "0eeebc1d445844db95c4e9e8f38f2f6c4fe0b2035019c74eea4e2bf5d52d3d46",
+    "mcp/calendar-timeline-adapters.mjs": "7f55950b378b692449498d7e24b98b10be661fe5150ad99c51dfed6ffd435d99",
+    "pages/calendar-timeline.html": "ad065e2fab71d75dc168ad9f851ab0147894a807ec20c642ac61179d7a18f3c2",
+    "assets/css/calendar-timeline.css": "bcc3ed1ecc0b2028b6084357ebbf04a6b8d9cc63a211fc948bfacf37bf8213ac",
+    "assets/js/app/calendar-timeline.js": "4792ee713445954c0a8a1c67e3a88d6279bfe7c56f8ddea742ec23244daee654",
+    "assets/js/workers/calendar-timeline-worker.js": "1ae093b62f8e7e410ec143c7d9b8705991bf5f914180a65dafc04813c1067b5d",
+    "scripts/test-calendar-timeline-protocol.mjs": "605ea3f7db80608501eed352aafffe662ac496d9992d45c66b5e834179ad1faf",
+    "assets/js/core/calendar-atlas.js": "917ff26c071b78a665cea9bdf145abd584cb8b2f2fbf5a7203099e91a25d62f6",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/astro.js": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+    "assets/js/core/vedic.js": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278",
+    "assets/js/core/data/vedic-data.js": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/sky-dynamics.js": "d23fac77f7083fcf61da386a9c4d5f7534a99c1bb9feb7b21e930bc20d3804c3",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b"
+  },
+  "checks": [
+    {
+      "label": "Only declared card-data and CSS files changed among18 bound files",
+      "passed": true
+    },
+    {
+      "label": "Removing onlynew citation-map andsource fields restores exactprevious data bytes",
+      "passed": true
+    },
+    {
+      "label": "Removing onlyappended narrowtransport block restores exactprevious CSSbytes",
+      "passed": true
+    },
+    {
+      "label": "begin: nonempty literal source string",
+      "passed": true
+    },
+    {
+      "label": "begin: no undefined placeholder in citation",
+      "passed": true
+    },
+    {
+      "label": "begin: sampled scope/outcome flags preserved",
+      "passed": true
+    },
+    {
+      "label": "begin: titles locators URLs derive from existing references",
+      "passed": true
+    },
+    {
+      "label": "begin: inherited reading limit remains explicit",
+      "passed": true
+    },
+    {
+      "label": "finish: nonempty literal source string",
+      "passed": true
+    },
+    {
+      "label": "finish: no undefined placeholder in citation",
+      "passed": true
+    },
+    {
+      "label": "finish: sampled scope/outcome flags preserved",
+      "passed": true
+    },
+    {
+      "label": "finish: titles locators URLs derive from existing references",
+      "passed": true
+    },
+    {
+      "label": "finish: inherited reading limit remains explicit",
+      "passed": true
+    },
+    {
+      "label": "study: nonempty literal source string",
+      "passed": true
+    },
+    {
+      "label": "study: no undefined placeholder in citation",
+      "passed": true
+    },
+    {
+      "label": "study: sampled scope/outcome flags preserved",
+      "passed": true
+    },
+    {
+      "label": "study: titles locators URLs derive from existing references",
+      "passed": true
+    },
+    {
+      "label": "study: inherited reading limit remains explicit",
+      "passed": true
+    },
+    {
+      "label": "dialogue: nonempty literal source string",
+      "passed": true
+    },
+    {
+      "label": "dialogue: no undefined placeholder in citation",
+      "passed": true
+    },
+    {
+      "label": "dialogue: sampled scope/outcome flags preserved",
+      "passed": true
+    },
+    {
+      "label": "dialogue: unavailable method cites authored boundary without invented historical sources",
+      "passed": true
+    },
+    {
+      "label": "ceremony: nonempty literal source string",
+      "passed": true
+    },
+    {
+      "label": "ceremony: no undefined placeholder in citation",
+      "passed": true
+    },
+    {
+      "label": "ceremony: sampled scope/outcome flags preserved",
+      "passed": true
+    },
+    {
+      "label": "ceremony: unavailable method cites authored boundary without invented historical sources",
+      "passed": true
+    }
+  ],
+  "reviewedCSS": "/* Narrow and fallback-font transports wrap whole controls, never their labels. */\n@media(max-width:420px){\n  .ct-transport>button{flex:1 0 auto;min-inline-size:6rem;min-height:44px;white-space:nowrap;overflow-wrap:normal;word-break:normal}\n  .ct-transport>.ct-step-label{flex:0 0 auto;min-inline-size:max-content;white-space:nowrap}\n}\n",
+  "sourceContract": ".claude/skills/add-data-module/SKILL.md: Every record carries a source field.",
+  "scope": "Added literal per-card citations and narrow transport wrapping only; no profile, rule, weight, numeric engine, adapter, HTML, application or worker change.",
+  "notRerun": [
+    "54 numeric composition checks",
+    "34 SVG geometry checks",
+    "98 transport checks",
+    "new primary-source research",
+    "browser verification"
+  ],
+  "residual": "The independent quality lane owns the ongoing final four-width browser run. This addendum establishes no publication or full-product release result."
+}

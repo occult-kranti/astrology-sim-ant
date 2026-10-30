@@ -1,0 +1,61 @@
+{
+  "round": 3,
+  "mode": "fresh-context-review",
+  "reviewer": "timeline_review",
+  "status": "passed",
+  "checkedAt": "2026-10-30T09:11:22.073Z",
+  "sourceModuleSha256Before": "1828e00a160513f767bf49b37c1301679f46b18bb2592193f86416184ac4b7a1",
+  "sourceModuleSha256After": "1828e00a160513f767bf49b37c1301679f46b18bb2592193f86416184ac4b7a1",
+  "events": 12,
+  "sources": 11,
+  "historyAndHeldFileChecks": [
+    {
+      "label": "history JSON roundtrip retains twelve day-only past records",
+      "passed": true
+    },
+    {
+      "label": "history coordinates and event zones remain unset",
+      "passed": true
+    },
+    {
+      "label": "unknown clocks qualified as unverified rather than unknowable",
+      "passed": true
+    },
+    {
+      "label": "Belfast correction applies to allthree records",
+      "passed": true
+    },
+    {
+      "label": "UN signature copies counted as onelineage",
+      "passed": true
+    },
+    {
+      "label": "all historical sources and precision qualifications survive JSON roundtrip",
+      "passed": true
+    },
+    {
+      "label": "historical objects expose no score forecast rank or chart fields",
+      "passed": true
+    },
+    {
+      "label": "history coverage declines prediction and representativeness",
+      "passed": true
+    },
+    {
+      "label": "Jordan record retains both Hebrewyear variants",
+      "passed": true
+    },
+    {
+      "label": "reviewed product sources held unchanged",
+      "passed": true
+    }
+  ],
+  "upstreamReview": "docs/evidence/calendar-timeline/review/held-core-source-review.json",
+  "upstreamReviewSha256": "afb49309e5d981c2b988f16c8a49597c9ffd8a77735431460703f09c78eede2c",
+  "scope": "Independent catalogue JSON roundtrip and source/precision boundary check; ten history/held-file assertions within a combined 28-check review.",
+  "limits": [
+    "No new source retrieval or complete treaty reading in round 3.",
+    "Catalogue serialization only; calculated frame exports intentionally exclude history.",
+    "Browser display, history jumps and downloaded-frame behavior remain separate integration checks."
+  ]
+}

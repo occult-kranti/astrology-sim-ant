@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-30T09:17:30.715068+00:00",
+  "reviewScope": "Independent source-method/composition/performance/SVG-geometry/transport review",
+  "accepted": true,
+  "openReviewFindings": [],
+  "hashes": {
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/data/timeline-history.js": "1828e00a160513f767bf49b37c1301679f46b18bb2592193f86416184ac4b7a1",
+    "assets/js/core/data/timeline-study-tasks.js": "5075bd60932363d6c2b15fffdcee093ec51e556751a428364271e5e511ee89d9",
+    "mcp/calendar-timeline-adapters.mjs": "7f55950b378b692449498d7e24b98b10be661fe5150ad99c51dfed6ffd435d99",
+    "pages/calendar-timeline.html": "ad065e2fab71d75dc168ad9f851ab0147894a807ec20c642ac61179d7a18f3c2",
+    "assets/css/calendar-timeline.css": "81d95d16cc4231d9276071a0f56828f23e2c5286b5f919c12157ee02b9d570a1",
+    "assets/js/app/calendar-timeline.js": "4792ee713445954c0a8a1c67e3a88d6279bfe7c56f8ddea742ec23244daee654",
+    "assets/js/workers/calendar-timeline-worker.js": "1ae093b62f8e7e410ec143c7d9b8705991bf5f914180a65dafc04813c1067b5d",
+    "scripts/test-calendar-timeline-protocol.mjs": "605ea3f7db80608501eed352aafffe662ac496d9992d45c66b5e834179ad1faf",
+    "assets/js/core/calendar-atlas.js": "917ff26c071b78a665cea9bdf145abd584cb8b2f2fbf5a7203099e91a25d62f6",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/astro.js": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+    "assets/js/core/vedic.js": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278",
+    "assets/js/core/data/vedic-data.js": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/sky-dynamics.js": "d23fac77f7083fcf61da386a9c4d5f7534a99c1bb9feb7b21e930bc20d3804c3",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b"
+  },
+  "receipts": {
+    "numerical-review-final.json": {
+      "sha256": "7da655b2b285d577a9fb4fb14b8f5c7032c6788ecd2fb83b25173b9844dd56e6",
+      "passedChecks": 54,
+      "allPassed": true
+    },
+    "held-core-source-review.json": {
+      "sha256": "dedcbfa0c3fee1bcf631379a8bff66e20eb49015504e54ffe19048494b2f21c3",
+      "passedChecks": 28,
+      "allPassed": true
+    },
+    "render-review-final.json": {
+      "sha256": "1ae3f7dce59fe437ccc040ed29fdda0944e1a7a13b1478eb52ee41f75e251118",
+      "passedChecks": 34,
+      "allPassed": true
+    },
+    "protocol-review.json": {
+      "sha256": "a44176d469168fe168d8864edb9c7df660f026edf98a61ab27f3ab98dbc5fe6c",
+      "passedChecks": 98,
+      "allPassed": true
+    },
+    "selected-source-review.json": {
+      "sha256": "cf9a8e9d79a9559855a6cc9d33f55c36686ad6a602451c478d4dd7bf29a77783",
+      "passedChecks": 0,
+      "allPassed": true
+    }
+  },
+  "checkedUIFix": "Historical scope, notes, source lineage, date precision, original-calendar qualifications and source readingStatus now render; main source records retain readingStatus. Chart-adjacent toolbar uses the same selected index; the output-height placeholder is aria-hidden and old frame outputs are hidden until replacement. The separate historical-source JSON labels calculationIncluded and assumedClockIncluded false.",
+  "notEstablished": [
+    "Whole-product release gate completion",
+    "Final real-browser responsive/keyboard/race/download acceptance beyond source inspection of QA report",
+    "Hosted MCP or provider deployment",
+    "Publication",
+    "Full-range numerical or historical-zone accuracy",
+    "Historical truth of every catalogue record beyond selected source reading",
+    "Predictive efficacy"
+  ],
+  "rootFreezeConfirmedAt": "2026-10-30T09:18:28.977744+00:00",
+  "rootFreezeHashComparison": {
+    "filesChecked": 18,
+    "mismatches": []
+  }
+}

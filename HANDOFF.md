@@ -1,5 +1,17 @@
 # Handoff notes — for the next model/build
 
+## Synchronized chart timeline — 30 October 2026
+
+Work on `feat/peaceful-calendar-timeline` begins from published `ae94fb003f00f3456635121e81f6616a6d6118a3`. The preceding country study was merged in PR8 and production run41026989961 passed all four jobs. Live country/horizon receipts verified410fetched responses and17actual downloads against that release. Older pending statements below are historical checkpoints.
+
+Read [timeline plan](docs/2026-10-calendar-timeline-plan.md), [engine](docs/2026-10-calendar-timeline-engine.md), [study methods](docs/2026-10-calendar-timeline-methods.md), [history sources](docs/2026-10-calendar-timeline-history.md) and [independent review](docs/2026-10-calendar-timeline-review.md). A new page synchronizes the supported sky, tropical/sidereal chart and calendar families through a bounded daily slider. The worker is replaced on edits/cancellation; exact input/clock context and source limits remain attached. Unknown historical clocks are not national nativities. Peaceful study profiles remain editorial; dialogue/ceremony have no invented timing rule. There are no war forecasts, military objectives or future country rankings.
+
+Current source catalogue:75MCPtools,98capabilities,93guide routes,132HTMLpages. `workbench_calendar_timeline_frame` computes one selected frame from explicit inputs; source support does not deploy an authenticated MCP service. No provider inference, training or Supabase deployment is claimed. Source/calendar/year bounds remain1900–2100; a window contains at most3660dates, including unavailable clocks. Source-markers and frame exports are deliberately separate and visibly labelled; historical-record JSON retains the source context.
+
+Follow the five required repository gates, actual MCP transport checks, inherited browser suites and full-grid stress job. Regenerate horizon source bindings after catalogue changes; compare existing data bytes instead of assuming numerical parity. Publishing remains authorized. Require current exact-head CI, production workflow and deployed release/source identity before claiming this new timeline is live.
+
+Three review rounds are complete. The final held timeline passed 2,067 browser assertions and 125 independent semantic checks, with 44 archived real downloads and 32 inspected screenshots across four widths. Root rehashed all 505 product files and both test drivers. Full engine (725), audit (132 HTML/310 JS), all-page sweep (132 pages, zero errors) and eight generator gates passed; two inherited descriptor warnings remain. Read the [panel](docs/2026-10-calendar-timeline-panel.md) and [verification](docs/2026-10-calendar-timeline-verification.md). Production publication is a separate acceptance step recorded in the PR and deployed release metadata.
+
 ## Country histories — 30 October 2026
 
 Development branch `feat/country-calendar-history` starts from the verified published `e049fc9dfa51694f254552862f82cd917964676a`. The prior horizon and mobile focus correction are live: production Actions run41017304502 succeeded, deployed `release.json` matched e049fc9, and independent live receipts bound all462 fetched source/data responses to that Git tree. The older “current work” failure notes below describe the preceding diagnosis, not the current production status.

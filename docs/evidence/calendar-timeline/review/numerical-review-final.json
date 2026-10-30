@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-calendar-timeline-composition-review",
+  "generatedAt": "2026-10-30T09:11:22.498Z",
+  "environment": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "platform": "linux"
+  },
+  "source": {
+    "path": "/workspace/astrology-sim-ant/assets/js/core/calendar-timeline.js",
+    "beforeHash": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "afterHash": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27"
+  },
+  "caveat": "Canonical equality tests establish composition, not independently validated ephemerides, source truth, or predictive validity. Timing describes this single runtime/workload, not a portable performance guarantee.",
+  "assertions": [
+    {
+      "label": "london-current-regiomontanus: one selected clock resolution",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: exact calendar rows",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: pane contexts share one instant",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: seven shared sky longitudes equal chart engine",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: twelve tropical cusps equal core",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: angles and fallback remain canonical",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: all ten sky placements use same cusps",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: nine sidereal grahas equal core",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: sidereal offset applied exactly once",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: sidereal house1 starts at lagna sign",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: no natal output projected",
+      "passed": true
+    },
+    {
+      "label": "london-current-regiomontanus: sample/outcome boundaries explicit",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: one selected clock resolution",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: exact calendar rows",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: pane contexts share one instant",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: seven shared sky longitudes equal chart engine",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: twelve tropical cusps equal core",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: angles and fallback remain canonical",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: all ten sky placements use same cusps",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: nine sidereal grahas equal core",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: sidereal offset applied exactly once",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: sidereal house1 starts at lagna sign",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: no natal output projected",
+      "passed": true
+    },
+    {
+      "label": "delhi-sidereal-whole: sample/outcome boundaries explicit",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: one selected clock resolution",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: exact calendar rows",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: pane contexts share one instant",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: seven shared sky longitudes equal chart engine",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: twelve tropical cusps equal core",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: angles and fallback remain canonical",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: all ten sky placements use same cusps",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: nine sidereal grahas equal core",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: sidereal offset applied exactly once",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: sidereal house1 starts at lagna sign",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: no natal output projected",
+      "passed": true
+    },
+    {
+      "label": "tromso-polar-placidus: sample/outcome boundaries explicit",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: one selected clock resolution",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: exact calendar rows",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: pane contexts share one instant",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: seven shared sky longitudes equal chart engine",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: twelve tropical cusps equal core",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: angles and fallback remain canonical",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: all ten sky placements use same cusps",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: nine sidereal grahas equal core",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: sidereal offset applied exactly once",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: sidereal house1 starts at lagna sign",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: no natal output projected",
+      "passed": true
+    },
+    {
+      "label": "historical-marker-assumed-observer: sample/outcome boundaries explicit",
+      "passed": true
+    },
+    {
+      "label": "maximum grid includes exactly 3660 slots",
+      "passed": true
+    },
+    {
+      "label": "maximum grid resolves exactly once per date",
+      "passed": true
+    },
+    {
+      "label": "maximum-range last frame resolves one slot",
+      "passed": true
+    },
+    {
+      "label": "last frame reaches inclusive endpoint",
+      "passed": true
+    },
+    {
+      "label": "range width changes no selected facts",
+      "passed": true
+    },
+    {
+      "label": "engine source unchanged during probe",
+      "passed": true
+    }
+  ],
+  "measurements": [
+    {
+      "id": "london-current-regiomontanus",
+      "dateISO": "2026-10-30T12:00:00.000Z",
+      "elapsedMs": 93.10993,
+      "actualHouseSystem": "regiomontanus",
+      "houseWarning": null,
+      "sourceCount": 42,
+      "serializedBytes": 296418
+    },
+    {
+      "id": "delhi-sidereal-whole",
+      "dateISO": "1947-08-15T04:00:00.000Z",
+      "elapsedMs": 33.718119,
+      "actualHouseSystem": "whole",
+      "houseWarning": null,
+      "sourceCount": 42,
+      "serializedBytes": 295487
+    },
+    {
+      "id": "tromso-polar-placidus",
+      "dateISO": "2030-06-21T10:00:00.000Z",
+      "elapsedMs": 18.72756099999998,
+      "actualHouseSystem": "regiomontanus",
+      "houseWarning": "Placidus is unavailable above 66° in this implementation. The displayed cusps use Regiomontanus; select Whole Sign or Equal explicitly to compare.",
+      "sourceCount": 42,
+      "serializedBytes": 296422
+    },
+    {
+      "id": "historical-marker-assumed-observer",
+      "dateISO": "1994-10-26T22:45:30.000Z",
+      "elapsedMs": 21.464526999999975,
+      "actualHouseSystem": "equal",
+      "houseWarning": null,
+      "sourceCount": 42,
+      "serializedBytes": 296611
+    }
+  ],
+  "performance": {
+    "maximumGridDays": 3660,
+    "gridMs": 325.24123000000003,
+    "maximumRangeSelectedFrameMs": 12.385420000000067,
+    "oneDayFrameMs": 10.443663000000015,
+    "selectedFrameClockCalls": 1
+  }
+}

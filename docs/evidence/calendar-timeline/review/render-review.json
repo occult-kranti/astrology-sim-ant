@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-drawn-coordinate-review",
+  "generatedAt": "2026-10-30T09:07:21.644Z",
+  "environment": {
+    "node": "v24.19.0"
+  },
+  "before": {
+    "assets/js/app/calendar-timeline.js": "8a198bf92898311b54ca8d11c9d13f6d1227c2e1ee29b06943c6b08053fa76e5",
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27"
+  },
+  "after": {
+    "assets/js/app/calendar-timeline.js": "8a198bf92898311b54ca8d11c9d13f6d1227c2e1ee29b06943c6b08053fa76e5",
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27"
+  },
+  "cases": [
+    {
+      "day": "2026-10-30",
+      "requestedSystem": "regiomontanus",
+      "actualSystem": "regiomontanus",
+      "mode": "tropical",
+      "bodyCount": 10,
+      "cuspCount": 12
+    },
+    {
+      "day": "2026-10-30",
+      "requestedSystem": "regiomontanus",
+      "actualSystem": "regiomontanus",
+      "mode": "sidereal",
+      "bodyCount": 9,
+      "cuspCount": 12
+    },
+    {
+      "day": "1947-08-15",
+      "requestedSystem": "whole",
+      "actualSystem": "whole",
+      "mode": "tropical",
+      "bodyCount": 10,
+      "cuspCount": 12
+    },
+    {
+      "day": "1947-08-15",
+      "requestedSystem": "whole",
+      "actualSystem": "whole",
+      "mode": "sidereal",
+      "bodyCount": 9,
+      "cuspCount": 12
+    },
+    {
+      "day": "2030-06-21",
+      "requestedSystem": "placidus",
+      "actualSystem": "regiomontanus",
+      "mode": "tropical",
+      "bodyCount": 10,
+      "cuspCount": 12
+    },
+    {
+      "day": "2030-06-21",
+      "requestedSystem": "placidus",
+      "actualSystem": "regiomontanus",
+      "mode": "sidereal",
+      "bodyCount": 9,
+      "cuspCount": 12
+    },
+    {
+      "day": "1994-10-26",
+      "requestedSystem": "equal",
+      "actualSystem": "equal",
+      "mode": "tropical",
+      "bodyCount": 10,
+      "cuspCount": 12
+    },
+    {
+      "day": "1994-10-26",
+      "requestedSystem": "equal",
+      "actualSystem": "equal",
+      "mode": "sidereal",
+      "bodyCount": 9,
+      "cuspCount": 12
+    }
+  ],
+  "checks": [
+    {
+      "label": "2026-10-30/regiomontanus/tropical: actual body circles encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30/regiomontanus/tropical: actual twelve cusp lines encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30/regiomontanus/tropical: displayed cusp direction sectors total360",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30/regiomontanus/tropical: same-instant label and nonphysical-radius caveat",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30/regiomontanus/sidereal: actual body circles encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30/regiomontanus/sidereal: actual twelve cusp lines encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30/regiomontanus/sidereal: displayed cusp direction sectors total360",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30/regiomontanus/sidereal: same-instant label and nonphysical-radius caveat",
+      "passed": true
+    },
+    {
+      "label": "1947-08-15/whole/tropical: actual body circles encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "1947-08-15/whole/tropical: actual twelve cusp lines encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "1947-08-15/whole/tropical: displayed cusp direction sectors total360",
+      "passed": true
+    },
+    {
+      "label": "1947-08-15/whole/tropical: same-instant label and nonphysical-radius caveat",
+      "passed": true
+    },
+    {
+      "label": "1947-08-15/whole/sidereal: actual body circles encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "1947-08-15/whole/sidereal: actual twelve cusp lines encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "1947-08-15/whole/sidereal: displayed cusp direction sectors total360",
+      "passed": true
+    },
+    {
+      "label": "1947-08-15/whole/sidereal: same-instant label and nonphysical-radius caveat",
+      "passed": true
+    },
+    {
+      "label": "2030-06-21/placidus/tropical: actual body circles encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "2030-06-21/placidus/tropical: actual twelve cusp lines encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "2030-06-21/placidus/tropical: displayed cusp direction sectors total360",
+      "passed": true
+    },
+    {
+      "label": "2030-06-21/placidus/tropical: same-instant label and nonphysical-radius caveat",
+      "passed": true
+    },
+    {
+      "label": "2030-06-21/placidus/sidereal: actual body circles encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "2030-06-21/placidus/sidereal: actual twelve cusp lines encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "2030-06-21/placidus/sidereal: displayed cusp direction sectors total360",
+      "passed": true
+    },
+    {
+      "label": "2030-06-21/placidus/sidereal: same-instant label and nonphysical-radius caveat",
+      "passed": true
+    },
+    {
+      "label": "1994-10-26/equal/tropical: actual body circles encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "1994-10-26/equal/tropical: actual twelve cusp lines encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "1994-10-26/equal/tropical: displayed cusp direction sectors total360",
+      "passed": true
+    },
+    {
+      "label": "1994-10-26/equal/tropical: same-instant label and nonphysical-radius caveat",
+      "passed": true
+    },
+    {
+      "label": "1994-10-26/equal/sidereal: actual body circles encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "1994-10-26/equal/sidereal: actual twelve cusp lines encode canonical longitudes",
+      "passed": true
+    },
+    {
+      "label": "1994-10-26/equal/sidereal: displayed cusp direction sectors total360",
+      "passed": true
+    },
+    {
+      "label": "1994-10-26/equal/sidereal: same-instant label and nonphysical-radius caveat",
+      "passed": true
+    },
+    {
+      "label": "unavailable frame creates no tropical or sidereal geometry",
+      "passed": true
+    },
+    {
+      "label": "held source files unchanged while checking SVG",
+      "passed": true
+    }
+  ],
+  "limitation": "Headless SVG-coordinate reconstruction checks drawn direction and scope, not CSS layout, text collision, keyboard usability or screen-reader experience; those require the quality lane browser receipts."
+}

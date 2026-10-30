@@ -684,6 +684,10 @@ try {
         await page.waitForFunction(() => document.querySelector('#eh-json')?.disabled === false, {}, { timeout: 120000 });
         assert.equal(await page.locator('#eh-error').isHidden(), true, 'complete horizon preset activates without an error');
       }
+      if (path === 'pages/calendar-timeline.html') {
+        await page.waitForFunction(() => document.querySelector('#ct-json')?.disabled === false, {}, { timeout: 30000 });
+        assert.equal(await page.locator('#ct-error').isHidden(), true, 'synchronized timeline worker activates without an error');
+      }
       if (path === 'pages/country-calendars.html') {
         await page.waitForFunction(() => document.querySelector('#ch-json')?.disabled === false, {}, { timeout: 30000 });
         assert.equal(await page.locator('#ch-error').isHidden(), true, 'historical country reference comparison activates without an error');

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "gen-opgraph",
+    "exit": 0,
+    "stdout": "[gen-opgraph] --check OK — the committed module is exactly this generator's output.\n",
+    "stderr": ""
+  },
+  {
+    "name": "seed-opgraph-gate",
+    "exit": 0,
+    "stdout": "[seed-gate] --check OK.\n",
+    "stderr": ""
+  },
+  {
+    "name": "build-specialist-profiles",
+    "exit": 0,
+    "stdout": "{\"mode\":\"check\",\"calendarProfiles\":13,\"catalogueBookProfiles\":34,\"additionalBookProfiles\":11,\"totalProfiles\":58,\"artifacts\":59,\"changed\":0}\n",
+    "stderr": ""
+  },
+  {
+    "name": "build-mcp-catalogue",
+    "exit": 0,
+    "stdout": "Generated static connection catalogue: 75 tools.\n",
+    "stderr": ""
+  },
+  {
+    "name": "build-sky-reference",
+    "exit": 0,
+    "stdout": "{\"mode\":\"check\",\"chunks\":13,\"sources\":12,\"jsonlSHA256\":\"918659911ecad38bf3854ec4f1ecb9d8f796808fb4fae4944116ed916c08eacd\",\"trainingPerformed\":false}\n",
+    "stderr": ""
+  },
+  {
+    "name": "build-tool-coverage",
+    "exit": 0,
+    "stdout": "{\"mode\":\"check\",\"capabilities\":98,\"mcpTools\":75,\"withNamedAdapters\":79,\"guideOnly\":19,\"routes\":93}\n",
+    "stderr": ""
+  },
+  {
+    "name": "build-mcp-coverage",
+    "exit": 0,
+    "stdout": "{\"mode\":\"check\",\"capabilities\":39,\"adapterTools\":37,\"inputContracts\":75}\n",
+    "stderr": ""
+  },
+  {
+    "name": "generate-horizon-preset",
+    "exit": 0,
+    "stdout": "{\n  \"pass\": true,\n  \"datasetId\": \"horizon-2031-d9465497f928-2de1b5b8bd01\",\n  \"sourceFiles\": 46,\n  \"parts\": 4,\n  \"totalBytes\": 35146697,\n  \"counts\": {\n    \"days\": 1525,\n    \"cases\": 3,\n    \"totalSamples\": 4575,\n    \"processedSamples\": 4575,\n    \"availableSamples\": 4575,\n    \"unavailableSamples\": 0,\n    \"calendarRows\": 59475,\n    \"availableCalendarRows\": 59475,\n    \"profileResults\": 18300,\n    \"rankableProfileResults\": 17114,\n    \"observanceRows\": 1011,\n    \"uniqueObservances\": 337,\n    \"eventCount\": 5883,\n    \"truncated\": false\n  },\n  \"runtime\": {\n    \"environment\": \"node\",\n    \"node\": \"22.23.4\",\n    \"v8\": \"12.4.254.21-node.57\",\n    \"icu\": \"78.3\",\n    \"cldr\": \"48.0\",\n    \"tz\": \"2026e\"\n  },\n  \"mode\": \"check\",\n  \"recalculated\": false\n}\n",
+    "stderr": ""
+  }
+]
