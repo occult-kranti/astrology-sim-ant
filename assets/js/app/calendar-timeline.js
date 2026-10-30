@@ -1,6 +1,8 @@
 // A view over one canonical frame. Calendar/planet values are never computed by
 // presentation. Input changes terminate their worker and invalidate all exports.
 import { downloadBlob } from './state.js';
+import { mountDateNavigator } from './date-wayfinding.js';
+import { COUNTRY_EVENT_COUNTRIES } from '../core/data/country-event-research.js';
 const ROOT = new URL('../../../', import.meta.url);
 const $ = id => document.getElementById(id);
 const node = (tag, text, className) => { const n = document.createElement(tag); if (text != null) n.textContent = String(text); if (className) n.className = className; return n; };
@@ -50,11 +52,42 @@ export function calendarTimelinePlateSVG(frame, mode = 'tropical') {
 export function initCalendarTimeline() {
   let grid = null, frame = null, worker = null, revision = 0, selectedIndex = 0, busy = false, request = null, active = true, history = null, marker = null;
   const selectedFamilies = new Set(), main = document.querySelector('.calendar-timeline');
-  const sourceRows = new Map();
+  const sourceRows = new Map(), dateNavigators = new Map();
+  let navigationFocus = null, highlightSelection = null;
+  function clearDateNavigators() { for (const nav of dateNavigators.values()) nav.destroy(); dateNavigators.clear(); }
+  function dateLane(host, id, label, row = null) {
+    host.id=id;
+    const eventsByDate=new Map(arr(frame?.astronomicalEvents?.events).map(event=>[event.localDate,event]));
+    const items = grid.slots.map(slot => ({ id: slot.localDate, date: slot.selectedDateISO || slot.localDate,
+      label: slot.localDate, kind: slot.status !== 'available' ? 'unavailable' : eventsByDate.has(slot.localDate) ? 'astronomy' : 'neutral',
+      summary: slot.localDate === frame?.context?.localDate && row ? row.summary || row.reason || row.label : slot.status === 'available' ? 'Resolved study clock. Select this date to calculate every linked instrument.' : slot.reason,
+      details: [{label:'Study clock',value:`${slot.localTime} · ${request.timeZone}`},{label:'Scope',value:'One sample per civil date. Unvisited dates have no calculated rule classification.'}],
+      sourceLabel: [row?.sourceIds?.join(' · ') || 'Canonical local-clock grid',eventsByDate.has(slot.localDate)?arr(frame?.astronomicalEvents?.sourceIds).join(' · '):''].filter(Boolean).join('; '),...(eventsByDate.has(slot.localDate)?{summary:eventsByDate.get(slot.localDate).label+' occurs on this observer date; the slider retains the study clock.',details:[{label:'Solved event',value:eventsByDate.get(slot.localDate).dateISO},{label:'Selected study sample',value:slot.selectedDateISO||slot.reason},{label:'Definition',value:eventsByDate.get(slot.localDate).definition}]}:{}) }));
+    dateNavigators.set(id, mountDateNavigator(host, { id, label, items, value: grid.slots[selectedIndex].localDate, compact:true, bookmarkScope:'calendar-timeline',
+      onSelect: item => { if (!grid || !request) return; const index = grid.slots.findIndex(slot => slot.localDate === item.id); if (index < 0 || index === selectedIndex && frame) return; navigationFocus=id; clearMarker(); select(index); } }));
+  }
+  function renderDateNavigators(result) {
+    clearDateNavigators();
+    for (const [id,label] of [['ct-tropical-dates','Tropical chart · linked date'],['ct-sidereal-dates','Sidereal chart · linked date']]) dateLane($(id),id,label);
+    for (const row of result.atlas.rows.filter(row=>selectedFamilies.has(row.familyId))) {
+      const host=$('ct-calendars').querySelector(`[data-calendar-id="${row.id}"] .ct-calendar-dates`);
+      if (host) dateLane(host,'ct-date-'+row.id,row.label+' · linked date',row);
+    }
+    const sources=ids=>arr(ids).map(id=>sourceRows.get(id)).filter(Boolean);
+    const items=arr(result.astronomicalEvents?.events).filter(event=>event.localDate>=request.startDate&&event.localDate<=request.endDate).map((event,index)=>({id:'astro@'+event.dateISO,date:event.dateISO,label:event.label,kind:'astronomy',summary:event.definition,
+      details:[{label:'Observer date',value:event.localDate+' '+event.localTime+' · '+result.context.timeZone},{label:'Timing',value:result.astronomicalEvents.timing},{label:'Selection',value:'Selecting this event shows its civil date at the retained study clock. The event UTC above remains distinct.'}],sourceLabel:sources(result.astronomicalEvents.sourceIds).map(s=>s.title||s.id).join(' · ')||'Canonical astronomical event solver',sourceUrl:safeURL(sources(result.astronomicalEvents.sourceIds)[0]?.url)}));
+    for (const tradition of arr(result.guidance?.traditions)) for (const rule of arr(tradition.items)) {
+      const source=sources(rule.sourceIds),kind=['favorable','caution'].includes(rule.classification)?'traditional-'+rule.classification:['mixed','unavailable'].includes(rule.classification)?rule.classification:'neutral';
+      items.push({id:'rule-'+rule.id+'@'+result.context.dateISO,date:result.context.dateISO,label:tradition.label+' · '+rule.title,kind,summary:rule.reading,details:[{label:'Classification',value:human(rule.classification)+' · named rule at this sampled instant; not a whole-day or physical-danger forecast'},{label:'Computed inputs',value:JSON.stringify(rule.computed)},{label:'Source status',value:rule.sourceStatus||source.map(s=>s.status||s.readingDepth||'').join(' · ')},{label:'Limits',value:arr(rule.limitations).join(' ')}],sourceLabel:source.map(s=>[s.title,s.locator,s.edition].filter(Boolean).join(' · ')).join('; ')||arr(rule.sourceIds).join(' · '),sourceUrl:safeURL(source[0]?.url)});
+    }
+    items.sort((a,b)=>Date.parse(a.date)-Date.parse(b.date));
+    dateNavigators.set('ct-highlights',mountDateNavigator($('ct-date-highlights'),{id:'ct-highlights',label:'Highlighted events & named rules',items,value:items.some(item=>item.id===highlightSelection)?highlightSelection:items.find(item=>item.id.startsWith('rule-'))?.id,bookmarkScope:'calendar-timeline',emptyMessage:'No supported event or named rule is available for this sample.',onSelect:item=>{highlightSelection=item.id;const event=result.astronomicalEvents?.events.find(event=>event.dateISO===item.date);if(!event)return;const index=grid.slots.findIndex(slot=>slot.localDate===event.localDate);if(index>=0&&index!==selectedIndex){navigationFocus='ct-date-highlights';clearMarker();select(index);}}}));
+  }
   function state(name, message) { main.dataset.state = name; $('ct-status').textContent = message; $('ct-chart-state').textContent = name === 'loading' ? 'Updating the linked instruments…' : name === 'ready' ? 'One shared instant across all instruments' : message; }
   function exportsEnabled(enabled) { $('ct-json').disabled = !enabled; $('ct-csv').disabled = !enabled; }
   function controls() {
     const navigable = Boolean(grid && request);
+    for (const nav of dateNavigators.values()) nav.update({disabled:!navigable||busy||!frame});
     $('ct-date').disabled = !navigable; $('ct-slider').disabled = !navigable;
     $('ct-prev').disabled = !navigable || selectedIndex <= 0;
     $('ct-next').disabled = !navigable || selectedIndex >= grid.slots.length - 1;
@@ -65,7 +98,7 @@ export function initCalendarTimeline() {
   }
   function stop() { revision++; worker?.terminate(); worker = null; busy = false; controls(); }
   function invalidate(message = 'Settings changed. Apply them to calculate the updated moment.') {
-    stop(); frame = null; grid = null; request = null; $('ct-pending-space').hidden = true; $('ct-output').hidden = true; $('ct-output').removeAttribute('data-date-iso');
+    stop(); clearDateNavigators(); frame = null; grid = null; request = null; $('ct-pending-space').hidden = true; $('ct-output').hidden = true; $('ct-output').removeAttribute('data-date-iso');
     $('ct-stale').hidden = false; $('ct-error').hidden = true; $('ct-unavailable').hidden = true; $('ct-export-status').textContent = ''; exportsEnabled(false);
     $('ct-atlas-link').href = new URL('pages/calendar-atlas.html', ROOT).href;
     $('ct-sources').replaceChildren(node('p', 'Apply the updated settings to display their source records.', 'ct-note')); sourceRows.clear();
@@ -140,16 +173,17 @@ export function initCalendarTimeline() {
     table('ct-planets', result.sky.bodies.map(b => [b.name, degrees(b.longitude), degrees(b.latitude), tropical.placements.find(p => p.id === b.id)?.house, b.retrograde ? 'Retrograde' : 'Direct']));
     table('ct-houses', tropical.cusps.map((longitude, i) => [i + 1, degrees(longitude), degrees(vedic.cusps[i])]));
     table('ct-grahas', vedic.planets.map(p => [p.id, degrees(p.longitude), p.sign, p.house, `${p.nakshatra.sanskrit || p.nakshatra.name} · pāda ${p.nakshatra.pada}`]));
-    renderFamilies(result); renderCalendars(result); renderRules(result); renderTasks(result); renderEvents(result);
+    renderFamilies(result); renderCalendars(result); renderRules(result); renderTasks(result); renderEvents(result); renderDateNavigators(result);
     for (const id of ['ct-tropical','ct-sidereal','ct-measures','ct-calendars','ct-rules','ct-tasks','ct-events']) $(id).dataset.dateIso = c.dateISO;
     const atlasURL = new URL('pages/calendar-atlas.html', ROOT); for (const [k, v] of Object.entries({ at:c.dateISO,lat:c.lat,lon:c.lon,zone:c.timeZone,system:c.system })) atlasURL.searchParams.set(k, String(v)); $('ct-atlas-link').href = atlasURL.href;
     $('ct-pending-space').hidden = true; $('ct-output').hidden = false;
+    if(navigationFocus){$(navigationFocus)?.querySelector('input[type="range"]')?.focus({preventScroll:true});navigationFocus=null;}
   }
   function renderFamilies(result) {
     if ($('ct-families').querySelector('input')) return;
     for (const family of result.atlas.families) {
       selectedFamilies.add(family.id); const label = node('label'), input = node('input'); input.type = 'checkbox'; input.value = family.id; input.checked = true;
-      input.addEventListener('change', () => { input.checked ? selectedFamilies.add(family.id) : selectedFamilies.delete(family.id); if (frame?.status === 'available') renderCalendars(frame); }); label.append(input, node('span', family.label)); $('ct-families').append(label);
+      input.addEventListener('change', () => { input.checked ? selectedFamilies.add(family.id) : selectedFamilies.delete(family.id); if (frame?.status === 'available') { renderCalendars(frame); renderDateNavigators(frame); } }); label.append(input, node('span', family.label)); $('ct-families').append(label);
     }
   }
   function renderCalendars(result) {
@@ -160,7 +194,7 @@ export function initCalendarTimeline() {
       const article = node('article', null, 'ct-calendar'); article.dataset.calendarId = row.id; article.dataset.dateIso = result.context.dateISO;
       article.append(node('p', human(row.kind), 'ct-kicker'), node('h3', row.label), node('p', row.summary || row.result?.text || row.reason || 'Unavailable', 'ct-calendar-value'), node('p', `${human(row.status)} · ${human(row.boundary)}`, 'ct-note'));
       const body = node('div'); body.append(node('p', row.method), node('p', 'Validation: ' + row.validation), list(row.limitations), citations(row.sourceIds)); if (row.reason) body.append(node('p', row.reason));
-      article.append(details('Method, source & limits', body)); $('ct-calendars').append(article);
+      article.append(node('div',null,'ct-calendar-dates'),details('Method, source & limits', body)); $('ct-calendars').append(article);
     }
   }
   function renderRules(result) {
@@ -168,7 +202,7 @@ export function initCalendarTimeline() {
     for (const tradition of arr(result.guidance?.traditions)) {
       const article = node('article', null, 'ct-lens'); article.append(node('h3', tradition.label));
       for (const rule of tradition.items) {
-        const block = node('details', null, 'ct-rule'); block.append(node('summary', rule.title), node('p', rule.reading), node('p', 'Named classification: ' + human(rule.classification) + ' · sampled instant only', 'ct-note'));
+        const block = node('details', null, 'ct-rule'); block.dataset.classification=rule.classification; block.append(node('summary', rule.title), node('p', rule.reading), node('p', 'Named classification: ' + human(rule.classification) + ' · sampled instant only', 'ct-note'));
         block.append(node('p', rule.algorithm || rule.rule?.algorithm, 'ct-note'), node('p', rule.sourceStatus, 'ct-note'), list(rule.limitations), citations(rule.sourceIds));
         block.append(details('Calculated inputs & thresholds', node('pre', JSON.stringify({ computed:rule.computed,thresholds:rule.thresholds }, null, 2)))); article.append(block);
       }
@@ -229,18 +263,32 @@ export function initCalendarTimeline() {
     operate(type, selectedRequest, index, result => { if (frame !== saved) return; downloadBlob(new Blob([result], { type: type === 'json' ? 'application/json;charset=utf-8' : 'text/csv;charset=utf-8' }), `calendar-timeline-${date}.${type}`); exportsEnabled(true); state('ready', 'The displayed instant and source context are ready.'); $('ct-export-status').textContent = `${type.toUpperCase()} downloaded for ${saved.context.dateISO}, including the entered observer and complete frame.`; });
   }
   $('ct-form').addEventListener('submit', event => { event.preventDefault(); apply(); });
-  $('ct-form').addEventListener('input', () => { marker = null; $('ct-history-assumption').hidden = true; invalidate(); });
-  $('ct-form').addEventListener('change', () => { marker = null; $('ct-history-assumption').hidden = true; invalidate(); });
+  $('ct-form').addEventListener('input', () => { marker = null; $('ct-history-assumption').hidden = true; $('ct-observer-assumption').hidden = true; invalidate(); });
+  $('ct-form').addEventListener('change', () => { marker = null; $('ct-history-assumption').hidden = true; $('ct-observer-assumption').hidden = true; invalidate(); });
   $('ct-slider').addEventListener('input', () => { clearMarker(); select(Number($('ct-slider').value)); });
   $('ct-date').addEventListener('change', () => { if (!grid) return; const index = grid.slots.findIndex(s => s.localDate === $('ct-date').value); if (index < 0) { $('ct-error').textContent = 'Choose a date inside the applied range, or edit the range in settings.'; $('ct-error').hidden = false; $('ct-date').value = grid.slots[selectedIndex].localDate; return; } clearMarker(); select(index); });
   $('ct-chart-prev').addEventListener('click', () => { clearMarker(); select(selectedIndex - 1); }); $('ct-chart-next').addEventListener('click', () => { clearMarker(); select(selectedIndex + 1); });
   $('ct-prev').addEventListener('click', () => step(-1)); $('ct-next').addEventListener('click', () => step(1)); $('ct-step-unit').addEventListener('change', controls);
   $('ct-cancel').addEventListener('click', () => { stop(); frame = null; $('ct-pending-space').hidden = true; $('ct-output').hidden = true; $('ct-output').removeAttribute('data-date-iso'); $('ct-sources').replaceChildren(node('p', 'Calculation cancelled. Apply settings or choose a date to restore its source records.', 'ct-note')); exportsEnabled(false); state('cancelled', 'Calculation cancelled. Choose another date or Apply settings to restart.'); });
-  $('ct-reset').addEventListener('click', () => { marker = null; $('ct-history-assumption').hidden = true; fillSettings(DEFAULTS); apply(DEFAULTS.startDate); });
+  $('ct-reset').addEventListener('click', () => { marker = null; $('ct-history-assumption').hidden = true; $('ct-observer-assumption').hidden=true; fillSettings(DEFAULTS); apply(DEFAULTS.startDate); });
   $('ct-json').addEventListener('click', () => exportResult('json')); $('ct-csv').addEventListener('click', () => exportResult('csv'));
   window.addEventListener('pagehide', () => { active = false; stop(); frame = null; exportsEnabled(false); });
   window.addEventListener('pageshow', event => { active = true; if (event.persisted) apply(); });
-  fillSettings(DEFAULTS); apply(DEFAULTS.startDate);
+  const linked=new URLSearchParams(location.search),initial={...DEFAULTS};let initialDate=DEFAULTS.startDate,linkError='';
+  if(linked.has('countryObserver')) {
+    const country=COUNTRY_EVENT_COUNTRIES.find(country=>country.id===linked.get('countryObserver'));
+    if(!country) linkError='This link names an unsupported country observer. Choose Restore study to use the default observer.';
+    else {
+      Object.assign(initial,{lat:country.lat,lon:country.lon,timeZone:country.timeZone});
+      if(linked.has('studyDate')) {
+        const date=linked.get('studyDate'),time=Date.parse(date+'T12:00:00Z');
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!Number.isFinite(time)||new Date(time).toISOString().slice(0,10)!==date||date<'1900-01-01'||date>'2100-12-31') linkError='This study link requires a real civil date in 1900–2100.';
+        else {initialDate=date;initial.startDate=new Date(Math.max(Date.parse('1900-01-01T12:00:00Z'),time-30*86400000)).toISOString().slice(0,10);initial.endDate=new Date(Math.min(Date.parse('2100-12-31T12:00:00Z'),time+30*86400000)).toISOString().slice(0,10);}
+      }
+      $('ct-observer-assumption').textContent=`${country.label} · fixed ${country.observerName} study observer. ${country.source} The 12:00 local clock is an explicit study assumption. This does not infer national beliefs, a national birth chart or conflict timing.`;$('ct-observer-assumption').hidden=false;
+    }
+  }
+  fillSettings(initial);if(linkError)fail(linkError);else apply(initialDate);
   // History catalogue is loaded independently; a source-load failure must not
   // take the live calendar instruments down with it.
   import('../core/data/timeline-history.js').then(data => { history = data; renderHistory(); }).catch(error => { $('ct-history').replaceChildren(node('p', `Historical markers could not load: ${error.message}. Reload the page to retry.`, 'ct-error')); });
