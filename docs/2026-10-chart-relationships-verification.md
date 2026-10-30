@@ -31,4 +31,4 @@ These are bounded model-agent and automated-browser checks. They do not establis
 
 ## Publication state
 
-The configured cloud GitHub credential returned HTTP 401 during the release check. A connection refresh was requested; no secret was printed or requested in chat. Local acceptance does not establish a new push, CI run or live deployment. External fetch/audit and seven-context live verification drivers are prepared, but their new-release results must be recorded only after successful authentication, exact-head CI and actual Pages publication.
+The configured cloud GitHub credential initially returned HTTP 401. The connection recovered before release and the tested feature branch was pushed successfully. No secret was printed or requested in chat. Local acceptance and a pushed branch do not establish a live deployment. External fetch/audit and seven-context live verification drivers are prepared; the pull request and actual release receipts record subsequent exact-head CI, Pages publication and live verification.
