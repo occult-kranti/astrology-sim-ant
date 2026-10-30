@@ -2,6 +2,8 @@ import { getCountryHistoryCatalogue, buildCountryHistoryStudy } from '../core/co
 import { COUNTRY_HISTORY_METHODS, COUNTRY_HISTORY_HOUSES, COUNTRY_HISTORY_TASKS, COUNTRY_METHOD_SOURCES } from '../core/data/country-history-methods.js';
 import { frontispiece } from './art/engravings.js';
 import { downloadJSON, downloadBlob } from './state.js';
+import { compareMoment } from '../core/calendar-observatory.js';
+import { mountDateNavigator } from './date-wayfinding.js';
 import { COUNTRY_EVENT_RESEARCH, COUNTRY_EVENT_COUNTRIES, COUNTRY_EVENT_RECORDS, COUNTRY_EVENT_SOURCES, COUNTRY_EVENT_PROFILES, COUNTRY_EVENT_CALCULATION_SOURCES, getCountryEventRecords, getCountryEventRecord, validateCountryResearchChunk } from '../core/data/country-event-research.js';
 
 const $ = id => document.getElementById(id);
@@ -58,10 +60,11 @@ export function countryStudyCSV(study) {
 
 export function initCountryCalendars() {
   initCountryEventResearch();
-  let catalogue, study = null, revision = 0;
+  let catalogue, study = null, revision = 0, foundingNavigator = null, highlightedId = '';
+  const sampleCalendarCache = new Map();
   const countryName = id => catalogue.countries.find(country => country.id === id)?.label || catalogue.countries.find(country => country.id === id)?.name || id;
   const selectedIds = () => [...document.querySelectorAll('#ch-record-picker input:checked')].map(input => input.value);
-  const updateCount = () => { const count = selectedIds().length; $('ch-selection-count').textContent = `${count} of ${catalogue.maxRecords} records selected`; };
+  const updateCount = () => { const count = selectedIds().length; $('ch-selection-count').textContent = `${count} of ${catalogue.maxRecords} records selected`; updateFoundingAction(); };
   const disableExports = () => { $('ch-json').disabled = true; $('ch-csv').disabled = true; $('ch-export-status').textContent = ''; };
   const invalidate = () => {
     revision++; study = null; disableExports(); updateCount();
@@ -86,6 +89,32 @@ export function initCountryCalendars() {
       wrapper.append(group);
     }
     updateCount();
+  }
+
+  function updateFoundingAction() {
+    const selected = selectedIds().includes(highlightedId);
+    $('ch-add-highlighted').disabled = !highlightedId || selected;
+    $('ch-add-highlighted').textContent = selected ? 'Highlighted record is in the comparison' : 'Add highlighted record to comparison';
+  }
+
+  function renderFoundingNavigation() {
+    const id = $('ch-date-country').value;
+    const records = catalogue.records.filter(record => record.countryId === id).sort((a,b) => a.date.localeCompare(b.date));
+    if (!records.some(record => record.id === highlightedId)) highlightedId = records[0]?.id || '';
+    const items = records.map(record => {
+      const source = catalogue.sources.find(item => item.id === record.sourceIds[0]);
+      return { id: record.id, date: record.date, label: record.title, kind: 'source-claim', summary: record.scopeNote || 'Documented historical milestone; event clock unknown.', sourceLabel: record.sourceIds.join(' · '), sourceUrl: safeSourceURL(source?.url), details: [
+        { label: 'Source calendar', value: record.originalCalendar || 'Not established' },
+        { label: 'Event clock', value: record.time.localTime || 'Unknown · date-only source record' },
+        { label: 'Reference observer', value: `${record.eventPlace.label} · ${record.eventPlace.zone}` },
+        { label: 'Calculation', value: Number(record.date.slice(0,4)) < 1900 ? 'Source retained; calculations unavailable before 1900.' : 'Civil comparison uses separately assumed local noon.' },
+        { label: 'Source qualification', value: record.time.qualification || record.scopeNote || 'See the complete source record.' },
+      ] };
+    });
+    const options = { id: 'ch-founding-date', label: `${countryName(id)} · founding source dates`, items, value: highlightedId, bookmarkScope: `country-founding:${id}`, compact: true, onSelect: item => { highlightedId = item.id; updateFoundingAction(); $('ch-date-selection-status').textContent = `${item.date} highlighted. Add it to the comparison to calculate supported labels.`; } };
+    if (foundingNavigator) foundingNavigator.update(options); else foundingNavigator = mountDateNavigator($('ch-date-navigator'), options);
+    $('ch-date-selection-status').textContent = 'Browsing and saving a date keeps your comparison selection intact.';
+    updateFoundingAction();
   }
 
   function renderReference() {
@@ -164,6 +193,31 @@ export function initCountryCalendars() {
   }
 
   function currentSampleRecord() { return study?.records.find(item => item.record.id === $('ch-sample-record').value); }
+  function renderSampleCalendars(item, sample) {
+    const wrapper = $('ch-sample-calendars'); wrapper.hidden = !sample || sample.status !== 'available';
+    if (wrapper.hidden) { wrapper.removeAttribute('data-date-iso'); $('ch-house-plate').removeAttribute('data-date-iso'); $('ch-sample-calendar-table').replaceChildren(); return; }
+    try {
+      const key = `${item.record.id}|${sample.dateISO}|${sample.houseSystem}`;
+      if (!sampleCalendarCache.has(key)) sampleCalendarCache.set(key, compareMoment({ dateISO: sample.dateISO, lat: item.record.eventPlace.lat, lon: item.record.eventPlace.lon, timeZone: item.record.eventPlace.zone, system: sample.houseSystem }));
+      const comparison = sampleCalendarCache.get(key), table = node('table'), head = node('thead'), headings = node('tr'), body = node('tbody');
+      headings.append(node('th', 'Civil convention'), node('th', 'Label at the assumed clock'), node('th', 'Method & limits')); head.append(headings);
+      for (const row of comparison.calendars) {
+        const tr = node('tr'), name = node('th', row.label), limits = node('td'), notes = node('div'); name.scope = 'row';
+        notes.append(node('p', row.method), node('p', `${readable(row.boundary)} · ${row.validation}`), list(row.limitations));
+        for (const sourceId of row.sourceIds) {
+          const source = comparison.sources.find(value => value.id === sourceId), href = safeSourceURL(source?.url);
+          if (href) { const a = node('a', source.title || sourceId); a.href = href; notes.append(a, node('br')); }
+        }
+        limits.append(detail('Read convention & source limits', notes)); tr.append(name, node('td', row.status === 'available' ? row.text : 'Unavailable'), limits); body.append(tr);
+      }
+      table.append(head, body); $('ch-sample-calendar-table').replaceChildren(table);
+      wrapper.dataset.dateIso = sample.dateISO; $('ch-house-plate').dataset.dateIso = sample.dateISO;
+      $('ch-sample-sync').textContent = `Chart, cusp values and these thirteen calendar labels share ${sample.dateISO} · assumed ${sample.localTime} in ${item.record.eventPlace.zone}. The comparison ledger above retains its separate fixed-noon references.`;
+    } catch (error) {
+      wrapper.removeAttribute('data-date-iso'); $('ch-sample-calendar-table').replaceChildren();
+      $('ch-sample-sync').textContent = `Calendar labels unavailable at this assumed sample: ${error.message}`;
+    }
+  }
   function renderSample() {
     const item = currentSampleRecord(); if (!item) return;
     const day = item.daySensitivity, index = Number($('ch-sample-index').value), sample = day.samples[index];
@@ -178,10 +232,12 @@ export function initCountryCalendars() {
     const table = node('table'), head = node('thead'), header = node('tr'); header.append(node('th','House / angle'),node('th','Tropical longitude')); head.append(header); const body = node('tbody');
     for (const [label,value] of [['Ascendant',sample?.ascendantDegrees],['Midheaven',sample?.midheavenDegrees],...Array.from({length:12},(_,i)=>[`House ${i+1}`,sample?.cusps?.[i]])]) { const tr=node('tr'), th=node('th',label); th.scope='row'; tr.append(th,node('td',degrees(value))); body.append(tr); }
     table.append(head,body); $('ch-cusp-table').replaceChildren(table);
+    renderSampleCalendars(item, sample);
   }
 
   function renderSampleRecord() {
     const item=currentSampleRecord(); if (!item) return; const day=item.daySensitivity;
+    if (!day.samples.length) renderSampleCalendars(item, null);
     $('ch-sample-work').hidden = !day.samples.length; $('ch-sample-unavailable').hidden = !!day.samples.length; $('ch-sample-unavailable').textContent = `House samples unavailable. ${day.reason || 'No valid sample is available.'}`;
     $('ch-sample-method').textContent = `${SYSTEMS[study.selection.houseSystem]} · ${day.samples.length} explicitly assumed samples. ${day.day ? `${day.day.elapsedHours} elapsed hours in this local day.` : ''}`;
     const limits=node('div'); if (day.method) limits.append(node('p',typeof day.method === 'string' ? day.method : JSON.stringify(day.method))); limits.append(list(day.limitations),citations(['CH-TIME','CH-HOUSES',...item.record.sourceIds]));
@@ -210,7 +266,7 @@ export function initCountryCalendars() {
     try {
       if (token!==revision) return;
       const result=buildCountryHistoryStudy({recordIds,houseSystem:$('ch-house-system').value,includeDaySensitivity:$('ch-sensitivity').checked});
-      if (token!==revision) return; study=result;
+      if (token!==revision) return; study=result; sampleCalendarCache.clear();
       renderLedger(); renderSensitivity(); renderSources(study.sources); $('ch-limitations').replaceChildren(...study.limitations.map(value=>node('li',value)));
       $('ch-stale').hidden=true; $('ch-json').disabled=false; $('ch-csv').disabled=false;
       const unavailable=study.records.filter(item=>item.civilComparison.status==='unavailable').length;
@@ -224,6 +280,13 @@ export function initCountryCalendars() {
 
   try {
     catalogue=getCountryHistoryCatalogue(); $('ch-engraving').innerHTML=frontispiece('astrolabe'); renderPicker(); renderReference(); renderSources([]); $('ch-limitations').replaceChildren(...catalogue.limitations.map(value=>node('li',value)));
+    $('ch-date-country').replaceChildren(...catalogue.countries.map(country => { const option = node('option', countryName(country.id)); option.value = country.id; return option; })); renderFoundingNavigation();
+    $('ch-date-country').addEventListener('change', renderFoundingNavigation);
+    $('ch-add-highlighted').addEventListener('click', () => {
+      if (!highlightedId || selectedIds().includes(highlightedId)) return;
+      if (selectedIds().length >= catalogue.maxRecords) { $('ch-date-selection-status').textContent = `The comparison already has ${catalogue.maxRecords} records. Clear a checkbox below before adding this one.`; return; }
+      const input = $(`ch-record-${highlightedId}`); input.checked = true; input.closest('details').open = true; invalidate(); $('ch-date-selection-status').textContent = 'Record added. Choose Compare selected records to update the ledger.';
+    });
     $('ch-form').addEventListener('submit',event=>{event.preventDefault();calculate();});
     $('ch-record-picker').addEventListener('change',invalidate); $('ch-house-system').addEventListener('change',invalidate); $('ch-sensitivity').addEventListener('change',invalidate);
     $('ch-clear').addEventListener('click',()=>{document.querySelectorAll('#ch-record-picker input').forEach(input=>{input.checked=false;});invalidate();});
@@ -242,7 +305,7 @@ export function initCountryCalendars() {
 function initCountryEventResearch() {
   if (!$('cr-research')) return;
   const query = new URLSearchParams(location.search), requestedCountry = query.get('researchCountry'), requestedRecord = getCountryEventRecord(query.get('researchRecord'));
-  let countryId = COUNTRY_EVENT_COUNTRIES.some(c => c.id === requestedCountry) ? requestedCountry : 'usa', records = [], selectedId = requestedRecord?.countryId === requestedCountry ? requestedRecord.id : '', revision = 0, displayed = null;
+  let countryId = COUNTRY_EVENT_COUNTRIES.some(c => c.id === requestedCountry) ? requestedCountry : 'usa', records = [], selectedId = requestedRecord?.countryId === requestedCountry ? requestedRecord.id : '', revision = 0, displayed = null, eventNavigator = null, calendarNavigator = null, currentChunk = null;
   const researchURL = (id, recordId = null) => { const url = new URL('pages/country-calendars.html', ROOT); url.searchParams.set('researchCountry', id); if (recordId) url.searchParams.set('researchRecord', recordId); url.hash = 'cr-title'; return url.href; };
   const cache = new Map();
   const sourceMap = new Map(COUNTRY_EVENT_SOURCES.map(s => [s.id, s]));
@@ -273,6 +336,8 @@ function initCountryEventResearch() {
   }
   function invalidateComparison() {
     displayed = null; $('cr-comparison').hidden = true; $('cr-download').disabled = true; $('cr-download-status').textContent = ''; $('cr-error').hidden = true;
+    calendarNavigator?.update({ disabled: true });
+    $('cr-calendar-navigator').removeAttribute('data-date-iso');
   }
   function renderRecord(record) {
     const wrapper = $('cr-source-record'); wrapper.replaceChildren();
@@ -281,6 +346,11 @@ function initCountryEventResearch() {
     for (const [label, value] of [['Start marker', record.startDate], ['Documented end', record.endDate || 'Not established in this record'], ['Result / report date', record.outcome.date || 'Not established in this record'], ['Outcome status', readable(record.outcome.status)], ['Source-event group', record.eventGroupId], ['Broader dependence group', record.analysisGroupId]]) dl.append(node('dt', label), node('dd', value));
     wrapper.append(dl, node('p', record.outcome.summary), node('p', 'Religious allegiance, ritual intent and historical calendar adoption are not identified by this sample. The date convention above is the documented claim.', 'ch-footnote'));
     const viewLink = node('a', 'Direct link to this documented record'); viewLink.href = researchURL(record.countryId, record.id); wrapper.append(viewLink);
+    if (record.startDate >= '1900-01-01' && record.startDate <= '2100-12-31') {
+      const studyLink = node('a', 'Study this date with an explicitly assumed observer & noon clock →'), url = new URL('pages/calendar-timeline.html', ROOT);
+      url.searchParams.set('countryObserver', record.countryId); url.searchParams.set('studyDate', record.startDate); studyLink.href = url.href;
+      const paragraph = node('p'); paragraph.append(studyLink); wrapper.append(paragraph);
+    }
     const notes = detail('Source qualifications & recorded variants', list(record.limitations));
     const sources = node('ol', null, 'cr-sources');
     for (const id of record.sourceIds) {
@@ -297,14 +367,17 @@ function initCountryEventResearch() {
       return [record.startDate, event, record.outcome.summary, action];
     }), 'The selected country’s source-qualified events; source dates and outcomes remain separate'));
   }
-  function selectRecord(id) {
+  function selectRecord(id, markerKind = 'start') {
     selectedId = id;
     const record = getCountryEventRecord(id), index = records.findIndex(r => r.id === id);
     $('cr-selected-title').textContent = record.title; $('cr-selected-date').textContent = record.startDate;
+    $('cr-selected-date').dataset.eventKind = record.type === 'war' ? 'historical-conflict' : 'neutral';
     $('cr-event-index').value = String(index); $('cr-event-index').setAttribute('aria-valuetext', `${index + 1} of ${records.length}: ${record.startDate}, ${record.title}`);
     $('cr-prev').disabled = index <= 0; $('cr-next').disabled = index >= records.length - 1; $('cr-position').textContent = `${index + 1} of ${records.length} selected records`;
     $('cr-marks').querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.recordId === id)));
     $('cr-marker-kind').replaceChildren(...['start', ...(record.endDate ? ['end'] : []), ...(record.outcome.date ? ['outcome'] : [])].map(kind => { const option = node('option', markerLabels[kind]); option.value = kind; return option; }));
+    if ([...$('cr-marker-kind').options].some(option => option.value === markerKind)) $('cr-marker-kind').value = markerKind;
+    eventNavigator?.update({ value: id });
     renderRecord(record); renderEventTable(); showSample();
   }
   function renderCountry() {
@@ -312,10 +385,40 @@ function initCountryEventResearch() {
     const country = COUNTRY_EVENT_COUNTRIES.find(c => c.id === countryId);
     $('cr-country-panel').setAttribute('aria-labelledby', `cr-tab-${countryId}`);
     $('cr-country-context').textContent = `${country.label} · ${records.length} records. Study observer: ${country.observerName}, ${country.timeZone} (${country.lat}, ${country.lon}). This fixed city reference is an explicit assumption.`;
+    const timelineURL = new URL('pages/calendar-timeline.html', ROOT); timelineURL.searchParams.set('countryObserver', country.id); $('cr-study-link').href = timelineURL.href;
+    $('cr-study-context').textContent = `Past and future study at ${country.observerName}, ${country.timeZone}; modern coordinates and assumed local noon. This observer does not define a national chart or an event location.`;
     $('cr-country-tabs').querySelectorAll('[role="tab"]').forEach(button => { const active = button.dataset.countryId === countryId; button.setAttribute('aria-selected', String(active)); button.tabIndex = active ? 0 : -1; });
     $('cr-event-index').max = String(records.length - 1);
-    $('cr-marks').replaceChildren(...records.map(record => { const button = node('button', record.startDate, 'cr-mark'); button.type = 'button'; button.dataset.recordId = record.id; button.setAttribute('aria-label', `${record.startDate}: ${record.title}`); button.addEventListener('click', () => selectRecord(record.id)); return button; }));
+    $('cr-marks').replaceChildren(...records.map(record => { const button = node('button', record.startDate, 'cr-mark'); button.type = 'button'; button.dataset.recordId = record.id; button.dataset.eventKind = record.type === 'war' ? 'historical-conflict' : 'neutral'; button.setAttribute('aria-label', `${record.startDate}: ${record.title}${record.type === 'war' ? ', documented past conflict' : ', documented election'}`); button.addEventListener('click', () => selectRecord(record.id)); return button; }));
+    const items = records.map(record => ({ id: record.id, date: record.startDate, label: record.title, kind: record.type === 'war' ? 'historical-conflict' : 'neutral', summary: record.type === 'war' ? 'Documented past conflict episode; no present or future danger assessment.' : 'Documented election marker; no favorable or adverse timing inference.', sourceLabel: record.sourceIds.join(' · '), sourceUrl: safeSourceURL(sourceMap.get(record.sourceIds[0])?.url), details: [
+      { label: 'Source convention', value: record.dateConvention },
+      { label: 'Event clock', value: 'Unknown · the source supplies a date, not an instant' },
+      { label: 'Documented end', value: record.endDate || 'Not established' },
+      { label: 'Source qualifications', value: record.limitations.join(' ') },
+    ] }));
+    const options = { id: 'cr-country-dates', label: `${country.label} · documented past dates`, items, value: records.some(r => r.id === selectedId) ? selectedId : records[0].id, bookmarkScope: `country-history:${countryId}`, onSelect: item => selectRecord(item.id) };
+    if (eventNavigator) eventNavigator.update(options); else eventNavigator = mountDateNavigator($('cr-date-navigator'), options);
     selectRecord(records.some(r => r.id === selectedId) ? selectedId : records[0].id);
+  }
+  function renderCalendarLane(sample) {
+    const choice = $('cr-calendar-choice');
+    if (!choice.options.length) choice.replaceChildren(...sample.calendars.map(row => { const option = node('option', row.label); option.value = row.id; return option; }));
+    const calendarId = choice.value, calendar = sample.calendars.find(row => row.id === calendarId), allowed = new Set(records.map(record => record.id));
+    const items = currentChunk.markers.filter(marker => allowed.has(marker.eventId) && marker.localTime === $('cr-clock').value).map(marker => {
+      const record = getCountryEventRecord(marker.eventId), stored = currentChunk.samples[marker.sampleId], row = stored.calendars.find(value => value.id === calendarId);
+      return { id: `${record.id}:${marker.markerKind}`, date: marker.date, label: row?.status === 'available' ? row.text : 'Calendar label unavailable', kind: row?.status === 'available' ? 'neutral' : 'unavailable', summary: `${record.title} · ${markerLabels[marker.markerKind]}. Civil convention at a separately assumed clock.`, sourceLabel: record.sourceIds.join(' · '), sourceUrl: safeSourceURL(sourceMap.get(record.sourceIds[0])?.url), details: [
+        { label: 'Source marker', value: `${marker.date} · ${marker.qualification}` },
+        { label: 'Shared assumed instant', value: stored.dateISO || 'Unavailable' },
+        { label: 'Study clock / zone', value: `${stored.localTime} · ${stored.timeZone}` },
+        { label: 'Calendar convention', value: `${row?.label || calendarId} · ${readable(row?.boundary)}` },
+        { label: 'Verification', value: row?.validation || 'Unavailable' },
+        { label: 'Source certainty', value: 'Source event clock and event location are not verified by this calculation.' },
+      ] };
+    }).sort((a,b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
+    const options = { id: 'cr-calendar-dates', label: `${calendar?.label || calendarId} · source date markers`, items, value: `${selectedId}:${$('cr-marker-kind').value}`, bookmarkScope: `country-calendar:${countryId}:${calendarId}`, compact: true, disabled: false, onSelect: item => { const [recordId, kind] = item.id.split(':'); selectRecord(recordId, kind); } };
+    if (calendarNavigator) calendarNavigator.update(options); else calendarNavigator = mountDateNavigator($('cr-calendar-navigator'), options);
+    $('cr-calendar-sync').textContent = `Every date step updates the selected source marker, all thirteen labels and descriptive features together. Current assumed instant: ${sample.dateISO} · ${sample.localTime} ${sample.timeZone}. No civil label is assigned good or bad fortune.`;
+    $('cr-calendar-navigator').dataset.dateIso = sample.dateISO;
   }
   function renderCalendars(sample) {
     $('cr-calendars').replaceChildren(table(['Civil convention', 'Calculated label', 'Boundary & verification'], sample.calendars.map(row => {
@@ -346,18 +449,24 @@ function initCountryEventResearch() {
   }
   async function showSample() {
     const token = ++revision, id = countryId, eventId = selectedId, markerKind = $('cr-marker-kind').value, clock = $('cr-clock').value;
+    const active = document.activeElement, calendarFocus = $('cr-calendar-navigator').contains(active) ? active.classList.contains('date-nav-slider') ? '.date-nav-slider' : '.date-nav-selected' : null;
+    const clockIndex = COUNTRY_EVENT_RESEARCH.clocks.indexOf(clock);
+    $('cr-clock-index').value = String(clockIndex); $('cr-clock-index').setAttribute('aria-valuetext', `${clock.slice(0,5)} assumed local clock, sample ${clockIndex + 1} of ${COUNTRY_EVENT_RESEARCH.clocks.length}`);
+    $('cr-clock-output').textContent = `${clock.slice(0,5)} · assumed local clock`;
     invalidateComparison(); $('cr-status').textContent = 'Loading and verifying this country’s accepted historical snapshots…';
     try {
       const chunk = await loadCountry(id);
       if (token !== revision) return;
+      currentChunk = chunk;
       const row = chunk.markers.find(r => r.eventId === eventId && r.markerKind === markerKind && r.localTime === clock), sample = row && chunk.samples[row.sampleId];
       if (!row || !sample) throw new Error('This source marker and assumed clock have no retained comparison.');
       const record = getCountryEventRecord(eventId), observer = COUNTRY_EVENT_COUNTRIES.find(c => c.id === id);
       $('cr-assumption').textContent = `${markerLabels[markerKind]}: ${row.date}. Assumed ${row.localTime} at ${observer.observerName}, ${sample.timeZone}; ${sample.dateISO}. This dataset does not certify an event instant or event location. Stored calculation from ${COUNTRY_EVENT_RESEARCH.asOf}; changing the clock selects a sensitivity sample, not a sourced event time.`;
       $('cr-comparison').dataset.sampleId = row.sampleId; $('cr-comparison').dataset.dateIso = sample.dateISO;
-      renderCalendars(sample); renderFeatures(row, sample);
+      renderCalendars(sample); renderFeatures(row, sample); renderCalendarLane(sample);
       displayed = { schemaVersion: 1, kind: 'source-qualified-stored-historical-comparison', record, sources: record.sourceIds.map(sourceId => sourceMap.get(sourceId)), observer, marker: row, sample, profileDefinitions: COUNTRY_EVENT_PROFILES, calculationSources: COUNTRY_EVENT_CALCULATION_SOURCES, binding: COUNTRY_EVENT_RESEARCH.chunks[id], provenance: COUNTRY_EVENT_RESEARCH.provenancePath, predictionAccuracy: null, hiddenBeliefIdentified: false };
       $('cr-comparison').hidden = false; $('cr-download').disabled = false; $('cr-status').textContent = `Verified stored comparison: ${row.date}, assumed ${row.localTime}. All thirteen civil labels share ${sample.dateISO}.`;
+      if (calendarFocus && (document.activeElement === document.body || document.activeElement === active)) $('cr-calendar-navigator').querySelector(calendarFocus)?.focus({ preventScroll: true });
     } catch (error) { if (token !== revision) return; $('cr-error').textContent = error.message; $('cr-error').hidden = false; $('cr-status').textContent = 'Stored comparison unavailable. Source records remain readable; select a record to retry.'; }
   }
   async function renderSummary() {
@@ -396,6 +505,8 @@ function initCountryEventResearch() {
   $('cr-prev').addEventListener('click', () => selectRecord(records[Math.max(0, records.findIndex(r => r.id === selectedId) - 1)].id));
   $('cr-next').addEventListener('click', () => selectRecord(records[Math.min(records.length - 1, records.findIndex(r => r.id === selectedId) + 1)].id));
   $('cr-marker-kind').addEventListener('change', showSample); $('cr-clock').addEventListener('change', showSample);
+  $('cr-clock-index').addEventListener('input', () => { $('cr-clock').value = COUNTRY_EVENT_RESEARCH.clocks[Number($('cr-clock-index').value)]; showSample(); });
+  $('cr-calendar-choice').addEventListener('change', () => { if (displayed) renderCalendarLane(displayed.sample); });
   $('cr-download').addEventListener('click', () => { if (!displayed) return; downloadJSON(displayed, `${displayed.record.id}-${displayed.marker.markerKind}-${displayed.marker.localTime.slice(0,2)}-assumed.json`); $('cr-download-status').textContent = 'Downloaded with source claims, clock assumptions, nearby-date values, overlap flags and artifact binding.'; });
   renderCountry(); renderSummary();
 }

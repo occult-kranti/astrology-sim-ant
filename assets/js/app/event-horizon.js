@@ -1,5 +1,7 @@
 // A complete-date view over the canonical horizon calculation. No saved births,
 // provider keys, questions or unrelated page results are read by this module.
+import { mountDateNavigator } from './date-wayfinding.js';
+import { COUNTRY_EVENT_COUNTRIES } from '../core/data/country-event-research.js';
 const ROOT = new URL('../../../', import.meta.url);
 const $ = id => document.getElementById(id);
 const el = (tag, text, className) => { const n = document.createElement(tag); if (text != null) n.textContent = String(text); if (className) n.className = className; return n; };
@@ -7,6 +9,9 @@ const human = value => String(value ?? '').replace(/[-_]/g, ' ');
 const pretty = value => typeof value === 'string' ? value : JSON.stringify(value, null, 2);
 const dateLabel = (date, options = {}) => new Intl.DateTimeFormat('en-GB', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC', ...options }).format(new Date(`${date}T12:00:00Z`));
 const scoreLabel = value => Number.isFinite(value) ? `${value > 0 ? '+' : ''}${Number(value.toFixed(2))}` : 'Unavailable';
+const canonicalZone = timeZone => new Intl.DateTimeFormat('en', {timeZone}).resolvedOptions().timeZone;
+// A bounded opaque bookmark namespace; observer inputs never enter bookmark storage.
+const bookmarkReference = value => { let a = 2166136261, b = 2246822519; for (const character of value) { a = Math.imul(a ^ character.charCodeAt(0), 16777619); b = Math.imul(b ^ character.charCodeAt(0), 3266489917); } return `${(a >>> 0).toString(16)}${(b >>> 0).toString(16)}`; };
 const xml = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&apos;' })[char]);
 const list = (host, values, className = 'eh-note') => { if (typeof values === 'string') values = [values]; if (!values?.length) return; const n = el('ul', null, className); for (const value of values) n.append(el('li', typeof value === 'string' ? value : pretty(value))); host.append(n); };
 const fields = (host, rows) => { const dl = el('dl'); for (const [key, value] of rows) { if (value == null || value === '') continue; dl.append(el('dt', key), el('dd', typeof value === 'string' ? value : pretty(value))); } host.append(dl); };
@@ -29,6 +34,8 @@ function renderTraditions(traditions, sources) {
 export async function initEventHorizon() {
   let core, result = null, selectedDate = null, caseId = null, purposeId = null, stale = true, loading = false, page = 0, revision = 0, worker = null, controller = null, ics = null, frame = 0, resizeFrame = 0;
   const PAGE_SIZE = 24, contextCache = new Map();
+  const dateNavigators = new Map();
+  let navigationCase = null, navigationDisabled = false, chartPreviewDate = null;
   const status = text => { $('eh-status').textContent = text; };
   const error = text => { $('eh-error').textContent = text || ''; $('eh-error').hidden = !text; };
   const chosenCase = () => result?.cases.find(row => row.id === caseId);
@@ -39,6 +46,8 @@ export async function initEventHorizon() {
   const contextFor = date => { const key = `${caseId}:${date}`; if (!contextCache.has(key)) contextCache.set(key, core.eventsForHorizonDate(result, caseId, date)); return contextCache.get(key); };
   function setControls() {
     const disabled = !ready();
+    $('eh-chart').tabIndex = disabled ? -1 : 0; $('eh-chart').setAttribute('aria-disabled',String(disabled));
+    if (navigationDisabled !== disabled) { for (const navigator of dateNavigators.values()) navigator.update({ disabled }); navigationDisabled = disabled; }
     for (const id of ['eh-case','eh-purpose','eh-date','eh-slider','eh-order','eh-events','eh-observances','eh-open-evidence','eh-json','eh-csv','eh-ics']) $(id).disabled = disabled;
     $('eh-previous').disabled = disabled || selectedDate === chosenCase()?.rows[0]?.date;
     $('eh-next').disabled = disabled || selectedDate === chosenCase()?.rows.at(-1)?.date;
@@ -72,6 +81,7 @@ export async function initEventHorizon() {
     $('eh-clock').value = item.sampleTime || observer.sampleTime || '12:00:00'; $('eh-zone').value = observer.timeZone;
     $('eh-lat').value = observer.lat; $('eh-lon').value = observer.lon;
     $('eh-fold').value = item.disambiguation || 'reject';
+    $('eh-country-observer').value = COUNTRY_EVENT_COUNTRIES.find(country => country.lat === observer.lat && country.lon === observer.lon && canonicalZone(country.timeZone) === canonicalZone(observer.timeZone))?.id || '';
     $('eh-start').value = result.request.startDate; $('eh-end').value = result.request.endDate;
   }
   function showProvenance() {
@@ -90,7 +100,7 @@ export async function initEventHorizon() {
   }
   function setResult(value, message) {
     if (!value?.cases?.length || !value.cases.every(item => Array.isArray(item.rows) && item.rows.length)) throw Error('The calculation returned no usable case ledger. No result was activated.');
-    result = value; stale = false; loading = false; contextCache.clear(); page = 0;
+    clearDateNavigators(); result = value; stale = false; loading = false; contextCache.clear(); page = 0;
     caseId = populateSelect('eh-case', result.cases, caseId);
     const available = core.HORIZON_PURPOSES.filter(item => result.request.purposeIds.includes(item.id));
     purposeId = populateSelect('eh-purpose', available, purposeId);
@@ -106,6 +116,42 @@ export async function initEventHorizon() {
     populateSelect('eh-events', [{id:'all',label:'All dates'},{id:'any',label:'Dates with a calculated event'}, ...kinds.map(id => ({id,label:human(id)}))], eventKind);
     const families = [...new Map((result.observances || []).map(row => [row.familyId || row.family, row.familyLabel || human(row.familyId || row.family)])).entries()].filter(([id]) => id).sort((a,b) => a[1].localeCompare(b[1]));
     populateSelect('eh-observances', [{id:'all',label:'All traditions / dates'},{id:'any',label:'Dates with a named observance'},...families.map(([id,label]) => ({id,label}))], observanceFamily);
+  }
+  function clearDateNavigators() {
+    for (const navigator of dateNavigators.values()) navigator.destroy();
+    dateNavigators.clear(); navigationCase = null; chartPreviewDate = null;
+    for (const id of ['eh-date-map','eh-profile-tracks','eh-calendar-tracks']) $(id)?.replaceChildren();
+  }
+  function renderDateNavigators() {
+    if (!ready()) return;
+    if (navigationCase !== caseId) { clearDateNavigators(); navigationCase = caseId; }
+    const item = chosenCase(), observer = item.observer, rows = item.rows;
+    const scope = `horizon:${caseId}:${observer.lat}:${observer.lon}:${observer.timeZone}:${item.sampleTime}:${item.disambiguation}:${result.request.startDate}:${result.request.endDate}`;
+    const base = row => ({ id: row.date, date: row.date, label: row.date, details: [{label:'Observer',value:`${item.label} · ${observer.lat}°N, ${observer.lon}°E`},{label:'Clock and zone',value:`${item.sampleTime} · ${observer.timeZone}`},{label:'Sample UTC',value:row.sampleUTC || row.reason || 'Unavailable'}] });
+    function mount(key, host, label, items, select = date => selectDate(date)) {
+      if (!dateNavigators.has(key)) dateNavigators.set(key, mountDateNavigator(host, { id:key, label, items:items(), value:selectedDate, compact:true, bookmarkScope:`horizon:${bookmarkReference(`${scope}:${key}`)}`, onSelect:entry => select(entry.date) }));
+    }
+    mount('eh-context-dates', $('eh-date-map'), 'Every date · source-qualified context', () => rows.map(row => {
+      const context = contextFor(row.date), observances = context.observances.filter(entry => entry.status !== 'unavailable'), astronomy = context.astronomy;
+      return {...base(row), label:`${observances.length} named observances · ${astronomy.length} calculated events`, kind:row.status !== 'available' ? 'unavailable' : observances.length ? 'observance' : astronomy.length ? 'astronomy' : 'neutral', summary:row.status !== 'available' ? row.reason : `${observances.length} named observances · ${astronomy.length} calculated events. These layers do not contribute to profile ranks.`, details:[...base(row).details,{label:'Named observances',value:observances.map(entry => `${entry.title || entry.label || entry.name} · ${human(entry.status)}`).join('; ') || 'None in the implemented catalogue'},{label:'Calculated events',value:astronomy.map(entry => `${entry.title || entry.label || entry.name}${entry.localTime ? ` · ${entry.localTime}` : ''}`).join('; ') || 'None in the implemented catalogue'},...row.purposeResults.map(profile => ({label:core.HORIZON_PURPOSES.find(definition => definition.id === profile.id)?.label || profile.id,value:`${scoreLabel(profile.score)} editorial index points · ${profile.observed}/${profile.total} observed`}))], sourceLabel:'Stored horizon ledger · observance and astronomy methods', sourceUrl:new URL('docs/2026-10-horizon-methods.md',ROOT).href};
+    }));
+    if ($('eh-profile-navigation').open) for (const definition of core.HORIZON_PURPOSES.filter(profile => result.request.purposeIds.includes(profile.id))) {
+      const key = `eh-profile-${definition.id}`;
+      let host = $(key); if (!host) { host = el('div'); host.id = key; $('eh-profile-tracks').append(host); }
+      mount(key,host,definition.label,() => rows.map(row => {
+        const profile = row.purposeResults.find(entry => entry.id === definition.id);
+        return {...base(row),label:`${scoreLabel(profile?.score)} editorial index points`,kind:profile?.rankable ? 'neutral' : 'unavailable',summary:`${scoreLabel(profile?.score)} editorial index points · ${profile?.observed ?? 0}/${profile?.total ?? 'unknown'} contributions observed. This stored score does not reveal whether favorable and caution classes coexist.`,details:[...base(row).details,{label:'Named profile',value:definition.label},{label:'Fixed arithmetic',value:profile?.rankable ? `${profile.scoreNumerator}/${profile.scoreDenominator} × 100` : 'Unavailable: required evidence is missing'},{label:'Missing evidence',value:profile?.missing?.map(entry => `${entry.id}: ${entry.reason}`).join('; ') || 'None under this profile'},{label:'Scope',value:definition.description}],sourceLabel:'Declared editorial profile · weights, dependencies and source scope',sourceUrl:new URL('docs/2026-10-horizon-ranking.md',ROOT).href};
+      }),date => { purposeId = definition.id; $('eh-purpose').value = purposeId; page = 0; selectDate(date); });
+    }
+    if ($('eh-calendar-navigation').open) for (const calendarId of result.coverage.calendarIds) {
+      const key = `eh-calendar-${calendarId}`;
+      let host = $(key); if (!host) { host = el('div'); host.id = key; $('eh-calendar-tracks').append(host); }
+      mount(key,host,`${human(calendarId)} · stored civil dates`,() => rows.map(row => {
+        const calendar = row.calendars.find(entry => entry.id === calendarId);
+        return {...base(row),label:calendar?.text || 'Calendar conversion unavailable',kind:calendar?.status === 'available' ? 'neutral' : 'unavailable',summary:calendar?.text || 'Calendar conversion unavailable',details:[...base(row).details,{label:'Calendar status',value:calendar?.status || 'unavailable'},{label:'Boundary',value:calendar?.boundary || 'Unavailable'},{label:'Validation scope',value:calendar?.validation ? pretty(calendar.validation) : 'No additional validation claim'},{label:'Meaning',value:'A civil date label carries no favorable or caution classification.'}],sourceLabel:'Stored calendar conversion · declared civil convention',sourceUrl:new URL('docs/2026-10-calendar-methods.md',ROOT).href};
+      }));
+    }
+    for (const navigator of dateNavigators.values()) navigator.update({ value:selectedDate });
   }
   function renderChart() {
     const rows = chosenCase().rows, width = Math.max(260, Math.round($('eh-chart').getBoundingClientRect().width || 920)), height = width < 500 ? 200 : 230, left = 42, right = 15, top = 23, bottom = 39, plotWidth = width-left-right, plotHeight = height-top-bottom;
@@ -199,16 +245,29 @@ export async function initEventHorizon() {
     $('eh-rank-badge').replaceChildren(el('span','Profile rank / index'),el('strong',rank?.rank!=null?`${rank.rank}${rank.tieSize>1?' =':''} · ${scoreLabel(profile?.score)}`:'Not ranked'));if(rank?.tieSize>1)$('eh-rank-badge').append(el('span',`${rank.tieSize} exact-score ties`));
     $('eh-purpose-summary').textContent=`${chosenPurpose()?.label}: ${profile?.rankable?`${scoreLabel(profile.score)} editorial index points, from ${profile.observed}/${profile.total} observed contributions.`:`unavailable for ranking; ${profile?.observed ?? 0}/${profile?.total ?? 'unknown'} contributions observed.`} ${chosenPurpose()?.description || ''}`;
     const link=new URL('pages/calendar-atlas.html',ROOT);if(row.sampleUTC){link.searchParams.set('at',row.sampleUTC);link.searchParams.set('lat',observer.lat);link.searchParams.set('lon',observer.lon);link.searchParams.set('zone',observer.timeZone);}$('eh-atlas-link').href=link.href;
-    renderChart();renderContext(contextFor(selectedDate));renderEvidence(row);renderComparison();renderLedger();setControls();
+    renderChart();renderDateNavigators();renderContext(contextFor(selectedDate));renderEvidence(row);renderComparison();renderLedger();setControls();
   }
   function selectDate(date,{focus=false}={}){if(!ready())return;if(!chosenCase().rows.some(row=>row.date===date)){error('Choose a civil date inside the active calculated window.');$('eh-date').value=selectedDate;return;}selectedDate=date;error('');render();if(focus){$('eh-day-detail').open=true;$('eh-detail-heading').focus({preventScroll:true});$('eh-day-detail').scrollIntoView({block:'start',behavior:'instant'});}status(`${dateLabel(date)} selected. ${chosenPurpose()?.label}: ${scoreLabel(profileOf(chosenRow())?.score)} editorial index points.`);}
   async function loadPreset(){cancelWork();controller=new AbortController();const token=revision;loading=true;stale=true;setControls();error('');progress({stage:'Loading precomputed public cases'});try{const data=await core.loadHorizonPreset({signal:controller.signal,onProgress:value=>{if(token===revision)progress(value);}});if(token!==revision)return;setResult(data,'Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.');}catch(cause){if(token!==revision)return;loading=false;setControls();$('eh-progress').hidden=true;$('eh-dataset-status').textContent='Precomputed data unavailable · retry or calculate locally';error(`The precomputed horizon could not load: ${cause.message}`);status('Retry the precomputed dataset or calculate a custom run locally. No incomplete result is active.');}}
   function run(){
-    if(!core)return;let request;try{request=core.normalizeHorizonRequest({startDate:$('eh-start').value,endDate:$('eh-end').value,cases:[{id:'custom',label:'Entered observer',lat:Number($('eh-lat').value),lon:Number($('eh-lon').value),timeZone:$('eh-zone').value,sampleTime:$('eh-clock').value,system:'regiomontanus',disambiguation:$('eh-fold').value}],purposeIds:core.HORIZON_PURPOSES.map(p=>p.id),mode:$('eh-strategy').value==='brute'?'brute':'optimized',includeAstronomy:true,includeObservances:true});}catch(cause){invalidate();error(cause.message);$('eh-error').tabIndex=-1;$('eh-error').focus();return;}
+    if(!core)return;const country=COUNTRY_EVENT_COUNTRIES.find(item=>item.id===$('eh-country-observer').value);let request;try{request=core.normalizeHorizonRequest({startDate:$('eh-start').value,endDate:$('eh-end').value,cases:[{id:'custom',label:country?`${country.label} · ${country.observerName} study observer`:'Entered observer',lat:Number($('eh-lat').value),lon:Number($('eh-lon').value),timeZone:$('eh-zone').value,sampleTime:$('eh-clock').value,system:'regiomontanus',disambiguation:$('eh-fold').value}],purposeIds:core.HORIZON_PURPOSES.map(p=>p.id),mode:$('eh-strategy').value==='brute'?'brute':'optimized',includeAstronomy:true,includeObservances:true});}catch(cause){invalidate();error(cause.message);$('eh-error').tabIndex=-1;$('eh-error').focus();return;}
     cancelWork();const token=revision;loading=true;setControls();error('');progress({stage:'Starting local calculation'});
     try{worker=new Worker(new URL('../workers/event-horizon-worker.js',import.meta.url),{type:'module'});const jobId=`horizon-${token}`;worker.horizonJobId=jobId;worker.onmessage=event=>{const message=event.data;if(token!==revision||message.jobId!==jobId)return;if(message.type==='progress'){progress(message.progress||message);return;}if(message.type==='result'){worker.terminate();worker=null;try{const value=message.result;if(value?.optimized){if(!value.equivalence?.identical)throw Error('Brute and optimized strategies disagree. No result or export has been activated.');setResult(value.optimized,`Both strategies completed with identical compared outputs. Timing: ${pretty(value.timing)}. This is sampled-grid equivalence, not predictive validation.`);}else setResult(value,'Local calculation complete. Every requested civil date is retained, including unavailable samples.');}catch(cause){loading=false;stale=true;setControls();error(cause.message);status('The calculation could not be activated. Correct the inputs or restore the precomputed public cases.');}return;}if(message.type==='error'){cancelWork('Calculation failed. No partial ranking is available.');error(message.error?.message||message.error||message.message||'Unknown worker error.');}if(message.type==='cancelled')cancelWork('Calculation cancelled. No partial ranking is available.');};worker.onerror=event=>{if(token!==revision)return;cancelWork('The worker failed. Retry or restore the precomputed public cases.');error(event.message);};worker.postMessage({type:'start',jobId,operation:$('eh-strategy').value==='benchmark'?'benchmark':'scan',request});}catch(cause){cancelWork('This browser could not start the calculation worker. The precomputed dataset can still be loaded.');error(cause.message);}
   }
   $('eh-view-form').addEventListener('submit',event=>event.preventDefault());
+  $('eh-chart').setAttribute('role','group');
+  $('eh-chart').setAttribute('aria-label','Daily profile plot. Hover or tap a date for held evidence. Arrow keys move the selected date; Home and End reach the range boundaries.');
+  const chartDate = event => { const chart=$('eh-chart').querySelector('svg'),rows=chosenCase()?.rows;if(!chart||!rows?.length)return null;const bounds=chart.getBoundingClientRect(),width=chart.viewBox.baseVal.width,point=(event.clientX-bounds.left)*width/Math.max(1,bounds.width),plotWidth=Math.max(1,width-42-15),index=Math.round(Math.max(0,Math.min(1,(point-42)/plotWidth))*(rows.length-1));return rows[index].date; };
+  const previewChartDate = (date,pin=false) => { if(!ready()||!date)return;chartPreviewDate=date;dateNavigators.get('eh-context-dates')?.preview?.(date,{anchor:$('eh-chart'),pin}); };
+  $('eh-chart').addEventListener('pointermove',event=>{if(event.pointerType==='touch'||!ready())return;const date=chartDate(event);if(date!==chartPreviewDate)previewChartDate(date);});
+  $('eh-chart').addEventListener('pointerleave',()=>{chartPreviewDate=null;});
+  $('eh-chart').addEventListener('focus',()=>previewChartDate(selectedDate));
+  $('eh-chart').addEventListener('click',event=>{if(!ready())return;const date=chartDate(event);selectDate(date);previewChartDate(date,true);});
+  $('eh-chart').addEventListener('keydown',event=>{if(!ready())return;const rows=chosenCase().rows,index=rows.findIndex(row=>row.date===selectedDate),steps={ArrowLeft:Math.max(0,index-1),ArrowRight:Math.min(rows.length-1,index+1),Home:0,End:rows.length-1};if(Object.hasOwn(steps,event.key)){event.preventDefault();selectDate(rows[steps[event.key]].date);previewChartDate(selectedDate);}else if(event.key==='Enter'||event.key===' '){event.preventDefault();previewChartDate(selectedDate,true);}else if(event.key==='Escape'){dateNavigators.get('eh-context-dates')?.dismiss?.();}});
+  for(const country of COUNTRY_EVENT_COUNTRIES){const option=el('option',`${country.label} · ${country.observerName}`);option.value=country.id;$('eh-country-observer').append(option);}
+  $('eh-country-observer').addEventListener('change',()=>{const country=COUNTRY_EVENT_COUNTRIES.find(item=>item.id===$('eh-country-observer').value);if(country){$('eh-lat').value=country.lat;$('eh-lon').value=country.lon;$('eh-zone').value=country.timeZone;}invalidate();});
+  for(const id of ['eh-lat','eh-lon','eh-zone'])$(id).addEventListener('input',()=>{$('eh-country-observer').value='';});
+  for(const id of ['eh-profile-navigation','eh-calendar-navigation'])$(id).addEventListener('toggle',()=>{if($(id).open)renderDateNavigators();});
   $('eh-case').addEventListener('change',()=>{caseId=$('eh-case').value;page=0;const rows=chosenCase().rows;if(!rows.some(row=>row.date===selectedDate))selectedDate=rows[0].date;fillCustomFields();render();});
   $('eh-purpose').addEventListener('change',()=>{purposeId=$('eh-purpose').value;page=0;render();});
   $('eh-date').addEventListener('change',()=>selectDate($('eh-date').value));

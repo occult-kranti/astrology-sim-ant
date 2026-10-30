@@ -1760,7 +1760,7 @@ for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-s
 }
 
 // --- THE ARTERY GATE (R34) -------------------------------------------------
-for (const script of ['assets/data/country-events/verify.mjs', 'scripts/test-newton-chronology-independent.mjs', 'scripts/test-eschatology-atlas-independent.mjs']) {
+for (const script of ['assets/data/country-events/verify.mjs', 'scripts/test-newton-chronology-independent.mjs', 'scripts/test-eschatology-atlas-independent.mjs', 'scripts/date-wayfinding-unit-test.mjs']) {
   try {
     execFileSync(process.execPath, [script], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] });
     ok(true, `${script}: PASS`);

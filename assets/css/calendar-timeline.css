@@ -20,3 +20,7 @@
   .ct-transport>button{flex:1 0 auto;min-inline-size:6rem;min-height:44px;white-space:nowrap;overflow-wrap:normal;word-break:normal}
   .ct-transport>.ct-step-label{flex:0 0 auto;min-inline-size:max-content;white-space:nowrap}
 }
+/* Date lanes reuse the same resolved clock grid; color never supplies an outcome. */
+.ct-calendar-dates{margin-block:.75rem;min-width:0}.ct-sky-grid figure>.date-wayfinding{margin-block:.75rem}
+.ct-rule[data-classification="favorable"]{border-inline-start:3px solid #2f6b4f;padding-inline-start:.7rem}.ct-rule[data-classification="caution"]{border-inline-start:3px solid #a64f2b;padding-inline-start:.7rem}.ct-rule[data-classification="mixed"]{border-inline-start:3px solid #725b88;padding-inline-start:.7rem}
+#ct-date-highlights{margin-bottom:1.5rem}#ct-observer-assumption{max-width:85ch}

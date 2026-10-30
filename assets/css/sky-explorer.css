@@ -18,3 +18,7 @@
 .calendar-atlas .sky-toolbar #sky-overlay{margin-inline-start:auto;margin-block:.25rem;border:1px solid #8c9384;padding:.4rem .7rem;min-height:36px}.calendar-atlas .sky-toolbar #sky-overlay[aria-expanded=true]{background:var(--sky-ink);border-color:var(--sky-ink);color:var(--sky-paper)}.sky-printed-moment{font:.67rem/1.55 ui-monospace,monospace!important;overflow-wrap:anywhere;color:#60695d;margin:.5rem 0 .7rem}@media(max-width:760px){.calendar-atlas .sky-toolbar #sky-overlay{min-height:44px;margin-inline-start:0}.sky-printed-moment{font-size:.7rem!important}}
 @media(min-width:761px){.calendar-atlas #atlas-sky-explorer{scroll-margin-top:100px}.sky-explorer #sky-chart{max-width:min(100%,max(320px,calc(100dvh - 280px)))}.sky-printed-moment{margin:.3rem 0 .5rem}}
 @media(max-width:760px){.calendar-atlas .sky-explorer .sky-toolbar button{font-size:16px}}
+/* Held rules and solved astronomy retain separate source-labelled colors. */
+#sky-chart-dates,#sky-simple-dates,#sky-rule-dates,#sky-timeline-dates{min-width:0;margin-block:1rem}.sky-reading-lens>details[data-classification="favorable"]{border-inline-start:3px solid #2f6b4f;padding-inline-start:.7rem}.sky-reading-lens>details[data-classification="caution"]{border-inline-start:3px solid #a64f2b;padding-inline-start:.7rem}.sky-reading-lens>details[data-classification="mixed"]{border-inline-start:3px solid #725b88;padding-inline-start:.7rem}
+
+.sky-solved-event{cursor:pointer}.sky-solved-event:focus{outline:none}.sky-solved-event:focus circle:last-child{stroke:#263b36;stroke-width:3}

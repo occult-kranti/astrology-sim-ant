@@ -17,3 +17,5 @@
 .calendar-atlas #atlas-form :is(input,select){scroll-margin-top:210px;scroll-margin-bottom:90px}
 @media(min-width:1100px) and (max-height:800px){.calendar-atlas{padding-top:1.25rem}.calendar-atlas .atlas-head{padding-bottom:.75rem}.calendar-atlas .atlas-families{margin-bottom:.9rem}.calendar-atlas .atlas-jump{margin-bottom:.7rem}}
 @media(min-width:1100px) and (max-height:800px){.observatory-shell .calendar-atlas{padding-top:.5rem}.observatory-shell .calendar-atlas>.crumb{margin-bottom:.35rem}}
+/* Compact controls repeat the shared instant alongside each named method. */
+.atlas-matrix td>[id^="atlas-method-"]{min-width:12rem;margin-top:.7rem}.atlas-reading [id$="-dates"],#atlas-event-dates{margin-block:1rem}.atlas-calculator [id$="-dates"]{min-width:0}
