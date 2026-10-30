@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Countries &amp; historical calendars | The Astrologer's Workbench</title>
+  <meta name="description" content="Compare documented historical reference dates, civil calendar conventions and explicitly assumed house geometry, with sources and uncertainty retained.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/country-calendars.css">
+</head>
+<body>
+<main id="content" class="country-history">
+  <p class="crumb"><a href="../index.html">Today</a> / <a href="calendar-atlas.html">Calendar atlas</a> / Historical countries</p>
+  <header class="ch-heading">
+    <div><p class="ch-kicker">A historical comparison · six countries</p><h1>Countries have histories.<br>Dates have conventions.</h1><p class="ch-lede">Read founding and constitutional milestones side by side. Keep the source, the event and the uncertainty attached to every date.</p></div>
+    <div class="ch-heading-aside"><div id="ch-engraving" aria-hidden="true"></div><p>A declaration, a constitution and a change of status can describe different moments. No single national “birth” is assumed.</p></div>
+  </header>
+  <nav class="ch-jump" aria-label="On this page"><a href="#ch-selection-title">Choose records</a><a href="#ch-ledger-title">Calendar ledger</a><a href="#ch-sensitivity-title">Time assumptions</a><a href="#ch-houses-title">Twelve houses</a><a href="#ch-methods-title">Methods &amp; sources</a></nav>
+  <section class="ch-selection" aria-labelledby="ch-selection-title">
+    <div class="ch-section-head"><div><p class="ch-kicker">01 · Define the comparison</p><h2 id="ch-selection-title">Choose historical records</h2></div><p>Select up to six records, including more than one variant for a country. The list is a bounded archive, not an exhaustive national history.</p></div>
+    <form id="ch-form">
+      <div class="ch-actions ch-selection-actions"><button class="ch-primary" type="submit" id="ch-compare">Compare selected records</button><span id="ch-selection-count" role="status"></span><button class="ch-secondary" id="ch-reset" type="button">One record per country</button><button class="ch-text-button" id="ch-clear" type="button">Clear selection</button></div>
+      <div id="ch-record-picker" class="ch-record-picker"></div>
+      <div class="ch-conventions"><div><strong>Declared civil-date reference</strong><p>Calendar labels use 12:00 local time on each selected historical date, in its stated reference zone. Noon is a calculation convention; it is not a sourced event time. The dates describe different instants.</p></div><div><label class="ch-check" for="ch-sensitivity"><input id="ch-sensitivity" type="checkbox"><span>Include assumed times across the recorded day</span></label><p id="ch-sensitivity-help">Optional hourly samples show time sensitivity of house geometry. Every clock time remains an assumption.</p><label for="ch-house-system">House system for day samples</label><select id="ch-house-system" aria-describedby="ch-sensitivity-help"><option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option><option value="whole">Whole sign</option><option value="equal">Equal</option></select></div></div>
+      <p id="ch-status" class="ch-status" role="status" aria-live="polite">Loading the historical catalogue…</p>
+      <div id="ch-error" class="ch-error" role="alert" tabindex="-1" hidden></div>
+    </form>
+  </section>
+  <div id="ch-stale" class="ch-notice" hidden>Selection or assumptions changed. Previous results and exports have been cleared. Compare the selected records again.</div>
+  <section class="ch-section" aria-labelledby="ch-ledger-title">
+    <div class="ch-section-head"><div><p class="ch-kicker">02 · Compare the named conventions</p><h2 id="ch-ledger-title" tabindex="-1">The historical calendar ledger</h2></div><p>Civil conversions name dates. They do not establish religious observances, national character or the outcome of an action.</p></div>
+    <div id="ch-ledger-empty" class="ch-empty">Choose records above to prepare a source-linked comparison.</div>
+    <div id="ch-ledger" hidden><div id="ch-record-context" class="ch-record-context"></div><div id="ch-calendar-table" class="ch-table-scroll" role="region" aria-label="Calendar comparison; scroll horizontally to read all selected historical records" tabindex="0"></div><p class="ch-footnote">Each column keeps its own local-noon reference and zone. Runtime civil-calendar support and selected reference checks do not establish historical local adoption or community authority.</p></div>
+  </section>
+  <section class="ch-section ch-sensitivity-section" aria-labelledby="ch-sensitivity-title">
+    <div class="ch-section-head"><div><p class="ch-kicker">03 · Examine an assumption</p><h2 id="ch-sensitivity-title">A time changes the houses</h2></div><p>Unknown event times cannot produce exact national charts. This optional instrument shows the effect of assumed times on a documented past day.</p></div>
+    <div id="ch-sensitivity-empty" class="ch-empty">Select “Include assumed times across the recorded day” and compare again to inspect the geometry.</div>
+    <div id="ch-sensitivity-output" hidden><div class="ch-sample-toolbar"><div><label for="ch-sample-record">Historical record</label><select id="ch-sample-record"></select></div><p id="ch-sample-method"></p></div><div id="ch-sample-unavailable" class="ch-notice" hidden></div><div id="ch-sample-work" class="ch-sample-work"><figure><div id="ch-house-plate"></div><figcaption>Calculated tropical house cusps for an explicitly assumed instant. Zero Aries is at the top; longitude increases clockwise. This is a geometric illustration of an assumption.</figcaption></figure><div class="ch-sample-reading"><p class="ch-kicker">Assumption · not an observed event time</p><h3 id="ch-sample-clock"></h3><p id="ch-sample-context"></p><label for="ch-sample-index">Assumed sample within this historical day</label><input id="ch-sample-index" type="range" min="0" max="23" value="0" step="1"><div class="ch-actions"><button id="ch-sample-prev" class="ch-secondary" type="button">Previous sample</button><button id="ch-sample-next" class="ch-secondary" type="button">Next sample</button></div><p id="ch-sample-position" role="status"></p><p id="ch-sample-warnings" class="ch-footnote"></p><div id="ch-cusp-table" class="ch-table-scroll" tabindex="0" role="region" aria-label="Twelve calculated house cusp longitudes"></div></div></div><div id="ch-sample-limits" class="ch-footnote"></div></div>
+  </section>
+  <section class="ch-section" aria-labelledby="ch-houses-title"><div class="ch-section-head"><div><p class="ch-kicker">04 · Read the vocabulary</p><h2 id="ch-houses-title">All twelve houses</h2></div><p>These are labelled historical meanings and editorial civic analogies. They are reference material; no country is assigned an exact house from an unknown time.</p></div><div id="ch-houses" class="ch-houses"></div></section>
+  <section class="ch-section ch-export" aria-labelledby="ch-export-title"><div><p class="ch-kicker">Keep the evidence attached</p><h2 id="ch-export-title">Export this historical comparison</h2><p>Exports include selected source records, precision, assumptions, civil reference instants, method limits and any hourly samples. JSON retains the full study; CSV uses labelled record, calendar and sample rows. Missing numerical values stay empty.</p></div><div><div class="ch-actions"><button id="ch-json" class="ch-secondary" type="button" disabled>Download JSON</button><button id="ch-csv" class="ch-secondary" type="button" disabled>Download CSV</button></div><p id="ch-export-status" class="ch-status" role="status"></p></div></section>
+  <section class="ch-section" aria-labelledby="ch-tasks-title"><div class="ch-section-head"><div><p class="ch-kicker">05 · Frame a useful study</p><h2 id="ch-tasks-title">Civic &amp; archival questions</h2></div><p>Begin with the event and the evidence needed to understand it. These study prompts provide requirements, not recommendations of fortunate dates.</p></div><div id="ch-tasks" class="ch-tasks"></div></section>
+  <section class="ch-section" aria-labelledby="ch-methods-title"><div class="ch-section-head"><div><p class="ch-kicker">06 · Read the instrument</p><h2 id="ch-methods-title">Methods, sources &amp; limits</h2></div><p>A named calendar, a traditional interpretation and a modern reconstruction are different kinds of claim. Astrology has no demonstrated predictive validity.</p></div><div id="ch-methods" class="ch-methods"></div><h3>Study limitations</h3><ul id="ch-limitations" class="ch-limits"></ul><details class="ch-source-details"><summary>Historical and method source register <span id="ch-source-count"></span></summary><ol id="ch-sources" class="ch-sources"></ol></details></section>
+  <p class="ch-return"><a href="#ch-selection-title">Return to historical record selection ↑</a></p>
+  <noscript><p>JavaScript is required for the local catalogue and comparison. Read the <a href="../docs/2026-10-country-history-experience.md">historical comparison documentation</a>.</p></noscript>
+</main>
+<script type="module">import { mountChrome } from '../assets/js/app/shared.js'; import { initCountryCalendars } from '../assets/js/app/country-calendars.js'; mountChrome('countrycalendars'); initCountryCalendars();</script>
+</body>
+</html>
