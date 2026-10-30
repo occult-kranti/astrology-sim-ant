@@ -1,0 +1,43 @@
+{
+  "round": "HORIZON-2031",
+  "date": "2026-10-30",
+  "commit": "3f76845",
+  "title": "Source-qualified date horizon and three review rounds",
+  "gates": {
+    "audit_html": 130,
+    "audit_js": 299,
+    "audit_problems": 0,
+    "engine_test_checks": 720,
+    "engine_test_fails": 0,
+    "browser_pages": null,
+    "browser_errors": null,
+    "drive_warnings": null
+  },
+  "gates_verified": true,
+  "gates_run": {
+    "audit": {
+      "exit": 0,
+      "parsed": true
+    },
+    "engineTest": {
+      "exit": 0,
+      "parsed": true
+    },
+    "browserVerify": {
+      "exit": null,
+      "parsed": false,
+      "skipped": true
+    }
+  },
+  "graph": null,
+  "claims": {
+    "domain_claims_survived": 6,
+    "tooling_only": 10,
+    "granularity": "coarse-statements",
+    "verified": false,
+    "basis": "Hand-classified coarse statement groups; not an independently validated claim count. See docs/2026-10-horizon-panel.md."
+  },
+  "notes": [
+    "Domain6: HKO/ICU dated discrepancies; computus and calendar-projection distinctions; published regional festival/Bahai anchor facts; selected Abrahamic refusals of date-setting; SGPC rejection of auspicious-day astrology; non-dateable Kalki/Metteyya/Zoroastrian source scopes. Tooling10: astronomy solver, complete-grid orchestration, purpose-index engine, split preset builder, loader integrity validation, worker control, timeline UI, MCP adapters, verification harnesses, release/navigation integration. All numerical fixtures and passed checks remain separately counted in source-bound receipts. Browser skipped in this telemetry invocation because the independent legacy sweep and final horizon browser run have their own actual receipts; no graph-census claim."
+  ]
+}

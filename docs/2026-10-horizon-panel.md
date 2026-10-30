@@ -36,3 +36,7 @@ The full local benchmark found exact brute/optimized equality across4,575 sample
 Inherited local checks passed: **720 engine checks**, static audit130HTML/299JS with zero problems, the real130-page Chromium sweep with zero errors, generator freshness, ledger integrity and actual MCP HTTP/stdio regressions. The legacy browser harness retains two documented descriptor warnings. A separate Node22.23.4 run passed36 independent horizon integration checks. Local evidence is in `docs/evidence/horizon/release/`; it does not substitute for the exact-head GitHub Actions jobs or published release identity.
 
 Publication is authorized by the current request and remains gated by all three CI verification jobs plus the production deployment identity check. A hosted MCP/Supabase update, physical-phone testing, assistive-technology testing, human religious review, model training and predictive validation are not claimed.
+
+## Release metadata correction
+
+The first PR CI run41006484032 rejected the newly appended telemetry round ID `HORIZON-2031`; the inherited framing gate requires an `R` number. All new horizon engine groups and source checks passed in that run. The unaccepted metadata row was corrected to `R36`, with its exact original preserved in `release/invalid-round-record.json` and the original commit. The ledger was regenerated and the full720-check engine gate passed again. No calculator, dataset, browser artifact or test threshold changed. Corrected full CI remains required.
