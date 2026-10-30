@@ -1,0 +1,6 @@
+{
+  "purpose": "Diagnostic full-suite attempt with accidental Math TeX fallback, not release acceptance.",
+  "result": "Stopped at Chinese320 page overflow324px after48checks; actual CI had already passed that view.",
+  "decision": "Do not change unrelated product geometry solely from this unusual fallback. Verify full suite with pinned browser and normal local fonts, plus focused old/new research regression with verified DejaVu Sans.",
+  "preserved": true
+}

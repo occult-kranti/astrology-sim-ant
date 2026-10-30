@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+<fontconfig>
+ <dir>/usr/share/fonts/truetype/dejavu</dir>
+ <dir>/usr/share/fonts/truetype/liberation</dir>
+ <cachedir>/tmp/atlas-ci-font-cache</cachedir>
+ <match target="pattern"><test name="family" compare="eq"><string>system-ui</string></test><edit name="family" mode="assign" binding="strong"><string>DejaVu Sans</string></edit></match>
+ <match target="pattern"><test name="family" compare="eq"><string>sans-serif</string></test><edit name="family" mode="assign" binding="strong"><string>DejaVu Sans</string></edit></match>
+ <match target="pattern"><test name="family" compare="eq"><string>serif</string></test><edit name="family" mode="assign" binding="strong"><string>Liberation Serif</string></edit></match>
+ <match target="pattern"><test name="family" compare="eq"><string>monospace</string></test><edit name="family" mode="assign" binding="strong"><string>DejaVu Sans Mono</string></edit></match>
+<selectfont><rejectfont><pattern><patelt name="family"><string>DejaVu Math TeX Gyre</string></patelt></pattern></rejectfont></selectfont>
+</fontconfig>

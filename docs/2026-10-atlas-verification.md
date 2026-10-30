@@ -1,6 +1,6 @@
 # Calendar atlas verification
 
-Baseline: `0d115c9`. All five atlas rounds and six bounded final member acceptances are complete. This work is separate from the earlier ensemble release.
+Baseline: `0d115c9`. The initial five atlas rounds and six local final acceptances completed; Round 5 was reopened after the remote typography failure described below. This work is separate from the earlier ensemble release.
 
 ## Executed baseline
 
@@ -49,3 +49,21 @@ All **20 recorded local gate commands exited zero** on the final product, from 0
 The moderator independently recomputed all 446 browser product hashes plus the driver after the gates and checks the Git index against them before committing. The [staged source binding](evidence/atlas/staged-source-binding.json) covers every changed staged file except itself, avoiding a circular digest. Final atlas numerical suites comprise 90 atlas assertions, 11 personal groups and 94 search checks; these are part of the full engine gate, not additional independent observations.
 
 The local evidence does not assert that remote CI or production deployment ran. The exact pushed-commit Actions result is recorded on [draft PR #5](https://github.com/occult-kranti/astrology-sim-ant/pull/5). Production Pages and the hosted MCP service remain separate release paths.
+
+
+## Reopened Round 5: CI correction
+
+The initial remote run, **40981346448** at `6c62c10`, failed the unchanged 220px mobile ranked-row assertion: actual rows were 230.75px. [Retained CI receipt](evidence/atlas/ci-first-failure/receipt.json). This qualifies the earlier local result; it is not a sixth panel round.
+
+The failure was independently reproduced on archived product bytes using CI-pinned Playwright 1.58.2 / Chromium 145 and a controlled fallback font. [Reproduction receipt](evidence/atlas/round5-ci-reproduction/receipt.json) and [environment](evidence/atlas/round5-ci-reproduction/environment.json) distinguish the controlled font from the unknown actual CI font. Three wrapped count lines account for the height increase.
+
+A scoped nowrap correction preserves complete text inside the existing horizontal scroller. The driver keeps the 220px assertion and adds computed dimensions, line metrics, actual font diagnostics and pre-failure screenshots. The corrected full run passed **612 checks / 85 downloads** using pinned Chromium 145 with normal local browser fonts; CDP identified Noto Sans. A separate focused regression under verified **DejaVu Sans** passed **178 checks / 32 downloads**. The archived old product failed at 230.75px under that same DejaVu configuration, while corrected rows were 171.27px across all four widths. Both corrected runs retained zero drift/errors/missing resources/external requests and matching 446-file manifests. The scoped CSS change and updated diagnostic driver are bound in the [corrected source record](evidence/atlas/round5-corrected-source-binding.json).
+
+[Full corrected receipt](evidence/atlas/round5-corrected-final/receipt.json) · [focused DejaVu receipt](evidence/atlas/round5-corrected-dejavu/receipt.json) · [old-product DejaVu failure](evidence/atlas/round5-ci-linux-sans-reproduction/receipt.json) · [owner font-stress receipt](evidence/atlas/round5-font-correction/owner-receipt.json).
+
+The initial Math-font full-run probe stopped at a separate 4px Chinese-page overflow; [its diagnostic scope](evidence/atlas/round5-math-fallback-layout/environment.json) is preserved and is not claimed as a passing release gate. The corrected full run uses normal browser fonts, while the controlled old/new research regression isolates the font-sensitive table mechanism. This does not clone the entire CI image. Fresh remote CI remains a separate moderator result; all prior receipts are unchanged.
+
+
+After the CSS correction, the moderator reran the repository’s required gates: full engine, static audit, operation-graph/gate/profile consistency, historical-ledger freshness and the complete independent Puppeteer harness. All seven commands exited zero; the page sweep again covered 129 pages with zero page errors and the same two qualified legacy descriptor warnings. [Correction gate manifest](evidence/atlas/correction-release/manifest.json).
+
+Direct manifest comparison confirms that `assets/css/calendar-search.css` is the only product file changed from the first R5 run; numerical engines, application logic, data and MCP transport code are unchanged. The diagnostic driver has a new recorded hash. The [corrected staged binding](evidence/atlas/staged-source-binding-correction.json) binds the correction’s changed files and verifies all 446 current product files plus the driver against the corrected full receipt. The original staged binding and original local/failed-CI records remain historical evidence for `6c62c10`.

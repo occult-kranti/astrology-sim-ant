@@ -1,0 +1,30 @@
+verify	Desktop calendar atlas, birth precision and event search	﻿2026-10-30T00:49:36.3114547Z ##[group]Run node scripts/browser-atlas.mjs
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:36.3114844Z [36;1mnode scripts/browser-atlas.mjs[0m
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:36.3132191Z shell: /usr/bin/bash -e {0}
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:36.3132393Z env:
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:36.3132562Z   ATLAS_OUTPUT: test-results/atlas
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:36.3132773Z ##[endgroup]
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1042184Z {
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1042486Z   "phase": "all",
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1042700Z   "pass": false,
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1042884Z   "checks": 147,
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1043306Z   "receipt": "/home/runner/work/astrology-sim-ant/astrology-sim-ant/test-results/atlas/receipt.json"
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1043708Z }
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1045572Z node:internal/modules/run_main:123
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1046068Z     triggerUncaughtException(
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1046398Z     ^
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1046531Z
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1047292Z AssertionError [ERR_ASSERTION]: ranked rows keep per-tradition counts readable without excessive vertical gaps 320 [230.75,230.75,230.75]
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1048600Z     at check (file:///home/runner/work/astrology-sim-ant/astrology-sim-ant/scripts/browser-atlas.mjs:26:105)
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1049594Z     at research (file:///home/runner/work/astrology-sim-ant/astrology-sim-ant/scripts/browser-atlas.mjs:232:3)
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1050390Z     at async file:///home/runner/work/astrology-sim-ant/astrology-sim-ant/scripts/browser-atlas.mjs:249:193 {
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1050923Z   generatedMessage: false,
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1051128Z   code: 'ERR_ASSERTION',
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1051319Z   actual: false,
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1051494Z   expected: true,
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1051872Z   operator: '==',
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1052039Z   diff: 'simple'
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1052207Z }
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1052290Z
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1052367Z Node.js v22.23.4
+verify	Desktop calendar atlas, birth precision and event search	2026-10-30T00:49:45.1217442Z ##[error]Process completed with exit code 1.

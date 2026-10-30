@@ -106,3 +106,10 @@ Final held owned-file hashes remain:
 - `pages/calendar-search.html`: `7cf5eff39c750df012231177b076c1e244a5fc3a9a8bbad38c3f566dff90e51c`
 
 This accepts the bounded implementation, not scientific predictive validity, universal culture coverage, a representative event sample, complete source-book reading, a physical-phone/screen-reader audit, a hosted external model connection or deployed production verification. The root agent owns broad repository gates, commit/push and CI/deployment status. No commit or push was performed by this member.
+
+
+### R5 correction after the first CI run
+
+The first remote run on `6c62c10` exposed 230.75px ranked rows at 320px, exceeding the unchanged 220px assertion despite the earlier local pass. The correction adds only `white-space:nowrap` to the compact count sentence inside the existing named horizontal scroller. It preserves the font size, every value, rank columns and keyboard access; no numerical or application logic changes.
+
+The owner’s [28-check font/viewport probe](evidence/atlas/round5-font-correction/owner-receipt.json) passed. Independent review reproduced the old failure with Chromium 145 and actual DejaVu Sans, then verified corrected 171.27px rows at all four widths. The [corrected full run](evidence/atlas/round5-corrected-final/receipt.json) passed 612 checks / 85 downloads; the [focused DejaVu run](evidence/atlas/round5-corrected-dejavu/receipt.json) passed 178 checks / 32 downloads. The original failed CI and diagnostic font trials remain qualified in the panel and verification records. Renewed remote success must be established by the moderator’s new pushed-head run.

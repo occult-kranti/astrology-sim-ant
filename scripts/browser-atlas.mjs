@@ -36,6 +36,15 @@ async function tableKeyboard(page,selector,label){
  check(bounds.role==='region'&&bounds.tabIndex===0&&!!bounds.label,label+' has named keyboard region',bounds);
  if(bounds.scroll>bounds.width+1){await region.evaluate(el=>el.scrollLeft=0);await region.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(100);check(await region.evaluate(el=>el.scrollLeft)>0,label+' responds to horizontal keyboard scrolling');await region.evaluate(el=>el.scrollLeft=0);}
 }
+async function tableDiagnostics(page,width){
+ const layout=await page.locator('#cs-results .cs-table').evaluate(table=>{
+  const metrics=el=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return{width:r.width,height:r.height,fontFamily:s.fontFamily,fontSize:s.fontSize,fontWeight:s.fontWeight,lineHeight:s.lineHeight,letterSpacing:s.letterSpacing,whiteSpace:s.whiteSpace,overflowWrap:s.overflowWrap,padding:s.padding};};
+  return{viewport:innerWidth,devicePixelRatio,documentFontStatus:document.fonts.status,table:metrics(table),region:metrics(table.parentElement),regionScrollWidth:table.parentElement.scrollWidth,rowHeights:[...table.tBodies[0].rows].map(r=>r.getBoundingClientRect().height),cells:[...table.tBodies[0].rows[0].cells].map(cell=>({text:cell.textContent,...metrics(cell)})),ruleGroups:[...table.tBodies[0].rows[0].querySelectorAll('.cs-rule-group')].map(group=>({text:group.textContent,...metrics(group),values:metrics(group.querySelector('.cs-rule-values'))}))};
+ });
+ let client;
+ try{client=await page.context().newCDPSession(page);await client.send('DOM.enable');await client.send('CSS.enable');const doc=await client.send('DOM.getDocument'),node=await client.send('DOM.querySelector',{nodeId:doc.root.nodeId,selector:'#cs-results .cs-table tbody tr:first-child .cs-rule-values'});layout.actualRuleFonts=(await client.send('CSS.getPlatformFontsForNode',{nodeId:node.nodeId})).fonts;}catch(error){layout.fontDiagnosticWarning=error.message;}finally{await client?.detach();}
+ (report.tableLayouts??=[]).push({requestedWidth:width,...layout});return layout;
+}
 const publicQuery=new URLSearchParams({at:'2026-10-29T12:00:00Z',lat:'51.5074',lon:'-0.1278',zone:'Europe/London'});
 const atlasURL=()=>base+'pages/calendar-atlas.html?'+publicQuery;
 async function atlas(width){
@@ -228,8 +237,9 @@ async function research(width){
   check((await page.locator('#cs-order-summary').innerText()).includes('All 31')&&(await page.locator('#cs-order-summary').innerText()).includes('not complete maxima or outcome predictions'),'visible ranked explanation limits the claim to counted historical rules '+width);
 
   await tableKeyboard(page,'#cs-results .cs-table-wrap','ranked results '+width);
-  const heights=await page.locator('#cs-results .cs-table tbody tr').evaluateAll(rows=>rows.map(row=>row.getBoundingClientRect().height));
-  check(heights.length===3&&heights.every(h=>h<=220),'ranked rows keep per-tradition counts readable without excessive vertical gaps '+width,heights);
+  const diagnostic=await tableDiagnostics(page,width),heights=diagnostic.rowHeights;
+  if(heights.length!==3||heights.some(h=>h>220)){await shot(page,'failure-ranking-'+width,'#cs-order-summary','start');await page.locator('#cs-results .cs-table-wrap').evaluate(el=>el.scrollLeft=el.scrollWidth);await shot(page,'failure-ranking-counts-'+width,'#cs-order-summary','start');}
+  check(heights.length===3&&heights.every(h=>h<=220),'ranked rows keep per-tradition counts readable without excessive vertical gaps '+width,{rowHeights:heights,actualRuleFonts:diagnostic.actualRuleFonts,ruleGroups:diagnostic.ruleGroups});
   await layout(page,'ranked research '+width);if(width===390||width===1440||width===320)await shot(page,'ranking-'+width,'#cs-order-summary','start');
   const windowBeforeJump=await page.locator('#cs-start').inputValue();await page.locator('#cs-edit-experiment').click();check(await page.locator('#cs-context-heading').evaluate(el=>document.activeElement===el)&&await page.locator('#cs-start').inputValue()===windowBeforeJump&&!await page.locator('#cs-json').isDisabled(),'edit-experiment anchor focuses controls without erasing current result '+width);
   await page.locator('#cs-criterion-kind').selectOption('calendar');await page.locator('#cs-calendar').selectOption('chinese');const fields=await page.locator('#cs-calendar-field option').evaluateAll(els=>els.map(el=>el.value));check(fields.join(',')==='day,month,relatedYear,yearName'&&await page.locator('#cs-json').isDisabled(),'Chinese field choices preserve related-year distinction and editing invalidates ranking '+width);
@@ -245,12 +255,12 @@ async function research(width){
 
 try{
  await new Promise((ok,no)=>{server.once('error',no);server.listen(0,'127.0.0.1',ok);});origin='http://127.0.0.1:'+server.address().port;base=origin+prefix;
- browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH}:{}),args:['--no-sandbox']});report.browser=browser.version();
+ browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_EXECUTABLE_PATH}:{}),args:['--no-sandbox']});report.browser=browser.version();report.runtime={nodeVersion:process.version,platform:process.platform};
  for(const width of[320,390,1440,1920]){if(selected('atlas'))await atlas(width);if(selected('personal'))await personal(width);if(selected('search'))await search(width);if(selected('research'))await research(width);}
  const after=await product();report.source.productFiles=after;report.source.changedDuringRun=[...new Set([...Object.keys(before),...Object.keys(after)])].filter(p=>before[p]!==after[p]);
  if(report.source.changedDuringRun.length&&process.env.ATLAS_ALLOW_EDITS==='1')report.limits.unfrozenCandidate=true;else check(!report.source.changedDuringRun.length,'product unchanged during verification',report.source.changedDuringRun);
  check(report.source.testScriptSHA256===sha(await readFile(fileURLToPath(import.meta.url))),'test driver unchanged during verification');
  check(!report.errors.length,'zero runtime/console exceptions',report.errors);check(!report.missing.length,'zero missing local resources',report.missing);check(!report.externalRequests.length,'zero implicit external requests',report.externalRequests);
 }catch(error){failure=error;report.failure={message:error.message,stack:error.stack};}
-finally{await browser?.close();if(server.listening)await new Promise(ok=>server.close(ok));report.finishedAt=new Date().toISOString();report.pass=!failure;await writeFile(resolve(output,'receipt.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({phase,pass:report.pass,checks:report.checks.length,receipt:resolve(output,'receipt.json')},null,2));}
+finally{if(!report.source.productFiles){const after=await product();report.source.productFiles=after;report.source.changedDuringRun=[...new Set([...Object.keys(before),...Object.keys(after)])].filter(p=>before[p]!==after[p]);}await browser?.close();if(server.listening)await new Promise(ok=>server.close(ok));report.finishedAt=new Date().toISOString();report.pass=!failure;await writeFile(resolve(output,'receipt.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({phase,pass:report.pass,checks:report.checks.length,receipt:resolve(output,'receipt.json')},null,2));}
 if(failure)throw failure;

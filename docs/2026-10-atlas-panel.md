@@ -2,7 +2,7 @@
 
 Baseline: `0d115c9`, branch `feat/mobile-calendar-observatory`. This ledger concerns a new five-round implementation and review sequence. The preceding three-round ensemble is retained in its own documents and is not counted again.
 
-All five new rounds completed on 2026-10-30. The six members are independently assigned AI coding/review roles, coordinated by a root moderator. They are not human cultural authorities, historical authors, observed usability participants or trained specialist models. Reading a selected passage is recorded separately from implementing a formula and from verifying that formula against independent references.
+The initial five-round local review completed on 2026-10-30; Round 5 was subsequently reopened for the remote CI correction recorded below. The six members are independently assigned AI coding/review roles, coordinated by a root moderator. They are not human cultural authorities, historical authors, observed usability participants or trained specialist models. Reading a selected passage is recorded separately from implementing a formula and from verifying that formula against independent references.
 
 | Member | Owned work and review perspective |
 |---|---|
@@ -117,3 +117,24 @@ The final full browser run passed **612 checks and 85 actual downloads** from 00
 | Independent experience QA | Executed 612 browser checks and 85 downloads; seven final screenshots inspected; [receipt](evidence/atlas/round5-final/receipt.json) |
 
 The moderator’s repository-wide staged binding, inherited tests, push, remote CI and publication are separate release gates. This panel does not claim a hosted model call, model training, a full 73,414-date scan, physical-device/screen-reader testing, human expert endorsement or validated predictive performance. Selected source passages and 2026 solar-term fixtures do not establish whole-book or full-range validation; the seven pending civil-calendar verification families remain pending.
+
+
+### Round 5 correction — remote typography failure
+
+GitHub Actions run **40981346448** at head **6c62c10** failed the atlas mobile row-height assertion after 147 checks: the three ranked rows were 230.75px tall, beyond the unchanged 220px readability bound. Earlier local R5 evidence measured 171.27px. The original local acceptance and failed remote receipt are both retained; the failure is not rewritten as a passing sixth round. [Original CI receipt, log and run metadata](evidence/atlas/ci-first-failure/receipt.json).
+
+Independent reproduction used the archived product bytes at `6c62c10`, CI-pinned Playwright 1.58.2 / Chromium 145.0.7632.6, and an isolated fallback-font configuration. It reproduced **230.75px exactly**. CDP reported DejaVu Math TeX Gyre in this controlled probe; this does **not** identify the GitHub runner’s actual font. Each of three count sentences occupied two 19.84px lines inside a 390.41px content width. [Failed reproduction receipt](evidence/atlas/round5-ci-reproduction/receipt.json), [environment and limitations](evidence/atlas/round5-ci-reproduction/environment.json).
+
+The search owner’s correction keeps only each compact count sentence on one line within the existing named horizontal scroller. It does not clip values, reduce text size or relax the 220px assertion. The independent driver now records computed font/line metrics, cell/group dimensions and actual Chromium font information, and captures screenshots before a height failure. Failed runs also retain the product manifest. A second old-product reproduction explicitly selected **DejaVu Sans**, verified by Chromium font diagnostics, and again measured 230.75px. This ordinary Linux font provides a clearer old/new regression than the first accidental Math TeX fallback. [DejaVu failure receipt](evidence/atlas/round5-ci-linux-sans-reproduction/receipt.json), [configuration and scope](evidence/atlas/round5-ci-linux-sans-reproduction/environment.json). An attempted full run with the unusual Math fallback stopped at a separate 4px Chinese-page overflow; it is retained as [diagnostic evidence](evidence/atlas/round5-math-fallback-layout/environment.json), not a passing gate or proof of a CI-image clone.
+
+The corrected product then passed two distinct held-source checks:
+
+| Corrected R5 check | Actual result |
+|---|---|
+| Full atlas/personal/search/research driver, pinned Chromium 145, normal local browser fonts | **612 checks / 85 downloads passed**; CDP identified Noto Sans for count text; rows were 171.27px at all four widths. [Receipt](evidence/atlas/round5-corrected-final/receipt.json). |
+| Focused research regression, same pinned browser and verified DejaVu Sans as the old-product failure | **178 checks / 32 downloads passed**; rows were 171.27px at 320/390/1440/1920, and each count sentence occupied one 19.83px line. [Receipt](evidence/atlas/round5-corrected-dejavu/receipt.json). |
+| Search owner’s focused font stress | **28 checks passed** across Arial/Georgia/monospace and 320/390/1440; actual keyboard scrolling tested where overflow exists. [Receipt](evidence/atlas/round5-font-correction/owner-receipt.json). |
+
+Both independent corrected runs had zero runtime errors, missing resources or implicit external requests, and no product/driver changes during execution. Their 446-file product manifests agree. Only `assets/css/calendar-search.css` differs from the original local R5 product; the driver separately adds diagnostics while retaining the 220px assertion. [Corrected source binding](evidence/atlas/round5-corrected-source-binding.json). Representative corrected mobile and solar-inspector screenshots were inspected.
+
+**Experience-review correction disposition: ACCEPT for the tested local scope.** The original five-round record and first failed CI run remain intact. Fresh remote CI on the corrected pushed commit remains a separate moderator confirmation; a pinned browser alone does not reproduce the complete GitHub Actions image.

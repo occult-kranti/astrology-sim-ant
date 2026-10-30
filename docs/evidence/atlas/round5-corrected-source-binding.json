@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-10-30T01:02:23.075410+00:00",
+  "reviewRound": 5,
+  "scope": "Correction after remote CI run40981346448 failed at6c62c10; no sixth panel round.",
+  "originalLocalReceiptSHA256": "c1fadd75a25bc16481a763ee73ba63f7be840f5bfafa259e87be198e4a98ccf7",
+  "originalBinding": "final-source-binding.json",
+  "failedCI": "ci-first-failure/receipt.json",
+  "failedNormalSansReproduction": "round5-ci-linux-sans-reproduction/receipt.json",
+  "correctedFullReceiptSHA256": "302091cf040369bb70cc8f563d6bdbb2677b204e353346ae72716e7d9436b820",
+  "correctedFocusedReceiptSHA256": "3c52bb7b896f0e6f7f9604a4fa1070180c1c78b9ca4b9310c562e2774fb88567",
+  "driverSHA256": "31492b810ce733e1161f57bc37f134a98b5ab137dc8bd4c42c18bc43262564d0",
+  "productManifestSHA256": "3362b9c655d3fabceb316b3b317f7a16b7d282648c1008cb6ad4d26b532668ea",
+  "productFileCount": 446,
+  "changedSinceOriginalLocalR5": [
+    "assets/css/calendar-search.css"
+  ],
+  "correctedCSSSHA256": "562e41dce7d2e6601513b2da4da6ba4e873a957d8070be64e2cbb93b828e5ddf",
+  "full": {
+    "checks": 612,
+    "downloads": 85,
+    "browser": "145.0.7632.6",
+    "fonts": [
+      {
+        "familyName": "Noto Sans",
+        "postScriptName": "NotoSans-Regular",
+        "isCustomFont": false,
+        "glyphCount": 67
+      }
+    ]
+  },
+  "controlledDejaVu": {
+    "checks": 178,
+    "downloads": 32,
+    "browser": "145.0.7632.6",
+    "fonts": [
+      {
+        "familyName": "DejaVu Sans",
+        "postScriptName": "DejaVuSans",
+        "isCustomFont": false,
+        "glyphCount": 67
+      }
+    ],
+    "rowHeights": [
+      171.265625,
+      171.265625,
+      171.265625
+    ]
+  },
+  "unchangedDuringBothRuns": true,
+  "identicalCorrectedProductManifests": true,
+  "limitations": [
+    "Pinned browser version does not clone the entire GitHub Actions image.",
+    "The original CI font was not captured; controlled DejaVu old/new probes reproduce and resolve its row-height symptom.",
+    "An unusual Math TeX full-suite probe had a separate4px Chinese overflow and is retained as diagnostic evidence, not passing release acceptance.",
+    "Remote corrected CI and repository staged binding remain separate moderator gates."
+  ]
+}

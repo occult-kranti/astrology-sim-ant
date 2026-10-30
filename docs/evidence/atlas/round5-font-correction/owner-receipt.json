@@ -1,0 +1,275 @@
+{
+  "checks": [
+    {
+      "label": "ranked rows remain <=220px at 320px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 320px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "actual named-region keyboard scroll at 320px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "ranked rows remain <=220px at 320px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 320px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "actual named-region keyboard scroll at 320px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "ranked rows remain <=220px at 320px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 320px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "actual named-region keyboard scroll at 320px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "ranked rows remain <=220px at 390px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 390px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "actual named-region keyboard scroll at 390px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "ranked rows remain <=220px at 390px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 390px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "actual named-region keyboard scroll at 390px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "ranked rows remain <=220px at 390px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 390px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "actual named-region keyboard scroll at 390px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "ranked rows remain <=220px at 1440px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 1440px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "all columns fit without scroll at 1440px with Arial, sans-serif",
+      "pass": true
+    },
+    {
+      "label": "ranked rows remain <=220px at 1440px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 1440px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "all columns fit without scroll at 1440px with Georgia, serif",
+      "pass": true
+    },
+    {
+      "label": "ranked rows remain <=220px at 1440px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "no document overflow at 1440px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "all columns fit without scroll at 1440px with Courier New, monospace",
+      "pass": true
+    },
+    {
+      "label": "no runtime errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "downloads": [],
+  "variants": [
+    {
+      "width": 320,
+      "font": "Arial, sans-serif",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 416,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "Arial, sans-serif",
+      "lineHeight": "19.84px",
+      "viewport": 320,
+      "documentWidth": 320,
+      "regionWidth": 288,
+      "scrollWidth": 1230
+    },
+    {
+      "width": 320,
+      "font": "Georgia, serif",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 416,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "Georgia, serif",
+      "lineHeight": "19.84px",
+      "viewport": 320,
+      "documentWidth": 320,
+      "regionWidth": 288,
+      "scrollWidth": 1230
+    },
+    {
+      "width": 320,
+      "font": "Courier New, monospace",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 540.125,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "\"Courier New\", monospace",
+      "lineHeight": "19.84px",
+      "viewport": 320,
+      "documentWidth": 320,
+      "regionWidth": 288,
+      "scrollWidth": 1354
+    },
+    {
+      "width": 390,
+      "font": "Arial, sans-serif",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 416,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "Arial, sans-serif",
+      "lineHeight": "19.84px",
+      "viewport": 390,
+      "documentWidth": 390,
+      "regionWidth": 358,
+      "scrollWidth": 1230
+    },
+    {
+      "width": 390,
+      "font": "Georgia, serif",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 416,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "Georgia, serif",
+      "lineHeight": "19.84px",
+      "viewport": 390,
+      "documentWidth": 390,
+      "regionWidth": 358,
+      "scrollWidth": 1230
+    },
+    {
+      "width": 390,
+      "font": "Courier New, monospace",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 540.125,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "\"Courier New\", monospace",
+      "lineHeight": "19.84px",
+      "viewport": 390,
+      "documentWidth": 390,
+      "regionWidth": 358,
+      "scrollWidth": 1354
+    },
+    {
+      "width": 1440,
+      "font": "Arial, sans-serif",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 416.03125,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "Arial, sans-serif",
+      "lineHeight": "19.84px",
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "regionWidth": 1354,
+      "scrollWidth": 1354
+    },
+    {
+      "width": 1440,
+      "font": "Georgia, serif",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 416.03125,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "Georgia, serif",
+      "lineHeight": "19.84px",
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "regionWidth": 1354,
+      "scrollWidth": 1354
+    },
+    {
+      "width": 1440,
+      "font": "Courier New, monospace",
+      "heights": [
+        171.265625,
+        171.265625,
+        171.265625
+      ],
+      "ruleColumnWidth": 540.125,
+      "valueWhiteSpace": "nowrap",
+      "fontFamily": "\"Courier New\", monospace",
+      "lineHeight": "19.84px",
+      "viewport": 1440,
+      "documentWidth": 1440,
+      "regionWidth": 1354,
+      "scrollWidth": 1354
+    }
+  ],
+  "pass": true
+}
