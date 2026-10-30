@@ -1,0 +1,661 @@
+{
+  "stage": "Real short-window local worker; published preset not yet generated",
+  "checks": [
+    {
+      "pass": true,
+      "label": "Every four civil dates retained 1440"
+    },
+    {
+      "pass": true,
+      "label": "Four declared profiles 1440"
+    },
+    {
+      "pass": true,
+      "label": "Actual complete local export 1440",
+      "details": {
+        "days": 4,
+        "cases": 1,
+        "totalSamples": 4,
+        "processedSamples": 4,
+        "availableSamples": 4,
+        "unavailableSamples": 0,
+        "calendarRows": 52,
+        "availableCalendarRows": 52,
+        "profileResults": 16,
+        "rankableProfileResults": 16,
+        "observanceRows": 0,
+        "uniqueObservances": 0,
+        "eventCount": 17,
+        "truncated": false
+      }
+    },
+    {
+      "pass": true,
+      "label": "Current browser provenance 1440"
+    },
+    {
+      "pass": true,
+      "label": "Rendered profile values equal exported computations 1440"
+    },
+    {
+      "pass": true,
+      "label": "Last date field selects actual endpoint 1440"
+    },
+    {
+      "pass": true,
+      "label": "Native slider Home selects first date 1440"
+    },
+    {
+      "pass": true,
+      "label": "Evidence follows slider endpoint 1440"
+    },
+    {
+      "pass": true,
+      "label": "CSV includes complete date set 1440"
+    },
+    {
+      "pass": true,
+      "label": "ICS preview before download 1440"
+    },
+    {
+      "pass": true,
+      "label": "Actual ICS study event 1440"
+    },
+    {
+      "pass": true,
+      "label": "Changed settings invalidate results 1440"
+    },
+    {
+      "pass": true,
+      "label": "Recalculation replaces active window 1440"
+    },
+    {
+      "pass": true,
+      "label": "No root overflow 1440"
+    },
+    {
+      "pass": true,
+      "label": "Ambiguous clock retained as unranked date",
+      "details": {
+        "date": "2026-11-01",
+        "caseId": "custom",
+        "status": "unavailable",
+        "sampleUTC": null,
+        "offsetSeconds": null,
+        "reason": "This clock time occurs twice. Choose the earlier or later occurrence after checking the birth record.",
+        "reasonCode": "AMBIGUOUS_TIME",
+        "calendars": [
+          {
+            "id": "gregory",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "julian",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "hebrew",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "islamic-civil",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "islamic-umalqura",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "chinese",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "buddhist",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "indian",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "persian",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "coptic",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "ethiopic",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "japanese",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          },
+          {
+            "id": "roc",
+            "text": "",
+            "status": "unavailable",
+            "validation": null,
+            "boundary": "civil-midnight"
+          }
+        ],
+        "astronomy": null,
+        "panchanga": null,
+        "purposeResults": [
+          {
+            "id": "western-increase-study",
+            "score": null,
+            "scoreNumerator": null,
+            "scoreDenominator": 10,
+            "rankable": false,
+            "observed": 0,
+            "total": 6,
+            "missing": [
+              {
+                "id": "DG-W-LIGHT",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-SOLAR",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-SPEED",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-VIA",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-APPLY-MARS",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-APPLY-SATURN",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              }
+            ],
+            "dependencyGroups": [
+              {
+                "id": "moon-sun-elongation",
+                "label": "Shared Moon–Sun elongation",
+                "ruleIds": [
+                  "DG-W-LIGHT",
+                  "DG-W-SOLAR"
+                ],
+                "observed": 0,
+                "total": 2,
+                "weight": 4,
+                "independentEvidence": false
+              },
+              {
+                "id": "moon-apparent-motion",
+                "label": "Moon apparent daily motion",
+                "ruleIds": [
+                  "DG-W-SPEED"
+                ],
+                "observed": 0,
+                "total": 1,
+                "weight": 2,
+                "independentEvidence": false
+              },
+              {
+                "id": "moon-tropical-longitude",
+                "label": "Moon tropical longitude band",
+                "ruleIds": [
+                  "DG-W-VIA"
+                ],
+                "observed": 0,
+                "total": 1,
+                "weight": 2,
+                "independentEvidence": false
+              },
+              {
+                "id": "moon-planet-aspect-geometry",
+                "label": "Moon–planet aspect geometry",
+                "ruleIds": [
+                  "DG-W-APPLY-MARS",
+                  "DG-W-APPLY-SATURN"
+                ],
+                "observed": 0,
+                "total": 2,
+                "weight": 2,
+                "independentEvidence": false
+              }
+            ]
+          },
+          {
+            "id": "western-decrease-study",
+            "score": null,
+            "scoreNumerator": null,
+            "scoreDenominator": 10,
+            "rankable": false,
+            "observed": 0,
+            "total": 6,
+            "missing": [
+              {
+                "id": "DG-W-LIGHT",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-SOLAR",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-SPEED",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-VIA",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-APPLY-MARS",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-W-APPLY-SATURN",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              }
+            ],
+            "dependencyGroups": [
+              {
+                "id": "moon-sun-elongation",
+                "label": "Shared Moon–Sun elongation",
+                "ruleIds": [
+                  "DG-W-LIGHT",
+                  "DG-W-SOLAR"
+                ],
+                "observed": 0,
+                "total": 2,
+                "weight": 4,
+                "independentEvidence": false
+              },
+              {
+                "id": "moon-apparent-motion",
+                "label": "Moon apparent daily motion",
+                "ruleIds": [
+                  "DG-W-SPEED"
+                ],
+                "observed": 0,
+                "total": 1,
+                "weight": 2,
+                "independentEvidence": false
+              },
+              {
+                "id": "moon-tropical-longitude",
+                "label": "Moon tropical longitude band",
+                "ruleIds": [
+                  "DG-W-VIA"
+                ],
+                "observed": 0,
+                "total": 1,
+                "weight": 2,
+                "independentEvidence": false
+              },
+              {
+                "id": "moon-planet-aspect-geometry",
+                "label": "Moon–planet aspect geometry",
+                "ruleIds": [
+                  "DG-W-APPLY-MARS",
+                  "DG-W-APPLY-SATURN"
+                ],
+                "observed": 0,
+                "total": 2,
+                "weight": 2,
+                "independentEvidence": false
+              }
+            ]
+          },
+          {
+            "id": "jyotisha-classification-study",
+            "score": null,
+            "scoreNumerator": null,
+            "scoreDenominator": 6,
+            "rankable": false,
+            "observed": 0,
+            "total": 4,
+            "missing": [
+              {
+                "id": "DG-J-TITHI",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-J-KARANA",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-J-YOGA",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              },
+              {
+                "id": "DG-J-NAKSHATRA",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              }
+            ],
+            "dependencyGroups": [
+              {
+                "id": "moon-sun-elongation",
+                "label": "Shared Moon–Sun elongation",
+                "ruleIds": [
+                  "DG-J-TITHI",
+                  "DG-J-KARANA"
+                ],
+                "observed": 0,
+                "total": 2,
+                "weight": 2,
+                "independentEvidence": false
+              },
+              {
+                "id": "sun-moon-sidereal-sum",
+                "label": "Sidereal Sun-plus-Moon longitude",
+                "ruleIds": [
+                  "DG-J-YOGA"
+                ],
+                "observed": 0,
+                "total": 1,
+                "weight": 2,
+                "independentEvidence": false
+              },
+              {
+                "id": "moon-sidereal-longitude",
+                "label": "Sidereal Moon longitude",
+                "ruleIds": [
+                  "DG-J-NAKSHATRA"
+                ],
+                "observed": 0,
+                "total": 1,
+                "weight": 2,
+                "independentEvidence": false
+              }
+            ]
+          },
+          {
+            "id": "mercury-hour-study",
+            "score": null,
+            "scoreNumerator": null,
+            "scoreDenominator": 1,
+            "rankable": false,
+            "observed": 0,
+            "total": 1,
+            "missing": [
+              {
+                "id": "DG-H-TEMPORAL",
+                "reason": "Canonical comparison or guidance is unavailable for this sample."
+              }
+            ],
+            "dependencyGroups": [
+              {
+                "id": "local-solar-hour",
+                "label": "Observer sunrise/sunset and weekday sequence",
+                "ruleIds": [
+                  "DG-H-TEMPORAL"
+                ],
+                "observed": 0,
+                "total": 1,
+                "weight": 1,
+                "independentEvidence": false
+              }
+            ]
+          }
+        ],
+        "observanceIds": [
+          "custom::hobs-islamic-unresolved-calendar-islamic-civil-2026-11-01",
+          "custom::hobs-islamic-unresolved-calendar-islamic-umalqura-2026-11-01",
+          "custom::hobs-jewish-unresolved-calendar-hebrew-2026-11-01"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "label": "Missing date never assigned worst rank"
+    },
+    {
+      "pass": true,
+      "label": "Every four civil dates retained 390"
+    },
+    {
+      "pass": true,
+      "label": "Four declared profiles 390"
+    },
+    {
+      "pass": true,
+      "label": "Actual complete local export 390",
+      "details": {
+        "days": 4,
+        "cases": 1,
+        "totalSamples": 4,
+        "processedSamples": 4,
+        "availableSamples": 4,
+        "unavailableSamples": 0,
+        "calendarRows": 52,
+        "availableCalendarRows": 52,
+        "profileResults": 16,
+        "rankableProfileResults": 16,
+        "observanceRows": 0,
+        "uniqueObservances": 0,
+        "eventCount": 17,
+        "truncated": false
+      }
+    },
+    {
+      "pass": true,
+      "label": "Current browser provenance 390"
+    },
+    {
+      "pass": true,
+      "label": "Rendered profile values equal exported computations 390"
+    },
+    {
+      "pass": true,
+      "label": "Last date field selects actual endpoint 390"
+    },
+    {
+      "pass": true,
+      "label": "Native slider Home selects first date 390"
+    },
+    {
+      "pass": true,
+      "label": "Evidence follows slider endpoint 390"
+    },
+    {
+      "pass": true,
+      "label": "CSV includes complete date set 390"
+    },
+    {
+      "pass": true,
+      "label": "ICS preview before download 390"
+    },
+    {
+      "pass": true,
+      "label": "Actual ICS study event 390"
+    },
+    {
+      "pass": true,
+      "label": "Changed settings invalidate results 390"
+    },
+    {
+      "pass": true,
+      "label": "Recalculation replaces active window 390"
+    },
+    {
+      "pass": true,
+      "label": "No root overflow 390"
+    },
+    {
+      "pass": true,
+      "label": "Every four civil dates retained 320"
+    },
+    {
+      "pass": true,
+      "label": "Four declared profiles 320"
+    },
+    {
+      "pass": true,
+      "label": "Actual complete local export 320",
+      "details": {
+        "days": 4,
+        "cases": 1,
+        "totalSamples": 4,
+        "processedSamples": 4,
+        "availableSamples": 4,
+        "unavailableSamples": 0,
+        "calendarRows": 52,
+        "availableCalendarRows": 52,
+        "profileResults": 16,
+        "rankableProfileResults": 16,
+        "observanceRows": 0,
+        "uniqueObservances": 0,
+        "eventCount": 17,
+        "truncated": false
+      }
+    },
+    {
+      "pass": true,
+      "label": "Current browser provenance 320"
+    },
+    {
+      "pass": true,
+      "label": "Rendered profile values equal exported computations 320"
+    },
+    {
+      "pass": true,
+      "label": "Last date field selects actual endpoint 320"
+    },
+    {
+      "pass": true,
+      "label": "Native slider Home selects first date 320"
+    },
+    {
+      "pass": true,
+      "label": "Evidence follows slider endpoint 320"
+    },
+    {
+      "pass": true,
+      "label": "CSV includes complete date set 320"
+    },
+    {
+      "pass": true,
+      "label": "ICS preview before download 320"
+    },
+    {
+      "pass": true,
+      "label": "Actual ICS study event 320"
+    },
+    {
+      "pass": true,
+      "label": "Changed settings invalidate results 320"
+    },
+    {
+      "pass": true,
+      "label": "Recalculation replaces active window 320"
+    },
+    {
+      "pass": true,
+      "label": "No root overflow 320"
+    },
+    {
+      "pass": true,
+      "label": "No runtime errors",
+      "details": []
+    }
+  ],
+  "errors": [],
+  "downloads": [
+    {
+      "name": "event-horizon.json",
+      "bytes": 213246
+    },
+    {
+      "name": "event-horizon-custom-mercury-hour-study.csv",
+      "bytes": 11193
+    },
+    {
+      "name": "horizon-study-2026-11-02.ics",
+      "bytes": 571
+    },
+    {
+      "name": "event-horizon.json",
+      "bytes": 168493
+    },
+    {
+      "name": "event-horizon.json",
+      "bytes": 213248
+    },
+    {
+      "name": "event-horizon-custom-mercury-hour-study.csv",
+      "bytes": 11193
+    },
+    {
+      "name": "horizon-study-2026-11-02.ics",
+      "bytes": 571
+    },
+    {
+      "name": "event-horizon.json",
+      "bytes": 213245
+    },
+    {
+      "name": "event-horizon-custom-mercury-hour-study.csv",
+      "bytes": 11193
+    },
+    {
+      "name": "horizon-study-2026-11-02.ics",
+      "bytes": 571
+    }
+  ],
+  "screenshots": [
+    "worker-cold-1440.png",
+    "worker-instrument-1440.png",
+    "worker-cold-390.png",
+    "worker-instrument-390.png",
+    "worker-cold-320.png",
+    "worker-instrument-320.png"
+  ],
+  "pass": true,
+  "browser": "145.0.7632.6",
+  "files": {
+    "pages/event-horizon.html": "bfe7b32ac1824474b257bb61f1c32e180c150099316f6bcf02e144080b8647fc",
+    "assets/js/app/event-horizon.js": "db785dd16a987ab93653a27d450371867c7b6dcd61a36ee4e05111ba5f280b2f",
+    "assets/css/event-horizon.css": "208b35eca749bc6f1fab96f874d3f2f042a0efc90d346eb0d5ad8079ea8796a6",
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f"
+  }
+}

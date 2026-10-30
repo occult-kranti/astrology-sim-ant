@@ -1,0 +1,125 @@
+{
+  "baseline": "3f76845f2d516d7a4bd507afa0508e6929c831e2",
+  "startedAt": "2026-10-30T04:24:25.627Z",
+  "checks": [
+    {
+      "label": "existing default guard rejects1525-day request rather than truncating 390",
+      "pass": true,
+      "details": "The selected range has 1525 days. Explicitly increase the allowed range above 366 days."
+    },
+    {
+      "label": "existing retained-row maximum is1000 390",
+      "pass": true
+    },
+    {
+      "label": "baseline preserves leap-day counts and explicit return-cap semantics 390",
+      "pass": true,
+      "details": {
+        "totalDates": 3,
+        "processed": 3,
+        "resolvedSamples": 3,
+        "unavailableSamples": 0,
+        "missingCalendarFieldSamples": 0,
+        "matched": 3,
+        "returned": 2,
+        "truncated": true
+      }
+    },
+    {
+      "label": "baseline retained dates include leap day 390",
+      "pass": true
+    },
+    {
+      "label": "baseline sample-clock edit invalidates exported result 390",
+      "pass": true
+    },
+    {
+      "label": "baseline atlas provides functional deep chart 390",
+      "pass": true
+    },
+    {
+      "label": "existing default guard rejects1525-day request rather than truncating 1440",
+      "pass": true,
+      "details": "The selected range has 1525 days. Explicitly increase the allowed range above 366 days."
+    },
+    {
+      "label": "existing retained-row maximum is1000 1440",
+      "pass": true
+    },
+    {
+      "label": "baseline preserves leap-day counts and explicit return-cap semantics 1440",
+      "pass": true,
+      "details": {
+        "totalDates": 3,
+        "processed": 3,
+        "resolvedSamples": 3,
+        "unavailableSamples": 0,
+        "missingCalendarFieldSamples": 0,
+        "matched": 3,
+        "returned": 2,
+        "truncated": true
+      }
+    },
+    {
+      "label": "baseline retained dates include leap day 1440",
+      "pass": true
+    },
+    {
+      "label": "baseline sample-clock edit invalidates exported result 1440",
+      "pass": true
+    },
+    {
+      "label": "baseline atlas provides functional deep chart 1440",
+      "pass": true
+    },
+    {
+      "label": "zero baseline browser exceptions",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "downloads": [
+    {
+      "width": 390,
+      "bytes": 150291,
+      "sha256": "d89cf3484ff6d75f1802b4cf2b05c4c337b6eb3af13cf4f82bb4736bbab75670",
+      "filename": "calendar-search-experiment.json"
+    },
+    {
+      "width": 1440,
+      "bytes": 150288,
+      "sha256": "eacd9a0783c71dba6d52e7620d18a736df7a458ea7d82317d21698e3c7b20732",
+      "filename": "calendar-search-experiment.json"
+    }
+  ],
+  "screenshots": [
+    "search-390.png",
+    "atlas-390.png",
+    "search-1440.png",
+    "atlas-1440.png"
+  ],
+  "errors": [],
+  "sourceBefore": {
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/app/calendar-search.js": "12aa71c06359cdefb46142d6d4bbc0846a4874e819504e8d361cf38e98f55733",
+    "assets/js/workers/calendar-search-worker.js": "0895f5c200e9c4b73d0b3c2f6b00e57e23acd9b858e777a6566ca3f0e72bc020",
+    "assets/js/app/calendar-atlas.js": "4623e9bf7085e6558c00b7fc52faa8b87a59ef6f2946bf7d81be8e552ecc7ada",
+    "assets/js/app/shared.js": "e52bfb937e17df331150fdb7615b3fd58219bfd4451d0240f7aee9511a2f7887",
+    "pages/calendar-search.html": "7cf5eff39c750df012231177b076c1e244a5fc3a9a8bbad38c3f566dff90e51c",
+    "pages/calendar-atlas.html": "f2403bf2143c933cea13f3e9cae6009c3c64dc22e114ae48980d456e1ff7d292"
+  },
+  "driverSHA256": "e05df128c87c06c4565dfc73590e40c54fcda0860f9785491d454c2966dc6012",
+  "browser": "145.0.7632.6",
+  "sourceAfter": {
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/app/calendar-search.js": "12aa71c06359cdefb46142d6d4bbc0846a4874e819504e8d361cf38e98f55733",
+    "assets/js/workers/calendar-search-worker.js": "0895f5c200e9c4b73d0b3c2f6b00e57e23acd9b858e777a6566ca3f0e72bc020",
+    "assets/js/app/calendar-atlas.js": "4623e9bf7085e6558c00b7fc52faa8b87a59ef6f2946bf7d81be8e552ecc7ada",
+    "assets/js/app/shared.js": "e52bfb937e17df331150fdb7615b3fd58219bfd4451d0240f7aee9511a2f7887",
+    "pages/calendar-search.html": "7cf5eff39c750df012231177b076c1e244a5fc3a9a8bbad38c3f566dff90e51c",
+    "pages/calendar-atlas.html": "f2403bf2143c933cea13f3e9cae6009c3c64dc22e114ae48980d456e1ff7d292"
+  },
+  "changedDuringRun": [],
+  "finishedAt": "2026-10-30T04:24:28.218Z",
+  "pass": true
+}

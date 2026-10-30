@@ -1,0 +1,2672 @@
+{
+  "schemaVersion": 1,
+  "phase": "all",
+  "round": "round3",
+  "startedAt": "2026-10-30T04:52:28.692Z",
+  "checks": [
+    {
+      "label": "complete preset opens without a surfaced error 320",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 320 completes",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "all1525dates across three public cases survive actual export 320",
+      "pass": true
+    },
+    {
+      "label": "every exported case-date retains13calendar slots and4purpose results 320",
+      "pass": true
+    },
+    {
+      "label": "verified preset and every-date slider disclose complete range 320",
+      "pass": true
+    },
+    {
+      "label": "astronomy spans union of actual local civil days 320",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "last civil date cannot overrun slider 320",
+      "pass": true
+    },
+    {
+      "label": "native keyboard Home selects first civil date 320",
+      "pass": true
+    },
+    {
+      "label": "native keyboard End selects last civil date 320",
+      "pass": true
+    },
+    {
+      "label": "case london 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case london 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case london 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case london 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case london 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "case delhi 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case delhi 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case delhi 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case delhi 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case delhi 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "case new-york 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case new-york 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case new-york 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case new-york 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case new-york 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "actual inherited unresolved rule produces unrankable sample 320",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "missing evidence is explained in visible day detail 320",
+      "pass": true
+    },
+    {
+      "label": "unfiltered complete CSV 320 completes",
+      "pass": true
+    },
+    {
+      "label": "unfiltered complete CSV 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "CSV retains every date despite list event filter 320",
+      "pass": true
+    },
+    {
+      "label": "context filter never shrinks reachable dates 320",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "selected-instant calendar file 320 completes",
+      "pass": true
+    },
+    {
+      "label": "selected-instant calendar file 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "ICS is the selected UTC study instant, not a fabricated all-day festival 320",
+      "pass": true
+    },
+    {
+      "label": "ICS omits coordinates and respects75octet folding 320",
+      "pass": true
+    },
+    {
+      "label": "horizon 320 responsive document and landmarks",
+      "pass": true,
+      "details": {
+        "width": 320,
+        "scroll": 320,
+        "main": 1,
+        "skip": true
+      }
+    },
+    {
+      "label": "evidence action transfers keyboard focus 320",
+      "pass": true
+    },
+    {
+      "label": "official Hong Kong date versus stored conversion is actually disclosed 320",
+      "pass": true
+    },
+    {
+      "label": "selected eclipse/conjunction displays frame, angular separation, timing precision and global visibility limit 320",
+      "pass": true
+    },
+    {
+      "label": "current-browser/stored differences are separately and exactly disclosed 320",
+      "pass": true
+    },
+    {
+      "label": "all11bounded tradition references render 320",
+      "pass": true
+    },
+    {
+      "label": "limited Sikh tradition reading remains unassessed and unranked 320",
+      "pass": true
+    },
+    {
+      "label": "limited Shinto · reading remains unassessed and unranked 320",
+      "pass": true
+    },
+    {
+      "label": "expanded sources 320 responsive document and landmarks",
+      "pass": true,
+      "details": {
+        "width": 320,
+        "scroll": 320,
+        "main": 1,
+        "skip": true
+      }
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 docs/2026-10-calendar-observatory-research.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 docs/2026-10-calendar-methods.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 docs/2026-10-calculation-methods.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 assets/js/core/vedic.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 assets/js/core/data/muhurta-data.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 assets/vendor/adhan/PROVENANCE.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 assets/js/core/data/dignities-data.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 assets/js/core/aspects.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 assets/js/core/cautions.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 assets/js/core/time.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 320 docs/2026-10-horizon-ranking.md",
+      "pass": true
+    },
+    {
+      "label": "exploration never requests geolocation 320",
+      "pass": true
+    },
+    {
+      "label": "complete preset opens without a surfaced error 320",
+      "pass": true
+    },
+    {
+      "label": "clock edit invalidates prior controls and exports 320",
+      "pass": true
+    },
+    {
+      "label": "full1827day calculation can cancel without partial export 320",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 320 completes",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "replacement worker completes exact3date brute/optimized comparison 320",
+      "pass": true
+    },
+    {
+      "label": "replacement ledger cannot receive cancelled full-horizon rows 320",
+      "pass": true
+    },
+    {
+      "label": "invalid IANA zone remains recoverable without old export 320",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 320 completes",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "DST gap retains full unavailable sample and does not become favorable zero 320",
+      "pass": true
+    },
+    {
+      "label": "unresolved clock date remains selectable and visibly unranked 320",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 23 DST-day segments 320",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 320",
+      "pass": true
+    },
+    {
+      "label": "unavailable observance calculations remain separate from named festivals 320",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 320 completes",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "actual UI fold selection chooses later UTC occurrence 320",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 25 DST-day segments 320",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 320",
+      "pass": true
+    },
+    {
+      "label": "published cases can restore after cancellation, invalid zone and gap run 320",
+      "pass": true
+    },
+    {
+      "label": "same-length corrupted preset is rejected before activation 320",
+      "pass": true
+    },
+    {
+      "label": "checksum failure can recover with actual correct preset bytes 320",
+      "pass": true
+    },
+    {
+      "label": "cancelled preset fetch cannot revive old or late output 320",
+      "pass": true
+    },
+    {
+      "label": "complete preset opens without a surfaced error 390",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 390 completes",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 390 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "all1525dates across three public cases survive actual export 390",
+      "pass": true
+    },
+    {
+      "label": "every exported case-date retains13calendar slots and4purpose results 390",
+      "pass": true
+    },
+    {
+      "label": "verified preset and every-date slider disclose complete range 390",
+      "pass": true
+    },
+    {
+      "label": "astronomy spans union of actual local civil days 390",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "last civil date cannot overrun slider 390",
+      "pass": true
+    },
+    {
+      "label": "native keyboard Home selects first civil date 390",
+      "pass": true
+    },
+    {
+      "label": "native keyboard End selects last civil date 390",
+      "pass": true
+    },
+    {
+      "label": "case london 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case london 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case london 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case london 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case london 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "case delhi 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case delhi 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case delhi 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case delhi 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case delhi 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "case new-york 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case new-york 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case new-york 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case new-york 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case new-york 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "actual inherited unresolved rule produces unrankable sample 390",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "missing evidence is explained in visible day detail 390",
+      "pass": true
+    },
+    {
+      "label": "unfiltered complete CSV 390 completes",
+      "pass": true
+    },
+    {
+      "label": "unfiltered complete CSV 390 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "CSV retains every date despite list event filter 390",
+      "pass": true
+    },
+    {
+      "label": "context filter never shrinks reachable dates 390",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 390 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 390 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 390 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 390 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 390 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "selected-instant calendar file 390 completes",
+      "pass": true
+    },
+    {
+      "label": "selected-instant calendar file 390 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "ICS is the selected UTC study instant, not a fabricated all-day festival 390",
+      "pass": true
+    },
+    {
+      "label": "ICS omits coordinates and respects75octet folding 390",
+      "pass": true
+    },
+    {
+      "label": "horizon 390 responsive document and landmarks",
+      "pass": true,
+      "details": {
+        "width": 390,
+        "scroll": 390,
+        "main": 1,
+        "skip": true
+      }
+    },
+    {
+      "label": "evidence action transfers keyboard focus 390",
+      "pass": true
+    },
+    {
+      "label": "official Hong Kong date versus stored conversion is actually disclosed 390",
+      "pass": true
+    },
+    {
+      "label": "selected eclipse/conjunction displays frame, angular separation, timing precision and global visibility limit 390",
+      "pass": true
+    },
+    {
+      "label": "current-browser/stored differences are separately and exactly disclosed 390",
+      "pass": true
+    },
+    {
+      "label": "all11bounded tradition references render 390",
+      "pass": true
+    },
+    {
+      "label": "limited Sikh tradition reading remains unassessed and unranked 390",
+      "pass": true
+    },
+    {
+      "label": "limited Shinto · reading remains unassessed and unranked 390",
+      "pass": true
+    },
+    {
+      "label": "expanded sources 390 responsive document and landmarks",
+      "pass": true,
+      "details": {
+        "width": 390,
+        "scroll": 390,
+        "main": 1,
+        "skip": true
+      }
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 docs/2026-10-calendar-observatory-research.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 docs/2026-10-calendar-methods.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 docs/2026-10-calculation-methods.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 assets/js/core/vedic.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 assets/js/core/data/muhurta-data.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 assets/vendor/adhan/PROVENANCE.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 assets/js/core/data/dignities-data.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 assets/js/core/aspects.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 assets/js/core/cautions.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 assets/js/core/time.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 390 docs/2026-10-horizon-ranking.md",
+      "pass": true
+    },
+    {
+      "label": "exploration never requests geolocation 390",
+      "pass": true
+    },
+    {
+      "label": "complete preset opens without a surfaced error 390",
+      "pass": true
+    },
+    {
+      "label": "clock edit invalidates prior controls and exports 390",
+      "pass": true
+    },
+    {
+      "label": "full1827day calculation can cancel without partial export 390",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 390 completes",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 390 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "replacement worker completes exact3date brute/optimized comparison 390",
+      "pass": true
+    },
+    {
+      "label": "replacement ledger cannot receive cancelled full-horizon rows 390",
+      "pass": true
+    },
+    {
+      "label": "invalid IANA zone remains recoverable without old export 390",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 390 completes",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 390 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "DST gap retains full unavailable sample and does not become favorable zero 390",
+      "pass": true
+    },
+    {
+      "label": "unresolved clock date remains selectable and visibly unranked 390",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 23 DST-day segments 390",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 390",
+      "pass": true
+    },
+    {
+      "label": "unavailable observance calculations remain separate from named festivals 390",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 390 completes",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 390 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "actual UI fold selection chooses later UTC occurrence 390",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 25 DST-day segments 390",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 390",
+      "pass": true
+    },
+    {
+      "label": "published cases can restore after cancellation, invalid zone and gap run 390",
+      "pass": true
+    },
+    {
+      "label": "same-length corrupted preset is rejected before activation 390",
+      "pass": true
+    },
+    {
+      "label": "checksum failure can recover with actual correct preset bytes 390",
+      "pass": true
+    },
+    {
+      "label": "cancelled preset fetch cannot revive old or late output 390",
+      "pass": true
+    },
+    {
+      "label": "complete preset opens without a surfaced error 1440",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "all1525dates across three public cases survive actual export 1440",
+      "pass": true
+    },
+    {
+      "label": "every exported case-date retains13calendar slots and4purpose results 1440",
+      "pass": true
+    },
+    {
+      "label": "verified preset and every-date slider disclose complete range 1440",
+      "pass": true
+    },
+    {
+      "label": "astronomy spans union of actual local civil days 1440",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "last civil date cannot overrun slider 1440",
+      "pass": true
+    },
+    {
+      "label": "native keyboard Home selects first civil date 1440",
+      "pass": true
+    },
+    {
+      "label": "native keyboard End selects last civil date 1440",
+      "pass": true
+    },
+    {
+      "label": "case london 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case london 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case london 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case london 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case london 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "actual inherited unresolved rule produces unrankable sample 1440",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "missing evidence is explained in visible day detail 1440",
+      "pass": true
+    },
+    {
+      "label": "unfiltered complete CSV 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "unfiltered complete CSV 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "CSV retains every date despite list event filter 1440",
+      "pass": true
+    },
+    {
+      "label": "context filter never shrinks reachable dates 1440",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "selected-instant calendar file 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "selected-instant calendar file 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "ICS is the selected UTC study instant, not a fabricated all-day festival 1440",
+      "pass": true
+    },
+    {
+      "label": "ICS omits coordinates and respects75octet folding 1440",
+      "pass": true
+    },
+    {
+      "label": "horizon 1440 responsive document and landmarks",
+      "pass": true,
+      "details": {
+        "width": 1440,
+        "scroll": 1440,
+        "main": 1,
+        "skip": true
+      }
+    },
+    {
+      "label": "evidence action transfers keyboard focus 1440",
+      "pass": true
+    },
+    {
+      "label": "official Hong Kong date versus stored conversion is actually disclosed 1440",
+      "pass": true
+    },
+    {
+      "label": "selected eclipse/conjunction displays frame, angular separation, timing precision and global visibility limit 1440",
+      "pass": true
+    },
+    {
+      "label": "current-browser/stored differences are separately and exactly disclosed 1440",
+      "pass": true
+    },
+    {
+      "label": "all11bounded tradition references render 1440",
+      "pass": true
+    },
+    {
+      "label": "limited Sikh tradition reading remains unassessed and unranked 1440",
+      "pass": true
+    },
+    {
+      "label": "limited Shinto · reading remains unassessed and unranked 1440",
+      "pass": true
+    },
+    {
+      "label": "expanded sources 1440 responsive document and landmarks",
+      "pass": true,
+      "details": {
+        "width": 1440,
+        "scroll": 1440,
+        "main": 1,
+        "skip": true
+      }
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 docs/2026-10-calendar-observatory-research.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 docs/2026-10-calendar-methods.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 docs/2026-10-calculation-methods.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 assets/js/core/vedic.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 assets/js/core/data/muhurta-data.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 assets/vendor/adhan/PROVENANCE.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 assets/js/core/data/dignities-data.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 assets/js/core/aspects.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 assets/js/core/cautions.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 assets/js/core/time.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1440 docs/2026-10-horizon-ranking.md",
+      "pass": true
+    },
+    {
+      "label": "exploration never requests geolocation 1440",
+      "pass": true
+    },
+    {
+      "label": "complete preset opens without a surfaced error 1440",
+      "pass": true
+    },
+    {
+      "label": "clock edit invalidates prior controls and exports 1440",
+      "pass": true
+    },
+    {
+      "label": "full1827day calculation can cancel without partial export 1440",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "replacement worker completes exact3date brute/optimized comparison 1440",
+      "pass": true
+    },
+    {
+      "label": "replacement ledger cannot receive cancelled full-horizon rows 1440",
+      "pass": true
+    },
+    {
+      "label": "invalid IANA zone remains recoverable without old export 1440",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "DST gap retains full unavailable sample and does not become favorable zero 1440",
+      "pass": true
+    },
+    {
+      "label": "unresolved clock date remains selectable and visibly unranked 1440",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 23 DST-day segments 1440",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 1440",
+      "pass": true
+    },
+    {
+      "label": "unavailable observance calculations remain separate from named festivals 1440",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "actual UI fold selection chooses later UTC occurrence 1440",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 25 DST-day segments 1440",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 1440",
+      "pass": true
+    },
+    {
+      "label": "published cases can restore after cancellation, invalid zone and gap run 1440",
+      "pass": true
+    },
+    {
+      "label": "same-length corrupted preset is rejected before activation 1440",
+      "pass": true
+    },
+    {
+      "label": "checksum failure can recover with actual correct preset bytes 1440",
+      "pass": true
+    },
+    {
+      "label": "cancelled preset fetch cannot revive old or late output 1440",
+      "pass": true
+    },
+    {
+      "label": "complete preset opens without a surfaced error 1920",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 1920 completes",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 1920 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "all1525dates across three public cases survive actual export 1920",
+      "pass": true
+    },
+    {
+      "label": "every exported case-date retains13calendar slots and4purpose results 1920",
+      "pass": true
+    },
+    {
+      "label": "verified preset and every-date slider disclose complete range 1920",
+      "pass": true
+    },
+    {
+      "label": "astronomy spans union of actual local civil days 1920",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2028-02-29 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "date 2031-01-01 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "last civil date cannot overrun slider 1920",
+      "pass": true
+    },
+    {
+      "label": "native keyboard Home selects first civil date 1920",
+      "pass": true
+    },
+    {
+      "label": "native keyboard End selects last civil date 1920",
+      "pass": true
+    },
+    {
+      "label": "case london 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case london 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case london 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case london 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case london 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case delhi 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "case new-york 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile western-increase-study 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile western-decrease-study 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile jyotisha-classification-study 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "profile mercury-hour-study 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "actual inherited unresolved rule produces unrankable sample 1920",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "missing evidence 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "missing evidence is explained in visible day detail 1920",
+      "pass": true
+    },
+    {
+      "label": "unfiltered complete CSV 1920 completes",
+      "pass": true
+    },
+    {
+      "label": "unfiltered complete CSV 1920 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "CSV retains every date despite list event filter 1920",
+      "pass": true
+    },
+    {
+      "label": "context filter never shrinks reachable dates 1920",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1920 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1920 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1920 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1920 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "calendar study export 1920 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "selected-instant calendar file 1920 completes",
+      "pass": true
+    },
+    {
+      "label": "selected-instant calendar file 1920 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "ICS is the selected UTC study instant, not a fabricated all-day festival 1920",
+      "pass": true
+    },
+    {
+      "label": "ICS omits coordinates and respects75octet folding 1920",
+      "pass": true
+    },
+    {
+      "label": "horizon 1920 responsive document and landmarks",
+      "pass": true,
+      "details": {
+        "width": 1920,
+        "scroll": 1920,
+        "main": 1,
+        "skip": true
+      }
+    },
+    {
+      "label": "evidence action transfers keyboard focus 1920",
+      "pass": true
+    },
+    {
+      "label": "official Hong Kong date versus stored conversion is actually disclosed 1920",
+      "pass": true
+    },
+    {
+      "label": "selected eclipse/conjunction displays frame, angular separation, timing precision and global visibility limit 1920",
+      "pass": true
+    },
+    {
+      "label": "current-browser/stored differences are separately and exactly disclosed 1920",
+      "pass": true
+    },
+    {
+      "label": "all11bounded tradition references render 1920",
+      "pass": true
+    },
+    {
+      "label": "limited Sikh tradition reading remains unassessed and unranked 1920",
+      "pass": true
+    },
+    {
+      "label": "limited Shinto · reading remains unassessed and unranked 1920",
+      "pass": true
+    },
+    {
+      "label": "expanded sources 1920 responsive document and landmarks",
+      "pass": true,
+      "details": {
+        "width": 1920,
+        "scroll": 1920,
+        "main": 1,
+        "skip": true
+      }
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 docs/2026-10-calendar-observatory-research.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 docs/2026-10-calendar-methods.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 docs/2026-10-calculation-methods.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 assets/js/core/vedic.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 assets/js/core/data/muhurta-data.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 assets/vendor/adhan/PROVENANCE.md",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 assets/js/core/data/dignities-data.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 assets/js/core/aspects.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 assets/js/core/cautions.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 assets/js/core/time.js",
+      "pass": true
+    },
+    {
+      "label": "actual local source link resolves under Pages prefix 1920 docs/2026-10-horizon-ranking.md",
+      "pass": true
+    },
+    {
+      "label": "exploration never requests geolocation 1920",
+      "pass": true
+    },
+    {
+      "label": "complete preset opens without a surfaced error 1920",
+      "pass": true
+    },
+    {
+      "label": "clock edit invalidates prior controls and exports 1920",
+      "pass": true
+    },
+    {
+      "label": "full1827day calculation can cancel without partial export 1920",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 1920 completes",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 1920 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "replacement worker completes exact3date brute/optimized comparison 1920",
+      "pass": true
+    },
+    {
+      "label": "replacement ledger cannot receive cancelled full-horizon rows 1920",
+      "pass": true
+    },
+    {
+      "label": "invalid IANA zone remains recoverable without old export 1920",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 1920 completes",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 1920 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "DST gap retains full unavailable sample and does not become favorable zero 1920",
+      "pass": true
+    },
+    {
+      "label": "unresolved clock date remains selectable and visibly unranked 1920",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 23 DST-day segments 1920",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 1920",
+      "pass": true
+    },
+    {
+      "label": "unavailable observance calculations remain separate from named festivals 1920",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1920 completes",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1920 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "actual UI fold selection chooses later UTC occurrence 1920",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 25 DST-day segments 1920",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 1920",
+      "pass": true
+    },
+    {
+      "label": "published cases can restore after cancellation, invalid zone and gap run 1920",
+      "pass": true
+    },
+    {
+      "label": "same-length corrupted preset is rejected before activation 1920",
+      "pass": true
+    },
+    {
+      "label": "checksum failure can recover with actual correct preset bytes 1920",
+      "pass": true
+    },
+    {
+      "label": "cancelled preset fetch cannot revive old or late output 1920",
+      "pass": true
+    },
+    {
+      "label": "no runtime or console errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "label": "no missing local responses",
+      "pass": true,
+      "details": []
+    },
+    {
+      "label": "no implicit external service requests",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "downloads": [
+    {
+      "label": "complete public ledger 320",
+      "filename": "downloads/001-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 63476425,
+      "sha256": "48e48a78234dde83d93beab58d63aa0bcce14af4d27a23c7ff45c7cfca5ab0ed",
+      "compressedBytes": 2277305,
+      "compressedSHA256": "a928bd0dcda04f502e8ebac849ac7dfbad36ced11f54228df18796c4f007e1b8"
+    },
+    {
+      "label": "unfiltered complete CSV 320",
+      "filename": "downloads/002-event-horizon-london-jyotisha-classification-study.csv.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 4293297,
+      "sha256": "f647ff4cd82681a1e9bbe70c4fac39e16e66fb60ca470d9364696cb73fb6dbca",
+      "compressedBytes": 111630,
+      "compressedSHA256": "1c7bac035d4f3086c7a89cf24955ff4226a12e8d66542efa79e93c0fa98c41d6"
+    },
+    {
+      "label": "selected-instant calendar file 320",
+      "filename": "downloads/003-horizon-study-2027-02-06.ics.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 569,
+      "sha256": "a5b7e768329b64e9a09658f0cacb82b3717d42026e4dda1398afb26c9ddc6167",
+      "compressedBytes": 413,
+      "compressedSHA256": "51b3a57333e1c7a001dd3c34f0c75f5a97a87f1cf280deb6f889be4de51b0e56"
+    },
+    {
+      "label": "replacement leap-day benchmark 320",
+      "filename": "downloads/004-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 192051,
+      "sha256": "dfc7b3225870ba182737c7648769b76d3cf28e25da5dce72cee4b335ecfba5b9",
+      "compressedBytes": 33502,
+      "compressedSHA256": "e2a9ce7735787c7e748b3e80b6a647608a8004505a93afdc7f53d077702d8151"
+    },
+    {
+      "label": "DST gap retained ledger 320",
+      "filename": "downloads/005-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 204478,
+      "sha256": "a5299ffa51e62f03a8e24393c1bf69ce732faf32c2c3a8cba4c424439db71bb9",
+      "compressedBytes": 34632,
+      "compressedSHA256": "a1e54c7bf7293cd096a0323a449cf55dd36bbd835de01b1700cd9c2d127e487a"
+    },
+    {
+      "label": "explicit later repeated-clock calculation 320",
+      "filename": "downloads/006-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 157141,
+      "sha256": "2aa93f5b3aef43e7317b10787c42902526858816f291e6222ca78c0d28de6dc5",
+      "compressedBytes": 31491,
+      "compressedSHA256": "a34f89ca6d6a993b1a719e5fa0f55df71ca19883279ed2c63c9463f428dce5f8"
+    },
+    {
+      "label": "complete public ledger 390",
+      "filename": "downloads/007-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 63476425,
+      "sha256": "48e48a78234dde83d93beab58d63aa0bcce14af4d27a23c7ff45c7cfca5ab0ed",
+      "compressedBytes": 2277305,
+      "compressedSHA256": "a928bd0dcda04f502e8ebac849ac7dfbad36ced11f54228df18796c4f007e1b8"
+    },
+    {
+      "label": "unfiltered complete CSV 390",
+      "filename": "downloads/008-event-horizon-london-jyotisha-classification-study.csv.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 4293297,
+      "sha256": "f647ff4cd82681a1e9bbe70c4fac39e16e66fb60ca470d9364696cb73fb6dbca",
+      "compressedBytes": 111630,
+      "compressedSHA256": "1c7bac035d4f3086c7a89cf24955ff4226a12e8d66542efa79e93c0fa98c41d6"
+    },
+    {
+      "label": "selected-instant calendar file 390",
+      "filename": "downloads/009-horizon-study-2027-02-06.ics.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 569,
+      "sha256": "22d574fbdbbc780a7c19507eab99b8ff77b387712022ea85c92b0b9f6429116d",
+      "compressedBytes": 413,
+      "compressedSHA256": "951a33701eb6f8161bbe88aefcd757d8c4181504acaef669121e63900ce38f4d"
+    },
+    {
+      "label": "replacement leap-day benchmark 390",
+      "filename": "downloads/010-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 192050,
+      "sha256": "967d74b703c830b5945316484a6a088b6362189654826af174da08a24d495034",
+      "compressedBytes": 33499,
+      "compressedSHA256": "14a9f77bdda123052ce7c0507aabc534d845d42749721982e58e064658907855"
+    },
+    {
+      "label": "DST gap retained ledger 390",
+      "filename": "downloads/011-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 204465,
+      "sha256": "18443660b63cd9610db7035e574dbd22fcb1782caa871680df5a52b1664ac9ea",
+      "compressedBytes": 34622,
+      "compressedSHA256": "f71262f0ead6ea164faf8801a6477e2ca5565786c95e2e43feb33f2e910af5f6"
+    },
+    {
+      "label": "explicit later repeated-clock calculation 390",
+      "filename": "downloads/012-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 157129,
+      "sha256": "bdc4f6bec842f5a1d44caeac7702be5c33948dc0897820cdabac20873a73f2e7",
+      "compressedBytes": 31481,
+      "compressedSHA256": "642593700b73ee1ef1704dc1e246080e9486c72f4c7dc82c1b2c918b9a0818c1"
+    },
+    {
+      "label": "complete public ledger 1440",
+      "filename": "downloads/013-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 63476425,
+      "sha256": "48e48a78234dde83d93beab58d63aa0bcce14af4d27a23c7ff45c7cfca5ab0ed",
+      "compressedBytes": 2277305,
+      "compressedSHA256": "a928bd0dcda04f502e8ebac849ac7dfbad36ced11f54228df18796c4f007e1b8"
+    },
+    {
+      "label": "unfiltered complete CSV 1440",
+      "filename": "downloads/014-event-horizon-london-jyotisha-classification-study.csv.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 4293297,
+      "sha256": "f647ff4cd82681a1e9bbe70c4fac39e16e66fb60ca470d9364696cb73fb6dbca",
+      "compressedBytes": 111630,
+      "compressedSHA256": "1c7bac035d4f3086c7a89cf24955ff4226a12e8d66542efa79e93c0fa98c41d6"
+    },
+    {
+      "label": "selected-instant calendar file 1440",
+      "filename": "downloads/015-horizon-study-2027-02-06.ics.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 569,
+      "sha256": "67e9b30794f8a2b4baa4afc0e016593c22bd151df84919a2b719294e5fbcf05d",
+      "compressedBytes": 413,
+      "compressedSHA256": "1cf311d09acb2ea0e3cabe7e7d832c9aa6328e2564bb61a59f7e9a66378a347f"
+    },
+    {
+      "label": "replacement leap-day benchmark 1440",
+      "filename": "downloads/016-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 192022,
+      "sha256": "a2fd7466b386fba598b0af5b9d27095ca0e77479f81598382ea3033ee217e1ac",
+      "compressedBytes": 33479,
+      "compressedSHA256": "ebe50b77825e9b5e7f9d2fd095fbf6431308970a0238b4af813403bd4a357a5f"
+    },
+    {
+      "label": "DST gap retained ledger 1440",
+      "filename": "downloads/017-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 204491,
+      "sha256": "bc3b1a04a1dda99cddfc60bebcd89680ee8a9f89f5d8315ddf335ce9e2595afc",
+      "compressedBytes": 34627,
+      "compressedSHA256": "eaefb122b3064ae9867a370c55a16c3e2e3a92f31c5cb06940c2f3922693d199"
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1440",
+      "filename": "downloads/018-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 157141,
+      "sha256": "f035e9977d5e359d95894a63a866abe0a9ac561305f7346a37e8111f45274949",
+      "compressedBytes": 31491,
+      "compressedSHA256": "ce8f8b39e988a6d0ad8a8920e74d575bef1ea52b5de2690b497b604cfc90d784"
+    },
+    {
+      "label": "complete public ledger 1920",
+      "filename": "downloads/019-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 63476425,
+      "sha256": "48e48a78234dde83d93beab58d63aa0bcce14af4d27a23c7ff45c7cfca5ab0ed",
+      "compressedBytes": 2277305,
+      "compressedSHA256": "a928bd0dcda04f502e8ebac849ac7dfbad36ced11f54228df18796c4f007e1b8"
+    },
+    {
+      "label": "unfiltered complete CSV 1920",
+      "filename": "downloads/020-event-horizon-london-jyotisha-classification-study.csv.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 4293297,
+      "sha256": "f647ff4cd82681a1e9bbe70c4fac39e16e66fb60ca470d9364696cb73fb6dbca",
+      "compressedBytes": 111630,
+      "compressedSHA256": "1c7bac035d4f3086c7a89cf24955ff4226a12e8d66542efa79e93c0fa98c41d6"
+    },
+    {
+      "label": "selected-instant calendar file 1920",
+      "filename": "downloads/021-horizon-study-2027-02-06.ics.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 569,
+      "sha256": "4ab459c224bdfafa76599b3d7a4ffdadaa4db987d0568d7defa78829d621665c",
+      "compressedBytes": 413,
+      "compressedSHA256": "96e31b0a6bad4ba00443bfc006c98ef2b82f9f03419687fa79436fab92402a71"
+    },
+    {
+      "label": "replacement leap-day benchmark 1920",
+      "filename": "downloads/022-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 192051,
+      "sha256": "2517badcf9f480b5c607a72f59a6fcc99065952b9376cc440fe993ad808142fd",
+      "compressedBytes": 33499,
+      "compressedSHA256": "2491ebd2ba875e84b838165e70a13c20f8258b762e963222b04921032d4abe4b"
+    },
+    {
+      "label": "DST gap retained ledger 1920",
+      "filename": "downloads/023-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 204480,
+      "sha256": "514e0571655e084f9133788ae853eccda0077e3283b3572576644948cb37db12",
+      "compressedBytes": 34623,
+      "compressedSHA256": "42fa1d885e87d99270cd92887a7ffb67ebf7ef1c0e722a9da33298e315eafb2e"
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1920",
+      "filename": "downloads/024-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 157155,
+      "sha256": "2b800b51073633e2125f524a68d62bc2391a089d32218a087ab84cb0405ac949",
+      "compressedBytes": 31499,
+      "compressedSHA256": "6494148ea094065efc0ee500c40a3bf5c84aa79f5fd6fa42ca071fd817eb4cb9"
+    }
+  ],
+  "screenshots": [
+    "instrument-320.png",
+    "chart-320.png",
+    "evidence-320.png",
+    "event-source-evidence-320.png",
+    "dst-gap-320.png",
+    "worker-recovered-320.png",
+    "instrument-390.png",
+    "chart-390.png",
+    "evidence-390.png",
+    "event-source-evidence-390.png",
+    "dst-gap-390.png",
+    "worker-recovered-390.png",
+    "instrument-1440.png",
+    "chart-1440.png",
+    "evidence-1440.png",
+    "event-source-evidence-1440.png",
+    "dst-gap-1440.png",
+    "worker-recovered-1440.png",
+    "instrument-1920.png",
+    "chart-1920.png",
+    "evidence-1920.png",
+    "event-source-evidence-1920.png",
+    "dst-gap-1920.png",
+    "worker-recovered-1920.png"
+  ],
+  "fonts": [
+    {
+      "label": "date title 320",
+      "selector": "#eh-date-title",
+      "metrics": {
+        "font": "500 27.2px / 32.64px \"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "bounds": {
+          "x": 31.390625,
+          "y": -8486.03125,
+          "width": 257.21875,
+          "height": 32.640625,
+          "top": -8486.03125,
+          "right": 288.609375,
+          "bottom": -8453.390625,
+          "left": 31.390625
+        },
+        "scrollWidth": 257,
+        "clientWidth": 257
+      },
+      "platformFonts": [
+        {
+          "familyName": "Liberation Serif",
+          "postScriptName": "LiberationSerif",
+          "isCustomFont": false,
+          "glyphCount": 15
+        }
+      ]
+    },
+    {
+      "label": "purpose explanation 320",
+      "selector": "#eh-purpose-summary",
+      "metrics": {
+        "font": "14.56px / 23.296px Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "fontFamily": "Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "bounds": {
+          "x": 31.390625,
+          "y": -8322.203125,
+          "width": 257.21875,
+          "height": 163.078125,
+          "top": -8322.203125,
+          "right": 288.609375,
+          "bottom": -8159.125,
+          "left": 31.390625
+        },
+        "scrollWidth": 257,
+        "clientWidth": 257
+      },
+      "platformFonts": [
+        {
+          "familyName": "Noto Sans",
+          "postScriptName": "NotoSans-Regular",
+          "isCustomFont": false,
+          "glyphCount": 237
+        }
+      ]
+    },
+    {
+      "label": "date title 390",
+      "selector": "#eh-date-title",
+      "metrics": {
+        "font": "500 27.2px / 32.64px \"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "bounds": {
+          "x": 31.390625,
+          "y": -7815.71875,
+          "width": 327.21875,
+          "height": 32.640625,
+          "top": -7815.71875,
+          "right": 358.609375,
+          "bottom": -7783.078125,
+          "left": 31.390625
+        },
+        "scrollWidth": 327,
+        "clientWidth": 327
+      },
+      "platformFonts": [
+        {
+          "familyName": "Liberation Serif",
+          "postScriptName": "LiberationSerif",
+          "isCustomFont": false,
+          "glyphCount": 15
+        }
+      ]
+    },
+    {
+      "label": "purpose explanation 390",
+      "selector": "#eh-purpose-summary",
+      "metrics": {
+        "font": "14.56px / 23.296px Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "fontFamily": "Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "bounds": {
+          "x": 31.390625,
+          "y": -7676.84375,
+          "width": 327.21875,
+          "height": 139.78125,
+          "top": -7676.84375,
+          "right": 358.609375,
+          "bottom": -7537.0625,
+          "left": 31.390625
+        },
+        "scrollWidth": 327,
+        "clientWidth": 327
+      },
+      "platformFonts": [
+        {
+          "familyName": "Noto Sans",
+          "postScriptName": "NotoSans-Regular",
+          "isCustomFont": false,
+          "glyphCount": 238
+        }
+      ]
+    },
+    {
+      "label": "date title 1440",
+      "selector": "#eh-date-title",
+      "metrics": {
+        "font": "500 38.88px / 46.656px \"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "bounds": {
+          "x": 76.984375,
+          "y": -5825.5,
+          "width": 337.3125,
+          "height": 46.640625,
+          "top": -5825.5,
+          "right": 414.296875,
+          "bottom": -5778.859375,
+          "left": 76.984375
+        },
+        "scrollWidth": 337,
+        "clientWidth": 337
+      },
+      "platformFonts": [
+        {
+          "familyName": "Liberation Serif",
+          "postScriptName": "LiberationSerif",
+          "isCustomFont": false,
+          "glyphCount": 15
+        }
+      ]
+    },
+    {
+      "label": "purpose explanation 1440",
+      "selector": "#eh-purpose-summary",
+      "metrics": {
+        "font": "14.56px / 23.296px Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "fontFamily": "Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "bounds": {
+          "x": 76.984375,
+          "y": -5732.25,
+          "width": 582.453125,
+          "height": 69.890625,
+          "top": -5732.25,
+          "right": 659.4375,
+          "bottom": -5662.359375,
+          "left": 76.984375
+        },
+        "scrollWidth": 582,
+        "clientWidth": 582
+      },
+      "platformFonts": [
+        {
+          "familyName": "Noto Sans",
+          "postScriptName": "NotoSans-Regular",
+          "isCustomFont": false,
+          "glyphCount": 241
+        }
+      ]
+    },
+    {
+      "label": "date title 1920",
+      "selector": "#eh-date-title",
+      "metrics": {
+        "font": "500 41.6px / 49.92px \"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+        "bounds": {
+          "x": 252.59375,
+          "y": -5743.5,
+          "width": 337.3125,
+          "height": 49.90625,
+          "top": -5743.5,
+          "right": 589.90625,
+          "bottom": -5693.59375,
+          "left": 252.59375
+        },
+        "scrollWidth": 337,
+        "clientWidth": 337
+      },
+      "platformFonts": [
+        {
+          "familyName": "Liberation Serif",
+          "postScriptName": "LiberationSerif",
+          "isCustomFont": false,
+          "glyphCount": 15
+        }
+      ]
+    },
+    {
+      "label": "purpose explanation 1920",
+      "selector": "#eh-purpose-summary",
+      "metrics": {
+        "font": "14.56px / 23.296px Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "fontFamily": "Inter, \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "bounds": {
+          "x": 252.59375,
+          "y": -5646.984375,
+          "width": 582.453125,
+          "height": 69.890625,
+          "top": -5646.984375,
+          "right": 835.046875,
+          "bottom": -5577.09375,
+          "left": 252.59375
+        },
+        "scrollWidth": 582,
+        "clientWidth": 582
+      },
+      "platformFonts": [
+        {
+          "familyName": "Noto Sans",
+          "postScriptName": "NotoSans-Regular",
+          "isCustomFont": false,
+          "glyphCount": 241
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "externalRequests": [],
+  "source": {
+    "driverSHA256": "ccad09548e7143fd9924f9d4a0ec8db5fd2ef3c3f9500993fc397c3b39dbeb09",
+    "productAtStartSHA256": "0ac454c7ca35ca6bc4b3b435cee39a35a758e652e9adc03191ce1f960fdcf103",
+    "productAtEndSHA256": "0ac454c7ca35ca6bc4b3b435cee39a35a758e652e9adc03191ce1f960fdcf103",
+    "changedFiles": [],
+    "driftAllowed": false
+  },
+  "limits": {
+    "realProvider": false,
+    "physicalPhone": false,
+    "screenReader": false,
+    "humanUsabilityResearch": false,
+    "calendarProviderWrite": false
+  },
+  "browser": "145.0.7632.6",
+  "runtimeCalendarDifferences": [
+    {
+      "width": 320,
+      "date": "2027-02-06",
+      "differences": [
+        {
+          "calendarId": "indian",
+          "stored": "Magha 17, 1948 Śaka",
+          "current": "Magha 17, 1948 Saka",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        },
+        {
+          "calendarId": "coptic",
+          "stored": "Toba 29, 1743 AM",
+          "current": "Toba 29, 1743 ERA1",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        },
+        {
+          "calendarId": "ethiopic",
+          "stored": "Ter 29, 2019 AM",
+          "current": "Ter 29, 2019 ERA1",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "date": "2027-02-06",
+      "differences": [
+        {
+          "calendarId": "indian",
+          "stored": "Magha 17, 1948 Śaka",
+          "current": "Magha 17, 1948 Saka",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        },
+        {
+          "calendarId": "coptic",
+          "stored": "Toba 29, 1743 AM",
+          "current": "Toba 29, 1743 ERA1",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        },
+        {
+          "calendarId": "ethiopic",
+          "stored": "Ter 29, 2019 AM",
+          "current": "Ter 29, 2019 ERA1",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "date": "2027-02-06",
+      "differences": [
+        {
+          "calendarId": "indian",
+          "stored": "Magha 17, 1948 Śaka",
+          "current": "Magha 17, 1948 Saka",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        },
+        {
+          "calendarId": "coptic",
+          "stored": "Toba 29, 1743 AM",
+          "current": "Toba 29, 1743 ERA1",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        },
+        {
+          "calendarId": "ethiopic",
+          "stored": "Ter 29, 2019 AM",
+          "current": "Ter 29, 2019 ERA1",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        }
+      ]
+    },
+    {
+      "width": 1920,
+      "date": "2027-02-06",
+      "differences": [
+        {
+          "calendarId": "indian",
+          "stored": "Magha 17, 1948 Śaka",
+          "current": "Magha 17, 1948 Saka",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        },
+        {
+          "calendarId": "coptic",
+          "stored": "Toba 29, 1743 AM",
+          "current": "Toba 29, 1743 ERA1",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        },
+        {
+          "calendarId": "ethiopic",
+          "stored": "Ter 29, 2019 AM",
+          "current": "Ter 29, 2019 ERA1",
+          "storedStatus": "available",
+          "currentStatus": "available"
+        }
+      ]
+    }
+  ],
+  "pass": true,
+  "completedAt": "2026-10-30T04:53:24.468Z",
+  "checkCount": 503
+}

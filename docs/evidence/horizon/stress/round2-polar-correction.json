@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "kind": "corrected-polar-stress-assertion",
+  "startedAt": "2026-10-30T04:56:11.377Z",
+  "runtime": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "tz": "2026b"
+  },
+  "priorFullReceiptSHA256": "9bf839ca4fc1c48ee9423c75cd000f1e5f8187f0a35e6a5a29f1786afc631df7",
+  "priorFullValidChecks": 44,
+  "priorFullInvalidAssertion": "Read requestedHouseSystem/houseSystem from compact row.astronomy instead of canonical detail.comparison.western.",
+  "request": {
+    "startDate": "2026-01-01",
+    "endDate": "2031-01-01",
+    "cases": [
+      {
+        "id": "max-tromso",
+        "label": "Maximum grid · Tromsø polar hours",
+        "lat": 69.6492,
+        "lon": 18.9553,
+        "timeZone": "Europe/Oslo",
+        "sampleTime": "12:00",
+        "system": "placidus",
+        "disambiguation": "reject"
+      }
+    ],
+    "purposeIds": [
+      "mercury-hour-study"
+    ],
+    "mode": "optimized",
+    "includeAstronomy": false,
+    "includeObservances": false
+  },
+  "sourceBefore": {
+    "scripts/stress-horizon.mjs": "a835216bc9348d01ff85ed88334168f23f0a06e9a4397d3abc5cfb1a505b36da",
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+    "assets/js/core/horizon-astronomy.js": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01",
+    "assets/js/core/astro.js": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08"
+  },
+  "checks": [
+    {
+      "label": "All1827Tromsø dates and structural validator",
+      "pass": true
+    },
+    {
+      "label": "Corrected exact driver assertion: every stored sample inspected through canonical Western chart fields",
+      "pass": true
+    },
+    {
+      "label": "Relevant product/driver source remains unchanged during focused correction",
+      "pass": true
+    }
+  ],
+  "generation": {
+    "elapsedMs": 19236.277442000002,
+    "counts": {
+      "days": 1827,
+      "cases": 1,
+      "totalSamples": 1827,
+      "processedSamples": 1827,
+      "availableSamples": 1827,
+      "unavailableSamples": 0,
+      "calendarRows": 23751,
+      "availableCalendarRows": 23751,
+      "profileResults": 1827,
+      "rankableProfileResults": 1231,
+      "observanceRows": 0,
+      "uniqueObservances": 0,
+      "eventCount": 0,
+      "truncated": false
+    },
+    "stats": {
+      "mode": "optimized",
+      "counterScope": "Top-level orchestration calls; canonical guidance internally recomputes comparison/chart facts.",
+      "canonicalCalls": 1827,
+      "guidanceCalls": 1827,
+      "purposeBatchEvaluations": 1827,
+      "elapsedMs": 19221.268759,
+      "sampleMs": 19219.499245,
+      "astronomyMs": 0.00813199999902281
+    }
+  },
+  "polar": {
+    "rows": 1827,
+    "inspected": 1827,
+    "rankable": 1231,
+    "unrankable": 596,
+    "requestedHouseSystem": "placidus",
+    "actualHouseSystem": "regiomontanus",
+    "warningCheckedEveryRow": true,
+    "scope": "Canonical detail recomputed from each stored UTC sample; house conventions are not stored in the compact phase-summary field.",
+    "elapsedMs": 19149.508897000003
+  },
+  "sourceAfter": {
+    "scripts/stress-horizon.mjs": "a835216bc9348d01ff85ed88334168f23f0a06e9a4397d3abc5cfb1a505b36da",
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+    "assets/js/core/horizon-astronomy.js": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01",
+    "assets/js/core/astro.js": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08"
+  },
+  "elapsedMs": 38572.388548,
+  "peakRSSBytes": 1031593984,
+  "pass": true,
+  "finishedAt": "2026-10-30T04:56:49.951Z"
+}

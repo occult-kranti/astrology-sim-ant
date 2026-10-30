@@ -1,0 +1,971 @@
+{
+  "schemaVersion": 1,
+  "kind": "complete-horizon-stress",
+  "startedAt": "2026-10-30T04:48:15.001Z",
+  "finishedAt": "2026-10-30T04:53:40.458Z",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "driverSHA256": "dea8a39caa4885e8bea0cfa4b7b497b756deb728421acb327b1c48ba13244ec3",
+  "sourceBindingScope": "All core and bundled-library JavaScript plus the event-horizon worker; dependency superset. Excludes only assets/js/core/data/horizon-preset-version.js: the concurrently generated preset-loader binding is unused by these calculation paths.",
+  "performanceContext": "Wall timings on this runtime; workload is not CPU-isolated. The authorized initial run may overlap preset generation. Ratios test implementation cost, not independent predictive validity.",
+  "complete": true,
+  "pass": false,
+  "checkCount": 45,
+  "elapsedMs": 325457.178332,
+  "memory": {
+    "initial": {
+      "rssBytes": 54759424,
+      "heapUsedBytes": 12174184,
+      "heapTotalBytes": 19476480,
+      "externalBytes": 8653535
+    },
+    "sampledPeakRSSBytes": 2765414400,
+    "final": {
+      "rssBytes": 2765414400,
+      "heapUsedBytes": 50424368,
+      "heapTotalBytes": 184557568,
+      "externalBytes": 9172120
+    },
+    "processLifetimeMaxRSSBytes": 2875998208
+  },
+  "stages": [
+    {
+      "id": "default-full-benchmark",
+      "equivalence": {
+        "identical": true,
+        "comparedFields": [
+          "complete requested date/case grid",
+          "clock missingness",
+          "all 13 calendar slots",
+          "all requested profile values and exact ties",
+          "all observances",
+          "all astronomical events and coverage",
+          "sources and limitations"
+        ],
+        "excludedFields": [
+          "mode label",
+          "execution counters/timings",
+          "generation clock/runtime metadata"
+        ]
+      },
+      "timing": {
+        "bruteMs": 195063.31492,
+        "optimizedMs": 51158.619053,
+        "totalMs": 246676.910031,
+        "speedRatio": 3.812912047487358,
+        "context": "Measured on this runtime; optimization shares canonical context across purposes. This is not independent predictive validation."
+      },
+      "brute": {
+        "request": {
+          "startDate": "2026-10-30",
+          "endDate": "2031-01-01",
+          "cases": [
+            {
+              "id": "london",
+              "label": "London \u00b7 local noon",
+              "lat": 51.5074,
+              "lon": -0.1278,
+              "timeZone": "Europe/London",
+              "sampleTime": "12:00",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            },
+            {
+              "id": "delhi",
+              "label": "Delhi \u00b7 local noon",
+              "lat": 28.6139,
+              "lon": 77.209,
+              "timeZone": "Asia/Calcutta",
+              "sampleTime": "12:00",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            },
+            {
+              "id": "new-york",
+              "label": "New York \u00b7 local noon",
+              "lat": 40.7128,
+              "lon": -74.006,
+              "timeZone": "America/New_York",
+              "sampleTime": "12:00",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            }
+          ],
+          "purposeIds": [
+            "western-increase-study",
+            "western-decrease-study",
+            "jyotisha-classification-study",
+            "mercury-hour-study"
+          ],
+          "mode": "brute",
+          "includeAstronomy": true,
+          "includeObservances": true
+        },
+        "counts": {
+          "days": 1525,
+          "cases": 3,
+          "totalSamples": 4575,
+          "processedSamples": 4575,
+          "availableSamples": 4575,
+          "unavailableSamples": 0,
+          "calendarRows": 59475,
+          "availableCalendarRows": 59475,
+          "profileResults": 18300,
+          "rankableProfileResults": 17114,
+          "observanceRows": 1011,
+          "uniqueObservances": 337,
+          "eventCount": 5883,
+          "truncated": false
+        },
+        "stats": {
+          "mode": "brute",
+          "counterScope": "Top-level orchestration calls; canonical guidance internally recomputes comparison/chart facts.",
+          "canonicalCalls": 18300,
+          "guidanceCalls": 18300,
+          "purposeBatchEvaluations": 18300,
+          "elapsedMs": 195063.31492,
+          "sampleMs": 192179.68785100002,
+          "astronomyMs": 2879.77624799998
+        },
+        "serializedBytes": 35108199,
+        "caseMissingness": [
+          {
+            "id": "london",
+            "total": 1525,
+            "unavailable": 0,
+            "clockReasons": {},
+            "profiles": [
+              {
+                "id": "western-increase-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "western-decrease-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "jyotisha-classification-study",
+                "rankable": 1137,
+                "missingRuleCounts": {
+                  "DG-J-YOGA": 388
+                }
+              },
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              }
+            ]
+          },
+          {
+            "id": "delhi",
+            "total": 1525,
+            "unavailable": 0,
+            "clockReasons": {},
+            "profiles": [
+              {
+                "id": "western-increase-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "western-decrease-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "jyotisha-classification-study",
+                "rankable": 1125,
+                "missingRuleCounts": {
+                  "DG-J-YOGA": 400
+                }
+              },
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              }
+            ]
+          },
+          {
+            "id": "new-york",
+            "total": 1525,
+            "unavailable": 0,
+            "clockReasons": {},
+            "profiles": [
+              {
+                "id": "western-increase-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "western-decrease-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "jyotisha-classification-study",
+                "rankable": 1127,
+                "missingRuleCounts": {
+                  "DG-J-YOGA": 398
+                }
+              },
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              }
+            ]
+          }
+        ],
+        "astronomy": {
+          "events": 5883,
+          "stats": {
+            "positionCalculations": 227639,
+            "scannedIntervals": 6102,
+            "searchedAspectPairs": 45,
+            "eventsByKind": {
+              "lunar-phase": 207,
+              "solar-quarter": 17,
+              "solar-eclipse": 10,
+              "lunar-eclipse": 10,
+              "ecliptic-aspect": 4691,
+              "zodiac-ingress": 871,
+              "planetary-station": 77
+            },
+            "completeRequestedRange": true,
+            "events": 5883
+          },
+          "range": {
+            "startUTC": "2026-10-29T18:30:00.000Z",
+            "endUTC": "2031-01-02T05:00:00.000Z",
+            "startInclusive": true,
+            "endExclusive": true
+          },
+          "window": {
+            "startUTC": "2026-10-29T18:30:00.000Z",
+            "endUTC": "2031-01-02T05:00:00.000Z",
+            "caseWindows": [
+              {
+                "caseId": "london",
+                "startUTC": "2026-10-30T00:00:00.000Z",
+                "endUTC": "2031-01-02T00:00:00.000Z"
+              },
+              {
+                "caseId": "delhi",
+                "startUTC": "2026-10-29T18:30:00.000Z",
+                "endUTC": "2031-01-01T18:30:00.000Z"
+              },
+              {
+                "caseId": "new-york",
+                "startUTC": "2026-10-30T04:00:00.000Z",
+                "endUTC": "2031-01-02T05:00:00.000Z"
+              }
+            ],
+            "convention": "Bounding union of selected observer civil-day intervals; start inclusive, end exclusive. Display filters each event back to the selected case\u2019s civil dates."
+          }
+        },
+        "observances": {
+          "rows": 1011,
+          "uniqueOriginIds": 337
+        }
+      },
+      "optimized": {
+        "request": {
+          "startDate": "2026-10-30",
+          "endDate": "2031-01-01",
+          "cases": [
+            {
+              "id": "london",
+              "label": "London \u00b7 local noon",
+              "lat": 51.5074,
+              "lon": -0.1278,
+              "timeZone": "Europe/London",
+              "sampleTime": "12:00",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            },
+            {
+              "id": "delhi",
+              "label": "Delhi \u00b7 local noon",
+              "lat": 28.6139,
+              "lon": 77.209,
+              "timeZone": "Asia/Calcutta",
+              "sampleTime": "12:00",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            },
+            {
+              "id": "new-york",
+              "label": "New York \u00b7 local noon",
+              "lat": 40.7128,
+              "lon": -74.006,
+              "timeZone": "America/New_York",
+              "sampleTime": "12:00",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            }
+          ],
+          "purposeIds": [
+            "western-increase-study",
+            "western-decrease-study",
+            "jyotisha-classification-study",
+            "mercury-hour-study"
+          ],
+          "mode": "optimized",
+          "includeAstronomy": true,
+          "includeObservances": true
+        },
+        "counts": {
+          "days": 1525,
+          "cases": 3,
+          "totalSamples": 4575,
+          "processedSamples": 4575,
+          "availableSamples": 4575,
+          "unavailableSamples": 0,
+          "calendarRows": 59475,
+          "availableCalendarRows": 59475,
+          "profileResults": 18300,
+          "rankableProfileResults": 17114,
+          "observanceRows": 1011,
+          "uniqueObservances": 337,
+          "eventCount": 5883,
+          "truncated": false
+        },
+        "stats": {
+          "mode": "optimized",
+          "counterScope": "Top-level orchestration calls; canonical guidance internally recomputes comparison/chart facts.",
+          "canonicalCalls": 4575,
+          "guidanceCalls": 4575,
+          "purposeBatchEvaluations": 4575,
+          "elapsedMs": 51158.619053,
+          "sampleMs": 48444.637094000005,
+          "astronomyMs": 2710.185422999988
+        },
+        "serializedBytes": 35108205,
+        "caseMissingness": [
+          {
+            "id": "london",
+            "total": 1525,
+            "unavailable": 0,
+            "clockReasons": {},
+            "profiles": [
+              {
+                "id": "western-increase-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "western-decrease-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "jyotisha-classification-study",
+                "rankable": 1137,
+                "missingRuleCounts": {
+                  "DG-J-YOGA": 388
+                }
+              },
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              }
+            ]
+          },
+          {
+            "id": "delhi",
+            "total": 1525,
+            "unavailable": 0,
+            "clockReasons": {},
+            "profiles": [
+              {
+                "id": "western-increase-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "western-decrease-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "jyotisha-classification-study",
+                "rankable": 1125,
+                "missingRuleCounts": {
+                  "DG-J-YOGA": 400
+                }
+              },
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              }
+            ]
+          },
+          {
+            "id": "new-york",
+            "total": 1525,
+            "unavailable": 0,
+            "clockReasons": {},
+            "profiles": [
+              {
+                "id": "western-increase-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "western-decrease-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              },
+              {
+                "id": "jyotisha-classification-study",
+                "rankable": 1127,
+                "missingRuleCounts": {
+                  "DG-J-YOGA": 398
+                }
+              },
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1525,
+                "missingRuleCounts": {}
+              }
+            ]
+          }
+        ],
+        "astronomy": {
+          "events": 5883,
+          "stats": {
+            "positionCalculations": 227639,
+            "scannedIntervals": 6102,
+            "searchedAspectPairs": 45,
+            "eventsByKind": {
+              "lunar-phase": 207,
+              "solar-quarter": 17,
+              "solar-eclipse": 10,
+              "lunar-eclipse": 10,
+              "ecliptic-aspect": 4691,
+              "zodiac-ingress": 871,
+              "planetary-station": 77
+            },
+            "completeRequestedRange": true,
+            "events": 5883
+          },
+          "range": {
+            "startUTC": "2026-10-29T18:30:00.000Z",
+            "endUTC": "2031-01-02T05:00:00.000Z",
+            "startInclusive": true,
+            "endExclusive": true
+          },
+          "window": {
+            "startUTC": "2026-10-29T18:30:00.000Z",
+            "endUTC": "2031-01-02T05:00:00.000Z",
+            "caseWindows": [
+              {
+                "caseId": "london",
+                "startUTC": "2026-10-30T00:00:00.000Z",
+                "endUTC": "2031-01-02T00:00:00.000Z"
+              },
+              {
+                "caseId": "delhi",
+                "startUTC": "2026-10-29T18:30:00.000Z",
+                "endUTC": "2031-01-01T18:30:00.000Z"
+              },
+              {
+                "caseId": "new-york",
+                "startUTC": "2026-10-30T04:00:00.000Z",
+                "endUTC": "2031-01-02T05:00:00.000Z"
+              }
+            ],
+            "convention": "Bounding union of selected observer civil-day intervals; start inclusive, end exclusive. Display filters each event back to the selected case\u2019s civil dates."
+          }
+        },
+        "observances": {
+          "rows": 1011,
+          "uniqueOriginIds": 337
+        }
+      }
+    },
+    {
+      "id": "maximum-four-case-grid",
+      "scope": "Full editable date/case/profile grid; astronomy and observances explicitly disabled because the complete default benchmark already exercises those layers twice.",
+      "result": {
+        "request": {
+          "startDate": "2026-01-01",
+          "endDate": "2031-01-01",
+          "cases": [
+            {
+              "id": "max-london",
+              "label": "Maximum grid \u00b7 London",
+              "lat": 51.5074,
+              "lon": -0.1278,
+              "timeZone": "Europe/London",
+              "sampleTime": "12:00",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            },
+            {
+              "id": "max-ny-gap",
+              "label": "Maximum grid \u00b7 New York 02:30 gap",
+              "lat": 40.7128,
+              "lon": -74.006,
+              "timeZone": "America/New_York",
+              "sampleTime": "02:30",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            },
+            {
+              "id": "max-ny-fold",
+              "label": "Maximum grid \u00b7 New York 01:30 fold",
+              "lat": 40.7128,
+              "lon": -74.006,
+              "timeZone": "America/New_York",
+              "sampleTime": "01:30",
+              "system": "regiomontanus",
+              "disambiguation": "reject"
+            },
+            {
+              "id": "max-tromso",
+              "label": "Maximum grid \u00b7 Troms\u00f8 polar hours",
+              "lat": 69.6492,
+              "lon": 18.9553,
+              "timeZone": "Europe/Oslo",
+              "sampleTime": "12:00",
+              "system": "placidus",
+              "disambiguation": "reject"
+            }
+          ],
+          "purposeIds": [
+            "mercury-hour-study"
+          ],
+          "mode": "optimized",
+          "includeAstronomy": false,
+          "includeObservances": false
+        },
+        "counts": {
+          "days": 1827,
+          "cases": 4,
+          "totalSamples": 7308,
+          "processedSamples": 7308,
+          "availableSamples": 7298,
+          "unavailableSamples": 10,
+          "calendarRows": 95004,
+          "availableCalendarRows": 94874,
+          "profileResults": 7308,
+          "rankableProfileResults": 6702,
+          "observanceRows": 0,
+          "uniqueObservances": 0,
+          "eventCount": 0,
+          "truncated": false
+        },
+        "stats": {
+          "mode": "optimized",
+          "counterScope": "Top-level orchestration calls; canonical guidance internally recomputes comparison/chart facts.",
+          "canonicalCalls": 7298,
+          "guidanceCalls": 7298,
+          "purposeBatchEvaluations": 7298,
+          "elapsedMs": 76127.80958199999,
+          "sampleMs": 76124.907019,
+          "astronomyMs": 0.012428999994881451
+        },
+        "serializedBytes": 27803982,
+        "caseMissingness": [
+          {
+            "id": "max-london",
+            "total": 1827,
+            "unavailable": 0,
+            "clockReasons": {},
+            "profiles": [
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1827,
+                "missingRuleCounts": {}
+              }
+            ]
+          },
+          {
+            "id": "max-ny-gap",
+            "total": 1827,
+            "unavailable": 5,
+            "clockReasons": {
+              "NONEXISTENT_TIME": 5
+            },
+            "profiles": [
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1822,
+                "missingRuleCounts": {
+                  "DG-H-TEMPORAL": 5
+                }
+              }
+            ]
+          },
+          {
+            "id": "max-ny-fold",
+            "total": 1827,
+            "unavailable": 5,
+            "clockReasons": {
+              "AMBIGUOUS_TIME": 5
+            },
+            "profiles": [
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1822,
+                "missingRuleCounts": {
+                  "DG-H-TEMPORAL": 5
+                }
+              }
+            ]
+          },
+          {
+            "id": "max-tromso",
+            "total": 1827,
+            "unavailable": 0,
+            "clockReasons": {},
+            "profiles": [
+              {
+                "id": "mercury-hour-study",
+                "rankable": 1231,
+                "missingRuleCounts": {
+                  "DG-H-TEMPORAL": 596
+                }
+              }
+            ]
+          }
+        ],
+        "astronomy": {
+          "events": 0,
+          "stats": {},
+          "range": null,
+          "window": {
+            "startUTC": "2025-12-31T23:00:00.000Z",
+            "endUTC": "2031-01-02T05:00:00.000Z",
+            "caseWindows": [
+              {
+                "caseId": "max-london",
+                "startUTC": "2026-01-01T00:00:00.000Z",
+                "endUTC": "2031-01-02T00:00:00.000Z"
+              },
+              {
+                "caseId": "max-ny-gap",
+                "startUTC": "2026-01-01T05:00:00.000Z",
+                "endUTC": "2031-01-02T05:00:00.000Z"
+              },
+              {
+                "caseId": "max-ny-fold",
+                "startUTC": "2026-01-01T05:00:00.000Z",
+                "endUTC": "2031-01-02T05:00:00.000Z"
+              },
+              {
+                "caseId": "max-tromso",
+                "startUTC": "2025-12-31T23:00:00.000Z",
+                "endUTC": "2031-01-01T23:00:00.000Z"
+              }
+            ],
+            "convention": "Bounding union of selected observer civil-day intervals; start inclusive, end exclusive. Display filters each event back to the selected case\u2019s civil dates."
+          }
+        },
+        "observances": {
+          "rows": 0,
+          "uniqueOriginIds": 0
+        }
+      }
+    }
+  ],
+  "checks": [
+    {
+      "label": "Default full brute/optimized semantic outputs are exactly identical",
+      "pass": true,
+      "elapsedMs": 0.08380699998815544
+    },
+    {
+      "label": "Default full grid is exactly1525dates \u00d73cases \u00d74profiles",
+      "pass": true,
+      "elapsedMs": 0.025036999984877184
+    },
+    {
+      "label": "Default full computation really performs18300brute and4575shared canonical calls",
+      "pass": true,
+      "elapsedMs": 0.020671000005677342
+    },
+    {
+      "label": "default brute: canonical structural/clock/source/accounting validator accepts",
+      "pass": true,
+      "elapsedMs": 522.2248100000143
+    },
+    {
+      "label": "default brute: independent complete Gregorian grid and all calendar/profile slots",
+      "pass": true,
+      "elapsedMs": 2.771884999994654
+    },
+    {
+      "label": "default brute: london/western-increase-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 6.520269000000553
+    },
+    {
+      "label": "default brute: london/western-decrease-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 3.4702030000044033
+    },
+    {
+      "label": "default brute: london/jyotisha-classification-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.6382030000095256
+    },
+    {
+      "label": "default brute: london/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.5252219999965746
+    },
+    {
+      "label": "default brute: delhi/western-increase-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 3.0164349999977276
+    },
+    {
+      "label": "default brute: delhi/western-decrease-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.486703000002308
+    },
+    {
+      "label": "default brute: delhi/jyotisha-classification-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.1347400000086054
+    },
+    {
+      "label": "default brute: delhi/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.451800999988336
+    },
+    {
+      "label": "default brute: new-york/western-increase-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.9980780000041705
+    },
+    {
+      "label": "default brute: new-york/western-decrease-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.5766099999891594
+    },
+    {
+      "label": "default brute: new-york/jyotisha-classification-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 3.51382900000317
+    },
+    {
+      "label": "default brute: new-york/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.1515369999979157
+    },
+    {
+      "label": "default optimized: canonical structural/clock/source/accounting validator accepts",
+      "pass": true,
+      "elapsedMs": 487.014949000004
+    },
+    {
+      "label": "default optimized: independent complete Gregorian grid and all calendar/profile slots",
+      "pass": true,
+      "elapsedMs": 1.0025169999862555
+    },
+    {
+      "label": "default optimized: london/western-increase-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.3300369999778923
+    },
+    {
+      "label": "default optimized: london/western-decrease-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.0045240000181366
+    },
+    {
+      "label": "default optimized: london/jyotisha-classification-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 1.598509000003105
+    },
+    {
+      "label": "default optimized: london/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 1.6115889999782667
+    },
+    {
+      "label": "default optimized: delhi/western-increase-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.493835000001127
+    },
+    {
+      "label": "default optimized: delhi/western-decrease-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.285529000015231
+    },
+    {
+      "label": "default optimized: delhi/jyotisha-classification-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.029982999985805
+    },
+    {
+      "label": "default optimized: delhi/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.054028999991715
+    },
+    {
+      "label": "default optimized: new-york/western-increase-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.703542000002926
+    },
+    {
+      "label": "default optimized: new-york/western-decrease-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 1.7338049999962095
+    },
+    {
+      "label": "default optimized: new-york/jyotisha-classification-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.7245530000072904
+    },
+    {
+      "label": "default optimized: new-york/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 1.6581500000029337
+    },
+    {
+      "label": "default optimized: every london event indexed exactly once on its independent civil date",
+      "pass": true,
+      "elapsedMs": 52.25282600001083
+    },
+    {
+      "label": "default optimized: every delhi event indexed exactly once on its independent civil date",
+      "pass": true,
+      "elapsedMs": 49.653281000006245
+    },
+    {
+      "label": "default optimized: every new-york event indexed exactly once on its independent civil date",
+      "pass": true,
+      "elapsedMs": 47.81048300000839
+    },
+    {
+      "label": "maximum grid: canonical structural/clock/source/accounting validator accepts",
+      "pass": true,
+      "elapsedMs": 676.5483510000049
+    },
+    {
+      "label": "maximum grid: independent complete Gregorian grid and all calendar/profile slots",
+      "pass": true,
+      "elapsedMs": 1.7225129999569617
+    },
+    {
+      "label": "maximum grid: max-london/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 4.917971000017133
+    },
+    {
+      "label": "maximum grid: max-ny-gap/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.7481799999950454
+    },
+    {
+      "label": "maximum grid: max-ny-fold/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 2.5447450000210665
+    },
+    {
+      "label": "maximum grid: max-tromso/mercury-hour-study independent score-frequency ranks and exact ties",
+      "pass": true,
+      "elapsedMs": 1.7453330000280403
+    },
+    {
+      "label": "Maximum editable grid covers both endpoints:1827dates \u00d74cases \u00d71profile",
+      "pass": true,
+      "elapsedMs": 0.08398600004147738
+    },
+    {
+      "label": "Five annual New York gaps and folds remain missing, with no invented sample",
+      "pass": true,
+      "elapsedMs": 0.3109270000131801
+    },
+    {
+      "label": "Polar hour missingness remains distinct from valid clock samples and real house fallback",
+      "pass": false,
+      "message": "The expression evaluated to a falsy value:\n\n  assert.ok(polar.rows.every(r=>r.status==='available'&&r.sampleUTC&&r.astronomy.requestedHouseSystem==='placidus'&&r.astronomy.houseSystem==='regiomontanus'))\n",
+      "elapsedMs": 4.42940699995961
+    },
+    {
+      "label": "Maximum-grid omitted event/observance layers are explicit empty layers, not partial enabled searches",
+      "pass": true,
+      "elapsedMs": 0.03497299994342029
+    },
+    {
+      "label": "Scientific dependency-superset hashes remain unchanged throughout full stress",
+      "pass": true,
+      "elapsedMs": 0.16617000004043803
+    }
+  ],
+  "failures": [
+    {
+      "label": "Polar hour missingness remains distinct from valid clock samples and real house fallback",
+      "message": "The expression evaluated to a falsy value:\n\n  assert.ok(polar.rows.every(r=>r.status==='available'&&r.sampleUTC&&r.astronomy.requestedHouseSystem==='placidus'&&r.astronomy.houseSystem==='regiomontanus'))\n"
+    }
+  ],
+  "receiptPolicy": "Compact projection of the original failed full-run receipt; no check status or measurement changed. Full raw receipt remains at the recorded workspace path, not a full ledger.",
+  "rawReceipt": {
+    "path": "test-results/horizon-stress/round2-receipt.json",
+    "sha256": "9bf839ca4fc1c48ee9423c75cd000f1e5f8187f0a35e6a5a29f1786afc631df7",
+    "bytes": 67012
+  },
+  "sourceBinding": {
+    "count": 167,
+    "beforeSHA256": "609871eb1b50262e913d180d5f857ce4846209a19c08545ab4f9fbe59bb15f2e",
+    "afterSHA256": "609871eb1b50262e913d180d5f857ce4846209a19c08545ab4f9fbe59bb15f2e",
+    "changedFiles": [],
+    "keyFiles": {
+      "assets/js/core/astro.js": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+      "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+      "assets/js/core/data/horizon-observances.js": "b06256ac1c6c5fcc16e03e919e025ef0fc0678a5d10e849902e2fb79b40e229b",
+      "assets/js/core/data/horizon-tool-coverage.js": "844b06483cc4de47d51b8b28afc3ef1952503008da2bbc9c5341a73a67db512a",
+      "assets/js/core/data/horizon-traditions.js": "7f08607e2405001f250c7e61d6bfeba5a7add721dea4a75d036c4269f8774d75",
+      "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+      "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+      "assets/js/core/horizon-astronomy.js": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01",
+      "assets/js/core/horizon-observances.js": "6b13160f1e965e8ced336eae6f57c486f4b19934cae57377310f66c8ba9b419e",
+      "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+      "assets/js/lib/astronomy.js": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7",
+      "assets/js/workers/event-horizon-worker.js": "3cd401afdce53341fc7e43edfe90229094c4c932208bc0402cd7319bdd469b85"
+    }
+  },
+  "observedWorkloadNote": "Parent reported preset generation complete before launch and QA browser work concurrent; CPU isolation was not established."
+}

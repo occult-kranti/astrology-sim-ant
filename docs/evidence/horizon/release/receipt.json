@@ -1,0 +1,65 @@
+{
+  "kind": "horizon-local-release-evidence",
+  "createdAt": "2026-10-30T05:01:25.356Z",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "baseline": "3f76845f2d516d7a4bd507afa0508e6929c831e2",
+  "branch": "feat/event-horizon-2031",
+  "audit": {
+    "audit_html": 130,
+    "audit_js": 299,
+    "audit_problems": 0,
+    "parsed": true
+  },
+  "engine": {
+    "engine_test_checks": 720,
+    "engine_test_fails": 0,
+    "parsed": true
+  },
+  "browser": {
+    "browser_pages": 130,
+    "browser_errors": 0,
+    "drive_warnings": 2,
+    "parsed": true
+  },
+  "scope": "Legacy all-page sweep and inherited engine gate, plus separate MCP and full-preset ranking receipts. New timeline visual acceptance is bound by its corrected final browser receipt. CI and production release identity remain separate.",
+  "files": {
+    "all-pages.txt": "20da6e636a0fc44befe486149d6ffd1424890999da46b04c857194745cf0349c",
+    "audit.txt": "c30c36cbf44d18ecfd472979573fe8c0a343f2ffb1ffdfef1f5c9e44a05ba6c3",
+    "engine.txt": "1986fe0c1afea500d298083a04099d9944e2570dda4cbabee6d0c29b9da83973",
+    "generator-tests.txt": "88ad6fe83b87e7fcf3c9d4516af898326c99cd4113832d933db4820a7ad59904",
+    "ledger-final.txt": "7580afb038693e327959220a05d3d1a0013fee278cbae88cdfb992f2be188911",
+    "mcp-final.json": "28b429dbec6fdda0a705c39c3b0fb445e1d1dfa541fff88dcc811563b0b0e409",
+    "ranking-preset-final.json": "346088b67e0817172e1e9d45f1212d850fe07cdd87e6dae93778fdb9f2a9a4c2",
+    "telemetry.txt": "ee5fe3b92edc96017c742c531598a92f5db6dc3e0486696530613c05894f53d9"
+  }
+}

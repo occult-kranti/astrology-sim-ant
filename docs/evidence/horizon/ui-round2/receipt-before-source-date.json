@@ -1,0 +1,166 @@
+{
+  "checks": [
+    {
+      "pass": true,
+      "label": "Three actual public cases 1440"
+    },
+    {
+      "pass": true,
+      "label": "Four named profiles 1440"
+    },
+    {
+      "pass": true,
+      "label": "Complete1525-date slider 1440"
+    },
+    {
+      "pass": true,
+      "label": "No surfaced load error 1440"
+    },
+    {
+      "pass": true,
+      "label": "Export preserves full requested grid",
+      "details": {
+        "days": 1525,
+        "cases": 3,
+        "totalSamples": 4575,
+        "processedSamples": 4575,
+        "availableSamples": 4575,
+        "unavailableSamples": 0,
+        "calendarRows": 59475,
+        "availableCalendarRows": 59475,
+        "profileResults": 18300,
+        "rankableProfileResults": 17114,
+        "observanceRows": 1011,
+        "uniqueObservances": 337,
+        "eventCount": 5883,
+        "truncated": false
+      }
+    },
+    {
+      "pass": true,
+      "label": "Checksummed precomputed case provenance"
+    },
+    {
+      "pass": true,
+      "label": "Exact inclusive default endpoints"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 london western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 london western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 london jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 london mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 delhi western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 delhi western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 delhi jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 delhi mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 new-york western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 new-york western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 new-york jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 new-york mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Inclusive2031 endpoint 1440"
+    },
+    {
+      "pass": true,
+      "label": "Native Home reaches first date 1440"
+    },
+    {
+      "pass": true,
+      "label": "Native single-step reaches next date 1440"
+    },
+    {
+      "pass": true,
+      "label": "Date-order ledger remains complete 1440"
+    },
+    {
+      "pass": true,
+      "label": "Observance filter retains complete denominator 1440"
+    },
+    {
+      "pass": true,
+      "label": "Astronomical event filter produces actual rows 1440"
+    },
+    {
+      "pass": true,
+      "label": "Three-case/four-purpose comparison 1440"
+    },
+    {
+      "pass": true,
+      "label": "Comparison remains open through date navigation 1440"
+    },
+    {
+      "pass": false,
+      "label": "Official/calendar discrepancy evidence exposed"
+    }
+  ],
+  "errors": [],
+  "downloads": [
+    {
+      "name": "event-horizon.json",
+      "bytes": 63476406,
+      "sha256": "8ca960b62bb338bf8c2344bfd22a0c271436a7347073eed51b5ba2438eefd8e6"
+    }
+  ],
+  "screenshots": [],
+  "visits": [
+    {
+      "width": 1440,
+      "height": 900,
+      "readyMs": 1664
+    }
+  ],
+  "startFiles": {
+    "pages/event-horizon.html": "13e0b91f61065abf0e9646ec8fbe1bbc98cedf4fc67cce2f45935854df233dd8",
+    "assets/js/app/event-horizon.js": "0a502f4cb9c08244425a4382b0777e8da4a875cbedc87a4263ded5c20d05c8f4",
+    "assets/css/event-horizon.css": "208b35eca749bc6f1fab96f874d3f2f042a0efc90d346eb0d5ad8079ea8796a6",
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+    "assets/data/horizon-2031-manifest.json": "d43f65deb5b0df1d504077a64e4838a770814db6421489f03c120e22fcd3a272"
+  },
+  "pass": false,
+  "failure": "Error: Official/calendar discrepancy evidence exposed undefined\n    at check (file:///workspace/setup-validation/horizon-ui-r2/review.mjs:2:634)\n    at file:///workspace/setup-validation/horizon-ui-r2/review.mjs:8:220",
+  "browser": "145.0.7632.6",
+  "endFiles": {
+    "pages/event-horizon.html": "13e0b91f61065abf0e9646ec8fbe1bbc98cedf4fc67cce2f45935854df233dd8",
+    "assets/js/app/event-horizon.js": "0a502f4cb9c08244425a4382b0777e8da4a875cbedc87a4263ded5c20d05c8f4",
+    "assets/css/event-horizon.css": "208b35eca749bc6f1fab96f874d3f2f042a0efc90d346eb0d5ad8079ea8796a6",
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+    "assets/data/horizon-2031-manifest.json": "d43f65deb5b0df1d504077a64e4838a770814db6421489f03c120e22fcd3a272"
+  },
+  "changedFiles": []
+}

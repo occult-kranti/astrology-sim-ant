@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "kind": "tool-coverage",
-  "capabilities": 95,
-  "mcpTools": 71,
-  "capabilitiesWithNamedAdapters": 76,
+  "capabilities": 96,
+  "mcpTools": 73,
+  "capabilitiesWithNamedAdapters": 77,
   "guideOnlyCapabilities": 19,
-  "localGuideRoutes": 90,
+  "localGuideRoutes": 91,
   "hostedMCP": "Not established by local source coverage; verify tools/list on the deployed revision.",
   "note": "A named adapter can expose a documented subset. Output paths and scope distinguish it from the full local page or every function option. Source validation and numerical consistency are separate.",
   "rows": [
@@ -8864,6 +8864,278 @@
         "citation": "Exact variant/source records in core/calendar-atlas.js; implementation and cultural authority remain separate.",
         "book": "Calendars",
         "chapter": "Named cultural variants",
+        "readingStatus": "Inherited capability catalogue; consult the cited method record for passage verification."
+      },
+      "execution": "named-source-adapter"
+    },
+    {
+      "id": "event-horizon",
+      "title": "Event horizon through January 2031",
+      "pages": [
+        "pages/event-horizon.html"
+      ],
+      "localFunctionInputs": [
+        {
+          "name": "request",
+          "type": "object",
+          "required": true,
+          "desc": "Explicit inclusive civil interval within 2026-01-01 through 2031-01-01, one to four public observer cases and named purpose profiles."
+        },
+        {
+          "name": "hooks",
+          "type": "object",
+          "desc": "Local cancellation/progress only; remote tools use bounded strict adapters."
+        }
+      ],
+      "inputContractNote": "Local engine function arguments are not MCP call arguments. Use the exact schema for each named MCP tool; adapters may recompute charts and provide curated datasets instead of accepting them.",
+      "mcpContracts": [
+        {
+          "name": "workbench_horizon_scan",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "startDate": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10,
+                "description": "Explicit YYYY-MM-DD within 2026-01-01–2031-01-01; inclusive civil-date endpoints."
+              },
+              "endDate": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10,
+                "description": "Explicit YYYY-MM-DD within 2026-01-01–2031-01-01; inclusive civil-date endpoints."
+              },
+              "cases": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40,
+                      "description": "Lowercase letter followed by lowercase letters, digits or hyphens."
+                    },
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100
+                    },
+                    "lat": {
+                      "type": "number",
+                      "minimum": -90,
+                      "maximum": 90
+                    },
+                    "lon": {
+                      "type": "number",
+                      "minimum": -180,
+                      "maximum": 180
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 100,
+                      "description": "Explicit IANA zone; geographic correspondence is not automatically verified."
+                    },
+                    "sampleTime": {
+                      "type": "string",
+                      "minLength": 5,
+                      "maxLength": 8,
+                      "description": "Explicit HH:mm or HH:mm:ss local sample clock; no birth time is inferred."
+                    },
+                    "system": {
+                      "type": "string",
+                      "enum": [
+                        "regiomontanus",
+                        "placidus",
+                        "whole",
+                        "equal"
+                      ]
+                    },
+                    "disambiguation": {
+                      "type": "string",
+                      "enum": [
+                        "reject",
+                        "earlier",
+                        "later"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "lat",
+                    "lon",
+                    "timeZone",
+                    "sampleTime"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1,
+                "maxItems": 2
+              },
+              "purposeIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "western-increase-study",
+                    "western-decrease-study",
+                    "jyotisha-classification-study",
+                    "mercury-hour-study"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 4,
+                "uniqueItems": true
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "optimized",
+                  "brute"
+                ]
+              },
+              "includeAstronomy": {
+                "type": "boolean"
+              },
+              "includeObservances": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "startDate",
+              "endDate",
+              "cases",
+              "purposeIds"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "workbench_horizon_day",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10,
+                "description": "Explicit YYYY-MM-DD within 2026-01-01–2031-01-01; inclusive civil-date endpoints."
+              },
+              "observerCase": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40,
+                    "description": "Lowercase letter followed by lowercase letters, digits or hyphens."
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "description": "Explicit IANA zone; geographic correspondence is not automatically verified."
+                  },
+                  "sampleTime": {
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 8,
+                    "description": "Explicit HH:mm or HH:mm:ss local sample clock; no birth time is inferred."
+                  },
+                  "system": {
+                    "type": "string",
+                    "enum": [
+                      "regiomontanus",
+                      "placidus",
+                      "whole",
+                      "equal"
+                    ]
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "lat",
+                  "lon",
+                  "timeZone",
+                  "sampleTime"
+                ],
+                "additionalProperties": false
+              },
+              "purposeIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "western-increase-study",
+                    "western-decrease-study",
+                    "jyotisha-classification-study",
+                    "mercury-hour-study"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 4,
+                "uniqueItems": true
+              },
+              "includeHourly": {
+                "type": "boolean"
+              },
+              "includeAstronomy": {
+                "type": "boolean"
+              },
+              "includeObservances": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "date",
+              "observerCase",
+              "purposeIds"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "mcpTools": [
+        "workbench_horizon_scan",
+        "workbench_horizon_day"
+      ],
+      "outputPaths": [
+        "data.cases",
+        "data.counts",
+        "data.detail",
+        "data.hourly"
+      ],
+      "scope": "Complete remote windows are bounded to 31 inclusive dates and two cases. One-day detail recomputes canonical evidence and optional unranked hourly guidance. Explicit source/missingness limits remain; no universal luck or religious score.",
+      "browserFunction": null,
+      "source": {
+        "citation": "docs/2026-10-horizon-methods.md; horizon astronomy, observance, ranking and tradition source records.",
+        "book": "Calendar research",
+        "chapter": "Event horizon",
         "readingStatus": "Inherited capability catalogue; consult the cited method record for passage verification."
       },
       "execution": "named-source-adapter"

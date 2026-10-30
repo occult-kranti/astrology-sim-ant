@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "kind": "horizon-ranking-source-receipt",
+  "records": [
+    {
+      "id": "HR-AGRIPPA-BOOK2",
+      "url": "https://esotericarchives.com/agrippa/agripp2c.htm",
+      "retrievedOn": "2026-10-30",
+      "httpStatus": 200,
+      "bytes": 105914,
+      "sha256": "3b2a63d41c2b54196e94305bbc0bd361568d846cba6ea5d650e7738c3e306608",
+      "readingScope": "II.29 complete chapter, II.32 opening paragraph, II.34 complete chapter, II.43 complete chapter; no full-book reading",
+      "usedForEncodedClaim": true
+    },
+    {
+      "id": "HR-LILLY-I",
+      "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+      "retrievedOn": "2026-10-30",
+      "httpStatus": 200,
+      "bytes": 817139,
+      "sha256": "94bbce66c8e2c509a7d9ef56fb3378538dea44b549de500034d7ac2734b5b4ae",
+      "readingScope": "Digital transcription pp.77–78 and115, read from identical SHA256-bound local text extraction; no new critical-edition collation",
+      "usedForEncodedClaim": true,
+      "edition": "World Astrology Network modern transcription marked copyright2003, not a facsimile",
+      "rights": "Historical work public domain; modern transcription copyright notice retained. Original paraphrases only; no modern PDF/editorial matter redistributed."
+    },
+    {
+      "id": "HR-AGRIPPA-BOOK1-UNUSED",
+      "url": "https://esotericarchives.com/agrippa/agripp1b.htm",
+      "retrievedOn": "2026-10-30",
+      "httpStatus": 200,
+      "bytes": 119100,
+      "sha256": "e0e5d82a9582e2a9e3ba83e20351effc2805c47a9fff491562d84ffe9635b0c9",
+      "readingScope": "Retrieved and keyword-located only; not used for encoded associations",
+      "usedForEncodedClaim": false
+    },
+    {
+      "id": "HR-SKYSCRIPT-UNUSABLE",
+      "url": "https://www.skyscript.co.uk/temples/h6.html",
+      "retrievedOn": "2026-10-30",
+      "httpStatus": 200,
+      "bytes": 509,
+      "sha256": "7f917cb026905793de40d5944fd5498d30f76959468d3f2fbd553c0430dd61a5",
+      "readingScope": "HTTP200 but509-byte empty-script response; no usable factual passage verified",
+      "usedForEncodedClaim": false
+    }
+  ],
+  "verdicts": [
+    {
+      "claim": "Mercury and learning/literate professions",
+      "status": "qualified-association-agreement",
+      "sources": [
+        "Agrippa II.43",
+        "Lilly I pp.77–78"
+      ],
+      "limit": "Agrippa includes additional image/ascendant conditions and Lilly describes dignified Mercury. A single Mercury-hour preference is editorial, not either complete procedure."
+    },
+    {
+      "claim": "Moon increase/decrease and phase study",
+      "status": "related-but-not-equivalent",
+      "sources": [
+        "Agrippa II.32 opening",
+        "Lilly I p.115"
+      ],
+      "limit": "Agrippa describes generation/increase/decrease; Lilly assigns increasing light fortitude and decreasing light debility. Completion-task preference is a modern experimental reversal, not Lilly endorsement."
+    },
+    {
+      "claim": "Exact horizon weights and scores",
+      "status": "modern-editorial-method",
+      "sources": [
+        "docs/2026-10-horizon-ranking.md"
+      ],
+      "limit": "Not derived as a historical formula or predictive model."
+    }
+  ]
+}

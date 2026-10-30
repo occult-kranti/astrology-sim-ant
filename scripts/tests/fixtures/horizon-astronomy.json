@@ -1,0 +1,326 @@
+{
+  "readingScope": "Fresh selected official numerical rows, not complete-source reproduction or universal ephemeris validation. NASA eclipses give TD; subtract that row\u2019s delta-T seconds for the UT-like fixture. UTC and UT1 are treated as equal at this model precision.",
+  "eclipses": [
+    {
+      "family": "solar",
+      "catalogueTD": "2027-02-06T16:00:48Z",
+      "deltaTSeconds": 76,
+      "expectedUT": "2027-02-06T15:59:32Z",
+      "eclipseType": "annular",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2027-08-02T10:07:50Z",
+      "deltaTSeconds": 76,
+      "expectedUT": "2027-08-02T10:06:34Z",
+      "eclipseType": "total",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2028-01-26T15:08:59Z",
+      "deltaTSeconds": 76,
+      "expectedUT": "2028-01-26T15:07:43Z",
+      "eclipseType": "annular",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2028-07-22T02:56:40Z",
+      "deltaTSeconds": 77,
+      "expectedUT": "2028-07-22T02:55:23Z",
+      "eclipseType": "total",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2029-01-14T17:13:48Z",
+      "deltaTSeconds": 77,
+      "expectedUT": "2029-01-14T17:12:31Z",
+      "eclipseType": "partial",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2029-06-12T04:06:13Z",
+      "deltaTSeconds": 77,
+      "expectedUT": "2029-06-12T04:04:56Z",
+      "eclipseType": "partial",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2029-07-11T15:37:19Z",
+      "deltaTSeconds": 77,
+      "expectedUT": "2029-07-11T15:36:02Z",
+      "eclipseType": "partial",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2029-12-05T15:03:58Z",
+      "deltaTSeconds": 77,
+      "expectedUT": "2029-12-05T15:02:41Z",
+      "eclipseType": "partial",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2030-06-01T06:29:13Z",
+      "deltaTSeconds": 78,
+      "expectedUT": "2030-06-01T06:27:55Z",
+      "eclipseType": "annular",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "solar",
+      "catalogueTD": "2030-11-25T06:51:37Z",
+      "deltaTSeconds": 78,
+      "expectedUT": "2030-11-25T06:50:19Z",
+      "eclipseType": "total",
+      "sourceId": "HORIZON-NASA-SOLAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2027-02-20T23:14:06Z",
+      "deltaTSeconds": 76,
+      "expectedUT": "2027-02-20T23:12:50Z",
+      "eclipseType": "penumbral",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2027-07-18T16:04:09Z",
+      "deltaTSeconds": 76,
+      "expectedUT": "2027-07-18T16:02:53Z",
+      "eclipseType": "penumbral",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2027-08-17T07:14:59Z",
+      "deltaTSeconds": 76,
+      "expectedUT": "2027-08-17T07:13:43Z",
+      "eclipseType": "penumbral",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2028-01-12T04:14:13Z",
+      "deltaTSeconds": 76,
+      "expectedUT": "2028-01-12T04:12:57Z",
+      "eclipseType": "partial",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2028-07-06T18:20:57Z",
+      "deltaTSeconds": 77,
+      "expectedUT": "2028-07-06T18:19:40Z",
+      "eclipseType": "partial",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2028-12-31T16:53:15Z",
+      "deltaTSeconds": 77,
+      "expectedUT": "2028-12-31T16:51:58Z",
+      "eclipseType": "total",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2029-06-26T03:23:22Z",
+      "deltaTSeconds": 77,
+      "expectedUT": "2029-06-26T03:22:05Z",
+      "eclipseType": "total",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2029-12-20T22:43:12Z",
+      "deltaTSeconds": 78,
+      "expectedUT": "2029-12-20T22:41:54Z",
+      "eclipseType": "total",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2030-06-15T18:34:34Z",
+      "deltaTSeconds": 78,
+      "expectedUT": "2030-06-15T18:33:16Z",
+      "eclipseType": "partial",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    },
+    {
+      "family": "lunar",
+      "catalogueTD": "2030-12-09T22:28:51Z",
+      "deltaTSeconds": 78,
+      "expectedUT": "2030-12-09T22:27:33Z",
+      "eclipseType": "penumbral",
+      "sourceId": "HORIZON-NASA-LUNAR",
+      "toleranceSeconds": 60
+    }
+  ],
+  "phases": [
+    {
+      "phase": 0,
+      "expectedUT": "2027-01-07T20:24:00Z",
+      "sourceId": "HORIZON-NASA-PHASES",
+      "toleranceSeconds": 90
+    },
+    {
+      "phase": 1,
+      "expectedUT": "2027-01-15T20:34:00Z",
+      "sourceId": "HORIZON-NASA-PHASES",
+      "toleranceSeconds": 90
+    },
+    {
+      "phase": 2,
+      "expectedUT": "2027-01-22T12:17:00Z",
+      "sourceId": "HORIZON-NASA-PHASES",
+      "toleranceSeconds": 90
+    },
+    {
+      "phase": 3,
+      "expectedUT": "2027-01-29T10:55:00Z",
+      "sourceId": "HORIZON-NASA-PHASES",
+      "toleranceSeconds": 90
+    },
+    {
+      "phase": 0,
+      "expectedUT": "2030-01-04T02:49:00Z",
+      "sourceId": "HORIZON-NASA-PHASES",
+      "toleranceSeconds": 90
+    },
+    {
+      "phase": 1,
+      "expectedUT": "2030-01-11T14:06:00Z",
+      "sourceId": "HORIZON-NASA-PHASES",
+      "toleranceSeconds": 90
+    },
+    {
+      "phase": 2,
+      "expectedUT": "2030-01-19T15:54:00Z",
+      "sourceId": "HORIZON-NASA-PHASES",
+      "toleranceSeconds": 90
+    },
+    {
+      "phase": 3,
+      "expectedUT": "2030-01-26T18:14:00Z",
+      "sourceId": "HORIZON-NASA-PHASES",
+      "toleranceSeconds": 90
+    }
+  ],
+  "solarQuarterDates": [
+    {
+      "title": "March equinox",
+      "date": "2027-03-21",
+      "timeZone": "Asia/Hong_Kong",
+      "sourceId": "HORIZON-HKO-2027"
+    },
+    {
+      "title": "June solstice",
+      "date": "2027-06-21",
+      "timeZone": "Asia/Hong_Kong",
+      "sourceId": "HORIZON-HKO-2027"
+    },
+    {
+      "title": "September equinox",
+      "date": "2027-09-23",
+      "timeZone": "Asia/Hong_Kong",
+      "sourceId": "HORIZON-HKO-2027"
+    },
+    {
+      "title": "December solstice",
+      "date": "2027-12-22",
+      "timeZone": "Asia/Hong_Kong",
+      "sourceId": "HORIZON-HKO-2027"
+    }
+  ],
+  "jpl": [
+    {
+      "body": "Sun",
+      "dateUTC": "2027-01-01T17:09:04Z",
+      "longitude": 281.048758,
+      "latitude": -8.25e-05,
+      "sourceId": "HORIZON-JPL-SPOTS",
+      "receipt": "jpl-sun-conjunction.json",
+      "toleranceDegrees": 0.016666666666666666
+    },
+    {
+      "body": "Sun",
+      "dateUTC": "2027-01-01T17:10:04Z",
+      "longitude": 281.0494659,
+      "latitude": -8.25e-05,
+      "sourceId": "HORIZON-JPL-SPOTS",
+      "receipt": "jpl-sun-conjunction.json",
+      "toleranceDegrees": 0.016666666666666666
+    },
+    {
+      "body": "Mars",
+      "dateUTC": "2027-01-09T13:01:04Z",
+      "longitude": 160.4226686,
+      "latitude": 3.5722973,
+      "sourceId": "HORIZON-JPL-SPOTS",
+      "receipt": "jpl-mars-station.json",
+      "toleranceDegrees": 0.016666666666666666
+    },
+    {
+      "body": "Mars",
+      "dateUTC": "2027-01-10T13:01:04Z",
+      "longitude": 160.4289986,
+      "latitude": 3.6074336,
+      "sourceId": "HORIZON-JPL-SPOTS",
+      "receipt": "jpl-mars-station.json",
+      "toleranceDegrees": 0.016666666666666666
+    },
+    {
+      "body": "Mars",
+      "dateUTC": "2027-01-11T13:01:04Z",
+      "longitude": 160.4225952,
+      "latitude": 3.6425007,
+      "sourceId": "HORIZON-JPL-SPOTS",
+      "receipt": "jpl-mars-station.json",
+      "toleranceDegrees": 0.016666666666666666
+    },
+    {
+      "body": "Moon",
+      "dateUTC": "2026-10-30T02:05:28Z",
+      "longitude": 89.9990166,
+      "latitude": 4.2367938,
+      "sourceId": "HORIZON-JPL-SPOTS",
+      "receipt": "jpl-moon-ingress.json",
+      "toleranceDegrees": 0.016666666666666666
+    },
+    {
+      "body": "Moon",
+      "dateUTC": "2026-10-30T02:06:28Z",
+      "longitude": 90.0091315,
+      "latitude": 4.2363107,
+      "sourceId": "HORIZON-JPL-SPOTS",
+      "receipt": "jpl-moon-ingress.json",
+      "toleranceDegrees": 0.016666666666666666
+    }
+  ]
+}

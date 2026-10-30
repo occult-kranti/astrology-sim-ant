@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "kind": "horizon-ranking-preset-inspection",
+  "pass": true,
+  "recordedAt": "2026-10-30T04:50:46.982Z",
+  "scope": "Read complete committed part bytes and inspected all profile denominators, missingness and exact tie values. This is source/integrity and scoring-accounting review, not fresh astronomical recomputation or independent predictive validation.",
+  "manifestSHA256": "d43f65deb5b0df1d504077a64e4838a770814db6421489f03c120e22fcd3a272",
+  "sourceSHA256": "02819b95bf1bd745c7ca5992a046288c097725f64e28d642260a885ef8fa0500",
+  "datasetId": "horizon-2031-02819b95bf1b-ed8c39c6a24e",
+  "counts": {
+    "days": 1525,
+    "cases": 3,
+    "totalSamples": 4575,
+    "processedSamples": 4575,
+    "availableSamples": 4575,
+    "unavailableSamples": 0,
+    "calendarRows": 59475,
+    "availableCalendarRows": 59475,
+    "profileResults": 18300,
+    "rankableProfileResults": 17114,
+    "observanceRows": 1011,
+    "uniqueObservances": 337,
+    "eventCount": 5883,
+    "truncated": false
+  },
+  "profiles": [
+    {
+      "caseId": "london",
+      "purposeId": "western-increase-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        10
+      ],
+      "uniqueRankedNumerators": 14,
+      "missingRules": {}
+    },
+    {
+      "caseId": "london",
+      "purposeId": "western-decrease-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        10
+      ],
+      "uniqueRankedNumerators": 14,
+      "missingRules": {}
+    },
+    {
+      "caseId": "london",
+      "purposeId": "jyotisha-classification-study",
+      "rows": 1525,
+      "rankable": 1137,
+      "missing": 388,
+      "denominators": [
+        6
+      ],
+      "uniqueRankedNumerators": 10,
+      "missingRules": {
+        "DG-J-YOGA": 388
+      }
+    },
+    {
+      "caseId": "london",
+      "purposeId": "mercury-hour-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        1
+      ],
+      "uniqueRankedNumerators": 2,
+      "missingRules": {}
+    },
+    {
+      "caseId": "delhi",
+      "purposeId": "western-increase-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        10
+      ],
+      "uniqueRankedNumerators": 15,
+      "missingRules": {}
+    },
+    {
+      "caseId": "delhi",
+      "purposeId": "western-decrease-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        10
+      ],
+      "uniqueRankedNumerators": 14,
+      "missingRules": {}
+    },
+    {
+      "caseId": "delhi",
+      "purposeId": "jyotisha-classification-study",
+      "rows": 1525,
+      "rankable": 1125,
+      "missing": 400,
+      "denominators": [
+        6
+      ],
+      "uniqueRankedNumerators": 10,
+      "missingRules": {
+        "DG-J-YOGA": 400
+      }
+    },
+    {
+      "caseId": "delhi",
+      "purposeId": "mercury-hour-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        1
+      ],
+      "uniqueRankedNumerators": 2,
+      "missingRules": {}
+    },
+    {
+      "caseId": "new-york",
+      "purposeId": "western-increase-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        10
+      ],
+      "uniqueRankedNumerators": 14,
+      "missingRules": {}
+    },
+    {
+      "caseId": "new-york",
+      "purposeId": "western-decrease-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        10
+      ],
+      "uniqueRankedNumerators": 14,
+      "missingRules": {}
+    },
+    {
+      "caseId": "new-york",
+      "purposeId": "jyotisha-classification-study",
+      "rows": 1525,
+      "rankable": 1127,
+      "missing": 398,
+      "denominators": [
+        6
+      ],
+      "uniqueRankedNumerators": 9,
+      "missingRules": {
+        "DG-J-YOGA": 398
+      }
+    },
+    {
+      "caseId": "new-york",
+      "purposeId": "mercury-hour-study",
+      "rows": 1525,
+      "rankable": 1525,
+      "missing": 0,
+      "denominators": [
+        1
+      ],
+      "uniqueRankedNumerators": 2,
+      "missingRules": {}
+    }
+  ],
+  "modules": {
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+    "assets/js/core/data/horizon-tool-coverage.js": "844b06483cc4de47d51b8b28afc3ef1952503008da2bbc9c5341a73a67db512a",
+    "mcp/horizon-adapters.mjs": "6b69a68e50329259ded5d58eff99930b702cc89b6a15a1c062dd6e77fe597ae2"
+  },
+  "stressAcceptance": "pending"
+}

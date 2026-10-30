@@ -30,6 +30,7 @@ jobs:
       - name: Verify real MCP transports and shared tools
         run: |
           node scripts/tests/mcp-toolkit.mjs
+          node scripts/test-horizon-protocol.mjs
           npm test --prefix mcp
       - name: Keep MCP lock and verification evidence
         if: always()
@@ -41,7 +42,7 @@ jobs:
 
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout candidate
         uses: actions/checkout@v4
@@ -90,6 +91,10 @@ jobs:
         env:
           SKY_OUTPUT: test-results/sky
         run: node scripts/browser-sky.mjs
+      - name: Complete horizon, exports, cancellation and release integrity
+        env:
+          HORIZON_OUTPUT: test-results/horizon
+        run: node scripts/browser-horizon.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962
@@ -141,8 +146,28 @@ jobs:
         with:
           path: _site
 
+  horizon-stress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Brute-force and shared-context full-horizon equivalence
+        run: node scripts/stress-horizon.mjs --output test-results/horizon-stress/receipt.json
+      - name: Keep full-window stress evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horizon-stress-evidence
+          path: test-results/horizon-stress/
+          retention-days: 14
+
   deploy:
-    needs: [verify, mcp]
+    needs: [verify, mcp, horizon-stress]
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -201,7 +226,7 @@ jobs:
                 if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
                 const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
                 const catalogue = await catalogueResponse.json();
-                const required = ['workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide'];
+                const required = ['workbench_horizon_scan', 'workbench_horizon_day', 'workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide'];
                 const publishedNames = Array.isArray(catalogue.tools) ? catalogue.tools.map(tool => tool.name).sort() : [];
                 if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || !Array.isArray(release.sourceMcpTools) || JSON.stringify(publishedNames) !== JSON.stringify(release.sourceMcpTools) || !required.every(name => publishedNames.includes(name))) throw new Error('Published MCP catalogue is missing or does not match the verified release.');
                 const comparison = await fetch(new URL('pages/calendar-compare.html', base), { signal: AbortSignal.timeout(10000) });

@@ -2170,6 +2170,230 @@ export const MCP_TOOL_CONTRACTS = {
     ],
     "additionalProperties": false
   },
+  "workbench_horizon_day": {
+    "type": "object",
+    "properties": {
+      "date": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 10,
+        "description": "Explicit YYYY-MM-DD within 2026-01-01–2031-01-01; inclusive civil-date endpoints."
+      },
+      "observerCase": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Lowercase letter followed by lowercase letters, digits or hyphens."
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Explicit IANA zone; geographic correspondence is not automatically verified."
+          },
+          "sampleTime": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 8,
+            "description": "Explicit HH:mm or HH:mm:ss local sample clock; no birth time is inferred."
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "disambiguation": {
+            "type": "string",
+            "enum": [
+              "reject",
+              "earlier",
+              "later"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "lat",
+          "lon",
+          "timeZone",
+          "sampleTime"
+        ],
+        "additionalProperties": false
+      },
+      "purposeIds": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "western-increase-study",
+            "western-decrease-study",
+            "jyotisha-classification-study",
+            "mercury-hour-study"
+          ]
+        },
+        "minItems": 1,
+        "maxItems": 4,
+        "uniqueItems": true
+      },
+      "includeHourly": {
+        "type": "boolean"
+      },
+      "includeAstronomy": {
+        "type": "boolean"
+      },
+      "includeObservances": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "date",
+      "observerCase",
+      "purposeIds"
+    ],
+    "additionalProperties": false
+  },
+  "workbench_horizon_scan": {
+    "type": "object",
+    "properties": {
+      "startDate": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 10,
+        "description": "Explicit YYYY-MM-DD within 2026-01-01–2031-01-01; inclusive civil-date endpoints."
+      },
+      "endDate": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 10,
+        "description": "Explicit YYYY-MM-DD within 2026-01-01–2031-01-01; inclusive civil-date endpoints."
+      },
+      "cases": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "description": "Lowercase letter followed by lowercase letters, digits or hyphens."
+            },
+            "label": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "lat": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "lon": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "timeZone": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "Explicit IANA zone; geographic correspondence is not automatically verified."
+            },
+            "sampleTime": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 8,
+              "description": "Explicit HH:mm or HH:mm:ss local sample clock; no birth time is inferred."
+            },
+            "system": {
+              "type": "string",
+              "enum": [
+                "regiomontanus",
+                "placidus",
+                "whole",
+                "equal"
+              ]
+            },
+            "disambiguation": {
+              "type": "string",
+              "enum": [
+                "reject",
+                "earlier",
+                "later"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "lat",
+            "lon",
+            "timeZone",
+            "sampleTime"
+          ],
+          "additionalProperties": false
+        },
+        "minItems": 1,
+        "maxItems": 2
+      },
+      "purposeIds": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "western-increase-study",
+            "western-decrease-study",
+            "jyotisha-classification-study",
+            "mercury-hour-study"
+          ]
+        },
+        "minItems": 1,
+        "maxItems": 4,
+        "uniqueItems": true
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "optimized",
+          "brute"
+        ]
+      },
+      "includeAstronomy": {
+        "type": "boolean"
+      },
+      "includeObservances": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "startDate",
+      "endDate",
+      "cases",
+      "purposeIds"
+    ],
+    "additionalProperties": false
+  },
   "workbench_iching": {
     "type": "object",
     "properties": {
@@ -4139,6 +4363,7 @@ export const MCP_TOOL_CONTRACTS = {
           "civil-calendars",
           "calendar-comparison",
           "calendar-atlas",
+          "event-horizon",
           "calendar-search",
           "sigil-design",
           "world-events",

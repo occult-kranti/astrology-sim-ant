@@ -1,0 +1,761 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-30T04:32:18.901Z",
+  "researchScope": "Selected attributed traditions and non-dateable eschatologies; no new festival calculations",
+  "networkMethod": "Normal HTTPS through inherited environment proxy with default certificate verification; no policy bypass",
+  "rawSourceLocation": "/workspace/setup-validation/horizon-traditions (outside repository; not redistributed)",
+  "textMethod": "HTML/JSON selected sections; scanned SGPC pages OCR with Tesseract, p36 visually inspected. SuttaCentral UI shell was not counted as read; public API supplied selected text.",
+  "fullWorksRead": false,
+  "requests": [
+    {
+      "id": "christian-usccb",
+      "requestedURL": "https://bible.usccb.org/bible/mark/13",
+      "retrievedAt": "2026-10-30T04:21:58.441619+00:00",
+      "status": 200,
+      "finalURL": "https://bible.usccb.org/bible/mark/13",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 64083,
+      "sha256": "9b1fa0ebdddc79dfbd8b29b8f4f459e31ed0005fd030485e183a204172ca902a",
+      "title": "Mark, CHAPTER 13 | USCCB",
+      "textCharacters": 9099,
+      "sourceIds": [
+        "HTR-CHRISTIAN-MARK"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Mark 13:32–37; associated chapter note on 13:3–37"
+      ],
+      "readingDepth": [
+        "Selected verses and associated note read on 2026-10-30; not a complete Bible or commentary reading."
+      ]
+    },
+    {
+      "id": "christian-catechism",
+      "requestedURL": "https://www.vatican.va/archive/ENG0015/__P1V.HTM",
+      "retrievedAt": "2026-10-30T04:21:58.442228+00:00",
+      "status": 200,
+      "finalURL": "https://www.vatican.va/archive/ENG0015/__P1V.HTM",
+      "contentType": "text/html",
+      "bytes": 16748,
+      "sha256": "c8bfacff7c1250cf681d9955d1fa4b37bc24b7cdf30ce968d35018f1413a0e08",
+      "title": "Catechism of the Catholic Church - IntraText",
+      "textCharacters": 7311,
+      "sourceIds": [
+        "HTR-CHRISTIAN-CATECHISM"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Paragraphs 673 and 675–677"
+      ],
+      "readingDepth": [
+        "Selected paragraphs read on 2026-10-30, including unknown times and the distinction from millenarianism."
+      ]
+    },
+    {
+      "id": "jewish-chabad",
+      "requestedURL": "https://www.chabad.org/library/article_cdo/aid/118835/jewish/Melachim-uMilchamot-Chapter-12.htm",
+      "retrievedAt": "2026-10-30T04:21:58.442613+00:00",
+      "status": 404,
+      "finalURL": "https://www.chabad.org/tools/404.htm",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 81542,
+      "sha256": "c489f4fa5765012899893b1a78c8b857f816c00f21131cba78ddebfab87196cc",
+      "title": "Page Not Found - Chabad.org",
+      "textCharacters": 5611,
+      "sourceIds": [],
+      "readingStatus": "http-failure",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "jewish-sefaria",
+      "requestedURL": "https://www.sefaria.org/api/texts/Sanhedrin.97b?lang=en",
+      "retrievedAt": "2026-10-30T04:21:58.442994+00:00",
+      "status": 200,
+      "finalURL": "https://www.sefaria.org/api/texts/Sanhedrin.97b?lang=en",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 29581,
+      "sha256": "554ceb71321df697e0d2e4dbaeeb0562a12240b07ad03bc3146c1cc042dabf67",
+      "title": null,
+      "textCharacters": 21909,
+      "sourceIds": [
+        "HTR-JEWISH-SANHEDRIN"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Sanhedrin 97b:1–2, 5–10 and 14; especially 97b:9"
+      ],
+      "readingDepth": [
+        "Selected English segments read on 2026-10-30, including conflicting calculations and criticism of failed end-date setting; not the complete tractate."
+      ]
+    },
+    {
+      "id": "islamic-quran",
+      "requestedURL": "https://quran.com/en/al-araf/187",
+      "retrievedAt": "2026-10-30T04:21:58.443354+00:00",
+      "status": 200,
+      "finalURL": "https://quran.com/en/al-araf/187",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 329785,
+      "sha256": "e212b7c3b6f58f60a5eee5e47f7ce942da738b6c5af766c16241ce258ded4767",
+      "title": "Surah Al-A'raf Ayah 187 - Read, Listen, Translation, Tafsir - Quran.com",
+      "textCharacters": 4450,
+      "sourceIds": [
+        "HTR-ISLAM-QURAN-7"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Sūrat al-Aʿrāf 7:187"
+      ],
+      "readingDepth": [
+        "The displayed verse translation read on 2026-10-30; the abbreviated tafsir preview is not treated as a full commentary reading."
+      ]
+    },
+    {
+      "id": "islamic-quran31",
+      "requestedURL": "https://quran.com/en/luqman/34",
+      "retrievedAt": "2026-10-30T04:21:58.443977+00:00",
+      "status": 200,
+      "finalURL": "https://quran.com/en/luqman/34",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 287676,
+      "sha256": "de0dcf29c0c72b6529a8638b8bf82f96807b378c7e4e9d0a09f732c5423554e7",
+      "title": "Surah Luqman Ayah 34 - Read, Listen, Translation, Tafsir - Quran.com",
+      "textCharacters": 3908,
+      "sourceIds": [
+        "HTR-ISLAM-QURAN-31"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Sūrat Luqmān 31:34"
+      ],
+      "readingDepth": [
+        "The displayed verse translation read on 2026-10-30."
+      ]
+    },
+    {
+      "id": "hindu-bhagavata",
+      "requestedURL": "https://vedabase.io/en/library/sb/12/2/",
+      "retrievedAt": "2026-10-30T04:21:58.449830+00:00",
+      "status": 200,
+      "finalURL": "https://vedabase.io/en/library/sb/12/2/",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 132608,
+      "sha256": "676fe078cd0dfc414442612fb6e2a82601092c4a3966e23605647e9cebbaaf28",
+      "title": "CHAPTER TWO",
+      "textCharacters": 12200,
+      "sourceIds": [
+        "HTR-HINDU-BHAGAVATA"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "12.2.18–24, especially Kalki/renewal in 18–23 and the celestial condition in 24"
+      ],
+      "readingDepth": [
+        "Selected verse translations 18–24 read on 2026-10-30; no whole Purāṇa or cross-recension collation claimed."
+      ]
+    },
+    {
+      "id": "hindu-gita",
+      "requestedURL": "https://www.holy-bhagavad-gita.org/chapter/4/verse/7",
+      "retrievedAt": "2026-10-30T04:21:58.450340+00:00",
+      "status": 200,
+      "finalURL": "https://www.holy-bhagavad-gita.org/chapter/4/verse/7/",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 52634,
+      "sha256": "3a49262b162a725b807315a1bf0851bbe23327519ff687674b44ca17b73ce4a4",
+      "title": "BG 4.7: Chapter 4, Verse 7 - \n Bhagavad Gita, The Song of God – Swami Mukundananda",
+      "textCharacters": 6865,
+      "sourceIds": [
+        "HTR-HINDU-GITA-7"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "4.7, displayed Translation; opening commentary on avatāra"
+      ],
+      "readingDepth": [
+        "Verse translation and the opening explanatory paragraph read on 2026-10-30."
+      ]
+    },
+    {
+      "id": "buddhist-dn26",
+      "requestedURL": "https://suttacentral.net/dn26/en/sujato",
+      "retrievedAt": "2026-10-30T04:21:58.778610+00:00",
+      "status": 200,
+      "finalURL": "https://suttacentral.net/dn26/en/sujato",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 9336,
+      "sha256": "54b9315991a6bf6f6eef7e9d4f71e9a865aec686c3afbf830dafaea98fe6f340",
+      "title": "SuttaCentral",
+      "textCharacters": 267,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "buddhist-dn26-api",
+      "requestedURL": "https://suttacentral.net/api/bilarasuttas/dn26/sujato?lang=en",
+      "retrievedAt": "2026-10-30T04:21:59.045205+00:00",
+      "status": 200,
+      "finalURL": "https://suttacentral.net/api/bilarasuttas/dn26/sujato?lang=en",
+      "contentType": "application/json",
+      "bytes": 126171,
+      "sha256": "bfb80b139159bc8ce9d0dd95e57c1ca5881a081670bd6bbc55f59d7eab1ed60b",
+      "title": null,
+      "textCharacters": 114801,
+      "sourceIds": [
+        "HTR-BUDDHIST-DN26"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "DN 26:23–26, especially 25.1–25.6; translated segments rather than commentary"
+      ],
+      "readingDepth": [
+        "Selected translated segments 23–26 actually read through the public API on 2026-10-30; the normal page supplied only an application shell."
+      ]
+    },
+    {
+      "id": "sikh-rehat",
+      "requestedURL": "https://old.sgpc.net/sikh-rehat-maryada-in-english/",
+      "retrievedAt": "2026-10-30T04:21:59.118679+00:00",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "sourceIds": [],
+      "readingStatus": "request-failed",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "sikh-universe",
+      "requestedURL": "https://www.sikhri.org/articles/what-does-sikhi-say-about-the-end-of-the-world",
+      "retrievedAt": "2026-10-30T04:21:59.146613+00:00",
+      "status": 404,
+      "finalURL": "https://sikhri.org/articles/what-does-sikhi-say-about-the-end-of-the-world",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 23896,
+      "sha256": "6378123ae2104f96466e2cb3b652246d9b50b37dca6a7b1be23f61b753a9ab3d",
+      "title": "404 - Page Not Found | Sikh Research Institute (SikhRI)",
+      "textCharacters": 1157,
+      "sourceIds": [],
+      "readingStatus": "http-failure",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "jain-jaina",
+      "requestedURL": "https://www.jaina.org/page/UniversalMessage",
+      "retrievedAt": "2026-10-30T04:21:59.156528+00:00",
+      "status": 403,
+      "finalURL": "https://www.jaina.org/page/UniversalMessage",
+      "contentType": "text/html",
+      "bytes": 118,
+      "sha256": "58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4",
+      "title": "403 Forbidden",
+      "textCharacters": 27,
+      "sourceIds": [],
+      "readingStatus": "http-failure",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "jain-cosmology",
+      "requestedURL": "https://jainpedia.org/themes/principles/universe/",
+      "retrievedAt": "2026-10-30T04:21:59.287582+00:00",
+      "status": 404,
+      "finalURL": "https://jainpedia.org/articles/themes/principles/universe/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 153641,
+      "sha256": "64bacc15462bc7a9b4144f32ba097b149beb399b476e65f01446d8678a6dc2b6",
+      "title": "Page not found - Jainpedia",
+      "textCharacters": 2369,
+      "sourceIds": [],
+      "readingStatus": "http-failure",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "bahai-questions",
+      "requestedURL": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/4",
+      "retrievedAt": "2026-10-30T04:21:59.309354+00:00",
+      "status": 200,
+      "finalURL": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/4",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 122175,
+      "sha256": "1bf883c4d2f979482eafebdc962cd3b5bf8206c1c6a84c3ff5fa713bb55a61f4",
+      "title": "Some Answered Questions | Bahá’í Reference Library",
+      "textCharacters": 74026,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "bahai-calendar",
+      "requestedURL": "https://www.bahai.org/action/devotional-life/calendar",
+      "retrievedAt": "2026-10-30T04:21:59.494120+00:00",
+      "status": 200,
+      "finalURL": "https://www.bahai.org/action/devotional-life/calendar",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 266982,
+      "sha256": "7af7d1216791c838d9bc9216bd54918c2c7fb1c54266a2baffc0a48df90ac0f2",
+      "title": "The Bahá’í Calendar",
+      "textCharacters": 9033,
+      "sourceIds": [
+        "HTR-BAHAI-CALENDAR"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Introductory paragraphs: nineteen months, intercalary days, Naw-Rúz, Twin Birthdays and sunset day boundary"
+      ],
+      "readingDepth": [
+        "Introduction and availability of published year choices read on 2026-10-30. This source role did not validate every year-table date; the observance owner handles dated rows."
+      ]
+    },
+    {
+      "id": "zoroastrian-iranica",
+      "requestedURL": "https://www.iranicaonline.org/articles/frasokrti",
+      "retrievedAt": "2026-10-30T04:21:59.716286+00:00",
+      "status": 200,
+      "finalURL": "https://www.iranicaonline.org/articles/frasokrti/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 381180,
+      "sha256": "ce5d06b44c1428fa4faa35681c1887c30e4846512547988405e6a012f7e5e5c0",
+      "title": "FRAŠŌ.KƎRƎTI - Encyclopaedia Iranica",
+      "textCharacters": 15902,
+      "sourceIds": [
+        "HTR-ZORO-IRANICA"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Opening definition; Allusions in the Younger Avesta, with Yt.19 locators"
+      ],
+      "readingDepth": [
+        "Definition and selected Younger Avesta discussion read on 2026-10-30; not every philological argument or cited work."
+      ]
+    },
+    {
+      "id": "zoroastrian-avesta",
+      "requestedURL": "https://www.avesta.org/ka/yt19sbe.htm",
+      "retrievedAt": "2026-10-30T04:21:59.749019+00:00",
+      "status": 200,
+      "finalURL": "https://www.avesta.org/ka/yt19sbe.htm",
+      "contentType": "text/html",
+      "bytes": 30716,
+      "sha256": "c409da7dc33673685911b5d73d6e1cbb2eca0c3ecde987b9878899f3eab32533",
+      "title": "AVESTA: KHORDA AVESTA (English): Zamyad Yasht ('Hymn to the Earth')",
+      "textCharacters": 27013,
+      "sourceIds": [
+        "HTR-ZORO-YASHT"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Yašt 19, sections 89–96, especially 89–90"
+      ],
+      "readingDepth": [
+        "Selected restoration/resurrection passage and following sections read on 2026-10-30; no complete Avesta reading or new linguistic collation."
+      ]
+    },
+    {
+      "id": "shinto-yomi",
+      "requestedURL": "https://d-museum.kokugakuin.ac.jp/eos/detail/?id=8997",
+      "retrievedAt": "2026-10-30T04:21:59.772064+00:00",
+      "status": 200,
+      "finalURL": "https://d-museum.kokugakuin.ac.jp/eos/detail/?id=8997",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 15362,
+      "sha256": "0f96af2eb163137c6057f451aa07f48b897136d568ea8ba9e1c23e174a240c01",
+      "title": "Kakuriyo | 國學院大學デジタルミュージアム",
+      "textCharacters": 1680,
+      "sourceIds": [
+        "HTR-SHINTO-KAKURIYO"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Category 7, Concepts and Doctrines / Basic Terms; complete Kakuriyo entry"
+      ],
+      "readingDepth": [
+        "The complete short entry was read on 2026-10-30; the initially guessed URL resolved to Kakuriyo, not a separate Yomi article."
+      ]
+    },
+    {
+      "id": "shinto-jinja",
+      "requestedURL": "https://www.jinjahoncho.or.jp/en/spiritual/index.html",
+      "retrievedAt": "2026-10-30T04:22:00.083570+00:00",
+      "status": 200,
+      "finalURL": "https://www.jinjahoncho.or.jp/en/shinto/veneration-of-nature/",
+      "contentType": "text/html",
+      "bytes": 11737,
+      "sha256": "0e6170efec5d17f5a05f2d9bcc154fef3f3083f603b4c3e640658cb240c50058",
+      "title": "Veneration of Nature│What is Shinto?│Jinja Honcho",
+      "textCharacters": 2506,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "chinese-daoism",
+      "requestedURL": "https://plato.stanford.edu/entries/daoism-religion/",
+      "retrievedAt": "2026-10-30T04:22:00.219642+00:00",
+      "status": 200,
+      "finalURL": "https://plato.stanford.edu/entries/daoism-religion/",
+      "contentType": "text/html",
+      "bytes": 160934,
+      "sha256": "4379627fbabe9367b0760473ece03414e5378d39b2c701c129b6a6be639baf6e",
+      "title": "Religious Daoism (Stanford Encyclopedia of Philosophy)",
+      "textCharacters": 127011,
+      "sourceIds": [
+        "HTR-DAOISM-SEP"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Section 2.5, The Divinization of Laozi: Taiping jing and early millenarian movements"
+      ],
+      "readingDepth": [
+        "Selected section on Great Peace and early historical messianic expectations read on 2026-10-30; not the whole long article or the primary Taiping jing."
+      ]
+    },
+    {
+      "id": "jewish-mishneh",
+      "requestedURL": "https://www.sefaria.org/api/texts/Mishneh_Torah%2C_Kings_and_Wars.12?lang=en",
+      "retrievedAt": "2026-10-30T04:22:59.034298+00:00",
+      "status": 200,
+      "finalURL": "https://www.sefaria.org/api/texts/Mishneh_Torah%2C_Kings_and_Wars.12?lang=en",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 24116,
+      "sha256": "f9171f8d9fd67427dce9ee38b8b69f240d5a291bb59243299ebdcaeff9067118",
+      "title": null,
+      "textCharacters": 19699,
+      "sourceIds": [
+        "HTR-JEWISH-MAIMONIDES"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Chapter 12:1–2 and 12:4–5"
+      ],
+      "readingDepth": [
+        "Selected chapter sections read on 2026-10-30, including ordinary natural order, disputed sequence and rejection of calculating the appointed time."
+      ]
+    },
+    {
+      "id": "jewish-chabad-search",
+      "requestedURL": "https://www.chabad.org/library/article_cdo/aid/1188359/jewish/Melachim-uMilchamot-Chapter-12.htm",
+      "retrievedAt": "2026-10-30T04:22:59.034826+00:00",
+      "status": 404,
+      "finalURL": "https://www.chabad.org/tools/404.htm",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 81542,
+      "sha256": "c489f4fa5765012899893b1a78c8b857f816c00f21131cba78ddebfab87196cc",
+      "title": "Page Not Found - Chabad.org",
+      "textCharacters": 5611,
+      "sourceIds": [],
+      "readingStatus": "http-failure",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "sikh-rehat-current",
+      "requestedURL": "https://sgpc.net/sikh-rehat-maryada-in-english/",
+      "retrievedAt": "2026-10-30T04:22:59.035285+00:00",
+      "status": 200,
+      "finalURL": "https://sgpc.net/sikh-rehat-maryada-in-english/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 95215,
+      "sha256": "016cd3f2e86301392d0edc57006461f733ff451cd75662b5cf259150c89ffd4a",
+      "title": "Sikh Rehat Maryada in English – SGPC official , Amritsar",
+      "textCharacters": 3106,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "sikh-coalition",
+      "requestedURL": "https://www.sikhcoalition.org/about-sikhs/",
+      "retrievedAt": "2026-10-30T04:22:59.035806+00:00",
+      "status": 200,
+      "finalURL": "https://www.sikhcoalition.org/about-sikhs/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 84220,
+      "sha256": "070ffa69ec673a7908ea32db4e3f3bd01d195416a7d361854be16d974d8d3e2d",
+      "title": "About Sikhs - Sikh Coalition",
+      "textCharacters": 2898,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "sikh-encyclopedia",
+      "requestedURL": "https://www.sikhiwiki.org/index.php/Ang_276",
+      "retrievedAt": "2026-10-30T04:22:59.036289+00:00",
+      "status": 404,
+      "finalURL": "https://www.sikhiwiki.org/index.php/Ang_276",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 16393,
+      "sha256": "77c39c1306976d95a48f92ea301f4750fc6042640324c52b61723b748335c3c9",
+      "title": "Ang 276 - SikhiWiki, free Sikh encyclopedia.",
+      "textCharacters": 1156,
+      "sourceIds": [],
+      "readingStatus": "http-failure",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "jainpedia-search",
+      "requestedURL": "https://jainpedia.org/?s=universe",
+      "retrievedAt": "2026-10-30T04:22:59.037073+00:00",
+      "status": 200,
+      "finalURL": "https://jainpedia.org/?s=universe",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 159594,
+      "sha256": "9ab900d2c08d82ea0503562d15b9dfd597d76b26f182af20bbf30a8c5c5e632b",
+      "title": "You searched for universe - Jainpedia",
+      "textCharacters": 5013,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "jainpedia-time",
+      "requestedURL": "https://jainpedia.org/themes/principles/universe/time/",
+      "retrievedAt": "2026-10-30T04:22:59.345792+00:00",
+      "status": 200,
+      "finalURL": "https://jainpedia.org/manuscript/times-between-gods-deaths-and-rebirths/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 452720,
+      "sha256": "ed2b60a3ff5313b081adc6a20360328ddc1379911ef4a2bc9d70b7973cc11ce4",
+      "title": "Times between gods' deaths and rebirths - Jainpedia",
+      "textCharacters": 7365,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "jain-academic",
+      "requestedURL": "https://iep.utm.edu/jain/",
+      "retrievedAt": "2026-10-30T04:22:59.479039+00:00",
+      "status": 200,
+      "finalURL": "https://iep.utm.edu/jain/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 38063,
+      "sha256": "f104225fb4fdaf45eb534416d81db31d125340a85a79e5ed0b3eb6c95194b84a",
+      "title": "Jain Philosophy | Internet Encyclopedia of Philosophy",
+      "textCharacters": 14391,
+      "sourceIds": [
+        "HTR-JAIN-IEP"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Section 1, Metaphysics: uncreated universe, souls, karma and release"
+      ],
+      "readingDepth": [
+        "Selected Metaphysics paragraphs and author metadata read on 2026-10-30."
+      ]
+    },
+    {
+      "id": "bahai-questions2",
+      "requestedURL": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/3",
+      "retrievedAt": "2026-10-30T04:22:59.536844+00:00",
+      "status": 200,
+      "finalURL": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/3",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 39386,
+      "sha256": "6c4020ea4de796f460fb0d515a1e2865cafb18c32887a166f9788257554c71d0",
+      "title": "Some Answered Questions | Bahá’í Reference Library",
+      "textCharacters": 8636,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "shinto-festivals",
+      "requestedURL": "https://www.jinjahoncho.or.jp/en/shinto/festivals/",
+      "retrievedAt": "2026-10-30T04:22:59.735617+00:00",
+      "status": 404,
+      "finalURL": "https://www.jinjahoncho.or.jp/en/shinto/festivals/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 3308,
+      "sha256": "94390c91105c1ce54d1d9de091528d5cf18c2da29aff8b3087111ab543632f8b",
+      "title": "404 | Jinja Honcho",
+      "textCharacters": 242,
+      "sourceIds": [],
+      "readingStatus": "http-failure",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "adventist-1844",
+      "requestedURL": "https://www.adventist.org/articles/the-great-disappointment/",
+      "retrievedAt": "2026-10-30T04:22:59.862589+00:00",
+      "status": 404,
+      "finalURL": "https://adventist.org/articles/the-great-disappointment",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 88169,
+      "sha256": "a917e3c7316bda94103f265be043c9ba4b48cf7e8c3cf62adfeb761b62b82c57",
+      "title": "Page not found | Adventist.org}",
+      "textCharacters": 1042,
+      "sourceIds": [],
+      "readingStatus": "http-failure",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "sikh-rehat-pdf",
+      "requestedURL": "https://sgpc.net/storage/2026/06/Sikh_Rehat_Maryada_English.pdf",
+      "retrievedAt": "2026-10-30T04:24:08.485048+00:00",
+      "status": 200,
+      "finalURL": "https://sgpc.net/storage/2026/06/Sikh_Rehat_Maryada_English.pdf",
+      "contentType": "application/pdf",
+      "bytes": 16774159,
+      "sha256": "aa9645db5b828549bd31eebe33dd84e9af3221d2327b4c36b2a08dbe63b618fc",
+      "sourceIds": [
+        "HTR-SIKH-REHAT"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Section Four, Chapter X, Article XVI(a)–(d), printed/PDF p.36; continuation p.37"
+      ],
+      "readingDepth": [
+        "Contents and selected preface pages checked by OCR; Article XVI pp.36–37 read by OCR and p.36 visually inspected on 2026-10-30. No full-book reading."
+      ]
+    },
+    {
+      "id": "jainpedia-universe",
+      "requestedURL": "https://jainpedia.org/article/themes/principles/jain-universe/",
+      "retrievedAt": "2026-10-30T04:24:08.485585+00:00",
+      "status": 200,
+      "finalURL": "https://jainpedia.org/article/themes/principles/jain-universe/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 411416,
+      "sha256": "7dd5b5cb57fd83438db8be5ad6a8b7862a760c6064234810630dfc71a3b3bc2a",
+      "title": "Jain universe - Jainpedia",
+      "textCharacters": 25431,
+      "sourceIds": [
+        "HTR-JAIN-JAINPEDIA"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Introduction; General principles; No beginning and no end; Symmetrical, repetitive structure"
+      ],
+      "readingDepth": [
+        "Selected sections read on 2026-10-30, including the quotation attributed to Hemacandra and Śvetāmbara/Digambara qualifications."
+      ]
+    },
+    {
+      "id": "bahai-christian-sections",
+      "requestedURL": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/7",
+      "retrievedAt": "2026-10-30T04:24:08.485981+00:00",
+      "status": 200,
+      "finalURL": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/7",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 132635,
+      "sha256": "d0941cda7ae0089cb1fe3266bad17f0f36238c8ea01c16e65616d4ee83dbbb64",
+      "title": "Some Answered Questions | Bahá’í Reference Library",
+      "textCharacters": 77951,
+      "sourceIds": [
+        "HTR-BAHAI-QUESTIONS"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Chapter 26, The Second Coming of Christ and the Day of Judgement, paragraphs 1–6"
+      ],
+      "readingDepth": [
+        "Complete selected chapter 26 read on 2026-10-30; not the entire work or the separately referenced Kitáb-i-Íqán."
+      ]
+    },
+    {
+      "id": "shinto-matsuri",
+      "requestedURL": "https://www.jinjahoncho.or.jp/en/shinto/matsuri/",
+      "retrievedAt": "2026-10-30T04:24:08.486321+00:00",
+      "status": 200,
+      "finalURL": "https://www.jinjahoncho.or.jp/en/shinto/matsuri/",
+      "contentType": "text/html",
+      "bytes": 17205,
+      "sha256": "4606cb1f56f69215ba10f22c888a0d31468a73bbc0975a615699bf95bfc3e082",
+      "title": "Matsuri│What is Shinto?│Jinja Honcho",
+      "textCharacters": 3072,
+      "sourceIds": [
+        "HTR-SHINTO-MATSURI"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Opening three paragraphs and statement that local traditions vary between jinja"
+      ],
+      "readingDepth": [
+        "The short Matsuri page read on 2026-10-30; local shrine schedules were not surveyed."
+      ]
+    },
+    {
+      "id": "adventist-second",
+      "requestedURL": "https://adventist.org/second-coming/",
+      "retrievedAt": "2026-10-30T04:24:08.486609+00:00",
+      "status": 200,
+      "finalURL": "https://adventist.org/beliefs/official/second-coming",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 368098,
+      "sha256": "57f7fc6e54d8987dab83af122d82f7344ac3e3823858bdcfa0e3ddc21efe0ea6",
+      "title": "Discover the Truth About the Second Coming | Adventist.org",
+      "textCharacters": 20132,
+      "sourceIds": [
+        "HTR-CHRISTIAN-ADVENTIST"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "Official belief paragraph beginning “The second coming of Christ is the blessed hope…”; sentence on the unrevealed time"
+      ],
+      "readingDepth": [
+        "Official belief paragraph and literal/visible-return explanation read on 2026-10-30; not a complete denominational history."
+      ]
+    },
+    {
+      "id": "buddhist-license",
+      "requestedURL": "https://suttacentral.net/licensing",
+      "retrievedAt": "2026-10-30T04:24:08.486940+00:00",
+      "status": 200,
+      "finalURL": "https://suttacentral.net/licensing",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 9336,
+      "sha256": "0f52d4b0754c9f82ed84cca1f89c6d316b227eec24d15127a443ffd6635e2e3b",
+      "title": "SuttaCentral",
+      "textCharacters": 267,
+      "sourceIds": [],
+      "readingStatus": "retrieved-only-or-discovery",
+      "checkedLocators": [],
+      "readingDepth": []
+    },
+    {
+      "id": "hindu-gita8",
+      "requestedURL": "https://www.holy-bhagavad-gita.org/chapter/4/verse/8/",
+      "retrievedAt": "2026-10-30T04:24:08.736468+00:00",
+      "status": 200,
+      "finalURL": "https://www.holy-bhagavad-gita.org/chapter/4/verse/8/",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 53986,
+      "sha256": "41a07e835b6170193cd7b4c9117db3a32be7ab3123daeb98e6e97b21d0580dc5",
+      "title": "BG 4.8: Chapter 4, Verse 8 - \n Bhagavad Gita, The Song of God – Swami Mukundananda",
+      "textCharacters": 8362,
+      "sourceIds": [
+        "HTR-HINDU-GITA-8"
+      ],
+      "readingStatus": "selected-passages-read",
+      "checkedLocators": [
+        "4.8, displayed Translation"
+      ],
+      "readingDepth": [
+        "Verse translation read on 2026-10-30; not the full commentary or work."
+      ]
+    }
+  ],
+  "sourceCount": 21,
+  "traditionCount": 11,
+  "datedClaims": 0,
+  "limitations": [
+    "A successful fetch is not a checked passage.",
+    "Two verses from one text/translation are not independent corroboration.",
+    "Sources are community or textual attributions, not a complete comparative theology or cultural-authority endorsement."
+  ]
+}

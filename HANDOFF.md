@@ -1,5 +1,17 @@
 # Handoff notes — for the next model/build
 
+## Event horizon through 2031 — current work, 30 October 2026
+
+Current branch: `feat/event-horizon-2031`, based on published main `3f76845f2d516d7a4bd507afa0508e6929c831e2`. **PR #5 was merged and its Pages deployment verified** before this task. Its older draft/hold statements below are historical. The current user explicitly authorizes push and publication after stress testing; no additional permission is needed for the reviewed release.
+
+Read [horizon methods](docs/2026-10-horizon-methods.md), [panel ledger](docs/2026-10-horizon-panel.md) and [verification](docs/2026-10-horizon-verification.md). The new `event-horizon` route uses a complete1525date×3case preset through1January2031, with all13calendar slots and4separate editorial profiles per sample. Custom supported dates begin1January2026. Do not hide unavailable samples, collapse exact score ties, treat local-noon cases as the same instant, or infer a full-day verdict from one clock. Declared counters are top-level orchestration calls; guidance recomputes some chart facts internally.
+
+Keep published observances separate from converter projections and source-only eschatology. HKO/GovHK and the generating ICU78.3/CLDR48 disagree for selected Chinese New Year dates; preserve both and show mismatch. No whole-calendar validation, universal auspiciousness, dated prophecy or exhaustive religious coverage is claimed. The sources retain issuing region, variant, boundary, locator, edition, rights and reading status.
+
+`generate-horizon-preset.mjs` follows the transitive scientific import graph, splits case/astronomy data, and writes source/metadata/exact-manifest fingerprints. The version module is excluded from its own graph. Rebuild MCP contracts before regenerating the preset, then run its `--check`. The loader checks artifact binding and scientific structure; stale mixtures fail visibly. The full-window brute/optimized stress job and inherited verification/MCP jobs all gate Pages deployment. `browser-horizon.mjs` verifies actual complete downloads, cancellation, stale inputs, clocks and integrity at four viewport widths. Keep failed receipts, separate build/test snapshots from publication, and limit Chromium concurrency to two.
+
+Current source catalogue:73MCPtools,96capabilities,91guide routes. Horizon remote scans are bounded31days/twocases; day details require an explicit case/date. The static Pages frontend is not an MCP server. This task does not establish a redeployed authenticated hosted MCP service, Supabase, provider inference or a trained model. Public exact release identity comes from deployed `release.json` and Actions evidence.
+
 ## Interactive sky, source interpretations and tool coverage — 30 October 2026
 
 Continue on `feat/mobile-calendar-observatory`, extending `fb656a8047e93b8d49227d92aa9edc3e9b1fce50`, in draft PR #5. Read the new [plan](docs/2026-10-sky-plan.md), [panel ledger](docs/2026-10-sky-panel.md) and [verification](docs/2026-10-sky-verification.md). This is a separate multi-round pass with the same six independent AI-agent perspectives; numerical claims and review counts in older sections below refer to those historical revisions. The coverage JSON and generated MCP catalogue are authoritative for current capability/tool counts.

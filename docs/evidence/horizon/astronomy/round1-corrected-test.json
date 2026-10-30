@@ -1,0 +1,37 @@
+{
+  "node": "v24.19.0",
+  "input": {
+    "startUTC": "2026-10-29T18:30:00Z",
+    "endUTC": "2031-01-02T05:00:00Z"
+  },
+  "elapsedMs": 2847.427569,
+  "serializedBytes": 5867424,
+  "stats": {
+    "positionCalculations": 227639,
+    "scannedIntervals": 6102,
+    "searchedAspectPairs": 45,
+    "eventsByKind": {
+      "lunar-phase": 207,
+      "solar-quarter": 17,
+      "solar-eclipse": 10,
+      "lunar-eclipse": 10,
+      "ecliptic-aspect": 4691,
+      "zodiac-ingress": 871,
+      "planetary-station": 77
+    },
+    "completeRequestedRange": true,
+    "events": 5883
+  },
+  "checks": 100,
+  "failures": [],
+  "recordedAt": "2026-10-30T04:35:35.928813+00:00",
+  "sourceSHA256": {
+    "assets/js/core/horizon-astronomy.js": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01",
+    "assets/js/lib/astronomy.js": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7",
+    "scripts/tests/horizon-astronomy.mjs": "830583b37848d82b9777afa1d4886f1e31544ed62bf5fe3092dfd3fecd1ec357",
+    "scripts/tests/fixtures/horizon-astronomy.json": "138885807a485ef8f1d749269167381941499eca33fef1d9c8d5902e26a8159b",
+    "docs/2026-10-horizon-astronomy.md": "913462cd5ff5ea8e42023aa402c67f0408fa0634d7d97e00d13e3bce61fb0264",
+    "docs/evidence/horizon/astronomy-research/source-fetches.json": "6c589861f81e38a108614e15d52805092a5517e4ba4c0c396995d1a3acc24d95"
+  },
+  "scope": "R1 focused astronomy checks, not shared release or browser acceptance"
+}

@@ -28,6 +28,7 @@ export const NAV_GROUPS = [
     ['index.html', 'Today — the calendar observatory', 'home'],
     ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
     ['pages/calendar-atlas.html', 'Calendar Atlas — sky, timeline & interpretations', 'calendaratlas'],
+    ['pages/event-horizon.html', 'Event horizon — every date to 2031', 'eventhorizon'],
     ['pages/calendar-search.html', 'Date & event search laboratory', 'calendarsearch'],
     ['pages/world-events.html', 'World events — dates & historical readings', 'worldevents'],
     ['pages/basics.html', 'The Basics — every concept', 'basics'],
@@ -132,6 +133,7 @@ export function currentSection() {
   if (m(/\/pages\/calendars\.html$/)) return 'calendars';
   if (m(/\/pages\/calendar-compare\.html$/)) return 'calendarcompare';
   if (m(/\/pages\/calendar-atlas\.html$/)) return 'calendaratlas';
+  if (m(/\/pages\/event-horizon\.html$/)) return 'eventhorizon';
   if (m(/\/pages\/calendar-search\.html$/)) return 'calendarsearch';
   const atlasFamily = p.match(/\/pages\/calendars\/(western|vedic|egyptian|hebrew|chinese)\.html$/);
   if (atlasFamily) return 'atlas' + atlasFamily[1];
