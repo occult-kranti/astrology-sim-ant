@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-30T00:41:00.524094+00:00",
+  "baseline": "0d115c911ffd744279e3d3640f598d2b8fee3c81",
+  "commands": [
+    {
+      "gate": "audit",
+      "startedAt": "2026-10-30T00:25:46Z",
+      "finishedAt": "2026-10-30T00:25:46.872150+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/audit.mjs"
+      ]
+    },
+    {
+      "gate": "engine",
+      "startedAt": "2026-10-30T00:25:46Z",
+      "finishedAt": "2026-10-30T00:26:01.369991+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/engine-test.mjs"
+      ]
+    },
+    {
+      "gate": "opgraph",
+      "startedAt": "2026-10-30T00:26:01Z",
+      "finishedAt": "2026-10-30T00:26:01.494144+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/gen-opgraph.mjs",
+        "--check"
+      ]
+    },
+    {
+      "gate": "opgraph-gate",
+      "startedAt": "2026-10-30T00:26:01Z",
+      "finishedAt": "2026-10-30T00:26:01.608115+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/seed-opgraph-gate.mjs",
+        "--check"
+      ]
+    },
+    {
+      "gate": "profiles",
+      "startedAt": "2026-10-30T00:26:01Z",
+      "finishedAt": "2026-10-30T00:26:01.682688+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/build-specialist-profiles.mjs",
+        "--check"
+      ]
+    },
+    {
+      "gate": "round-ledger",
+      "startedAt": "2026-10-30T00:26:01Z",
+      "finishedAt": "2026-10-30T00:26:01.737155+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/round-ledger.mjs",
+        "--check"
+      ]
+    },
+    {
+      "gate": "mcp-toolkit",
+      "startedAt": "2026-10-30T00:26:01Z",
+      "finishedAt": "2026-10-30T00:26:02.090465+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/tests/mcp-toolkit.mjs"
+      ]
+    },
+    {
+      "gate": "mcp-transports",
+      "startedAt": "2026-10-30T00:26:02Z",
+      "finishedAt": "2026-10-30T00:26:02.949491+00:00",
+      "exitCode": 0,
+      "command": [
+        "npm",
+        "test",
+        "--prefix",
+        "mcp"
+      ]
+    },
+    {
+      "gate": "release-calculators",
+      "startedAt": "2026-10-30T00:26:02Z",
+      "finishedAt": "2026-10-30T00:26:08.850510+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "BROWSER_PHASE=calculators",
+        "BROWSER_OUTPUT=/workspace/setup-validation/atlas-final/release-calculators",
+        "node",
+        "scripts/browser-release.mjs"
+      ]
+    },
+    {
+      "gate": "release-workbench",
+      "startedAt": "2026-10-30T00:26:08Z",
+      "finishedAt": "2026-10-30T00:26:20.352359+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "BROWSER_PHASE=workbench",
+        "BROWSER_OUTPUT=/workspace/setup-validation/atlas-final/release-workbench",
+        "node",
+        "scripts/browser-release.mjs"
+      ]
+    },
+    {
+      "gate": "release-studio",
+      "startedAt": "2026-10-30T00:26:20Z",
+      "finishedAt": "2026-10-30T00:26:36.408373+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "BROWSER_PHASE=studio",
+        "BROWSER_OUTPUT=/workspace/setup-validation/atlas-final/release-studio",
+        "node",
+        "scripts/browser-release.mjs"
+      ]
+    },
+    {
+      "gate": "release-connections",
+      "startedAt": "2026-10-30T00:26:36Z",
+      "finishedAt": "2026-10-30T00:26:39.248228+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "BROWSER_PHASE=connections",
+        "BROWSER_OUTPUT=/workspace/setup-validation/atlas-final/release-connections",
+        "node",
+        "scripts/browser-release.mjs"
+      ]
+    },
+    {
+      "gate": "release-assistant",
+      "startedAt": "2026-10-30T00:26:39Z",
+      "finishedAt": "2026-10-30T00:26:41.512819+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "BROWSER_PHASE=assistant",
+        "BROWSER_OUTPUT=/workspace/setup-validation/atlas-final/release-assistant",
+        "node",
+        "scripts/browser-release.mjs"
+      ]
+    },
+    {
+      "gate": "release-pages",
+      "startedAt": "2026-10-30T00:26:41Z",
+      "finishedAt": "2026-10-30T00:31:24.175070+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "BROWSER_PHASE=pages",
+        "BROWSER_OUTPUT=/workspace/setup-validation/atlas-final/release-pages",
+        "node",
+        "scripts/browser-release.mjs"
+      ]
+    },
+    {
+      "gate": "observatory",
+      "startedAt": "2026-10-30T00:31:24Z",
+      "finishedAt": "2026-10-30T00:33:11.841652+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "OBS_OUTPUT=/workspace/setup-validation/atlas-final/observatory",
+        "node",
+        "scripts/browser-observatory.mjs"
+      ]
+    },
+    {
+      "gate": "studio-expansion",
+      "startedAt": "2026-10-30T00:33:11Z",
+      "finishedAt": "2026-10-30T00:33:32.986216+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "EXPANSION_OUTPUT=/workspace/setup-validation/atlas-final/studio-expansion",
+        "node",
+        "scripts/browser-studio-expansion.mjs"
+      ]
+    },
+    {
+      "gate": "ensemble",
+      "startedAt": "2026-10-30T00:33:32Z",
+      "finishedAt": "2026-10-30T00:33:54.744333+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "ENSEMBLE_OUTPUT=/workspace/setup-validation/atlas-final/ensemble",
+        "node",
+        "scripts/browser-ensemble.mjs"
+      ]
+    },
+    {
+      "gate": "all-pages",
+      "startedAt": "2026-10-30T00:33:54Z",
+      "finishedAt": "2026-10-30T00:39:15.033614+00:00",
+      "exitCode": 0,
+      "command": [
+        "env",
+        "PUPPETEER_PKG=/workspace/astrology-browser-tools/node_modules/puppeteer/lib/cjs/puppeteer/puppeteer.js",
+        "CHROME_PATH=/usr/bin/chromium",
+        "BASE=http://127.0.0.1:8030",
+        "node",
+        "scripts/browser-verify.mjs"
+      ]
+    },
+    {
+      "gate": "sky-contract",
+      "startedAt": "2026-10-30T00:39:15Z",
+      "finishedAt": "2026-10-30T00:39:15.083353+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/check-sky-handoff.mjs"
+      ]
+    },
+    {
+      "gate": "sky-browser",
+      "startedAt": "2026-10-30T00:39:15Z",
+      "finishedAt": "2026-10-30T00:39:25.240452+00:00",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "scripts/browser-sessions.mjs"
+      ]
+    }
+  ],
+  "allExitZero": true,
+  "finalAtlas": {
+    "checks": 612,
+    "downloads": 85,
+    "productFiles": 446,
+    "receipt": "../round5-final/receipt.json"
+  },
+  "htmlPages": 129,
+  "javascriptFiles": 274,
+  "observatory": {
+    "checks": 121,
+    "routeViewportVisits": 384
+  },
+  "studioChecks": 331,
+  "ensembleChecks": 288,
+  "legacyPuppeteer": {
+    "htmlPages": 129,
+    "pageErrors": 0,
+    "structuredDescriptorsExecuted": 9,
+    "structuredDescriptorWarnings": 2,
+    "proseDescriptorsDocumented": 89,
+    "qualification": "Two inherited descriptor warnings remain; prose descriptors are page-load coverage, not executed assertions."
+  },
+  "historicalRoundLedger": {
+    "fresh": true,
+    "C3": "NOT EVALUABLE",
+    "counts": "C1/C2 historical window includes unverified counts; no source census was invented."
+  },
+  "skyLensFixture": "2b2aa089009db3ddedc2256a7a5456b402b23962",
+  "remoteCI": "Not claimed by this local execution manifest. See the pull request for the exact pushed-head run.",
+  "artifacts": {
+    "all-pages.txt": "34995483c9b062effa718b5db081b2aa9e3d97218444d84f2a4e9aa83e2dd388",
+    "audit.txt": "def550eabd431eb495ee8ce297fc149d85f6dc2434dfafa9a22fa049519992a1",
+    "engine.txt": "f09058a7d7cbf55aebc770479779633300289bebe01d06903d0c68d0a66b2a6b",
+    "ensemble.json": "6bb75fcfbb32e344d08098dfde0c3289414efc5d62d0af8414e10482ece8701e",
+    "ensemble.txt": "af9fe7a10488882b070dabb89e39ad7a6a68fb82c76a98e85e276be23eab3232",
+    "mcp-toolkit.txt": "a83418dc0a20f9b89dbcbfcc2799c14a6ebe15eb1dfb3097d75ab7e652f6eefc",
+    "mcp-transports.txt": "eaf41d95bca2ce81d21bc8f72200519e2291640a82df17775ef15ef89556c716",
+    "observatory.json": "e2d319954a67dc88f8f8fd00b8eed12576a0aa9934bdbeaf10eb1e66dbad5f67",
+    "observatory.txt": "6fdb6410063236c873738b7cd38cd4f9c18823908cd254129821aa4b19982653",
+    "opgraph-gate.txt": "86a5750f85773ac53bb9243707c1c2afcf12d3fdb5a006d959d39e21da2aec80",
+    "opgraph.txt": "2de1f7ae09372b16bc121674312d753fd40112c9067aab5e007678451b81f01a",
+    "profiles.txt": "dab69f9788bfb29fad20fe487b0aab9e874d3b6059e0e018f75dd6b83a8dbe8b",
+    "release-assistant.json": "b844f94073e3d32c12c8d66640740ea1ae89a5f5e903529fc885a96ea9a481b0",
+    "release-assistant.txt": "368e35327677622d3ae090facf7070adaeb57bff65150774b4006d1919f5b72a",
+    "release-calculators.json": "d63cfc7cb61b87f60d1442e2e91cd0256c8cff0f37b69e6da318f04bfb21ed41",
+    "release-calculators.txt": "0546134d6db558676a40a9a18c96e901608aec28e088102063a97c5915011daf",
+    "release-connections.json": "052abf1c9b661aaafa048b87a250864d6c7d3dd21a7a2945db3fce833cd560e5",
+    "release-connections.txt": "fb7ff5c5ca68a7a7311ab29d440288da1dc2f51fb16ea8f126d18fbe62270286",
+    "release-pages.json": "704886f9467fbd4bb4a4e2f0aa1425cd077f1d41ac2de1249d5c55b1e0a999cf",
+    "release-pages.txt": "8e125c619991001368d12347216ace55b3a2fab41b3b975131adae8a61b5479d",
+    "release-studio.json": "02ee02e5a16cdb87fd4bcc99b96770bd1a7d50e1df217446f9d95e12e4af5162",
+    "release-studio.txt": "fe2e3eeeb550de3b2aa6660d70121bec047e66a21222368b3995ffe4dacc454d",
+    "release-workbench.json": "c7c6ca685ed4a9bfbd032985ca46ffd6c49d570e809aa24540de14a41d3d1991",
+    "release-workbench.txt": "411e88332521a70c5d0c26c2533d3688cbbffa1139d837fa4463fce04ab798c3",
+    "round-ledger.txt": "257071c40843eb0affe38462f30ddc795922ddf4bfb0f83cf87b2915161b7089",
+    "run-gates.sh": "f167e34264a1e4b43f6fc373cc7b693b09beed7fd3bd2f6a067bb33ca1a782e6",
+    "sky-browser.txt": "87e76185f16833e037dccd0e39ac186f1e566033aa103c9048a1de08a2b60f91",
+    "sky-contract.txt": "cc195753647f3001c4e6b8666e2f539a35d6737c12e3837b993a70c63e13ec9b",
+    "studio-expansion.json": "503e755c4e72dcc2bbbe4bdcdb8ee028aa6157290e5b02373b3c4ad089319e9d",
+    "studio-expansion.txt": "d2058479df660281afc2fe47a1a701eeb9debeb5c5b1d628ae688502b102ce38"
+  }
+}

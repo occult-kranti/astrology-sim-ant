@@ -1,0 +1,374 @@
+{
+  "round": 4,
+  "reviewer": "calendar_precision",
+  "executedAt": "2026-10-30T00:21:37.160Z",
+  "verdict": "ACCEPT",
+  "checks": [
+    {
+      "name": "Europe/London: changing observer preserves all 24 UTC event instants",
+      "pass": true
+    },
+    {
+      "name": "Europe/London: 345\u00b0 event uses its event-date offset 0h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-05T13:58:43.971Z",
+        "observerDate": "2026-03-05",
+        "observerTime": "13:58:43",
+        "offsetHours": 0
+      }
+    },
+    {
+      "name": "Europe/London: 0\u00b0 event uses its event-date offset 0h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-20T14:45:36.044Z",
+        "observerDate": "2026-03-20",
+        "observerTime": "14:45:36",
+        "offsetHours": 0
+      }
+    },
+    {
+      "name": "Europe/London: 15\u00b0 event uses its event-date offset 1h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-04-04T18:39:59.161Z",
+        "observerDate": "2026-04-04",
+        "observerTime": "19:39:59",
+        "offsetHours": 1
+      }
+    },
+    {
+      "name": "America/New_York: changing observer preserves all 24 UTC event instants",
+      "pass": true
+    },
+    {
+      "name": "America/New_York: 345\u00b0 event uses its event-date offset -5h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-05T13:58:43.971Z",
+        "observerDate": "2026-03-05",
+        "observerTime": "08:58:43",
+        "offsetHours": -5
+      }
+    },
+    {
+      "name": "America/New_York: 0\u00b0 event uses its event-date offset -4h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-20T14:45:36.044Z",
+        "observerDate": "2026-03-20",
+        "observerTime": "10:45:36",
+        "offsetHours": -4
+      }
+    },
+    {
+      "name": "America/New_York: 15\u00b0 event uses its event-date offset -4h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-04-04T18:39:59.161Z",
+        "observerDate": "2026-04-04",
+        "observerTime": "14:39:59",
+        "offsetHours": -4
+      }
+    },
+    {
+      "name": "Australia/Lord_Howe: changing observer preserves all 24 UTC event instants",
+      "pass": true
+    },
+    {
+      "name": "Australia/Lord_Howe: 345\u00b0 event uses its event-date offset 11h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-05T13:58:43.971Z",
+        "observerDate": "2026-03-06",
+        "observerTime": "00:58:43",
+        "offsetHours": 11
+      }
+    },
+    {
+      "name": "Australia/Lord_Howe: 0\u00b0 event uses its event-date offset 11h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-20T14:45:36.044Z",
+        "observerDate": "2026-03-21",
+        "observerTime": "01:45:36",
+        "offsetHours": 11
+      }
+    },
+    {
+      "name": "Australia/Lord_Howe: 15\u00b0 event uses its event-date offset 10.5h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-04-04T18:39:59.161Z",
+        "observerDate": "2026-04-05",
+        "observerTime": "05:09:59",
+        "offsetHours": 10.5
+      }
+    },
+    {
+      "name": "Pacific/Chatham: changing observer preserves all 24 UTC event instants",
+      "pass": true
+    },
+    {
+      "name": "Pacific/Chatham: 345\u00b0 event uses its event-date offset 13.75h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-05T13:58:43.971Z",
+        "observerDate": "2026-03-06",
+        "observerTime": "03:43:43",
+        "offsetHours": 13.75
+      }
+    },
+    {
+      "name": "Pacific/Chatham: 0\u00b0 event uses its event-date offset 13.75h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-20T14:45:36.044Z",
+        "observerDate": "2026-03-21",
+        "observerTime": "04:30:36",
+        "offsetHours": 13.75
+      }
+    },
+    {
+      "name": "Pacific/Chatham: 15\u00b0 event uses its event-date offset 12.75h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-04-04T18:39:59.161Z",
+        "observerDate": "2026-04-05",
+        "observerTime": "07:24:59",
+        "offsetHours": 12.75
+      }
+    },
+    {
+      "name": "Asia/Kathmandu: changing observer preserves all 24 UTC event instants",
+      "pass": true
+    },
+    {
+      "name": "Asia/Kathmandu: 345\u00b0 event uses its event-date offset 5.75h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-05T13:58:43.971Z",
+        "observerDate": "2026-03-05",
+        "observerTime": "19:43:43",
+        "offsetHours": 5.75
+      }
+    },
+    {
+      "name": "Asia/Kathmandu: 0\u00b0 event uses its event-date offset 5.75h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-03-20T14:45:36.044Z",
+        "observerDate": "2026-03-20",
+        "observerTime": "20:30:36",
+        "offsetHours": 5.75
+      }
+    },
+    {
+      "name": "Asia/Kathmandu: 15\u00b0 event uses its event-date offset 5.75h",
+      "pass": true,
+      "details": {
+        "instantUTC": "2026-04-04T18:39:59.161Z",
+        "observerDate": "2026-04-05",
+        "observerTime": "00:24:59",
+        "offsetHours": 5.75
+      }
+    },
+    {
+      "name": "1900 Hong Kong reference follows runtime offset rather than timeless UTC+8",
+      "pass": true,
+      "details": {
+        "referenceDate": "1900-06-22",
+        "referenceTime": "05:16:41",
+        "offsetSeconds": 27402,
+        "qualification": "Runtime tzdata contract regression, not a newly sourced historical clock/astronomical validation fixture."
+      }
+    },
+    {
+      "name": "1950 Hong Kong reference follows runtime offset rather than timeless UTC+8",
+      "pass": true,
+      "details": {
+        "referenceDate": "1950-06-22",
+        "referenceTime": "08:35:54",
+        "offsetSeconds": 32400,
+        "qualification": "Runtime tzdata contract regression, not a newly sourced historical clock/astronomical validation fixture."
+      }
+    },
+    {
+      "name": "2026 Hong Kong reference follows runtime offset rather than timeless UTC+8",
+      "pass": true,
+      "details": {
+        "referenceDate": "2026-06-21",
+        "referenceTime": "16:25:00",
+        "offsetSeconds": 28800,
+        "qualification": "Runtime tzdata contract regression, not a newly sourced historical clock/astronomical validation fixture."
+      }
+    },
+    {
+      "name": "Observer computus year and Hong Kong solar-term reference year can differ explicitly",
+      "pass": true
+    },
+    {
+      "name": "Year2100 retains annual list and labels next event unavailable/row partial",
+      "pass": true
+    },
+    {
+      "name": "Hong Kong year2101 produces explicit unavailable without fabricated events",
+      "pass": true
+    },
+    {
+      "name": "Polar observer retains geocentric solar terms while horizon-dependent methods are unavailable",
+      "pass": true
+    },
+    {
+      "name": "Polar house fallback explicitly separates requested/actual systems and partial status",
+      "pass": true
+    },
+    {
+      "name": "Seven pending civil validation categories remain unchanged",
+      "pass": true
+    },
+    {
+      "name": "Selected solar export excludes full comparison, unselected calendar readings and private birth metadata",
+      "pass": true
+    },
+    {
+      "name": "Selected solar method and shared sky source references resolve with reading-depth qualifications",
+      "pass": true
+    },
+    {
+      "name": "ATLAS-UCL: retained source bytes still match the checked source record",
+      "pass": true
+    },
+    {
+      "name": "ATLAS-BRITANNICA: retained source bytes still match the checked source record",
+      "pass": true
+    },
+    {
+      "name": "ATLAS-HKO: retained source bytes still match the checked source record",
+      "pass": true
+    },
+    {
+      "name": "ATLAS-HEBCAL: retained source bytes still match the checked source record",
+      "pass": true
+    },
+    {
+      "name": "ATLAS-SOLAR-TERMS: retained source bytes still match the checked source record",
+      "pass": true
+    },
+    {
+      "name": "ATLAS-CWA-2026: retained source bytes still match the checked source record",
+      "pass": true
+    },
+    {
+      "name": "ATLAS-HKO-2026: retained source bytes still match the checked source record",
+      "pass": true
+    }
+  ],
+  "passed": 38,
+  "failures": [],
+  "runtime": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "tzdata": "2026b"
+  },
+  "hashes": {
+    "assets/js/core/calendar-atlas.js": "917ff26c071b78a665cea9bdf145abd584cb8b2f2fbf5a7203099e91a25d62f6",
+    "scripts/tests/calendar-atlas.mjs": "b173bc215d73f14d4648abe85177d597f7aba004fd958ad4fec1df5f6a7455e6",
+    "assets/js/app/calendar-atlas.js": "614dfd5654e334ef24990a896232dae4e379995ae0fc5d91a46234c9bfe4eba8",
+    "assets/css/calendar-atlas.css": "2b6bfb761bb5671c4a3da25da67c5482df502c927d74eb1ce11fdc2c427bbc03",
+    "pages/calendars/chinese.html": "d38c193817a14af49c9a3253024e8db7fc16abc220688a5524f95b098b2e5d9d",
+    "docs/evidence/atlas/calendar-source-access.json": "a4c5a08ce0e7367f736131732c96b35b4d47433b4f4d1d1004bb561e1d0a439b"
+  },
+  "sourceHashes": [
+    {
+      "id": "ATLAS-UCL",
+      "file": "ucl-calendar.html",
+      "sha256": "2f3e15f5fa0a9c64cadffe2d9d685add58cfb33c78795092a53c1407f5bdc325",
+      "readingDepth": "Full short calendar page read in atlas Round 1; its listed Beckerath/Cody books were not read."
+    },
+    {
+      "id": "ATLAS-BRITANNICA",
+      "file": "britannica-egypt.html",
+      "sha256": "a6f11dfecdd356f08dcadb3da8f828b63e975100da4034cac1474565273ca7c8",
+      "readingDepth": "Selected article paragraphs read. Its compressed reform chronology differs from UCL\u2019s Egypt-specific account; no reform date or ancient conversion epoch is encoded."
+    },
+    {
+      "id": "ATLAS-HKO",
+      "file": "hko-nongli.html",
+      "sha256": "9e5e3fd0e2a9c579c925390ec9fd15f552f476103673be2bf8ae1382db9476cb",
+      "readingDepth": "Explanatory paragraphs read anew for this atlas. Does not establish BaZi, regional equivalence or predictive validity."
+    },
+    {
+      "id": "ATLAS-HEBCAL",
+      "file": "hebcal-doc.html",
+      "sha256": "3354f60e8f34fa4098811d9b01d947368dcf03ff7e0f440768fb56f2f61ec880",
+      "readingDepth": "Selected constructor/conversion documentation read; no Kabbalistic text, sunset computation or religious authority inferred."
+    },
+    {
+      "id": "ATLAS-SOLAR-TERMS",
+      "file": "hko-solarterms.html",
+      "sha256": "2bf78b365fd8e53ae52c36560fc7d46114fe4a6403861824ecd1ef54b234e62f",
+      "readingDepth": "Table 1 and the surrounding angular definition read in atlas Round 2. The leap-month summary and zodiac discussion are not new implemented calendar rules."
+    },
+    {
+      "id": "ATLAS-CWA-2026",
+      "file": "cwa2026.pdf",
+      "sha256": "88a8ab2a59e7ca51835820ab7b56a71b816299972ba8a970a4cb164ac56a043b",
+      "readingDepth": "All 24 2026 minute-resolution term rows transcribed and rendered page visually inspected. Selected-year fixtures only; no full-range accuracy claim."
+    },
+    {
+      "id": "ATLAS-HKO-2026",
+      "file": "hko2026.pdf",
+      "sha256": "f74b6da727e8025896b8c370f45a9f9da935aa48604680381bd5cf22bb525224",
+      "readingDepth": "All 24 solar-term date entries read; day-level independent issuing-authority comparison against CWA minute rows."
+    }
+  ],
+  "scope": "Bounded Node core/export clock, source and availability checks; separately inspected UI mapping. No browser executed by this member and no fresh source fetch in this round.",
+  "correction": "Visible precision note and methods prose now qualify historic IANA Hong Kong offsets separately from selected2026 UTC+8 fixtures; numerical behavior unchanged.",
+  "remainingLimits": [
+    "Seven inherited pending independent civil-display fixture categories unchanged.",
+    "Solar-term independent time fixtures cover2026 only; historical clock checks are runtime-policy regressions.",
+    "Runtime calendar/tzdata variation and existing ephemeris approximations remain.",
+    "No predictive, religious-authority or whole-book validation claim."
+  ],
+  "separatelyInspectedBrowserEvidence": {
+    "executedBy": "symbol_methods",
+    "inspectedBy": "calendar_precision",
+    "artifacts": [
+      {
+        "path": "docs/evidence/atlas/round4-desktop-flow.json",
+        "sha256": "dde388ca3cef87c4e4fa2e025b7cc2c8fdaa8214455e86b3a66a587999e00688"
+      },
+      {
+        "path": "docs/evidence/atlas/round4-solar-london.png",
+        "sha256": "3aecbbfd97afdec298d50d740b12e5fd3c48ef1f49d26161b8f2fc7036deb234"
+      }
+    ],
+    "observations": [
+      "Actually viewed Chinese solar-term table screenshot and read25-check browser receipt.",
+      "March20 andApril4 UTC/reference/London DOM values match independent core arithmetic and changing London offset.",
+      "Year-edge receipt visibly records unavailable HongKong2101 with source/method qualifications."
+    ],
+    "qualification": "Browser executed by desktop member, not this reviewer. Numerical precision-note assertion predates the historical-IANA sentence; that sentence was checked in current source mapping only."
+  },
+  "separatelyInspectedFinalQA": {
+    "executedBy": "experience_review",
+    "inspectedBy": "calendar_precision",
+    "artifacts": [
+      {
+        "path": "docs/evidence/atlas/round4-integration/receipt.json",
+        "sha256": "63e3297caa34decef09c8df5f995404108b212b2658d5037371b2afe2efc90f1"
+      },
+      {
+        "path": "docs/evidence/atlas/round4-integration/solar-terms-1440.png",
+        "sha256": "f52204b4e5286662e57ee41fb97307ae414991da1adf72598e21412cb0acd75f"
+      }
+    ],
+    "observations": [
+      "Actually viewed final1440 screenshot with visible historical Asia/Hong_Kong qualification and named UTC/reference/observer table headers.",
+      "Read four successful final historical-time-zone-note assertions at widths320,390,1440,1920."
+    ],
+    "qualification": "Final broad browser gate executed by QA, not this reviewer; only the named screenshot and relevant receipt assertions were independently inspected here."
+  }
+}

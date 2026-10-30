@@ -1752,7 +1752,7 @@ for (const suite of ['live-symbols', 'study-session']) {
 
 // Cross-calendar source/context and civil-week regression checks use the same
 // pure engines as the browser and MCP, without a host clock or live provider.
-for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-study-packet', 'day-guidance', 'sigil-design', 'sigil-image-provider', 'observatory-standards', 'world-events', 'comparison-evidence']) {
+for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-study-packet', 'day-guidance', 'sigil-design', 'sigil-image-provider', 'observatory-standards', 'world-events', 'comparison-evidence', 'calendar-atlas', 'personal-calendar', 'calendar-search']) {
   try {
     execFileSync(process.execPath, [`scripts/tests/${suite}.mjs`], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] });
     ok(true, `${suite}: PASS`);

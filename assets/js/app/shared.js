@@ -27,6 +27,8 @@ export const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
     ['index.html', 'Today — the calendar observatory', 'home'],
     ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
+    ['pages/calendar-atlas.html', 'Calendar Atlas — the desktop observatory', 'calendaratlas'],
+    ['pages/calendar-search.html', 'Date & event search laboratory', 'calendarsearch'],
     ['pages/world-events.html', 'World events — dates & historical readings', 'worldevents'],
     ['pages/basics.html', 'The Basics — every concept', 'basics'],
     ['pages/learn.html', 'Learn — astrology & the math', 'learn'],
@@ -62,6 +64,11 @@ export const NAV_GROUPS = [
     ['pages/autopilot.html', 'Grand Orchestrator (AI)', 'autopilot'],
   ] },
   { label: 'Traditions', key: 'traditions', wide: true, items: [
+    ['pages/calendars/western.html', 'Western & Lilly — calendar atlas', 'atlaswestern'],
+    ['pages/calendars/vedic.html', 'Vedic solar & lunar — calendar atlas', 'atlasvedic'],
+    ['pages/calendars/egyptian.html', 'Egyptian & Coptic — calendar atlas', 'atlasegyptian'],
+    ['pages/calendars/hebrew.html', 'Hebrew calendar & Kabbalah studies', 'atlashebrew'],
+    ['pages/calendars/chinese.html', 'Chinese calendar — methods & variations', 'atlaschinese'],
     ['pages/book1/index.html', 'Book I — Introduction', 'book1'],
     ['pages/book2/index.html', 'Book II — Horary', 'book2'],
     ['pages/book3/index.html', 'Book III — Nativities', 'book3'],
@@ -124,6 +131,10 @@ export function currentSection() {
   if (m(/\/pages\/book1\/planetary-hours\.html$/)) return 'phours';
   if (m(/\/pages\/calendars\.html$/)) return 'calendars';
   if (m(/\/pages\/calendar-compare\.html$/)) return 'calendarcompare';
+  if (m(/\/pages\/calendar-atlas\.html$/)) return 'calendaratlas';
+  if (m(/\/pages\/calendar-search\.html$/)) return 'calendarsearch';
+  const atlasFamily = p.match(/\/pages\/calendars\/(western|vedic|egyptian|hebrew|chinese)\.html$/);
+  if (atlasFamily) return 'atlas' + atlasFamily[1];
   if (m(/\/pages\/sigil-studio\.html$/)) return 'sigilstudio';
   if (m(/\/pages\/world-events\.html$/)) return 'worldevents';
   if (m(/\/pages\/standards\.html$/)) return 'standards';

@@ -82,6 +82,10 @@ jobs:
         env:
           ENSEMBLE_OUTPUT: test-results/ensemble
         run: node scripts/browser-ensemble.mjs
+      - name: Desktop calendar atlas, birth precision and event search
+        env:
+          ATLAS_OUTPUT: test-results/atlas
+        run: node scripts/browser-atlas.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962
@@ -192,8 +196,8 @@ jobs:
                 if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
                 const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
                 const catalogue = await catalogueResponse.json();
-                const required = ['workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance'];
-                if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || catalogue.tools?.length !== 14 || !required.every(name => catalogue.tools.some(tool => tool.name === name))) throw new Error('Published MCP catalogue is missing or invalid.');
+                const required = ['workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas'];
+                if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || catalogue.tools?.length !== 15 || !required.every(name => catalogue.tools.some(tool => tool.name === name))) throw new Error('Published MCP catalogue is missing or invalid.');
                 const comparison = await fetch(new URL('pages/calendar-compare.html', base), { signal: AbortSignal.timeout(10000) });
                 if (!comparison.ok || !(await comparison.text()).includes('obs-form')) throw new Error('Published calendar comparison is unavailable.');
                 verified = true;

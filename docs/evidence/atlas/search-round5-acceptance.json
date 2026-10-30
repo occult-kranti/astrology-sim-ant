@@ -1,0 +1,85 @@
+{
+  "round": "new-atlas-R5",
+  "role": "source-search-owner",
+  "at": "2026-10-30T00:29:53.021Z",
+  "verdict": "ACCEPT",
+  "pass": true,
+  "scope": "Read-only final source, method and byte-binding acceptance. These are eleven bounded review/integrity groups, not a rerun of numerical tests or a new browser session.",
+  "checks": [
+    {
+      "label": "Final independent QA receipt records 612 passing checks",
+      "pass": true
+    },
+    {
+      "label": "All 85 completed-download records have nonempty bytes and SHA-256",
+      "pass": true
+    },
+    {
+      "label": "Final QA records no errors, missing local resources or implicit external requests",
+      "pass": true
+    },
+    {
+      "label": "No product files changed during the final QA run",
+      "pass": true
+    },
+    {
+      "label": "All 446 product-file hashes still match the final QA manifest",
+      "pass": true
+    },
+    {
+      "label": "Serialized product manifest matches the receipt and final binding",
+      "pass": true
+    },
+    {
+      "label": "Final receipt and browser-driver bytes match the recorded binding",
+      "pass": true
+    },
+    {
+      "label": "Round 4 and Round 5 reviewed product manifests are identical",
+      "pass": true
+    },
+    {
+      "label": "Seven held search implementation/test/UI hashes remain unchanged",
+      "pass": true
+    },
+    {
+      "label": "Final independent browser acceptance includes selected search semantics at all four widths",
+      "pass": true
+    },
+    {
+      "label": "Nine examples remain date-only, unvalenced and linked to qualified institutional source metadata",
+      "pass": true
+    }
+  ],
+  "heldHashes": {
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/workers/calendar-search-worker.js": "0895f5c200e9c4b73d0b3c2f6b00e57e23acd9b858e777a6566ca3f0e72bc020",
+    "assets/js/core/data/calendar-search-events.js": "218cbab51aefb3ba96d1c52d6cb7edd2900d2d83a3046d286c596308989481cb",
+    "scripts/tests/calendar-search.mjs": "1641a57652f7b298571456b70ac45f3af804febe508d15c4bc04a994a4085f5a",
+    "assets/js/app/calendar-search.js": "12aa71c06359cdefb46142d6d4bbc0846a4874e819504e8d361cf38e98f55733",
+    "assets/css/calendar-search.css": "a80f5519fd3f8c1012c3ab9854de104065c84d8cdbe16c052a0fb9bf737f12c2",
+    "pages/calendar-search.html": "7cf5eff39c750df012231177b076c1e244a5fc3a9a8bbad38c3f566dff90e51c"
+  },
+  "independentQA": {
+    "receipt": "docs/evidence/atlas/round5-final/receipt.json",
+    "sha256": "c1fadd75a25bc16481a763ee73ba63f7be840f5bfafa259e87be198e4a98ccf7",
+    "checks": 612,
+    "downloads": 85,
+    "browser": "154.0.8037.57",
+    "finishedAt": "2026-10-30T00:26:10.824Z",
+    "manifestFiles": 446,
+    "manifestSHA256": "cfc47bc45aca937d233558f13435bb31dc38f26e39ec57f48929614f5c717102"
+  },
+  "reviewedSemantics": [
+    "Exact civil daily samples and clock/range resolution before prefilters; no continuous-time or whole-day conclusion.",
+    "Rank retains all-window top-K by a single named tradition/class, with unknown-rule denominator and incompleteness preserved.",
+    "Runtime calendar-field absence, fold/gap failures and unavailable rule outcomes remain distinct; descriptive paired/pooled denominators are explicit.",
+    "Shared lunar inputs, duplicate/control overlap, convenience selection and post-selection bias remain disclosed; no probability, independent confirmation or causal forecast is inferred.",
+    "Worker cancellation cannot emit stale success; source imports stay unverified and birth inputs are excluded from public search exports."
+  ],
+  "limits": [
+    "No new full-range 73414-date brute run, external ephemeris validation, statistical outcome validation, provider call, physical-phone test or screen-reader test was performed in this review.",
+    "Source reading remains the selected institutional passages recorded in the source ledger; this is not full-book reading or new religious/calendar authority.",
+    "Deployment, repository-wide commit binding and remote CI are moderator gates."
+  ]
+}

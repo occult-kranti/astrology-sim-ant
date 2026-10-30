@@ -1,0 +1,164 @@
+{
+  "round": "new-atlas-R2",
+  "role": "source-connections-independent-atlas-review",
+  "at": "2026-10-29T23:50:16.825Z",
+  "pass": true,
+  "count": 22,
+  "checks": [
+    {
+      "pass": true,
+      "label": "R1 inventory has32 explicitlynamed variants"
+    },
+    {
+      "pass": true,
+      "label": "Selected family western maps without implied culturalequivalence"
+    },
+    {
+      "pass": true,
+      "label": "Selected family vedic maps without implied culturalequivalence"
+    },
+    {
+      "pass": true,
+      "label": "Selected family egyptian maps without implied culturalequivalence"
+    },
+    {
+      "pass": true,
+      "label": "Selected family jewish maps without implied culturalequivalence"
+    },
+    {
+      "pass": true,
+      "label": "Selected family chinese maps without implied culturalequivalence"
+    },
+    {
+      "pass": true,
+      "label": "Selected family islamic maps without implied culturalequivalence"
+    },
+    {
+      "pass": true,
+      "label": "Selected family civil maps without implied culturalequivalence"
+    },
+    {
+      "pass": true,
+      "label": "All variant source joins resolve"
+    },
+    {
+      "pass": true,
+      "label": "Distinct unimplemented method stays explicit egyptian-ancient-civil"
+    },
+    {
+      "pass": true,
+      "label": "Distinct unimplemented method stays explicit egyptian-lunar"
+    },
+    {
+      "pass": true,
+      "label": "Distinct unimplemented method stays explicit jewish-kabbalah"
+    },
+    {
+      "pass": true,
+      "label": "Distinct unimplemented method stays explicit hebrew-sunset"
+    },
+    {
+      "pass": true,
+      "label": "Distinct unimplemented method stays explicit chinese-bazi"
+    },
+    {
+      "pass": true,
+      "label": "Distinct unimplemented method stays explicit islamic-observed-crescent"
+    },
+    {
+      "pass": true,
+      "label": "Coptic conversion retains civilmidnight scope"
+    },
+    {
+      "pass": true,
+      "label": "Hebrew civil row does not claim religioussunset date"
+    },
+    {
+      "pass": true,
+      "label": "Chinese relatedyear retained in namedruntime result"
+    },
+    {
+      "pass": true,
+      "label": "MCP family/variant intersection selects rows; fullsharedcanonical context stays explicitly available"
+    },
+    {
+      "pass": true,
+      "label": "Nooverlap family/variant rejected"
+    },
+    {
+      "pass": true,
+      "label": "Undeclared birth payload rejected"
+    },
+    {
+      "pass": true,
+      "label": "Direct atlas retains explicitcustom prayer method"
+    }
+  ],
+  "hashes": {
+    "assets/js/core/calendar-atlas.js": "43b923d18ee604ec205ec838eb4f258927932406de723011a0a21077585d1ed5",
+    "mcp/toolkit.mjs": "c5c6ad3e93baba78763d6c26708dcdfa9e6a8c37f2d6be6e17c08f5aeaa11e07"
+  },
+  "readingDepth": "Independently read owner-downloaded UCL fullshortcalendar page, HKO selectedlunar/solar/leap paragraphs, Hebcal local-Date constructor. Same sources are not independent fixture replication.",
+  "finding": "New MCP atlas schema omitted prayerMethod/asr/highLatitude; direct atlas supports them. Requested allowlisted parity and canonical regression.",
+  "correction": {
+    "at": "2026-10-29T23:59:15.313Z",
+    "verdict": "ACCEPT",
+    "checks": [
+      {
+        "pass": true,
+        "label": "Custom method MCP equals selected canonical export"
+      },
+      {
+        "pass": true,
+        "label": "One selected prayer row"
+      },
+      {
+        "pass": true,
+        "label": "Selected Karachi method"
+      },
+      {
+        "pass": true,
+        "label": "Selected Hanafi Asr"
+      },
+      {
+        "pass": true,
+        "label": "Selected high-latitude method"
+      },
+      {
+        "pass": true,
+        "label": "Internal full comparison omitted"
+      },
+      {
+        "pass": true,
+        "label": "Only one Julian output row"
+      },
+      {
+        "pass": true,
+        "label": "Correct selected variant"
+      },
+      {
+        "pass": true,
+        "label": "Family export does not retain other methods"
+      },
+      {
+        "pass": true,
+        "label": "No nested full comparison in Julian export"
+      },
+      {
+        "pass": true,
+        "label": "Nested selected source retained OBS-ADHAN"
+      },
+      {
+        "pass": true,
+        "label": "Nested selected source retained OBS-CALENDAR"
+      }
+    ],
+    "count": 12,
+    "atlasSuiteChecks": 87,
+    "mcpSuiteGroups": 9,
+    "hashes": {
+      "assets/js/core/calendar-atlas.js": "763195d3d9e1defba8d8c2b9a966675934f5f6c3e00f0cac689b30c73aa631a4",
+      "mcp/toolkit.mjs": "f5b868b4be506a4759fc371399b09848963ef2c8a228f5d2f18e1baa3daf54e6"
+    }
+  }
+}

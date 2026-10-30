@@ -6,7 +6,7 @@
   "authentication": "Private Sites OAuth; use the provisioned Astrologer’s Workbench MCP plugin.",
   "staticPageIsMcpServer": false,
   "catalogueScope": "Current repository source; local stdio/HTTP tools. Remote backend may run an earlier revision.",
-  "remoteToolAvailability": "Not reverified for this branch. Previously deployed backend exposed 11 tools; comparison, outlook and guidance explanation require backend deployment and an authenticated tools/list check.",
+  "remoteToolAvailability": "Not reverified for this branch. Previously deployed backend exposed 11 tools; comparison, outlook, guidance explanation and calendar atlas require backend deployment and an authenticated tools/list check.",
   "tools": [
     {
       "name": "workbench_catalogue",
@@ -460,6 +460,126 @@
               "placidus",
               "whole",
               "equal"
+            ]
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calendar_atlas",
+      "description": "Compare named calendar and chart variants at one explicit instant and observer. Select one family, one variant or all catalogued methods; unavailable variants retain their source limitations. Returns supplied observer context, never saved birth data, personal predictions or a claim of complete cultural coverage.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "prayerMethod": {
+            "type": "string",
+            "enum": [
+              "MuslimWorldLeague",
+              "NorthAmerica",
+              "Egyptian",
+              "Karachi",
+              "UmmAlQura",
+              "MoonsightingCommittee",
+              "Turkey"
+            ]
+          },
+          "asr": {
+            "type": "string",
+            "enum": [
+              "Shafi",
+              "Hanafi"
+            ]
+          },
+          "highLatitude": {
+            "type": "string",
+            "enum": [
+              "MiddleOfTheNight",
+              "SeventhOfTheNight",
+              "TwilightAngle"
+            ]
+          },
+          "family": {
+            "type": "string",
+            "enum": [
+              "western",
+              "vedic",
+              "egyptian",
+              "jewish",
+              "chinese",
+              "islamic",
+              "civil"
+            ]
+          },
+          "variant": {
+            "type": "string",
+            "enum": [
+              "gregory",
+              "julian",
+              "western-regiomontanus",
+              "western-placidus",
+              "western-whole",
+              "western-equal",
+              "easter-gregorian",
+              "easter-julian",
+              "planetary-hours",
+              "indian",
+              "vedic-solar",
+              "vedic-lunar",
+              "vedic-vara",
+              "vedic-regional",
+              "coptic",
+              "egyptian-ancient-civil",
+              "egyptian-lunar",
+              "hebrew",
+              "hebrew-sunset",
+              "jewish-kabbalah",
+              "chinese",
+              "chinese-bazi",
+              "chinese-solar-terms",
+              "islamic-civil",
+              "islamic-umalqura",
+              "prayer-timetable",
+              "islamic-observed-crescent",
+              "buddhist",
+              "persian",
+              "ethiopic",
+              "japanese",
+              "roc"
             ]
           }
         },

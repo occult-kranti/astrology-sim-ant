@@ -1,0 +1,14 @@
+.pc-panel{margin-block:1.25rem;border:1px solid var(--line,#cdc5b3);border-radius:12px;padding:1rem;max-width:100%;overflow-wrap:anywhere}
+.pc-panel>summary{font-weight:700;font-size:1.05rem;cursor:pointer;min-height:44px;display:list-item}
+.pc-panel .pc-intro,.pc-panel .pc-help{line-height:1.55;color:var(--muted,#5d625c)}
+.pc-form,.pc-exact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.pc-form>.pc-check,.pc-form>.pc-exact,.pc-form>.pc-help,.pc-form>.pc-actions{grid-column:1/-1}
+.pc-field{min-width:0}.pc-field label,.pc-export>label{display:block;font-weight:600;margin-block-end:.4rem}
+.pc-panel input:not([type=checkbox]),.pc-panel select,.pc-panel textarea{box-sizing:border-box;width:100%;min-width:0;min-height:46px;padding:.7rem;font:inherit;font-size:1rem;border:1px solid var(--line,#cdc5b3);border-radius:6px;background:var(--paper,#fffdf6);color:var(--ink,#24332d)}
+.pc-check{display:flex;align-items:flex-start;gap:.65rem;min-height:44px;line-height:1.5}.pc-check input{width:20px;height:20px;flex:0 0 auto;margin-top:.2rem}
+.pc-actions{display:flex;flex-wrap:wrap;gap:.65rem}.pc-panel button{min-height:44px;font:inherit}.pc-status{min-height:1.5rem}.pc-error{color:var(--danger,#942f26);border-left:3px solid currentColor;padding:.75rem}
+.pc-panel button[type][data-pc-action]{font-size:1rem}
+.pc-method{border-top:1px solid var(--line,#cdc5b3);padding-top:.8rem}.pc-method h3{font-size:1.05rem;margin-block:.2rem .6rem}.pc-body-list{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.75rem}.pc-body-list dt{font-weight:700}.pc-body-list dd{margin:0;line-height:1.6}
+.pc-results details,.pc-export{margin-block:1rem;padding:.7rem;border:1px solid var(--line,#cdc5b3);border-radius:8px}.pc-results summary,.pc-export>summary{cursor:pointer;min-height:44px;align-content:center}.pc-export textarea{margin-block:.5rem 1rem;font-family:ui-monospace,monospace;resize:vertical;min-height:9rem}
+.pc-panel :focus-visible{outline:3px solid var(--accent,#845d24);outline-offset:3px}.pc-panel [hidden]{display:none!important}.pc-panel button:disabled{opacity:.55;cursor:not-allowed}
+@media(max-width:520px){.pc-form,.pc-exact{grid-template-columns:minmax(0,1fr)}.pc-body-list{grid-template-columns:minmax(0,1fr);gap:.3rem}.pc-body-list dd{margin-bottom:.9rem}.pc-panel{padding:.8rem}.pc-actions>*{flex:1 1 100%}}

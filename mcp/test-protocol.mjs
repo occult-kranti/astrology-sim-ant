@@ -29,6 +29,10 @@ try{
   assert.equal(yoga.classification,'unavailable');assert.equal(yoga.computed.applicableAtInstant,null);
   assert.equal(yoga.thresholds.openingTimingComputed,false);
   assert.deepEqual(JSON.parse(guidance.result.content.find(c=>c.type==='text').text),guidance.result.structuredContent);
+  const atlas=await rpc({jsonrpc:'2.0',id:10,method:'tools/call',params:{name:'workbench_calendar_atlas',arguments:{dateISO:'2026-10-29T12:00:00Z',lat:51.5,lon:0,timeZone:'Europe/London',family:'chinese'}}});
+  assert.equal(atlas.result.structuredContent.data.context.dateISO,'2026-10-29T12:00:00.000Z');
+  assert.deepEqual(JSON.parse(atlas.result.content.find(c=>c.type==='text').text),atlas.result.structuredContent);
+  assert.equal(listed.result.tools.find(t=>t.name==='workbench_calendar_atlas').annotations.readOnlyHint,true);
   const resource=await rpc({jsonrpc:'2.0',id:5,method:'resources/read',params:{uri:'workbench://methods'}});
   assert.equal(JSON.parse(resource.result.contents[0].text).limits.scanSamples,256);
   assert.equal((await handler.fetch(req(init,{url:'http://evil.example/mcp'}))).status,403);
@@ -70,5 +74,9 @@ try{
   const guidance=await send({jsonrpc:'2.0',id:4,method:'tools/call',params:{name:'workbench_explain_guidance',arguments:{dateISO:'2024-04-08T18:17:00Z',lat:51.5,lon:0,timeZone:'Europe/London'}}});
   assert.ok(guidance.result.structuredContent.data.tensions.some(t=>t.id==='DG-TENSION-CAZIMI-SOURCES'&&t.sourceIds.includes('DG-AGRIPPA-29')));
   assert.deepEqual(JSON.parse(guidance.result.content.find(c=>c.type==='text').text),guidance.result.structuredContent);
+  const atlas=await send({jsonrpc:'2.0',id:5,method:'tools/call',params:{name:'workbench_calendar_atlas',arguments:{dateISO:'2026-10-29T12:00:00Z',lat:51.5,lon:0,timeZone:'Europe/London',variant:'gregory'}}});
+  assert.equal(atlas.result.structuredContent.data.rows.length,1);
+  assert.equal(atlas.result.structuredContent.data.rows[0].id,'gregory');
+  assert.deepEqual(JSON.parse(atlas.result.content.find(c=>c.type==='text').text),atlas.result.structuredContent);
   console.log('PASS stdio initialize/list/call with real child-process protocol');
 }finally{child.stdin.end();child.kill('SIGTERM');}

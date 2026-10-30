@@ -1,0 +1,60 @@
+{
+  "round": "new-atlas-R4",
+  "role": "source-search-owner",
+  "at": "2026-10-30T00:14:41.532Z",
+  "pass": true,
+  "checks": [
+    {
+      "pass": true,
+      "label": "Explicit full-window request preserves hard domain, bounded rows and chosen order"
+    },
+    {
+      "pass": true,
+      "label": "Advanced full-window job cancels at initial yielded checkpoint"
+    },
+    {
+      "pass": true,
+      "label": "Cancellation receipt does not claim a completed 73414-date scan"
+    },
+    {
+      "pass": true,
+      "label": "Full-window advanced opt-in remains separate from366-day default"
+    },
+    {
+      "pass": true,
+      "label": "Public field capabilities and lunar bounds cannot be mutated by UI code"
+    },
+    {
+      "pass": true,
+      "label": "Malformed quoted import fails before returning a replacement set"
+    },
+    {
+      "pass": true,
+      "label": "Corrected import succeeds after malformed input without stale parser state"
+    },
+    {
+      "pass": true,
+      "label": "Import recovery does not promote source authority"
+    }
+  ],
+  "count": 8,
+  "hashes": {
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/app/calendar-search.js": "8a564779338fee33e7bf5b2f9dc2ae2bbb4092d4e1bc7a5061ddb265773f64e4",
+    "assets/css/calendar-search.css": "b3f842a2fd2b71bd4772e3259785218d433a91d526ef4a17fb8c840543191569"
+  },
+  "scope": "Bounded full-domain request/cancellation/immutable-capability/import-recovery check; no full-range scan and no browser claimed.",
+  "finalReview": {
+    "at": "2026-10-30T00:18:01.602Z",
+    "verdict": "ACCEPT",
+    "scope": "Bounded source/search semantics and code inspection; rendered candidate remains QA-owned.",
+    "hashes": {
+      "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+      "assets/js/app/calendar-search.js": "12aa71c06359cdefb46142d6d4bbc0846a4874e819504e8d361cf38e98f55733",
+      "assets/css/calendar-search.css": "a80f5519fd3f8c1012c3ab9854de104065c84d8cdbe16c052a0fb9bf737f12c2",
+      "pages/calendar-search.html": "7cf5eff39c750df012231177b076c1e244a5fc3a9a8bbad38c3f566dff90e51c"
+    },
+    "acceptedCorrection": "Undefined timing ratio uses a finite-number guard and Unavailable text; named tradition blocks preserve favorable/caution/neutral/unavailable/total without changing ordering or denominators.",
+    "browserClaim": false
+  }
+}

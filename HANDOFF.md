@@ -1,6 +1,21 @@
 # Handoff notes — for the next model/build
 
-## Six-member, three-round improvement pass — 29 October 2026
+## Desktop calendar atlas and event laboratory — 29–30 October 2026
+
+Continue on `feat/mobile-calendar-observatory`, extending `0d115c9`, in draft PR #5. The new [five-round atlas ledger](docs/2026-10-atlas-panel.md) and [verification](docs/2026-10-atlas-verification.md) are separate from the earlier review passes below. Six independent AI-agent roles provide source, calculation, implementation and cross-review evidence; they are not human cultural authorities. The [plan](docs/2026-10-atlas-plan.md) records flows and deliberately unavailable scope.
+
+Seven new routes add `pages/calendar-atlas.html`, `pages/calendar-search.html` and five `pages/calendars/` family pages. The zero-build static stack and all original routes remain. The atlas has seven families and 32 variants, including 24 Chinese solar terms with selected 2026 CWA minute/HKO day fixtures. Seven variant implementations remain unavailable; this is distinct from the seven pending civil-family validation statuses, which are unchanged. `exportCalendarAtlas` is the public serialization boundary: it retains only selected rows/methods/referenced sources plus explicitly named shared astronomy. Do not export internal `.comparison` accidentally.
+
+`personal-calendar.js` keeps known and unknown birth times distinct. Unknown time samples 25 points through the actual zoned civil day, ending one millisecond before its exclusive boundary; it does not infer an ascendant, houses, exact returns or Vimśottarī sequence. Exact-time returns are opt-in. Birth data is memory-only, omitted from default public URLs and exports, and never implicitly sent to an AI provider.
+
+`calendar-search.js` and its worker own bounded local scans, exact-grid reference/optimized equality, source-qualified event signatures and descriptive shifted-control comparisons. Default windows allow 366 dates; advanced scans explicitly allow up to the supported 1900–2100 grid. Returned rows are capped separately from scanned/matched totals. Missing/ambiguous samples, cancellation, stale results, control overlap and shared inputs stay visible. Nine event examples are a documented convenience set, not a representative outcome dataset. See the reusable `.claude/skills/date-event-search-review/SKILL.md` and its agent template before extending inference or ranking.
+
+Current source MCP has **15 read-only allowlisted tools**, including `workbench_calendar_atlas` with selected-method output and explicit prayer options. It rejects birth fields. Actual stdio/HTTP tests are separate from hosted service availability; the earlier hosted service has not been updated by this branch. Pages only serves the frontend.
+
+All five atlas rounds are complete, with six explicit final acceptances. The frozen atlas gate passed 612 checks and inspected 85 downloads; 20 local release commands passed, including both 129-page browser sweeps. The legacy harness retains two documented descriptor warnings, and the historical ledger retains C3 NOT EVALUABLE. The new `scripts/browser-atlas.mjs` is wired into Pages verification alongside all inherited engine, browser, MCP and pinned SkyLens gates. Final acceptance requires an unchanged product/driver snapshot and actual exported-byte checks. Keep no more than two Chromium processes active in this environment. Regenerate search/MCP catalogues after relevant changes. Review-branch CI and production deployment remain separate; this task does not merge or publish main. Counts and status statements in the historical snapshots below describe those earlier revisions; the current source has 15 MCP tools.
+
+
+## Previous six-member, three-round improvement pass — 29 October 2026
 
 Continue on `feat/mobile-calendar-observatory`, extending baseline `3be3d46`. Read the [panel ledger](docs/2026-10-ensemble-panel.md), [verification](docs/2026-10-ensemble-verification.md), and five linked method/source reports before expanding claims. These are six AI-agent roles with bounded source reading; selected passages, source failures and unresolved authority questions remain explicit.
 

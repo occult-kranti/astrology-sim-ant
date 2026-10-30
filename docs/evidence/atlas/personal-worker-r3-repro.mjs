@@ -1,0 +1,65 @@
+import assert from 'node:assert/strict';
+import { readFile, writeFile } from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import playwright from '/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.js';
+const {chromium}=playwright;
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
+const context=await browser.newContext({viewport:{width:1365,height:900},serviceWorkers:'block'}),page=await context.newPage();
+const report={kind:'independent-R3-personal-worker-lifecycle',checks:[],servedSourceHashes:{},controlledDelays:['A File.text promise is held until the test explicitly releases it.','Previously recorded native Worker results are dispatched to old listeners to simulate late delivery; no fabricated calculation data used.'],external:[],errors:[]};
+const sourceReads=[];page.on('response',response=>{if(/\/(?:calendar-search|calendar-search-worker|personal-calendar)\.js$/.test(response.url()))sourceReads.push(response.body().then(body=>{report.servedSourceHashes[new URL(response.url()).pathname]=createHash('sha256').update(body).digest('hex');}));});
+const check=(condition,label)=>{assert.ok(condition,label);report.checks.push(label);};
+page.on('pageerror',e=>report.errors.push(e.message));
+await context.route('**/*',route=>{const url=new URL(route.request().url());if(url.origin==='http://127.0.0.1:8136'||['data:','blob:'].includes(url.protocol))return route.continue();report.external.push(url.href);return route.abort();});
+await page.addInitScript(()=>{
+ const Native=window.Worker;window.__r3Workers=[];window.__r3Sent=[];window.__r3Received=[];window.__r3Terminated=[];
+ window.Worker=class extends Native{constructor(...args){super(...args);window.__r3Workers.push(this);this.addEventListener('message',event=>window.__r3Received.push(event.data));}postMessage(message,...args){window.__r3Sent.push(JSON.parse(JSON.stringify(message)));return super.postMessage(message,...args);}terminate(){window.__r3Terminated.push(window.__r3Workers.indexOf(this));return super.terminate();}};
+ const text=File.prototype.text;File.prototype.text=function(){if(this.name==='slow.json')return new Promise(resolve=>{window.__r3Release=async()=>resolve(await text.call(this));});return text.call(this);};
+});
+async function downloaded(locator){const pending=page.waitForEvent('download');await locator.click();const file=await pending;return JSON.parse(await readFile(await file.path(),'utf8'));}
+try{
+ await page.goto('http://127.0.0.1:8136/pages/calendar-search.html');await page.locator('#cs-personal .pc-panel').waitFor();
+ const storedBefore=await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage},url:location.href}));
+ await page.locator('#cs-end').fill('2026-10-31');await page.locator('#cs-run').click();await page.waitForFunction(()=>!document.querySelector('#cs-json').disabled);
+ check(await page.locator('[data-sample-date]').count()===3,'Native worker completes three actual samples');
+ await page.locator('[data-sample-date]').first().click();
+ const personal=page.locator('#cs-personal');await personal.locator('.pc-panel>summary').click();
+ await personal.locator('[data-pc-field=date]').fill('1990-07-15');await personal.locator('[data-pc-field=timeZone]').fill('Asia/Kolkata');await personal.locator('[data-pc-field=timeKnown]').check();
+ await personal.locator('[data-pc-field=time]').fill('12:30');await personal.locator('[data-pc-field=lat]').fill('28.61391');await personal.locator('[data-pc-field=lon]').fill('77.20901');await personal.locator('[data-pc-action=apply]').click();
+ check((await personal.locator('[data-pc=results]').innerText()).includes('1990-07-15T07:00:00.000Z'),'Recorded birth computes only after explicit apply');
+ const publicResult=await downloaded(page.locator('#cs-json'));const publicText=JSON.stringify(publicResult);
+ for(const hidden of ['1990-07-15','28.61391','77.20901','Asia/Calcutta','birthInput'])check(!publicText.includes(hidden),'Public search JSON excludes '+hidden);
+ await personal.locator('.pc-export>summary').click();await personal.locator('[data-pc-action=prepare]').click();
+ const defaultResult=await downloaded(personal.locator('[data-pc-action=download]'));
+ check(defaultResult.kind==='personal-calendar-methods'&&!JSON.stringify(defaultResult).includes('1990-07-15'),'Actual personal default download is method metadata without birth');
+ await personal.locator('[data-pc-field=includeBirth]').check();check(await personal.locator('[data-pc=preview]').inputValue()==='','Disclosure change invalidates reviewed preview');
+ await personal.locator('[data-pc-action=prepare]').click();const privateResult=await downloaded(personal.locator('[data-pc-action=download]'));
+ check(privateResult.birthInput.date==='1990-07-15'&&privateResult.birthInput.lat===28.61391,'Explicit reviewed private download includes requested input');
+ const state=await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage},url:location.href,sent:JSON.stringify(window.__r3Sent)}));
+ check(JSON.stringify(state.local)===JSON.stringify(storedBefore.local)&&JSON.stringify(state.session)===JSON.stringify(storedBefore.session),'Applying birth creates no local/session storage');
+ check(state.url===storedBefore.url&&!state.sent.includes('1990-07-15')&&!state.sent.includes('28.61391'),'Birth enters neither URL nor Worker request');
+ await personal.locator('[data-pc-field=date]').fill('1990-07-16');check(await personal.locator('[data-pc=results]').innerText()===''&&await personal.locator('[data-pc-action=download]').isDisabled(),'Editing birth removes stale private results and download');
+ check(!await personal.locator('[data-pc-field=includeBirth]').isChecked(),'Editing birth resets private disclosure');
+ await personal.locator('[data-pc-action=clear]').click();check(await personal.locator('[data-pc-field=date]').inputValue()===''&&await personal.locator('[data-pc-field=lat]').inputValue()==='','Clear empties private form fields');
+ await page.locator('#cs-advanced').check();await page.locator('#cs-start').fill('1900-01-01');await page.locator('#cs-end').fill('2100-12-31');await page.locator('#cs-mode').selectOption('brute');await page.locator('#cs-run').click();
+ await page.waitForFunction(()=>window.__r3Sent.filter(m=>m.type==='start').length===2);
+ await page.evaluate(()=>{const old=window.__r3Received.find(m=>m.type==='result');window.__r3Workers[0].dispatchEvent(new MessageEvent('message',{data:old}));});
+ check(await page.locator('#cs-json').isDisabled()&&await page.locator('[data-sample-date]').count()===0,'Controlled late old native result cannot replace newer running job');
+ await page.locator('#cs-cancel').click();
+ await page.evaluate(()=>{const old=window.__r3Received.find(m=>m.type==='result'),last=window.__r3Sent.filter(m=>m.type==='start').at(-1);window.__r3Workers.at(-1).dispatchEvent(new MessageEvent('message',{data:{...old,jobId:last.jobId}}));});
+ check(await page.locator('#cs-json').isDisabled()&&await page.locator('[data-sample-date]').count()===0,'Controlled late delivery after cancellation cannot revive exports');
+ check(await page.evaluate(()=>window.__r3Terminated.includes(1)),'Cancellation actually terminates native worker');
+ const imported=JSON.stringify([{id:'r3-event',title:'R3 event',date:'2020-01-01',sourceStatus:'VERIFIED_SENTINEL',birthInput:{date:'PRIVATE_SENTINEL'}}]);
+ await page.getByText('Import an event set · CSV or JSON',{exact:true}).click();
+ await page.locator('#cs-events-file').setInputFiles({name:'slow.json',mimeType:'application/json',buffer:Buffer.from(imported)});
+ await page.waitForFunction(()=>typeof window.__r3Release==='function');await page.locator('#cs-zone').fill('UTC');await page.evaluate(()=>window.__r3Release());await page.waitForTimeout(100);
+ check(await page.locator('#cs-apply-import').isDisabled()&&await page.locator('#cs-import-preview').isHidden(),'Controlled delayed File.text cannot apply after context revision');
+ await page.locator('#cs-events-file').setInputFiles({name:'events.json',mimeType:'application/json',buffer:Buffer.from(imported)});await page.waitForFunction(()=>!document.querySelector('#cs-apply-import').disabled);
+ await page.locator('#cs-apply-import').click();check((await page.locator('#cs-event-detail').innerText()).includes('caller-supplied')&&!(await page.locator('#cs-event-detail').innerText()).includes('VERIFIED_SENTINEL'),'Imported provenance remains unverified after actual application');
+ const applied=await page.locator('#cs-event-select').innerText();await page.locator('#cs-events-file').setInputFiles({name:'too-big.json',mimeType:'application/json',buffer:Buffer.alloc(100001,32)});
+ await page.waitForFunction(()=>!document.querySelector('#cs-error').hidden);check(await page.locator('#cs-apply-import').isDisabled()&&await page.locator('#cs-event-select').innerText()===applied,'Oversized import rejects before replacing existing events');
+ // Direct real component API probe, separate from the search integration.
+ const api=await page.evaluate(async()=>{const {mountPersonalCalendar}=await import('/assets/js/app/personal-calendar.js');const host=document.createElement('div');document.body.append(host);let instant='2026-10-29T12:00:00Z',changes=[];const component=mountPersonalCalendar(host,{getSelectedInstant:()=>instant,onChange:v=>changes.push(v)});host.querySelector('[data-pc-field=date]').value='2001-02-03';host.querySelector('[data-pc-field=timeZone]').value='UTC';host.querySelector('form').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));const initial=component.getValue(),frozen=Object.isFrozen(initial);instant=null;component.refresh();const retained=component.getValue(),clearedResult=host.querySelector('[data-pc=results]').textContent==='';component.clear();const cleared=component.getValue();component.destroy();const destroyed=host.children.length===0;host.remove();return{frozen,initial,retained,clearedResult,cleared,destroyed,lastChange:changes.at(-1)};});
+ check(api.frozen&&api.initial.date==='2001-02-03'&&api.retained.date==='2001-02-03'&&api.clearedResult,'getValue is frozen; public refresh(null) retains applied memory input but clears result');
+ check(api.cleared===null&&api.destroyed&&api.lastChange===null,'clear/destroy remove callback value and component DOM');
+ check(report.external.length===0,'No external network request during workflows');check(report.errors.length===0,'No uncaught browser error');report.verdict='PASS';
+}catch(error){report.verdict='FAIL';report.failure=error.stack;throw error;}finally{await Promise.allSettled(sourceReads);await writeFile('/tmp/atlas-r3-ai-browser-report.json',JSON.stringify(report,null,2));await browser.close();console.log(JSON.stringify({verdict:report.verdict,checks:report.checks.length,failure:report.failure?.split('\n')[0]}));}

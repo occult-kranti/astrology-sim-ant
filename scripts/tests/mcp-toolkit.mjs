@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { callTool, TOOLS } from '../../mcp/toolkit.mjs';
 import { buildDayGuidance } from '../../assets/js/core/day-guidance.js';
+import { exportCalendarAtlas } from '../../assets/js/core/calendar-atlas.js';
 export function run() {
   const failures = []; let passed = 0;
   const test = (name, fn) => { try { fn(); passed++; } catch (e) { failures.push(`${name}: ${e.message}`); } };
@@ -44,7 +45,7 @@ export function run() {
     assert.throws(()=>callTool('workbench_katapayadi',{text:'शुक्र'}));
     assert.ok(Array.isArray(callTool('workbench_election',{...input,hoursAhead:0}).data.windows));
     assert.equal(callTool('workbench_election',{...input,dateISO:'2026-10-05T13:00:00+13:00',lat:-13.8333,lon:-171.75,hoursAhead:0}).data.inputs.utcOffset,13);
-    assert.equal(new Set(TOOLS.map(t=>t.name)).size,14);
+    assert.equal(new Set(TOOLS.map(t=>t.name)).size,15);
     assert.ok(callTool('workbench_catalogue',{}).data.capabilities.length>=81);
   });
   test('cross-calendar tools preserve explicit context, privacy and finite horizons',()=>{
@@ -60,7 +61,7 @@ export function run() {
     assert.ok(new TextEncoder().encode(JSON.stringify(outlook)).length<1500000);
     const legacy=['workbench_catalogue','workbench_chart','workbench_symbol','workbench_gematria','workbench_katapayadi','workbench_calendar','workbench_julian_day','workbench_easter','workbench_qibla','workbench_prayer_times','workbench_election'];
     for(const name of legacy)assert.ok(TOOLS.some(t=>t.name===name),name);
-    assert.equal(TOOLS.filter(t=>!legacy.includes(t.name)).length,3);
+    assert.equal(TOOLS.filter(t=>!legacy.includes(t.name)).length,4);
     assert.ok(TOOLS.every(t=>t.inputSchema.additionalProperties===false));
   });
   test('guidance tool reuses canonical rules with explicit observer and bounded source evidence',()=>{
@@ -79,6 +80,23 @@ export function run() {
     const oldFetch=globalThis.fetch;let calls=0;
     globalThis.fetch=()=>{calls++;throw new Error('No network allowed');};
     try {callTool('workbench_explain_guidance',input);assert.equal(calls,0);}finally{globalThis.fetch=oldFetch;}
+  });
+  test('atlas tool preserves selected source methods and excludes private inputs',()=>{
+    const input={dateISO:'2026-10-29T12:00:00Z',lat:51.5,lon:0,timeZone:'Europe/London'};
+    const result=callTool('workbench_calendar_atlas',{...input,family:'jewish'});
+    assert.deepEqual(result.data,exportCalendarAtlas(input,{familyIds:['jewish']}));
+    assert.equal(Object.hasOwn(result.data,'comparison'),false);
+    assert.ok(result.data.rows.every(row=>row.familyId==='jewish'));
+    const single=callTool('workbench_calendar_atlas',{...input,variant:'julian'}).data;
+    assert.deepEqual(single.rows.map(row=>row.id),['julian']);
+    assert.equal(Object.hasOwn(single,'comparison'),false);
+    const prayerInput={...input,prayerMethod:'Karachi',asr:'Hanafi',highLatitude:'TwilightAngle'};
+    assert.deepEqual(callTool('workbench_calendar_atlas',{...prayerInput,variant:'prayer-timetable'}).data,exportCalendarAtlas(prayerInput,{variantIds:['prayer-timetable']}));
+    for(const extra of [{prayerMethod:'invented'},{asr:'invented'},{highLatitude:'invented'}])assert.throws(()=>callTool('workbench_calendar_atlas',{...input,...extra}));
+    for(const extra of [{family:'invented'},{variant:'invented'},{family:['jewish']},{birth:{date:'2000-01-01'}},{notes:'private'},{dateISO:'2026-02-30T12:00Z'},{timeZone:'No/SuchZone'}])assert.throws(()=>callTool('workbench_calendar_atlas',{...input,...extra}));
+    const before=globalThis.fetch;globalThis.fetch=()=>{throw new Error('Atlas must stay local');};
+    try{assert.deepEqual(callTool('workbench_calendar_atlas',input).data,exportCalendarAtlas(input));}finally{globalThis.fetch=before;}
+    assert.ok(new TextEncoder().encode(JSON.stringify(result)).length<1500000);
   });
   return {pass:!failures.length,passed,failures};
 }

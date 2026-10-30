@@ -1,0 +1,197 @@
+{
+  "round": 3,
+  "reviewer": "calendar_precision",
+  "executedAt": "2026-10-30T00:11:12.747Z",
+  "verdict": "ACCEPT",
+  "checks": [
+    {
+      "name": "Tokyo lower UTC edge strategies identical",
+      "pass": true
+    },
+    {
+      "name": "Tokyo lower UTC edge unavailable dates retained",
+      "pass": true
+    },
+    {
+      "name": "Honolulu upper UTC edge strategies identical",
+      "pass": true
+    },
+    {
+      "name": "Honolulu upper UTC edge unavailable dates retained",
+      "pass": true
+    },
+    {
+      "name": "New York repeated clock strategies identical",
+      "pass": true
+    },
+    {
+      "name": "New York repeated clock unavailable dates retained",
+      "pass": true
+    },
+    {
+      "name": "Lord Howe half-hour gap strategies identical",
+      "pass": true
+    },
+    {
+      "name": "Lord Howe half-hour gap unavailable dates retained",
+      "pass": true
+    },
+    {
+      "name": "Apia skipped civil date strategies identical",
+      "pass": true
+    },
+    {
+      "name": "Apia skipped civil date unavailable dates retained",
+      "pass": true
+    },
+    {
+      "name": "Chinese leap month and related year strategies identical",
+      "pass": true
+    },
+    {
+      "name": "Chinese leap month and related year unavailable dates retained",
+      "pass": true
+    },
+    {
+      "name": "New-moon angular wrap strategies identical",
+      "pass": true
+    },
+    {
+      "name": "New-moon angular wrap unavailable dates retained",
+      "pass": true
+    },
+    {
+      "name": "Exact pole -90 rejected before brute prefilters",
+      "pass": true
+    },
+    {
+      "name": "Exact pole -90 rejected before optimized prefilters",
+      "pass": true
+    },
+    {
+      "name": "Exact pole 90 rejected before brute prefilters",
+      "pass": true
+    },
+    {
+      "name": "Exact pole 90 rejected before optimized prefilters",
+      "pass": true
+    },
+    {
+      "name": "Chinese unsupported year field rejected explicitly",
+      "pass": true
+    },
+    {
+      "name": "Top-K reconstructed from uncapped raw rule rows, including ties",
+      "pass": true,
+      "details": {
+        "reference": [
+          {
+            "date": "2019-07-06",
+            "count": 3
+          },
+          {
+            "date": "2019-07-16",
+            "count": 3
+          },
+          {
+            "date": "2019-07-02",
+            "count": 2
+          }
+        ],
+        "returned": [
+          {
+            "date": "2019-07-06",
+            "count": 3
+          },
+          {
+            "date": "2019-07-16",
+            "count": 3
+          },
+          {
+            "date": "2019-07-02",
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ranked brute and optimized share all candidate identities beyond cap",
+      "pass": true
+    },
+    {
+      "name": "Rank denominator and unresolved classes explicitly reconstructed",
+      "pass": true
+    },
+    {
+      "name": "Shared lunar dependence remains labelled",
+      "pass": true
+    },
+    {
+      "name": "Duplicate-date event numerator/denominator stay event-weighted",
+      "pass": true
+    },
+    {
+      "name": "Overlapping shifted controls retain six rows and one match",
+      "pass": true
+    },
+    {
+      "name": "Per-offset paired denominators and zero frequency are explicit",
+      "pass": true
+    },
+    {
+      "name": "Out-of-range control is missing, not an unmatched observation",
+      "pass": true
+    },
+    {
+      "name": "Association unavailable target rejected unavailable",
+      "pass": true
+    },
+    {
+      "name": "Association unavailable target rejected caution,unavailable",
+      "pass": true
+    },
+    {
+      "name": "Unavailable classification remains a useful explicit search target",
+      "pass": true
+    },
+    {
+      "name": "Shifted convenience comparisons make no inferential claim",
+      "pass": true
+    },
+    {
+      "name": "Solar-term direct/MCP bounded public result 1900-01-01T12:00:00Z",
+      "pass": true
+    },
+    {
+      "name": "Solar-term direct/MCP bounded public result 2099-12-31T12:00:00Z",
+      "pass": true
+    },
+    {
+      "name": "Solar-term direct/MCP bounded public result 2100-12-31T12:00:00Z",
+      "pass": true
+    },
+    {
+      "name": "Solar-term direct/MCP bounded public result 2100-12-31T18:00:00Z",
+      "pass": true
+    }
+  ],
+  "fileHashes": [
+    {
+      "path": "assets/js/core/calendar-search.js",
+      "sha256": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae"
+    },
+    {
+      "path": "scripts/tests/calendar-search.mjs",
+      "sha256": "1641a57652f7b298571456b70ac45f3af804febe508d15c4bc04a994a4085f5a"
+    },
+    {
+      "path": "assets/js/core/calendar-atlas.js",
+      "sha256": "763195d3d9e1defba8d8c2b9a966675934f5f6c3e00f0cac689b30c73aa631a4"
+    },
+    {
+      "path": "mcp/toolkit.mjs",
+      "sha256": "f5b868b4be506a4759fc371399b09848963ef2c8a228f5d2f18e1baa3daf54e6"
+    }
+  ],
+  "limits": "Small executed requests only; no whole1900–2100 scan or inferential validity claim. No browser or future-round work performed."
+}
