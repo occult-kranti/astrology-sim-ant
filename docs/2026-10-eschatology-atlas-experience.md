@@ -59,3 +59,13 @@ The three product files are frozen at:
 - CSS: `8eba7c466540b7ff6158574e3b8c9741f655dbdd0bf5243fbaa7445d10be54fb`
 
 Independent QA received these exact identities for the final four-width run, including a bounded node-kind/color membership assertion. Previous owner screenshots predate only this explicit category/legend correction and are not described as the final held visual receipt.
+
+## Final independent acceptance
+
+The exact held four-width refresh after the source file’s EOF-only normalization passed 631 browser checks, 275 independent semantic checks, and 64 actual parsed downloads, with zero browser errors and `acceptanceEligible: true`. Tests covered graph/list/inspector synchronization, whole-map fitting, typed node categories, source-only and explicit-date paths, source/target separation, visible-ledger/view-manifest exports, canonical reading JSON/CSV parity, stale/cancelled/reordered worker replies, unsupported clocks, keyboard access and fallback-font layouts.
+
+All 44 final PNGs were accepted in the combined visual review. Newly changed captures were directly inspected; byte-identical captures were bound to the already inspected images by SHA-256. The review does not treat an automated layout check alone as visual acceptance.
+
+Retained evidence is under `/workspace/setup-validation/eschatology-atlas/quality/round3/`: `browser/receipt.json`, `semantic.json`, `visual-review.json`, and their associated screenshots/downloads. The three owned product hashes remain those listed in the final hold above. Earlier checkpoint statements that acceptance was pending are superseded by this section.
+
+No remaining UI finding is recorded in the accepted scope. Historical authentication, source-access gaps, named-tradition coverage and calculated outcomes retain their stated limitations; a passing UI test does not resolve those historical or interpretive questions. Publication, repository integration and exact live-release identity remain the parent task’s responsibility.
