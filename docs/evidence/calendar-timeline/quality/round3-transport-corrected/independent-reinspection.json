@@ -1,0 +1,516 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-30T09:26:06.770Z",
+  "pass": true,
+  "productFiles": 505,
+  "productSHA256": "08adb4c79ecc7f8cefa2b16354e007a4fdfecd6744551bae8415182b6cb96360",
+  "drivers": {
+    "scripts/browser-calendar-timeline.mjs": "17650c3f2101a3a627467d592d461334aaf6eff53771e67bf123ded6a0a62b6f",
+    "scripts/tests/calendar-timeline-independent.mjs": "3c17631e1deabae4184d231e74785b21fa99f776c46b1c866ee03164a06b6906"
+  },
+  "playwright": "1.58.2",
+  "rawBytes": 11276272,
+  "compressedBytes": 1619204,
+  "downloads": [
+    {
+      "filename": "downloads/001-calendar-timeline-2026-10-30.json.gz",
+      "pass": true,
+      "sha256": "64edef17b10b4d018190798dc92f132cf087a5a3bde15926127ccbad906a6585",
+      "compressedSHA256": "7ffacaefea44e89c4546fb47a4f0b59f8e157f8eda300fdeefc7d4ead4e9ea11"
+    },
+    {
+      "filename": "downloads/002-calendar-timeline-2026-10-30.csv.gz",
+      "pass": true,
+      "sha256": "c23f19de95b4c0f4c9707630706fa6875b5769ee69e493b0d818b020b0968af2",
+      "compressedSHA256": "535c41a0c86c3ff7c21acdc10d27562417bb7ca810bc5b601c17283ad07782a0"
+    },
+    {
+      "filename": "downloads/003-calendar-timeline-2028-02-29.json.gz",
+      "pass": true,
+      "sha256": "da1e4021dcc32fa65d349bddca1db31330d68926795623c5e9a5199e5e048334",
+      "compressedSHA256": "9ebc23d505dcd130dd5324f53a45fd7fd57d36c4fbfc50ad31ee33862d28f174"
+    },
+    {
+      "filename": "downloads/004-calendar-timeline-2028-02-29.csv.gz",
+      "pass": true,
+      "sha256": "4285bf1dcc98c005614cd7350b7139d01830f4758ec012ae5568e540854b93bd",
+      "compressedSHA256": "09f67848f45622c5bf3df167589d3a11412c439ec1990958c8b75a369d51fe42"
+    },
+    {
+      "filename": "downloads/005-calendar-timeline-2028-02-29.json.gz",
+      "pass": true,
+      "sha256": "ecd6afa29f5a9e01068ec985495b10ac80b3aaade460cfbfb57f064826a2b7c1",
+      "compressedSHA256": "2685352ae9e5c1df853757f152db2c32355c89f1e5489ed57c7bb1ef847bf6cb"
+    },
+    {
+      "filename": "downloads/006-calendar-timeline-2028-02-29.csv.gz",
+      "pass": true,
+      "sha256": "85c3496f23b29224e5892a80fec97a389725ff099f9623294bb4c95cdeef617b",
+      "compressedSHA256": "f13fd2d5171c677a914de58acbb31cf1dcf711ae9890d892d159844b9396e133"
+    },
+    {
+      "filename": "downloads/007-calendar-timeline-1918-11-11.json.gz",
+      "pass": true,
+      "sha256": "353c55177ac73c94fd49b64f48b4bca3b74df8328cd1a54751b02c93ea6e1e0b",
+      "compressedSHA256": "65316562663f970079c11252d8efe587cb288eabb90ce438665cb27d6107aa16"
+    },
+    {
+      "filename": "downloads/008-calendar-timeline-1918-11-11.csv.gz",
+      "pass": true,
+      "sha256": "79d525e14e7c8c9d9dacd35a38a1c2a1e18a9032456ee599e676150525f0d469",
+      "compressedSHA256": "f1f36555a32aaa22376eb5e3cf6a25f9c4e660145d64cd949635ea21a5882f42"
+    },
+    {
+      "filename": "downloads/009-calendar-timeline-1918-11-15.json.gz",
+      "pass": true,
+      "sha256": "debe71092e1f5eb03873c492b3d234054bb382c08e2d13d10a70515492e69260",
+      "compressedSHA256": "e5bb20612eba5dd286b5ba087a3f796bab2917d3764412ecff76b1c35f60f0be"
+    },
+    {
+      "filename": "downloads/010-calendar-timeline-1918-11-15.csv.gz",
+      "pass": true,
+      "sha256": "142f3d3d74c8b5c59e6f9b751a4acb7e5e5c0cec0118f4378dde004c3acdbd07",
+      "compressedSHA256": "1e2b980be451f8d8384ee862e6ab66dcb93995988dd624324e7511431dd64ea7"
+    },
+    {
+      "filename": "downloads/011-historical-source-israel-jordan-1994-signed.json.gz",
+      "pass": true,
+      "sha256": "0815f9d4cf57e7dc081799293e2bf190ded6389404e830942ab499ee36457416",
+      "compressedSHA256": "1220559b001ddea317a377033a065dbc9d1f6953c006f0b4a5394b18fb877b1a"
+    },
+    {
+      "filename": "downloads/012-calendar-timeline-2026-10-30.json.gz",
+      "pass": true,
+      "sha256": "64edef17b10b4d018190798dc92f132cf087a5a3bde15926127ccbad906a6585",
+      "compressedSHA256": "7ffacaefea44e89c4546fb47a4f0b59f8e157f8eda300fdeefc7d4ead4e9ea11"
+    },
+    {
+      "filename": "downloads/013-calendar-timeline-2026-10-30.csv.gz",
+      "pass": true,
+      "sha256": "c23f19de95b4c0f4c9707630706fa6875b5769ee69e493b0d818b020b0968af2",
+      "compressedSHA256": "535c41a0c86c3ff7c21acdc10d27562417bb7ca810bc5b601c17283ad07782a0"
+    },
+    {
+      "filename": "downloads/014-calendar-timeline-2028-02-29.json.gz",
+      "pass": true,
+      "sha256": "da1e4021dcc32fa65d349bddca1db31330d68926795623c5e9a5199e5e048334",
+      "compressedSHA256": "9ebc23d505dcd130dd5324f53a45fd7fd57d36c4fbfc50ad31ee33862d28f174"
+    },
+    {
+      "filename": "downloads/015-calendar-timeline-2028-02-29.csv.gz",
+      "pass": true,
+      "sha256": "4285bf1dcc98c005614cd7350b7139d01830f4758ec012ae5568e540854b93bd",
+      "compressedSHA256": "09f67848f45622c5bf3df167589d3a11412c439ec1990958c8b75a369d51fe42"
+    },
+    {
+      "filename": "downloads/016-calendar-timeline-2028-02-29.json.gz",
+      "pass": true,
+      "sha256": "ecd6afa29f5a9e01068ec985495b10ac80b3aaade460cfbfb57f064826a2b7c1",
+      "compressedSHA256": "2685352ae9e5c1df853757f152db2c32355c89f1e5489ed57c7bb1ef847bf6cb"
+    },
+    {
+      "filename": "downloads/017-calendar-timeline-2028-02-29.csv.gz",
+      "pass": true,
+      "sha256": "85c3496f23b29224e5892a80fec97a389725ff099f9623294bb4c95cdeef617b",
+      "compressedSHA256": "f13fd2d5171c677a914de58acbb31cf1dcf711ae9890d892d159844b9396e133"
+    },
+    {
+      "filename": "downloads/018-calendar-timeline-1918-11-11.json.gz",
+      "pass": true,
+      "sha256": "353c55177ac73c94fd49b64f48b4bca3b74df8328cd1a54751b02c93ea6e1e0b",
+      "compressedSHA256": "65316562663f970079c11252d8efe587cb288eabb90ce438665cb27d6107aa16"
+    },
+    {
+      "filename": "downloads/019-calendar-timeline-1918-11-11.csv.gz",
+      "pass": true,
+      "sha256": "79d525e14e7c8c9d9dacd35a38a1c2a1e18a9032456ee599e676150525f0d469",
+      "compressedSHA256": "f1f36555a32aaa22376eb5e3cf6a25f9c4e660145d64cd949635ea21a5882f42"
+    },
+    {
+      "filename": "downloads/020-calendar-timeline-1918-11-15.json.gz",
+      "pass": true,
+      "sha256": "debe71092e1f5eb03873c492b3d234054bb382c08e2d13d10a70515492e69260",
+      "compressedSHA256": "e5bb20612eba5dd286b5ba087a3f796bab2917d3764412ecff76b1c35f60f0be"
+    },
+    {
+      "filename": "downloads/021-calendar-timeline-1918-11-15.csv.gz",
+      "pass": true,
+      "sha256": "142f3d3d74c8b5c59e6f9b751a4acb7e5e5c0cec0118f4378dde004c3acdbd07",
+      "compressedSHA256": "1e2b980be451f8d8384ee862e6ab66dcb93995988dd624324e7511431dd64ea7"
+    },
+    {
+      "filename": "downloads/022-historical-source-israel-jordan-1994-signed.json.gz",
+      "pass": true,
+      "sha256": "0815f9d4cf57e7dc081799293e2bf190ded6389404e830942ab499ee36457416",
+      "compressedSHA256": "1220559b001ddea317a377033a065dbc9d1f6953c006f0b4a5394b18fb877b1a"
+    },
+    {
+      "filename": "downloads/023-calendar-timeline-2026-10-30.json.gz",
+      "pass": true,
+      "sha256": "64edef17b10b4d018190798dc92f132cf087a5a3bde15926127ccbad906a6585",
+      "compressedSHA256": "7ffacaefea44e89c4546fb47a4f0b59f8e157f8eda300fdeefc7d4ead4e9ea11"
+    },
+    {
+      "filename": "downloads/024-calendar-timeline-2026-10-30.csv.gz",
+      "pass": true,
+      "sha256": "c23f19de95b4c0f4c9707630706fa6875b5769ee69e493b0d818b020b0968af2",
+      "compressedSHA256": "535c41a0c86c3ff7c21acdc10d27562417bb7ca810bc5b601c17283ad07782a0"
+    },
+    {
+      "filename": "downloads/025-calendar-timeline-2028-02-29.json.gz",
+      "pass": true,
+      "sha256": "da1e4021dcc32fa65d349bddca1db31330d68926795623c5e9a5199e5e048334",
+      "compressedSHA256": "9ebc23d505dcd130dd5324f53a45fd7fd57d36c4fbfc50ad31ee33862d28f174"
+    },
+    {
+      "filename": "downloads/026-calendar-timeline-2028-02-29.csv.gz",
+      "pass": true,
+      "sha256": "4285bf1dcc98c005614cd7350b7139d01830f4758ec012ae5568e540854b93bd",
+      "compressedSHA256": "09f67848f45622c5bf3df167589d3a11412c439ec1990958c8b75a369d51fe42"
+    },
+    {
+      "filename": "downloads/027-calendar-timeline-2028-02-29.json.gz",
+      "pass": true,
+      "sha256": "ecd6afa29f5a9e01068ec985495b10ac80b3aaade460cfbfb57f064826a2b7c1",
+      "compressedSHA256": "2685352ae9e5c1df853757f152db2c32355c89f1e5489ed57c7bb1ef847bf6cb"
+    },
+    {
+      "filename": "downloads/028-calendar-timeline-2028-02-29.csv.gz",
+      "pass": true,
+      "sha256": "85c3496f23b29224e5892a80fec97a389725ff099f9623294bb4c95cdeef617b",
+      "compressedSHA256": "f13fd2d5171c677a914de58acbb31cf1dcf711ae9890d892d159844b9396e133"
+    },
+    {
+      "filename": "downloads/029-calendar-timeline-1918-11-11.json.gz",
+      "pass": true,
+      "sha256": "353c55177ac73c94fd49b64f48b4bca3b74df8328cd1a54751b02c93ea6e1e0b",
+      "compressedSHA256": "65316562663f970079c11252d8efe587cb288eabb90ce438665cb27d6107aa16"
+    },
+    {
+      "filename": "downloads/030-calendar-timeline-1918-11-11.csv.gz",
+      "pass": true,
+      "sha256": "79d525e14e7c8c9d9dacd35a38a1c2a1e18a9032456ee599e676150525f0d469",
+      "compressedSHA256": "f1f36555a32aaa22376eb5e3cf6a25f9c4e660145d64cd949635ea21a5882f42"
+    },
+    {
+      "filename": "downloads/031-calendar-timeline-1918-11-15.json.gz",
+      "pass": true,
+      "sha256": "debe71092e1f5eb03873c492b3d234054bb382c08e2d13d10a70515492e69260",
+      "compressedSHA256": "e5bb20612eba5dd286b5ba087a3f796bab2917d3764412ecff76b1c35f60f0be"
+    },
+    {
+      "filename": "downloads/032-calendar-timeline-1918-11-15.csv.gz",
+      "pass": true,
+      "sha256": "142f3d3d74c8b5c59e6f9b751a4acb7e5e5c0cec0118f4378dde004c3acdbd07",
+      "compressedSHA256": "1e2b980be451f8d8384ee862e6ab66dcb93995988dd624324e7511431dd64ea7"
+    },
+    {
+      "filename": "downloads/033-historical-source-israel-jordan-1994-signed.json.gz",
+      "pass": true,
+      "sha256": "0815f9d4cf57e7dc081799293e2bf190ded6389404e830942ab499ee36457416",
+      "compressedSHA256": "1220559b001ddea317a377033a065dbc9d1f6953c006f0b4a5394b18fb877b1a"
+    },
+    {
+      "filename": "downloads/034-calendar-timeline-2026-10-30.json.gz",
+      "pass": true,
+      "sha256": "64edef17b10b4d018190798dc92f132cf087a5a3bde15926127ccbad906a6585",
+      "compressedSHA256": "7ffacaefea44e89c4546fb47a4f0b59f8e157f8eda300fdeefc7d4ead4e9ea11"
+    },
+    {
+      "filename": "downloads/035-calendar-timeline-2026-10-30.csv.gz",
+      "pass": true,
+      "sha256": "c23f19de95b4c0f4c9707630706fa6875b5769ee69e493b0d818b020b0968af2",
+      "compressedSHA256": "535c41a0c86c3ff7c21acdc10d27562417bb7ca810bc5b601c17283ad07782a0"
+    },
+    {
+      "filename": "downloads/036-calendar-timeline-2028-02-29.json.gz",
+      "pass": true,
+      "sha256": "da1e4021dcc32fa65d349bddca1db31330d68926795623c5e9a5199e5e048334",
+      "compressedSHA256": "9ebc23d505dcd130dd5324f53a45fd7fd57d36c4fbfc50ad31ee33862d28f174"
+    },
+    {
+      "filename": "downloads/037-calendar-timeline-2028-02-29.csv.gz",
+      "pass": true,
+      "sha256": "4285bf1dcc98c005614cd7350b7139d01830f4758ec012ae5568e540854b93bd",
+      "compressedSHA256": "09f67848f45622c5bf3df167589d3a11412c439ec1990958c8b75a369d51fe42"
+    },
+    {
+      "filename": "downloads/038-calendar-timeline-2028-02-29.json.gz",
+      "pass": true,
+      "sha256": "ecd6afa29f5a9e01068ec985495b10ac80b3aaade460cfbfb57f064826a2b7c1",
+      "compressedSHA256": "2685352ae9e5c1df853757f152db2c32355c89f1e5489ed57c7bb1ef847bf6cb"
+    },
+    {
+      "filename": "downloads/039-calendar-timeline-2028-02-29.csv.gz",
+      "pass": true,
+      "sha256": "85c3496f23b29224e5892a80fec97a389725ff099f9623294bb4c95cdeef617b",
+      "compressedSHA256": "f13fd2d5171c677a914de58acbb31cf1dcf711ae9890d892d159844b9396e133"
+    },
+    {
+      "filename": "downloads/040-calendar-timeline-1918-11-11.json.gz",
+      "pass": true,
+      "sha256": "353c55177ac73c94fd49b64f48b4bca3b74df8328cd1a54751b02c93ea6e1e0b",
+      "compressedSHA256": "65316562663f970079c11252d8efe587cb288eabb90ce438665cb27d6107aa16"
+    },
+    {
+      "filename": "downloads/041-calendar-timeline-1918-11-11.csv.gz",
+      "pass": true,
+      "sha256": "79d525e14e7c8c9d9dacd35a38a1c2a1e18a9032456ee599e676150525f0d469",
+      "compressedSHA256": "f1f36555a32aaa22376eb5e3cf6a25f9c4e660145d64cd949635ea21a5882f42"
+    },
+    {
+      "filename": "downloads/042-calendar-timeline-1918-11-15.json.gz",
+      "pass": true,
+      "sha256": "debe71092e1f5eb03873c492b3d234054bb382c08e2d13d10a70515492e69260",
+      "compressedSHA256": "e5bb20612eba5dd286b5ba087a3f796bab2917d3764412ecff76b1c35f60f0be"
+    },
+    {
+      "filename": "downloads/043-calendar-timeline-1918-11-15.csv.gz",
+      "pass": true,
+      "sha256": "142f3d3d74c8b5c59e6f9b751a4acb7e5e5c0cec0118f4378dde004c3acdbd07",
+      "compressedSHA256": "1e2b980be451f8d8384ee862e6ab66dcb93995988dd624324e7511431dd64ea7"
+    },
+    {
+      "filename": "downloads/044-historical-source-israel-jordan-1994-signed.json.gz",
+      "pass": true,
+      "sha256": "0815f9d4cf57e7dc081799293e2bf190ded6389404e830942ab499ee36457416",
+      "compressedSHA256": "1220559b001ddea317a377033a065dbc9d1f6953c006f0b4a5394b18fb877b1a"
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "first-320.png",
+      "bytes": 54049,
+      "sha256": "ada7c9632d622c628a301689e5a7d82fce3ab79fff7435d23f5b0d4f0a92c6b7",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "chart-toolbar-320.png",
+      "bytes": 62936,
+      "sha256": "d7fc64c9cef3d3cae73c75700de34353d4c494c65b4cfc31f647a40732748680",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "geometry-320.png",
+      "bytes": 85615,
+      "sha256": "15d1ab0ded5915e8f662fccf3306a7ec91b5e1c1751a1e60b3f5f0e0e1a509ae",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "tables-320.png",
+      "bytes": 46736,
+      "sha256": "cbcd2ad30c1f52a03c57a1571a4e59de29bd698b05eda3b18f031e0f4418d2e3",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "unavailable-320.png",
+      "bytes": 56187,
+      "sha256": "00c4987b4e72aa039e945d222ee3462e991e297d66e43f3a7034c17881a3bbdf",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "historical-320.png",
+      "bytes": 51846,
+      "sha256": "e3621e79b13116131a7d76120284fe56fc69a4e102937679f37877796302b9ba",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "source-variant-320.png",
+      "bytes": 75674,
+      "sha256": "42eda5e89c4a965e54638f904edd1b9ff02585567cc163d4df243a6f08b4727c",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "fallback-320.png",
+      "bytes": 49598,
+      "sha256": "9d4cbb3a8269eb179ae8f148809a9fe10cbe208f9a7476d163aca75aa2f7c5df",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "first-390.png",
+      "bytes": 57689,
+      "sha256": "4a69a5093fb662ebceef4f5fa1cc2db6ac3777ff4432d3d2426b4b072e657f9b",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "chart-toolbar-390.png",
+      "bytes": 64624,
+      "sha256": "221728d0d9d5ca4c9411dba85658193f17ba9ce1116e55dbdfabca91be27b512",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "geometry-390.png",
+      "bytes": 97220,
+      "sha256": "bb959017716693cb2162644aabb4289e40cd1af9a14172cc9d598734a55dcf22",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "tables-390.png",
+      "bytes": 51276,
+      "sha256": "11be18c352c95b2f63929211ef87977b074ad0e01f12ab58f49e001f04165066",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "unavailable-390.png",
+      "bytes": 59143,
+      "sha256": "7ff4431ae404680d76dc4524fb0b8d424d5b218e4c5a9e834e7911e5e2f98fd6",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "historical-390.png",
+      "bytes": 55917,
+      "sha256": "376a82f5cf480647e6d15fb28bd34259001a5fd2c80e3df748efc6d30a922477",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "source-variant-390.png",
+      "bytes": 76405,
+      "sha256": "97667fd7fe2c41653b9f2576fada9e1432f0ce79ac328fc4ead90f12ef179630",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "fallback-390.png",
+      "bytes": 50059,
+      "sha256": "234a8b811ea37286b60f24b53cb03a48e6666d0910db5d418fc952b0c8fd6386",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "first-1440.png",
+      "bytes": 103301,
+      "sha256": "e4049a1fa36671c657a1ca24c75c85b09027944396b171bf2a1d42ff0b5969db",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "chart-toolbar-1440.png",
+      "bytes": 205711,
+      "sha256": "78d66d1a318445d1d659c6679b8df224332c5ec263275b1ced6a954617a0e296",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "geometry-1440.png",
+      "bytes": 294553,
+      "sha256": "d00ca9a446cff2ea8a912e763c25fd178e15a0d513d4d034205338c308505f20",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "tables-1440.png",
+      "bytes": 88131,
+      "sha256": "6a7b30b0b6bc2d52eafaf1d88b6f77978a28f2e812f9fc3e7bc236e56c8661a5",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "unavailable-1440.png",
+      "bytes": 118615,
+      "sha256": "1bb05ee647ef048c0f7adb5a363d7f99240ff93ecbbac997b8443b11deda308b",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "historical-1440.png",
+      "bytes": 152224,
+      "sha256": "ead6191d7adf88806704841146b980c6f91227f02df87d2f888985e7df646958",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "source-variant-1440.png",
+      "bytes": 147249,
+      "sha256": "8a9cf335a67a3ee3a75b2a9ea0bd0f414051235d1eb61f80ba414fb6a1d723f9",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "fallback-1440.png",
+      "bytes": 98613,
+      "sha256": "f2a5fd903841ed97b5939c55f8129df121b670226a300c5bb7cdadbb75ae86a2",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "first-1920.png",
+      "bytes": 104376,
+      "sha256": "33cafd735194b3c2ad22e7038c4f41eeeb8f07e6fc5c932c2ce3c1fa9b9e9379",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "chart-toolbar-1920.png",
+      "bytes": 211702,
+      "sha256": "413b281eda52e0b56647b03c03203a86debe6e4035ee1c15eb38cce841fd2047",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "geometry-1920.png",
+      "bytes": 301579,
+      "sha256": "8d2e327a57e7e3b1c71c14b4ac1b88729cbe076dacf11ecd493acb51696648a8",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "tables-1920.png",
+      "bytes": 91321,
+      "sha256": "dc76fbcff98d58b64a7897aaee91ced2ad4d5ccf850f9abd75ae82bb3153279b",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "unavailable-1920.png",
+      "bytes": 121005,
+      "sha256": "0482f853eb9510f3e455a69a3218da8392eaf29a97d46c6df1d972a4eb2b46b1",
+      "identicalToPreviouslyInspected": false,
+      "visualReview": "Accepted; revised image directly inspected. Narrow navigation labels single-line; no new blocker."
+    },
+    {
+      "filename": "historical-1920.png",
+      "bytes": 157175,
+      "sha256": "afb8d2ae212e9e4db9b6dde002b786161f649fcceca259a8feca8d7ac2ea26d9",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "source-variant-1920.png",
+      "bytes": 151237,
+      "sha256": "5709fb8c3fdc2376be85140027f8de464ecfd2b0b2059cc5f2a8ddce54359e2b",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    },
+    {
+      "filename": "fallback-1920.png",
+      "bytes": 100734,
+      "sha256": "039658c105622924a00d9bc3aa32bcc46b09492c446bb80234e4ec78d34f33c2",
+      "identicalToPreviouslyInspected": true,
+      "visualReview": "Accepted; byte-identical to directly inspected first-held image"
+    }
+  ],
+  "visualReview": {
+    "pass": true,
+    "inspectedDirectly": 17,
+    "byteIdenticalToInspected": 15,
+    "covered": 32,
+    "findings": [],
+    "reviewer": "Independent AI-agent QA; not human participant or physical-device research"
+  },
+  "limitations": "Independent byte reinspection and exact source binding; image review status explicit. No physical device, screen reader, human participant, historical-source truth or predictive validation.",
+  "snapshotDisposition": "Transport-corrected candidate passed; root subsequently reopened task-source metadata; fresh final binding required."
+}

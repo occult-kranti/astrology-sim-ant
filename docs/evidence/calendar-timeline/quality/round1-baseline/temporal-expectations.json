@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "round": "round1-baseline",
+  "pass": true,
+  "acceptanceEligible": false,
+  "scope": "Independent pinned expectations against inherited date/time boundary; new timeline implementation not yet available.",
+  "completedAt": "2026-10-30T08:57:31.381Z",
+  "node": "v24.19.0",
+  "icu": "78.3",
+  "checks": [
+    {
+      "label": "Leap 2028 includes February29",
+      "pass": true,
+      "actual": [
+        "2028-02-28",
+        "2028-02-29",
+        "2028-03-01"
+      ],
+      "expected": [
+        "2028-02-28",
+        "2028-02-29",
+        "2028-03-01"
+      ]
+    },
+    {
+      "label": "2100 is a non-leap Gregorian century",
+      "pass": true,
+      "actual": "2100-03-01",
+      "expected": "2100-03-01"
+    },
+    {
+      "label": "Inclusive maximum window",
+      "pass": true,
+      "actual": 3660,
+      "expected": 3660
+    },
+    {
+      "label": "New York missing02:30",
+      "pass": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "label": "New York repeated01:30",
+      "pass": true,
+      "actual": [
+        "2026-11-01T05:30:00.000Z",
+        "2026-11-01T06:30:00.000Z"
+      ],
+      "expected": [
+        "2026-11-01T05:30:00.000Z",
+        "2026-11-01T06:30:00.000Z"
+      ]
+    },
+    {
+      "label": "Repeated occurrence earlier",
+      "pass": true,
+      "actual": "2026-11-01T05:30:00.000Z",
+      "expected": "2026-11-01T05:30:00.000Z"
+    },
+    {
+      "label": "Repeated occurrence later",
+      "pass": true,
+      "actual": "2026-11-01T06:30:00.000Z",
+      "expected": "2026-11-01T06:30:00.000Z"
+    },
+    {
+      "label": "Apia fully skipped civil date",
+      "pass": true,
+      "actual": "NONEXISTENT_DATE",
+      "expected": "NONEXISTENT_DATE"
+    },
+    {
+      "label": "New York adjacent noon elapsed 23",
+      "pass": true,
+      "actual": 23,
+      "expected": 23
+    },
+    {
+      "label": "New York adjacent noon elapsed 25",
+      "pass": true,
+      "actual": 25,
+      "expected": 25
+    },
+    {
+      "label": "Existing canonical time module unchanged",
+      "pass": true,
+      "actual": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+      "expected": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579"
+    }
+  ],
+  "count": 11,
+  "source": {
+    "path": "assets/js/core/time.js",
+    "before": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "after": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579"
+  }
+}

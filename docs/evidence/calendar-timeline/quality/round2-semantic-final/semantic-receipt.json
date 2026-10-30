@@ -1,0 +1,573 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-calendar-timeline-semantics",
+  "startedAt": "2026-10-30T09:13:47.808Z",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "sourceBefore": {
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/calendar-atlas.js": "917ff26c071b78a665cea9bdf145abd584cb8b2f2fbf5a7203099e91a25d62f6",
+    "assets/js/core/sky-dynamics.js": "d23fac77f7083fcf61da386a9c4d5f7534a99c1bb9feb7b21e930bc20d3804c3",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/astro.js": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+    "assets/js/core/vedic.js": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+    "assets/js/core/data/timeline-study-tasks.js": "5075bd60932363d6c2b15fffdcee093ec51e556751a428364271e5e511ee89d9",
+    "assets/js/core/data/timeline-history.js": "1828e00a160513f767bf49b37c1301679f46b18bb2592193f86416184ac4b7a1",
+    "mcp/calendar-timeline-adapters.mjs": "7f55950b378b692449498d7e24b98b10be661fe5150ad99c51dfed6ffd435d99",
+    "mcp/toolkit.mjs": "84b2efb0d94b77c34b757ee150f5af96b7836b80f1fe460105992ca8eb212b07",
+    "scripts/tests/calendar-timeline-independent.mjs": "3c17631e1deabae4184d231e74785b21fa99f776c46b1c866ee03164a06b6906"
+  },
+  "checks": [
+    {
+      "label": "Independent inclusive civil dates 1900-01-01 to 1900-01-01",
+      "pass": true
+    },
+    {
+      "label": "Independent inclusive civil dates 2100-12-31 to 2100-12-31",
+      "pass": true
+    },
+    {
+      "label": "Independent inclusive civil dates 2028-02-28 to 2028-03-01",
+      "pass": true
+    },
+    {
+      "label": "Independent inclusive civil dates 2100-02-28 to 2100-03-01",
+      "pass": true
+    },
+    {
+      "label": "Supported extreme frame calculates all13calendars/10bodies/12cusps 1900-01-01",
+      "pass": true
+    },
+    {
+      "label": "Supported extreme frame calculates all13calendars/10bodies/12cusps 2100-12-31",
+      "pass": true
+    },
+    {
+      "label": "Exactly3660inclusive dates accepted;3661 rejected",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock is retained without a fabricated chart 2026-03-08 02:30 America/New_York",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock is retained without a fabricated chart 2026-11-01 01:30 America/New_York",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock is retained without a fabricated chart 2011-12-30 12:00 Pacific/Apia",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock is retained without a fabricated chart 1900-01-01 00:00 Pacific/Auckland",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock is retained without a fabricated chart 2100-12-31 23:59 Pacific/Honolulu",
+      "pass": true
+    },
+    {
+      "label": "Independent repeated-clock occurrence earlier",
+      "pass": true
+    },
+    {
+      "label": "Independent repeated-clock occurrence later",
+      "pass": true
+    },
+    {
+      "label": "Local noon daily grid has 23 elapsed hours",
+      "pass": true
+    },
+    {
+      "label": "Local noon daily grid has 25 elapsed hours",
+      "pass": true
+    },
+    {
+      "label": "regiomontanus comparison and sky equal canonical independent public calls",
+      "pass": true
+    },
+    {
+      "label": "regiomontanus all contexts share exactly one selected instant and observer",
+      "pass": true
+    },
+    {
+      "label": "regiomontanus all twelve tropical cusps and ten placements use actual canonical geometry",
+      "pass": true
+    },
+    {
+      "label": "regiomontanus full nine-graha Vedic chart and twelve cusps retain one sidereal offset",
+      "pass": true
+    },
+    {
+      "label": "regiomontanus strict adapter returns complete selected canonical frame",
+      "pass": true
+    },
+    {
+      "label": "placidus comparison and sky equal canonical independent public calls",
+      "pass": true
+    },
+    {
+      "label": "placidus all contexts share exactly one selected instant and observer",
+      "pass": true
+    },
+    {
+      "label": "placidus all twelve tropical cusps and ten placements use actual canonical geometry",
+      "pass": true
+    },
+    {
+      "label": "placidus full nine-graha Vedic chart and twelve cusps retain one sidereal offset",
+      "pass": true
+    },
+    {
+      "label": "placidus strict adapter returns complete selected canonical frame",
+      "pass": true
+    },
+    {
+      "label": "whole comparison and sky equal canonical independent public calls",
+      "pass": true
+    },
+    {
+      "label": "whole all contexts share exactly one selected instant and observer",
+      "pass": true
+    },
+    {
+      "label": "whole all twelve tropical cusps and ten placements use actual canonical geometry",
+      "pass": true
+    },
+    {
+      "label": "whole full nine-graha Vedic chart and twelve cusps retain one sidereal offset",
+      "pass": true
+    },
+    {
+      "label": "whole strict adapter returns complete selected canonical frame",
+      "pass": true
+    },
+    {
+      "label": "equal comparison and sky equal canonical independent public calls",
+      "pass": true
+    },
+    {
+      "label": "equal all contexts share exactly one selected instant and observer",
+      "pass": true
+    },
+    {
+      "label": "equal all twelve tropical cusps and ten placements use actual canonical geometry",
+      "pass": true
+    },
+    {
+      "label": "equal full nine-graha Vedic chart and twelve cusps retain one sidereal offset",
+      "pass": true
+    },
+    {
+      "label": "equal strict adapter returns complete selected canonical frame",
+      "pass": true
+    },
+    {
+      "label": "Observer edit preserves geocentric longitudes but changes houses and topocentric horizon",
+      "pass": true
+    },
+    {
+      "label": "Core JSON export recomputes complete frame",
+      "pass": true
+    },
+    {
+      "label": "Independent CSV parsing retains all calendar/body/cusp/graha/source values at full precision",
+      "pass": true
+    },
+    {
+      "label": "Exactly five peaceful task cards with dedicated missing methods explicit",
+      "pass": true
+    },
+    {
+      "label": "Twelve bounded past historical markers preserve separate signed/effective dates",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure armistice-1918-effective",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure versailles-1919-signed",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure un-charter-1945-signed",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure un-charter-1945-effective",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure simla-1972-signed",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure egypt-israel-1979-signed",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure egypt-israel-1979-effective",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure israel-jordan-1994-signed",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure israel-jordan-1994-effective",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure belfast-1998-signed",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure belfast-1998-approved",
+      "pass": true
+    },
+    {
+      "label": "Historical date-only precision and source closure belfast-1999-effective",
+      "pass": true
+    },
+    {
+      "label": "Jordan Hebrewyear transcription discrepancy is explicit and same-lineage",
+      "pass": true
+    },
+    {
+      "label": "Frame study tasks and source closure with guidance true",
+      "pass": true
+    },
+    {
+      "label": "Frame study tasks and source closure with guidance false",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 0",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 0",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 1",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 1",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 2",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 2",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 3",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 3",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 4",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 4",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 5",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 5",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 6",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 6",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 7",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 7",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 8",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 8",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 9",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 9",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 10",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 10",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 11",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 11",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 12",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 12",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 13",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 13",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 14",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 14",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 15",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 15",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 16",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 16",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 17",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 17",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 18",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 18",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 19",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 19",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 20",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 20",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 21",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 21",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 22",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 22",
+      "pass": true
+    },
+    {
+      "label": "Core rejects malformed or undeclared request 23",
+      "pass": true
+    },
+    {
+      "label": "Adapter rejects malformed or undeclared request 23",
+      "pass": true
+    },
+    {
+      "label": "Accessor rejection occurs before invoking caller code",
+      "pass": true
+    },
+    {
+      "label": "core rejects invalid selected index -1",
+      "pass": true
+    },
+    {
+      "label": "adapter rejects invalid selected index -1",
+      "pass": true
+    },
+    {
+      "label": "core rejects invalid selected index 3",
+      "pass": true
+    },
+    {
+      "label": "adapter rejects invalid selected index 3",
+      "pass": true
+    },
+    {
+      "label": "core rejects invalid selected index 1.2",
+      "pass": true
+    },
+    {
+      "label": "adapter rejects invalid selected index 1.2",
+      "pass": true
+    },
+    {
+      "label": "core rejects invalid selected index 1",
+      "pass": true
+    },
+    {
+      "label": "adapter rejects invalid selected index 1",
+      "pass": true
+    },
+    {
+      "label": "core rejects invalid selected index null",
+      "pass": true
+    },
+    {
+      "label": "adapter rejects invalid selected index null",
+      "pass": true
+    },
+    {
+      "label": "core rejects invalid selected index undefined",
+      "pass": true
+    },
+    {
+      "label": "adapter rejects invalid selected index undefined",
+      "pass": true
+    },
+    {
+      "label": "core rejects invalid selected index NaN",
+      "pass": true
+    },
+    {
+      "label": "adapter rejects invalid selected index NaN",
+      "pass": true
+    },
+    {
+      "label": "core rejects invalid selected index Infinity",
+      "pass": true
+    },
+    {
+      "label": "adapter rejects invalid selected index Infinity",
+      "pass": true
+    },
+    {
+      "label": "Ordinary null-prototype request remains supported",
+      "pass": true
+    },
+    {
+      "label": "MCP schema declares integer index and rejects unknown properties",
+      "pass": true
+    },
+    {
+      "label": "Toolkit registers exactly one selected-frame tool and returns canonical adapter output",
+      "pass": true
+    },
+    {
+      "label": "Scientific sources and independent driver remained unchanged",
+      "pass": true
+    }
+  ],
+  "sourceAfter": {
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/calendar-atlas.js": "917ff26c071b78a665cea9bdf145abd584cb8b2f2fbf5a7203099e91a25d62f6",
+    "assets/js/core/sky-dynamics.js": "d23fac77f7083fcf61da386a9c4d5f7534a99c1bb9feb7b21e930bc20d3804c3",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/astro.js": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+    "assets/js/core/vedic.js": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+    "assets/js/core/data/timeline-study-tasks.js": "5075bd60932363d6c2b15fffdcee093ec51e556751a428364271e5e511ee89d9",
+    "assets/js/core/data/timeline-history.js": "1828e00a160513f767bf49b37c1301679f46b18bb2592193f86416184ac4b7a1",
+    "mcp/calendar-timeline-adapters.mjs": "7f55950b378b692449498d7e24b98b10be661fe5150ad99c51dfed6ffd435d99",
+    "mcp/toolkit.mjs": "84b2efb0d94b77c34b757ee150f5af96b7836b80f1fe460105992ca8eb212b07",
+    "scripts/tests/calendar-timeline-independent.mjs": "3c17631e1deabae4184d231e74785b21fa99f776c46b1c866ee03164a06b6906"
+  },
+  "completedAt": "2026-10-30T09:13:48.581Z",
+  "count": 125,
+  "failures": [],
+  "pass": true,
+  "acceptanceEligible": false
+}

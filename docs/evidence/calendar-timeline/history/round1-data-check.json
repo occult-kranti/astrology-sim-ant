@@ -1,0 +1,24 @@
+{
+  "round": 1,
+  "mode": "self-check",
+  "checkedAt": "2026-10-30T09:04:32.203Z",
+  "status": "passed",
+  "events": 12,
+  "sources": 11,
+  "sourceModuleSha256": "ced23203de8a5eca796d58baac085652d84fc3ec9b1977e51bec20973db55fb4",
+  "checks": [
+    "unique ids",
+    "valid chronological past dates",
+    "complete source references",
+    "recursive immutability",
+    "null event clocks, offsets, instants and coordinates",
+    "separate signature and effect dates",
+    "Belfast multi-party scope",
+    "all11 source hashes match retained fetched bytes"
+  ],
+  "limits": [
+    "No astronomical calculations or date-conversion accuracy checked.",
+    "No browser or downloaded integration output checked.",
+    "Source-date interpretation is also subject to separate selected-passage review."
+  ]
+}

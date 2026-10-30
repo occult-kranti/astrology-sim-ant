@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "kind": "held-core-and-history-acceptance",
+  "generatedAt": "2026-10-30T09:11:22.073Z",
+  "before": {
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/data/timeline-history.js": "1828e00a160513f767bf49b37c1301679f46b18bb2592193f86416184ac4b7a1",
+    "assets/js/core/data/timeline-study-tasks.js": "5075bd60932363d6c2b15fffdcee093ec51e556751a428364271e5e511ee89d9",
+    "mcp/calendar-timeline-adapters.mjs": "7f55950b378b692449498d7e24b98b10be661fe5150ad99c51dfed6ffd435d99",
+    "scripts/test-calendar-timeline-protocol.mjs": "605ea3f7db80608501eed352aafffe662ac496d9992d45c66b5e834179ad1faf"
+  },
+  "after": {
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/data/timeline-history.js": "1828e00a160513f767bf49b37c1301679f46b18bb2592193f86416184ac4b7a1",
+    "assets/js/core/data/timeline-study-tasks.js": "5075bd60932363d6c2b15fffdcee093ec51e556751a428364271e5e511ee89d9",
+    "mcp/calendar-timeline-adapters.mjs": "7f55950b378b692449498d7e24b98b10be661fe5150ad99c51dfed6ffd435d99",
+    "scripts/test-calendar-timeline-protocol.mjs": "605ea3f7db80608501eed352aafffe662ac496d9992d45c66b5e834179ad1faf"
+  },
+  "checks": [
+    {
+      "label": "1900-01-01: event window exactly sixteen elapsed days clipped to UTC limits",
+      "passed": true
+    },
+    {
+      "label": "1900-01-01: clipping flag agrees with requested interval",
+      "passed": true
+    },
+    {
+      "label": "1900-01-01: complete nearby list stays within interval",
+      "passed": true
+    },
+    {
+      "label": "1900-01-01: solved events satisfy canonical angular definition within0.002degrees",
+      "passed": true
+    },
+    {
+      "label": "1900-01-01: added tasks retain explicit missing implementations",
+      "passed": true
+    },
+    {
+      "label": "1900-01-01: task and event source references resolve",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30: event window exactly sixteen elapsed days clipped to UTC limits",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30: clipping flag agrees with requested interval",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30: complete nearby list stays within interval",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30: solved events satisfy canonical angular definition within0.002degrees",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30: added tasks retain explicit missing implementations",
+      "passed": true
+    },
+    {
+      "label": "2026-10-30: task and event source references resolve",
+      "passed": true
+    },
+    {
+      "label": "2100-12-31: event window exactly sixteen elapsed days clipped to UTC limits",
+      "passed": true
+    },
+    {
+      "label": "2100-12-31: clipping flag agrees with requested interval",
+      "passed": true
+    },
+    {
+      "label": "2100-12-31: complete nearby list stays within interval",
+      "passed": true
+    },
+    {
+      "label": "2100-12-31: solved events satisfy canonical angular definition within0.002degrees",
+      "passed": true
+    },
+    {
+      "label": "2100-12-31: added tasks retain explicit missing implementations",
+      "passed": true
+    },
+    {
+      "label": "2100-12-31: task and event source references resolve",
+      "passed": true
+    },
+    {
+      "label": "history JSON roundtrip retains twelve day-only past records",
+      "passed": true
+    },
+    {
+      "label": "history coordinates and event zones remain unset",
+      "passed": true
+    },
+    {
+      "label": "unknown clocks qualified as unverified rather than unknowable",
+      "passed": true
+    },
+    {
+      "label": "Belfast correction applies to allthree records",
+      "passed": true
+    },
+    {
+      "label": "UN signature copies counted as onelineage",
+      "passed": true
+    },
+    {
+      "label": "all historical sources and precision qualifications survive JSON roundtrip",
+      "passed": true
+    },
+    {
+      "label": "historical objects expose no score forecast rank or chart fields",
+      "passed": true
+    },
+    {
+      "label": "history coverage declines prediction and representativeness",
+      "passed": true
+    },
+    {
+      "label": "Jordan record retains both Hebrewyear variants",
+      "passed": true
+    },
+    {
+      "label": "reviewed product sources held unchanged",
+      "passed": true
+    }
+  ],
+  "checkedEvents": [
+    {
+      "day": "1900-01-01",
+      "startISO": "1900-01-01T00:00:00.000Z",
+      "endISO": "1900-01-17T12:00:00.000Z",
+      "clipped": true,
+      "events": [
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "1900-01-01T13:52:31.543Z",
+          "declaredAngle": 0,
+          "measuredAngle": 9.991077831728035e-08
+        },
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "1900-01-08T05:40:23.722Z",
+          "declaredAngle": 90,
+          "measuredAngle": 90.00000329809211
+        },
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "1900-01-15T19:08:06.512Z",
+          "declaredAngle": 180,
+          "measuredAngle": 180.00000004838978
+        }
+      ]
+    },
+    {
+      "day": "2026-10-30",
+      "startISO": "2026-10-14T12:00:00.000Z",
+      "endISO": "2026-11-15T12:00:00.000Z",
+      "clipped": false,
+      "events": [
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "2026-10-18T16:13:19.496Z",
+          "declaredAngle": 90,
+          "measuredAngle": 89.99999990209116
+        },
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "2026-10-26T04:12:15.538Z",
+          "declaredAngle": 180,
+          "measuredAngle": 179.99999986704225
+        },
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "2026-11-01T20:28:58.794Z",
+          "declaredAngle": 270,
+          "measuredAngle": 269.99999999530655
+        },
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "2026-11-09T07:02:42.392Z",
+          "declaredAngle": 0,
+          "measuredAngle": 359.9999999634964
+        }
+      ]
+    },
+    {
+      "day": "2100-12-31",
+      "startISO": "2100-12-15T12:00:00.000Z",
+      "endISO": "2100-12-31T23:59:59.999Z",
+      "clipped": true,
+      "events": [
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "2100-12-16T17:00:24.508Z",
+          "declaredAngle": 180,
+          "measuredAngle": 179.99999993254863
+        },
+        {
+          "kind": "solar-quarter",
+          "dateISO": "2100-12-21T19:50:50.147Z",
+          "declaredAngle": 270,
+          "measuredAngle": 269.9999999906647
+        },
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "2100-12-24T08:46:26.084Z",
+          "declaredAngle": 270,
+          "measuredAngle": 269.9999999877116
+        },
+        {
+          "kind": "lunar-quarter",
+          "dateISO": "2100-12-30T23:56:53.058Z",
+          "declaredAngle": 0,
+          "measuredAngle": 359.99999997879536
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Angular checks use the same vendored ephemeris and establish event-search composition, not independent physical accuracy.",
+    "History check is a catalogue JSON roundtrip; timeline frame exports deliberately contain calculated frames and do not export historical records.",
+    "UI and whole-product release acceptance remain separate."
+  ]
+}

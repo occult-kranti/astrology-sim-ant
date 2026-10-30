@@ -28,6 +28,7 @@ export const NAV_GROUPS = [
     ['index.html', 'Today — the calendar observatory', 'home'],
     ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
     ['pages/calendar-atlas.html', 'Calendar Atlas — sky, timeline & interpretations', 'calendaratlas'],
+    ['pages/calendar-timeline.html', 'Chart timeline — one slider, many calendars', 'calendartimeline'],
     ['pages/event-horizon.html', 'Event horizon — every date to 2031', 'eventhorizon'],
     ['pages/country-calendars.html', 'Country histories & calendar studies', 'countrycalendars'],
     ['pages/calendar-search.html', 'Date & event search laboratory', 'calendarsearch'],
@@ -134,6 +135,7 @@ export function currentSection() {
   if (m(/\/pages\/calendars\.html$/)) return 'calendars';
   if (m(/\/pages\/calendar-compare\.html$/)) return 'calendarcompare';
   if (m(/\/pages\/calendar-atlas\.html$/)) return 'calendaratlas';
+  if (m(/\/pages\/calendar-timeline\.html$/)) return 'calendartimeline';
   if (m(/\/pages\/event-horizon\.html$/)) return 'eventhorizon';
   if (m(/\/pages\/country-calendars\.html$/)) return 'countrycalendars';
   if (m(/\/pages\/calendar-search\.html$/)) return 'calendarsearch';

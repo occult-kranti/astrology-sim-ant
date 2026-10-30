@@ -1331,6 +1331,117 @@ export const MCP_TOOL_CONTRACTS = {
     ],
     "additionalProperties": false
   },
+  "workbench_calendar_timeline_frame": {
+    "type": "object",
+    "properties": {
+      "startDate": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 10,
+        "description": "Explicit YYYY-MM-DD civil date, 1900-01-01 through 2100-12-31 inclusive. Both the selected local date and its UTC instant must be supported.",
+        "pattern": "^(?:19[0-9]{2}|20[0-9]{2}|2100)-[0-9]{2}-[0-9]{2}$"
+      },
+      "endDate": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 10,
+        "description": "Explicit YYYY-MM-DD civil date, 1900-01-01 through 2100-12-31 inclusive. Both the selected local date and its UTC instant must be supported.",
+        "pattern": "^(?:19[0-9]{2}|20[0-9]{2}|2100)-[0-9]{2}-[0-9]{2}$"
+      },
+      "time": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 8,
+        "description": "Explicit local sample clock HH:mm or HH:mm:ss, repeated on each date. This is a sampled instant, not a whole-day assessment.",
+        "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9])?$"
+      },
+      "timeZone": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100,
+        "description": "Explicit supported IANA time zone. Geographic correspondence to coordinates is not independently established."
+      },
+      "lat": {
+        "type": "number",
+        "minimum": -90,
+        "maximum": 90
+      },
+      "lon": {
+        "type": "number",
+        "minimum": -180,
+        "maximum": 180
+      },
+      "system": {
+        "type": "string",
+        "enum": [
+          "regiomontanus",
+          "placidus",
+          "whole",
+          "equal"
+        ]
+      },
+      "disambiguation": {
+        "type": "string",
+        "enum": [
+          "reject",
+          "earlier",
+          "later"
+        ]
+      },
+      "index": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 3659
+      },
+      "includeCatalogStars": {
+        "type": "boolean",
+        "description": "Optional modern catalogue stars; defaults to false. Historical fixed-star task scores are not calculated."
+      },
+      "includeGuidance": {
+        "type": "boolean",
+        "description": "Optional source-qualified guidance and editorial study profiles; defaults to true. Dialogue and ceremony timing remain unimplemented."
+      },
+      "prayerMethod": {
+        "type": "string",
+        "enum": [
+          "MuslimWorldLeague",
+          "NorthAmerica",
+          "Egyptian",
+          "Karachi",
+          "UmmAlQura",
+          "MoonsightingCommittee",
+          "Turkey"
+        ]
+      },
+      "asr": {
+        "type": "string",
+        "enum": [
+          "Shafi",
+          "Hanafi"
+        ]
+      },
+      "highLatitude": {
+        "type": "string",
+        "enum": [
+          "MiddleOfTheNight",
+          "SeventhOfTheNight",
+          "TwilightAngle"
+        ]
+      }
+    },
+    "required": [
+      "startDate",
+      "endDate",
+      "time",
+      "timeZone",
+      "lat",
+      "lon",
+      "system",
+      "disambiguation",
+      "index"
+    ],
+    "additionalProperties": false
+  },
   "workbench_catalogue": {
     "type": "object",
     "properties": {
@@ -4414,6 +4525,7 @@ export const MCP_TOOL_CONTRACTS = {
           "civil-calendars",
           "calendar-comparison",
           "calendar-atlas",
+          "calendar-timeline",
           "country-history",
           "event-horizon",
           "calendar-search",

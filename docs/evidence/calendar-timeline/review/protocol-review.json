@@ -1,0 +1,15 @@
+{
+  "command": "node scripts/test-calendar-timeline-protocol.mjs",
+  "pass": true,
+  "checks": 98,
+  "transportScope": [
+    "official-SDK HTTP handler",
+    "actual child-process stdio"
+  ],
+  "warning": "SDK json response mode drops mid-call notifications; this selected-frame tool does not require progress notifications.",
+  "liveProviderUsed": false,
+  "hostedDeploymentVerified": false,
+  "recordedAt": "2026-10-30T09:11:22.073Z",
+  "scriptSha256": "605ea3f7db80608501eed352aafffe662ac496d9992d45c66b5e834179ad1faf",
+  "readingScope": "Reviewer inspected the complete driver, executed it separately, and observed the recorded output. This is a fixed execution receipt, not a pass asserted by rerunning the held-core-source review."
+}

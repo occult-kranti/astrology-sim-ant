@@ -1,0 +1,193 @@
+{
+  "kind": "calendar-timeline-methods",
+  "driverSHA256": "e90793aaab1126007eb7859c2068be10947418e604cc774db68aa60f9a788dd5",
+  "reviewedInputs": {
+    "base": {
+      "startDate": "2026-10-30",
+      "endDate": "2026-11-02",
+      "time": "12:00",
+      "timeZone": "Europe/London",
+      "lat": 51.5,
+      "lon": 0,
+      "system": "regiomontanus",
+      "disambiguation": "reject",
+      "index": 0
+    },
+    "fold": {
+      "startDate": "2026-11-01",
+      "endDate": "2026-11-01",
+      "time": "01:30",
+      "timeZone": "America/New_York",
+      "lat": 40.7128,
+      "lon": -74.006,
+      "system": "regiomontanus",
+      "disambiguation": "reject",
+      "index": 0
+    },
+    "maximumGrid": {
+      "startDate": "2020-01-01",
+      "endDate": "2030-01-07",
+      "index": 3659
+    },
+    "gap": {
+      "date": "2026-03-08",
+      "time": "02:30",
+      "timeZone": "America/New_York"
+    },
+    "skipped": {
+      "date": "2011-12-30",
+      "timeZone": "Pacific/Apia"
+    },
+    "polar": {
+      "date": "2026-06-21",
+      "timeZone": "Arctic/Longyearbyen",
+      "lat": 78.223,
+      "lon": 15.646
+    },
+    "sourceScope": "Existing selected passage records and prior receipt inspected; no new primary-work retrieval."
+  },
+  "timestamp": "2026-10-30T09:06:46.664Z",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "checks": [
+    {
+      "name": "One tool, strict required observer/clock/fold/index schema",
+      "passed": true
+    },
+    {
+      "name": "Complete selected frame equals canonical result with explicit disclosure",
+      "passed": true
+    },
+    {
+      "name": "Every actual required field rejects omission",
+      "passed": true
+    },
+    {
+      "name": "No undeclared objective, military, country, birth, event or computed context accepted",
+      "passed": true
+    },
+    {
+      "name": "No primitive type coercion or unbounded numeric/index values",
+      "passed": true
+    },
+    {
+      "name": "Non-JSON inherited/symbol/accessor/non-enumerable fields rejected before access",
+      "passed": true
+    },
+    {
+      "name": "Invalid dates/ranges/clocks/zones/methods fail clearly",
+      "passed": true
+    },
+    {
+      "name": "3660 inclusive dates accepted; 3661 rejected; index selects final actual civil date",
+      "passed": true
+    },
+    {
+      "name": "Rejected fold retains candidates and all unrankable profile rows",
+      "passed": true
+    },
+    {
+      "name": "Explicit fold occurrences differ by one hour without erasing either candidate",
+      "passed": true
+    },
+    {
+      "name": "DST gap never shifts to an invented local sample",
+      "passed": true
+    },
+    {
+      "name": "Skipped Apia date survives as an unavailable slot",
+      "passed": true
+    },
+    {
+      "name": "Local endpoints resolving beyond UTC support retain unavailable actual candidates",
+      "passed": true
+    },
+    {
+      "name": "All optional fields are explicit and full stars/guidance fit response byte bound",
+      "passed": true
+    },
+    {
+      "name": "Guidance disabled preserves five task cards with unavailable/unimplemented statuses",
+      "passed": true
+    },
+    {
+      "name": "Exactly five sourced bounded cards; dialogue and ceremony never acquire numeric results",
+      "passed": true
+    },
+    {
+      "name": "Existing profile weights, original classes and source-limited evidence are retained",
+      "passed": true
+    },
+    {
+      "name": "Frame task-source references resolve with guidance on/off and an unresolved clock",
+      "passed": true
+    },
+    {
+      "name": "Polar missing temporal hours produce null study score, not an all-clear value",
+      "passed": true
+    },
+    {
+      "name": "Adapter needs no network and outputs no implicit current instant",
+      "passed": true
+    },
+    {
+      "name": "Method/card/adapter/core source files stayed unchanged during verification",
+      "passed": true
+    }
+  ],
+  "passed": 21,
+  "failed": 0,
+  "scenarios": [
+    {
+      "name": "maximum-grid-selected-last",
+      "date": "2030-01-07",
+      "totalDates": 3660,
+      "bytes": 209595
+    },
+    {
+      "name": "all-options",
+      "bytes": 316233
+    }
+  ],
+  "sourceBefore": {
+    "assets/js/core/data/timeline-study-tasks.js": "5075bd60932363d6c2b15fffdcee093ec51e556751a428364271e5e511ee89d9",
+    "mcp/calendar-timeline-adapters.mjs": "7f55950b378b692449498d7e24b98b10be661fe5150ad99c51dfed6ffd435d99",
+    "assets/js/core/calendar-timeline.js": "2f3d8bd1fdb3941c56733251008ef147f7879f7bbed937c6a99377fd7b9b9dc4",
+    "docs/2026-10-calendar-timeline-methods.md": "81fbdb2eff10feb7f9fe47b14d579aa2612b1a8c23a7a032dd14cf3bddb7bcfc"
+  },
+  "sourceAfter": {
+    "assets/js/core/data/timeline-study-tasks.js": "5075bd60932363d6c2b15fffdcee093ec51e556751a428364271e5e511ee89d9",
+    "mcp/calendar-timeline-adapters.mjs": "7f55950b378b692449498d7e24b98b10be661fe5150ad99c51dfed6ffd435d99",
+    "assets/js/core/calendar-timeline.js": "2f3d8bd1fdb3941c56733251008ef147f7879f7bbed937c6a99377fd7b9b9dc4",
+    "docs/2026-10-calendar-timeline-methods.md": "81fbdb2eff10feb7f9fe47b14d579aa2612b1a8c23a7a032dd14cf3bddb7bcfc"
+  }
+}

@@ -23,6 +23,23 @@ export const MCP_ADAPTER_COVERAGE = {
     ],
     "scope": "Daily search only: maximum31 civil dates/results and16 typed criteria. Browser event/control studies and larger scans are not executed by this adapter."
   },
+  "calendar-timeline": {
+    "mcpTools": [
+      "workbench_calendar_timeline_frame"
+    ],
+    "outputPaths": [
+      "data.slot",
+      "data.context",
+      "data.comparison",
+      "data.atlas",
+      "data.sky",
+      "data.charts",
+      "data.guidance",
+      "data.purposes",
+      "data.studyTasks"
+    ],
+    "scope": "One complete selected frame from an explicit daily grid, with unresolved-clock missingness and independently stated source/implementation limits. No batch outcome forecast, event prediction or private context."
+  },
   "chart-from-positions": {
     "mcpTools": [
       "workbench_printed_chart"
