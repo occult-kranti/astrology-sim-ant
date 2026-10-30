@@ -34,6 +34,7 @@ jobs:
           node scripts/test-country-history-protocol.mjs
           node scripts/test-calendar-timeline-protocol.mjs
           node scripts/test-newton-chronology-protocol.mjs
+          node scripts/test-eschatology-atlas-protocol.mjs
           npm test --prefix mcp
       - name: Keep MCP lock and verification evidence
         if: always()
@@ -58,6 +59,7 @@ jobs:
       - name: Calculation and source checks
         env:
           NEWTON_SEMANTIC_RECEIPT: test-results/newton-chronology-semantic.json
+          ESCHATOLOGY_SEMANTIC_RECEIPT: test-results/eschatology-atlas-semantic.json
         run: |
           node scripts/engine-test.mjs
           node scripts/audit.mjs
@@ -112,6 +114,10 @@ jobs:
         env:
           NEWTON_OUTPUT: test-results/newton-chronology
         run: node scripts/browser-newton-chronology.mjs
+      - name: Eschatology source graph, date precision and named readings
+        env:
+          ESCHATOLOGY_OUTPUT: test-results/eschatology-atlas
+        run: node scripts/browser-eschatology-atlas.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962

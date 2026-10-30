@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "kind": "tool-coverage",
-  "capabilities": 99,
-  "mcpTools": 76,
-  "capabilitiesWithNamedAdapters": 80,
+  "capabilities": 100,
+  "mcpTools": 78,
+  "capabilitiesWithNamedAdapters": 81,
   "guideOnlyCapabilities": 19,
-  "localGuideRoutes": 94,
+  "localGuideRoutes": 95,
   "hostedMCP": "Not established by local source coverage; verify tools/list on the deployed revision.",
   "note": "A named adapter can expose a documented subset. Output paths and scope distinguish it from the full local page or every function option. Source validation and numerical consistency are separate.",
   "rows": [
@@ -8864,6 +8864,187 @@
         "citation": "Exact variant/source records in core/calendar-atlas.js; implementation and cultural authority remain separate.",
         "book": "Calendars",
         "chapter": "Named cultural variants",
+        "readingStatus": "Inherited capability catalogue; consult the cited method record for passage verification."
+      },
+      "execution": "named-source-adapter"
+    },
+    {
+      "id": "eschatology-atlas",
+      "title": "Eschatology evidence atlas",
+      "pages": [
+        "pages/eschatology-atlas.html"
+      ],
+      "localFunctionInputs": [
+        {
+          "name": "filters",
+          "type": "object",
+          "desc": "Optional familyId, claimKind, dateRole and datedOnly. The separate frame function requires a curated claim/date role, source-date or study-date selection, explicit clock, observer and convention."
+        }
+      ],
+      "inputContractNote": "Local engine function arguments are not MCP call arguments. Use the exact schema for each named MCP tool; adapters may recompute charts and provide curated datasets instead of accepting them.",
+      "mcpContracts": [
+        {
+          "name": "workbench_eschatology_atlas",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "familyId": {
+                "type": "string",
+                "enum": [
+                  "ancient-ugaritic",
+                  "christian-kabbalah",
+                  "christian-newton",
+                  "church-of-satan",
+                  "hermetic-qabalah",
+                  "jewish-kabbalah",
+                  "pike-masonic-provenance",
+                  "satanic-temple",
+                  "thelema"
+                ]
+              },
+              "claimKind": {
+                "type": "string",
+                "enum": [
+                  "analytical-inference",
+                  "attributed-allegation",
+                  "attributed-report",
+                  "documentary-fact"
+                ]
+              },
+              "dateRole": {
+                "type": "string",
+                "enum": [
+                  "claimedDocument",
+                  "statement",
+                  "publication",
+                  "transmission",
+                  "target",
+                  "historicalContext"
+                ]
+              },
+              "datedOnly": {
+                "type": "boolean",
+                "description": "Retain known partial dates as partial; this filter does not make them exact days."
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "workbench_eschatology_frame",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "claimId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "description": "An exact curated claim ID returned by workbench_eschatology_atlas."
+              },
+              "dateRole": {
+                "type": "string",
+                "enum": [
+                  "claimedDocument",
+                  "statement",
+                  "publication",
+                  "transmission",
+                  "target",
+                  "historicalContext"
+                ]
+              },
+              "selection": {
+                "type": "string",
+                "enum": [
+                  "source-date",
+                  "study-date"
+                ]
+              },
+              "date": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10,
+                "description": "Required only for study-date: an explicitly chosen Gregorian day, independent of claim authenticity. Omit for source-date.",
+                "pattern": "^(?:19[0-9]{2}|20[0-9]{2}|2100)-[0-9]{2}-[0-9]{2}$"
+              },
+              "time": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 8,
+                "description": "Explicit assumed local clock, HH:mm or HH:mm:ss.",
+                "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9])?$"
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "description": "Explicit IANA time zone. Future and historical legal-clock correctness is not established by the runtime."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "disambiguation": {
+                "type": "string",
+                "enum": [
+                  "reject",
+                  "earlier",
+                  "later"
+                ]
+              },
+              "includeCatalogStars": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "claimId",
+              "dateRole",
+              "selection",
+              "time",
+              "timeZone",
+              "lat",
+              "lon",
+              "system",
+              "disambiguation"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "mcpTools": [
+        "workbench_eschatology_atlas",
+        "workbench_eschatology_frame"
+      ],
+      "outputPaths": [
+        "data.claims",
+        "data.timeline",
+        "data.graph",
+        "data.selection",
+        "data.frame",
+        "data.readings",
+        "data.sources"
+      ],
+      "scope": "The catalogue tool returns source records and typed relationships. The frame tool returns one explicitly assumed sample or a source-only state. No inferred prophetic day, hidden belief or outcome score.",
+      "browserFunction": null,
+      "source": {
+        "citation": "docs/2026-10-eschatology-atlas-methods.md; dated source/claim ledgers for Pike and selected traditions.",
+        "book": "Source criticism",
+        "chapter": "Eschatology and date provenance",
         "readingStatus": "Inherited capability catalogue; consult the cited method record for passage verification."
       },
       "execution": "named-source-adapter"

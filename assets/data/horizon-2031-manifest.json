@@ -1,7 +1,7 @@
 {
   "kind": "event-horizon-preset",
   "schemaVersion": 1,
-  "datasetId": "horizon-2031-3c99438494d6-208933a91cc0",
+  "datasetId": "horizon-2031-8d981b9f2efa-ffae1ede8f8b",
   "request": {
     "startDate": "2026-10-30",
     "endDate": "2031-01-01",
@@ -91,7 +91,7 @@
       },
       {
         "path": "assets/js/core/data/horizon-tool-coverage.js",
-        "sha256": "14baab168b4814ceeccd731a3ad46011e5ec2d2a1568e6ba0ebe408d02b8867c"
+        "sha256": "ed85776c95234d42722c3d776d591ac29becd32c408f5d2d4f76ad81d35289ff"
       },
       {
         "path": "assets/js/core/data/horizon-traditions.js",
@@ -99,7 +99,7 @@
       },
       {
         "path": "assets/js/core/data/mcp-tool-contracts.js",
-        "sha256": "5f5f97819784b9c88ee44cf29013d12eb34b196b953cdcab48be88275502a0b2"
+        "sha256": "476fe7a8467404268afd7a32a9fa0c20e1ef7f3143b74587767e35efe1120cf9"
       },
       {
         "path": "assets/js/core/data/muhurta-data.js",
@@ -151,7 +151,7 @@
       },
       {
         "path": "assets/js/core/registry.js",
-        "sha256": "d9e7adf5cdc9faebe0cf54fc42ce8ea5dcdd53406c9a8c846e6b20ff306598ef"
+        "sha256": "23989786d223746d0646310dcd0eb36d03012d5e027893e73dcd84d40e378b1b"
       },
       {
         "path": "assets/js/core/time.js",
@@ -242,12 +242,12 @@
         "sha256": "f081f2ed06e0c5086ee1d60238e40a58b714e608feed49ae5f931b4d14d5ec0d"
       }
     ],
-    "sha256": "3c99438494d6de9d262cfa8df5dd98f91433c080df712e039ef0d64408d3c7bb"
+    "sha256": "8d981b9f2efa6e7f8e92c176cd18ba057961d5a179f9831503cdbb49b7ec68e0"
   },
   "catalogueHashes": {
     "sourcesSHA256": "1628baad7582055759e073451266ca9938f600996a850bd6b2b7044d7b7d49c3",
     "coverageSHA256": "b19b10ece86cabb09040708c43f409ebafe5df37c8edc4102a1edbb669f197e9",
-    "toolCoverageSHA256": "b253c5cc733282b98184dc64234fab0ba0982e31e891f7c0f6290a971bbb7477"
+    "toolCoverageSHA256": "15fe45f7b7ec36cd7ac4378e3ad748a44356f908b92476ebeda62c0708f61423"
   },
   "parts": [
     {
@@ -2826,9 +2826,9 @@
       "canonicalCalls": 4575,
       "guidanceCalls": 4575,
       "purposeBatchEvaluations": 4575,
-      "elapsedMs": 50321.616709,
-      "sampleMs": 47083.240041000005,
-      "astronomyMs": 3234.9228610000064
+      "elapsedMs": 51722.984680999994,
+      "sampleMs": 48517.428584999994,
+      "astronomyMs": 3201.998117999996
     },
     "provenance": {
       "calculation": "Locally calculated canonical engines",
@@ -2840,7 +2840,7 @@
         "cldr": "48.0",
         "tz": "2026b"
       },
-      "generatedAt": "2026-10-30T15:59:06.734Z",
+      "generatedAt": "2026-10-30T16:53:59.303Z",
       "privateBirthIncluded": false,
       "modelUsed": false
     }

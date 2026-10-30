@@ -1752,7 +1752,7 @@ for (const suite of ['live-symbols', 'study-session']) {
 
 // Cross-calendar source/context and civil-week regression checks use the same
 // pure engines as the browser and MCP, without a host clock or live provider.
-for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-study-packet', 'day-guidance', 'sigil-design', 'sigil-image-provider', 'observatory-standards', 'world-events', 'comparison-evidence', 'calendar-atlas', 'personal-calendar', 'calendar-search', 'sky-dynamics', 'sky-interpretation', 'calendar-alignment', 'tool-guide', 'sky-assistant', 'sky-chat-client', 'chart-mcp', 'calendar-mcp', 'oracle-mcp', 'observatory-mcp', 'study-mcp', 'horizon-astronomy', 'horizon-observances', 'horizon-ranking', 'horizon-independent', 'horizon-integration-independent', 'horizon-mcp', 'horizon-loader', 'country-history', 'country-history-independent', 'calendar-timeline', 'calendar-timeline-independent', 'newton-chronology']) {
+for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-study-packet', 'day-guidance', 'sigil-design', 'sigil-image-provider', 'observatory-standards', 'world-events', 'comparison-evidence', 'calendar-atlas', 'personal-calendar', 'calendar-search', 'sky-dynamics', 'sky-interpretation', 'calendar-alignment', 'tool-guide', 'sky-assistant', 'sky-chat-client', 'chart-mcp', 'calendar-mcp', 'oracle-mcp', 'observatory-mcp', 'study-mcp', 'horizon-astronomy', 'horizon-observances', 'horizon-ranking', 'horizon-independent', 'horizon-integration-independent', 'horizon-mcp', 'horizon-loader', 'country-history', 'country-history-independent', 'calendar-timeline', 'calendar-timeline-independent', 'newton-chronology', 'eschatology-atlas']) {
   try {
     execFileSync(process.execPath, [`scripts/tests/${suite}.mjs`], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] });
     ok(true, `${suite}: PASS`);
@@ -1760,7 +1760,7 @@ for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-s
 }
 
 // --- THE ARTERY GATE (R34) -------------------------------------------------
-for (const script of ['assets/data/country-events/verify.mjs', 'scripts/test-newton-chronology-independent.mjs']) {
+for (const script of ['assets/data/country-events/verify.mjs', 'scripts/test-newton-chronology-independent.mjs', 'scripts/test-eschatology-atlas-independent.mjs']) {
   try {
     execFileSync(process.execPath, [script], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] });
     ok(true, `${script}: PASS`);

@@ -83,6 +83,22 @@ export const MCP_ADAPTER_COVERAGE = {
     ],
     "scope": "Calculate simplified zodiacal directions to Ascendant/MC using explicit Naibod or Ptolemy key and an age horizon up to150. This is not rigorous mundane primary direction."
   },
+  "eschatology-atlas": {
+    "mcpTools": [
+      "workbench_eschatology_atlas",
+      "workbench_eschatology_frame"
+    ],
+    "outputPaths": [
+      "data.claims",
+      "data.timeline",
+      "data.graph",
+      "data.selection",
+      "data.frame",
+      "data.readings",
+      "data.sources"
+    ],
+    "scope": "The catalogue tool returns source records and typed relationships. The frame tool returns one explicitly assumed sample or a source-only state. No inferred prophetic day, hidden belief or outcome score."
+  },
   "event-horizon": {
     "mcpTools": [
       "workbench_horizon_scan",

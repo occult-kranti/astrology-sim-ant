@@ -1880,6 +1880,142 @@ export const MCP_TOOL_CONTRACTS = {
     ],
     "additionalProperties": false
   },
+  "workbench_eschatology_atlas": {
+    "type": "object",
+    "properties": {
+      "familyId": {
+        "type": "string",
+        "enum": [
+          "ancient-ugaritic",
+          "christian-kabbalah",
+          "christian-newton",
+          "church-of-satan",
+          "hermetic-qabalah",
+          "jewish-kabbalah",
+          "pike-masonic-provenance",
+          "satanic-temple",
+          "thelema"
+        ]
+      },
+      "claimKind": {
+        "type": "string",
+        "enum": [
+          "analytical-inference",
+          "attributed-allegation",
+          "attributed-report",
+          "documentary-fact"
+        ]
+      },
+      "dateRole": {
+        "type": "string",
+        "enum": [
+          "claimedDocument",
+          "statement",
+          "publication",
+          "transmission",
+          "target",
+          "historicalContext"
+        ]
+      },
+      "datedOnly": {
+        "type": "boolean",
+        "description": "Retain known partial dates as partial; this filter does not make them exact days."
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "workbench_eschatology_frame": {
+    "type": "object",
+    "properties": {
+      "claimId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160,
+        "description": "An exact curated claim ID returned by workbench_eschatology_atlas."
+      },
+      "dateRole": {
+        "type": "string",
+        "enum": [
+          "claimedDocument",
+          "statement",
+          "publication",
+          "transmission",
+          "target",
+          "historicalContext"
+        ]
+      },
+      "selection": {
+        "type": "string",
+        "enum": [
+          "source-date",
+          "study-date"
+        ]
+      },
+      "date": {
+        "type": "string",
+        "minLength": 10,
+        "maxLength": 10,
+        "description": "Required only for study-date: an explicitly chosen Gregorian day, independent of claim authenticity. Omit for source-date.",
+        "pattern": "^(?:19[0-9]{2}|20[0-9]{2}|2100)-[0-9]{2}-[0-9]{2}$"
+      },
+      "time": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 8,
+        "description": "Explicit assumed local clock, HH:mm or HH:mm:ss.",
+        "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9])?$"
+      },
+      "timeZone": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100,
+        "description": "Explicit IANA time zone. Future and historical legal-clock correctness is not established by the runtime."
+      },
+      "lat": {
+        "type": "number",
+        "minimum": -90,
+        "maximum": 90
+      },
+      "lon": {
+        "type": "number",
+        "minimum": -180,
+        "maximum": 180
+      },
+      "system": {
+        "type": "string",
+        "enum": [
+          "regiomontanus",
+          "placidus",
+          "whole",
+          "equal"
+        ]
+      },
+      "disambiguation": {
+        "type": "string",
+        "enum": [
+          "reject",
+          "earlier",
+          "later"
+        ]
+      },
+      "includeCatalogStars": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "claimId",
+      "dateRole",
+      "selection",
+      "time",
+      "timeZone",
+      "lat",
+      "lon",
+      "system",
+      "disambiguation"
+    ],
+    "additionalProperties": false
+  },
   "workbench_explain_guidance": {
     "type": "object",
     "properties": {
@@ -4589,6 +4725,7 @@ export const MCP_TOOL_CONTRACTS = {
           "civil-calendars",
           "calendar-comparison",
           "calendar-atlas",
+          "eschatology-atlas",
           "newton-chronology",
           "calendar-timeline",
           "country-history",
