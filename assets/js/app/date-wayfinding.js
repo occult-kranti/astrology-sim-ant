@@ -110,7 +110,7 @@ export function mountDateNavigator(container, options = {}) {
   validateScope(config.bookmarkScope);
   let items = normalizeDateItems(config.items || []), selected = 0, preview = null, open = false, pinned = false, destroyed = false;
   let closeTimer = null, filter = '', savedOnly = false, listPage = 0, managePage = 0, restoringFocus = false, pendingFocus = null;
-  let externalAnchor = null, anchorAttributes = null, portal = null;
+  let externalAnchor = null, anchorAttributes = null, portal = null, placedAnchorRect = null;
   let bookmarkState = loadBookmarks(win);
   const uid = `date-nav-${++serial}`;
   const scope = () => token(config.bookmarkScope, 80) || token(config.id, 80) || 'public-dates';
@@ -178,7 +178,7 @@ export function mountDateNavigator(container, options = {}) {
   }
   function resetPlacement() {
     detachAnchor(); if (popover.parentElement !== selectedWrap) selectedWrap.append(popover); if (portal) portal.hidden = true;
-    popover.style.maxHeight = '';
+    popover.style.maxHeight = ''; placedAnchorRect = null;
   }
   function closeDetails(restoreFocus = false) {
     const focusTarget = externalAnchor || selectedButton;
@@ -211,8 +211,17 @@ export function mountDateNavigator(container, options = {}) {
     // Inner scrolling must not resize the same card and reset its scroll position.
     if (event?.type === 'scroll' && popover.contains(event.target)) return;
     if (!externalAnchor.isConnected) { closeDetails(); return; }
+    const rect = externalAnchor.getBoundingClientRect();
+    // A passive hover preview belongs to the position where it was opened. Do
+    // not let scrolling its trigger away clamp a tall card over unrelated controls.
+    // Explicitly pinned cards and keyboard interaction retain their current card.
+    // A queued scroll from before pointerenter must not dismiss a new preview.
+    if (event?.type === 'scroll' && placedAnchorRect && (rect.top !== placedAnchorRect.top || rect.left !== placedAnchorRect.left) && !pinned && !popover.contains(doc.activeElement) && !externalAnchor.contains(doc.activeElement)) {
+      closeDetails(); return;
+    }
+    placedAnchorRect = rect;
     const previousScroll = popover.scrollTop;
-    const rect = externalAnchor.getBoundingClientRect(), width = Math.min(520, Math.max(0, win.innerWidth - 24)), availableHeight = Math.max(80, win.innerHeight - 24);
+    const width = Math.min(520, Math.max(0, win.innerWidth - 24)), availableHeight = Math.max(80, win.innerHeight - 24);
     portal.style.width = `${width}px`; popover.style.maxHeight = `${availableHeight}px`;
     const naturalHeight = popover.getBoundingClientRect().height;
     const roomBelow = Math.max(0, win.innerHeight - 12 - Math.max(12, rect.bottom + 8));
@@ -357,7 +366,10 @@ export function mountDateNavigator(container, options = {}) {
     if (pendingFocus && !root.contains(event.target)) pendingFocus = null;
     if (open && !selectedWrap.contains(event.target) && !popover.contains(event.target) && !externalAnchor?.contains(event.target) && !list.contains(event.target)) closeDetails();
   }
-  function onFocusChange(event) { if (pendingFocus && event.target !== doc.body && event.target !== pendingFocus) pendingFocus = null; }
+  function onFocusChange(event) {
+    if (pendingFocus && event.target !== doc.body && event.target !== pendingFocus) pendingFocus = null;
+    if (open && !pinned && !popover.contains(event.target) && !externalAnchor?.contains(event.target)) closeDetails();
+  }
   function onEscape(event) {
     if (event.key !== 'Escape' || !open) return;
     event.preventDefault(); event.stopPropagation(); closeDetails(true);
