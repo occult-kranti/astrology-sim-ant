@@ -39,3 +39,8 @@ The all-phase development run exposed a mobile select specificity conflict with 
 The frozen candidate passed 325 browser checks across eleven journeys, 320/390/1440/1920px fixtures, touch emulation, 200% CSS zoom and forced colors. Two hundred presentation transitions held the row count at eight and triggered no fetches or workers. This single run measured 34.8ms for that fixture; it is not a general device performance guarantee. Fifteen actual gzip-retained downloads and twenty-two PNGs accompany the receipt. Root directly inspected all twenty-two images and independently validated all compressed/expanded download bytes and parsed their JSON/SVG. All 541 source/driver manifest entries matched before, after and at root review.
 
 Receipt: `/workspace/setup-validation/chart-relationships/qa-held-1/receipt.json`; SHA-256 `d4c7612bd428c753d228f6cf224db3e32be3beef45af2347735952368e6d7cc2`. Root audit: the same directory's `root-independent-audit.json`. The separate pure suite passes thirteen groups / 180 synthetic cases. See the verification record for the broader inherited gates and publication state. These are local results; no new CI or live deployment is inferred from them.
+
+
+### Release follow-up — nested disclosure regression
+
+Actual PR CI found an old Newton test selecting every descendant summary after the inspector introduced its own disclosures. The test now selects the outer direct child; its assertions and action are unchanged. A read-only audit found no analogous collision in the other affected drivers. All 1,294 Newton checks and 631 source-atlas checks pass locally after this test-only correction. The original failure, skipped later steps and actual artifacts remain retained rather than being counted as successful CI.

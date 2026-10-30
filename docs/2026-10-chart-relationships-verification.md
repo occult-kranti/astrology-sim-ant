@@ -29,6 +29,12 @@ Development receipts retain the narrow long-title overflow, the mobile host-CSS 
 
 These are bounded model-agent and automated-browser checks. They do not establish physical-phone behavior, a screen-reader certification, human usability results, fresh complete-book collation or predictive validity. Country sensitivity remains explicitly cusp-only. No broader calendar/tradition method becomes supported merely by receiving a color.
 
+## Release regression follow-up
+
+The first PR run, [41135099896](https://github.com/occult-kranti/astrology-sim-ant/actions/runs/41135099896), exposed one inherited test assumption: `.nw-sky-details summary` became ambiguous because the chart now contains nested inspector disclosures. The correction is `.nw-sky-details > summary`, targeting the same outer user control; no assertion was removed. The failed run's actual receipt, logs and screenshots are retained under `ci/branch-failure-41135099896/`. Its later relationship step was skipped and is not counted as passing.
+
+The complete corrected Newton suite passes **1,294 checks across all four widths**, retaining **84 actual gzip downloads and 32 screenshots**, with no product or driver drift. The later source-atlas suite was also run locally and passes **631 checks / 64 actual downloads**, with no runtime errors or source drift. The earlier final gate's 543 source/driver entries and the new relationship suite's 541 entries still match exactly: this follow-up changes an inherited browser locator, not the product. Exact receipts are `newton-regression-held-1/receipt.json` and `eschatology-regression-held-1/receipt.json`.
+
 ## Publication state
 
 The configured cloud GitHub credential initially returned HTTP 401. The connection recovered before release and the tested feature branch was pushed successfully. No secret was printed or requested in chat. Local acceptance and a pushed branch do not establish a live deployment. External fetch/audit and seven-context live verification drivers are prepared; the pull request and actual release receipts record subsequent exact-head CI, Pages publication and live verification.
