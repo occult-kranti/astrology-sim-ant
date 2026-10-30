@@ -42,7 +42,7 @@ A `—` is a figure that does not exist, and it is never rendered as a zero.
 | R36 | 2026-10-30 | 6 *(unverified)* | 10 *(unverified)* | 0.38 | clean 0/0/0 |
 | **all scorable** | | **103** | **73** | **0.59** | |
 
-*2 superseding correction row(s) are on file: `rounds.jsonl` keeps every line and this table
+*3 superseding correction row(s) are on file: `rounds.jsonl` keeps every line and this table
 renders the newest row per round. A log may be corrected; it is never rewritten.*
 
 ## The stop condition (amendment C) — printed, not remembered

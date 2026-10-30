@@ -1,0 +1,31 @@
+verify	Interactive sky, calendar alignment and grounded interpretation	﻿2026-10-30T06:19:18.5808842Z ##[group]Run node scripts/browser-sky.mjs
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:19:18.5809223Z [36;1mnode scripts/browser-sky.mjs[0m
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:19:18.5829844Z shell: /usr/bin/bash -e {0}
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:19:18.5830106Z env:
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:19:18.5830318Z   SKY_OUTPUT: test-results/sky
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:19:18.5830573Z ##[endgroup]
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8124311Z {
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8126783Z   "phase": "all",
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8127249Z   "pass": false,
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8127977Z   "checks": 2143,
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8128389Z   "downloads": 168,
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8129294Z   "receipt": "/home/runner/work/astrology-sim-ant/astrology-sim-ant/test-results/sky/receipt.json"
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8130564Z }
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8145597Z node:internal/modules/run_main:123
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8146213Z     triggerUncaughtException(
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8146640Z     ^
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8146876Z 
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8147996Z AssertionError [ERR_ASSERTION]: focused guide summary is not obscured by a page toolbar pages/trajectory.html 390 {"visibleHit":false}
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8149097Z     at check (file:///home/runner/work/astrology-sim-ant/astrology-sim-ant/scripts/browser-sky.mjs:28:117)
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8150034Z     at guides (file:///home/runner/work/astrology-sim-ant/astrology-sim-ant/scripts/browser-sky.mjs:218:1524)
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8150902Z     at async file:///home/runner/work/astrology-sim-ant/astrology-sim-ant/scripts/browser-sky.mjs:252:233 {
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8151464Z   generatedMessage: false,
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8151725Z   code: 'ERR_ASSERTION',
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8151972Z   actual: false,
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8152194Z   expected: true,
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8152424Z   operator: '==',
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8152638Z   diff: 'simple'
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8152849Z }
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8152953Z 
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8153047Z Node.js v22.23.4
+verify	Interactive sky, calendar alignment and grounded interpretation	2026-10-30T06:20:35.8483917Z ##[error]Process completed with exit code 1.

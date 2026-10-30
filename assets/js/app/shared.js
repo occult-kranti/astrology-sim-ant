@@ -453,10 +453,10 @@ export function mountChrome(activeKey = '') {
       mainEl.append(host);
       // Native focus scrolling ignores sticky page rails and bottom navigation.
       // Measure actual covering elements, rather than unrelated side panels.
-      let guideFocusFrame = 0;
-      host.addEventListener('focusin', () => {
-        cancelAnimationFrame(guideFocusFrame);
-        guideFocusFrame = requestAnimationFrame(() => {
+      let guideFocusFrame = 0, guideFocusArmed = false;
+      const keepGuideFocusVisible = () => {
+          guideFocusFrame = 0;
+          if (!guideFocusArmed) return;
           const target = document.activeElement;
           if (!(target instanceof HTMLElement) || !host.contains(target)) return;
           const style = getComputedStyle(host);
@@ -493,8 +493,45 @@ export function mountChrome(activeKey = '') {
               window.scrollBy({ top: rect.bottom - bottom, behavior: 'instant' });
             } else break;
           }
-        });
+      };
+      // Calculators can finish after the guide receives focus. Observe their
+      // layout only while that focus is active, and correct before the next
+      // paint rather than assuming one animation frame settles every tool.
+      const guideResize = typeof ResizeObserver === 'function' ? new ResizeObserver(() => {
+        cancelAnimationFrame(guideFocusFrame);
+        keepGuideFocusVisible();
+      }) : null;
+      const stopGuideFocus = () => {
+        guideFocusArmed = false;
+        cancelAnimationFrame(guideFocusFrame);
+        guideFocusFrame = 0;
+        guideResize?.disconnect();
+      };
+      const armGuideFocus = () => {
+        guideFocusArmed = true;
+        guideResize?.observe(mainEl);
+        cancelAnimationFrame(guideFocusFrame);
+        guideFocusFrame = requestAnimationFrame(keepGuideFocusVisible);
+      };
+      host.addEventListener('focusin', armGuideFocus);
+      host.addEventListener('focusout', event => {
+        if (!host.contains(event.relatedTarget)) stopGuideFocus();
       });
+      // Keep deliberate browsing in the visitor's control. A new focus or a
+      // repeated shortcut activation explicitly opts back into focus clearance.
+      window.addEventListener('wheel', stopGuideFocus, { passive: true });
+      window.addEventListener('touchmove', stopGuideFocus, { passive: true });
+      window.addEventListener('pointerdown', event => {
+        if (!(event.target instanceof Node) || !host.contains(event.target)) stopGuideFocus();
+      }, { passive: true });
+      window.addEventListener('keydown', event => {
+        if (!['PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown', ' '].includes(event.key)) return;
+        const target = event.target;
+        if (target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"]')) return;
+        if (event.key === ' ' && target instanceof Element && target.closest('button, summary, a[href]')) return;
+        stopGuideFocus();
+      });
+      window.addEventListener('pagehide', stopGuideFocus);
       try {
         const { mountToolAssistant } = await import('./tool-assistant.js');
         const api = mountToolAssistant(host, { pagePath });
@@ -512,6 +549,7 @@ export function mountChrome(activeKey = '') {
               if (window.location.hash !== '#tool-assistant') history.pushState(null, '', '#tool-assistant');
               host.scrollIntoView({ block: 'start', behavior: 'instant' });
               panel.querySelector('summary')?.focus({ preventScroll: true });
+              armGuideFocus();
             }
           });
           shortcut.append(link); heading.after(shortcut);
