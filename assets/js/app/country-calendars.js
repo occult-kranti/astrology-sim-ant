@@ -2,6 +2,7 @@ import { getCountryHistoryCatalogue, buildCountryHistoryStudy } from '../core/co
 import { COUNTRY_HISTORY_METHODS, COUNTRY_HISTORY_HOUSES, COUNTRY_HISTORY_TASKS, COUNTRY_METHOD_SOURCES } from '../core/data/country-history-methods.js';
 import { frontispiece } from './art/engravings.js';
 import { downloadJSON, downloadBlob } from './state.js';
+import { COUNTRY_EVENT_RESEARCH, COUNTRY_EVENT_COUNTRIES, COUNTRY_EVENT_RECORDS, COUNTRY_EVENT_SOURCES, COUNTRY_EVENT_PROFILES, COUNTRY_EVENT_CALCULATION_SOURCES, getCountryEventRecords, getCountryEventRecord, validateCountryResearchChunk } from '../core/data/country-event-research.js';
 
 const $ = id => document.getElementById(id);
 const ROOT = new URL('../../../', import.meta.url);
@@ -56,6 +57,7 @@ export function countryStudyCSV(study) {
 }
 
 export function initCountryCalendars() {
+  initCountryEventResearch();
   let catalogue, study = null, revision = 0;
   const countryName = id => catalogue.countries.find(country => country.id === id)?.label || catalogue.countries.find(country => country.id === id)?.name || id;
   const selectedIds = () => [...document.querySelectorAll('#ch-record-picker input:checked')].map(input => input.value);
@@ -233,4 +235,167 @@ export function initCountryCalendars() {
     $('ch-csv').addEventListener('click',()=>{if(!study)return;downloadBlob(new Blob([countryStudyCSV(study)],{type:'text/csv;charset=utf-8'}),'historical-country-calendar-study.csv');$('ch-export-status').textContent='CSV downloaded with labelled source records, calendar rows and assumed samples.';});
     calculate(false);
   } catch(error) { $('ch-error').textContent=`The historical catalogue could not be loaded. ${error.message}`; $('ch-error').hidden=false; $('ch-status').textContent='Historical catalogue unavailable.'; disableExports(); }
+}
+
+// This view reads accepted, hash-bound historical snapshots. It does not pass
+// outcomes to an engine, fit a model, recalculate a country score or search dates.
+function initCountryEventResearch() {
+  if (!$('cr-research')) return;
+  const query = new URLSearchParams(location.search), requestedCountry = query.get('researchCountry'), requestedRecord = getCountryEventRecord(query.get('researchRecord'));
+  let countryId = COUNTRY_EVENT_COUNTRIES.some(c => c.id === requestedCountry) ? requestedCountry : 'usa', records = [], selectedId = requestedRecord?.countryId === requestedCountry ? requestedRecord.id : '', revision = 0, displayed = null;
+  const researchURL = (id, recordId = null) => { const url = new URL('pages/country-calendars.html', ROOT); url.searchParams.set('researchCountry', id); if (recordId) url.searchParams.set('researchRecord', recordId); url.hash = 'cr-title'; return url.href; };
+  const cache = new Map();
+  const sourceMap = new Map(COUNTRY_EVENT_SOURCES.map(s => [s.id, s]));
+  const methodMap = new Map(COUNTRY_EVENT_CALCULATION_SOURCES.map(s => [s.id, s]));
+  const profileMap = new Map(COUNTRY_EVENT_PROFILES.map(p => [p.id, p]));
+  const format = value => Number.isFinite(value) ? value.toFixed(3).replace(/\.?0+$/, '') : 'Unavailable';
+  const markerLabels = { start: 'Start / main polling marker', end: 'Documented end / episode endpoint', outcome: 'Result / reported outcome marker' };
+  const table = (headers, rows, caption) => {
+    const t = node('table'), cap = node('caption', caption), head = node('thead'), tr = node('tr'), body = node('tbody');
+    cap.className = 'sr-only'; headers.forEach(label => { const th = node('th', label); th.scope = 'col'; tr.append(th); }); head.append(tr);
+    rows.forEach(cells => { const row = node('tr'); cells.forEach((value, index) => { const cell = node(index ? 'td' : 'th'); if (!index) cell.scope = 'row'; cell.append(value instanceof Node ? value : document.createTextNode(String(value ?? 'Unavailable'))); row.append(cell); }); body.append(row); });
+    t.append(cap, head, body); return t;
+  };
+  const sourceLink = source => { const url = safeSourceURL(source?.url), link = node(url ? 'a' : 'span', source?.title || source?.id || 'Unavailable source'); if (url) link.href = url; return link; };
+  async function verifiedJSON(descriptor) {
+    const response = await fetch(new URL(descriptor.path, ROOT));
+    if (!response.ok) throw new Error(`Stored research could not be loaded (${response.status}).`);
+    const bytes = await response.arrayBuffer();
+    if (bytes.byteLength !== descriptor.bytes) throw new Error('Stored research size differs from its source binding.');
+    if (!globalThis.crypto?.subtle) throw new Error('A secure context is required to verify the stored research.');
+    const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(x => x.toString(16).padStart(2, '0')).join('');
+    if (digest !== descriptor.sha256) throw new Error('Stored research hash differs from its source binding.');
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+  function loadCountry(id) {
+    if (!cache.has(id)) cache.set(id, verifiedJSON(COUNTRY_EVENT_RESEARCH.chunks[id]).then(data => validateCountryResearchChunk(data, id)).catch(error => { cache.delete(id); throw error; }));
+    return cache.get(id);
+  }
+  function invalidateComparison() {
+    displayed = null; $('cr-comparison').hidden = true; $('cr-download').disabled = true; $('cr-download-status').textContent = ''; $('cr-error').hidden = true;
+  }
+  function renderRecord(record) {
+    const wrapper = $('cr-source-record'); wrapper.replaceChildren();
+    wrapper.append(node('p', 'Historical assertion · date-only source record', 'ch-kicker'), node('h3', record.title), node('p', record.dateConvention));
+    const dl = node('dl');
+    for (const [label, value] of [['Start marker', record.startDate], ['Documented end', record.endDate || 'Not established in this record'], ['Result / report date', record.outcome.date || 'Not established in this record'], ['Outcome status', readable(record.outcome.status)], ['Source-event group', record.eventGroupId], ['Broader dependence group', record.analysisGroupId]]) dl.append(node('dt', label), node('dd', value));
+    wrapper.append(dl, node('p', record.outcome.summary), node('p', 'Religious allegiance, ritual intent and historical calendar adoption are not identified by this sample. The date convention above is the documented claim.', 'ch-footnote'));
+    const viewLink = node('a', 'Direct link to this documented record'); viewLink.href = researchURL(record.countryId, record.id); wrapper.append(viewLink);
+    const notes = detail('Source qualifications & recorded variants', list(record.limitations));
+    const sources = node('ol', null, 'cr-sources');
+    for (const id of record.sourceIds) {
+      const source = sourceMap.get(id), item = node('li'); if (!source) continue;
+      item.append(sourceLink(source), node('p', source.locator), node('p', source.claim), node('p', `Reading: ${source.readingStatus}. Access: ${source.accessStatus}. Retrieved: ${source.retrievedAt}.`, 'ch-footnote'), node('p', `Source SHA-256: ${source.contentSHA256}`, 'cr-hash'));
+      sources.append(item);
+    }
+    wrapper.append(notes, detail(`Checked source records (${record.sourceIds.length})`, sources));
+  }
+  function renderEventTable() {
+    $('cr-event-table').replaceChildren(table(['Start marker', 'Documented event & span', 'Recorded outcome', 'Inspect'], records.map(record => {
+      const event = node('div'); event.append(node('strong', record.title), node('p', `${readable(record.type)}${record.endDate ? ` · through ${record.endDate}` : ' · no end date assigned'}`, 'ch-footnote'));
+      const action = node('button', record.id === selectedId ? 'Selected' : 'Read record', 'ch-secondary'); action.type = 'button'; action.dataset.recordId = record.id; action.setAttribute('aria-label', `Read ${record.title}`); action.setAttribute('aria-pressed', String(record.id === selectedId)); action.addEventListener('click', () => { selectRecord(record.id); $('cr-event-table').querySelector(`button[data-record-id="${record.id}"]`).focus({ preventScroll: true }); });
+      return [record.startDate, event, record.outcome.summary, action];
+    }), 'The selected country’s source-qualified events; source dates and outcomes remain separate'));
+  }
+  function selectRecord(id) {
+    selectedId = id;
+    const record = getCountryEventRecord(id), index = records.findIndex(r => r.id === id);
+    $('cr-selected-title').textContent = record.title; $('cr-selected-date').textContent = record.startDate;
+    $('cr-event-index').value = String(index); $('cr-event-index').setAttribute('aria-valuetext', `${index + 1} of ${records.length}: ${record.startDate}, ${record.title}`);
+    $('cr-prev').disabled = index <= 0; $('cr-next').disabled = index >= records.length - 1; $('cr-position').textContent = `${index + 1} of ${records.length} selected records`;
+    $('cr-marks').querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.recordId === id)));
+    $('cr-marker-kind').replaceChildren(...['start', ...(record.endDate ? ['end'] : []), ...(record.outcome.date ? ['outcome'] : [])].map(kind => { const option = node('option', markerLabels[kind]); option.value = kind; return option; }));
+    renderRecord(record); renderEventTable(); showSample();
+  }
+  function renderCountry() {
+    records = getCountryEventRecords(countryId, $('cr-event-type').value);
+    const country = COUNTRY_EVENT_COUNTRIES.find(c => c.id === countryId);
+    $('cr-country-panel').setAttribute('aria-labelledby', `cr-tab-${countryId}`);
+    $('cr-country-context').textContent = `${country.label} · ${records.length} records. Study observer: ${country.observerName}, ${country.timeZone} (${country.lat}, ${country.lon}). This fixed city reference is an explicit assumption.`;
+    $('cr-country-tabs').querySelectorAll('[role="tab"]').forEach(button => { const active = button.dataset.countryId === countryId; button.setAttribute('aria-selected', String(active)); button.tabIndex = active ? 0 : -1; });
+    $('cr-event-index').max = String(records.length - 1);
+    $('cr-marks').replaceChildren(...records.map(record => { const button = node('button', record.startDate, 'cr-mark'); button.type = 'button'; button.dataset.recordId = record.id; button.setAttribute('aria-label', `${record.startDate}: ${record.title}`); button.addEventListener('click', () => selectRecord(record.id)); return button; }));
+    selectRecord(records.some(r => r.id === selectedId) ? selectedId : records[0].id);
+  }
+  function renderCalendars(sample) {
+    $('cr-calendars').replaceChildren(table(['Civil convention', 'Calculated label', 'Boundary & verification'], sample.calendars.map(row => {
+      const method = node('div'); method.append(node('p', `${readable(row.boundary)} · ${readable(row.status)}`), node('p', row.validation, 'ch-footnote'));
+      const body = node('div'); body.append(node('p', row.method), list(row.limitations));
+      for (const id of row.sourceIds) if (methodMap.has(id)) body.append(sourceLink(methodMap.get(id)), node('br'));
+      method.append(detail('Method & source limits', body));
+      return [row.label, row.status === 'available' ? row.text : 'Unavailable', method];
+    }), 'Stored civil-date conversions at the explicitly assumed instant'));
+  }
+  function renderFeatures(row, sample) {
+    const astronomy = sample.astronomy, hour = sample.planetaryHour;
+    $('cr-sky-facts').textContent = `Shared sky inputs: ${astronomy?.phaseLabel || 'phase unavailable'}; Moon–Sun elongation ${format(astronomy?.moonSunElongation)}°. Unequal planetary-hour ruler: ${hour?.ruler || 'Unavailable'}. Several features reuse these quantities; they are dependent measurements.`;
+    $('cr-features').replaceChildren(table(['Fixed editorial feature', 'Event feature index', 'Eight-sample mean', 'Event − nearby mean', 'Ties & availability'], row.profiles.map(profile => {
+      const evidence = node('div'); evidence.append(node('p', `${profile.availableControls}/8 nearby values available. ${profile.equalControls == null ? 'Tie count unavailable for an incomplete comparison.' : `${profile.equalControls} tied with the event.`}`));
+      const notes = node('div'); notes.append(node('p', `Stored numerator / declared denominator: ${profile.eventScoreNumerator ?? 'unavailable'} / ${profile.eventScoreDenominator}. Nearby range: ${format(profile.controlMinimum)} to ${format(profile.controlMaximum)}.`));
+      notes.append(node('p', `Nearby indices in offset order: ${profile.controlScores.map(format).join(', ')}.`));
+      if (profile.reason) notes.append(node('p', profile.reason));
+      notes.append(list(profile.eventMissing.map(item => `${item.id}: ${item.reason}`)), list(profile.missingControls.map(item => `${item.offsetDays > 0 ? '+' : ''}${item.offsetDays} days: ${item.reason} ${arr(item.missing).map(m => `${m.id}: ${m.reason}`).join(' ')}`)));
+      evidence.append(detail('Denominators, missingness & values', notes));
+      return [profileMap.get(profile.id)?.label || profile.id, format(profile.eventScore), format(profile.controlMean), format(profile.delta), evidence];
+    }), 'Descriptive indices, exact ties and complete-control requirements; no outcome prediction'));
+    const controls = node('div');
+    controls.append(node('p', 'All eight comparison dates are retained, including overlaps. “Possible” means an end is unknown; it does not assert activity on every day.'));
+    const controlTable = node('div', null, 'ch-table-scroll'); controlTable.tabIndex = 0; controlTable.setAttribute('role', 'region'); controlTable.setAttribute('aria-label', 'Eight nearby dates and overlap counts');
+    controlTable.append(table(['Offset', 'Nearby date', 'Selected marker matches', 'Inside a documented span', 'Possible unknown-end overlaps'], row.controls.map(control => [String(control.offsetDays), control.date, control.flags.exactMarkers.length, control.flags.documentedIntervals.length, control.flags.possibleUnknownEndOverlaps.length]), 'Overlap flags for nearby dates across the selected catalogue')); controls.append(controlTable);
+    $('cr-control-evidence').replaceChildren(detail('Inspect the eight nearby dates & overlap flags', controls));
+  }
+  async function showSample() {
+    const token = ++revision, id = countryId, eventId = selectedId, markerKind = $('cr-marker-kind').value, clock = $('cr-clock').value;
+    invalidateComparison(); $('cr-status').textContent = 'Loading and verifying this country’s accepted historical snapshots…';
+    try {
+      const chunk = await loadCountry(id);
+      if (token !== revision) return;
+      const row = chunk.markers.find(r => r.eventId === eventId && r.markerKind === markerKind && r.localTime === clock), sample = row && chunk.samples[row.sampleId];
+      if (!row || !sample) throw new Error('This source marker and assumed clock have no retained comparison.');
+      const record = getCountryEventRecord(eventId), observer = COUNTRY_EVENT_COUNTRIES.find(c => c.id === id);
+      $('cr-assumption').textContent = `${markerLabels[markerKind]}: ${row.date}. Assumed ${row.localTime} at ${observer.observerName}, ${sample.timeZone}; ${sample.dateISO}. This dataset does not certify an event instant or event location. Stored calculation from ${COUNTRY_EVENT_RESEARCH.asOf}; changing the clock selects a sensitivity sample, not a sourced event time.`;
+      $('cr-comparison').dataset.sampleId = row.sampleId; $('cr-comparison').dataset.dateIso = sample.dateISO;
+      renderCalendars(sample); renderFeatures(row, sample);
+      displayed = { schemaVersion: 1, kind: 'source-qualified-stored-historical-comparison', record, sources: record.sourceIds.map(sourceId => sourceMap.get(sourceId)), observer, marker: row, sample, profileDefinitions: COUNTRY_EVENT_PROFILES, calculationSources: COUNTRY_EVENT_CALCULATION_SOURCES, binding: COUNTRY_EVENT_RESEARCH.chunks[id], provenance: COUNTRY_EVENT_RESEARCH.provenancePath, predictionAccuracy: null, hiddenBeliefIdentified: false };
+      $('cr-comparison').hidden = false; $('cr-download').disabled = false; $('cr-status').textContent = `Verified stored comparison: ${row.date}, assumed ${row.localTime}. All thirteen civil labels share ${sample.dateISO}.`;
+    } catch (error) { if (token !== revision) return; $('cr-error').textContent = error.message; $('cr-error').hidden = false; $('cr-status').textContent = 'Stored comparison unavailable. Source records remain readable; select a record to retry.'; }
+  }
+  async function renderSummary() {
+    try {
+      const summary = await verifiedJSON(COUNTRY_EVENT_RESEARCH.summary), wrapper = $('cr-global-summary'); wrapper.replaceChildren();
+      wrapper.append(node('p', `${summary.counts.events} records · ${summary.counts.sourceEventGroups} source-event groups · ${summary.counts.analysisGroups} conservative groups. ${summary.counts.logicalControlUses.toLocaleString()} logical nearby-date uses share ${summary.counts.uniqueSamples.toLocaleString()} distinct event/control samples across all markers and clocks.`, 'cr-counts'));
+      wrapper.append(node('p', 'Primary description: start markers at assumed local noon. Complete differences are averaged within each conservative group, then groups receive equal weight. These original pooled descriptions stay fixed when the country filter changes.'));
+      wrapper.append(node('p', 'A negative mean says the fixed feature index was lower at these selected starts than at their nearby samples. Its unit is index points. It does not measure electoral or military success, compare countries, or identify a preferred calendar.'));
+      const summaryTable = node('div', null, 'ch-table-scroll'); summaryTable.tabIndex = 0; summaryTable.setAttribute('role', 'region'); summaryTable.setAttribute('aria-label', 'Fixed global descriptions; scroll horizontally if needed');
+      summaryTable.append(table(['Fixed feature', 'Complete start pairs', 'Eligible groups', 'Mean event − nearby index'], summary.primaryDescriptions.map(row => [profileMap.get(row.profileId)?.label || row.profileId, `${row.completeStartRecords}/28`, `${row.eligibleAnalysisGroups}/22`, format(row.equalGroupMeanDelta)]), 'Accepted global noon descriptions; arbitrary index points, not probabilities')); wrapper.append(summaryTable);
+      wrapper.append(node('p', 'Jyotiṣa has no complete nine-sample comparisons, so its paired mean remains unavailable. Required unresolved rules are not removed from the denominator. Its inherited quality tables also retain pending primary-passage verification.'));
+      const sensitivity = summary.clockSensitivity.find(row => row.profileId === 'western-increase-study');
+      wrapper.append(node('p', `Western event indices change across 09:00, 12:00 and 18:00 in ${sensitivity.recordsWithDifferentEventScores}/28 records. Agreement at three clocks would not establish whole-day stability. Mercury 100 denotes a rule match and 0 a known nonmatch; neither is a probability or a judgment of good or bad luck.`));
+      wrapper.append(node('p', `${summary.controlOverlap.logicalUsesInsideAnyDocumentedInterval} nearby-date uses fall inside a selected documented interval; ${summary.controlOverlap.logicalUsesWithPossibleUnknownEndOverlap} have possible overlap after an onset with no exact end. These categories overlap. Nearby dates, repeated events and shared Moon–Sun inputs do not supply independent evidence.`, 'cr-boundary'));
+      wrapper.append(node('p', 'No timestamped pre-event classifier or observed ritual-choice variable exists in this study. Prediction accuracy, success beyond chance and a uniquely identified calendar or hidden belief are not estimable. These limits do not establish that every possible historical association is absent.'));
+    } catch (error) { $('cr-global-summary').replaceChildren(node('p', `Accepted summary unavailable: ${error.message}`, 'ch-error')); }
+  }
+  for (const country of COUNTRY_EVENT_COUNTRIES) {
+    const button = node('a', country.label, 'cr-country-tab'); button.href = researchURL(country.id); button.id = `cr-tab-${country.id}`; button.dataset.countryId = country.id; button.setAttribute('role', 'tab'); button.setAttribute('aria-controls', 'cr-country-panel');
+    button.addEventListener('click', event => { if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return; event.preventDefault(); countryId = country.id; renderCountry(); });
+    button.addEventListener('keydown', event => {
+      if (event.key === ' ') { event.preventDefault(); countryId = country.id; renderCountry(); return; }
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault(); const index = COUNTRY_EVENT_COUNTRIES.findIndex(c => c.id === countryId), target = event.key === 'Home' ? 0 : event.key === 'End' ? COUNTRY_EVENT_COUNTRIES.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + COUNTRY_EVENT_COUNTRIES.length) % COUNTRY_EVENT_COUNTRIES.length;
+      countryId = COUNTRY_EVENT_COUNTRIES[target].id; renderCountry(); $(`cr-tab-${countryId}`).focus();
+    });
+    $('cr-country-tabs').append(button);
+  }
+  for (const profile of COUNTRY_EVENT_PROFILES) {
+    const content = node('div'); content.append(node('p', profile.description), node('p', profile.method), node('p', profile.tiePolicy), list(profile.limitations));
+    profile.sourceIds.forEach(id => { if (methodMap.has(id)) content.append(sourceLink(methodMap.get(id)), node('br')); });
+    $('cr-profile-methods').append(detail(profile.label, content));
+  }
+  $('cr-event-type').addEventListener('change', renderCountry);
+  $('cr-event-index').addEventListener('input', () => selectRecord(records[Number($('cr-event-index').value)].id));
+  $('cr-prev').addEventListener('click', () => selectRecord(records[Math.max(0, records.findIndex(r => r.id === selectedId) - 1)].id));
+  $('cr-next').addEventListener('click', () => selectRecord(records[Math.min(records.length - 1, records.findIndex(r => r.id === selectedId) + 1)].id));
+  $('cr-marker-kind').addEventListener('change', showSample); $('cr-clock').addEventListener('change', showSample);
+  $('cr-download').addEventListener('click', () => { if (!displayed) return; downloadJSON(displayed, `${displayed.record.id}-${displayed.marker.markerKind}-${displayed.marker.localTime.slice(0,2)}-assumed.json`); $('cr-download-status').textContent = 'Downloaded with source claims, clock assumptions, nearby-date values, overlap flags and artifact binding.'; });
+  renderCountry(); renderSummary();
 }

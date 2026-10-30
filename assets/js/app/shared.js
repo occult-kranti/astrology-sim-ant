@@ -31,6 +31,7 @@ export const NAV_GROUPS = [
     ['pages/calendar-timeline.html', 'Chart timeline — one slider, many calendars', 'calendartimeline'],
     ['pages/event-horizon.html', 'Event horizon — every date to 2031', 'eventhorizon'],
     ['pages/country-calendars.html', 'Country histories & calendar studies', 'countrycalendars'],
+    ['pages/newton-chronology.html', 'Newton — chronology, calendars & source texts', 'newtonchronology'],
     ['pages/calendar-search.html', 'Date & event search laboratory', 'calendarsearch'],
     ['pages/world-events.html', 'World events — dates & historical readings', 'worldevents'],
     ['pages/basics.html', 'The Basics — every concept', 'basics'],
@@ -138,6 +139,7 @@ export function currentSection() {
   if (m(/\/pages\/calendar-timeline\.html$/)) return 'calendartimeline';
   if (m(/\/pages\/event-horizon\.html$/)) return 'eventhorizon';
   if (m(/\/pages\/country-calendars\.html$/)) return 'countrycalendars';
+  if (m(/\/pages\/newton-chronology\.html$/)) return 'newtonchronology';
   if (m(/\/pages\/calendar-search\.html$/)) return 'calendarsearch';
   const atlasFamily = p.match(/\/pages\/calendars\/(western|vedic|egyptian|hebrew|chinese)\.html$/);
   if (atlasFamily) return 'atlas' + atlasFamily[1];

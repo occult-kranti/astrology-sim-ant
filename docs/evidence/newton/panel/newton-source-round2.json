@@ -1,0 +1,184 @@
+{
+  "reviewer": "/root/timeline_sources",
+  "round": 2,
+  "completedAt": "2026-10-30T15:53:06.044Z",
+  "scope": "Independent source-boundary review of actual core and UI renderer code, plus bounded core execution. Not browser, visual, full-book, paleographical or predictive validation.",
+  "hashesBefore": {
+    "assets/js/core/data/newton-chronology-sources.js": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393",
+    "assets/js/core/newton-chronology.js": "99341d5e0bfb16692662cd6ce29d1cd33117b7f4df87b428f7facbaf214edbe9",
+    "assets/js/app/newton-chronology.js": "6e810a4ea3ad59be09ab5a48e874faf97ce5db24afa18ded6985ef910381a7b6",
+    "assets/js/app/newton-chronology-worker.js": "65ed824802b0e8065cb54ce7bed2b1ae5a1ec002505f80835d4a180f8ee4a5f9",
+    "pages/newton-chronology.html": "0601dce4decdc5553747e8a7b00dc45d0f5d9192326ffa758dc99b73e14abbfc",
+    "mcp/newton-chronology-adapters.mjs": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd"
+  },
+  "hashesAfter": {
+    "assets/js/core/data/newton-chronology-sources.js": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393",
+    "assets/js/core/newton-chronology.js": "99341d5e0bfb16692662cd6ce29d1cd33117b7f4df87b428f7facbaf214edbe9",
+    "assets/js/app/newton-chronology.js": "6e810a4ea3ad59be09ab5a48e874faf97ce5db24afa18ded6985ef910381a7b6",
+    "assets/js/app/newton-chronology-worker.js": "65ed824802b0e8065cb54ce7bed2b1ae5a1ec002505f80835d4a180f8ee4a5f9",
+    "pages/newton-chronology.html": "0601dce4decdc5553747e8a7b00dc45d0f5d9192326ffa758dc99b73e14abbfc",
+    "mcp/newton-chronology-adapters.mjs": "5a9a2ef49b21ac3d2638d7514d747997553754155d735fcbdf46c248fbce6bbd"
+  },
+  "filesStable": true,
+  "primaryLociRechecked": [
+    {
+      "file": "yahuda7-3g-diplomatic.html",
+      "sha256": "1b43ad85c9721378d676d2b9a3fde7e22401482555dfed012bcf07fabc577318",
+      "loci": [
+        "par78 deleted blockstrike-n",
+        "par81 active1260days and conditional800/2060"
+      ]
+    },
+    {
+      "file": "yahuda7-3o-normal.html",
+      "sha256": "e63379dff87977ed03b3108062dfcf5bfedac19164c578c762c83824b4e1053c",
+      "loci": [
+        "par35 upper commencement70",
+        "par41 2132/2370",
+        "par42 unfinished2060",
+        "par43 begin2090/1374"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "Two distinct machine scenarios",
+      "status": "pass",
+      "evidence": [
+        "newton-2060-lower-bound",
+        "newton-2370-upper-bound"
+      ]
+    },
+    {
+      "name": "2060 directional lower bound",
+      "status": "pass",
+      "evidence": {
+        "precision": "year-bound",
+        "lowerInclusiveCEYear": 2060,
+        "upperInclusiveCEYear": null,
+        "conditionalCEYear": null,
+        "exactDate": null,
+        "exactInstantUTC": null
+      }
+    },
+    {
+      "name": "2370 directional upper bound, separate period",
+      "status": "pass",
+      "evidence": {
+        "precision": "year-bound",
+        "lowerInclusiveCEYear": null,
+        "upperInclusiveCEYear": 2370,
+        "conditionalCEYear": null,
+        "exactDate": null,
+        "exactInstantUTC": null
+      }
+    },
+    {
+      "name": "Both conditional sums agree with stated source years",
+      "status": "pass",
+      "evidence": [
+        "800 + 1260 = 2060",
+        "70 + 2300 = 2370"
+      ]
+    },
+    {
+      "name": "No exact source day or instant",
+      "status": "pass",
+      "evidence": "Event date/clock and interval date/instant remain null."
+    },
+    {
+      "name": "Symbolic calculation distinguished from physical conversion",
+      "status": "pass",
+      "evidence": "42×30 and 3.5×360 return symbolic days; interpretive mapping separate."
+    },
+    {
+      "name": "Bounds explicitly not one forecast interval",
+      "status": "pass",
+      "evidence": "Separate qualifications retained in each scenario."
+    },
+    {
+      "name": "All four variants remain source-only",
+      "status": "pass",
+      "evidence": "No computed or repaired result field."
+    },
+    {
+      "name": "1290 line preserves begin and reversed numbers",
+      "status": "pass",
+      "evidence": "Compared with retained normalized par43 and diplomatic reading."
+    },
+    {
+      "name": "Unfinished2060 line not completed",
+      "status": "pass",
+      "evidence": "Compared with retained normalized par42."
+    },
+    {
+      "name": "Deleted draft explicitly distinguished from active paragraph",
+      "status": "pass",
+      "evidence": "Checked diplomatic par78 blockstrike-n markup and active par81."
+    },
+    {
+      "name": "2370 sky exploration disabled",
+      "status": "pass",
+      "evidence": "Chronological branch remains readable beyond 1900–2100 sky range."
+    },
+    {
+      "name": "Primary scenario/variant source references resolve",
+      "status": "pass",
+      "evidence": "All selected primary references in returned catalogue."
+    },
+    {
+      "name": "Modern frame clearly labels assumed date and clock",
+      "status": "pass",
+      "evidence": "One explicit sample only; no year-survey or browser run in this review."
+    },
+    {
+      "name": "Modern sample has no historical-year outcome application",
+      "status": "pass",
+      "evidence": {
+        "calendarRows": 13,
+        "geocentricBodies": 10,
+        "historicalYearClaimApplied": false,
+        "outcomeScoreCalculated": false
+      }
+    },
+    {
+      "name": "Renderer shows direction, qualifications, and unresolved explanation",
+      "status": "pass",
+      "evidence": "Manual inspection renderBranch lines99–102, not browser proof."
+    },
+    {
+      "name": "Renderer blocks unsupported/source-only exploration",
+      "status": "pass",
+      "evidence": "Manual inspection branch button condition."
+    },
+    {
+      "name": "Initial January1 explicitly an assumption",
+      "status": "pass",
+      "evidence": "Static renderer/page copy review."
+    },
+    {
+      "name": "Every chronology source has a literal citation",
+      "status": "fail",
+      "evidence": [
+        "NC-CIVIL"
+      ]
+    }
+  ],
+  "counts": {
+    "pass": 18,
+    "fail": 1
+  },
+  "findings": [
+    {
+      "severity": "minor-source-contract-defect",
+      "owner": "/root/timeline_engine",
+      "description": "NC-CIVIL in ENGINE_SOURCES lacks literal source citation. Reported to owner; needs correction in next candidate."
+    },
+    {
+      "severity": "nonblocking-display-recommendation",
+      "owner": "/root/timeline_ui",
+      "description": "Display shortQuoteView/literalTextView beside quoted words and consider anchor.meaning beside anchor number. Record fields exist, source and deletion states otherwise visible."
+    }
+  ],
+  "acceptance": "Historical arithmetic and source-state behavior accepted within inspected scope; minor source-contract correction remains for next candidate. R3 not yet performed."
+}

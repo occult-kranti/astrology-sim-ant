@@ -2980,6 +2980,70 @@ export const MCP_TOOL_CONTRACTS = {
     ],
     "additionalProperties": false
   },
+  "workbench_newton_chronology": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "date": {
+        "type": "string",
+        "pattern": "^(?:19[0-9]{2}|20[0-9]{2}|2100)-[0-9]{2}-[0-9]{2}$",
+        "minLength": 10,
+        "maxLength": 10,
+        "description": "An explicitly chosen civil study date, not a date Newton supplied. Canonical range 1900–2100."
+      },
+      "time": {
+        "type": "string",
+        "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9])?$",
+        "minLength": 5,
+        "maxLength": 8
+      },
+      "timeZone": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100,
+        "description": "Explicit IANA time zone; future legal rules are projections of the runtime database."
+      },
+      "lat": {
+        "type": "number",
+        "minimum": -90,
+        "maximum": 90
+      },
+      "lon": {
+        "type": "number",
+        "minimum": -180,
+        "maximum": 180
+      },
+      "system": {
+        "type": "string",
+        "enum": [
+          "regiomontanus",
+          "placidus",
+          "whole",
+          "equal"
+        ]
+      },
+      "disambiguation": {
+        "type": "string",
+        "enum": [
+          "reject",
+          "earlier",
+          "later"
+        ]
+      },
+      "includeCatalogStars": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "date",
+      "time",
+      "timeZone",
+      "lat",
+      "lon",
+      "system",
+      "disambiguation"
+    ]
+  },
   "workbench_prasna": {
     "type": "object",
     "properties": {
@@ -4525,6 +4589,7 @@ export const MCP_TOOL_CONTRACTS = {
           "civil-calendars",
           "calendar-comparison",
           "calendar-atlas",
+          "newton-chronology",
           "calendar-timeline",
           "country-history",
           "event-horizon",

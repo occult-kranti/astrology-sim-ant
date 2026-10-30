@@ -1,5 +1,17 @@
 # Handoff notes — for the next model/build
 
+## Newton chronology and historical event research — 30 October 2026
+
+Work on `feat/newton-calendar-chronology` starts from published `b7793a47d34e048ebd8f06c8a3998864d5136e13`. Read [the plan](docs/2026-10-newton-plan.md), [source reconstruction](docs/2026-10-newton-sources.md), [comparative source ledger](docs/2026-10-eschatology-comparisons.md), [calculation methods](docs/2026-10-newton-chronology-methods.md), [inverse-method limits](docs/2026-10-calendar-inverse-methods.md), [panel](docs/2026-10-newton-panel.md) and [independent review](docs/2026-10-newton-review.md).
+
+The new page reconstructs two source-bound CE arithmetic branches and retains four unresolved/deleted/unfinished source-only variants. A chosen day is never a Newton prediction. Calendar/sky frames reuse the canonical1900–2100engine; complete365/366date year surveys distinguish first-observed label changes from solved astronomical events. Only two named computus projections are supplied; no complete future religious schedule is inferred. Six selected HKO2060fixtures are a narrow external check, not whole-calendar validation.
+
+The existing country page retains its sixteen founding/status records and adds twenty-eight source-qualified historical records for seven observers. Its committed accepted-research snapshot preserves the previously audited descriptive protocol, thirteen calendar labels, three assumed clocks, shared groups and missing paired data. Use `node assets/data/country-events/generate.mjs --check` and `node assets/data/country-events/verify.mjs`. Do not convert these features into national belief attribution, successful-attack timing, valid p-values or future conflict predictions.
+
+Current generated catalogue:76MCPtools,99capabilities,94guide routes. `workbench_newton_chronology` is strict and stateless; full-year survey remains local. No hosted MCP deployment, model inference/training or Supabase deployment is established. Preserve the source qualifiers and inherited guide focus fix. Keep at most two Chromium processes active. All required gates, independent review, exact-head CI and production/live source identity remain release requirements; development notes alone do not prove deployment.
+
+Local acceptance completed:729engine checks;133HTML/316JS audit withzero problems;133-page Chromium sweep withzero errors andtwo inherited warnings;89focusedNewton and122independent semantic checks;1,294held browser checks,84downloads,32directly reviewed screenshots andunchanged526product-file bindings. Source/statistics/UI roles completed three actual review rounds with the corrections recorded in the panel. Read [verification](docs/2026-10-newton-verification.md). This paragraph does not establish publication; require exact-headCI and deployedrelease identity.
+
 ## Synchronized chart timeline — 30 October 2026
 
 Work on `feat/peaceful-calendar-timeline` begins from published `ae94fb003f00f3456635121e81f6616a6d6118a3`. The preceding country study was merged in PR8 and production run41026989961 passed all four jobs. Live country/horizon receipts verified410fetched responses and17actual downloads against that release. Older pending statements below are historical checkpoints.

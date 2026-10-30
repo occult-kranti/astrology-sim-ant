@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "pass": true,
+  "assertions": 4825,
+  "inputStabilityVerified": true,
+  "scope": "Independent metadata, fixed denominator, exact tie, complete-control missingness, retained sample binding and equal-group arithmetic review. No new astronomy or outcome model was run. No additional full historical source reading is claimed.",
+  "counts": {
+    "markers": 186,
+    "distinctRetainedSamples": 150,
+    "retainedCalendarSlots": 1950,
+    "profileComparisons": 744,
+    "originalBindings": 12
+  },
+  "means": [
+    {
+      "id": "western-increase-study",
+      "complete": 28,
+      "groups": 22,
+      "mean": -2.9829545454545454
+    },
+    {
+      "id": "western-decrease-study",
+      "complete": 28,
+      "groups": 22,
+      "mean": -0.48295454545454547
+    },
+    {
+      "id": "jyotisha-classification-study",
+      "complete": 0,
+      "groups": 0,
+      "mean": null
+    },
+    {
+      "id": "mercury-hour-study",
+      "complete": 28,
+      "groups": 22,
+      "mean": -2.9829545454545454
+    }
+  ],
+  "priorExploratoryExpectationCorrection": "An initial reviewer-only assertion that every war winner field must be null was too broad. The accepted 1971 eastern-theatre record contains an explicitly attributed, qualified Indian outcome. This is not a universal binary conflict classifier and is not used in the profile arithmetic. The final driver preserves the accepted outcome rather than treating this as a producer defect.",
+  "runtime": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "platform": "linux",
+    "elapsedMilliseconds": 76.566852
+  },
+  "driver": {
+    "path": "/workspace/setup-validation/newton-calendar/engine-country-cross-review.mjs",
+    "sha256": "2b2a17ea88cffdcd14fc2a97b2a32a27733b6aee82112055cc863f8e730a2f3a"
+  },
+  "inputs": [
+    {
+      "path": "/workspace/astrology-sim-ant/assets/js/core/data/country-event-research.js",
+      "bytes": 153122,
+      "sha256": "d36fe41452fcde5f088d75728b70dcc1806eb8562200a247144f52d93fd618e8"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/provenance.json",
+      "bytes": 10282,
+      "sha256": "9e90c6ac89cf1fc02ed953a9facb06c98ee0ee47d34d3b2e24436191a62535b0"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/docs/2026-10-country-event-research.md",
+      "bytes": 8803,
+      "sha256": "d3598d9e6c6c9126a15bfae3d7374908966163bdccb4ffde62fa41ebddc5933c"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/usa.json",
+      "bytes": 443291,
+      "sha256": "caa68c79976ce64fa5a519418db2759188cd9b23b455bb2432d2b721425b1c4c"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/israel.json",
+      "bytes": 516062,
+      "sha256": "8aea59e781d806bbb25247447841067a3992334c02b259f084ccae53bcdb0c17"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/india.json",
+      "bytes": 769763,
+      "sha256": "47eb3fd74b77a24e69b767651f3c1518c5eb941675393c77e5567ae70fefb21b"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/russia.json",
+      "bytes": 439619,
+      "sha256": "da93d773f867ce5f2eea5eff7a955cf240df92bf15de0da09d218cdf0e44414b"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/iran.json",
+      "bytes": 569362,
+      "sha256": "6e7749cf9ae6ae8bc48d52941ac78c47472bc949c461cf218d86bc01b071ae99"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/palestine.json",
+      "bytes": 448260,
+      "sha256": "2249348ccc172965361afda2fb3fafc7440ebc157b9f787d818fe80fd14e29b5"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/ukraine.json",
+      "bytes": 564322,
+      "sha256": "4eece7c17cfe59cd88252d5ddebc4c3d752292d2ce6d6a9092486ee4956259df"
+    },
+    {
+      "path": "/workspace/astrology-sim-ant/assets/data/country-events/summary.json",
+      "bytes": 6369,
+      "sha256": "dc7cd9d6af9c812b5010e22ac8b1a19778768fad042b52804a804babf92655c2"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/sources/west.json",
+      "bytes": 35673,
+      "sha256": "685f2857d1b9427709ea2f77aa6d8e81d839aa91ac790e788ac3c362fb9d6c3d"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/sources/east.json",
+      "bytes": 36814,
+      "sha256": "b7344b9d13c5e67607579ec66648917edf146be53abca615cb02a3a86d324bf0"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/sources/europe.json",
+      "bytes": 34512,
+      "sha256": "230fa09d4ded1c83a7979b3dde45490673eaa8cfbc9f79cf71d87c8c3abedf6b"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/cases.json",
+      "bytes": 1396,
+      "sha256": "5fe26eef826aa6c2c071dc8eea8f0658bf330c568a6bd12a829592740fe23421"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/history-protocol.md",
+      "bytes": 8548,
+      "sha256": "4e74160b162c86b19670b23c2bfd29d0d69c0380abb20b4e82f0da22b38ca2d3"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/results/history-protocol-amendment-1.md",
+      "bytes": 2373,
+      "sha256": "7283783948553d1a1d19019ac45024187e4e55bd4c76930ec0539cdf1c5b1eca"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/results/history-protocol-amendment-2.md",
+      "bytes": 1467,
+      "sha256": "3cbd2b177b957ce7d0ae884ce8275eba9c5f50da6400a59670da1f6194adb621"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/results/history-audit.json",
+      "bytes": 5399385,
+      "sha256": "61bb343379530e0246800aac4b3b2246548ad7bee8e120ca400e13ce5fe75e38"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/results/history-manifest.json",
+      "bytes": 12123,
+      "sha256": "bc3e78076bd102a131120e6cee84831fe8c5d91715af8bb57761a74f07144e98"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/results/history-samples.jsonl.gz",
+      "bytes": 6186523,
+      "sha256": "9e7d8cc06dc5614c82c10edf4f6f00544741d432a870031a3938c5be54c182a1"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/results/history-outcomes.json",
+      "bytes": 229170,
+      "sha256": "965c8683ba32434ab8da3e2b06e2a9ad39ae029ccdabf958381a643031d6faac"
+    },
+    {
+      "path": "/workspace/analysis/country-events-2034/review/final-held-receipt.json",
+      "bytes": 21545,
+      "sha256": "3fb2bb34e1a4f383a15bac80496f8330aca05fd078fdb3b6a055000d24132af4"
+    }
+  ]
+}

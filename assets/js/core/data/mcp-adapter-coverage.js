@@ -228,6 +228,17 @@ export const MCP_ADAPTER_COVERAGE = {
     ],
     "scope": "Twelve-topic canonical ledger at a known moment; house fallback and legacy 1647 fixed-star dignity table disclosed."
   },
+  "newton-chronology": {
+    "mcpTools": [
+      "workbench_newton_chronology"
+    ],
+    "outputPaths": [
+      "data.chronology",
+      "data.frame",
+      "data.disclosure"
+    ],
+    "scope": "Documented chronology and one explicit study frame. The full-year survey is a local browser operation. No score or inferred prophetic day; source variants and unknowns are preserved."
+  },
   "picatrix-prayers": {
     "mcpTools": [
       "workbench_source_lookup"

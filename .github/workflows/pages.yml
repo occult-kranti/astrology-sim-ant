@@ -33,6 +33,7 @@ jobs:
           node scripts/test-horizon-protocol.mjs
           node scripts/test-country-history-protocol.mjs
           node scripts/test-calendar-timeline-protocol.mjs
+          node scripts/test-newton-chronology-protocol.mjs
           npm test --prefix mcp
       - name: Keep MCP lock and verification evidence
         if: always()
@@ -55,6 +56,8 @@ jobs:
         with:
           node-version: '22'
       - name: Calculation and source checks
+        env:
+          NEWTON_SEMANTIC_RECEIPT: test-results/newton-chronology-semantic.json
         run: |
           node scripts/engine-test.mjs
           node scripts/audit.mjs
@@ -105,6 +108,10 @@ jobs:
         env:
           HORIZON_OUTPUT: test-results/horizon
         run: node scripts/browser-horizon.mjs
+      - name: Newton chronology, complete year and historical research interactions
+        env:
+          NEWTON_OUTPUT: test-results/newton-chronology
+        run: node scripts/browser-newton-chronology.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962
