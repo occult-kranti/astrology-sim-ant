@@ -1,0 +1,64 @@
+{
+  "recordedAt": "2026-10-30T02:55:09.114236+00:00",
+  "round": 3,
+  "reviewers": "Six independent AI-agent roles; not human cultural authorities",
+  "binding": {
+    "manifest": {
+      "path": "docs/evidence/sky/round3-final-start.json",
+      "sha256": "0633f9d9be867e8e40c903d23872446405cbcd851abf09601449c6b4e35c892e"
+    },
+    "receipt": {
+      "path": "docs/evidence/sky/round3-final/receipt.json",
+      "sha256": "a198a2cc5b4b8732adf107fe69c8ee851656e80c5f0b2994315c56090d874671"
+    },
+    "driver": {
+      "path": "scripts/browser-sky.mjs",
+      "sha256": "9c0d8a0c6ee4654f1fef4467fb33af76d4509ceac478cd3c4a2f0b6d302b92df"
+    }
+  },
+  "decisions": [
+    {
+      "agent": "/root/sky_dynamics",
+      "scope": "Astronomy, stellar propagation, bounded timeline and chart adapters",
+      "decision": "ACCEPT",
+      "remainingBlockers": []
+    },
+    {
+      "agent": "/root/interpretation_sources",
+      "scope": "Source passages, historical interpretation, oracle and study adapters",
+      "decision": "ACCEPT",
+      "remainingBlockers": []
+    },
+    {
+      "agent": "/root/calendar_alignment",
+      "scope": "Calendar alignment, timezone/DST, ICS and calendar/observatory adapters",
+      "decision": "ACCEPT",
+      "remainingBlockers": []
+    },
+    {
+      "agent": "/root/orbital_experience",
+      "scope": "Chart/timeline/overlay workflows, responsive layout, focus and exports",
+      "decision": "ACCEPT",
+      "remainingBlockers": []
+    },
+    {
+      "agent": "/root/ai_tooling",
+      "scope": "Explicit model handoff, MCP schemas/coverage and local retrieval",
+      "decision": "ACCEPT",
+      "remainingBlockers": []
+    },
+    {
+      "agent": "/root/sky_quality",
+      "scope": "Independent browser journeys, actual artifact bytes, source binding and visual review",
+      "decision": "ACCEPT",
+      "remainingBlockers": []
+    }
+  ],
+  "browserEvidence": {
+    "passingChecks": 3417,
+    "downloads": 302,
+    "productFiles": 470,
+    "sourceDrift": false
+  },
+  "releaseBoundary": "This records panel acceptance of the exercised implementation; inherited release gates and exact-head GitHub CI are recorded separately. No production, hosted MCP, Supabase or live-model deployment is established."
+}

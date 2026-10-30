@@ -1,0 +1,82 @@
+{
+  "generatedAt": "2026-10-30T01:29:14.704598+00:00",
+  "referenceSoftware": "PyERFA2.0.1.5 (ERFA/SOFA pmsafe)",
+  "sourceURL": "https://github.com/liberfa/erfa/blob/v2.0.1/src/pmsafe.c",
+  "inputs": "HYG4.1 independent spherical RA/Dec, pmra/cos(dec), pmdec, parallax1/dist and radialvelocity; compare against Cartesian position+velocity propagation. This cross-check verifies propagation conventions, not independent observational catalogue accuracy.",
+  "epochScale": "TT; J2000 epoch JD2451545.0; targetTTdays from bundled AstronomyEngine to isolate propagation from DeltaT differences.",
+  "pmraConvention": "HYG velocity table is consistent with pmra=mu_alpha*cos(delta); pmsafe expects angular dRA/dt, so divide by cos(dec). Pole-nearPolaris and high-motionArcturus/Sirius included.",
+  "fixtures": [
+    {
+      "name": "Polaris",
+      "hip": 11767,
+      "dateISO": "1900-01-01T00:00:00Z",
+      "ttDaysSinceJ2000": -36524.50003193245,
+      "rightAscensionHours": 2.523371660883824,
+      "declination": 89.26443448172999
+    },
+    {
+      "name": "Polaris",
+      "hip": 11767,
+      "dateISO": "2050-01-01T00:00:00Z",
+      "ttDaysSinceJ2000": 18262.501076020602,
+      "rightAscensionHours": 2.5329375804536216,
+      "declination": 89.26394609199953
+    },
+    {
+      "name": "Polaris",
+      "hip": 11767,
+      "dateISO": "2100-12-31T00:00:00Z",
+      "ttDaysSinceJ2000": 36888.50237270021,
+      "rightAscensionHours": 2.53618690467767,
+      "declination": 89.26377899871275
+    },
+    {
+      "name": "Sirius",
+      "hip": 32349,
+      "dateISO": "1900-01-01T00:00:00Z",
+      "ttDaysSinceJ2000": -36524.50003193245,
+      "rightAscensionHours": 6.753536071332317,
+      "declination": -16.68215358481241
+    },
+    {
+      "name": "Sirius",
+      "hip": 32349,
+      "dateISO": "2050-01-01T00:00:00Z",
+      "ttDaysSinceJ2000": 18262.501076020602,
+      "rightAscensionHours": 6.751952899627189,
+      "declination": -16.73310594942395
+    },
+    {
+      "name": "Sirius",
+      "hip": 32349,
+      "dateISO": "2100-12-31T00:00:00Z",
+      "ttDaysSinceJ2000": 36888.50237270021,
+      "rightAscensionHours": 6.751414079540878,
+      "declination": -16.750440361070673
+    },
+    {
+      "name": "Arcturus",
+      "hip": 69673,
+      "dateISO": "1900-01-01T00:00:00Z",
+      "ttDaysSinceJ2000": -36524.50003193245,
+      "rightAscensionHours": 14.263174942920502,
+      "declination": 19.237943071109033
+    },
+    {
+      "name": "Arcturus",
+      "hip": 69673,
+      "dateISO": "2050-01-01T00:00:00Z",
+      "ttDaysSinceJ2000": 18262.501076020602,
+      "rightAscensionHours": 14.259958585486494,
+      "declination": 19.15463951793727
+    },
+    {
+      "name": "Arcturus",
+      "hip": 69673,
+      "dateISO": "2100-12-31T00:00:00Z",
+      "ttDaysSinceJ2000": 36888.50237270021,
+      "rightAscensionHours": 14.25886575791172,
+      "declination": 19.126313267763095
+    }
+  ]
+}

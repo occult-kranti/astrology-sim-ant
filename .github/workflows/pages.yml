@@ -86,6 +86,10 @@ jobs:
         env:
           ATLAS_OUTPUT: test-results/atlas
         run: node scripts/browser-atlas.mjs
+      - name: Interactive sky, calendar alignment and grounded interpretation
+        env:
+          SKY_OUTPUT: test-results/sky
+        run: node scripts/browser-sky.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962
@@ -119,7 +123,7 @@ jobs:
           mkdir _site
           git archive HEAD | tar -x -C _site
           node --input-type=module <<'NODE'
-          import { writeFileSync, rmSync } from 'node:fs';
+          import { readFileSync, writeFileSync, rmSync } from 'node:fs';
           for (const path of ['.github', 'tests', 'scripts', 'tools', 'test-results', 'node_modules', 'mcp']) {
             rmSync('_site/' + path, { recursive: true, force: true });
           }
@@ -128,6 +132,7 @@ jobs:
             commit: process.env.RELEASE_SHA,
             generatedAt: new Date().toISOString(),
             validation: 'node-and-playwright',
+            sourceMcpTools: JSON.parse(readFileSync('assets/data/mcp-catalogue.json', 'utf8')).tools.map(tool => tool.name).sort(),
           }, null, 2) + '\n');
           NODE
       - name: Upload validated Pages artifact
@@ -196,8 +201,9 @@ jobs:
                 if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
                 const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
                 const catalogue = await catalogueResponse.json();
-                const required = ['workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas'];
-                if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || catalogue.tools?.length !== 15 || !required.every(name => catalogue.tools.some(tool => tool.name === name))) throw new Error('Published MCP catalogue is missing or invalid.');
+                const required = ['workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide'];
+                const publishedNames = Array.isArray(catalogue.tools) ? catalogue.tools.map(tool => tool.name).sort() : [];
+                if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || !Array.isArray(release.sourceMcpTools) || JSON.stringify(publishedNames) !== JSON.stringify(release.sourceMcpTools) || !required.every(name => publishedNames.includes(name))) throw new Error('Published MCP catalogue is missing or does not match the verified release.');
                 const comparison = await fetch(new URL('pages/calendar-compare.html', base), { signal: AbortSignal.timeout(10000) });
                 if (!comparison.ok || !(await comparison.text()).includes('obs-form')) throw new Error('Published calendar comparison is unavailable.');
                 verified = true;

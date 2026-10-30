@@ -26,6 +26,15 @@ let browser,failure,base,origin;
 const check=(ok,label,details)=>{report.checks.push({label,pass:!!ok,...(details?{details}:{})});assert.ok(ok,label+(details?' '+JSON.stringify(details):''));};
 const selected=name=>phase==='all'||phase===name;
 async function includes(page,selector,text){await page.waitForFunction(({selector,text})=>document.querySelector(selector)?.textContent?.includes(text),{selector,text});}
+// The deeper chart is now the atlas default. Exercise the preserved Sun–Moon
+// plate through its real view control before applying the existing geometry,
+// export and state assertions; browser-sky owns the new default-view journeys.
+async function openLegacyPlate(page){
+ await page.locator('#atlas-dial svg').waitFor({state:'attached'});
+ const view=page.locator('#sky-view-simple');
+ if(await view.count())await view.click();
+ await page.locator('#atlas-dial svg').waitFor({state:'visible'});
+}
 async function context(width){const c=await browser.newContext({viewport:{width,height:900},locale:'en-US',reducedMotion:'reduce',serviceWorkers:'block',acceptDownloads:true});await c.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin===origin||['data:','blob:'].includes(u.protocol))return r.continue();report.externalRequests.push(u.href);return r.abort('blockedbyclient');});await c.addInitScript(()=>{window.__atlasPermissions={location:0,camera:0};Object.defineProperty(navigator,'geolocation',{configurable:true,value:{getCurrentPosition:(_ok,no)=>{window.__atlasPermissions.location++;no({code:1,message:'Fixture denies'});}}});});const page=await c.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>report.errors.push({url:page.url(),message:e.message}));page.on('console',m=>{if(m.type()==='error')report.errors.push({url:page.url(),message:m.text(),kind:'console'});});page.on('response',r=>{if(r.status()>=400)report.missing.push({url:r.url(),status:r.status()});});return{c,page};}
 async function layout(page,label){const info=await page.evaluate(()=>{const main=document.querySelector('main'),a=document.querySelector('.skip-link');let skip=false;try{skip=!!a&&!!document.querySelector(a.getAttribute('href'));}catch{}return{viewport:innerWidth,scroll:document.documentElement.scrollWidth,main:document.querySelectorAll('main').length,header:!!document.querySelector('header.site'),skip};});check(info.scroll<=info.viewport+1&&info.main===1&&info.header&&info.skip,label+' reflow and landmarks',info);}
 async function shot(page,label,selector,block='center'){if(selector)await page.locator(selector).evaluate((el,position)=>el.scrollIntoView({block:position,behavior:'instant'}),block);else await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));const file=label+'.png';await page.screenshot({path:resolve(output,file)});report.screenshots.push(file);}
@@ -51,7 +60,7 @@ async function atlas(width){
  const {c,page}=await context(width);
  try{
   if(width===1440)await page.setViewportSize({width,height:800});
-  await page.goto(atlasURL());await page.locator('#atlas-dial svg').waitFor();
+  await page.goto(atlasURL());await openLegacyPlate(page);
   if(width>=1440){const b=await page.locator('#atlas-update').boundingBox(),header=await page.locator('header.site').boundingBox();check(b.y>=header.y+header.height&&b.y+b.height<=(width===1440?800:900),'desktop cold-open Calculate is visible without scrolling '+width,b);if(width===1440)await page.setViewportSize({width,height:900});}
 
   const plateSize=await page.locator('#atlas-dial svg').evaluate(el=>{const r=el.getBoundingClientRect();return{width:r.width,height:r.height};});
@@ -76,7 +85,7 @@ async function atlas(width){
   await c.grantPermissions(['clipboard-read','clipboard-write'],{origin});await page.locator('#atlas-share').click();
   const shared=await page.evaluate(()=>navigator.clipboard.readText()),sharedURL=new URL(shared);
   check(sharedURL.pathname.startsWith(prefix)&&sharedURL.searchParams.get('variants').split(',').sort().join(',')==='egyptian-ancient-civil,gregory,vedic-lunar','copied URL contains exact selected variants '+width);
-  await page.goto(shared);await page.locator('#atlas-dial svg').waitFor();
+  await page.goto(shared);await openLegacyPlate(page);
   check(await page.locator('#atlas-selected-only').isChecked()&&await page.locator('#atlas-matrix tbody tr').count()===3,'copied selected URL roundtrip restores displayed subset '+width);
   await page.locator('.atlas-selection > summary').click();
   await page.locator('#atlas-view').selectOption('single');await page.locator('#atlas-single').selectOption('egyptian-ancient-civil');
@@ -92,7 +101,7 @@ async function atlas(width){
   await page.locator('#atlas-date').fill('2026-10-30');await page.locator('#atlas-update').click();await page.waitForFunction(()=>!document.querySelector('#atlas-json').disabled);
   check((await page.locator('#atlas-context').innerText()).includes('2026-10-30'),'valid atlas recovery updates printed instant '+width);
   for(const [route,family,count]of[['western','western',9],['vedic','vedic',5],['egyptian','egyptian',3],['hebrew','jewish',3],['chinese','chinese',3]]){
-   await page.goto(base+'pages/calendars/'+route+'.html?'+publicQuery);await page.locator('#atlas-dial svg').waitFor();
+   await page.goto(base+'pages/calendars/'+route+'.html?'+publicQuery);await openLegacyPlate(page);
    check(await page.locator('body').getAttribute('data-atlas-family')===family&&await page.locator('#atlas-matrix tbody tr').count()===count,'direct '+route+' route keeps only named family '+width);
    const links=await page.locator('#atlas-families a').evaluateAll(els=>els.map(a=>a.href));check(links.every(u=>u.startsWith(base)),'family navigation retains Pages prefix '+route+' '+width);
    if(route==='chinese'){
@@ -103,7 +112,7 @@ async function atlas(width){
    await layout(page,'family '+route+' '+width);
   }
   for(const [family,count]of[['islamic',4],['civil',5]]){
-   await page.goto(base+'pages/calendar-atlas.html?'+publicQuery+'&family='+family);await page.locator('#atlas-dial svg').waitFor();
+   await page.goto(base+'pages/calendar-atlas.html?'+publicQuery+'&family='+family);await openLegacyPlate(page);
    const scoped=JSON.parse(await download(page,'#atlas-json',family+' family export '+width));
    check(scoped.rows.length===count&&scoped.rows.every(r=>r.familyId===family)&&scoped.context.dateISO==='2026-10-29T12:00:00.000Z','generic '+family+' family query and calculation export agree '+width);
    check(await page.locator('#atlas-matrix tbody tr').count()===count,'generic '+family+' family display contains only its rows '+width);
@@ -115,7 +124,7 @@ async function atlas(width){
 async function personal(width){
  const {c,page}=await context(width);
  try{
-  await page.goto(atlasURL());await page.locator('#atlas-dial svg').waitFor();const host=page.locator('#atlas-personal'),field=k=>host.locator(`[data-pc-field="${k}"]`),action=k=>host.locator(`[data-pc-action="${k}"]`);
+  await page.goto(atlasURL());await openLegacyPlate(page);const host=page.locator('#atlas-personal'),field=k=>host.locator(`[data-pc-field="${k}"]`),action=k=>host.locator(`[data-pc-action="${k}"]`);
   const initialURL=page.url(),initialStorage=await page.evaluate(()=>({local:{...localStorage},session:{...sessionStorage}}));
   const personalFont=await host.evaluate(el=>parseFloat(getComputedStyle(el.querySelector('.pc-panel')).fontSize));check(personalFont>=16,'personal panel text retains readable base size '+width,personalFont);
   check(await action('apply').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))>=16,'personal Apply action retains16px text '+width);

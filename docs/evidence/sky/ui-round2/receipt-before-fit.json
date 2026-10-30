@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "label": "Introduction disclosed 1440x900",
+      "pass": true
+    },
+    {
+      "label": "Introduction initiallycompact 1440x900",
+      "pass": true
+    },
+    {
+      "label": "Circleaspectpreserved 1440x900",
+      "pass": true,
+      "detail": {
+        "x": 414.203125,
+        "y": 278.53125,
+        "width": 660,
+        "height": 660
+      }
+    },
+    {
+      "label": "Wholecirclewithjump 900",
+      "pass": false,
+      "detail": {
+        "x": 414.203125,
+        "y": 278.53125,
+        "width": 660,
+        "height": 660
+      }
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "cold-1440x900.png"
+  ],
+  "pass": false,
+  "failure": "Error: Wholecirclewithjump 900 {\"x\":414.203125,\"y\":278.53125,\"width\":660,\"height\":660}\n    at check (file:///workspace/setup-validation/sky-ui-r2/review.mjs:2:248)\n    at file:///workspace/setup-validation/sky-ui-r2/review.mjs:4:232\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)",
+  "browser": "145.0.7632.6",
+  "files": {
+    "assets/js/app/sky-explorer.js": "ac32e89acef4412d6a7f81e71b7e2ccb303cd2dce69330285eca2035809e1787",
+    "assets/css/sky-explorer.css": "41069c025d19ce6300015ff953349e94c19880d91d001ab8a41f7c138be535b4",
+    "assets/js/app/calendar-atlas.js": "4623e9bf7085e6558c00b7fc52faa8b87a59ef6f2946bf7d81be8e552ecc7ada"
+  }
+}

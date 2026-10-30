@@ -27,7 +27,7 @@ export const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
     ['index.html', 'Today — the calendar observatory', 'home'],
     ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
-    ['pages/calendar-atlas.html', 'Calendar Atlas — the desktop observatory', 'calendaratlas'],
+    ['pages/calendar-atlas.html', 'Calendar Atlas — sky, timeline & interpretations', 'calendaratlas'],
     ['pages/calendar-search.html', 'Date & event search laboratory', 'calendarsearch'],
     ['pages/world-events.html', 'World events — dates & historical readings', 'worldevents'],
     ['pages/basics.html', 'The Basics — every concept', 'basics'],
@@ -436,6 +436,92 @@ export function mountChrome(activeKey = '') {
       <a href="${R('pages/about/index.html')}">About & Sources</a>.</p>
   </div>`;
   document.body.appendChild(footer);
+  // Per-tool assistance is discovery-only until the visitor prepares a prompt.
+  // It never scrapes chart results, persisted births or provider configuration.
+  // Use the registry's actual route mapping, including nested Pages paths.
+  if (mainEl && !document.getElementById('tool-assistant')) {
+    import('../core/tool-guide.js').then(async guide => {
+      const pagePath = window.location.pathname;
+      if (!guide.toolGuideForPage(pagePath).length) return;
+      const host = document.createElement('section');
+      host.id = 'tool-assistant';
+      host.style.scrollMarginBlockStart = 'var(--tool-guide-scroll-margin, 7rem)';
+      host.style.gridColumn = '1 / -1';
+      host.setAttribute('aria-label', 'Tool guide, chatbot handoff and MCP availability');
+      mainEl.append(host);
+      // Native focus scrolling ignores sticky page rails and bottom navigation.
+      // Measure actual covering elements, rather than unrelated side panels.
+      let guideFocusFrame = 0;
+      host.addEventListener('focusin', () => {
+        cancelAnimationFrame(guideFocusFrame);
+        guideFocusFrame = requestAnimationFrame(() => {
+          const target = document.activeElement;
+          if (!(target instanceof HTMLElement) || !host.contains(target)) return;
+          const style = getComputedStyle(host);
+          const margin = Number.parseFloat(style.scrollMarginBlockStart);
+          if (!Number.isFinite(margin)) return;
+          let clearance = margin, bottom = innerHeight - 8;
+          // One correction can reveal another stacked rail. Bound the work and
+          // keep oversized controls aligned at their beginning.
+          for (let pass = 0; pass < 3; pass++) {
+            const rect = target.getBoundingClientRect();
+            const x = Math.max(1, Math.min(innerWidth - 1, rect.left + rect.width / 2));
+            for (const y of [rect.top + 1, rect.top + rect.height / 2, rect.bottom - 1]) {
+              let covering = document.elementFromPoint(x, Math.max(1, Math.min(innerHeight - 1, y)));
+              if (!covering || covering === target || target.contains(covering)) continue;
+              while (covering && covering !== document.body) {
+                const placement = getComputedStyle(covering);
+                if (placement.position === 'sticky' || placement.position === 'fixed') {
+                  const bounds = covering.getBoundingClientRect();
+                  // Computed fixed offsets resolve 'auto' to pixels. Classify
+                  // the visible blocker by its nearest viewport edge instead.
+                  if (bounds.top > innerHeight - bounds.bottom) {
+                    bottom = Math.min(bottom, bounds.top - 8);
+                  } else {
+                    clearance = Math.max(clearance, bounds.bottom + 8);
+                  }
+                  break;
+                }
+                covering = covering.parentElement;
+              }
+            }
+            if (rect.top < clearance) {
+              window.scrollBy({ top: rect.top - clearance, behavior: 'instant' });
+            } else if (rect.height <= bottom - clearance && rect.bottom > bottom) {
+              window.scrollBy({ top: rect.bottom - bottom, behavior: 'instant' });
+            } else break;
+          }
+        });
+      });
+      try {
+        const { mountToolAssistant } = await import('./tool-assistant.js');
+        const api = mountToolAssistant(host, { pagePath });
+        const heading = mainEl.querySelector('h1');
+        if (heading) {
+          const shortcut = document.createElement('p');
+          shortcut.className = 'small tool-guide-shortcut';
+          const link = document.createElement('a');
+          link.href = '#tool-assistant'; link.textContent = 'Tool guide · AI & MCP';
+          link.addEventListener('click', event => {
+            const panel = host.querySelector('details');
+            if (panel) {
+              event.preventDefault();
+              panel.open = true;
+              if (window.location.hash !== '#tool-assistant') history.pushState(null, '', '#tool-assistant');
+              host.scrollIntoView({ block: 'start', behavior: 'instant' });
+              panel.querySelector('summary')?.focus({ preventScroll: true });
+            }
+          });
+          shortcut.append(link); heading.after(shortcut);
+        }
+        window.addEventListener('pageshow', event => {
+          if (event.persisted) api.invalidate?.('Returned to this tool. Prepare a new preview before copying.');
+        });
+      } catch {
+        host.textContent = 'The local tool guide could not load. Reload this page to retry; the calculator remains available.';
+      }
+    }).catch(() => { /* A failed optional guide does not alter a calculation. */ });
+  }
   // Long book links remain available, with a native disclosure on phones.
   const footerBooks = footer.querySelector('.ob-footer-library');
   if (footerBooks) footerBooks.open = window.matchMedia('(min-width: 881px)').matches;

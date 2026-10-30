@@ -9,7 +9,7 @@ export function createServer() {
     annotations: { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false },
   }, async args => {
     try {
-      const result = callTool(tool.name, args);
+      const result = await callTool(tool.name, args);
       return { content: [{ type: 'text', text: JSON.stringify(result) }], structuredContent: result };
     } catch (error) {
       return { isError: true, content: [{ type: 'text', text: `${error.name}: ${error.message}` }] };

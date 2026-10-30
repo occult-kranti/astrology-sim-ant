@@ -1,5 +1,15 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+The [Calendar Atlas](pages/calendar-atlas.html) now opens as an interactive sky instrument. Select any of ten calculated geocentric bodies or 20 catalogue stars, inspect a source-backed reading, and switch between the deeper zodiac chart, the retained Sun–Moon plate and rotatable heliocentric coordinates. The orbital diagram uses actual three-dimensional AU vectors; display scaling and symbolic marker sizes remain explicit. Modern catalogue stars and the optional historical Behenian longitude layer have separate precision and source labels.
+
+Build a **calculated timeline**, normally five years either side of the selected centre, then cast a sample or solved solar/lunar-quarter event back into the atlas. Coarse lunar samples appear as points with a shorter daily view available. Calendar overlays show actual tropical/sidereal partitions, house cusps, nakṣatras and solar-term targets; civil dates remain in a comparison ledger. Compare the same UTC instant or the same local clock in another IANA zone, inspect mismatches and DST ambiguity, and manually import a disclosed `.ics` study event into a calendar. Internal alignment is distinct from a connected calendar provider.
+
+Interpretations expose the calculation, named rule, source locator and limits. Selected Lilly, Agrippa and Rao passages reveal real differences: same-sign versus separation-only combustion, and daylight/night temporal hours versus equal sunrise-day horas. The optional in-site chatbot sends an explicitly reviewed packet to a configured local or hosted model; copy/open handoff to ChatGPT also works without an API. Observer disclosure is off by default. Model output is separate from the deterministic local reading, and citation-ID checks do not establish factual correctness.
+
+Registered tool pages now include **Tool guide · AI & MCP**, with actual input/source contracts and execution availability. Strict MCP adapters expose supported calculators through canonical engines, with explicit epochs and draws, bounded work and no saved-browser context. The [generated coverage matrix](docs/2026-10-sky-tool-coverage.json) distinguishes calculation support from renderers and reference-only helpers. A local source-retrieval pack includes reproducible paraphrases, citations and few-shot interpretation examples. Supabase full-text-search migrations are supplied and locally tested; the default local retrieval performed better on the small recorded query set, and no Supabase deployment or model training is claimed.
+
+Read the new [plan](docs/2026-10-sky-plan.md), [panel ledger](docs/2026-10-sky-panel.md), [astronomy and timeline methods](docs/2026-10-sky-dynamics.md), [source interpretations](docs/2026-10-sky-sources.md), [calendar alignment](docs/2026-10-calendar-alignment.md), [AI and local RAG setup](docs/2026-10-sky-ai-rag.md), [interaction review](docs/2026-10-sky-experience.md) and [verification evidence](docs/2026-10-sky-verification.md). This pass extends the earlier desktop work below; historical review counts remain attached to their own revisions.
+
 The [desktop Calendar Atlas](pages/calendar-atlas.html) adds an engraved sky dial, all/selected method comparisons and dedicated Western/Lilly, Vedic, Egyptian/Coptic, Hebrew/Kabbalah and Chinese pages. Its catalogue covers **seven families and 32 named variants**, including all 13 existing civil-calendar displays, four house conventions, two Christian Easter computations and 24 Chinese solar-term events. At an ordinary supported observer, 25 variants calculate and seven are explicitly unimplemented. These are named methods and boundaries, not a claim to implement every cultural variation. The seven existing pending civil-family validation statuses remain unchanged.
 
 The [Date & Event Laboratory](pages/calendar-search.html) runs a reference brute-force scan or an equivalent optimized scan in a local worker. Choose calendar fields, lunar partitions and named traditional rules; derive filters from a documented event, or compare event dates with explicit shifted-date controls. Rank the complete search window by a chosen tradition’s favorable or caution rule count, with unavailable rules shown separately. Nine institutional date examples and bounded CSV/JSON imports support reproducible exploration. Counts, missing samples, shared dependencies, source precision and selection bias stay visible. Agreement does not establish real-world good or bad outcomes.
@@ -42,11 +52,12 @@ the mobile path. The original homepage collection remains in an expandable secti
 The new assistant supplies an explicitly labelled local rule-based explanation, then
 an optional preview/copy/export workflow for ChatGPT. It cannot inherit this conversation
 or account. Coordinates and geographic outputs are excluded by default. The repository's
-MCP implementation adds `workbench_compare_moment`, `workbench_calendar_outlook`
-`workbench_explain_guidance` and `workbench_calendar_atlas` to the 11 original tools. Its 15-tool stdio/HTTP source is tested separately from the
-previously hosted remote backend; the latter must be updated before claiming those
-new tools are live remotely. Supabase is optional future authenticated sync, not a
-prerequisite or a connected service in this release.
+MCP implementation exposes its source catalogue in
+[`assets/data/mcp-catalogue.json`](assets/data/mcp-catalogue.json). Its stdio/HTTP
+source is tested separately from the previously hosted remote backend; that
+backend must be updated and queried before new tools can be claimed live remotely.
+Supabase is optional infrastructure, not a prerequisite or a connected service in
+this release.
 
 Read the [source/book research and full route inventory](docs/2026-10-calendar-observatory-research.md),
 [flows and integration plan](docs/2026-10-calendar-observatory-plan.md),
@@ -184,7 +195,7 @@ against modern editions and traditional-astrology scholarship (see About & Sourc
 
 [Live Symbol Studio](pages/studio.html) connects the existing chart, planetary-square and name-trace engines with explicit time/location/method controls, live or frozen calculation, pause/resume, text alternatives and SVG/PNG/JSON exports. [Tools](pages/tools.html) remains the directory for the broader study collection. See the [panel decisions and roadmap](docs/2026-10-05-live-studio-roadmap.md), [product brief](PRODUCT.md), [design contract](DESIGN.md) and [MCP setup](mcp/README.md).
 
-The current repository MCP backend is a separate Node/fetch-runtime process with 15 allowlisted tools. The previously hosted 11-tool service requires a separate update; this source change does not deploy it. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
+The current repository MCP backend is a separate Node/fetch-runtime process with 71 allowlisted tools, enumerated in the generated catalogue. The previously hosted service requires a separate update; this source change does not deploy it. GitHub Pages serves the frontend only. No account or paid API is needed for local calculations or local MCP. Saved personal records remain in the browser unless you explicitly export or send them through the assistant/client. Calibration validates inputs and conventions; it does not infer an unknown birth time or establish symbolic efficacy.
 
 ### Observatory sessions: from the sky to a study record
 

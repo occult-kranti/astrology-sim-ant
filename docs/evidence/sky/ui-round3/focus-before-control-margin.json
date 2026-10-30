@@ -1,0 +1,180 @@
+{
+  "checks": [
+    {
+      "label": "Actual guide summary focus/hit 1440",
+      "pass": true,
+      "details": {
+        "tag": "SUMMARY",
+        "id": "",
+        "text": "Understand this tool · AI & MCP",
+        "top": 379.171875,
+        "bottom": 428.96875,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": true,
+        "blocker": "SUMMARY.",
+        "position": "sticky"
+      }
+    },
+    {
+      "label": "Fragment retained 1440",
+      "pass": true
+    },
+    {
+      "label": "Forward Tab continuation 1440 #0",
+      "pass": true,
+      "details": {
+        "tag": "SELECT",
+        "id": "tool-guide-1-tool",
+        "text": "The Great Confluence — cross-tradition atlas",
+        "top": 544.9375,
+        "bottom": 591.71875,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": true,
+        "blocker": "SELECT.",
+        "position": "sticky"
+      }
+    },
+    {
+      "label": "Forward Tab continuation 1440 #1",
+      "pass": true,
+      "details": {
+        "tag": "SUMMARY",
+        "id": "",
+        "text": "workbench_calc_confluence_atlas · MCP input schema",
+        "top": 393.140625,
+        "bottom": 442.9375,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": true,
+        "blocker": "SUMMARY.",
+        "position": "sticky"
+      }
+    },
+    {
+      "label": "Forward Tab continuation 1440 #2",
+      "pass": true,
+      "details": {
+        "tag": "TEXTAREA",
+        "id": "tool-guide-1-question",
+        "text": "",
+        "top": 486.921875,
+        "bottom": 562.484375,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": true,
+        "blocker": "TEXTAREA.",
+        "position": "sticky"
+      }
+    },
+    {
+      "label": "Forward Tab continuation 1440 #3",
+      "pass": true,
+      "details": {
+        "tag": "BUTTON",
+        "id": "",
+        "text": "Prepare tool prompt",
+        "top": 569.875,
+        "bottom": 613.875,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": true,
+        "blocker": "BUTTON.btn-secondary",
+        "position": "sticky"
+      }
+    },
+    {
+      "label": "Forward Tab continuation 1440 #4",
+      "pass": true,
+      "details": {
+        "tag": "TEXTAREA",
+        "id": "tool-guide-1-preview",
+        "text": "",
+        "top": 657.859375,
+        "bottom": 865.375,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": true,
+        "blocker": "TEXTAREA.",
+        "position": "sticky"
+      }
+    },
+    {
+      "label": "Forward Tab continuation 1440 #5",
+      "pass": true,
+      "details": {
+        "tag": "A",
+        "id": "",
+        "text": "Open ChatGPT",
+        "top": 394.765625,
+        "bottom": 441.3125,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": true,
+        "blocker": "A.btn-secondary",
+        "position": "sticky"
+      }
+    },
+    {
+      "label": "Forward Tab continuation 1440 #6",
+      "pass": true,
+      "details": {
+        "tag": "A",
+        "id": "",
+        "text": "The Chronologythe narrative",
+        "top": 618.890625,
+        "bottom": 740.1875,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": true,
+        "blocker": "A.card next-up-card",
+        "position": "sticky"
+      }
+    },
+    {
+      "label": "Reverse Tab continuation 1440 #0",
+      "pass": false,
+      "details": {
+        "tag": "A",
+        "id": "",
+        "text": "Open ChatGPT",
+        "top": 278.765625,
+        "bottom": 325.3125,
+        "toolbarTop": 100.796875,
+        "toolbarBottom": 373.90625,
+        "reachable": false,
+        "blocker": "DIV.filterbar cfl-toolbar",
+        "position": "sticky"
+      }
+    }
+  ],
+  "errors": [],
+  "measurements": [
+    {
+      "width": 1440,
+      "stage": "shortcut",
+      "tag": "SUMMARY",
+      "id": "",
+      "text": "Understand this tool · AI & MCP",
+      "top": 379.171875,
+      "bottom": 428.96875,
+      "toolbarTop": 100.796875,
+      "toolbarBottom": 373.90625,
+      "reachable": true,
+      "blocker": "SUMMARY.",
+      "position": "sticky"
+    }
+  ],
+  "screenshots": [
+    "confluence-summary-1440.png"
+  ],
+  "pass": false,
+  "failure": "Error: Reverse Tab continuation 1440 #0 {\"tag\":\"A\",\"id\":\"\",\"text\":\"Open ChatGPT\",\"top\":278.765625,\"bottom\":325.3125,\"toolbarTop\":100.796875,\"toolbarBottom\":373.90625,\"reachable\":false,\"blocker\":\"DIV.filterbar cfl-toolbar\",\"position\":\"sticky\"}\n    at check (file:///workspace/setup-validation/sky-ui-r3/focus-delta.mjs:2:256)\n    at file:///workspace/setup-validation/sky-ui-r3/focus-delta.mjs:3:1009",
+  "browser": "145.0.7632.6",
+  "files": {
+    "assets/css/confluence.css": "eb1a2593aee59a6a7a94a19191e4a13c9434a1fa78a3cc993a00507a66f3749d",
+    "assets/js/app/shared.js": "283d0311645ba3e469aca64fad567b23f8ccd62ec15d00e3156648c409405b2e",
+    "assets/js/app/tool-assistant.js": "64e52be001483a40ee11750e9d92390feeeb3e9862fd591a9e62e058c0477bec"
+  }
+}

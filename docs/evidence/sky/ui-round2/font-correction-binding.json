@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-30T01:50:39.399168+00:00",
+  "scope": "R2 final scoped mobile toolbar font correction after 53-check owner run",
+  "browser": "Chromium145.0.7632.6",
+  "viewport": {
+    "width": 320,
+    "height": 900
+  },
+  "beforePixels": 13.6,
+  "afterPixels": 16,
+  "files": {
+    "assets/css/sky-explorer.css": "b1d98b20144d4be4ec2224abbebff04e64ce9188c93e3bfd2df5ea5c72326c1e",
+    "assets/js/app/sky-explorer.js": "ac32e89acef4412d6a7f81e71b7e2ccb303cd2dce69330285eca2035809e1787",
+    "docs/evidence/sky/ui-round2/toolbar-font-before.json": "a30713f72b8d29d76089113a5637fe9d292fa2b21250f63964b29e0784af0514",
+    "docs/evidence/sky/ui-round2/toolbar-font-after.json": "4e0c3ac0c827c76ee76f2f8f4e086fc5d640949958295f41a695f82bdd613f34"
+  },
+  "limitations": [
+    "The 53-check receipt preceded this CSS-only correction. Independent R2 browser review covers the final combined candidate.",
+    "Measurements are automated Chromium layout, not physical iOS or screen-reader testing."
+  ]
+}

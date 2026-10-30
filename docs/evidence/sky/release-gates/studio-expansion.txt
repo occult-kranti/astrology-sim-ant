@@ -1,0 +1,21 @@
+{
+  "phase": "all",
+  "pass": false,
+  "checks": 33,
+  "receipt": "/workspace/setup-validation/sky-release-final/studio-expansion/receipt.json"
+}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.getAttribute: Error: strict mode violation: locator('a[href="https://chatgpt.com/"]') resolved to 2 elements:
+    1) <a target="_blank" class="btn-secondary" rel="noopener noreferrer" href="https://chatgpt.com/">Open ChatGPT ↗</a> aka getByRole('link', { name: 'Open ChatGPT ↗' })
+    2) <a target="_blank" class="btn-secondary" rel="noopener noreferrer" href="https://chatgpt.com/">Open ChatGPT</a> aka getByText('Open ChatGPT', { exact: true })
+
+Call log:
+[2m  - waiting for locator('a[href="https://chatgpt.com/"]')[22m
+
+    at sigil (/workspace/astrology-sim-ant/scripts/browser-studio-expansion.mjs:33:4587)
+    at async file:///workspace/astrology-sim-ant/scripts/browser-studio-expansion.mjs:37:420
+
+Node.js v24.19.0

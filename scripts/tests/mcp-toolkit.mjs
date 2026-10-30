@@ -45,7 +45,7 @@ export function run() {
     assert.throws(()=>callTool('workbench_katapayadi',{text:'शुक्र'}));
     assert.ok(Array.isArray(callTool('workbench_election',{...input,hoursAhead:0}).data.windows));
     assert.equal(callTool('workbench_election',{...input,dateISO:'2026-10-05T13:00:00+13:00',lat:-13.8333,lon:-171.75,hoursAhead:0}).data.inputs.utcOffset,13);
-    assert.equal(new Set(TOOLS.map(t=>t.name)).size,15);
+    assert.equal(new Set(TOOLS.map(t=>t.name)).size,TOOLS.length);
     assert.ok(callTool('workbench_catalogue',{}).data.capabilities.length>=81);
   });
   test('cross-calendar tools preserve explicit context, privacy and finite horizons',()=>{
@@ -61,7 +61,8 @@ export function run() {
     assert.ok(new TextEncoder().encode(JSON.stringify(outlook)).length<1500000);
     const legacy=['workbench_catalogue','workbench_chart','workbench_symbol','workbench_gematria','workbench_katapayadi','workbench_calendar','workbench_julian_day','workbench_easter','workbench_qibla','workbench_prayer_times','workbench_election'];
     for(const name of legacy)assert.ok(TOOLS.some(t=>t.name===name),name);
-    assert.equal(TOOLS.filter(t=>!legacy.includes(t.name)).length,4);
+    for(const name of ['workbench_compare_moment','workbench_calendar_outlook','workbench_explain_guidance','workbench_calendar_atlas'])assert.ok(TOOLS.some(t=>t.name===name),name);
+    assert.equal(new Set(TOOLS.map(t=>t.name)).size,TOOLS.length);
     assert.ok(TOOLS.every(t=>t.inputSchema.additionalProperties===false));
   });
   test('guidance tool reuses canonical rules with explicit observer and bounded source evidence',()=>{

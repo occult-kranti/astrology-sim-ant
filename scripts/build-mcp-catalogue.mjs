@@ -9,7 +9,7 @@ const catalogue = {
   authentication: 'Private Sites OAuth; use the provisioned Astrologer’s Workbench MCP plugin.',
   staticPageIsMcpServer: false,
   catalogueScope: 'Current repository source; local stdio/HTTP tools. Remote backend may run an earlier revision.',
-  remoteToolAvailability: 'Not reverified for this branch. Previously deployed backend exposed 11 tools; comparison, outlook, guidance explanation and calendar atlas require backend deployment and an authenticated tools/list check.',
+  remoteToolAvailability: 'Not reverified for this branch. The previously deployed backend exposed 11 tools. This catalogue includes newer calculation, calendar, sky, interpretation and source tools; each requires backend deployment and an authenticated tools/list check before remote availability can be claimed.',
   tools: TOOLS.map(({ name, description, inputSchema }) => ({ name, description, inputSchema })),
 };
 const target = new URL('../assets/data/mcp-catalogue.json', import.meta.url);

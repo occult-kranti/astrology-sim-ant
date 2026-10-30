@@ -1,0 +1,121 @@
+{
+  "round": 2,
+  "recordedAt": "2026-10-30T02:02:53.595Z",
+  "role": "astronomy-and-chart-calculator-adapters",
+  "baseline": "fb656a8047e93b8d49227d92aa9edc3e9b1fce50",
+  "tests": {
+    "pass": true,
+    "count": 124,
+    "failures": []
+  },
+  "toolCount": 12,
+  "sourceHashes": {
+    "mcp/chart-adapters.mjs": "76992ca91b39c686ca50cfa36d5bbdb10117014f927d98e92b9f738003013a35",
+    "scripts/tests/chart-mcp.mjs": "a988fe7cb24991ce7be8c0d5788bf93a3daa13dc38b7d7f2cc7367d17f66cbf3",
+    "assets/js/core/transits.js": "15856adcfea495db5c9c3c45709a408071d666a96f4f17494723d6cc768e6d91",
+    "assets/js/core/handcalc.js": "eaf8ba2b5047914ec04d3e3f01dc05b26d508a4e07f1f33b8c0baa8b6da54010"
+  },
+  "beforeAfter": {
+    "partialTransit": {
+      "natal": "2025-01-01T00:00:00Z",
+      "window": [
+        "2026-01-01T00:00:00.000Z",
+        "2026-01-01T18:00:00.000Z"
+      ],
+      "beforeHits": [],
+      "afterHits": [
+        "2026-01-01T05:46:32.587Z"
+      ]
+    },
+    "ordinaryDivisibleTransit": {
+      "window": [
+        "2025-01-01T00:00:00.000Z",
+        "2026-01-01T00:00:00.000Z"
+      ],
+      "allResultsByteIdentical": true,
+      "eventCount": 284
+    },
+    "handcalcWrappedLongitude": {
+      "dateISO": "2000-01-01T12:00:00.000Z",
+      "latitude": 30,
+      "longitude": 170,
+      "beforeError": "Latitude must be \u221290\u202690\u00b0 and longitude \u2212180\u2026180\u00b0.",
+      "afterAsc": 180.39842209362902
+    },
+    "polarGrid": {
+      "requestedSystem": "placidus",
+      "latitude": 66,
+      "gridLatitudes": [
+        66,
+        67
+      ],
+      "actualSystem": "regiomontanus",
+      "warning": "This interpolation grid reaches beyond 66\u00b0 absolute latitude, where Placidus is unavailable in this implementation. All displayed table corners and interpolated cusps use Regiomontanus."
+    }
+  },
+  "globalEngineRun": {
+    "command": "node scripts/engine-test.mjs",
+    "exitCode": 1,
+    "numericalChecksPassed": true,
+    "remainingFailures": [
+      "Generated MCP catalogue stale during parallel integration",
+      "Generated sky-reference artifacts stale during parallel source work",
+      "Generated MCP coverage map stale during parallel adapter integration"
+    ],
+    "log": "round2-chart-engine-corrected.txt"
+  },
+  "uiScienceCrossReview": {
+    "evidence": "Code inspected; browser checks owned by QA",
+    "resolved": [
+      "Apparent planet/geometric star/historical marker frames distinguished",
+      "Actual uniform diagram orb displayed separately from Lilly half-orbs",
+      "Calculated phase events label"
+    ],
+    "orbitalScope": "PhysicalJ2000AUvectors remain separate from stellardirections; linear/compressed projection and symbolic body sizes labelled."
+  },
+  "initialGlobalEngineRun": {
+    "command": "node scripts/engine-test.mjs",
+    "exitCode": 1,
+    "numericalChecksPassed": true,
+    "remainingFailures": [
+      "Generated MCP catalogue stale during parallel integration",
+      "Generated sky-reference artifacts stale during parallel source work"
+    ],
+    "log": "round2-chart-engine.txt"
+  },
+  "peerReview": {
+    "reviewer": "/root/sky_quality",
+    "findings": [
+      {
+        "issue": "Sparse arrays bypassed forEach validation",
+        "decision": "Use indexed density checks; reject sparse bodyIds/natalPoints/aspects",
+        "status": "fixed, direct regression checks pass"
+      },
+      {
+        "issue": "Exact+66 grid included an undisclosed Regiomontanus corner at67",
+        "decision": "Check both actual latitude-grid columns before choosing one coherent fallback",
+        "status": "fixed, exact66 regression passes"
+      }
+    ],
+    "additionalBoundary": "Relocated return charts now validate observer-zone civil year as well as their UTC instant.",
+    "independentRecheck": {
+      "reviewer": "/root/sky_quality",
+      "reportedAt": "2026-10-30T02:04:12.285885+00:00",
+      "pass": true,
+      "checks": [
+        "Sparse bodyIds, natalPoints and aspects arrays each rejected by exported calculate",
+        "Exact+66 degree grid uses Regiomontanus with explicit warning",
+        "Exact\u221266 degree grid remains Placidus"
+      ],
+      "browserEvidenceReportedSeparately": {
+        "chartChecks": 237,
+        "chartDownloads": 40,
+        "timelineChecks": 111,
+        "timelineDownloads": 20,
+        "widths": 4
+      },
+      "scope": "Independent reviewer message; browser receipts are separately owned by sky_quality."
+    }
+  },
+  "roleAcceptance": "R2 ACCEPT within astronomy/chart-adapter scope; frozen R3 and repository-wide freshness/protocol gates remain pending with root."
+}

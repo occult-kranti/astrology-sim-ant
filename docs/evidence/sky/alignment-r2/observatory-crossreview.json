@@ -1,0 +1,271 @@
+{
+  "kind": "independent-observatory-adapter-cross-review",
+  "reviewRound": 2,
+  "reviewedAt": "2026-10-30T02:01:03.767Z",
+  "sourceHashesBefore": {
+    "mcp/observatory-adapters.mjs": "49b28b9d50f665ab4eaa29a422817ab6643e5a805ac87b85ea08359b21eabe96",
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/world-events.js": "80ddeadec1c64ddeced6795d537dfa9a39c3b64581ab6354a6d8f44054582c81",
+    "assets/data/world-events.json": "182e0780a7711bc3b178081194337cfd864afefc1f64c57224d72b58de8be4fc",
+    "assets/js/core/sigil-design.js": "db83e4f81a6f17c447275068806d42cb39ff1f08ef8af8bdad92f49c6928e190",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/cultural-calendars.js": "819804fe10ac53afee33dbf65ff2cc8bea1841c32870d9c421b77481caf0cf55"
+  },
+  "sourceHashesAfter": {
+    "mcp/observatory-adapters.mjs": "49b28b9d50f665ab4eaa29a422817ab6643e5a805ac87b85ea08359b21eabe96",
+    "assets/js/core/calendar-search.js": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/world-events.js": "80ddeadec1c64ddeced6795d537dfa9a39c3b64581ab6354a6d8f44054582c81",
+    "assets/data/world-events.json": "182e0780a7711bc3b178081194337cfd864afefc1f64c57224d72b58de8be4fc",
+    "assets/js/core/sigil-design.js": "db83e4f81a6f17c447275068806d42cb39ff1f08ef8af8bdad92f49c6928e190",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/cultural-calendars.js": "819804fe10ac53afee33dbf65ff2cc8bea1841c32870d9c421b77481caf0cf55"
+  },
+  "unchangedDuringReview": true,
+  "initialProbeCorrection": "The first temporary probe expected a generic GAP code. The product correctly returned NONEXISTENT_TIME; the test expectation was corrected, with no product change.",
+  "passed": 60,
+  "failed": 0,
+  "receipts": [
+    {
+      "name": "calendar gregory:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar gregory:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar gregory:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar julian:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar julian:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar julian:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar hebrew:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar hebrew:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar hebrew:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar hebrew:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar islamic-civil:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar islamic-civil:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar islamic-civil:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar islamic-civil:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar islamic-umalqura:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar islamic-umalqura:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar islamic-umalqura:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar islamic-umalqura:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar chinese:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar chinese:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar chinese:relatedYear optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar chinese:yearName optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar buddhist:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar buddhist:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar buddhist:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar buddhist:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar indian:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar indian:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar indian:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar indian:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar persian:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar persian:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar persian:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar persian:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar coptic:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar coptic:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar coptic:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar coptic:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar ethiopic:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar ethiopic:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar ethiopic:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar ethiopic:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar japanese:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar japanese:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar japanese:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar japanese:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar roc:month optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar roc:day optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar roc:year optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "calendar roc:era optimized/brute parity and exact match",
+      "status": "pass"
+    },
+    {
+      "name": "combined all lunar criteria, weekday, Hebrew month, rule filter AND/OR parity",
+      "status": "pass"
+    },
+    {
+      "name": "polar unavailable-rule query returns missingness rather than agreement",
+      "status": "pass"
+    },
+    {
+      "name": "Apia skipped day remains unavailable despite impossible prefilter",
+      "status": "pass"
+    },
+    {
+      "name": "31 days allowed and 32 rejected across leap month",
+      "status": "pass"
+    },
+    {
+      "name": "more than16combinedcriteria rejects before evaluation",
+      "status": "pass"
+    },
+    {
+      "name": "world event freshness preserves before-review clock",
+      "status": "pass"
+    },
+    {
+      "name": "world event precision has no synthesized instant",
+      "status": "pass"
+    },
+    {
+      "name": "sigil intention default omits observer, opt-in reveals it",
+      "status": "pass"
+    },
+    {
+      "name": "sigil planetary default omits observer, opt-in reveals it",
+      "status": "pass"
+    },
+    {
+      "name": "sigil mandala default omits observer, opt-in reveals it",
+      "status": "pass"
+    }
+  ]
+}

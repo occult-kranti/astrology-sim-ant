@@ -33,6 +33,33 @@ try{
   assert.equal(atlas.result.structuredContent.data.context.dateISO,'2026-10-29T12:00:00.000Z');
   assert.deepEqual(JSON.parse(atlas.result.content.find(c=>c.type==='text').text),atlas.result.structuredContent);
   assert.equal(listed.result.tools.find(t=>t.name==='workbench_calendar_atlas').annotations.readOnlyHint,true);
+  const skyArgs={dateISO:'2026-10-30T12:00:00Z',lat:51.5,lon:0,timeZone:'Europe/London'};
+  for(const [index,name,args] of [
+    [11,'workbench_sky_snapshot',{...skyArgs,bodyIds:['Mars','Jupiter'],includeCatalogStars:false}],
+    [12,'workbench_sky_timeline',{centerISO:skyArgs.dateISO,timeZone:'UTC',yearsBefore:0,yearsAfter:1,stepDays:30,bodyIds:['Mars']}],
+    [13,'workbench_calendar_alignment',{...skyArgs,variantIds:['gregory','vedic-solar'],comparisonTimeZone:'America/New_York'}],
+    [14,'workbench_sky_interpretation',{...skyArgs,planet:'Moon',lensIds:['lilly'],includeObserver:false}],
+    [15,'workbench_source_search',{query:'same-sign combustion cazimi',limit:2}],
+    [16,'workbench_tool_guide',{capabilityId:'profections'}],
+    [17,'workbench_calc_profections',{date:skyArgs.dateISO,lat:51.5,lon:0,age:24}],
+  ]) {
+    const response=await rpc({jsonrpc:'2.0',id:index,method:'tools/call',params:{name,arguments:args}});
+    assert.equal(response.result?.isError,undefined,`${name}: ${JSON.stringify(response)}`);
+    assert.equal(response.result.structuredContent.tool,name);
+    assert.deepEqual(JSON.parse(response.result.content.find(c=>c.type==='text').text),response.result.structuredContent);
+    assert.equal(listed.result.tools.find(t=>t.name===name).annotations.readOnlyHint,true);
+  }
+  const invalidSky=await rpc({jsonrpc:'2.0',id:18,method:'tools/call',params:{name:'workbench_sky_snapshot',arguments:{...skyArgs,bodyIds:['Mars','Mars']}}});
+  assert.ok(invalidSky.error||invalidSky.result?.isError);
+  const dailySearch=await rpc({jsonrpc:'2.0',id:19,method:'tools/call',params:{name:'workbench_calendar_search',arguments:{startDate:'2026-10-29',endDate:'2026-10-31',sampleTime:'12:00',observer:{lat:51.5,lon:0,timeZone:'Europe/London'}}}});
+  assert.equal(dailySearch.result?.isError,undefined,JSON.stringify(dailySearch));
+  assert.equal(dailySearch.result.structuredContent.data.result.counts.processed,3);
+  assert.equal(dailySearch.result.structuredContent.data.result.hits.length,3);
+  assert.deepEqual(JSON.parse(dailySearch.result.content.find(c=>c.type==='text').text),dailySearch.result.structuredContent);
+  const oracle=await rpc({jsonrpc:'2.0',id:20,method:'tools/call',params:{name:'workbench_iching',arguments:{throws:[6,7,8,9,7,8]}}});
+  assert.equal(oracle.result?.isError,undefined,JSON.stringify(oracle));
+  assert.equal(oracle.result.structuredContent.tool,'workbench_iching');
+  assert.ok(oracle.result.structuredContent.data.result);
   const resource=await rpc({jsonrpc:'2.0',id:5,method:'resources/read',params:{uri:'workbench://methods'}});
   assert.equal(JSON.parse(resource.result.contents[0].text).limits.scanSamples,256);
   assert.equal((await handler.fetch(req(init,{url:'http://evil.example/mcp'}))).status,403);
@@ -78,5 +105,12 @@ try{
   assert.equal(atlas.result.structuredContent.data.rows.length,1);
   assert.equal(atlas.result.structuredContent.data.rows[0].id,'gregory');
   assert.deepEqual(JSON.parse(atlas.result.content.find(c=>c.type==='text').text),atlas.result.structuredContent);
+  const source=await send({jsonrpc:'2.0',id:6,method:'tools/call',params:{name:'workbench_source_search',arguments:{query:'Agrippa planetary hours',limit:2}}});
+  assert.ok(source.result.structuredContent.data.rows.some(r=>r.id==='SKY-CH-AGRIPPA-HOURS'));
+  const dignity=await send({jsonrpc:'2.0',id:7,method:'tools/call',params:{name:'workbench_calc_essential_dignity',arguments:{planet:'Sun',lon:10,isDay:true}}});
+  assert.equal(dignity.result.structuredContent.data.capabilityId,'essential-dignity');
+  const asyncSearch=await send({jsonrpc:'2.0',id:8,method:'tools/call',params:{name:'workbench_calendar_search',arguments:{startDate:'2026-10-30',endDate:'2026-10-30',sampleTime:'12:00',observer:{lat:51.5,lon:0,timeZone:'Europe/London'}}}});
+  assert.equal(asyncSearch.result?.isError,undefined,JSON.stringify(asyncSearch));
+  assert.equal(asyncSearch.result.structuredContent.data.result.counts.processed,1);
   console.log('PASS stdio initialize/list/call with real child-process protocol');
 }finally{child.stdin.end();child.kill('SIGTERM');}

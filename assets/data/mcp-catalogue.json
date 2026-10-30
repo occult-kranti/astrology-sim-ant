@@ -6,8 +6,3807 @@
   "authentication": "Private Sites OAuth; use the provisioned Astrologer’s Workbench MCP plugin.",
   "staticPageIsMcpServer": false,
   "catalogueScope": "Current repository source; local stdio/HTTP tools. Remote backend may run an earlier revision.",
-  "remoteToolAvailability": "Not reverified for this branch. Previously deployed backend exposed 11 tools; comparison, outlook, guidance explanation and calendar atlas require backend deployment and an authenticated tools/list check.",
+  "remoteToolAvailability": "Not reverified for this branch. The previously deployed backend exposed 11 tools. This catalogue includes newer calculation, calendar, sky, interpretation and source tools; each requires backend deployment and an authenticated tools/list check before remote availability can be claimed.",
   "tools": [
+    {
+      "name": "workbench_calc_positions",
+      "description": "Cast the figure (positions, angles, houses). Strict stateless adapter of castChart; Geocentric apparent ecliptic longitudes of the 7 planets + nodes, the Ascendant/MC and the (Regiomontanus) house cusps, day/night sect, and the Part of Fortune, for a moment & place. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing. ISO datetime (UTC)",
+            "maxLength": 40
+          },
+          "lat": {
+            "type": "number",
+            "description": "latitude °",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "description": "longitude °",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ],
+            "maxLength": 2000
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          }
+        },
+        "required": [
+          "date",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_essential_dignity",
+      "description": "Essential dignity. Strict stateless adapter of essentialDignity; A planet’s strength by sign & degree — domicile (+5), exaltation (+4), triplicity (+3), term (+2), face (+1), detriment (−5), fall (−4) or peregrine (−5) — and the net ledger. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "planet": {
+            "type": "string",
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mercury",
+              "Venus",
+              "Mars",
+              "Jupiter",
+              "Saturn"
+            ],
+            "maxLength": 2000
+          },
+          "lon": {
+            "type": "number",
+            "description": "ecliptic longitude 0–360",
+            "minimum": 0,
+            "maximum": 360
+          },
+          "isDay": {
+            "type": "boolean",
+            "description": "day chart?"
+          }
+        },
+        "required": [
+          "planet",
+          "lon",
+          "isDay"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_almuten",
+      "description": "Almuten of a degree. Strict stateless adapter of almuten; The planet with the most essential dignity at a longitude — the “victor” of that degree (e.g. the almuten of the Ascendant). Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lon": {
+            "type": "number",
+            "description": "ecliptic longitude 0–360",
+            "minimum": 0,
+            "maximum": 360
+          },
+          "isDay": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "lon",
+          "isDay"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_planetary_hours",
+      "description": "Planetary day & hour. Strict stateless adapter of planetaryHour; The ruler of the planetary day & of the current unequal hour (Chaldean order, beginning at sunrise with the lord of the weekday) for a moment & place. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing. ISO datetime (UTC)",
+            "maxLength": 40
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ],
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "date",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_profections",
+      "description": "Annual profection & Lord of the Year. Strict stateless adapter of annualProfection; The annual profection (a ℤ/12 advance of the Ascendant by age), the activated house, and the Lord of the Year (the annual time-lord) with its natal condition. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "age": {
+            "type": "integer",
+            "description": "completed years",
+            "minimum": 0,
+            "maximum": 150
+          },
+          "date": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ],
+            "maxLength": 2000
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          }
+        },
+        "required": [
+          "age",
+          "date",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_life_trajectory",
+      "description": "Life trajectory (the whole arc). Strict stateless adapter of lifeTrajectory; One composed natal reading across a life: natal signatures, the year-by-year profection timeline & Lord of the Year, primary directions, the solar return, and a personalised Picatrix overlay. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "currentDate": {
+            "type": "string",
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing. ISO datetime (UTC)",
+            "maxLength": 40
+          },
+          "date": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ],
+            "maxLength": 2000
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          }
+        },
+        "required": [
+          "date",
+          "lat",
+          "lon",
+          "currentDate"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_lunar_mansions",
+      "description": "The 28 Mansions of the Moon. Strict stateless adapter of mansionOf; The Moon’s mansion (one of 28 equal 12.857° divisions of her path) and its traditional magical use, for a longitude. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lon": {
+            "type": "number",
+            "description": "the Moon’s ecliptic longitude",
+            "minimum": 0,
+            "maximum": 360
+          }
+        },
+        "required": [
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_decan_faces",
+      "description": "The 36 decan faces. Strict stateless adapter of faceOf; The decan face (one of 36 ten-degree thirds of the signs), its Chaldean ruler and its talismanic image, for a longitude. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lon": {
+            "type": "number",
+            "description": "ecliptic longitude",
+            "minimum": 0,
+            "maximum": 360
+          }
+        },
+        "required": [
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_election",
+      "description": "Election — is this moment fit?. Strict stateless adapter of electionScore; For a chosen aim, every testimony the tradition weighs (the planetary hour, the ruler’s dignity & affliction, the Moon’s phase/condition/mansion/dispositor, malefics on angles, fixed-star contacts) reduced to a cited green/amber/red verdict. rankNow scores all aims; findNextElection scans forward for windows. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operationKey": {
+            "type": "string",
+            "enum": [
+              "love",
+              "wealth",
+              "honour",
+              "knowledge",
+              "journey",
+              "victory",
+              "healing",
+              "protection",
+              "binding",
+              "banishing",
+              "endings"
+            ],
+            "description": "the aim",
+            "maxLength": 2000
+          },
+          "date": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ],
+            "maxLength": 2000
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          }
+        },
+        "required": [
+          "operationKey",
+          "date",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_talisman",
+      "description": "Talisman recipe. Strict stateless adapter of talismanRecipe; For an aim & moment, the full historical talisman record: the election verdict, the ruling planet’s correspondences (suffumigation, colour, metal, stone, spirit-names), the Moon’s mansion, the decan face & image, any fixed-star contact, the design, and the cited ATTESTED SEQUENCE — what the sources record, in the third person and attributed, never a step addressed to the reader. Historical practice — described, never prescribed. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operationKey": {
+            "type": "string",
+            "enum": [
+              "love",
+              "wealth",
+              "honour",
+              "knowledge",
+              "journey",
+              "victory",
+              "healing",
+              "protection",
+              "binding",
+              "banishing",
+              "endings"
+            ],
+            "description": "the aim",
+            "maxLength": 2000
+          },
+          "date": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ],
+            "maxLength": 2000
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          }
+        },
+        "required": [
+          "operationKey",
+          "date",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_confluence_atlas",
+      "description": "The Great Confluence — cross-tradition atlas. Strict stateless adapter of layoutConfluence; The Great Confluence wing’s geometry & query engine over 190 cited entries (texts, people, events, translations, institutions) across nine traditions on one era-warped vertical time axis, plus their documented transmission edges. layoutConfluence positions lanes, collision-stacks nodes into sub-track rows and builds vertical-tangent Bézier edge paths; timeScale is the piecewise-linear era-warp (30→380 px/century, disclosed on the map); filterEntries selects visible slugs by lane/kind/label/century/text/crossings-only; threadFrom walks a deterministic chronological chain of transmissions; entryBySlug hydrates a record; confluenceStats aggregates. The atlas plots INFLUENCE (who demonstrably read/rendered/answered/absorbed whom) — never doctrinal validity; contested points keep both positions, never resolved. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "yearFrom": {
+            "type": "integer",
+            "description": "earliest year to include (BCE negative, e.g. -300)",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "yearTo": {
+            "type": "integer",
+            "description": "latest year to include",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "lane": {
+            "type": "string",
+            "enum": [
+              "christian",
+              "alchemy-west",
+              "kabbalah",
+              "islamic",
+              "confluence",
+              "yoga-vedanta",
+              "tantra-rasa",
+              "buddhist",
+              "daoist"
+            ],
+            "description": "restrict to one tradition lane",
+            "maxLength": 2000
+          },
+          "label": {
+            "type": "string",
+            "enum": [
+              "documented",
+              "disputed",
+              "debunked",
+              "conspiracy"
+            ],
+            "description": "epistemic label filter",
+            "maxLength": 2000
+          },
+          "q": {
+            "type": "string",
+            "description": "free-text search across title/body/place/sources",
+            "maxLength": 2000
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_era_legis",
+      "description": "Era Legis — the Thelemic Anno date-stamp. Strict stateless adapter of eraLegis; Aleister Crowley's Thelemic calendar notation for a moment: the {docosade}{year} Roman-numeral 'Anno', counted from the 1904 vernal equinox in 22-year cycles, plus the ☉/☽ sign stamp. The contested year-start (exact equinox vs March 20) is exposed both ways. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing. ISO datetime (UTC)",
+            "maxLength": 40
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "exact",
+              "march20"
+            ],
+            "description": "year-start convention (default: exact vernal-equinox instant)",
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "date"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_liber_resh_stations",
+      "description": "Liber Resh — the four solar stations. Strict stateless adapter of solarStations; The four solar moments — sunrise, solar noon (upper culmination), sunset and solar midnight (lower culmination) — for a date & place, each paired with the adoration name Liber Resh vel Helios (1911) assigns (Ra/Ahathoor/Tum/Khephra). Rise/set reused from the planetary-hours engine; the names are cited historical data. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing. ISO datetime (UTC)",
+            "maxLength": 40
+          },
+          "lat": {
+            "type": "number",
+            "description": "latitude °",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "description": "longitude °",
+            "minimum": -180,
+            "maximum": 180
+          }
+        },
+        "required": [
+          "date",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_yoga_detector",
+      "description": "Yoga detector (data-driven, contested-aware). Strict stateless adapter of detectYogas; The 36 classical yoga rules of core/data/yoga-rules.js evaluated against a castVedic() reading — the Pañca-Mahāpuruṣa five, the solar/lunar flanking sets, Gaja-Kesarī, Adhi, Amala, Śakaṭa, Lakṣmī, the Vipreet trio (Harṣa/Sarala/Vimala), Nīca-bhaṅga, the Rāja and Dhana combinations, the three Parivartana classes, Kendrādhipati doṣa and the modern Kāla-Sarpa. Returns, PER RULE, a status (met/conditional/not-met) and the outcome of EVERY condition. It NEVER reduces a contested yoga to a single boolean: where a rule is contested it is reported \"conditional\" and every position is surfaced (mechanically evaluated where checkable — Gaja-Kesarī bare vs conditioned, Kāla-Sarpa sign- vs degree-based, Nīca-bhaṅga’s three texts — carried verbatim where prose-only). Historical doctrine, described never prescribed; no demonstrated validity. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ],
+            "maxLength": 2000
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          },
+          "referenceDate": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "ISO instant with Z or explicit ±HH:MM offset; study years −1999…3000. No date-only or host-zone parsing. Evaluation instant for running periods/practice; defaults to current context chart date, then the supplied chart date. Never the machine clock."
+          },
+          "kendraAlsoFromMoon": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "date",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_bhava_phala",
+      "description": "Planet-in-bhāva delineation corpus (two witnesses). Strict stateless adapter of bhavaPhala; The U5/T17 delineation reference: 108 records (9 grahas × 12 bhāvas), TWO witnesses kept side by side and never merged — Phaladīpikā ch. 8 (the backbone, all nine grahas) and Sārāvalī ch. 30 (Kalyāṇavarman, Sun through Saturn only; the Rāhu/Ketu records are single-witness with an honest absence note). Each record carries both loci, the agreement class (agree/partial/contradict/null), a contradictionNote where they diverge, a sensitiveNote on harsh deterministic claims, and per-record citations. The harsh judgments are reproduced unsoftened for fidelity; the system has no demonstrated validity and nothing here describes any actual person. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "graha": {
+            "type": "string",
+            "description": "Sun…Saturn, Rahu, Ketu",
+            "maxLength": 2000,
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mercury",
+              "Venus",
+              "Mars",
+              "Jupiter",
+              "Saturn",
+              "Rahu",
+              "Ketu"
+            ]
+          },
+          "bhava": {
+            "type": "integer",
+            "description": "house 1–12",
+            "minimum": 1,
+            "maximum": 12
+          }
+        },
+        "required": [
+          "graha",
+          "bhava"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calc_comparison",
+      "description": "The honest comparison (landscape survey). Strict stateless adapter of compareTools; Reference: the surveyed landscape of astrology/divination software — ~30 products (astro.com, Astro-Seek, Solar Fire, JHora, Delphic Oracle, Co-Star…), each dated & sourced with the three honesty axes and a mandatory \"what it does better than this site\" list; the honest feature matrix; and the 11 verifiable novelty claims. Every fact carries its survey date; quote it. Explicit inputs only; no saved browser context.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "a competitor id (e.g. \"solar-fire\"); omit for the survey summary",
+            "maxLength": 2000
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "western",
+              "vedic",
+              "traditional",
+              "oracle",
+              "kabbalah",
+              "teaching",
+              "atlas",
+              "ai"
+            ],
+            "description": "list one category",
+            "maxLength": 2000
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_transits",
+      "description": "Find transits, stations and ingresses to a recomputed natal chart. At most730 days; a selected Moon limits the window to62 days. Returned event arrays have an explicit cap/count; results are numerical crossings, not guaranteed outcomes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "startISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          },
+          "endISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          },
+          "bodyIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Sun",
+                "Moon",
+                "Mercury",
+                "Venus",
+                "Mars",
+                "Jupiter",
+                "Saturn"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 7,
+            "uniqueItems": true
+          },
+          "natalPoints": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Sun",
+                "Moon",
+                "Mercury",
+                "Venus",
+                "Mars",
+                "Jupiter",
+                "Saturn",
+                "NorthNode",
+                "SouthNode",
+                "Fortune",
+                "Ascendant",
+                "Midheaven",
+                "Descendant",
+                "IC"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 14,
+            "uniqueItems": true
+          },
+          "aspects": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "enum": [
+                0,
+                60,
+                90,
+                120,
+                180
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 5,
+            "uniqueItems": true
+          },
+          "profection": {
+            "type": "boolean"
+          },
+          "maxResults": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 512
+          }
+        },
+        "required": [
+          "birth",
+          "startISO",
+          "endISO"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_synastry",
+      "description": "Compare two explicitly supplied natal charts through Lilly-moiety inter-aspects and house overlays. Includes optional angles; no compatibility probability or inferred relationship.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birthA": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "birthB": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "bodyIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Sun",
+                "Moon",
+                "Mercury",
+                "Venus",
+                "Mars",
+                "Jupiter",
+                "Saturn"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 7,
+            "uniqueItems": true
+          },
+          "includeAngles": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "birthA",
+          "birthB"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_returns",
+      "description": "Find lunar or planetary returns to a recomputed natal longitude in a supplied interval of at most3660 days. Exact requested return-location charts are optional; the medieval monthly-revolution dispute remains explicit.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "startISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          },
+          "endISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          },
+          "body": {
+            "type": "string",
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mercury",
+              "Venus",
+              "Mars",
+              "Jupiter",
+              "Saturn"
+            ]
+          },
+          "castCharts": {
+            "type": "boolean"
+          },
+          "returnObserver": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "includeStart": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "birth",
+          "startISO",
+          "endISO",
+          "body"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_secondary_progressions",
+      "description": "Calculate the inherited day-for-a-tropical-year progression at an explicit evaluation instant, age0–150, with Naibod progressed angles. No alternative progression key is inferred.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "onDateISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          }
+        },
+        "required": [
+          "birth",
+          "onDateISO"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_firdaria",
+      "description": "Calculate the75-year Persian period sequence and the active major/subperiod at an explicit date. Sect is recomputed from the natal Sun’s geometric horizon; night-node order is explicit. Julian365.25-day model years, age0–150.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "onDateISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          },
+          "nightNodes": {
+            "type": "string",
+            "enum": [
+              "end",
+              "afterMars"
+            ]
+          }
+        },
+        "required": [
+          "birth",
+          "onDateISO"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_zodiacal_releasing",
+      "description": "Calculate Valens-style releasing from a recomputed Fortune or Spirit lot, with explicit sect reversal. Returns bounded L1/L2 periods and the period active at an explicit instant; max150 real Julian years,360-day distribution years.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "onDateISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          },
+          "lot": {
+            "type": "string",
+            "enum": [
+              "fortune",
+              "spirit"
+            ]
+          },
+          "sectAware": {
+            "type": "boolean"
+          },
+          "maxYears": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 150
+          }
+        },
+        "required": [
+          "birth",
+          "onDateISO",
+          "lot"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_cycles",
+      "description": "Calculate Jupiter–Saturn longitude conjunctions and triplicity runs over at most100 Julian years. Optional mean doctrinal series and a separately dated global-eclipse study keep geometric, mean and historical layers distinct.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "startISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          },
+          "endISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          },
+          "includeMeanSeries": {
+            "type": "boolean"
+          },
+          "eclipseDateISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+          }
+        },
+        "required": [
+          "startISO",
+          "endISO"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_directions",
+      "description": "Calculate simplified zodiacal directions to Ascendant/MC using explicit Naibod or Ptolemy key and an age horizon up to150. This is not rigorous mundane primary direction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "key": {
+            "type": "string",
+            "enum": [
+              "naibod",
+              "ptolemy"
+            ]
+          },
+          "maxYears": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 150
+          }
+        },
+        "required": [
+          "birth"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_solar_return",
+      "description": "Solve the tropical solar revolution in an explicitly selected later calendar year and cast its chart at a supplied return observer or the explicitly supplied natal place. Selectedyear must be after birthyear and within150years/1900–2100.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 1900,
+            "maximum": 2100
+          },
+          "returnObserver": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "birth",
+          "year"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_rectification",
+      "description": "Run the contested Animodar and Trutine explanations on an already-known exact natal input. Animodar scans±4hours in one-minute increments; Trutine assumes273days gestation. Neither establishes a factual birth or conception time.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "birth"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_handcalc",
+      "description": "Explain manual sidereal-time arithmetic, planetary interpolation and a bounded engine-generated table-of-houses demonstration for an explicit instant. Returns book/exact comparisons and unavailable table states; no printed ephemeris is fabricated.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "moment": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "rate": {
+            "type": "number",
+            "enum": [
+              10,
+              9.8565
+            ]
+          },
+          "ephemerisDays": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7
+          },
+          "bodyIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Sun",
+                "Moon",
+                "Mercury",
+                "Venus",
+                "Mars",
+                "Jupiter",
+                "Saturn"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 7,
+            "uniqueItems": true
+          },
+          "tableSystem": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          }
+        },
+        "required": [
+          "moment"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_horary_judgement",
+      "description": "Recompute a horary chart and expose the inherited house/topic judgment, significators, modes of perfection and timing with explicit querent/quesited houses and optional topic sense. Historical attribution only, never a factual answer or prognosis.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "moment": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or numeric UTC offset. Exact time must be known; no local-time inference."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "quesitedHouse": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "querentHouse": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "sense": {
+            "type": "string",
+            "enum": [
+              "affirms",
+              "contact",
+              "inverted"
+            ]
+          }
+        },
+        "required": [
+          "moment",
+          "quesitedHouse"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_kp",
+      "description": "Inspect the exact 249-row KP subdivision table, a supplied sidereal longitude, an explicit horary number or freshly computed chart significators. The chart uses the existing Lahiri/whole-sign/mean-node approximation, not full KP Placidus/true-node equivalence. No chart or number is inferred.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "table",
+              "longitude",
+              "horary-number",
+              "chart"
+            ]
+          },
+          "siderealLongitude": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 360
+          },
+          "horaryNumber": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 249
+          },
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1
+          }
+        },
+        "required": [
+          "mode"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_prasna",
+      "description": "Calculate the existing source-labelled Praśna rule ledger from an explicit moment and whole-sign sidereal chart. Optional horary number/direction must be supplied. Counts are historical testimonies, never an answer, probability or real-world recommendation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1
+          },
+          "quesitedHouse": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "kpNumber": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 249
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "east",
+              "south-east",
+              "south",
+              "south-west",
+              "west",
+              "north-west",
+              "north",
+              "north-east"
+            ]
+          },
+          "question": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_muhurta",
+      "description": "Calculate the complete inherited 30-slot Muhūrta day, avoided-kāla tables, instantaneous Pañcāṅga screens and optional overlap timeline. Uses the existing local-mean-solar weekday; IANA zone is display context only. Unresolved opening-portion rules are not safe/unsafe interval predictions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1
+          },
+          "includeTimeline": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_shatkarman",
+      "description": "Read the existing Ṣaṭkarman historical timing/correspondence record for one explicitly selected act and moment. Read-only cultural description; no instructions, ritual execution, efficacy claim or recommendation. Conflicting timing schemes remain visible and polar intervals unavailable.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1
+          },
+          "act": {
+            "type": "string",
+            "enum": [
+              "santi",
+              "vasya",
+              "stambhana",
+              "vidvesana",
+              "uccatana",
+              "marana"
+            ]
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone",
+          "act"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_tajika",
+      "description": "Calculate the existing Tājika sidereal solar return, annual chart, munthā, year-lord dispute, aspects, yogas and sahams from an explicit known birth instant. Target 1901–2099 after birth year, at most 150 years; optional explicit relocated observer. No unknown birth time or pre-birth return is inferred.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "maxLength": 40,
+                "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "targetYear": {
+            "type": "integer",
+            "minimum": 1901,
+            "maximum": 2099
+          },
+          "annualObserver": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              }
+            },
+            "required": [
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "birth",
+          "targetYear"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_tithi_pravesha",
+      "description": "Compute an annual solar/soli-lunar tithi return or 1–12 monthly returns from an explicit known birth. Preserve all annual candidates and ambiguity. Modern Rath/Rao lineage, not a classical BPHS rule. Annual target 1901–2099 after birth year; same birthplace. Internal weekday is UTC and hora uses mean-solar convention, explicitly distinct from civil-zone labels.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "maxLength": 40,
+                "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "annual",
+              "monthly"
+            ]
+          },
+          "targetYear": {
+            "type": "integer",
+            "minimum": 1901,
+            "maximum": 2099
+          },
+          "monthRule": {
+            "type": "string",
+            "enum": [
+              "solar",
+              "soliLunar"
+            ]
+          },
+          "fromISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+          },
+          "months": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          }
+        },
+        "required": [
+          "birth",
+          "mode"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_kuta",
+      "description": "Calculate the named aṣṭakūṭa and/or ten-porutham historical tables from two explicitly known birth instants and canonical sidereal Moons. Preserve source-specific groom/bride orientation and contested variants. Scores are not relationship compatibility, personal value or advice; missing Sagittarius-table completion stays unavailable.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "groom": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "maxLength": 40,
+                "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "bride": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "maxLength": 40,
+                "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "ashtakuta",
+              "porutham10",
+              "both"
+            ]
+          },
+          "variantSet": {
+            "type": "string",
+            "enum": [
+              "saravali",
+              "common"
+            ]
+          },
+          "vashyaSagCompletion": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "groom",
+          "bride"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_moments",
+      "description": "Scan the existing separate Western election, planetary-hour, Muhūrta and Pañcāṅga columns on an explicit finite UTC grid. At most 168 hours / 256 samples; the step must divide the horizon exactly. No combined agreement score or safe-time inference. Legacy mean-solar timing convention remains disclosed; IANA zone labels context only.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fromISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO date-time with Z or offset; selected UTC and civil years 1900–2100. Unknown time is not inferred."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1
+          },
+          "hoursAhead": {
+            "type": "number",
+            "minimum": 0.016666666666666666,
+            "maximum": 168
+          },
+          "stepMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1440
+          },
+          "operationKey": {
+            "type": "string",
+            "enum": [
+              "love",
+              "wealth",
+              "honour",
+              "knowledge",
+              "journey",
+              "victory",
+              "healing",
+              "protection",
+              "binding",
+              "banishing",
+              "endings"
+            ]
+          }
+        },
+        "required": [
+          "fromISO",
+          "lat",
+          "lon",
+          "timeZone",
+          "hoursAhead"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_geomancy",
+      "description": "Reproduce a geomantic shield and inherited house judgment from exactly sixteen caller-supplied positive tally counts. Never draws or invents marks. Explicit topic house; optional querent house. Historical symbolic judgment is not an outcome prediction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tallies": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000000
+            },
+            "minItems": 16,
+            "maxItems": 16,
+            "uniqueItems": false
+          },
+          "quesitedHouse": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "querentHouse": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          }
+        },
+        "required": [
+          "tallies",
+          "quesitedHouse"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_tarot",
+      "description": "Read an explicitly supplied named Tarot spread through the existing deck and elemental-dignity engine. Cards must be distinct and exactly match the selected spread count; each reversal must be a boolean. No shuffle or random card selection. Future/outcome position names describe the inherited symbolic spread, not validated future events.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "spreadKey": {
+            "type": "string",
+            "enum": [
+              "single",
+              "three",
+              "horseshoe",
+              "celticCross"
+            ]
+          },
+          "draws": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "enum": [
+                    "the-fool",
+                    "the-magician",
+                    "the-high-priestess",
+                    "the-empress",
+                    "the-emperor",
+                    "the-hierophant",
+                    "the-lovers",
+                    "the-chariot",
+                    "strength",
+                    "the-hermit",
+                    "wheel-of-fortune",
+                    "justice",
+                    "the-hanged-man",
+                    "death",
+                    "temperance",
+                    "the-devil",
+                    "the-tower",
+                    "the-star",
+                    "the-moon",
+                    "the-sun",
+                    "judgement",
+                    "the-world",
+                    "wands-ace",
+                    "wands-two",
+                    "wands-three",
+                    "wands-four",
+                    "wands-five",
+                    "wands-six",
+                    "wands-seven",
+                    "wands-eight",
+                    "wands-nine",
+                    "wands-ten",
+                    "wands-page",
+                    "wands-knight",
+                    "wands-queen",
+                    "wands-king",
+                    "cups-ace",
+                    "cups-two",
+                    "cups-three",
+                    "cups-four",
+                    "cups-five",
+                    "cups-six",
+                    "cups-seven",
+                    "cups-eight",
+                    "cups-nine",
+                    "cups-ten",
+                    "cups-page",
+                    "cups-knight",
+                    "cups-queen",
+                    "cups-king",
+                    "swords-ace",
+                    "swords-two",
+                    "swords-three",
+                    "swords-four",
+                    "swords-five",
+                    "swords-six",
+                    "swords-seven",
+                    "swords-eight",
+                    "swords-nine",
+                    "swords-ten",
+                    "swords-page",
+                    "swords-knight",
+                    "swords-queen",
+                    "swords-king",
+                    "pentacles-ace",
+                    "pentacles-two",
+                    "pentacles-three",
+                    "pentacles-four",
+                    "pentacles-five",
+                    "pentacles-six",
+                    "pentacles-seven",
+                    "pentacles-eight",
+                    "pentacles-nine",
+                    "pentacles-ten",
+                    "pentacles-page",
+                    "pentacles-knight",
+                    "pentacles-queen",
+                    "pentacles-king"
+                  ]
+                },
+                "reversed": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "reversed"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "uniqueItems": false
+          }
+        },
+        "required": [
+          "spreadKey",
+          "draws"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_iching",
+      "description": "Reproduce a Yijing reading from exactly six caller-supplied three-coin line values, ordered bottom to top: 6 old yin, 7 young yang, 8 young yin, 9 old yang. Calculates primary, changing, nuclear and relating hexagrams. Does not toss coins; received symbolic meanings are not predictions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "throws": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 6,
+              "maximum": 9
+            },
+            "minItems": 6,
+            "maxItems": 6,
+            "uniqueItems": false
+          }
+        },
+        "required": [
+          "throws"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_runes",
+      "description": "Read explicit distinct Elder Futhark stave indices (0–23) in the selected one- or three-draw method. Never chooses staves or adds a blank rune. Preserves medieval poem material, modern meaning labels and the disputed Tacitus connection.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "indices": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 23
+            },
+            "minItems": 1,
+            "maxItems": 3,
+            "uniqueItems": true
+          },
+          "methodId": {
+            "type": "string",
+            "enum": [
+              "tacitus",
+              "single",
+              "three"
+            ]
+          }
+        },
+        "required": [
+          "indices",
+          "methodId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_jung",
+      "description": "Compute the inherited Jung/post-Jungian symbolic reading from an explicit moment and a freshly calculated chart. Optional explicit partner moment adds conjunction/opposition synastry; optional aeon clock retains its equal-sign/Lahiri and competing-date qualifications. No supplied charts, psychological diagnosis, inferred birth data or random marriage experiment.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 40,
+            "description": "Explicit ISO datetime with Z or UTC offset, never an implicit local clock."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "partner": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 20,
+                "maxLength": 40,
+                "description": "Explicit ISO datetime with Z or UTC offset, never an implicit local clock."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon"
+            ],
+            "additionalProperties": false
+          },
+          "synastryOrb": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 15
+          },
+          "includeAeonClock": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_source_lookup",
+      "description": "Return one existing source-labelled catalogue record by its exact capability and key: picatrix-prayers or planet-images use a traditional planet name; mansion-images uses a string number 1–28; worked-charts uses stolen-fish, ship-at-sea, marriage or dog. Static historical study lookup, not a newly calculated election, ritual instruction or verified outcome.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "capabilityId": {
+            "type": "string",
+            "enum": [
+              "picatrix-prayers",
+              "mansion-images",
+              "planet-images",
+              "worked-charts"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mercury",
+              "Venus",
+              "Mars",
+              "Jupiter",
+              "Saturn",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10",
+              "11",
+              "12",
+              "13",
+              "14",
+              "15",
+              "16",
+              "17",
+              "18",
+              "19",
+              "20",
+              "21",
+              "22",
+              "23",
+              "24",
+              "25",
+              "26",
+              "27",
+              "28",
+              "stolen-fish",
+              "ship-at-sea",
+              "marriage",
+              "dog"
+            ]
+          }
+        },
+        "required": [
+          "capabilityId",
+          "id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calendar_search",
+      "description": "Search up to 31 civil dates using the existing brute-force or optimized calendar engine. Explicit local sample clock and observer required. Filters are ANDed; values within each filter are ORed. Missing/fold/gap samples and rule-count limits remain visible. Rankings describe named historical rules, not event predictions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 10
+          },
+          "endDate": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 10
+          },
+          "sampleTime": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 8
+          },
+          "observer": {
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "prayerMethod": {
+                "type": "string",
+                "enum": [
+                  "MuslimWorldLeague",
+                  "NorthAmerica",
+                  "Egyptian",
+                  "Karachi",
+                  "UmmAlQura",
+                  "MoonsightingCommittee",
+                  "Turkey"
+                ]
+              },
+              "asr": {
+                "type": "string",
+                "enum": [
+                  "Shafi",
+                  "Hanafi"
+                ]
+              },
+              "highLatitude": {
+                "type": "string",
+                "enum": [
+                  "MiddleOfTheNight",
+                  "SeventhOfTheNight",
+                  "TwilightAngle"
+                ]
+              }
+            },
+            "required": [
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 6
+            },
+            "minItems": 1,
+            "maxItems": 7
+          },
+          "lunarFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "enum": [
+                    "phaseIndex",
+                    "tithi",
+                    "karana",
+                    "nakshatra",
+                    "yoga"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 60
+                  },
+                  "minItems": 1,
+                  "maxItems": 60
+                }
+              },
+              "required": [
+                "field",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1,
+            "maxItems": 5
+          },
+          "calendarFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "calendar": {
+                  "type": "string",
+                  "enum": [
+                    "gregory",
+                    "julian",
+                    "hebrew",
+                    "islamic-civil",
+                    "islamic-umalqura",
+                    "chinese",
+                    "buddhist",
+                    "indian",
+                    "persian",
+                    "coptic",
+                    "ethiopic",
+                    "japanese",
+                    "roc"
+                  ]
+                },
+                "field": {
+                  "type": "string",
+                  "enum": [
+                    "day",
+                    "month",
+                    "year",
+                    "era",
+                    "relatedYear",
+                    "yearName"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "minItems": 1,
+                  "maxItems": 60
+                }
+              },
+              "required": [
+                "calendar",
+                "field",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1,
+            "maxItems": 16
+          },
+          "ruleFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ruleId": {
+                  "type": "string",
+                  "enum": [
+                    "DG-W-LIGHT",
+                    "DG-W-SPEED",
+                    "DG-W-SOLAR",
+                    "DG-W-VIA",
+                    "DG-W-APPLY-MARS",
+                    "DG-W-APPLY-SATURN",
+                    "DG-J-TITHI",
+                    "DG-J-YOGA",
+                    "DG-J-KARANA",
+                    "DG-J-NAKSHATRA",
+                    "DG-H-TEMPORAL"
+                  ]
+                },
+                "classifications": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "favorable",
+                      "caution",
+                      "neutral",
+                      "unavailable"
+                    ]
+                  },
+                  "minItems": 1,
+                  "maxItems": 4
+                }
+              },
+              "required": [
+                "ruleId",
+                "classifications"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 1,
+            "maxItems": 11
+          },
+          "concurrence": {
+            "type": "object",
+            "properties": {
+              "traditionId": {
+                "type": "string",
+                "enum": [
+                  "western-lilly",
+                  "jyotisha-muhurta"
+                ]
+              },
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "favorable",
+                  "caution"
+                ]
+              },
+              "minimum": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 6
+              }
+            },
+            "required": [
+              "traditionId",
+              "classification",
+              "minimum"
+            ],
+            "additionalProperties": false
+          },
+          "order": {
+            "type": "string",
+            "enum": [
+              "chronological",
+              "concurrence"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "optimized",
+              "brute"
+            ]
+          },
+          "maxResults": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+          }
+        },
+        "required": [
+          "startDate",
+          "endDate",
+          "sampleTime",
+          "observer"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_sigil_design",
+      "description": "Create a deterministic intention sigil, planetary square trace or geometric mandala with an explicit seed and study moment. Returns SVG and a reproducible recipe. Text and observer are omitted from the default recipe; geometry can still encode text. Optional study context echoes the explicitly supplied inputs. Procedural art, not model-generated imagery or a historical-authenticity claim.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "intention",
+              "planetary",
+              "mandala"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 160
+          },
+          "planet": {
+            "type": "string",
+            "enum": [
+              "Saturn",
+              "Jupiter",
+              "Mars",
+              "Sun",
+              "Venus",
+              "Mercury",
+              "Moon"
+            ]
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "latin",
+              "aiq",
+              "hebrew-standard",
+              "hebrew-gadol"
+            ]
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+          },
+          "symmetry": {
+            "type": "integer",
+            "minimum": 3,
+            "maximum": 24
+          },
+          "rings": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 6
+          },
+          "rotation": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 359
+          },
+          "stroke": {
+            "type": "number",
+            "minimum": 0.5,
+            "maximum": 7
+          },
+          "palette": {
+            "type": "string",
+            "enum": [
+              "ink",
+              "rust",
+              "blue"
+            ]
+          },
+          "showGrid": {
+            "type": "boolean"
+          },
+          "moment": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "book": {
+            "type": "string",
+            "enum": [
+              "lilly",
+              "agrippa",
+              "hermetic",
+              "newton"
+            ]
+          },
+          "calendar": {
+            "type": "string",
+            "enum": [
+              "gregory",
+              "julian",
+              "hebrew",
+              "islamic-civil",
+              "islamic-umalqura",
+              "chinese",
+              "buddhist",
+              "indian",
+              "persian",
+              "coptic",
+              "ethiopic",
+              "japanese",
+              "roc"
+            ]
+          },
+          "includeStudyContext": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "mode",
+          "seed",
+          "moment"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_world_events",
+      "description": "Read the curated public-date snapshot in an explicit one-to-six-calendar-month window. Sources, date-only precision, coverage gaps and source-review timestamps are retained. This does not crawl current events or forecast outcomes. Optional assessedAt is an explicit freshness comparison clock.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "referenceDate": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 10
+          },
+          "months": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 6
+          },
+          "country": {
+            "type": "string",
+            "enum": [
+              "all",
+              "AR",
+              "AU",
+              "BR",
+              "CA",
+              "CN",
+              "FR",
+              "DE",
+              "IN",
+              "ID",
+              "IT",
+              "JP",
+              "KR",
+              "MX",
+              "RU",
+              "SA",
+              "ZA",
+              "TR",
+              "GB",
+              "US",
+              "EU",
+              "AFRICAN_UNION",
+              "BG",
+              "GM",
+              "PE",
+              "TW",
+              "NZ",
+              "GLOBAL"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "all",
+              "election",
+              "international-day",
+              "campaign"
+            ]
+          },
+          "includeProvisional": {
+            "type": "boolean"
+          },
+          "assessedAt": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 32
+          }
+        },
+        "required": [
+          "referenceDate"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_behenian_stars",
+      "description": "Calculate canonical conjunction-by-longitude matches between the 15 historical Behenian stars and a freshly cast chart, with a bounded orb. Preserves the inherited approximate 2020 longitude catalogue and linear precession, not full 3D separation or proper motion. Symbolic star natures retain source variants; optional modern Fomalhaut is excluded.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 40,
+            "description": "Explicit ISO date and time with Z or UTC offset; UTC and selected-zone civil year 1900–2100."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "orb": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_natal_topics",
+      "description": "Run the existing twelve-topic Lilly Book III study ledger on a freshly calculated explicit-time chart. Requires a known instant and observer; it does not infer a birth. Retains actual house fallback and legacy dignity conventions, including the unprecessed 1647 fixed-star table. Health, death and other historical topic labels are not personal predictions or assessments.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 40,
+            "description": "Explicit ISO date and time with Z or UTC offset; UTC and selected-zone civil year 1900–2100."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_vedic_graha_bala",
+      "description": "Calculate the actual compound-friendship matrix, whole-sign and degree-graded planetary aspect grid, and contested combustion arcs from a freshly computed canonical sidereal reading. Explicit moment/observer, linear Lahiri estimate, whole-sign houses and mean nodes. These are the three existing graha-bala views, not a new full strength model or personal prediction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 40,
+            "description": "Explicit ISO date and time with Z or UTC offset; UTC and selected-zone civil year 1900–2100."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_printed_chart",
+      "description": "Replay one of the four existing Lilly worked-chart records through chartFromPositions. Only an explicit existing record key is accepted; no arbitrary chart, dates or position rows. Returns inherited position provenance, equal-cusp fallback and mean-motion limitations. This is a historical reconstruction, not a new astronomical cast or independently verified historical outcome.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "stolen-fish",
+              "ship-at-sea",
+              "marriage",
+              "dog"
+            ]
+          }
+        },
+        "required": [
+          "key"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_tool_guide",
+      "description": "Explain a named calculator or reference capability: required inputs, source locators, output, local route and actual MCP/browser support. This is a guide, not a calculated chart or proof that the hosted service is current.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "capabilityId": {
+            "type": "string",
+            "enum": [
+              "positions",
+              "essential-dignity",
+              "accidental-dignity",
+              "almuten",
+              "chart-health",
+              "aspects",
+              "part-of-fortune",
+              "planetary-hours",
+              "moon-condition",
+              "perfection",
+              "profections",
+              "directions",
+              "solar-return",
+              "hyleg",
+              "life-trajectory",
+              "lunar-mansions",
+              "decan-faces",
+              "behenian-stars",
+              "election",
+              "talisman",
+              "full-reading",
+              "vedic",
+              "picatrix-prayers",
+              "mansion-images",
+              "planet-images",
+              "horary-judgement",
+              "worked-charts",
+              "chart-from-positions",
+              "natal-topics",
+              "rectification",
+              "lots",
+              "personalization",
+              "geomancy",
+              "tarot",
+              "iching",
+              "jung",
+              "kameas",
+              "chronology-timeline",
+              "cycles",
+              "secondary-progressions",
+              "firdaria",
+              "zodiacal-releasing",
+              "kp-sublords",
+              "prasna",
+              "muhurta",
+              "shatkarman",
+              "tajika-varshaphala",
+              "tithi-pravesha",
+              "kuta-matching",
+              "moments",
+              "kabbalah",
+              "runes",
+              "yantra",
+              "handcalc",
+              "transits",
+              "synastry",
+              "returns",
+              "yoga-sutras",
+              "buddhist-canon",
+              "practices",
+              "practitioners-library",
+              "great-works",
+              "great-works-east",
+              "confluence-atlas",
+              "viz-scale",
+              "timeline-svg",
+              "vedic-chart",
+              "viz-score-bar",
+              "viz-heat-table",
+              "viz-wheel-model",
+              "explain-workbench",
+              "explain-horary",
+              "explain-nativity",
+              "explain-narrate",
+              "era-legis",
+              "liber-resh-stations",
+              "yoga-detector",
+              "bhava-phala",
+              "vedic-graha-bala",
+              "comparison",
+              "opgraph",
+              "sky-dynamics",
+              "sky-timeline",
+              "sky-interpretation",
+              "calendar-alignment",
+              "sky-source-retrieval",
+              "civil-calendars",
+              "calendar-comparison",
+              "calendar-atlas",
+              "calendar-search",
+              "sigil-design",
+              "world-events",
+              "standards-lab",
+              "day-guidance",
+              "calendar-outlook"
+            ]
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 240
+          },
+          "pagePath": {
+            "type": "string",
+            "maxLength": 300
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_sky_snapshot",
+      "description": "Calculate Sun, Moon and all eight planet/dwarf-planet targets, tropical signs, apparent motion, uniform-orb aspects, optional bounded stellar layers and heliocentric J2000 vectors. Explicit observer supplied; 1900–2100. Projection, star catalogue and horizon limitations travel with the data; no inferred birth or interpretation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "bodyIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Sun",
+                "Moon",
+                "Mercury",
+                "Venus",
+                "Mars",
+                "Jupiter",
+                "Saturn",
+                "Uranus",
+                "Neptune",
+                "Pluto"
+              ]
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "includeStars": {
+            "type": "boolean"
+          },
+          "includeModernStars": {
+            "type": "boolean"
+          },
+          "includeCatalogStars": {
+            "type": "boolean"
+          },
+          "aspectOrb": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_sky_timeline",
+      "description": "Calculate a bounded geocentric timeline, not a fixed year table: at most 512 samples, 1024 exact solar/lunar quarter events and 3660 elapsed days. Use an explicit interval or a center with up to five years either side. Sampled paths can miss fast events; UTC grid and local clock labels are distinct. No observer or birth data.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "centerISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "startISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "endISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "yearsBefore": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "yearsAfter": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "stepDays": {
+            "type": "number",
+            "minimum": 0.041666666666666664,
+            "maximum": 365
+          },
+          "stepHours": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 8760
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "bodyIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Sun",
+                "Moon",
+                "Mercury",
+                "Venus",
+                "Mars",
+                "Jupiter",
+                "Saturn",
+                "Uranus",
+                "Neptune",
+                "Pluto"
+              ]
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "includeEvents": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_calendar_alignment",
+      "description": "Align selected calendar/chart variants at the same UTC instant or intentionally compare the same wall clock in another IANA zone. Explicitly report mismatches, DST gaps/folds, shared inputs and unavailable methods. Does not verify that coordinates geographically belong to a zone, connect external calendars or measure outcome agreement.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "prayerMethod": {
+            "type": "string",
+            "enum": [
+              "MuslimWorldLeague",
+              "NorthAmerica",
+              "Egyptian",
+              "Karachi",
+              "UmmAlQura",
+              "MoonsightingCommittee",
+              "Turkey"
+            ]
+          },
+          "asr": {
+            "type": "string",
+            "enum": [
+              "Shafi",
+              "Hanafi"
+            ]
+          },
+          "highLatitude": {
+            "type": "string",
+            "enum": [
+              "MiddleOfTheNight",
+              "SeventhOfTheNight",
+              "TwilightAngle"
+            ]
+          },
+          "familyIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "western",
+                "vedic",
+                "egyptian",
+                "jewish",
+                "chinese",
+                "islamic",
+                "civil"
+              ]
+            },
+            "maxItems": 7,
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "variantIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "gregory",
+                "julian",
+                "western-regiomontanus",
+                "western-placidus",
+                "western-whole",
+                "western-equal",
+                "easter-gregorian",
+                "easter-julian",
+                "planetary-hours",
+                "indian",
+                "vedic-solar",
+                "vedic-lunar",
+                "vedic-vara",
+                "vedic-regional",
+                "coptic",
+                "egyptian-ancient-civil",
+                "egyptian-lunar",
+                "hebrew",
+                "hebrew-sunset",
+                "jewish-kabbalah",
+                "chinese",
+                "chinese-bazi",
+                "chinese-solar-terms",
+                "islamic-civil",
+                "islamic-umalqura",
+                "prayer-timetable",
+                "islamic-observed-crescent",
+                "buddhist",
+                "persian",
+                "ethiopic",
+                "japanese",
+                "roc"
+              ]
+            },
+            "maxItems": 32,
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "comparisonTimeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "clockMode": {
+            "type": "string",
+            "enum": [
+              "same-instant",
+              "same-local-clock"
+            ]
+          },
+          "disambiguation": {
+            "type": "string",
+            "enum": [
+              "reject",
+              "earlier",
+              "later"
+            ]
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_sky_interpretation",
+      "description": "Recompute a moment and explain selected Lilly, Agrippa and Jyotisha rules with exact measured inputs, source locators, source differences and unavailable scope. Outer planets receive no invented classical rules. Modern reflection purposes are labelled; these are not personal forecasts. Set includeObserver false to omit observer-dependent rule evidence.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "lensIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "lilly",
+                "agrippa",
+                "jyotisha"
+              ]
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "planet": {
+            "type": "string",
+            "enum": [
+              "Sun",
+              "Moon",
+              "Mercury",
+              "Venus",
+              "Mars",
+              "Jupiter",
+              "Saturn",
+              "Uranus",
+              "Neptune",
+              "Pluto"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "study",
+              "begin",
+              "complete"
+            ]
+          },
+          "includeObserver": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon",
+          "timeZone"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_source_search",
+      "description": "Search the local selected-source paraphrase corpus with deterministic lexical retrieval. Returns source, edition, locator, rights, reading depth and relevance terms. No full-book corpus, trained model, embeddings, web search or proof of historical interpretation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8
+          },
+          "lensIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "lilly",
+                "agrippa",
+                "jyotisha",
+                "astronomy"
+              ]
+            },
+            "maxItems": 4,
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
     {
       "name": "workbench_catalogue",
       "description": "Search existing study capabilities and direct tool links; catalogue presence does not mean an MCP calculation is implemented.",
@@ -132,6 +3931,146 @@
           },
           "sectAwareFortune": {
             "type": "boolean"
+          }
+        },
+        "required": [
+          "dateISO",
+          "lat",
+          "lon"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_full_reading",
+      "description": "Compute the canonical composed reading: explicit moment, dignity ledger, aspects, cautions, lots, lunar condition and selected traditional interpretation. Optional exact birth enables its documented natal subset. Returns actual requested/used house conventions and limitations; no inference of missing birth time or empirical predictions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "timeZone": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "utcOffset": {
+            "type": "number",
+            "minimum": -24,
+            "maximum": 24
+          },
+          "disambiguation": {
+            "type": "string",
+            "enum": [
+              "reject",
+              "earlier",
+              "later"
+            ]
+          },
+          "birth": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "maxLength": 40,
+                "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "timeZone": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "utcOffset": {
+                "type": "number",
+                "minimum": -24,
+                "maximum": 24
+              },
+              "disambiguation": {
+                "type": "string",
+                "enum": [
+                  "reject",
+                  "earlier",
+                  "later"
+                ]
+              }
+            },
+            "required": [
+              "dateISO",
+              "lat",
+              "lon"
+            ],
+            "additionalProperties": false
+          },
+          "referenceDateISO": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Explicit ISO datetime including Z or ±HH:MM; no implicit local times."
+          },
+          "includeVedic": {
+            "type": "boolean"
+          },
+          "sectAwareFortune": {
+            "type": "boolean"
+          },
+          "operationKey": {
+            "type": "string",
+            "enum": [
+              "love",
+              "wealth",
+              "honour",
+              "knowledge",
+              "journey",
+              "victory",
+              "healing",
+              "protection",
+              "binding",
+              "banishing",
+              "endings"
+            ]
+          },
+          "quesitedHouse": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
           }
         },
         "required": [

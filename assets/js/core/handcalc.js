@@ -322,7 +322,9 @@ export const HOUSE_TABLE_ROW_CAVEAT =
 
 function cuspsAtRamc(date, targetRamcDeg, latDeg, system) {
   // houses() forms ramc = norm360(gast(date) + lon); choose lon to hit the row.
-  const lonSynth = targetRamcDeg - norm360(gast(date));
+  // Equivalent terrestrial longitudes differ by 360°. Keep the reconstructed
+  // one in houses()'s valid [-180,180) range, including RAMC rows across zero.
+  const lonSynth = norm360(targetRamcDeg - norm360(gast(date)) + 180) - 180;
   const h = houses(date, latDeg, lonSynth, system);
   return { asc: h.asc, mc: h.mc, cusps: h.cusps.slice() };
 }
@@ -331,7 +333,13 @@ function cuspsAtRamc(date, targetRamcDeg, latDeg, system) {
 function interpAngle(a, b, f) { return norm360(a + shortestDeg(a, b) * f); }
 
 export function tableOfHousesDemo(ramcDeg, latDeg, date, opts = {}) {
-  const system = opts.system || 'placidus';
+  const requestedSystem = opts.system || 'placidus';
+  // Use one coherent system for the entire interpolation grid. Mixing a
+  // Placidus corner at 66° with a fallback corner at 67° is not a Placidus table.
+  const fallback = requestedSystem === 'placidus'
+    && [Math.floor(latDeg), Math.floor(latDeg) + 1].some(latitude => Math.abs(latitude) > 66);
+  const system = fallback ? 'regiomontanus' : requestedSystem;
+  const houseWarning = fallback ? 'This interpolation grid reaches beyond 66° absolute latitude, where Placidus is unavailable in this implementation. All displayed table corners and interpolated cusps use Regiomontanus.' : null;
   const rowLoRamc = Math.floor(ramcDeg);          // 4-min ST rows = integer degrees of RAMC
   const rowHiRamc = rowLoRamc + 1;
   const latLo = Math.floor(latDeg);
@@ -365,6 +373,8 @@ export function tableOfHousesDemo(ramcDeg, latDeg, date, opts = {}) {
 
   return {
     system,
+    requestedSystem,
+    houseWarning,
     grid: {
       rowLoRamc, rowHiRamc, latLo, latHi, rowFrac, latFrac,
       // sidereal-time labels for the two rows (RAMC° / 15 → hours)
@@ -377,6 +387,6 @@ export function tableOfHousesDemo(ramcDeg, latDeg, date, opts = {}) {
       ascMin: shortestDeg(exact.asc, ascInterp) * 60,
       mcMin: shortestDeg(exact.mc, mcInterp) * 60,
     },
-    rowCaveat: HOUSE_TABLE_ROW_CAVEAT,
+    rowCaveat: HOUSE_TABLE_ROW_CAVEAT + (houseWarning ? ' ' + houseWarning : ''),
   };
 }

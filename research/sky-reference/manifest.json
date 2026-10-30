@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "sky-reference-corpus",
+  "method": {
+    "id": "sky-local-bm25-v1",
+    "kind": "lexical-retrieval",
+    "k1": 1.2,
+    "b": 0.75,
+    "titleWeight": 2,
+    "tagWeight": 2,
+    "corpusScope": "Selected, original source paraphrases; not full books, embeddings or a fine-tuned model.",
+    "relevance": "Scores rank lexical overlap in this small corpus; not confidence, truth or prediction probability."
+  },
+  "trainingStatus": "Reference material for retrieval. No fine-tuning or embedding model has been trained or run. Review the rights of each underlying edition before any expanded training corpus.",
+  "chunkCount": 13,
+  "sourceCount": 12,
+  "jsonlSHA256": "918659911ecad38bf3854ec4f1ecb9d8f796808fb4fae4944116ed916c08eacd",
+  "chunkIDs": [
+    "SKY-CH-LILLY-DIGNITY",
+    "SKY-CH-LILLY-SOLAR",
+    "SKY-CH-LILLY-MOTION",
+    "SKY-CH-AGRIPPA-29",
+    "SKY-CH-AGRIPPA-SOLAR",
+    "SKY-CH-AGRIPPA-HOURS",
+    "SKY-CH-RAO-TITHI",
+    "SKY-CH-RAO-NAKSHATRA",
+    "SKY-CH-RAO-HORA",
+    "SKY-CH-AGRIPPA-SIRIUS",
+    "SKY-CH-ESA-SIRIUS",
+    "SKY-CH-DEPENDENCIES",
+    "SKY-CH-ART"
+  ]
+}
