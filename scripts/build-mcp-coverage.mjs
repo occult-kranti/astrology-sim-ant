@@ -5,9 +5,11 @@ import { CALENDAR_MCP_COVERAGE } from '../mcp/calendar-adapters.mjs';
 import { STUDY_MCP_COVERAGE } from '../mcp/study-adapters.mjs';
 import { EXTENDED_MCP_TOOLS } from '../mcp/extended-adapters.mjs';
 import { HORIZON_MCP_TOOLS, HORIZON_MCP_COVERAGE } from '../mcp/horizon-adapters.mjs';
+import { COUNTRY_HISTORY_MCP_TOOL } from '../mcp/country-history-adapters.mjs';
 import { TOOLS } from '../mcp/toolkit.mjs';
 const row=(name,paths,scope)=>({mcpTools:[name],outputPaths:paths,scope});
 const supplementary={
+  'country-history':row('workbench_country_history',['records','sources','limitations'],'One to six curated past historical markers. Civil labels use explicitly assumed local noon; optional bounded historical-day samples show house geometry only. Unknown event clocks, unsupported dates and source qualifications remain explicit. No future dates, objectives, country rankings or inferred national nativity.'),
   geomancy:row('workbench_geomancy',['result.shield','result.judgement','result.houses'],'Explicit sixteen tallies; no server randomness or silently cast question.'),
   tarot:row('workbench_tarot',['result'],'Explicit distinct card IDs and reversals for the named spread; no model-selected or random draw.'),
   iching:row('workbench_iching',['result'],'Explicit six line throws; original fixed cast and changing lines are preserved.'),
@@ -21,7 +23,7 @@ const supplementary={
   'sigil-design':row('workbench_sigil_design',['svg','recipe','sources','disclosures'],'Deterministic procedural design with an explicit seed. Recipe omits raw text/observer by default, but geometry can encode text; study context requires explicit opt-in.'),
   'world-events':row('workbench_world_events',['window','freshness','sourceSnapshot'],'Curated date-only agenda, maximum6 calendar months. No live crawling, inferred event clocks or automatic paired-study interpretation.'),
 };
-const names=new Set([...EXTENDED_MCP_TOOLS,...HORIZON_MCP_TOOLS].map(t=>t.name));
+const names=new Set([...EXTENDED_MCP_TOOLS,...HORIZON_MCP_TOOLS,COUNTRY_HISTORY_MCP_TOOL].map(t=>t.name));
 const coverage=Object.fromEntries(Object.entries({...CHART_MCP_COVERAGE,...CALENDAR_MCP_COVERAGE,...STUDY_MCP_COVERAGE,...HORIZON_MCP_COVERAGE,...supplementary}).sort(([a],[b])=>a.localeCompare(b)).map(([id,value])=>{
   for(const name of value.mcpTools)if(!names.has(name))throw new Error(`Missing reviewed adapter: ${id}/${name}`);
   return[id,{...value,outputPaths:value.outputPaths.map(p=>p.startsWith('data.')?p:`data.${p}`)}];

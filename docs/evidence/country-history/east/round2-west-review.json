@@ -1,0 +1,50 @@
+{
+  "round": 2,
+  "reviewer": "country_sources_east",
+  "reviewedLane": "country_sources_west",
+  "date": "2026-10-30",
+  "verdict": "ACCEPT; both minor wording refinements verified resolved",
+  "subsequentSourceCorrection": {
+    "status": "ACCEPT",
+    "finding": "Owner removed unverified sender/date metadata from the inaccessible A/43/827 title and locator. The reference now states only the document identifier and unavailable original passage; verified directly after notification.",
+    "dataSha256": "b04d3d8156b50b8ed4a02ea76ab42e7b189bd96662b8b8050689941c62c224a3"
+  },
+  "resolution": {
+    "verifiedChanges": [
+      "Philadelphia label now names Congress and Constitutional Convention.",
+      "Israel 1949 New York label now says editorial display reference; 1949 venue unverified.",
+      "Algiers label additionally identifies its unverified venue status."
+    ],
+    "resolvedDataSha256": "f93a1a75b80b67ee4c13d569e24e6d8dba96b7dd3c3d47f341f190c7cc211733"
+  },
+  "scope": [
+    "Independently read the retained fetched excerpts and source documents underlying the encoded date claims, not merely source titles.",
+    "Matched all 13 successful-body hashes to source bindings. Two unavailable original UN documents correctly retain null hashes and unavailable statuses.",
+    "Imported the 8 records / 15 sources; checked date-only/null clocks, required historical claim type, complete reference bindings and three U.S. records outside 1900."
+  ],
+  "checks": [
+    "Yale declaration issuance 14 May / 5 Iyar is distinct from provisional-authority 15 May / 6 Iyar clause.",
+    "UK Act section 1 includes an earlier-Order-in-Council qualification; it is not overclaimed as complete implementation evidence.",
+    "UN 67/19 recalls the 15 November 1988 proclamation, was adopted 29 November 2012, and gives non-member observer State status in operative paragraph 2.",
+    "UN Library identifies A/RES/273 (III) as 11 May 1949; original text remains unavailable.",
+    "NARA distinguishes July 2 resolution, July 4 Declaration adoption and later signing; constitutional attestation gives 17 September 1787.",
+    "Single-source and institutionally dependent corroboration remain visible."
+  ],
+  "findings": [
+    {
+      "severity": "minor",
+      "item": "Philadelphia label",
+      "recommendation": "Replace Constitutional / Continental Congress with Congress and Constitutional Convention to avoid suggesting a body named Constitutional Congress."
+    },
+    {
+      "severity": "minor",
+      "item": "Israel 1949 reference-city label",
+      "recommendation": "Make editorial display-reference status visible in the label itself; current notes already deny a verified 1949 venue coordinate."
+    }
+  ],
+  "reviewedHashes": {
+    "assets/js/core/data/country-history-west.js": "f93a1a75b80b67ee4c13d569e24e6d8dba96b7dd3c3d47f341f190c7cc211733",
+    "docs/2026-10-country-history-west.md": "ec1d9c24e6a35c6db29c224986060d77365b76c06aa97f997862f615249fec0d",
+    "docs/evidence/country-history/west/source-bindings.json": "e7bc2d6c2a6607ddbfed5ed6390c04d0aa9c435bc2f2c2317c68568c05757140"
+  }
+}

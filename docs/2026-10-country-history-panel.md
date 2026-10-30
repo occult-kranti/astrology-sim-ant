@@ -1,0 +1,31 @@
+# Country histories: three review rounds
+
+Date: 30 October 2026. Baseline: published `e049fc9dfa51694f254552862f82cd917964676a`. These are AI-agent reviews, not a panel of human historians or religious authorities. Five implementation/source specialists and a separate quality specialist worked with the root integrator. The independent quality worker joined after a source-review child released a collaboration slot. No source read by one agent is presented as independently read by every role.
+
+## Round 1 — sources and implementation
+
+The Western and Eastern source agents collected sixteen distinct historical markers and twenty-five source records. They separated declaration, appointed commencement, constitutional adoption and international status. Every event clock remains unknown. Source-access failures, mirrored documents, approximate modern city references and single-source facts remain explicit. The methods agent checked selected passages for five method families, twelve house entries and four peaceful civic/archive question cards; these are bounded readings, not whole-book reviews.
+
+The engine agent built a strict curated-record interface over the canonical comparison and house engines. The UI agent implemented record selection, source qualifications, calendar comparison, assumed-day geometry, a twelve-house reference and full exports. The root integrated navigation, catalogue, MCP contracts and CI. The new historical tool accepts no arbitrary future dates, objectives or caller-supplied charts. It contributes no score to the existing future horizon.
+
+## Round 2 — cross-review and corrections
+
+The source agents reviewed one another's source passages and labels. Corrections preserved the Iran Persian/English referendum-date discrepancy, India's Article394 distinction, Russian constitutional adoption versus entry into force, Israel's declaration versus later legal-effect marker and Palestine's declaration versus UN status. Unsupported documentary venues and blocked originals remain qualified. All three US records predate the canonical1900–2100 range; they retain their sources with no substitute calculation.
+
+The engine specialist independently checked1300house SVGs across all thirteen supported records, four systems and twenty-five samples: twelve radial directions and labels were preserved. A caption claiming exact displayed values was corrected to distinguish rounded display from full-precision exports. The methods/source review corrected Lilly's fourth-house label to fathers in his stated context, avoiding an unsupported generalization. Strict malformed-input tests prompted an own-index check against inherited sparse-array entries. The response-size study enumerated8008six-record combinations per system using actual component byte counts and recomputed each winning complete result; it did not run32032full calculations.
+
+Owner UI checks covered real downloads, narrow/wide layout, stale-state clearing and precision. Those checks did not establish keyboard scrolling of the wide table. The independent quality specialist later found that an inherited `display:block` table rule placed scrolling inside the named focusable region. Scoped CSS now makes the named region the actual scroller; real ArrowRight input verifies the correction. The failed diagnostic receipts remain retained.
+
+## Round 3 — held candidate and independent verification
+
+Western and Eastern source agents accepted the frozen integrated/export-shaped records, source metadata, date precision and uncertainty. The methods agent accepted the strict registered adapter and actual SDK HTTP-handler/child-stdio protocol. The calculation specialist had completed100focused checks and the independent geometry review before its later continuation failed with a model-capacity error; no further review by that agent is claimed. The independent quality specialist supplies the separate187semantic checks and responsive browser acceptance. The UI role accepted the corrected interaction with explicitly bounded owner evidence.
+
+The first held four-width browser run passed1940checks and72actual downloads with no source or driver drift. Screenshot review found a cosmetic wrapped two-digit house ordinal at desktop widths. The scoped correction and new single-line ordinal assertions passed the revised held run:1948checks,72actual downloads and28screenshots, with all497product files and both drivers unchanged. The earlier run remains retained as pre-polish evidence. Root independently rehashed every product file and download archive and inspected selected mobile/desktop screenshots. Consult the [verification report](2026-10-country-history-verification.md) for final hashes and limits.
+
+The root checks the required audit, full engine suite, all-page Chromium sweep, eight generator freshness gates and round ledger, plus MCP transports. The horizon metadata binding was regenerated under Node22.23.4; all four complete horizon data parts remain byte-identical to the published baseline. Pull-request and production verification, the full-grid stress job and deployed release identity remain separate release gates. Local acceptance alone does not establish publication.
+
+## Retained limits
+
+Historical source truth and exact historical timezone behavior are not established by software tests. Civil-calendar labels may be proleptic and do not prove local historical adoption or religious observance. Unknown clocks cannot define national natal charts. Shared house conventions, calendars and selected textual interpretations do not predict outcomes or establish universal auspicious dates. Source access, translation, legal-stage and edition limitations remain attached to the records. This work supplies historical study and peaceful civic/archive requirements; it does not recommend military timing.
+
+The telemetry uses hand-classified coarse groups, explicitly unverified as claim counts: six domain groups (one source/date-precision group per named country) and seven tooling groups (canonical study engine, data aggregation/contracts, page/export interaction, MCP adapter, integration/catalogue, independent testing, release binding). Numerical test counts are separately derived from executed logs and source-bound receipts.

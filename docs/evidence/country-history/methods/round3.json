@@ -1,0 +1,116 @@
+{
+  "round": 3,
+  "verdict": "ACCEPT",
+  "scope": "Historical method/source references and bounded registered MCP tool; no browser acceptance",
+  "checkedAt": "2026-10-30T08:08:39.959Z",
+  "node": "v24.19.0",
+  "icu": "78.3",
+  "assertions": 297,
+  "methodCounts": {
+    "methods": 5,
+    "houses": 12,
+    "tasks": 4,
+    "sources": 11
+  },
+  "recordCount": 16,
+  "sizeMethod": "Exact additive UTF-8 JSON sizes for all8008 six-record combinations per system from actual canonical single-record outputs; each maximum then recomputed through direct adapter, core and registered toolkit",
+  "maxima": [
+    {
+      "houseSystem": "regiomontanus",
+      "combinationsEvaluated": 8008,
+      "payloadBytes": 226358,
+      "envelopeBytes": 226544,
+      "recordIds": [
+        "israel-provisional-authority-1948",
+        "israel-un-admission-1949",
+        "palestine-un-observer-state-2012",
+        "india-constitution-adoption-1949",
+        "russia-constitution-adoption-1993",
+        "iran-republic-referendum-conclusion-1979"
+      ],
+      "samples": 150,
+      "sources": 19
+    },
+    {
+      "houseSystem": "placidus",
+      "combinationsEvaluated": 8008,
+      "payloadBytes": 224851,
+      "envelopeBytes": 225037,
+      "recordIds": [
+        "israel-provisional-authority-1948",
+        "israel-un-admission-1949",
+        "palestine-un-observer-state-2012",
+        "india-constitution-adoption-1949",
+        "russia-constitution-adoption-1993",
+        "iran-republic-referendum-conclusion-1979"
+      ],
+      "samples": 150,
+      "sources": 19
+    },
+    {
+      "houseSystem": "whole",
+      "combinationsEvaluated": 8008,
+      "payloadBytes": 197139,
+      "envelopeBytes": 197325,
+      "recordIds": [
+        "israel-provisional-authority-1948",
+        "israel-un-admission-1949",
+        "palestine-un-observer-state-2012",
+        "india-constitution-adoption-1949",
+        "russia-constitution-adoption-1993",
+        "iran-republic-referendum-conclusion-1979"
+      ],
+      "samples": 150,
+      "sources": 19
+    },
+    {
+      "houseSystem": "equal",
+      "combinationsEvaluated": 8008,
+      "payloadBytes": 223925,
+      "envelopeBytes": 224111,
+      "recordIds": [
+        "israel-provisional-authority-1948",
+        "israel-un-admission-1949",
+        "palestine-un-observer-state-2012",
+        "india-constitution-adoption-1949",
+        "russia-constitution-adoption-1993",
+        "iran-republic-referendum-conclusion-1979"
+      ],
+      "samples": 150,
+      "sources": 19
+    }
+  ],
+  "shared": {
+    "script": "scripts/tests/country-history.mjs",
+    "status": 0,
+    "stdout": "PASS country history: 100 checks",
+    "stderr": ""
+  },
+  "protocol": {
+    "script": "scripts/test-country-history-protocol.mjs",
+    "status": 0,
+    "stdout": "{\"pass\":true,\"checks\":46,\"transports\":[\"official-SDK HTTP handler\",\"actual child-process stdio\"],\"liveProviderUsed\":false,\"hostedDeploymentVerified\":false}",
+    "stderr": "responseMode: 'json' drops mid-call notifications. subscriptions/listen streams are always served over SSE regardless; other notifications emitted before a result are dropped."
+  },
+  "hashes": {
+    "assets/js/core/data/country-history-methods.js": "914d75c716bcc7b7ae63fd2ad69523af94aa0ac4d70543a76bacab3487ecd4da",
+    "mcp/country-history-adapters.mjs": "f4dffb73aaf2342bd6f3b84998a17bf1c68836a59c5a3b8010ed366cfbb4a39a",
+    "assets/js/core/country-history.js": "cb9a5da31433db9283cbd236f1ab140093e9ff3f5a8658efaaf03042294dd222",
+    "assets/js/core/data/country-history-records.js": "f3836c142357b50b32ef3550d1e41cf475e7d2d10fc40c0c6559a8d90020aadf",
+    "assets/js/core/data/country-history-east.js": "9e28a95a1bc56c7e80007f62dcefeb35e9282e32d9ea72ad075a3d621d87d045",
+    "assets/js/core/data/country-history-west.js": "b04d3d8156b50b8ed4a02ea76ab42e7b189bd96662b8b8050689941c62c224a3",
+    "mcp/toolkit.mjs": "03df9144c972a3ee50a925ff9c06c35f00121de913488d1aa605de9d62c22be7",
+    "mcp/server.mjs": "d81cf6d696bc448f438b6926fb8141441b2528775617491e313266d98e720f86",
+    "mcp/http-handler.mjs": "610fcc4a2f61adabd0a82c977339e5fb91f2c94e6205f84daae271295e19acd1",
+    "mcp/stdio.mjs": "a7d590e29c13e1212b8c38cf9c34bf63f141272050da67bd6bf07d63a77db95a",
+    "scripts/tests/country-history.mjs": "d8a39a62c1d27e445b00b619c04f67048ec34e7f0510238bee677ba0ca4b0fa4",
+    "scripts/test-country-history-protocol.mjs": "bd5adb8d2d61e2d06f187f6817d44a096a77854e407c098bf83e93f1ca183dac"
+  },
+  "unchangedAcrossChecks": true,
+  "limitations": [
+    "Selected passages and inherited source readings only; no complete-book or human cultural-authority claim.",
+    "Civil labels do not establish religious observance or universal astrological doctrine.",
+    "No new full-range calendar/astronomical validation, future-date ranking, national birth inference or outcome prediction.",
+    "No browser, screen-reader, physical-device, live-provider or hosted-MCP deployment verification in this receipt."
+  ]
+}

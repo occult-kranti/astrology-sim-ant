@@ -1,0 +1,27 @@
+{
+  "round": 1,
+  "status": "pass",
+  "checkedAt": "2026-10-30T07:46:07.769Z",
+  "records": 8,
+  "sources": 15,
+  "dateOnly": 8,
+  "pre1900Unsupported": 3,
+  "sha256": "ddcf6e762756f5de3a92b3d8b88aeb7ace75b76e640c920310ec1f19c6510b53",
+  "checks": [
+    "unique IDs",
+    "record and source field completeness",
+    "valid past dates",
+    "source graph",
+    "citations",
+    "all localTime null",
+    "runtime-recognized zones",
+    "rounded finite city coordinates",
+    "USA unsupported notes"
+  ],
+  "notChecked": [
+    "astronomy calculation",
+    "calendar conversion",
+    "exact-time reconstruction",
+    "browser integration"
+  ]
+}

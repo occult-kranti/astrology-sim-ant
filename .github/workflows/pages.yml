@@ -31,6 +31,7 @@ jobs:
         run: |
           node scripts/tests/mcp-toolkit.mjs
           node scripts/test-horizon-protocol.mjs
+          node scripts/test-country-history-protocol.mjs
           npm test --prefix mcp
       - name: Keep MCP lock and verification evidence
         if: always()
@@ -91,6 +92,10 @@ jobs:
         env:
           SKY_OUTPUT: test-results/sky
         run: node scripts/browser-sky.mjs
+      - name: Historical country records, source precision and assumed house geometry
+        env:
+          COUNTRY_OUTPUT: test-results/country-history
+        run: node scripts/browser-country-history.mjs
       - name: Complete horizon, exports, cancellation and release integrity
         env:
           HORIZON_OUTPUT: test-results/horizon
@@ -226,7 +231,7 @@ jobs:
                 if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
                 const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
                 const catalogue = await catalogueResponse.json();
-                const required = ['workbench_horizon_scan', 'workbench_horizon_day', 'workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide'];
+                const required = ['workbench_country_history', 'workbench_horizon_scan', 'workbench_horizon_day', 'workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide'];
                 const publishedNames = Array.isArray(catalogue.tools) ? catalogue.tools.map(tool => tool.name).sort() : [];
                 if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || !Array.isArray(release.sourceMcpTools) || JSON.stringify(publishedNames) !== JSON.stringify(release.sourceMcpTools) || !required.every(name => publishedNames.includes(name))) throw new Error('Published MCP catalogue is missing or does not match the verified release.');
                 const comparison = await fetch(new URL('pages/calendar-compare.html', base), { signal: AbortSignal.timeout(10000) });
