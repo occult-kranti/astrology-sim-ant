@@ -1,0 +1,3 @@
+let size = 0;
+  const limited = response.body.pipeThrough(new TransformStream({ transform(chunk, controller) { size += chunk.byteLength; if (size > maxBytes) throw new RangeError('Preset part exceeds the byte limit.'); controller.enqueue(chunk); } }), { signal });
+  return new Uint8Array(await new Response(limited).arrayBuffer());

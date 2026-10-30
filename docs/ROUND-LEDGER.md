@@ -39,10 +39,10 @@ A `—` is a figure that does not exist, and it is never rendered as a zero.
 | R33r | 2026-07-30 | 48 *(unverified)* | 4 *(unverified)* | 0.92 | · ?/?/? *(unverified)* |
 | R34 | 2026-07-30 | 2 *(unverified)* | 12 *(unverified)* | 0.14 | clean 0/0/0 |
 | R35 | 2026-07-31 | 2 *(unverified)* | 9 *(unverified)* | 0.18 | clean 0/0/0 |
-| R36 | 2026-10-30 | 6 *(unverified)* | 10 *(unverified)* | 0.38 | · 0/0/? |
+| R36 | 2026-10-30 | 6 *(unverified)* | 10 *(unverified)* | 0.38 | clean 0/0/0 |
 | **all scorable** | | **103** | **73** | **0.59** | |
 
-*1 superseding correction row(s) are on file: `rounds.jsonl` keeps every line and this table
+*2 superseding correction row(s) are on file: `rounds.jsonl` keeps every line and this table
 renders the newest row per round. A log may be corrected; it is never rewritten.*
 
 ## The stop condition (amendment C) — printed, not remembered

@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "kind": "native-http-horizon-loader",
+  "startedAt": "2026-10-30T05:39:41.836Z",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "driverSHA256": "a9d70d0e4a51e279ebf9b78346bd2a8a5e36963935401bfd0e9db4a65c375841",
+  "sourceBefore": {
+    "assets/js/core/event-horizon.js": "3dcfe2dc0b45546013d3bce7ebead5a714b9a9fc26abfed4bab472755d805222",
+    "assets/js/core/data/horizon-preset-version.js": "7c17017d2543a5a989c7a52c1d136c5ce524abc6eba466f68581362821e50e3c",
+    "assets/data/horizon-2031-manifest.json": "970d6cb7077854be230c3d903b706fab74ab5616deb75ccc6f4fc57204aefed3",
+    "assets/data/horizon-2031/case-london.json": "44e8c33704bb2110b55a3e890a498bde2526f8b9cf4fc53b699987b2b67e9c71",
+    "assets/data/horizon-2031/case-delhi.json": "4a72a692f49b498a281708b18161aed0bcde194913a630c210eb01b900231953",
+    "assets/data/horizon-2031/case-new-york.json": "7dcb16a28df4eded6f1a9d47a0c6d62e6189eaf69e108781f2e8a109dc6c6832",
+    "assets/data/horizon-2031/astronomy.json": "217de55190648e5bbeaa16657d5e85c71de0476cf3122f189ef6b61fa35bfcea"
+  },
+  "checks": [
+    {
+      "label": "Actual 35MB release loads through native HTTP with complete checked counts",
+      "pass": true
+    },
+    {
+      "label": "Chunked manifest above 1MiB aborts the server before the oversized source finishes",
+      "pass": true
+    },
+    {
+      "label": "Chunked part over descriptor bytes preserves RangeError before checksum or AbortError",
+      "pass": true
+    },
+    {
+      "label": "Already aborted caller signal reaches native fetch and emits no HTTP request",
+      "pass": true
+    },
+    {
+      "label": "Real mid-read caller cancellation returns no result and closes the server early",
+      "pass": true
+    },
+    {
+      "label": "Clean native HTTP load recovers after cancellation without a partial prior ledger",
+      "pass": true
+    },
+    {
+      "label": "A shorter successfully transported part is rejected by actual byte integrity",
+      "pass": true
+    },
+    {
+      "label": "A same-length changed part is rejected by the actual SHA256 check",
+      "pass": true
+    },
+    {
+      "label": "Loader source and all actual preset bytes stayed unchanged during verification",
+      "pass": true
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "valid",
+      "target": "horizon-2031/case-london.json",
+      "config": {},
+      "requests": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "intendedBytes": 141302,
+          "sentBytes": 141302,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "intendedBytes": 9701600,
+          "sentBytes": 9701600,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "intendedBytes": 9711317,
+          "sentBytes": 9711317,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "intendedBytes": 9724490,
+          "sentBytes": 9724490,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "intendedBytes": 5867983,
+          "sentBytes": 5867983,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        }
+      ],
+      "calls": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "signalAbortedAtStart": false
+        }
+      ]
+    },
+    {
+      "name": "oversized-manifest",
+      "target": "horizon-2031-manifest.json",
+      "config": {
+        "stream": true,
+        "overflow": true,
+        "limit": 1048576
+      },
+      "requests": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "intendedBytes": 3145728,
+          "sentBytes": 1081344,
+          "streaming": true,
+          "closedEarly": true,
+          "finished": false
+        }
+      ],
+      "calls": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "signalAbortedAtStart": false
+        }
+      ],
+      "rejection": {
+        "name": "RangeError",
+        "message": "Preset part exceeds the byte limit."
+      }
+    },
+    {
+      "name": "oversized-part",
+      "target": "horizon-2031/case-london.json",
+      "config": {
+        "stream": true,
+        "overflow": true,
+        "limit": 9701600
+      },
+      "requests": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "intendedBytes": 141302,
+          "sentBytes": 141302,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "intendedBytes": 11798752,
+          "sentBytes": 9732096,
+          "streaming": true,
+          "closedEarly": true,
+          "finished": false
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "intendedBytes": 9711317,
+          "sentBytes": 9711317,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "intendedBytes": 9724490,
+          "sentBytes": 9724490,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "intendedBytes": 5867983,
+          "sentBytes": 5867983,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        }
+      ],
+      "calls": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "signalAbortedAtStart": false
+        }
+      ],
+      "rejection": {
+        "name": "RangeError",
+        "message": "Preset part exceeds the byte limit."
+      }
+    },
+    {
+      "name": "pre-aborted",
+      "target": "horizon-2031/case-london.json",
+      "config": {},
+      "requests": [],
+      "calls": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "signalAbortedAtStart": true
+        }
+      ],
+      "rejection": {
+        "name": "AbortError",
+        "message": "Preset loading cancelled."
+      }
+    },
+    {
+      "name": "mid-read-cancel",
+      "target": "horizon-2031/case-london.json",
+      "config": {
+        "stream": true,
+        "delayMs": 3
+      },
+      "requests": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "intendedBytes": 141302,
+          "sentBytes": 141302,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "intendedBytes": 9701600,
+          "sentBytes": 32768,
+          "streaming": true,
+          "closedEarly": true,
+          "finished": false
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "intendedBytes": 9711317,
+          "sentBytes": 9711317,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "intendedBytes": 9724490,
+          "sentBytes": 9724490,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "intendedBytes": 5867983,
+          "sentBytes": 5867983,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        }
+      ],
+      "calls": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "signalAbortedAtStart": false
+        }
+      ],
+      "rejection": {
+        "name": "AbortError",
+        "message": "Preset loading cancelled."
+      }
+    },
+    {
+      "name": "recovery",
+      "target": "horizon-2031/case-london.json",
+      "config": {},
+      "requests": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "intendedBytes": 141302,
+          "sentBytes": 141302,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "intendedBytes": 9701600,
+          "sentBytes": 9701600,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "intendedBytes": 9711317,
+          "sentBytes": 9711317,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "intendedBytes": 9724490,
+          "sentBytes": 9724490,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "intendedBytes": 5867983,
+          "sentBytes": 5867983,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        }
+      ],
+      "calls": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "signalAbortedAtStart": false
+        }
+      ]
+    },
+    {
+      "name": "truncated-part",
+      "target": "horizon-2031/case-london.json",
+      "config": {
+        "truncate": true
+      },
+      "requests": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "intendedBytes": 141302,
+          "sentBytes": 141302,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "intendedBytes": 9701583,
+          "sentBytes": 9701583,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "intendedBytes": 9711317,
+          "sentBytes": 9711317,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "intendedBytes": 9724490,
+          "sentBytes": 9724490,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "intendedBytes": 5867983,
+          "sentBytes": 5867983,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        }
+      ],
+      "calls": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "signalAbortedAtStart": false
+        }
+      ],
+      "rejection": {
+        "name": "Error",
+        "message": "Preset checksum mismatch. Reload the published release or calculate locally."
+      }
+    },
+    {
+      "name": "checksum-corrupt-part",
+      "target": "horizon-2031/case-london.json",
+      "config": {
+        "corrupt": true
+      },
+      "requests": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "intendedBytes": 141302,
+          "sentBytes": 141302,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "intendedBytes": 9701600,
+          "sentBytes": 9701600,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "intendedBytes": 9711317,
+          "sentBytes": 9711317,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "intendedBytes": 9724490,
+          "sentBytes": 9724490,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "intendedBytes": 5867983,
+          "sentBytes": 5867983,
+          "streaming": false,
+          "closedEarly": false,
+          "finished": true
+        }
+      ],
+      "calls": [
+        {
+          "path": "horizon-2031-manifest.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-london.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-delhi.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/case-new-york.json",
+          "signalAbortedAtStart": false
+        },
+        {
+          "path": "horizon-2031/astronomy.json",
+          "signalAbortedAtStart": false
+        }
+      ],
+      "rejection": {
+        "name": "Error",
+        "message": "Preset checksum mismatch. Reload the published release or calculate locally."
+      }
+    }
+  ],
+  "sourceAfter": {
+    "assets/js/core/event-horizon.js": "3dcfe2dc0b45546013d3bce7ebead5a714b9a9fc26abfed4bab472755d805222",
+    "assets/js/core/data/horizon-preset-version.js": "7c17017d2543a5a989c7a52c1d136c5ce524abc6eba466f68581362821e50e3c",
+    "assets/data/horizon-2031-manifest.json": "970d6cb7077854be230c3d903b706fab74ab5616deb75ccc6f4fc57204aefed3",
+    "assets/data/horizon-2031/case-london.json": "44e8c33704bb2110b55a3e890a498bde2526f8b9cf4fc53b699987b2b67e9c71",
+    "assets/data/horizon-2031/case-delhi.json": "4a72a692f49b498a281708b18161aed0bcde194913a630c210eb01b900231953",
+    "assets/data/horizon-2031/case-new-york.json": "7dcb16a28df4eded6f1a9d47a0c6d62e6189eaf69e108781f2e8a109dc6c6832",
+    "assets/data/horizon-2031/astronomy.json": "217de55190648e5bbeaa16657d5e85c71de0476cf3122f189ef6b61fa35bfcea"
+  },
+  "pass": true,
+  "count": 9,
+  "failures": [],
+  "completedAt": "2026-10-30T05:39:44.796Z"
+}

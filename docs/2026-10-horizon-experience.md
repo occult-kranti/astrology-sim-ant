@@ -62,3 +62,9 @@ The independent focused correction run passed **93 checks and eight actual downl
 - Product fingerprint before and after the run: `92e3d5279e26983ad0b0bf5559de6b2f6aa8fa54947f7fe0b7528dd4a44f01be`.
 
 This acceptance is bound to the held product and local evidence, not a publication claim. No real provider inference, calendar-provider write, physical-phone, screen-reader or human usability study is claimed. Inherited release gates and live deployment verification remain part of the root release record. Product files remain held after this documentation-only acceptance.
+
+## Release transport correction
+
+The inherited CI page sweep subsequently reopened release acceptance: the preset's five requests reported `net::ERR_ABORTED` before page closure, although their bytes had passed validation and the complete interface was active. The prior dedicated browser suite did not subscribe to `requestfailed`, so its earlier zero-error statements cover the recorded runtime, console and HTTP categories rather than every transport event. The old receipts remain intact; the dedicated driver now records failed requests explicitly.
+
+The [transport diagnostic record](evidence/horizon/transport-diagnostic/README.md) preserves the actual reproduction, rejected reader-cleanup and transform-stream candidates, cancellation traces and accepted bounded-fetch proof. Three complete candidate loads finished all five requests without spontaneous aborts; one-byte overflow and delayed cancellation followed by restore also passed. The integrated helper consumes the original response natively while monitoring a clone for the byte cap, preserving checksum/schema checks, cancellation and specific overflow errors. No calendar, astronomy, ranking, export or chart calculation changed. The helper's changed source binding requires preset regeneration and renewed integrated release gates; the 24-check served-module proof does not substitute for those gates.

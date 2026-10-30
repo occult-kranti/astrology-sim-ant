@@ -188,13 +188,44 @@ export function exportHorizonDayICS(result, { caseId, date, generatedAt }) {
   return lines.map(foldICS).join('\r\n') + '\r\n';
 }
 
-async function boundedResponse(response, maxBytes, signal) {
-  if (!response.ok) throw new Error(`Preset request failed: HTTP ${response.status}.`);
-  if (Number(response.headers.get('Content-Length')) > maxBytes) throw new RangeError('Preset part exceeds the byte limit.');
-  if (!response.body?.getReader) { const bytes = new Uint8Array(await response.arrayBuffer()); if (bytes.length > maxBytes) throw new RangeError('Preset part exceeds the byte limit.'); return bytes; }
-  const reader = response.body.getReader(), chunks = []; let size = 0;
-  try { while (true) { if (signal?.aborted) { const e = new Error('Preset loading cancelled.'); e.name = 'AbortError'; throw e; } const { done, value } = await reader.read(); if (done) break; size += value.length; if (size > maxBytes) throw new RangeError('Preset part exceeds the byte limit.'); chunks.push(value); } } catch (e) { await reader.cancel().catch(() => {}); throw e; }
-  const bytes = new Uint8Array(size); let at = 0; for (const chunk of chunks) { bytes.set(chunk, at); at += chunk.length; } return bytes;
+async function boundedPresetFetch(url, maxBytes, signal, fetchImpl) {
+  const controller = new AbortController(); let overflowError = null;
+  const parentAbort = () => controller.abort(signal.reason);
+  if (signal?.aborted) parentAbort();
+  else signal?.addEventListener('abort', parentAbort, { once: true });
+  try {
+    const response = await fetchImpl(url, { signal: controller.signal, cache: 'no-cache' });
+    if (!response.ok) throw new Error(`Preset request failed: HTTP ${response.status}.`);
+    if (Number(response.headers.get('Content-Length')) > maxBytes) throw new RangeError('Preset part exceeds the byte limit.');
+    // Native consumption of the original response completes the browser transport.
+    // Monitor a clone so unknown-length responses still abort on a byte overflow.
+    const monitor = response.body?.getReader ? (async () => {
+      const reader = response.clone().body.getReader(); let size = 0;
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) return size;
+          size += value.byteLength;
+          if (size > maxBytes) {
+            overflowError = new RangeError('Preset part exceeds the byte limit.');
+            controller.abort(overflowError);
+            throw overflowError;
+          }
+        }
+      } finally { reader.releaseLock(); }
+    })() : Promise.resolve(null);
+    const [buffer] = await Promise.all([response.arrayBuffer(), monitor]);
+    const bytes = new Uint8Array(buffer);
+    if (bytes.length > maxBytes) throw new RangeError('Preset part exceeds the byte limit.');
+    return bytes;
+  } catch (error) {
+    controller.abort(error);
+    if (signal?.aborted) {
+      const cancelled = new Error('Preset loading cancelled.'); cancelled.name = 'AbortError'; throw cancelled;
+    }
+    // An overflow abort can reject native consumption before the monitor's error.
+    throw overflowError ?? error;
+  } finally { signal?.removeEventListener('abort', parentAbort); }
 }
 const hex = bytes => [...new Uint8Array(bytes)].map(b => b.toString(16).padStart(2, '0')).join('');
 const digest = async bytes => hex(await crypto.subtle.digest('SHA-256', bytes));
@@ -259,7 +290,7 @@ export function validateHorizonLedger(result) {
   return result;
 }
 export async function loadHorizonPreset({ onProgress, signal, fetchImpl = globalThis.fetch } = {}) {
-  const url = new URL('../../data/horizon-2031-manifest.json', import.meta.url), response = await fetchImpl(url, { signal, cache: 'no-cache' }), bytes = await boundedResponse(response, 1024 * 1024, signal), manifest = JSON.parse(new TextDecoder().decode(bytes));
+  const url = new URL('../../data/horizon-2031-manifest.json', import.meta.url), bytes = await boundedPresetFetch(url, 1024 * 1024, signal, fetchImpl), manifest = JSON.parse(new TextDecoder().decode(bytes));
   if (await digest(bytes) !== HORIZON_PRESET_MANIFEST_SHA256 || manifest.sourceBinding?.sha256 !== HORIZON_PRESET_SOURCE_SHA256 || await jsonDigest(manifest.metadata) !== HORIZON_PRESET_METADATA_SHA256) throw new Error('Preset release/source binding mismatch. Reload the published release or calculate locally.');
   if (manifest.kind !== 'event-horizon-preset' || manifest.schemaVersion !== 1) throw new Error('Unsupported horizon preset manifest.');
   const request = normalizeHorizonRequest(manifest.request), dates = horizonDates(request.startDate, request.endDate);
@@ -268,7 +299,7 @@ export async function loadHorizonPreset({ onProgress, signal, fetchImpl = global
   let completed = 0;
   const loaded = await Promise.all(manifest.parts.map(async part => {
     if (!/^(?:case-[a-z0-9-]+|astronomy)$/.test(part.id) || !/^horizon-2031\/[a-z0-9-]+\.json$/.test(part.path) || !/^[a-f0-9]{64}$/.test(part.sha256) || !Number.isInteger(part.bytes) || part.bytes < 1 || part.bytes > HORIZON_LIMITS.maxPartBytes) throw new Error('Invalid preset part descriptor.');
-    const payload = await boundedResponse(await fetchImpl(new URL(part.path, url), { signal, cache: 'no-cache' }), part.bytes, signal);
+    const payload = await boundedPresetFetch(new URL(part.path, url), part.bytes, signal, fetchImpl);
     if (payload.length !== part.bytes || hex(await crypto.subtle.digest('SHA-256', payload)) !== part.sha256) throw new Error('Preset checksum mismatch. Reload the published release or calculate locally.');
     const data = JSON.parse(new TextDecoder().decode(payload)); completed++; onProgress?.({ phase: 'preset', completed, total: manifest.parts.length, bytes: payload.length }); return { id: part.id, data };
   }));

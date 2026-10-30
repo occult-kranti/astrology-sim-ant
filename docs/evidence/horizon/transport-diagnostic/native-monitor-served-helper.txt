@@ -1,0 +1,23 @@
+async function boundedPresetFetch(url, maxBytes, signal, fetchImpl) {
+  const controller = new AbortController(); let overflowError = null;
+  const parentAbort = () => controller.abort(signal.reason);
+  if (signal?.aborted) parentAbort(); else signal?.addEventListener('abort', parentAbort, { once: true });
+  try {
+    const response = await fetchImpl(url, { signal: controller.signal, cache: 'no-cache' });
+    if (!response.ok) throw new Error('Preset request failed: HTTP ' + response.status + '.');
+    if (Number(response.headers.get('Content-Length')) > maxBytes) throw new RangeError('Preset part exceeds the byte limit.');
+    const monitor = response.body?.getReader ? (async () => {
+      const reader = response.clone().body.getReader(); let size = 0;
+      try { while (true) { const { done, value } = await reader.read(); if (done) return size; size += value.byteLength; if (size > maxBytes) { const error = new RangeError('Preset part exceeds the byte limit.'); overflowError = error; controller.abort(error); throw error; } } }
+      finally { reader.releaseLock(); }
+    })() : Promise.resolve(null);
+    const [buffer] = await Promise.all([response.arrayBuffer(), monitor]);
+    const bytes = new Uint8Array(buffer);
+    if (bytes.length > maxBytes) throw new RangeError('Preset part exceeds the byte limit.');
+    return bytes;
+  } catch (error) {
+    controller.abort(error);
+    if (signal?.aborted) { const cancelled = new Error('Preset loading cancelled.'); cancelled.name = 'AbortError'; throw cancelled; }
+    throw overflowError ?? error;
+  } finally { signal?.removeEventListener('abort', parentAbort); }
+}

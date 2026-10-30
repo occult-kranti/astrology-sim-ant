@@ -1,0 +1,1473 @@
+{
+  "browser": "145.0.7632.6",
+  "cases": [
+    {
+      "length": false,
+      "route": true,
+      "patch": "baseline",
+      "network": [
+        {
+          "type": "finished",
+          "at": 304,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+        },
+        {
+          "type": "finished",
+          "at": 470,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+        },
+        {
+          "type": "Fetch",
+          "at": 662,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "requestId": "244250.73",
+          "timestamp": 208168.492693,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 832,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "requestId": "244250.74",
+          "timestamp": 208168.67532,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 1597,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "requestId": "244250.72",
+          "timestamp": 208168.850876,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        }
+      ],
+      "errors": [
+        {
+          "type": "requestfailed",
+          "at": 662,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 832,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1597,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "createdAt": 1793337819840,
+      "networkidleAt": 2097,
+      "beforeClose": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 278.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 281.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 282.2999999821186,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 296.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 296.39999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 296.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 296.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 308.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 311.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 314.39999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 325.2999999821186,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 329.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 474.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 657.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 833.0999999940395,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": "",
+        "motion": false
+      },
+      "checkedAt": 3330,
+      "errorsBeforeClose": [
+        {
+          "type": "requestfailed",
+          "at": 662,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 832,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1597,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "afterExtraWait": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 278.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 281.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 282.2999999821186,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 296.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 296.39999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 296.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 296.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 308.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 311.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 314.39999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 325.2999999821186,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 329.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 474.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 657.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 833.0999999940395,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": ""
+      },
+      "errorsBeforeActualClose": [
+        {
+          "type": "requestfailed",
+          "at": 662,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 832,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1597,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "closeAt": 3834
+    },
+    {
+      "length": false,
+      "route": true,
+      "patch": "release",
+      "network": [
+        {
+          "type": "finished",
+          "at": 222,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+        },
+        {
+          "type": "Fetch",
+          "at": 356,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "requestId": "244268.75",
+          "timestamp": 208172.133749,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 722,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "requestId": "244268.73",
+          "timestamp": 208172.433128,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 1421,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "requestId": "244268.72",
+          "timestamp": 208172.603909,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "finished",
+          "at": 1480,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+        }
+      ],
+      "errors": [
+        {
+          "type": "requestfailed",
+          "at": 356,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 722,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1421,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "createdAt": 1793337823707,
+      "networkidleAt": 1981,
+      "beforeClose": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 196.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 201.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 202.40000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 215.40000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 215.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 215.90000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 216,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 226.2000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 251.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 374.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 550.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 721.3000000119209,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": "",
+        "motion": false
+      },
+      "checkedAt": 3206,
+      "errorsBeforeClose": [
+        {
+          "type": "requestfailed",
+          "at": 356,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 722,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1421,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "afterExtraWait": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 196.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 201.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 202.40000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 215.40000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 215.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 215.90000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 216,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 226.2000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 251.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 374.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 550.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 721.3000000119209,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": ""
+      },
+      "errorsBeforeActualClose": [
+        {
+          "type": "requestfailed",
+          "at": 356,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 722,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1421,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "closeAt": 3708
+    },
+    {
+      "length": false,
+      "route": true,
+      "patch": "release",
+      "network": [
+        {
+          "type": "finished",
+          "at": 224,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+        },
+        {
+          "type": "finished",
+          "at": 388,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+        },
+        {
+          "type": "Fetch",
+          "at": 581,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "requestId": "244281.72",
+          "timestamp": 208176.021204,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 742,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "requestId": "244281.73",
+          "timestamp": 208176.196424,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 1460,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "requestId": "244281.74",
+          "timestamp": 208176.371211,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        }
+      ],
+      "errors": [
+        {
+          "type": "requestfailed",
+          "at": 581,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 742,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1460,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "createdAt": 1793337827442,
+      "networkidleAt": 1961,
+      "beforeClose": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 200.90000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 204.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 205.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 218.30000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 218.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 218.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 218.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 227.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 231.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 232.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 243.40000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 357.2000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 403.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 578.8000000119209,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 753.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": "",
+        "motion": false
+      },
+      "checkedAt": 3184,
+      "errorsBeforeClose": [
+        {
+          "type": "requestfailed",
+          "at": 581,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 742,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1460,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "afterExtraWait": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 200.90000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 204.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 205.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 218.30000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 218.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 218.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 218.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 227.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 231.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 232.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 243.40000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 357.2000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 403.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 578.8000000119209,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 753.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": ""
+      },
+      "errorsBeforeActualClose": [
+        {
+          "type": "requestfailed",
+          "at": 581,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 742,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 1460,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "closeAt": 3687
+    },
+    {
+      "length": false,
+      "route": true,
+      "patch": "native",
+      "network": [
+        {
+          "type": "finished",
+          "at": 212,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+        },
+        {
+          "type": "finished",
+          "at": 284,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+        },
+        {
+          "type": "finished",
+          "at": 337,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+        },
+        {
+          "type": "finished",
+          "at": 667,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+        },
+        {
+          "type": "finished",
+          "at": 946,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+        }
+      ],
+      "errors": [],
+      "createdAt": 1793337831154,
+      "networkidleAt": 1446,
+      "beforeClose": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 204,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 206.90000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 222.40000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 222.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 222.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 223,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 241.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 244.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": "",
+        "motion": false
+      },
+      "checkedAt": 2919,
+      "errorsBeforeClose": [],
+      "afterExtraWait": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 204,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 206.90000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 222.40000000596046,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 222.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 222.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 223,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 237.7000000178814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 241.80000001192093,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 244.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": ""
+      },
+      "errorsBeforeActualClose": [],
+      "closeAt": 3421
+    },
+    {
+      "length": false,
+      "route": true,
+      "patch": "yield",
+      "network": [
+        {
+          "type": "finished",
+          "at": 200,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+        },
+        {
+          "type": "Fetch",
+          "at": 250,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "requestId": "244314.75",
+          "timestamp": 208183.029224,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 364,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "requestId": "244314.72",
+          "timestamp": 208183.142865,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 365,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "requestId": "244314.74",
+          "timestamp": 208183.144275,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        },
+        {
+          "type": "Fetch",
+          "at": 366,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "requestId": "244314.73",
+          "timestamp": 208183.145767,
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true
+        }
+      ],
+      "errors": [
+        {
+          "type": "requestfailed",
+          "at": 250,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 364,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 365,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 366,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "createdAt": 1793337834607,
+      "networkidleAt": 866,
+      "beforeClose": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 191.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 197.19999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 197.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 211.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 211.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 211.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 211.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 220.19999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 221.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 222.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 225.19999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 247.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 361.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 362.39999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 364,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": "",
+        "motion": false
+      },
+      "checkedAt": 2691,
+      "errorsBeforeClose": [
+        {
+          "type": "requestfailed",
+          "at": 250,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 364,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 365,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 366,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "afterExtraWait": {
+        "trace": [
+          {
+            "kind": "fetch-start",
+            "at": 191.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 197.19999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 197.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031-manifest.json"
+          },
+          {
+            "kind": "fetch-start",
+            "at": 211.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 211.69999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 211.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-start",
+            "at": 211.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "signalAborted": false
+          },
+          {
+            "kind": "fetch-response",
+            "at": 220.19999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 221.89999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 222.59999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "fetch-response",
+            "at": 225.19999998807907,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+            "status": 200,
+            "length": null,
+            "transfer": "chunked"
+          },
+          {
+            "kind": "reader-done",
+            "at": 247.5,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 361.09999999403954,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 362.39999997615814,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+          },
+          {
+            "kind": "reader-done",
+            "at": 364,
+            "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+          }
+        ],
+        "ready": true,
+        "status": "Checksum-verified precomputed public cases loaded. Every date in the published range is available; inspect provenance before comparing current-browser recalculations.",
+        "error": ""
+      },
+      "errorsBeforeActualClose": [
+        {
+          "type": "requestfailed",
+          "at": 250,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 364,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-london.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 365,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "requestfailed",
+          "at": 366,
+          "url": "http://127.0.0.1:35407/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "closeAt": 3193
+    }
+  ]
+}
