@@ -1,0 +1,2848 @@
+{
+  "kind": "event-horizon-preset",
+  "schemaVersion": 1,
+  "datasetId": "horizon-2031-0d63dab6c7ef-d864022eff6c",
+  "request": {
+    "startDate": "2026-10-30",
+    "endDate": "2031-01-01",
+    "cases": [
+      {
+        "id": "london",
+        "label": "London · local noon",
+        "lat": 51.5074,
+        "lon": -0.1278,
+        "timeZone": "Europe/London",
+        "sampleTime": "12:00",
+        "system": "regiomontanus",
+        "disambiguation": "reject"
+      },
+      {
+        "id": "delhi",
+        "label": "Delhi · local noon",
+        "lat": 28.6139,
+        "lon": 77.209,
+        "timeZone": "Asia/Calcutta",
+        "sampleTime": "12:00",
+        "system": "regiomontanus",
+        "disambiguation": "reject"
+      },
+      {
+        "id": "new-york",
+        "label": "New York · local noon",
+        "lat": 40.7128,
+        "lon": -74.006,
+        "timeZone": "America/New_York",
+        "sampleTime": "12:00",
+        "system": "regiomontanus",
+        "disambiguation": "reject"
+      }
+    ],
+    "purposeIds": [
+      "western-increase-study",
+      "western-decrease-study",
+      "jyotisha-classification-study",
+      "mercury-hour-study"
+    ],
+    "mode": "optimized",
+    "includeAstronomy": true,
+    "includeObservances": true
+  },
+  "sourceBinding": {
+    "algorithm": "sha256-sorted-path-content-v1",
+    "roots": [
+      "assets/js/core/event-horizon.js",
+      "assets/js/core/data/horizon-tool-coverage.js"
+    ],
+    "excluded": [
+      "assets/js/core/data/horizon-preset-version.js"
+    ],
+    "files": [
+      {
+        "path": "assets/js/core/aspects.js",
+        "sha256": "837e71a913479605b776414018f3a17b210eaf3aad221b72bbc63d3e0a6f98be"
+      },
+      {
+        "path": "assets/js/core/astro.js",
+        "sha256": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab"
+      },
+      {
+        "path": "assets/js/core/calendar-observatory.js",
+        "sha256": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9"
+      },
+      {
+        "path": "assets/js/core/calendar.js",
+        "sha256": "a23bc2ae59d96a82bccc62a1c794d0ae5327eaf8599e9f0fdfb4c78166a5ee8f"
+      },
+      {
+        "path": "assets/js/core/considerations.js",
+        "sha256": "3ba3a4a7d83574ac475de691d833d45be12d7d4f84ccb32f86e55f54ea56a19e"
+      },
+      {
+        "path": "assets/js/core/cultural-calendars.js",
+        "sha256": "819804fe10ac53afee33dbf65ff2cc8bea1841c32870d9c421b77481caf0cf55"
+      },
+      {
+        "path": "assets/js/core/data/dignities-data.js",
+        "sha256": "dd0b0931fdaab1f58ad49a1bbbedc4eed978792af153fc00dd247e4c2c7aa191"
+      },
+      {
+        "path": "assets/js/core/data/horizon-observances.js",
+        "sha256": "b06256ac1c6c5fcc16e03e919e025ef0fc0678a5d10e849902e2fb79b40e229b"
+      },
+      {
+        "path": "assets/js/core/data/horizon-tool-coverage.js",
+        "sha256": "844b06483cc4de47d51b8b28afc3ef1952503008da2bbc9c5341a73a67db512a"
+      },
+      {
+        "path": "assets/js/core/data/horizon-traditions.js",
+        "sha256": "7f08607e2405001f250c7e61d6bfeba5a7add721dea4a75d036c4269f8774d75"
+      },
+      {
+        "path": "assets/js/core/data/mcp-tool-contracts.js",
+        "sha256": "eb820b77bc5d5c220d0d6b27f3bb7a8386f96f96e6ef634f135cda9cf84e5fb9"
+      },
+      {
+        "path": "assets/js/core/data/muhurta-data.js",
+        "sha256": "5f7f7f4beb3975a048fea9289bb632c75f14f46c0f4cc0f38d9b6c5c1127ee7c"
+      },
+      {
+        "path": "assets/js/core/data/vedic-data.js",
+        "sha256": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b"
+      },
+      {
+        "path": "assets/js/core/data/vedic-remedies.js",
+        "sha256": "29056fa5597f82184f349fead9c6fe37acc8a7f9ba312d96e125f5fa2f8c205f"
+      },
+      {
+        "path": "assets/js/core/day-guidance.js",
+        "sha256": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b"
+      },
+      {
+        "path": "assets/js/core/dignities.js",
+        "sha256": "618cb3436f16a67f9886fa6f6f66f60d98e3159b64c5305411611205f3e5e35f"
+      },
+      {
+        "path": "assets/js/core/event-horizon.js",
+        "sha256": "3dcfe2dc0b45546013d3bce7ebead5a714b9a9fc26abfed4bab472755d805222"
+      },
+      {
+        "path": "assets/js/core/horizon-astronomy.js",
+        "sha256": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01"
+      },
+      {
+        "path": "assets/js/core/horizon-observances.js",
+        "sha256": "6b13160f1e965e8ced336eae6f57c486f4b19934cae57377310f66c8ba9b419e"
+      },
+      {
+        "path": "assets/js/core/horizon-ranking.js",
+        "sha256": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08"
+      },
+      {
+        "path": "assets/js/core/instant-boundary.js",
+        "sha256": "ae41bd2705e2cbadb7ab6845301bc8d3d81f05637ab411238f27b995260fc5f1"
+      },
+      {
+        "path": "assets/js/core/muhurta.js",
+        "sha256": "dc460a0a99cf81ba593636aba55835bc6804c2f88a1c9d9a2d9db9c283ff32e2"
+      },
+      {
+        "path": "assets/js/core/planetary-hours.js",
+        "sha256": "ca46d1a4ff21914211d278c1b65564cfc78579fb93e451cd05a772cc8eda8db4"
+      },
+      {
+        "path": "assets/js/core/registry.js",
+        "sha256": "e43b4c5cef2ded2940f01f36b5a028f521af8fe779190a7a66b5751b5a9ad519"
+      },
+      {
+        "path": "assets/js/core/time.js",
+        "sha256": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579"
+      },
+      {
+        "path": "assets/js/core/vedic.js",
+        "sha256": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278"
+      },
+      {
+        "path": "assets/js/lib/astronomy.js",
+        "sha256": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7"
+      },
+      {
+        "path": "assets/vendor/adhan/Adhan.js",
+        "sha256": "0326893cd2c4994f9a67bc1008ab54a2678a728e3123e01ce6b4d111008d09f0"
+      },
+      {
+        "path": "assets/vendor/adhan/Astronomical.js",
+        "sha256": "fde941a806a3958efa96b20ec4f9dfd6052d2c0ffbbe6d3d670dbb8e32f44b08"
+      },
+      {
+        "path": "assets/vendor/adhan/CalculationMethod.js",
+        "sha256": "25fe507d157eb462913f9d552c527b4fd34023f1965129f5d31ce380c1cada21"
+      },
+      {
+        "path": "assets/vendor/adhan/CalculationParameters.js",
+        "sha256": "2389ac64c932c3a287bb7fdf13e6585b763781e7e59d9676039d409c83da3401"
+      },
+      {
+        "path": "assets/vendor/adhan/Coordinates.js",
+        "sha256": "0233d695243aa554199115df9c1e3d6c84e66699ac6bef531e4e6cf4e13c8cc4"
+      },
+      {
+        "path": "assets/vendor/adhan/DateUtils.js",
+        "sha256": "ecbe2737fb91fdbe6fe8be92600f6817f1b2e6e4fddd14233f94c4d89aa366d5"
+      },
+      {
+        "path": "assets/vendor/adhan/HighLatitudeRule.js",
+        "sha256": "35a9be5d9b49c10210477b81ba1c98450ac99a58e5125c45cba3398fb68f2778"
+      },
+      {
+        "path": "assets/vendor/adhan/Madhab.js",
+        "sha256": "644398adb646260a337b34cab2277a3c2f798f064d9cb968f670aeaa857506f4"
+      },
+      {
+        "path": "assets/vendor/adhan/MathUtils.js",
+        "sha256": "b888fd77de0ebaa9c218d27a8f859555bcf32a89e974b6a1f4aeea9c61dd1d89"
+      },
+      {
+        "path": "assets/vendor/adhan/PolarCircleResolution.js",
+        "sha256": "ae218b4dccdf083afcde1b85494947c72d928e5430683a4d3013261e20b95a07"
+      },
+      {
+        "path": "assets/vendor/adhan/Prayer.js",
+        "sha256": "a13792a407bca56ca24f480c7f0f54fc4dd0324fce83e56d53ae4bfd9e22a922"
+      },
+      {
+        "path": "assets/vendor/adhan/PrayerTimes.js",
+        "sha256": "45c1936d2f96229e9b80b113531be4e71b537da10f76aad0e28035ee94f5cb4d"
+      },
+      {
+        "path": "assets/vendor/adhan/Qibla.js",
+        "sha256": "3467a2c6816172a7b17379011e0a005ca60e0211ffba99d8fd5344f640db67fb"
+      },
+      {
+        "path": "assets/vendor/adhan/Rounding.js",
+        "sha256": "c610a7340967a9f33835be8dc87ef54aa11aeae2f09cb9e60bb643536d31deeb"
+      },
+      {
+        "path": "assets/vendor/adhan/Shafaq.js",
+        "sha256": "60046362337cf7849af983e33033fc81fc48dcf40826a916517e696e19d06838"
+      },
+      {
+        "path": "assets/vendor/adhan/SolarCoordinates.js",
+        "sha256": "0f139365902bc82ffcf96cec7278e8afc41835ae8e040a97ff351fe0c99ad98e"
+      },
+      {
+        "path": "assets/vendor/adhan/SolarTime.js",
+        "sha256": "9fff93b5fc7d745a0e946ac99dae17429a1441fac6280585c49eccdda3f5fa5d"
+      },
+      {
+        "path": "assets/vendor/adhan/SunnahTimes.js",
+        "sha256": "507876f09d121eedb3b411aa52ad482ec706167517ecc8edd1e7dc72d4676fe8"
+      },
+      {
+        "path": "assets/vendor/adhan/TimeComponents.js",
+        "sha256": "f081f2ed06e0c5086ee1d60238e40a58b714e608feed49ae5f931b4d14d5ec0d"
+      }
+    ],
+    "sha256": "0d63dab6c7efeb79515bc985d305ea09e8bd356bf45c5be9db175a69fe8ed9aa"
+  },
+  "catalogueHashes": {
+    "sourcesSHA256": "1628baad7582055759e073451266ca9938f600996a850bd6b2b7044d7b7d49c3",
+    "coverageSHA256": "b19b10ece86cabb09040708c43f409ebafe5df37c8edc4102a1edbb669f197e9",
+    "toolCoverageSHA256": "32fefd7a3292653116e4a7c02aad6aeee5e62c49f2a989b545fc319d809c0177"
+  },
+  "parts": [
+    {
+      "id": "case-london",
+      "path": "horizon-2031/case-london.json",
+      "sha256": "44e8c33704bb2110b55a3e890a498bde2526f8b9cf4fc53b699987b2b67e9c71",
+      "bytes": 9701600
+    },
+    {
+      "id": "case-delhi",
+      "path": "horizon-2031/case-delhi.json",
+      "sha256": "4a72a692f49b498a281708b18161aed0bcde194913a630c210eb01b900231953",
+      "bytes": 9711317
+    },
+    {
+      "id": "case-new-york",
+      "path": "horizon-2031/case-new-york.json",
+      "sha256": "7dcb16a28df4eded6f1a9d47a0c6d62e6189eaf69e108781f2e8a109dc6c6832",
+      "bytes": 9724490
+    },
+    {
+      "id": "astronomy",
+      "path": "horizon-2031/astronomy.json",
+      "sha256": "217de55190648e5bbeaa16657d5e85c71de0476cf3122f189ef6b61fa35bfcea",
+      "bytes": 5867983
+    }
+  ],
+  "metadata": {
+    "schemaVersion": 1,
+    "kind": "event-horizon-ledger",
+    "counts": {
+      "days": 1525,
+      "cases": 3,
+      "totalSamples": 4575,
+      "processedSamples": 4575,
+      "availableSamples": 4575,
+      "unavailableSamples": 0,
+      "calendarRows": 59475,
+      "availableCalendarRows": 59475,
+      "profileResults": 18300,
+      "rankableProfileResults": 17114,
+      "observanceRows": 1011,
+      "uniqueObservances": 337,
+      "eventCount": 5883,
+      "truncated": false
+    },
+    "sources": [
+      {
+        "id": "OBS-COMPARISON-RESEARCH",
+        "title": "Cross-tradition research, software and source qualifications",
+        "url": "docs/2026-10-calendar-observatory-research.md",
+        "type": "source-review"
+      },
+      {
+        "id": "OBS-CALENDAR",
+        "title": "Civil date arithmetic and calendar conventions",
+        "url": "docs/2026-10-calendar-methods.md",
+        "type": "project-methods"
+      },
+      {
+        "id": "OBS-ASTRONOMY",
+        "title": "Astronomy Engine: apparent geocentric positions",
+        "url": "https://github.com/cosinekitty/astronomy",
+        "type": "software"
+      },
+      {
+        "id": "OBS-WESTERN",
+        "title": "Lilly conventions and astronomical calculation methods",
+        "url": "docs/2026-10-calculation-methods.md",
+        "type": "project-methods"
+      },
+      {
+        "id": "OBS-VEDIC",
+        "title": "Vedic study implementation and its approximations",
+        "url": "assets/js/core/vedic.js",
+        "type": "implementation"
+      },
+      {
+        "id": "OBS-MUHURTA",
+        "title": "Pañcāṅga classifications from modern secondary transcriptions; primary-passage verification pending",
+        "url": "assets/js/core/data/muhurta-data.js",
+        "type": "secondary-source-rule-data",
+        "primaryPassageVerification": "pending"
+      },
+      {
+        "id": "OBS-HOURS",
+        "title": "Agrippa, Three Books of Occult Philosophy, II.34: competing hour conventions",
+        "url": "https://esotericarchives.com/agrippa/agripp2c.htm",
+        "type": "historical-primary"
+      },
+      {
+        "id": "OBS-ADHAN",
+        "title": "Adhan 4.4.6 snapshot, adaptations, and retained license",
+        "url": "assets/vendor/adhan/PROVENANCE.md",
+        "type": "software-provenance"
+      },
+      {
+        "id": "OBS-INTL",
+        "title": "ECMA-402: Intl.DateTimeFormat",
+        "url": "https://tc39.es/ecma402/#sec-intl-datetimeformat-constructor",
+        "type": "technical-standard"
+      },
+      {
+        "id": "OBS-ICU",
+        "title": "ICU User Guide: calendar implementations",
+        "url": "https://unicode-org.github.io/icu/userguide/datetime/calendar/",
+        "type": "software-documentation"
+      },
+      {
+        "id": "DG-AGRIPPA-29",
+        "title": "Agrippa, Three Books of Occult Philosophy, II.29",
+        "url": "https://esotericarchives.com/agrippa/agripp2c.htm",
+        "locator": "Positions, motions, aspects, signs/degrees, observer latitude and Moon/day/hour conditions",
+        "status": "Selected primary chapter read in the 1651 English digital edition; it does not verify the exact Lilly thresholds used below"
+      },
+      {
+        "id": "DG-LILLY",
+        "title": "Lilly, Christian Astrology (1647), Books I–II",
+        "url": "https://en.wikisource.org/wiki/Christian_Astrology",
+        "locator": "Project transcriptions of dignity, solar proximity and Moon cautions; Wikisource is the 1659 second edition",
+        "implementation": "assets/js/core/cautions.js",
+        "status": "Inherited project transcription; fresh Lilly primary-passage verification pending after source access failures; numerical thresholds and interpretive qualifications shown per rule"
+      },
+      {
+        "id": "DG-SOLAR",
+        "title": "Lilly solar-proximity thresholds in the existing dignity table",
+        "url": "assets/js/core/data/dignities-data.js",
+        "locator": "SOLAR: cazimi 17/60°, combustion 8.5°, beams 17°; source comments cite CA pp.113–114",
+        "status": "Existing sourced numerical table; not a new primary-text collation"
+      },
+      {
+        "id": "DG-ASPECTS",
+        "title": "Lilly planetary orbs and applying-aspect implementation",
+        "url": "assets/js/core/aspects.js",
+        "locator": "aspectBetween(); primary planetary half-orbs; 0.05-day linear-motion test",
+        "status": "Calculated geometry plus historical orb convention; applying is an approximation, not a solved future event"
+      },
+      {
+        "id": "DG-PHASE",
+        "title": "Project Moon phase and speed rules",
+        "url": "assets/js/core/cautions.js",
+        "locator": "moonCautions(): waxing elongation <180°; slow <12°/day; reference mean 13.176°/day",
+        "status": "Existing electional study heuristic; the 12° and 13.176° thresholds are not presented as newly verified exact quotations from Lilly"
+      },
+      {
+        "id": "DG-MUHURTA",
+        "title": "Inherited Pañcāṅga classification tables",
+        "url": "assets/js/core/data/muhurta-data.js",
+        "locator": "TITHI_SCREEN; YOGA_SCREEN; KARANA_SCREEN; NAKSHATRA_CLASSES, with original citation-health and variant notes",
+        "status": "Modern secondary transcriptions; primary-passage verification pending; no empirical outcome validation"
+      },
+      {
+        "id": "DG-HOURS",
+        "title": "Agrippa, Three Books of Occult Philosophy, II.34",
+        "url": "https://esotericarchives.com/agrippa/agripp2c.htm",
+        "locator": "Twelve daylight and twelve night divisions; competing ascension convention remains separate",
+        "implementation": "assets/js/core/planetary-hours.js",
+        "status": "Historical temporal-hour convention, not evidence of a favorable outcome"
+      },
+      {
+        "id": "DG-CALENDARS",
+        "title": "Calendar comparison methods and boundaries",
+        "url": "docs/2026-10-calendar-methods.md",
+        "locator": "Civil-midnight date displays; not religious observance or auspiciousness decisions",
+        "status": "Method documentation"
+      },
+      {
+        "id": "DG-TIME",
+        "title": "Explicit IANA local-clock and civil-day handling",
+        "url": "assets/js/core/time.js",
+        "locator": "zonedCivilDay(); zonedTimeCandidates(); supplied runtime time-zone database",
+        "status": "Computational method; hourly samples are not exact astrological transition searches"
+      },
+      {
+        "id": "HR-AGRIPPA-29",
+        "title": "Agrippa, Three Books of Occult Philosophy, II.29",
+        "url": "https://esotericarchives.com/agrippa/agripp2c.htm",
+        "locator": "Chapter XXIX, observation of celestials",
+        "edition": "J.F. English translation, 1651; Joseph H. Peterson digital edition",
+        "rights": "Historical translation public domain; hosted editorial matter retains its own rights",
+        "readingStatus": "Selected complete chapter retrieved and read 30 October 2026",
+        "claim": "The text requires several celestial conditions together; this does not authorize a sufficient single-phase election or a numerical purpose score."
+      },
+      {
+        "id": "HR-AGRIPPA-32",
+        "title": "Agrippa, Three Books of Occult Philosophy, II.32",
+        "url": "https://esotericarchives.com/agrippa/agripp2c.htm",
+        "locator": "Chapter XXXII, opening paragraph",
+        "edition": "J.F. English translation, 1651; Peterson digital edition",
+        "rights": "Historical translation public domain",
+        "readingStatus": "Selected opening paragraph retrieved and read 30 October 2026",
+        "claim": "The source associates the Moon with generation, increase and decrease. Completion tasks and opposite-phase preference are modern study choices, not quotations or sufficient instructions from this chapter."
+      },
+      {
+        "id": "HR-AGRIPPA-43",
+        "title": "Agrippa, Three Books of Occult Philosophy, II.43",
+        "url": "https://esotericarchives.com/agrippa/agripp2c.htm",
+        "locator": "Chapter XLIII, Mercury images",
+        "edition": "J.F. English translation, 1651; Peterson digital edition",
+        "rights": "Historical translation public domain",
+        "readingStatus": "Selected complete chapter retrieved and read 30 October 2026",
+        "claim": "The text reports knowledge/eloquence associations in a multi-condition image tradition, including Mercury hour and ascendant conditions. This profile uses only an explicit editorial hour match and does not implement the image or its claimed efficacy."
+      },
+      {
+        "id": "HR-LILLY-I",
+        "title": "Lilly, Christian Astrology, Book I",
+        "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+        "locator": "pp.77–78 (Mercury) and p.115 (fortitude table)",
+        "edition": "1647 work; World Astrology Network modern transcription marked copyright 2003, not a facsimile",
+        "rights": "Historical work public domain; modern transcription carries a copyright notice. Only original paraphrases are stored; no PDF or modern editorial content redistributed.",
+        "readingStatus": "PDF freshly retrieved; selected pages read 30 October 2026; no new full-book or facsimile collation",
+        "claim": "Mercury is associated with learning and literate professions under stated conditions. The p.115 table distinguishes increasing/decreasing lunar light; the horizon weights are not Lilly’s table weights and completion preference is editorial."
+      },
+      {
+        "id": "HR-EDITORIAL",
+        "title": "Event horizon purpose-ranking method",
+        "url": "docs/2026-10-horizon-ranking.md",
+        "locator": "Declared weights, dependence, complete-case rule and ties",
+        "edition": "Repository authored method, 30 October 2026",
+        "rights": "Original project documentation",
+        "readingStatus": "Implemented method, not historical evidence",
+        "claim": "Finite, transparent exploratory profiles; no validated predictive interpretation."
+      },
+      {
+        "id": "HOBS-OCA-NATIVITY",
+        "title": "Nativity commemoration",
+        "publisher": "Orthodox Church in America",
+        "url": "https://www.oca.org/saints/lives/2027/12/25/103638-the-nativity-of-our-lord-god-and-savior-jesus-christ",
+        "sourceKind": "official-community-calendar",
+        "locator": "Heading: commemorated on December 25",
+        "retrievedAt": "2026-10-30T04:38:42.665002+00:00",
+        "httpStatus": 200,
+        "sha256": "ce5c1b06c909ccf820a3847f1dd365b21d0c303adb8c8825720e90a99b0f6cfd",
+        "readingDepth": "Selected heading and feast introduction read. Native fixed feast date; project Gregorian/Julian arithmetic is separate from the church website calendar choice.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-OCA-THEOPHANY",
+        "title": "Theophany commemoration",
+        "publisher": "Orthodox Church in America",
+        "url": "https://www.oca.org/saints/lives/2027/01/06/100106-feast-of-the-theophany-of-our-lord-and-savior-jesus-christ",
+        "sourceKind": "official-community-calendar",
+        "locator": "Heading: commemorated on January 6",
+        "retrievedAt": "2026-10-30T04:38:42.664391+00:00",
+        "httpStatus": 200,
+        "sha256": "b20b75136677c7fb0e3736a4d9f8660190a3eb0fcfe075d22ae20eb0a1a1093f",
+        "readingDepth": "Selected heading and feast introduction read; no local service hour or Sunday transfer inferred.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HEBCAL-2027-DIASPORA",
+        "title": "Hebcal 2027 Diaspora date records",
+        "publisher": "Hebcal",
+        "url": "https://www.hebcal.com/hebcal?v=1&cfg=json&year=2027&maj=on&min=on&mod=off&nx=off&ss=off&mf=off&c=off&geo=none",
+        "sourceKind": "community-software-calendar",
+        "locator": "Selected title/date/hdate records for Purim, Pesach, Shavuot, Tishri holidays and Chanukah",
+        "retrievedAt": "2026-10-30T04:38:42.666069+00:00",
+        "httpStatus": 200,
+        "sha256": "f1220b5bc2d66160bc518915d83d172b77177d642045a75d7f77161a9a7ced86",
+        "readingDepth": "JSON factual date rows read; evening candle dates distinguished from daytime Hebrew date labels.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HEBCAL-2027-ISRAEL",
+        "title": "Hebcal 2027 Israel date records",
+        "publisher": "Hebcal",
+        "url": "https://www.hebcal.com/hebcal?v=1&cfg=json&year=2027&maj=on&min=on&mod=off&nx=off&ss=off&mf=off&c=off&geo=none&i=on",
+        "sourceKind": "community-software-calendar",
+        "locator": "Selected title/date/hdate records and absence of eighth Pesach/second Shavuot day",
+        "retrievedAt": "2026-10-30T04:38:42.666414+00:00",
+        "httpStatus": 200,
+        "sha256": "71018bfe972218cb9bab22c69d7d2f231e99d18e50c7181a379e8576f95f3ff0",
+        "readingDepth": "Selected factual dates compared with the separate Diaspora response; both share one publisher/engine.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-OCA",
+        "title": "Orthodox Church in America, Lenten and Paschal Cycle",
+        "publisher": "OCA",
+        "url": "https://www.oca.org/fs/paschal-cycle",
+        "sourceKind": "official-community-calendar",
+        "locator": "Christian calendar table: Pascha, Western Easter, Ascension and Pentecost for 2026–2030",
+        "retrievedAt": "2026-10-30T04:21:53.108346+00:00",
+        "httpStatus": 200,
+        "sha256": "d95eef24b7df69abb60e3ea1a6ae7227d72f77feb30d9c01e88540ecf47a697b",
+        "readingDepth": "Selected complete year/date rows read; issuing church table, not universal fixed-feast policy.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-USCCB-2027",
+        "title": "USCCB Liturgical Calendar 2027",
+        "publisher": "United States Conference of Catholic Bishops",
+        "url": "https://www.usccb.org/resources/2027cal.pdf",
+        "sourceKind": "official-community-calendar",
+        "locator": "Principal celebrations and introductory Ascension transfer note; Christmas entries",
+        "retrievedAt": "2026-10-30T04:24:19.553704+00:00",
+        "httpStatus": 200,
+        "sha256": "d7997b57de96fdbf6433af917a65597b108c720c930f3c39356bf0f5058074ce",
+        "readingDepth": "Selected dates and jurisdiction-specific transfer note read; not a full liturgical calendar implementation.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-USCCB-2028",
+        "title": "USCCB Liturgical Calendar 2028",
+        "publisher": "United States Conference of Catholic Bishops",
+        "url": "https://www.usccb.org/resources/2028cal.pdf",
+        "sourceKind": "official-community-calendar",
+        "locator": "Principal celebrations: Easter, Ascension, Pentecost",
+        "retrievedAt": "2026-10-30T04:24:19.554311+00:00",
+        "httpStatus": 200,
+        "sha256": "2115e0240517c8d2ba1f0b684ab809921e1fe9cc67fa25ae20a7d98261663116",
+        "readingDepth": "Selected dates read as independent Western computus fixtures.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HEBCAL",
+        "title": "Jewish holidays, 5786–5791",
+        "publisher": "Hebcal",
+        "url": "https://www.hebcal.com/holidays/",
+        "sourceKind": "community-software-calendar",
+        "locator": "Major holiday table, Diaspora/Israel selector and sunset/nightfall explanation",
+        "retrievedAt": "2026-10-30T04:21:53.108901+00:00",
+        "httpStatus": 200,
+        "sha256": "a89e2524141e23d5c8e83611826befdcd0555d889be4eb1678c244d910be1b77",
+        "readingDepth": "Selected holiday dates and boundary explanation read; Hebcal and Chabad are separate publications, not independent astronomical engines.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-CHABAD-2027",
+        "title": "Jewish Holidays in 2027",
+        "publisher": "Chabad.org",
+        "url": "https://www.chabad.org/holidays/default_cdo/year/2027/jewish/holidays-2027.htm",
+        "sourceKind": "official-community-calendar",
+        "locator": "Purim, Passover, Shavuot, Rosh Hashanah, Yom Kippur, Sukkot and Chanukah entries",
+        "retrievedAt": "2026-10-30T04:21:53.109297+00:00",
+        "httpStatus": 200,
+        "sha256": "3e7e4fd60a32c1e6ddfdcc46af206108311520e3f7b7d0cc342fd8d6c5d25b43",
+        "readingDepth": "Selected dates, Diaspora qualifications and sunset/nightfall wording read.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-GOVHK-2027",
+        "title": "General holidays for 2027",
+        "publisher": "Hong Kong Government",
+        "url": "https://www.gov.hk/en/about/abouthk/holiday/2027.htm",
+        "sourceKind": "official-community-calendar",
+        "locator": "Gazetted table: Lunar New Year, Ching Ming, Buddha birthday, Tuen Ng, day after Mid-Autumn, Chung Yeung",
+        "retrievedAt": "2026-10-30T04:23:19.356964+00:00",
+        "httpStatus": 200,
+        "sha256": "4b70538d2edfe9c676304a7ff0477193f1019805f149e4356a44179e01aa333b",
+        "readingDepth": "Selected dates read; replacement public holidays are not confused with festival dates.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-SINGAPORE-MOM",
+        "title": "Public holidays, 2026 and 2027",
+        "publisher": "Singapore Ministry of Manpower",
+        "url": "https://www.mom.gov.sg/employment-practices/public-holidays",
+        "sourceKind": "official-community-calendar",
+        "locator": "2026 Vesak and Deepavali; 2027 Vesak, Deepavali and Hari Raya rows",
+        "retrievedAt": "2026-10-30T04:23:19.356541+00:00",
+        "httpStatus": 200,
+        "sha256": "b7df3968880cbc1682498a4e2cf64ef623f066e47869a11c39d5bca245750b5d",
+        "readingDepth": "Published regional civil-holiday dates read; not a global Hindu/Buddhist calendar.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-MUIS-2027",
+        "title": "Key Islamic dates 2027 / 1448–1449H",
+        "publisher": "Islamic Religious Council of Singapore (MUIS)",
+        "url": "https://isomer-user-content.by.gov.sg/48/286285a9-1dbd-4c2c-80a8-773c23e32b13/Key%20Islamic%20dates%202027.pdf",
+        "sourceKind": "official-community-calendar",
+        "locator": "One-page month-start and Islamic-events tables",
+        "retrievedAt": "2026-10-30T04:30:25.388163+00:00",
+        "httpStatus": 200,
+        "sha256": "0ed7d3a7f1bfdb6d5098106d8fada339f4291617e46b538541fbc5b1ba822362",
+        "readingDepth": "Both tables read. The Islamic New Year heading says 1448H while its native-date column says 1 Muharram 1449H; use the explicit native date and record the source typo.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-MUIS-CALENDAR-2027",
+        "title": "Islamic Calendar 2027M",
+        "publisher": "MUIS",
+        "url": "https://isomer-user-content.by.gov.sg/48/58bf9c81-404a-4475-b0b3-5075480abfae/Islamic%20Calendar%202027M.pdf",
+        "sourceKind": "official-community-calendar",
+        "locator": "Calendar month/date grid",
+        "retrievedAt": "2026-10-30T04:30:25.388963+00:00",
+        "httpStatus": 200,
+        "sha256": "0d3b3ac23d2b945c08bdb96ea44aa24d7122e26fd98f4498a5cf4d148123ab44",
+        "readingDepth": "Grid retrieved and selected dates inspected; same issuing authority as the key-date sheet, not an independent authority.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-BAHAI",
+        "title": "The Bahá’í Calendar",
+        "publisher": "Worldwide Bahá’í Community",
+        "url": "https://www.bahai.org/action/devotional-life/calendar",
+        "sourceKind": "official-community-calendar",
+        "locator": "Introduction, sunset rule and selected 2026 holy-day display",
+        "retrievedAt": "2026-10-30T04:21:53.498442+00:00",
+        "httpStatus": 200,
+        "sha256": "7af7d1216791c838d9bc9216bd54918c2c7fb1c54266a2baffc0a48df90ac0f2",
+        "readingDepth": "Selected explanatory paragraphs and published table read; no claim to have read all source books.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-BAHAI-DATA",
+        "title": "Published Bahá’í calendar year data and date rules",
+        "publisher": "Worldwide Bahá’í Community",
+        "url": "https://www.bahai.org/component---src-pages-languages-json-language-action-devotional-life-calendar-tsx-5ff8cfaf9cd8f7d1bd14.js",
+        "sourceKind": "official-community-calendar",
+        "locator": "Calendar component JSON records for 182–187 BE; named holy-day date mapping",
+        "retrievedAt": "2026-10-30T04:24:19.552993+00:00",
+        "httpStatus": 200,
+        "sha256": "7d8ee1464363af7c8cf178ceedabd0064c3ea51e235e722756e4a6204914c077",
+        "readingDepth": "Selected official client-side factual date records and mapping inspected without executing downloaded code. Only factual dates are retained; source application code is not copied.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-BAHAI-UHJ",
+        "title": "Universal House of Justice, 10 July 2014",
+        "publisher": "Universal House of Justice",
+        "url": "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20140710_001/1",
+        "sourceKind": "official-community-calendar",
+        "locator": "Implementation of the Badí‘ calendar; Tehran, equinox and Twin Birthdays",
+        "retrievedAt": "2026-10-30T04:25:28.167512+00:00",
+        "httpStatus": 200,
+        "sha256": "9647bd5cf0ad1f76e315e20e9a1c70d202937ea8a5cd4b2e4e1f1d18e92ca49c",
+        "readingDepth": "Selected calendar-method paragraphs read; same tradition authority as the official calendar, not independent date validation.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-AVESTA-CALENDAR",
+        "title": "The Zoroastrian Religious Calendar",
+        "publisher": "Avesta.org / Joseph H. Peterson",
+        "url": "https://www.avesta.org/zcal.html",
+        "sourceKind": "community-reference",
+        "locator": "Fasli, Shahanshahi and Qadimi descriptions",
+        "retrievedAt": "2026-10-30T04:21:55.213262+00:00",
+        "httpStatus": 200,
+        "sha256": "63a6c257a295ea4908355baa98bcb25a36dfb8d9357c7314b679adfaded88fab",
+        "readingDepth": "Selected modern-calendar definitions read. Only this source’s expressly fixed 21 March Fasli variant is encoded.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-IRANICA-CALENDAR",
+        "title": "Calendars IV: Other Modern Calendars",
+        "publisher": "Encyclopaedia Iranica",
+        "url": "https://www.iranicaonline.org/articles/calendars/calendars-iv-other-modern-calendars/",
+        "sourceKind": "academic-reference",
+        "locator": "Modern Zoroastrian calendars, first paragraphs; published 15 December 1990",
+        "retrievedAt": "2026-10-30T04:30:25.389382+00:00",
+        "httpStatus": 200,
+        "sha256": "f8beda0257c295383a1c3c4bc9051d250421c52d123d4b487c5885b3676f0263",
+        "readingDepth": "Selected historical account of distinct communities and Gregorian-like Fasli reform read; does not independently validate every future 21 March observance.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-SGPC-CALENDAR",
+        "title": "Nanakshahi Calendar official download page",
+        "publisher": "Shiromani Gurdwara Parbandhak Committee",
+        "url": "https://sgpc.net/nanakshahi-calendar/",
+        "sourceKind": "official-publication-metadata",
+        "locator": "2026–27 calendar and Jantri links",
+        "retrievedAt": "2026-10-30T04:21:53.287382+00:00",
+        "httpStatus": 200,
+        "sha256": "184735a1d46760a24236e0916b017e877f13bc3706ded742d336a2411e7babda",
+        "readingDepth": "Download-page metadata read. The linked Punjabi PDF was retrieved but no dated passage translated/verified; no dates are encoded from it.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-JAINWORLD",
+        "title": "Jain Festivals",
+        "publisher": "Jainworld",
+        "url": "https://jainworld.com/societies-sanghs/jain-festivals/",
+        "sourceKind": "community-reference",
+        "locator": "Paryushan, Mahavir birthday and Diwali paragraphs",
+        "retrievedAt": "2026-10-30T04:25:28.183851+00:00",
+        "httpStatus": 200,
+        "sha256": "80c9ff060a0ff7e4f738622847b13c8001ba45c1db4eee2ca69ebe3da1101c4a",
+        "readingDepth": "Selected community descriptions read; regional lunar month/day rules do not supply verified future Gregorian dates here.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-JINJA",
+        "title": "Matsuri",
+        "publisher": "Jinja Honcho",
+        "url": "https://www.jinjahoncho.or.jp/en/shinto/matsuri/",
+        "sourceKind": "official-community-explanation",
+        "locator": "Seasonal festivals and local shrine diversity",
+        "retrievedAt": "2026-10-30T04:28:15.448729+00:00",
+        "httpStatus": 200,
+        "sha256": "4606cb1f56f69215ba10f22c888a0d31468a73bbc0975a615699bf95bfc3e082",
+        "readingDepth": "Selected official explanatory text read; no universal dated shrine schedule is asserted.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HKO-2026",
+        "title": "Gregorian–Lunar Calendar Conversion Table of 2026",
+        "publisher": "Hong Kong Observatory",
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/text/files/T2026e.txt",
+        "sourceKind": "official-calendar-table",
+        "locator": "Daily Gregorian/lunar date rows and Bright & Clear solar term",
+        "retrievedAt": "2026-10-30T04:25:28.126705+00:00",
+        "httpStatus": 200,
+        "sha256": "29ef9c43977a69681ef770d0c264e4226692f21f3febc3d16a4ee5c8aa06c60c",
+        "readingDepth": "Daily source table parsed; selected festival rows inspected. The table is a Hong Kong convention; repeated lunar-month labels mark the intercalary month and are excluded from ordinary-month festivals.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HKO-2027",
+        "title": "Gregorian–Lunar Calendar Conversion Table of 2027",
+        "publisher": "Hong Kong Observatory",
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/text/files/T2027e.txt",
+        "sourceKind": "official-calendar-table",
+        "locator": "Daily Gregorian/lunar date rows and Bright & Clear solar term",
+        "retrievedAt": "2026-10-30T04:25:28.143524+00:00",
+        "httpStatus": 200,
+        "sha256": "3754bb79f07ea3dc0d355c7e5da1770bc9bb02ac26bf2e7633692703177f9a17",
+        "readingDepth": "Daily source table parsed; selected festival rows inspected. The table is a Hong Kong convention; repeated lunar-month labels mark the intercalary month and are excluded from ordinary-month festivals.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HKO-2028",
+        "title": "Gregorian–Lunar Calendar Conversion Table of 2028",
+        "publisher": "Hong Kong Observatory",
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/text/files/T2028e.txt",
+        "sourceKind": "official-calendar-table",
+        "locator": "Daily Gregorian/lunar date rows and Bright & Clear solar term",
+        "retrievedAt": "2026-10-30T04:25:28.147587+00:00",
+        "httpStatus": 200,
+        "sha256": "22384e96b87353363be3c4c0d11d4c14988ab4f15335ce2b5cfdb0c411fbed65",
+        "readingDepth": "Daily source table parsed; selected festival rows inspected. The table is a Hong Kong convention; repeated lunar-month labels mark the intercalary month and are excluded from ordinary-month festivals.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HKO-2029",
+        "title": "Gregorian–Lunar Calendar Conversion Table of 2029",
+        "publisher": "Hong Kong Observatory",
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/text/files/T2029e.txt",
+        "sourceKind": "official-calendar-table",
+        "locator": "Daily Gregorian/lunar date rows and Bright & Clear solar term",
+        "retrievedAt": "2026-10-30T04:25:28.151519+00:00",
+        "httpStatus": 200,
+        "sha256": "7aaab28de4a750dea991f6308a69e9361e8219827f53dfce225ff5f7f6b77e0a",
+        "readingDepth": "Daily source table parsed; selected festival rows inspected. The table is a Hong Kong convention; repeated lunar-month labels mark the intercalary month and are excluded from ordinary-month festivals.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HKO-2030",
+        "title": "Gregorian–Lunar Calendar Conversion Table of 2030",
+        "publisher": "Hong Kong Observatory",
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/text/files/T2030e.txt",
+        "sourceKind": "official-calendar-table",
+        "locator": "Daily Gregorian/lunar date rows and Bright & Clear solar term",
+        "retrievedAt": "2026-10-30T04:25:28.155558+00:00",
+        "httpStatus": 200,
+        "sha256": "6235122d90c2934cb6aef2f5702988ec13c03d4fd4459e1b160dc15d49788423",
+        "readingDepth": "Daily source table parsed; selected festival rows inspected. The table is a Hong Kong convention; repeated lunar-month labels mark the intercalary month and are excluded from ordinary-month festivals.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-HKO-2031",
+        "title": "Gregorian–Lunar Calendar Conversion Table of 2031",
+        "publisher": "Hong Kong Observatory",
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/text/files/T2031e.txt",
+        "sourceKind": "official-calendar-table",
+        "locator": "Daily Gregorian/lunar date rows and Bright & Clear solar term",
+        "retrievedAt": "2026-10-30T04:25:28.159508+00:00",
+        "httpStatus": 200,
+        "sha256": "20ae7b108634f677e6283c920fd5106964b8b5fba2aecd16bba07b0b3533f295",
+        "readingDepth": "Daily source table parsed; selected festival rows inspected. The table is a Hong Kong convention; repeated lunar-month labels mark the intercalary month and are excluded from ordinary-month festivals.",
+        "rights": "Source copyright retained. This project stores factual dates, original paraphrases and bibliographic metadata; no complete source page or PDF is redistributed."
+      },
+      {
+        "id": "HOBS-CIVIL",
+        "title": "Canonical civil calendar methods",
+        "publisher": "Astrologer’s Workbench",
+        "url": "docs/2026-10-calendar-methods.md",
+        "sourceKind": "inherited-project-method",
+        "locator": "calendar-observatory.js civilRows; cultural-calendars.js; calendar.js",
+        "readingDepth": "Actual 13-converter implementation and selected existing tests inspected; no full-range religious authority claim.",
+        "rights": "Project implementation and documentation licence applies."
+      },
+      {
+        "id": "HTR-CHRISTIAN-MARK",
+        "title": "Mark 13:32–37",
+        "publisher": "United States Conference of Catholic Bishops",
+        "edition": "New American Bible, Revised Edition, online chapter",
+        "locator": "Mark 13:32–37; associated chapter note on 13:3–37",
+        "readingDepth": "Selected verses and associated note read on 2026-10-30; not a complete Bible or commentary reading.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "The note distinguishes the temple narrative and parousia; a chapter excerpt is not a survey of Christian interpretations."
+        ],
+        "url": "https://bible.usccb.org/bible/mark/13",
+        "retrievalURL": "https://bible.usccb.org/bible/mark/13",
+        "retrievedAt": "2026-10-30T04:21:58.441619+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "9b1fa0ebdddc79dfbd8b29b8f4f459e31ed0005fd030485e183a204172ca902a",
+        "receiptId": "christian-usccb",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-CHRISTIAN-CATECHISM",
+        "title": "Catechism of the Catholic Church",
+        "publisher": "The Holy See",
+        "edition": "Official English online Catechism",
+        "locator": "Paragraphs 673 and 675–677",
+        "readingDepth": "Selected paragraphs read on 2026-10-30, including unknown times and the distinction from millenarianism.",
+        "sourceKind": "official-community-teaching",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "Describes Catholic teaching, not every Christian denomination."
+        ],
+        "url": "https://www.vatican.va/archive/ENG0015/__P1V.HTM",
+        "retrievalURL": "https://www.vatican.va/archive/ENG0015/__P1V.HTM",
+        "retrievedAt": "2026-10-30T04:21:58.442228+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "c8bfacff7c1250cf681d9955d1fa4b37bc24b7cdf30ce968d35018f1413a0e08",
+        "receiptId": "christian-catechism",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-CHRISTIAN-ADVENTIST",
+        "title": "The Second Coming of Christ",
+        "publisher": "Seventh-day Adventist Church",
+        "edition": "Official belief page, current retrieved version",
+        "locator": "Official belief paragraph beginning “The second coming of Christ is the blessed hope…”; sentence on the unrevealed time",
+        "readingDepth": "Official belief paragraph and literal/visible-return explanation read on 2026-10-30; not a complete denominational history.",
+        "sourceKind": "official-community-teaching",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "Current official belief is distinct from nineteenth-century date-setting history; no historical predicted date is encoded here."
+        ],
+        "url": "https://adventist.org/beliefs/official/second-coming",
+        "retrievalURL": "https://adventist.org/second-coming/",
+        "retrievedAt": "2026-10-30T04:24:08.486609+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "57f7fc6e54d8987dab83af122d82f7344ac3e3823858bdcfa0e3ddc21efe0ea6",
+        "receiptId": "adventist-second",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-JEWISH-SANHEDRIN",
+        "title": "Babylonian Talmud, Sanhedrin 97b",
+        "publisher": "Sefaria / William Davidson Edition",
+        "edition": "William Davidson Edition English; API declares CC-BY-NC",
+        "locator": "Sanhedrin 97b:1–2, 5–10 and 14; especially 97b:9",
+        "readingDepth": "Selected English segments read on 2026-10-30, including conflicting calculations and criticism of failed end-date setting; not the complete tractate.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Sefaria API declares CC-BY-NC for this English edition. Only an original factual paraphrase is stored; attribution is retained and no unrestricted training/republication licence is claimed.",
+        "limitations": [
+          "Multiple speakers and disputed expectations must not be collapsed into one unanimous timetable."
+        ],
+        "url": "https://www.sefaria.org/Sanhedrin.97b.9?lang=bi",
+        "retrievalURL": "https://www.sefaria.org/api/texts/Sanhedrin.97b?lang=en",
+        "retrievedAt": "2026-10-30T04:21:58.442994+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "554ceb71321df697e0d2e4dbaeeb0562a12240b07ad03bc3146c1cc042dabf67",
+        "receiptId": "jewish-sefaria",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-JEWISH-MAIMONIDES",
+        "title": "Mishneh Torah, Kings and Wars 12",
+        "publisher": "Sefaria / Moznaim",
+        "edition": "Eliyahu Touger translation, Jerusalem, Moznaim, c1986–2007; API declares CC-BY-NC",
+        "locator": "Chapter 12:1–2 and 12:4–5",
+        "readingDepth": "Selected chapter sections read on 2026-10-30, including ordinary natural order, disputed sequence and rejection of calculating the appointed time.",
+        "sourceKind": "primary-text-translation",
+        "rights": "English edition metadata declares CC-BY-NC. Original paraphrase only; underlying edition rights are not generalized.",
+        "limitations": [
+          "This is Maimonides’ formulation, not an exhaustive statement of all Jewish messianic or afterlife traditions."
+        ],
+        "url": "https://www.sefaria.org/Mishneh_Torah%2C_Kings_and_Wars.12.2?lang=bi",
+        "retrievalURL": "https://www.sefaria.org/api/texts/Mishneh_Torah%2C_Kings_and_Wars.12?lang=en",
+        "retrievedAt": "2026-10-30T04:22:59.034298+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "f9171f8d9fd67427dce9ee38b8b69f240d5a291bb59243299ebdcaeff9067118",
+        "receiptId": "jewish-mishneh",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-ISLAM-QURAN-7",
+        "title": "Qur’an 7:187",
+        "publisher": "Quran.com / Quran Foundation",
+        "edition": "Mustafa Khattab, The Clear Quran, displayed English translation",
+        "locator": "Sūrat al-Aʿrāf 7:187",
+        "readingDepth": "The displayed verse translation read on 2026-10-30; the abbreviated tafsir preview is not treated as a full commentary reading.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "The selected verse does not supply a civil date or resolve all Sunni/Shia eschatological differences."
+        ],
+        "url": "https://quran.com/en/al-araf/187",
+        "retrievalURL": "https://quran.com/en/al-araf/187",
+        "retrievedAt": "2026-10-30T04:21:58.443354+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "e212b7c3b6f58f60a5eee5e47f7ce942da738b6c5af766c16241ce258ded4767",
+        "receiptId": "islamic-quran",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-ISLAM-QURAN-31",
+        "title": "Qur’an 31:34",
+        "publisher": "Quran.com / Quran Foundation",
+        "edition": "Mustafa Khattab, The Clear Quran, displayed English translation",
+        "locator": "Sūrat Luqmān 31:34",
+        "readingDepth": "The displayed verse translation read on 2026-10-30.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "A second verse from the same text and translation is not an independent calendar fixture."
+        ],
+        "url": "https://quran.com/en/luqman/34",
+        "retrievalURL": "https://quran.com/en/luqman/34",
+        "retrievedAt": "2026-10-30T04:21:58.443977+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "de0dcf29c0c72b6529a8638b8bf82f96807b378c7e4e9d0a09f732c5423554e7",
+        "receiptId": "islamic-quran31",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-HINDU-BHAGAVATA",
+        "title": "Śrīmad-Bhāgavatam, canto 12, chapter 2",
+        "publisher": "Bhaktivedanta Book Trust / Vedabase",
+        "edition": "BBT English Vaiṣṇava translation, chapter overview",
+        "locator": "12.2.18–24, especially Kalki/renewal in 18–23 and the celestial condition in 24",
+        "readingDepth": "Selected verse translations 18–24 read on 2026-10-30; no whole Purāṇa or cross-recension collation claimed.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "12.2.24 describes Sun, Moon and Bṛhaspati in Karkaṭa/Puṣya; no unique Gregorian date, chosen ayanāṃśa, exact contact definition or validated application algorithm is supplied.",
+          "A recurring modern angular configuration is not proof of the narrative’s fulfilment."
+        ],
+        "url": "https://vedabase.io/en/library/sb/12/2/",
+        "retrievalURL": "https://vedabase.io/en/library/sb/12/2/",
+        "retrievedAt": "2026-10-30T04:21:58.449830+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "676fe078cd0dfc414442612fb6e2a82601092c4a3966e23605647e9cebbaaf28",
+        "receiptId": "hindu-bhagavata",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-HINDU-GITA-7",
+        "title": "Bhagavad Gītā 4.7",
+        "publisher": "Holy Bhagavad Gita / Swami Mukundananda",
+        "edition": "Swami Mukundananda English translation and commentary page",
+        "locator": "4.7, displayed Translation; opening commentary on avatāra",
+        "readingDepth": "Verse translation and the opening explanatory paragraph read on 2026-10-30.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "A stated response to decline in dharma is not an algorithm for dating a future event."
+        ],
+        "url": "https://www.holy-bhagavad-gita.org/chapter/4/verse/7/",
+        "retrievalURL": "https://www.holy-bhagavad-gita.org/chapter/4/verse/7",
+        "retrievedAt": "2026-10-30T04:21:58.450340+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "3a49262b162a725b807315a1bf0851bbe23327519ff687674b44ca17b73ce4a4",
+        "receiptId": "hindu-gita",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-HINDU-GITA-8",
+        "title": "Bhagavad Gītā 4.8",
+        "publisher": "Holy Bhagavad Gita / Swami Mukundananda",
+        "edition": "Swami Mukundananda English translation and commentary page",
+        "locator": "4.8, displayed Translation",
+        "readingDepth": "Verse translation read on 2026-10-30; not the full commentary or work.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "This named Vaiṣṇava reading must not stand for every Hindu school."
+        ],
+        "url": "https://www.holy-bhagavad-gita.org/chapter/4/verse/8/",
+        "retrievalURL": "https://www.holy-bhagavad-gita.org/chapter/4/verse/8/",
+        "retrievedAt": "2026-10-30T04:24:08.736468+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "41a07e835b6170193cd7b4c9117db3a32be7ab3123daeb98e6e97b21d0580dc5",
+        "receiptId": "hindu-gita8",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-BUDDHIST-DN26",
+        "title": "Dīgha Nikāya 26, The Wheel-Turning Monarch",
+        "publisher": "SuttaCentral",
+        "edition": "Bhikkhu Sujato English translation, segmented Bilara API",
+        "locator": "DN 26:23–26, especially 25.1–25.6; translated segments rather than commentary",
+        "readingDepth": "Selected translated segments 23–26 actually read through the public API on 2026-10-30; the normal page supplied only an application shell.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Original paraphrase only. The licensing page also returned an application shell, so edition-specific reuse rights were not independently verified in this pass.",
+        "limitations": [
+          "The narrated lifespan/cosmological setting is not an elapsed-years countdown from today.",
+          "A selected Pāli discourse cannot establish a universal Buddhist eschatology."
+        ],
+        "url": "https://suttacentral.net/dn26/en/sujato#25.1",
+        "retrievalURL": "https://suttacentral.net/api/bilarasuttas/dn26/sujato?lang=en",
+        "retrievedAt": "2026-10-30T04:21:59.045205+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "bfb80b139159bc8ce9d0dd95e57c1ca5881a081670bd6bbc55f59d7eab1ed60b",
+        "receiptId": "buddhist-dn26-api",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-SIKH-REHAT",
+        "title": "Sikh Rehat Maryada, English",
+        "publisher": "Shiromani Gurdwara Parbandhak Committee, Amritsar",
+        "edition": "Official scanned English PDF; translator Kulraj Singh’s preface dated 31 August 1994; PDF metadata created 2023",
+        "locator": "Section Four, Chapter X, Article XVI(a)–(d), printed/PDF p.36; continuation p.37",
+        "readingDepth": "Contents and selected preface pages checked by OCR; Article XVI pp.36–37 read by OCR and p.36 visually inspected on 2026-10-30. No full-book reading.",
+        "sourceKind": "official-community-discipline",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "This selected discipline passage does not provide a comprehensive Sikh cosmology or a festival-date table.",
+          "English headings/divisions are the translator’s organization, as stated in the inspected preface."
+        ],
+        "url": "https://sgpc.net/storage/2026/06/Sikh_Rehat_Maryada_English.pdf",
+        "retrievalURL": "https://sgpc.net/storage/2026/06/Sikh_Rehat_Maryada_English.pdf",
+        "retrievedAt": "2026-10-30T04:24:08.485048+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "aa9645db5b828549bd31eebe33dd84e9af3221d2327b4c36b2a08dbe63b618fc",
+        "receiptId": "sikh-rehat-pdf",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-JAIN-JAINPEDIA",
+        "title": "Jain universe",
+        "publisher": "JAINpedia; Nalini Balbir",
+        "edition": "Scholarly article on the JAINpedia project",
+        "locator": "Introduction; General principles; No beginning and no end; Symmetrical, repetitive structure",
+        "readingDepth": "Selected sections read on 2026-10-30, including the quotation attributed to Hemacandra and Śvetāmbara/Digambara qualifications.",
+        "sourceKind": "academic-reference",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "Hemacandra is quoted through this scholarly article; the underlying Sanskrit work and full Johnson translation were not independently read."
+        ],
+        "url": "https://jainpedia.org/article/themes/principles/jain-universe/",
+        "retrievalURL": "https://jainpedia.org/article/themes/principles/jain-universe/",
+        "retrievedAt": "2026-10-30T04:24:08.485585+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "7dd5b5cb57fd83438db8be5ad6a8b7862a760c6064234810630dfc71a3b3bc2a",
+        "receiptId": "jainpedia-universe",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-JAIN-IEP",
+        "title": "Jain Philosophy",
+        "publisher": "Internet Encyclopedia of Philosophy; Mark Owen Webb",
+        "edition": "Online scholarly encyclopedia article",
+        "locator": "Section 1, Metaphysics: uncreated universe, souls, karma and release",
+        "readingDepth": "Selected Metaphysics paragraphs and author metadata read on 2026-10-30.",
+        "sourceKind": "academic-reference",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "This broad philosophical account is not a current observance calendar or a survey of every Jain community."
+        ],
+        "url": "https://iep.utm.edu/jain/",
+        "retrievalURL": "https://iep.utm.edu/jain/",
+        "retrievedAt": "2026-10-30T04:22:59.479039+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "f104225fb4fdaf45eb534416d81db31d125340a85a79e5ed0b3eb6c95194b84a",
+        "receiptId": "jain-academic",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-BAHAI-QUESTIONS",
+        "title": "Some Answered Questions",
+        "publisher": "Bahá’í Reference Library; ‘Abdu’l-Bahá",
+        "edition": "Official current English online edition",
+        "locator": "Chapter 26, The Second Coming of Christ and the Day of Judgement, paragraphs 1–6",
+        "readingDepth": "Complete selected chapter 26 read on 2026-10-30; not the entire work or the separately referenced Kitáb-i-Íqán.",
+        "sourceKind": "authoritative-community-text",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "This is a Bahá’í interpretation of Christian imagery, not a neutral claim that Christian communities adopt it.",
+          "The chapter’s historical astronomical illustrations are not adopted as modern measured stellar facts."
+        ],
+        "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/7",
+        "retrievalURL": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/7",
+        "retrievedAt": "2026-10-30T04:24:08.485981+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "d0941cda7ae0089cb1fe3266bad17f0f36238c8ea01c16e65616d4ee83dbbb64",
+        "receiptId": "bahai-christian-sections",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-BAHAI-CALENDAR",
+        "title": "The Bahá’í Calendar",
+        "publisher": "Bahá’í International Community website",
+        "edition": "Official current calendar introduction and year selector",
+        "locator": "Introductory paragraphs: nineteen months, intercalary days, Naw-Rúz, Twin Birthdays and sunset day boundary",
+        "readingDepth": "Introduction and availability of published year choices read on 2026-10-30. This source role did not validate every year-table date; the observance owner handles dated rows.",
+        "sourceKind": "official-calendar-reference",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "The equinox rule is not replaced with a universal fixed 21 March date.",
+          "Religious day boundaries and local civil labels differ; this metadata module computes neither."
+        ],
+        "url": "https://www.bahai.org/action/devotional-life/calendar",
+        "retrievalURL": "https://www.bahai.org/action/devotional-life/calendar",
+        "retrievedAt": "2026-10-30T04:21:59.494120+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "7af7d1216791c838d9bc9216bd54918c2c7fb1c54266a2baffc0a48df90ac0f2",
+        "receiptId": "bahai-calendar",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-ZORO-YASHT",
+        "title": "Zamyād Yašt",
+        "publisher": "Avesta.org; James Darmesteter translation",
+        "edition": "Sacred Books of the East, volume 23, historical English translation",
+        "locator": "Yašt 19, sections 89–96, especially 89–90",
+        "readingDepth": "Selected restoration/resurrection passage and following sections read on 2026-10-30; no complete Avesta reading or new linguistic collation.",
+        "sourceKind": "primary-text-translation",
+        "rights": "Historical Darmesteter translation is public domain; website/editor credited. Only original paraphrase is stored here.",
+        "limitations": [
+          "Historical transliterations and theological claims are retained as source attribution, not verified future physical events."
+        ],
+        "url": "https://www.avesta.org/ka/yt19sbe.htm",
+        "retrievalURL": "https://www.avesta.org/ka/yt19sbe.htm",
+        "retrievedAt": "2026-10-30T04:21:59.749019+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "c409da7dc33673685911b5d73d6e1cbb2eca0c3ecde987b9878899f3eab32533",
+        "receiptId": "zoroastrian-avesta",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-ZORO-IRANICA",
+        "title": "FRAŠŌ.KƎRƎTI",
+        "publisher": "Encyclopaedia Iranica; Almut Hintze",
+        "edition": "Vol. X, fasc. 2, pp.190–192; published 2000, updated 2014",
+        "locator": "Opening definition; Allusions in the Younger Avesta, with Yt.19 locators",
+        "readingDepth": "Definition and selected Younger Avesta discussion read on 2026-10-30; not every philological argument or cited work.",
+        "sourceKind": "academic-reference",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "The discussion distinguishes textual layers and uncertain meanings; it does not provide a validated Gregorian date for renovation."
+        ],
+        "url": "https://www.iranicaonline.org/articles/frasokrti/",
+        "retrievalURL": "https://www.iranicaonline.org/articles/frasokrti",
+        "retrievedAt": "2026-10-30T04:21:59.716286+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "ce5d06b44c1428fa4faa35681c1887c30e4846512547988405e6a012f7e5e5c0",
+        "receiptId": "zoroastrian-iranica",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-SHINTO-KAKURIYO",
+        "title": "Kakuriyo",
+        "publisher": "Kokugakuin University, Encyclopedia of Shinto",
+        "edition": "Online English encyclopedia entry",
+        "locator": "Category 7, Concepts and Doctrines / Basic Terms; complete Kakuriyo entry",
+        "readingDepth": "The complete short entry was read on 2026-10-30; the initially guessed URL resolved to Kakuriyo, not a separate Yomi article.",
+        "sourceKind": "academic-reference",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "The entry says the hidden realm does not necessarily mean only the world after death; it is not an end-of-world timetable."
+        ],
+        "url": "https://d-museum.kokugakuin.ac.jp/eos/detail/?id=8997",
+        "retrievalURL": "https://d-museum.kokugakuin.ac.jp/eos/detail/?id=8997",
+        "retrievedAt": "2026-10-30T04:21:59.772064+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "0f96af2eb163137c6057f451aa07f48b897136d568ea8ba9e1c23e174a240c01",
+        "receiptId": "shinto-yomi",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-SHINTO-MATSURI",
+        "title": "Matsuri",
+        "publisher": "Jinja Honcho",
+        "edition": "Official English introduction",
+        "locator": "Opening three paragraphs and statement that local traditions vary between jinja",
+        "readingDepth": "The short Matsuri page read on 2026-10-30; local shrine schedules were not surveyed.",
+        "sourceKind": "official-community-reference",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "Seasonal and shrine-specific rituals do not establish one universal festival timetable or eschatological claim."
+        ],
+        "url": "https://www.jinjahoncho.or.jp/en/shinto/matsuri/",
+        "retrievalURL": "https://www.jinjahoncho.or.jp/en/shinto/matsuri/",
+        "retrievedAt": "2026-10-30T04:24:08.486321+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "4606cb1f56f69215ba10f22c888a0d31468a73bbc0975a615699bf95bfc3e082",
+        "receiptId": "shinto-matsuri",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HTR-DAOISM-SEP",
+        "title": "Religious Daoism",
+        "publisher": "Stanford Encyclopedia of Philosophy; Fabrizio Pregadio",
+        "edition": "Online article, copyright 2020 by Fabrizio Pregadio",
+        "locator": "Section 2.5, The Divinization of Laozi: Taiping jing and early millenarian movements",
+        "readingDepth": "Selected section on Great Peace and early historical messianic expectations read on 2026-10-30; not the whole long article or the primary Taiping jing.",
+        "sourceKind": "academic-reference",
+        "rights": "Copyright or edition-specific rights retained by the publisher/translator. This module stores an original short paraphrase, not the source text; no expanded training licence is inferred.",
+        "limitations": [
+          "This historical Daoist scope is not all Chinese religion, modern Daoist consensus, or an independently checked primary-text translation."
+        ],
+        "url": "https://plato.stanford.edu/entries/daoism-religion/",
+        "retrievalURL": "https://plato.stanford.edu/entries/daoism-religion/",
+        "retrievedAt": "2026-10-30T04:22:00.219642+00:00",
+        "httpStatus": 200,
+        "contentSHA256": "4379627fbabe9367b0760473ece03414e5378d39b2c701c129b6a6be639baf6e",
+        "receiptId": "chinese-daoism",
+        "receiptPath": "docs/evidence/horizon/traditions/source-receipt.json",
+        "accessStatus": "selected-passage-read",
+        "claimType": "attributed-reference",
+        "fullWorkRead": false,
+        "supportsCalendarCalculation": false
+      },
+      {
+        "id": "HORIZON-ASTRONOMY-ENGINE",
+        "title": "Astronomy Engine: lunar quarters, seasons, global eclipses and apparent geocentric vectors",
+        "url": "https://github.com/cosinekitty/astronomy/tree/master/source/js",
+        "claimType": "calculated-astronomy",
+        "readingDepth": "Fresh selected API definitions and bundled implementation inspected; not an independent ephemeris.",
+        "rights": "MIT; existing bundled notice retained"
+      },
+      {
+        "id": "HORIZON-NASA-SOLAR",
+        "title": "NASA GSFC, Catalog of Solar Eclipses: 2001 to 2100",
+        "url": "https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html",
+        "claimType": "reference-fixture",
+        "readingDepth": "All ten catalogue eclipse rows in the declared 2026-10-30–2031-01-01 horizon checked; TD converted with each row’s published delta-T.",
+        "rights": "Selected factual rows and citations; no page artwork redistributed"
+      },
+      {
+        "id": "HORIZON-NASA-LUNAR",
+        "title": "NASA GSFC, Catalog of Lunar Eclipses: 2001 to 2100",
+        "url": "https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html",
+        "claimType": "reference-fixture",
+        "readingDepth": "All ten catalogue eclipse rows in the declared horizon checked, including the shallow July 2027 penumbral event; TD and delta-T kept explicit.",
+        "rights": "Selected factual rows and citations; no page artwork redistributed"
+      },
+      {
+        "id": "HORIZON-NASA-PHASES",
+        "title": "NASA GSFC, Phases of the Moon: 2001 to 2100",
+        "url": "https://eclipse.gsfc.nasa.gov/phase/phases2001.html",
+        "claimType": "reference-fixture",
+        "readingDepth": "Selected 2027 and 2030 phase rows and the Universal Time/table convention checked; not independent validation of every event.",
+        "rights": "Selected factual rows only"
+      },
+      {
+        "id": "HORIZON-HKO-2027",
+        "title": "Hong Kong Observatory, Gregorian–Lunar Calendar Conversion Table of 2027",
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2027e.pdf",
+        "claimType": "reference-fixture",
+        "readingDepth": "Four solar-quarter civil dates checked in the Hong Kong UTC+8 convention; date precision does not validate event seconds.",
+        "rights": "Only four factual dates retained; PDF artwork not redistributed"
+      },
+      {
+        "id": "HORIZON-JPL-SPOTS",
+        "title": "NASA JPL Horizons, observer quantity 31",
+        "url": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+        "claimType": "reference-fixture",
+        "readingDepth": "Fresh selected Mars station, Moon ingress and Sun position samples checked. The failed Mercury request is recorded separately; selected fixtures do not validate all roots.",
+        "rights": "Selected numerical output with source receipt"
+      }
+    ],
+    "coverage": {
+      "calendarIds": [
+        "gregory",
+        "julian",
+        "hebrew",
+        "islamic-civil",
+        "islamic-umalqura",
+        "chinese",
+        "buddhist",
+        "indian",
+        "persian",
+        "coptic",
+        "ethiopic",
+        "japanese",
+        "roc"
+      ],
+      "purposes": [
+        {
+          "id": "western-increase-study",
+          "label": "Western increase study",
+          "description": "Explore the inherited lunar study rules while preferring increasing light. This is a modern beginning/growth study prompt, not a complete historical election.",
+          "contributions": [
+            {
+              "id": "DG-W-LIGHT",
+              "ruleId": "DG-W-LIGHT",
+              "weight": 2,
+              "dependencyGroup": "moon-sun-elongation",
+              "mode": "waxing"
+            },
+            {
+              "id": "DG-W-SOLAR",
+              "ruleId": "DG-W-SOLAR",
+              "weight": 2,
+              "dependencyGroup": "moon-sun-elongation",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-W-SPEED",
+              "ruleId": "DG-W-SPEED",
+              "weight": 2,
+              "dependencyGroup": "moon-apparent-motion",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-W-VIA",
+              "ruleId": "DG-W-VIA",
+              "weight": 2,
+              "dependencyGroup": "moon-tropical-longitude",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-W-APPLY-MARS",
+              "ruleId": "DG-W-APPLY-MARS",
+              "weight": 1,
+              "dependencyGroup": "moon-planet-aspect-geometry",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-W-APPLY-SATURN",
+              "ruleId": "DG-W-APPLY-SATURN",
+              "weight": 1,
+              "dependencyGroup": "moon-planet-aspect-geometry",
+              "mode": "classification"
+            }
+          ],
+          "sourceIds": [
+            "DG-PHASE",
+            "DG-LILLY",
+            "DG-SOLAR",
+            "DG-ASPECTS",
+            "HR-AGRIPPA-29",
+            "HR-AGRIPPA-32",
+            "HR-LILLY-I",
+            "HR-EDITORIAL"
+          ],
+          "scoreScale": {
+            "minimum": -100,
+            "maximum": 100,
+            "unit": "editorial index points",
+            "probability": false,
+            "endpointReachability": "A bound only; physical combinations and profile mappings need not attain both endpoints."
+          },
+          "method": "100 × sum(value × declared integer weight) / sum(all declared weights), only when every contribution is observed. Classification maps favorable:+1, neutral:0, caution:−1. Phase preference and Mercury-hour matching are explicitly separate editorial mappings.",
+          "tiePolicy": "Same numerator and denominator within a profile/case form a tie; dates may provide stable display order only.",
+          "limitations": [
+            "Phase preference assigns +1 to waxing and −1 to waning only for this declared comparison. Lunar speed thresholds and applying-aspect approximation retain their inherited qualifications.",
+            "Scores are modern editorial study indices, not historical formulae, probabilities, religious efficacy, personal advice or objectively good/bad days.",
+            "Only the explicit sampled instant is described. A local-noon sample does not classify the whole date; different observer-local noons are different instants.",
+            "Compare scores only within the same declared profile and case. A shared numerical scale does not make different traditions or observers commensurable.",
+            "Dependency groups expose repeated measurements and each declared group budget; they are accounting groups, not independent evidence. Several groups still reuse the same Moon and Sun positions.",
+            "All required contributions must be observed. Missing, unavailable or unresolved rules make score null; absent data is never favorable and is never removed from the denominator.",
+            "Equal exact score numerators under the same denominator are ties. Stable display order within a tie is not a stronger result.",
+            "No observed religious festival, calendar label, eclipse, eschatology, birth chart, oracle draw or source-only reference contributes to these profiles."
+          ]
+        },
+        {
+          "id": "western-decrease-study",
+          "label": "Western decrease / completion study",
+          "description": "Explore the same inherited lunar rules while preferring decreasing light. Completion/reduction is an editorial study theme, not a claim that Lilly calls a waning Moon favorable.",
+          "contributions": [
+            {
+              "id": "DG-W-LIGHT",
+              "ruleId": "DG-W-LIGHT",
+              "weight": 2,
+              "dependencyGroup": "moon-sun-elongation",
+              "mode": "waning"
+            },
+            {
+              "id": "DG-W-SOLAR",
+              "ruleId": "DG-W-SOLAR",
+              "weight": 2,
+              "dependencyGroup": "moon-sun-elongation",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-W-SPEED",
+              "ruleId": "DG-W-SPEED",
+              "weight": 2,
+              "dependencyGroup": "moon-apparent-motion",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-W-VIA",
+              "ruleId": "DG-W-VIA",
+              "weight": 2,
+              "dependencyGroup": "moon-tropical-longitude",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-W-APPLY-MARS",
+              "ruleId": "DG-W-APPLY-MARS",
+              "weight": 1,
+              "dependencyGroup": "moon-planet-aspect-geometry",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-W-APPLY-SATURN",
+              "ruleId": "DG-W-APPLY-SATURN",
+              "weight": 1,
+              "dependencyGroup": "moon-planet-aspect-geometry",
+              "mode": "classification"
+            }
+          ],
+          "sourceIds": [
+            "DG-PHASE",
+            "DG-LILLY",
+            "DG-SOLAR",
+            "DG-ASPECTS",
+            "HR-AGRIPPA-29",
+            "HR-AGRIPPA-32",
+            "HR-LILLY-I",
+            "HR-EDITORIAL"
+          ],
+          "scoreScale": {
+            "minimum": -100,
+            "maximum": 100,
+            "unit": "editorial index points",
+            "probability": false,
+            "endpointReachability": "A bound only; physical combinations and profile mappings need not attain both endpoints."
+          },
+          "method": "100 × sum(value × declared integer weight) / sum(all declared weights), only when every contribution is observed. Classification maps favorable:+1, neutral:0, caution:−1. Phase preference and Mercury-hour matching are explicitly separate editorial mappings.",
+          "tiePolicy": "Same numerator and denominator within a profile/case form a tie; dates may provide stable display order only.",
+          "limitations": [
+            "Only the phase preference is reversed from the increase profile: +1 waning, −1 waxing. The original guidance classification remains visible; this does not rewrite Lilly’s dignity table.",
+            "Scores are modern editorial study indices, not historical formulae, probabilities, religious efficacy, personal advice or objectively good/bad days.",
+            "Only the explicit sampled instant is described. A local-noon sample does not classify the whole date; different observer-local noons are different instants.",
+            "Compare scores only within the same declared profile and case. A shared numerical scale does not make different traditions or observers commensurable.",
+            "Dependency groups expose repeated measurements and each declared group budget; they are accounting groups, not independent evidence. Several groups still reuse the same Moon and Sun positions.",
+            "All required contributions must be observed. Missing, unavailable or unresolved rules make score null; absent data is never favorable and is never removed from the denominator.",
+            "Equal exact score numerators under the same denominator are ties. Stable display order within a tie is not a stronger result.",
+            "No observed religious festival, calendar label, eclipse, eschatology, birth chart, oracle draw or source-only reference contributes to these profiles."
+          ]
+        },
+        {
+          "id": "jyotisha-classification-study",
+          "label": "Inherited Jyotiṣa classification study",
+          "description": "Compare the four implemented secondary-source Pañcāṅga quality classes as a disclosed editorial exercise. This is not a religious observance, a complete muhūrta, or a source-verified universal auspiciousness measure.",
+          "contributions": [
+            {
+              "id": "DG-J-TITHI",
+              "ruleId": "DG-J-TITHI",
+              "weight": 1,
+              "dependencyGroup": "moon-sun-elongation",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-J-KARANA",
+              "ruleId": "DG-J-KARANA",
+              "weight": 1,
+              "dependencyGroup": "moon-sun-elongation",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-J-YOGA",
+              "ruleId": "DG-J-YOGA",
+              "weight": 2,
+              "dependencyGroup": "sun-moon-sidereal-sum",
+              "mode": "classification"
+            },
+            {
+              "id": "DG-J-NAKSHATRA",
+              "ruleId": "DG-J-NAKSHATRA",
+              "weight": 2,
+              "dependencyGroup": "moon-sidereal-longitude",
+              "mode": "classification"
+            }
+          ],
+          "sourceIds": [
+            "DG-MUHURTA",
+            "HR-EDITORIAL"
+          ],
+          "scoreScale": {
+            "minimum": -100,
+            "maximum": 100,
+            "unit": "editorial index points",
+            "probability": false,
+            "endpointReachability": "A bound only; physical combinations and profile mappings need not attain both endpoints."
+          },
+          "method": "100 × sum(value × declared integer weight) / sum(all declared weights), only when every contribution is observed. Classification maps favorable:+1, neutral:0, caution:−1. Phase preference and Mercury-hour matching are explicitly separate editorial mappings.",
+          "tiePolicy": "Same numerator and denominator within a profile/case form a tie; dates may provide stable display order only.",
+          "limitations": [
+            "Tithi and karaṇa split one group budget because both partition the same elongation. Yoga and nakṣatra are not statistically independent of that sky. Opening-portion yoga rules remain missing until their timing is resolved. Primary-passage verification of the inherited quality tables remains pending.",
+            "Scores are modern editorial study indices, not historical formulae, probabilities, religious efficacy, personal advice or objectively good/bad days.",
+            "Only the explicit sampled instant is described. A local-noon sample does not classify the whole date; different observer-local noons are different instants.",
+            "Compare scores only within the same declared profile and case. A shared numerical scale does not make different traditions or observers commensurable.",
+            "Dependency groups expose repeated measurements and each declared group budget; they are accounting groups, not independent evidence. Several groups still reuse the same Moon and Sun positions.",
+            "All required contributions must be observed. Missing, unavailable or unresolved rules make score null; absent data is never favorable and is never removed from the denominator.",
+            "Equal exact score numerators under the same denominator are ties. Stable display order within a tie is not a stronger result.",
+            "No observed religious festival, calendar label, eclipse, eschatology, birth chart, oracle draw or source-only reference contributes to these profiles."
+          ]
+        },
+        {
+          "id": "mercury-hour-study",
+          "label": "Mercury-hour study match",
+          "description": "Find samples whose implemented temporal-hour ruler is Mercury, for an optional source-reading/language study. Other hour rulers are not adverse.",
+          "contributions": [
+            {
+              "id": "DG-H-TEMPORAL",
+              "ruleId": "DG-H-TEMPORAL",
+              "weight": 1,
+              "dependencyGroup": "local-solar-hour",
+              "mode": "mercury-hour"
+            }
+          ],
+          "sourceIds": [
+            "DG-HOURS",
+            "HR-AGRIPPA-43",
+            "HR-LILLY-I",
+            "HR-EDITORIAL"
+          ],
+          "scoreScale": {
+            "minimum": -100,
+            "maximum": 100,
+            "unit": "editorial index points",
+            "probability": false,
+            "endpointReachability": "A bound only; physical combinations and profile mappings need not attain both endpoints."
+          },
+          "method": "100 × sum(value × declared integer weight) / sum(all declared weights), only when every contribution is observed. Classification maps favorable:+1, neutral:0, caution:−1. Phase preference and Mercury-hour matching are explicitly separate editorial mappings.",
+          "tiePolicy": "Same numerator and denominator within a profile/case form a tie; dates may provide stable display order only.",
+          "limitations": [
+            "Mercury hour maps to +1; all other known traditional rulers map to 0. No Mercury dignity, rising sign or image conditions are evaluated. This is not Agrippa’s complete procedure or evidence that learning works better then.",
+            "Temporal hours use twelve daylight and twelve night divisions. Agrippa II.34 also reports an alternative ascension convention that is not implemented. Polar missing boundaries are unavailable.",
+            "Scores are modern editorial study indices, not historical formulae, probabilities, religious efficacy, personal advice or objectively good/bad days.",
+            "Only the explicit sampled instant is described. A local-noon sample does not classify the whole date; different observer-local noons are different instants.",
+            "Compare scores only within the same declared profile and case. A shared numerical scale does not make different traditions or observers commensurable.",
+            "Dependency groups expose repeated measurements and each declared group budget; they are accounting groups, not independent evidence. Several groups still reuse the same Moon and Sun positions.",
+            "All required contributions must be observed. Missing, unavailable or unresolved rules make score null; absent data is never favorable and is never removed from the denominator.",
+            "Equal exact score numerators under the same denominator are ties. Stable display order within a tie is not a stronger result.",
+            "No observed religious festival, calendar label, eclipse, eschatology, birth chart, oracle draw or source-only reference contributes to these profiles."
+          ]
+        }
+      ],
+      "observances": [
+        {
+          "id": "christian-western",
+          "familyId": "christian",
+          "label": "Selected Western Christian computus and fixed dates",
+          "status": "partial",
+          "methods": "Canonical Gregorian Easter; selected Easter-relative days and Gregorian Christmas/Epiphany.",
+          "limitations": "Not every feast, church, local transfer or obligation; Ascension Thursday and Sunday-transfer conventions remain separate.",
+          "sourceIds": [
+            "HOBS-OCA",
+            "HOBS-USCCB-2027",
+            "HOBS-USCCB-2028"
+          ]
+        },
+        {
+          "id": "christian-eastern",
+          "familyId": "christian",
+          "label": "Selected Eastern Julian computus and fixed dates",
+          "status": "partial",
+          "methods": "Canonical Julian Pascha converted to Gregorian; selected relative days and Julian Christmas/Epiphany.",
+          "limitations": "Not a claim that all Eastern churches use Julian fixed feasts; revised-Julian/Gregorian communities differ.",
+          "sourceIds": [
+            "HOBS-OCA"
+          ]
+        },
+        {
+          "id": "jewish-fixed",
+          "familyId": "jewish",
+          "label": "Selected fixed Hebrew holiday dates",
+          "status": "partial",
+          "methods": "Canonical Hebrew civil date labels, selected month/day rules; Israel/Diaspora duration variants.",
+          "limitations": "Daytime Gregorian date only. Sunset/nightfall not calculated; postponed fasts, all 8 Hanukkah days and local observance decisions not implemented.",
+          "sourceIds": [
+            "HOBS-HEBCAL",
+            "HOBS-CHABAD-2027"
+          ]
+        },
+        {
+          "id": "islamic-civil",
+          "familyId": "islamic",
+          "label": "islamic-civil projected observance labels",
+          "status": "projection",
+          "methods": "Selected native month/day rules on the named runtime calendar.",
+          "limitations": "Not an observed-crescent or local-authority determination; religious sunset boundaries are not calculated.",
+          "sourceIds": [
+            "HOBS-MUIS-2027",
+            "HOBS-CIVIL"
+          ]
+        },
+        {
+          "id": "islamic-umalqura",
+          "familyId": "islamic",
+          "label": "islamic-umalqura projected observance labels",
+          "status": "projection",
+          "methods": "Selected native month/day rules on the named runtime calendar.",
+          "limitations": "Not an observed-crescent or local-authority determination; religious sunset boundaries are not calculated.",
+          "sourceIds": [
+            "HOBS-MUIS-2027",
+            "HOBS-CIVIL"
+          ]
+        },
+        {
+          "id": "islamic-muis",
+          "familyId": "islamic",
+          "label": "Selected MUIS 2027 published dates",
+          "status": "published-subset",
+          "methods": "Named dated rows from the Singapore authority.",
+          "limitations": "Regional publication only; later years not extrapolated from this sheet.",
+          "sourceIds": [
+            "HOBS-MUIS-2027"
+          ],
+          "publishedThrough": "2027-12-31"
+        },
+        {
+          "id": "chinese-hko",
+          "familyId": "chinese",
+          "label": "Selected Chinese festivals and Qingming",
+          "status": "published-derived-subset",
+          "methods": "HKO 2026–2031 daily tables plus named regular-month rules corroborated in GovHK 2027.",
+          "limitations": "Hong Kong convention. Runtime Chinese label mismatch is retained. Intercalary month is excluded; not all East Asian traditions.",
+          "sourceIds": [
+            "HOBS-GOVHK-2027",
+            "HOBS-HKO-2026",
+            "HOBS-HKO-2027",
+            "HOBS-HKO-2028",
+            "HOBS-HKO-2029",
+            "HOBS-HKO-2030",
+            "HOBS-HKO-2031"
+          ]
+        },
+        {
+          "id": "hindu-regional",
+          "familyId": "hindu",
+          "label": "Selected regional Hindu public dates",
+          "status": "published-subset",
+          "methods": "Singapore Deepavali 2026/2027.",
+          "limitations": "Indian national Saka does not calculate Hindu festivals; regional tithi/sunrise rules and 2028–2030 dates remain unavailable.",
+          "sourceIds": [
+            "HOBS-SINGAPORE-MOM"
+          ],
+          "publishedThrough": "2027-12-31"
+        },
+        {
+          "id": "buddhist-regional",
+          "familyId": "buddhist",
+          "label": "Selected regional Buddhist public dates",
+          "status": "published-subset",
+          "methods": "Singapore Vesak 2026/2027 and Hong Kong Buddha birthday 2027.",
+          "limitations": "Distinct communities/dates retained. Thai Buddhist era does not calculate Buddhist observances; broader future calendars remain unavailable.",
+          "sourceIds": [
+            "HOBS-SINGAPORE-MOM",
+            "HOBS-GOVHK-2027"
+          ],
+          "publishedThrough": "2027-12-31"
+        },
+        {
+          "id": "sikh-community",
+          "familyId": "sikh",
+          "label": "Sikh community observance schedules",
+          "status": "unavailable",
+          "methods": "SGPC calendar publication identified.",
+          "limitations": "No independently checked translated festival date or selected Nanakshahi/Bikrami implementation; no future dates inferred.",
+          "sourceIds": [
+            "HOBS-SGPC-CALENDAR"
+          ]
+        },
+        {
+          "id": "jain-community",
+          "familyId": "jain",
+          "label": "Jain community observance schedules",
+          "status": "unavailable",
+          "methods": "Selected community festival descriptions only.",
+          "limitations": "Svetambara/Digambara and regional lunar-month rules require a named engine and authoritative Gregorian fixtures.",
+          "sourceIds": [
+            "HOBS-JAINWORLD"
+          ]
+        },
+        {
+          "id": "bahai-official",
+          "familyId": "bahai",
+          "label": "Official Bahá’í calendar dates",
+          "status": "published-derived-subset",
+          "methods": "Official 182–187 BE year anchors, Twin Birthdays, intercalary ranges and selected holy-day mapping.",
+          "limitations": "Sunset-to-sunset boundaries; exact sunset not calculated. Not an independently implemented Tehran equinox/new-moon solver.",
+          "sourceIds": [
+            "HOBS-BAHAI",
+            "HOBS-BAHAI-DATA",
+            "HOBS-BAHAI-UHJ"
+          ]
+        },
+        {
+          "id": "zoroastrian-fasli",
+          "familyId": "zoroastrian",
+          "label": "Avesta.org-described fixed 21 March Fasli Naw Ruz",
+          "status": "source-rule-subset",
+          "methods": "Only explicitly named fixed-date source convention.",
+          "limitations": "Shahanshahi, Qadimi and astronomical-equinox variants are not supplied; no Persian civil-date substitution. Independent future fixture validation remains pending.",
+          "sourceIds": [
+            "HOBS-AVESTA-CALENDAR",
+            "HOBS-IRANICA-CALENDAR"
+          ]
+        },
+        {
+          "id": "shinto-local",
+          "familyId": "shinto",
+          "label": "Local Shinto shrine festivals",
+          "status": "unavailable",
+          "methods": "Official Jinja Honcho account of seasonal and local variation.",
+          "limitations": "No universal shrine schedule or future dates inferred from Japanese era labels.",
+          "sourceIds": [
+            "HOBS-JINJA"
+          ]
+        },
+        {
+          "id": "civil-gregory",
+          "familyId": "civil",
+          "label": "gregory canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "gregory",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-julian",
+          "familyId": "civil",
+          "label": "julian canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "julian",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-hebrew",
+          "familyId": "civil",
+          "label": "hebrew canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "hebrew",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-islamic-civil",
+          "familyId": "civil",
+          "label": "islamic-civil canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "islamic-civil",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-islamic-umalqura",
+          "familyId": "civil",
+          "label": "islamic-umalqura canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "islamic-umalqura",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-chinese",
+          "familyId": "civil",
+          "label": "chinese canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "chinese",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-buddhist",
+          "familyId": "civil",
+          "label": "buddhist canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "buddhist",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-indian",
+          "familyId": "civil",
+          "label": "indian canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "indian",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-persian",
+          "familyId": "civil",
+          "label": "persian canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "persian",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-coptic",
+          "familyId": "civil",
+          "label": "coptic canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "coptic",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-ethiopic",
+          "familyId": "civil",
+          "label": "ethiopic canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "ethiopic",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-japanese",
+          "familyId": "civil",
+          "label": "japanese canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "japanese",
+          "kind": "civil-converter"
+        },
+        {
+          "id": "civil-roc",
+          "familyId": "civil",
+          "label": "roc canonical civil converter",
+          "status": "inherited-civil-conversion",
+          "methods": "Existing compareMoment calendar row; no duplicate converter.",
+          "limitations": "Runtime and original fixture limits remain. Civil label alone is not religious authority or a complete observance calendar.",
+          "sourceIds": [
+            "HOBS-CIVIL"
+          ],
+          "calendarId": "roc",
+          "kind": "civil-converter"
+        }
+      ],
+      "traditions": [
+        {
+          "id": "HTR-CHRISTIAN",
+          "familyId": "christian",
+          "label": "Christian traditions · selected texts and teachings",
+          "scope": "Mark plus current Catholic and Seventh-day Adventist statements; not all Christian denominations.",
+          "summary": "The selected sources discuss Christ’s return, judgment and watchfulness while withholding a known day or hour.",
+          "eschatology": {
+            "status": "undated",
+            "summary": "Mark 13:32–37 withholds the time. Catholic Catechism 673 and current Adventist teaching likewise give no revealed date; their wider doctrinal accounts remain distinct.",
+            "sourceIds": [
+              "HTR-CHRISTIAN-MARK",
+              "HTR-CHRISTIAN-CATECHISM",
+              "HTR-CHRISTIAN-ADVENTIST"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "Separately sourced Christian feast dates and computus variants belong to the observance layer; they do not date the Second Coming."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-CHRISTIAN-MARK",
+            "HTR-CHRISTIAN-CATECHISM",
+            "HTR-CHRISTIAN-ADVENTIST"
+          ],
+          "limitations": [
+            "No single Catholic or Adventist statement represents every Christian community.",
+            "Historical date-setting movements are not silently substituted for these current statements."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        },
+        {
+          "id": "HTR-JEWISH",
+          "familyId": "jewish",
+          "label": "Jewish traditions · selected rabbinic messianism",
+          "scope": "Selected Sanhedrin passages and Maimonides; not an exhaustive account of Jewish belief.",
+          "summary": "The checked rabbinic passages preserve debate about redemption and explicitly warn against calculating its end date.",
+          "eschatology": {
+            "status": "undated",
+            "summary": "Sanhedrin 97b records conflicting historical calculations and criticism of failed deadlines. Maimonides, Kings and Wars 12:1–2, distinguishes messianic hope from a certain sequence or date and describes the ordinary natural order continuing.",
+            "sourceIds": [
+              "HTR-JEWISH-SANHEDRIN",
+              "HTR-JEWISH-MAIMONIDES"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "A Hebrew civil date or a sourced festival rule is not a messianic countdown. Observance location, boundary and community variants remain in the dated layer."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-JEWISH-SANHEDRIN",
+            "HTR-JEWISH-MAIMONIDES"
+          ],
+          "limitations": [
+            "Multiple Talmudic speakers are not one unanimous prediction.",
+            "Maimonides is one influential formulation; later Jewish traditions are not exhaustively covered."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference",
+          "historicalDateSetting": {
+            "status": "reported-and-criticized-in-selected-text",
+            "sourceIds": [
+              "HTR-JEWISH-SANHEDRIN"
+            ],
+            "modernDateAssigned": false
+          }
+        },
+        {
+          "id": "HTR-ISLAMIC",
+          "familyId": "islamic",
+          "label": "Islamic traditions · the Hour in selected Qur’anic verses",
+          "scope": "Qur’an 7:187 and 31:34 in one named English translation; detailed Sunni/Shia traditions not surveyed.",
+          "summary": "The selected verses place knowledge of the Hour with God rather than supplying people with a calendar deadline.",
+          "eschatology": {
+            "status": "undated",
+            "summary": "Qur’an 7:187 and 31:34 explicitly reserve knowledge of the Hour to God. This reference therefore provides no dated end-time event.",
+            "sourceIds": [
+              "HTR-ISLAM-QURAN-7",
+              "HTR-ISLAM-QURAN-31"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "Calculated Islamic civil/Umm al-Qura labels and observed lunar starts are different methods. Neither calendar conversion dates the Hour."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-ISLAM-QURAN-7",
+            "HTR-ISLAM-QURAN-31"
+          ],
+          "limitations": [
+            "Two verses from one text/translation are not independent predictive confirmations.",
+            "Mahdi, resurrection and end-time sign traditions require their own named sources; they are not synthesized here."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        },
+        {
+          "id": "HTR-HINDU",
+          "familyId": "hindu",
+          "label": "Hindu traditions · selected Vaiṣṇava renewal narratives",
+          "scope": "Bhāgavata 12.2 and Bhagavad Gītā 4.7–8 in named modern Vaiṣṇava translations.",
+          "summary": "These passages describe restoration of dharma and, in the Bhāgavata, Kalki followed by a renewed age.",
+          "eschatology": {
+            "status": "non-dateable",
+            "summary": "Bhāgavata 12.2.18–23 describes Kalki and Satya-yuga. Verse 24 gives a Sun–Moon–Bṛhaspati/Puṣya condition, but this reference has no validated rule for identifying a unique modern fulfillment date. Gītā 4.7–8 describes restoration age after age, not a dated countdown.",
+            "sourceIds": [
+              "HTR-HINDU-BHAGAVATA",
+              "HTR-HINDU-GITA-7",
+              "HTR-HINDU-GITA-8"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "A civil Saka label does not calculate regional Hindu festival rules. Regional tithi, sunrise and tradition choices require separately sourced algorithms or published dates."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-HINDU-BHAGAVATA",
+            "HTR-HINDU-GITA-7",
+            "HTR-HINDU-GITA-8"
+          ],
+          "limitations": [
+            "No yuga epoch or duration is converted to an apocalypse date here.",
+            "An astronomical recurrence cannot independently validate the religious narrative.",
+            "Śaiva, Śākta and other Hindu accounts are outside this selected scope."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference",
+          "textualConfiguration": {
+            "locator": "Bhāgavata 12.2.24",
+            "bodies": [
+              "Sun",
+              "Moon",
+              "Jupiter"
+            ],
+            "terms": [
+              "Karkaṭa",
+              "Puṣya"
+            ],
+            "status": "attributed-textual-condition-not-implemented",
+            "missing": [
+              "validated epoch/frame convention",
+              "precise simultaneous-entry definition",
+              "independent textual and calendrical validation"
+            ],
+            "contributesToRanking": false
+          }
+        },
+        {
+          "id": "HTR-BUDDHIST",
+          "familyId": "buddhist",
+          "label": "Buddhist traditions · Metteyya in DN 26",
+          "scope": "Selected Pāli discourse in Bhikkhu Sujato’s translation; not every Buddhist school.",
+          "summary": "DN 26 places the future Buddha Metteyya in a narrative of changed human conduct, lifespans and renewed flourishing.",
+          "eschatology": {
+            "status": "non-dateable",
+            "summary": "DN 26:23–26 narrates Metteyya’s arising in a specified cosmological setting. Its lifespan figures are not an elapsed-years counter anchored to the present Gregorian year.",
+            "sourceIds": [
+              "HTR-BUDDHIST-DN26"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "A Thai Buddhist civil-era label is not a complete Buddhist lunar observance calendar. Vesak and other observances need regional published or calculated conventions."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-BUDDHIST-DN26"
+          ],
+          "limitations": [
+            "One discourse does not represent all Theravāda, Mahāyāna or Vajrayāna accounts.",
+            "No near-term Maitreya date or literal demographic forecast is inferred."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        },
+        {
+          "id": "HTR-SIKH",
+          "familyId": "sikh",
+          "label": "Sikh tradition · selected conduct boundary",
+          "scope": "SGPC English Sikh Rehat Maryada, Article XVI; cosmology not comprehensively assessed.",
+          "summary": "The inspected discipline passage grounds conduct in the Guru’s tenets and explicitly rejects auspicious-day and horoscopic beliefs.",
+          "eschatology": {
+            "status": "not-assessed",
+            "summary": "This selected source is a conduct code, not an eschatological timetable. No Sikh end-time claim is inferred from it, and no festival is given an astrological good/bad value.",
+            "sourceIds": [
+              "HTR-SIKH-REHAT"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "Article XVI(d), p.36, rejects belief in auspicious times/days and stellar or horoscopic influence. A sourced Sikh observance date must remain separate from astrology-purpose scores."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-SIKH-REHAT"
+          ],
+          "limitations": [
+            "This is not a claim that the whole Sikh tradition lacks cosmological teachings.",
+            "No Nanakshahi festival dates are inferred from this conduct passage."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        },
+        {
+          "id": "HTR-JAIN",
+          "familyId": "jain",
+          "label": "Jain traditions · an uncreated universe and liberation",
+          "scope": "Selected scholarly accounts by Nalini Balbir and Mark Owen Webb.",
+          "summary": "The checked accounts describe an uncreated, enduring universe, recurring time cycles and liberation of souls.",
+          "eschatology": {
+            "status": "non-dateable",
+            "summary": "These accounts do not describe a single created world ending at a modern calendar deadline. Cosmic cycles and individual liberation are not converted into a near-term universal apocalypse.",
+            "sourceIds": [
+              "HTR-JAIN-JAINPEDIA",
+              "HTR-JAIN-IEP"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "No Jain festival schedule is derived from a generic civil-calendar label. Sect and regional observance rules need their own sources."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-JAIN-JAINPEDIA",
+            "HTR-JAIN-IEP"
+          ],
+          "limitations": [
+            "Śvetāmbara and Digambara terminology and numerical details can differ.",
+            "The underlying primary scriptures were not newly collated; these are named scholarly summaries."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        },
+        {
+          "id": "HTR-BAHAI",
+          "familyId": "bahai",
+          "label": "Bahá’í Faith · interpreted signs and a distinct calendar",
+          "scope": "‘Abdu’l-Bahá, Some Answered Questions 26, plus the official calendar introduction.",
+          "summary": "The selected authoritative Bahá’í chapter interprets return and judgment imagery through inner meanings, separately from its calculable observance calendar.",
+          "eschatology": {
+            "status": "non-dateable",
+            "summary": "Some Answered Questions 26:5–6 says the cited signs have inner meanings and should not be read literally. This does not produce a future physical catastrophe date or make the interpretation Christian consensus.",
+            "sourceIds": [
+              "HTR-BAHAI-QUESTIONS",
+              "HTR-BAHAI-CALENDAR"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "The official calendar describes sunset-to-sunset days, equinox-linked Naw-Rúz and Twin Birthdays after the eighth new moon. Published dated rows are handled separately; this reference computes none."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-BAHAI-QUESTIONS",
+            "HTR-BAHAI-CALENDAR"
+          ],
+          "limitations": [
+            "The separately cited Kitáb-i-Íqán was not newly read here.",
+            "Historical astronomical illustrations in the chapter are not reused as modern measurements."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        },
+        {
+          "id": "HTR-ZOROASTRIAN",
+          "familyId": "zoroastrian",
+          "label": "Zoroastrian traditions · final renovation",
+          "scope": "Zamyād Yašt 19 in Darmesteter’s translation, cross-read with Almut Hintze’s Iranica discussion.",
+          "summary": "The selected texts describe frašō.kərəti, renovation of creation, resurrection and the overcoming of evil.",
+          "eschatology": {
+            "status": "undated",
+            "summary": "Yašt 19:89–96 and the selected Iranica discussion concern restoration and the savior tradition. They provide no independently validated Gregorian date for an event within this horizon.",
+            "sourceIds": [
+              "HTR-ZORO-YASHT",
+              "HTR-ZORO-IRANICA"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "This eschatology reference does not choose among Fasli, Shahanshahi or Qadimi observance methods; a separately named source is needed for each date rule."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-ZORO-YASHT",
+            "HTR-ZORO-IRANICA"
+          ],
+          "limitations": [
+            "Textual layers and translations differ; a historical translation is not a complete account of present community belief.",
+            "No ancient cosmic chronology is silently converted into a modern deadline."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        },
+        {
+          "id": "HTR-SHINTO",
+          "familyId": "shinto",
+          "label": "Shinto · hidden realm and local ritual continuity",
+          "scope": "Kokugakuin’s Kakuriyo entry and Jinja Honcho’s Matsuri introduction; no survey of new religious movements.",
+          "summary": "The selected sources discuss the hidden realm, kami and varied community rites rather than furnishing a universal end-of-world timetable.",
+          "eschatology": {
+            "status": "not-assessed",
+            "summary": "Kakuriyo is explained as a hidden realm, not necessarily only an after-death world. The Matsuri source describes community and seasonal rites. Neither selected passage supplies a dated apocalypse; this limited reading is not proof that every Shinto-related movement lacks eschatology.",
+            "sourceIds": [
+              "HTR-SHINTO-KAKURIYO",
+              "HTR-SHINTO-MATSURI"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "Jinja Honcho explicitly notes substantial local variation between shrines. A universal Shinto festival schedule cannot be inferred from this introductory page."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-SHINTO-KAKURIYO",
+            "HTR-SHINTO-MATSURI"
+          ],
+          "limitations": [
+            "Sect Shinto and Shinto-based new religions require separately named research.",
+            "Afterlife vocabulary, seasonal renewal and a world-ending prediction are different claim types."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        },
+        {
+          "id": "HTR-CHINESE",
+          "familyId": "chinese",
+          "label": "Other selected tradition · historical Daoist Great Peace",
+          "scope": "Early historical Daoist millenarianism in Fabrizio Pregadio’s SEP account; not all Chinese religion.",
+          "summary": "The selected scholarly discussion describes Great Peace ideals and historically situated messianic expectations in early Daoist movements.",
+          "eschatology": {
+            "status": "historical-not-current",
+            "summary": "The Taiping jing and early Laozi/Laojun expectations are described as historical traditions. They are not imported as a current Daoist prediction or as a future date for every Chinese community.",
+            "sourceIds": [
+              "HTR-DAOISM-SEP"
+            ],
+            "dateability": "No independently validated modern calendar date is supplied by this selected reference."
+          },
+          "calendarNotes": [
+            "Chinese civil lunar dates and publicly sourced festivals are separate from this historical doctrinal reference. Runtime conversion disagreements must not be resolved by eschatological claims."
+          ],
+          "datedClaims": [],
+          "sourceIds": [
+            "HTR-DAOISM-SEP"
+          ],
+          "limitations": [
+            "The primary Taiping jing was not newly read; this is a selected scholarly account.",
+            "Confucian, folk-religious, Indigenous and other traditions are not comprehensively covered."
+          ],
+          "contributesToRanking": false,
+          "claimType": "attributed-reference"
+        }
+      ],
+      "astronomy": [
+        {
+          "kind": "lunar-phase",
+          "status": "native-sequence-search",
+          "count": 207,
+          "rangeCovered": true,
+          "scope": "All events returned by the named bundled solver within start inclusive/end exclusive; model and classification limitations remain."
+        },
+        {
+          "kind": "solar-quarter",
+          "status": "native-sequence-search",
+          "count": 17,
+          "rangeCovered": true,
+          "scope": "All events returned by the named bundled solver within start inclusive/end exclusive; model and classification limitations remain."
+        },
+        {
+          "kind": "solar-eclipse",
+          "status": "native-sequence-search",
+          "count": 10,
+          "rangeCovered": true,
+          "scope": "All events returned by the named bundled solver within start inclusive/end exclusive; model and classification limitations remain."
+        },
+        {
+          "kind": "lunar-eclipse",
+          "status": "native-sequence-search",
+          "count": 10,
+          "rangeCovered": true,
+          "scope": "All events returned by the named bundled solver within start inclusive/end exclusive; model and classification limitations remain."
+        },
+        {
+          "kind": "zodiac-ingress",
+          "status": "bounded-crossing-search",
+          "count": 871,
+          "rangeCovered": true,
+          "scanStepHours": 6,
+          "exhaustive": false,
+          "scope": "Every six-hour bracket searched; tangencies or double crossings inside one bracket are not guaranteed.",
+          "bodies": [
+            "Sun",
+            "Moon",
+            "Mercury",
+            "Venus",
+            "Mars",
+            "Jupiter",
+            "Saturn",
+            "Uranus",
+            "Neptune",
+            "Pluto"
+          ]
+        },
+        {
+          "kind": "planetary-station",
+          "status": "bounded-crossing-search",
+          "count": 77,
+          "rangeCovered": true,
+          "scanStepHours": 6,
+          "exhaustive": false,
+          "scope": "Every six-hour bracket searched; tangencies or double crossings inside one bracket are not guaranteed.",
+          "bodies": [
+            "Mercury",
+            "Venus",
+            "Mars",
+            "Jupiter",
+            "Saturn",
+            "Uranus",
+            "Neptune",
+            "Pluto"
+          ]
+        },
+        {
+          "kind": "ecliptic-aspect",
+          "status": "bounded-crossing-search",
+          "count": 4691,
+          "rangeCovered": true,
+          "scanStepHours": 6,
+          "exhaustive": false,
+          "scope": "Every six-hour bracket searched; tangencies or double crossings inside one bracket are not guaranteed.",
+          "pairs": [
+            {
+              "bodies": [
+                "Sun",
+                "Moon"
+              ],
+              "count": 414
+            },
+            {
+              "bodies": [
+                "Sun",
+                "Mercury"
+              ],
+              "count": 27
+            },
+            {
+              "bodies": [
+                "Sun",
+                "Venus"
+              ],
+              "count": 5
+            },
+            {
+              "bodies": [
+                "Sun",
+                "Mars"
+              ],
+              "count": 16
+            },
+            {
+              "bodies": [
+                "Sun",
+                "Jupiter"
+              ],
+              "count": 31
+            },
+            {
+              "bodies": [
+                "Sun",
+                "Saturn"
+              ],
+              "count": 32
+            },
+            {
+              "bodies": [
+                "Sun",
+                "Uranus"
+              ],
+              "count": 33
+            },
+            {
+              "bodies": [
+                "Sun",
+                "Neptune"
+              ],
+              "count": 34
+            },
+            {
+              "bodies": [
+                "Sun",
+                "Pluto"
+              ],
+              "count": 33
+            },
+            {
+              "bodies": [
+                "Moon",
+                "Mercury"
+              ],
+              "count": 415
+            },
+            {
+              "bodies": [
+                "Moon",
+                "Venus"
+              ],
+              "count": 414
+            },
+            {
+              "bodies": [
+                "Moon",
+                "Mars"
+              ],
+              "count": 429
+            },
+            {
+              "bodies": [
+                "Moon",
+                "Jupiter"
+              ],
+              "count": 444
+            },
+            {
+              "bodies": [
+                "Moon",
+                "Saturn"
+              ],
+              "count": 446
+            },
+            {
+              "bodies": [
+                "Moon",
+                "Uranus"
+              ],
+              "count": 447
+            },
+            {
+              "bodies": [
+                "Moon",
+                "Neptune"
+              ],
+              "count": 447
+            },
+            {
+              "bodies": [
+                "Moon",
+                "Pluto"
+              ],
+              "count": 446
+            },
+            {
+              "bodies": [
+                "Mercury",
+                "Venus"
+              ],
+              "count": 21
+            },
+            {
+              "bodies": [
+                "Mercury",
+                "Mars"
+              ],
+              "count": 32
+            },
+            {
+              "bodies": [
+                "Mercury",
+                "Jupiter"
+              ],
+              "count": 35
+            },
+            {
+              "bodies": [
+                "Mercury",
+                "Saturn"
+              ],
+              "count": 38
+            },
+            {
+              "bodies": [
+                "Mercury",
+                "Uranus"
+              ],
+              "count": 44
+            },
+            {
+              "bodies": [
+                "Mercury",
+                "Neptune"
+              ],
+              "count": 41
+            },
+            {
+              "bodies": [
+                "Mercury",
+                "Pluto"
+              ],
+              "count": 41
+            },
+            {
+              "bodies": [
+                "Venus",
+                "Mars"
+              ],
+              "count": 25
+            },
+            {
+              "bodies": [
+                "Venus",
+                "Jupiter"
+              ],
+              "count": 37
+            },
+            {
+              "bodies": [
+                "Venus",
+                "Saturn"
+              ],
+              "count": 34
+            },
+            {
+              "bodies": [
+                "Venus",
+                "Uranus"
+              ],
+              "count": 35
+            },
+            {
+              "bodies": [
+                "Venus",
+                "Neptune"
+              ],
+              "count": 38
+            },
+            {
+              "bodies": [
+                "Venus",
+                "Pluto"
+              ],
+              "count": 36
+            },
+            {
+              "bodies": [
+                "Mars",
+                "Jupiter"
+              ],
+              "count": 16
+            },
+            {
+              "bodies": [
+                "Mars",
+                "Saturn"
+              ],
+              "count": 16
+            },
+            {
+              "bodies": [
+                "Mars",
+                "Uranus"
+              ],
+              "count": 22
+            },
+            {
+              "bodies": [
+                "Mars",
+                "Neptune"
+              ],
+              "count": 19
+            },
+            {
+              "bodies": [
+                "Mars",
+                "Pluto"
+              ],
+              "count": 19
+            },
+            {
+              "bodies": [
+                "Jupiter",
+                "Saturn"
+              ],
+              "count": 5
+            },
+            {
+              "bodies": [
+                "Jupiter",
+                "Uranus"
+              ],
+              "count": 2
+            },
+            {
+              "bodies": [
+                "Jupiter",
+                "Neptune"
+              ],
+              "count": 2
+            },
+            {
+              "bodies": [
+                "Jupiter",
+                "Pluto"
+              ],
+              "count": 3
+            },
+            {
+              "bodies": [
+                "Saturn",
+                "Uranus"
+              ],
+              "count": 0
+            },
+            {
+              "bodies": [
+                "Saturn",
+                "Neptune"
+              ],
+              "count": 0
+            },
+            {
+              "bodies": [
+                "Saturn",
+                "Pluto"
+              ],
+              "count": 3
+            },
+            {
+              "bodies": [
+                "Uranus",
+                "Neptune"
+              ],
+              "count": 2
+            },
+            {
+              "bodies": [
+                "Uranus",
+                "Pluto"
+              ],
+              "count": 4
+            },
+            {
+              "bodies": [
+                "Neptune",
+                "Pluto"
+              ],
+              "count": 8
+            }
+          ],
+          "directedTargets": [
+            {
+              "angle": 0,
+              "aspect": "conjunction"
+            },
+            {
+              "angle": 60,
+              "aspect": "sextile"
+            },
+            {
+              "angle": 90,
+              "aspect": "square"
+            },
+            {
+              "angle": 120,
+              "aspect": "trine"
+            },
+            {
+              "angle": 180,
+              "aspect": "opposition"
+            },
+            {
+              "angle": 240,
+              "aspect": "trine"
+            },
+            {
+              "angle": 270,
+              "aspect": "square"
+            },
+            {
+              "angle": 300,
+              "aspect": "sextile"
+            }
+          ]
+        },
+        {
+          "kind": "unavailable",
+          "status": "not-searched",
+          "categories": [
+            "fixed-star contacts",
+            "true-sky closest approaches",
+            "heliocentric alignments",
+            "perihelia/aphelia",
+            "lunar apsides",
+            "nodes",
+            "meteor showers",
+            "occultations",
+            "planetary transits",
+            "local eclipse paths/visibility",
+            "natal events"
+          ]
+        }
+      ]
+    },
+    "limitations": [
+      "Every requested civil date has a ledger row, including missing or ambiguous clock samples. A daily sampled instant is not a classification of the entire day.",
+      "Profiles are separate modern editorial study indices over named inherited rules. Higher and lower profile match are not objective good/bad dates, probabilities or forecasts.",
+      "Different observer-local noons are different UTC instants. Valid IANA identifiers do not verify a geographic match between coordinates and time zone.",
+      "Calendar labels, religious festivals, astronomical events and eschatological source texts do not contribute favorable/caution votes to the purpose profiles.",
+      "Religious observance coverage is selected and variant-specific. Published calendars, regional authority, lunar sighting and sunset boundaries can differ from runtime civil converters.",
+      "Shared lunar/solar measurements are dependencies, not independent corroboration. Equal exact profile values remain ties; their chronological display order is not a stronger result.",
+      "A preset records its generating runtime and source hashes. Recomputing a selected date in another ICU/time-zone runtime can expose real calendar differences; those differences must remain visible.",
+      "No birth, oracle draw, personal question or saved browser record is inferred. Those tools remain explicit, separate workflows."
+    ],
+    "stats": {
+      "mode": "optimized",
+      "counterScope": "Top-level orchestration calls; canonical guidance internally recomputes comparison/chart facts.",
+      "canonicalCalls": 4575,
+      "guidanceCalls": 4575,
+      "purposeBatchEvaluations": 4575,
+      "elapsedMs": 51328.272029,
+      "sampleMs": 48042.136891999995,
+      "astronomyMs": 3282.6334010000064
+    },
+    "provenance": {
+      "calculation": "Locally calculated canonical engines",
+      "runtime": {
+        "environment": "node",
+        "node": "24.19.0",
+        "v8": "13.6.233.17-node.51",
+        "icu": "78.3",
+        "cldr": "48.0",
+        "tz": "2026b"
+      },
+      "generatedAt": "2026-10-30T05:38:22.233Z",
+      "privateBirthIncluded": false,
+      "modelUsed": false
+    }
+  }
+}

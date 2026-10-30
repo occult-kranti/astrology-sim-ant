@@ -49,6 +49,7 @@ node scripts/build-mcp-catalogue.mjs --check # connection help matches actual MC
 node scripts/build-sky-reference.mjs --check # local retrieval pack matches authored source records
 node scripts/build-tool-coverage.mjs --check # guide execution coverage matches actual callable tools
 node scripts/build-mcp-coverage.mjs --check # browser adapter map matches reviewed backend metadata
+node scripts/generate-horizon-preset.mjs --check # complete horizon binds exact source graph and artifact checksums
 ```
 Each rebuilds its output in memory and compares it to the committed bytes, so **hand-editing
 `assets/js/core/data/opgraph.js` or `research/opgraph/gate.json` is a failure, not a silent

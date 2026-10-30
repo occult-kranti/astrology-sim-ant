@@ -678,6 +678,12 @@ try {
       if (path === 'pages/master.html') {
         await page.waitForURL(base + 'pages/workbench.html', { waitUntil: 'networkidle' });
       }
+      if (path === 'pages/event-horizon.html') {
+        // Network idleness alone does not prove that the complete, hashed
+        // preset has been parsed and activated. Keep strict request failures.
+        await page.waitForFunction(() => document.querySelector('#eh-json')?.disabled === false, {}, { timeout: 120000 });
+        assert.equal(await page.locator('#eh-error').isHidden(), true, 'complete horizon preset activates without an error');
+      }
       await page.locator('header.site').waitFor({ timeout: 10000 });
       assert.equal(await page.locator('main').count(), 1, 'one main landmark');
       assert.ok(await page.locator('nav.main[aria-label]').count(), 'labelled navigation');

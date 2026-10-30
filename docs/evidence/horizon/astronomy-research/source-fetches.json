@@ -1,0 +1,127 @@
+[
+  {
+    "id": "astronomy-api",
+    "url": "https://raw.githubusercontent.com/cosinekitty/astronomy/master/source/js/README.md",
+    "finalURL": "https://raw.githubusercontent.com/cosinekitty/astronomy/master/source/js/README.md",
+    "http": 200,
+    "bytes": 174884,
+    "sha256": "e49cf79d108df343e37747be8cf187e379c1709deeb2ff94ffa3dcb7e1b315de",
+    "file": "astronomy-api.txt",
+    "retrievedAt": "2026-10-30T04:21:05.260575+00:00",
+    "retainedInRepository": false
+  },
+  {
+    "id": "nasa-solar-catalogue",
+    "url": "https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html",
+    "finalURL": "https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html",
+    "http": 200,
+    "bytes": 127736,
+    "sha256": "a9c08f5b4b51d5c85ccfa18d8bfccd98ec8a7d93f06e2d40691943b4105acf9e",
+    "file": "nasa-solar-catalogue.txt",
+    "retrievedAt": "2026-10-30T04:21:05.434307+00:00",
+    "retainedInRepository": false
+  },
+  {
+    "id": "nasa-lunar-catalogue",
+    "url": "https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html",
+    "finalURL": "https://eclipse.gsfc.nasa.gov/LEcat5/LE2001-2100.html",
+    "http": 200,
+    "bytes": 78017,
+    "sha256": "0f640913669a640418f05c173cea0bdeca194fcac6b5b196b6b9ab1b08122792",
+    "file": "nasa-lunar-catalogue.txt",
+    "retrievedAt": "2026-10-30T04:21:05.188455+00:00",
+    "retainedInRepository": false
+  },
+  {
+    "id": "nasa-phases",
+    "url": "https://eclipse.gsfc.nasa.gov/phase/phases2001.html",
+    "finalURL": "https://eclipse.gsfc.nasa.gov/phase/phases2001.html",
+    "http": 200,
+    "bytes": 128202,
+    "sha256": "ceb16de952edaf9bf1f7c6d1daf13c7487632c3a5ad78808bd40120a76c9fbd8",
+    "file": "nasa-phases.txt",
+    "retrievedAt": "2026-10-30T04:21:05.437160+00:00",
+    "retainedInRepository": false
+  },
+  {
+    "id": "usno-seasons-2027",
+    "url": "https://aa.usno.navy.mil/api/seasons?year=2027",
+    "error": "HTTP Error 503: Service Unavailable",
+    "retainedInRepository": false
+  },
+  {
+    "id": "nasa-eclipse-time",
+    "url": "https://eclipse.gsfc.nasa.gov/SEhelp/TimeZone.html",
+    "finalURL": "https://eclipse.gsfc.nasa.gov/SEhelp/TimeZone.html",
+    "http": 200,
+    "bytes": 8140,
+    "sha256": "9d6c4932f680773074fec8cfae3a67b9234d239aee8377e0d27932a3b29c312e",
+    "file": "nasa-eclipse-time.txt",
+    "retrievedAt": "2026-10-30T04:21:05.223749+00:00",
+    "retainedInRepository": false
+  },
+  {
+    "id": "hko-calendar-2027",
+    "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2027e.pdf",
+    "finalURL": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2027e.pdf",
+    "http": 200,
+    "bytes": 257111,
+    "sha256": "3aa4d28a187fcf69f272fff7b51646614c4264524d81587b91b05361b15cc539",
+    "file": "hko-calendar-2027.pdf",
+    "retrievedAt": "2026-10-30T04:22:50.931255+00:00",
+    "retainedInRepository": false
+  },
+  {
+    "id": "hko-solar-eclipses",
+    "url": "https://www.hko.gov.hk/en/gts/astronomy/Solar_Eclipse.htm",
+    "error": "HTTP Error 404: Not Found",
+    "retainedInRepository": false
+  },
+  {
+    "id": "nasa-delta-t",
+    "url": "https://eclipse.gsfc.nasa.gov/SEhelp/deltat2004.html",
+    "finalURL": "https://eclipse.gsfc.nasa.gov/SEhelp/deltat2004.html",
+    "http": 200,
+    "bytes": 10416,
+    "sha256": "97ecde4dad518f4d97cac18953bd9c5d8aaa8e59e1a52dbb68b13ff2e63add39",
+    "file": "nasa-delta-t.txt",
+    "retrievedAt": "2026-10-30T04:22:48.914423+00:00",
+    "retainedInRepository": false
+  },
+  {
+    "id": "jpl-sun-conjunction",
+    "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272027-01-01+17%3A09%3A04%27&STOP_TIME=%272027-01-01+17%3A10%3A04%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27&ANG_FORMAT=%27DEG%27&EXTRA_PREC=%27YES%27&TIME_DIGITS=%27SECONDS%27",
+    "http": 200,
+    "bytes": 5343,
+    "sha256": "004432e406ebf6a354c7234542a6aada59e4b8d1785a20344ada60f50f4c7a4c",
+    "file": "jpl-sun-conjunction.json",
+    "retrievedAt": "2026-10-30T04:27:11.953247+00:00",
+    "retainedInRepository": true
+  },
+  {
+    "id": "jpl-mercury-conjunction",
+    "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27199%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272027-01-01+17%3A09%3A04%27&STOP_TIME=%272027-01-01+17%3A10%3A04%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27&ANG_FORMAT=%27DEG%27&EXTRA_PREC=%27YES%27&TIME_DIGITS=%27SECONDS%27",
+    "error": "HTTP Error 503: Service Unavailable",
+    "retainedInRepository": false
+  },
+  {
+    "id": "jpl-mars-station",
+    "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27499%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272027-01-09+13%3A01%3A04%27&STOP_TIME=%272027-01-11+13%3A01%3A04%27&STEP_SIZE=%271+d%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27&ANG_FORMAT=%27DEG%27&EXTRA_PREC=%27YES%27&TIME_DIGITS=%27SECONDS%27",
+    "http": 200,
+    "bytes": 5400,
+    "sha256": "1301226c23a9fe5e2bfadaf12b4a177c6e6b744d44a0bfa1929cb0a3da286726",
+    "file": "jpl-mars-station.json",
+    "retrievedAt": "2026-10-30T04:27:11.744016+00:00",
+    "retainedInRepository": true
+  },
+  {
+    "id": "jpl-moon-ingress",
+    "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27301%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27500%40399%27&START_TIME=%272026-10-30+02%3A05%3A28%27&STOP_TIME=%272026-10-30+02%3A06%3A28%27&STEP_SIZE=%271+m%27&QUANTITIES=%2731%27&CSV_FORMAT=%27YES%27&ANG_FORMAT=%27DEG%27&EXTRA_PREC=%27YES%27&TIME_DIGITS=%27SECONDS%27",
+    "http": 200,
+    "bytes": 5345,
+    "sha256": "6aad9565dfebe5b96700c7e10ee101ba967c4ec0fc35ff66d4fe3c7a590ef54f",
+    "file": "jpl-moon-ingress.json",
+    "retrievedAt": "2026-10-30T04:27:12.028688+00:00",
+    "retainedInRepository": true
+  }
+]

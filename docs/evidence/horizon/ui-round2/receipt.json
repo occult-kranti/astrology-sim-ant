@@ -1,0 +1,632 @@
+{
+  "checks": [
+    {
+      "pass": true,
+      "label": "Three actual public cases 1440"
+    },
+    {
+      "pass": true,
+      "label": "Four named profiles 1440"
+    },
+    {
+      "pass": true,
+      "label": "Complete1525-date slider 1440"
+    },
+    {
+      "pass": true,
+      "label": "No surfaced load error 1440"
+    },
+    {
+      "pass": true,
+      "label": "Export preserves full requested grid",
+      "details": {
+        "days": 1525,
+        "cases": 3,
+        "totalSamples": 4575,
+        "processedSamples": 4575,
+        "availableSamples": 4575,
+        "unavailableSamples": 0,
+        "calendarRows": 59475,
+        "availableCalendarRows": 59475,
+        "profileResults": 18300,
+        "rankableProfileResults": 17114,
+        "observanceRows": 1011,
+        "uniqueObservances": 337,
+        "eventCount": 5883,
+        "truncated": false
+      }
+    },
+    {
+      "pass": true,
+      "label": "Checksummed precomputed case provenance"
+    },
+    {
+      "pass": true,
+      "label": "Exact inclusive default endpoints"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 london western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 london western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 london jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 london mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 delhi western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 delhi western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 delhi jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 delhi mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 new-york western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 new-york western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 new-york jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1440 new-york mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Inclusive2031 endpoint 1440"
+    },
+    {
+      "pass": true,
+      "label": "Native Home reaches first date 1440"
+    },
+    {
+      "pass": true,
+      "label": "Native single-step reaches next date 1440"
+    },
+    {
+      "pass": true,
+      "label": "Date-order ledger remains complete 1440"
+    },
+    {
+      "pass": true,
+      "label": "Observance filter retains complete denominator 1440"
+    },
+    {
+      "pass": true,
+      "label": "Astronomical event filter produces actual rows 1440"
+    },
+    {
+      "pass": true,
+      "label": "Three-case/four-purpose comparison 1440"
+    },
+    {
+      "pass": true,
+      "label": "Comparison remains open through date navigation 1440"
+    },
+    {
+      "pass": true,
+      "label": "Official/calendar discrepancy evidence exposed"
+    },
+    {
+      "pass": true,
+      "label": "Lazy actual-day hourly calculation"
+    },
+    {
+      "pass": true,
+      "label": "CSV includes first and last dates"
+    },
+    {
+      "pass": true,
+      "label": "ICS selected exact sample"
+    },
+    {
+      "pass": true,
+      "label": "Root reflow 1440"
+    },
+    {
+      "pass": true,
+      "label": "Readable control text and targets 1440",
+      "details": [
+        {
+          "id": "eh-case",
+          "font": 16,
+          "height": 46
+        },
+        {
+          "id": "eh-purpose",
+          "font": 16,
+          "height": 46
+        },
+        {
+          "id": "eh-date",
+          "font": 16,
+          "height": 49.578125
+        }
+      ]
+    },
+    {
+      "pass": true,
+      "label": "Dirty clock disables exports/casting/navigation 1440"
+    },
+    {
+      "pass": true,
+      "label": "Three actual public cases 1920"
+    },
+    {
+      "pass": true,
+      "label": "Four named profiles 1920"
+    },
+    {
+      "pass": true,
+      "label": "Complete1525-date slider 1920"
+    },
+    {
+      "pass": true,
+      "label": "No surfaced load error 1920"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 london western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 london western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 london jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 london mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 delhi western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 delhi western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 delhi jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 delhi mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 new-york western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 new-york western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 new-york jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 1920 new-york mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Inclusive2031 endpoint 1920"
+    },
+    {
+      "pass": true,
+      "label": "Native Home reaches first date 1920"
+    },
+    {
+      "pass": true,
+      "label": "Native single-step reaches next date 1920"
+    },
+    {
+      "pass": true,
+      "label": "Date-order ledger remains complete 1920"
+    },
+    {
+      "pass": true,
+      "label": "Observance filter retains complete denominator 1920"
+    },
+    {
+      "pass": true,
+      "label": "Astronomical event filter produces actual rows 1920"
+    },
+    {
+      "pass": true,
+      "label": "Three-case/four-purpose comparison 1920"
+    },
+    {
+      "pass": true,
+      "label": "Comparison remains open through date navigation 1920"
+    },
+    {
+      "pass": true,
+      "label": "Root reflow 1920"
+    },
+    {
+      "pass": true,
+      "label": "Readable control text and targets 1920",
+      "details": [
+        {
+          "id": "eh-case",
+          "font": 16,
+          "height": 46
+        },
+        {
+          "id": "eh-purpose",
+          "font": 16,
+          "height": 46
+        },
+        {
+          "id": "eh-date",
+          "font": 16,
+          "height": 49.578125
+        }
+      ]
+    },
+    {
+      "pass": true,
+      "label": "Dirty clock disables exports/casting/navigation 1920"
+    },
+    {
+      "pass": true,
+      "label": "Three actual public cases 390"
+    },
+    {
+      "pass": true,
+      "label": "Four named profiles 390"
+    },
+    {
+      "pass": true,
+      "label": "Complete1525-date slider 390"
+    },
+    {
+      "pass": true,
+      "label": "No surfaced load error 390"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 london western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 london western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 london jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 london mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 delhi western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 delhi western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 delhi jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 delhi mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 new-york western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 new-york western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 new-york jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 390 new-york mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Inclusive2031 endpoint 390"
+    },
+    {
+      "pass": true,
+      "label": "Native Home reaches first date 390"
+    },
+    {
+      "pass": true,
+      "label": "Native single-step reaches next date 390"
+    },
+    {
+      "pass": true,
+      "label": "Date-order ledger remains complete 390"
+    },
+    {
+      "pass": true,
+      "label": "Observance filter retains complete denominator 390"
+    },
+    {
+      "pass": true,
+      "label": "Astronomical event filter produces actual rows 390"
+    },
+    {
+      "pass": true,
+      "label": "Three-case/four-purpose comparison 390"
+    },
+    {
+      "pass": true,
+      "label": "Comparison remains open through date navigation 390"
+    },
+    {
+      "pass": true,
+      "label": "Root reflow 390"
+    },
+    {
+      "pass": true,
+      "label": "Readable control text and targets 390",
+      "details": [
+        {
+          "id": "eh-case",
+          "font": 16,
+          "height": 46
+        },
+        {
+          "id": "eh-purpose",
+          "font": 16,
+          "height": 46
+        },
+        {
+          "id": "eh-date",
+          "font": 16,
+          "height": 49.578125
+        }
+      ]
+    },
+    {
+      "pass": true,
+      "label": "Dirty clock disables exports/casting/navigation 390"
+    },
+    {
+      "pass": true,
+      "label": "Three actual public cases 320"
+    },
+    {
+      "pass": true,
+      "label": "Four named profiles 320"
+    },
+    {
+      "pass": true,
+      "label": "Complete1525-date slider 320"
+    },
+    {
+      "pass": true,
+      "label": "No surfaced load error 320"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 london western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 london western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 london jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 london mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 delhi western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 delhi western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 delhi jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 delhi mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 new-york western-increase-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 new-york western-decrease-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 new-york jyotisha-classification-study"
+    },
+    {
+      "pass": true,
+      "label": "Actual case/profile chart context 320 new-york mercury-hour-study"
+    },
+    {
+      "pass": true,
+      "label": "Inclusive2031 endpoint 320"
+    },
+    {
+      "pass": true,
+      "label": "Native Home reaches first date 320"
+    },
+    {
+      "pass": true,
+      "label": "Native single-step reaches next date 320"
+    },
+    {
+      "pass": true,
+      "label": "Date-order ledger remains complete 320"
+    },
+    {
+      "pass": true,
+      "label": "Observance filter retains complete denominator 320"
+    },
+    {
+      "pass": true,
+      "label": "Astronomical event filter produces actual rows 320"
+    },
+    {
+      "pass": true,
+      "label": "Three-case/four-purpose comparison 320"
+    },
+    {
+      "pass": true,
+      "label": "Comparison remains open through date navigation 320"
+    },
+    {
+      "pass": true,
+      "label": "Root reflow 320"
+    },
+    {
+      "pass": true,
+      "label": "Readable control text and targets 320",
+      "details": [
+        {
+          "id": "eh-case",
+          "font": 16,
+          "height": 46
+        },
+        {
+          "id": "eh-purpose",
+          "font": 16,
+          "height": 46
+        },
+        {
+          "id": "eh-date",
+          "font": 16,
+          "height": 49.578125
+        }
+      ]
+    },
+    {
+      "pass": true,
+      "label": "Dirty clock disables exports/casting/navigation 320"
+    },
+    {
+      "pass": true,
+      "label": "DST-gap missing observances are labelled separately"
+    },
+    {
+      "pass": true,
+      "label": "Unavailable calculations do not pass named-observance filter"
+    },
+    {
+      "pass": true,
+      "label": "Missing-date slider remains accessible after empty filter"
+    },
+    {
+      "pass": true,
+      "label": "No runtime errors",
+      "details": []
+    }
+  ],
+  "errors": [],
+  "downloads": [
+    {
+      "name": "event-horizon.json",
+      "bytes": 63476406,
+      "sha256": "8ca960b62bb338bf8c2344bfd22a0c271436a7347073eed51b5ba2438eefd8e6"
+    },
+    {
+      "name": "event-horizon-london-western-increase-study.csv",
+      "bytes": 4231284,
+      "sha256": "6318a63fee9d826806d9c3969b35eee398c16e74821c206f66a4b6ff38ba65ad"
+    },
+    {
+      "name": "horizon-study-2027-02-06.ics",
+      "bytes": 569,
+      "sha256": "3b6ced15f1c53f2e6042bdeea7fedd57a46f67fa4a2ec68727c17a3b6c4dc39b"
+    }
+  ],
+  "screenshots": [
+    "cold-1440.png",
+    "instrument-1440.png",
+    "cold-1920.png",
+    "instrument-1920.png",
+    "cold-390.png",
+    "instrument-390.png",
+    "cold-320.png",
+    "instrument-320.png"
+  ],
+  "visits": [
+    {
+      "width": 1440,
+      "height": 900,
+      "readyMs": 1605
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "readyMs": 1542
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "readyMs": 1474
+    },
+    {
+      "width": 320,
+      "height": 900,
+      "readyMs": 1543
+    }
+  ],
+  "startFiles": {
+    "pages/event-horizon.html": "13e0b91f61065abf0e9646ec8fbe1bbc98cedf4fc67cce2f45935854df233dd8",
+    "assets/js/app/event-horizon.js": "0a502f4cb9c08244425a4382b0777e8da4a875cbedc87a4263ded5c20d05c8f4",
+    "assets/css/event-horizon.css": "208b35eca749bc6f1fab96f874d3f2f042a0efc90d346eb0d5ad8079ea8796a6",
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+    "assets/data/horizon-2031-manifest.json": "d43f65deb5b0df1d504077a64e4838a770814db6421489f03c120e22fcd3a272"
+  },
+  "pass": true,
+  "browser": "145.0.7632.6",
+  "endFiles": {
+    "pages/event-horizon.html": "13e0b91f61065abf0e9646ec8fbe1bbc98cedf4fc67cce2f45935854df233dd8",
+    "assets/js/app/event-horizon.js": "0a502f4cb9c08244425a4382b0777e8da4a875cbedc87a4263ded5c20d05c8f4",
+    "assets/css/event-horizon.css": "208b35eca749bc6f1fab96f874d3f2f042a0efc90d346eb0d5ad8079ea8796a6",
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+    "assets/data/horizon-2031-manifest.json": "d43f65deb5b0df1d504077a64e4838a770814db6421489f03c120e22fcd3a272"
+  },
+  "changedFiles": []
+}

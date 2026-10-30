@@ -1,0 +1,77 @@
+{
+  "phase": "round2-read-only-integration-review",
+  "role": "calendar_alignment / calendar and observance owner",
+  "reviewedAt": "2026-10-30T04:50:19.473920+00:00",
+  "status": "reviewed source accepted; final held-manifest and integrated browser QA pending",
+  "scope": "Source review of observance propagation, missingness presentation, boundaries, sources and export contracts. No new runtime or browser test execution in this receipt.",
+  "sourceSnapshot": [
+    {
+      "path": "assets/js/core/horizon-observances.js",
+      "sha256": "6b13160f1e965e8ced336eae6f57c486f4b19934cae57377310f66c8ba9b419e"
+    },
+    {
+      "path": "assets/js/core/data/horizon-observances.js",
+      "sha256": "b06256ac1c6c5fcc16e03e919e025ef0fc0678a5d10e849902e2fb79b40e229b"
+    },
+    {
+      "path": "scripts/tests/horizon-observances.mjs",
+      "sha256": "d9f4342a64ab8814f7a8ca1a465f6a1032d2035d2e3d9e311243f7e37ce84f73"
+    },
+    {
+      "path": "assets/js/core/event-horizon.js",
+      "sha256": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f"
+    },
+    {
+      "path": "assets/js/app/event-horizon.js",
+      "sha256": "0a502f4cb9c08244425a4382b0777e8da4a875cbedc87a4263ded5c20d05c8f4"
+    },
+    {
+      "path": "pages/event-horizon.html",
+      "sha256": "13e0b91f61065abf0e9646ec8fbe1bbc98cedf4fc67cce2f45935854df233dd8"
+    },
+    {
+      "path": "scripts/tests/horizon-integration-independent.mjs",
+      "sha256": "66f573046b63e68e88c872681784dcf55949c2f01a14c75a7367ea615bd9bff8"
+    },
+    {
+      "path": "docs/2026-10-horizon-observances.md",
+      "sha256": "18b491caee81401b4945b9c37eb32b0623b7460962f1340a25e6eb812045cb47"
+    },
+    {
+      "path": "docs/evidence/horizon/observances/sources.json",
+      "sha256": "211999bd58378d153c342e19d97fb88bebbbcda1aa37429071c8fad73e4baa95"
+    },
+    {
+      "path": "docs/evidence/horizon/observances/round1-runtime-comparison.json",
+      "sha256": "3d0134d524dfeb320db31a1cd9e90f09ba65b91991990f0daafad77a9f6c9f14"
+    }
+  ],
+  "findings": [
+    {
+      "id": "HOBS-R2-001",
+      "status": "corrected by UI owner; closure verified in source",
+      "trigger": "A missing sampled clock yields three unavailable observance-calculation records.",
+      "before": "The named-observance filter accepted missing calculation records and listed them as observances.",
+      "after": "Named-observance filters/counts exclude status=unavailable; context and ledger retain separate unavailable calculation records, with full status/reason in evidence.",
+      "browserVerification": "Assigned to orbital_experience and integrated QA; not claimed by this role."
+    }
+  ],
+  "reviewedContracts": [
+    "Core preserves complete date-only records and prefixes case identity without replacing origin IDs.",
+    "Fixed/published civil dates survive an unavailable clock; no lunar result or UTC ritual boundary is invented.",
+    "Official HKO-versus-stored conversion comparison remains separate from stored-versus-current-browser differences.",
+    "JSON includes complete observance records; CSV is a complete case/profile date ledger with observance IDs joining to JSON.",
+    "ICS is an explicit UTC study sample, omits coordinates/birth records, disclaims festival boundary and provider sync, and rejects unavailable instants.",
+    "Source-qualified observances do not change editorial ranking or imply independent corroboration.",
+    "Selected future schedules remain bounded; unsupported tradition variants remain coverage entries rather than fabricated festivals."
+  ],
+  "priorEvidence": {
+    "focusedTests": "29 groups passed in Round 1; not rerun for this source review",
+    "selectedChineseRuntimeAudit": "round1-runtime-comparison.json: 100 selected comparisons, 92 matches, 8 retained mismatches",
+    "sourceReceipt": "sources.json: retrieval and actual reading depth, including unsuccessful/unused URLs"
+  },
+  "limitations": [
+    "Static source acceptance is not final rendered-browser verification.",
+    "No claim of universal religious authority, complete future festival coverage, predictive validity or full-range ICU correctness."
+  ]
+}

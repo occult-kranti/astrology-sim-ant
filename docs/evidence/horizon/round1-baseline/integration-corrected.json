@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-horizon-integration",
+  "startedAt": "2026-10-30T04:41:03.078Z",
+  "sourceBefore": {
+    "assets/js/core/event-horizon.js": "4b35682e2f1c7d7945b1dc6475cbae6a747c968f7718d0002a2ae4af8dd4cde6",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+    "assets/js/core/horizon-astronomy.js": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01",
+    "assets/js/core/horizon-observances.js": "6b13160f1e965e8ced336eae6f57c486f4b19934cae57377310f66c8ba9b419e",
+    "assets/js/core/data/horizon-observances.js": "147f2853758b656c13ae44da6010674cf38db54f45372cf516997f6eeb46f05d",
+    "assets/js/core/data/horizon-traditions.js": "7f08607e2405001f250c7e61d6bfeba5a7add721dea4a75d036c4269f8774d75"
+  },
+  "driverSHA256": "7a1cc116b2ea14c7fd6eae9d03ffda5c6adc7cc7b8574000878eb117e802a4a3",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "checks": [
+    {
+      "label": "Independent inclusive Gregorian grid includes1525default or1827maximum dates",
+      "pass": true
+    },
+    {
+      "label": "Default event interval covers both civil boundaries of all three distinct observer clocks",
+      "pass": true
+    },
+    {
+      "label": "Actual leap-window benchmark recomputes36brute versus9shared canonical contexts and retains all36profiles",
+      "pass": true
+    },
+    {
+      "label": "Actual source-qualified detail recomputation agrees with stored samples in the same runtime",
+      "pass": true
+    },
+    {
+      "label": "Every astronomical event is assigned to each case only by its own actual local civil date",
+      "pass": true
+    },
+    {
+      "label": "Every named observance resolves its source identity and remains outside profile votes",
+      "pass": true
+    },
+    {
+      "label": "Actual DST gap is a retained unavailable row with13calendar slots and4unrankable profiles",
+      "pass": true
+    },
+    {
+      "label": "Clock-unavailable profiles retain declared denominators, contribution totals and structured missing reasons",
+      "pass": true
+    },
+    {
+      "label": "Unavailable date cannot be exported as an invented calendar instant",
+      "pass": true
+    },
+    {
+      "label": "Explicit earlier/later repeated-clock policies differ by one real hour",
+      "pass": true
+    },
+    {
+      "label": "Cancellation through isCancelled stops at the first astronomy progress boundary",
+      "pass": true
+    },
+    {
+      "label": "Earliest editable date supports observance-enabled calculation without aborting other calendars",
+      "pass": true
+    },
+    {
+      "label": "Best/worst competition ranks preserve exact rational ties and never rank missing samples",
+      "pass": true
+    },
+    {
+      "label": "Spreadsheet export escapes user-label formula prefixes while retaining negative numeric scores",
+      "pass": true
+    },
+    {
+      "label": "Strict request rejects {\"startDate\":\"2025-12-31\",\"endDate\":\"2026-01-01\",\"cases\":[{\"id\":\"london\",\"label\":\"London · local noon\",\"lat\":51.5074,\"lon\":-0.1278",
+      "pass": true
+    },
+    {
+      "label": "Strict request rejects {\"startDate\":\"2031-01-01\",\"endDate\":\"2031-01-02\",\"cases\":[{\"id\":\"london\",\"label\":\"London · local noon\",\"lat\":51.5074,\"lon\":-0.1278",
+      "pass": true
+    },
+    {
+      "label": "Strict request rejects {\"startDate\":\"2027-02-29\",\"endDate\":\"2027-03-01\",\"cases\":[{\"id\":\"london\",\"label\":\"London · local noon\",\"lat\":51.5074,\"lon\":-0.1278",
+      "pass": true
+    },
+    {
+      "label": "Strict request rejects {\"startDate\":\"2027-01-01\",\"endDate\":\"2027-01-02\",\"cases\":[{\"id\":\"london\",\"label\":\"London · local noon\",\"lat\":51.5074,\"lon\":-0.1278",
+      "pass": true
+    },
+    {
+      "label": "Strict request rejects {\"startDate\":\"2027-01-01\",\"endDate\":\"2027-01-02\",\"cases\":[{\"id\":\"london\",\"label\":\"London · local noon\",\"lat\":51.5074,\"lon\":-0.1278",
+      "pass": true
+    },
+    {
+      "label": "Strict request rejects {\"startDate\":\"2027-01-01\",\"endDate\":\"2027-01-02\",\"cases\":[{\"id\":\"london\",\"label\":\"London · local noon\",\"lat\":51.5074,\"lon\":-0.1278",
+      "pass": true
+    },
+    {
+      "label": "Product sources remained unchanged during focused integration checks",
+      "pass": true
+    }
+  ],
+  "benchmark": {
+    "counts": {
+      "days": 3,
+      "cases": 3,
+      "totalSamples": 9,
+      "processedSamples": 9,
+      "availableSamples": 9,
+      "unavailableSamples": 0,
+      "calendarRows": 117,
+      "availableCalendarRows": 117,
+      "profileResults": 36,
+      "rankableProfileResults": 36,
+      "observanceRows": 6,
+      "uniqueObservances": 2,
+      "eventCount": 12,
+      "truncated": false
+    },
+    "timing": {
+      "bruteMs": 476.310522,
+      "optimizedMs": 120.35925399999996,
+      "totalMs": 600.920786,
+      "speedRatio": 3.957406731683466,
+      "context": "Measured on this runtime; optimization shares canonical context across purposes. This is not independent predictive validation."
+    },
+    "bruteCalls": 36,
+    "optimizedCalls": 9
+  },
+  "sourceAfter": {
+    "assets/js/core/event-horizon.js": "4b35682e2f1c7d7945b1dc6475cbae6a747c968f7718d0002a2ae4af8dd4cde6",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+    "assets/js/core/horizon-astronomy.js": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01",
+    "assets/js/core/horizon-observances.js": "6b13160f1e965e8ced336eae6f57c486f4b19934cae57377310f66c8ba9b419e",
+    "assets/js/core/data/horizon-observances.js": "147f2853758b656c13ae44da6010674cf38db54f45372cf516997f6eeb46f05d",
+    "assets/js/core/data/horizon-traditions.js": "7f08607e2405001f250c7e61d6bfeba5a7add721dea4a75d036c4269f8774d75"
+  },
+  "completedAt": "2026-10-30T04:41:03.910Z",
+  "pass": true,
+  "count": 21,
+  "failures": []
+}

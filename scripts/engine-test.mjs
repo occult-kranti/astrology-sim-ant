@@ -1752,7 +1752,7 @@ for (const suite of ['live-symbols', 'study-session']) {
 
 // Cross-calendar source/context and civil-week regression checks use the same
 // pure engines as the browser and MCP, without a host clock or live provider.
-for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-study-packet', 'day-guidance', 'sigil-design', 'sigil-image-provider', 'observatory-standards', 'world-events', 'comparison-evidence', 'calendar-atlas', 'personal-calendar', 'calendar-search', 'sky-dynamics', 'sky-interpretation', 'calendar-alignment', 'tool-guide', 'sky-assistant', 'sky-chat-client', 'chart-mcp', 'calendar-mcp', 'oracle-mcp', 'observatory-mcp', 'study-mcp']) {
+for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-study-packet', 'day-guidance', 'sigil-design', 'sigil-image-provider', 'observatory-standards', 'world-events', 'comparison-evidence', 'calendar-atlas', 'personal-calendar', 'calendar-search', 'sky-dynamics', 'sky-interpretation', 'calendar-alignment', 'tool-guide', 'sky-assistant', 'sky-chat-client', 'chart-mcp', 'calendar-mcp', 'oracle-mcp', 'observatory-mcp', 'study-mcp', 'horizon-astronomy', 'horizon-observances', 'horizon-ranking', 'horizon-independent', 'horizon-integration-independent', 'horizon-mcp', 'horizon-loader']) {
   try {
     execFileSync(process.execPath, [`scripts/tests/${suite}.mjs`], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] });
     ok(true, `${suite}: PASS`);
@@ -1769,6 +1769,7 @@ for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-s
 // outer, one-line version that keeps working if that module is ever refactored.
 // A missing script is also a failure — the artery may not quietly disappear.
 for (const [script, what] of [
+  ['scripts/generate-horizon-preset.mjs', 'complete horizon preset matches its transitive scientific source graph and manifest checksums'],
   ['scripts/build-specialist-profiles.mjs', 'calendar and source-work specialist profiles match their source registry'],
   ['scripts/build-mcp-catalogue.mjs', 'static MCP connection catalogue matches the actual tool definitions'],
   ['scripts/build-sky-reference.mjs', 'local source retrieval artifacts match their authored source records'],

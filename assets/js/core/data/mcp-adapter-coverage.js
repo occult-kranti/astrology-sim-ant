@@ -55,6 +55,19 @@ export const MCP_ADAPTER_COVERAGE = {
     ],
     "scope": "Calculate simplified zodiacal directions to Ascendant/MC using explicit Naibod or Ptolemy key and an age horizon up to150. This is not rigorous mundane primary direction."
   },
+  "event-horizon": {
+    "mcpTools": [
+      "workbench_horizon_scan",
+      "workbench_horizon_day"
+    ],
+    "outputPaths": [
+      "data.cases",
+      "data.counts",
+      "data.detail",
+      "data.hourly"
+    ],
+    "scope": "Complete remote windows are bounded to 31 inclusive dates and two cases. One-day detail recomputes canonical evidence and optional unranked hourly guidance. Explicit source/missingness limits remain; no universal luck or religious score."
+  },
   "firdaria": {
     "mcpTools": [
       "workbench_firdaria"

@@ -1,0 +1,92 @@
+{
+  "browser": "145.0.7632.6",
+  "filesystemCoreSHA256": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+  "servedCoreSHA256": "6f533f50fe571770e810b0533d4b2e250411474fe16c4aced07b155a113fabe4",
+  "checks": [
+    {
+      "pass": false,
+      "label": "Successful full EOF has zero failed requests {\"scenario\":\"success\",\"length\":false}",
+      "details": [
+        {
+          "type": "failed",
+          "phase": "loading",
+          "at": 287,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "failed",
+          "phase": "loading",
+          "at": 327,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "finished",
+          "phase": "loading",
+          "at": 482,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+        },
+        {
+          "type": "finished",
+          "phase": "loading",
+          "at": 689,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+        },
+        {
+          "type": "finished",
+          "phase": "loading",
+          "at": 886,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "scenario": "success",
+      "length": false,
+      "network": [
+        {
+          "type": "failed",
+          "phase": "loading",
+          "at": 287,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031-manifest.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "failed",
+          "phase": "loading",
+          "at": 327,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/astronomy.json",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "type": "finished",
+          "phase": "loading",
+          "at": 482,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-london.json"
+        },
+        {
+          "type": "finished",
+          "phase": "loading",
+          "at": 689,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json"
+        },
+        {
+          "type": "finished",
+          "phase": "loading",
+          "at": 886,
+          "url": "http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json"
+        }
+      ],
+      "errors": [],
+      "startedAt": 1793337973929,
+      "phase": "teardown",
+      "pass": false,
+      "failure": "Error: Successful full EOF has zero failed requests {\"scenario\":\"success\",\"length\":false} [{\"type\":\"failed\",\"phase\":\"loading\",\"at\":287,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031-manifest.json\",\"error\":\"net::ERR_ABORTED\"},{\"type\":\"failed\",\"phase\":\"loading\",\"at\":327,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/astronomy.json\",\"error\":\"net::ERR_ABORTED\"},{\"type\":\"finished\",\"phase\":\"loading\",\"at\":482,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-london.json\"},{\"type\":\"finished\",\"phase\":\"loading\",\"at\":689,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json\"},{\"type\":\"finished\",\"phase\":\"loading\",\"at\":886,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json\"}]\n    at check (file:///workspace/setup-validation/horizon-fetch-diagnostic/native-pipeline.mjs:5:1767)\n    at file:///workspace/setup-validation/horizon-fetch-diagnostic/native-pipeline.mjs:7:279"
+    }
+  ],
+  "pass": false,
+  "failure": "Error: Successful full EOF has zero failed requests {\"scenario\":\"success\",\"length\":false} [{\"type\":\"failed\",\"phase\":\"loading\",\"at\":287,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031-manifest.json\",\"error\":\"net::ERR_ABORTED\"},{\"type\":\"failed\",\"phase\":\"loading\",\"at\":327,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/astronomy.json\",\"error\":\"net::ERR_ABORTED\"},{\"type\":\"finished\",\"phase\":\"loading\",\"at\":482,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-london.json\"},{\"type\":\"finished\",\"phase\":\"loading\",\"at\":689,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-delhi.json\"},{\"type\":\"finished\",\"phase\":\"loading\",\"at\":886,\"url\":\"http://127.0.0.1:44697/astrology-sim-ant/assets/data/horizon-2031/case-new-york.json\"}]\n    at check (file:///workspace/setup-validation/horizon-fetch-diagnostic/native-pipeline.mjs:5:1767)\n    at file:///workspace/setup-validation/horizon-fetch-diagnostic/native-pipeline.mjs:7:279"
+}

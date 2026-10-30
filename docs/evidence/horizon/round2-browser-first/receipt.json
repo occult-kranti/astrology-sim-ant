@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "phase": "all",
+  "round": "round2",
+  "startedAt": "2026-10-30T04:47:38.702Z",
+  "checks": [
+    {
+      "label": "complete preset opens without a surfaced error 320",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 320 completes",
+      "pass": true
+    },
+    {
+      "label": "complete public ledger 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "all1525dates across three public cases survive actual export 320",
+      "pass": true
+    },
+    {
+      "label": "every exported case-date retains13calendar slots and4purpose results 320",
+      "pass": true
+    },
+    {
+      "label": "verified preset and every-date slider disclose complete range 320",
+      "pass": true
+    },
+    {
+      "label": "astronomy spans union of actual local civil days 320",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "date 2026-10-30 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    }
+  ],
+  "downloads": [
+    {
+      "label": "complete public ledger 320",
+      "filename": "downloads/001-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 63476425,
+      "sha256": "dd6acfd4a2eab920e0630d80ac584ec0ac339cd76e60564ab78702147b983a8a",
+      "compressedBytes": 2277305,
+      "compressedSHA256": "0e8c44c18dd924cf4a44b32409578ea6e84a06d62364f611219294141ae8f194"
+    }
+  ],
+  "screenshots": [],
+  "fonts": [],
+  "errors": [],
+  "missing": [],
+  "externalRequests": [],
+  "source": {
+    "driverSHA256": "f642f933cc8f5c55db009246e64d5b9cbe52c89078dccb4b0cbec8cfa8ee7a66",
+    "productAtStartSHA256": "30a0701d93f4bc50bf9c2467fc970d5fa311ef4757973d24af051fafa4681b1d",
+    "productAtEndSHA256": "30a0701d93f4bc50bf9c2467fc970d5fa311ef4757973d24af051fafa4681b1d",
+    "changedFiles": [],
+    "driftAllowed": true
+  },
+  "limits": {
+    "realProvider": false,
+    "physicalPhone": false,
+    "screenReader": false,
+    "humanUsabilityResearch": false,
+    "calendarProviderWrite": false
+  },
+  "browser": "145.0.7632.6",
+  "failure": {
+    "message": "The expression evaluated to a falsy value:\n\n  assert.ok(Math.abs(Number(actual[2])-(48+index/Math.max(1,c.rows.length-1)*857))<=.006)\n",
+    "stack": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(Math.abs(Number(actual[2])-(48+index/Math.max(1,c.rows.length-1)*857))<=.006)\n\n    at verifyChart (file:///workspace/astrology-sim-ant/scripts/browser-horizon.mjs:39:1531)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)\n    at async explore (file:///workspace/astrology-sim-ant/scripts/browser-horizon.mjs:42:91)\n    at async file:///workspace/astrology-sim-ant/scripts/browser-horizon.mjs:52:416"
+  },
+  "pass": false,
+  "completedAt": "2026-10-30T04:47:42.178Z",
+  "checkCount": 9
+}

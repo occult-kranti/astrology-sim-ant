@@ -1,0 +1,453 @@
+{
+  "phase": "round3-scoped-observance-acceptance",
+  "status": "ACCEPT",
+  "reviewedAt": "2026-10-30T04:53:54.601704+00:00",
+  "scope": "Read-only verification of the held scientific-source binding, generated observance records and existing QA receipts/downloads. No browser or broad test execution by this role.",
+  "manifest": {
+    "path": "assets/data/horizon-2031-manifest.json",
+    "sha256": "d43f65deb5b0df1d504077a64e4838a770814db6421489f03c120e22fcd3a272",
+    "sourceSHA256": "02819b95bf1bd745c7ca5992a046288c097725f64e28d642260a885ef8fa0500",
+    "boundFiles": 46,
+    "sourceDrift": [],
+    "parts": [
+      {
+        "id": "case-london",
+        "path": "horizon-2031/case-london.json",
+        "sha256": "44e8c33704bb2110b55a3e890a498bde2526f8b9cf4fc53b699987b2b67e9c71",
+        "bytes": 9701600,
+        "matches": true
+      },
+      {
+        "id": "case-delhi",
+        "path": "horizon-2031/case-delhi.json",
+        "sha256": "4a72a692f49b498a281708b18161aed0bcde194913a630c210eb01b900231953",
+        "bytes": 9711317,
+        "matches": true
+      },
+      {
+        "id": "case-new-york",
+        "path": "horizon-2031/case-new-york.json",
+        "sha256": "7dcb16a28df4eded6f1a9d47a0c6d62e6189eaf69e108781f2e8a109dc6c6832",
+        "bytes": 9724490,
+        "matches": true
+      },
+      {
+        "id": "astronomy",
+        "path": "horizon-2031/astronomy.json",
+        "sha256": "217de55190648e5bbeaa16657d5e85c71de0476cf3122f189ef6b61fa35bfcea",
+        "bytes": 5867983,
+        "matches": true
+      }
+    ]
+  },
+  "moduleHashes": {
+    "assets/js/core/horizon-observances.js": "6b13160f1e965e8ced336eae6f57c486f4b19934cae57377310f66c8ba9b419e",
+    "assets/js/core/data/horizon-observances.js": "b06256ac1c6c5fcc16e03e919e025ef0fc0678a5d10e849902e2fb79b40e229b",
+    "scripts/tests/horizon-observances.mjs": "d9f4342a64ab8814f7a8ca1a465f6a1032d2035d2e3d9e311243f7e37ce84f73",
+    "assets/js/app/event-horizon.js": "0a502f4cb9c08244425a4382b0777e8da4a875cbedc87a4263ded5c20d05c8f4"
+  },
+  "catalogue": {
+    "caseRecords": 1011,
+    "uniqueOrigins": 337,
+    "perCase": {
+      "london": 337,
+      "delhi": 337,
+      "new-york": 337
+    },
+    "sources": 28,
+    "coverageEntries": 27,
+    "sourceAndCoverageMatchAuthoredExports": true,
+    "dateOnlyNullBoundarySourceIdentityViolations": 0,
+    "unavailableRecordsInNoonPreset": 0
+  },
+  "retainedMismatches": [
+    {
+      "caseId": "london",
+      "date": "2027-02-06",
+      "calendarComparison": {
+        "calendarId": "chinese",
+        "status": "mismatch",
+        "published": {
+          "month": 1,
+          "day": 1,
+          "leap": false,
+          "referenceTimeZone": "Asia/Hong_Kong"
+        },
+        "runtime": {
+          "month": 12,
+          "day": 30,
+          "leap": false,
+          "text": "Twelfth Month 30, 2026(bing-wu)"
+        },
+        "explanation": "Published Hong Kong date and the selected runtime Chinese civil label differ. Both are retained; no silent calendar repair or universal observance verdict is made."
+      }
+    },
+    {
+      "caseId": "london",
+      "date": "2030-02-03",
+      "calendarComparison": {
+        "calendarId": "chinese",
+        "status": "mismatch",
+        "published": {
+          "month": 1,
+          "day": 1,
+          "leap": false,
+          "referenceTimeZone": "Asia/Hong_Kong"
+        },
+        "runtime": {
+          "month": 1,
+          "day": 2,
+          "leap": false,
+          "text": "First Month 2, 2030(geng-xu)"
+        },
+        "explanation": "Published Hong Kong date and the selected runtime Chinese civil label differ. Both are retained; no silent calendar repair or universal observance verdict is made."
+      }
+    },
+    {
+      "caseId": "delhi",
+      "date": "2027-02-06",
+      "calendarComparison": {
+        "calendarId": "chinese",
+        "status": "mismatch",
+        "published": {
+          "month": 1,
+          "day": 1,
+          "leap": false,
+          "referenceTimeZone": "Asia/Hong_Kong"
+        },
+        "runtime": {
+          "month": 12,
+          "day": 30,
+          "leap": false,
+          "text": "Twelfth Month 30, 2026(bing-wu)"
+        },
+        "explanation": "Published Hong Kong date and the selected runtime Chinese civil label differ. Both are retained; no silent calendar repair or universal observance verdict is made."
+      }
+    },
+    {
+      "caseId": "delhi",
+      "date": "2030-02-03",
+      "calendarComparison": {
+        "calendarId": "chinese",
+        "status": "mismatch",
+        "published": {
+          "month": 1,
+          "day": 1,
+          "leap": false,
+          "referenceTimeZone": "Asia/Hong_Kong"
+        },
+        "runtime": {
+          "month": 1,
+          "day": 2,
+          "leap": false,
+          "text": "First Month 2, 2030(geng-xu)"
+        },
+        "explanation": "Published Hong Kong date and the selected runtime Chinese civil label differ. Both are retained; no silent calendar repair or universal observance verdict is made."
+      }
+    },
+    {
+      "caseId": "new-york",
+      "date": "2027-02-06",
+      "calendarComparison": {
+        "calendarId": "chinese",
+        "status": "mismatch",
+        "published": {
+          "month": 1,
+          "day": 1,
+          "leap": false,
+          "referenceTimeZone": "Asia/Hong_Kong"
+        },
+        "runtime": {
+          "month": 12,
+          "day": 30,
+          "leap": false,
+          "text": "Twelfth Month 30, 2026(bing-wu)"
+        },
+        "explanation": "Published Hong Kong date and the selected runtime Chinese civil label differ. Both are retained; no silent calendar repair or universal observance verdict is made."
+      }
+    },
+    {
+      "caseId": "new-york",
+      "date": "2030-02-03",
+      "calendarComparison": {
+        "calendarId": "chinese",
+        "status": "mismatch",
+        "published": {
+          "month": 1,
+          "day": 1,
+          "leap": false,
+          "referenceTimeZone": "Asia/Hong_Kong"
+        },
+        "runtime": {
+          "month": 1,
+          "day": 2,
+          "leap": false,
+          "text": "First Month 2, 2030(geng-xu)"
+        },
+        "explanation": "Published Hong Kong date and the selected runtime Chinese civil label differ. Both are retained; no silent calendar repair or universal observance verdict is made."
+      }
+    }
+  ],
+  "runtime": {
+    "environment": "node",
+    "node": "24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "icu": "78.3",
+    "cldr": "48.0",
+    "tz": "2026b"
+  },
+  "qa": {
+    "path": "docs/evidence/horizon/round2-browser-responsive/receipt.json",
+    "sha256": "269f1c0c054d592548f5e1c8b2d11400a7093ff9cb96ca4390a73388dbd38929",
+    "pass": true,
+    "checks": 223,
+    "errors": [],
+    "missing": [],
+    "externalRequests": [],
+    "source": {
+      "driverSHA256": "b751a355977695e9afd6b78788bcafb6d9a67ce7079b8fd360d4c3248e03d2b4",
+      "productAtStartSHA256": "30a0701d93f4bc50bf9c2467fc970d5fa311ef4757973d24af051fafa4681b1d",
+      "productAtEndSHA256": "30a0701d93f4bc50bf9c2467fc970d5fa311ef4757973d24af051fafa4681b1d",
+      "changedFiles": [],
+      "driftAllowed": true
+    },
+    "relevantChecks": [
+      {
+        "label": "full1827day calculation can cancel without partial export 320",
+        "pass": true
+      },
+      {
+        "label": "replacement ledger cannot receive cancelled full-horizon rows 320",
+        "pass": true
+      },
+      {
+        "label": "DST gap retained ledger 320 completes",
+        "pass": true
+      },
+      {
+        "label": "DST gap retained ledger 320 contains actual bytes and excludes private storage",
+        "pass": true
+      },
+      {
+        "label": "DST gap retains full unavailable sample and does not become favorable zero 320",
+        "pass": true
+      },
+      {
+        "label": "published cases can restore after cancellation, invalid zone and gap run 320",
+        "pass": true
+      },
+      {
+        "label": "cancelled preset fetch cannot revive old or late output 320",
+        "pass": true
+      },
+      {
+        "label": "full1827day calculation can cancel without partial export 1440",
+        "pass": true
+      },
+      {
+        "label": "replacement ledger cannot receive cancelled full-horizon rows 1440",
+        "pass": true
+      },
+      {
+        "label": "DST gap retained ledger 1440 completes",
+        "pass": true
+      },
+      {
+        "label": "DST gap retained ledger 1440 contains actual bytes and excludes private storage",
+        "pass": true
+      },
+      {
+        "label": "DST gap retains full unavailable sample and does not become favorable zero 1440",
+        "pass": true
+      },
+      {
+        "label": "published cases can restore after cancellation, invalid zone and gap run 1440",
+        "pass": true
+      },
+      {
+        "label": "cancelled preset fetch cannot revive old or late output 1440",
+        "pass": true
+      }
+    ]
+  },
+  "downloadedGapEvidence": [
+    {
+      "label": "DST gap retained ledger 320",
+      "path": "docs/evidence/horizon/round2-browser-responsive/downloads/005-event-horizon.json.gz",
+      "downloadSHA256": "4d3c1785295dc8678b6ea494b3746f0b324d99cdc28ce8bea8050105a97e1564",
+      "matchesRecordedBytes": true,
+      "unavailableSamples": [
+        {
+          "date": "2027-03-14",
+          "sampleUTC": null,
+          "reasonCode": "NONEXISTENT_TIME",
+          "calendarSlots": 13,
+          "observanceIds": [
+            "custom::hobs-islamic-unresolved-calendar-islamic-civil-2027-03-14",
+            "custom::hobs-islamic-unresolved-calendar-islamic-umalqura-2027-03-14",
+            "custom::hobs-jewish-unresolved-calendar-hebrew-2027-03-14"
+          ]
+        }
+      ],
+      "unavailableCalculations": [
+        {
+          "id": "custom::hobs-islamic-unresolved-calendar-islamic-civil-2027-03-14",
+          "status": "unavailable",
+          "precision": "date-only",
+          "sourceIds": [
+            "HOBS-MUIS-2027",
+            "HOBS-CIVIL"
+          ],
+          "reason": "The named Islamic calendar label is unavailable or unrecognized.",
+          "exactStartUTC": null,
+          "exactEndUTC": null
+        },
+        {
+          "id": "custom::hobs-islamic-unresolved-calendar-islamic-umalqura-2027-03-14",
+          "status": "unavailable",
+          "precision": "date-only",
+          "sourceIds": [
+            "HOBS-MUIS-2027",
+            "HOBS-CIVIL"
+          ],
+          "reason": "The named Islamic calendar label is unavailable or unrecognized.",
+          "exactStartUTC": null,
+          "exactEndUTC": null
+        },
+        {
+          "id": "custom::hobs-jewish-unresolved-calendar-hebrew-2027-03-14",
+          "status": "unavailable",
+          "precision": "date-only",
+          "sourceIds": [
+            "HOBS-HEBCAL",
+            "HOBS-CHABAD-2027",
+            "HOBS-HEBCAL-2027-DIASPORA",
+            "HOBS-HEBCAL-2027-ISRAEL"
+          ],
+          "reason": "The supplied canonical Hebrew civil label is unavailable or unrecognized.",
+          "exactStartUTC": null,
+          "exactEndUTC": null
+        }
+      ]
+    },
+    {
+      "label": "DST gap retained ledger 1440",
+      "path": "docs/evidence/horizon/round2-browser-responsive/downloads/010-event-horizon.json.gz",
+      "downloadSHA256": "fb26fea05be16f4dab27a557ccced28d78cf60222af3d0a9e9a5570e6623ebea",
+      "matchesRecordedBytes": true,
+      "unavailableSamples": [
+        {
+          "date": "2027-03-14",
+          "sampleUTC": null,
+          "reasonCode": "NONEXISTENT_TIME",
+          "calendarSlots": 13,
+          "observanceIds": [
+            "custom::hobs-islamic-unresolved-calendar-islamic-civil-2027-03-14",
+            "custom::hobs-islamic-unresolved-calendar-islamic-umalqura-2027-03-14",
+            "custom::hobs-jewish-unresolved-calendar-hebrew-2027-03-14"
+          ]
+        }
+      ],
+      "unavailableCalculations": [
+        {
+          "id": "custom::hobs-islamic-unresolved-calendar-islamic-civil-2027-03-14",
+          "status": "unavailable",
+          "precision": "date-only",
+          "sourceIds": [
+            "HOBS-MUIS-2027",
+            "HOBS-CIVIL"
+          ],
+          "reason": "The named Islamic calendar label is unavailable or unrecognized.",
+          "exactStartUTC": null,
+          "exactEndUTC": null
+        },
+        {
+          "id": "custom::hobs-islamic-unresolved-calendar-islamic-umalqura-2027-03-14",
+          "status": "unavailable",
+          "precision": "date-only",
+          "sourceIds": [
+            "HOBS-MUIS-2027",
+            "HOBS-CIVIL"
+          ],
+          "reason": "The named Islamic calendar label is unavailable or unrecognized.",
+          "exactStartUTC": null,
+          "exactEndUTC": null
+        },
+        {
+          "id": "custom::hobs-jewish-unresolved-calendar-hebrew-2027-03-14",
+          "status": "unavailable",
+          "precision": "date-only",
+          "sourceIds": [
+            "HOBS-HEBCAL",
+            "HOBS-CHABAD-2027",
+            "HOBS-HEBCAL-2027-DIASPORA",
+            "HOBS-HEBCAL-2027-ISRAEL"
+          ],
+          "reason": "The supplied canonical Hebrew civil label is unavailable or unrecognized.",
+          "exactStartUTC": null,
+          "exactEndUTC": null
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Selected source-qualified date catalogue, not a complete religious calendar or prediction validation.",
+    "Unsupported Sikh/Jain/Shinto schedules and further variants remain explicit coverage limitations.",
+    "No claim of external deployment, human religious endorsement, every-date ICU correctness or completed unrelated release gates."
+  ],
+  "uiOwnerReceipt": {
+    "path": "docs/evidence/horizon/ui-round2/receipt.json",
+    "sha256": "8d98ed3897784ad02f4272d1423a1acfb673747a7d8734373106162a2df5afe3",
+    "pass": true,
+    "checks": 119,
+    "errors": [],
+    "changedFiles": [],
+    "fileDrift": [],
+    "relevantChecks": [
+      {
+        "pass": true,
+        "label": "Three-case/four-purpose comparison 1440"
+      },
+      {
+        "pass": true,
+        "label": "Comparison remains open through date navigation 1440"
+      },
+      {
+        "pass": true,
+        "label": "Official/calendar discrepancy evidence exposed"
+      },
+      {
+        "pass": true,
+        "label": "Three-case/four-purpose comparison 1920"
+      },
+      {
+        "pass": true,
+        "label": "Comparison remains open through date navigation 1920"
+      },
+      {
+        "pass": true,
+        "label": "Three-case/four-purpose comparison 390"
+      },
+      {
+        "pass": true,
+        "label": "Comparison remains open through date navigation 390"
+      },
+      {
+        "pass": true,
+        "label": "Three-case/four-purpose comparison 320"
+      },
+      {
+        "pass": true,
+        "label": "Comparison remains open through date navigation 320"
+      },
+      {
+        "pass": true,
+        "label": "DST-gap missing observances are labelled separately"
+      },
+      {
+        "pass": true,
+        "label": "Unavailable calculations do not pass named-observance filter"
+      }
+    ]
+  }
+}

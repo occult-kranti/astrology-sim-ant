@@ -1,0 +1,66 @@
+{
+  "stage": "Real short-window local worker; published preset not yet generated",
+  "checks": [
+    {
+      "pass": true,
+      "label": "Every four civil dates retained 1440"
+    },
+    {
+      "pass": true,
+      "label": "Four declared profiles 1440"
+    },
+    {
+      "pass": true,
+      "label": "Actual complete local export 1440",
+      "details": {
+        "days": 4,
+        "cases": 1,
+        "totalSamples": 4,
+        "processedSamples": 4,
+        "availableSamples": 4,
+        "unavailableSamples": 0,
+        "calendarRows": 52,
+        "availableCalendarRows": 52,
+        "profileResults": 16,
+        "rankableProfileResults": 16,
+        "observanceRows": 0,
+        "uniqueObservances": 0,
+        "eventCount": 17,
+        "truncated": false
+      }
+    },
+    {
+      "pass": true,
+      "label": "Current browser provenance 1440"
+    },
+    {
+      "pass": true,
+      "label": "Rendered profile values equal exported computations 1440"
+    },
+    {
+      "pass": true,
+      "label": "Last date field selects actual endpoint 1440"
+    },
+    {
+      "pass": false,
+      "label": "Native slider Home selects first date 1440"
+    }
+  ],
+  "errors": [],
+  "downloads": [
+    {
+      "name": "event-horizon.json",
+      "bytes": 213233
+    }
+  ],
+  "screenshots": [],
+  "pass": false,
+  "failure": "Error: Native slider Home selects first date 1440 undefined\n    at check (file:///workspace/setup-validation/horizon-ui-r1/worker.mjs:2:332)\n    at file:///workspace/setup-validation/horizon-ui-r1/worker.mjs:3:1795",
+  "browser": "145.0.7632.6",
+  "files": {
+    "pages/event-horizon.html": "bfe7b32ac1824474b257bb61f1c32e180c150099316f6bcf02e144080b8647fc",
+    "assets/js/app/event-horizon.js": "db785dd16a987ab93653a27d450371867c7b6dcd61a36ee4e05111ba5f280b2f",
+    "assets/css/event-horizon.css": "208b35eca749bc6f1fab96f874d3f2f042a0efc90d346eb0d5ad8079ea8796a6",
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f"
+  }
+}

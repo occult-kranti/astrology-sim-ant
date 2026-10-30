@@ -1,0 +1,28 @@
+{
+  "node": "v24.19.0",
+  "input": {
+    "startUTC": "2026-10-29T18:30:00Z",
+    "endUTC": "2031-01-02T05:00:00Z"
+  },
+  "elapsedMs": 2761.871463,
+  "serializedBytes": 5812205,
+  "stats": {
+    "positionCalculations": 227639,
+    "scannedIntervals": 6102,
+    "eventsByKind": {
+      "lunar-phase": 207,
+      "solar-quarter": 17,
+      "solar-eclipse": 10,
+      "lunar-eclipse": 10,
+      "ecliptic-aspect": 4691,
+      "zodiac-ingress": 871,
+      "planetary-station": 77
+    },
+    "completeRequestedRange": true,
+    "events": 5883
+  },
+  "checks": 99,
+  "failures": [
+    "All 45 unordered pairs among ten bodies produce examined contacts, including Moon–planet pairs"
+  ]
+}

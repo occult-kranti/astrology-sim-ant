@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-horizon-review",
+  "startedAt": "2026-10-30T04:32:49.800Z",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "sourceBefore": {
+    "assets/js/core/horizon-astronomy.js": "2595fd1bb52d4b361ee9490d38bc1988bf93510ecf72eae34c5e22ae9d1684e3",
+    "assets/js/core/horizon-ranking.js": "92d52729f9f22c60369a4e74860be5ae9f658a1660bf0c4b6c5f03bf171d7810",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/lib/astronomy.js": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7"
+  },
+  "driverSHA256": "2e7e2058138a4a870ffd7483f24e1529140d327d7e077abbb414ec3f80e0d7d1",
+  "checks": [
+    {
+      "label": "Independent native-boundary fixture covers quarters and both eclipse solvers",
+      "pass": true
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: lunar-phase:0:2027-01-07T20:25",
+      "pass": true
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: lunar-phase:1:2027-01-15T20:35",
+      "pass": true
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: lunar-phase:2:2027-01-22T12:18",
+      "pass": true
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: lunar-phase:3:2027-01-29T10:56",
+      "pass": true
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: lunar-phase:0:2027-02-06T15:57",
+      "pass": true
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: solar-eclipse:annular:2027-02-06T16:00",
+      "pass": false,
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    bodies: [\n      'Sun',\n      'Moon',\n      'Earth'\n...\n      eclipseType: 'annular',\n+     globalShadowAxisDistanceKm: 1881.520156270692,\n-     globalShadowAxisDistanceKm: 1881.5201562676227,\n      localVisibility: null,\n      scope: 'global',\n      timing: {\n        kind: 'numerically-computed',\n        method: 'native-global-eclipse-search',\n"
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: lunar-phase:1:2027-02-14T07:59",
+      "pass": true
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: lunar-eclipse:penumbral:2027-02-20T23:13",
+      "pass": true
+    },
+    {
+      "label": "Exact emitted native root belongs only to right half-open partition: lunar-phase:2:2027-02-20T23:24",
+      "pass": true
+    },
+    {
+      "label": "Non-grid subdivision preserves the complete meaningful event inventory",
+      "pass": false,
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      bodies: [\n        'Moon',\n        'Jupiter'\n...\n        eclipseType: 'annular',\n+       globalShadowAxisDistanceKm: 1881.520156270692,\n-       globalShadowAxisDistanceKm: 1881.5201562676227,\n        localVisibility: null,\n        scope: 'global',\n        timing: {\n          kind: 'numerically-computed',\n          method: 'native-global-eclipse-search',\n"
+    },
+    {
+      "label": "Cancellation at final progress yields no partial success and a later call recovers",
+      "pass": true
+    },
+    {
+      "label": "Same physical instant under a different clock retains geocentric profile results",
+      "pass": true
+    },
+    {
+      "label": "Every removed observation makes its entire selected profile unavailable: western-increase-study",
+      "pass": true
+    },
+    {
+      "label": "Every removed observation makes its entire selected profile unavailable: western-decrease-study",
+      "pass": true
+    },
+    {
+      "label": "Every removed observation makes its entire selected profile unavailable: jyotisha-classification-study",
+      "pass": true
+    },
+    {
+      "label": "Every removed observation makes its entire selected profile unavailable: mercury-hour-study",
+      "pass": true
+    },
+    {
+      "label": "Complete geocentric evidence survives genuine polar-hour missingness without borrowing another observer",
+      "pass": true
+    },
+    {
+      "label": "Profile readings cannot become independent calendar votes or whole-day claims",
+      "pass": true
+    },
+    {
+      "label": "Tested product files stayed unchanged during this focused run",
+      "pass": true
+    }
+  ],
+  "limits": [
+    "Metamorphic and contract checks reuse the bundled engine; they do not independently validate ephemerides or predictive effects.",
+    "This focused suite does not replace the full-horizon benchmark or real browser verification."
+  ],
+  "sourceAfter": {
+    "assets/js/core/horizon-astronomy.js": "2595fd1bb52d4b361ee9490d38bc1988bf93510ecf72eae34c5e22ae9d1684e3",
+    "assets/js/core/horizon-ranking.js": "92d52729f9f22c60369a4e74860be5ae9f658a1660bf0c4b6c5f03bf171d7810",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/lib/astronomy.js": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7"
+  },
+  "completedAt": "2026-10-30T04:32:50.256Z",
+  "pass": false,
+  "count": 20,
+  "failures": [
+    "Exact emitted native root belongs only to right half-open partition: solar-eclipse:annular:2027-02-06T16:00: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    bodies: [\n      'Sun',\n      'Moon',\n      'Earth'\n...\n      eclipseType: 'annular',\n+     globalShadowAxisDistanceKm: 1881.520156270692,\n-     globalShadowAxisDistanceKm: 1881.5201562676227,\n      localVisibility: null,\n      scope: 'global',\n      timing: {\n        kind: 'numerically-computed',\n        method: 'native-global-eclipse-search',\n",
+    "Non-grid subdivision preserves the complete meaningful event inventory: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  [\n    {\n      bodies: [\n        'Moon',\n        'Jupiter'\n...\n        eclipseType: 'annular',\n+       globalShadowAxisDistanceKm: 1881.520156270692,\n-       globalShadowAxisDistanceKm: 1881.5201562676227,\n        localVisibility: null,\n        scope: 'global',\n        timing: {\n          kind: 'numerically-computed',\n          method: 'native-global-eclipse-search',\n"
+  ]
+}

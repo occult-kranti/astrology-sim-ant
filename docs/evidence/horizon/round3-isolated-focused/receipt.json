@@ -1,0 +1,491 @@
+{
+  "schemaVersion": 1,
+  "phase": "worker",
+  "round": "round3-isolated-correction",
+  "startedAt": "2026-10-30T04:57:47.802Z",
+  "checks": [
+    {
+      "label": "complete preset opens without a surfaced error 320",
+      "pass": true
+    },
+    {
+      "label": "clock edit invalidates prior controls and exports 320",
+      "pass": true
+    },
+    {
+      "label": "full1827day calculation can cancel without partial export 320",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 320 completes",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "replacement worker completes exact3date brute/optimized comparison 320",
+      "pass": true
+    },
+    {
+      "label": "replacement ledger cannot receive cancelled full-horizon rows 320",
+      "pass": true
+    },
+    {
+      "label": "invalid IANA zone remains recoverable without old export 320",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 320 completes",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "DST gap retains full unavailable sample and does not become favorable zero 320",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 320 isolated observed samples have explicit markers",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 320 isolated marker paint and coordinates preserve actual values",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "unresolved clock date remains selectable and visibly unranked 320",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 23 DST-day segments 320",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 320",
+      "pass": true
+    },
+    {
+      "label": "unavailable observance calculations remain separate from named festivals 320",
+      "pass": true
+    },
+    {
+      "label": "single unavailable-date ledger 320 completes",
+      "pass": true
+    },
+    {
+      "label": "single unavailable-date ledger 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 320 isolated observed samples have explicit markers",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 320 isolated marker paint and coordinates preserve actual values",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "all-missing single-date chart has finite axes and no invented mark 320",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 320 completes",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 320 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "actual UI fold selection chooses later UTC occurrence 320",
+      "pass": true
+    },
+    {
+      "label": "single observed date 320 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "single observed date 320 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "single observed date 320 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "single observed date 320 isolated observed samples have explicit markers",
+      "pass": true
+    },
+    {
+      "label": "single observed date 320 isolated marker paint and coordinates preserve actual values",
+      "pass": true
+    },
+    {
+      "label": "single observed date 320 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "single observed date 320 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 25 DST-day segments 320",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 320",
+      "pass": true
+    },
+    {
+      "label": "published cases can restore after cancellation, invalid zone and gap run 320",
+      "pass": true
+    },
+    {
+      "label": "complete preset opens without a surfaced error 1440",
+      "pass": true
+    },
+    {
+      "label": "clock edit invalidates prior controls and exports 1440",
+      "pass": true
+    },
+    {
+      "label": "full1827day calculation can cancel without partial export 1440",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "replacement leap-day benchmark 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "replacement worker completes exact3date brute/optimized comparison 1440",
+      "pass": true
+    },
+    {
+      "label": "replacement ledger cannot receive cancelled full-horizon rows 1440",
+      "pass": true
+    },
+    {
+      "label": "invalid IANA zone remains recoverable without old export 1440",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "DST gap retained ledger 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "DST gap retains full unavailable sample and does not become favorable zero 1440",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 1440 isolated observed samples have explicit markers",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 1440 isolated marker paint and coordinates preserve actual values",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "gap-separated samples 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "unresolved clock date remains selectable and visibly unranked 1440",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 23 DST-day segments 1440",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 1440",
+      "pass": true
+    },
+    {
+      "label": "unavailable observance calculations remain separate from named festivals 1440",
+      "pass": true
+    },
+    {
+      "label": "single unavailable-date ledger 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "single unavailable-date ledger 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 1440 isolated observed samples have explicit markers",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 1440 isolated marker paint and coordinates preserve actual values",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "all-missing single date 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "all-missing single-date chart has finite axes and no invented mark 1440",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1440 completes",
+      "pass": true
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1440 contains actual bytes and excludes private storage",
+      "pass": true
+    },
+    {
+      "label": "actual UI fold selection chooses later UTC occurrence 1440",
+      "pass": true
+    },
+    {
+      "label": "single observed date 1440 chart metadata equals selected ledger sample",
+      "pass": true
+    },
+    {
+      "label": "single observed date 1440 plot retains every available sample and no missing-as-zero points",
+      "pass": true
+    },
+    {
+      "label": "single observed date 1440 chart coordinates preserve chronological spacing, signed index and missingness gaps",
+      "pass": true
+    },
+    {
+      "label": "single observed date 1440 isolated observed samples have explicit markers",
+      "pass": true
+    },
+    {
+      "label": "single observed date 1440 isolated marker paint and coordinates preserve actual values",
+      "pass": true
+    },
+    {
+      "label": "single observed date 1440 competition rank independently agrees with all ledger numerators",
+      "pass": true
+    },
+    {
+      "label": "single observed date 1440 observer clock identifies actual sampled instant",
+      "pass": true
+    },
+    {
+      "label": "actual hourly drilldown retains 25 DST-day segments 1440",
+      "pass": true
+    },
+    {
+      "label": "hourly detail gives distinct real UTC intervals 1440",
+      "pass": true
+    },
+    {
+      "label": "published cases can restore after cancellation, invalid zone and gap run 1440",
+      "pass": true
+    },
+    {
+      "label": "no runtime or console errors",
+      "pass": true,
+      "details": []
+    },
+    {
+      "label": "no missing local responses",
+      "pass": true,
+      "details": []
+    },
+    {
+      "label": "no implicit external service requests",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "downloads": [
+    {
+      "label": "replacement leap-day benchmark 320",
+      "filename": "downloads/001-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 192034,
+      "sha256": "a648347e74e213ff336dc52457eb4d769bbc083a1424778c9e63b1399eb4e4fc",
+      "compressedBytes": 33483,
+      "compressedSHA256": "faa2d3523f10d835449ebcae22401c89167c98917dd6f11d18820cd9f3b11cec"
+    },
+    {
+      "label": "DST gap retained ledger 320",
+      "filename": "downloads/002-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 204493,
+      "sha256": "048baf79f1814d3795e9d7ef2380ba4994a6b41b7407cb93d6ec61fdc76a6591",
+      "compressedBytes": 34641,
+      "compressedSHA256": "78d7570f489d5bb87cb1d46e4d2ebb6d2054e343f0c5aa90432f2c468e3eb84b"
+    },
+    {
+      "label": "single unavailable-date ledger 320",
+      "filename": "downloads/003-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 162961,
+      "sha256": "94b151f37494e73a745744ae6079b80d5851ba964be787b240eceebab7fc4bbe",
+      "compressedBytes": 31421,
+      "compressedSHA256": "deb994ec4551242fd652d35d9d4f32db603fb4d114299567e9ca466cac72cee4"
+    },
+    {
+      "label": "explicit later repeated-clock calculation 320",
+      "filename": "downloads/004-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 157128,
+      "sha256": "56033e82a5df31e4746f6fb876dcbe19076f1b1715f5c77762ff0fc0e0c0dc65",
+      "compressedBytes": 31478,
+      "compressedSHA256": "d5478f803c033e56c74b32b7fd417541fa771e07cc2d348d349c4d0480742c7a"
+    },
+    {
+      "label": "replacement leap-day benchmark 1440",
+      "filename": "downloads/005-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 192022,
+      "sha256": "1b318edecb67932eb53ecc21132517cde618199220183d39ba1e6b880a0a591c",
+      "compressedBytes": 33479,
+      "compressedSHA256": "4af718d52ae39b4681dd6a036edfb1dfbeac018b13011de0875a9497b5f8ac64"
+    },
+    {
+      "label": "DST gap retained ledger 1440",
+      "filename": "downloads/006-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 204476,
+      "sha256": "4dadf331a717e37293d17e810037b7f316f3089b165000629a6136196974b9da",
+      "compressedBytes": 34628,
+      "compressedSHA256": "9db959a5a1d47610a2c72a5c0e83d5f5e90f2481d09ca91aeefef3d26cb71714"
+    },
+    {
+      "label": "single unavailable-date ledger 1440",
+      "filename": "downloads/007-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 162946,
+      "sha256": "2f003cb6482debced186aa7da3d18400a8c4151728ecca1263d0d2865a53781b",
+      "compressedBytes": 31411,
+      "compressedSHA256": "30dd32d19a7a5387a0ca569e575c1eb950db41edb959343e304b2336f3fdae9b"
+    },
+    {
+      "label": "explicit later repeated-clock calculation 1440",
+      "filename": "downloads/008-event-horizon.json.gz",
+      "encoding": "gzip; expands to exact downloaded bytes",
+      "bytes": 157156,
+      "sha256": "fe2acb09baccadda1d5cf261e84245d1e27140cb0beb22c704daea20d0e510a8",
+      "compressedBytes": 31504,
+      "compressedSHA256": "819a551f2d1ccb8c6af0a26a7a611720887de95b158b9925ffce015a57a6f017"
+    }
+  ],
+  "screenshots": [
+    "dst-gap-320.png",
+    "isolated-gap-chart-320.png",
+    "all-missing-chart-320.png",
+    "single-observed-chart-320.png",
+    "worker-recovered-320.png",
+    "dst-gap-1440.png",
+    "isolated-gap-chart-1440.png",
+    "all-missing-chart-1440.png",
+    "single-observed-chart-1440.png",
+    "worker-recovered-1440.png"
+  ],
+  "fonts": [],
+  "errors": [],
+  "missing": [],
+  "externalRequests": [],
+  "source": {
+    "driverSHA256": "a87ca9b8c70c0e8e14824937ab76d7ea685ed5d31da9324cce35563a04802617",
+    "productAtStartSHA256": "92e3d5279e26983ad0b0bf5559de6b2f6aa8fa54947f7fe0b7528dd4a44f01be",
+    "productAtEndSHA256": "92e3d5279e26983ad0b0bf5559de6b2f6aa8fa54947f7fe0b7528dd4a44f01be",
+    "changedFiles": [],
+    "driftAllowed": false
+  },
+  "limits": {
+    "realProvider": false,
+    "physicalPhone": false,
+    "screenReader": false,
+    "humanUsabilityResearch": false,
+    "calendarProviderWrite": false
+  },
+  "browser": "145.0.7632.6",
+  "pass": true,
+  "completedAt": "2026-10-30T04:57:58.502Z",
+  "checkCount": 93
+}

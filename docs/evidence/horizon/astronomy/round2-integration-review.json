@@ -1,0 +1,131 @@
+{
+  "kind": "astronomy-owner-independent-integration-review",
+  "startedAt": "2026-10-30T04:43:44.098Z",
+  "sourceBefore": {
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+    "assets/js/app/event-horizon.js": "db785dd16a987ab93653a27d450371867c7b6dcd61a36ee4e05111ba5f280b2f",
+    "assets/js/core/horizon-astronomy.js": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01"
+  },
+  "checks": [
+    {
+      "label": "Extremal-case bounding union preserves full civil intervals",
+      "pass": true,
+      "details": {
+        "startUTC": "2027-07-31T10:00:00.000Z",
+        "endUTC": "2027-08-03T11:00:00.000Z",
+        "caseWindows": [
+          {
+            "caseId": "kiritimati",
+            "startUTC": "2027-07-31T10:00:00.000Z",
+            "endUTC": "2027-08-02T10:00:00.000Z"
+          },
+          {
+            "caseId": "pago-pago",
+            "startUTC": "2027-08-01T11:00:00.000Z",
+            "endUTC": "2027-08-03T11:00:00.000Z"
+          }
+        ],
+        "convention": "Bounding union of selected observer civil-day intervals; start inclusive, end exclusive. Display filters each event back to the selected case’s civil dates."
+      }
+    },
+    {
+      "label": "Global event count equals all returned definitions",
+      "pass": true,
+      "details": {
+        "count": 16
+      }
+    },
+    {
+      "label": "Canonical validator accepts completed real-data ledger",
+      "pass": true
+    },
+    {
+      "label": "kiritimati 2027-08-01: membership equals independent formatter",
+      "pass": true,
+      "details": {
+        "count": 2
+      }
+    },
+    {
+      "label": "kiritimati 2027-08-02: membership equals independent formatter",
+      "pass": true,
+      "details": {
+        "count": 9
+      }
+    },
+    {
+      "label": "kiritimati: no duplicate per-case membership",
+      "pass": true
+    },
+    {
+      "label": "kiritimati: a globally included eclipse may lie outside this case's selected civil dates",
+      "pass": true,
+      "details": {
+        "localDate": null
+      }
+    },
+    {
+      "label": "pago-pago 2027-08-01: membership equals independent formatter",
+      "pass": true,
+      "details": {
+        "count": 13
+      }
+    },
+    {
+      "label": "pago-pago 2027-08-02: membership equals independent formatter",
+      "pass": true,
+      "details": {
+        "count": 1
+      }
+    },
+    {
+      "label": "pago-pago: no duplicate per-case membership",
+      "pass": true
+    },
+    {
+      "label": "pago-pago: a globally included eclipse may lie outside this case's selected civil dates",
+      "pass": true,
+      "details": {
+        "localDate": "2027-08-01"
+      }
+    },
+    {
+      "label": "Outside-ledger date query rejected",
+      "pass": true
+    },
+    {
+      "label": "kiritimati: controlled midnight markers are start-inclusive/end-exclusive",
+      "pass": true
+    },
+    {
+      "label": "pago-pago: controlled midnight markers are start-inclusive/end-exclusive",
+      "pass": true
+    },
+    {
+      "label": "Caller isCancelled halts immediately at astronomy handoff",
+      "pass": true,
+      "details": {
+        "after": 0
+      }
+    },
+    {
+      "label": "Corrected UI exposes calculated timing, details, dependencies and astronomy limitations",
+      "pass": true
+    },
+    {
+      "label": "Reviewed source did not drift during probes",
+      "pass": true
+    }
+  ],
+  "noBrowser": true,
+  "limitations": [
+    "Two-day integration and controlled index-boundary probes; full-range stress and browser verification are separate."
+  ],
+  "sourceAfter": {
+    "assets/js/core/event-horizon.js": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f",
+    "assets/js/app/event-horizon.js": "db785dd16a987ab93653a27d450371867c7b6dcd61a36ee4e05111ba5f280b2f",
+    "assets/js/core/horizon-astronomy.js": "8d7ed7be397dd54c2e4e4003d563d0c784eae39a6f8d2c4123a5d8bb81261c01"
+  },
+  "pass": true,
+  "finishedAt": "2026-10-30T04:43:44.277Z"
+}

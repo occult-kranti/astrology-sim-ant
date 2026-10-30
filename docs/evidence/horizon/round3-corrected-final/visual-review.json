@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-30T05:02:49.233881+00:00",
+  "pass": true,
+  "decision": "ACCEPT for independent QA scope; inherited release gates and public deployment identity remain separate",
+  "functionalReceiptSHA256": "e7c9a7948e1b885f22d637fdd2540c0f1f01f7f5995d0f6fbe46f9c7f9401b3d",
+  "functionalChecks": 695,
+  "downloads": 28,
+  "archivedDownloadIntegrity": "Every gzip re-expanded and verified against original downloaded length/SHA256 and archiveSHA256",
+  "driverSHA256": "a87ca9b8c70c0e8e14824937ab76d7ea685ed5d31da9324cce35563a04802617",
+  "productManifestSHA256": "92e3d5279e26983ad0b0bf5559de6b2f6aa8fa54947f7fe0b7528dd4a44f01be",
+  "productFiles": 488,
+  "sourceDrift": [],
+  "screenshotsReviewed": [
+    {
+      "path": "instrument-320.png",
+      "sha256": "c0556e4c16574f69a724ad0bc147ab3a252ae6e52f4f257c24eed60a605d69c7",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/instrument-320.png"
+    },
+    {
+      "path": "chart-320.png",
+      "sha256": "21863072cd22d5b156fc0657c21c9bc68699498339fb06dba47e916be364b24a",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/chart-320.png"
+    },
+    {
+      "path": "evidence-320.png",
+      "sha256": "23eafaea67d8c0872bf047b2922091c75f9266998f8b257a2bbe326c7e110a61",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/evidence-320.png"
+    },
+    {
+      "path": "event-source-evidence-320.png",
+      "sha256": "60f06b1a7f881c8b9e70ccf2e4f51870263383481e3274b372f9c0a42aa5b27c",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/event-source-evidence-320.png"
+    },
+    {
+      "path": "dst-gap-320.png",
+      "sha256": "fc6143115f74b649c669460b02dac6216980001b04154371c73de405ae08be8a",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/dst-gap-320.png"
+    },
+    {
+      "path": "isolated-gap-chart-320.png",
+      "sha256": "699234d7f742a54754e941a62e8fa433f02feac740fde3cc303c09c8627c9bdb",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-isolated-focused/isolated-gap-chart-320.png"
+    },
+    {
+      "path": "all-missing-chart-320.png",
+      "sha256": "7939b24e6ab723164bb590dee785e3ec76cf53ecec0ab016dbbbdd3855217704",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "single-observed-chart-320.png",
+      "sha256": "8e159ccd7861299ddda5ca8d2a76f161350f6b3e118c4dd5a3d5289dea42224d",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "worker-recovered-320.png",
+      "sha256": "12233072c819659f47efb8fa4ad287c8d70261faf956301b5b47bd55c5729baf",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/worker-recovered-320.png"
+    },
+    {
+      "path": "instrument-390.png",
+      "sha256": "cbc8e57e5f140a6a44e2a00974c29ca3cd566faa7f0e6640d7d5e1c93c47840e",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/instrument-390.png"
+    },
+    {
+      "path": "chart-390.png",
+      "sha256": "a6acf34f0764b2938a62add483c926d50c7fb4d1edbe6ab5ce5dd4432072e6d8",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/chart-390.png"
+    },
+    {
+      "path": "evidence-390.png",
+      "sha256": "c46013c3299ca813d51a53f83ac2492a6f8457e48926b44f98cba1efb42d733c",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/evidence-390.png"
+    },
+    {
+      "path": "event-source-evidence-390.png",
+      "sha256": "fbe81f557651a3dfad3e2e84ff24f7fce0b5f42fdf1f82b1c8e9854edf3795cd",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/event-source-evidence-390.png"
+    },
+    {
+      "path": "dst-gap-390.png",
+      "sha256": "80cef343e570ca2aa4dcb32117cd824a1c89dd9686170b50c6e323d34fdec158",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/dst-gap-390.png"
+    },
+    {
+      "path": "isolated-gap-chart-390.png",
+      "sha256": "c91ce7e9e5752be991cc373799cbb08032d4eebaee15aa24600aa58099a96f29",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "all-missing-chart-390.png",
+      "sha256": "2c76ce1fb2e5ed3c88a99ff851c520d3867ef142008a01ea519396e7201d5e53",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "single-observed-chart-390.png",
+      "sha256": "6e343c9cbdbdce3a74fa8fe1ca3b736472ae5cfcde913dde4e650424aefb7e77",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "worker-recovered-390.png",
+      "sha256": "bf7da3196387e048e77f2dad952b3b9bf1033b9a767c6d553f57761a2de1a82f",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/worker-recovered-390.png"
+    },
+    {
+      "path": "instrument-1440.png",
+      "sha256": "4e983980488bde193d2efd23ce7b209edf20c235e68bc092215f7b910fb92da9",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/instrument-1440.png"
+    },
+    {
+      "path": "chart-1440.png",
+      "sha256": "31b1a5bc73fa226b25b26a9ccd35483ad204713c52a05c752c2fee5c4a390c21",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/chart-1440.png"
+    },
+    {
+      "path": "evidence-1440.png",
+      "sha256": "b53a633fb79f0e14435ecb62bcc004a19530df5f2198e90851214934c923e191",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/evidence-1440.png"
+    },
+    {
+      "path": "event-source-evidence-1440.png",
+      "sha256": "d7b50f19c63a17653af9e04a182210b2a99f300a91496cfc0eb8167a19a23938",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/event-source-evidence-1440.png"
+    },
+    {
+      "path": "dst-gap-1440.png",
+      "sha256": "98cee4644c76ff4662ab00ce9f04cf995149c844ac298e19524b475f2ca51960",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "isolated-gap-chart-1440.png",
+      "sha256": "9f9e1dd02e55383df228e7781573734be9964e3b69213675fce201eb88462d68",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-isolated-focused/isolated-gap-chart-1440.png"
+    },
+    {
+      "path": "all-missing-chart-1440.png",
+      "sha256": "d6a03df6bb9a732c9142529b96cb32a4ce5d946676450ff5083b72783cf3b407",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-isolated-focused/all-missing-chart-1440.png"
+    },
+    {
+      "path": "single-observed-chart-1440.png",
+      "sha256": "5b15e6e7ddf11891a3bad712889c1061a4e66b25a7f5d4431e8e605720e876b8",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-isolated-focused/single-observed-chart-1440.png"
+    },
+    {
+      "path": "worker-recovered-1440.png",
+      "sha256": "4c2636b6c8f0c797e6dc3779a9d09cd382a466d73692e70dcfc9aef843d6fe62",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/worker-recovered-1440.png"
+    },
+    {
+      "path": "instrument-1920.png",
+      "sha256": "5ef67c38c510658fbc26821b1827f45472e956eba7b0a1a191274df6c7b50e1a",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/instrument-1920.png"
+    },
+    {
+      "path": "chart-1920.png",
+      "sha256": "baefc1dd94084348a22ca51d88905849c9430b1250530152b5e8dae612f20293",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/chart-1920.png"
+    },
+    {
+      "path": "evidence-1920.png",
+      "sha256": "acde647447c88d652abbe030491745d01bbe9d5748d8c6150ffa44d38c53df3c",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/evidence-1920.png"
+    },
+    {
+      "path": "event-source-evidence-1920.png",
+      "sha256": "31c6d7f3b07b9feab069810df6bcbaf3527a63b19c391947c6db51e235110074",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/event-source-evidence-1920.png"
+    },
+    {
+      "path": "dst-gap-1920.png",
+      "sha256": "a832597f585c06e9e690d8017e566a97a7a53b04b0fa4fce03e6a1d1ee57f21d",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "isolated-gap-chart-1920.png",
+      "sha256": "fd01906a91721fe504b23580e873f06edc59daee33f3c1b3d9c08bc857bd6de4",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "all-missing-chart-1920.png",
+      "sha256": "535bd391facbf6f5c8bf5a4904684d2aef39c7e91392f781199be175d03f8fcb",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "single-observed-chart-1920.png",
+      "sha256": "4f4a625419ee6d321c23d912efdda3d97671105bcf87034ca8f6276f6e436442",
+      "review": "opened and visually inspected in corrected final review"
+    },
+    {
+      "path": "worker-recovered-1920.png",
+      "sha256": "ce3b4688f721161ee7659a266e8e88f18d373032854a82862a702394bb07d210",
+      "review": "byte-identical to previously opened and visually inspected screenshot",
+      "prior": "round3-final/worker-recovered-1920.png"
+    }
+  ],
+  "closedFinding": {
+    "id": "HORIZON-ISOLATED-POINTS",
+    "evidence": "Visible distinct+50/+60points around missingMar14, one-date observedmarker, finiteemptyall-missingchart at allfourwidths; numerical markcoordinates asserted independently from labelledaxes."
+  },
+  "limits": [
+    "No human usability study, physical mobile device, screen reader or predictive-effect validation.",
+    "Calendar/observance completeness is bounded to the declared implementation and source catalogues.",
+    "Per-date samples are not whole-day verdicts; astronomical root tolerance is not observational accuracy.",
+    "Browser test performed no provider inference or connected calendar write.",
+    "Public deployment and inherited regression gates are separately owned by the integration moderator."
+  ]
+}

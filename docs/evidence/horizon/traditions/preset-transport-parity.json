@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "kind": "horizon-transport-only-preset-parity",
+  "checkedAt": "2026-10-30T05:39:30.436Z",
+  "pass": true,
+  "baselineCommit": "c956473ea6f9ceec85db224557381bc9f1b46410",
+  "scope": "Regenerated full preset after transport-only core change; no browser or network behavior is asserted by this receipt.",
+  "previous": {
+    "datasetId": "horizon-2031-02819b95bf1b-ed8c39c6a24e",
+    "sourceSHA256": "02819b95bf1bd745c7ca5992a046288c097725f64e28d642260a885ef8fa0500",
+    "metadataSHA256": "ed8c39c6a24e1161ee2ce62d5f4a20165cb9898758640eb0ec10eab6b04101c9",
+    "manifestSHA256": "d43f65deb5b0df1d504077a64e4838a770814db6421489f03c120e22fcd3a272"
+  },
+  "current": {
+    "datasetId": "horizon-2031-0d63dab6c7ef-d864022eff6c",
+    "sourceSHA256": "0d63dab6c7efeb79515bc985d305ea09e8bd356bf45c5be9db175a69fe8ed9aa",
+    "metadataSHA256": "d864022eff6c394082e6cd41d6ef570001ff151ded6fd4b88f89707e68ffe2d5",
+    "manifestSHA256": "970d6cb7077854be230c3d903b706fab74ab5616deb75ccc6f4fc57204aefed3",
+    "manifestBytes": 141302,
+    "totalBytes": 35146692
+  },
+  "sourceGraph": {
+    "files": 46,
+    "changed": [
+      {
+        "path": "assets/js/core/event-horizon.js",
+        "sha256": "3dcfe2dc0b45546013d3bce7ebead5a714b9a9fc26abfed4bab472755d805222",
+        "previousSHA256": "427165f7c0e91db41ce91d2efd6719d065cff067ab54e502ba470be3c75c2d9f"
+      }
+    ],
+    "unchanged": 45
+  },
+  "parts": [
+    {
+      "id": "case-london",
+      "path": "assets/data/horizon-2031/case-london.json",
+      "bytes": 9701600,
+      "previousBytes": 9701600,
+      "sha256": "44e8c33704bb2110b55a3e890a498bde2526f8b9cf4fc53b699987b2b67e9c71",
+      "previousSHA256": "44e8c33704bb2110b55a3e890a498bde2526f8b9cf4fc53b699987b2b67e9c71",
+      "bytesIdentical": true
+    },
+    {
+      "id": "case-delhi",
+      "path": "assets/data/horizon-2031/case-delhi.json",
+      "bytes": 9711317,
+      "previousBytes": 9711317,
+      "sha256": "4a72a692f49b498a281708b18161aed0bcde194913a630c210eb01b900231953",
+      "previousSHA256": "4a72a692f49b498a281708b18161aed0bcde194913a630c210eb01b900231953",
+      "bytesIdentical": true
+    },
+    {
+      "id": "case-new-york",
+      "path": "assets/data/horizon-2031/case-new-york.json",
+      "bytes": 9724490,
+      "previousBytes": 9724490,
+      "sha256": "7dcb16a28df4eded6f1a9d47a0c6d62e6189eaf69e108781f2e8a109dc6c6832",
+      "previousSHA256": "7dcb16a28df4eded6f1a9d47a0c6d62e6189eaf69e108781f2e8a109dc6c6832",
+      "bytesIdentical": true
+    },
+    {
+      "id": "astronomy",
+      "path": "assets/data/horizon-2031/astronomy.json",
+      "bytes": 5867983,
+      "previousBytes": 5867983,
+      "sha256": "217de55190648e5bbeaa16657d5e85c71de0476cf3122f189ef6b61fa35bfcea",
+      "previousSHA256": "217de55190648e5bbeaa16657d5e85c71de0476cf3122f189ef6b61fa35bfcea",
+      "bytesIdentical": true
+    }
+  ],
+  "astronomy": {
+    "bytesIdentical": true,
+    "allFieldsEqualIncludingExecutionStats": true,
+    "ignoredFields": [],
+    "fields": [
+      "schemaVersion",
+      "kind",
+      "range",
+      "events",
+      "coverage",
+      "sources",
+      "stats",
+      "limitations",
+      "window"
+    ]
+  },
+  "metadataDifferences": [
+    {
+      "path": "stats.elapsedMs",
+      "before": 51432.206536,
+      "after": 51328.272029
+    },
+    {
+      "path": "stats.sampleMs",
+      "before": 48022.328573,
+      "after": 48042.136891999995
+    },
+    {
+      "path": "stats.astronomyMs",
+      "before": 3406.0895210000017,
+      "after": 3282.6334010000064
+    },
+    {
+      "path": "provenance.generatedAt",
+      "before": "2026-10-30T04:45:50.126Z",
+      "after": "2026-10-30T05:38:22.233Z"
+    }
+  ],
+  "allowedMetadataDifferences": [
+    "stats.elapsedMs",
+    "stats.sampleMs",
+    "stats.astronomyMs",
+    "provenance.generatedAt"
+  ],
+  "requestIdentical": true,
+  "sourceCoverageCatalogueHashesIdentical": true,
+  "counts": {
+    "days": 1525,
+    "cases": 3,
+    "totalSamples": 4575,
+    "processedSamples": 4575,
+    "availableSamples": 4575,
+    "unavailableSamples": 0,
+    "calendarRows": 59475,
+    "availableCalendarRows": 59475,
+    "profileResults": 18300,
+    "rankableProfileResults": 17114,
+    "observanceRows": 1011,
+    "uniqueObservances": 337,
+    "eventCount": 5883,
+    "truncated": false
+  },
+  "runtime": {
+    "environment": "node",
+    "node": "24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "icu": "78.3",
+    "cldr": "48.0",
+    "tz": "2026b"
+  },
+  "traditionSourcesIdenticalToAuthoredModule": true,
+  "referenceRecords": 11,
+  "referenceSources": 21,
+  "verification": {
+    "generator": {
+      "command": "node scripts/generate-horizon-preset.mjs",
+      "pass": true,
+      "elapsedMs": 51328.272029
+    },
+    "integrity": {
+      "command": "node scripts/generate-horizon-preset.mjs --check",
+      "pass": true,
+      "recalculated": false
+    },
+    "actualLoader": {
+      "function": "loadHorizonPreset",
+      "transport": "Node Response over local file bytes",
+      "pass": true,
+      "checksumVerified": true,
+      "browserNetworkAcceptance": false
+    }
+  },
+  "acceptance": "ACCEPT: source, generated data and local-loader scope only; separate browser, cancellation, stress and release gates remain owned by their reviewers."
+}
