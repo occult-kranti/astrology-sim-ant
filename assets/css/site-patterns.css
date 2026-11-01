@@ -1,0 +1,427 @@
+/* Site families · a visual index for the Workbench.
+   Family color identifies a place in the collection, never a verdict or risk.
+   Numerical figures, aspect edges, source-status colors and saved data retain
+   their own conventions. Loaded after the shared theme/component layers. */
+
+body[data-page-family] {
+  --ui-family-accent: #2d6877;
+  --family-accent: var(--ui-family-accent);
+  --ui-family-wash: color-mix(in srgb, var(--ui-family-accent) 7%, var(--ui-surface));
+  --ui-family-line: color-mix(in srgb, var(--ui-family-accent) 30%, var(--ui-border));
+}
+body[data-page-family="observatory"] { --ui-family-accent: #276c78; }
+body[data-page-family="western"] { --ui-family-accent: #9a5136; }
+body[data-page-family="vedic"] { --ui-family-accent: #855b1b; }
+body[data-page-family="oracles"] { --ui-family-accent: #76568a; }
+body[data-page-family="library"] { --ui-family-accent: #4a6b4f; }
+body[data-page-family="research"] { --ui-family-accent: #42678a; }
+body[data-page-family="practice"] { --ui-family-accent: #76622e; }
+body[data-page-family="connections"] { --ui-family-accent: #446d73; }
+
+html[data-ui-theme="midnight"] body[data-page-family="observatory"] { --ui-family-accent: #86c8d0; }
+html[data-ui-theme="midnight"] body[data-page-family="western"] { --ui-family-accent: #e5aa8e; }
+html[data-ui-theme="midnight"] body[data-page-family="vedic"] { --ui-family-accent: #e3bf76; }
+html[data-ui-theme="midnight"] body[data-page-family="oracles"] { --ui-family-accent: #c9afe0; }
+html[data-ui-theme="midnight"] body[data-page-family="library"] { --ui-family-accent: #a0c99d; }
+html[data-ui-theme="midnight"] body[data-page-family="research"] { --ui-family-accent: #a7c4e6; }
+html[data-ui-theme="midnight"] body[data-page-family="practice"] { --ui-family-accent: #d5c38b; }
+html[data-ui-theme="midnight"] body[data-page-family="connections"] { --ui-family-accent: #91cad1; }
+
+/* The breadcrumb, heading and small section bars repeat the family identity.
+   Text supplies the category; the thin colored rule is a redundant cue. */
+body[data-page-family] main > .crumb {
+  border-inline-start: 3px solid var(--ui-family-accent);
+  padding-inline-start: .75rem;
+  margin-block: 1.1rem 1.5rem;
+  line-height: 1.65;
+}
+body[data-page-family] main > h1,
+body[data-page-family] main > .wing-hero h1 {
+  font-size: clamp(2rem, 1.55rem + 2.1vw, 3.65rem);
+  letter-spacing: -.035em;
+  line-height: 1.1;
+  font-weight: 500;
+  text-wrap: balance;
+  max-width: 28ch;
+  margin-block: .3rem 1rem;
+}
+body[data-page-family] main > .lede {
+  max-width: 75ch;
+  font-size: clamp(1.02rem, .98rem + .2vw, 1.13rem);
+  line-height: 1.75;
+  margin-block: 0 1.7rem;
+}
+body[data-page-family] main > h2 {
+  border-block-end-color: var(--ui-family-line);
+  padding-block-end: .6rem;
+  margin-block-start: 2.4rem;
+}
+body[data-page-family] main > h2::before {
+  content: "";
+  display: inline-block;
+  width: .45rem;
+  height: .9em;
+  border-radius: 2px;
+  margin-inline-end: .6rem;
+  background: var(--ui-family-accent);
+  vertical-align: -.02em;
+}
+body[data-page-family] :is(.wing-hero, .home-intro, .atlas-head, .ct-heading,
+  .ch-heading, .nw-heading, .ea-header, .eh-heading, .we-heading, .sg-heading,
+  .cs-heading, .studio-intro, .standards-heading) {
+  border-block-start: 3px solid var(--ui-family-accent);
+  padding-block-start: clamp(1rem, 2.5vw, 2rem);
+}
+body[data-page-family] :is(.atlas-kicker, .ct-kicker, .ch-kicker, .nw-kicker,
+  .ea-kicker, .eh-kicker, .we-eyebrow, .sg-eyebrow, .cs-overline,
+  .studio-kicker, .standards-heading .eyebrow, .home-intro .eyebrow) {
+  color: var(--ui-family-accent);
+  font-size: .72rem;
+  letter-spacing: .13em;
+}
+body[data-page-family] .wing-hero { border-radius: 8px; }
+
+/* The adopted engraving used to be an absolutely positioned watermark. In
+   a dark theme it becomes visibly stronger, so reserve real layout space.
+   The artwork remains decorative and keeps its own engraved colors. */
+body[data-page-family] .wing-hero:has(> .fp),
+body[data-page-family] .wing-hero:has(> .wh-glyph[data-fp]) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+body[data-page-family] .wing-hero > :is(.fp, .wh-glyph[data-fp]) {
+  position: static;
+  inset: auto;
+  transform: none;
+  grid-column: 1;
+  order: 1;
+  justify-self: end;
+  align-self: center;
+  width: min(55%, 240px);
+  max-width: 100%;
+  margin-block-start: 1rem;
+  font-size: 6rem;
+  text-align: center;
+}
+body[data-page-family] .wing-hero > :not(.fp, .wh-glyph) { min-width: 0; }
+@media (min-width: 1000px) {
+  body[data-page-family] .wing-hero:has(> .fp),
+  body[data-page-family] .wing-hero:has(> .wh-glyph[data-fp]) {
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 25%);
+    column-gap: clamp(1.25rem, 3vw, 2.5rem);
+  }
+  body[data-page-family] .wing-hero > :not(.fp, .wh-glyph) { grid-column: 1; }
+  body[data-page-family] .wing-hero > :is(.fp, .wh-glyph[data-fp]) {
+    grid-column: 2;
+    grid-row: 1 / span 6;
+    order: 0;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* Same purpose, same navigation treatment across long instruments. These
+   remain ordinary wrap-capable links; no extra tab behavior is implied. */
+body[data-page-family] :is(.atlas-jump, .ct-jumps, .ch-jump, .nw-jumps,
+  .eh-jumps, .calendar-jumps, .standards-jump) {
+  gap: .15rem 1.2rem;
+  padding-block: .5rem;
+  border-block-end: 1px solid var(--ui-family-line);
+}
+body[data-page-family] :is(.atlas-jump, .ct-jumps, .ch-jump, .nw-jumps,
+  .eh-jumps, .calendar-jumps, .standards-jump) > a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: .26em;
+  border-radius: 3px;
+  padding-inline: .15rem;
+}
+body[data-page-family] :is(.atlas-jump, .ct-jumps, .ch-jump, .nw-jumps,
+  .eh-jumps, .calendar-jumps, .standards-jump) > a:hover {
+  color: var(--ui-family-accent);
+  background: var(--ui-family-wash);
+}
+
+/* TODAY · Put the study controls on a deliberate desk; give the currently
+   selected date a shaped edge in addition to its existing date label. */
+body[data-page-family="observatory"] .home-intro {
+  max-width: none;
+  margin-block-start: 1.4rem;
+  padding-block-end: 1.15rem;
+}
+.home-intro h1 {
+  font-size: clamp(2.6rem, 4.8vw, 4.25rem);
+  margin-block: .35rem .8rem;
+}
+.home-intro .home-deck { max-width: 63ch; margin-block: .65rem; }
+.home-intro .home-framing { max-width: 83ch; margin-block: .65rem; }
+.home-intro .home-discovery {
+  max-width: 58rem;
+  margin-block: .85rem 0;
+  padding: 0;
+  border: 0;
+  border-block: 1px solid var(--ui-family-line);
+  border-radius: 0;
+  background: transparent;
+}
+.home-intro .home-discovery > summary {
+  min-height: 44px;
+  padding: .65rem .2rem;
+  color: var(--ui-family-accent);
+  font: 600 .84rem/1.6 var(--sans);
+}
+.home-intro .home-discovery[open] > summary {
+  border-block-end: 1px solid var(--ui-border);
+  background: var(--ui-family-wash);
+}
+.home-intro .home-discovery > p {
+  margin: 0;
+  padding: .7rem .65rem;
+  font: .85rem/1.7 var(--sans);
+}
+.home-intro .home-discovery > p + p { border-block-start: 1px solid var(--ui-border); }
+.home-context {
+  border-color: var(--ui-family-line);
+  border-radius: 8px;
+  background: var(--ui-family-wash);
+  box-shadow: 0 5px 20px color-mix(in srgb, var(--ui-ink) 4%, transparent);
+}
+.home-current > .home-section-head,
+.home-outlook > .home-section-head,
+.home-assistant-section > h2 {
+  border-block-end: 1px solid var(--ui-family-line);
+  padding-block-end: .8rem;
+}
+.home-summary {
+  border-radius: 6px;
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+}
+.home-fact { padding: 1.35rem; }
+.home-fact .home-fact-label { color: var(--ui-family-accent); }
+.home-week > h3 { border-block-end-color: var(--ui-family-accent); }
+.home-day { border-radius: 4px; }
+.home-day:hover { background: var(--ui-family-wash); }
+.home-day[aria-current="date"] {
+  background: var(--ui-family-wash);
+  border-inline-start-color: var(--ui-family-accent);
+}
+.home-path-list a { padding: 1.1rem .5rem; border-radius: 4px; }
+.home-path-list a:hover { background: var(--ui-family-wash); }
+.home-path-list a > span:last-child { color: var(--ui-family-accent); }
+
+/* OBSERVE / COMPARE · Keep diagrams' encoded colors intact. Framing belongs
+   around the instrument, while computed labels retain their exact values. */
+.calendar-atlas :is(.atlas-section-title, .sky-reading-heading),
+.calendar-timeline .ct-section-head,
+.country-history .ch-section-head,
+.newton-workbench .nw-section-head,
+.evidence-atlas .ea-section-head,
+.event-horizon .eh-section-heading {
+  border-block-end: 1px solid var(--ui-family-line);
+  padding-block-end: .65rem;
+  margin-block-end: 1.2rem;
+}
+.calendar-atlas .atlas-controls {
+  border-inline-end-color: var(--ui-family-line);
+}
+.calendar-atlas .atlas-families a[aria-current="page"] {
+  box-shadow: inset 0 -3px 0 var(--ui-family-accent);
+  background: var(--ui-family-wash);
+  padding-inline: .55rem;
+}
+.calendar-atlas .atlas-measures,
+.calendar-timeline .ct-measures,
+.newton-workbench .nw-measures,
+.evidence-atlas .ea-measures {
+  border-color: var(--ui-family-line);
+}
+.calendar-atlas .atlas-measures dd,
+.calendar-timeline .ct-measures dd,
+.newton-workbench .nw-measures dd {
+  font-variant-numeric: tabular-nums;
+}
+.sky-reading-section .sky-reading-lens,
+.ct-rule-grid .ct-lens,
+.ea-readings .ea-lens {
+  border-radius: 6px;
+  border-color: var(--ui-border);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ui-ink) 3%, transparent);
+}
+.sky-reading-section .sky-source,
+.ct-rule-grid .ct-source {
+  padding-block-start: .6rem;
+  border-block-start: 1px solid var(--ui-border);
+}
+
+/* RESEARCH · Records and source context are easier to compare when selection
+   controls, evidence sheets and prose have different visual weights. */
+.country-history :is(.ch-selection, .ch-record-sheet),
+.newton-workbench :is(.nw-arithmetic-sheet, .nw-instrument-reading),
+.evidence-atlas :is(.ea-inspector, .ea-details),
+.world-events :is(.we-controls, .we-study),
+.calendar-search .cs-question,
+.event-horizon .eh-instrument {
+  border-radius: 7px;
+  border-color: var(--ui-border);
+}
+.country-history .ch-record-label,
+.newton-workbench .nw-claim-summary,
+.evidence-atlas .ea-reading-context {
+  border-inline-start: 3px solid var(--ui-family-accent);
+  padding-inline-start: 1rem;
+}
+.newton-workbench .nw-equation {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+.newton-workbench .nw-equation-result {
+  border-block-end: 2px solid var(--ui-family-line);
+  padding-block-end: .45rem;
+}
+.world-events .we-event {
+  border-radius: 6px;
+  border-color: var(--ui-border);
+  margin-block-end: 1rem;
+}
+.world-events .we-event-date {
+  border-inline-end-color: var(--ui-family-line);
+  font-variant-numeric: tabular-nums;
+}
+.calendar-search :is(.cs-stat, .cs-selected) {
+  border-radius: 5px;
+  border-color: var(--ui-family-line);
+}
+.calendar-search .cs-stat { background: var(--ui-family-wash); }
+.country-history .ch-citations,
+.newton-workbench .nw-source-context,
+.evidence-atlas .ea-citations {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* READ / LEARN · Restraint, generous leading, and a consistent source margin.
+   Reading records retain their original numbering, script and source labels. */
+body[data-page-family="library"] :is(.record, .gw-work, .ys-sutra),
+body[data-page-family="practice"] .ys-sutra {
+  border-radius: 7px;
+  border-color: var(--ui-border);
+}
+body[data-page-family="library"] .record-head,
+body[data-page-family="practice"] .ys-head {
+  border-block-end: 1px solid var(--ui-family-line);
+  padding-block-end: .6rem;
+  margin-block-end: .85rem;
+}
+body[data-page-family="library"] :is(.record-src, .gw-src),
+body[data-page-family="practice"] .ys-src {
+  padding-block-start: .7rem;
+  border-block-start: 1px solid var(--ui-border);
+  line-height: 1.65;
+}
+body[data-page-family="library"] :is(.lib-method, .gw-path),
+body[data-page-family="practice"] .ys-bhashya {
+  background: var(--ui-family-wash);
+  border-inline-start-color: var(--ui-family-accent);
+}
+body[data-page-family="library"] .gw-authcard {
+  border-block-start: 3px solid var(--ui-family-accent);
+}
+body[data-page-family="practice"] :is(.ys-tr, .ys-note, .ys-iast),
+body[data-page-family="library"] :is(.record p, .gw-work p) {
+  line-height: 1.8;
+}
+body[data-page-family="practice"] .ys-num {
+  color: var(--ui-family-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* CALCULATE · Existing figures stay the main artifact. A quiet divider groups
+   inputs separately from the changing numerical result beneath each form. */
+body[data-page-family="western"] main > form.calc,
+body[data-page-family="vedic"] main > form.calc,
+body[data-page-family="oracles"] main > form.calc {
+  border-block-start: 3px solid var(--ui-family-accent);
+}
+body[data-page-family="vedic"] .vedic-toggle {
+  border-inline-start: 3px solid var(--ui-family-accent);
+}
+body[data-page-family="vedic"] :is(.vt-family, .vt-record) {
+  border-radius: 7px;
+  border-color: var(--ui-border);
+}
+body[data-page-family="vedic"] :is(.vt-family-head, .vt-record-head) {
+  border-block-end-color: var(--ui-family-line);
+}
+body[data-page-family="western"] :is(.stat-num, .stat-value),
+body[data-page-family="vedic"] :is(.stat-num, .stat-value) {
+  font-variant-numeric: tabular-nums;
+}
+
+/* MAKE / CONNECT · One strong preview surface, smaller explanatory material.
+   Color belongs to the study family, not the user's generated artwork. */
+.sg-studio .sg-output {
+  border-radius: 8px;
+  border-color: var(--ui-family-line);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ui-ink) 5%, transparent);
+}
+.sg-studio :is(.sg-sheet-header, .sg-section-heading) {
+  border-block-end-color: var(--ui-family-line);
+}
+.sg-studio .sg-modes label:has(input:checked) {
+  background: var(--ui-family-wash);
+  box-shadow: inset 3px 0 0 var(--ui-family-accent);
+}
+.sg-studio :is(.sg-setup, .sg-example, .sg-source-item) {
+  border-radius: 5px;
+  border-color: var(--ui-border);
+}
+.studio :is(.studio-context, .studio-result, .studio-connections, .studio-saved) {
+  border-radius: 8px;
+}
+.studio .studio-section-head { border-block-end-color: var(--ui-family-line); }
+.standards-page .standard-card {
+  border-radius: 7px;
+  border-block-start: 3px solid var(--ui-family-line);
+}
+.standards-page .standard-card h2 { text-wrap: balance; }
+.mcp-connection .mcp-endpoint {
+  border-inline-start: 3px solid var(--ui-family-accent);
+  overflow-wrap: anywhere;
+}
+.tool-card { border-block-start: 3px solid var(--ui-family-line); }
+.tool-card .glyph-badge { color: var(--ui-family-accent); }
+.tool-card .what { line-height: 1.7; }
+
+@media (max-width: 760px) {
+  body[data-page-family] main > .crumb { margin-block: .9rem 1rem; }
+  body[data-page-family] main > h1,
+  body[data-page-family] main > .wing-hero h1 {
+    font-size: clamp(2rem, 1.7rem + 1.7vw, 2.75rem);
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+  body[data-page-family] main > h2 { margin-block-start: 1.9rem; }
+  body[data-page-family] :is(.wing-hero, .home-intro, .atlas-head, .ct-heading,
+    .ch-heading, .nw-heading, .ea-header, .eh-heading, .we-heading, .sg-heading,
+    .cs-heading, .studio-intro, .standards-heading) {
+    padding-block-start: 1.1rem;
+  }
+  .home-fact { padding: 1.1rem; }
+  .home-path-list a { padding-inline: .25rem; }
+  .calendar-atlas .atlas-controls { border-inline-end: 0; }
+  body[data-page-family] :is(.atlas-jump, .ct-jumps, .ch-jump, .nw-jumps,
+    .eh-jumps, .calendar-jumps, .standards-jump) { gap: .1rem 1rem; }
+}
+
+@media (forced-colors: active) {
+  html[data-ui-theme] body[data-page-family] { --ui-family-accent: CanvasText; --ui-family-line: CanvasText; --ui-family-wash: Canvas; }
+  .home-context, .sg-studio .sg-output { box-shadow: none; }
+}
+@media print {
+  html[data-ui-theme] body[data-page-family] { --ui-family-accent: #222; --ui-family-line: #999; --ui-family-wash: #fff; }
+  body[data-page-family] :is(.home-intro, .atlas-head, .ct-heading, .ch-heading,
+    .nw-heading, .ea-header, .eh-heading, .we-heading, .sg-heading,
+    .cs-heading, .studio-intro, .standards-heading) { border-block-start: 0; }
+  .home-context, .sg-studio .sg-output, .sky-reading-section .sky-reading-lens,
+  .ct-rule-grid .ct-lens, .ea-readings .ea-lens { box-shadow: none; }
+}

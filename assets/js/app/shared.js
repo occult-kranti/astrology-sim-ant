@@ -13,6 +13,7 @@ import { autolinkGlossary, autolinkResults } from './autolink.js';
 import { attachGeolocate, nearestCity } from './location.js';
 import { injectIcons } from './art/icons.js';
 import { adoptArt } from './art/adopt.js';
+import { initAppearance } from './appearance.js';
 
 // Grouped navigation — a MEGA-MENU. Five groups (Start · Cast · Traditions ·
 // Oracles · Reference); each group is a dropdown that lists EVERY destination BY
@@ -273,6 +274,7 @@ export function mountChrome(activeKey = '') {
       `</div>`).join('')}
     </nav></div>`;
   document.body.prepend(header);
+  initAppearance({ mount: header.querySelector('.wrap') });
 
   // A small task bar keeps the main destinations within reach on phones. The
   // Menu control opens the same disclosure navigation, never a second registry.
@@ -351,7 +353,7 @@ export function mountChrome(activeKey = '') {
   // Escape closes the open dropdown (and returns focus to its button); a click
   // anywhere outside a group closes them all.
   document.addEventListener('keydown', e => {
-    if (e.key !== 'Escape') return;
+    if (e.key !== 'Escape' || e.defaultPrevented || document.querySelector('dialog[data-ui-appearance][open]')) return;
     const openG = groupEls.find(g => g.classList.contains('open'));
     if (openG) { openG.classList.remove('open'); const b = openG.querySelector('.nav-group-btn'); if (b) { b.setAttribute('aria-expanded', 'false'); b.focus(); } }
     else if (navToggle && navToggle._setDrawer && navEl.classList.contains('open')) { navToggle._setDrawer(false); navToggle.focus(); }

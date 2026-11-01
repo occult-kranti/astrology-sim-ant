@@ -1,5 +1,11 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+## Site-wide appearance
+
+Use **Appearance** in the masthead to choose Parchment, Midnight or Mineral. The selection is stored only in this browser and applies across the collection. Eight page-family accents distinguish observatory, Western, Vedic, oracle, library, research, practice and connection pages; traditional result colors keep their named meanings.
+
+The shared design layer covers all 133 application routes and the AI reference document. It improves forms, tables, result panels, disclosures, keyboard focus and narrow-screen controls. See the [design contract](.design/site-design-system.md), [coverage manifest](.design/site-design-coverage.json) and [verification](docs/2026-10-site-design-verification.md) for scope and checks.
+
 The [calendar atlas](pages/calendar-atlas.html#sky-chart) now pairs the engraved chart with a **relationship inspector**. Hover or focus previews a pair; click or Enter pins its connector and both planets. Named colors, glyphs and line patterns distinguish conjunction, sextile, square, trine and opposition. Filter geometric aspects, Lilly moieties, mutual reception or supported directed Jyotiṣa contacts; inspect their angle, margin, phase, convention and source. Calendar ring colors stay attached to the same method when layers change. The [timeline](pages/calendar-timeline.html), [Newton workbench](pages/newton-chronology.html) and [source atlas](pages/eschatology-atlas.html) share this interaction. Country sensitivity charts retain their explicitly stated cusp-only scope.
 
 Colors identify relationship types; favorable/caution statements remain separate, source-qualified readings. Pair exploration preserves the calculated instant, canonical downloads and private-input boundaries. See the [design contract](.design/chart-relationships.md), [methods](docs/2026-10-chart-relationships-methods.md), [implementation plan](docs/2026-10-chart-relationships-plan.md) and [review ledger](docs/2026-10-chart-relationships-panel.md) and [verification](docs/2026-10-chart-relationships-verification.md).

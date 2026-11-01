@@ -1,5 +1,11 @@
 # Handoff notes — for the next model/build
 
+## Site-wide design system — 31 October 2026
+
+Work starts from published `ec2983e` on `feat/site-design-system`. Read the [design contract](.design/site-design-system.md), [coverage manifest](.design/site-design-coverage.json), and [verification](docs/2026-10-site-design-verification.md). Every HTML document loads a validated appearance bootstrap, the existing observatory sheet and three ordered design layers: themes, components and page patterns. Keep the static `data-observatory-style` marker so shared chrome does not append an overriding late copy.
+
+Appearance owns only `wb:appearance:v1`; the native dialog never casts charts or emits calculator input events. Escape remains local to the modal. Preserve original diagram palettes and the light chart plates, which keep the existing geometry and categorical hues readable in Midnight. Page-family accents identify subject areas, not outcomes or source confidence. Keep the distinction between all-page load checks, bounded theme journeys and human accessibility research. The production workflow retains all inherited gates and adds the theme journey.
+
 ## Chart relationships — 30 October 2026
 
 Development starts from published `bf27046dd646ac1f7cc25db8770e8dd00ecbb0de` on `feat/chart-relationships`. Read the [design contract](.design/chart-relationships.md), [methods](docs/2026-10-chart-relationships-methods.md), [plan](docs/2026-10-chart-relationships-plan.md) and [review ledger](docs/2026-10-chart-relationships-panel.md) and [verification](docs/2026-10-chart-relationships-verification.md). The pure `core/chart-relationships.js` adapter consumes held canonical outputs; the shared `app/chart-relationships.js` inspector supplies filters, preview, pin and source details. Atlas/family charts and the common Timeline/Newton/Eschatology plate use the same presentation vocabulary. Country sensitivity remains cusps-only.

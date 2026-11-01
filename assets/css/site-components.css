@@ -1,0 +1,402 @@
+/* Workbench interface system: shared controls and reading surfaces.
+   This layer changes presentation only. Chart geometry, rule colors and
+   calculation output remain owned by their individual components. */
+
+:root {
+  --ui-radius-sm: .4rem;
+  --ui-radius: .7rem;
+  --ui-radius-lg: 1rem;
+  --ui-space: 1rem;
+  --ui-control-size: 2.75rem;
+  --ui-panel-shadow: 0 2px 8px rgb(25 35 30 / .035), 0 12px 30px rgb(25 35 30 / .035);
+}
+
+body.observatory-shell {
+  text-rendering: optimizeLegibility;
+  line-height: 1.7;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.observatory-shell main :is(p, li, dd, th, td) { overflow-wrap: break-word; }
+.observatory-shell main :is(a, code, pre) { overflow-wrap: anywhere; }
+.observatory-shell main :is(h1, h2, h3, h4) { text-wrap: balance; }
+.observatory-shell main :is(h2, h3) { scroll-margin-block-start: 7rem; }
+.observatory-shell main :is(.small, .muted, .sev-legend, .fig-caption) {
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.observatory-shell main :is(.lede, .sub) { line-height: 1.75; }
+.observatory-shell main p { margin-block: .8em; }
+.observatory-shell main a { text-decoration-thickness: .065em; text-underline-offset: .2em; }
+.observatory-shell main a:hover { text-decoration-thickness: .12em; }
+.observatory-shell main :is(ul, ol) > li + li { margin-block-start: .25em; }
+.observatory-shell :is(input, select, textarea, button, .btn, .btn-secondary, .btn-quiet, summary) {
+  touch-action: manipulation;
+}
+.observatory-shell :focus-visible {
+  outline: 3px solid var(--ui-focus, var(--focus));
+  outline-offset: 3px;
+}
+.observatory-shell :is(input, select, textarea):focus-visible {
+  outline-offset: 2px;
+  border-color: var(--ui-focus, var(--focus));
+}
+.observatory-shell :target { scroll-margin-block-start: 7rem; }
+
+/* A consistent edge, generous internal space and less visual noise. */
+.observatory-shell :is(.card, .panel, .calc, .record) {
+  border: 1px solid var(--border);
+  border-radius: var(--ui-radius-lg);
+  background: var(--surface-card);
+  color: var(--text);
+  box-shadow: var(--ui-panel-shadow);
+}
+.observatory-shell :is(.card, .panel, .calc) {
+  padding: clamp(1rem, 2.2vw, 1.65rem);
+}
+.observatory-shell :is(.record, .stat) { padding: 1.1rem 1.25rem; }
+.observatory-shell :is(.card, .panel, .calc, .record) > :first-child { margin-block-start: 0; }
+.observatory-shell :is(.card, .panel, .calc, .record) > :last-child { margin-block-end: 0; }
+.observatory-shell .panel-head {
+  padding-block-end: .85rem;
+  border-block-end: 1px solid var(--border);
+  margin-block-end: 1.15rem;
+}
+.observatory-shell .panel-title { line-height: 1.3; }
+.observatory-shell .panel-meta { line-height: 1.5; }
+.observatory-shell .card .tag {
+  color: var(--ui-accent-ink, var(--accent-strong));
+  letter-spacing: .1em;
+}
+.observatory-shell a.card {
+  border-block-start: 3px solid var(--ui-family-line, var(--ui-border, var(--border)));
+  box-shadow: none;
+}
+.observatory-shell a.card:hover {
+  transform: none;
+  border-color: var(--ui-family-accent, var(--ui-accent, var(--accent)));
+  background: var(--surface-wash);
+  box-shadow: var(--ui-panel-shadow);
+}
+.observatory-shell .stat {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--ui-radius);
+  border-block-start: 3px solid var(--ui-family-accent, var(--ui-accent, var(--accent)));
+}
+.observatory-shell .stat-label { font-size: .75rem; line-height: 1.5; letter-spacing: .06em; }
+.observatory-shell .stat-num { margin-block-end: .3rem; }
+
+/* Forms share the same baseline and touch size without changing their layout. */
+.observatory-shell :is(input, select, textarea) {
+  accent-color: var(--ui-accent, var(--accent));
+  font-family: var(--sans);
+}
+.observatory-shell :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="hidden"]), select, textarea) {
+  min-block-size: var(--ui-control-size);
+  max-inline-size: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--ui-radius-sm);
+  background: var(--surface-card);
+  color: var(--text);
+  font-size: .95rem;
+  line-height: 1.4;
+  padding: .65rem .75rem;
+  box-shadow: inset 0 1px 2px rgb(25 35 30 / .025);
+}
+.observatory-shell textarea { min-block-size: 6.5rem; resize: vertical; }
+.observatory-shell :is(input, textarea)::placeholder { color: var(--text-muted); opacity: .9; }
+.observatory-shell input[type="range"] {
+  min-block-size: var(--ui-control-size);
+  max-inline-size: 100%;
+  cursor: pointer;
+}
+.observatory-shell input[type="color"] {
+  min-block-size: var(--ui-control-size);
+  min-inline-size: var(--ui-control-size);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-card);
+  border-radius: var(--ui-radius-sm);
+  padding: .3rem;
+}
+.observatory-shell input:is([type="checkbox"], [type="radio"]) {
+  flex-shrink: 0;
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+  vertical-align: middle;
+}
+.observatory-shell .field-row { gap: 1rem; }
+.observatory-shell .field { gap: .4rem; min-inline-size: 0; }
+.observatory-shell .field label {
+  font-size: .77rem;
+  line-height: 1.45;
+  letter-spacing: .035em;
+  color: var(--text-soft);
+}
+.observatory-shell fieldset { border-color: var(--border); border-radius: var(--ui-radius); }
+.observatory-shell legend { padding-inline: .45rem; color: var(--text-soft); }
+.observatory-shell :is(input, select, textarea)[aria-invalid="true"] {
+  border-color: var(--bad);
+  outline: 2px solid var(--bad);
+  outline-offset: 1px;
+}
+.observatory-shell :is(input, select, textarea):disabled {
+  background: var(--surface-inset);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+.observatory-shell input[readonly], .observatory-shell textarea[readonly] { background: var(--surface-wash); }
+
+/* Action hierarchy. The primary color is separate from traditional verdicts. */
+.observatory-shell :is(button, .btn, .btn-secondary, .btn-quiet) {
+  min-block-size: var(--ui-control-size);
+  font-family: var(--sans);
+  line-height: 1.4;
+}
+.observatory-shell :is(.btn, .btn-secondary, .btn-quiet) {
+  border-radius: var(--ui-radius-sm);
+  padding: .65rem 1rem;
+  font-size: .88rem;
+  font-weight: 650;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+}
+.observatory-shell .btn:not(.ghost) {
+  background: var(--ui-action, var(--ink));
+  color: var(--ui-on-action, var(--card));
+  border: 1px solid var(--ui-action, var(--ink));
+  box-shadow: 0 1px 2px rgb(0 0 0 / .08);
+}
+.observatory-shell :is(.btn.ghost, .btn-secondary) {
+  background: var(--surface-card);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  box-shadow: none;
+}
+.observatory-shell .btn-quiet { color: var(--link); border: 1px solid transparent; }
+.observatory-shell :is(.btn, .btn-secondary, .btn-quiet):hover:not(:disabled):not([aria-disabled="true"]) {
+  transform: none;
+  filter: none;
+  text-decoration: none;
+}
+.observatory-shell .btn:not(.ghost):hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--ui-action-hover, var(--ui-action, var(--ink)));
+  box-shadow: 0 0 0 3px var(--accent-wash);
+}
+.observatory-shell :is(.btn.ghost, .btn-secondary, .btn-quiet):hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--surface-inset);
+  border-color: var(--ui-accent, var(--accent));
+  color: var(--text);
+}
+.observatory-shell :is(button, .btn, .btn-secondary, .btn-quiet):is(:disabled, [aria-disabled="true"]) {
+  opacity: .55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.observatory-shell :is(.btn, .btn-secondary, .btn-quiet):active:not(:disabled):not([aria-disabled="true"]) {
+  transform: none;
+  box-shadow: inset 0 0 0 2px var(--border-strong);
+}
+.observatory-shell .seg {
+  border-radius: var(--ui-radius-sm);
+  border-color: var(--border-strong);
+  padding: .2rem;
+  gap: .2rem;
+  overflow: visible;
+  background: var(--surface-inset);
+}
+.observatory-shell .seg :is(button, a) {
+  min-block-size: 2.4rem;
+  border: 0;
+  border-radius: .25rem;
+  background: transparent;
+  color: var(--text-soft);
+  padding: .5rem .8rem;
+  font-size: .8rem;
+  text-decoration: none;
+}
+.observatory-shell .seg :is(.active, [aria-current="page"], [aria-pressed="true"]) {
+  background: var(--surface-card);
+  color: var(--text);
+  box-shadow: inset 0 -2px var(--ui-accent, var(--accent)), 0 1px 3px rgb(0 0 0 / .08);
+  font-weight: 700;
+}
+.observatory-shell :is(.chip-toggle, .seg-btn)[aria-pressed="true"] {
+  border-color: var(--ui-accent, var(--accent));
+  box-shadow: inset 0 -2px var(--ui-accent, var(--accent));
+}
+
+/* Details keep native disclosure semantics and readable expanded contents. */
+.observatory-shell main summary {
+  cursor: pointer;
+  min-block-size: var(--ui-control-size);
+  padding-block: .65rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+.observatory-shell main summary::marker { color: var(--ui-accent, var(--accent)); font-size: .85em; }
+.observatory-shell main details[open] > summary { color: var(--text); }
+.observatory-shell :is(.acc, main > details, .card > details, .panel > details, .calc > details) {
+  border: 1px solid var(--border);
+  border-radius: var(--ui-radius-sm);
+  background: var(--surface-wash);
+  padding: .15rem .85rem;
+}
+.observatory-shell :is(.acc, main > details, .card > details, .panel > details, .calc > details)[open] {
+  padding-block-end: .85rem;
+  border-color: var(--border-strong);
+}
+.observatory-shell .acc > summary {
+  font-size: .8rem;
+  letter-spacing: .025em;
+  color: var(--text-soft);
+}
+
+/* Meaning stays attached to existing names and symbols, alongside the color. */
+.observatory-shell :is(.badge, .pill, .verdict) {
+  border-radius: .35rem;
+  font-size: .74rem;
+  line-height: 1.5;
+  letter-spacing: .025em;
+  white-space: normal;
+  max-inline-size: 100%;
+}
+.observatory-shell :is(.badge, .pill) { padding: .25rem .5rem; }
+.observatory-shell .verdict { padding: .4rem .75rem; }
+.observatory-shell :is(.verdict.green, .badge--ok) {
+  color: var(--ok-ink); background: var(--ok-wash); border-color: var(--ok);
+}
+.observatory-shell :is(.verdict.amber, .badge--warn) {
+  color: var(--warn-ink); background: var(--warn-wash); border-color: var(--warn);
+}
+.observatory-shell :is(.verdict.red, .badge--bad) {
+  color: var(--bad-ink); background: var(--bad-wash); border-color: var(--bad);
+}
+.observatory-shell .badge--info { color: var(--info-ink); background: var(--info-wash); border-color: var(--info); }
+.observatory-shell .callout {
+  background: var(--warn-wash);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-inline-start: 4px solid var(--warn);
+  border-radius: var(--ui-radius-sm);
+  padding: 1rem 1.2rem;
+  box-shadow: none;
+  line-height: 1.7;
+}
+.observatory-shell .callout.science {
+  background: var(--info-wash);
+  border-inline-start-color: var(--info);
+}
+.observatory-shell .callout.lilly {
+  background: var(--surface-wash);
+  border-inline-start-color: var(--ui-accent, var(--accent));
+}
+.observatory-shell .callout .label { font-size: .74rem; letter-spacing: .06em; margin-block-end: .4rem; }
+.observatory-shell blockquote.lilly {
+  color: var(--text-soft);
+  border-inline-start: 3px solid var(--ui-accent, var(--accent));
+  padding: .5rem 0 .5rem 1.1rem;
+  margin-inline: 0;
+}
+.observatory-shell .advisories li {
+  border-radius: var(--ui-radius-sm);
+  padding-block: .75rem;
+  line-height: 1.6;
+}
+.observatory-shell .advisories li::before { inset-block-start: .75rem; }
+.observatory-shell .advisories li.adv-good { background: var(--ok-wash); border-inline-start-color: var(--ok); }
+.observatory-shell .advisories li.adv-note { background: var(--info-wash); border-inline-start-color: var(--info); }
+.observatory-shell .advisories li.adv-caution { background: var(--warn-wash); border-inline-start-color: var(--warn); }
+.observatory-shell .advisories li.adv-bad { background: var(--bad-wash); border-inline-start-color: var(--bad); }
+.observatory-shell :is(.verdict-banner, .record-src) { line-height: 1.6; }
+
+/* Numerical tables retain their component-specific scroll and sticky scopes. */
+.observatory-shell table.data { font-size: .9rem; color: var(--text); background: var(--surface-card); }
+.observatory-shell table.data :is(th, td) { border-color: var(--border); padding: .65rem .75rem; line-height: 1.5; }
+.observatory-shell table.data th {
+  color: var(--text-soft);
+  background: var(--surface-inset);
+  letter-spacing: .04em;
+  font-size: .72rem;
+}
+.observatory-shell table.data tr:nth-child(even) td { background: var(--surface-wash); }
+.observatory-shell table.data td :is(.num, code) { font-variant-numeric: tabular-nums; }
+.observatory-shell :is(.table-scroll, .cmp-matrix-scroll) { border-radius: var(--ui-radius-sm); border-color: var(--border-strong); }
+.observatory-shell pre {
+  max-inline-size: 100%;
+  overflow: auto;
+  background: var(--surface-inset);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--ui-radius-sm);
+  padding: 1rem;
+  line-height: 1.7;
+  tab-size: 2;
+}
+.observatory-shell .pager a {
+  min-block-size: var(--ui-control-size);
+  padding: .6rem .85rem;
+  border-radius: var(--ui-radius-sm);
+  border-color: var(--border-strong);
+  background: var(--surface-card);
+  color: var(--link);
+}
+
+@media (hover: hover) {
+  .observatory-shell main summary:hover { color: var(--ui-accent-ink, var(--accent-strong)); }
+  .observatory-shell table.data tbody tr:hover td { background: var(--accent-wash); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .observatory-shell :is(.btn, .btn-secondary, .btn-quiet, a.card, .seg button, .seg a) {
+    /* Keep ink and surface changes atomic when switching themes. */
+    transition: border-color 130ms ease, box-shadow 130ms ease;
+  }
+}
+
+@media (max-width: 700px) {
+  .observatory-shell :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="hidden"]), select, textarea) {
+    font-size: max(1rem, 16px);
+  }
+  .observatory-shell :is(.btn.sm, .btn-secondary.sm, .btn-quiet.sm, .seg button, .seg a, .seg-btn) {
+    min-block-size: var(--ui-control-size);
+  }
+  .observatory-shell :is(.card, .panel, .calc, .record) {
+    padding: 1rem;
+    border-radius: var(--ui-radius);
+  }
+  .observatory-shell .field-row > .field { max-inline-size: 100%; }
+  .observatory-shell table.data :is(th, td) { padding: .6rem; }
+  .observatory-shell .callout { padding: .85rem 1rem; }
+  .observatory-shell .panel-head { column-gap: .5rem; }
+}
+
+@media (forced-colors: active) {
+  .observatory-shell :is(.card, .panel, .calc, .record, .stat, .callout, .badge, .verdict, .pill) {
+    border-color: CanvasText;
+    box-shadow: none;
+  }
+  .observatory-shell :focus-visible { outline: 3px solid Highlight; }
+  .observatory-shell .seg :is(.active, [aria-current="page"], [aria-pressed="true"]),
+  .observatory-shell :is(.chip-toggle, .seg-btn)[aria-pressed="true"] {
+    outline: 2px solid Highlight;
+    outline-offset: -3px;
+    box-shadow: none;
+  }
+}
+
+@media print {
+  .observatory-shell :is(.card, .panel, .calc, .record, .stat, .callout, pre) {
+    color: #000;
+    background: #fff;
+    border-color: #aaa;
+    box-shadow: none;
+  }
+  .observatory-shell table.data :is(th, td), .observatory-shell table.data tr:nth-child(even) td {
+    color: #000;
+    background: #fff;
+    border-color: #aaa;
+  }
+  .observatory-shell :is(.badge, .verdict, .pill) { background: #fff; color: #000; border-color: #000; }
+}
