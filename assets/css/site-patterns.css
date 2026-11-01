@@ -421,6 +421,22 @@ body[data-page-family="vedic"] :is(.stat-num, .stat-value) {
   .home-fact { padding: 1.1rem; }
   .home-path-list a { padding-inline: .25rem; }
   .calendar-atlas .atlas-controls { border-inline-end: 0; }
+  /* Native method options have different intrinsic widths across platforms.
+     Give the full label and its select separate rows instead of letting a
+     max-content flex item extend beyond the comparison toolbar. */
+  .calendar-atlas .atlas-comparison-tools label:has(select) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-inline-size: 0;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    gap: .35rem;
+  }
+  .calendar-atlas .atlas-comparison-tools select {
+    min-inline-size: 0;
+    inline-size: 100%;
+    max-inline-size: 100%;
+  }
   body[data-page-family] :is(.atlas-jump, .ct-jumps, .ch-jump, .nw-jumps,
     .eh-jumps, .calendar-jumps, .standards-jump) { gap: .1rem 1rem; }
 }

@@ -18,6 +18,7 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const routes = [
   ['home', 'index.html', '#homeSummary:not([aria-busy="true"])'],
   ['atlas', 'pages/calendar-atlas.html?at=2026-10-29T12:00:00Z&lat=51.5074&lon=-0.1278&zone=Europe/London', '#sky-chart svg'],
+  ['chinese', 'pages/calendars/chinese.html?at=2026-10-29T12:00:00Z&lat=51.5074&lon=-0.1278&zone=Europe/London', '#sky-chart svg'],
   ['timeline', 'pages/calendar-timeline.html', '#ct-tropical svg'],
   ['country', 'pages/country-calendars.html', '#cr-selected-title'],
   ['newton', 'pages/newton-chronology.html', '#nw-sky svg'],
@@ -194,6 +195,14 @@ async function renderedChecks(page, width) {
   receipt.contrasts.push(...contrasts.map(value => ({ ...current, ...value })));
   for (const pair of contrasts.filter(value => !value.unresolvedBackgroundImage)) check(pair.contrast >= pair.threshold - .02, 'Rendered contrast: ' + pair.selector, pair);
 }
+async function chineseInspectorBounds(page) {
+  const bounds = await page.evaluate(() => {
+    const reading = document.querySelector('#atlas-reading'), wrapper = reading.querySelector('.atlas-table-scroll'), table = wrapper.querySelector('table');
+    const readRect = reading.getBoundingClientRect(), wrapRect = wrapper.getBoundingClientRect();
+    return { viewport: innerWidth, documentWidth: document.documentElement.scrollWidth, inspector: { left: readRect.left, right: readRect.right, client: reading.clientWidth, scroll: reading.scrollWidth }, tableRegion: { left: wrapRect.left, right: wrapRect.right, client: wrapper.clientWidth, scroll: wrapper.scrollWidth, overflowX: getComputedStyle(wrapper).overflowX, tabIndex: wrapper.tabIndex }, rows: table.tBodies[0].rows.length, caption: table.caption.textContent, visible: !!table.getClientRects().length && !reading.hidden };
+  });
+  check(bounds.visible && bounds.rows === 24 && bounds.caption.includes('Asia/Hong_Kong') && bounds.documentWidth <= bounds.viewport + 1 && bounds.inspector.left >= -1 && bounds.inspector.right <= bounds.viewport + 1 && bounds.inspector.scroll <= bounds.inspector.client + 1 && bounds.tableRegion.left >= -1 && bounds.tableRegion.right <= bounds.viewport + 1 && ['auto', 'scroll'].includes(bounds.tableRegion.overflowX) && bounds.tableRegion.tabIndex === 0, 'Chinese single-method inspector retains24 Hong Kong rows inside native viewport bounds with local table scrolling', bounds);
+}
 async function screenshot(page, name) {
   const filename = name + '.png'; const bytes = await page.screenshot({ path: resolve(output, filename), fullPage: false });
   receipt.screenshots.push({ ...current, filename, bytes: bytes.length, sha256: sha(bytes) });
@@ -248,8 +257,18 @@ async function preferences() {
     await page.setViewport({ width: 390, height: 1000, deviceScaleFactor: 1 });
     const cdp = await page.createCDPSession();
     await cdp.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+    await page.bringToFront();
     await page.focus('.appearance-trigger'); await page.keyboard.press('Enter');
-    check(await page.evaluate(() => { const focused = document.activeElement, style = getComputedStyle(focused); return matchMedia('(forced-colors: active)').matches && !!focused.closest('#site-appearance') && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) >= 2; }), 'Forced-color emulation retains an outlined keyboard-focused theme control');
+    // Test actual Tab navigation, rather than the dialog's programmatic initial
+    // focus. Native browser chrome can be an intermediate stop in this cycle.
+    let forcedColorTabs = 0;
+    do { await page.keyboard.press('Tab'); forcedColorTabs++; }
+    while (forcedColorTabs < 6 && !await page.evaluate(() => !!document.activeElement?.matches('[data-appearance-theme]')));
+    // Chromium145 can expose outline-width:0 until its next forced-media style
+    // paint. Wait for the same visible-focus contract; never lower its threshold.
+    await page.waitForFunction(() => { const focused = document.activeElement, style = getComputedStyle(focused); return matchMedia('(forced-colors: active)').matches && focused.matches('[data-appearance-theme]:focus-visible') && !!focused.closest('#site-appearance') && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) >= 2; }, { timeout: 2000, polling: 50 });
+    const forcedFocus = await page.evaluate(() => { const focused = document.activeElement, style = getComputedStyle(focused); return { forced: matchMedia('(forced-colors: active)').matches, themeControl: focused.matches('[data-appearance-theme]:focus-visible'), inside: !!focused.closest('#site-appearance'), outlineStyle: style.outlineStyle, outlineWidth: style.outlineWidth }; });
+    check(forcedFocus.forced && forcedFocus.themeControl && forcedFocus.inside && forcedFocus.outlineStyle !== 'none' && parseFloat(forcedFocus.outlineWidth) >= 2, 'Forced-color emulation retains an outlined keyboard-focused theme control', { ...forcedFocus, keyboardTabs: forcedColorTabs });
     await page.keyboard.press('Escape'); await cdp.send('Emulation.setEmulatedMedia', { features: [] }); await cdp.detach();
     await page.emulateMediaType('print');
     check(await page.$eval('.appearance-trigger', element => getComputedStyle(element).display) === 'none', 'Appearance controls are absent from print');
@@ -298,12 +317,21 @@ try {
     try {
       candidate = await pageFor(width, 'normal', context); await ready(candidate, path, selector);
       if (name === 'atlas' && await candidate.$('#sky-relationships .cr-entry')) await candidate.click('#sky-relationships .cr-entry');
+      if (name === 'chinese') {
+        await candidate.select('#atlas-view', 'single');
+        await candidate.select('#atlas-single', 'chinese-solar-terms');
+        await candidate.waitForFunction(() => {
+          const reading = document.querySelector('#atlas-reading'), table = reading?.querySelector('.atlas-table-scroll table');
+          return !reading?.hidden && table?.tBodies[0]?.rows.length === 24 && table.caption?.textContent.includes('Asia/Hong_Kong') && !!table.getClientRects().length;
+        }, { timeout: 60000 });
+      }
       const held = await domainSnapshot(candidate);
       await candidate.evaluate(() => localStorage.setItem('site-design:unrelated-sentinel', 'UNRELATED_STUDY_STATE_SENTINEL'));
       const heldStorage = await storageSnapshot(candidate);
       await candidate.evaluate(() => { window.__appearanceDomainEvents = 0; for (const type of ['input', 'change', 'submit']) document.querySelector('main').addEventListener(type, () => window.__appearanceDomainEvents++); });
       for (const theme of themes) {
         current = { route: name, width, theme }; await applyTheme(candidate, theme); await renderedChecks(candidate, width);
+        if (name === 'chinese') await chineseInspectorBounds(candidate);
         check(JSON.stringify(await domainSnapshot(candidate)) === JSON.stringify(held), 'Theme change preserves input values, chart geometry, pair pins and URL');
         check(await candidate.evaluate(() => window.__appearanceDomainEvents) === 0, 'Theme change emits no calculator input/change/submit events');
         const afterStorage = await storageSnapshot(candidate);
@@ -315,6 +343,11 @@ try {
           await candidate.evaluate(() => [...document.querySelectorAll('.bud-line .bud-w')].sort((left, right) => right.textContent.length - left.textContent.length)[0]?.scrollIntoView({ block: 'center', behavior: 'instant' }));
           await candidate.mouse.move(0, 0);
           await screenshot(candidate, `${name}-320-midnight-reading`);
+        }
+        if (name === 'chinese' && width === 320 && theme === 'midnight') {
+          await candidate.focus('#atlas-reading .atlas-table-scroll');
+          await candidate.evaluate(() => { const target = document.querySelector('#atlas-reading .atlas-table-scroll'), header = document.querySelector('header.site'); scrollTo({ top: scrollY + target.getBoundingClientRect().top - header.getBoundingClientRect().height - 16, behavior: 'instant' }); });
+          await screenshot(candidate, 'chinese-320-midnight-inspector');
         }
       }
     } catch (error) { receipt.failures.push({ ...current, label: 'Journey execution', message: error.message, stack: error.stack }); }
