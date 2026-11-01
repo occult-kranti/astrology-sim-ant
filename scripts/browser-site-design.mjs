@@ -208,7 +208,7 @@ async function screenshot(page, name) {
   receipt.screenshots.push({ ...current, filename, bytes: bytes.length, sha256: sha(bytes) });
 }
 async function preferences() {
-  current = { route: 'preference-recovery', width: 390, theme: 'parchment' };
+  current = { route: 'preference-recovery', width: 390, theme: 'midnight' };
   const page = await pageFor(390);
   try {
     await ready(page, 'pages/tools.html', '#toolsTask');
@@ -241,7 +241,7 @@ async function preferences() {
     await page.evaluate(key => window.dispatchEvent(new StorageEvent('storage', { key, newValue: '{broken' })), key);
     check(await page.evaluate(() => document.documentElement.dataset.uiTheme === 'mineral'), 'A malformed cross-tab record cannot corrupt the active theme');
     await page.evaluate(key => window.dispatchEvent(new StorageEvent('storage', { key, newValue: null })), key);
-    check(await page.evaluate(() => document.documentElement.dataset.uiTheme === 'parchment'), 'Removing the cross-tab preference restores the readable default');
+    check(await page.evaluate(() => document.documentElement.dataset.uiTheme === 'midnight'), 'Removing the cross-tab preference restores the black default');
     await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
     await applyTheme(page, 'mineral'); await page.click('.appearance-trigger'); await screenshot(page, 'appearance-390-mineral'); await page.keyboard.press('Escape');
     // CSS zoom is an explicit additional layout stressor, not a claim of testing
@@ -274,11 +274,11 @@ async function preferences() {
     check(await page.$eval('.appearance-trigger', element => getComputedStyle(element).display) === 'none', 'Appearance controls are absent from print');
   } finally { await page.close(); }
   for (const mode of ['invalid', 'malformed', 'blocked']) {
-    current = { route: 'storage-' + mode, width: 320, theme: 'parchment' };
+    current = { route: 'storage-' + mode, width: 320, theme: 'midnight' };
     const page = await pageFor(320, mode);
     try {
       await ready(page, 'pages/tools.html', '#toolsTask');
-      check(await page.evaluate(() => document.documentElement.dataset.uiTheme === 'parchment'), 'Invalid or unavailable storage has a readable default');
+      check(await page.evaluate(() => document.documentElement.dataset.uiTheme === 'midnight'), 'Invalid or unavailable storage has the black default');
       await applyTheme(page, 'midnight');
       check(await page.evaluate(() => document.documentElement.dataset.uiTheme === 'midnight'), 'Theme controls still work with ' + mode + ' storage');
       if (mode === 'blocked') check(await page.$eval('.appearance-note', element => element.textContent.includes('unavailable')), 'Storage failure is explained without discarding the selected theme');
@@ -310,7 +310,7 @@ try {
     console.log(JSON.stringify({ stage: 'preference-acceptance', pass: true, checks: receipt.checks.length }));
   }
   for (const [name, path, selector] of runRoutes) for (const width of widths) {
-    current = { route: name, width, theme: 'parchment' };
+    current = { route: name, width, theme: 'midnight' };
     const context = await browser.createBrowserContext();
     // An isolated context prevents preferences from a prior route concealing a bootstrap bug.
     let candidate;

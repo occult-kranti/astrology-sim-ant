@@ -1,6 +1,7 @@
 // A view over one canonical frame. Calendar/planet values are never computed by
 // presentation. Input changes terminate their worker and invalidate all exports.
 import { downloadBlob } from './state.js';
+import { CHART_PAINT, chartBodyColor } from '../core/viz/chart-palette.js';
 import { mountDateNavigator } from './date-wayfinding.js';
 import { buildChartRelationshipModel } from '../core/chart-relationships.js';
 import { mountRelationshipInspector, relationPresentation } from './chart-relationships.js';
@@ -122,24 +123,25 @@ export function calendarTimelinePlateSVG(frame, mode = 'tropical') {
   const bodies = sidereal ? chart?.planets : frame?.sky?.bodies;
   if (!chart || !arr(chart.cusps).every(Number.isFinite) || chart.cusps.length !== 12 || !arr(bodies).every(b => Number.isFinite(b.longitude))) return '';
   const id = sidereal ? 'ct-sidereal-plate' : 'ct-tropical-plate';
+  const {background, surface, ink, muted, grid, line:frameLine, strong, accent}=CHART_PAINT;
   const point = (r, longitude) => { const radians = (longitude - 90) * Math.PI / 180; return [300 + r * Math.cos(radians), 300 + r * Math.sin(radians)]; };
   const line = (r1, r2, lon, stroke, width = 1, extra = '') => { const p = point(r1, lon), q = point(r2, lon); return `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${stroke}" stroke-width="${width}" ${extra}/>`; };
   let marks = '';
-  for (let angle = 0; angle < 360; angle += 2) marks += line(angle % 30 === 0 ? 265 : angle % 10 === 0 ? 270 : 275, 281, angle, angle % 30 === 0 ? '#263b36' : '#89917e', angle % 30 === 0 ? 1.2 : .6);
+  for (let angle = 0; angle < 360; angle += 2) marks += line(angle % 30 === 0 ? 265 : angle % 10 === 0 ? 270 : 275, 281, angle, angle % 30 === 0 ? ink : strong, angle % 30 === 0 ? 1.2 : .6);
   for (let i = 0; i < 12; i++) {
     const p = point(252, i * 30 + 15), cusp = chart.cusps[i], next = chart.cusps[(i + 1) % 12], mid = cusp + ((next - cusp + 360) % 360) / 2, h = point(226, mid);
-    marks += `<text x="${p[0]}" y="${p[1]}" dominant-baseline="central" text-anchor="middle" fill="#263b36" font-size="10" font-family="Georgia,serif" letter-spacing=".5">${SIGNS[i].toUpperCase()}</text>`;
-    marks += line(73, 237, cusp, i % 3 === 0 ? '#9a674e' : '#b8bdab', i % 3 === 0 ? 1.1 : .6);
-    marks += `<text x="${h[0]}" y="${h[1]}" dominant-baseline="central" text-anchor="middle" fill="#6a7465" font-size="10" font-family="monospace">${i + 1}</text>`;
+    marks += `<text x="${p[0]}" y="${p[1]}" dominant-baseline="central" text-anchor="middle" fill="${ink}" font-size="10" font-family="Georgia,serif" letter-spacing=".5">${SIGNS[i].toUpperCase()}</text>`;
+    marks += line(73, 237, cusp, i % 3 === 0 ? accent : grid, i % 3 === 0 ? 1.1 : .6);
+    marks += `<text x="${h[0]}" y="${h[1]}" dominant-baseline="central" text-anchor="middle" fill="${muted}" font-size="10" font-family="monospace">${i + 1}</text>`;
   }
   bodies.forEach((b, i) => {
-    const r = 97 + i * (111 / Math.max(1, bodies.length - 1)), p = point(r, b.longitude), q = point(238, b.longitude), copper = ['Sun','Moon'].includes(b.id);
-    marks += `<circle cx="300" cy="300" r="${r}" fill="none" stroke="#d6d7c9" stroke-width=".45"/>`;
-    marks += `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${copper ? '#93442c' : '#61796b'}" stroke-width=".7" stroke-dasharray="2 4"/>`;
-    marks += `<g data-body="${xml(b.id)}" data-longitude="${b.longitude}"><title>${xml(b.id)} · ${degrees(b.longitude)}${b.retrograde ? ' · retrograde' : ''}</title><circle cx="${p[0]}" cy="${p[1]}" r="11" fill="#fbf8ef" stroke="${copper ? '#93442c' : '#426151'}" stroke-width="1.2"/><text x="${p[0]}" y="${p[1] + 1}" dominant-baseline="central" text-anchor="middle" fill="${copper ? '#93442c' : '#263b36'}" font-family="Georgia,serif" font-size="17">${xml(GLYPHS[b.id] || b.id.slice(0, 2))}</text></g>`;
+    const r = 97 + i * (111 / Math.max(1, bodies.length - 1)), p = point(r, b.longitude), q = point(238, b.longitude), color = chartBodyColor(b.id);
+    marks += `<circle cx="300" cy="300" r="${r}" fill="none" stroke="${grid}" stroke-width=".45"/>`;
+    marks += `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${color}" stroke-width=".7" stroke-dasharray="2 4"/>`;
+    marks += `<g data-body="${xml(b.id)}" data-longitude="${b.longitude}"><title>${xml(b.id)} · ${degrees(b.longitude)}${b.retrograde ? ' · retrograde' : ''}</title><circle cx="${p[0]}" cy="${p[1]}" r="11" fill="${surface}" stroke="${color}" stroke-width="1.2"/><text x="${p[0]}" y="${p[1] + 1}" dominant-baseline="central" text-anchor="middle" fill="${color}" font-family="Georgia,serif" font-size="17">${xml(GLYPHS[b.id] || b.id.slice(0, 2))}</text></g>`;
   });
   const instant = frame.context.dateISO;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="${id}-title ${id}-desc" data-date-iso="${xml(instant)}"><title id="${id}-title">${sidereal ? 'Sidereal traditional grahas' : 'Tropical ten-body sky'} at ${xml(instant)}</title><desc id="${id}-desc">Canonical positions and twelve ${sidereal ? 'whole-sign sidereal' : xml(chart.actualSystem)} house cusps. Zero Aries at top; longitude increases clockwise. Individual ring radii are a diagram convention, not distance. Full names and numerical values appear in the companion tables.</desc><circle cx="300" cy="300" r="289" fill="#f6f1e7" stroke="#c6c5b5"/><circle cx="300" cy="300" r="284" fill="none" stroke="#c6c5b5"/><circle cx="300" cy="300" r="240" fill="none" stroke="#a6ae9a"/>${marks}<circle cx="300" cy="300" r="70" fill="#f6f1e7" stroke="#c6c5b5"/><circle cx="300" cy="300" r="65" fill="none" stroke="#d4d1c0"/><text x="300" y="287" text-anchor="middle" fill="#93442c" font-family="monospace" font-size="10" letter-spacing="1.6">${sidereal ? 'SIDEREAL' : 'TROPICAL'}</text><text x="300" y="312" text-anchor="middle" fill="#263b36" font-family="Georgia,serif" font-size="21">${bodies.length} ${sidereal ? 'grahas' : 'bodies'}</text><path d="M293 332 H307 M300 325 V339" stroke="#93442c" stroke-width=".6"/><metadata>${xml(JSON.stringify({ kind: 'calendar-timeline-plate', mode, dateISO: instant, frame: chart.frame, bodies: bodies.map(b => ({ id: b.id, longitude: b.longitude })), cusps: chart.cusps, radialDistancePhysical: false }))}</metadata></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="${id}-title ${id}-desc" data-date-iso="${xml(instant)}"><title id="${id}-title">${sidereal ? 'Sidereal traditional grahas' : 'Tropical ten-body sky'} at ${xml(instant)}</title><desc id="${id}-desc">Canonical positions and twelve ${sidereal ? 'whole-sign sidereal' : xml(chart.actualSystem)} house cusps. Zero Aries at top; longitude increases clockwise. Individual ring radii are a diagram convention, not distance. Full names and numerical values appear in the companion tables.</desc><circle cx="300" cy="300" r="289" fill="${background}" stroke="${grid}"/><circle cx="300" cy="300" r="284" fill="none" stroke="${grid}"/><circle cx="300" cy="300" r="240" fill="none" stroke="${frameLine}"/>${marks}<circle cx="300" cy="300" r="70" fill="${background}" stroke="${grid}"/><circle cx="300" cy="300" r="65" fill="none" stroke="${grid}"/><text x="300" y="287" text-anchor="middle" fill="${accent}" font-family="monospace" font-size="10" letter-spacing="1.6">${sidereal ? 'SIDEREAL' : 'TROPICAL'}</text><text x="300" y="312" text-anchor="middle" fill="${ink}" font-family="Georgia,serif" font-size="21">${bodies.length} ${sidereal ? 'grahas' : 'bodies'}</text><path d="M293 332 H307 M300 325 V339" stroke="${accent}" stroke-width=".6"/><metadata>${xml(JSON.stringify({ kind: 'calendar-timeline-plate', mode, dateISO: instant, frame: chart.frame, bodies: bodies.map(b => ({ id: b.id, longitude: b.longitude })), cusps: chart.cusps, radialDistancePhysical: false }))}</metadata></svg>`;
 }
 
 export function initCalendarTimeline() {

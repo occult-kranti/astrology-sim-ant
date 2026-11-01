@@ -62,7 +62,7 @@ const WHEEL_STYLE = `
 .chart-wheel .planet.malefic .planet-glyph{fill:var(--malefic,#b23b2e)}
 .chart-wheel .planet.lum .planet-glyph{fill:var(--lum,#b8862b)}
 .chart-wheel .planet.neutral .planet-glyph{fill:var(--neutral,#6a5aa0)}
-.chart-wheel .planet.point .planet-glyph{fill:#7b6f8f}
+.chart-wheel .planet.point .planet-glyph{fill:var(--neutral,#7b6f8f)}
 .chart-wheel .aspect-line{fill:none;stroke-width:1.1;opacity:.6}
 .chart-wheel .aspect-line.asp-soft{stroke:var(--ok,#2f7d4f)}
 .chart-wheel .aspect-line.asp-hard{stroke:var(--bad,#b23b2e)}

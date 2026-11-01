@@ -11,19 +11,24 @@ export const RELATION_STYLES = freeze({
   'special-drishti': freeze({ color: '#6c4967', dash: '7 3 2 3', glyph: '⇒', label: 'Special dṛṣṭi', angle: '' }),
 });
 const FALLBACK_STYLE = freeze({ color: '#4c5d55', dash: '2 4', glyph: '—', label: 'Relationship', angle: '' });
-export function relationPresentation(type) { return RELATION_STYLES[type] || FALLBACK_STYLE; }
+const RELATION_TOKENS = freeze({ conjunction: 'conjunction', sextile: 'sextile', square: 'square', trine: 'trine', opposition: 'opposition', 'mutual-reception': 'reception', 'full-drishti': 'drishti', 'special-drishti': 'opposition' });
+const PRESENTATION_STYLES = freeze(Object.fromEntries(Object.entries(RELATION_STYLES).map(([type, style]) => [type, freeze({ ...style, color: `var(--chart-aspect-${RELATION_TOKENS[type]}, ${style.color})` })])));
+const FALLBACK_PRESENTATION = freeze({ ...FALLBACK_STYLE, color: `var(--chart-muted, ${FALLBACK_STYLE.color})` });
+/** Paint tokens inherit the theme; the SVG exporter resolves them to standalone literal colors. */
+export function relationPresentation(type) { return Object.hasOwn(PRESENTATION_STYLES, type) ? PRESENTATION_STYLES[type] : FALLBACK_PRESENTATION; }
 const RING_COLORS = freeze({
   'tropical-zodiac': '#285a6a', 'sidereal-zodiac': '#6c4967', nakshatra: '#725018', 'solar-terms': '#3a5f85',
   'western-regiomontanus': '#4c5d55', 'western-placidus': '#73503c', 'western-whole': '#555980', 'western-equal': '#3e6b63',
 });
 const RING_FALLBACKS = freeze(['#285a6a', '#6c4967', '#725018', '#3a5f85', '#4c5d55', '#73503c', '#555980', '#3e6b63']);
+const ringPaint = index => `var(--chart-ring-${index + 1}, ${RING_FALLBACKS[index]})`;
 /** Stable across filtering/reordering; callers still supply the explicit ring name. */
 export function calendarRingColor(id) {
-  if (typeof id !== 'string' || !id) return '#4c5d55';
-  if (Object.hasOwn(RING_COLORS, id)) return RING_COLORS[id];
+  if (typeof id !== 'string' || !id) return ringPaint(4);
+  if (Object.hasOwn(RING_COLORS, id)) return ringPaint(RING_FALLBACKS.indexOf(RING_COLORS[id]));
   let hash = 2166136261;
   for (const char of id.slice(0,4096)) hash = Math.imul(hash ^ char.codePointAt(0), 16777619) >>> 0;
-  return RING_FALLBACKS[hash % RING_FALLBACKS.length];
+  return ringPaint(hash % RING_FALLBACKS.length);
 }
 
 const SITE_ROOT = new URL('../../../', import.meta.url);
@@ -86,7 +91,7 @@ export function mountRelationshipInspector(host, options = {}) {
   }
   let config = { id: '', label: 'Relationships in this chart', compact: false, disabled: false, bodyId: null, ...options };
   let model = normalizeModel(config.model), destroyed = false, methodId = model.methods.find(m => m.id === 'geometry')?.id || model.methods[0]?.id || '';
-  let typeFilter = 'all', scope = config.bodyId ? 'selected' : 'all', selectedId = null, previewId = null, page = 0, leaveTimer = null, focusGuard = false, pendingFocusId = null;
+  let typeFilter = 'all', scope = config.bodyId ? 'selected' : 'all', phaseFilter = 'all', sortOrder = 'chart', selectedId = null, previewId = null, page = 0, leaveTimer = null, focusGuard = false, pendingFocusId = null;
   let returnAnchor = null, lastHighlight = '', transientStatus = '', stateVersion = 0;
   const uid = `chart-relations-${++serial}`;
   const node = (tag, value, className) => { const n = doc.createElement(tag); if (value != null) n.textContent = value; if (className) n.className = className; return n; };
@@ -98,6 +103,12 @@ export function mountRelationshipInspector(host, options = {}) {
   const controls = node('div', null, 'cr-controls');
   const selectField = (label, className) => { const field = node('label', label, 'cr-field ' + className + '-field'), input = node('select', null, className); field.append(input); controls.append(field); return input; };
   const methodSelect = selectField('Rule or convention', 'cr-method'), typeSelect = selectField('Relationship type', 'cr-type'), scopeSelect = selectField('Body scope', 'cr-scope');
+  const phaseSelect = selectField('Motion phase', 'cr-phase'), sortSelect = selectField('Order', 'cr-sort');
+  for (const [value, label] of [['all', 'All phases'], ['applying', 'Applying'], ['separating', 'Separating'], ['exact', 'Exact'], ['other', 'Other / not applicable']]) { const option = node('option', label); option.value = value; phaseSelect.append(option); }
+  for (const [value, label] of [['chart', 'Chart order'], ['orb', 'Closest to exact'], ['body', 'Body names']]) { const option = node('option', label); option.value = value; sortSelect.append(option); }
+  const filterBar = node('div', null, 'cr-filter-bar'), filterSummary = node('p', '', 'cr-filter-summary'), resetFilters = button('Reset filters', 'cr-reset-filters'); filterBar.append(filterSummary, resetFilters);
+  const pairNav = node('nav', null, 'cr-pair-nav'), pairPrevious = button('← Previous pair', 'cr-pair-prev'), pairNext = button('Next pair →', 'cr-pair-next'), pairPosition = node('span', '', 'cr-pair-position');
+  pairNav.setAttribute('aria-label', 'Step through filtered relationships'); pairNav.append(pairPrevious, pairPosition, pairNext);
   const methodNote = node('p', '', 'cr-method-note'), legend = node('ul', null, 'cr-legend'); legend.setAttribute('aria-label', 'Relationship colors and line patterns');
   const content = node('div', null, 'cr-content'), results = node('div', null, 'cr-results');
   const list = node('ul', null, 'cr-list'); list.setAttribute('aria-label', 'Available relationships');
@@ -111,19 +122,25 @@ export function mountRelationshipInspector(host, options = {}) {
   detail.append(detailHead, detailState, summary, facts, workings); content.append(results, detail);
   const availability = node('details', null, 'cr-availability'), availabilitySummary = node('summary', 'Method availability & limits'), availabilityBody = node('div'); availability.append(availabilitySummary, availabilityBody);
   const status = node('p', '', 'cr-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
-  root.append(heading, intro, controls, methodNote, legend, content, availability, status); host.append(root);
+  root.append(heading, intro, controls, filterBar, methodNote, legend, pairNav, content, availability, status); host.append(root);
 
   const currentMethod = () => model.methods.find(m => m.id === methodId);
   const byId = id => model.relations.find(r => r.id === id);
   const methodRows = () => currentMethod()?.available ? model.relations.filter(r => r.methodId === methodId) : [];
-  const filteredRows = () => methodRows().filter(r => (typeFilter === 'all' || r.type === typeFilter) && (scope !== 'selected' || !config.bodyId || r.bodyIds.includes(config.bodyId)));
+  const bodyLabel = id => model.bodies.find(b => b.id === id)?.label || id;
+  const filteredRows = () => {
+    const rows = methodRows().filter(r => (typeFilter === 'all' || r.type === typeFilter) && (scope !== 'selected' || !config.bodyId || r.bodyIds.includes(config.bodyId)) && (phaseFilter === 'all' || (phaseFilter === 'other' ? !['applying', 'separating', 'exact'].includes(r.phase) : r.phase === phaseFilter)));
+    if (sortOrder === 'chart') return rows;
+    // Only supplied finite nonnegative orbs are ordered by closeness. Missing values stay last.
+    return rows.map((relation, index) => ({ relation, index, orb: Number.isFinite(relation.orbDegrees) && relation.orbDegrees >= 0 ? relation.orbDegrees : Infinity, bodies: relation.bodyIds.map(bodyLabel).sort().join(' · ') }))
+      .sort((a, b) => (sortOrder === 'orb' ? (a.orb === b.orb ? 0 : a.orb < b.orb ? -1 : 1) : a.bodies.localeCompare(b.bodies, 'en')) || a.index - b.index).map(item => item.relation);
+  };
   const activeRelation = () => byId(selectedId || previewId);
   const fmt = value => Number.isFinite(value) ? `${value.toFixed(3)}°` : null;
-  const bodyLabel = id => model.bodies.find(b => b.id === id)?.label || id;
   function stopLeave() { if (leaveTimer !== null) win.clearTimeout(leaveTimer); leaveTimer = null; }
   function getState() {
     const relations = config.disabled ? [] : filteredRows();
-    return { methodId, typeFilter, scope, bodyId: config.bodyId, relations: relations.map(r => ({ ...r, bodyIds: [...r.bodyIds] })), visibleRelationIds: relations.map(r => r.id), selectedId, previewId, disabled: !!config.disabled };
+    return { methodId, typeFilter, scope, phaseFilter, sortOrder, bodyId: config.bodyId, relations: relations.map(r => ({ ...r, bodyIds: [...r.bodyIds] })), visibleRelationIds: relations.map(r => r.id), selectedId, previewId, disabled: !!config.disabled };
   }
   function emitView() { if (!destroyed) (config.onViewChange || config.onChange)?.(getState()); }
   function emitHighlight(force = false) {
@@ -143,6 +160,10 @@ export function mountRelationshipInspector(host, options = {}) {
   }
   function renderDetail() {
     const relation = activeRelation();
+    const rows = filteredRows(), activeIndex = relation ? rows.findIndex(r => r.id === relation.id) : -1;
+    pairPrevious.disabled = !!config.disabled || activeIndex <= 0;
+    pairNext.disabled = !!config.disabled || !rows.length || activeIndex >= rows.length - 1;
+    pairPosition.textContent = activeIndex >= 0 ? `${selectedId ? 'Pinned' : 'Preview'} ${activeIndex + 1} of ${rows.length}` : rows.length ? 'Choose a pair' : 'No pairs';
     detail.hidden = !relation; clearButton.disabled = !!config.disabled || !relation;
     for (const entry of list.querySelectorAll('.cr-entry')) {
       const chosen = entry.dataset.relationId === selectedId, previewed = !selectedId && entry.dataset.relationId === previewId;
@@ -170,12 +191,16 @@ export function mountRelationshipInspector(host, options = {}) {
     typeSelect.replaceChildren(...['all', ...types].map(type => { const option = node('option', type === 'all' ? 'All types' : relationPresentation(type).label); option.value = type; return option; })); typeSelect.value = typeFilter;
     scopeSelect.replaceChildren(...(config.bodyId ? [['selected', bodyLabel(config.bodyId)], ['all', 'All bodies']] : [['all', 'All bodies']]).map(([id,label]) => { const option = node('option', label); option.value = id; return option; }));
     if (!config.bodyId) scope = 'all'; scopeSelect.value = scope;
-    for (const input of [methodSelect,typeSelect,scopeSelect]) input.disabled = !!config.disabled || !model.methods.length;
+    if (!['all','applying','separating','exact','other'].includes(phaseFilter)) phaseFilter = 'all';
+    if (!['chart','orb','body'].includes(sortOrder)) sortOrder = 'chart';
+    phaseSelect.value = phaseFilter; sortSelect.value = sortOrder;
+    for (const input of [methodSelect,typeSelect,scopeSelect,phaseSelect,sortSelect]) input.disabled = !!config.disabled || !model.methods.length;
+    resetFilters.disabled = !!config.disabled || (typeFilter === 'all' && scope === 'all' && phaseFilter === 'all' && sortOrder === 'chart');
     scopeSelect.closest('label').hidden = !config.bodyId;
     const method = currentMethod(); methodNote.textContent = method?.available ? method.reason || method.frame || 'Relationships from the declared held calculation.' : method?.reason || 'No relationship method is available for this frame.';
-    legend.replaceChildren(...types.map(type => { const style = relationPresentation(type), li = node('li'); li.style.setProperty('--cr-relation-color', style.color); const swatch = node('span', style.glyph, 'cr-glyph'); swatch.setAttribute('aria-hidden','true');
+    legend.replaceChildren(...types.map(type => { const style = relationPresentation(type), li = node('li'), toggle = button('', 'cr-legend-filter'); li.style.setProperty('--cr-relation-color', style.color); toggle.dataset.relationType = type; toggle.setAttribute('aria-pressed', String(typeFilter === type)); toggle.setAttribute('aria-label', `${typeFilter === type ? 'Show all types; current filter' : 'Filter by'} ${style.label}`); toggle.disabled = !!config.disabled; const swatch = node('span', style.glyph, 'cr-glyph'); swatch.setAttribute('aria-hidden','true');
       const sample=doc.createElementNS('http://www.w3.org/2000/svg','svg'),line=doc.createElementNS('http://www.w3.org/2000/svg','line');sample.setAttribute('viewBox','0 0 26 10');sample.setAttribute('width','26');sample.setAttribute('height','10');sample.setAttribute('aria-hidden','true');sample.classList.add('cr-line-sample');for(const [key,value]of Object.entries({x1:1,y1:5,x2:25,y2:5,stroke:style.color,'stroke-width':2}))line.setAttribute(key,String(value));if(style.dash)line.setAttribute('stroke-dasharray',style.dash);sample.append(line);
-      li.append(swatch,sample,doc.createTextNode(style.label + (style.angle ? ' · '+style.angle : ''))); return li; }));
+      toggle.append(swatch,sample,node('span',style.label + (style.angle ? ' · '+style.angle : ''))); toggle.addEventListener('click',()=>{if(config.disabled||destroyed)return;typeFilter=typeFilter===type?'all':type;changeFilter();}); li.append(toggle); return li; }));
     availabilityBody.replaceChildren();
     for (const method of model.methods) { const p = node('p'); p.append(node('strong',method.label+' · '+(method.available?'available':'unavailable')),node('span',method.reason || method.frame)); availabilityBody.append(p); }
     if (model.limitations.length) { const ul=node('ul'); for(const limit of model.limitations)ul.append(node('li',limit)); availabilityBody.append(ul); }
@@ -201,7 +226,8 @@ export function mountRelationshipInspector(host, options = {}) {
   }
   function setSelection(id, { notify = true, anchor = null } = {}) {
     if (destroyed || config.disabled) return false;
-    const relation = filteredRows().find(r => r.id === id); if (!relation) return false;
+    const rows = filteredRows(), index = rows.findIndex(r => r.id === id), relation = rows[index]; if (!relation) return false;
+    if (page !== Math.floor(index / PAGE_SIZE)) { page = Math.floor(index / PAGE_SIZE); renderList(); }
     const version=++stateVersion; stopLeave(); selectedId = id; previewId = null; returnAnchor = anchor || [...list.querySelectorAll('.cr-entry')].find(e => e.dataset.relationId === id) || returnAnchor;
     transientStatus = `Selected ${relation.label}.`; renderDetail(); status.textContent = transientStatus; emitView(); emitHighlight(true);
     if (!destroyed && version===stateVersion && notify) config.onSelect?.({ ...relation, bodyIds: [...relation.bodyIds] }); return !destroyed;
@@ -224,8 +250,10 @@ export function mountRelationshipInspector(host, options = {}) {
       entry.addEventListener('focus',()=>preview(relation.id,entry));entry.addEventListener('blur',scheduleClear);
       entry.addEventListener('click',()=>{if(selectedId===relation.id)clear();else setSelection(relation.id,{anchor:entry});});li.append(entry);return li;
     }));
-    count.textContent = `${rows.length} ${rows.length===1?'relationship':'relationships'}`;
-    empty.hidden = !!rows.length;empty.textContent = !currentMethod()?.available ? currentMethod()?.reason || 'No supported method is available.' : typeFilter!=='all'||scope==='selected' ? 'No relationship matches this type and body scope at the held instant. Change a filter to inspect the available set.' : 'No relationship satisfies this method at the held instant.';
+    const available = methodRows().length, activeFilters = [typeFilter !== 'all', scope === 'selected', phaseFilter !== 'all'].filter(Boolean).length;
+    count.textContent = `${rows.length} of ${available} ${available===1?'relationship':'relationships'}`;
+    filterSummary.textContent = `${activeFilters ? `${activeFilters} active ${activeFilters === 1 ? 'filter' : 'filters'}` : 'All relationships'} · ${sortOrder === 'orb' ? 'Supplied orb, nearest first; unknown last' : sortOrder === 'body' ? 'Body names, A–Z' : 'Original chart order'}.`;
+    empty.hidden = !!rows.length;empty.textContent = !currentMethod()?.available ? currentMethod()?.reason || 'No supported method is available.' : activeFilters ? 'No relationship matches these filters at the held instant. Reset filters to inspect the available set.' : 'No relationship satisfies this method at the held instant.';
     pager.hidden = rows.length <= PAGE_SIZE; pageLabel.textContent = rows.length ? `${page*PAGE_SIZE+1}–${Math.min((page+1)*PAGE_SIZE,rows.length)} of ${rows.length}` : '0'; previous.disabled=!!config.disabled||page===0;next.disabled=!!config.disabled||page>=pages-1;
     const focusId=activeId||(!config.disabled&&doc.activeElement===doc.body?pendingFocusId:null);
     if (config.disabled&&activeId) pendingFocusId=activeId;
@@ -238,12 +266,32 @@ export function mountRelationshipInspector(host, options = {}) {
     renderList();renderDetail();status.textContent=config.disabled?'Previous frame retained. Update the parent chart to inspect relationships.':transientStatus;
   }
   function changeFilter() {stateVersion++;stopLeave();page=0;transientStatus='';renderAll();emitView();emitHighlight(true);}
-  methodSelect.addEventListener('change',()=>{if(config.disabled||destroyed)return;methodId=methodSelect.value;typeFilter='all';changeFilter();});
+  methodSelect.addEventListener('change',()=>{if(config.disabled||destroyed)return;methodId=methodSelect.value;typeFilter=phaseFilter='all';changeFilter();});
   typeSelect.addEventListener('change',()=>{if(config.disabled||destroyed)return;typeFilter=typeSelect.value;changeFilter();});scopeSelect.addEventListener('change',()=>{if(config.disabled||destroyed)return;scope=scopeSelect.value;changeFilter();});
+  phaseSelect.addEventListener('change',()=>{if(config.disabled||destroyed)return;phaseFilter=phaseSelect.value;changeFilter();});
+  sortSelect.addEventListener('change',()=>{if(config.disabled||destroyed)return;sortOrder=sortSelect.value;changeFilter();});
+  resetFilters.addEventListener('click',()=>{if(config.disabled||destroyed)return;typeFilter=phaseFilter=scope='all';sortOrder='chart';changeFilter();});
+  function stepPair(direction) {
+    if (config.disabled || destroyed) return;
+    const rows = filteredRows(), index = rows.findIndex(r => r.id === (selectedId || previewId)), target = index + direction;
+    if (target < 0 || target >= rows.length) return;
+    setSelection(rows[target].id);
+  }
+  pairPrevious.addEventListener('click',()=>stepPair(-1)); pairNext.addEventListener('click',()=>stepPair(1));
   previous.addEventListener('click',()=>{if(config.disabled||destroyed)return;page--;clearPreview();renderList();renderDetail();});next.addEventListener('click',()=>{if(config.disabled||destroyed)return;page++;clearPreview();renderList();renderDetail();});
   clearButton.addEventListener('click',()=>clear({restoreFocus:true}));
   detail.id=uid+'-detail';detail.addEventListener('pointerenter',stopLeave);detail.addEventListener('pointerleave',scheduleClear);detail.addEventListener('focusout',scheduleClear);
-  root.addEventListener('keydown',event=>{if(event.key==='Escape'&&(selectedId||previewId)){event.preventDefault();event.stopPropagation();clear({restoreFocus:true});}});
+  root.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&(selectedId||previewId)){event.preventDefault();event.stopPropagation();clear({restoreFocus:true});return;}
+    const entry=event.target.closest?.('.cr-entry');
+    if(config.disabled||destroyed||!entry||!['ArrowUp','ArrowDown','Home','End'].includes(event.key)||event.altKey||event.ctrlKey||event.metaKey)return;
+    const rows=filteredRows(), index=rows.findIndex(r=>r.id===entry.dataset.relationId);
+    if(index<0)return;
+    event.preventDefault();
+    const target=event.key==='Home'?0:event.key==='End'?rows.length-1:Math.max(0,Math.min(rows.length-1,index+(event.key==='ArrowUp'?-1:1)));
+    page=Math.floor(target/PAGE_SIZE);renderList();renderDetail();
+    const nextEntry=[...list.querySelectorAll('.cr-entry')].find(e=>e.dataset.relationId===rows[target].id);nextEntry?.focus({preventScroll:true});nextEntry?.scrollIntoView({block:'nearest'});
+  });
   renderAll();emitView();emitHighlight();
   return {
     getState, setSelection, preview, clearPreview, clear,

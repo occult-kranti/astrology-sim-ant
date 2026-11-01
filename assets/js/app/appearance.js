@@ -3,7 +3,7 @@
 const KEY = 'wb:appearance:v1';
 const THEMES = Object.freeze([
   { id: 'parchment', name: 'Parchment', detail: 'Warm paper · copper ink' },
-  { id: 'midnight', name: 'Midnight', detail: 'Dark slate · warm starlight' },
+  { id: 'midnight', name: 'Black', detail: 'True black · luminous charts' },
   { id: 'mineral', name: 'Mineral', detail: 'Cool paper · blue ink' },
 ]);
 const valid = theme => THEMES.some(item => item.id === theme);
@@ -50,14 +50,14 @@ export function initAppearance(options = {}) {
   }
 
   function apply(theme) {
-    const selected = valid(theme) ? theme : 'parchment';
+    const selected = valid(theme) ? theme : 'midnight';
     document.documentElement.dataset.uiTheme = selected;
     for (const button of list.querySelectorAll('[data-appearance-theme]')) {
       button.setAttribute('aria-pressed', String(button.dataset.appearanceTheme === selected));
     }
     trigger.title = `Appearance · ${THEMES.find(item => item.id === selected).name}`;
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = selected === 'midnight' ? '#161e26' : selected === 'mineral' ? '#eef3f5' : '#f7f5ee';
+    if (meta) meta.content = selected === 'midnight' ? '#000000' : selected === 'mineral' ? '#eef3f5' : '#f7f5ee';
   }
   apply(document.documentElement.dataset.uiTheme);
 
@@ -87,7 +87,7 @@ export function initAppearance(options = {}) {
   });
   window.addEventListener('storage', event => {
     if (event.key !== KEY) return;
-    if (event.newValue === null) { apply('parchment'); return; }
+    if (event.newValue === null) { apply('midnight'); return; }
     try { const value = JSON.parse(event.newValue); if (value && valid(value.theme)) apply(value.theme); }
     catch { /* Ignore malformed records from another tab. */ }
   });

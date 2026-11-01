@@ -274,7 +274,7 @@ function freezeSVGPaint(source, clone) {
     }
     for (const attribute of Array.from(target.attributes)) {
       if (/^on/i.test(attribute.name)) target.removeAttribute(attribute.name);
-      else if (attribute.name !== 'style' && /var\s*\(/i.test(attribute.value)) {
+      else if (SVG_PAINT_PROPERTIES.includes(attribute.name) && /var\s*\(/i.test(attribute.value)) {
         const value = paint.getPropertyValue(attribute.name);
         if (!value || /var\s*\(/i.test(value)) throw new Error(`Cannot resolve SVG paint: ${attribute.name}`);
         target.setAttribute(attribute.name, value);

@@ -132,6 +132,10 @@ jobs:
           PUPPETEER_PKG: node_modules/puppeteer-core/lib/esm/puppeteer/puppeteer-core.js
         run: |
           CHROME_PATH="$(node --input-type=module -e "import { chromium } from 'playwright'; process.stdout.write(chromium.executablePath())")" node scripts/browser-site-design.mjs
+      - name: Black chart paints, relationship controls and standalone SVGs
+        env:
+          BLACK_CHART_OUTPUT: test-results/black-charts
+        run: node scripts/browser-black-charts.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962

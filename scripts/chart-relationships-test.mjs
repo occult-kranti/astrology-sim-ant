@@ -4,7 +4,7 @@ import { pathToFileURL } from 'node:url';
 import { buildChartRelationshipModel, CHART_RELATIONSHIP_LIMITS } from '../assets/js/core/chart-relationships.js';
 import { buildSkySnapshot } from '../assets/js/core/sky-dynamics.js';
 import { buildCalendarTimelineFrame } from '../assets/js/core/calendar-timeline.js';
-import { relationPresentation, calendarRingColor } from '../assets/js/app/chart-relationships.js';
+import { RELATION_STYLES, relationPresentation, calendarRingColor } from '../assets/js/app/chart-relationships.js';
 
 const ids = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
 const angles = { conjunction: 0, sextile: 60, square: 90, trine: 120, opposition: 180 };
@@ -113,7 +113,8 @@ export async function run() {
     assert.ok(result.relations.every(r=>r.sourceIds.every(id=>result.sources.some(s=>s.id===id))));
   });
   check('Visual identities have labels and distinct line patterns; calendar colors do not depend on ordering', () => {
-    const styles=Object.keys(angles).map(relationPresentation); assert.equal(new Set(styles.map(s=>s.dash)).size,5); assert.ok(styles.every(s=>s.label&&s.glyph&&/^#[0-9a-f]{6}$/i.test(s.color)));
+    const styles=Object.keys(angles).map(relationPresentation); assert.equal(new Set(styles.map(s=>s.dash)).size,5); assert.ok(styles.every(s=>s.label&&s.glyph&&/^var\(--chart-aspect-[a-z]+, #[0-9a-f]{6}\)$/i.test(s.color)));
+    assert.ok(Object.values(RELATION_STYLES).every(s=>/^#[0-9a-f]{6}$/i.test(s.color)));
     const rings=['tropical-zodiac','sidereal-zodiac','nakshatra','solar-terms','western-whole'];const expected=rings.map(calendarRingColor); assert.deepEqual(rings.toReversed().map(calendarRingColor).reverse(),expected); assert.notEqual(expected[0],expected[1]);
   });
   return { count, syntheticCases, failures, pass: failures.length===0 };

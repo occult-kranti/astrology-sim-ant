@@ -1,6 +1,6 @@
 /* The reading desk has three deliberate palettes. All status hues keep their
    named meanings; a theme is presentation, never a recalculated judgement. */
-:root, html[data-ui-theme="parchment"] {
+html[data-ui-theme="parchment"] {
   color-scheme: light;
   --ui-canvas: #f7f5ee; --ui-surface: #fffefa; --ui-surface-2: #eeeee5;
   --ui-ink: #25332f; --ui-muted: #55625b; --ui-border: #cbd0c3;
@@ -13,18 +13,18 @@
   --ui-night: #192a23; --ui-night-2: #263c31;
   --ui-shadow: 0 18px 60px #25332f29;
 }
-html[data-ui-theme="midnight"] {
+:root, html[data-ui-theme="midnight"] {
   color-scheme: dark;
-  --ui-canvas: #111820; --ui-surface: #1a242e; --ui-surface-2: #23313b;
-  --ui-ink: #e9eee8; --ui-muted: #b4c2bc; --ui-border: #4b5e68;
-  --ui-accent: #efbd87; --ui-accent-ink: #f7c998; --ui-accent-wash: #3c3028;
-  --ui-action: #d6c59c; --ui-on-action: #17231e; --ui-focus: #82cce6;
-  --ui-success: #a4dab5; --ui-success-wash: #213d31;
-  --ui-warning: #f1d397; --ui-warning-wash: #403722;
-  --ui-danger: #ffb7a7; --ui-danger-wash: #482d2b;
-  --ui-info: #b4d7fa; --ui-info-wash: #243b51;
-  --ui-night: #0c131b; --ui-night-2: #192633;
-  --ui-shadow: 0 18px 60px #0009;
+  --ui-canvas: #000000; --ui-surface: #080808; --ui-surface-2: #101010;
+  --ui-ink: #f0f1f4; --ui-muted: #b2b6be; --ui-border: #626262;
+  --ui-accent: #f3cc83; --ui-accent-ink: #f5d69e; --ui-accent-wash: #211a10;
+  --ui-action: #efd7a8; --ui-on-action: #080808; --ui-focus: #8fddff;
+  --ui-success: #8ce2b4; --ui-success-wash: #10231a;
+  --ui-warning: #f5cc7f; --ui-warning-wash: #281e0d;
+  --ui-danger: #ffab9e; --ui-danger-wash: #2c1412;
+  --ui-info: #9ed4ff; --ui-info-wash: #101f2b;
+  --ui-night: #000000; --ui-night-2: #080808;
+  --ui-shadow: 0 20px 64px #000d;
 }
 html[data-ui-theme="mineral"] {
   color-scheme: light;
@@ -38,6 +38,71 @@ html[data-ui-theme="mineral"] {
   --ui-info: #265e88; --ui-info-wash: #dfeef7;
   --ui-night: #172c39; --ui-night-2: #244152;
   --ui-shadow: 0 18px 60px #23394429;
+}
+
+/* Chart paints identify bodies, methods and geometry. They carry no outcome
+   ranking. Light palettes retain the original engraved-paper vocabulary. */
+html[data-ui-theme="parchment"], html[data-ui-theme="mineral"] {
+  --chart-bg: #f6f1e7; --chart-surface: #fffdf6; --chart-sector-fill: #eee7d9;
+  --chart-ink: #263b36; --chart-muted: #56615b; --chart-grid: #c8c5b6;
+  --chart-line: #c8c5b6; --chart-strong: #8a6a2a; --chart-accent: #9a482e;
+  --chart-selection: #263b36; --chart-selection-fill: #f6f1e7;
+  --chart-star: #56615b; --chart-focus: #246a8b;
+  --chart-body-sun: #9a482e; --chart-body-moon: #263b36;
+  --chart-body-mercury: #566f76; --chart-body-venus: #76586c;
+  --chart-body-mars: #a04434; --chart-body-jupiter: #776123;
+  --chart-body-saturn: #385e51; --chart-body-uranus: #3c6b78;
+  --chart-body-neptune: #5b608b; --chart-body-pluto: #795d48;
+  --chart-body-rahu: #725018; --chart-body-ketu: #6c4967; --chart-body-earth: #385e51;
+  --chart-aspect-conjunction: #285a6a; --chart-aspect-sextile: #4c5d55;
+  --chart-aspect-square: #725018; --chart-aspect-trine: #3a5f85;
+  --chart-aspect-opposition: #6c4967; --chart-aspect-reception: #73503c;
+  --chart-aspect-drishti: #285a6a;
+  --chart-ring-1: #285a6a; --chart-ring-2: #6c4967; --chart-ring-3: #725018;
+  --chart-ring-4: #3a5f85; --chart-ring-5: #4c5d55; --chart-ring-6: #73503c;
+  --chart-ring-7: #555980; --chart-ring-8: #3e6b63;
+  --chart-record-claim: #315d50; --chart-record-source: #8b543a;
+  --chart-record-person: #5d617e; --chart-record-tradition: #776e39; --chart-record-entity: #506f74;
+}
+:root, html[data-ui-theme="midnight"] {
+  --chart-bg: #000000; --chart-surface: #080808; --chart-sector-fill: #101010;
+  --chart-ink: #eef2f8; --chart-muted: #afb8c7; --chart-grid: #62656d;
+  --chart-line: #62656d; --chart-strong: #aeb7c6; --chart-accent: #f3cc83;
+  --chart-selection: #ffffff; --chart-selection-fill: #171717;
+  --chart-star: #c8d3e8; --chart-focus: #8fddff;
+  --chart-body-sun: #f9cf66; --chart-body-moon: #e5ebf7;
+  --chart-body-mercury: #68e0d2; --chart-body-venus: #f2a6d5;
+  --chart-body-mars: #ff8479; --chart-body-jupiter: #d8bcff;
+  --chart-body-saturn: #d8bd8c; --chart-body-uranus: #82d9ff;
+  --chart-body-neptune: #9ca9ff; --chart-body-pluto: #daa4ff;
+  --chart-body-rahu: #a2e5a0; --chart-body-ketu: #ffb47f; --chart-body-earth: #9bdc92;
+  --chart-aspect-conjunction: #6dd7f2; --chart-aspect-sextile: #7be3bd;
+  --chart-aspect-square: #ffbd6c; --chart-aspect-trine: #79b7ff;
+  --chart-aspect-opposition: #f497d0; --chart-aspect-reception: #d4b0ff;
+  --chart-aspect-drishti: #9de0e8;
+  --chart-ring-1: #6dd7f2; --chart-ring-2: #f497d0; --chart-ring-3: #ffbd6c;
+  --chart-ring-4: #79b7ff; --chart-ring-5: #7be3bd; --chart-ring-6: #efc391;
+  --chart-ring-7: #d4b0ff; --chart-ring-8: #9de0e8;
+  --chart-record-claim: #7be3bd; --chart-record-source: #ffbd6c;
+  --chart-record-person: #b6acff; --chart-record-tradition: #ecd578; --chart-record-entity: #6dd7f2;
+}
+/* The validated bootstrap applies before CSS, so even the first body paint
+   uses the selected canvas while the calculation modules are loading. */
+html { background: var(--ui-canvas); color: var(--ui-ink); }
+body { background: var(--ui-canvas); color: var(--ui-ink); }
+html[data-ui-theme="midnight"] :is(h1,h2,h3,h4) { color: var(--ui-ink); }
+html[data-ui-theme="midnight"] body.observatory-shell {
+  --dg-fill: var(--chart-bg); --dg-fill-2: var(--chart-sector-fill);
+  --dg-frame: var(--chart-line); --dg-grid: var(--chart-grid);
+  --dg-strong: var(--chart-strong); --dg-label: var(--chart-muted);
+  --dg-ink: var(--chart-ink); --dg-tick: var(--chart-line);
+  --dg-sel: var(--chart-selection); --dg-hot: var(--chart-accent);
+  --sky-disc: #000000; --sky-lit: #f0f1f4; --sky-halo: #f3cc8333;
+  --sky-star: var(--chart-star); --lum: var(--chart-body-sun);
+  --benefic: #8ce2b4; --malefic: #ffab9e; --neutral: #c6b3f3;
+  --asp-conj: var(--chart-aspect-conjunction);
+  --fire: #ff8978; --earth: #aed77e; --air: #88d5ff; --water: #aaaaff;
+  --gold: #f3cc83; --gold-2: #f9dfaf;
 }
 
 /* Explicit legacy aliases are required because the older shell and each
@@ -95,9 +160,11 @@ html[data-ui-theme] .observatory-shell :is(.home-context,.callout,.acc,.mp,.home
 html[data-ui-theme] .observatory-shell :is(.nav-menu,.cmdk-panel,.action-bar,.ob-mobile-nav,.results-rail,.workrail) { background: var(--ui-surface); color: var(--ui-ink); border-color: var(--ui-border); }
 html[data-ui-theme] .observatory-shell :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),select,textarea) { background-color: var(--ui-surface); color: var(--ui-ink); border-color: var(--ui-border); }
 html[data-ui-theme] .observatory-shell :is(.atlas-primary,.ob-header-compare) { background: var(--ui-action); color: var(--ui-on-action); border-color: var(--ui-action); }
+html[data-ui-theme="midnight"] .calendar-atlas .sky-toolbar #sky-overlay[aria-expanded="true"] { background: var(--ui-action); color: var(--ui-on-action); border-color: var(--ui-action); }
 html[data-ui-theme] .observatory-shell button[type="submit"]:not(.ghost) { background: var(--ui-action); color: var(--ui-on-action); border-color: var(--ui-action); }
 html[data-ui-theme] .observatory-shell button[type="submit"]:not(.ghost):hover:not(:disabled) { background: var(--ui-action); color: var(--ui-on-action); box-shadow: 0 0 0 3px var(--ui-accent-wash); }
 html[data-ui-theme] .observatory-shell :is(.atlas-secondary,.atlas-row-select,.sky-legend-button,.sky-position,.atlas-tabs button[aria-selected="true"]) { color: var(--ui-accent-ink); }
+html[data-ui-theme="midnight"] .calendar-atlas .sky-legend-button[aria-pressed="true"] { background: var(--chart-selection-fill); color: var(--ui-ink); }
 html[data-ui-theme] .observatory-shell :is(.atlas-matrix thead th,.atlas-reading pre,.sky-sampling-warning,.sky-ring-controls label:hover,.atlas-share-output) { background-color: var(--ui-surface-2); color: var(--ui-ink); }
 html[data-ui-theme] .observatory-shell :is(.sky-caption,.sky-printed-moment,.sky-inspector dt,.sky-reading-lens dt,.sky-reading-heading legend) { color: var(--ui-muted); }
 html[data-ui-theme] #sky-relationships .chart-relations { background: var(--ui-surface); }
@@ -107,18 +174,23 @@ html[data-ui-theme] .chart-relations { --cr-paper: var(--ui-surface); --cr-ink: 
 html[data-ui-theme] .chart-relations :is(button,.cr-detail,.cr-empty) { background: var(--ui-surface); color: var(--ui-ink); }
 html[data-ui-theme] .chart-relations button:hover:not(:disabled) { background: var(--ui-surface-2); }
 html[data-ui-theme] .chart-relations .cr-entry[aria-pressed="true"], html[data-ui-theme] .chart-relations .cr-entry.cr-previewed { background: var(--ui-accent-wash); }
-html[data-ui-theme="midnight"] .chart-relations :is(.cr-legend li,.cr-entry-glyph) { background: #f6f1e7; border-radius: 3px; padding: .15rem .3rem; }
+html[data-ui-theme="midnight"] .chart-relations :is(.cr-legend li,.cr-entry-glyph) { background: transparent; }
 html[data-ui-theme] .chart-relationship-frame-note { color: var(--ui-muted); }
+html[data-ui-theme] .ea-map-key .ea-key-claim { background: var(--chart-record-claim); }
+html[data-ui-theme] .ea-map-key .ea-key-document { background: var(--chart-record-source); }
+html[data-ui-theme] .ea-map-key .ea-key-person { background: var(--chart-record-person); }
+html[data-ui-theme] .ea-map-key .ea-key-tradition { background: var(--chart-record-tradition); }
+html[data-ui-theme] .ea-map-key .ea-key-reference { background: var(--chart-record-entity); }
 html[data-ui-theme] .date-nav :is(button,.date-nav-popover) { background: var(--ui-surface); color: var(--ui-ink); }
 html[data-ui-theme] .date-nav button:hover:not(:disabled) { background: var(--ui-surface-2); }
 html[data-ui-theme] .date-nav .date-nav-bookmark { background: var(--ui-action); border-color: var(--ui-action); color: var(--ui-on-action); }
 html[data-ui-theme] .date-nav .date-nav-selected, html[data-ui-theme] .date-nav .date-nav-list-item[aria-current="true"] { background: var(--dn-tint); }
-html[data-ui-theme="midnight"] .date-nav [data-kind] { --dn-kind: #cad5cb; --dn-tint: #27352f; }
+html[data-ui-theme="midnight"] .date-nav [data-kind] { --dn-kind: #cad2df; --dn-tint: #151515; }
 html[data-ui-theme="midnight"] .date-nav :is([data-kind="traditional-favorable"],[data-kind="historical-peace"]) { --dn-kind: var(--ui-success); --dn-tint: var(--ui-success-wash); }
 html[data-ui-theme="midnight"] .date-nav [data-kind="historical-conflict"] { --dn-kind: var(--ui-danger); --dn-tint: var(--ui-danger-wash); }
 html[data-ui-theme="midnight"] .date-nav :is([data-kind="traditional-caution"],[data-kind="observance"],[data-kind="mixed"]) { --dn-kind: var(--ui-warning); --dn-tint: var(--ui-warning-wash); }
 html[data-ui-theme="midnight"] .date-nav [data-kind="astronomy"] { --dn-kind: var(--ui-info); --dn-tint: var(--ui-info-wash); }
-html[data-ui-theme="midnight"] .date-nav [data-kind="source-claim"] { --dn-kind: #ddbbde; --dn-tint: #3a2d40; }
+html[data-ui-theme="midnight"] .date-nav [data-kind="source-claim"] { --dn-kind: #ddbbef; --dn-tint: #241729; }
 html[data-ui-theme="midnight"] .date-nav [data-kind="unavailable"] { --dn-kind: var(--ui-muted); --dn-tint: var(--ui-surface-2); }
 
 html[data-ui-theme] .observatory-shell :is(.ct-instrument,.ch-selection,.cr-timeline,.cr-clock-control,.cr-calendar-lane,.we-controls,.we-empty,.we-pair-grid fieldset,.standards-output) { background-color: var(--ui-surface); }
@@ -140,7 +212,7 @@ html[data-ui-theme] .observatory-shell :is(.field label,legend) { color: var(--u
 .appearance-trigger:hover { background: var(--ui-surface-2); border-color: var(--ui-accent); }
 .appearance-trigger:focus-visible,.appearance-dialog :focus-visible { outline: 3px solid var(--ui-focus); outline-offset: 3px; }
 .appearance-dialog { color: var(--ui-ink); background: var(--ui-surface); border: 1px solid var(--ui-border); border-radius: 12px; box-shadow: var(--ui-shadow); width: min(520px,calc(100% - 2rem)); max-height: calc(100dvh - 2rem); padding: clamp(1.15rem,4vw,2rem); overflow: auto; }
-.appearance-dialog::backdrop { background: #0c182799; }
+.appearance-dialog::backdrop { background: #000b; }
 .appearance-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; }
 .appearance-dialog .appearance-kicker { color: var(--ui-accent); font: 700 .64rem/1.5 var(--sans,system-ui,sans-serif); letter-spacing: .15em; margin: 0 0 .45rem; }
 .appearance-dialog h2 { color: var(--ui-ink); border: 0; padding: 0; margin: 0; font: 500 clamp(1.6rem,4vw,2.1rem)/1.15 var(--serif,Georgia,serif); letter-spacing: -.025em; }
@@ -157,12 +229,53 @@ html[data-ui-theme] .observatory-shell :is(.field label,legend) { color: var(--u
 .appearance-option[aria-pressed="true"] .appearance-selected { visibility: visible; }
 .appearance-sample { display: flex; align-items: end; gap: 3px; padding: 9px; width: 60px; height: 48px; flex: 0 0 60px; border: 1px solid #75817d; border-radius: 4px; background: #f7f5ee; }
 .appearance-sample i { width: 11px; background: #91472f; height: 23px; }.appearance-sample i:nth-child(2) { height: 16px; background: #2e4940; }.appearance-sample i:nth-child(3) { height: 28px; background: #8a692d; }
-.appearance-sample[data-sample="midnight"] { background: #111820; }.appearance-sample[data-sample="midnight"] i { background: #efbd87; }.appearance-sample[data-sample="midnight"] i:nth-child(2) { background: #a4dab5; }.appearance-sample[data-sample="midnight"] i:nth-child(3) { background: #b4d7fa; }
+.appearance-sample[data-sample="midnight"] { background: #000000; }.appearance-sample[data-sample="midnight"] i { background: #f9cf66; }.appearance-sample[data-sample="midnight"] i:nth-child(2) { background: #7be3bd; }.appearance-sample[data-sample="midnight"] i:nth-child(3) { background: #f497d0; }
 .appearance-sample[data-sample="mineral"] { background: #eef3f5; }.appearance-sample[data-sample="mineral"] i { background: #285f7e; }.appearance-sample[data-sample="mineral"] i:nth-child(2) { background: #286044; }.appearance-sample[data-sample="mineral"] i:nth-child(3) { background: #815511; }
 .appearance-dialog .appearance-note { min-height: 2.8em; margin-block-end: 0; font-size: .76rem; }
 @media(max-width:880px) { .appearance-trigger span { display: none; }.appearance-trigger { padding: 0; width: 44px; flex: 0 0 44px; }.appearance-trigger svg { width: 21px; height: 21px; } }
-@media(forced-colors:active) { .appearance-trigger,.appearance-dialog,.appearance-close,.appearance-option,.appearance-sample { border-color: CanvasText; }.appearance-option[aria-pressed="true"] { border-color: Highlight; }.appearance-sample i { background: CanvasText; } html[data-ui-theme] .date-nav [data-kind] { --dn-kind: CanvasText; --dn-tint: Canvas; } html[data-ui-theme] .chart-relations { --cr-paper: Canvas; --cr-ink: CanvasText; --cr-muted: CanvasText; --cr-rule: CanvasText; --cr-action: Highlight; } }
+@media(forced-colors:active) {
+  .appearance-trigger,.appearance-dialog,.appearance-close,.appearance-option,.appearance-sample { border-color: CanvasText; }
+  .appearance-option[aria-pressed="true"] { border-color: Highlight; }
+  .appearance-sample i { background: CanvasText; }
+  html[data-ui-theme] {
+    --chart-bg: Canvas; --chart-surface: Canvas; --chart-sector-fill: Canvas;
+    --chart-ink: CanvasText; --chart-muted: CanvasText; --chart-grid: GrayText;
+    --chart-line: GrayText; --chart-strong: CanvasText; --chart-accent: LinkText;
+    --chart-selection: Highlight; --chart-selection-fill: Canvas; --chart-star: CanvasText; --chart-focus: Highlight;
+    --chart-body-sun: CanvasText; --chart-body-moon: CanvasText; --chart-body-mercury: CanvasText;
+    --chart-body-venus: CanvasText; --chart-body-mars: CanvasText; --chart-body-jupiter: CanvasText;
+    --chart-body-saturn: CanvasText; --chart-body-uranus: CanvasText; --chart-body-neptune: CanvasText;
+    --chart-body-pluto: CanvasText; --chart-body-earth: CanvasText; --chart-body-rahu: CanvasText; --chart-body-ketu: CanvasText;
+    --chart-aspect-conjunction: CanvasText; --chart-aspect-sextile: CanvasText; --chart-aspect-square: CanvasText;
+    --chart-aspect-trine: CanvasText; --chart-aspect-opposition: CanvasText; --chart-aspect-reception: CanvasText; --chart-aspect-drishti: CanvasText;
+    --chart-ring-1: CanvasText; --chart-ring-2: CanvasText; --chart-ring-3: CanvasText; --chart-ring-4: CanvasText;
+    --chart-ring-5: CanvasText; --chart-ring-6: CanvasText; --chart-ring-7: CanvasText; --chart-ring-8: CanvasText;
+    --chart-record-claim: CanvasText; --chart-record-source: CanvasText; --chart-record-person: CanvasText;
+    --chart-record-tradition: CanvasText; --chart-record-entity: CanvasText;
+  }
+  html[data-ui-theme] .date-nav [data-kind] { --dn-kind: CanvasText; --dn-tint: Canvas; }
+  html[data-ui-theme] .chart-relations { --cr-paper: Canvas; --cr-ink: CanvasText; --cr-muted: CanvasText; --cr-rule: CanvasText; --cr-action: Highlight; }
+}
 @media print {
   html[data-ui-theme] { color-scheme: light; --ui-canvas: #ffffff; --ui-surface: #ffffff; --ui-surface-2: #f3f3f3; --ui-ink: #111111; --ui-muted: #444444; --ui-border: #999999; --ui-accent: #333333; --ui-accent-ink: #222222; --ui-accent-wash: #eeeeee; --ui-action: #222222; --ui-on-action: #ffffff; --ui-success: #245235; --ui-warning: #61440e; --ui-danger: #7d2a20; --ui-info: #244d70; }
+  html[data-ui-theme] { --chart-bg: #ffffff; --chart-surface: #ffffff; --chart-sector-fill: #f3f3f3; --chart-ink: #111111; --chart-muted: #444444; --chart-grid: #999999; --chart-line: #888888; --chart-strong: #333333; --chart-accent: #333333; --chart-selection: #111111; --chart-selection-fill: #ffffff; --chart-star: #444444; }
+  html[data-ui-theme] {
+    --chart-body-sun: #9a482e; --chart-body-moon: #263b36; --chart-body-mercury: #566f76;
+    --chart-body-venus: #76586c; --chart-body-mars: #a04434; --chart-body-jupiter: #776123;
+    --chart-body-saturn: #385e51; --chart-body-uranus: #3c6b78; --chart-body-neptune: #5b608b;
+    --chart-body-pluto: #795d48; --chart-body-earth: #385e51; --chart-body-rahu: #725018; --chart-body-ketu: #6c4967;
+    --chart-aspect-conjunction: #285a6a; --chart-aspect-sextile: #4c5d55; --chart-aspect-square: #725018;
+    --chart-aspect-trine: #3a5f85; --chart-aspect-opposition: #6c4967; --chart-aspect-reception: #73503c; --chart-aspect-drishti: #285a6a;
+    --chart-ring-1: #285a6a; --chart-ring-2: #6c4967; --chart-ring-3: #725018; --chart-ring-4: #3a5f85;
+    --chart-ring-5: #4c5d55; --chart-ring-6: #73503c; --chart-ring-7: #555980; --chart-ring-8: #3e6b63;
+    --chart-record-claim: #315d50; --chart-record-source: #8b543a; --chart-record-person: #5d617e;
+    --chart-record-tradition: #776e39; --chart-record-entity: #506f74;
+  }
+  html[data-ui-theme] body.observatory-shell {
+    --sky-disc: #111111; --sky-lit: #ffffff; --sky-halo: #8a6a2a33;
+    --benefic: #286044; --malefic: #a0392d; --neutral: #6a5aa0;
+    --fire: #c0432b; --earth: #6c7a32; --air: #2f7ca8; --water: #4a55a8;
+    --gold: #815511; --gold-2: #815511;
+  }
   .appearance-trigger,.appearance-dialog { display: none!important; }
 }

@@ -6,7 +6,7 @@ The product is a scholarly observatory and collection of calculation tools. Its 
 
 ## Delivery
 
-- Three named themes: Parchment, Midnight and Mineral. Explicit palette tokens, never a blanket inversion filter. Appearance uses one isolated preference key and no domain events.
+- Three named themes: Black (existing `midnight` token), Parchment and Mineral. Black is the default; the later [Black chart studio](black-chart-studio.md) request supersedes the original light-chart-plate presentation. Explicit palette tokens, never a blanket inversion filter. Appearance uses one isolated preference key and no domain events.
 - Global component rules for controls, forms, result panels, tables, selected states, disclosures, focus and mobile layouts.
 - Eight page families with stable accent colors and visible names already present in headings/navigation. Family colors identify subject areas; they never classify an astrological outcome.
 - Early validated preference bootstrap and deterministic style order on every HTML document. The coverage manifest lists all 133 application routes and the AI reference document.

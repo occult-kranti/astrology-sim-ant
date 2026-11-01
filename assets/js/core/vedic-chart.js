@@ -53,7 +53,7 @@ const SOUTH_CELL = {
 const VEDIC_STYLE = `
 .rasi-chart{display:block;font-family:var(--font-sans,system-ui,sans-serif)}
 .rasi-chart .rc-frame{fill:none;stroke:var(--dg-frame,#cbbd9c);stroke-width:1}
-.rasi-chart .rc-frame.rc-outer{stroke-width:1.5}
+.rasi-chart .rc-frame.rc-outer{fill:var(--dg-fill,#fffdf6);stroke-width:1.5}
 .rasi-chart .rc-hit{fill:transparent;stroke:none}
 .rasi-chart .rc-signnum{fill:var(--dg-label,#9b8e6e);font-size:13px}
 .rasi-chart .rc-title{fill:var(--dg-strong,#8a6a2a);font-size:13px;font-weight:700}
@@ -64,7 +64,7 @@ const VEDIC_STYLE = `
 .rasi-chart .rc-graha.malefic{fill:var(--malefic,#b23b2e)}
 .rasi-chart .rc-graha.lum{fill:var(--lum,#b8862b)}
 .rasi-chart .rc-graha.neutral{fill:var(--neutral,#6a5aa0)}
-.rasi-chart .rc-graha.point{fill:#7b6f8f}
+.rasi-chart .rc-graha.point{fill:var(--neutral,#7b6f8f)}
 .rasi-chart .rc-deg{font-size:9px;fill:var(--text-muted,#6b6354)}
 .rasi-chart .is-hot .rc-hit{fill:var(--accent-wash,rgba(184,134,43,.14))}`;
 

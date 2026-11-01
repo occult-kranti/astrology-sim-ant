@@ -33,7 +33,7 @@
 // Bump on every deploy that changes cached bytes. The date-ish tag makes stale
 // caches obvious in DevTools → Application → Cache Storage.
 const CACHE_PREFIX = 'awb-' + encodeURIComponent(new URL('./', self.location.href).pathname) + '-';
-const VERSION = CACHE_PREFIX + '2026-10-31-site-design-system';
+const VERSION = CACHE_PREFIX + '2026-10-31-black-chart-studio';
 const ownsCache = name => name.startsWith(CACHE_PREFIX); // Never clear another project’s caches.
 const PRECACHE = `${VERSION}-shell`;
 const RUNTIME = `${VERSION}-runtime`;
