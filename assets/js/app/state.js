@@ -324,6 +324,8 @@ export function svgToPNG(svgEl, filename = 'chart.png', scale = 2) {
     try {
       if (!Number.isFinite(scale) || scale < 1 || scale > 4) throw new Error('PNG scale must be between 1 and 4.');
       const str = svgToString(svgEl);
+      // Capture the visible theme with the SVG, before asynchronous rasterizing.
+      const ground = svgEl.ownerDocument?.defaultView?.getComputedStyle(svgEl).getPropertyValue('--chart-bg').trim() || '#fffdf8';
       const vb = svgEl.viewBox && svgEl.viewBox.baseVal;
       const w = (vb && vb.width) || svgEl.clientWidth || 540;
       const h = (vb && vb.height) || svgEl.clientHeight || 540;
@@ -336,7 +338,7 @@ export function svgToPNG(svgEl, filename = 'chart.png', scale = 2) {
           const canvas = document.createElement('canvas');
           canvas.width = w * scale; canvas.height = h * scale;
           const ctx = canvas.getContext('2d');
-          ctx.fillStyle = '#fffdf8'; ctx.fillRect(0, 0, canvas.width, canvas.height); // parchment ground (--paper-0), matches the wheel
+          ctx.fillStyle = ground; ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           URL.revokeObjectURL(url);
           canvas.toBlob(b => { if (b) { downloadBlob(b, filename); resolve(); } else reject(new Error('toBlob failed')); }, 'image/png');

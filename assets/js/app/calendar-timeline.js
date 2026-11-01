@@ -1,7 +1,7 @@
 // A view over one canonical frame. Calendar/planet values are never computed by
 // presentation. Input changes terminate their worker and invalidate all exports.
 import { downloadBlob } from './state.js';
-import { CHART_PAINT, chartBodyColor } from '../core/viz/chart-palette.js';
+import { CHART_PAINT, chartBodyColor, planetSurfaceSVG, instrumentSurfaceSVG, neonStrokeSVG } from '../core/viz/chart-palette.js';
 import { mountDateNavigator } from './date-wayfinding.js';
 import { buildChartRelationshipModel } from '../core/chart-relationships.js';
 import { mountRelationshipInspector, relationPresentation } from './chart-relationships.js';
@@ -65,13 +65,14 @@ export function mountCalendarTimelineRelationships(host, frame, mode = 'tropical
     for (const [id, edge] of edgeNodes) {
       const chosen = Boolean(active && id === payload.relationId);
       edge.line.setAttribute('stroke-width', chosen ? '3.2' : '1.3');
-      edge.line.setAttribute('opacity', active ? chosen ? '1' : '.18' : '.7');
+      edge.line.setAttribute('opacity', active ? chosen ? '1' : '.46' : '.8');
+      edge.glow.setAttribute('opacity', active && !chosen ? 'calc(var(--chart-glow-opacity, 0) * .45)' : 'var(--chart-glow-opacity, 0)');
       edge.group.setAttribute('data-highlighted', String(chosen));
       for (const halo of edge.halos) halo.setAttribute('opacity', chosen ? '1' : '0');
     }
     if (active) for (const [id, marker] of bodyNodes) {
       const related = payload.bodyIds.includes(id); marker.setAttribute('data-relationship-emphasis', related ? 'related' : 'subdued');
-      if (!related) marker.setAttribute('opacity', '.3');
+      if (!related) marker.setAttribute('opacity', '.72');
     }
   }
   function draw(view) {
@@ -95,8 +96,9 @@ export function mountCalendarTimelineRelationships(host, frame, mode = 'tropical
         marker.append(svgNode('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:visual.color}));defs.append(marker);line.setAttribute('marker-end',`url(#${arrowId})`);
       }
       const hit = svgNode('path', { d, fill:'none', stroke:'transparent', 'stroke-width':'16', 'pointer-events':view.disabled?'none':'stroke', 'vector-effect':'non-scaling-stroke' });hit.style.cursor='pointer';
-      const title=svgNode('title');title.textContent=relation.label;group.append(title,line,hit);
-      const halos=points.map(p=>svgNode('circle',{cx:p.x,cy:p.y,r:17,fill:'none',stroke:visual.color,'stroke-width':2,opacity:0,'pointer-events':'none','vector-effect':'non-scaling-stroke'}));group.append(...halos);layer.append(group);edgeNodes.set(relation.id,{group,line,halos});
+      const glow=svgNode('path',{d,fill:'none',stroke:visual.color,'stroke-width':5,'stroke-linecap':'round',opacity:'var(--chart-glow-opacity, 0)','pointer-events':'none','vector-effect':'non-scaling-stroke','data-chart-decoration':'neon-stroke'});if(visual.dash)glow.setAttribute('stroke-dasharray',visual.dash);
+      const title=svgNode('title');title.textContent=relation.label;group.append(title,glow,line,hit);
+      const halos=points.map(p=>svgNode('circle',{cx:p.x,cy:p.y,r:17,fill:'none',stroke:visual.color,'stroke-width':2,opacity:0,'pointer-events':'none','vector-effect':'non-scaling-stroke'}));group.append(...halos);layer.append(group);edgeNodes.set(relation.id,{group,line,glow,halos});
     }
     const firstBody=svg.querySelector('[data-body]');if(firstBody?.parentNode===svg)svg.insertBefore(layer,firstBody);else svg.append(layer);
     const selected=currentModel.relations.find(relation=>relation.id===(view.selectedId||view.previewId));
@@ -108,7 +110,7 @@ export function mountCalendarTimelineRelationships(host, frame, mode = 'tropical
   host.addEventListener('pointerover',enter);host.addEventListener('pointerout',leave);host.addEventListener('click',choose);
   const api = {
     setFrame(nextFrame,nextMode='tropical',nextOptions={}) { currentFrame=nextFrame;currentMode=nextMode;currentOptions=nextOptions;currentModel=modelFor(currentFrame,currentOptions);
-      frameNote.textContent=currentFrame.context.dateISO+' · '+(currentMode==='sidereal'?'Linear-Lahiri sidereal positions. Lilly aspects and reception keep their tropical rule frame.':'Apparent geocentric tropical positions.')+' Only pairs with both bodies plotted are listed.';
+      frameNote.textContent=currentFrame.context.dateISO+' · '+(currentMode==='sidereal'?'Linear-Lahiri sidereal positions. Lilly aspects and reception keep their tropical rule frame.':'Apparent geocentric tropical positions.')+' Only pairs with both bodies plotted are listed. Planetary surfaces are stylized; positions are calculated.';
       if(inspector)inspector.update({model:currentModel,disabled:Boolean(currentOptions.disabled)});else inspector=mountRelationshipInspector(inspectorHost,{id:panel.id,model:currentModel,bodyId:null,compact:true,disabled:Boolean(currentOptions.disabled),onChange:draw,onHighlight:highlight});
     },
     update(patch={}) { if (Object.keys(patch).length === 1 && Object.hasOwn(patch, 'disabled') && Boolean(patch.disabled) === lastView?.disabled) return; inspector?.update(patch); },
@@ -138,10 +140,10 @@ export function calendarTimelinePlateSVG(frame, mode = 'tropical') {
     const r = 97 + i * (111 / Math.max(1, bodies.length - 1)), p = point(r, b.longitude), q = point(238, b.longitude), color = chartBodyColor(b.id);
     marks += `<circle cx="300" cy="300" r="${r}" fill="none" stroke="${grid}" stroke-width=".45"/>`;
     marks += `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${color}" stroke-width=".7" stroke-dasharray="2 4"/>`;
-    marks += `<g data-body="${xml(b.id)}" data-longitude="${b.longitude}"><title>${xml(b.id)} · ${degrees(b.longitude)}${b.retrograde ? ' · retrograde' : ''}</title><circle cx="${p[0]}" cy="${p[1]}" r="11" fill="${surface}" stroke="${color}" stroke-width="1.2"/><text x="${p[0]}" y="${p[1] + 1}" dominant-baseline="central" text-anchor="middle" fill="${color}" font-family="Georgia,serif" font-size="17">${xml(GLYPHS[b.id] || b.id.slice(0, 2))}</text></g>`;
+    marks += `<g data-body="${xml(b.id)}" data-longitude="${b.longitude}"><title>${xml(b.id)} · ${degrees(b.longitude)}${b.retrograde ? ' · retrograde' : ''}</title><circle cx="${p[0]}" cy="${p[1]}" r="11" fill="${surface}" stroke="${color}" stroke-width="1.2"/>${planetSurfaceSVG(b.id,{prefix:id,cx:p[0],cy:p[1],r:11})}<text x="${p[0]}" y="${p[1] + 1}" dominant-baseline="central" text-anchor="middle" fill="${color}" stroke="${background}" stroke-width="3" stroke-linejoin="round" paint-order="stroke fill" font-family="Georgia,serif" font-size="17">${xml(GLYPHS[b.id] || b.id.slice(0, 2))}</text></g>`;
   });
   const instant = frame.context.dateISO;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="${id}-title ${id}-desc" data-date-iso="${xml(instant)}"><title id="${id}-title">${sidereal ? 'Sidereal traditional grahas' : 'Tropical ten-body sky'} at ${xml(instant)}</title><desc id="${id}-desc">Canonical positions and twelve ${sidereal ? 'whole-sign sidereal' : xml(chart.actualSystem)} house cusps. Zero Aries at top; longitude increases clockwise. Individual ring radii are a diagram convention, not distance. Full names and numerical values appear in the companion tables.</desc><circle cx="300" cy="300" r="289" fill="${background}" stroke="${grid}"/><circle cx="300" cy="300" r="284" fill="none" stroke="${grid}"/><circle cx="300" cy="300" r="240" fill="none" stroke="${frameLine}"/>${marks}<circle cx="300" cy="300" r="70" fill="${background}" stroke="${grid}"/><circle cx="300" cy="300" r="65" fill="none" stroke="${grid}"/><text x="300" y="287" text-anchor="middle" fill="${accent}" font-family="monospace" font-size="10" letter-spacing="1.6">${sidereal ? 'SIDEREAL' : 'TROPICAL'}</text><text x="300" y="312" text-anchor="middle" fill="${ink}" font-family="Georgia,serif" font-size="21">${bodies.length} ${sidereal ? 'grahas' : 'bodies'}</text><path d="M293 332 H307 M300 325 V339" stroke="${accent}" stroke-width=".6"/><metadata>${xml(JSON.stringify({ kind: 'calendar-timeline-plate', mode, dateISO: instant, frame: chart.frame, bodies: bodies.map(b => ({ id: b.id, longitude: b.longitude })), cusps: chart.cusps, radialDistancePhysical: false }))}</metadata></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="${id}-title ${id}-desc" data-date-iso="${xml(instant)}"><title id="${id}-title">${sidereal ? 'Sidereal traditional grahas' : 'Tropical ten-body sky'} at ${xml(instant)}</title><desc id="${id}-desc">Canonical positions and twelve ${sidereal ? 'whole-sign sidereal' : xml(chart.actualSystem)} house cusps. Zero Aries at top; longitude increases clockwise. Individual ring radii are a diagram convention, not distance. Full names and numerical values appear in the companion tables. Planetary surfaces are stylized; positions are calculated. Shading does not encode observed illumination or orientation.</desc><circle cx="300" cy="300" r="289" fill="${background}" stroke="${grid}"/>${instrumentSurfaceSVG({prefix:id,cx:300,cy:300,r:289})}<circle cx="300" cy="300" r="284" fill="none" stroke="${grid}"/><circle cx="300" cy="300" r="240" fill="none" stroke="${frameLine}"/>${marks}<circle cx="300" cy="300" r="70" fill="${background}" stroke="${grid}"/><circle cx="300" cy="300" r="65" fill="none" stroke="${grid}"/><text x="300" y="287" text-anchor="middle" fill="${accent}" font-family="monospace" font-size="10" letter-spacing="1.6">${sidereal ? 'SIDEREAL' : 'TROPICAL'}</text><text x="300" y="312" text-anchor="middle" fill="${ink}" font-family="Georgia,serif" font-size="21">${bodies.length} ${sidereal ? 'grahas' : 'bodies'}</text><path d="M293 332 H307 M300 325 V339" stroke="${accent}" stroke-width=".6"/><metadata>${xml(JSON.stringify({ kind: 'calendar-timeline-plate', mode, dateISO: instant, frame: chart.frame, bodies: bodies.map(b => ({ id: b.id, longitude: b.longitude })), cusps: chart.cusps, radialDistancePhysical: false }))}</metadata></svg>`;
 }
 
 export function initCalendarTimeline() {

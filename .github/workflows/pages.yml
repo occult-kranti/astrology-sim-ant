@@ -136,6 +136,10 @@ jobs:
         env:
           BLACK_CHART_OUTPUT: test-results/black-charts
         run: node scripts/browser-black-charts.mjs
+      - name: Neon planet surfaces, black drawing previews and portable paint servers
+        env:
+          NEON_CHART_OUTPUT: test-results/neon-charts
+        run: node scripts/browser-neon-charts.mjs
       - name: Fetch pinned SkyLens integration fixture
         env:
           SKY_REVISION: 2b2aa089009db3ddedc2256a7a5456b402b23962

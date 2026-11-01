@@ -63,28 +63,34 @@ html[data-ui-theme="parchment"], html[data-ui-theme="mineral"] {
   --chart-ring-7: #555980; --chart-ring-8: #3e6b63;
   --chart-record-claim: #315d50; --chart-record-source: #8b543a;
   --chart-record-person: #5d617e; --chart-record-tradition: #776e39; --chart-record-entity: #506f74;
+  --chart-glow-opacity: 0; --chart-aspect-opacity-boost: 0; --chart-depth-opacity: .04; --chart-depth-color: #acbac2;
+  --chart-planet-core: #14191f; --chart-planet-highlight: #ffffff; --chart-planet-detail-opacity: .7;
+  --chart-planet-surface-opacity: 0; --chart-planet-selected-glyph: var(--chart-bg);
 }
 :root, html[data-ui-theme="midnight"] {
-  --chart-bg: #000000; --chart-surface: #080808; --chart-sector-fill: #101010;
-  --chart-ink: #eef2f8; --chart-muted: #afb8c7; --chart-grid: #62656d;
-  --chart-line: #62656d; --chart-strong: #aeb7c6; --chart-accent: #f3cc83;
-  --chart-selection: #ffffff; --chart-selection-fill: #171717;
-  --chart-star: #c8d3e8; --chart-focus: #8fddff;
-  --chart-body-sun: #f9cf66; --chart-body-moon: #e5ebf7;
-  --chart-body-mercury: #68e0d2; --chart-body-venus: #f2a6d5;
-  --chart-body-mars: #ff8479; --chart-body-jupiter: #d8bcff;
-  --chart-body-saturn: #d8bd8c; --chart-body-uranus: #82d9ff;
-  --chart-body-neptune: #9ca9ff; --chart-body-pluto: #daa4ff;
-  --chart-body-rahu: #a2e5a0; --chart-body-ketu: #ffb47f; --chart-body-earth: #9bdc92;
-  --chart-aspect-conjunction: #6dd7f2; --chart-aspect-sextile: #7be3bd;
-  --chart-aspect-square: #ffbd6c; --chart-aspect-trine: #79b7ff;
-  --chart-aspect-opposition: #f497d0; --chart-aspect-reception: #d4b0ff;
-  --chart-aspect-drishti: #9de0e8;
-  --chart-ring-1: #6dd7f2; --chart-ring-2: #f497d0; --chart-ring-3: #ffbd6c;
-  --chart-ring-4: #79b7ff; --chart-ring-5: #7be3bd; --chart-ring-6: #efc391;
-  --chart-ring-7: #d4b0ff; --chart-ring-8: #9de0e8;
-  --chart-record-claim: #7be3bd; --chart-record-source: #ffbd6c;
-  --chart-record-person: #b6acff; --chart-record-tradition: #ecd578; --chart-record-entity: #6dd7f2;
+  --chart-bg: #000000; --chart-surface: #000000; --chart-sector-fill: #060606;
+  --chart-ink: #eef6ff; --chart-muted: #abb9c9; --chart-grid: #626d7b;
+  --chart-line: #626d7b; --chart-strong: #b1d1e0; --chart-accent: #ffe070;
+  --chart-selection: #ffffff; --chart-selection-fill: #0d0d0d;
+  --chart-star: #d8efff; --chart-focus: #35e9ff;
+  --chart-body-sun: #ffe45e; --chart-body-moon: #e8f4ff;
+  --chart-body-mercury: #26ffe1; --chart-body-venus: #ff79db;
+  --chart-body-mars: #ff625b; --chart-body-jupiter: #c79cff;
+  --chart-body-saturn: #f2c46d; --chart-body-uranus: #39d8ff;
+  --chart-body-neptune: #8296ff; --chart-body-pluto: #d873ff;
+  --chart-body-rahu: #8eff88; --chart-body-ketu: #ffab56; --chart-body-earth: #67f0a7;
+  --chart-aspect-conjunction: #35e9ff; --chart-aspect-sextile: #41ffc0;
+  --chart-aspect-square: #ffad42; --chart-aspect-trine: #63a6ff;
+  --chart-aspect-opposition: #ff68cd; --chart-aspect-reception: #c792ff;
+  --chart-aspect-drishti: #67f5e5;
+  --chart-ring-1: #35e9ff; --chart-ring-2: #ff68cd; --chart-ring-3: #ffad42;
+  --chart-ring-4: #63a6ff; --chart-ring-5: #41ffc0; --chart-ring-6: #ffc382;
+  --chart-ring-7: #c792ff; --chart-ring-8: #67f5e5;
+  --chart-record-claim: #41ffc0; --chart-record-source: #ffad42;
+  --chart-record-person: #b5a0ff; --chart-record-tradition: #ffe070; --chart-record-entity: #35e9ff;
+  --chart-glow-opacity: .22; --chart-aspect-opacity-boost: .18; --chart-depth-opacity: .25; --chart-depth-color: #16304a;
+  --chart-planet-core: #000000; --chart-planet-highlight: #ffffff; --chart-planet-detail-opacity: .7;
+  --chart-planet-surface-opacity: 1; --chart-planet-selected-glyph: var(--chart-ink);
 }
 /* The validated bootstrap applies before CSS, so even the first body paint
    uses the selected canvas while the calculation modules are loading. */
@@ -160,7 +166,7 @@ html[data-ui-theme] .observatory-shell :is(.home-context,.callout,.acc,.mp,.home
 html[data-ui-theme] .observatory-shell :is(.nav-menu,.cmdk-panel,.action-bar,.ob-mobile-nav,.results-rail,.workrail) { background: var(--ui-surface); color: var(--ui-ink); border-color: var(--ui-border); }
 html[data-ui-theme] .observatory-shell :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),select,textarea) { background-color: var(--ui-surface); color: var(--ui-ink); border-color: var(--ui-border); }
 html[data-ui-theme] .observatory-shell :is(.atlas-primary,.ob-header-compare) { background: var(--ui-action); color: var(--ui-on-action); border-color: var(--ui-action); }
-html[data-ui-theme="midnight"] .calendar-atlas .sky-toolbar #sky-overlay[aria-expanded="true"] { background: var(--ui-action); color: var(--ui-on-action); border-color: var(--ui-action); }
+html[data-ui-theme="midnight"] .calendar-atlas .sky-toolbar #sky-overlay[aria-expanded="true"] { background: var(--chart-selection-fill); color: var(--chart-focus); border-color: var(--chart-focus); }
 html[data-ui-theme] .observatory-shell button[type="submit"]:not(.ghost) { background: var(--ui-action); color: var(--ui-on-action); border-color: var(--ui-action); }
 html[data-ui-theme] .observatory-shell button[type="submit"]:not(.ghost):hover:not(:disabled) { background: var(--ui-action); color: var(--ui-on-action); box-shadow: 0 0 0 3px var(--ui-accent-wash); }
 html[data-ui-theme] .observatory-shell :is(.atlas-secondary,.atlas-row-select,.sky-legend-button,.sky-position,.atlas-tabs button[aria-selected="true"]) { color: var(--ui-accent-ink); }
@@ -207,6 +213,47 @@ html[data-ui-theme] .country-history .ch-calendar-status[data-status="unavailabl
 html[data-ui-theme] .observatory-shell :is(.hero,.wing-hero,.next-up) { background: var(--ui-surface-2); }
 html[data-ui-theme] .observatory-shell :is(.field label,legend) { color: var(--ui-muted); }
 
+/* The instrument, its controls and its plotted interior share one black field.
+   Neon is category ink; source classifications retain their separate labels. */
+html[data-ui-theme="midnight"] .observatory-shell :is(.sky-stage,.sky-inspector,.sky-overlay-panel,.sky-time-section,.ct-instrument,.ea-graph-scroll,.ea-timeline-scroll) { background-color: var(--chart-bg); }
+html[data-ui-theme="midnight"] .observatory-shell .calendar-timeline .ct-instrument,
+html[data-ui-theme="midnight"] .observatory-shell #wb-p-figure,
+html[data-ui-theme="midnight"] .observatory-shell #content.sg-studio .sg-output { background: var(--chart-bg); }
+html[data-ui-theme="midnight"] :is(#sky-chart,#sky-simple-chart,#sky-timeline,.nw-year-dial,.ea-graph-scroll,.ea-timeline-scroll) { background: var(--chart-bg); }
+html[data-ui-theme="midnight"] .sky-explorer { --sky-copper: var(--chart-focus); }
+html[data-ui-theme="midnight"] .observatory-shell .chart-relations {
+  --cr-paper: var(--chart-bg); --cr-control: var(--chart-bg); --cr-hover: var(--chart-selection-fill);
+  --cr-selected: var(--chart-selection-fill); --cr-preview: var(--chart-selection-fill); --cr-empty: var(--chart-bg);
+  --cr-ink: var(--chart-ink); --cr-muted: var(--chart-muted); --cr-rule: var(--chart-line); --cr-action: var(--chart-focus);
+  background: var(--chart-bg);
+}
+html[data-ui-theme="midnight"] .observatory-shell .chart-relations :is(button,select,.cr-detail,.cr-empty) { background: var(--chart-bg); }
+html[data-ui-theme="midnight"] .observatory-shell .chart-relations :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),select,textarea) { background-color: var(--chart-bg); color: var(--chart-ink); border-color: var(--chart-line); }
+html[data-ui-theme="midnight"] .observatory-shell .chart-relations button:hover:not(:disabled) { background: var(--chart-selection-fill); }
+html[data-ui-theme="midnight"] .observatory-shell .chart-relations :is(.cr-entry[aria-pressed="true"],.cr-entry.cr-previewed,.cr-legend-filter[aria-pressed="true"]) { background: var(--chart-selection-fill); }
+html[data-ui-theme="midnight"] .observatory-shell .chart-relations .cr-legend-filter { color: var(--cr-relation-color); }
+html[data-ui-theme="midnight"] .observatory-shell :is(.sky-explorer,.ct-instrument) :is(input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),select,textarea) { background-color: var(--chart-bg); color: var(--chart-ink); border-color: var(--chart-line); }
+html[data-ui-theme="midnight"] .observatory-shell .sky-explorer button:not(:where(.chart-relations button,.date-nav button)) { background: var(--chart-bg); color: var(--chart-ink); }
+html[data-ui-theme="midnight"] .observatory-shell .sky-explorer button:not(:where(.chart-relations button,.date-nav button)):hover:not(:disabled) { background: var(--chart-selection-fill); }
+html[data-ui-theme="midnight"] .calendar-atlas .sky-toolbar button[aria-pressed="true"] { background: var(--chart-selection-fill); color: var(--chart-focus); border-bottom-color: var(--chart-focus); }
+html[data-ui-theme="midnight"] .observatory-shell .sky-explorer .sky-legend-button { color: var(--body-color,var(--chart-ink)); }
+html[data-ui-theme="midnight"] .observatory-shell .sky-explorer .sky-legend-button[aria-pressed="true"] { color: var(--chart-ink); background: var(--chart-selection-fill); border-bottom-color: var(--body-color); }
+html[data-ui-theme="midnight"] .observatory-shell .sky-ring-controls label[data-ring-id]:is(:hover,:focus-within) { background: var(--chart-selection-fill); border-color: var(--chart-line); }
+html[data-ui-theme="midnight"] #sky-alignment-results [data-calendar-relationship] { --comparison-surface: var(--chart-selection-fill); }
+html[data-ui-theme="midnight"] #sky-alignment-results [data-calendar-relationship="equal-output"] { --comparison-color: var(--chart-aspect-sextile); }
+html[data-ui-theme="midnight"] #sky-alignment-results [data-calendar-relationship="different-output"] { --comparison-color: var(--chart-aspect-reception); }
+html[data-ui-theme="midnight"] #sky-alignment-results [data-calendar-relationship="unavailable"] { --comparison-color: var(--chart-muted); }
+html[data-ui-theme="midnight"] :is(.ea-graph-scroll,.ea-timeline-scroll,.chart-relations .cr-list) { scrollbar-color: var(--chart-line) var(--chart-bg); }
+html[data-ui-theme="midnight"] :is(#sky-chart [data-sky-body],.nw-year-dial [data-day]):focus-visible { filter: none; outline: 2px solid var(--chart-focus); outline-offset: 3px; }
+html[data-ui-theme="midnight"] #sky-chart [data-sky-body]:focus-visible circle { stroke: var(--chart-focus); }
+html[data-ui-theme="midnight"] .sky-solved-event:focus circle:last-child { stroke: var(--chart-focus); }
+html[data-ui-theme="midnight"] :is(.calendar-timeline #ct-slider,.newton-workbench #nw-slider) { accent-color: var(--chart-focus); }
+html[data-ui-theme="midnight"] .calendar-timeline #ct-slider::-webkit-slider-runnable-track { background: linear-gradient(to right,var(--chart-focus) var(--ct-progress,0%),var(--chart-selection-fill) var(--ct-progress,0%)); border-color: var(--chart-line); }
+html[data-ui-theme="midnight"] .newton-workbench #nw-slider::-webkit-slider-runnable-track { background: linear-gradient(to right,var(--chart-focus) var(--nw-progress,0%),var(--chart-selection-fill) var(--nw-progress,0%)); border-color: var(--chart-line); }
+html[data-ui-theme="midnight"] :is(.calendar-timeline #ct-slider,.newton-workbench #nw-slider)::-moz-range-track { background: var(--chart-selection-fill); border-color: var(--chart-line); }
+html[data-ui-theme="midnight"] :is(.calendar-timeline #ct-slider,.newton-workbench #nw-slider)::-webkit-slider-thumb { background: var(--chart-focus); border-color: var(--chart-bg); box-shadow: 0 0 0 1px var(--chart-focus); }
+html[data-ui-theme="midnight"] :is(.calendar-timeline #ct-slider,.newton-workbench #nw-slider)::-moz-range-thumb { background: var(--chart-focus); border-color: var(--chart-bg); outline-color: var(--chart-focus); }
+
 /* Appearance is available without opening the full navigation catalogue. */
 .appearance-trigger { order: 1; display: inline-flex; align-items: center; justify-content: center; gap: .45rem; flex: 0 0 auto; min-height: 44px; padding: .55rem .7rem; border: 1px solid var(--ui-border); border-radius: 6px; background: transparent; color: var(--ui-ink); font: 600 .76rem/1.2 var(--sans,system-ui,sans-serif); cursor: pointer; }
 .appearance-trigger:hover { background: var(--ui-surface-2); border-color: var(--ui-accent); }
@@ -252,6 +299,9 @@ html[data-ui-theme] .observatory-shell :is(.field label,legend) { color: var(--u
     --chart-ring-5: CanvasText; --chart-ring-6: CanvasText; --chart-ring-7: CanvasText; --chart-ring-8: CanvasText;
     --chart-record-claim: CanvasText; --chart-record-source: CanvasText; --chart-record-person: CanvasText;
     --chart-record-tradition: CanvasText; --chart-record-entity: CanvasText;
+    --chart-glow-opacity: 0; --chart-aspect-opacity-boost: 0; --chart-depth-opacity: 0;
+    --chart-planet-detail-opacity: 0; --chart-planet-core: Canvas; --chart-planet-highlight: CanvasText;
+    --chart-planet-surface-opacity: 0; --chart-planet-selected-glyph: CanvasText;
   }
   html[data-ui-theme] .date-nav [data-kind] { --dn-kind: CanvasText; --dn-tint: Canvas; }
   html[data-ui-theme] .chart-relations { --cr-paper: Canvas; --cr-ink: CanvasText; --cr-muted: CanvasText; --cr-rule: CanvasText; --cr-action: Highlight; }
@@ -260,6 +310,9 @@ html[data-ui-theme] .observatory-shell :is(.field label,legend) { color: var(--u
   html[data-ui-theme] { color-scheme: light; --ui-canvas: #ffffff; --ui-surface: #ffffff; --ui-surface-2: #f3f3f3; --ui-ink: #111111; --ui-muted: #444444; --ui-border: #999999; --ui-accent: #333333; --ui-accent-ink: #222222; --ui-accent-wash: #eeeeee; --ui-action: #222222; --ui-on-action: #ffffff; --ui-success: #245235; --ui-warning: #61440e; --ui-danger: #7d2a20; --ui-info: #244d70; }
   html[data-ui-theme] { --chart-bg: #ffffff; --chart-surface: #ffffff; --chart-sector-fill: #f3f3f3; --chart-ink: #111111; --chart-muted: #444444; --chart-grid: #999999; --chart-line: #888888; --chart-strong: #333333; --chart-accent: #333333; --chart-selection: #111111; --chart-selection-fill: #ffffff; --chart-star: #444444; }
   html[data-ui-theme] {
+    --chart-glow-opacity: 0; --chart-aspect-opacity-boost: 0; --chart-depth-opacity: 0; --chart-planet-detail-opacity: 0;
+    --chart-planet-core: #14191f; --chart-planet-highlight: #ffffff;
+    --chart-planet-surface-opacity: 0; --chart-planet-selected-glyph: var(--chart-bg);
     --chart-body-sun: #9a482e; --chart-body-moon: #263b36; --chart-body-mercury: #566f76;
     --chart-body-venus: #76586c; --chart-body-mars: #a04434; --chart-body-jupiter: #776123;
     --chart-body-saturn: #385e51; --chart-body-uranus: #3c6b78; --chart-body-neptune: #5b608b;

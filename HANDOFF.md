@@ -1,3 +1,9 @@
+# Neon chart elements
+
+This follow-up starts from published `6ac1bcd93721ece1fa2bd621451cc3504d5cbcd0` on `feat/neon-chart-elements`. Read `.design/neon-chart-elements.md` and `docs/2026-11-neon-chart-verification.md`. Shared native-SVG helpers in `core/viz/chart-palette.js` add illustrative planet surfaces and light layers without changing canonical coordinates or star data. Keep native local gradient/clip references, the readable theme-background glyph outlines and actual SVG/PNG export checks. Sigil display paint is separate from its unchanged construction recipe; export the attached styled SVG through `svgToString()`.
+
+Final local gates pass: 192 neon, 239 retained Black, 3,717 theme, 3,520 sky, 331 studio, 325 relationships, 2,067 timeline, 631 source-atlas and 1,294 Newton checks; 733 engine checks, all nine generators, current ledger and 134 pages with zero errors. Independent review verifies actual images/bytes and both final driver hashes. The native PNG ground must be captured with the SVG before async rasterization. Keep explicit data-chart-decoration underlays separate from semantic connector contrast assertions; selected semantic paths must remain nonempty.
+
 # Black chart studio follow-up
 
 The current follow-up starts from published `a691b8000c3d6db59a82a8fcba8dfd470cd3cb74` on `feat/black-chart-studio`. The user explicitly requested black diagrams and deeper chart controls. Keep the existing theme preference tokens, pure geometry, held frames, canonical JSON/CSV and bounded private-state access. Chart paint variables resolve at render time; existing `svgToString()` freezes the live computed colors for standalone files. No theme observer or ephemeris rerun is needed.

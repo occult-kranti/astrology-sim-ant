@@ -1,5 +1,5 @@
 import { createSigilDesign, makeSigilRecipe, buildSigilImagePrompt, inspectSigilRecipeJSON, restoreSigilRecipeInputs, SIGIL_RECIPE_MAX_BYTES, SIGIL_PALETTES } from '../core/sigil-design.js';
-import { downloadBlob, downloadJSON } from './state.js';
+import { downloadBlob, downloadJSON, svgToString } from './state.js';
 const $ = id => document.getElementById(id);
 const el = (tag, text, className) => { const node = document.createElement(tag); if (text != null) node.textContent = String(text); if (className) node.className = className; return node; };
 let current = null, displayed = null, epoch = 0, active = true, pendingImage = null, pendingURL = null;
@@ -7,6 +7,21 @@ const status = text => { $('sg-status').textContent = text; };
 const exportStatus = text => { $('sg-export-status').textContent = text; };
 const mode = () => document.querySelector('input[name="sg-mode"]:checked').value;
 const setActions = valid => ['sg-svg','sg-png','sg-json','sg-prepare-prompt'].forEach(id => { $(id).disabled = !valid; });
+// Only the validated local renderer supplies markup. Theme paint is a display
+// layer: recipe numbers, construction, sources and replay validation stay intact.
+function presentDrawing(hostId, markup, paletteId) {
+  const host = $(hostId), palette = SIGIL_PALETTES[paletteId]; host.innerHTML = markup;
+  const svg = host.querySelector('svg'); if (!svg || !palette) return;
+  svg.dataset.sigilDisplayPalette = paletteId;
+  const paper = [...svg.children].find(child => child.localName === 'rect');
+  if (paper) { paper.dataset.sigilPaint = 'paper'; paper.style.fill = `var(--sg-art-paper, ${palette.paper})`; }
+  for (const shape of svg.querySelectorAll('g > circle,g > text,g > polyline,g > polygon,g > path')) {
+    const property = shape.hasAttribute('stroke') ? 'stroke' : 'fill', color = shape.getAttribute(property);
+    const role = ['primary','secondary','accent'].find(role => palette[role] === color);
+    if (role) { shape.dataset.sigilPaint = role; shape.style.setProperty(property, `var(--sg-art-${paletteId}-${role}, ${color})`); }
+  }
+}
+const drawingSVG = hostId => svgToString($(hostId).querySelector('svg'));
 function clearPrompt(message = 'The drawing changed. Prepare a fresh image prompt.') {
   $('sg-prompt-preview').value = ''; $('sg-copy-prompt').disabled = true; $('sg-prompt-status').textContent = message;
 }
@@ -38,7 +53,7 @@ function inputs() {
 function render(result) {
   // SVG is emitted only by the validated numeric local renderer, never a model
   // response, imported markup, source-book HTML or an entered phrase.
-  $('sg-preview').innerHTML = result.svg;
+  presentDrawing('sg-preview', result.svg, result.inputs.palette);
   $('sg-output-kind').textContent = result.inputs.mode === 'planetary' ? `${result.inputs.planet.toUpperCase()} · SOURCED SQUARE` : 'PROCEDURAL ART';
   $('sg-caption').textContent = `${result.title} · ${SIGIL_PALETTES[result.inputs.palette].label} · seed ${result.inputs.seed}. ${result.method.status}.`;
   $('sg-stale').hidden = true;
@@ -80,12 +95,12 @@ $('sg-variation').addEventListener('click', () => {
   try { $('sg-seed').value = (readNumber('sg-seed') + 1) % 4294967296; invalidate(); draw({ focusError: true }); }
   catch (error) { $('sg-error').textContent = error.message; $('sg-error').hidden = false; }
 });
-$('sg-svg').addEventListener('click', () => { const result = ensureCurrent(); if (!result) return; downloadBlob(new Blob([result.svg], { type: 'image/svg+xml;charset=utf-8' }), `symbolic-${result.inputs.mode}-${result.inputs.seed}.svg`); exportStatus('Editable SVG downloaded. Original phrase and exact observer omitted; the geometry can still encode the phrase.'); });
+$('sg-svg').addEventListener('click', () => { const result = ensureCurrent(); if (!result) return; downloadBlob(new Blob([drawingSVG('sg-preview')], { type: 'image/svg+xml;charset=utf-8' }), `symbolic-${result.inputs.mode}-${result.inputs.seed}.svg`); exportStatus('Editable SVG downloaded in the displayed theme. Original phrase and exact observer omitted; the geometry can still encode the phrase.'); });
 $('sg-json').addEventListener('click', () => { const result = ensureCurrent(); if (!result) return; downloadJSON(makeSigilRecipe(result, { includePrivate: $('sg-private').checked }), `symbolic-${result.inputs.mode}-${result.inputs.seed}.json`); exportStatus($('sg-private').checked ? 'Drawing recipe downloaded with original text and exact observer, as selected.' : 'Numeric drawing recipe downloaded. Original text and exact observer omitted; path information remains.'); });
 $('sg-png').addEventListener('click', () => {
   const result = ensureCurrent(); if (!result) return;
   cancelPNG(); const token = epoch, image = new Image(); pendingImage = image;
-  const url = URL.createObjectURL(new Blob([result.svg], { type: 'image/svg+xml' })); pendingURL = url;
+  const url = URL.createObjectURL(new Blob([drawingSVG('sg-preview')], { type: 'image/svg+xml' })); pendingURL = url;
   exportStatus('Rendering PNG locally…');
   image.onload = () => {
     if (!active || token !== epoch || current !== result) { cancelPNG(); return; }
@@ -145,7 +160,7 @@ $('sg-recipe-inspect').addEventListener('click', async () => {
     imported = inspection;
     // Only the same strict numeric renderer used by the local generator emits SVG.
     // The imported provenance annotation is generated locally, never trusted from JSON.
-    $('sg-recipe-preview').innerHTML = inspection.svg;
+    presentDrawing('sg-recipe-preview', inspection.svg, inspection.recipe.style.palette);
     $('sg-recipe-caption').textContent = `Imported ${inspection.declaredMode} geometry · ${inspection.primitiveCount} primitives. ${inspection.sourceStatus}`;
     $('sg-recipe-sources').textContent = JSON.stringify(inspection.recipe.sources, null, 2);
     $('sg-recipe-restore-help').textContent = inspection.restoreReason;
@@ -160,12 +175,12 @@ $('sg-recipe-inspect').addEventListener('click', async () => {
   } finally { if (active && token === importEpoch) $('sg-recipe-inspect').disabled = false; }
 });
 function currentImport() { if (!active || !imported) { importStatus('Inspect a valid JSON recipe first.'); return null; } return imported; }
-$('sg-recipe-svg').addEventListener('click', () => { const result = currentImport(); if (!result) return; downloadBlob(new Blob([result.svg], { type: 'image/svg+xml;charset=utf-8' }), `replayed-${result.declaredMode}-${result.recipe.seed}.svg`); importStatus('Numeric SVG replay downloaded with an unverified-file provenance annotation. Private input and study fields omitted.'); });
+$('sg-recipe-svg').addEventListener('click', () => { const result = currentImport(); if (!result) return; downloadBlob(new Blob([drawingSVG('sg-recipe-preview')], { type: 'image/svg+xml;charset=utf-8' }), `replayed-${result.declaredMode}-${result.recipe.seed}.svg`); importStatus('Numeric SVG replay downloaded in the displayed theme with an unverified-file provenance annotation. Private input and study fields omitted.'); });
 $('sg-recipe-json').addEventListener('click', () => { const result = currentImport(); if (!result) return; downloadJSON(result.recipe, `replayed-${result.declaredMode}-${result.recipe.seed}.json`); importStatus('Drawing recipe downloaded without original phrase, observer or supplied study prose. Source claims remain unverified; geometry can still encode information.'); });
 $('sg-recipe-png').addEventListener('click', () => {
   const result = currentImport(); if (!result) return; cancelImportPNG();
   const token = importEpoch, image = new Image(); importImage = image;
-  const url = URL.createObjectURL(new Blob([result.svg], { type: 'image/svg+xml' })); importURL = url;
+  const url = URL.createObjectURL(new Blob([drawingSVG('sg-recipe-preview')], { type: 'image/svg+xml' })); importURL = url;
   importStatus('Rendering the imported numerical drawing locally…');
   image.onload = () => {
     if (!active || token !== importEpoch || result !== imported) { cancelImportPNG(); return; }

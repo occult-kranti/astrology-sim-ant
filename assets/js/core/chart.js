@@ -13,6 +13,7 @@
 //  backs to the current values, so this works whether or not WP1 has landed.
 // ============================================================================
 import { norm360, SIGN_GLYPHS, PLANET_GLYPHS, signOf } from './astro.js';
+import { CHART_PAINT, chartBodyColor, planetSurfaceSVG, instrumentSurfaceSVG, neonStrokeSVG } from './viz/chart-palette.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const el = (tag, attrs = {}) => {
@@ -28,6 +29,11 @@ const PLANET_CLASS = {
   NorthNode: 'point', SouthNode: 'point', Fortune: 'point'
 };
 const ASPECT_CLASS = { Conjunction: 'asp-conj', Sextile: 'asp-soft', Trine: 'asp-soft', Square: 'asp-hard', Opposition: 'asp-hard' };
+const ASPECT_PAINT = {
+  Conjunction: 'var(--chart-aspect-conjunction,#8a6a2a)', Sextile: 'var(--chart-aspect-sextile,#2f7d4f)',
+  Trine: 'var(--chart-aspect-trine,#2f7d4f)', Square: 'var(--chart-aspect-square,#b23b2e)',
+  Opposition: 'var(--chart-aspect-opposition,#b23b2e)',
+};
 const ELEMENTS = ['fire', 'earth', 'air', 'water'];
 
 // The wheel's own stylesheet, embedded as an SVG <style> so the diagram is
@@ -37,27 +43,27 @@ const ELEMENTS = ['fire', 'earth', 'air', 'water'];
 const FONT_SANS = "var(--font-sans, var(--sans, 'Inter','Segoe UI',system-ui,-apple-system,sans-serif))";
 const WHEEL_STYLE = `
 .chart-wheel{display:block;margin:0 auto}
-.chart-wheel .wheel-ring{fill:var(--dg-fill,#fffdf6);stroke:var(--dg-frame,#cbbd9c);stroke-width:1}
-.chart-wheel .wheel-ring:first-of-type{fill:var(--dg-fill-2,#fbf4e3);stroke-width:1.5}
+.chart-wheel .wheel-ring{fill:var(--chart-bg,#fffdf6);stroke:var(--chart-line,#cbbd9c);stroke-width:1}
+.chart-wheel .wheel-ring:first-of-type{stroke-width:1.5}
 .chart-wheel .elem-wash{stroke:none}
-.chart-wheel .deg-tick{stroke:var(--dg-tick,#b3a37e);stroke-width:1}
-.chart-wheel .deg-tick.t5,.chart-wheel .deg-tick.t10{stroke:var(--dg-grid,#c2b48f)}
-.chart-wheel .sign-div{stroke:var(--dg-frame,#cbbd9c);stroke-width:1}
+.chart-wheel .deg-tick{stroke:var(--chart-line,#b3a37e);stroke-width:1}
+.chart-wheel .deg-tick.t5,.chart-wheel .deg-tick.t10{stroke:var(--chart-grid,#c2b48f)}
+.chart-wheel .sign-div{stroke:var(--chart-strong,#cbbd9c);stroke-width:1}
 .chart-wheel .elem-fire{fill:var(--fire,#c0432b)}
 .chart-wheel .elem-earth{fill:var(--earth,#6c7a32)}
 .chart-wheel .elem-air{fill:var(--air,#2f7ca8)}
 .chart-wheel .elem-water{fill:var(--water,#4a55a8)}
-.chart-wheel .cusp{stroke:var(--dg-grid,#c2b48f);stroke-width:1;stroke-dasharray:3 3}
-.chart-wheel .cusp-angle{stroke:var(--dg-strong,#8a6a2a);stroke-width:1.8}
-.chart-wheel .aspect-hub{fill:var(--dg-fill-2,#fbf4e3);stroke:none;opacity:.55}
-.chart-wheel .house-num{fill:var(--dg-label,#9b8e6e);font-family:${FONT_SANS}}
+.chart-wheel .cusp{stroke:var(--chart-grid,#c2b48f);stroke-width:1;stroke-dasharray:3 3}
+.chart-wheel .cusp-angle{stroke:var(--chart-accent,#8a6a2a);stroke-width:1.8}
+.chart-wheel .aspect-hub{fill:var(--chart-surface,#fbf4e3);stroke:none;opacity:.55}
+.chart-wheel .house-num{fill:var(--chart-muted,#9b8e6e);font-family:${FONT_SANS}}
 .chart-wheel .angle-tri{fill:var(--dg-sel,var(--gold,#b8862b));stroke:none}
 .chart-wheel .asc-arc{fill:none;stroke:var(--dg-sel,var(--gold,#b8862b));stroke-width:2;stroke-linecap:round}
-.chart-wheel .angle-label{fill:var(--accent-strong,#6b5a2a);font-family:${FONT_SANS};font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.chart-wheel .planet-leader{fill:none;stroke:var(--dg-tick,#c7b88f);stroke-width:.8}
-.chart-wheel .planet-tick{stroke:var(--dg-tick,#c7b88f);stroke-width:.8}
-.chart-wheel .planet-glyph{fill:var(--dg-ink,#2a2419);paint-order:stroke;stroke:var(--dg-fill,#fffdf6);stroke-width:3;stroke-linejoin:round}
-.chart-wheel .planet-deg{fill:var(--text-muted,#6b6354);font-family:${FONT_SANS}}
+.chart-wheel .angle-label{fill:var(--chart-accent,#6b5a2a);font-family:${FONT_SANS};font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.chart-wheel .planet-leader{fill:none;stroke:var(--chart-line,#c7b88f);stroke-width:.8}
+.chart-wheel .planet-tick{stroke:var(--chart-line,#c7b88f);stroke-width:.8}
+.chart-wheel .planet-glyph{fill:var(--chart-ink,#2a2419);paint-order:stroke;stroke:var(--chart-bg,#fffdf6);stroke-width:3;stroke-linejoin:round}
+.chart-wheel .planet-deg{fill:var(--chart-muted,#6b6354);font-family:${FONT_SANS};paint-order:stroke;stroke:var(--chart-bg,#fffdf6);stroke-width:2;stroke-linejoin:round}
 .chart-wheel .planet.benefic .planet-glyph{fill:var(--benefic,#2f7d4f)}
 .chart-wheel .planet.malefic .planet-glyph{fill:var(--malefic,#b23b2e)}
 .chart-wheel .planet.lum .planet-glyph{fill:var(--lum,#b8862b)}
@@ -76,6 +82,7 @@ const WHEEL_STYLE = `
 .chart-wheel .aspect-hub{display:none}
 .chart-wheel .deg-tick{stroke:#999}
 .chart-wheel .angle-tri,.chart-wheel .asc-arc{fill:#8a6a2a;stroke:#8a6a2a}
+.chart-wheel [data-chart-decoration]{display:none}
 }`;
 
 // Map an ecliptic longitude to an (x,y) on a circle of radius r, with the
@@ -161,6 +168,9 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
   const style = el('style');
   style.textContent = WHEEL_STYLE;
   svg.appendChild(style);
+  svg.appendChild(el('rect', { width: size, height: size, fill: CHART_PAINT.background, 'data-chart-background': '' }));
+  const description = el('desc'); description.textContent = 'Calculated longitudes and leader lines determine placement. Body discs, lighting, textures and ring sizes are illustrative, not observed appearance or physical scale.'; svg.appendChild(description);
+  const art = (target, markup) => { if (!markup) return; const layer = el('g'); layer.innerHTML = markup; target.append(...layer.childNodes); };
 
   // The rotor (D4): everything that turns under wheel-rotate lives here; the four
   // ASC/MC/DSC/IC angle *labels* stay outside as the fixed cardinal frame. The
@@ -181,6 +191,7 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
 
   // --- concentric rings ---
   for (const r of [rOuter, rZodInner, rHouse]) paint(el('circle', { cx, cy, r, class: 'wheel-ring' }));
+  art(rotor, instrumentSurfaceSVG({ prefix: `western-${size}`, cx, cy, r: rOuter }));
 
   // --- faint elemental wash per 30° wedge (orientation aid; hidden in print) ---
   for (let s = 0; s < 12; s++) {
@@ -251,15 +262,18 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
   for (const a of aspects) {
     const pa = chart.planets[a.from], pb = chart.planets[a.to];
     if (!pa || !pb) continue;
+    const color = ASPECT_PAINT[a.aspect] || CHART_PAINT.muted;
     if (a.aspect === 'Conjunction') {
       // a small arc bracket spanning the two glyphs' DISPLAY longitudes
       const la = fan.get(a.from) ?? pa.lon, lb = fan.get(a.to) ?? pb.lon;
       const cg = el('g', { class: 'asp-conj-group', 'data-el': `aspect-${a.from}-${a.to}-Conjunction`, 'data-pair': `${a.from},${a.to}` });
-      cg.appendChild(el('polyline', { points: ptsAttr(arcPts(la, lb, rAspect)), class: 'asp-conj-bracket' }));
+      const bracketPoints = ptsAttr(arcPts(la, lb, rAspect));
+      art(cg, neonStrokeSVG('polyline', { points: bracketPoints }, { color, width: 4 }));
+      const bracket = el('polyline', { points: bracketPoints, class: 'asp-conj-bracket' }); bracket.style.stroke = color; cg.appendChild(bracket);
       for (const lon of [la, lb]) { // bracket feet
         const [fx1, fy1] = pt(lon, ascLon, cx, cy, rAspect);
         const [fx2, fy2] = pt(lon, ascLon, cx, cy, rAspect + 5);
-        cg.appendChild(el('line', { x1: fx1, y1: fy1, x2: fx2, y2: fy2, class: 'asp-conj-bracket' }));
+        const foot = el('line', { x1: fx1, y1: fy1, x2: fx2, y2: fy2, class: 'asp-conj-bracket' }); foot.style.stroke = color; cg.appendChild(foot);
       }
       aspectGroup.appendChild(cg);
       continue;
@@ -272,11 +286,13 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
     const w = orb <= 1 ? 1.8 : orb <= 3 ? 1.2 : 0.8;
     const op = orb <= 1 ? 0.75 : orb <= 3 ? 0.6 : 0.45;
     line.style.strokeWidth = w + 'px';
-    line.style.opacity = String(op);
+    line.style.opacity = `calc(${op} + var(--chart-aspect-opacity-boost, 0))`;
+    line.style.stroke = color;
+    art(aspectGroup, neonStrokeSVG('line', { x1, y1, x2, y2, ...(!a.applying ? { 'stroke-dasharray': '4 4' } : {}) }, { color, width: w + 3 }));
     aspectGroup.appendChild(line);
     // hard aspects also carry a midpoint dot (colour-blind / print distinction)
     if (ASPECT_CLASS[a.aspect] === 'asp-hard') {
-      aspectGroup.appendChild(el('circle', { cx: (x1 + x2) / 2, cy: (y1 + y2) / 2, r: 2, class: 'aspect-dot' }));
+      const dot = el('circle', { cx: (x1 + x2) / 2, cy: (y1 + y2) / 2, r: 2, class: 'aspect-dot' }); dot.style.fill = color; aspectGroup.appendChild(dot);
     }
   }
   paint(aspectGroup);
@@ -325,7 +341,9 @@ export function renderChart(container, chart, aspects = [], opts = {}) {
       tabindex: '0', role: 'button',
       'aria-label': `${name} ${Math.floor(sLbl.degInSign)}° ${sLbl.name}${p.retrograde ? ', retrograde' : ''} — house ${p.house}`
     });
+    if (!isPoint) art(g, planetSurfaceSVG(name, { prefix: `western-${size}-${x}-${y}`, cx: x, cy: y, r: size * .021, rings: false }));
     const glyph = el('text', { x, y, class: 'planet-glyph', 'font-size': isPoint ? pointFs : planetFs, 'text-anchor': 'middle', 'dominant-baseline': 'central' });
+    glyph.style.fill = chartBodyColor(name);
     glyph.textContent = PLANET_GLYPHS[name] || '?';
     g.appendChild(glyph);
 

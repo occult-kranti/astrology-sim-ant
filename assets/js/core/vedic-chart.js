@@ -21,6 +21,7 @@
 // ============================================================================
 import { tag, num, points, svgRoot, esc } from './viz/svg.js';
 import { SIGNS } from './astro.js';
+import { CHART_PAINT, chartBodyColor, planetSurfaceSVG, instrumentSurfaceSVG, neonStrokeSVG } from './viz/chart-palette.js';
 
 const GRAHA_CLASS = {
   Sun: 'lum', Moon: 'lum', Jupiter: 'benefic', Venus: 'benefic',
@@ -52,26 +53,27 @@ const SOUTH_CELL = {
 
 const VEDIC_STYLE = `
 .rasi-chart{display:block;font-family:var(--font-sans,system-ui,sans-serif)}
-.rasi-chart .rc-frame{fill:none;stroke:var(--dg-frame,#cbbd9c);stroke-width:1}
-.rasi-chart .rc-frame.rc-outer{fill:var(--dg-fill,#fffdf6);stroke-width:1.5}
+.rasi-chart .rc-frame{fill:none;stroke:var(--chart-line,#cbbd9c);stroke-width:1}
+.rasi-chart .rc-frame.rc-outer{fill:var(--chart-bg,#fffdf6);stroke-width:1.5}
 .rasi-chart .rc-hit{fill:transparent;stroke:none}
-.rasi-chart .rc-signnum{fill:var(--dg-label,#9b8e6e);font-size:13px}
-.rasi-chart .rc-title{fill:var(--dg-strong,#8a6a2a);font-size:13px;font-weight:700}
-.rasi-chart .rc-lagna-mark{stroke:var(--dg-strong,#8a6a2a);stroke-width:2}
-.rasi-chart .rc-lagna-cell{fill:var(--dg-fill-2,#fbf4e3)}
-.rasi-chart .rc-graha{font-size:16px;fill:var(--dg-ink,#2a2419)}
+.rasi-chart .rc-signnum{fill:var(--chart-muted,#9b8e6e);font-size:13px}
+.rasi-chart .rc-title{fill:var(--chart-accent,#8a6a2a);font-size:13px;font-weight:700}
+.rasi-chart .rc-lagna-mark{stroke:var(--chart-accent,#8a6a2a);stroke-width:2}
+.rasi-chart .rc-lagna-cell{fill:var(--chart-surface,#fbf4e3)}
+.rasi-chart .rc-graha{font-size:16px;fill:var(--chart-ink,#2a2419);paint-order:stroke;stroke:var(--chart-bg,#fffdf6);stroke-width:2;stroke-linejoin:round}
 .rasi-chart .rc-graha.benefic{fill:var(--benefic,#2f7d4f)}
 .rasi-chart .rc-graha.malefic{fill:var(--malefic,#b23b2e)}
 .rasi-chart .rc-graha.lum{fill:var(--lum,#b8862b)}
 .rasi-chart .rc-graha.neutral{fill:var(--neutral,#6a5aa0)}
 .rasi-chart .rc-graha.point{fill:var(--neutral,#7b6f8f)}
-.rasi-chart .rc-deg{font-size:9px;fill:var(--text-muted,#6b6354)}
-.rasi-chart .is-hot .rc-hit{fill:var(--accent-wash,rgba(184,134,43,.14))}`;
+.rasi-chart .rc-deg{font-size:9px;fill:var(--chart-muted,#6b6354);paint-order:stroke;stroke:var(--chart-bg,#fffdf6);stroke-width:2;stroke-linejoin:round}
+.rasi-chart .is-hot .rc-hit{fill:var(--accent-wash,rgba(184,134,43,.14))}
+@media print{.rasi-chart [data-chart-decoration]{display:none}}`;
 
 const signName = n => SIGNS[(n - 1 + 12) % 12] || '';
 
 // Draw a vertical graha stack around an anchor (two columns when >4 occupants).
-function stackGrahas(grahas, ax, ay, k) {
+function stackGrahas(grahas, ax, ay, k, prefix) {
   if (!grahas || !grahas.length) return '';
   const twoCol = grahas.length > 4;
   const cols = twoCol ? [grahas.slice(0, Math.ceil(grahas.length / 2)), grahas.slice(Math.ceil(grahas.length / 2))] : [grahas];
@@ -82,7 +84,8 @@ function stackGrahas(grahas, ax, ay, k) {
     col.forEach((g, i) => {
       const gy = y0 + i * 18 * k;
       const cls = `rc-graha ${GRAHA_CLASS[g.id] || 'neutral'}`;
-      out += tag('text', { class: cls, x: num(cx), y: num(gy), 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': num(16 * k, 1) }, esc(`${g.glyph || g.id}`));
+      out += planetSurfaceSVG(g.id, { prefix: `${prefix}-${ci}-${i}`, cx: num(cx), cy: num(gy), r: 8.5 * k, rings: false });
+      out += tag('text', { class: cls, x: num(cx), y: num(gy), 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': num(16 * k, 1), style: `fill:${chartBodyColor(g.id)}`, 'data-graha-id': g.id }, esc(`${g.glyph || g.id}`));
       if (g.deg != null) out += tag('text', { class: 'rc-deg', x: num(cx), y: num(gy + 11 * k), 'text-anchor': 'middle', 'font-size': num(9 * k, 1) }, esc(`${Math.floor(g.deg)}°${g.retro ? '℞' : ''}`));
     });
   });
@@ -111,6 +114,10 @@ export function northIndianChart(model, opts = {}) {
   let body = '';
   // frame: outer square, both diagonals, midpoint rhombus
   body += tag('rect', { class: 'rc-frame rc-outer', x: 0, y: 0, width: num(400 * k), height: num(400 * k) }, null);
+  body += instrumentSurfaceSVG({ prefix: `rasi-north-${size}`, width: size, height: size });
+  body += neonStrokeSVG('line', { x1: 0, y1: 0, x2: num(400 * k), y2: num(400 * k) }, { color: CHART_PAINT.line, width: 4 });
+  body += neonStrokeSVG('line', { x1: num(400 * k), y1: 0, x2: 0, y2: num(400 * k) }, { color: CHART_PAINT.line, width: 4 });
+  body += neonStrokeSVG('polyline', { points: points([S([200, 0]), S([400, 200]), S([200, 400]), S([0, 200]), S([200, 0])]) }, { color: CHART_PAINT.line, width: 4 });
   body += tag('line', { class: 'rc-frame', x1: 0, y1: 0, x2: num(400 * k), y2: num(400 * k) }, null);
   body += tag('line', { class: 'rc-frame', x1: num(400 * k), y1: 0, x2: 0, y2: num(400 * k) }, null);
   body += tag('polygon', { class: 'rc-frame', points: points([S([200, 0]), S([400, 200]), S([200, 400]), S([0, 200])]) }, null);
@@ -121,13 +128,13 @@ export function northIndianChart(model, opts = {}) {
     const house = bySign[h] || { house: h, sign: h, grahas: [] };
     const hit = points(geo.poly.map(S));
     const built = houseGroup(h, house.sign, house.grahas, hit, S(geo.sign), k);
-    body += built.g(stackGrahas(house.grahas, ...S(geo.stack), k));
+    body += built.g(stackGrahas(house.grahas, ...S(geo.stack), k, `rasi-north-${size}-${h}`));
     textModel.push(`House ${h} (${signName(house.sign)}): ${grahaList(house.grahas)}.`);
   }
 
   const svg = svgRoot({
     viewBox: `0 0 ${num(size)} ${num(size)}`, cls: 'rasi-chart rasi-north',
-    ariaLabel: `North Indian rāśi chart, ${opts.varga || 'D1'}${opts.title ? ' — ' + opts.title : ''}`,
+    ariaLabel: `North Indian rāśi chart, ${opts.varga || 'D1'}${opts.title ? ' — ' + opts.title : ''}. Fixed houses; body discs are illustrative, not observed appearance or physical scale.`,
     style: VEDIC_STYLE, extra: { 'data-viz': 'vedic-chart', 'data-style': 'north' },
   }, body);
   return { svg, textModel };
@@ -144,11 +151,14 @@ export function southIndianChart(model, opts = {}) {
   let body = '';
   // 4×4 grid frame — outer square plus the inner lines that bound the 12 cells
   body += tag('rect', { class: 'rc-frame rc-outer', x: 0, y: 0, width: num(size), height: num(size) }, null);
+  body += instrumentSurfaceSVG({ prefix: `rasi-south-${size}`, width: size, height: size });
   // lagna cell fill (drawn before strokes so the fill sits under the grid)
   const [lr, lc] = SOUTH_CELL[lagnaSign];
   body += tag('rect', { class: 'rc-lagna-cell', x: num(lc * cell), y: num(lr * cell), width: num(cell), height: num(cell) }, null);
   // grid lines
   for (let i = 1; i < 4; i++) {
+    body += neonStrokeSVG('line', { x1: num(i * cell), y1: 0, x2: num(i * cell), y2: num(size) }, { color: CHART_PAINT.line, width: 4 });
+    body += neonStrokeSVG('line', { x1: 0, y1: num(i * cell), x2: num(size), y2: num(i * cell) }, { color: CHART_PAINT.line, width: 4 });
     body += tag('line', { class: 'rc-frame', x1: num(i * cell), y1: 0, x2: num(i * cell), y2: num(size) }, null);
     body += tag('line', { class: 'rc-frame', x1: 0, y1: num(i * cell), x2: num(size), y2: num(i * cell) }, null);
   }
@@ -169,7 +179,7 @@ export function southIndianChart(model, opts = {}) {
       inner += tag('line', { class: 'rc-lagna-mark', x1: num(x), y1: num(y + 22 * (size / 400)), x2: num(x + 22 * (size / 400)), y2: num(y) }, null);
     }
     if (opts.houseNumbers) inner += tag('text', { class: 'rc-signnum', x: num(x + 6), y: num(y + 14), 'text-anchor': 'start' }, String(houseNum));
-    inner += stackGrahas(grahas, x + cell / 2, y + cell / 2, size / 400);
+    inner += stackGrahas(grahas, x + cell / 2, y + cell / 2, size / 400, `rasi-south-${size}-${signNum}`);
     body += tag('g', { class: 'rc-bhava', 'data-el': `bhava-${houseNum}`, tabindex: '0', role: 'button', 'aria-label': label }, inner);
     textModel.push(`House ${houseNum} (${signName(signNum)}): ${grahaList(grahas)}.`);
   }
@@ -178,7 +188,7 @@ export function southIndianChart(model, opts = {}) {
 
   const svg = svgRoot({
     viewBox: `0 0 ${num(size)} ${num(size)}`, cls: 'rasi-chart rasi-south',
-    ariaLabel: `South Indian rāśi chart, ${opts.varga || 'D1'}${opts.title ? ' — ' + opts.title : ''}`,
+    ariaLabel: `South Indian rāśi chart, ${opts.varga || 'D1'}${opts.title ? ' — ' + opts.title : ''}. Fixed signs; body discs are illustrative, not observed appearance or physical scale.`,
     style: VEDIC_STYLE, extra: { 'data-viz': 'vedic-chart', 'data-style': 'south' },
   }, body);
   return { svg, textModel };
