@@ -2,6 +2,8 @@
 
 ## Site-wide appearance
 
+Season and Moon markers now extend the timeline sliders: four annual equinox/solstice presets, calculated phase icons, exact-event cards and explicit local bookmarks. See the [design](.design/celestial-bookmarks.md) and [methods and verification](docs/2026-11-celestial-bookmarks.md).
+
 Use **Appearance** in the masthead to choose Black, Parchment or Mineral. Black is the default and includes the chart canvases. The selection is stored only in this browser and applies across the collection. Eight page-family accents distinguish observatory, Western, Vedic, oracle, library, research, practice and connection pages; traditional result colors keep their named meanings.
 
 The [Black chart studio](.design/black-chart-studio.md) adds stable body/aspect/calendar-ring colors, motion filters, orb/body sorting, legend filters and keyboard pair navigation. SVG downloads retain the displayed palette and held chart context. See [verification](docs/2026-10-black-chart-verification.md).

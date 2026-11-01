@@ -1,3 +1,9 @@
+# Celestial timeline bookmarks
+
+This follow-up starts from published `55a6ce0c0fae2f29b8ddc80842597c239ad3e70d` on `feat/celestial-timeline-bookmarks`. Read `.design/celestial-bookmarks.md` and `docs/2026-11-celestial-bookmarks.md`. The shared date navigator accepts optional sourced phase data and a separate exact-event marker array. Keep exact-marker actions distinct from indexed study-day actions and preserve milliseconds through the existing Atlas `preciseInstant` path. The new core view adapter caches bounded canonical annual searches; do not run them on hover, infer sighting dates or attach Moon phases to source-year claims. Automatic season presets do not save anything until an explicit bookmark action.
+
+Final local checks pass: celestial 229 (eight journeys/16 screenshots/14 downloads), date 517, themes 3,717, sky 3,520, Newton 1,294, Black 239, neon 192, timeline 2,067, source-atlas 631, engine 734, nine generators and 134 pages/zero errors. Keep the zoom-aware portal positioning; displayed/local CSS units differ under inherited zoom. The entire exact event set remains in a paged list when rail markers are thinned. The Pages workflow replays all inherited gates and the new celestial gate on the committed source; release.json and workflow artifacts record the deployed identity.
+
 # Neon chart elements
 
 This follow-up starts from published `6ac1bcd93721ece1fa2bd621451cc3504d5cbcd0` on `feat/neon-chart-elements`. Read `.design/neon-chart-elements.md` and `docs/2026-11-neon-chart-verification.md`. Shared native-SVG helpers in `core/viz/chart-palette.js` add illustrative planet surfaces and light layers without changing canonical coordinates or star data. Keep native local gradient/clip references, the readable theme-background glyph outlines and actual SVG/PNG export checks. Sigil display paint is separate from its unchanged construction recipe; export the attached styled SVG through `svgToString()`.

@@ -10,6 +10,7 @@ import { CHART_PAINT, chartBodyColor, planetSurfaceSVG, instrumentSurfaceSVG, ne
 import { mountPersonalCalendar } from './personal-calendar.js';
 import { mountSkyExplorer } from './sky-explorer.js';
 import { mountDateNavigator } from './date-wayfinding.js';
+import { celestialPhase, celestialEventsForRange, celestialMarkers } from '../core/celestial-navigation.js';
 
 const $ = id => document.getElementById(id);
 const ROOT = new URL('../../../', import.meta.url);
@@ -58,14 +59,20 @@ export function initCalendarAtlas() {
     if(dateTargetsCache?.key!==cacheKey){const events=new Map((current.rows.find(row=>row.id==='chinese-solar-terms')?.result?.events||[]).map(event=>[event.observerDate,event]));dateTargetsCache={key:cacheKey,targets:navigationDates().map(date=>{const localDate=localFields(new Date(date),current.context.timeZone).date;return{date,localDate,event:events.get(localDate)};})};}
     return dateTargetsCache.targets.map(({date,localDate,event})=>({id:date,date,label:localDate,kind:row?.status==='unavailable'&&date===current.context.dateISO?'unavailable':event?'astronomy':'neutral',
       summary:date===current.context.dateISO?(row?.summary||'Current calculated sky and calendar instant.'):event?event.name+' occurs on this observer date; navigation retains the displayed UTC clock.':'Select to calculate this instant in every linked chart and calendar.',
-      details:[{label:'Step',value:'24 hours UTC. Local clock readings can shift with daylight-saving time.'},{label:'Scope',value:'Neighboring instants are navigation targets, without precomputed favorable or caution classifications.'},...(date===current.context.dateISO&&row?[{label:'Method',value:row.method},{label:'Boundary',value:row.boundary},{label:'Validation',value:stringValue(row.validation)}]:[]),...(event?[{label:'Solved event UTC',value:event.instantUTC},{label:'Navigation target UTC',value:date},{label:'Solar term',value:event.name+' · '+event.longitudeDegrees+'°'}]:[])],sourceLabel:[row?.sourceIds?.join(' · ')||'Shared explicit UTC instant',event?(current.rows.find(row=>row.id==='chinese-solar-terms')?.sourceIds||[]).join(' · '):''].filter(Boolean).join('; ')}));
+      details:[{label:'Step',value:'24 hours UTC. Local clock readings can shift with daylight-saving time.'},{label:'Scope',value:'Neighboring instants are navigation targets, without precomputed favorable or caution classifications.'},...(date===current.context.dateISO&&row?[{label:'Method',value:row.method},{label:'Boundary',value:row.boundary},{label:'Validation',value:stringValue(row.validation)}]:[]),...(event?[{label:'Solved event UTC',value:event.instantUTC},{label:'Navigation target UTC',value:date},{label:'Solar term',value:event.name+' · '+event.longitudeDegrees+'°'}]:[])],...(date===current.context.dateISO?{celestial:celestialPhase(current.comparison.astronomy,{calendarLabel:row?.label||'Shared sky',timeZone:current.context.timeZone})}:{}),sourceLabel:[row?.sourceIds?.join(' · ')||'Shared explicit UTC instant',event?(current.rows.find(row=>row.id==='chinese-solar-terms')?.sourceIds||[]).join(' · '):''].filter(Boolean).join('; ')}));
+  }
+  function celestialDateOptions(rowId=null){
+    if(!current)return{markers:[],celestial:null};
+    const row=current.rows.find(row=>row.id===rowId),calendarLabel=row?.label||'Shared sky',year=new Date(current.context.dateISO).getUTCFullYear(),timeZone=current.context.timeZone;
+    const events=celestialEventsForRange({startISO:`${year}-01-01T00:00:00.000Z`,endISO:`${year}-12-31T23:59:59.999Z`,timeZone});
+    return{markers:celestialMarkers(events,{calendarLabel,timeZone}),celestial:celestialPhase(current.comparison.astronomy,{calendarLabel,timeZone}),markerActionLabel:'Use exact instant',markerActionNote:'The exact solved UTC will update every linked chart and calendar. This is separate from the 24-hour navigation grid.',onMarkerSelect:item=>{if(!current||!active)return;fillInstant(new Date(item.date));calculate({focusError:true});}};
   }
   function mountLinkedDateControl(host,id,label,rowId=null){
     dateControls.get(id)?.navigator.destroy();host.id=id;
-    const navigator=mountDateNavigator(host,{id:id+'-nav',label,items:dateItems(rowId),value:current?.context.dateISO,compact:true,disabled:!current,bookmarkScope:'calendar-atlas',emptyMessage:'Calculate a moment to navigate linked dates.',onSelect:item=>{if(!current||!active||item.date===current.context.dateISO)return;dateFocus=id;fillInstant(new Date(item.date));calculate({focusError:true});}});
+    const navigator=mountDateNavigator(host,{id:id+'-nav',label,items:dateItems(rowId),...celestialDateOptions(rowId),value:current?.context.dateISO,compact:true,disabled:!current,bookmarkScope:'calendar-atlas',emptyMessage:'Calculate a moment to navigate linked dates.',onSelect:item=>{if(!current||!active||item.date===current.context.dateISO)return;dateFocus=id;fillInstant(new Date(item.date));calculate({focusError:true});}});
     dateControls.set(id,{host,label,rowId,navigator});return navigator;
   }
-  function syncDateControls(){for(const[id,control]of dateControls){if(!control.host.isConnected){control.navigator.destroy();dateControls.delete(id);continue;}control.navigator.update({items:dateItems(control.rowId),value:current?.context.dateISO,disabled:!current});}if(dateFocus){$(dateFocus)?.querySelector('input[type="range"]')?.focus({preventScroll:true});dateFocus=null;}}
+  function syncDateControls(){for(const[id,control]of dateControls){if(!control.host.isConnected){control.navigator.destroy();dateControls.delete(id);continue;}control.navigator.update({items:dateItems(control.rowId),...celestialDateOptions(control.rowId),value:current?.context.dateISO,disabled:!current});}if(dateFocus){$(dateFocus)?.querySelector('input[type="range"]')?.focus({preventScroll:true});dateFocus=null;}}
   function renderEventDates(){
     let host=$('atlas-event-dates');if(!host){host=element('div');host.id='atlas-event-dates';$('atlas-sources').closest('section')?.before(host);}
     const row=current?.rows.find(row=>row.id==='chinese-solar-terms'),sources=(row?.sourceIds||[]).map(id=>current.sources.find(source=>source.id===id)).filter(Boolean);

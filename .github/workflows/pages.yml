@@ -122,6 +122,10 @@ jobs:
         env:
           DATE_NAV_OUTPUT: test-results/date-wayfinding
         run: node scripts/browser-date-wayfinding.mjs
+      - name: Celestial season bookmarks, phase icons and exact-time navigation
+        env:
+          CELESTIAL_OUTPUT: test-results/celestial-bookmarks
+        run: node scripts/browser-celestial-bookmarks.mjs
       - name: Chart relationships, stable calendar colors and bounded interaction stress
         env:
           RELATION_OUTPUT: test-results/chart-relationships

@@ -3,6 +3,7 @@
 import { downloadBlob } from './state.js';
 import { CHART_PAINT, chartBodyColor, planetSurfaceSVG, instrumentSurfaceSVG, neonStrokeSVG } from '../core/viz/chart-palette.js';
 import { mountDateNavigator } from './date-wayfinding.js';
+import { celestialPhase, celestialEventsForRange, celestialMarkers } from '../core/celestial-navigation.js';
 import { buildChartRelationshipModel } from '../core/chart-relationships.js';
 import { mountRelationshipInspector, relationPresentation } from './chart-relationships.js';
 import { COUNTRY_EVENT_COUNTRIES } from '../core/data/country-event-research.js';
@@ -153,15 +154,46 @@ export function initCalendarTimeline() {
   let navigationFocus = null, highlightSelection = null, tropicalRelationships = null, siderealRelationships = null;
   function clearRelationships() { tropicalRelationships?.destroy(); siderealRelationships?.destroy(); tropicalRelationships = siderealRelationships = null; }
   function clearDateNavigators() { for (const nav of dateNavigators.values()) nav.destroy(); dateNavigators.clear(); }
+  let celestialGridCache=null;
+  function gridCelestialEvents(){
+    if(!grid||!request)return[];
+    const key=request.startDate+'|'+request.endDate+'|'+request.timeZone;
+    if(celestialGridCache?.key===key)return celestialGridCache.events;
+    const times=grid.slots.map(slot=>Date.parse(slot.selectedDateISO)).filter(Number.isFinite);
+    if(!times.length)return[];
+    const first=Math.max(Date.parse('1900-01-01T00:00:00Z'),Math.min(...times)-86400000),last=Math.min(Date.parse('2100-12-31T23:59:59.999Z'),Math.max(...times)+86400000),events=[];
+    for(let year=new Date(first).getUTCFullYear();year<=new Date(last).getUTCFullYear();year++)events.push(...celestialEventsForRange({startISO:`${year}-01-01T00:00:00.000Z`,endISO:`${year}-12-31T23:59:59.999Z`,timeZone:request.timeZone}));
+    celestialGridCache={key,events:events.filter(event=>event.localDate>=request.startDate&&event.localDate<=request.endDate)};
+    return celestialGridCache.events;
+  }
+  function selectCelestialStudyDay(item,id){
+    if(!grid||!request||!frame||busy||!active)return;
+    const exact=gridCelestialEvents().find(event=>event.dateISO===item.date);
+    if(!exact){
+      const year=new Date(frame.context.dateISO).getUTCFullYear(),annual=celestialEventsForRange({startISO:`${year}-01-01T00:00:00.000Z`,endISO:`${year}-12-31T23:59:59.999Z`,timeZone:request.timeZone}).find(event=>event.kind==='solar-quarter'&&event.dateISO===item.date);
+      if(!annual)return;
+      const retained={...request,startDate:annual.localDate,endDate:annual.localDate};fillSettings(retained);navigationFocus=id;clearMarker();apply(annual.localDate);return;
+    }
+    const candidates=grid.slots.filter(slot=>slot.status==='available'&&Number.isFinite(Date.parse(slot.selectedDateISO)));if(!candidates.length)return;
+    const instant=Date.parse(item.date),nearest=candidates.reduce((best,slot)=>Math.abs(Date.parse(slot.selectedDateISO)-instant)<Math.abs(Date.parse(best.selectedDateISO)-instant)?slot:best);
+    navigationFocus=id;clearMarker();select(nearest.index);
+    $('ct-status').textContent='Selected the nearest available study sample '+nearest.selectedDateISO+' at the retained '+request.time+' '+request.timeZone+' clock. Solved event UTC '+item.date+' remains separate.';
+  }
+  function dateLaneCelestial(label,id){
+    const timeZone=request.timeZone,year=new Date(frame.context.dateISO).getUTCFullYear(),inRange=gridCelestialEvents(),allowed=new Set(inRange.map(event=>event.dateISO));
+    const annual=celestialEventsForRange({startISO:`${year}-01-01T00:00:00.000Z`,endISO:`${year}-12-31T23:59:59.999Z`,timeZone}).filter(event=>event.kind==='solar-quarter');
+    const markers=celestialMarkers([...inRange,...annual],{calendarLabel:label,timeZone,selectionNote:'Study-day navigation retains '+request.time+' '+timeZone+'; the exact solved UTC remains separate.'}).map(marker=>({...marker,actionLabel:allowed.has(marker.date)?'Use nearest study day':'Open event study day',actionNote:allowed.has(marker.date)?'Selects the closest available sample in this declared range at the retained study clock. It does not cast the exact event UTC.':'Explicitly opens a new one-day range for this event’s observer date at the retained study clock. It does not cast the exact solved UTC.'}));
+    return{markers,focusYear:year,celestial:celestialPhase(frame.comparison.astronomy,{calendarLabel:label,timeZone}),markerActionLabel:'Use nearest study day',markerActionNote:'The solved UTC remains in the card; daily samples retain the declared local clock.',onMarkerSelect:item=>selectCelestialStudyDay(item,id)};
+  }
   function dateLane(host, id, label, row = null) {
     host.id=id;
-    const eventsByDate=new Map(arr(frame?.astronomicalEvents?.events).map(event=>[event.localDate,event]));
+    const eventsByDate=new Map();for(const event of arr(frame?.astronomicalEvents?.events)){if(!eventsByDate.has(event.localDate))eventsByDate.set(event.localDate,[]);eventsByDate.get(event.localDate).push(event);}
     const items = grid.slots.map(slot => ({ id: slot.localDate, date: slot.selectedDateISO || slot.localDate,
       label: slot.localDate, kind: slot.status !== 'available' ? 'unavailable' : eventsByDate.has(slot.localDate) ? 'astronomy' : 'neutral',
       summary: slot.localDate === frame?.context?.localDate && row ? row.summary || row.reason || row.label : slot.status === 'available' ? 'Resolved study clock. Select this date to calculate every linked instrument.' : slot.reason,
       details: [{label:'Study clock',value:`${slot.localTime} · ${request.timeZone}`},{label:'Scope',value:'One sample per civil date. Unvisited dates have no calculated rule classification.'}],
-      sourceLabel: [row?.sourceIds?.join(' · ') || 'Canonical local-clock grid',eventsByDate.has(slot.localDate)?arr(frame?.astronomicalEvents?.sourceIds).join(' · '):''].filter(Boolean).join('; '),...(eventsByDate.has(slot.localDate)?{summary:eventsByDate.get(slot.localDate).label+' occurs on this observer date; the slider retains the study clock.',details:[{label:'Solved event',value:eventsByDate.get(slot.localDate).dateISO},{label:'Selected study sample',value:slot.selectedDateISO||slot.reason},{label:'Definition',value:eventsByDate.get(slot.localDate).definition}]}:{}) }));
-    dateNavigators.set(id, mountDateNavigator(host, { id, label, items, value: grid.slots[selectedIndex].localDate, compact:true, bookmarkScope:'calendar-timeline',
+      ...(slot.localDate===frame?.context?.localDate?{celestial:celestialPhase(frame.comparison.astronomy,{calendarLabel:row?.label||label,timeZone:request.timeZone})}:{}),sourceLabel: [row?.sourceIds?.join(' · ') || 'Canonical local-clock grid',eventsByDate.has(slot.localDate)?arr(frame?.astronomicalEvents?.sourceIds).join(' · '):''].filter(Boolean).join('; '),...(eventsByDate.has(slot.localDate)?{summary:eventsByDate.get(slot.localDate).map(event=>event.label).join(' · ')+' occurs on this observer date; the slider retains the study clock.',details:[...eventsByDate.get(slot.localDate).flatMap(event=>[{label:'Solved event · '+event.label,value:event.dateISO},{label:'Definition',value:event.definition}]),{label:'Selected study sample',value:slot.selectedDateISO||slot.reason}]}:{}) }));
+    dateNavigators.set(id, mountDateNavigator(host, { id, label, items, ...dateLaneCelestial(row?.label||label,id), value: grid.slots[selectedIndex].localDate, compact:true, bookmarkScope:'calendar-timeline',
       onSelect: item => { if (!grid || !request) return; const index = grid.slots.findIndex(slot => slot.localDate === item.id); if (index < 0 || index === selectedIndex && frame) return; navigationFocus=id; clearMarker(); select(index); } }));
   }
   function renderDateNavigators(result) {
