@@ -152,13 +152,15 @@ async function renderedChecks(page, width) {
   const values = await page.evaluate(() => {
     const visible = element => !!element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden';
     const textControls = [...document.querySelectorAll('main input:not([type="hidden"]):not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),main select,main textarea')].filter(visible);
+    const savedDateControls = [...document.querySelectorAll('.date-nav-saved-label input[type="checkbox"]')].filter(visible).map(element => ({ label: element.closest('label')?.textContent.trim(), width: element.getBoundingClientRect().width, height: element.getBoundingClientRect().height }));
     const primary = [...document.querySelectorAll('main .btn')].find(visible);
-    return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, tinyControls: textControls.filter(element => parseFloat(getComputedStyle(element).fontSize) < 15.99).map(element => ({ id: element.id, fontSize: getComputedStyle(element).fontSize })), primary: primary ? { width: primary.getBoundingClientRect().width, height: primary.getBoundingClientRect().height } : null, triggers: document.querySelectorAll('.appearance-trigger').length, dialogs: document.querySelectorAll('#site-appearance').length, families: document.body.dataset.pageFamily };
+    return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, tinyControls: textControls.filter(element => parseFloat(getComputedStyle(element).fontSize) < 15.99).map(element => ({ id: element.id, fontSize: getComputedStyle(element).fontSize })), savedDateControls, primary: primary ? { width: primary.getBoundingClientRect().width, height: primary.getBoundingClientRect().height } : null, triggers: document.querySelectorAll('.appearance-trigger').length, dialogs: document.querySelectorAll('#site-appearance').length, families: document.body.dataset.pageFamily };
   });
   check(values.scrollWidth <= values.width + 2, 'No whole-page horizontal overflow', values);
   check(values.triggers === 1 && values.dialogs === 1, 'One Appearance trigger and dialog per route');
+  check(values.tinyControls.length === 0, 'Visible text controls remain at least 16px at every tested width', values.tinyControls);
+  if (values.savedDateControls.length) check(values.savedDateControls.every(control => control.width >= 43.9 && control.height >= 43.9), 'Visible bookmarked-date filter checkboxes retain 44px square targets', values.savedDateControls);
   if (width <= 680) {
-    check(values.tinyControls.length === 0, 'Visible narrow-screen text controls remain at least 16px', values.tinyControls);
     if (values.primary) check(values.primary.height >= 43.9 && values.primary.width >= 43.9, 'Primary action has a 44px touch target', values.primary);
   }
   const contrasts = await page.evaluate(() => {
