@@ -335,6 +335,18 @@ body[data-page-family="practice"] .ys-num {
   font-variant-numeric: tabular-nums;
 }
 
+/* Glossary words are inline reading controls, including Sanskrit and Pāli
+   compounds longer than a phone's text column. A native inline-block button
+   otherwise keeps that compound at its max-content width. Retain the complete
+   word and its focus/tap behavior while allowing it to wrap inside the line. */
+.observatory-shell .bud-line .bud-w {
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  font-family: inherit;
+  line-height: inherit;
+}
+
 /* CALCULATE · Existing figures stay the main artifact. A quiet divider groups
    inputs separately from the changing numerical result beneath each form. */
 body[data-page-family="western"] main > form.calc,

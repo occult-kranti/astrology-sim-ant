@@ -30,6 +30,9 @@ const routes = [
   ['standards', 'pages/standards.html', 'main h1'],
   ['library', 'pages/library/index.html', 'main h1'],
   ['reading', 'pages/yoga/pada1.html', 'main h1'],
+  ['dhammapada', 'pages/buddhist/dhammapada.html', '#bud-room .bud-seg'],
+  ['heart', 'pages/buddhist/heart.html', '#bud-room .bud-seg'],
+  ['anapanasati', 'pages/buddhist/mn118.html', '#bud-room .bud-seg'],
   ['confluence', 'pages/confluence.html', 'main h1'],
 ];
 const selectedRoutes = process.env.SITE_DESIGN_ROUTES?.split(',');
@@ -305,6 +308,11 @@ try {
         check(JSON.stringify(afterStorage) === JSON.stringify(heldStorage), 'Theme change preserves all unrelated browser storage entries', afterStorage);
         if ((name === 'home' && width === 390) || (name === 'atlas' && width === 1440) || (name === 'tools' && width === 320) || (name === 'library' && width === 1440)) {
           await candidate.evaluate(() => scrollTo(0, 0)); await screenshot(candidate, `${name}-${width}-${theme}`);
+        }
+        if (['dhammapada', 'heart', 'anapanasati'].includes(name) && width === 320 && theme === 'midnight') {
+          await candidate.evaluate(() => [...document.querySelectorAll('.bud-line .bud-w')].sort((left, right) => right.textContent.length - left.textContent.length)[0]?.scrollIntoView({ block: 'center', behavior: 'instant' }));
+          await candidate.mouse.move(0, 0);
+          await screenshot(candidate, `${name}-320-midnight-reading`);
         }
       }
     } catch (error) { receipt.failures.push({ ...current, label: 'Journey execution', message: error.message, stack: error.stack }); }
