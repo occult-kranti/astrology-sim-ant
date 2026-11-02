@@ -74,6 +74,14 @@ jobs:
         env:
           ORBITAL_OUTPUT: test-results/orbital-space
         run: node scripts/browser-orbital-space.mjs
+      - name: Chart relationships, stable calendar colors and bounded interaction stress
+        env:
+          RELATION_OUTPUT: test-results/chart-relationships
+        run: node scripts/browser-chart-relationships.mjs
+      - name: Black chart paints, relationship controls and standalone SVGs
+        env:
+          BLACK_CHART_OUTPUT: test-results/black-charts
+        run: node scripts/browser-black-charts.mjs
       - name: Chart console, image exports and verified offline library
         env:
           BIRTH_CONSOLE_OUTPUT: test-results/birth-console
@@ -140,20 +148,12 @@ jobs:
           BIRTH_READING_OUTPUT: test-results/birth-reading
         run: node scripts/browser-birth-reading.mjs
 
-      - name: Chart relationships, stable calendar colors and bounded interaction stress
-        env:
-          RELATION_OUTPUT: test-results/chart-relationships
-        run: node scripts/browser-chart-relationships.mjs
       - name: Site themes, keyboard access, contrast and preserved study state
         env:
           SITE_DESIGN_OUTPUT: test-results/site-design
           PUPPETEER_PKG: node_modules/puppeteer-core/lib/esm/puppeteer/puppeteer-core.js
         run: |
           CHROME_PATH="$(node --input-type=module -e "import { chromium } from 'playwright'; process.stdout.write(chromium.executablePath())")" node scripts/browser-site-design.mjs
-      - name: Black chart paints, relationship controls and standalone SVGs
-        env:
-          BLACK_CHART_OUTPUT: test-results/black-charts
-        run: node scripts/browser-black-charts.mjs
       - name: Neon planet surfaces, black drawing previews and portable paint servers
         env:
           NEON_CHART_OUTPUT: test-results/neon-charts
