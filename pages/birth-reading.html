@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<script src="../assets/js/app/appearance-boot.js" data-site-appearance-boot></script>
+<title>Birth reading &amp; calendar comparison — The Astrologer's Workbench</title>
+<meta name="description" content="Build a private birth reading with calculated sky charts, calendar comparisons, historical rules, timing studies and inspectable sources.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/birth-reading.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/observatory.css" data-observatory-style="true">
+<link rel="stylesheet" href="../assets/css/site-themes.css" data-site-design="site-themes">
+<link rel="stylesheet" href="../assets/css/site-components.css" data-site-design="site-components">
+<link rel="stylesheet" href="../assets/css/site-patterns.css" data-site-design="site-patterns">
+</head>
+<body data-page-family="observatory">
+<main id="content" class="birth-reading no-autolink">
+  <header class="br-heading">
+    <div>
+      <p class="br-kicker">THE PERSONAL OBSERVATORY · A COMPARATIVE READING</p>
+      <h1>One birth.<br><em>Many ways to read it.</em></h1>
+      <p class="br-deck">Follow your recorded moment from the sky to its calendars, then from each traditional rule to its interpretation.</p>
+    </div>
+    <aside class="br-heading-note">
+      <span class="br-ornament" aria-hidden="true">☉ <span>·</span> ☽</span>
+      <p>A reading with its workings.</p>
+      <p class="br-note">Calculated positions, historical interpretations and reflection prompts are labeled separately. A chart cannot establish your past or guarantee your future.</p>
+      <a href="calendar-atlas.html">Explore the calendar atlas ↗</a>
+    </aside>
+  </header>
+
+  <section class="br-input-section" aria-labelledby="br-input-heading">
+    <div class="br-section-head">
+      <div><p class="br-kicker">BEGIN WITH THE RECORD</p><h2 id="br-input-heading">The moment &amp; the place.</h2></div>
+      <p class="br-note">Enter the recorded local clock and its IANA time zone. Positions and houses are calculated on this device.</p>
+    </div>
+    <form id="br-form" autocomplete="off">
+      <div class="br-form-grid">
+        <label class="br-field" for="br-date">Birth date <span>Gregorian civil date</span><input id="br-date" name="birth-date" type="date" min="1900-01-01" max="2100-12-31" required></label>
+        <label class="br-field" for="br-time">Recorded local time <span>Hours, minutes and optional seconds</span><input id="br-time" name="birth-time" type="time" step="1" required></label>
+        <label class="br-field" for="br-zone">Birth time zone <span>For example, Asia/Kolkata for IST</span><input id="br-zone" name="birth-zone" type="text" value="Asia/Kolkata" list="br-zones" spellcheck="false" required></label>
+        <label class="br-field" for="br-lat">Latitude <span>Degrees north; negative for south</span><input id="br-lat" name="birth-latitude" type="number" min="-89.999999" max="89.999999" step="any" inputmode="decimal" required></label>
+        <label class="br-field" for="br-lon">Longitude <span>Degrees east; negative for west</span><input id="br-lon" name="birth-longitude" type="number" min="-180" max="180" step="any" inputmode="decimal" required></label>
+        <label class="br-field" for="br-asof">Reading date <span>At noon in the entered birth time zone</span><input id="br-asof" name="reading-date" type="date" min="1900-01-01" max="2100-12-31" required></label>
+      </div>
+      <datalist id="br-zones"><option value="Asia/Kolkata"><option value="UTC"><option value="Europe/London"><option value="America/New_York"><option value="Asia/Jerusalem"><option value="Asia/Shanghai"><option value="Asia/Tokyo"></datalist>
+      <div class="br-input-actions">
+        <button id="br-calculate" type="submit" class="br-primary">Build the reading <span aria-hidden="true">↗</span></button>
+        <button id="br-clear" type="button">Clear birth details</button>
+        <p class="br-note">Your birth details stay in this page's memory. Export a private copy if you want to keep the reading.</p>
+      </div>
+    </form>
+    <details class="br-import-panel">
+      <summary>Open a saved private reading</summary>
+      <p id="br-import-help" class="br-note">Choose a JSON reading exported by this tool. Its birth details will fill the form and can be recalculated here. No file is uploaded.</p>
+      <label class="br-field" for="br-import">Private reading file<input id="br-import" type="file" accept="application/json,.json" aria-describedby="br-import-help"></label>
+    </details>
+    <p id="br-status" class="br-status" role="status" aria-live="polite">Enter a birth record to begin.</p>
+  </section>
+
+  <div id="br-results" hidden>
+    <nav class="br-jumps" aria-label="Birth reading sections">
+      <a href="#br-overview-heading">Overview</a><a href="#br-comparison-heading">Calendars</a><a href="#br-houses-heading">Twelve houses</a><a href="#br-periods-heading">Life periods</a><a href="#br-events-heading">Future studies</a><a href="#br-method-heading">Method</a><a href="#br-sources-heading">Sources</a>
+    </nav>
+    <section class="br-section br-overview" aria-labelledby="br-overview-heading">
+      <header class="br-section-head"><div><p class="br-kicker">01 · YOUR CALCULATED SKY</p><h2 id="br-overview-heading" tabindex="-1">Begin with the pattern.</h2></div><p class="br-note">A shared instant; different coordinate frames and interpretive traditions.</p></header>
+      <div class="br-overview-grid">
+        <div id="br-summary" class="br-summary"></div>
+        <figure class="br-chart-figure"><label class="br-field br-chart-choice" for="br-chart-select">Chart convention<select id="br-chart-select"><option value="tropical-regiomontanus">Tropical · Regiomontanus houses</option><option value="tropical-whole">Tropical · whole-sign houses</option><option value="sidereal-whole">Sidereal · whole-sign houses</option></select></label><div id="br-chart" class="br-chart"></div><figcaption>Use the position tables to inspect the chart. A planet's distance from the center is a drawing convention, not its physical distance.</figcaption></figure>
+      </div>
+      <details class="br-details br-position-details"><summary>Inspect the planet positions &amp; chart differences <span>Numerical companion</span></summary><div id="br-positions"></div></details>
+      <details class="br-details"><summary>Check sensitivity to the recorded birth time</summary><div id="br-sensitivity"></div></details>
+    </section>
+
+    <section class="br-section" aria-labelledby="br-comparison-heading">
+      <header class="br-section-head"><div><p class="br-kicker">02 · SAME MOMENT, DIFFERENT RULES</p><h2 id="br-comparison-heading">Compare the calendars.</h2></div><p class="br-note">A civil date, a lunar division and a natal interpretation answer different questions. Read the convention beside each result.</p></header>
+      <div id="br-comparison"></div>
+    </section>
+
+    <section class="br-section" aria-labelledby="br-houses-heading">
+      <header class="br-section-head"><div><p class="br-kicker">03 · TWELVE AREAS OF LIFE</p><h2 id="br-houses-heading">Read each house in context.</h2></div><p class="br-note">Open a topic to follow its chart facts, attributed rule and interpretation. House systems can change a planet's assigned house.</p></header>
+      <div id="br-houses" class="br-houses"></div>
+    </section>
+
+    <section class="br-section" aria-labelledby="br-periods-heading">
+      <header class="br-section-head"><div><p class="br-kicker">04 · PAST &amp; PRESENT AS A STUDY</p><h2 id="br-periods-heading">Place the periods on a timeline.</h2></div><p class="br-note">Calculated period boundaries are not records of lived events. Use your own dated records to test a retrospective interpretation.</p></header>
+      <div id="br-periods"></div>
+    </section>
+
+    <section class="br-section" aria-labelledby="br-events-heading">
+      <header class="br-section-head"><div><p class="br-kicker">05 · LOOKING AHEAD</p><h2 id="br-events-heading">Future dates, inspectable geometry.</h2></div><p class="br-note">Returns and timing cycles offer dated study points. Their symbolic meanings do not establish what will happen to you.</p></header>
+      <div id="br-events"></div>
+    </section>
+
+    <section class="br-section br-method-section" aria-labelledby="br-method-heading">
+      <header class="br-section-head"><div><p class="br-kicker">06 · FROM INPUT TO INTERPRETATION</p><h2 id="br-method-heading">Follow the calculation.</h2></div><p class="br-note">The clock, location, zodiac, house system and source convention remain part of the result.</p></header>
+      <div id="br-method"></div>
+    </section>
+
+    <section class="br-section br-source-section" aria-labelledby="br-sources-heading">
+      <header class="br-section-head"><div><p class="br-kicker">07 · THE READING DESK</p><h2 id="br-sources-heading">Books, rules &amp; references.</h2></div><p class="br-note">Source notes identify the inspected material and the limits of each implementation. A cited book is not a claim that every method in it is implemented.</p></header>
+      <div id="br-sources"></div>
+    </section>
+
+    <section class="br-export-section" aria-labelledby="br-export-heading">
+      <div><p class="br-kicker">KEEP YOUR OWN COPY</p><h2 id="br-export-heading">Take the reading with you.</h2><p id="br-export-help" class="br-note">These downloads include your birth date, time, coordinates and derived reading. Keep them private or share them deliberately. Print opens your browser's print or PDF dialog.</p></div>
+      <div class="br-actions"><button id="br-export-html" type="button" disabled aria-describedby="br-export-help">Download private HTML</button><button id="br-export-json" type="button" disabled aria-describedby="br-export-help">Download private JSON</button><button id="br-print" type="button" disabled aria-describedby="br-export-help">Print / save PDF</button></div>
+    </section>
+  </div>
+  <noscript><p class="br-warning">JavaScript is required to calculate a private birth reading. The <a href="library/index.html">practitioners' library</a> and <a href="about/index.html">source notes</a> remain available.</p></noscript>
+</main>
+<script type="module">import { mountChrome } from '../assets/js/app/shared.js';import { initBirthReading } from '../assets/js/app/birth-reading.js';mountChrome('birthreading');initBirthReading();</script>
+</body>
+</html>

@@ -126,6 +126,11 @@ jobs:
         env:
           CELESTIAL_OUTPUT: test-results/celestial-bookmarks
         run: node scripts/browser-celestial-bookmarks.mjs
+      - name: Private birth reading, calendar comparison and offline exports
+        env:
+          BIRTH_READING_OUTPUT: test-results/birth-reading
+        run: node scripts/browser-birth-reading.mjs
+
       - name: Chart relationships, stable calendar colors and bounded interaction stress
         env:
           RELATION_OUTPUT: test-results/chart-relationships

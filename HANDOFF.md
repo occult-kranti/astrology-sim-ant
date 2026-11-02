@@ -1,3 +1,7 @@
+# Private comparative birth reading
+
+The new `pages/birth-reading.html` composes canonical calculations through `core/birth-reading.js` in a local module worker. Read `docs/2026-11-private-birth-reading.md`. Keep birth defaults empty, profile data out of URLs/storage/repository, and private exports explicit. Import recalculates only validated inputs. Input edits terminate the worker and invalidate all results/exports. Preserve full-precision chart frames, the prominent timing-sensitivity summary, the contested node-dignity label and the Rao360/engine365.2425 daśā-year distinction. Source locators retain actual reading depth. The new synthetic/browser gates are required alongside inherited release gates.
+
 # Celestial timeline bookmarks
 
 This follow-up starts from published `55a6ce0c0fae2f29b8ddc80842597c239ad3e70d` on `feat/celestial-timeline-bookmarks`. Read `.design/celestial-bookmarks.md` and `docs/2026-11-celestial-bookmarks.md`. The shared date navigator accepts optional sourced phase data and a separate exact-event marker array. Keep exact-marker actions distinct from indexed study-day actions and preserve milliseconds through the existing Atlas `preciseInstant` path. The new core view adapter caches bounded canonical annual searches; do not run them on hover, infer sighting dates or attach Moon phases to source-year claims. Automatic season presets do not save anything until an explicit bookmark action.

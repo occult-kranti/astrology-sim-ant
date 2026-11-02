@@ -1,5 +1,7 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+[Private birth reading](pages/birth-reading.html) compares natal charts, calendar conventions, traditional interpretations and dated cycles. Enter a profile locally and export a personal HTML/JSON report. [Method and privacy notes](docs/2026-11-private-birth-reading.md).
+
 ## Site-wide appearance
 
 Season and Moon markers now extend the timeline sliders: four annual equinox/solstice presets, calculated phase icons, exact-event cards and explicit local bookmarks. See the [design](.design/celestial-bookmarks.md) and [methods and verification](docs/2026-11-celestial-bookmarks.md).

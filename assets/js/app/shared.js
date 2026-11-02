@@ -28,6 +28,7 @@ export const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
     ['index.html', 'Today — the calendar observatory', 'home'],
     ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
+    ['pages/birth-reading.html', 'Private birth reading — charts & calendar comparison', 'birthreading'],
     ['pages/calendar-atlas.html', 'Calendar Atlas — sky, timeline & interpretations', 'calendaratlas'],
     ['pages/calendar-timeline.html', 'Chart timeline — one slider, many calendars', 'calendartimeline'],
     ['pages/event-horizon.html', 'Event horizon — every date to 2031', 'eventhorizon'],
@@ -137,6 +138,7 @@ export function currentSection() {
   if (m(/\/pages\/book1\/planetary-hours\.html$/)) return 'phours';
   if (m(/\/pages\/calendars\.html$/)) return 'calendars';
   if (m(/\/pages\/calendar-compare\.html$/)) return 'calendarcompare';
+  if (m(/\/pages\/birth-reading\.html$/)) return 'birthreading';
   if (m(/\/pages\/calendar-atlas\.html$/)) return 'calendaratlas';
   if (m(/\/pages\/calendar-timeline\.html$/)) return 'calendartimeline';
   if (m(/\/pages\/event-horizon\.html$/)) return 'eventhorizon';
