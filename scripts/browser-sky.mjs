@@ -98,15 +98,15 @@ async function chart(width){
   for(const id of ['lilly','agrippa','jyotisha'])await page.locator(`#sky-lenses input[value="${id}"]`).uncheck();
   check((await page.locator('#sky-reading').innerText()).includes('Choose at least one')&&(await currentReading(page,'empty reading lenses '+width)).interpretation===null,'empty source selection does not invent a reading '+width);
   await page.locator('#sky-lenses input[value="agrippa"]').check();check((await currentReading(page,'selected Agrippa lens '+width)).interpretation.lenses.map(l=>l.id).join(',')==='agrippa','selected lens export contains exactly the requested tradition '+width);
-  await page.locator('#sky-view-orbit').click();await page.locator('#sky-scale').selectOption('linear');
+  await page.locator('#sky-view-orbit').click();await page.locator('[data-os-origin]').selectOption('Sun');await page.locator('[data-os-scale]').selectOption('linear');
   const linear=await svgDocument(page,await download(page,'#sky-svg','linear AU orbit projection '+width));
   check(linear.metadata.kind==='heliocentric-projection'&&linear.metadata.scale==='linear'&&linear.metadata.units==='AU'&&linear.metadata.vectors.some(b=>b.id==='Earth')&&linear.description.includes('Body sizes'),'orbital view separates physical AU vectors from symbol sizes '+width);
   check(linear.metadata.vectors.every(v=>Math.abs(Math.hypot(v.x,v.y,v.z)-v.distanceAU)<1e-12),'orbit export retains the physical 3D vector norm '+width);
-  await page.locator('#sky-scale').selectOption('sqrt');await page.locator('#sky-yaw').fill('75');await page.locator('#sky-yaw').dispatchEvent('input');
+  await page.locator('[data-os-scale]').selectOption('sqrt');await page.locator('[data-os-yaw]').fill('75');await page.locator('[data-os-yaw]').dispatchEvent('input');
   const compressed=await svgDocument(page,await download(page,'#sky-svg','rotated compressed orbit projection '+width));
   check(compressed.metadata.scale==='sqrt'&&compressed.metadata.yawDegrees===75&&JSON.stringify(compressed.metadata.vectors)===JSON.stringify(linear.metadata.vectors),'changing display projection preserves physical positions '+width);
   check(compressed.description.includes('not a physical distance scale')&&!JSON.stringify(compressed.metadata).includes('51.5074'),'compressed projection discloses scale and SVG omits observer coordinates '+width);
-  if(width===1440)await shot(page,'orbit-1440','#sky-chart');
+  if(width===1440)await shot(page,'orbit-1440','#sky-orbital-space');
   await page.locator('#sky-view-simple').click();check(await page.locator('#atlas-dial svg').isVisible(),'original Sun–Moon plate remains available '+width);await page.locator('#sky-view-zodiac').click();
   await layout(page,'deep sky '+width);await fonts(page,'#sky-body-details','body inspector '+width);if(width===390||width===1440||width===1920)await shot(page,'deep-chart-'+width,'#atlas-sky-explorer');
   await page.locator('#atlas-date').fill('2027-03-20');check(await page.locator('#sky-svg').isDisabled()&&await page.locator('#sky-reading-json').isDisabled()&&await page.locator('#sky-stale').isVisible(),'moment edit invalidates sky export and interpretation '+width);

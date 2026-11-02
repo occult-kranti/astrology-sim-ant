@@ -1,3 +1,11 @@
+# Orbital Space: origins, event timeline and source readings
+
+Continue on `feat/orbital-alignment-observatory` from published c3ef4f00a984b23e976a3558b375db7a6d6b212b. Read `.design/orbital-space.md`, `docs/2026-11-orbital-space-methods.md` and the verification record. The new fullwidth Orbital Space component replaces the old orbital plate while retaining the deep chart and Sun–Moon plate. Earth-view apparent directions, Sun-view geometric AU vectors, true 3D separation and longitude contacts are different measurements. Earth can be a Sun-view endpoint, never a direction from itself. Preserve the triangle calculation, scale disclosures and SVG paint freezing.
+
+Event discovery is explicit and bounded to 366 elapsed days: selected-origin pair longitude crossings, native phases/seasons and global eclipse peaks. Six-hour pair brackets can miss tangencies; global peaks do not establish local visibility. Cast event timestamps without rounding. Favorable/caution labels come from separately attributed canonical rules, not universal hazard scores. Event preview reading and held atlas casting have explicitly different timestamps until casting.
+
+The chatbot accepts only an explicit orbital origin/pair and recomputes its measurements; observer details remain default-off. Local RAG now has 17 chunks/14 sources. Regenerate source artifacts and offline inventory using their existing builders. The focused orbital browser gate is additive; retained sky tests now operate actual replacement controls while preserving vector, projection and export assertions. Do not restore invisible legacy controls to satisfy a test.
+
 # Chart console and verified offline library
 
 Continue from the private birth reader on `feat/offline-chart-console`. Read `.design/birth-console.md` and `docs/2026-11-chart-console-offline.md`. The console reuses canonical held charts; do not rebuild printed positions, invent varga degrees or conflate Western aspects and Vedic drishti. Keep the external chart selector, private clearing/invalidation, static HTML export and all existing reading methods.

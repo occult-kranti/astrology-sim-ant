@@ -1,0 +1,16 @@
+{
+  "readingScope": "One freshly checked NASA solar-eclipse catalogue row and its delta-T definition; selected factual values, not a new independent ephemeris or full-catalogue validation.",
+  "solarEclipse2024": {
+    "catalogueRow": "09561",
+    "catalogueTD": "2024-04-08T18:18:29Z",
+    "deltaTSeconds": 74,
+    "expectedUTApprox": "2024-04-08T18:17:15Z",
+    "eclipseType": "total",
+    "toleranceSeconds": 60,
+    "timeConvention": "NASA TD minus the catalogue's rounded delta-T gives an approximate UT fixture. The application treats UTC as UT1; this is not exact observed UTC.",
+    "sourceURL": "https://eclipse.gsfc.nasa.gov/SEcat5/SE2001-2100.html",
+    "deltaTDefinitionURL": "https://eclipse.gsfc.nasa.gov/SEcat5/deltat.html",
+    "catalogueHTMLSHA256": "a9c08f5b4b51d5c85ccfa18d8bfccd98ec8a7d93f06e2d40691943b4105acf9e",
+    "deltaTHTMLSHA256": "5dbd35cf96eb25034ea9c0ac73b2f3ce9c13c93aef792494768e630d2c603d09"
+  }
+}

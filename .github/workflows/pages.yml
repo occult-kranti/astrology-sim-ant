@@ -70,6 +70,10 @@ jobs:
         run: npm install --no-save --package-lock=false playwright@1.58.2 puppeteer-core@24.37.2
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Orbital frames, eclipse timeline and named source readings
+        env:
+          ORBITAL_OUTPUT: test-results/orbital-space
+        run: node scripts/browser-orbital-space.mjs
       - name: Chart console, image exports and verified offline library
         env:
           BIRTH_CONSOLE_OUTPUT: test-results/birth-console
