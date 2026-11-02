@@ -51,6 +51,7 @@ node scripts/build-tool-coverage.mjs --check # guide execution coverage matches 
 node scripts/build-mcp-coverage.mjs --check # browser adapter map matches reviewed backend metadata
 node scripts/generate-horizon-preset.mjs --check # complete horizon binds exact source graph and artifact checksums
 node assets/data/country-events/generate.mjs --check # historical derivatives bind frozen accepted research inputs
+node scripts/build-offline-manifest.mjs --check # explicit offline library matches public static files
 ```
 Each rebuilds its output in memory and compares it to the committed bytes, so **hand-editing
 `assets/js/core/data/opgraph.js` or `research/opgraph/gate.json` is a failure, not a silent

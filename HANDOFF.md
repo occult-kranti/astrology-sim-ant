@@ -1,3 +1,9 @@
+# Chart console and verified offline library
+
+Continue from the private birth reader on `feat/offline-chart-console`. Read `.design/birth-console.md` and `docs/2026-11-chart-console-offline.md`. The console reuses canonical held charts; do not rebuild printed positions, invent varga degrees or conflate Western aspects and Vedic drishti. Keep the external chart selector, private clearing/invalidation, static HTML export and all existing reading methods.
+
+Offline preparation is explicit and hash-verified. Regenerate `assets/search-index.json` after HTML edits, then run `node scripts/build-offline-manifest.mjs` after all public asset edits. `--check` is a required generator gate. CI builds the portable ZIP from this inventory; never put personal exports or research downloads in it. Preserve query-string non-persistence, project cache scope, interrupted preparation recovery, truthful ready status and explicit service-worker update consent. The new console/offline browser gate is additive; no inherited CI checks are removed.
+
 # Private comparative birth reading
 
 The new `pages/birth-reading.html` composes canonical calculations through `core/birth-reading.js` in a local module worker. Read `docs/2026-11-private-birth-reading.md`. Keep birth defaults empty, profile data out of URLs/storage/repository, and private exports explicit. Import recalculates only validated inputs. Input edits terminate the worker and invalidate all results/exports. Preserve full-precision chart frames, the prominent timing-sensitivity summary, the contested node-dignity label and the Rao360/engine365.2425 daśā-year distinction. Source locators retain actual reading depth. The new synthetic/browser gates are required alongside inherited release gates.

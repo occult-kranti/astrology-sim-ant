@@ -1,9 +1,19 @@
 # The PWA layer — offline install, the service worker & the kill switch
 
-**Shipped R28 (builder P).** The site is installable and works fully offline after
-one visit, on the exact static architecture it already had — no build step, no
-server, no telemetry. This is [dynamic-hosting.md](plans/r28/dynamic-hosting.md)
-rung (a): "the whole observatory in your pocket, no network, no account."
+The site uses plain static files with no application backend. The original R28
+worker cached a small shell and previously visited resources; installation or
+one visit alone did **not** make every tool available offline.
+
+The November 2026 [verified offline library](2026-11-chart-console-offline.md)
+adds an explicit complete download, checked file hashes, progress, recovery and
+scoped removal. The portable ZIP runs the same public files on a local static
+server. A private HTML export is a separate, self-contained reading snapshot.
+External books, live sources and hosted AI/MCP services require a connection.
+
+The historical shell/runtime mechanisms below remain relevant; explicit pack
+preparation also works on localhost, while ordinary localhost browsing still
+avoids automatic caching. The new pack is the supported way to establish full
+static-tool readiness, rather than inferring it from normal browsing.
 
 ## The pieces
 

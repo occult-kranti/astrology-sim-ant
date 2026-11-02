@@ -1,5 +1,7 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+The [private birth reader](pages/birth-reading.html) includes an interactive chart console inspired by LCARS: inspect planets and houses, compare the three declared frames, switch drawing layers and keep portable image exports. Its **offline library** explicitly downloads the public static calculators and local reference data. A downloadable portable ZIP can also run on your own computer with a local static server; private HTML readings open directly from disk. External books and hosted AI services remain online features. Read the [chart and offline guide](docs/2026-11-chart-console-offline.md).
+
 [Private birth reading](pages/birth-reading.html) compares natal charts, calendar conventions, traditional interpretations and dated cycles. Enter a profile locally and export a personal HTML/JSON report. [Method and privacy notes](docs/2026-11-private-birth-reading.md).
 
 ## Site-wide appearance

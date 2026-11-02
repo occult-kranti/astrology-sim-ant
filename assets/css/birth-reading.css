@@ -16,6 +16,15 @@
 
 .br-chart-choice{margin-bottom:1rem}.br-chart-choice select{width:100%;min-width:0;font-size:1rem}.birth-reading .br-chart-choice{font-size:.82rem;color:var(--br-muted)}
 
+/* The operated chart needs the full work surface; interpretation follows it. */
+.birth-reading .br-overview-grid{display:flex;flex-direction:column;gap:1.5rem}
+.birth-reading .br-chart-figure{order:-1;inline-size:100%}
+.birth-reading .br-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;inline-size:100%}
+.birth-reading .br-summary>.br-reading{margin:0}
+.birth-reading .br-summary>.br-evidence{grid-column:1/-1}
+@media(max-width:760px){.birth-reading .br-summary{grid-template-columns:minmax(0,1fr)}}
+@media print{.birth-reading .br-summary{display:block}.birth-reading #br-offline{display:none!important}}
+
 /* Evidence groups contain a dt/dd pair inside each div. Constrain those groups,
    rather than letting a long source URL set the intrinsic width of the page. */
 .birth-reading dl.br-facts{display:block;min-inline-size:0;max-inline-size:100%}

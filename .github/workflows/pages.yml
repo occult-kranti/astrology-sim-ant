@@ -64,6 +64,7 @@ jobs:
           node scripts/engine-test.mjs
           node scripts/audit.mjs
           node scripts/round-ledger.mjs --check
+          node scripts/build-offline-manifest.mjs --check
       - name: Install browser test tooling
         # A test-only pinned dependency; never copied into the static artifact.
         run: npm install --no-save --package-lock=false playwright@1.58.2 puppeteer-core@24.37.2
@@ -131,6 +132,11 @@ jobs:
           BIRTH_READING_OUTPUT: test-results/birth-reading
         run: node scripts/browser-birth-reading.mjs
 
+      - name: Chart console, image exports and verified offline library
+        env:
+          BIRTH_CONSOLE_OUTPUT: test-results/birth-console
+        run: node scripts/browser-birth-console.mjs
+
       - name: Chart relationships, stable calendar colors and bounded interaction stress
         env:
           RELATION_OUTPUT: test-results/chart-relationships
@@ -194,6 +200,10 @@ jobs:
             sourceMcpTools: JSON.parse(readFileSync('assets/data/mcp-catalogue.json', 'utf8')).tools.map(tool => tool.name).sort(),
           }, null, 2) + '\n');
           NODE
+      - name: Build verified portable static edition
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: python3 scripts/package-offline.py --output _site/offline-workbench.zip
+
       - name: Upload validated Pages artifact
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3

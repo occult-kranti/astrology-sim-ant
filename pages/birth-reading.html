@@ -9,11 +9,14 @@
 <meta name="description" content="Build a private birth reading with calculated sky charts, calendar comparisons, historical rules, timing studies and inspectable sources.">
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="stylesheet" href="../assets/css/birth-reading.css">
+<link rel="manifest" href="../manifest.webmanifest">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/observatory.css" data-observatory-style="true">
 <link rel="stylesheet" href="../assets/css/site-themes.css" data-site-design="site-themes">
 <link rel="stylesheet" href="../assets/css/site-components.css" data-site-design="site-components">
 <link rel="stylesheet" href="../assets/css/site-patterns.css" data-site-design="site-patterns">
+<link rel="stylesheet" href="../assets/css/birth-chart-console.css">
+<link rel="stylesheet" href="../assets/css/offline-library.css" data-offline-library-style>
 </head>
 <body data-page-family="observatory">
 <main id="content" class="birth-reading no-autolink">
@@ -28,6 +31,7 @@
       <p>A reading with its workings.</p>
       <p class="br-note">Calculated positions, historical interpretations and reflection prompts are labeled separately. A chart cannot establish your past or guarantee your future.</p>
       <a href="calendar-atlas.html">Explore the calendar atlas ↗</a>
+      <a href="#br-offline">Keep the workbench offline ↓</a>
     </aside>
   </header>
 
@@ -68,7 +72,7 @@
       <header class="br-section-head"><div><p class="br-kicker">01 · YOUR CALCULATED SKY</p><h2 id="br-overview-heading" tabindex="-1">Begin with the pattern.</h2></div><p class="br-note">A shared instant; different coordinate frames and interpretive traditions.</p></header>
       <div class="br-overview-grid">
         <div id="br-summary" class="br-summary"></div>
-        <figure class="br-chart-figure"><label class="br-field br-chart-choice" for="br-chart-select">Chart convention<select id="br-chart-select"><option value="tropical-regiomontanus">Tropical · Regiomontanus houses</option><option value="tropical-whole">Tropical · whole-sign houses</option><option value="sidereal-whole">Sidereal · whole-sign houses</option></select></label><div id="br-chart" class="br-chart"></div><figcaption>Use the position tables to inspect the chart. A planet's distance from the center is a drawing convention, not its physical distance.</figcaption></figure>
+        <figure class="br-chart-figure"><label class="br-field br-chart-choice" for="br-chart-select">Chart convention<select id="br-chart-select"><option value="tropical-regiomontanus">Tropical · Regiomontanus houses</option><option value="tropical-whole">Tropical · whole-sign houses</option><option value="sidereal-whole">Sidereal · whole-sign houses</option></select></label><div id="br-chart" class="br-chart"></div><figcaption>Explore a planet, house or angular relationship; switch layers and compare the three declared conventions. A planet's distance from the center is a drawing convention, not its physical distance. Display controls preserve the calculated positions.</figcaption></figure>
       </div>
       <details class="br-details br-position-details"><summary>Inspect the planet positions &amp; chart differences <span>Numerical companion</span></summary><div id="br-positions"></div></details>
       <details class="br-details"><summary>Check sensitivity to the recorded birth time</summary><div id="br-sensitivity"></div></details>
@@ -109,6 +113,7 @@
       <div class="br-actions"><button id="br-export-html" type="button" disabled aria-describedby="br-export-help">Download private HTML</button><button id="br-export-json" type="button" disabled aria-describedby="br-export-help">Download private JSON</button><button id="br-print" type="button" disabled aria-describedby="br-export-help">Print / save PDF</button></div>
     </section>
   </div>
+  <section id="br-offline" class="br-section" aria-label="Offline library"></section>
   <noscript><p class="br-warning">JavaScript is required to calculate a private birth reading. The <a href="library/index.html">practitioners' library</a> and <a href="about/index.html">source notes</a> remain available.</p></noscript>
 </main>
 <script type="module">import { mountChrome } from '../assets/js/app/shared.js';import { initBirthReading } from '../assets/js/app/birth-reading.js';mountChrome('birthreading');initBirthReading();</script>

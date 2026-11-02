@@ -1,6 +1,7 @@
 import { resolveZonedTime } from '../core/time.js';
-import { renderChart } from '../core/chart.js';
 import { svgToString, downloadBlob } from './state.js';
+import { mountBirthChartConsole } from './birth-chart-console.js';
+import { mountOfflineLibrary } from './offline-library.js';
 
 const $=id=>document.getElementById(id);
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=String(text);if(cls)n.className=cls;return n;};
@@ -38,27 +39,24 @@ function block(data){const a=el('article',null,'br-reading');if(typeof data==='s
 
 export function initBirthReading(){
   const form=$('br-form');if(!form)return;
-  let current=null,input=null,worker=null,revision=0;
+  let current=null,input=null,worker=null,revision=0,chartConsole=null;
+  mountOfflineLibrary($('br-offline'));
   const actions=['br-export-json','br-export-html','br-print'];
   const status=text=>{$('br-status').textContent=text;};
   const disable=()=>actions.forEach(id=>$(id).disabled=true);
-  const invalidate=()=>{revision++;worker?.terminate();worker=null;current=null;input=null;disable();$('br-results').hidden=true;for(const id of ['br-summary','br-chart','br-positions','br-comparison','br-houses','br-periods','br-events','br-sensitivity','br-method','br-sources'])$(id)?.replaceChildren();form.removeAttribute('aria-busy');status('Inputs changed. Calculate the reading to update every section.');};
+  const invalidate=()=>{revision++;worker?.terminate();worker=null;chartConsole?.destroy();chartConsole=null;current=null;input=null;disable();$('br-results').hidden=true;for(const id of ['br-summary','br-chart','br-positions','br-comparison','br-houses','br-periods','br-events','br-sensitivity','br-method','br-sources'])$(id)?.replaceChildren();form.removeAttribute('aria-busy');status('Inputs changed. Calculate the reading to update every section.');};
   const localDate=()=>new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   $('br-asof').value=localDate();
   form.addEventListener('input',invalidate);form.addEventListener('change',invalidate);
   const read=()=>({birth:{date:$('br-date').value,timeKnown:true,time:$('br-time').value,timeZone:$('br-zone').value.trim(),lat:Number($('br-lat').value),lon:Number($('br-lon').value)},asOf:resolveZonedTime($('br-asof').value,'12:00',$('br-zone').value.trim()).instant.toISOString(),futureYears:3});
   function draw(){
-    const charts=current?.charts;if(!charts)return;
-    const key=({'tropical-regiomontanus':'tropicalRegiomontanus','tropical-whole':'tropicalWhole','sidereal-whole':'siderealWhole'})[$('br-chart-select')?.value]||'tropicalRegiomontanus',chart=charts[key];
-    if(!chart){$('br-chart').replaceChildren(el('p','This chart frame is unavailable.'));return;}
-    $('br-chart').replaceChildren();renderChart($('br-chart'),chart,key==='siderealWhole'?[]:current.western.aspects,{size:680});
-    $('br-chart').querySelector('svg')?.setAttribute('viewBox','-20 -20 720 720');
-    for(const target of $('br-chart').querySelectorAll('g[data-el^="planet-"]')){
-      const name=target.dataset.el.slice(7),open=()=>{const detail=$('br-positions').querySelector('[data-body="'+name+'"]');if(detail){for(let ancestor=detail;ancestor;ancestor=ancestor.parentElement)if(ancestor.tagName==='DETAILS')ancestor.open=true;detail.scrollIntoView({block:'start',behavior:'instant'});detail.querySelector('summary').focus();}};
-      target.addEventListener('click',open);target.addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();open();}});
-      target.setAttribute('aria-label',target.getAttribute('aria-label')+'; open reading');
-    }
-    $('br-chart').prepend(el('p',`${human(key)} · ${current.context?.birthInstantUTC||current.context?.instantUTC||input.birth.date}`,'br-note'));
+    if(!current?.charts)return;
+    const frame=$('br-chart-select').value;
+    if(chartConsole){chartConsole.setFrame(frame);return;}
+    chartConsole=mountBirthChartConsole($('br-chart'),current,{frame,
+      onFrameChange:value=>{$('br-chart-select').value=value;},
+      onBodySelect:name=>{const detail=[...$('br-positions').querySelectorAll('[data-body]')].find(d=>d.dataset.body===name);if(detail){for(let ancestor=detail;ancestor;ancestor=ancestor.parentElement)if(ancestor.tagName==='DETAILS')ancestor.open=true;detail.scrollIntoView({block:'start',behavior:'instant'});detail.querySelector('summary').focus();}}
+    });
   }
   function render(report,request){
     current=report;input=request;

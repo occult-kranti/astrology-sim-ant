@@ -318,10 +318,11 @@ export function downloadSVG(svgEl, filename = 'chart.svg') {
 
 // Rasterize an <svg> element to PNG (at `scale`×) and download it. Returns a
 // Promise; resolves after the download triggers, rejects on a render error.
-export function svgToPNG(svgEl, filename = 'chart.png', scale = 2) {
+export function svgToPNG(svgEl, filename = 'chart.png', scale = 2, options = {}) {
   return new Promise((resolve, reject) => {
     if (!svgEl) return reject(new Error('no svg element'));
     try {
+      if (options.shouldDownload != null && typeof options.shouldDownload !== 'function') throw new TypeError('shouldDownload must be a function.');
       if (!Number.isFinite(scale) || scale < 1 || scale > 4) throw new Error('PNG scale must be between 1 and 4.');
       const str = svgToString(svgEl);
       // Capture the visible theme with the SVG, before asynchronous rasterizing.
@@ -341,7 +342,15 @@ export function svgToPNG(svgEl, filename = 'chart.png', scale = 2) {
           ctx.fillStyle = ground; ctx.fillRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           URL.revokeObjectURL(url);
-          canvas.toBlob(b => { if (b) { downloadBlob(b, filename); resolve(); } else reject(new Error('toBlob failed')); }, 'image/png');
+          canvas.toBlob(b => {
+            try {
+              // Private-view owners can invalidate an explicitly requested
+              // raster export while image/canvas work is still asynchronous.
+              // Existing three-argument callers retain their original behavior.
+              if (options.shouldDownload && !options.shouldDownload()) { resolve({ cancelled: true }); return; }
+              if (b) { downloadBlob(b, filename); resolve(); } else reject(new Error('toBlob failed'));
+            } catch (error) { reject(error); }
+          }, 'image/png');
         } catch (e) { URL.revokeObjectURL(url); reject(e); }
       };
       img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('image load failed')); };
