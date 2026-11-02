@@ -1,7 +1,7 @@
 # Chart console and offline verification
 
 The accepted local candidate passes 735 engine assertions, 69 inherited birth
-reading browser checks, 79 new console/offline checks and 192 inherited neon
+reading browser checks, 80 new console/offline checks and 192 inherited neon
 chart/export checks. The full browser sweep loads 135 HTML documents with zero
 errors; its two inherited descriptor warnings remain warnings. The static audit
 reports zero problems. All nine inherited generators and the new offline
@@ -17,7 +17,7 @@ Eight actual screenshots and the native PNG were independently reviewed. For
 tall element captures only, external sticky navigation is temporarily hidden to
 avoid screenshot compositing across the chart; viewport captures retain chrome.
 
-The offline journey uses a production-like secure test origin mapped to loopback,
+The offline journey uses an actual HTTPS origin on literal loopback 127.0.0.2,
 with service workers enabled. It reloads during preparation, cancels, checks that
 the partial pack is absent, retries and verifies all 526 manifest resources.
 The pack contains 134 application HTML files and 52,900,737 uncompressed bytes.
@@ -44,6 +44,25 @@ control state, but the prior status announcement can remain visible.
 
 These are automated browser and independent model-agent reviews, not a physical
 device, screen-reader or human usability study. The calculations do not establish
-predictive validity. CI preserves every inherited gate, adds the 79-check journey
+predictive validity. CI preserves every inherited gate, adds the 80-check journey
 and manifest check, then generates the verified ZIP for the Pages artifact.
 Production publication must also pass all workflow jobs and match `release.json`.
+
+The first production candidate stopped at the offline test: CI's default headless
+shell did not grant service-worker support to the simulated HTTP origin despite
+the secure-origin flag that worked in the local full-Chromium diagnostic. No
+production deployment occurred. The test now uses HTTPS with an ephemeral local
+certificate and pins only that certificate's SPKI. The explicit secure-context
+and service-worker assertion runs before the offline journey. The gate was moved
+earlier in the same verification job for faster failure feedback; all inherited
+gates remain. The job budget is 40 minutes because the prior successful inherited
+run took 27m53s before this extra journey was added.
+
+The corrected local gate passed all 80 checks with Playwright's default
+headless_shell 145.0.7632.6, matching the CI launcher, without a global proxy
+bypass. It asserted `https:`, a secure context, service-worker support and an
+active scoped controller before exercising the complete offline flow. The
+ephemeral certificate files were removed. A hostname-based HTTPS diagnostic
+encountered proxy routing; the literal loopback fixture avoids that route and
+continues to exercise the production caching branch. Public application and
+offline-package bytes did not change in this test correction.

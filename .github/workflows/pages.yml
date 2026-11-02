@@ -46,7 +46,7 @@ jobs:
 
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - name: Checkout candidate
         uses: actions/checkout@v4
@@ -70,6 +70,10 @@ jobs:
         run: npm install --no-save --package-lock=false playwright@1.58.2 puppeteer-core@24.37.2
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Chart console, image exports and verified offline library
+        env:
+          BIRTH_CONSOLE_OUTPUT: test-results/birth-console
+        run: node scripts/browser-birth-console.mjs
       - name: Browser journeys under the Pages project path
         # Separate browser lifetimes retain every journey and page assertion.
         # A long-lived local all-mode run exhausted tab creation after a redirect
@@ -131,11 +135,6 @@ jobs:
         env:
           BIRTH_READING_OUTPUT: test-results/birth-reading
         run: node scripts/browser-birth-reading.mjs
-
-      - name: Chart console, image exports and verified offline library
-        env:
-          BIRTH_CONSOLE_OUTPUT: test-results/birth-console
-        run: node scripts/browser-birth-console.mjs
 
       - name: Chart relationships, stable calendar colors and bounded interaction stress
         env:
