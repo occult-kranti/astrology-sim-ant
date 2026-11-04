@@ -69,9 +69,16 @@ jobs:
           node scripts/build-offline-manifest.mjs --check
       - name: Install browser test tooling
         # A test-only pinned dependency; never copied into the static artifact.
-        run: npm install --no-save --package-lock=false playwright@1.58.2 puppeteer-core@24.37.2
+        run: npm install --no-save --package-lock=false playwright@1.58.2 puppeteer-core@24.37.2 esbuild@0.25.11 parse5@7.3.0
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Build and verify the direct-open standalone desktop edition
+        env:
+          DESKTOP_STANDALONE_HTML: test-results/desktop-standalone-build/desktop-chart-studio.html
+          DESKTOP_STANDALONE_OUTPUT: test-results/desktop-standalone
+        run: |
+          node scripts/build-desktop-standalone.mjs --tools node_modules --out test-results/desktop-standalone-build
+          node scripts/browser-desktop-standalone.mjs
       - name: Desktop chart workspace, library, exports and interaction stress
         env:
           DESKTOP_OUTPUT: test-results/desktop-workbench
@@ -196,6 +203,7 @@ jobs:
         run: |
           mkdir _site
           git archive HEAD | tar -x -C _site
+          cp test-results/desktop-standalone-build/desktop-chart-studio.html _site/desktop-chart-studio.html
           node --input-type=module <<'NODE'
           import { readFileSync, writeFileSync, rmSync } from 'node:fs';
           for (const path of ['.github', 'tests', 'scripts', 'tools', 'test-results', 'node_modules', 'mcp']) {

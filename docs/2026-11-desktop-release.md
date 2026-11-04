@@ -50,3 +50,9 @@ The deployment job already checks HTTPS, matching release identity, the desktop 
 ## Preparation checks
 
 The modified workflow parses as YAML. Every inherited named step and Node/npm/Python command remains; the added browser step and two numerical commands are present. All four artifact/deployment condition sites retain pull-request exclusion and the exact two-branch allowlist. The manifest parses as JSON and retains its original start URL. Service-worker JavaScript and portable-packager Python syntax checks pass. Actual application and release verification are recorded separately by the integrating agent.
+
+## Standalone delivery requested after the branch push
+
+The user deferred the Pages environment change and requested delivery through ChatGPT. This session has no Sites or ChatGPT web-publication capability. A reproducible, single-file `desktop-chart-studio.html` was therefore built and independently verified over `file://` with network disabled; it is a downloadable app, not a hosted ChatGPT URL. The full portable ZIP remains a separate complete-toolkit edition. Read [standalone scope](2026-11-desktop-standalone.md) and [verification](2026-11-desktop-standalone-verification.md).
+
+The feature branch was pushed successfully. GitHub Actions runs every inherited check; the new standalone build and browser gate are also included, with pinned build-only tools. Its generated HTML is included in the future Pages artifact as `desktop-chart-studio.html`. Public Pages publication remains deferred pending the owner setting above. No change to remote main or to the Pages environment was made.
