@@ -34,7 +34,7 @@
 // Bump on every deploy that changes cached bytes. The date-ish tag makes stale
 // caches obvious in DevTools → Application → Cache Storage.
 const CACHE_PREFIX = 'awb-' + encodeURIComponent(new URL('./', self.location.href).pathname) + '-';
-const VERSION = CACHE_PREFIX + '2026-11-02-offline-library';
+const VERSION = CACHE_PREFIX + '2026-11-04-desktop-workbench';
 const ownsCache = name => name.startsWith(CACHE_PREFIX); // Never clear another project’s caches.
 const PRECACHE = `${VERSION}-shell`;
 const RUNTIME = `${VERSION}-runtime`;
@@ -88,6 +88,15 @@ const SHELL_PATHS = [
   'assets/js/app/art/adopt.js',
   'assets/js/core/registry.js',
   'assets/js/lib/astronomy.js',
+  // Desktop entry and its own small modules; canonical dependencies remain lazy.
+  // Prepare the explicit offline library for guaranteed complete-tool coverage.
+  'pages/desktop.html',
+  'assets/css/desktop-workbench.css',
+  'assets/js/app/desktop-workbench.js',
+  'assets/js/app/desktop-wheel.js',
+  'assets/js/app/desktop-library.js',
+  'assets/js/core/desktop-workbench.js',
+  'assets/js/core/data/desktop-tools.js',
 ];
 // DELIBERATELY NOT IN THE SHELL (R34): pages/opgraph.html, assets/css/opgraph.css,
 // assets/js/app/opgraph.js, assets/js/core/opgraph.js and assets/js/core/data/opgraph.js.

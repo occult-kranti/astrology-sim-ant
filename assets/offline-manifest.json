@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "52a5dddf6050ac0b75f0f8b4d58aff3733e7a5ba33192a3e2ed35f7a8277cf5a",
-  "totalBytes": 52972098,
+  "version": "d7a0647a8c855b8c8e2643584fe0a78171759c636db1a4f31294e0ed6a449d63",
+  "totalBytes": 53127195,
   "files": [
     {
       "path": "assets/css/birth-chart-console.css",
@@ -77,6 +77,11 @@
       "path": "assets/css/day-guidance.css",
       "bytes": 2975,
       "sha256": "840131b72666a94534dd02833135def47b2415f8d6634c24c0a0ee69bed46aea"
+    },
+    {
+      "path": "assets/css/desktop-workbench.css",
+      "bytes": 24965,
+      "sha256": "97dfa35738e51f08bd03ca4281bb79695b3e983d2907ce0e1c167a3ddd0051d4"
     },
     {
       "path": "assets/css/eschatology-atlas.css",
@@ -459,6 +464,21 @@
       "sha256": "50acbb444e6488b92bad2a1175b6d49da62c5d885bedf588e89aea50eb9e026e"
     },
     {
+      "path": "assets/js/app/desktop-library.js",
+      "bytes": 7734,
+      "sha256": "537d4a503e583503634f44692e7f576dbc88404ce4e48f031fb2ad803f6cc234"
+    },
+    {
+      "path": "assets/js/app/desktop-wheel.js",
+      "bytes": 16277,
+      "sha256": "6c89ac08c37092a4fa5fbd308657255f71e383787b1e52b54424f39ab40ff3d7"
+    },
+    {
+      "path": "assets/js/app/desktop-workbench.js",
+      "bytes": 23362,
+      "sha256": "d145bcfb6ac82c7409a76ac0bf9576cda17ff5c5c159c6d550ad81fc4a64d88b"
+    },
+    {
       "path": "assets/js/app/dial.js",
       "bytes": 9111,
       "sha256": "c71d428e77a8745fc19053bcf50207f2cb8f036ceca762348dfda0786111ada1"
@@ -725,8 +745,8 @@
     },
     {
       "path": "assets/js/app/shared.js",
-      "bytes": 46516,
-      "sha256": "6d6c4e8fc03cff7f6a714262cc3f904121346693bcebb1d15d334972a6fff434"
+      "bytes": 46666,
+      "sha256": "13cda7c369c997c076cf89c3d1f9059661c09b0989c445541a6f70e69a7032e2"
     },
     {
       "path": "assets/js/app/sigil-studio.js",
@@ -1124,6 +1144,11 @@
       "sha256": "f22d6f61440b73523a192b2382a84538407dbe906f75a4d038c99acc57eaf77d"
     },
     {
+      "path": "assets/js/core/data/desktop-tools.js",
+      "bytes": 52388,
+      "sha256": "577b8f043474e6343f514095ee1270eb701e489ce4877e6d0b3d36745eba77d5"
+    },
+    {
       "path": "assets/js/core/data/dignities-data.js",
       "bytes": 9676,
       "sha256": "dd0b0931fdaab1f58ad49a1bbbedc4eed978792af153fc00dd247e4c2c7aa191"
@@ -1397,6 +1422,11 @@
       "path": "assets/js/core/day-guidance.js",
       "bytes": 27917,
       "sha256": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b"
+    },
+    {
+      "path": "assets/js/core/desktop-workbench.js",
+      "bytes": 15644,
+      "sha256": "6e46dffc61633f60b0353074a4fa4b10054706d25de03b9502e5e1c91a8d8ced"
     },
     {
       "path": "assets/js/core/dignities.js",
@@ -1975,13 +2005,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 26404,
-      "sha256": "7105cba5ec27c088f31216c8a258f0cb80ff85bf2f82c0d761e10ffbf5bbf835"
+      "bytes": 26534,
+      "sha256": "986d58f7e5a8c7abb95f467f82ca0e7e801a94b301b677a6a8061f1c3d82afc7"
     },
     {
       "path": "manifest.webmanifest",
-      "bytes": 1770,
-      "sha256": "239e6b21db57aff795c5d3854140bee25de7868ffe4a27ad5ae0ce26a82a69ff"
+      "bytes": 2219,
+      "sha256": "4d9490ef3d4b51357fa4c95504034939a3b280e2a43d96dc38ff0834325e49d4"
     },
     {
       "path": "pages/abhichara/atharvan.html",
@@ -2227,6 +2257,11 @@
       "path": "pages/cycles.html",
       "bytes": 12852,
       "sha256": "23ba13863be26f4b2e3f43bcbdcf68a1fe95fe442063626b11e7528b3b582a96"
+    },
+    {
+      "path": "pages/desktop.html",
+      "bytes": 13834,
+      "sha256": "e6c1d8a4b490be765d6c3985c1ee8f9892c7cc7cef434e7e57c5609d9065af61"
     },
     {
       "path": "pages/eschatology-atlas.html",
@@ -2565,8 +2600,8 @@
     },
     {
       "path": "pages/tools.html",
-      "bytes": 53540,
-      "sha256": "48c32b5d0f7dee08900f60cda600cddcebb02a3a03a954af21b0e440a55289be"
+      "bytes": 53704,
+      "sha256": "b77c4364c627a9dbe6939a7b639d28571c16adbf2bc3761bd81878e9d3cc6098"
     },
     {
       "path": "pages/trajectory.html",

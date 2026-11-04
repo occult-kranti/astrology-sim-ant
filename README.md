@@ -1,5 +1,9 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+The new **[Desktop chart studio](pages/desktop.html)** brings a private chart library, natal/transit/synastry wheels, exact positions, house tables, an aspect matrix, date stepping and a source inspector into one black instrument desk. Search all 134 existing application destinations from its toolkit. Profiles stay in the browser; save/import/export are deliberate actions. The public example is a Greenwich study, not a personal birth record.
+
+The desktop edition lives on `feat/desktop-astrology-workbench`, with all existing routes retained. It uses the existing Astronomy Engine and four house algorithms; it is not feature-equivalent to Solar Fire, TimePassages or Kepler. See [research](docs/2026-11-desktop-research.md), [design and methods](docs/2026-11-desktop-workbench.md), [verification](docs/2026-11-desktop-verification.md) and [publication status](docs/2026-11-desktop-release.md).
+
 The [private birth reader](pages/birth-reading.html) includes an interactive chart console inspired by LCARS: inspect planets and houses, compare the three declared frames, switch drawing layers and keep portable image exports. Its **offline library** explicitly downloads the public static calculators and local reference data. A downloadable portable ZIP can also run on your own computer with a local static server; private HTML readings open directly from disk. External books and hosted AI services remain online features. Read the [chart and offline guide](docs/2026-11-chart-console-offline.md).
 
 [Private birth reading](pages/birth-reading.html) compares natal charts, calendar conventions, traditional interpretations and dated cycles. Enter a profile locally and export a personal HTML/JSON report. [Method and privacy notes](docs/2026-11-private-birth-reading.md).

@@ -6,9 +6,13 @@ import { essentialDignity, accidentalDignity, almuten } from '../assets/js/core/
 import { chartCautions } from '../assets/js/core/cautions.js';
 import { planetaryHour } from '../assets/js/core/planetary-hours.js';
 import { bodyPartOf } from '../assets/js/core/data/degree-tables.js';
+import { buildDesktopStudy } from '../assets/js/core/desktop-workbench.js';
 
 let fails = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '✓' : '✗'} ${msg}`); if (!cond) fails++; };
+
+const desktopSample = buildDesktopStudy({ primary: { name: 'Public equinox reference', localDate: '2024-03-20', localTime: '03:06', timeZone: 'Etc/UTC', lat: 51.4779, lon: 0 }, system: 'regiomontanus' });
+ok(desktopSample.primary.bodies.length === 12 && Math.min(desktopSample.primary.bodies[0].lon, 360-desktopSample.primary.bodies[0].lon) < 0.1 && desktopSample.primary.houses.length === 12, 'Desktop adapter retains the equinox Sun, 12 displayed bodies/points and canonical houses');
 
 // Equinox: Sun ≈ 0° Aries (allow the boundary display 29.9° Pisces / 0.x° Aries).
 const eq = castChart(new Date(Date.UTC(2024, 2, 20, 3, 6)), 51.5074, -0.1278, 'regiomontanus');

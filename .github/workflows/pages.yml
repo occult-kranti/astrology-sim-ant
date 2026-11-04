@@ -2,13 +2,13 @@ name: Verify and deploy Astrology Workbench
 
 on:
   push:
-    branches: [main]
+    branches: [main, feat/desktop-astrology-workbench]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 # Pull requests only receive read access. Deployment privileges belong to the
-# separate job, which cannot run for a pull request or a non-main dispatch.
+# separate job, which cannot run for a pull request or an unlisted branch.
 permissions:
   contents: read
 
@@ -62,6 +62,8 @@ jobs:
           ESCHATOLOGY_SEMANTIC_RECEIPT: test-results/eschatology-atlas-semantic.json
         run: |
           node scripts/engine-test.mjs
+          node scripts/tests/desktop-workbench.mjs
+          node scripts/tests/desktop-library.mjs
           node scripts/audit.mjs
           node scripts/round-ledger.mjs --check
           node scripts/build-offline-manifest.mjs --check
@@ -70,6 +72,10 @@ jobs:
         run: npm install --no-save --package-lock=false playwright@1.58.2 puppeteer-core@24.37.2
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Desktop chart workspace, library, exports and interaction stress
+        env:
+          DESKTOP_OUTPUT: test-results/desktop-workbench
+        run: node scripts/browser-desktop-workbench.mjs
       - name: Orbital frames, eclipse timeline and named source readings
         env:
           ORBITAL_OUTPUT: test-results/orbital-space
@@ -184,7 +190,7 @@ jobs:
           retention-days: 14
       - name: Stage tracked static files and release identity
         # git archive excludes ephemeral dependencies and local untracked files.
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feat/desktop-astrology-workbench')
         env:
           RELEASE_SHA: ${{ github.sha }}
         run: |
@@ -204,11 +210,11 @@ jobs:
           }, null, 2) + '\n');
           NODE
       - name: Build verified portable static edition
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feat/desktop-astrology-workbench')
         run: python3 scripts/package-offline.py --output _site/offline-workbench.zip
 
       - name: Upload validated Pages artifact
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feat/desktop-astrology-workbench')
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
@@ -235,7 +241,7 @@ jobs:
 
   deploy:
     needs: [verify, mcp, horizon-stress]
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feat/desktop-astrology-workbench')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -286,6 +292,8 @@ jobs:
               if (response.ok && release.commit === process.env.RELEASE_SHA) {
                 const home = await fetch(base, { signal: AbortSignal.timeout(10000) });
                 if (!home.ok) throw new Error('Published homepage is unavailable.');
+                const desktop = await fetch(new URL('pages/desktop.html', base), { signal: AbortSignal.timeout(10000) });
+                if (!desktop.ok || !(await desktop.text()).includes('desktop-workbench')) throw new Error('Published desktop workbench is unavailable.');
                 const studio = await fetch(new URL('pages/studio.html', base), { signal: AbortSignal.timeout(10000) });
                 const studioHTML = await studio.text();
                 if (!studio.ok || !studioHTML.includes('Live Symbol Studio') || !studioHTML.includes('sessionJournal')) throw new Error('Published Studio/session journal is unavailable.');

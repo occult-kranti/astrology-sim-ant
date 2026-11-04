@@ -1,0 +1,1079 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-04T19:36:23.041Z",
+  "phase": "all",
+  "environment": {
+    "node": "v24.19.0",
+    "tls": {
+      "protocol": "https:",
+      "host": "127.0.0.2",
+      "certificateSHA256": "dc60d8d379c65f77f7e4841590d6b792ab7182649840ffa85e124feb6b780d3e",
+      "spkiSHA256Base64": "JOvnZpMEicIOXnARqifYDwfwTD0gBH/15A88zmiQOh4=",
+      "trust": "Only ephemeral test certificate public key allowlisted in this browser process",
+      "temporaryFilesRemoved": true
+    },
+    "browser": "151.0.7922.34"
+  },
+  "fixture": {
+    "name": "Equinox public fixture",
+    "localDate": "2024-03-20",
+    "localTime": "03:06",
+    "timeZone": "UTC",
+    "lat": "51.5074",
+    "lon": "-0.1278",
+    "disambiguation": "reject"
+  },
+  "checks": [
+    {
+      "journey": "functional-1440",
+      "label": "Workbench preserves one main and shared site header",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Shared navigation retains accessible name",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Skip link points to the actual main region",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Opening the workbench does not save a profile",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Public equinox chart download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Export records the exact public fixture instant",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Export declares its actual versioned study schema",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Chart exports ten bodies, two mean nodes and twelve house cusps",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Independent March equinox fixture places the tropical Sun near 0° Aries",
+      "pass": true,
+      "detail": 359.9997474891021
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Natal mode exports a single chart without invented comparison rows",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Chart inputs remain outside the URL",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Rendered body markers retain every actual exported longitude",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Settings edit marks the held chart stale and disables JSON export",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Stale chart SVG export is disabled",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Changing drawing layers cannot re-enable stale calculation exports or AI handoff",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Whole-sign chart download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Whole-sign selection changes actual cusp computation",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "equal chart download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Requested house system is held in exported calculation: equal",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "regiomontanus chart download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Requested house system is held in exported calculation: regiomontanus",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "placidus chart download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Requested house system is held in exported calculation: placidus",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Linear Lahiri chart download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Lahiri selection applies the stated epoch-specific longitude rotation",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Lahiri approximation remains explicit in the exported evidence",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Transit comparison download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Transit view exports a second explicit epoch and actual cross-chart contacts",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Transit contact direction and local linear-motion phases are explicit",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "One elapsed day transit step download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Transit stepping freezes the natal epoch and advances only the comparison instant",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Synastry comparison download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Synastry does not claim a shared applying/separating motion clock",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Narrow contact orb download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Changing the orb recomputes bounded cross-chart contacts",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Keyboard activation of a plotted body opens its named inspector",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Redrawing the selected planet retains keyboard focus",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Body inspector retains calculation or named-source evidence",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Selected close-contact list item retains keyboard focus after redraw",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Close-contact selection exposes the measured angle and allowance",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Portable displayed chart SVG download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "SVG export parses without scripts or external assets",
+      "pass": true,
+      "detail": {
+        "root": "svg",
+        "error": false,
+        "scripts": 0,
+        "external": []
+      }
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Save explicitly persists the displayed primary profile",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Portable private library download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Library download contains the deliberate saved chart",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Malformed import leaves the existing library bytes unchanged",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Re-importing the same library does not duplicate a chart",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "AI action opens a reviewable native dialog",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "AI packet includes the selected calculation and source framing",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Reviewed AI text packet download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "AI text download preserves the visible reviewable packet",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "AI dialog Escape restores the triggering control",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Print control invokes the browser print entry point",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Keyboard timeline endpoint download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Timeline keyboard End computes the actual +365 elapsed-day boundary",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Reset timeline reference download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Reset restores the original explicit reference instant",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Final slider value after 101 previews download completes",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "A burst of 101 preview changes computes only the final released slider value",
+      "pass": true
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Workbench has no duplicate element IDs after switching views",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Held chart before invalid input download completes",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Skipped DST clock does not silently close and calculate",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Skipped DST clock has a visible recovery explanation",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Repeated DST clock requires an explicit occurrence",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Earlier repeated clock download completes",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Later repeated clock download completes",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "DST occurrence choices resolve to distinct instants one hour apart",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Export retains the repeated-clock decision",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Chart labels containing markup remain inert text",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Quota failure is surfaced with a recoverable storage message",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Quota failure preserves the previous library",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Chart calculations recover after storage failure",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Geographic pole input cannot produce invented house angles",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "High-latitude fallback download completes",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "High-latitude Placidus fallback is explicitly represented",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "House fallback is visible in the workbench",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Recovered public fixture download completes",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Recovery restores the intended explicit chart epoch",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Normalized time zone download completes",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Accepted time-zone input is normalized before storage and subsequent time navigation",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Explicit Now action download completes",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Now uses a real current instant after normalized-zone editing",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Out-of-range timeline release restores the held slider position and explains the rejected date",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Held upper-bound chart download completes",
+      "pass": true
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Rejected future navigation does not replace the last valid chart",
+      "pass": true
+    },
+    {
+      "journey": "tools-1440",
+      "label": "Tool search reaches retained historical research features",
+      "pass": true
+    },
+    {
+      "journey": "tools-1440",
+      "label": "Search result keeps the existing Newton route",
+      "pass": true
+    },
+    {
+      "journey": "tools-1440",
+      "label": "Unmatched tool search explains its empty state",
+      "pass": true
+    },
+    {
+      "journey": "tools-1440",
+      "label": "Full catalogue retains the existing application routes",
+      "pass": true,
+      "detail": 134
+    },
+    {
+      "journey": "tools-1440",
+      "label": "Tool links stay under the Pages project prefix without private inputs",
+      "pass": true
+    },
+    {
+      "journey": "layout-320",
+      "label": "Initial 320px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "layout-320",
+      "label": "Profile dialog 320px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "layout-320",
+      "label": "Escape closes native profile dialog",
+      "pass": true
+    },
+    {
+      "journey": "layout-320",
+      "label": "Closing dialog restores trigger focus",
+      "pass": true
+    },
+    {
+      "journey": "layout-320",
+      "label": "positions 320px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "layout-320",
+      "label": "aspects 320px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "layout-320",
+      "label": "wheel 320px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "layout-320",
+      "label": "200% CSS zoom proxy has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 640,
+        "scrollWidth": 640
+      }
+    },
+    {
+      "journey": "layout-320",
+      "label": "Primary calculate action remains keyboard focusable at zoom",
+      "pass": true
+    },
+    {
+      "journey": "layout-390",
+      "label": "Initial 390px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "layout-390",
+      "label": "Profile dialog 390px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "layout-390",
+      "label": "Escape closes native profile dialog",
+      "pass": true
+    },
+    {
+      "journey": "layout-390",
+      "label": "Closing dialog restores trigger focus",
+      "pass": true
+    },
+    {
+      "journey": "layout-390",
+      "label": "positions 390px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "layout-390",
+      "label": "aspects 390px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "layout-390",
+      "label": "wheel 390px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "layout-390",
+      "label": "200% CSS zoom proxy has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 640,
+        "scrollWidth": 640
+      }
+    },
+    {
+      "journey": "layout-390",
+      "label": "Primary calculate action remains keyboard focusable at zoom",
+      "pass": true
+    },
+    {
+      "journey": "layout-1920",
+      "label": "Initial 1920px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "journey": "layout-1920",
+      "label": "Profile dialog 1920px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "journey": "layout-1920",
+      "label": "Escape closes native profile dialog",
+      "pass": true
+    },
+    {
+      "journey": "layout-1920",
+      "label": "Closing dialog restores trigger focus",
+      "pass": true
+    },
+    {
+      "journey": "layout-1920",
+      "label": "positions 1920px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "journey": "layout-1920",
+      "label": "aspects 1920px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "journey": "layout-1920",
+      "label": "wheel 1920px has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "journey": "layout-1920",
+      "label": "200% CSS zoom proxy has no document horizontal overflow",
+      "pass": true,
+      "detail": {
+        "width": 640,
+        "scrollWidth": 640
+      }
+    },
+    {
+      "journey": "layout-1920",
+      "label": "Primary calculate action remains keyboard focusable at zoom",
+      "pass": true
+    },
+    {
+      "journey": "offline-1440",
+      "label": "Explicit offline download verifies the full static library",
+      "pass": true,
+      "detail": "Offline pack ready. Local pages and calculators are saved."
+    },
+    {
+      "journey": "offline-1440",
+      "label": "Offline workbench is controlled by its own service worker",
+      "pass": true
+    },
+    {
+      "journey": "offline-1440",
+      "label": "Workbench reloads with the browser network disabled after explicit preparation",
+      "pass": true
+    },
+    {
+      "journey": "offline-1440",
+      "label": "Offline calculated fixture download completes",
+      "pass": true
+    },
+    {
+      "journey": "offline-1440",
+      "label": "New profile calculation and export work offline",
+      "pass": true
+    },
+    {
+      "journey": "offline-1440",
+      "label": "An unvisited retained specialist page also opens from the prepared offline library",
+      "pass": true
+    },
+    {
+      "journey": "offline-1440",
+      "label": "Offline cache keys contain only static resources without profile parameters",
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "missing": [],
+  "externalRequests": [],
+  "expectedNetworkFailures": [],
+  "screenshots": [
+    {
+      "journey": "functional-1440",
+      "filename": "functional-1440-initial.png",
+      "bytes": 246984,
+      "sha256": "d8cfd54457a4668f120a07e1fb0e1e151b08684e2b30bf79d344ae4414be9c4d",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "functional-1440",
+      "filename": "functional-1440-saved-library.png",
+      "bytes": 228889,
+      "sha256": "5ac45ebacbf6750006fad37baada691fc1cb8efad0a481cae803c527ba376f2e",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "negative-1440",
+      "filename": "negative-1440-recovered.png",
+      "bytes": 237144,
+      "sha256": "9c4d84eb033a60896fef5c6eaf96d977a3dca775add90ffcbae023d97a406a98",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "tools-1440",
+      "filename": "tools-1440-tool-catalogue.png",
+      "bytes": 166404,
+      "sha256": "69af453bc6152d11eb20206eba16f5d11c53b75e4f71106c688ffe67b0b817ba",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-320",
+      "filename": "layout-320-initial.png",
+      "bytes": 83104,
+      "sha256": "f2bf09f1bca623fcc02f74303fafefbdf273735d5f9ab18bc35031bc9d4447b5",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-320",
+      "filename": "layout-320-profile-dialog.png",
+      "bytes": 61704,
+      "sha256": "4ed872a34925d8b31087cbbcf3ddd75a56241b104593e6a036c22b640e1bc075",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-320",
+      "filename": "layout-320-zoom-proxy.png",
+      "bytes": 69116,
+      "sha256": "8acd0b5f92dbef60fcabebea67ede110360497a8ef79c5360309db3af6073076",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-390",
+      "filename": "layout-390-initial.png",
+      "bytes": 92168,
+      "sha256": "dc1cb433a4f4ee93813eb6636218f4896b65450e66ac5f0eccd7c0874c66ff04",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-390",
+      "filename": "layout-390-profile-dialog.png",
+      "bytes": 66289,
+      "sha256": "57bb76e82bac7bded0545bc42854eead3b30a7e2867f90a6693bf3fbeecb058c",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-390",
+      "filename": "layout-390-zoom-proxy.png",
+      "bytes": 69116,
+      "sha256": "8acd0b5f92dbef60fcabebea67ede110360497a8ef79c5360309db3af6073076",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-1920",
+      "filename": "layout-1920-initial.png",
+      "bytes": 254909,
+      "sha256": "3e6d165d4988071f5ab83be600a11553e24416014c0b9e5ac0d21d60ad30f839",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-1920",
+      "filename": "layout-1920-profile-dialog.png",
+      "bytes": 183492,
+      "sha256": "1afb16e5e8e78f87b495a7d73286d6c7216cccb6eb51820b5ca6de989553612e",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "layout-1920",
+      "filename": "layout-1920-zoom-proxy.png",
+      "bytes": 69116,
+      "sha256": "8acd0b5f92dbef60fcabebea67ede110360497a8ef79c5360309db3af6073076",
+      "capture": "Unmodified viewport"
+    },
+    {
+      "journey": "offline-1440",
+      "filename": "offline-1440-offline-ready.png",
+      "bytes": 250605,
+      "sha256": "abcf4007cc0cf296dbb4c20c0c6a44d2c00ba75620860bbf53089519b13c3d53",
+      "capture": "Unmodified viewport"
+    }
+  ],
+  "downloads": [
+    {
+      "journey": "functional-1440",
+      "label": "Public equinox chart",
+      "filename": "01-astrology-desktop-study.json.gz",
+      "bytes": 31296,
+      "sha256": "a6188d25c25fe4ba888170fd0852b9d64ffcf63e6eb33d6f3f2c2857874696da",
+      "compressedBytes": 5116,
+      "compressedSHA256": "b78f04fa3cc63ea5ded25797f74ca6c5f04281e807c695f8ae7ef11376673415"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Whole-sign chart",
+      "filename": "02-astrology-desktop-study.json.gz",
+      "bytes": 30495,
+      "sha256": "3a243dac61e4ced6bdba90f2d5daaa1d9bf24eff1b28118c5449c9695e20b515",
+      "compressedBytes": 4985,
+      "compressedSHA256": "1163d8c4e91b0f9073df7adcb3e29af0e13f3681f3e8915220cab52eb444cda6"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "equal chart",
+      "filename": "03-astrology-desktop-study.json.gz",
+      "bytes": 31254,
+      "sha256": "d6943cf23596904282115f4d97d33a9bd37db3b755b593128c382f6820e4b3ff",
+      "compressedBytes": 5035,
+      "compressedSHA256": "19e12b0e13b58424fe11c560326e40a091d652383769576b1f2b60601af3efda"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "regiomontanus chart",
+      "filename": "04-astrology-desktop-study.json.gz",
+      "bytes": 31296,
+      "sha256": "a6188d25c25fe4ba888170fd0852b9d64ffcf63e6eb33d6f3f2c2857874696da",
+      "compressedBytes": 5116,
+      "compressedSHA256": "b78f04fa3cc63ea5ded25797f74ca6c5f04281e807c695f8ae7ef11376673415"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "placidus chart",
+      "filename": "05-astrology-desktop-study.json.gz",
+      "bytes": 31263,
+      "sha256": "9a1ce097b66e1aac9ab21e3d5422285874e5accfaf1093371bb2c296f021182b",
+      "compressedBytes": 5127,
+      "compressedSHA256": "2f3ba63cea71225d4d15fa8cb5c749b5514d8f8d02a063c9a19de1b83441c1af"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Linear Lahiri chart",
+      "filename": "06-astrology-desktop-study.json.gz",
+      "bytes": 30482,
+      "sha256": "7ea4384baede872bd7d6ceae798b84b025dc125a88e9def694755b88a6fe3383",
+      "compressedBytes": 5153,
+      "compressedSHA256": "7c1b0514976c00bbf1479d493248ec9d70243e932106bf3bac160a5892185339"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Transit comparison",
+      "filename": "07-astrology-desktop-study.json.gz",
+      "bytes": 79528,
+      "sha256": "d0d4f4ce25bce481d9c93179d52a9124870de8aa100f426ceec610dbd8695f27",
+      "compressedBytes": 8225,
+      "compressedSHA256": "8f8da81f65061512f665896567cbb2b683b49a4e32d236581188e9e89460c3b6"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "One elapsed day transit step",
+      "filename": "08-astrology-desktop-study.json.gz",
+      "bytes": 77741,
+      "sha256": "019e957ef35e964236a317136ff383fbc744d07be2608d5310f06bfbbc4da8f5",
+      "compressedBytes": 8220,
+      "compressedSHA256": "6279f37886962efb29d9153ca035e682972d23af26cc06fac4137d3547b904f4"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Synastry comparison",
+      "filename": "09-astrology-desktop-study.json.gz",
+      "bytes": 78667,
+      "sha256": "badc6ab74dfe18f5b073ac70191556010b0f2d6e4559bf1f5bfc4090dd8165dc",
+      "compressedBytes": 8156,
+      "compressedSHA256": "70b8f41a02dc60031e278464df2987c72b509def51393560e42e71e9b014d5b4"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Narrow contact orb",
+      "filename": "10-astrology-desktop-study.json.gz",
+      "bytes": 52125,
+      "sha256": "90054324af9e990725f038208aead3e7a3a07f78a10ec64b14c5781541c5c49a",
+      "compressedBytes": 6937,
+      "compressedSHA256": "d9337d0e37b206167902fd2b40bb02ef8500322e169a2fd905e0bd92635f8abc"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Portable displayed chart SVG",
+      "filename": "11-astrology-desktop-chart.svg.gz",
+      "bytes": 77831,
+      "sha256": "81993b8470607c9a8f4d19791a3dce9d3495cbd1508510e7cc542dd97abf076e",
+      "compressedBytes": 16394,
+      "compressedSHA256": "f4754d86667c525d2213da71fc34c1c1ecd6dd992a0656425c7464a63a1bcb2b"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Portable private library",
+      "filename": "12-astrology-chart-library.json.gz",
+      "bytes": 524,
+      "sha256": "37a5d920882e768644007dcb7a91f2ad1461bbd9c5756c1a26080bc1cc8fed63",
+      "compressedBytes": 296,
+      "compressedSHA256": "2c57c724b0784f13cf5d253dd9173f648b08ae4353c6ae8c6ee169c545376923"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Reviewed AI text packet",
+      "filename": "13-private-astrology-study-prompt.txt.gz",
+      "bytes": 29821,
+      "sha256": "7b9e948f309050bdd09f1a0fa8a1483938e7c0ef0b9f9bb8a0f023374e3ab06c",
+      "compressedBytes": 5376,
+      "compressedSHA256": "68740e5677434eedf1dc67b8cfde69e98872c1beb96ca5e119e697e60a2e2263"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Keyboard timeline endpoint",
+      "filename": "14-astrology-desktop-study.json.gz",
+      "bytes": 30833,
+      "sha256": "0f9c7939aa47dcb0bac23a7a2aeccd824a22af27cbafe48928c096c1e3026e5e",
+      "compressedBytes": 5062,
+      "compressedSHA256": "8ab5801df545f4d91a2d934c40e74dec16acc370b566a36e19f736d0a812eb65"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Reset timeline reference",
+      "filename": "15-astrology-desktop-study.json.gz",
+      "bytes": 29122,
+      "sha256": "66ce9665bde3ed7891f81bcb48de1b6c909b4d99d2f173563a3f0b94968b00ef",
+      "compressedBytes": 5000,
+      "compressedSHA256": "eeca9944c63ae2ab52e76e2a317cb6e583e135932bce26008551ac6f7d80b2bc"
+    },
+    {
+      "journey": "functional-1440",
+      "label": "Final slider value after 101 previews",
+      "filename": "16-astrology-desktop-study.json.gz",
+      "bytes": 26986,
+      "sha256": "b8e0c6bd71215a04a984a0bc9f26b52a069b868521629df032ba707217e75eaf",
+      "compressedBytes": 4853,
+      "compressedSHA256": "3f0b40b28373a45c76ddc99a7b49308fb1940ce85e43c2850bdfe0080d8eec74"
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Held chart before invalid input",
+      "filename": "17-astrology-desktop-study.json.gz",
+      "bytes": 31296,
+      "sha256": "a6188d25c25fe4ba888170fd0852b9d64ffcf63e6eb33d6f3f2c2857874696da",
+      "compressedBytes": 5116,
+      "compressedSHA256": "b78f04fa3cc63ea5ded25797f74ca6c5f04281e807c695f8ae7ef11376673415"
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Earlier repeated clock",
+      "filename": "18-astrology-desktop-study.json.gz",
+      "bytes": 39087,
+      "sha256": "9d062eea581965d5fcfefb831e5ac344d55d7714324ae39d50ff84223abe4f1d",
+      "compressedBytes": 5645,
+      "compressedSHA256": "228a02dd70220c32c7b83013f2798e95ab2d8086e46f464767176043627ab93a"
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Later repeated clock",
+      "filename": "19-astrology-desktop-study.json.gz",
+      "bytes": 39075,
+      "sha256": "b415358fc2da0ec873ff3a7f2a421c0b69d1a110b4eb5cc19a32f047dbed96ef",
+      "compressedBytes": 5578,
+      "compressedSHA256": "99a384baf2b0a9dfbcb9dc2b9de2e10bb3fcc167a2d71a841ddefbf32ee81d2d"
+    },
+    {
+      "journey": "negative-1440",
+      "label": "High-latitude fallback",
+      "filename": "20-astrology-desktop-study.json.gz",
+      "bytes": 33746,
+      "sha256": "3169a486f8a054e1cf9d91af3d57263c37a02821c2f4de540107abced471ed77",
+      "compressedBytes": 5320,
+      "compressedSHA256": "cb712e114234de8651d67a25625773d6e167ebb42203436d2ab81ebd1f475f73"
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Recovered public fixture",
+      "filename": "21-astrology-desktop-study.json.gz",
+      "bytes": 31263,
+      "sha256": "9a1ce097b66e1aac9ab21e3d5422285874e5accfaf1093371bb2c296f021182b",
+      "compressedBytes": 5127,
+      "compressedSHA256": "2f3ba63cea71225d4d15fa8cb5c749b5514d8f8d02a063c9a19de1b83441c1af"
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Normalized time zone",
+      "filename": "22-astrology-desktop-study.json.gz",
+      "bytes": 31263,
+      "sha256": "9a1ce097b66e1aac9ab21e3d5422285874e5accfaf1093371bb2c296f021182b",
+      "compressedBytes": 5127,
+      "compressedSHA256": "2f3ba63cea71225d4d15fa8cb5c749b5514d8f8d02a063c9a19de1b83441c1af"
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Explicit Now action",
+      "filename": "23-astrology-desktop-study.json.gz",
+      "bytes": 33431,
+      "sha256": "0a5fdda1136eaa5bf377cae68d1f227bc2c448c14d40d417d4d8b70b6116f3eb",
+      "compressedBytes": 5266,
+      "compressedSHA256": "5db02d322ae98bafc5d07a2ce66bbd3d0f3c3611c0507e49064b05b1fc2d485e"
+    },
+    {
+      "journey": "negative-1440",
+      "label": "Held upper-bound chart",
+      "filename": "24-astrology-desktop-study.json.gz",
+      "bytes": 33391,
+      "sha256": "ac56c76f6414aed94fca36835c649bccec6078098445e61c70dd9db3da93bf4a",
+      "compressedBytes": 5167,
+      "compressedSHA256": "21a55c496075bc32625dff3a0fd1e330a036ca33784bed95164c2fbe84f2dc77"
+    },
+    {
+      "journey": "offline-1440",
+      "label": "Offline calculated fixture",
+      "filename": "25-astrology-desktop-study.json.gz",
+      "bytes": 31296,
+      "sha256": "a6188d25c25fe4ba888170fd0852b9d64ffcf63e6eb33d6f3f2c2857874696da",
+      "compressedBytes": 5116,
+      "compressedSHA256": "b78f04fa3cc63ea5ded25797f74ca6c5f04281e807c695f8ae7ef11376673415"
+    }
+  ],
+  "source": {
+    "beforeSHA256": "a78b1a6da6621c24abc964a0087975b097c9befcdcb874d46de1e1fc396fc27e",
+    "afterSHA256": "a78b1a6da6621c24abc964a0087975b097c9befcdcb874d46de1e1fc396fc27e",
+    "changedFiles": []
+  },
+  "limits": {
+    "physicalDevice": false,
+    "screenReader": false,
+    "humanUsabilityResearch": false,
+    "exhaustiveCases": false,
+    "cssZoomIsBrowserZoom": false,
+    "evictionResistance": false,
+    "providerServicesOffline": false
+  },
+  "pass": true,
+  "acceptanceEligible": true,
+  "checkCount": 124,
+  "completedAt": "2026-11-04T19:36:40.119Z"
+}

@@ -26,6 +26,7 @@ import { initAppearance } from './appearance.js';
 // duplicating the catalogue (read-only imports; the array itself is not mutated).
 export const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
+    ['pages/desktop.html', 'Desktop chart studio — library, wheels & comparison', 'desktop'],
     ['index.html', 'Today — the calendar observatory', 'home'],
     ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
     ['pages/birth-reading.html', 'Private birth reading — charts & calendar comparison', 'birthreading'],
@@ -132,6 +133,7 @@ export const NAV_GROUPS = [
 export function currentSection() {
   const p = location.pathname;
   const m = re => re.test(p);
+  if (m(/\/pages\/desktop\.html$/)) return 'desktop';
 
   // Cast tools that physically live inside a Traditions folder — checked first.
   if (m(/\/pages\/book1\/dignities\.html$/)) return 'dignities';

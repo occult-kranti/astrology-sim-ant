@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<script src="../assets/js/app/appearance-boot.js" data-site-appearance-boot></script>
+<title>Desktop chart studio — The Astrologer's Workbench</title>
+<meta name="description" content="A free, local-first astrology workspace: natal and comparison wheels, exact positions, aspect grids, a private chart library and the complete calendar and research toolkit.">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9C%B6%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/observatory.css" data-observatory-style="true">
+<link rel="stylesheet" href="../assets/css/site-themes.css" data-site-design="site-themes">
+<link rel="stylesheet" href="../assets/css/site-components.css" data-site-design="site-components">
+<link rel="stylesheet" href="../assets/css/site-patterns.css" data-site-design="site-patterns">
+<link rel="stylesheet" href="../assets/css/offline-library.css" data-offline-library-style>
+<link rel="stylesheet" href="../assets/css/desktop-workbench.css">
+</head>
+<body class="desktop-page" data-page-family="observatory">
+<main id="dw-app" class="dw-app" data-state="loading">
+  <header class="dw-titlebar">
+    <div class="dw-title"><span class="dw-app-mark" aria-hidden="true">✳︎</span><div><p class="dw-eyebrow">THE ASTROLOGER'S WORKBENCH / DESKTOP EDITION</p><h1>Chart studio<span class="dw-edition">01</span></h1></div></div>
+    <div class="dw-title-actions"><span class="dw-local"><span aria-hidden="true">●</span> Calculated on your device</span><button id="dw-open-tools" type="button">Explore all tools <span aria-hidden="true">↗</span></button><button id="dw-open-offline" type="button">Offline edition</button></div>
+  </header>
+  <div class="dw-workspace">
+    <aside class="dw-library" aria-label="Chart library">
+      <div class="dw-section-label"><h2>Chart library</h2><span>LOCAL</span></div>
+      <button type="button" id="dw-new" class="dw-new">＋ New chart</button>
+      <label class="dw-search-label" for="dw-library-search">Find a saved chart</label><input id="dw-library-search" type="search" placeholder="Search your library…" autocomplete="off">
+      <p id="dw-library-status" class="dw-small" role="status">Saved charts stay in this browser.</p>
+      <div id="dw-library-list" class="dw-library-list"></div>
+      <div class="dw-library-actions"><button id="dw-library-export" type="button">Export library</button><button id="dw-library-import" type="button">Import JSON</button><input id="dw-library-file" type="file" accept="application/json,.json" hidden></div>
+      <div class="dw-desk-links"><h3>At your desk</h3><a href="birth-reading.html"><span aria-hidden="true">◈</span> Complete birth reading <span aria-hidden="true">↗</span></a><a href="calendar-atlas.html"><span aria-hidden="true">◎</span> Calendars &amp; orbital space <span aria-hidden="true">↗</span></a><a href="timelords.html"><span aria-hidden="true">◷</span> Time-lords &amp; progressions <span aria-hidden="true">↗</span></a><a href="picatrix/election.html"><span aria-hidden="true">✦</span> Electional study <span aria-hidden="true">↗</span></a><a href="sigil-studio.html"><span aria-hidden="true">⟡</span> Sigils &amp; mandalas <span aria-hidden="true">↗</span></a></div>
+      <p class="dw-library-note">A chart is saved only when you choose <strong>Save chart A</strong>. Keep exported birth records private.</p>
+    </aside>
+    <section class="dw-desk" aria-label="Calculation workspace">
+      <form id="dw-settings" class="dw-settings">
+        <label>Study<select id="dw-mode"><option value="natal">Single chart</option><option value="transit">Transits · A + B</option><option value="synastry">Synastry · A + B</option></select></label>
+        <label>Zodiac<select id="dw-zodiac"><option value="tropical">Tropical</option><option value="lahiri">Sidereal · Lahiri</option></select></label>
+        <label>Houses<select id="dw-system"><option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option><option value="whole">Whole sign</option><option value="equal">Equal</option></select></label>
+        <label class="dw-orb-label">Orb °<input id="dw-orb" type="number" value="6" min="0" max="10" step="0.5" required></label>
+        <button id="dw-cast" type="submit" class="dw-primary">Calculate</button>
+      </form>
+      <div class="dw-context">
+        <div class="dw-context-chart"><span class="dw-frame dw-frame-a">A</span><div><strong id="dw-primary-name">Greenwich study</strong><p id="dw-primary-context">Loading public example…</p></div><button id="dw-edit-primary" type="button" aria-label="Edit chart A">Edit</button></div>
+        <div id="dw-secondary-row" class="dw-context-chart" hidden><span class="dw-frame dw-frame-b">B</span><div><strong id="dw-secondary-name">Comparison study</strong><p id="dw-secondary-context"></p></div><button id="dw-edit-secondary" type="button" aria-label="Edit chart B">Edit</button></div>
+      </div>
+      <div id="dw-status" class="dw-status" role="status" aria-live="polite">Preparing the chart workspace…</div>
+      <div id="dw-results" class="dw-results">
+        <div class="dw-viewbar"><div class="dw-segmented" aria-label="Chart view"><button type="button" data-dw-view="wheel" aria-pressed="true">Wheel</button><button type="button" data-dw-view="positions" aria-pressed="false">Positions</button><button type="button" data-dw-view="aspects" aria-pressed="false">Aspect grid</button></div><div class="dw-layers"><label><input id="dw-show-aspects" type="checkbox" checked> Aspects</label><label><input id="dw-show-houses" type="checkbox" checked> Houses</label></div></div>
+        <div id="dw-wheel-view" class="dw-view"><div class="dw-chart-caption"><span id="dw-chart-convention">TROPICAL / GEOCENTRIC</span><span>SELECT A PLANET TO INSPECT</span></div><div id="dw-chart" class="dw-chart"></div><div class="dw-legend"><span class="dw-key-conjunction">☌ Conjunction</span><span class="dw-key-sextile">⚹ Sextile</span><span class="dw-key-square">□ Square</span><span class="dw-key-trine">△ Trine</span><span class="dw-key-opposition">☍ Opposition</span></div></div>
+        <div id="dw-positions-view" class="dw-view dw-table-view" hidden><div id="dw-positions"></div></div>
+        <div id="dw-aspects-view" class="dw-view dw-table-view" hidden><p class="dw-small">Choose a filled cell to inspect the exact separation and orb. A/B comparisons use A along the rows and B along the columns.</p><div id="dw-aspect-grid"></div></div>
+      </div>
+      <section class="dw-timebar" aria-label="Move through time">
+        <div class="dw-timebar-top"><div><span class="dw-eyebrow">TIME NAVIGATOR</span><p id="dw-time-target">Moves chart A · UTC increments</p></div><div class="dw-step-actions"><button id="dw-step-prev" type="button" aria-label="Step backward">←</button><label class="dw-visually-hidden" for="dw-step-unit">Time step</label><select id="dw-step-unit"><option value="hour">1 hour</option><option value="day" selected>1 day</option><option value="month">1 month</option><option value="year">1 year</option></select><button id="dw-step-next" type="button" aria-label="Step forward">→</button><button id="dw-time-reset" type="button">Reset</button><button id="dw-now" type="button">Now</button></div></div>
+        <label for="dw-offset" class="dw-slider-label"><span id="dw-offset-start">−365 days</span><span id="dw-offset-label">Reference instant</span><span id="dw-offset-end">+365 days</span></label><input id="dw-offset" type="range" min="-365" max="365" step="1" value="0"><p class="dw-small">Slider offsets are 24-hour UTC days from the reference. The local clock may change across daylight saving.</p>
+      </section>
+    </section>
+    <aside class="dw-inspection" aria-label="Chart inspector">
+      <div class="dw-section-label"><h2>Inspector</h2><span>LIVE CALCULATION</span></div>
+      <div id="dw-inspector" class="dw-inspector"><p>Select a planet in the wheel or position table.</p></div>
+      <details class="dw-close-aspects" open><summary>Closest angular contacts <span id="dw-aspect-count"></span></summary><div id="dw-aspect-list"></div></details>
+      <details class="dw-methods"><summary>Calculation &amp; source notes</summary><div id="dw-methods"></div><a href="../docs/2026-10-calculation-methods.md">Calculation methods ↗</a></details>
+      <div class="dw-export"><h3>Keep this study</h3><button id="dw-save" type="button" class="dw-primary" disabled>Save chart A</button><div class="dw-export-grid"><button id="dw-export-svg" type="button" disabled>Chart SVG</button><button id="dw-export-json" type="button" disabled>Study JSON</button><button id="dw-print" type="button" disabled>Print / PDF</button><button id="dw-ai" type="button" disabled>AI study packet</button></div><p class="dw-small">Exports contain the displayed chart details. AI handoff opens a reviewable packet; nothing is sent automatically.</p></div>
+    </aside>
+  </div>
+  <section id="dw-toolbox" class="dw-toolbox" aria-labelledby="dw-toolbox-title">
+    <header><div><p class="dw-eyebrow">ONE WORKSPACE, THE WHOLE COLLECTION</p><h2 id="dw-toolbox-title" tabindex="-1">Your extended toolkit.</h2><p>Open a specialist workspace for deeper calculations, calendars, research or creative work. Unsaved chart inputs are kept only in this tab.</p></div><span id="dw-tools-count" class="dw-tool-count"></span></header>
+    <div class="dw-tool-filters"><label>Find a tool<input id="dw-tools-search" type="search" placeholder="Try progressions, Vedic, calendars, Jung…"></label><label>Collection<select id="dw-tools-category"><option value="">All collections</option></select></label></div><div id="dw-tools-list" class="dw-tools-list"></div>
+  </section>
+  <section id="dw-offline" class="dw-offline" aria-label="Offline edition"></section>
+  <p class="dw-footnote">An independent, free browser workspace inspired by professional chart workflows. Four house systems; Astronomy Engine positions. Traditional interpretations are symbolic frameworks. <a href="../docs/2026-11-desktop-research.md">Design research &amp; capability limits</a>.</p>
+  <noscript><p>Enable JavaScript to calculate charts. The <a href="tools.html">tool directory</a> and <a href="library/index.html">reference library</a> remain available.</p></noscript>
+</main>
+<dialog id="dw-profile-dialog" class="dw-dialog" aria-labelledby="dw-profile-heading"><form id="dw-profile-form"><div class="dw-dialog-heading"><div><p class="dw-eyebrow">CHART DATA</p><h2 id="dw-profile-heading">Edit chart A</h2></div><button type="button" data-dw-close aria-label="Close chart editor">×</button></div><p>Enter the recorded local clock and its IANA time zone. A city name alone does not determine the time zone.</p><div class="dw-form-grid"><label class="dw-full">Chart name<input id="dw-profile-name" name="name" maxlength="100" required autocomplete="off"></label><label>Date<input id="dw-profile-localDate" name="localDate" type="date" min="1900-01-01" max="2100-12-31" required></label><label>Local time<input id="dw-profile-localTime" name="localTime" type="time" step="1" required></label><label class="dw-full">Time zone<input id="dw-profile-timeZone" name="timeZone" list="dw-zones" placeholder="e.g. Asia/Kolkata" required></label><datalist id="dw-zones"><option value="Etc/UTC"><option value="Europe/London"><option value="America/New_York"><option value="Asia/Kolkata"><option value="Asia/Tokyo"><option value="Australia/Sydney"></datalist><label>Latitude · north +<input id="dw-profile-lat" name="lat" type="number" step="any" min="-90" max="90" required></label><label>Longitude · east +<input id="dw-profile-lon" name="lon" type="number" step="any" min="-180" max="180" required></label><label class="dw-full">Repeated local clock<select id="dw-profile-disambiguation" name="disambiguation"><option value="reject">Ask for a choice when ambiguous</option><option value="earlier">Use the earlier occurrence</option><option value="later">Use the later occurrence</option></select></label></div><p id="dw-profile-error" role="alert" class="dw-error"></p><div class="dw-dialog-actions"><button type="button" data-dw-close>Cancel</button><button type="submit" id="dw-profile-apply" class="dw-primary">Apply &amp; calculate</button></div></form></dialog>
+<dialog id="dw-ai-dialog" class="dw-dialog dw-ai-dialog" aria-labelledby="dw-ai-heading"><div class="dw-dialog-heading"><div><p class="dw-eyebrow">DELIBERATE AI HANDOFF</p><h2 id="dw-ai-heading">Review your study packet.</h2></div><button type="button" data-dw-close aria-label="Close AI packet">×</button></div><p>This packet contains private chart dates, coordinates and calculated positions. Review it before copying into a model. This static page has no built-in ChatGPT session or API key.</p><label for="dw-ai-packet">Editable prompt and calculated evidence</label><textarea id="dw-ai-packet" rows="14" spellcheck="false"></textarea><div class="dw-dialog-actions"><button id="dw-ai-copy" type="button">Copy packet</button><button id="dw-ai-download" type="button">Download text</button><a href="mcp.html" target="_blank" rel="noopener">AI &amp; MCP setup ↗</a></div><p id="dw-ai-status" role="status"></p></dialog>
+<script type="module">import {mountChrome} from '../assets/js/app/shared.js';import {initDesktopWorkbench} from '../assets/js/app/desktop-workbench.js';mountChrome('desktop');initDesktopWorkbench();</script>
+</body>
+</html>

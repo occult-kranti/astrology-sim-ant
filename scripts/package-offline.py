@@ -53,7 +53,10 @@ readme = '''THE ASTROLOGER'S WORKBENCH — PORTABLE STATIC EDITION
 2. Open a terminal in that folder and run:
        python3 -m http.server 8000 --bind 127.0.0.1
    On Windows, use: py -m http.server 8000 --bind 127.0.0.1
-3. Open http://localhost:8000/pages/birth-reading.html in your browser.
+3. Open http://localhost:8000/pages/desktop.html in your browser.
+   The existing private birth reader remains available at:
+       http://localhost:8000/pages/birth-reading.html
+   The original collection homepage is http://localhost:8000/.
 
 No internet or backend account is needed for local calculations. This command
 serves static files on your own computer only. Modern browsers require an HTTP
@@ -64,8 +67,9 @@ and can be opened directly without this local server.
 Includes the public pages, local calculation engines, charts and reference data.
 External books, websites, live information and hosted AI/MCP services require
 their own network connection. No personal birth data is included in this ZIP.
-Import your private JSON explicitly to recreate a reading. Use Clear to remove
-private results from the current page; keep personal exports in a private folder.
+In the desktop studio, Import JSON accepts an exported chart library. A study
+JSON is calculated evidence, not a chart-library backup. Delete removes a saved
+chart from that browser; keep personal exports in a private folder.
 
 The optional 'Make available offline' feature stores this edition in the browser
 for this localhost origin. Browser storage can be cleared or evicted; keep this
