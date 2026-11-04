@@ -22,6 +22,7 @@ export function mountWorkbenchChat(container,bridge){
   <p class="wc-scope">The index contains public project documents, selected source notes and book references. It does not contain the complete text of every referenced book. Retrieval relevance and model citations do not establish predictive validity.</p></aside></div>`;
   const $=id=>container.querySelector('#'+id);
   const readingMode=Object.hasOwn(bridge.getSnapshot(),'reading');
+  const astrocartographyMode=Object.hasOwn(bridge.getSnapshot(),'astrocartography');
   if(readingMode){
     container.querySelector('.wc-heading h2').textContent='Research & reading assistant.';
     container.querySelector('.wc-heading .dw-eyebrow').textContent='LOCAL SOURCES + COMPARATIVE READINGS';
@@ -33,6 +34,17 @@ export function mountWorkbenchChat(container,bridge){
     $('wc-action-json').closest('details').querySelector('p').textContent='This reading page accepts reviewed navigation to named tools. Use Chart studio for the ten chart controls; date-only studies never acquire an assumed birth time.';
     $('wc-status').textContent='Local source search needs no account or model.';
   }
+  if(astrocartographyMode){
+    container.querySelector('.wc-heading h2').textContent='Research & location assistant.';
+    container.querySelector('.wc-heading .dw-eyebrow').textContent='PLANETARY LINES + DECLARED PLACE READINGS';
+    container.querySelector('.wc-heading div > p:last-child').textContent='Inspect the angular geometry and traditional themes, or include the current map and selected location for a reviewable explanation.';
+    $('wc-question').placeholder='Explain a Sun MC line, inspect the purpose score, or compare calendar readings at the selected place…';
+    const examples=[['Angular lines','How do astrocartography rising setting and meridian lines work?'],['Purpose ranking','How are astrocartography place rankings and purpose weights calculated?'],['Clock sensitivity','How does birth time uncertainty change astrocartography lines?'],['Calendar comparison','Why do calendar labels differ while astrocartography geometry stays the same?']];
+    [...container.querySelectorAll('[data-wc-question]')].forEach((button,i)=>{button.textContent=examples[i][0];button.dataset.wcQuestion=examples[i][1];});
+    $('wc-action-json').placeholder='{"type":"open_tool","toolId":"reading-lab"}';
+    $('wc-action-json').closest('details').querySelector('p').textContent='This map accepts reviewed navigation to named tools. Edit the profile, line filters and place in the map controls; source text and model replies cannot move or recalculate the map automatically.';
+    $('wc-status').textContent='Local source search needs no account or model. A purpose score is an editorial comparison, not a forecast.';
+  }
   $('wc-mcp-link').href=new URL('../../../pages/mcp.html',import.meta.url).href;
   $('wc-setup-link').href=REPO+'local-rag/README.md';
   const manifest=WORKBENCH_RAG_MANIFEST;
@@ -41,7 +53,7 @@ export function mountWorkbenchChat(container,bridge){
   const status=text=>{$('wc-status').textContent=text;};
   function clearPrepared(message){epoch++;prepared=null;supabaseController?.abort();requestController?.abort();requestController=null;$('wc-send').disabled=true;$('wc-stop').disabled=true;$('wc-preview').value='';$('wc-destination').textContent='Prepare a request to inspect its destination and data.';if(message)status(message);}
   function invalidateActions(message){for(const button of actionButtons)button.disabled=true;if(actionButtons.length)$('wc-action-status').textContent=message;}
-  function snapshot(){const s=bridge.getSnapshot();if(s.state!=='ready'||(!s.inputs&&!s.reading))throw Error('Calculate the current study settings first.');return s;}
+  function snapshot(){const s=bridge.getSnapshot();if(s.state!=='ready'||(!s.inputs&&!s.reading&&!s.astrocartography))throw Error('Calculate the current study settings first.');return s;}
   function question(){const q=$('wc-question').value.trim();if(!q||q.length>2000)throw Error('Enter a question of 1–2,000 characters.');return q;}
   function showAnswer(title,text,note=''){$('wc-answer').replaceChildren(el('p',title,'wc-answer-label'),el('div',text,'wc-answer-text'));if(note)$('wc-answer').append(el('p',note,'wc-answer-note'));}
   function showGrounding(raw,evidence,verified){

@@ -27,6 +27,7 @@ import { initAppearance } from './appearance.js';
 export const NAV_GROUPS = [
   { label: 'Start', key: 'start', items: [
     ['pages/desktop.html', 'Desktop chart studio — library, wheels & comparison', 'desktop'],
+    ['pages/astrocartography.html', 'Astrocartography — global lines & place comparisons', 'astrocartography'],
     ['index.html', 'Today — the calendar observatory', 'home'],
     ['pages/calendar-compare.html', 'Compare one moment across traditions', 'calendarcompare'],
     ['pages/birth-reading.html', 'Private birth reading — charts & calendar comparison', 'birthreading'],
@@ -134,6 +135,7 @@ export function currentSection() {
   const p = location.pathname;
   const m = re => re.test(p);
   if (m(/\/pages\/desktop\.html$/)) return 'desktop';
+  if (m(/\/pages\/astrocartography\.html$/)) return 'astrocartography';
 
   // Cast tools that physically live inside a Traditions folder — checked first.
   if (m(/\/pages\/book1\/dignities\.html$/)) return 'dignities';

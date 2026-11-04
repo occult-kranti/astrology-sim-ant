@@ -1,0 +1,729 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-04T21:54:32.457Z",
+  "source": {
+    "beforeSHA256": "d0d0d2d8898e649372e22d6a8744355ae878a3e0e173130915728ee7a24e0b3e",
+    "afterSHA256": "d0d0d2d8898e649372e22d6a8744355ae878a3e0e173130915728ee7a24e0b3e",
+    "changedFiles": []
+  },
+  "corpus": {
+    "chunks": 3483,
+    "sha256": "62532ede297ce71a48d12401ce7413f35d62faf7632e9878124fb32326aa8778"
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "provider": "Actual loopback HTTP mock; not model inference",
+    "browser": "151.0.7922.34"
+  },
+  "checks": [
+    {
+      "journey": "local-1440",
+      "label": "Private chart inclusion is off by default",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Provider sending requires a prepared packet",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Local answer cites actual selected corpus chunks",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Local response identifies its extractive reference scope",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Local source retrieval makes no provider request",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Displayed source inspector retains each cited chunk identifier",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Source inspector retains reading-depth provenance",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Expanded source excerpt equals the exact bounded retrieved chunk",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "No-match answer does not fabricate a citation",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Recognized command only proposes a change",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Chat-applied whole-sign study download completes",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Explicit Apply changes actual canonical chart cusps",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Stale retained proposal cannot override an unsaved manual edit",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Instruction-like unsupported prose cannot become an executable action",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Valid structured JSON creates one reviewed proposal",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Editing structured JSON immediately invalidates its earlier proposal",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Failed structured action review cannot revive an earlier proposal",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Failed review invalidates the previous proposal even without an input event",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Explicit MCP tool action resolves to the exact correct destination",
+      "pass": true,
+      "detail": [
+        {
+          "url": "http://127.0.0.1:40225/astrology-sim-ant/pages/mcp.html",
+          "target": "_blank",
+          "features": "noopener,noreferrer"
+        }
+      ]
+    },
+    {
+      "journey": "local-1440",
+      "label": "Tool action opens a protected deliberate new tab",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Tool navigation appends no private chart query or fragment",
+      "pass": true
+    },
+    {
+      "journey": "local-1440",
+      "label": "Local chat has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 1440,
+        "scrollWidth": 1440
+      }
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Opening and editing model settings does not automatically connect",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Connection health is requested only through the explicit check button",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Unsupported or credential-bearing server origin is rejected",
+      "pass": true,
+      "detail": "http://example.invalid"
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Unsupported or credential-bearing server origin is rejected",
+      "pass": true,
+      "detail": "https://example.invalid/path"
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Unsupported or credential-bearing server origin is rejected",
+      "pass": true,
+      "detail": "https://user:password@example.invalid"
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Unsupported or credential-bearing server origin is rejected",
+      "pass": true,
+      "detail": "https://example.invalid/?token=qa"
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Preparing a provider preview does not send it",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Default outgoing preview excludes the private chart",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Actual HTTP request matches the reviewed outgoing JSON exactly",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Source-only provider request does not transmit chart fields",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit inclusion preview discloses the selected private chart",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Opted-in HTTP body equals its disclosed preview",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Editing the question invalidates a previously prepared send",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "A valid model proposal does not apply itself",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit Apply accepts a validated model proposal",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "A subsequent model action remains an explicit proposal",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "A model reply without an actions property clears earlier proposals",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Browser exposes a fabricated citation despite a claimed valid server audit",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Fabricated citation does not become a trusted source link",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Unknown action properties are rejected despite a claimed accepted server audit",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Provider HTML-like text remains inert",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Source links and titles come from canonical chunks rather than hostile response metadata",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Cancelled request cannot display a late response or revive actions",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Cancellation leaves no applicable late action",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "An unsaved manual chart edit cancels and invalidates the pending model response",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Reviewing a structured action cancels an older pending model answer",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Starting a Supabase search invalidates previous chart proposals",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Actual Supabase-style HTTP request contains only the disclosed source-query fields",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "A cancelled Supabase result cannot overwrite a newer local answer",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "HTTP error does not leave an applicable response action",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Malformed provider JSON produces an error without reviving actions",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Explicit provider action reaches the mock HTTP endpoint",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Provider flow recovers after cancellation and HTTP failure",
+      "pass": true
+    },
+    {
+      "journey": "provider-1440",
+      "label": "Chat does not silently persist private chart context or conversation",
+      "pass": true
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Mobile source answer has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Provider preparation remains keyboard reachable",
+      "pass": true
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Mobile expanded provider settings has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "A QA-only probe proves the actual file-origin browser starts offline",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "File artifact has no external script or stylesheet dependencies",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "File-origin source answer contains the exact same bounded evidence as the current corpus",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Offline citation links are deliberate HTTPS references, not sibling-file paths",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Offline chat-applied study download completes",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Offline chat action changes the actual canonical exported chart",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Offline no-match response does not invent citations",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Explicit MCP tool action resolves to the exact correct destination",
+      "pass": true,
+      "detail": [
+        {
+          "url": "https://occult-kranti.github.io/astrology-sim-ant/pages/mcp.html",
+          "target": "_blank",
+          "features": "noopener,noreferrer"
+        }
+      ]
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Tool action opens a protected deliberate new tab",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Tool navigation appends no private chart query or fragment",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Standalone chat has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 1440,
+        "scrollWidth": 1440
+      }
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Offline RAG and actions trigger no automatic provider, sibling-file, or remote request",
+      "pass": true
+    },
+    {
+      "journey": "standalone-offline-1440",
+      "label": "Standalone artifact remains unchanged during its verification",
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "externalRequests": [],
+  "expectedProviderFailures": [
+    {
+      "journey": "provider-1440",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "url": "http://127.0.0.1:36015/api/chat"
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "local-1440-source-answer.png",
+      "bytes": 211503,
+      "sha256": "42f06efb9fa508c7222fb61b9b255ebea2511951744cff50a5fba1b82d1fc96d"
+    },
+    {
+      "filename": "provider-1440-reviewed-provider.png",
+      "bytes": 83213,
+      "sha256": "29fc8de10270585bfec5377d1d4a78030bb5030f20d4dfe6f0d9db49cfa869d3"
+    },
+    {
+      "filename": "mobile-320-local.png",
+      "bytes": 60245,
+      "sha256": "9c34670b4b80f1be07e5b635cc236a3df6b3a5ba486b21db8b896407601bf41d"
+    },
+    {
+      "filename": "mobile-320-settings.png",
+      "bytes": 62149,
+      "sha256": "22bda7c12855dd53ca3dbc74a42b764a3d493676bf690453ab8e37f701d91d93"
+    },
+    {
+      "filename": "standalone-offline-1440-local-source.png",
+      "bytes": 209628,
+      "sha256": "8871cf2c89ee0f3d260be83929815aded0a55c43afea13b4ea23cd8421a3c83d"
+    }
+  ],
+  "downloads": [
+    {
+      "label": "Chat-applied whole-sign study",
+      "filename": "01-astrology-desktop-study.json.gz",
+      "sha256": "b47b851d795e3c3df888f9d71a627dd6f0616e1dae5a6080bc800e1155ffdea2",
+      "bytes": 33616
+    },
+    {
+      "label": "Offline chat-applied study",
+      "filename": "02-astrology-desktop-study.json.gz",
+      "sha256": "b47b851d795e3c3df888f9d71a627dd6f0616e1dae5a6080bc800e1155ffdea2",
+      "bytes": 33616
+    }
+  ],
+  "mockRequests": [
+    {
+      "path": "/api/health",
+      "method": "GET"
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "valid",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "38bff61b-b8f1-4183-822b-fb4d368387c6"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "valid",
+      "body": {
+        "question": "whole sign houses",
+        "provider": "local",
+        "requestId": "46c767de-3f4b-4f1e-b938-f6c96029dfa3",
+        "context": {
+          "inputs": {
+            "mode": "natal",
+            "zodiac": "tropical",
+            "system": "regiomontanus",
+            "orb": 6,
+            "primary": {
+              "name": "QA private sentinel chart",
+              "localDate": "1994-07-11",
+              "localTime": "16:23",
+              "timeZone": "Asia/Kolkata",
+              "lat": 22.7196,
+              "lon": 75.8577,
+              "disambiguation": "reject"
+            },
+            "secondary": {
+              "name": "Comparison study",
+              "localDate": "2027-01-04",
+              "localTime": "12:00:00",
+              "timeZone": "Etc/UTC",
+              "lat": 51.4779,
+              "lon": 0,
+              "disambiguation": "reject"
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "action",
+      "body": {
+        "question": "whole sign houses",
+        "provider": "local",
+        "requestId": "741a6d6d-382a-4ac5-af79-3f84c1153152"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "action",
+      "body": {
+        "question": "whole sign houses",
+        "provider": "local",
+        "requestId": "ca8fe22c-9db5-4854-8683-a44dc9a6b243"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "missing-actions",
+      "body": {
+        "question": "whole sign houses",
+        "provider": "local",
+        "requestId": "ca8fe22c-9db5-4854-8683-a44dc9a6b243"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "invalid-citation",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "11e8d404-732c-45c7-8c8b-c808299e9b79"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "bad-action",
+      "body": {
+        "question": "whole sign houses",
+        "provider": "local",
+        "requestId": "87b18695-0d4b-4976-9a71-cf8dfbf08db7"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "html",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "0b641ad7-1c84-4736-a008-168399131443"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "late",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "c2adf322-d4a2-4301-9b0a-8330b74b7d18"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "late",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "3593a9f4-b4d6-42f7-909d-ff8105a2be09"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "late",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "23140f7c-9d0e-467d-a6a6-4c50148a1ffd"
+      }
+    },
+    {
+      "path": "/rest/v1/rpc/search_workbench_reference",
+      "method": "POST",
+      "mode": "late",
+      "body": {
+        "query_text": "switch to whole sign",
+        "match_count": 5,
+        "category_filter": null
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "error",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "2384af1e-e05e-4415-92b5-053a5540a620"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "malformed",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "5ec31526-cfc5-4144-9bb9-647bc121b6d7"
+      }
+    },
+    {
+      "path": "/api/chat",
+      "method": "POST",
+      "mode": "valid",
+      "body": {
+        "question": "Lilly houses",
+        "provider": "local",
+        "requestId": "03b4abc4-11ee-4788-a289-ef023fb18aec"
+      }
+    }
+  ],
+  "limits": {
+    "actualModelInference": false,
+    "screenReader": false,
+    "physicalDevice": false,
+    "predictiveValidation": false,
+    "citationEntailmentValidation": false
+  },
+  "standalone": {
+    "path": "/workspace/artifacts/astrocartography/standalone-build/desktop-chart-studio.html",
+    "sha256": "b190ff99c75ade99b6177a041415281d6746168133f0276093ed4086c40235ab",
+    "bytes": 5228704,
+    "requests": [
+      "file:///workspace/artifacts/astrocartography/standalone-build/desktop-chart-studio.html",
+      "https://offline-probe.example.invalid/workbench-chat-qa"
+    ],
+    "expectedProbeErrors": [
+      {
+        "journey": "standalone-offline-1440",
+        "message": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+        "url": "https://offline-probe.example.invalid/workbench-chat-qa"
+      }
+    ],
+    "afterSHA256": "b190ff99c75ade99b6177a041415281d6746168133f0276093ed4086c40235ab"
+  },
+  "pass": true,
+  "checkCount": 83,
+  "completedAt": "2026-11-04T21:54:46.206Z"
+}

@@ -1,0 +1,614 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-astrocartography-numerical-fixtures",
+  "generatedAt": "2026-11-04T21:30:55.665069+00:00",
+  "claimType": "Astronomical coordinates and spherical geometry; not astrological predictive validity",
+  "reference": {
+    "library": "Skyfield",
+    "version": "1.54",
+    "spkReader": "jplephem",
+    "spkReaderVersion": "2.23",
+    "kernel": {
+      "url": "https://ssd.jpl.nasa.gov/ftp/eph/planets/bsp/de440s.bsp",
+      "file": "de440s.bsp",
+      "bytes": 32726016,
+      "sha256": "c1c7feeab882263fc493a9d5a5b2ddd71b54826cdf65d8d17a76126b260a49f2",
+      "seconds": 1.115
+    },
+    "calculation": "earth.at(t).observe(target).apparent().radec(epoch='date'); t=timescale(delta_t=declaredDeltaT).ut1_jd(declaredJD)",
+    "frame": "Geocentric apparent true equator/equinox of date; light-time, aberration and gravitational deflection in Skyfield; no topocentric observer, refraction or limb adjustment",
+    "timeContract": "For this differential check, the engine civil-UTC numeric value is explicitly treated as UT1 and its exact internal TT/Delta-T is matched. This isolates ephemeris/frame calculations, not civil-clock accuracy.",
+    "targetContract": "Sun, Moon, Mercury and Venus centers; Mars through Pluto system barycenters available in DE440s, with that distinction retained",
+    "expectedValuesGeneratedIndependently": true,
+    "generatorSHA256": "ab153690fc685159f9d5647ca47b8cd13fe53990a8dbcb6fa78d8ecaeaaad3a3"
+  },
+  "tolerances": {
+    "raArcseconds": 60,
+    "declinationArcseconds": 60,
+    "gastArcseconds": 1,
+    "mcLongitudeArcseconds": 61,
+    "geometryDegrees": 1e-06,
+    "source": "Coordinate bound follows bundled Astronomy Engine roughly one-arcminute design target, declared before writing assertions; geometry tolerance concerns numerical algorithms only."
+  },
+  "epochs": [
+    {
+      "dateISO": "1900-01-01T12:00:00.000Z",
+      "matchedTime": {
+        "julianUT1": 2415021,
+        "julianTT": 2415020.9999680906,
+        "deltaTSeconds": -2.7569667901843786
+      },
+      "gastDegrees": 280.68114290660384,
+      "bodies": [
+        {
+          "id": "Sun",
+          "target": "sun",
+          "raDegrees": 281.59842699923115,
+          "declinationDegrees": -23.023059959827933,
+          "distanceAU": 0.9832644470871302,
+          "mcEastLongitudeDegrees": 0.9172840926273125
+        },
+        {
+          "id": "Moon",
+          "target": "moon",
+          "raDegrees": 280.32840039842966,
+          "declinationDegrees": -21.363114423957285,
+          "distanceAU": 0.002450518804819109,
+          "mcEastLongitudeDegrees": -0.35274250817417396
+        },
+        {
+          "id": "Mercury",
+          "target": "mercury",
+          "raDegrees": 258.8179509745546,
+          "declinationDegrees": -21.99426905407488,
+          "distanceAU": 1.1505607679987737,
+          "mcEastLongitudeDegrees": -21.863191932049233
+        },
+        {
+          "id": "Venus",
+          "target": "venus",
+          "raDegrees": 309.8496464312003,
+          "declinationDegrees": -20.164349277565584,
+          "distanceAU": 1.462410159254445,
+          "mcEastLongitudeDegrees": 29.168503524596474
+        },
+        {
+          "id": "Mars",
+          "target": "mars barycenter",
+          "raDegrees": 285.584814312369,
+          "declinationDegrees": -23.611691266384167,
+          "distanceAU": 2.400708176872593,
+          "mcEastLongitudeDegrees": 4.903671405765181
+        },
+        {
+          "id": "Jupiter",
+          "target": "jupiter barycenter",
+          "raDegrees": 239.27941576339563,
+          "declinationDegrees": -19.62033183261169,
+          "distanceAU": 6.107827375896515,
+          "mcEastLongitudeDegrees": -41.401727143208205
+        },
+        {
+          "id": "Saturn",
+          "target": "saturn barycenter",
+          "raDegrees": 267.5931865804588,
+          "declinationDegrees": -22.42573869273123,
+          "distanceAU": 11.022822785728103,
+          "mcEastLongitudeDegrees": -13.087956326145047
+        },
+        {
+          "id": "Uranus",
+          "target": "uranus barycenter",
+          "raDegrees": 248.54768650920516,
+          "declinationDegrees": -21.922680325828967,
+          "distanceAU": 19.83355081158252,
+          "mcEastLongitudeDegrees": -32.133456397398675
+        },
+        {
+          "id": "Neptune",
+          "target": "neptune barycenter",
+          "raDegrees": 84.82649600304984,
+          "declinationDegrees": 22.066071896549516,
+          "distanceAU": 28.92251672953854,
+          "mcEastLongitudeDegrees": 164.145353096446
+        },
+        {
+          "id": "Pluto",
+          "target": "pluto barycenter",
+          "raDegrees": 75.07595814068155,
+          "declinationDegrees": 12.914164329738902,
+          "distanceAU": 46.08250182986091,
+          "mcEastLongitudeDegrees": 154.39481523407773
+        }
+      ],
+      "civilUTCComparison": {
+        "julianTT": 2415021.0004882407,
+        "deltaTSeconds": -1.9738683756666824,
+        "dut1Seconds": 44.15786837566668,
+        "gastDegrees": 280.86563779806374
+      }
+    },
+    {
+      "dateISO": "2000-01-01T12:00:00.000Z",
+      "matchedTime": {
+        "julianUT1": 2451545,
+        "julianTT": 2451545.000738971,
+        "deltaTSeconds": 63.847089569816944
+      },
+      "gastDegrees": 280.45707236201224,
+      "bodies": [
+        {
+          "id": "Sun",
+          "target": "sun",
+          "raDegrees": 281.2783855261534,
+          "declinationDegrees": -23.03243047079702,
+          "distanceAU": 0.9833276265556211,
+          "mcEastLongitudeDegrees": 0.8213131641411451
+        },
+        {
+          "id": "Moon",
+          "target": "moon",
+          "raDegrees": 222.4521701346576,
+          "declinationDegrees": -10.900639315908707,
+          "distanceAU": 0.002689989181847351,
+          "mcEastLongitudeDegrees": -58.00490222735465
+        },
+        {
+          "id": "Mercury",
+          "target": "mercury",
+          "raDegrees": 272.07464538748644,
+          "declinationDegrees": -24.418901448032997,
+          "distanceAU": 1.4154694510453052,
+          "mcEastLongitudeDegrees": -8.3824269745258
+        },
+        {
+          "id": "Venus",
+          "target": "venus",
+          "raDegrees": 239.8927692144703,
+          "declinationDegrees": -18.448918148020617,
+          "distanceAU": 1.1375792171673136,
+          "mcEastLongitudeDegrees": -40.56430314754195
+        },
+        {
+          "id": "Mars",
+          "target": "mars barycenter",
+          "raDegrees": 330.5168111747285,
+          "declinationDegrees": -13.182482375964476,
+          "distanceAU": 1.8496878415573976,
+          "mcEastLongitudeDegrees": 50.05973881271626
+        },
+        {
+          "id": "Jupiter",
+          "target": "jupiter barycenter",
+          "raDegrees": 23.86785587044257,
+          "declinationDegrees": 8.59426377854528,
+          "distanceAU": 4.621175072790502,
+          "mcEastLongitudeDegrees": 103.41078350843031
+        },
+        {
+          "id": "Saturn",
+          "target": "saturn barycenter",
+          "raDegrees": 38.76541415810929,
+          "declinationDegrees": 12.614764371302856,
+          "distanceAU": 8.652796318382396,
+          "mcEastLongitudeDegrees": 118.30834179609701
+        },
+        {
+          "id": "Uranus",
+          "target": "uranus barycenter",
+          "raDegrees": 317.4748316538831,
+          "declinationDegrees": -17.020328430764184,
+          "distanceAU": 20.72717067686298,
+          "mcEastLongitudeDegrees": 37.017759291870846
+        },
+        {
+          "id": "Neptune",
+          "target": "neptune barycenter",
+          "raDegrees": 305.4328455309339,
+          "declinationDegrees": -19.21324060884663,
+          "distanceAU": 31.024497569295484,
+          "mcEastLongitudeDegrees": 24.97577316892165
+        },
+        {
+          "id": "Pluto",
+          "target": "pluto barycenter",
+          "raDegrees": 251.419181471278,
+          "declinationDegrees": -11.39429543839398,
+          "distanceAU": 31.064360987556665,
+          "mcEastLongitudeDegrees": -29.037890890734246
+        }
+      ],
+      "civilUTCComparison": {
+        "julianTT": 2451545.0007428704,
+        "deltaTSeconds": 63.8289604,
+        "dut1Seconds": 0.3550395999999978,
+        "gastDegrees": 280.4585557439549
+      }
+    },
+    {
+      "dateISO": "2024-04-08T18:00:00.000Z",
+      "matchedTime": {
+        "julianUT1": 2460409.25,
+        "julianTT": 2460409.2508565756,
+        "deltaTSeconds": 74.00814313441515
+      },
+      "gastDegrees": 107.48393407325175,
+      "bodies": [
+        {
+          "id": "Sun",
+          "target": "sun",
+          "raDegrees": 17.89272069493597,
+          "declinationDegrees": 7.58703857478552,
+          "distanceAU": 1.0015035922643545,
+          "mcEastLongitudeDegrees": -89.59121337831577
+        },
+        {
+          "id": "Moon",
+          "target": "moon",
+          "raDegrees": 17.5779753167636,
+          "declinationDegrees": 7.815256150941499,
+          "distanceAU": 0.0024049863010929943,
+          "mcEastLongitudeDegrees": -89.90595875648815
+        },
+        {
+          "id": "Mercury",
+          "target": "mercury",
+          "raDegrees": 21.91813909000783,
+          "declinationDegrees": 12.244536914709144,
+          "distanceAU": 0.6068090852690395,
+          "mcEastLongitudeDegrees": -85.56579498324392
+        },
+        {
+          "id": "Venus",
+          "target": "venus",
+          "raDegrees": 4.656971449948391,
+          "declinationDegrees": 0.3857994836864698,
+          "distanceAU": 1.6467670160274324,
+          "mcEastLongitudeDegrees": -102.82696262330336
+        },
+        {
+          "id": "Mars",
+          "target": "mars barycenter",
+          "raDegrees": 344.84961970481913,
+          "declinationDegrees": -7.812494331288803,
+          "distanceAU": 2.060818581673945,
+          "mcEastLongitudeDegrees": -122.63431436843263
+        },
+        {
+          "id": "Jupiter",
+          "target": "jupiter barycenter",
+          "raDegrees": 46.81693931646439,
+          "declinationDegrees": 16.709938419499785,
+          "distanceAU": 5.851657073643484,
+          "mcEastLongitudeDegrees": -60.666994756787346
+        },
+        {
+          "id": "Saturn",
+          "target": "saturn barycenter",
+          "raDegrees": 346.3365114232099,
+          "declinationDegrees": -7.673708053719002,
+          "distanceAU": 10.513326246084985,
+          "mcEastLongitudeDegrees": -121.14742265004185
+        },
+        {
+          "id": "Uranus",
+          "target": "uranus barycenter",
+          "raDegrees": 48.8154289266469,
+          "declinationDegrees": 17.790077451950577,
+          "distanceAU": 20.44176872178614,
+          "mcEastLongitudeDegrees": -58.66850514660484
+        },
+        {
+          "id": "Neptune",
+          "target": "neptune barycenter",
+          "raDegrees": 358.82498084078463,
+          "declinationDegrees": -1.8411480148630475,
+          "distanceAU": 30.83257885898811,
+          "mcEastLongitudeDegrees": -108.65895323246713
+        },
+        {
+          "id": "Pluto",
+          "target": "pluto barycenter",
+          "raDegrees": 304.9418625593626,
+          "declinationDegrees": -22.608881288241218,
+          "distanceAU": 35.19362262842205,
+          "mcEastLongitudeDegrees": -162.54207151388914
+        }
+      ],
+      "civilUTCComparison": {
+        "julianTT": 2460409.250800741,
+        "deltaTSeconds": 69.2005591,
+        "dut1Seconds": -0.016559100000009153,
+        "gastDegrees": 107.48386488780406
+      }
+    },
+    {
+      "dateISO": "2030-12-21T15:00:00.000Z",
+      "matchedTime": {
+        "julianUT1": 2462857.125,
+        "julianTT": 2462857.1259054826,
+        "deltaTSeconds": 78.23368473909795
+      },
+      "gastDegrees": 315.23080865376164,
+      "bodies": [
+        {
+          "id": "Sun",
+          "target": "sun",
+          "raDegrees": 269.76138218055235,
+          "declinationDegrees": -23.43395755019687,
+          "distanceAU": 0.9837684616518653,
+          "mcEastLongitudeDegrees": -45.469426473209296
+        },
+        {
+          "id": "Moon",
+          "target": "moon",
+          "raDegrees": 223.21997047690655,
+          "declinationDegrees": -18.504247304665316,
+          "distanceAU": 0.0024340339899160575,
+          "mcEastLongitudeDegrees": -92.01083817685509
+        },
+        {
+          "id": "Mercury",
+          "target": "mercury",
+          "raDegrees": 256.3029126993915,
+          "declinationDegrees": -19.89369263618937,
+          "distanceAU": 0.7253285755557456,
+          "mcEastLongitudeDegrees": -58.927895954370115
+        },
+        {
+          "id": "Venus",
+          "target": "venus",
+          "raDegrees": 286.47936872347555,
+          "declinationDegrees": -23.722142821508296,
+          "distanceAU": 1.6290785436564013,
+          "mcEastLongitudeDegrees": -28.751439930286097
+        },
+        {
+          "id": "Mars",
+          "target": "mars barycenter",
+          "raDegrees": 196.32465456476538,
+          "declinationDegrees": -5.1024361566988485,
+          "distanceAU": 1.6655745077298587,
+          "mcEastLongitudeDegrees": -118.90615408899626
+        },
+        {
+          "id": "Jupiter",
+          "target": "jupiter barycenter",
+          "raDegrees": 251.77509042220876,
+          "declinationDegrees": -21.806773877724634,
+          "distanceAU": 6.271924450147214,
+          "mcEastLongitudeDegrees": -63.45571823155288
+        },
+        {
+          "id": "Saturn",
+          "target": "saturn barycenter",
+          "raDegrees": 61.9753701528522,
+          "declinationDegrees": 18.863280478292893,
+          "distanceAU": 8.17183618807759,
+          "mcEastLongitudeDegrees": 106.74456149909054
+        },
+        {
+          "id": "Uranus",
+          "target": "uranus barycenter",
+          "raDegrees": 79.64323929995172,
+          "declinationDegrees": 23.18919575015788,
+          "distanceAU": 18.182115884979112,
+          "mcEastLongitudeDegrees": 124.41243064619005
+        },
+        {
+          "id": "Neptune",
+          "target": "neptune barycenter",
+          "raDegrees": 10.325221509681004,
+          "declinationDegrees": 2.7625272485773866,
+          "distanceAU": 29.651990297151883,
+          "mcEastLongitudeDegrees": 55.09441285591936
+        },
+        {
+          "id": "Pluto",
+          "target": "pluto barycenter",
+          "raDegrees": 314.7021938321075,
+          "declinationDegrees": -23.48739593663069,
+          "distanceAU": 37.43193256513823,
+          "mcEastLongitudeDegrees": -0.5286148216541164
+        }
+      ],
+      "civilUTCComparison": {
+        "julianTT": 2462857.125800741,
+        "deltaTSeconds": 69.09059027181827,
+        "dut1Seconds": 0.09340972818172588,
+        "gastDegrees": 315.2311989205977
+      }
+    },
+    {
+      "dateISO": "2099-12-31T00:00:00.000Z",
+      "matchedTime": {
+        "julianUT1": 2488068.5,
+        "julianTT": 2488068.5023454297,
+        "deltaTSeconds": 202.64512142166495
+      },
+      "gastDegrees": 99.75335221669215,
+      "bodies": [
+        {
+          "id": "Sun",
+          "target": "sun",
+          "raDegrees": 280.43011211709967,
+          "declinationDegrees": -23.082225554936883,
+          "distanceAU": 0.9833749040435081,
+          "mcEastLongitudeDegrees": -179.32324009959245
+        },
+        {
+          "id": "Moon",
+          "target": "moon",
+          "raDegrees": 146.54912278388454,
+          "declinationDegrees": 15.822185412793257,
+          "distanceAU": 0.002494472302098216,
+          "mcEastLongitudeDegrees": 46.79577056719239
+        },
+        {
+          "id": "Mercury",
+          "target": "mercury",
+          "raDegrees": 288.04856547444365,
+          "declinationDegrees": -24.49451663753623,
+          "distanceAU": 1.3947133674680885,
+          "mcEastLongitudeDegrees": -171.70478674224853
+        },
+        {
+          "id": "Venus",
+          "target": "venus",
+          "raDegrees": 321.9020683634719,
+          "declinationDegrees": -16.941795268410672,
+          "distanceAU": 1.1320826616023143,
+          "mcEastLongitudeDegrees": -137.85128385322025
+        },
+        {
+          "id": "Mars",
+          "target": "mars barycenter",
+          "raDegrees": 26.73718392009724,
+          "declinationDegrees": 12.028849518348148,
+          "distanceAU": 0.8610413939535928,
+          "mcEastLongitudeDegrees": -73.01616829659491
+        },
+        {
+          "id": "Jupiter",
+          "target": "jupiter barycenter",
+          "raDegrees": 199.9764623321874,
+          "declinationDegrees": -7.04856735076261,
+          "distanceAU": 5.56167288714333,
+          "mcEastLongitudeDegrees": 100.22311011549527
+        },
+        {
+          "id": "Saturn",
+          "target": "saturn barycenter",
+          "raDegrees": 204.593615072456,
+          "declinationDegrees": -7.629383673616242,
+          "distanceAU": 9.88998753222683,
+          "mcEastLongitudeDegrees": 104.84026285576385
+        },
+        {
+          "id": "Uranus",
+          "target": "uranus barycenter",
+          "raDegrees": 16.59798158897276,
+          "declinationDegrees": 6.374854430718847,
+          "distanceAU": 19.80773187313002,
+          "mcEastLongitudeDegrees": -83.15537062771939
+        },
+        {
+          "id": "Neptune",
+          "target": "neptune barycenter",
+          "raDegrees": 168.69164906697202,
+          "declinationDegrees": 5.902858014778834,
+          "distanceAU": 29.820947998178564,
+          "mcEastLongitudeDegrees": 68.93829685027987
+        },
+        {
+          "id": "Pluto",
+          "target": "pluto barycenter",
+          "raDegrees": 35.97293678066741,
+          "declinationDegrees": -3.6281676700319787,
+          "distanceAU": 48.55919596803712,
+          "mcEastLongitudeDegrees": -63.78041543602474
+        }
+      ],
+      "civilUTCComparison": {
+        "julianTT": 2488068.500800741,
+        "deltaTSeconds": 95.9250204472721,
+        "dut1Seconds": -26.741020447272106,
+        "gastDegrees": 99.6416261818611
+      }
+    }
+  ],
+  "analyticChallenges": {
+    "kind": "independently-derived-analytic-challenges",
+    "claimType": "spherical geometry, not forecast validation",
+    "sourceEquations": [
+      "NOAA cosine-zenith relation",
+      "Earth-fixed rotation with east-positive longitude"
+    ],
+    "equatorialCase": {
+      "raDegrees": 0,
+      "gastDegrees": 0,
+      "declinationDegrees": 0,
+      "mcLongitude": 0,
+      "icLongitude": 180,
+      "ascLongitude": -90,
+      "dscLongitude": 90,
+      "equatorialDscPointDistanceToAscDegrees": 90,
+      "distanceKm": 10007.557221017962
+    },
+    "declination30AtLatitude45": {
+      "risingHourAngleDegrees": -125.26438968275465,
+      "settingHourAngleDegrees": 125.26438968275465,
+      "risingAltitudeBefore": -0.004999691447430802,
+      "risingAltitudeAt": -6.3611093629270335e-15,
+      "risingAltitudeAfter": 0.0050003085144929545,
+      "settingAltitudeBefore": 0.0050003085144929545,
+      "settingAltitudeAt": -6.3611093629270335e-15,
+      "settingAltitudeAfter": -0.004999691447430802
+    },
+    "circumpolar": {
+      "latitude": 70,
+      "declination": 30,
+      "cosHourAngle": -1.5862568277145441,
+      "ordinaryRisingSettingRoots": false
+    },
+    "grazing": {
+      "latitude": 60,
+      "declination": 30,
+      "hourAngle": 180,
+      "altitude": -1.2722218725854067e-14,
+      "sameSignBothSides": [
+        3.778748539704512e-07,
+        3.778748539704512e-07
+      ]
+    },
+    "scope": "Uses elementary math and synthetic angular inputs; no project engine import. External ephemeris comparison belongs to separate numerical-fixture lane."
+  },
+  "sources": [
+    {
+      "title": "Skyfield positions",
+      "url": "https://rhodesmill.org/skyfield/positions.html",
+      "status": 200,
+      "sha256": "2f0e667f322d6fb29a226181a26fcf1b1424214efde771ce5b1b29ddabf8fde4",
+      "readingScope": "Selected method passages, not the complete documentation corpus"
+    },
+    {
+      "title": "Skyfield time scales",
+      "url": "https://rhodesmill.org/skyfield/time.html",
+      "status": 200,
+      "sha256": "dcf6b8d3f4e2a4520d9b3ed15ca80d46a3439b6c86a9670a55ee7244c6db61dc",
+      "readingScope": "Selected method passages, not the complete documentation corpus"
+    },
+    {
+      "title": "JPL planetary ephemerides",
+      "url": "https://ssd.jpl.nasa.gov/planets/eph_export.html",
+      "status": 200,
+      "sha256": "ce7db9fc032a395318911b6b07cb2f12717f2849dc9938cbd207cb662f4d1687",
+      "readingScope": "Selected method passages, not the complete documentation corpus"
+    },
+    {
+      "title": "NOAA solar calculation details",
+      "url": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF",
+      "sha256": "7fa1fdb5f6b5c05ab1ec3ffde92e6fb2d5df98bf1a87055075ae2c3c1240a627",
+      "readingScope": "Hour-angle/zenith equation, east-positive longitude and physical sunrise convention; independently retrieved by QA"
+    },
+    {
+      "title": "JPL Horizons observer coordinate definitions",
+      "url": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+      "sha256": "be45b0137b37068c48760bbaf306f52a72c10239c175ba91119a30eb30612a81",
+      "readingScope": "Apparent equator/equinox-of-date, astrometric and refracted-coordinate distinctions; selected passages"
+    },
+    {
+      "title": "GeographicLib WGS84 constants",
+      "url": "https://geographiclib.sourceforge.io/html/python/code.html#geographiclib.constants.Constants",
+      "sha256": "36dcde8c41b2c955eca290c82e3e2ee8209ae0ef389d3ab3cd873f8763ba3a13",
+      "readingScope": "WGS84 semi-major axis and flattening; mean-radius comparison only"
+    }
+  ],
+  "limitations": [
+    "These five epochs and50positions are a sampled differential check, not a full1900–2100 accuracy bound.",
+    "Skyfield apparent positions include gravitational deflection; Astronomy Engine conventions differ, especially its direct GeoMoon shortcut.",
+    "Before modernUTC, and farfuture where leap seconds/Earth rotation are unknown, an alternate civilUTC table is not ground truth.",
+    "No downloaded SPK binary or external Python package is required by the committed JS test; the independently generated fixture is retained.",
+    "Spherical half-arc distances are not ellipsoidal Earth distances or observed rise/set times."
+  ]
+}

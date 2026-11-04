@@ -1,0 +1,928 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-04T21:55:20.044Z",
+  "provisional": false,
+  "source": {
+    "beforeSHA256": "4e2b8996fc5c9b94998d67349db2fb53a7dad3ce0623baa548a2c3fd2fc445e2",
+    "afterSHA256": "4e2b8996fc5c9b94998d67349db2fb53a7dad3ce0623baa548a2c3fd2fc445e2",
+    "changedFiles": []
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "browser": "151.0.7922.34"
+  },
+  "checks": [
+    {
+      "journey": "initial-1440",
+      "label": "The angular map is present",
+      "pass": true
+    },
+    {
+      "journey": "initial-1440",
+      "label": "Initial event is the declared public equinox example",
+      "pass": true
+    },
+    {
+      "journey": "initial-1440",
+      "label": "Initial profile is explicitly labelled a public example",
+      "pass": true
+    },
+    {
+      "journey": "initial-1440",
+      "label": "Map exposes a group with a keyboard alternative, not an opaque image",
+      "pass": true
+    },
+    {
+      "journey": "initial-1440",
+      "label": "Ten bodies and four angular conditions have native controls",
+      "pass": true
+    },
+    {
+      "journey": "initial-1440",
+      "label": "Actual local geographic outlines render",
+      "pass": true
+    },
+    {
+      "journey": "initial-1440",
+      "label": "All default angular lines render with separate geometric segments",
+      "pass": true
+    },
+    {
+      "journey": "initial-1440",
+      "label": "No assistant or provider connection is opened automatically",
+      "pass": true
+    },
+    {
+      "journey": "initial-1440",
+      "label": "Initial map has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 1440,
+        "scrollWidth": 1440
+      }
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Removing the known clock immediately invalidates export",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Missing clock rejects calculation without inventing noon",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Nonexistent spring DST clock rejects",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Repeated autumn DST clock requires an explicit occurrence",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Earlier repeated clock maps to05:30UTC",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Later repeated clock maps to06:30UTC",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Skipped Apia civil date is rejected",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Out-of-range chart date is rejected",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Birthplace at latitude90 does not erase the global geometry",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Birthplace at latitude-90 does not erase the global geometry",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Invalid birth latitude rejects",
+      "pass": true
+    },
+    {
+      "journey": "profile-1440",
+      "label": "Restoring the public example recovers from invalid input",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Known map coordinate is a background selection, not a crossing/city hit",
+      "pass": true,
+      "detail": {
+        "x": 731.7986111111111,
+        "y": 621.4913194444445,
+        "hit": "path",
+        "blockedByLayer": false
+      }
+    },
+    {
+      "journey": "map-1440",
+      "label": "Screen click preserves geographic coordinates within one display pixel",
+      "pass": true,
+      "detail": {
+        "expected": {
+          "lat": 12.34,
+          "lon": 22.34
+        },
+        "selected": {
+          "lat": 12.339994,
+          "lon": 22.339989
+        }
+      }
+    },
+    {
+      "journey": "map-1440",
+      "label": "Map coordinate selection explicitly uses an assumed UTC display zone",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Keyboard plus zooms the map",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Static global labels hide when zoomed",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Known map coordinate is a background selection, not a crossing/city hit",
+      "pass": true,
+      "detail": {
+        "x": 791.359375,
+        "y": 594.3541666666667,
+        "hit": "path",
+        "blockedByLayer": false
+      }
+    },
+    {
+      "journey": "map-1440",
+      "label": "Screen click preserves geographic coordinates within one display pixel",
+      "pass": true,
+      "detail": {
+        "expected": {
+          "lat": 15.67,
+          "lon": 31.23
+        },
+        "selected": {
+          "lat": 15.669994,
+          "lon": 31.23
+        }
+      }
+    },
+    {
+      "journey": "map-1440",
+      "label": "Keyboard arrows pan the zoomed map",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Dragging pans without changing selected geographic coordinates",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Home restores the whole world",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Known map coordinate is a background selection, not a crossing/city hit",
+      "pass": true,
+      "detail": {
+        "x": 1112.5694444444443,
+        "y": 621.4913194444445,
+        "hit": "path",
+        "blockedByLayer": false
+      }
+    },
+    {
+      "journey": "map-1440",
+      "label": "Screen click preserves geographic coordinates within one display pixel",
+      "pass": true,
+      "detail": {
+        "expected": {
+          "lat": 12.34,
+          "lon": 179
+        },
+        "selected": {
+          "lat": 12.339994,
+          "lon": 179.000006
+        }
+      }
+    },
+    {
+      "journey": "map-1440",
+      "label": "Known map coordinate is a background selection, not a crossing/city hit",
+      "pass": true,
+      "detail": {
+        "x": 242.43055555555554,
+        "y": 681.4774305555555,
+        "hit": "svg",
+        "blockedByLayer": false
+      }
+    },
+    {
+      "journey": "map-1440",
+      "label": "Screen click preserves geographic coordinates within one display pixel",
+      "pass": true,
+      "detail": {
+        "expected": {
+          "lat": -12.34,
+          "lon": -179
+        },
+        "selected": {
+          "lat": -12.339994,
+          "lon": -178.999999
+        }
+      }
+    },
+    {
+      "journey": "map-1440",
+      "label": "Line inspection moves keyboard focus to its details",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Selected line is distinctly highlighted",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Selecting an actual crossing highlights both member lines",
+      "pass": true,
+      "detail": [
+        "Sun-MC",
+        "Moon-ASC"
+      ]
+    },
+    {
+      "journey": "map-1440",
+      "label": "Selected pair is identified in the place inspector",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "The decimal score remains on one visual line",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Selected crossing downloads",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Export records the same crossing that is highlighted",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Crossing inspection uses its computed geographic point",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Individual line selection clears the crossing pair",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Crossing visibility toggle renders the computed crossing set",
+      "pass": true
+    },
+    {
+      "journey": "map-1440",
+      "label": "Crossing table filters by the named member line",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Initial study downloads",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Place inspection contains nine separately labelled calendar/source frameworks",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Place study retains the map UTC instant",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Offline city search filters to Mumbai",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Catalogue selection supplies its declared IANA zone",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Unknown city produces explicit coordinate-form fallback",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Rankings paginate beyond the first ten places",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Changed editorial purpose downloads",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Editorial purpose does not change physical line geometry",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Declared purpose changes the weighted comparison",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Scoring qualification stays next to purpose control",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Typing a radius immediately invalidates held export",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Settled radius downloads",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Rapid radius edits settle on the final numeric value",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Scoring radius does not change line geometry",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Out-of-range radius cannot export stale results",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Removing a body removes its four angular lines",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Last remaining body cannot be deselected",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Last remaining angle cannot be deselected",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Single body/single angle selection produces exactly one line",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Single-line selection has no fabricated crossings",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Pole study downloads",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Pole thematic score is unavailable, not numerical zero",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Pole located chart is explicitly unavailable",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Pole qualification appears visibly in inspector",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Exact pole suppresses arbitrary nearest-line themes while retaining geometric distances",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Invalid destination disables export and explains latitude error",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "House-system edit requires explicit recast",
+      "pass": true
+    },
+    {
+      "journey": "analysis-1440",
+      "label": "Corrected profile and destination recover export",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Duplicate coordinates and zone are not kept twice",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Revisited manually kept non-UTC place retains the correct declared-zone label",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Session bookmark cap is enforced at twelve places",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Kept-place comparison is calculated and paginated",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Explicit local private study download downloads",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Only explicit JSON download includes the custom profile and kept coordinates",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Profile HTML-looking text is rendered inertly",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Kept-place CSV downloads",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "CSV formula-like label is neutralized",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "CSV identifies the editorial metric",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Private study data never enters the page URL",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Profile and kept places are not automatically stored",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Removing a kept place updates the session list",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Print is invoked only by explicit user action",
+      "pass": true
+    },
+    {
+      "journey": "privacy-1440",
+      "label": "Reload clears session places and restores the public example",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Optional provider context is off by default",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Source search executes locally with an extractive label",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Prepared provider body omits study context without opt-in",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Explicit context includes the canonical known clock",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Explicit context includes the selected place and declared zone",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Prepared request contains canonical inputs, not full geometry or kept-place library",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Changing a place invalidates the prepared provider request",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Chart-changing actions are rejected on the map page",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Named-tool proposal does not navigate before Apply",
+      "pass": true
+    },
+    {
+      "journey": "assistant-1440",
+      "label": "Reviewed tool navigation uses the correct URL without private study data",
+      "pass": true,
+      "detail": [
+        [
+          "http://127.0.0.1:40241/astrology-sim-ant/pages/mcp.html",
+          "_blank",
+          "noopener,noreferrer"
+        ]
+      ]
+    },
+    {
+      "journey": "library-1440",
+      "label": "A saved local chart is never auto-loaded",
+      "pass": true
+    },
+    {
+      "journey": "library-1440",
+      "label": "Explicit saved-chart action opens a native dialog",
+      "pass": true
+    },
+    {
+      "journey": "library-1440",
+      "label": "Saved chart label markup remains inert",
+      "pass": true
+    },
+    {
+      "journey": "library-1440",
+      "label": "Escape dismisses saved-chart dialog",
+      "pass": true
+    },
+    {
+      "journey": "library-1440",
+      "label": "Closing the saved-chart dialog restores its invoking control",
+      "pass": true
+    },
+    {
+      "journey": "library-1440",
+      "label": "Explicit record selection fills form but requires recast",
+      "pass": true
+    },
+    {
+      "journey": "library-1440",
+      "label": "Saved selection moves focus to Cast",
+      "pass": true
+    },
+    {
+      "journey": "library-1440",
+      "label": "Calculated saved profile retains explicit-selection label",
+      "pass": true
+    },
+    {
+      "journey": "library-1440",
+      "label": "Malformed local library is rejected without importing partial data",
+      "pass": true
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Mobile comparison controls begin collapsed with a labelled summary",
+      "pass": true
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Responsive initial has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Responsive map has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Responsive inspector has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Responsive inspector score is not split across text lines",
+      "pass": true
+    },
+    {
+      "journey": "mobile-320",
+      "label": "Responsive assistant has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "scrollWidth": 320
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Mobile comparison controls begin collapsed with a labelled summary",
+      "pass": true
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Responsive initial has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Responsive map has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Responsive inspector has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Responsive inspector score is not split across text lines",
+      "pass": true
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Responsive assistant has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "desktop-1920",
+      "label": "Responsive initial has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "journey": "desktop-1920",
+      "label": "Responsive map has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "journey": "desktop-1920",
+      "label": "Responsive inspector has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "journey": "desktop-1920",
+      "label": "Responsive inspector score is not split across text lines",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1920",
+      "label": "Responsive assistant has no document overflow",
+      "pass": true,
+      "detail": {
+        "width": 1920,
+        "scrollWidth": 1920
+      }
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "externalRequests": [],
+  "downloads": [
+    {
+      "label": "Selected crossing",
+      "filename": "01-astrocartography-study.json.gz",
+      "bytes": 1184616,
+      "sha256": "984141153a85d9fe09bb487b42cfb1cee1be42e09919b9511d895003bb3eb72c"
+    },
+    {
+      "label": "Initial study",
+      "filename": "02-astrocartography-study.json.gz",
+      "bytes": 1184311,
+      "sha256": "6d3a4564fc87bf78105409323dc57fac9c54298af11232efb92f9e4c5c1ee9fe"
+    },
+    {
+      "label": "Changed editorial purpose",
+      "filename": "03-astrocartography-study.json.gz",
+      "bytes": 1187085,
+      "sha256": "3c5d27e8ca0368d048463ec86e0fd6831a7e8483cd8f911b561f45205bb20b30"
+    },
+    {
+      "label": "Settled radius",
+      "filename": "04-astrocartography-study.json.gz",
+      "bytes": 1197702,
+      "sha256": "4fdfdd95d37979ce7834e3299a264a80781b24a20d6ff20d16ff552a46814d66"
+    },
+    {
+      "label": "Pole study",
+      "filename": "05-astrocartography-study.json.gz",
+      "bytes": 236412,
+      "sha256": "e011f29d6866755f6529aab2a8b4fd56aeb9cb48eb66dcb3792253db8c3bc919"
+    },
+    {
+      "label": "Explicit local private study download",
+      "filename": "06-astrocartography-study.json.gz",
+      "bytes": 1002310,
+      "sha256": "97bdfee06bd3589a8b4821b266682069f95c2abe47dbb8a48552f537dc315f3a"
+    },
+    {
+      "label": "Kept-place CSV",
+      "filename": "07-astrocartography-places.csv.gz",
+      "bytes": 1604,
+      "sha256": "dd2c65de45272c69beed51fb573447a6e26e66eebef75554e53fc66fae7c28e9"
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "initial-1440-initial.png",
+      "sha256": "1cc97a4468a3fe5654a6193899b482d9a745c8295d5744c5bb48c98f853b4f16",
+      "bytes": 426368
+    },
+    {
+      "filename": "profile-1440-recovered.png",
+      "sha256": "57ad1832eefe91aef31a453b5ffab515c3b884f45354bcbd8729533b0c921ca3",
+      "bytes": 302468
+    },
+    {
+      "filename": "map-1440-selected.png",
+      "sha256": "428a6b621aa297f03d08029e02c2952d01e2971ab0f2e491de25a94ed726888a",
+      "bytes": 211339
+    },
+    {
+      "filename": "assistant-1440-source-and-actions.png",
+      "sha256": "f248eecb8804f6664fc577004db649fcdd79e661c1861ef601d73966eb6ee9e5",
+      "bytes": 101785
+    },
+    {
+      "filename": "mobile-320-initial.png",
+      "sha256": "ddabe34ea0a534ebaccd54c3cf32ade9dcdca337c3d34fd6f4cf18ee0521c38b",
+      "bytes": 117913
+    },
+    {
+      "filename": "mobile-320-map.png",
+      "sha256": "ddabe34ea0a534ebaccd54c3cf32ade9dcdca337c3d34fd6f4cf18ee0521c38b",
+      "bytes": 117913
+    },
+    {
+      "filename": "mobile-320-inspector.png",
+      "sha256": "ad5ace0c44dff9cdad3818369d0f4b55c39f8440d58724dd04ecc0ec3498de1f",
+      "bytes": 50766
+    },
+    {
+      "filename": "mobile-320-place-result.png",
+      "sha256": "af474933a03b6977763503076853c8e2b009b80f0e085e950e9a1c5d6d2e0307",
+      "bytes": 45354
+    },
+    {
+      "filename": "mobile-320-assistant.png",
+      "sha256": "6e8d9128de4d8550b5d5eefd72340fef3a14cf1bd53d2bc1142b88e46e98c513",
+      "bytes": 65897
+    },
+    {
+      "filename": "mobile-390-initial.png",
+      "sha256": "8faa19b3f23ff7b38c6765da2e78c912055a2bc41bf5f212190d9664acf054f6",
+      "bytes": 140393
+    },
+    {
+      "filename": "mobile-390-map.png",
+      "sha256": "8faa19b3f23ff7b38c6765da2e78c912055a2bc41bf5f212190d9664acf054f6",
+      "bytes": 140393
+    },
+    {
+      "filename": "mobile-390-inspector.png",
+      "sha256": "770bc20fd473c92e876f9283d409fcad97f46f3169dd8e8666e1cda767580f0a",
+      "bytes": 52877
+    },
+    {
+      "filename": "mobile-390-place-result.png",
+      "sha256": "e079a68cf33970e388d3a46ff79a5145bd2ac513dcece9c8013642e23b698f11",
+      "bytes": 46108
+    },
+    {
+      "filename": "mobile-390-assistant.png",
+      "sha256": "3bddbe1c88e0c1ca6363b30c9a127c4c09739232bbc0bd6d44b664cfd20a593e",
+      "bytes": 67558
+    },
+    {
+      "filename": "desktop-1920-initial.png",
+      "sha256": "34df3212ba3967d95f4294a800e93e562c523de49b7d38f05d25cadc8d9f1c14",
+      "bytes": 574367
+    },
+    {
+      "filename": "desktop-1920-map.png",
+      "sha256": "81af1d69ac012a9ec2a9492db67fd2bbc30c338eefea0c8bd41ca8661f54c610",
+      "bytes": 643190
+    },
+    {
+      "filename": "desktop-1920-inspector.png",
+      "sha256": "cfab19c22aa1a62b99bd873450ebf4963950647eab8823b4505c00c4f46d24bb",
+      "bytes": 643138
+    },
+    {
+      "filename": "desktop-1920-place-result.png",
+      "sha256": "43a62fb228ae2a18ec5639549a3dd3a84dd6c4db271485601f016acf939a83a0",
+      "bytes": 356597
+    },
+    {
+      "filename": "desktop-1920-assistant.png",
+      "sha256": "98182c55d0ee8c1054dd01e5a7a9842caf0887c80700860e396097b12f03fa9f",
+      "bytes": 131144
+    }
+  ],
+  "limits": {
+    "forecastValidation": false,
+    "modelInference": false,
+    "physicalDevice": false,
+    "screenReader": false,
+    "allBrowsers": false
+  },
+  "checkCount": 126,
+  "pass": true,
+  "acceptance": true,
+  "completedAt": "2026-11-04T21:55:40.136Z"
+}

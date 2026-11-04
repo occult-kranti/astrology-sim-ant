@@ -132,8 +132,8 @@ async function storageSnapshot(page) {
 }
 async function staticCoverage() {
   current = { route: 'all-static-routes' };
-  // The site contract includes 133 application routes plus this themed local-AI
-  // reference document; the coverage ledger deliberately includes all 134.
+  // The authored family ledger must cover every current application route
+  // plus the themed local-AI reference document. Counts are derived below.
   const paths = ['index.html', 'docs/LOCAL-LLM.html', ...(await files('pages')).filter(path => path.endsWith('.html'))].sort();
   const coverage = JSON.parse(await readFile(resolve(root, '.design/site-design-coverage.json'), 'utf8'));
   check(JSON.stringify(coverage.map(row => row.path).sort()) === JSON.stringify(paths), 'Family coverage ledger lists every application HTML route exactly once', { actual: paths.length, ledger: coverage.length });

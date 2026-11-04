@@ -34,7 +34,7 @@ Connect the provisioned Workbench plugin under **Plugins → Personal → Create
 
 ## Tools and contracts
 
-The current source registry exposes **83 read-only tools**. This is the local source count; the historical remote deployment status above remains separate. The feature branch has not been published to Pages in this iteration; deployment remains deferred by the user.
+The current source registry exposes **85 read-only tools**. This is the local source count; the historical remote deployment status above remains separate. The feature branch has not been published to Pages in this iteration; deployment remains deferred by the user.
 
 - `workbench_catalogue`: search the existing capability directory and links.
 - `workbench_chart`: Western chart, planetary hour and optional Vedic context, explicit instant and observer; optional birth radix/reference instant.
@@ -57,6 +57,13 @@ The generated [static catalogue](../assets/data/mcp-catalogue.json) contains the
 - `workbench_desktop_action_preview` validates one of ten finite chart/view/tool proposals and recomputes its proposed result. It does not control a browser. The browser must check its held context revision and require an explicit **Apply** action. Unsupported fields, executable code, arbitrary URLs, storage writes and provider calls have no action type. Reset requires an explicit reference profile; missing birth clocks are never invented.
 
 Run `node ../scripts/test-workbench-rag-protocol.mjs` for the actual official-SDK HTTP-handler and child-process stdio tests of these three tools. A passing local protocol test does not establish availability on the previously deployed backend. The [chatbot integration notes](../docs/2026-11-workbench-rag-integrations.md) distinguish local retrieval, local model generation, ChatGPT handoff and optional hosted services.
+
+## Astrocartography adapters
+
+- `workbench_astrocartography` recomputes selected angular lines and a bounded summary of crossings and city rankings from an explicit known clock, IANA zone and observer. The full offline map is available on the [Astrocartography page](../pages/astrocartography.html).
+- `workbench_astrocartography_place` inspects an explicitly supplied location, retaining the original UTC instant while recomputing a relocated chart and named calendar facts. Requested and actual house conventions, unavailable methods and source limits remain visible.
+
+These read-only adapters never read a saved birth library, call a model or change the browser. Their compact summaries declare their scope; the full map geometry stays in the browser. Forty sourced city centres are a reference catalogue, not a global search for an objectively best place. Purpose scores are transparent editorial weights with a proximity taper, not probabilities or validated outcome predictions. Calendar and philosophical frameworks do not add independent votes to that score. See [geometry and source methods](../docs/2026-11-astrocartography-methods.md), and run `node ../scripts/test-astrocartography-protocol.mjs` for official-SDK HTTP/stdio contract tests.
 
 ## Reading Lab adapters
 

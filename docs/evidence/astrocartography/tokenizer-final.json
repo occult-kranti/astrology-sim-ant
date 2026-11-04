@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "kind": "actual-local-tokenizer-only-fit",
+  "startedAt": "2026-11-04T21:54:04.743Z",
+  "publicInputsOnly": true,
+  "realModelInference": false,
+  "realGenerationRequests": 0,
+  "provider": "existing loopback llama.cpp tokenizer",
+  "tokenizerBaseURL": "http://127.0.0.1:8845",
+  "profile": "scenario-v3",
+  "model": "workbench-qwen3-4b-q4",
+  "modelIdentityScope": "Configured pinned local runtime; no new model-identity endpoint was called in this tokenizer-only measurement.",
+  "contextWindowTokens": 8192,
+  "outputReserveTokens": 512,
+  "safetyMarginTokens": 32,
+  "sourceFiles": {
+    "server": "3b8d35c0ceb9bab3a68b45b999843254be5dbc203abb4d5847e8747e16ea6690",
+    "prompt": "b1abb14bd9738633579e2afbd8fca3c9a619027cd4a543fcc4cd4cd96731dd0e",
+    "engine": "d80444acb9bab26650b2282a1ffadbb060ac39803aa9aac2195851c3a8a40b94",
+    "data": "7efcbc1c7944452f2b02b2bd1677c65aecfff863b4e2226b81f93783872ef954",
+    "driver": "b03a882c35b1ef02f9bc9bff2bb75443fccc796e073f10da8f70c7ffb4bc7574"
+  },
+  "cases": [
+    {
+      "id": "default-global",
+      "providerPayloadBytes": 18464,
+      "canonicalContextBytes": 11488,
+      "providerPayloadSHA256": "5f82bd1d83374cbf6b520cdddfd4919cbcd401323221c81af10b3ddedd09f4fa",
+      "renderedPromptSHA256": "4e60e74e61ea8df1f9a9decc70b644bc55f90bc736d6f4f9d6879c4a4b13b566",
+      "tokenIDsSHA256": "25257d6e72cc0ca72ccd66494cbc9714bbc26564bf8015fedd852e58459c6b4a",
+      "corpusSHA256": "62532ede297ce71a48d12401ce7413f35d62faf7632e9878124fb32326aa8778",
+      "corpusChunks": 3483,
+      "retrievedSourceIDs": [
+        "WRAG-2deef3b9a66002c1",
+        "WRAG-d1b835209b33239b"
+      ],
+      "promptTokens": 5601,
+      "requiredTokens": 6145,
+      "headroomTokens": 2047,
+      "fits": true,
+      "underTarget": true,
+      "bodyCount": 10,
+      "lineCount": 40,
+      "selectedReferenceCities": 40,
+      "calendarFamilies": [],
+      "scope": {
+        "projection": "astrocartography-chat-v1",
+        "values": "Canonical numerical values copied without rounding; column labels define each table.",
+        "fullExport": "Use the astrocartography page or read-only MCP tools for the complete canonical export.",
+        "sourceLedgers": [
+          "assets/js/core/data/astrocartography-data.js"
+        ],
+        "sourceCount": 18,
+        "shownSourceCount": 9,
+        "omittedSourceIds": [
+          "acg-horizons",
+          "acg-wgs84",
+          "acg-uranus",
+          "acg-neptune",
+          "acg-pluto",
+          "acg-geonames-schema",
+          "acg-naturalearth",
+          "acg-naturalearth-license",
+          "acg-lilly"
+        ],
+        "omitted": [
+          "Render geometry",
+          "Source titles, URLs, reading-depth and rights prose: consult the named ledgers; source IDs do not imply full books were read",
+          "Duplicate source profile",
+          "Nearest-point coordinates",
+          "RA hours (RA degrees / 15), subpoint latitude (declination), repeated position-method text",
+          "Crossing ID/body/angle aliases encoded in line IDs",
+          "City country/provenance prose; nearest angular degrees derivable from distanceKm"
+        ],
+        "lineIdConvention": "Body-ANGLE",
+        "angularDistance": "degrees = distanceKm / 6371.0088 * 180 / pi; spherical mean-Earth radius",
+        "limits": "Editorial proximity scores are not empirical probabilities, predictions or advice to relocate.",
+        "retained": [
+          "All selected equatorial positions, distances in AU and subpoint longitudes",
+          "All selected line IDs",
+          "Every canonical summary crossing and city score; core summary counts and ordering retained"
+        ]
+      },
+      "canonicalSummaryScope": {
+        "renderGeometryOmitted": true,
+        "totalLines": 40,
+        "totalCrossings": 270,
+        "shownCrossings": 12,
+        "crossingOrder": "Deterministic body/angle pair order, not importance or severity",
+        "totalCities": 40,
+        "shownCities": 6,
+        "cityOrder": "Editorial purpose score, then proximity, then stable ID",
+        "lineIdConvention": "Body-ANGLE",
+        "nearestLinesPerShownCity": 1,
+        "omittedCityFields": "Extended geographic provenance and contribution ledger remain in full study",
+        "sourceLedger": "assets/js/core/data/astrocartography-data.js",
+        "sourceCount": 18,
+        "shownSourceCount": 9,
+        "omittedSourceIds": [
+          "acg-horizons",
+          "acg-wgs84",
+          "acg-uranus",
+          "acg-neptune",
+          "acg-pluto",
+          "acg-geonames-schema",
+          "acg-naturalearth",
+          "acg-naturalearth-license",
+          "acg-lilly"
+        ]
+      }
+    },
+    {
+      "id": "default-place-nine-families",
+      "providerPayloadBytes": 24561,
+      "canonicalContextBytes": 16868,
+      "providerPayloadSHA256": "3cf46e7a4bb767793a30b0ae1b163205971f6f6543170ff43c3bb2d6ac74c35c",
+      "renderedPromptSHA256": "6c5e51700d9dd58e4d6e2161ae3a76e8afb6b0df192cd456ded04750f3c5719e",
+      "tokenIDsSHA256": "1b98f9105ebf3ad8a553908590fe5e7c2fb90ba2daf0bc8d419afc0f83f27114",
+      "corpusSHA256": "62532ede297ce71a48d12401ce7413f35d62faf7632e9878124fb32326aa8778",
+      "corpusChunks": 3483,
+      "retrievedSourceIDs": [
+        "WRAG-e97aaec2651977b9",
+        "WRAG-dc264e54696990cb",
+        "WRAG-8d395bc5840ff4a0"
+      ],
+      "promptTokens": 6885,
+      "requiredTokens": 7429,
+      "headroomTokens": 763,
+      "fits": true,
+      "underTarget": true,
+      "bodyCount": 10,
+      "lineCount": 40,
+      "selectedReferenceCities": 40,
+      "calendarFamilies": [
+        "egyptian",
+        "mayan",
+        "dee",
+        "lilly",
+        "vedic",
+        "chinese",
+        "hebrew",
+        "jung",
+        "plato"
+      ],
+      "scope": {
+        "projection": "astrocartography-chat-v1",
+        "values": "Canonical numerical values copied without rounding; column labels define each table.",
+        "fullExport": "Use the astrocartography page or read-only MCP tools for the complete canonical export.",
+        "sourceLedgers": [
+          "assets/js/core/data/astrocartography-data.js",
+          "assets/js/core/data/reading-cases.js",
+          "assets/js/core/desktop-workbench.js"
+        ],
+        "sourceCount": 24,
+        "shownSourceCount": 6,
+        "omittedSourceIds": [
+          "acg-horizons",
+          "acg-wgs84",
+          "acg-lewis",
+          "acg-angles",
+          "acg-relocation",
+          "acg-uranus",
+          "acg-neptune",
+          "acg-pluto",
+          "acg-geonames",
+          "acg-geonames-schema",
+          "acg-geonames-license",
+          "acg-naturalearth",
+          "acg-naturalearth-license",
+          "acg-lilly",
+          "DESKTOP-ASTRONOMY",
+          "DESKTOP-ASPECTS",
+          "DESKTOP-LAHIRI",
+          "DESKTOP-TIME"
+        ],
+        "omitted": [
+          "Render geometry",
+          "Source titles, URLs, reading-depth and rights prose: consult the named ledgers; source IDs do not imply full books were read",
+          "Duplicate source profile",
+          "Nearest-point coordinates",
+          "Duplicate Intl formatToParts arrays",
+          "Full Lilly chart and aspect rows; method labels retained",
+          "aspect matrix",
+          "per-body source prose",
+          "Per-body dignity component rows and repeated source IDs; total, peregrine status and dispositor retained"
+        ],
+        "lineIdConvention": "Body-ANGLE",
+        "angularDistance": "degrees = distanceKm / 6371.0088 * 180 / pi; spherical mean-Earth radius",
+        "limits": "Editorial proximity scores are not empirical probabilities, predictions or advice to relocate.",
+        "selectedDistanceCount": 40,
+        "calendarFamilies": [
+          "egyptian",
+          "mayan",
+          "dee",
+          "lilly",
+          "vedic",
+          "chinese",
+          "hebrew",
+          "jung",
+          "plato"
+        ],
+        "retained": [
+          "All selected line distances and endpoint/interior kind",
+          "Relocation UTC, requested/actual house system and fallback warnings",
+          "All relocated body positions, house assignments and cusps; dignity totals",
+          "All nine canonical family methods, availability, numerical facts and limitations"
+        ],
+        "inheritedDuplicateOmissions": [
+          "context.sourceProfile equals inputs.profile",
+          "angularDistanceDegrees equals distanceKm /6371.0088 ×180/π",
+          "contribution distance equals its named line distance; raw contribution equals normalizedPoints ×denominator/100"
+        ]
+      }
+    }
+  ],
+  "realCalls": [
+    {
+      "path": "/apply-template",
+      "method": "POST",
+      "status": 200,
+      "requestSHA256": "ac347baf7c122df16c003eeb0b760bc871586855b2c568e579b23423be401af2",
+      "responseSHA256": "a6c21c7fb1f5cc26584fa6fcc0995801fc10f866438e4f1cc6481792afa993fa",
+      "responseBytes": 18318
+    },
+    {
+      "path": "/tokenize",
+      "method": "POST",
+      "status": 200,
+      "requestSHA256": "06e994658015ed73f73a836eeff3337b98d54f98178addec3fe27094443fbd29",
+      "responseSHA256": "23b6c74bcfd8c85d8f2663e0fe01e234a94120c799b52c4194cadcbc683b1e26",
+      "responseBytes": 23512
+    },
+    {
+      "path": "/apply-template",
+      "method": "POST",
+      "status": 200,
+      "requestSHA256": "aaa27fd9cacfcfc7ed7b4338fb389cb3b8e1cc52aa0f135ad4c6f86d015883e3",
+      "responseSHA256": "ef0dffcdee5ff6627875dfce0672948ca0affed6a74103df8f1d283bf5a7017b",
+      "responseBytes": 24415
+    },
+    {
+      "path": "/tokenize",
+      "method": "POST",
+      "status": 200,
+      "requestSHA256": "3fe9485ba116d603e444984a4c810ba290841cb8717d1cd5f2e82d17315be2d4",
+      "responseSHA256": "8150d0b159c95c59302e0b26d8eabe0d1c841f6ba9a0896fbb4d72dfd862c893",
+      "responseBytes": 30223
+    }
+  ],
+  "pass": true,
+  "completedAt": "2026-11-04T21:54:05.098Z"
+}

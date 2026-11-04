@@ -1,0 +1,8 @@
+
+> astrologers-workbench-mcp@1.0.0 test
+> node test-protocol.mjs
+
+responseMode: 'json' drops mid-call notifications. subscriptions/listen streams are always served over SSE regardless; other notifications emitted before a result are dropped.
+responseMode: 'json' drops mid-call notifications. subscriptions/listen streams are always served over SSE regardless; other notifications emitted before a result are dropped.
+PASS HTTP initialize/list/call/resource, invalid input, host/origin/body bounds and remote authentication
+PASS stdio initialize/list/call with real child-process protocol

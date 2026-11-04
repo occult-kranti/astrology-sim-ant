@@ -1,0 +1,84 @@
+[gen-opgraph] --check OK — the committed module is exactly this generator's output.
+[seed-gate] --check OK.
+{"mode":"check","calendarProfiles":13,"catalogueBookProfiles":34,"additionalBookProfiles":11,"totalProfiles":58,"artifacts":59,"changed":0}
+Generated static connection catalogue: 85 tools.
+{"mode":"check","chunks":17,"sources":14,"jsonlSHA256":"61a6adf384fb4e78f721f0671411fcf383376b57badb7e3c4c42150066ace34a","trainingPerformed":false}
+{
+  "mode": "check",
+  "chunks": 3483,
+  "sources": 194,
+  "bytes": 4867716,
+  "categories": {
+    "charts": 834,
+    "calendars": 173,
+    "timing": 52,
+    "vedic": 193,
+    "symbols": 152,
+    "books": 1011,
+    "research": 274,
+    "software": 186,
+    "tools": 136,
+    "sources": 472
+  },
+  "corpusSHA256": "62532ede297ce71a48d12401ce7413f35d62faf7632e9878124fb32326aa8778"
+}
+{
+  "mode": "check",
+  "path": "assets/data/reading-lab-examples.json",
+  "bytes": 119402,
+  "contentSHA256": "79050b60c90739c8bc668a95c89de3b1b1657594433811427dd6338920d16009",
+  "examples": 17,
+  "sources": 24,
+  "traditions": 9,
+  "casesWithReferenceFields": 8,
+  "unevaluableCases": 9,
+  "referenceFields": 24,
+  "matchedFields": 24,
+  "outcomeEvaluable": false,
+  "scope": "Matching listed source fields is not predictive accuracy or full-chart validation.",
+  "sqlDirectory": null,
+  "hostedDeployment": false
+}
+{"mode":"check","capabilities":102,"mcpTools":85,"withNamedAdapters":83,"guideOnly":19,"routes":97}
+{"mode":"check","capabilities":45,"adapterTools":47,"inputContracts":85}
+{
+  "pass": true,
+  "datasetId": "horizon-2031-ebad81411f37-934bcf90815d",
+  "sourceFiles": 46,
+  "parts": 4,
+  "totalBytes": 35146696,
+  "counts": {
+    "days": 1525,
+    "cases": 3,
+    "totalSamples": 4575,
+    "processedSamples": 4575,
+    "availableSamples": 4575,
+    "unavailableSamples": 0,
+    "calendarRows": 59475,
+    "availableCalendarRows": 59475,
+    "profileResults": 18300,
+    "rankableProfileResults": 17114,
+    "observanceRows": 1011,
+    "uniqueObservances": 337,
+    "eventCount": 5883,
+    "truncated": false
+  },
+  "runtime": {
+    "environment": "node",
+    "node": "24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "icu": "78.3",
+    "cldr": "48.0",
+    "tz": "2026b"
+  },
+  "mode": "check",
+  "recalculated": false
+}
+Country event research: 9 artifacts match; 28 records, 7 countries; accepted calculations imported without refitting.
+Offline manifest current: 554 public files, 58737818 bytes, 7fd44fd11be7e69a772ba79348effe08847db55ffcc10c2d07e4145bc1b44f82.
+[round-ledger] --check: ROUND-LEDGER.md is current.
+
+C1 ok — trailing-3 (R39, R40, R41): 25 domain, 22 tooling.
+C2 ok — trailing-3 domain ratio 0.53 (floor 0.20).
+C3 NOT EVALUABLE — 0 of the last 5 rounds carry a curation census (graph.excluded / graph.ejected). C3 cannot pass by default.
+NOTE — 3 of the 3 rounds in the C1/C2 window carry (unverified) claim counts (amendment E). The stop condition is computed from figures no script re-derived.

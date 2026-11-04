@@ -113,11 +113,17 @@ public_reading = {
     'research/reading-lab/source-ledger.json',
     'supabase/migrations/202611040002_reading_lab.sql',
 }
+public_astrocartography = {
+    'scripts/tests/astrocartography.mjs', 'scripts/tests/astrocartography-independent.mjs',
+    'scripts/test-astrocartography-protocol.mjs',
+    'research/astrocartography/source-ledger.json',
+    'research/astrocartography/independent-fixtures.json',
+}
 for name in tracked:
     parts = name.split('/')
     if not name or any(p == 'node_modules' for p in parts):
         continue
-    if name in companion or name in model_lab or name in model_research or name in public_reading:
+    if name in companion or name in model_lab or name in model_research or name in public_reading or name in public_astrocartography:
         extra.add(name)
     elif parts[0] == 'mcp' and name.endswith(('.mjs', '.md', '.json')) and not any(p.startswith('.') for p in parts):
         extra.add(name)
@@ -137,6 +143,7 @@ for name in tracked:
 assert companion <= extra, 'Stage every deliberate companion source file before packaging.'
 assert model_lab <= extra, 'Stage the complete optional model-lab recipe set before packaging.'
 assert public_reading <= extra, 'Stage the complete public reading database recipe and tests before packaging.'
+assert public_astrocartography <= extra, 'Stage the public astrocartography source fixtures and tests before packaging.'
 assert model_research <= extra, 'Stage the frozen public model experiment fixtures and receipts before packaging.'
 entries = {}
 with tempfile.TemporaryDirectory(prefix='workbench-local-rag-') as temporary:

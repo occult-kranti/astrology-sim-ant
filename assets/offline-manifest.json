@@ -1,8 +1,13 @@
 {
   "schemaVersion": 1,
-  "version": "0ef275cce3a1c01fab16b73a488300fed02b186e621fa984ce9d70f4b795152a",
-  "totalBytes": 58297679,
+  "version": "7fd44fd11be7e69a772ba79348effe08847db55ffcc10c2d07e4145bc1b44f82",
+  "totalBytes": 58737818,
   "files": [
+    {
+      "path": "assets/css/astrocartography.css",
+      "bytes": 28193,
+      "sha256": "624058b601b39c68c9864ba744466f1765a7d1228e3e5f6748a57b1b9189fe72"
+    },
     {
       "path": "assets/css/birth-chart-console.css",
       "bytes": 14321,
@@ -204,6 +209,11 @@
       "sha256": "0ec560c95177f280bf264edbd51a4a7d012df2e450eac68c4eb387360d91ecc0"
     },
     {
+      "path": "assets/data/astrocartography-land.json",
+      "bytes": 133429,
+      "sha256": "6feaad0a8d2d6c2c44d74d3c86d4832a5f3abd34315bfd920555b2750ebe52ac"
+    },
+    {
       "path": "assets/data/country-events/generate.mjs",
       "bytes": 5998,
       "sha256": "bb9d6d3d24ad1c4efc647c0cffac34de2957565afcad79cccfe4cadf9ae70807"
@@ -260,8 +270,8 @@
     },
     {
       "path": "assets/data/horizon-2031-manifest.json",
-      "bytes": 141295,
-      "sha256": "b5860fd6b3b3c75c82d1d39c1141419b525aa92c58cfcdb2919ea5c1cc8d77d7"
+      "bytes": 141306,
+      "sha256": "e5bf719d9ec1ab4d0b80d895463c7209b29ed651a20c4830d0bdfb82462ee158"
     },
     {
       "path": "assets/data/horizon-2031/astronomy.json",
@@ -285,8 +295,8 @@
     },
     {
       "path": "assets/data/mcp-catalogue.json",
-      "bytes": 195598,
-      "sha256": "5abc4883ad6f1adac298231a659564084853a2a7051c3ff71b6246ce6ab9c850"
+      "bytes": 208180,
+      "sha256": "77ebdd6c57337ad85795ff7d1f14b4b6f42f2baa39fc1c8634664eb6924e9f69"
     },
     {
       "path": "assets/data/reading-lab-examples.json",
@@ -347,6 +357,11 @@
       "path": "assets/js/app/assistant.js",
       "bytes": 29145,
       "sha256": "54ce2e2bf9ae49c5ed5e6bb3c693f50c4106afde4c293747f15489c6603258d9"
+    },
+    {
+      "path": "assets/js/app/astrocartography.js",
+      "bytes": 48849,
+      "sha256": "9be089ed765d761b1efd3ff7f6b2433b9b639db634be2678d2b50245cdf74bbf"
     },
     {
       "path": "assets/js/app/autolink.js",
@@ -765,8 +780,8 @@
     },
     {
       "path": "assets/js/app/shared.js",
-      "bytes": 46666,
-      "sha256": "13cda7c369c997c076cf89c3d1f9059661c09b0989c445541a6f70e69a7032e2"
+      "bytes": 46852,
+      "sha256": "bb5d3a7d20f2e6020ca3e8f2795a2bb7679f0160e77ca93f7163c2490f1ef717"
     },
     {
       "path": "assets/js/app/sigil-studio.js",
@@ -915,8 +930,8 @@
     },
     {
       "path": "assets/js/app/workbench-chat.js",
-      "bytes": 25808,
-      "sha256": "151d27f9e4d604ceeaef7fb6c6b1d5a610db9b2899de9220634b2f664979de39"
+      "bytes": 27544,
+      "sha256": "f8d1be795c4f7b7ca15d170ee516950ab695167243d03bee38f1b38d0c9876c3"
     },
     {
       "path": "assets/js/app/workbench-supabase.js",
@@ -957,6 +972,11 @@
       "path": "assets/js/core/astro.js",
       "bytes": 14873,
       "sha256": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab"
+    },
+    {
+      "path": "assets/js/core/astrocartography.js",
+      "bytes": 29017,
+      "sha256": "d80444acb9bab26650b2282a1ffadbb060ac39803aa9aac2195851c3a8a40b94"
     },
     {
       "path": "assets/js/core/birth-reading.js",
@@ -1069,6 +1089,11 @@
       "sha256": "5f4c56bc8c7a7dac97b4369124477795c506f7909a2efcf68041caae1d26bcdd"
     },
     {
+      "path": "assets/js/core/data/astrocartography-data.js",
+      "bytes": 51460,
+      "sha256": "7efcbc1c7944452f2b02b2bd1677c65aecfff863b4e2226b81f93783872ef954"
+    },
+    {
       "path": "assets/js/core/data/behenian-stars.js",
       "bytes": 8146,
       "sha256": "1c9e818453cde3e7a9f313542deb981e8266e823b5844f2967821212b1c2d9e2"
@@ -1175,8 +1200,8 @@
     },
     {
       "path": "assets/js/core/data/desktop-tools.js",
-      "bytes": 52757,
-      "sha256": "e7c8c7e6bda368550882e3be932d017a703f39f06eee40c743e199ea7fc3c654"
+      "bytes": 53164,
+      "sha256": "6f883b01dd7813b53b2416e09ff091f9ac913e97c31d5e1369518434d0c15522"
     },
     {
       "path": "assets/js/core/data/dignities-data.js",
@@ -1236,12 +1261,12 @@
     {
       "path": "assets/js/core/data/horizon-preset-version.js",
       "bytes": 492,
-      "sha256": "dbb533858bb10a45b911168b1f229d1e8b47ee1cad5d78da0a637ef570b429df"
+      "sha256": "d1e8f0eb335039aeb88ea51013f90aebdf2ae283757320ce4ac80d22a50bb6c2"
     },
     {
       "path": "assets/js/core/data/horizon-tool-coverage.js",
-      "bytes": 12920,
-      "sha256": "6e0c636f51d9c61a192ad3747a67ff12d23a4b60bcf856c6d2c7e9e51de08c1d"
+      "bytes": 13255,
+      "sha256": "c36bb4819284e7263493ed1153157cafca7e99a5b4e4861e13697607709651cd"
     },
     {
       "path": "assets/js/core/data/horizon-traditions.js",
@@ -1295,13 +1320,13 @@
     },
     {
       "path": "assets/js/core/data/mcp-adapter-coverage.js",
-      "bytes": 16831,
-      "sha256": "50940ceec1ed243548c28bc15d22a3241f9a744878f730f8eb819a01ddd1e547"
+      "bytes": 17506,
+      "sha256": "a31e664a50fb9038b1b597cb92e1cf476f5898357eef13b6545b2166a39b4bd1"
     },
     {
       "path": "assets/js/core/data/mcp-tool-contracts.js",
-      "bytes": 138447,
-      "sha256": "0355fff57b7cf199d62d42d517c8db2ff0bfb5c8981a1d8a4f9571c119e8fc10"
+      "bytes": 148362,
+      "sha256": "32df17029f29434e33be39670d620171403938597505fe011c05b016dd42154a"
     },
     {
       "path": "assets/js/core/data/muhurta-data.js",
@@ -1420,8 +1445,8 @@
     },
     {
       "path": "assets/js/core/data/workbench-rag-corpus.js",
-      "bytes": 4764610,
-      "sha256": "34403bca9ec0163baaffbcb3510b316cc0db1873f0ef7eb721d70d86fbf58685"
+      "bytes": 4867716,
+      "sha256": "4306236e7fd55baa7abfe6b8c822c0aee1122b3c578efadba8a91a217ddd7289"
     },
     {
       "path": "assets/js/core/data/worked-charts.js",
@@ -1700,8 +1725,8 @@
     },
     {
       "path": "assets/js/core/registry.js",
-      "bytes": 148778,
-      "sha256": "8636e6f625952c6c202cf4bd08635f9c7da8a809335b80e8165d1843c6a92cd0"
+      "bytes": 150285,
+      "sha256": "40db20b3452922c1ee0569ae3bd5b0ea36350687ea6c5bee43ac6d46d7b86c41"
     },
     {
       "path": "assets/js/core/releasing.js",
@@ -1945,8 +1970,8 @@
     },
     {
       "path": "assets/search-index.json",
-      "bytes": 301312,
-      "sha256": "48ec9b11ea240b1744aa31b2c2e0ada95522209162576d7b4d949dea9ccabf08"
+      "bytes": 303767,
+      "sha256": "12eb5136520d78db55680a6f0d161fe04adb0524969e1f601c2ba9c19740bbaa"
     },
     {
       "path": "assets/vendor/adhan/Adhan.js",
@@ -2060,8 +2085,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 26534,
-      "sha256": "986d58f7e5a8c7abb95f467f82ca0e7e801a94b301b677a6a8061f1c3d82afc7"
+      "bytes": 26662,
+      "sha256": "84d69e97bb5dda1bc982c9b8c1c2159659868a279547e101940236dd01885954"
     },
     {
       "path": "manifest.webmanifest",
@@ -2092,6 +2117,11 @@
       "path": "pages/about/index.html",
       "bytes": 35051,
       "sha256": "be93bc0b60a916326b156f225f14e2395901fb8ef3ffa1620b44ef31ebd8f1bb"
+    },
+    {
+      "path": "pages/astrocartography.html",
+      "bytes": 15967,
+      "sha256": "e86a728a5d9a0af79821bffa04b208f003b9212f8f6c5b17a8f816c6c67d2874"
     },
     {
       "path": "pages/autopilot.html",
@@ -2660,8 +2690,8 @@
     },
     {
       "path": "pages/tools.html",
-      "bytes": 53704,
-      "sha256": "b77c4364c627a9dbe6939a7b639d28571c16adbf2bc3761bd81878e9d3cc6098"
+      "bytes": 53885,
+      "sha256": "d7d05bd1643f3b28a33f7ced6b1072115e9a44ac44e06acbbd32f58474361489"
     },
     {
       "path": "pages/trajectory.html",

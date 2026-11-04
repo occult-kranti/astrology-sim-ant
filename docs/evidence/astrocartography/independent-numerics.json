@@ -1,0 +1,36 @@
+{
+  "kind": "independent-astrocartography-numerics",
+  "passed": true,
+  "checks": 11304,
+  "groups": {
+    "ephemeris": 205,
+    "renderGeometry": 10611,
+    "distance": 389,
+    "crossings": 16,
+    "singularities": 83
+  },
+  "externalEpochs": 5,
+  "externalBodyPositions": 50,
+  "fixtureSHA256": "5793bde92dc837f79aeddef9632a667492483cc6f065b1998eaa2919e84a34de",
+  "maximumObservedErrors": {
+    "raArcseconds": 14.935359769128809,
+    "declinationArcseconds": 19.67054930712635,
+    "gastArcseconds": 0.10011718793521139,
+    "mcLongitudeArcseconds": 14.942822855277882,
+    "distanceOracleDegrees": 6.110667527536862e-13
+  },
+  "tolerances": {
+    "raArcseconds": 60,
+    "declinationArcseconds": 60,
+    "gastArcseconds": 1,
+    "mcLongitudeArcseconds": 61,
+    "geometryDegrees": 0.000001,
+    "source": "Coordinate bound follows bundled Astronomy Engine roughly one-arcminute design target, declared before writing assertions; geometry tolerance concerns numerical algorithms only."
+  },
+  "claimType": "Astronomical coordinates and spherical geometry; not astrological predictive validity",
+  "limits": [
+    "Five sampled matched-time epochs do not validate every date in1900–2100.",
+    "A mean-radius sphere is not an ellipsoidal geodesic or physical rise/set model.",
+    "Geometry checks do not validate astrological predictions or editorial scores."
+  ]
+}

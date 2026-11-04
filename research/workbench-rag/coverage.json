@@ -2,21 +2,21 @@
   "schemaVersion": 1,
   "scope": "Explicit public-repository allowlist; existing reference notes, project-document prose, page explanations, book catalogues and tool metadata.",
   "categories": {
-    "charts": 774,
+    "charts": 834,
     "calendars": 173,
     "timing": 52,
     "vedic": 193,
     "symbols": 152,
     "books": 1011,
     "research": 274,
-    "software": 181,
-    "tools": 135,
+    "software": 186,
+    "tools": 136,
     "sources": 472
   },
   "readingDepth": {
-    "full-text": 389,
-    "reference-note": 2798,
-    "metadata": 230
+    "full-text": 405,
+    "reference-note": 2843,
+    "metadata": 235
   },
   "definition": {
     "full-text": "Project-document prose only, not full underlying books; code blocks omitted.",
@@ -32,15 +32,21 @@
     "Full scripture translations: only existing metadata and original study notes are indexed in this corpus"
   ],
   "inventories": {
-    "pageCount": 136,
-    "documentationCount": 30,
-    "dataModuleCount": 25,
-    "sourceFileCount": 191,
-    "chunkCount": 3417,
-    "retrievalUnitCount": 235
+    "pageCount": 137,
+    "documentationCount": 31,
+    "dataModuleCount": 26,
+    "sourceFileCount": 194,
+    "chunkCount": 3483,
+    "retrievalUnitCount": 238
   },
   "retrievalGrouping": "Reading Lab cases, source records and method notes have separate retrieval units; continuation chunks share their unit. Other files retain file-level grouping. Units sharing bibliography are not independent evidence.",
   "sourceFiles": [
+    {
+      "file": "assets/js/core/data/astrocartography-data.js",
+      "bytes": 51460,
+      "sha256": "7efcbc1c7944452f2b02b2bd1677c65aecfff863b4e2226b81f93783872ef954",
+      "chunks": 38
+    },
     {
       "file": "assets/js/core/data/behenian-stars.js",
       "bytes": 8146,
@@ -67,9 +73,9 @@
     },
     {
       "file": "assets/js/core/data/desktop-tools.js",
-      "bytes": 52757,
-      "sha256": "e7c8c7e6bda368550882e3be932d017a703f39f06eee40c743e199ea7fc3c654",
-      "chunks": 135
+      "bytes": 53164,
+      "sha256": "6f883b01dd7813b53b2416e09ff091f9ac913e97c31d5e1369518434d0c15522",
+      "chunks": 136
     },
     {
       "file": "assets/js/core/data/eschatology-comparisons.js",
@@ -121,9 +127,9 @@
     },
     {
       "file": "assets/js/core/data/mcp-tool-contracts.js",
-      "bytes": 138447,
-      "sha256": "0355fff57b7cf199d62d42d517c8db2ff0bfb5c8981a1d8a4f9571c119e8fc10",
-      "chunks": 95
+      "bytes": 148362,
+      "sha256": "32df17029f29434e33be39670d620171403938597505fe011c05b016dd42154a",
+      "chunks": 99
     },
     {
       "file": "assets/js/core/data/muhurta-data.js",
@@ -342,6 +348,12 @@
       "chunks": 14
     },
     {
+      "file": "docs/2026-11-astrocartography-methods.md",
+      "bytes": 15596,
+      "sha256": "7f6f9791d1698944ce60bfe44df6e51b4cb2bda852b23c21c64609d104dcb68a",
+      "chunks": 15
+    },
+    {
       "file": "docs/2026-11-chart-console-offline.md",
       "bytes": 5059,
       "sha256": "4c750840d56bf85a6b40c713c8233f550bb401bb41dc49b0710d6b6977f99e7b",
@@ -367,15 +379,15 @@
     },
     {
       "file": "index.html",
-      "bytes": 26534,
-      "sha256": "986d58f7e5a8c7abb95f467f82ca0e7e801a94b301b677a6a8061f1c3d82afc7",
+      "bytes": 26662,
+      "sha256": "84d69e97bb5dda1bc982c9b8c1c2159659868a279547e101940236dd01885954",
       "chunks": 36
     },
     {
       "file": "mcp/README.md",
-      "bytes": 13920,
-      "sha256": "bfe85a0e0610373ec456a324237f0524212c28934d0bb6b51b5165bcffcc3726",
-      "chunks": 14
+      "bytes": 15173,
+      "sha256": "ca5b63b4cdfe2718b99278085f7cb29d538d772d0b1164bc4daea773fc0f7f2a",
+      "chunks": 15
     },
     {
       "file": "pages/abhichara/atharvan.html",
@@ -406,6 +418,12 @@
       "bytes": 35051,
       "sha256": "be93bc0b60a916326b156f225f14e2395901fb8ef3ffa1620b44ef31ebd8f1bb",
       "chunks": 27
+    },
+    {
+      "file": "pages/astrocartography.html",
+      "bytes": 15967,
+      "sha256": "e86a728a5d9a0af79821bffa04b208f003b9212f8f6c5b17a8f816c6c67d2874",
+      "chunks": 7
     },
     {
       "file": "pages/autopilot.html",
@@ -1087,8 +1105,8 @@
     },
     {
       "file": "pages/tools.html",
-      "bytes": 53704,
-      "sha256": "b77c4364c627a9dbe6939a7b639d28571c16adbf2bc3761bd81878e9d3cc6098",
+      "bytes": 53885,
+      "sha256": "d7d05bd1643f3b28a33f7ced6b1072115e9a44ac44e06acbbd32f58474361489",
       "chunks": 63
     },
     {

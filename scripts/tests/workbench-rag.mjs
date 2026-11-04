@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { performance } from 'node:perf_hooks';
 import { WORKBENCH_RAG_CHUNKS, WORKBENCH_RAG_MANIFEST } from '../../assets/js/core/data/workbench-rag-corpus.js';
 import { READING_CASES, READING_SOURCES, READING_METHOD_NOTES } from '../../assets/js/core/data/reading-cases.js';
+import { ASTROCARTOGRAPHY_SOURCES, ASTROCARTOGRAPHY_PLANET_NOTES, ASTROCARTOGRAPHY_ANGLE_NOTES, ASTROCARTOGRAPHY_PURPOSES } from '../../assets/js/core/data/astrocartography-data.js';
 import { retrieveWorkbenchSources, buildWorkbenchEvidence, answerWorkbenchLocally, getWorkbenchChunk, validateWorkbenchCitations, normalizeWorkbenchQuery } from '../../assets/js/core/workbench-rag.js';
 const root=fileURLToPath(new URL('../../',import.meta.url)),sha=t=>createHash('sha256').update(t).digest('hex');
 let checks=0;
@@ -128,6 +129,57 @@ const readingBudgetDiagnostics=[1000,3000,6000].map(maxTokens=>{
  return {maxTokens,targetRecordReturned:!!exact,bothBoundaryDatesPresent:/29 Elul 5784/.test(exact)&&/1 Tishrei 5785/.test(exact),authorshipHeadersPresent,citationIds:result.rows.map(r=>r.id)};
 });
 
+// Source definitions, editorial weights and licensed map/gazetteer provenance
+// must remain distinguishable in the new angular-map reference material.
+const astroFile='assets/js/core/data/astrocartography-data.js';
+const astroDoc='docs/2026-11-astrocartography-methods.md';
+const astroChunks=WORKBENCH_RAG_CHUNKS.filter(c=>c.file===astroFile);
+for(const source of ASTROCARTOGRAPHY_SOURCES){
+ const rows=astroChunks.filter(c=>c.tags.includes('ASTROCARTOGRAPHY_SOURCES')&&c.tags.includes(source.id));
+ const text=rows.map(c=>c.text).join(' ');
+ check(rows.length>0&&text.includes(source.locator),`Astrocartography source and exact passage locator indexed: ${source.id}`);
+ for(const row of rows){
+  equal(row.sourceReadingDepth,`Source-review scope: ${source.readingDepth}`,`Astrocartography selected-reading depth preserved: ${source.id}`);
+  equal(row.rightsScope,source.rights,`Astrocartography underlying rights preserved: ${source.id}`);
+  equal(row.url,source.url,`Astrocartography bibliography URL preserved: ${source.id}`);
+  check(row.readingDepth==='reference-note','Astrocartography notes do not become full ingested books');
+ }
+}
+for(const purpose of ASTROCARTOGRAPHY_PURPOSES){
+ const rows=astroChunks.filter(c=>c.tags.includes('ASTROCARTOGRAPHY_PURPOSES')&&c.tags.includes(purpose.id));
+ const text=rows.map(c=>c.text).join(' ');
+ check(rows.length>0,`Purpose weight table indexed: ${purpose.id}`);
+ check(text.includes('project-authored choices')&&text.includes('not an ancient table or statistical estimate'),`Purpose attribution remains editorial: ${purpose.id}`);
+ // The general index flattens object parents; body and angle identifiers
+ // remain distinct. Check the actual values, not invented table headings.
+ for(const [field,value]of Object.entries({...purpose.planetWeights,...purpose.angleWeights})){
+  const number=String(value).replace(/\./g,'\\.');
+  check(new RegExp(`(?:^| )${field}: ${number}(?: |$)`).test(text),`Actual purpose weight retained: ${purpose.id}/${field}`);
+ }
+}
+for(const [exportName,notes]of [['ASTROCARTOGRAPHY_PLANET_NOTES',ASTROCARTOGRAPHY_PLANET_NOTES],['ASTROCARTOGRAPHY_ANGLE_NOTES',ASTROCARTOGRAPHY_ANGLE_NOTES]]){
+ for(const [id,note]of Object.entries(notes)){
+  const text=astroChunks.filter(c=>c.locator===`${exportName}.${id}`||c.locator.startsWith(`${exportName}.${id} · continuation `)).map(c=>c.text).join(' ');
+  check(text.includes(note.basis),`Authored conditional interpretation is not a historical quotation: ${exportName}/${id}`);
+  for(const sourceId of note.sourceIds)check(text.includes(sourceId),`Interpretive source linkage preserved: ${exportName}/${id}/${sourceId}`);
+ }
+}
+const astroQueries=[
+ ['geometric-horizon','Does an astrocartography rising line use the visible solar limb and atmospheric refraction, or a geometric centre at altitude zero?',[/refraction/,/90\.833/,/geometric/]],
+ ['meridian-not-zenith','Why is an astrocartography MC meridian line different from a planet being directly overhead?',[/upper.meridian/,/overhead/,/declination|latitude/]],
+ ['editorial-score','Are astrocartography purpose scores validated probabilities, or project-authored editorial weights?',[/editorial|authored design choices/,/not[^.]{0,180}probabilit/i,/weight/]],
+ ['licensed-offline-data','What are the licences for the offline Natural Earth land polygons and GeoNames cities?',[/Natural Earth/,/GeoNames/,/public domain/,/CC BY ?4\.0|Attribution ?4\.0/]],
+ ['radius-attribution','Why does the astrocartography map use 6371.0088 km rather than an IAU nominal radius?',[/WGS84/,/not an IAU nominal radius/,/6,?371\.0088/]],
+];
+const astroRetrievalResults=astroQueries.map(([id,query,proof])=>{
+ const evidence=buildWorkbenchEvidence(query,{limit:5,maxTokens:6000});
+ const rows=evidence.rows.filter(c=>c.file===astroFile||c.file===astroDoc),text=rows.map(c=>c.excerpt).join(' ');
+ check(rows.length>0,`Astrocartography question retrieves its actual new sources: ${id}`);
+ for(const expression of proof)check(expression.test(text),`Astrocartography returned passage supports ${id}: ${expression}`);
+ check(evidence.estimatedTokens<=6000,'Astrocartography evidence remains bounded');
+ return {id,query,citationIds:rows.map(c=>c.id),passageChecks:proof.length,hit:true};
+});
+
 const calibration=[
  ['What does cazimi mean and how does Lilly distinguish combustion?',/sky-reading-sources\.js|sky-sources\.md/],
  ['How does Lahiri sidereal differ from tropical zodiac?',/pages\/learn|sky-reading-sources|pages\/vedic/],
@@ -203,5 +255,6 @@ const elapsed=performance.now()-start;
 check(elapsed<20000,'Bounded local retrieval stress within 20 seconds');
 console.log(JSON.stringify({status:'PASS',checks,corpusChunks:manifest.chunkCount,sourceFiles:manifest.sourceCount,corpusSHA256:manifest.corpusSHA256,
  readingLab:{caseRecords:READING_CASES.length,sourceRecords:READING_SOURCES.length,methodRecords:READING_METHOD_NOTES.length,families:9,queries:readingQueries.length,results:readingRetrievalResults,budgetDiagnostics:readingBudgetDiagnostics,scope:'Public development retrieval coverage, not sealed model evaluation or predictive validity. Authorship and reading-depth notes are indexed; a bounded returned excerpt may omit its continuation.'},
+ astrocartography:{sourceRecords:ASTROCARTOGRAPHY_SOURCES.length,purposes:ASTROCARTOGRAPHY_PURPOSES.length,queries:astroQueries.length,results:astroRetrievalResults,scope:'Source-specific development checks of geometry definitions, provenance and editorial attribution; not an outcome-validation benchmark.'},
  calibration:{questions:calibration.length,hits:calibration.length},heldout:{questions:holdout.length,hits:heldoutResults.filter(x=>x.hit).length,results:heldoutResults},
  stress:{queries:240,elapsedMilliseconds:Math.round(elapsed)},limits:['Engineering lexical-retrieval fixtures, not external benchmark or human evaluation.','Citation checks validate identifiers, not factual entailment.','No full referenced books, embeddings, model training or private chart corpus.']},null,2));

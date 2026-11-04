@@ -1,0 +1,780 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-04",
+  "sources": [
+    {
+      "id": "acg-frame",
+      "title": "Astronomy Engine: JavaScript API documentation",
+      "url": "https://raw.githubusercontent.com/cosinekitty/astronomy/master/source/js/README.md",
+      "locator": "GeoVector, Rotation_EQJ_EQD, Equator, Horizon and SiderealTime",
+      "readingDepth": "Selected API definitions and coordinate frames read; bundled GeoVector Moon branch inspected",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "maintainer technical documentation",
+      "claims": [
+        "GeoVector returns geocentric J2000 coordinates. Its non-lunar path backdates position and optionally corrects aberration; the bundled Moon branch returns GeoMoon directly. Rotation to true equator of date must match the sidereal-time frame.",
+        "Equator is topocentric and applies observer parallax; it is not interchangeable with a geocentric vector.",
+        "SiderealTime supplies Greenwich apparent sidereal time in hours."
+      ],
+      "limitations": [
+        "API descriptions do not validate this app’s implementation or any astrological interpretation."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-method",
+      "title": "NOAA: General Solar Position Calculations",
+      "url": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF",
+      "locator": "Solar zenith equation and Sunrise/Sunset Calculations",
+      "readingDepth": "Selected altitude/hour-angle equations and sunrise correction read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "government technical reference",
+      "claims": [
+        "sin(altitude)=sin(latitude)sin(declination)+cos(latitude)cos(declination)cos(hour angle).",
+        "NOAA’s sunrise calculation uses zenith 90.833° for atmospheric refraction and solar-disc size; this differs from a geometric centre at altitude 0°."
+      ],
+      "limitations": [
+        "NOAA’s approximate solar model is not used as a general planetary ephemeris here.",
+        "Its solar-time hour-angle sign convention must not be copied into a different longitude/rotation convention without checking."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-horizons",
+      "title": "NASA/JPL Horizons: system manual",
+      "url": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+      "locator": "Observer ephemeris quantities2 and4: apparent RA/Dec and azimuth/elevation",
+      "readingDepth": "Selected apparent-coordinate and airless/refraction descriptions read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "government astronomical documentation",
+      "claims": [
+        "Earth apparent coordinates use the true equator and equinox of date.",
+        "Airless apparent directions and refraction-adjusted directions are different products."
+      ],
+      "limitations": [
+        "No live Horizons ephemeris is required by the offline page; this is a definitions reference."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-radius",
+      "title": "GeoPy: calculating distance",
+      "url": "https://geopy.readthedocs.io/en/stable/#calculating-distance",
+      "locator": "Great-circle versus geodesic distance section",
+      "readingDepth": "Mean-radius definition and spherical/ellipsoidal distinction read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "maintained geospatial library documentation",
+      "claims": [
+        "The IUGG mean-radius convention (2a+b)/3 for WGS84 is 6371.0087714150598 km.",
+        "A spherical great-circle model differs from an ellipsoidal geodesic model."
+      ],
+      "limitations": [
+        "The app’s 6371.0088 km rounded radius is WGS84-derived, not an IAU nominal radius.",
+        "A display or scoring radius is not an empirically established range of planetary influence."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-wgs84",
+      "title": "GeographicLib: WGS84 constants",
+      "url": "https://geographiclib.sourceforge.io/C++/doc/classGeographicLib_1_1Constants.html",
+      "locator": "Constants::WGS84_a() and Constants::WGS84_f()",
+      "readingDepth": "The two WGS84 constants and units read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "maintainer geodesy reference",
+      "claims": [
+        "WGS84 equatorial radius is 6378137 m; flattening is 1/298.257223563.",
+        "Using b=a(1−f), the arithmetic mean radius rounds to 6371.0088 km."
+      ],
+      "limitations": [
+        "This does not make spherical line distances ellipsoidal geodesics."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-lewis",
+      "title": "Jim Lewis: Fifteen Techniques for Reading Astro*Carto*Graphy Maps (1994)",
+      "url": "https://continuumacg.net/techniques.html",
+      "locator": "Meanings of Each Angle; Places of No Influence; Orb; Look at the Entire Natal Complex",
+      "readingDepth": "Selected principles and four angle meanings read",
+      "rights": "Copyright 1994 Jim Lewis; original brief paraphrases only, no branded map or prose reproduction.",
+      "evidenceQuality": "primary modern practitioner statement, not empirical validation",
+      "claims": [
+        "Lewis associates MC with public/career expression, ASC with outward presentation, DSC with relationships and IC with personal roots.",
+        "The source says absent nearby lines do not imply an insignificant life and asks readers to consider the larger natal context."
+      ],
+      "limitations": [
+        "Its approximate 700-mile/8-degree and 450-mile/5-degree orb statements are not treated as geometric identities or validated physical influence limits.",
+        "Gender stereotypes, paranormal claims and consequential predictions are not adopted."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-angles",
+      "title": "Maya White: Jupiter on Four Types of Astro*Carto*Graphy Lines (2006)",
+      "url": "https://continuumacg.net/4acglines.html",
+      "locator": "ASC, DSC, IC and MH sections",
+      "readingDepth": "Selected angle-topic paragraphs and author attribution read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "modern practitioner interpretation, not empirical validation",
+      "claims": [
+        "The four angles are interpreted through presentation, relationships, private/home life and public visibility.",
+        "The article distinguishes Jupiter themes by angle."
+      ],
+      "limitations": [
+        "Health claims, political anecdotes and guarantees of accuracy are not adopted.",
+        "The article’s loose use of directly overhead is not the geometric definition of every meridian line."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-relocation",
+      "title": "Erin Sullivan: What the Relocated Chart Adds (2000)",
+      "url": "https://continuumacg.net/erin-relocchart.html",
+      "locator": "Opening distinction between angular map and relocated chart",
+      "readingDepth": "Opening map-versus-relocated-chart explanation and practical-move discussion read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "modern practitioner book excerpt",
+      "claims": [
+        "An angular world map and a local relocated horoscope answer different questions.",
+        "Relocated houses add location-specific chart context."
+      ],
+      "limitations": [
+        "The excerpt’s causal and anecdotal claims are not validated here.",
+        "Only a selected excerpt was read, not the complete book."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-uranus",
+      "title": "Cafe Astrology: Uranus",
+      "url": "https://cafeastrology.com/uranus.html",
+      "locator": "Opening symbolic-association paragraphs",
+      "readingDepth": "Selected originality, change and innovation vocabulary read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "modern astrology reference; symbolic vocabulary",
+      "claims": [
+        "The modern reference associates Uranus with novelty, independence and change."
+      ],
+      "limitations": [
+        "These are cultural interpretive themes, not demonstrated location effects or a traditional Lilly rule."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-neptune",
+      "title": "Cafe Astrology: Neptune",
+      "url": "https://cafeastrology.com/neptune.html",
+      "locator": "Opening symbolic-association paragraphs",
+      "readingDepth": "Selected inspiration, idealization and ambiguity vocabulary read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "modern astrology reference; symbolic vocabulary",
+      "claims": [
+        "The modern reference associates Neptune with inspiration and ideals alongside uncertainty or confusion."
+      ],
+      "limitations": [
+        "Medical, psychic and causal claims are not adopted."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-pluto",
+      "title": "Cafe Astrology: Pluto",
+      "url": "https://cafeastrology.com/pluto.html",
+      "locator": "Opening symbolic-association paragraphs",
+      "readingDepth": "Selected renewal, power and control vocabulary read",
+      "rights": "Selected source passages inform original project paraphrases; no full text or source artwork redistributed.",
+      "evidenceQuality": "modern astrology reference; symbolic vocabulary",
+      "claims": [
+        "The modern reference associates Pluto with renewal and questions of power or control."
+      ],
+      "limitations": [
+        "This does not establish personal fate, danger or a literal supernatural mechanism."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-geonames",
+      "title": "GeoNames: cities15000 daily gazetteer",
+      "url": "https://download.geonames.org/export/dump/cities15000.zip",
+      "locator": "Selected 40 rows by geonameId; fields 4/5 latitude/longitude and 17 IANA time-zone ID (zero-based)",
+      "readingDepth": "Selected rows checked against the published schema and IANA zone availability",
+      "rights": "GeoNames CC BY 4.0: attribution required; selected rows redistributed with source ID, URL and licence credit.",
+      "evidenceQuality": "licensed gazetteer dataset",
+      "claims": [
+        "City coordinates and time zones are transcribed from the pinned daily export.",
+        "Coordinates describe gazetteer points, not precise personal addresses."
+      ],
+      "limitations": [
+        "This curated list is not exhaustive; country labels are dataset groupings.",
+        "The browser time-zone database supplies historical offsets; a city label alone is not a birth-time record."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-geonames-schema",
+      "title": "GeoNames: export schema",
+      "url": "https://download.geonames.org/export/dump/readme.txt",
+      "locator": "Main geoname table field definitions",
+      "readingDepth": "Coordinate, country-code, time-zone and modification-date fields read",
+      "rights": "GeoNames CC BY 4.0; source-linked schema summary.",
+      "evidenceQuality": "dataset publisher documentation",
+      "claims": [
+        "Coordinates use WGS84 decimal degrees and each row includes a time-zone identifier."
+      ],
+      "limitations": [
+        "The number of decimal places is not a guarantee of positional accuracy."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-geonames-license",
+      "title": "GeoNames: About and licence",
+      "url": "https://www.geonames.org/about.html",
+      "locator": "Licence statement in the page footer",
+      "readingDepth": "Creative Commons Attribution 4.0 statement read",
+      "rights": "CC BY 4.0; https://creativecommons.org/licenses/by/4.0/",
+      "evidenceQuality": "dataset publisher licence statement",
+      "claims": [
+        "GeoNames publishes its database under Creative Commons Attribution 4.0."
+      ],
+      "limitations": [
+        "No separate map-tile service is bundled or needed."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-naturalearth",
+      "title": "Natural Earth: 110m land, v5.1.2",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_110m_land.geojson",
+      "locator": "geojson/ne_110m_land.geojson at commit f1890d9f152c896d250a77557a5751a93d494776",
+      "readingDepth": "Full geometry structurally checked; version and file hash pinned",
+      "rights": "Natural Earth public domain. Attribution supplied: Made with Natural Earth.",
+      "evidenceQuality": "public-domain cartographic dataset",
+      "claims": [
+        "127 low-resolution land polygons provide an offline geographic background.",
+        "No country-boundary interpretation is required for the land-only map."
+      ],
+      "limitations": [
+        "The 1:110 million geometry is generalized for small-scale display, not navigation or coastline measurement."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-naturalearth-license",
+      "title": "Natural Earth: LICENSE.md, v5.1.2",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/LICENSE.md",
+      "locator": "Public-domain declaration and permission to modify/disseminate",
+      "readingDepth": "Full public-domain and credit paragraphs read",
+      "rights": "Public domain; https://github.com/nvkelso/natural-earth-vector/blob/f1890d9f152c896d250a77557a5751a93d494776/LICENSE.md",
+      "evidenceQuality": "dataset maintainer licence statement",
+      "claims": [
+        "Natural Earth vector/raster datasets are public domain and may be modified and redistributed."
+      ],
+      "limitations": [
+        "This licence applies to the map data, not to unrelated astrology text or proprietary branded charts."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-lilly",
+      "title": "William Lilly: Christian Astrology, Book I (1647), modern transcription",
+      "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+      "locator": "Printed pp.57–83, selected planetary manners/significations in chapters VIII–XIV",
+      "readingDepth": "Selected paragraphs for the seven traditional bodies read; full book not read",
+      "rights": "Historical public-domain text through a modern transcription; original neutral paraphrases only",
+      "evidenceQuality": "primary historical symbolism, not modern astrocartography or empirical evidence",
+      "claims": [
+        "The seven traditional bodies have distinct historical thematic associations."
+      ],
+      "limitations": [
+        "Lilly did not supply this modern geographic ranking or the outer-planet notes.",
+        "Historical medical, gendered and deterministic claims are not adopted."
+      ],
+      "retrievedAt": "2026-11-04"
+    },
+    {
+      "id": "acg-editorial",
+      "title": "Astrocartography Workbench: authored thematic rubric",
+      "url": "docs/2026-11-astrocartography-methods.md",
+      "locator": "Interpretive notes, purpose weights and scoring limitations",
+      "readingDepth": "Original project-authored thematic prompts and numerical weights; not an external validation dataset",
+      "rights": "Original project material; upstream references retain their own rights",
+      "evidenceQuality": "explicit editorial design choice",
+      "claims": [
+        "The purpose weights and reflection prompts are authored for exploration and are not historical tables or trained probabilities."
+      ],
+      "limitations": [
+        "Thematic score is not a forecast, safety rating, place quality, compatibility test or relocation recommendation.",
+        "The chosen distance radius is a user-selected comparison parameter, not a proven physical influence range."
+      ]
+    }
+  ],
+  "retrievalAttempts": [
+    {
+      "id": "naturalearth-commit",
+      "url": "https://api.github.com/repos/nvkelso/natural-earth-vector/commits/master",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/nvkelso/natural-earth-vector/commits/master",
+      "bytes": 4226,
+      "sha256": "81fd7788b19d66f424626be7ac67db311aa1ac78a2802acb97da46d514d70f4e",
+      "headers": {
+        "ETag": "\"686a0076e5f0445aa4c7fd8545e8c7d053702c542cf54da52233c8e538263f6b\"",
+        "Last-Modified": "Thu, 02 Jun 2022 07:25:00 GMT"
+      }
+    },
+    {
+      "id": "naturalearth-land",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_110m_land.geojson",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_110m_land.geojson",
+      "bytes": 138160,
+      "sha256": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+      "headers": {
+        "ETag": "\"7278297edce4e9a2e583be841845f8e2c9f40d541632af5574638354ee57d949\""
+      }
+    },
+    {
+      "id": "naturalearth-terms",
+      "url": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "error": "HTTP Error 406: Not Acceptable"
+    },
+    {
+      "id": "geonames-cities",
+      "url": "https://download.geonames.org/export/dump/cities15000.zip",
+      "status": 200,
+      "finalURL": "https://download.geonames.org/export/dump/cities15000.zip",
+      "bytes": 3365828,
+      "sha256": "1d7cf2e7b0920b5203a5c0f2b3825e5e5d6e721e3802593cb51b438877796847",
+      "headers": {
+        "ETag": "\"335bc4-65f6a67f4be3c\"",
+        "Last-Modified": "Wed, 04 Nov 2026 02:47:55 GMT"
+      }
+    },
+    {
+      "id": "geonames-readme",
+      "url": "https://download.geonames.org/export/dump/readme.txt",
+      "status": 200,
+      "finalURL": "https://download.geonames.org/export/dump/readme.txt",
+      "bytes": 8843,
+      "sha256": "b1957379b6c1242c700c98ac9a8aa0a09f56c3c0a50ee72175527005f48ef2c5",
+      "headers": {
+        "ETag": "\"228b-65f6a466b0078\"",
+        "Last-Modified": "Wed, 04 Nov 2026 02:38:32 GMT"
+      }
+    },
+    {
+      "id": "geonames-about",
+      "url": "https://www.geonames.org/about.html",
+      "status": 200,
+      "finalURL": "https://www.geonames.org/about.html",
+      "bytes": 42745,
+      "sha256": "f9ada32e92043673141712b8e1abb162a31a2194a0fc555ac2bf6e7aab07225d",
+      "headers": {
+        "ETag": "W/\"a6f9-ETGZ7+ZRru6nttTNezK+9EOrxlI\""
+      }
+    },
+    {
+      "id": "geopy-distance",
+      "url": "https://geopy.readthedocs.io/en/stable/#calculating-distance",
+      "status": 200,
+      "finalURL": "https://geopy.readthedocs.io/en/stable/#calculating-distance",
+      "bytes": 824848,
+      "sha256": "312761fdf9e15513aa29b1c15b0c90b2cfad979daf648b1b66794c871f16d620",
+      "headers": {
+        "ETag": "W/\"3a95b117eb9cf374c0ccf1e76f8c3c28\"",
+        "Last-Modified": "Sun, 12 Jul 2026 19:50:52 GMT"
+      }
+    },
+    {
+      "id": "geographiclib-constants",
+      "url": "https://geographiclib.sourceforge.io/C++/doc/classGeographicLib_1_1Constants.html",
+      "status": 200,
+      "finalURL": "https://geographiclib.sourceforge.io/C++/doc/classGeographicLib_1_1Constants.html",
+      "bytes": 87675,
+      "sha256": "523da84eded10d66783637240f771e68bdbb1f24496f68757529573836fb99c7",
+      "headers": {
+        "ETag": "W/\"1567b-6438f5e22fec0\"",
+        "Last-Modified": "Fri, 14 Nov 2025 15:08:19 GMT"
+      }
+    },
+    {
+      "id": "astroengine-readme",
+      "url": "https://raw.githubusercontent.com/cosinekitty/astronomy/master/source/js/README.md",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/cosinekitty/astronomy/master/source/js/README.md",
+      "bytes": 174884,
+      "sha256": "e49cf79d108df343e37747be8cf187e379c1709deeb2ff94ffa3dcb7e1b315de",
+      "headers": {
+        "ETag": "\"d3725d06dc8499c1f582f94c3b420e6b6080e3de1e2d1edcfe74de5de3a81631\""
+      }
+    },
+    {
+      "id": "noaa-equations",
+      "url": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF",
+      "status": 200,
+      "finalURL": "https://gml.noaa.gov/grad/solcalc/solareqns.PDF",
+      "bytes": 208947,
+      "sha256": "7fa1fdb5f6b5c05ab1ec3ffde92e6fb2d5df98bf1a87055075ae2c3c1240a627",
+      "headers": {
+        "ETag": "\"33033-54a2a35d84100\"",
+        "Last-Modified": "Tue, 07 Mar 2017 20:53:56 GMT"
+      }
+    },
+    {
+      "id": "astroclick-intro",
+      "url": "https://www.astro.com/astroclick/acl_introduction_e.htm",
+      "status": 200,
+      "finalURL": "https://www.astro.com/cgi/prep.cgi/astroclick/acl_introduction_e.htm",
+      "bytes": 1973,
+      "sha256": "212eba7e2b3c55843a07947d04da5ceb2140918cc549e9586a735471ed869e1d",
+      "headers": {}
+    },
+    {
+      "id": "continuum",
+      "url": "https://continuumacg.net/",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/",
+      "bytes": 4830,
+      "sha256": "5fe7d0ee526693aa8552eb0f4781e4811bc78bb009fc4036088bb10615a77618",
+      "headers": {
+        "ETag": "\"12de-52e33a2514c40\"",
+        "Last-Modified": "Thu, 17 Mar 2016 00:23:05 GMT"
+      }
+    },
+    {
+      "id": "search",
+      "url": "https://www.bing.com/search?q=astrocartography+Jim+Lewis+MC+IC+Ascendant+Descendant+interpretation",
+      "status": 200,
+      "finalURL": "https://www.bing.com/search?q=astrocartography+Jim+Lewis+MC+IC+Ascendant+Descendant+interpretation",
+      "bytes": 125100,
+      "sha256": "63d2ae6bd0c2a4cdf7d376af5e0696cf6b99dbe6ec3e8f1036169880ac69ebf5",
+      "headers": {}
+    },
+    {
+      "id": "naturalearth-tag",
+      "url": "https://api.github.com/repos/nvkelso/natural-earth-vector/git/ref/tags/v5.1.2",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/nvkelso/natural-earth-vector/git/ref/tags/v5.1.2",
+      "bytes": 361,
+      "sha256": "d1b8ad479cb2a41672b136bb22ec3f76d6a15f71e91845038c7016dbdb4c5f63",
+      "headers": {
+        "ETag": "\"4c70caf92b737bf4a9a36ee08a63db87581117a52d265e7deb90dbf6dc6c4b4d\"",
+        "Last-Modified": "Wed, 04 Nov 2026 13:12:35 GMT"
+      }
+    },
+    {
+      "id": "naturalearth-readme",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/README.md",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/README.md",
+      "bytes": 4692,
+      "sha256": "28b7c031e45c88d7ce20b7782373aaac378f459e9460001dadc8cfd824c3173b",
+      "headers": {
+        "ETag": "\"e1bd65265ae350eb437d28cb8abb2971e7b09ab22932a0024e1ddd437031957f\""
+      }
+    },
+    {
+      "id": "naturalearth-license",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/LICENSE.md",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/LICENSE.md",
+      "bytes": 4636,
+      "sha256": "2631b5b39b6d1acc56de75235109b5af2dbb4b0ac5a127b6f06185977247fd4b",
+      "headers": {
+        "ETag": "\"105b5f35c153e1d0d76ff5533c0234d1561ac6834e26293b53de3e450ef8f2a5\""
+      }
+    },
+    {
+      "id": "continuum-about",
+      "url": "https://continuumacg.net/about.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/about.html",
+      "bytes": 19075,
+      "sha256": "ad31ecbc472d4fa4ec512b37e596f9becf3a8f0026d55f5642ce65be68f02cd7",
+      "headers": {
+        "ETag": "\"4a83-64c37a742b1f0\"",
+        "Last-Modified": "Wed, 04 Mar 2026 19:16:13 GMT"
+      }
+    },
+    {
+      "id": "continuum-articles",
+      "url": "https://continuumacg.net/articles.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/articles.html",
+      "bytes": 50176,
+      "sha256": "074e7fb0d3240dad1c4a1b067498ce084451fb90a162497e4d0435803248fe1a",
+      "headers": {
+        "ETag": "\"c400-652fa2e6d8bcd\"",
+        "Last-Modified": "Fri, 29 May 2026 19:52:14 GMT"
+      }
+    },
+    {
+      "id": "continuum-horizon",
+      "url": "https://continuumacg.net/horizon.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/horizon.html",
+      "bytes": 9544,
+      "sha256": "8e0acae7dd0111bc9ef67afac253fe1496fe9046875f917cb0e7a87aff0937c6",
+      "headers": {
+        "ETag": "\"2548-62489dc376000\"",
+        "Last-Modified": "Tue, 15 Oct 2024 20:33:04 GMT"
+      }
+    },
+    {
+      "id": "horizons-manual",
+      "url": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+      "status": 200,
+      "finalURL": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+      "bytes": 229979,
+      "sha256": "be45b0137b37068c48760bbaf306f52a72c10239c175ba91119a30eb30612a81",
+      "headers": {
+        "ETag": "\"6aea6558-3825b\"",
+        "Last-Modified": "Tue, 03 Nov 2026 22:51:04 GMT"
+      }
+    },
+    {
+      "id": "lewis-intensive",
+      "url": "https://continuumacg.net/lewis.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/lewis.html",
+      "bytes": 5409,
+      "sha256": "ecfd10e7f4e2ad7137a3fdcb918f2e429bcffedc90a40421adbf091683e3c2a4",
+      "headers": {
+        "ETag": "\"1521-4203e1ae32e80\"",
+        "Last-Modified": "Fri, 20 Oct 2006 13:30:18 GMT"
+      }
+    },
+    {
+      "id": "lewis-techniques",
+      "url": "https://continuumacg.net/techniques.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/techniques.html",
+      "bytes": 8188,
+      "sha256": "5e1eff4a7d2d445eeb1957fc655447fff8bed733c5a7e89ba2142df9dad95895",
+      "headers": {
+        "ETag": "\"1ffc-4203e32315e40\"",
+        "Last-Modified": "Fri, 20 Oct 2006 13:36:49 GMT"
+      }
+    },
+    {
+      "id": "four-lines",
+      "url": "https://continuumacg.net/4acglines.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/4acglines.html",
+      "bytes": 9837,
+      "sha256": "56e85658b9c1364bdf68e051fbf3d8015d235cf1ac63d90e3d605fadbeaca551",
+      "headers": {
+        "ETag": "\"266d-4e540ce7feb00\"",
+        "Last-Modified": "Sat, 31 Aug 2013 16:26:52 GMT"
+      }
+    },
+    {
+      "id": "relocated-chart",
+      "url": "https://continuumacg.net/erin-relocchart.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/erin-relocchart.html",
+      "bytes": 11859,
+      "sha256": "75936fd61930cf052621d73318bdf26410cf80182da88845216b7668accbb38b",
+      "headers": {
+        "ETag": "\"2e53-4203e0a237640\"",
+        "Last-Modified": "Fri, 20 Oct 2006 13:25:37 GMT"
+      }
+    },
+    {
+      "id": "ethics",
+      "url": "https://continuumacg.net/trademark.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/trademark.html",
+      "bytes": 13346,
+      "sha256": "bbb61daa2e72fd0d446c9fd8ddebc6407f77da8bf9e51f208b83184332e4412e",
+      "headers": {
+        "ETag": "\"3422-55f86a3357800\"",
+        "Last-Modified": "Mon, 04 Dec 2017 16:59:12 GMT"
+      }
+    },
+    {
+      "id": "naturalearth-pinned",
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_110m_land.geojson",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_110m_land.geojson",
+      "bytes": 138160,
+      "sha256": "9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+      "headers": {
+        "ETag": "\"7278297edce4e9a2e583be841845f8e2c9f40d541632af5574638354ee57d949\""
+      }
+    },
+    {
+      "id": "uranus-astrograph",
+      "url": "https://www.astrograph.com/astrology/uranus.php",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "neptune-practitioner",
+      "url": "https://continuumacg.net/weis.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/weis.html",
+      "bytes": 10157,
+      "sha256": "c80fca488232f98e8e80b8f7a895ecf28f7577f65f9dad0d98739928e54b736c",
+      "headers": {
+        "ETag": "\"27ad-433bcba75e780\"",
+        "Last-Modified": "Mon, 25 Jun 2007 15:33:02 GMT"
+      }
+    },
+    {
+      "id": "pluto-practitioner",
+      "url": "https://continuumacg.net/erinexcerpt.html",
+      "status": 200,
+      "finalURL": "https://continuumacg.net/erinexcerpt.html",
+      "bytes": 14350,
+      "sha256": "c0a4c5e3f2cd2fc03e890b5f0b3f27bc1ef1a85eb3b1093dedccdb157a47ae49",
+      "headers": {
+        "ETag": "\"380e-4203e0a513d00\"",
+        "Last-Modified": "Fri, 20 Oct 2006 13:25:40 GMT"
+      }
+    },
+    {
+      "id": "uranus-cafe",
+      "url": "https://cafeastrology.com/uranus.html",
+      "status": 200,
+      "finalURL": "https://cafeastrology.com/uranus.html",
+      "bytes": 172388,
+      "sha256": "505a08939d17bcd0d1b8bb3c78e4d6392f89c9134a185f075d82cf54dfaeb47f",
+      "headers": {
+        "Last-Modified": "Wed, 04 Nov 2026 21:33:40 GMT"
+      }
+    },
+    {
+      "id": "neptune-cafe",
+      "url": "https://cafeastrology.com/neptune.html",
+      "status": 200,
+      "finalURL": "https://cafeastrology.com/neptune.html",
+      "bytes": 168797,
+      "sha256": "a2f78db32287ad62206133c2a7a9ed7ad8dc830c429f5d7c41ff6f62e454cb23",
+      "headers": {
+        "Last-Modified": "Wed, 04 Nov 2026 21:34:14 GMT"
+      }
+    },
+    {
+      "id": "pluto-cafe",
+      "url": "https://cafeastrology.com/pluto.html",
+      "status": 200,
+      "finalURL": "https://cafeastrology.com/pluto.html",
+      "bytes": 168663,
+      "sha256": "e1ada46862714c9209d5c0359f723c4b239fbe97de4343a22bc8c0d69c15f37c",
+      "headers": {
+        "Last-Modified": "Wed, 04 Nov 2026 21:34:14 GMT"
+      }
+    }
+  ],
+  "reusedRetrievals": [
+    {
+      "sourceId": "acg-lilly",
+      "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+      "sha256": "94bbce66c8e2c509a7d9ef56fb3378538dea44b549de500034d7ac2734b5b4ae",
+      "date": "2026-11-04",
+      "scope": "Downloaded in the immediately preceding public reading-lab source pass; selected planetary paragraphs read here."
+    }
+  ],
+  "rejectedEvidence": [
+    {
+      "id": "astroclick-intro",
+      "reason": "HTTP200 returned a JavaScript browser-check page; no substantive introduction was read."
+    },
+    {
+      "id": "naturalearth-terms",
+      "reason": "HTTP406; official repository LICENSE.md independently retrieved and read instead."
+    },
+    {
+      "id": "pluto-practitioner",
+      "reason": "Selected passage was largely personal supernatural anecdotes; not adopted as numerical or causal evidence."
+    },
+    {
+      "id": "search",
+      "reason": "Discovery only; search snippets are not source evidence."
+    }
+  ],
+  "radius": {
+    "model": "WGS84-derived arithmetic mean spherical Earth radius",
+    "aMetres": 6378137,
+    "inverseFlattening": 298.257223563,
+    "bMetres": 6356752.314245179,
+    "formula": "(2a+b)/3",
+    "meanKilometres": 6371.0087714150595,
+    "adoptedKilometres": 6371.0088,
+    "sourceIds": [
+      "acg-radius",
+      "acg-wgs84"
+    ],
+    "limitation": "Not an IAU nominal constant; sphere distances differ from ellipsoidal geodesics."
+  },
+  "land": {
+    "features": 127,
+    "vertices": 5144,
+    "poleVerticesInserted": 1,
+    "bytes": 133429,
+    "sha256": "6feaad0a8d2d6c2c44d74d3c86d4832a5f3abd34315bfd920555b2750ebe52ac",
+    "validation": "Ring closure,finite coordinate bounds and dateline-segment checks; no additional local simplification"
+  },
+  "cities": {
+    "rows": 40,
+    "datasetRows": 34197,
+    "sourceSHA256": "1d7cf2e7b0920b5203a5c0f2b3825e5e5d6e721e3802593cb51b438877796847",
+    "datasetLastModified": "Wed, 04 Nov 2026 02:47:55 GMT",
+    "selection": "Curated named places; exact coordinates/time-zone IDs preserved. Not a global best-city search.",
+    "attribution": "City data © GeoNames, CC BY4.0, https://www.geonames.org/; selected subset and display labels authored here."
+  },
+  "interpretationPolicy": {
+    "methods": "Modern Western angular-map vocabulary and selected historical planetary symbolism; no claim of traditional Maya, Egyptian, Dee, Hebrew, Chinese or Vedic astrocartography.",
+    "scores": "Purpose weights and proximity kernel are editorial exploration controls, not forecast probabilities or validated relocation guidance.",
+    "readingDepth": "Only named sections/excerpts read; no full-book claim.",
+    "rights": "Natural Earth public-domain geometry and GeoNamesCC-BY4.0 subset redistributed; copyrighted prose only original paraphrases."
+  },
+  "implementationChecks": [
+    {
+      "file": "assets/js/lib/astronomy.js",
+      "sha256": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7",
+      "locator": "GeoVector(), line3843; Moon branch returns GeoMoon(time), other bodies use BackdatePosition",
+      "scope": "Implementation branch inspected to qualify the upstream generic light-time description; no full library audit."
+    }
+  ],
+  "validation": {
+    "allSourceReferencesResolve": 169,
+    "cityCount": 40,
+    "uniqueCityIds": 40,
+    "cityZonesValidated": "All40 accepted by Node Intl.DateTimeFormat",
+    "weights": "Six purpose tables: ten finite planet weights each in[-2,2], four finite angle weights each in[0,1]",
+    "land": "127polygons;5144vertices;closedrings;finiteWGS84bounds;noadjacentlongitudejump>180°;onecollinearpolevertexadded",
+    "independentSources": "QA independently retrieved NOAA and JPL geometry references and GeographicLib constants, confirming radius attribution and the geometric-versus-visible-horizon distinction.",
+    "engineCompatibility": "PASS:63,858 checks;17,920 display coordinates;10bodies×4angles;half-arc geometry,strict clocks,purpose arithmetic and relocated exports.",
+    "independentNumerics": {
+      "passed": true,
+      "checks": 11304,
+      "groups": {
+        "ephemeris": 205,
+        "renderGeometry": 10611,
+        "distance": 389,
+        "crossings": 16,
+        "singularities": 83
+      },
+      "scope": "Independent QA numerical suite; not validation of astrological outcomes."
+    }
+  },
+  "artifacts": [
+    {
+      "file": "assets/js/core/data/astrocartography-data.js",
+      "bytes": 51460,
+      "sha256": "7efcbc1c7944452f2b02b2bd1677c65aecfff863b4e2226b81f93783872ef954"
+    },
+    {
+      "file": "assets/data/astrocartography-land.json",
+      "bytes": 133429,
+      "sha256": "6feaad0a8d2d6c2c44d74d3c86d4832a5f3abd34315bfd920555b2750ebe52ac"
+    },
+    {
+      "file": "docs/2026-11-astrocartography-methods.md",
+      "bytes": 15596,
+      "sha256": "7f6f9791d1698944ce60bfe44df6e51b4cb2bda852b23c21c64609d104dcb68a"
+    }
+  ],
+  "freezeNote": "Source/data exports,cityIDs,weights andlandasset frozen4November2026 after validation. Symbolic scores remain editorial,not outcome probabilities."
+}

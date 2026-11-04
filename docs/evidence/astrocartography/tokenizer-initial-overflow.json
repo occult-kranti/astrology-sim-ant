@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "kind": "actual-local-tokenizer-only-fit",
+  "startedAt": "2026-11-04T21:46:28.988Z",
+  "publicInputsOnly": true,
+  "realModelInference": false,
+  "realGenerationRequests": 0,
+  "provider": "existing loopback llama.cpp tokenizer",
+  "tokenizerBaseURL": "http://127.0.0.1:8845",
+  "profile": "scenario-v3",
+  "model": "workbench-qwen3-4b-q4",
+  "modelIdentityScope": "Configured pinned local runtime; no new model-identity endpoint was called in this tokenizer-only measurement.",
+  "contextWindowTokens": 8192,
+  "outputReserveTokens": 512,
+  "safetyMarginTokens": 32,
+  "sourceFiles": {
+    "server": "11b10dff95eed85ea7e094a1cda8e2f0f33d3b3806f26dda6be4d45a3cd99625",
+    "prompt": "b1abb14bd9738633579e2afbd8fca3c9a619027cd4a543fcc4cd4cd96731dd0e",
+    "engine": "d80444acb9bab26650b2282a1ffadbb060ac39803aa9aac2195851c3a8a40b94",
+    "data": "7efcbc1c7944452f2b02b2bd1677c65aecfff863b4e2226b81f93783872ef954",
+    "driver": "9231a8ac58889895f837292b18b88451422418754d27cdff3ccde5e3fb79603c"
+  },
+  "cases": [
+    {
+      "id": "default-global",
+      "providerPayloadBytes": 28578,
+      "canonicalContextBytes": 20388,
+      "providerPayloadSHA256": "ccbe66eaddcf24e2fc4557d3e705d02a3670d074a17d99467cbda7cff922127a",
+      "renderedPromptSHA256": "755564c753616bd0d39d284ec55945f7f8844054e38fedfcd0d2edefc0dae3f5",
+      "tokenIDsSHA256": "c48ce88635f51ddbc36610b2fcae48f7c5f3c3e552798b24726590df23fe26b0",
+      "corpusSHA256": "11320dd31c5f3e9d91d8c24c93cf455c6b452e287d2b30de542382742876d276",
+      "corpusChunks": 3483,
+      "retrievedSourceIDs": [
+        "WRAG-2deef3b9a66002c1",
+        "WRAG-939c36daf402ce3d"
+      ],
+      "promptTokens": 8495,
+      "requiredTokens": 9039,
+      "headroomTokens": -847,
+      "fits": false,
+      "bodyCount": 10,
+      "lineCount": 40,
+      "selectedReferenceCities": 40,
+      "calendarFamilies": [],
+      "scope": {
+        "renderGeometryOmitted": true,
+        "totalLines": 40,
+        "totalCrossings": 270,
+        "shownCrossings": 12,
+        "crossingOrder": "Deterministic body/angle pair order, not importance or severity",
+        "totalCities": 40,
+        "shownCities": 6,
+        "cityOrder": "Editorial purpose score, then proximity, then stable ID",
+        "lineIdConvention": "Body-ANGLE",
+        "nearestLinesPerShownCity": 1,
+        "omittedCityFields": "Extended geographic provenance and contribution ledger remain in full study",
+        "sourceLedger": "assets/js/core/data/astrocartography-data.js",
+        "sourceCount": 18,
+        "shownSourceCount": 9,
+        "omittedSourceIds": [
+          "acg-horizons",
+          "acg-wgs84",
+          "acg-uranus",
+          "acg-neptune",
+          "acg-pluto",
+          "acg-geonames-schema",
+          "acg-naturalearth",
+          "acg-naturalearth-license",
+          "acg-lilly"
+        ]
+      }
+    },
+    {
+      "id": "default-place-nine-families",
+      "providerPayloadBytes": 31439,
+      "canonicalContextBytes": 22922,
+      "providerPayloadSHA256": "2af9bb57d3495a3406f2ef17857f78ddf8a6ef82bcf4495dcc4f7e984d759c3e",
+      "renderedPromptSHA256": "078e310c8b237acf3af2d858c8516787d802891bfb04e19f14724716cbda87fc",
+      "tokenIDsSHA256": "05b2eb7577a7562bbcec169851811998fa3a53388101c64ef9056b09557e50fe",
+      "corpusSHA256": "11320dd31c5f3e9d91d8c24c93cf455c6b452e287d2b30de542382742876d276",
+      "corpusChunks": 3483,
+      "retrievedSourceIDs": [
+        "WRAG-e97aaec2651977b9",
+        "WRAG-dc264e54696990cb",
+        "WRAG-8d395bc5840ff4a0"
+      ],
+      "promptTokens": 9343,
+      "requiredTokens": 9887,
+      "headroomTokens": -1695,
+      "fits": false,
+      "bodyCount": 10,
+      "lineCount": 40,
+      "selectedReferenceCities": 40,
+      "calendarFamilies": [
+        "egyptian",
+        "mayan",
+        "dee",
+        "lilly",
+        "vedic",
+        "chinese",
+        "hebrew",
+        "jung",
+        "plato"
+      ],
+      "scope": {
+        "allSelectedLineDistancesRetained": true,
+        "duplicateFieldsOmitted": [
+          "context.sourceProfile equals inputs.profile",
+          "angularDistanceDegrees equals distanceKm /6371.0088 ×180/π",
+          "contribution distance equals its named line distance; raw contribution equals normalizedPoints ×denominator/100"
+        ],
+        "lineIdConvention": "Body-ANGLE",
+        "allRelocatedBodyPositionsAndCuspsRetained": true,
+        "calendarNarrativesOmitted": true,
+        "omittedCalendarFields": [
+          "Duplicate Intl formatToParts arrays",
+          "Full Lilly chart and aspect rows; method labels retained"
+        ],
+        "calendarSourceLedger": "assets/js/core/data/reading-cases.js",
+        "sourceLedger": "assets/js/core/data/astrocartography-data.js",
+        "desktopSourceLedger": "assets/js/core/desktop-workbench.js",
+        "sourceCount": 24,
+        "shownSourceCount": 6,
+        "omittedSourceIds": [
+          "acg-horizons",
+          "acg-wgs84",
+          "acg-lewis",
+          "acg-angles",
+          "acg-relocation",
+          "acg-uranus",
+          "acg-neptune",
+          "acg-pluto",
+          "acg-geonames",
+          "acg-geonames-schema",
+          "acg-geonames-license",
+          "acg-naturalearth",
+          "acg-naturalearth-license",
+          "acg-lilly",
+          "DESKTOP-ASTRONOMY",
+          "DESKTOP-ASPECTS",
+          "DESKTOP-LAHIRI",
+          "DESKTOP-TIME"
+        ],
+        "omittedDesktopFields": [
+          "aspect matrix",
+          "per-body source prose"
+        ],
+        "fullInspectorAvailable": true
+      }
+    }
+  ],
+  "realCalls": [
+    {
+      "path": "/apply-template",
+      "method": "POST",
+      "status": 200,
+      "requestSHA256": "9eb6422f0632c6f7b407ceac4cb385eec6cdd8d3ec1cc99124f15a5c98cfcd14",
+      "responseSHA256": "097bcda18237e8bb914fd24adb9288fecd6aae92abea03273cf83235029f7f94",
+      "responseBytes": 28432
+    },
+    {
+      "path": "/tokenize",
+      "method": "POST",
+      "status": 200,
+      "requestSHA256": "7fe377969ec5f14063e7781b9f909317d6d9a2f3c56241f6bd0391c7d3dfca4d",
+      "responseSHA256": "39ba7f2148bc940342595609d1084701e95be3cfc5cab9175c0d97f187fd1280",
+      "responseBytes": 36726
+    },
+    {
+      "path": "/apply-template",
+      "method": "POST",
+      "status": 200,
+      "requestSHA256": "c9d4f373400a0cb3c247f404accac5b534f1464fdc0a04bd8b63db4b1598104c",
+      "responseSHA256": "40c87154574076653fa00b31347285c028c1c68a8317e9f5a0b50bd11ced0529",
+      "responseBytes": 31293
+    },
+    {
+      "path": "/tokenize",
+      "method": "POST",
+      "status": 200,
+      "requestSHA256": "f2e1cf5ee3070648753b7c2654dc65a8ae407f0aea9fc66b61f63595b8781b3e",
+      "responseSHA256": "e2aa31986fa10277c8c9d8030c57e5c4edb2a3de53befc8dc3e78ee5eea0608f",
+      "responseBytes": 40376
+    }
+  ],
+  "pass": false,
+  "completedAt": "2026-11-04T21:46:29.594Z"
+}

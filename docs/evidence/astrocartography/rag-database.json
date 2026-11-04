@@ -1,0 +1,663 @@
+{
+  "schemaVersion": 1,
+  "pass": true,
+  "startedAt": "2026-11-04T21:53:10.159Z",
+  "completedAt": "2026-11-04T21:53:23.105Z",
+  "engine": "@electric-sql/pglite 0.5.13; PostgreSQL in WASM",
+  "hostedSupabase": false,
+  "remoteCredentialsUsed": false,
+  "networkCalls": 0,
+  "driverSHA256": "9471e142648290dff2a2907bbd63c4dfc71fc0a3b9efb6f8fc1d7100aacc0915",
+  "exporterSHA256": "a20bbb9bd29a9789c3948e00f32d3747d38e4ee56608c3c6fb43346555c89ad3",
+  "migrationSHA256": "1ce0b4f576e8c38c62021f81442c162b881869bece31a30f6b5ab20335e52b2d",
+  "seedSHA256": "0efe70c0830b356739ce47f5a1ddb3c87984a917c843c5459347c961e8b63f47",
+  "clientSHA256": "915db6894a2712f48d42553295e0b1d5b363d22cdcd0416e9b6bb8038dc77828",
+  "corpusSHA256": "62532ede297ce71a48d12401ce7413f35d62faf7632e9878124fb32326aa8778",
+  "chunks": 3483,
+  "checks": [
+    {
+      "label": "Migration and seed are repeatable beside the retained sky schema",
+      "pass": true
+    },
+    {
+      "label": "Every source body, quote, path, locator, tag and provenance hash round-trips exactly",
+      "pass": true,
+      "detail": {
+        "chunks": 3483
+      }
+    },
+    {
+      "label": "All ten declared categories are present",
+      "pass": true
+    },
+    {
+      "label": "Published source table has RLS enabled",
+      "pass": true
+    },
+    {
+      "label": "Retrieval uses invoker privileges and a fixed empty search path",
+      "pass": true
+    },
+    {
+      "label": "Transformation helpers are outside the public REST schema",
+      "pass": true
+    },
+    {
+      "label": "Private query helper also bounds direct input",
+      "pass": true
+    },
+    {
+      "label": "Reseeding retires removed managed chunks without deleting them",
+      "pass": true
+    },
+    {
+      "label": "anon sees exactly the published generated corpus",
+      "pass": true
+    },
+    {
+      "label": "anon cannot select hidden or retired controls",
+      "pass": true
+    },
+    {
+      "label": "anon insert denied",
+      "pass": true
+    },
+    {
+      "label": "anon update denied",
+      "pass": true
+    },
+    {
+      "label": "anon delete denied",
+      "pass": true
+    },
+    {
+      "label": "anon truncate denied",
+      "pass": true
+    },
+    {
+      "label": "anon can call bounded published-only retrieval",
+      "pass": true
+    },
+    {
+      "label": "anon lexical rank is finite, nonnegative and descending",
+      "pass": true
+    },
+    {
+      "label": "anon rejects invalid RPC arguments 16",
+      "pass": true
+    },
+    {
+      "label": "anon rejects invalid RPC arguments 17",
+      "pass": true
+    },
+    {
+      "label": "anon rejects invalid RPC arguments 18",
+      "pass": true
+    },
+    {
+      "label": "anon rejects invalid RPC arguments 19",
+      "pass": true
+    },
+    {
+      "label": "anon rejects invalid RPC arguments 20",
+      "pass": true
+    },
+    {
+      "label": "anon rejects invalid RPC arguments 21",
+      "pass": true
+    },
+    {
+      "label": "anon rejects invalid RPC arguments 22",
+      "pass": true
+    },
+    {
+      "label": "authenticated sees exactly the published generated corpus",
+      "pass": true
+    },
+    {
+      "label": "authenticated cannot select hidden or retired controls",
+      "pass": true
+    },
+    {
+      "label": "authenticated insert denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated update denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated delete denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated truncate denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated can call bounded published-only retrieval",
+      "pass": true
+    },
+    {
+      "label": "authenticated lexical rank is finite, nonnegative and descending",
+      "pass": true
+    },
+    {
+      "label": "authenticated rejects invalid RPC arguments 31",
+      "pass": true
+    },
+    {
+      "label": "authenticated rejects invalid RPC arguments 32",
+      "pass": true
+    },
+    {
+      "label": "authenticated rejects invalid RPC arguments 33",
+      "pass": true
+    },
+    {
+      "label": "authenticated rejects invalid RPC arguments 34",
+      "pass": true
+    },
+    {
+      "label": "authenticated rejects invalid RPC arguments 35",
+      "pass": true
+    },
+    {
+      "label": "authenticated rejects invalid RPC arguments 36",
+      "pass": true
+    },
+    {
+      "label": "authenticated rejects invalid RPC arguments 37",
+      "pass": true
+    },
+    {
+      "label": "Service role can deliberately curate public sources",
+      "pass": true
+    },
+    {
+      "label": "RPC still excludes unpublished controls for a bypass-RLS service role",
+      "pass": true
+    },
+    {
+      "label": "Empty/unsupported query returns no invented source: \"\"",
+      "pass": true
+    },
+    {
+      "label": "Empty/unsupported query returns no invented source: \"   \"",
+      "pass": true
+    },
+    {
+      "label": "Empty/unsupported query returns no invented source: \"the a and\"",
+      "pass": true
+    },
+    {
+      "label": "Empty/unsupported query returns no invented source: \"!!!\"",
+      "pass": true
+    },
+    {
+      "label": "Empty/unsupported query returns no invented source: \"zxqvplmn fyhrrtzz\"",
+      "pass": true
+    },
+    {
+      "label": "Broad OR retrieval can return genuine Penguin publisher matches for a partly unsupported query",
+      "pass": true
+    },
+    {
+      "label": "Unknown well-formed category returns no sources",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only charts",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only calendars",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only timing",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only vedic",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only symbols",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only books",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only research",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only software",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only tools",
+      "pass": true
+    },
+    {
+      "label": "Category filter retains only sources",
+      "pass": true
+    },
+    {
+      "label": "SQL-like query remains data and cannot alter the corpus",
+      "pass": true
+    },
+    {
+      "label": "Fifty repeated source queries remain bounded and duplicate-free",
+      "pass": true,
+      "detail": {
+        "milliseconds": 881
+      }
+    },
+    {
+      "label": "HTTPS project URL normalizes to the exact RPC",
+      "pass": true
+    },
+    {
+      "label": "Explicit local Supabase URL is accepted: http://localhost:54321",
+      "pass": true
+    },
+    {
+      "label": "Explicit local Supabase URL is accepted: http://127.0.0.1:54321",
+      "pass": true
+    },
+    {
+      "label": "Explicit local Supabase URL is accepted: http://[::1]:54321",
+      "pass": true
+    },
+    {
+      "label": "Unsafe project URL rejected: http://example.com",
+      "pass": true
+    },
+    {
+      "label": "Unsafe project URL rejected: https://user:pass@example.com",
+      "pass": true
+    },
+    {
+      "label": "Unsafe project URL rejected: https://example.com/path",
+      "pass": true
+    },
+    {
+      "label": "Unsafe project URL rejected: https://example.com/?key=x",
+      "pass": true
+    },
+    {
+      "label": "Unsafe project URL rejected: https://example.com/#key",
+      "pass": true
+    },
+    {
+      "label": "Unsafe project URL rejected: javascript:alert(1)",
+      "pass": true
+    },
+    {
+      "label": "Unsafe project URL rejected: https://localhost.evil.invalid/a",
+      "pass": true
+    },
+    {
+      "label": "Unsafe project URL rejected: http://0.0.0.0:54321",
+      "pass": true
+    },
+    {
+      "label": "Legacy anon key accepted after role inspection",
+      "pass": true
+    },
+    {
+      "label": "Nonpublishable synthetic key rejected 72",
+      "pass": true
+    },
+    {
+      "label": "Nonpublishable synthetic key rejected 73",
+      "pass": true
+    },
+    {
+      "label": "Nonpublishable synthetic key rejected 74",
+      "pass": true
+    },
+    {
+      "label": "Nonpublishable synthetic key rejected 75",
+      "pass": true
+    },
+    {
+      "label": "Nonpublishable synthetic key rejected 76",
+      "pass": true
+    },
+    {
+      "label": "Explicit source call sends only query, result count and category",
+      "pass": true
+    },
+    {
+      "label": "Request omits browser credentials, cache, redirects and referrer",
+      "pass": true
+    },
+    {
+      "label": "Publishable key stays in request header, not URL/body/results",
+      "pass": true
+    },
+    {
+      "label": "Returned source fields and content hash match the public corpus",
+      "pass": true
+    },
+    {
+      "label": "Relative source link remains a project-relative link",
+      "pass": true
+    },
+    {
+      "label": "Empty query performs no network call",
+      "pass": true
+    },
+    {
+      "label": "Invalid browser arguments rejected before request 83",
+      "pass": true
+    },
+    {
+      "label": "Invalid browser arguments rejected before request 84",
+      "pass": true
+    },
+    {
+      "label": "Invalid browser arguments rejected before request 85",
+      "pass": true
+    },
+    {
+      "label": "Invalid browser arguments rejected before request 86",
+      "pass": true
+    },
+    {
+      "label": "Invalid browser arguments rejected before request 87",
+      "pass": true
+    },
+    {
+      "label": "Invalid browser arguments rejected before request 88",
+      "pass": true
+    },
+    {
+      "label": "HTTP errors are surfaced without echoing response secrets",
+      "pass": true
+    },
+    {
+      "label": "Malformed response is rejected",
+      "pass": true
+    },
+    {
+      "label": "Excessive rows are rejected",
+      "pass": true
+    },
+    {
+      "label": "Duplicate source IDs are rejected",
+      "pass": true
+    },
+    {
+      "label": "Content hash mismatch is rejected",
+      "pass": true
+    },
+    {
+      "label": "Malformed source provenance rejected 94",
+      "pass": true
+    },
+    {
+      "label": "Malformed source provenance rejected 95",
+      "pass": true
+    },
+    {
+      "label": "Malformed source provenance rejected 96",
+      "pass": true
+    },
+    {
+      "label": "Malformed source provenance rejected 97",
+      "pass": true
+    },
+    {
+      "label": "Malformed source provenance rejected 98",
+      "pass": true
+    },
+    {
+      "label": "Oversized response is rejected",
+      "pass": true
+    },
+    {
+      "label": "Pre-aborted request sends nothing",
+      "pass": true
+    },
+    {
+      "label": "Transport timeout cancels the in-flight request",
+      "pass": true
+    },
+    {
+      "label": "Cancellation is honored even if a transport ignores abort",
+      "pass": true
+    },
+    {
+      "label": "Client contains no storage API, chart reader or automatic fallback",
+      "pass": true
+    }
+  ],
+  "evaluation": [
+    {
+      "query": "cazimi combustion Lilly",
+      "expectedFiles": [
+        "assets/js/core/data/sky-reading-sources.js"
+      ],
+      "ids": [
+        "WRAG-6aae5308f9a0f9c1",
+        "WRAG-3d53771ad2ce7f09",
+        "WRAG-e323fd343c8144e4",
+        "WRAG-fef5ba72c886eb97",
+        "WRAG-8e216f796aac6830"
+      ],
+      "files": [
+        "assets/js/core/data/reading-cases.js",
+        "assets/js/core/data/sky-reading-sources.js",
+        "assets/js/core/data/reading-cases.js",
+        "pages/book2/examples.html",
+        "assets/js/core/data/reading-cases.js"
+      ],
+      "hit": true
+    },
+    {
+      "query": "Lahiri sidereal tropical zodiac",
+      "expectedFiles": [
+        "pages/learn.html",
+        "assets/js/core/data/sky-reading-sources.js"
+      ],
+      "ids": [
+        "WRAG-e488f61a1fb5c1e2",
+        "WRAG-6ee9cd66b044ccc8",
+        "WRAG-b61e707308147ac0",
+        "WRAG-7326acbd27c5dccc",
+        "WRAG-afe70a18fa11ee91"
+      ],
+      "files": [
+        "assets/js/core/data/reading-cases.js",
+        "pages/learn.html",
+        "pages/vedic/index.html",
+        "assets/js/core/data/glossary.js",
+        "pages/tajika.html"
+      ],
+      "hit": true
+    },
+    {
+      "query": "Hebrew calendar sunset civil midnight",
+      "expectedFiles": [
+        "docs/2026-10-calendar-methods.md"
+      ],
+      "ids": [
+        "WRAG-81909425668c1869",
+        "WRAG-b026490b572a9c30",
+        "WRAG-357defae432a0364",
+        "WRAG-5e029bedf8845916",
+        "WRAG-37270cc405dcf3f7"
+      ],
+      "files": [
+        "assets/js/core/data/reading-cases.js",
+        "docs/2026-10-calendar-methods.md",
+        "assets/js/core/data/reading-cases.js",
+        "docs/2026-10-calendar-observatory-research.md",
+        "assets/js/core/data/desktop-tools.js"
+      ],
+      "hit": true
+    },
+    {
+      "query": "Jung feeling individuation",
+      "expectedFiles": [
+        "assets/js/core/data/glossary.js",
+        "assets/js/core/data/jung-astrology.js"
+      ],
+      "ids": [
+        "WRAG-5424a509bdf7d087",
+        "WRAG-b1f2364148a9ddf4",
+        "WRAG-3dc783f7a174126a",
+        "WRAG-8ebd66129f1cdda5",
+        "WRAG-442d5a5e4cab54b8"
+      ],
+      "files": [
+        "assets/js/core/data/reading-cases.js",
+        "assets/js/core/data/reading-cases.js",
+        "pages/jung/sources.html",
+        "pages/jung/sources.html",
+        "pages/jung/experiment.html"
+      ],
+      "hit": false
+    },
+    {
+      "query": "solar eclipse local visibility",
+      "expectedFiles": [
+        "docs/2026-11-orbital-space-methods.md",
+        "assets/js/core/data/sky-reading-sources.js"
+      ],
+      "ids": [
+        "WRAG-3878874cfbfe29a8",
+        "WRAG-cc79feb961914ddd",
+        "WRAG-7a4dc965ce356637",
+        "WRAG-0777f9c15145db47",
+        "WRAG-f08d8c48e4b1392e"
+      ],
+      "files": [
+        "docs/2026-11-orbital-space-methods.md",
+        "assets/js/core/data/sky-reading-sources.js",
+        "pages/cycles.html",
+        "pages/cycles.html",
+        "assets/js/core/data/sky-reading-sources.js"
+      ],
+      "hit": true
+    },
+    {
+      "query": "connect MCP server chatbot",
+      "expectedFiles": [
+        "pages/mcp.html"
+      ],
+      "ids": [
+        "WRAG-1b27d7a2849d91ca",
+        "WRAG-325908ad71d3d633",
+        "WRAG-34edf02ca147e7a2",
+        "WRAG-2e5af78835eee6fb",
+        "WRAG-b5cc93527d06b122"
+      ],
+      "files": [
+        "pages/mcp.html",
+        "assets/js/core/data/desktop-tools.js",
+        "pages/studio.html",
+        "pages/mcp.html",
+        "assets/js/core/data/observatory-standards.js"
+      ],
+      "hit": true
+    },
+    {
+      "query": "Agrippa planetary hours",
+      "expectedFiles": [
+        "assets/js/core/data/sky-reading-sources.js"
+      ],
+      "ids": [
+        "WRAG-f19c34a3daa28e3c",
+        "WRAG-3fdeeb547f4b6e6f",
+        "WRAG-9879f7366d309c5f",
+        "WRAG-94913da681d4a4cf",
+        "WRAG-b8a5977f50557315"
+      ],
+      "files": [
+        "assets/js/core/data/sky-reading-sources.js",
+        "pages/book1/planetary-hours.html",
+        "assets/js/core/data/mcp-tool-contracts.js",
+        "assets/js/core/data/desktop-tools.js",
+        "pages/learn.html"
+      ],
+      "hit": true
+    },
+    {
+      "query": "Yoga Sutras editions",
+      "expectedFiles": [
+        "pages/yoga/sources.html",
+        "pages/yoga/index.html"
+      ],
+      "ids": [
+        "WRAG-7b1c733b326dd710",
+        "WRAG-f6876f324fb84665",
+        "WRAG-78f5493e81ea6f5b",
+        "WRAG-4b01a0fe38896985",
+        "WRAG-0ea0bd8050ee22fc"
+      ],
+      "files": [
+        "assets/js/core/data/greatworks-east.js",
+        "assets/js/core/data/greatworks-east.js",
+        "assets/js/core/data/greatworks-east.js",
+        "assets/js/core/data/greatworks-east.js",
+        "assets/js/core/data/greatworks-east.js"
+      ],
+      "hit": false
+    },
+    {
+      "query": "Newton 2060",
+      "expectedFiles": [
+        "assets/js/core/data/newton-chronology-sources.js"
+      ],
+      "ids": [
+        "WRAG-51f830acb390d7cd",
+        "WRAG-1d2715f096da53f6",
+        "WRAG-16a17bece69db0f0",
+        "WRAG-6d09f97057704453",
+        "WRAG-8f06a663e44bf95e"
+      ],
+      "files": [
+        "assets/js/core/data/newton-chronology-sources.js",
+        "assets/js/core/data/newton-chronology-sources.js",
+        "assets/js/core/data/eschatology-comparisons.js",
+        "assets/js/core/data/newton-chronology-sources.js",
+        "assets/js/core/data/study-lenses.js"
+      ],
+      "hit": true
+    },
+    {
+      "query": "zodiacal releasing Spirit Fortune",
+      "expectedFiles": [
+        "pages/timelords.html"
+      ],
+      "ids": [
+        "WRAG-1510ab2ee790fe99",
+        "WRAG-8358dfb178e223b0",
+        "WRAG-0d9985a9b6c1bd3a",
+        "WRAG-ae99350cf7743fd0",
+        "WRAG-48e54013c00437a9"
+      ],
+      "files": [
+        "pages/timelords.html",
+        "pages/timelords.html",
+        "pages/timelords.html",
+        "assets/js/core/data/mcp-tool-contracts.js",
+        "assets/js/core/data/glossary.js"
+      ],
+      "hit": true
+    }
+  ],
+  "summary": {
+    "checks": 104,
+    "top5SourceFileHits": 8,
+    "cases": 10,
+    "scope": "Ten authored source-file regression questions, not held-out relevance evaluation. PostgreSQL English/simple lexical OR ranking; no vector search, model training or generated-answer quality assessed."
+  }
+}

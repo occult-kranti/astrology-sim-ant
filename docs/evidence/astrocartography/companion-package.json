@@ -1,0 +1,31 @@
+{
+  "kind": "independent-final-companion-verification",
+  "passed": true,
+  "verifiedAtUTC": "2026-11-04T22:00:29.535069+00:00",
+  "archiveSHA256": "b27a602f68f061642ab65d7d13077f9178ff3d661a1b199a46187eaaa46c217d",
+  "archiveBytes": 11034784,
+  "extractionRoot": "/tmp/astrocartography-companion-verify-ecz9v4cs",
+  "manifestEntriesVerified": 837,
+  "allFileHashesAndByteCountsVerifiedBeforeAndAfterTests": true,
+  "archiveUnchangedAfterTests": true,
+  "coreTestChecks": 65545,
+  "independentNumericalChecks": 11304,
+  "httpMockChecks": 175,
+  "launchPassed": true,
+  "servedPublicRoutes": 6,
+  "deniedPrivateRoutes": 7,
+  "disabledModelChatStatus": 503,
+  "liveModelCalls": 0,
+  "modelDownloads": 0,
+  "healthCorpusSHA256": "62532ede297ce71a48d12401ce7413f35d62faf7632e9878124fb32326aa8778",
+  "healthCorpusChunks": 3483,
+  "localDependencies": "npm ci --ignore-scripts --no-audit --no-fund from packaged lockfile",
+  "receipts": [
+    "extraction.json",
+    "core-tests.txt",
+    "independent-numerics.txt",
+    "http-mocks.txt",
+    "launch-receipt.json",
+    "npm-ci.txt"
+  ]
+}

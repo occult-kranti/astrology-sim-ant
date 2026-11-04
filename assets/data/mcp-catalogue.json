@@ -4389,6 +4389,7 @@
               "toolId": {
                 "type": "string",
                 "enum": [
+                  "astrocartography",
                   "reading-lab",
                   "index",
                   "abhichara-atharvan",
@@ -4817,6 +4818,413 @@
       }
     },
     {
+      "name": "workbench_astrocartography",
+      "description": "Recompute a bounded astrocartography summary for an explicit recorded birth clock, IANA zone, observer and repeat-clock policy in 1900–2100. Selected Sun–Pluto ASC/DSC/MC/IC lines, crossings and public-city rankings retain their astronomical conventions, source limits and editorial scoring labels. Returns summary counts and selected facts, not global polylines or an outcome forecast. No saved profiles, network requests, model calls or browser actions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "properties": {
+              "profile": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false
+              },
+              "bodyIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Sun",
+                    "Moon",
+                    "Mercury",
+                    "Venus",
+                    "Mars",
+                    "Jupiter",
+                    "Saturn",
+                    "Uranus",
+                    "Neptune",
+                    "Pluto"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 10,
+                "uniqueItems": true
+              },
+              "angleIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "ASC",
+                    "DSC",
+                    "MC",
+                    "IC"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 4,
+                "uniqueItems": true
+              },
+              "purpose": {
+                "type": "string",
+                "enum": [
+                  "overview",
+                  "career",
+                  "relationships",
+                  "home",
+                  "study",
+                  "structure"
+                ]
+              },
+              "radiusKm": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 3000
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "cityIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "binghamton",
+                    "indore",
+                    "mumbai",
+                    "greenwich",
+                    "new-york",
+                    "los-angeles",
+                    "chicago",
+                    "toronto",
+                    "vancouver",
+                    "mexico-city",
+                    "havana",
+                    "san-jose-cr",
+                    "sao-paulo",
+                    "buenos-aires",
+                    "lima",
+                    "bogota",
+                    "london",
+                    "paris",
+                    "berlin",
+                    "madrid",
+                    "rome",
+                    "moscow",
+                    "istanbul",
+                    "cairo",
+                    "nairobi",
+                    "cape-town",
+                    "lagos",
+                    "johannesburg",
+                    "jerusalem",
+                    "dubai",
+                    "delhi",
+                    "singapore",
+                    "bangkok",
+                    "hong-kong",
+                    "beijing",
+                    "tokyo",
+                    "seoul",
+                    "sydney",
+                    "auckland",
+                    "honolulu"
+                  ]
+                },
+                "minItems": 0,
+                "maxItems": 40,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "profile"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "inputs"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_astrocartography_place",
+      "description": "Inspect one explicitly supplied location against a recomputed astrocartography study and a canonical relocated chart at the original UTC instant. Returns a bounded source-qualified summary of proximity, selected relocated facts, requested/actual house conventions and limitations. Place timezone changes display, never the original instant. No private record lookup, invented birth clock, full map geometry, universal good/bad score or automatic relocation recommendation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "properties": {
+              "profile": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false
+              },
+              "bodyIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Sun",
+                    "Moon",
+                    "Mercury",
+                    "Venus",
+                    "Mars",
+                    "Jupiter",
+                    "Saturn",
+                    "Uranus",
+                    "Neptune",
+                    "Pluto"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 10,
+                "uniqueItems": true
+              },
+              "angleIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "ASC",
+                    "DSC",
+                    "MC",
+                    "IC"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 4,
+                "uniqueItems": true
+              },
+              "purpose": {
+                "type": "string",
+                "enum": [
+                  "overview",
+                  "career",
+                  "relationships",
+                  "home",
+                  "study",
+                  "structure"
+                ]
+              },
+              "radiusKm": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 3000
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "cityIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "binghamton",
+                    "indore",
+                    "mumbai",
+                    "greenwich",
+                    "new-york",
+                    "los-angeles",
+                    "chicago",
+                    "toronto",
+                    "vancouver",
+                    "mexico-city",
+                    "havana",
+                    "san-jose-cr",
+                    "sao-paulo",
+                    "buenos-aires",
+                    "lima",
+                    "bogota",
+                    "london",
+                    "paris",
+                    "berlin",
+                    "madrid",
+                    "rome",
+                    "moscow",
+                    "istanbul",
+                    "cairo",
+                    "nairobi",
+                    "cape-town",
+                    "lagos",
+                    "johannesburg",
+                    "jerusalem",
+                    "dubai",
+                    "delhi",
+                    "singapore",
+                    "bangkok",
+                    "hong-kong",
+                    "beijing",
+                    "tokyo",
+                    "seoul",
+                    "sydney",
+                    "auckland",
+                    "honolulu"
+                  ]
+                },
+                "minItems": 0,
+                "maxItems": 40,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "profile"
+            ],
+            "additionalProperties": false
+          },
+          "place": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            },
+            "required": [
+              "name",
+              "lat",
+              "lon",
+              "timeZone"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "inputs",
+          "place"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
       "name": "workbench_tool_guide",
       "description": "Explain a named calculator or reference capability: required inputs, source locators, output, local route and actual MCP/browser support. This is a guide, not a calculated chart or proof that the hosted service is current.",
       "inputSchema": {
@@ -4825,6 +5233,7 @@
           "capabilityId": {
             "type": "string",
             "enum": [
+              "astrocartography",
               "reading-lab",
               "positions",
               "essential-dignity",

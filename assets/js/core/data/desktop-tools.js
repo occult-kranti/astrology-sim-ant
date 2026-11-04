@@ -17,6 +17,13 @@ export const DESKTOP_CATEGORIES = Object.freeze([
 
 export const DESKTOP_TOOLS = Object.freeze([
   {
+    "id": "astrocartography",
+    "title": "Astrocartography — planetary lines and place comparisons",
+    "category": "Charts & interpretation",
+    "description": "Explore rising, setting and meridian lines on an offline world map. Inspect crossings, compare declared locations and trace purpose-based traditional themes alongside local calendar readings.",
+    "href": "astrocartography.html"
+  },
+  {
     "id": "reading-lab",
     "title": "Reading lab — compare calendars and source readings",
     "category": "Charts & interpretation",

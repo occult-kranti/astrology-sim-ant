@@ -1,0 +1,16 @@
+responseMode: 'json' drops mid-call notifications. subscriptions/listen streams are always served over SSE regardless; other notifications emitted before a result are dropped.
+{
+  "status": "PASS",
+  "checks": 194,
+  "tools": [
+    "workbench_rag_search",
+    "workbench_desktop_chart",
+    "workbench_desktop_action_preview"
+  ],
+  "transports": [
+    "official-SDK HTTP handler",
+    "spawned child-process stdio"
+  ],
+  "liveModelUsed": false,
+  "hostedDeploymentVerified": false
+}

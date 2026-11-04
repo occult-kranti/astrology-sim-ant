@@ -9,6 +9,7 @@ import {buildWorkbenchEvidence,WORKBENCH_RAG_MANIFEST} from '../assets/js/core/w
 import {buildDesktopStudy} from '../assets/js/core/desktop-workbench.js';
 import {normalizeWorkbenchInputs,normalizeWorkbenchActions} from '../assets/js/core/workbench-chat-actions.js';
 import {exportReadingLab,exportReadingCase} from '../assets/js/core/reading-lab.js';
+import {exportAstrocartography,exportAstrocartographyPlace} from '../assets/js/core/astrocartography.js';
 import {buildWorkbenchModelMessages,workbenchPromptProfile} from './model-prompt.mjs';
 import {providerFetch} from './provider-http.mjs';
 
@@ -39,6 +40,46 @@ export function loadConfig(env=process.env){
 function json(res,status,payload){if(res.destroyed||res.writableEnded)return;res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(payload));}
 async function readRequest(req){let total=0;const chunks=[];for await(const chunk of req){total+=chunk.length;if(total>MAX_REQUEST)throw error(413,'REQUEST_TOO_LARGE','Request exceeds 64 KiB.');chunks.push(chunk);}try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw error(400,'INVALID_JSON','Send one valid JSON request.');}}
 async function readBounded(response,max=MAX_PROVIDER){let size=0;const chunks=[];for await(const chunk of response.body||[]){size+=chunk.length;if(size>max){await response.body?.cancel?.().catch(()=>{});throw error(502,'PROVIDER_RESPONSE_TOO_LARGE','The provider response exceeded its limit.');}chunks.push(Buffer.from(chunk));}return Buffer.concat(chunks).toString('utf8');}
+// This is a declared transport projection of a freshly computed core export,
+// never a second calculator. Column-labelled rows reduce repeated JSON keys;
+// numbers are copied without rounding and omitted sections are named below.
+export function projectAstrocartographyChat(summary){
+ const table=(columns,rows)=>({columns,rows});
+ const {sourceProfile,...context}=summary.context;
+ const common={schemaVersion:summary.schemaVersion,kind:summary.kind,inputs:summary.inputs,context,
+  distanceMethod:summary.distanceMethod,sources:summary.sources.map(({id,locator})=>({id,locator})),limitations:summary.limitations,
+  contextScope:{projection:'astrocartography-chat-v1',values:'Canonical numerical values copied without rounding; column labels define each table.',
+   fullExport:'Use the astrocartography page or read-only MCP tools for the complete canonical export.',
+   sourceLedgers:[summary.scope.sourceLedger,summary.scope.calendarSourceLedger,summary.scope.desktopSourceLedger].filter(Boolean),
+   sourceCount:summary.scope.sourceCount,shownSourceCount:summary.sources.length,omittedSourceIds:summary.scope.omittedSourceIds,
+   omitted:['Render geometry','Source titles, URLs, reading-depth and rights prose: consult the named ledgers; source IDs do not imply full books were read','Duplicate source profile','Nearest-point coordinates'],
+   lineIdConvention:'Body-ANGLE',angularDistance:'degrees = distanceKm / 6371.0088 * 180 / pi; spherical mean-Earth radius',
+   limits:'Editorial proximity scores are not empirical probabilities, predictions or advice to relocate.'}};
+ if(summary.kind==='astrocartography-summary'){
+  return{...common,
+   bodies:table(['id','raDegrees','declinationDegrees','distanceAU','subpointLongitude'],summary.bodies.map(b=>[b.id,b.raDegrees,b.declinationDegrees,b.distanceAU,b.subpoint.lon])),
+   positionMethods:[...new Set(summary.bodies.map(b=>b.positionMethod))],
+   lineIds:summary.lineSummaries.map(line=>line.id),
+   crossings:table(['lineIds','lat','lon','residualDegrees','kind'],summary.crossings.map(c=>[c.lineIds,c.lat,c.lon,c.residualDegrees,c.kind])),
+   cityRankings:table(['id','name','lat','lon','timeZone','rank','status','score','proximityScore','withinRadiusLineCount','nearestLineId','distanceKm','nearestKind'],summary.cityRankings.map(row=>{const line=row.nearestLines[0];return[row.city.id,row.city.name,row.city.lat,row.city.lon,row.city.timeZone,row.rank,row.status,row.score,row.proximityScore,row.withinRadiusLineCount,line?.lineId??null,line?.distanceKm??null,line?.nearestKind??null];})),
+   scoring:summary.scoring,crossingDiagnostics:summary.crossingDiagnostics,
+   scope:summary.scope,
+   contextScope:{...common.contextScope,retained:['All selected equatorial positions, distances in AU and subpoint longitudes','All selected line IDs','Every canonical summary crossing and city score; core summary counts and ordering retained'],
+    omitted:[...common.contextScope.omitted,'RA hours (RA degrees / 15), subpoint latitude (declination), repeated position-method text','Crossing ID/body/angle aliases encoded in line IDs','City country/provenance prose; nearest angular degrees derivable from distanceKm']}};
+ }
+ const chart=summary.relocatedChart;
+ return{...common,place:summary.place,
+  distances:table(['lineId','distanceKm','nearestKind'],summary.distances.map(d=>[d.lineId,d.distanceKm,d.nearestKind])),
+  ranking:summary.ranking,relocation:summary.relocation,
+  relocatedChart:chart?{...chart,
+   bodies:table(['id','longitude','house','sign','retrograde','dignityTotal','peregrine','dispositor'],chart.bodies.map(b=>[b.id,b.longitude,b.house,b.sign,b.retrograde,b.dignity?.total??null,b.dignity?.peregrine??null,b.dignity?.dispositor??null])),
+   houses:table(['house','longitude'],chart.houses.map(h=>[h.house,h.longitude]))}:null,
+  calendarFacts:summary.calendarFacts,
+  contextScope:{...common.contextScope,selectedDistanceCount:summary.distances.length,calendarFamilies:Object.keys(summary.calendarFacts??{}),
+   retained:['All selected line distances and endpoint/interior kind','Relocation UTC, requested/actual house system and fallback warnings','All relocated body positions, house assignments and cusps; dignity totals',summary.calendarFacts?'All nine canonical family methods, availability, numerical facts and limitations':'Calendar facts unavailable; null and relocation.readingUnavailableReason retained'],
+   omitted:[...common.contextScope.omitted,...summary.scope.omittedCalendarFields,...summary.scope.omittedDesktopFields,'Per-body dignity component rows and repeated source IDs; total, peregrine status and dispositor retained'],
+   inheritedDuplicateOmissions:summary.scope.duplicateFieldsOmitted}};
+}
 function normalizeRequest(raw){
  rejectUnknown(raw,['question','provider','context','requestId'],'Request');
  if(typeof raw.question!=='string'||!raw.question.trim()||raw.question.length>3000)throw error(400,'INVALID_QUESTION','Ask a question of 1–3,000 characters.');
@@ -46,7 +87,15 @@ function normalizeRequest(raw){
  const requestId=raw.requestId??null;if(requestId!==null&&(typeof requestId!=='string'||requestId.length>100||/[\u0000-\u001f]/.test(requestId)))throw error(400,'INVALID_REQUEST_ID','Use a short request identifier.');
  let context=null;
  if(raw.context!==undefined&&raw.context!==null){
-  if(plain(raw.context)&&Object.hasOwn(raw.context,'reading')){
+  if(plain(raw.context)&&Object.hasOwn(raw.context,'astrocartography')){
+   rejectUnknown(raw.context,['astrocartography'],'Astrocartography context');
+   try{
+    const request=raw.context.astrocartography;
+    rejectUnknown(request,['inputs','place'],'Astrocartography request');
+    const canonical=Object.hasOwn(request,'place')?exportAstrocartographyPlace(request.inputs,request.place):exportAstrocartography(request.inputs);
+    context={astrocartography:projectAstrocartographyChat(canonical)};
+   }catch(e){throw error(400,'INVALID_ASTROCARTOGRAPHY_CONTEXT',e.message);}
+  }else if(plain(raw.context)&&Object.hasOwn(raw.context,'reading')){
    rejectUnknown(raw.context,['reading'],'Reading context');
    try{
     const reading=raw.context.reading;
@@ -117,7 +166,7 @@ async function healthFor(config,fetchImpl,login){
  if(config.localEnabled){try{const r=await fetchImpl(new URL('models',config.localBase),{signal:AbortSignal.timeout(2000),redirect:'error'});if(!r.ok)throw Error('status');const data=JSON.parse(await readBounded(r,65536));const available=(data.data||data.models||[]).map(v=>v.id||v.name||v.model);local={enabled:true,ready:available.includes(config.localModel),model:config.localModel,note:available.includes(config.localModel)?'Configured local model is reachable.':'The local server is reachable but the configured model is not listed.'};}catch{local.note='Local model is not reachable. Start the model server or check its configured name.';}}
  local.contextPreflight={mode:config.localContextPreflight,configuredWindowTokens:config.localContextLimit,ready:null,note:config.localContextPreflight==='llama.cpp'?'Each inference preflights the rendered chat template and actual tokens before generation; health has not probed those endpoints.':'Tokenizer preflight is off for this provider; byte bounds and explicit provider errors still apply.'};
  let chatgpt={configured:false,connected:false,ready:false,note:'ChatGPT connection is not configured.'};if(login)try{chatgpt={...await login.status(),model:config.chatgptModel||null,ready:false};chatgpt.ready=chatgpt.connected===true&&!!config.chatgptModel;chatgpt.modelConfigured=!!config.chatgptModel;}catch{chatgpt={...chatgpt,note:'ChatGPT connection status is unavailable.'};}
- return{schemaVersion:1,service:'astrology-workbench-local-rag',local,openai:{configured:!!(config.openaiKey&&config.openaiModel),ready:null,model:config.openaiModel||null,note:config.openaiKey&&config.openaiModel?'Credentials configured; provider connection has not been probed.':'Set OPENAI_API_KEY and OPENAI_MODEL on the server to enable this provider.'},chatgpt,prompt:{profile:config.promptProfile,temperatureForLocal:config.temperature,maxOutputTokens:config.maxTokens,contextMaxBytes:MAX_CONTEXT,providerPayloadMaxBytes:MAX_MODEL_PAYLOAD},runtime:{maxConcurrent:config.maxConcurrent,timeoutMs:config.timeoutMs},retrieval:{provider:'local-public-source-corpus',ready:true,chunkCount:WORKBENCH_RAG_MANIFEST.chunkCount,corpusSHA256:WORKBENCH_RAG_MANIFEST.corpusSHA256,limit:config.retrievalLimit,maxTokens:config.retrievalTokens},privacy:'Stateless requests; chart or reading inputs are included only when explicitly sent. No conversation or chart storage on this server.'};
+ return{schemaVersion:1,service:'astrology-workbench-local-rag',local,openai:{configured:!!(config.openaiKey&&config.openaiModel),ready:null,model:config.openaiModel||null,note:config.openaiKey&&config.openaiModel?'Credentials configured; provider connection has not been probed.':'Set OPENAI_API_KEY and OPENAI_MODEL on the server to enable this provider.'},chatgpt,prompt:{profile:config.promptProfile,temperatureForLocal:config.temperature,maxOutputTokens:config.maxTokens,contextMaxBytes:MAX_CONTEXT,providerPayloadMaxBytes:MAX_MODEL_PAYLOAD},runtime:{maxConcurrent:config.maxConcurrent,timeoutMs:config.timeoutMs},retrieval:{provider:'local-public-source-corpus',ready:true,chunkCount:WORKBENCH_RAG_MANIFEST.chunkCount,corpusSHA256:WORKBENCH_RAG_MANIFEST.corpusSHA256,limit:config.retrievalLimit,maxTokens:config.retrievalTokens},privacy:'Stateless requests; chart, reading or astrocartography inputs are included only when explicitly sent. No conversation or chart storage on this server.'};
 }
 async function localContextBudget(messages,config,fetchImpl,signal){
  if(config.localContextPreflight==='off')return{mode:'off',verified:false,contextTruncated:false,note:'No tokenizer-specific fit claim; byte bounds and provider errors apply.'};
@@ -127,11 +176,11 @@ async function localContextBudget(messages,config,fetchImpl,signal){
   try{return JSON.parse(await readBounded(response));}catch(e){if(e.status)throw e;throw error(502,'INVALID_CONTEXT_PREFLIGHT','The local tokenizer returned invalid JSON. No generation was requested.');}
  };
  const rendered=await invoke('/apply-template',{messages,chat_template_kwargs:{enable_thinking:false},add_generation_prompt:true});
- if(typeof rendered.prompt!=='string'||Buffer.byteLength(rendered.prompt,'utf8')>MAX_MODEL_PAYLOAD)throw error(400,'MODEL_PAYLOAD_TOO_LARGE','The rendered local chat template exceeds the payload bound. Select fewer frameworks or shorten the question.');
+ if(typeof rendered.prompt!=='string'||Buffer.byteLength(rendered.prompt,'utf8')>MAX_MODEL_PAYLOAD)throw error(400,'MODEL_PAYLOAD_TOO_LARGE','The rendered local chat template exceeds the payload bound. Select fewer frameworks, bodies or reference cities, or shorten the question.');
  const result=await invoke('/tokenize',{content:rendered.prompt,add_special:false,parse_special:true});
  if(!Array.isArray(result.tokens)||result.tokens.length>MAX_MODEL_PAYLOAD||result.tokens.some(t=>!Number.isInteger(t)||t<0))throw error(502,'INVALID_CONTEXT_PREFLIGHT','The local tokenizer returned an invalid bounded token list. No generation was requested.');
  const promptTokens=result.tokens.length,safetyMarginTokens=32,requiredTokens=promptTokens+config.maxTokens+safetyMarginTokens;
- if(requiredTokens>config.localContextLimit)throw error(400,'CONTEXT_WINDOW_EXCEEDED',`The selected context needs ${promptTokens} prompt tokens + ${config.maxTokens} output tokens + ${safetyMarginTokens} boundary tokens, exceeding the configured ${config.localContextLimit}-token window. Select fewer frameworks or shorten the question. No generation was requested and no facts were removed.`);
+ if(requiredTokens>config.localContextLimit)throw error(400,'CONTEXT_WINDOW_EXCEEDED',`The selected context needs ${promptTokens} prompt tokens + ${config.maxTokens} output tokens + ${safetyMarginTokens} boundary tokens, exceeding the configured ${config.localContextLimit}-token window. Select fewer frameworks, bodies or reference cities, or shorten the question. No generation was requested and no facts were removed.`);
  return{mode:'llama.cpp',verified:true,promptTokens,outputReserveTokens:config.maxTokens,safetyMarginTokens,requiredTokens,contextWindowTokens:config.localContextLimit,contextTruncated:false,note:'Actual rendered-template token count against the explicitly configured local runtime window; not an answer-quality check.'};
 }
 async function infer(request,evidence,config,fetchImpl,login,signal){
@@ -204,7 +253,7 @@ export function createRagServer({config=loadConfig(),fetchImpl=providerFetch,log
    const audited=auditModelReply(result.text,evidence);
    audited.executionNotice='This response did not change any chart. Review and apply valid action proposals separately.';
    if(/\b(?:the|your) chart (?:has|have) been (?:set|changed|switched|updated|moved)\b/i.test(audited.answer))audited.answer+='\n\nCompanion correction: no chart change was applied. Any valid action is only a proposal for review.';
-   json(res,200,{schemaVersion:1,...audited,provider:request.provider,model:result.model,promptProfile:config.promptProfile,usage:result.usage,contextIncluded:!!request.context,contextKind:request.context?(request.context.reading?'reading':'desktop'):null,contextBudget:result.contextBudget,requestId:request.requestId,timing:{totalMs:Math.round(performance.now()-start)},retrieval:{method:evidence.method,found:evidence.found,corpusSHA256:WORKBENCH_RAG_MANIFEST.corpusSHA256,chunkCount:WORKBENCH_RAG_MANIFEST.chunkCount,queryTruncated:request.question.length>2000},warning:'Generated draft: source identifiers, exact supplied-excerpt quotes and proposed action shapes are checked. These checks do not establish semantic support, factual correctness or predictive validity.'+(audited.draftReasons.length?' Some audit checks require review.':'')});
+   json(res,200,{schemaVersion:1,...audited,provider:request.provider,model:result.model,promptProfile:config.promptProfile,usage:result.usage,contextIncluded:!!request.context,contextKind:request.context?(request.context.astrocartography?'astrocartography':request.context.reading?'reading':'desktop'):null,contextBudget:result.contextBudget,requestId:request.requestId,timing:{totalMs:Math.round(performance.now()-start)},retrieval:{method:evidence.method,found:evidence.found,corpusSHA256:WORKBENCH_RAG_MANIFEST.corpusSHA256,chunkCount:WORKBENCH_RAG_MANIFEST.chunkCount,queryTruncated:request.question.length>2000},warning:'Generated draft: source identifiers, exact supplied-excerpt quotes and proposed action shapes are checked. These checks do not establish semantic support, factual correctness or predictive validity.'+(audited.draftReasons.length?' Some audit checks require review.':'')});
   }catch(e){if(controller?.signal.aborted&&!e.status)e=error(controller.signal.reason?.code==='AUTH_SESSION_ENDED'?401:504,controller.signal.reason?.code||'PROVIDER_TIMEOUT','The model request was cancelled; no answer was applied.');json(res,e.status||500,{error:{code:e.code||'SERVER_ERROR',message:e.status?e.message:'The local service could not complete this request.'}});}
   finally{if(timer)clearTimeout(timer);unsubscribe?.();if(counted)active--;}
  });

@@ -54,6 +54,8 @@ readme = '''THE ASTROLOGER'S WORKBENCH — PORTABLE STATIC EDITION
        python3 -m http.server 8000 --bind 127.0.0.1
    On Windows, use: py -m http.server 8000 --bind 127.0.0.1
 3. Open http://localhost:8000/pages/desktop.html in your browser.
+   Explore the included offline world map at:
+       http://localhost:8000/pages/astrocartography.html
    Compare sourced examples and calendars at:
        http://localhost:8000/pages/reading-lab.html
    The existing private birth reader remains available at:

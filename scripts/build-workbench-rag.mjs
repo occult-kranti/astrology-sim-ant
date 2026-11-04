@@ -97,7 +97,7 @@ const docFiles=[
  '2026-10-horizon-ranking.md','2026-10-newton-chronology-methods.md','2026-10-newton-sources.md',
  '2026-10-sky-ai-rag.md','2026-10-sky-sources.md','2026-10-studio-sources-standards.md',
  '2026-10-world-events-sources.md','2026-11-chart-console-offline.md','2026-11-desktop-workbench.md',
- '2026-11-orbital-space-methods.md','2026-11-reading-lab-sources.md',
+ '2026-11-orbital-space-methods.md','2026-11-reading-lab-sources.md','2026-11-astrocartography-methods.md',
 ].map(f=>`docs/${f}`).concat('mcp/README.md');
 for(const file of docFiles) {
   const raw=read(file).replace(/```[\s\S]*?```/g,'\n[Code example omitted from prose retrieval; inspect the linked document.]\n');
@@ -118,6 +118,7 @@ const modules={
  'chronology':['CHRONOLOGY_ERAS','CHRONOLOGY_ENTRIES'],
  'study-lenses':['STUDY_LENSES'],
  'reading-cases':['READING_CASES','READING_SOURCES','READING_METHOD_NOTES'],
+ 'astrocartography-data':['ASTROCARTOGRAPHY_SOURCES','ASTROCARTOGRAPHY_PLANET_NOTES','ASTROCARTOGRAPHY_ANGLE_NOTES','ASTROCARTOGRAPHY_PURPOSES'],
  'mcp-tool-contracts':['MCP_TOOL_CONTRACTS'],
  'observatory-standards':['OBSERVATORY_STANDARDS'],
  'birth-reading-sources':['BIRTH_READING_SOURCES','BIRTH_COMPARISON_PRINCIPLES','BIRTH_METHOD_COMPARISONS','BIRTH_LIFE_DOMAINS'],

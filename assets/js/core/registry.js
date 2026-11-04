@@ -32,6 +32,17 @@ const HIW = a => `pages/how-it-works.html#hiw-${a}`;
 // ---------------------------------------------------------------------------
 export const REGISTRY = [
   {
+    id:'astrocartography', title:'Astrocartography and relocated place comparison',
+    module:'assets/js/core/astrocartography.js', exportName:'buildAstrocartography',
+    exports:['normalizeAstrocartographyInputs','inspectAstrocartographyPlace','exportAstrocartography','exportAstrocartographyPlace'],
+    computes:'Geocentric apparent rising, setting, upper- and lower-meridian lines for one explicitly timed chart, analytic angular-line crossings, spherical distances and transparent editorial purpose comparisons. A selected location retains the same UTC instant for relocated charts and named calendar readings.',
+    inputs:[{name:'input',type:'object',required:true,desc:'Complete explicit profile with local date, clock, IANA zone, observer and fold policy; bounded body/angle selections, purpose, radius, house system and public city IDs. Separate place inspection requires an explicit name, coordinates and IANA zone.'}],
+    outputShape:'{inputs,context,bodies,lines,crossings,cityRankings,scoring,sources,limitations}; compact export omits global rendering geometry.',
+    callable:false, book:'Locational astrology and astronomy', chapter:'Angular geometry and named interpretive conventions',
+    citation:'docs/2026-11-astrocartography-methods.md; source-qualified angular and planetary themes. Editorial relevance is not a forecast probability or a universal ranking of places.',
+    pages:['pages/astrocartography.html'],howItWorks:'pages/astrocartography.html',glossaryTerms:[],
+  },
+  {
     id:'reading-lab', title:'Comparative reading and public example laboratory',
     module:'assets/js/core/reading-lab.js', exportName:'calculateReadingLab',
     exports:['normalizeReadingLabInputs','exportReadingLab','exportReadingCase','compareReadingCases','calculateMayaDate'],
