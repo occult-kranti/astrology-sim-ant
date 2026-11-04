@@ -3885,6 +3885,779 @@
       }
     },
     {
+      "name": "workbench_rag_search",
+      "description": "Retrieve a bounded public local-reference evidence packet from the explicitly curated workbench corpus. Return exact citation IDs, source files/locators, reading depth and rights scope. Deterministic lexical retrieval only; no embedding model, training, full-book coverage, web request or personal chart access.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8
+          },
+          "maxTokens": {
+            "type": "integer",
+            "minimum": 256,
+            "maximum": 6000
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            },
+            "maxItems": 12,
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_desktop_chart",
+      "description": "Recompute an explicit desktop natal, transit or synastry study using canonical local engines. Ten planetary bodies plus mean nodes, four declared house systems and tropical or linear Lahiri display; UTC and local dates1900–2100. All profile clocks, zones and locations must be supplied. No unknown-time inference or saved browser context. Omit secondary rather than passing null for a natal-only request.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "natal",
+                  "transit",
+                  "synastry"
+                ]
+              },
+              "zodiac": {
+                "type": "string",
+                "enum": [
+                  "tropical",
+                  "lahiri"
+                ]
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "orb": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+              },
+              "primary": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false
+              },
+              "secondary": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false,
+                "description": "Optional complete chart B; omit this property rather than passing null. Required for transit or synastry."
+              }
+            },
+            "required": [
+              "mode",
+              "zodiac",
+              "system",
+              "orb",
+              "primary"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "inputs"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_desktop_action_preview",
+      "description": "Validate one strictly allowlisted chart/view/tool proposal and recompute its proposed result. Read-only: never applies the action, opens a URL, changes browser state, saves a profile or sends a model request. The UI must bind the context revision and obtain explicit Apply. Changing to comparison requires explicit chart B; reset requires an explicit reference profile. Unknown fields, arbitrary URLs/code and unsupported actions are rejected.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "natal",
+                  "transit",
+                  "synastry"
+                ]
+              },
+              "zodiac": {
+                "type": "string",
+                "enum": [
+                  "tropical",
+                  "lahiri"
+                ]
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "orb": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+              },
+              "primary": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false
+              },
+              "secondary": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false,
+                "description": "Optional complete chart B; omit this property rather than passing null. Required for transit or synastry."
+              }
+            },
+            "required": [
+              "mode",
+              "zodiac",
+              "system",
+              "orb",
+              "primary"
+            ],
+            "additionalProperties": false
+          },
+          "action": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "set_mode",
+                  "set_zodiac",
+                  "set_houses",
+                  "set_orb",
+                  "select_body",
+                  "set_view",
+                  "step_time",
+                  "reset_time",
+                  "set_chart",
+                  "open_tool"
+                ]
+              },
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "natal",
+                  "transit",
+                  "synastry"
+                ]
+              },
+              "zodiac": {
+                "type": "string",
+                "enum": [
+                  "tropical",
+                  "lahiri"
+                ]
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "orb": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+              },
+              "body": {
+                "type": "string",
+                "enum": [
+                  "Sun",
+                  "Moon",
+                  "Mercury",
+                  "Venus",
+                  "Mars",
+                  "Jupiter",
+                  "Saturn",
+                  "Uranus",
+                  "Neptune",
+                  "Pluto",
+                  "NorthNode",
+                  "SouthNode"
+                ]
+              },
+              "frame": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "secondary"
+                ]
+              },
+              "view": {
+                "type": "string",
+                "enum": [
+                  "wheel",
+                  "positions",
+                  "aspects"
+                ]
+              },
+              "amount": {
+                "type": "integer",
+                "minimum": -3660,
+                "maximum": 3660
+              },
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "hour",
+                  "day",
+                  "month",
+                  "year"
+                ]
+              },
+              "profile": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false
+              },
+              "toolId": {
+                "type": "string",
+                "enum": [
+                  "index",
+                  "abhichara-atharvan",
+                  "abhichara-index",
+                  "abhichara-six-acts",
+                  "abhichara-sources",
+                  "about-index",
+                  "autopilot",
+                  "basics",
+                  "birth-reading",
+                  "book1-degrees",
+                  "book1-dignities",
+                  "book1-index",
+                  "book1-master",
+                  "book1-planetary-hours",
+                  "book1-reference",
+                  "book2-considerations",
+                  "book2-examples",
+                  "book2-horary",
+                  "book2-houses",
+                  "book2-index",
+                  "book3-index",
+                  "book3-master",
+                  "book3-nativity",
+                  "buddhist-dhammapada",
+                  "buddhist-heart",
+                  "buddhist-index",
+                  "buddhist-metta",
+                  "buddhist-mn118",
+                  "buddhist-sources",
+                  "calendar-atlas",
+                  "calendar-compare",
+                  "calendar-search",
+                  "calendar-timeline",
+                  "calendars-chinese",
+                  "calendars-egyptian",
+                  "calendars-hebrew",
+                  "calendars-vedic",
+                  "calendars-western",
+                  "calendars",
+                  "chronology-alchemy",
+                  "chronology-field-guide",
+                  "chronology-hermetica",
+                  "chronology-index",
+                  "chronology-library",
+                  "chronology-rituals",
+                  "compare",
+                  "confluence",
+                  "contents",
+                  "country-calendars",
+                  "cycles",
+                  "eschatology-atlas",
+                  "event-horizon",
+                  "experiment",
+                  "geomancy",
+                  "glossary",
+                  "greatworks-agrippa",
+                  "greatworks-crowley",
+                  "greatworks-dee",
+                  "greatworks-east",
+                  "greatworks-hall",
+                  "greatworks-hermetica",
+                  "greatworks-index",
+                  "greatworks-kin",
+                  "greatworks-varahamihira",
+                  "greatworks-vivekananda",
+                  "greatworks-yogananda",
+                  "handcalc",
+                  "how-it-works",
+                  "iching",
+                  "incense",
+                  "interpret",
+                  "jung-experiment",
+                  "jung-index",
+                  "jung-sources",
+                  "jung-theory",
+                  "jung-timeline",
+                  "jung-tool",
+                  "kabbalah",
+                  "kuta",
+                  "learn",
+                  "library-esoteric",
+                  "library-index",
+                  "library-indian",
+                  "library-western",
+                  "master",
+                  "mcp",
+                  "moments",
+                  "muhurta",
+                  "newton-chronology",
+                  "now",
+                  "opgraph",
+                  "picatrix-correspondences",
+                  "picatrix-election",
+                  "picatrix-faces",
+                  "picatrix-index",
+                  "picatrix-kameas",
+                  "picatrix-mansions",
+                  "picatrix-prayers",
+                  "picatrix-stars",
+                  "picatrix-talisman",
+                  "practices-index",
+                  "practices-mudras",
+                  "prasna",
+                  "rasa",
+                  "read",
+                  "roadmap",
+                  "runes",
+                  "sigil-studio",
+                  "standards",
+                  "structure",
+                  "studio",
+                  "synastry",
+                  "tajika",
+                  "tarot",
+                  "thelemic-times",
+                  "timelords",
+                  "tithi-pravesha",
+                  "tools",
+                  "trajectory",
+                  "transits",
+                  "vedic-course",
+                  "vedic-delineation",
+                  "vedic-index",
+                  "vedic-yogas",
+                  "workbench",
+                  "workflow",
+                  "world-events",
+                  "yoga-index",
+                  "yoga-pada1",
+                  "yoga-pada2",
+                  "yoga-pada3",
+                  "yoga-pada4",
+                  "yoga-sources",
+                  "yoga-theory"
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          },
+          "reference": {
+            "type": "object",
+            "properties": {
+              "primary": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false
+              },
+              "secondary": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "localDate": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10
+                  },
+                  "localTime": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  }
+                },
+                "required": [
+                  "name",
+                  "localDate",
+                  "localTime",
+                  "timeZone",
+                  "lat",
+                  "lon",
+                  "disambiguation"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "inputs",
+          "action"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
       "name": "workbench_tool_guide",
       "description": "Explain a named calculator or reference capability: required inputs, source locators, output, local route and actual MCP/browser support. This is a guide, not a calculated chart or proof that the hosted service is current.",
       "inputSchema": {

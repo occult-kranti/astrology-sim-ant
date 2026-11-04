@@ -1,0 +1,10 @@
+{
+  "name": "astrology-workbench-local-rag",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Optional localhost RAG bridge; no browser credentials or automatic tool execution.",
+  "engines": {"node": ">=22"},
+  "scripts": {"start": "node server.mjs", "test": "node ../scripts/tests/local-rag-server.mjs"},
+  "dependencies": {"undici": "7.16.0"}
+}

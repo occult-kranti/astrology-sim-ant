@@ -74,6 +74,21 @@ export const MCP_ADAPTER_COVERAGE = {
     ],
     "scope": "Calculate Jupiter–Saturn longitude conjunctions and triplicity runs over at most100 Julian years. Optional mean doctrinal series and a separately dated global-eclipse study keep geometric, mean and historical layers distinct."
   },
+  "desktop-workbench": {
+    "mcpTools": [
+      "workbench_desktop_chart",
+      "workbench_desktop_action_preview"
+    ],
+    "outputPaths": [
+      "data.primary",
+      "data.secondary",
+      "data.crossAspects",
+      "data.methods",
+      "data.action",
+      "data.inputs"
+    ],
+    "scope": "Canonical explicit-input chart calculation and read-only action previews; no browser execution, unknown-time inference, provider request or saved records."
+  },
   "directions": {
     "mcpTools": [
       "workbench_directions"
@@ -432,6 +447,19 @@ export const MCP_ADAPTER_COVERAGE = {
       "data.calculatedGrahas"
     ],
     "scope": "Actual three exposed canonical views from a recomputed Lahiri/whole-sign/mean-node reading; contested arcs/aspects preserved."
+  },
+  "workbench-rag": {
+    "mcpTools": [
+      "workbench_rag_search"
+    ],
+    "outputPaths": [
+      "data.rows",
+      "data.citations",
+      "data.context",
+      "data.method",
+      "data.note"
+    ],
+    "scope": "Bounded deterministic local retrieval over public source-qualified chunks; no full-book/model training or private chart data."
   },
   "worked-charts": {
     "mcpTools": [

@@ -16,12 +16,13 @@
 <link rel="stylesheet" href="../assets/css/site-patterns.css" data-site-design="site-patterns">
 <link rel="stylesheet" href="../assets/css/offline-library.css" data-offline-library-style>
 <link rel="stylesheet" href="../assets/css/desktop-workbench.css">
+<link rel="stylesheet" href="../assets/css/workbench-chat.css">
 </head>
 <body class="desktop-page" data-page-family="observatory">
 <main id="dw-app" class="dw-app" data-state="loading">
   <header class="dw-titlebar">
     <div class="dw-title"><span class="dw-app-mark" aria-hidden="true">✳︎</span><div><p class="dw-eyebrow">THE ASTROLOGER'S WORKBENCH / DESKTOP EDITION</p><h1>Chart studio<span class="dw-edition">01</span></h1></div></div>
-    <div class="dw-title-actions"><span class="dw-local"><span aria-hidden="true">●</span> Calculated on your device</span><button id="dw-open-tools" type="button">Explore all tools <span aria-hidden="true">↗</span></button><button id="dw-open-offline" type="button">Offline edition</button></div>
+    <div class="dw-title-actions"><span class="dw-local"><span aria-hidden="true">●</span> Calculated on your device</span><button id="dw-open-chat" type="button">Research chat</button><button id="dw-open-tools" type="button">Explore all tools <span aria-hidden="true">↗</span></button><button id="dw-open-offline" type="button">Offline edition</button></div>
   </header>
   <div class="dw-workspace">
     <aside class="dw-library" aria-label="Chart library">
@@ -66,6 +67,7 @@
       <div class="dw-export"><h3>Keep this study</h3><button id="dw-save" type="button" class="dw-primary" disabled>Save chart A</button><div class="dw-export-grid"><button id="dw-export-svg" type="button" disabled>Chart SVG</button><button id="dw-export-json" type="button" disabled>Study JSON</button><button id="dw-print" type="button" disabled>Print / PDF</button><button id="dw-ai" type="button" disabled>AI study packet</button></div><p class="dw-small">Exports contain the displayed chart details. AI handoff opens a reviewable packet; nothing is sent automatically.</p></div>
     </aside>
   </div>
+  <section id="dw-chat" class="wc-shell" aria-label="Research and chart assistant"><p>Loading the local reference library…</p></section>
   <section id="dw-toolbox" class="dw-toolbox" aria-labelledby="dw-toolbox-title">
     <header><div><p class="dw-eyebrow">ONE WORKSPACE, THE WHOLE COLLECTION</p><h2 id="dw-toolbox-title" tabindex="-1">Your extended toolkit.</h2><p>Open a specialist workspace for deeper calculations, calendars, research or creative work. Unsaved chart inputs are kept only in this tab.</p></div><span id="dw-tools-count" class="dw-tool-count"></span></header>
     <div class="dw-tool-filters"><label>Find a tool<input id="dw-tools-search" type="search" placeholder="Try progressions, Vedic, calendars, Jung…"></label><label>Collection<select id="dw-tools-category"><option value="">All collections</option></select></label></div><div id="dw-tools-list" class="dw-tools-list"></div>

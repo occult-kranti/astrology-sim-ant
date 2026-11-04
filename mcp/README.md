@@ -34,6 +34,8 @@ Connect the provisioned Workbench plugin under **Plugins → Personal → Create
 
 ## Tools and contracts
 
+The current source registry exposes **81 read-only tools**. This is the local source count; the historical remote deployment status above remains separate.
+
 - `workbench_catalogue`: search the existing capability directory and links.
 - `workbench_chart`: Western chart, planetary hour and optional Vedic context, explicit instant and observer; optional birth radix/reference instant.
 - `workbench_symbol`: sourced kamea/navagraha grid and Latin/Hebrew trace; standalone SVG and text alternative.
@@ -47,6 +49,14 @@ Connect the provisioned Workbench plugin under **Plugins → Personal → Create
 - `workbench_calendar_atlas`: one explicit instant and observer across catalogued calendar and chart variants. Optional `family` or `variant` selects one named scope; omitted selection compares the catalogue. Unavailable methods retain their source limits. Birth records and arbitrary notes are not accepted arguments. Longer date scans run in the browser's separate cancellable worker.
 
 The generated [static catalogue](../assets/data/mcp-catalogue.json) contains the current source tool names and exact schemas; use its count rather than historical deployment counts. It does not establish that the previously deployed private backend has been updated. See [the Calendar Observatory AI contract](../docs/2026-10-calendar-observatory-ai.md), [the source-guided explanation extension](../docs/2026-10-ensemble-ai.md), [the desktop atlas plan](../docs/2026-10-atlas-plan.md) and [sky interpretation/RAG contract](../docs/2026-10-sky-ai-rag.md).
+
+## Desktop chart and workbench retrieval adapters
+
+- `workbench_rag_search` retrieves up to eight public reference chunks with exact citation IDs, file/section locators, indexing depth and rights scope. It performs deterministic lexical retrieval over the curated local corpus; no model, private chart, web search, full-book ingestion or training is involved.
+- `workbench_desktop_chart` recomputes an explicit natal, transit or synastry study in tropical or linear Lahiri coordinates using four supported house conventions. Supply the complete local date, recorded clock, IANA zone, coordinates and repeated-clock policy. Chart B is required for comparison; omit `secondary` rather than sending JSON `null` for a natal-only MCP request.
+- `workbench_desktop_action_preview` validates one of ten finite chart/view/tool proposals and recomputes its proposed result. It does not control a browser. The browser must check its held context revision and require an explicit **Apply** action. Unsupported fields, executable code, arbitrary URLs, storage writes and provider calls have no action type. Reset requires an explicit reference profile; missing birth clocks are never invented.
+
+Run `node ../scripts/test-workbench-rag-protocol.mjs` for the actual official-SDK HTTP-handler and child-process stdio tests of these three tools. A passing local protocol test does not establish availability on the previously deployed backend. The [chatbot integration notes](../docs/2026-11-workbench-rag-integrations.md) distinguish local retrieval, local model generation, ChatGPT handoff and optional hosted services.
 
 ## Sky, interpretation and per-tool coverage
 

@@ -1,5 +1,7 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+The desktop studio now includes a **[research chatbot with local RAG](docs/2026-11-workbench-rag.md)**: cited public-source search, reviewed chart changes, an optional CPU model companion, Supabase reference search, OpenAI API support and an official local-app ChatGPT sign-in adapter. Start with **Research chat → Search local sources**, or follow the [local model setup](local-rag/README.md). Source excerpts work offline. Generated answers need a configured model and may be inaccurate; book metadata is not a full-book corpus. Live Supabase and ChatGPT account connections remain optional setup steps.
+
 The new **[Desktop chart studio](pages/desktop.html)** brings a private chart library, natal/transit/synastry wheels, exact positions, house tables, an aspect matrix, date stepping and a source inspector into one black instrument desk. Search all 134 existing application destinations from its toolkit. Profiles stay in the browser; save/import/export are deliberate actions. The public example is a Greenwich study, not a personal birth record.
 
 A [single-file desktop edition](docs/2026-11-desktop-standalone.md) also opens directly from disk without a local server. Its chart studio works offline; linked specialist pages remain online, while the full portable ZIP includes the complete collection. The [standalone verification](docs/2026-11-desktop-standalone-verification.md) records actual file-origin checks.

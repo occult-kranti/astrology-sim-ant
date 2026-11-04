@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "d7a0647a8c855b8c8e2643584fe0a78171759c636db1a4f31294e0ed6a449d63",
-  "totalBytes": 53127195,
+  "version": "83b86b3634e204277e272166c4e87e64136ade55230bdcfa85b07933d70fa5f6",
+  "totalBytes": 57831721,
   "files": [
     {
       "path": "assets/css/birth-chart-console.css",
@@ -184,6 +184,11 @@
       "sha256": "79ef453dfae848f4d9fc2e0027aeaba78cf4aa51a400a395e2519747f85eee2c"
     },
     {
+      "path": "assets/css/workbench-chat.css",
+      "bytes": 4832,
+      "sha256": "ae2459a5d97e209c0a58bf33897fc85c82540f282e2f1e414bf84e04a1605b3c"
+    },
+    {
       "path": "assets/css/world-events.css",
       "bytes": 7084,
       "sha256": "6225706a5e0776727a88be99f7b2461a83f0fcfecdfbdc2348d38d9720503201"
@@ -250,8 +255,8 @@
     },
     {
       "path": "assets/data/horizon-2031-manifest.json",
-      "bytes": 141307,
-      "sha256": "37bd6b10ccc864c0939291f1e54f03353cbb4300230c9e33362721a81598ff3a"
+      "bytes": 141295,
+      "sha256": "0ef2806badb241f7b6879b8ed1213fc7ab718744e6561ce55d2eb60145586e7c"
     },
     {
       "path": "assets/data/horizon-2031/astronomy.json",
@@ -275,8 +280,8 @@
     },
     {
       "path": "assets/data/mcp-catalogue.json",
-      "bytes": 165652,
-      "sha256": "030123e8fd663fc35948ae14645d9bdccb38ee5e27b40b0dbb17168c0f74ed7a"
+      "bytes": 189768,
+      "sha256": "33a902c2f8a5330452038416192d22ff50578a881279e5f254784deb0bd91e8e"
     },
     {
       "path": "assets/data/world-events.json",
@@ -475,8 +480,8 @@
     },
     {
       "path": "assets/js/app/desktop-workbench.js",
-      "bytes": 23362,
-      "sha256": "d145bcfb6ac82c7409a76ac0bf9576cda17ff5c5c159c6d550ad81fc4a64d88b"
+      "bytes": 25746,
+      "sha256": "cd308fa04d046fe1c3270403519603fbcc6b905cb5c18241c9042b00b4399ac1"
     },
     {
       "path": "assets/js/app/dial.js",
@@ -894,6 +899,16 @@
       "sha256": "1c1474191ffc4c1bdc46eb2c8e484b0b698d92baa77552eda80e619f1185850e"
     },
     {
+      "path": "assets/js/app/workbench-chat.js",
+      "bytes": 22735,
+      "sha256": "ffcc4f0bc1f46dbdbc4087cdf70a7e8cf91baebda1c723833fc6549f5133d0f7"
+    },
+    {
+      "path": "assets/js/app/workbench-supabase.js",
+      "bytes": 7434,
+      "sha256": "915db6894a2712f48d42553295e0b1d5b363d22cdcd0416e9b6bb8038dc77828"
+    },
+    {
       "path": "assets/js/app/workbench.js",
       "bytes": 54670,
       "sha256": "072267bdc3a35b8d2234032491cb75e558590f13ee7f43b082e1211e8dd7d8b0"
@@ -1206,12 +1221,12 @@
     {
       "path": "assets/js/core/data/horizon-preset-version.js",
       "bytes": 492,
-      "sha256": "aaf05151ae4b172f43bd53a7f1c2d985e367f1efc51cbc52a30a408495f92826"
+      "sha256": "06b9e4b27d440ce80775cf36ddd7be74d2bbc8b5b9060eb4fef301ef8a299430"
     },
     {
       "path": "assets/js/core/data/horizon-tool-coverage.js",
-      "bytes": 11633,
-      "sha256": "ed85776c95234d42722c3d776d591ac29becd32c408f5d2d4f76ad81d35289ff"
+      "bytes": 12460,
+      "sha256": "771314ebd8613f940c8891453d9c0dddb3c78d5e5d18647a2416827233e19c33"
     },
     {
       "path": "assets/js/core/data/horizon-traditions.js",
@@ -1265,13 +1280,13 @@
     },
     {
       "path": "assets/js/core/data/mcp-adapter-coverage.js",
-      "bytes": 15385,
-      "sha256": "6135ad08a18a482e4f023e81f02996dc7b5f0406e43a6e120a46bf1619f2a746"
+      "bytes": 16201,
+      "sha256": "ca57c366d02f9c9bf6d2607dcd9a523b41b91b34c4e747b25ae7cbd00c3a2f72"
     },
     {
       "path": "assets/js/core/data/mcp-tool-contracts.js",
-      "bytes": 114802,
-      "sha256": "476fe7a8467404268afd7a32a9fa0c20e1ef7f3143b74587767e35efe1120cf9"
+      "bytes": 134516,
+      "sha256": "5ee8c3649407dff3736baefa58190b0bf3756f02b447c630013d804993b4621e"
     },
     {
       "path": "assets/js/core/data/muhurta-data.js",
@@ -1382,6 +1397,11 @@
       "path": "assets/js/core/data/vedic-remedies.js",
       "bytes": 27941,
       "sha256": "29056fa5597f82184f349fead9c6fe37acc8a7f9ba312d96e125f5fa2f8c205f"
+    },
+    {
+      "path": "assets/js/core/data/workbench-rag-corpus.js",
+      "bytes": 4594119,
+      "sha256": "9a02bd74c714448c518f992e19f34a0f9628793c6ea0d79c469ca9a94412ecdf"
     },
     {
       "path": "assets/js/core/data/worked-charts.js",
@@ -1839,6 +1859,16 @@
       "sha256": "c304fd709fdc0142c68483195a29f4de58f4691f15140411c7705f8f7b3bd6d7"
     },
     {
+      "path": "assets/js/core/workbench-chat-actions.js",
+      "bytes": 14017,
+      "sha256": "51478f5fb44bedd1340d6a08cab86aee57b808f86ad4da016b39f81e1be9b1c0"
+    },
+    {
+      "path": "assets/js/core/workbench-rag.js",
+      "bytes": 11032,
+      "sha256": "f46bce589dfe66bc09af396ec5ac3a2050fe3f7a8fc4fb38685d9d1416812ef1"
+    },
+    {
       "path": "assets/js/core/world-events.js",
       "bytes": 19521,
       "sha256": "80ddeadec1c64ddeced6795d537dfa9a39c3b64581ab6354a6d8f44054582c81"
@@ -1890,8 +1920,8 @@
     },
     {
       "path": "assets/search-index.json",
-      "bytes": 296670,
-      "sha256": "0212819e400112575cfccc6280a99a1c1a27fd6e264d8d076a20b8de1462c045"
+      "bytes": 298917,
+      "sha256": "6cb50f4e991844c1f1a4a357cb096b602c572b6eecff6aa04ae1ad31f5b78759"
     },
     {
       "path": "assets/vendor/adhan/Adhan.js",
@@ -2260,8 +2290,8 @@
     },
     {
       "path": "pages/desktop.html",
-      "bytes": 13834,
-      "sha256": "e6c1d8a4b490be765d6c3985c1ee8f9892c7cc7cef434e7e57c5609d9065af61"
+      "bytes": 14099,
+      "sha256": "953b28fbff3d9078d073b53b31a7847176be460a066b25962992c56d015f7983"
     },
     {
       "path": "pages/eschatology-atlas.html",

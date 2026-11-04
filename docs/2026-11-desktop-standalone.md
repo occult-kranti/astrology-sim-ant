@@ -1,16 +1,16 @@
 # Single-file desktop chart studio
 
-The downloadable `desktop-chart-studio.html` is a self-contained edition of the new desktop chart studio. Open it directly from disk in a current desktop browser. Its calculations, natal and comparison wheels, position tables, aspect grid, chart editor, time navigator, explicit chart-library controls and exports run without a local server or internet connection.
+The downloadable `desktop-chart-studio.html` is a self-contained edition of the new desktop chart studio. Open it directly from disk in a current desktop browser. Its calculations, natal and comparison wheels, position tables, aspect grid, chart editor, time navigator, explicit chart-library controls exports and cited reference retrieval run without a local server or internet connection.
 
 This artifact is a downloadable application file. It is not a ChatGPT-hosted website, and it does not establish that the feature branch has been deployed to GitHub Pages. Chat applications may preview, download or restrict executable HTML differently; verification covers opening the downloaded file in a browser.
 
 ## Scope and privacy
 
 - The bundle contains the committed public Greenwich example. It contains no personal birth reading or chart from the conversation.
-- A classic inline JavaScript bundle and seven inline stylesheets supply the working studio. No runtime modules, remote fonts or automatic network resources are needed.
+- A classic inline JavaScript bundle and eight inline stylesheets supply the working studio. No runtime modules, remote fonts or automatic network resources are needed.
 - The original calculation engines remain authoritative. The bundler substitutes only the offline installer and navigation delivery; it does not substitute chart calculations.
 - Chart saving depends on browser policy for `file://` storage. Moving or renaming the file may change the library exposed by that browser. Save a JSON library export as a portable backup. Unsupported storage leaves casting and study exports available.
-- The AI study packet is prepared locally and remains editable. Sharing with a model is a deliberate later action. No model, API key or signed-in ChatGPT session is built into the file.
+- The AI study packet is prepared locally and remains editable. Sharing with a model is a deliberate later action. The reference corpus and extractive source search are built in. Generated responses require the separate local companion and a configured model; no model weights, API key or signed-in ChatGPT session are built into the file.
 - Specialist pages and reference links open the published website in a new tab and require internet. The new research note points to the published GitHub feature branch; the navigation link to the studio stays in this file. No profile data is appended to links.
 - The accompanying full-library ZIP is a separate artifact. Follow its local-server instructions to use the complete collection offline. The single file does not contain every specialist tool.
 

@@ -1,0 +1,684 @@
+{
+  "schemaVersion": 1,
+  "researchedDateUTC": "2026-11-04",
+  "scope": "Official integration research plus locally mocked SIWC protocol implementation.",
+  "sources": [
+    {
+      "url": "https://platform.openai.com/docs/api-reference/responses",
+      "status": 200,
+      "final": "https://developers.openai.com/api/reference/resources/responses",
+      "title": [
+        "Responses | OpenAI API Reference"
+      ],
+      "bytes": 31279216,
+      "sha256": "cc4ef4a867335b7223763e74b0fc7c1a3bbebdc921e5cab325c7549e2d235245",
+      "id": "INT-00",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://platform.openai.com/docs/guides/function-calling",
+      "status": 200,
+      "final": "https://developers.openai.com/api/docs/guides/function-calling",
+      "title": [],
+      "bytes": 1487632,
+      "sha256": "ac592a66134066610f2130202a49b4c3d4f0c82e66adfcc182a521688e0014a1",
+      "id": "INT-01",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://platform.openai.com/docs/guides/tools-remote-mcp",
+      "status": 200,
+      "final": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp",
+      "title": [],
+      "bytes": 808198,
+      "sha256": "b30fbbe13889cf23a657f5dd1b4b677234dd6d7d5c368ab78b7d2fdbac36c6cc",
+      "id": "INT-02",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/apps-sdk/build/mcp-server",
+      "status": 200,
+      "final": "https://developers.openai.com/plugins/build/mcp-server",
+      "title": [],
+      "bytes": 445151,
+      "sha256": "c88bfef81622cfcfc6d0533ac1eb1c1b19f28ff380bd5315ff2a2336fd195572",
+      "id": "INT-03",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/apps-sdk/build/auth",
+      "status": 200,
+      "final": "https://developers.openai.com/plugins/build/auth",
+      "title": [],
+      "bytes": 546435,
+      "sha256": "b0aa3adaec6c5e93c452a4a16761c8ea39bb0c503e30dfefc1fbad469a2864c4",
+      "id": "INT-04",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/apps-sdk/deploy/connect-chatgpt",
+      "status": 200,
+      "final": "https://developers.openai.com/plugins/deploy/connect-chatgpt",
+      "title": [],
+      "bytes": 379688,
+      "sha256": "88caca6f3c7c5f97b10b7d8a9ac3b077ef3a32f159bc38195309f39d4a91bd17",
+      "id": "INT-05",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/codex/auth",
+      "status": 200,
+      "final": "https://learn.chatgpt.com/docs/auth",
+      "title": [],
+      "bytes": 599901,
+      "sha256": "6d5b862a5498bef80deec94ecd8793c9b5dd66df86c7f09af4ede03168724864",
+      "id": "INT-06",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://help.openai.com/en/articles/8156019-how-can-i-move-my-chatgpt-subscription-to-the-api",
+      "status": 200,
+      "final": "https://help.openai.com/en/articles/9039756-managing-billing-for-chatgpt-and-the-api-platform",
+      "title": [
+        "Managing billing for ChatGPT and the API platform | OpenAI Help Center"
+      ],
+      "bytes": 59708,
+      "sha256": "a3ca71a89f782ab84443d6fd3b37ad32850cf6d2d820263e88f456aa75987722",
+      "id": "INT-07",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://supabase.com/docs/guides/database/full-text-search",
+      "status": 200,
+      "final": "https://supabase.com/docs/guides/database/full-text-search",
+      "title": [
+        "Full Text Search | Supabase Docs"
+      ],
+      "bytes": 1114732,
+      "sha256": "b95dbb5826f1144f292989e8ff568c9111cc1dc63ce7a01b552d56f859906e2f",
+      "id": "INT-08",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://supabase.com/docs/guides/ai/vector-columns",
+      "status": 200,
+      "final": "https://supabase.com/docs/guides/ai/vector-columns",
+      "title": [
+        "Vector columns | Supabase Docs"
+      ],
+      "bytes": 257265,
+      "sha256": "f937b810e7d02743ea943250f3f257145254c5591e84898bf8d3f2dbfa77ae29",
+      "id": "INT-09",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+      "status": 200,
+      "final": "https://supabase.com/docs/guides/database/postgres/row-level-security",
+      "title": [
+        "Row Level Security | Supabase Docs"
+      ],
+      "bytes": 871524,
+      "sha256": "230a9004810aa2498daa973e6089dd4e544334dc9fd11c782b061af020edc765",
+      "id": "INT-10",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://docs.ollama.com/api/introduction",
+      "status": 200,
+      "final": "https://docs.ollama.com/api/introduction",
+      "title": [
+        "Introduction - Ollama"
+      ],
+      "bytes": 126233,
+      "sha256": "677e1f3e56b0aa2be6fd6188c3399b2fa6c84e41c09cf3cfa76284a7d11b7d36",
+      "id": "INT-11",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://docs.ollama.com/capabilities/embeddings",
+      "status": 200,
+      "final": "https://docs.ollama.com/capabilities/embeddings",
+      "title": [
+        "Embeddings - Ollama"
+      ],
+      "bytes": 180145,
+      "sha256": "be6881b3d62d7db5b744c4df6408f8dd224ae81ac1711fd7c92278e0efaf92ba",
+      "id": "INT-12",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://docs.ollama.com/capabilities/tool-calling",
+      "status": 200,
+      "final": "https://docs.ollama.com/capabilities/tool-calling",
+      "title": [
+        "Tool calling - Ollama"
+      ],
+      "bytes": 579500,
+      "sha256": "94c81996d39f83fb7e2052970703292e8f1ad79a6fd74b090423baf664a6761e",
+      "id": "INT-13",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/README.md",
+      "status": 200,
+      "final": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/README.md",
+      "title": [],
+      "bytes": 7676,
+      "sha256": "404287f3e07f32aeaa5b951cfe7e43277a6444b2cf921c9f70894c1f7e89dd80",
+      "id": "INT-14",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_repository_or_model_card",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://raw.githubusercontent.com/QwenLM/Qwen3/main/README.md",
+      "status": 200,
+      "final": "https://raw.githubusercontent.com/QwenLM/Qwen3/main/README.md",
+      "title": [],
+      "bytes": 24732,
+      "sha256": "0b2c2bb11806f7a00c8465f2586e2e99f15de28622fd5c9b70b83ae1ab18c75d",
+      "id": "INT-15",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_repository_or_model_card",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://raw.githubusercontent.com/QwenLM/Qwen3.5/main/README.md",
+      "status": 200,
+      "final": "https://raw.githubusercontent.com/QwenLM/Qwen3.5/main/README.md",
+      "title": [],
+      "bytes": 14334,
+      "sha256": "a71ec46607f81d6056336fb0a8431a26a1c7d8db6ac568a0c021c36f1ed3c92e",
+      "id": "INT-16",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_repository_or_model_card",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc.md",
+      "title": [],
+      "bytes": 3400,
+      "sha256": "7bdc7eee9c9dc41a8f418b0bec122422c7c3f924583b2764c5d279d93c1390be",
+      "id": "INT-17",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/request-client-id.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/request-client-id.md",
+      "title": [],
+      "bytes": 394,
+      "sha256": "41677a6f7bb9713b4a6b3c6d72193fd9035e7f0aa53ca1d3da8453678ce9a7a4",
+      "id": "INT-18",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/website.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/website.md",
+      "title": [],
+      "bytes": 20896,
+      "sha256": "bc38c04cf4f9b7647f4de22c32d77f5098735c03ed323971e14a1a40205af80e",
+      "id": "INT-19",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/token-sharing-open-source.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/token-sharing-open-source.md",
+      "title": [],
+      "bytes": 7361,
+      "sha256": "7c916a3136973625481fe21673c2f342e97fe5a70153bc71e068d5b11be83ebd",
+      "id": "INT-20",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations.md",
+      "title": [],
+      "bytes": 2866,
+      "sha256": "051ee06d537d746de9a5f1aa5019a44400fd9856b27ec37b4a9c9fec5874fa0c",
+      "id": "INT-21",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/token-sharing-open-source/models-and-inference.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/token-sharing-open-source/models-and-inference.md",
+      "title": [],
+      "bytes": 3973,
+      "sha256": "4cd568e57168de134717e5ed611d15d3505b88d30d6a45bd234b2a0a1ea96370",
+      "id": "INT-22",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/token-sharing-open-source/sign-in.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/token-sharing-open-source/sign-in.md",
+      "title": [],
+      "bytes": 16335,
+      "sha256": "94e9158385ba3048ad3454785940c97c92d9d2dcf8dfda66b0f4418643d146a5",
+      "id": "INT-23",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/token-sharing-open-source/codex-app-server.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/token-sharing-open-source/codex-app-server.md",
+      "title": [],
+      "bytes": 3118,
+      "sha256": "eeee9ebe330f236ee2c70b6026c17337af56cd328c8acb3540bc194f86072d7d",
+      "id": "INT-24",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/plugins/build/auth.md",
+      "status": 200,
+      "final": "https://developers.openai.com/plugins/build/auth.md",
+      "title": [],
+      "bytes": 40182,
+      "sha256": "c2e577b84eb0b1eb6ce404f4b5a2d3d0c052f2a4bac836c2feee0af86b7d47b0",
+      "id": "INT-25",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/plugins/deploy/connect-chatgpt.md",
+      "status": 200,
+      "final": "https://developers.openai.com/plugins/deploy/connect-chatgpt.md",
+      "title": [],
+      "bytes": 6610,
+      "sha256": "979f47ad47e83757f8bd9fca5cbd898d7e9a1fb0d534b6021e3031f6207a224a",
+      "id": "INT-26",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp.md",
+      "status": 200,
+      "final": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp.md",
+      "title": [],
+      "bytes": 65036,
+      "sha256": "57bc5d00b848dc8dedffeafef36ae7f47ab65c53aaa1d3dc0499776512af0ba3",
+      "id": "INT-27",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/function-calling.md",
+      "status": 200,
+      "final": "https://developers.openai.com/api/docs/guides/function-calling.md",
+      "title": [],
+      "bytes": 77026,
+      "sha256": "46d01db6895d007a8cd79806055ca44ea55ac88e3ffbfae80d14ec7dc8411f93",
+      "id": "INT-28",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://learn.chatgpt.com/docs/auth.md",
+      "status": 200,
+      "final": "https://learn.chatgpt.com/docs/auth.md",
+      "title": [],
+      "bytes": 17334,
+      "sha256": "67d3f0c64897ea26b48e62a634ced7dbd2763a47104e12a0923cc528986de588",
+      "id": "INT-29",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md",
+      "status": 200,
+      "final": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md",
+      "title": [],
+      "bytes": 136429,
+      "sha256": "eafc1b53abd787613d13d1fb9a86a1fc9f90b59f1240b3eeb88c85ea08d9a137",
+      "id": "INT-30",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_repository_or_model_card",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/main/README.md",
+      "status": 200,
+      "final": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/main/README.md",
+      "title": [],
+      "bytes": 77661,
+      "sha256": "1406be1b6b8fd8a6545870da516912804756593628a1d0fb0a7965211e82a7bb",
+      "id": "INT-31",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_repository_or_model_card",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://docs.ollama.com/api/openai-compatibility",
+      "status": 200,
+      "final": "https://docs.ollama.com/api/openai-compatibility",
+      "title": [
+        "OpenAI compatibility - Ollama"
+      ],
+      "bytes": 376818,
+      "sha256": "f7f19a144b3755c6cc942f02b578fe0daad33ea8d86fcfbe4b8b3305f819a432",
+      "id": "INT-32",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://docs.ollama.com/faq",
+      "status": 200,
+      "final": "https://docs.ollama.com/faq",
+      "title": [
+        "FAQ - Ollama"
+      ],
+      "bytes": 306929,
+      "sha256": "2fcba30cbbd31dc792877078fa8d06143cdbde94bbf132499fb7604a93ec0273",
+      "id": "INT-33",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://supabase.com/docs/guides/ai/hybrid-search",
+      "status": 200,
+      "final": "https://supabase.com/docs/guides/ai/hybrid-search",
+      "title": [
+        "Hybrid search | Supabase Docs"
+      ],
+      "bytes": 337613,
+      "sha256": "84ebfec6fe17ae3dd97273a686c00d28b4794f55052f6078de460ab045063231",
+      "id": "INT-34",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Relevant sections reviewed; no service configured or inference performed.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/token-sharing-open-source/profiles-and-sessions.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/token-sharing-open-source/profiles-and-sessions.md",
+      "bytes": 6393,
+      "sha256": "ab3eb6b64956e7ca22edbe4eb70f67ab2245cf9aea197902b16c639a6cf8dfc1",
+      "id": "INT-35",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://developers.openai.com/siwc/token-sharing-open-source/errors-and-recovery.md",
+      "status": 200,
+      "final": "https://developers.openai.com/siwc/token-sharing-open-source/errors-and-recovery.md",
+      "bytes": 7919,
+      "sha256": "0b7f6d6a7a07ba4d81967858ca9f64264e2be017dfaed1e25297969a57a2c005",
+      "id": "INT-36",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    },
+    {
+      "url": "https://auth.openai.com/.well-known/openid-configuration",
+      "status": 200,
+      "final": "https://auth.openai.com/.well-known/openid-configuration",
+      "bytes": 1471,
+      "sha256": "bc865039c089c73158b6f9eb6ccb7c8f7b8dc3c143b8a61121fc27def34a5973",
+      "id": "INT-37",
+      "retrievedDateUTC": "2026-11-04",
+      "kind": "official_documentation",
+      "readingDepth": "Authentication/integration requirements inspected directly, including relevant protocol examples; no live authorization or token request.",
+      "rawDownloadedSourceIncludedInRepository": false
+    }
+  ],
+  "claims": [
+    {
+      "id": "INT-C01",
+      "claim": "Hosted website Sign in with ChatGPT identity integration is a limited trial requiring a registered OAuth client, callback and backend session handling. It is separate from the local open-source plan-usage flow.",
+      "sources": [
+        "INT-18",
+        "INT-19"
+      ],
+      "status": "documented_not_configured"
+    },
+    {
+      "id": "INT-C02",
+      "claim": "The open-source local companion flow uses dedicated dynamic registration, a stable host ID, PKCE/OIDC, a 127.0.0.1 callback and explicitly granted plan-usage scopes. It does not inherit chat history.",
+      "sources": [
+        "INT-20",
+        "INT-23",
+        "INT-35"
+      ],
+      "status": "documented_mock_protocol_tested_no_live_oauth"
+    },
+    {
+      "id": "INT-C03",
+      "claim": "Plan-usage Responses requests require store:false and stream:true. Hosted MCP and file search are among the unsupported capabilities, and a successful terminal event is required.",
+      "sources": [
+        "INT-21",
+        "INT-22",
+        "INT-36"
+      ],
+      "status": "documented_not_live_inference_tested"
+    },
+    {
+      "id": "INT-C04",
+      "claim": "Public OIDC discovery specifies authorization, token, revocation and JWKS endpoints, RS256 signing and S256 PKCE. Advertised identity scopes do not establish a granted plan permission.",
+      "sources": [
+        "INT-37",
+        "INT-23"
+      ],
+      "status": "metadata_http200_no_token_request"
+    },
+    {
+      "id": "INT-C05",
+      "claim": "MCP can connect through public HTTPS or an official Secure MCP Tunnel, subject to account policy and correct authentication/discovery. Ordinary API remote MCP differs from the plan-usage preview.",
+      "sources": [
+        "INT-02",
+        "INT-25",
+        "INT-26",
+        "INT-27"
+      ],
+      "status": "documented_not_remote_tool_verified"
+    },
+    {
+      "id": "INT-C06",
+      "claim": "Supabase full-text search, pgvector, hybrid reciprocal-rank fusion and row-level security support optional reference hosting. Service-role credentials remain server-side; grants and policies both matter.",
+      "sources": [
+        "INT-08",
+        "INT-09",
+        "INT-10",
+        "INT-34"
+      ],
+      "status": "documented_no_hosted_migration"
+    },
+    {
+      "id": "INT-C07",
+      "claim": "Ollama and llama.cpp provide local inference and embedding interfaces. The exact runtime, model and chat template must be tested together.",
+      "sources": [
+        "INT-11",
+        "INT-12",
+        "INT-13",
+        "INT-14",
+        "INT-30",
+        "INT-32",
+        "INT-33"
+      ],
+      "status": "documented_no_inference_by_research_lane"
+    },
+    {
+      "id": "INT-C08",
+      "claim": "The Qwen3.5 repository HEAD now covers Qwen3.8. The exact Qwen3.5-4B model card specifies a 4B language model with a vision encoder and Apache-2.0 licence. It is a candidate, not a claim of latest performance or a local benchmark.",
+      "sources": [
+        "INT-16",
+        "INT-31"
+      ],
+      "status": "model_card_inspected_no_weights_downloaded"
+    },
+    {
+      "id": "INT-C09",
+      "claim": "Standard API billing is separate from ChatGPT billing. Documented open-source plan-usage consent is a separate authorization route.",
+      "sources": [
+        "INT-07",
+        "INT-20"
+      ],
+      "status": "documented"
+    }
+  ],
+  "environmentObservation": {
+    "observedDateUTC": "2026-11-04",
+    "visibleLogicalCPUs": 5,
+    "cpuQuota": "400000 100000",
+    "memoryLimitBytes": "34359738368",
+    "nvidiaDeviceNodes": [],
+    "driDeviceNodes": [],
+    "inferencePerformed": false,
+    "scope": "Initial research-lane inspection before another lane installed and tested the local model."
+  },
+  "localProtocolVerification": {
+    "command": "node scripts/tests/chatgpt-login.mjs",
+    "result": "PASS",
+    "assertions": 124,
+    "scenarios": 28,
+    "fixtureSigning": "real generated RSA2048/RS256 signatures",
+    "realOAuth": false,
+    "realInference": false,
+    "files": [
+      {
+        "path": "local-rag/chatgpt-login.mjs",
+        "sha256": "dd2197cf92064a4ba65c828d5022a6ce12f0d0647c3ad7f44b8d1f16e27feb53"
+      },
+      {
+        "path": "scripts/tests/chatgpt-login.mjs",
+        "sha256": "dccf8f7f061ab76c03e94daf71b2a470180531901901ff6d1fbd3b759ffd1f29"
+      }
+    ]
+  },
+  "repositoryObservations": {
+    "mcpCatalogueTools": 81,
+    "priorPrivateSitesDeploymentDocumented": true,
+    "currentRemoteToolAvailabilityVerified": false,
+    "existingPublicReferenceSQLMigration": true,
+    "hostedSupabaseAppliedByThisLane": false,
+    "initialMcpCatalogueTools": 78,
+    "newMcpTools": [
+      "workbench_rag_search",
+      "workbench_desktop_chart",
+      "workbench_desktop_action_preview"
+    ]
+  },
+  "exclusions": [
+    "No private session or credential files read.",
+    "No user login, token exchange, hosted inference, model installation or Supabase deployment performed by this research lane.",
+    "No raw vendor documentation, fullmodelcards or proprietarysourcebooks redistributed."
+  ],
+  "separateImplementationLaneEvidence": {
+    "actualLocalInference": true,
+    "model": "Qwen3-0.6B Q4_K_M",
+    "modelMocked": false,
+    "modelManifest": "local-rag/model-manifest.json",
+    "smokeCases": 3,
+    "followupCases": 2,
+    "artifacts": [
+      {
+        "path": "/workspace/artifacts/workbench-rag/actual-model-smoke.json",
+        "sha256": "0131ef56d50c9d9a25927bfb3dea276f464d33916ee9b29e2b22d2928191ff63"
+      },
+      {
+        "path": "/workspace/artifacts/workbench-rag/actual-model-followup.json",
+        "sha256": "78c687d9c7d81e8bbaf6c9dc5dcbaa0275b89d430d0c9997b04b2c17e1430211"
+      }
+    ],
+    "limits": [
+      "Public-input smoke tests, not a benchmark.",
+      "Small model produced weak prose and an incorrect chart-action claim; see local companion README.",
+      "No real ChatGPT OAuth or hosted OpenAI inference was performed."
+    ]
+  }
+}

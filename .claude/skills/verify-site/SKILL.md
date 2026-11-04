@@ -47,6 +47,7 @@ node scripts/seed-opgraph-gate.mjs --check # exit 1 = gate.json is not what its 
 node scripts/build-specialist-profiles.mjs --check # specialist registry and skills match named sources
 node scripts/build-mcp-catalogue.mjs --check # connection help matches actual MCP tool definitions
 node scripts/build-sky-reference.mjs --check # local retrieval pack matches authored source records
+node scripts/build-workbench-rag.mjs --check # public RAG corpus binds its explicit source whitelist and hashes
 node scripts/build-tool-coverage.mjs --check # guide execution coverage matches actual callable tools
 node scripts/build-mcp-coverage.mjs --check # browser adapter map matches reviewed backend metadata
 node scripts/generate-horizon-preset.mjs --check # complete horizon binds exact source graph and artifact checksums

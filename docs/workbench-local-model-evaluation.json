@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "kind": "public-local-model-smoke-evaluation",
+  "date": "2026-11-04",
+  "corpusSHA256": "91bd1dc12078430a9ac2737054d6eab2e58f9328a5fc79e135d22d3eaf31a8b6",
+  "model": {
+    "name": "Qwen3-4B-Instruct-2507-Q4_K_M",
+    "repository": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
+    "revision": "a06e946bb6b655725eafa393f4a9745d460374c9",
+    "file": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "url": "https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF/resolve/a06e946bb6b655725eafa393f4a9745d460374c9/Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+    "bytes": 2497281120,
+    "license": "apache-2.0",
+    "baseModel": [
+      "Qwen/Qwen3-4B-Instruct-2507"
+    ],
+    "quantizationProvider": "Unsloth"
+  },
+  "hardware": {
+    "cpuQuota": 4,
+    "memoryLimitGiB": 32,
+    "gpuDetected": false
+  },
+  "comparison": "Both model and inline-citation prompt changed; this is not a controlled model-only benchmark.",
+  "cases": [
+    {
+      "id": "baseline-zodiac",
+      "model": "workbench-qwen3-0.6b-q4",
+      "question": "Explain the difference between tropical and sidereal zodiacs using the provided sources. State any limits of that explanation.",
+      "publicChartContext": null,
+      "httpStatus": 200,
+      "latencyMs": 8433,
+      "answer": "The tropical and sidereal zodiacs differ in their definitions and how they are calculated. The tropical zodiac is based on the apparent movement of the sun and moon, while the sidereal zodiac is based on the Earth's rotation. The tropical zodiac is divided into 12 signs, whereas the sidereal zodiac is divided into 12 signs. The tropical zodiac has a different sign for each element, while the sidereal zodiac has a different sign for each element. The tropical zodiac is based on the Earth's rotation, while the sidereal zodiac is based on the Earth's orbital motion. The two systems differ in their calculation methods and how they are used in astrology.",
+      "citedIDs": [
+        "WRAG-b61e707308147ac0"
+      ],
+      "actions": [],
+      "actionsExecuted": false,
+      "manualReview": {
+        "result": "failed explanatory review",
+        "finding": "Incorrectly attributes sidereal reference to Earth rotation and contradicts its definitions; no inline citations. Original prompt requested a separate citations array, so citation absence also reflects a prompt/UI format mismatch."
+      }
+    },
+    {
+      "id": "house-methods",
+      "model": "workbench-qwen3-4b-q4",
+      "question": "Why can Placidus and Whole Sign place a planet in different houses? Explain the method difference using the provided references.",
+      "publicChartContext": null,
+      "httpStatus": 200,
+      "latencyMs": 26442,
+      "answer": "Placidus and Whole Sign house systems divide the sky using different mathematical methods, leading to different house assignments for planets. The Placidus system calculates house boundaries based on the position of the celestial equator and the ecliptic, using the angle between the horizon and the celestial objects, resulting in house lines that are not evenly spaced. In contrast, the Whole Sign system assigns each house to a zodiac sign, with the first house beginning at the ascendant and each subsequent house corresponding to the next zodiac sign. Because these systems use distinct rules for dividing the sky, a planet may fall into a different house in each system. This difference is particularly noticeable when planets are near the boundaries of house divisions. The variation highlights that house systems are interpretive tools, and their results should be considered in context rather than as absolute truths. [WRAG-26bc2273dd7678e9]",
+      "citedIDs": [
+        "WRAG-26bc2273dd7678e9"
+      ],
+      "actions": [],
+      "actionsExecuted": false,
+      "manualReview": {
+        "result": "mixed; not fully source-supported",
+        "finding": "Whole-sign beginning-at-ascendant wording fails to distinguish zero degrees of the rising sign from the Ascendant degree. Placidus explanation adds an imprecise, unsupported mechanism."
+      }
+    },
+    {
+      "id": "public-chart-context",
+      "model": "workbench-qwen3-4b-q4",
+      "question": "What is the Sun longitude and house in chart A? State only those values from the server-recomputed chart.",
+      "publicChartContext": {
+        "inputs": {
+          "mode": "natal",
+          "zodiac": "tropical",
+          "system": "whole",
+          "orb": 6,
+          "primary": {
+            "name": "Public Greenwich study",
+            "localDate": "2026-11-04",
+            "localTime": "12:00:00",
+            "timeZone": "Etc/UTC",
+            "lat": 51.4779,
+            "lon": 0,
+            "disambiguation": "reject"
+          },
+          "secondary": null
+        },
+        "selection": {
+          "body": "Sun",
+          "frame": "primary"
+        }
+      },
+      "httpStatus": 200,
+      "latencyMs": 28525,
+      "answer": "The Sun's longitude is 222.08° and it is in house 11.",
+      "citedIDs": [
+        "WRAG-5fd0f3e0823678b9"
+      ],
+      "actions": [],
+      "actionsExecuted": false,
+      "manualReview": {
+        "result": "provided chart facts reproduced",
+        "finding": "Supplied Sun longitude rounded to222.08degrees and house11 matched the canonical public chart context. This is a copied-fact check, not an independent ephemeris test."
+      }
+    },
+    {
+      "id": "followup-zodiac",
+      "model": "workbench-qwen3-4b-q4",
+      "question": "Explain the difference between tropical and sidereal zodiacs using the provided sources. State any limits of that explanation.",
+      "publicChartContext": null,
+      "httpStatus": 200,
+      "latencyMs": 27295,
+      "answer": "The tropical and sidereal zodiacs differ in their reference points. The tropical zodiac is based on the position of the vernal equinox and moves with the Earth's seasons, while the sidereal zodiac is based on the actual positions of the stars and is fixed relative to the celestial equator and the constellations. According to the provided source, the Vedic (sidereal) system, such as Jagannath Hora, computes horoscopes using a zodiac that is aligned with the star positions, resulting in planets appearing approximately 24° earlier in the zodiac compared to the tropical system. This shift causes planets to fall into different signs and houses in sidereal astrology than in tropical astrology. The difference is by design, as the two systems are intentionally distinct. However, the provided source does not explain the astronomical or historical origins of the zodiac systems in detail, nor does it address how the difference affects planetary aspects, house divisions, or predictive outcomes. Thus, the explanation is limited to the relative positional shift and system design, without deeper comparative analysis or validation of predictive validity. [WRAG-b61e707308147ac0]",
+      "citedIDs": [
+        "WRAG-b61e707308147ac0"
+      ],
+      "actions": [],
+      "actionsExecuted": false,
+      "manualReview": {
+        "result": "improved but inaccurate explanatory claim remains",
+        "finding": "Correctly distinguishes equinox/star reference and approximate Lahiri shift with an inline source ID, but incorrectly says the sidereal zodiac is fixed relative to the celestial equator; that frame precesses relative to stars."
+      }
+    }
+  ],
+  "rawEvidenceSHA256": [
+    {
+      "name": "workbench-rag/stronger-model-smoke.json",
+      "sha256": "57d0b6780178fc73f0d5f4a57a896f87dd45afe51eb75e7e38302b2ab7d85f37"
+    },
+    {
+      "name": "actual-model-4b/receipt.json",
+      "sha256": "58fed4e82a4a5f45ad362e44b4744b9e68112ef4a28bea462cabb51aec0f8a09"
+    },
+    {
+      "name": "actual-model/receipt.json",
+      "sha256": "a25be07949885ebbc6909d9f2d86c941d7eeae07364090ee4413500436551445"
+    }
+  ],
+  "limits": [
+    "Public/synthetic questions only; no user chart or credentials.",
+    "No claim of source entailment validation, reliable prediction, fine-tuning or state of the art.",
+    "Source excerpts remain the default. Optional generated answers need source checking.",
+    "HTTP success, canonical copied facts and valid source identifiers are distinct from accurate explanation."
+  ]
+}

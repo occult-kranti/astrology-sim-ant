@@ -1,0 +1,1177 @@
+{
+  "schemaVersion": 1,
+  "scope": "Explicit public-repository allowlist; existing reference notes, project-document prose, page explanations, book catalogues and tool metadata.",
+  "categories": {
+    "charts": 702,
+    "calendars": 173,
+    "timing": 52,
+    "vedic": 193,
+    "symbols": 152,
+    "books": 1011,
+    "research": 274,
+    "software": 177,
+    "tools": 134,
+    "sources": 459
+  },
+  "readingDepth": {
+    "full-text": 374,
+    "reference-note": 2726,
+    "metadata": 227
+  },
+  "definition": {
+    "full-text": "Project-document prose only, not full underlying books; code blocks omitted.",
+    "reference-note": "Existing original explanation, selected-source paraphrase or bibliographic/book study note.",
+    "metadata": "Tool/catalogue metadata; not the referenced source text."
+  },
+  "excluded": [
+    "Private chart libraries, prompts, birth data and reading reports",
+    "All files outside this repository",
+    "Downloaded third-party full books and external web pages",
+    "Evidence, telemetry, test artifacts, credentials and node_modules",
+    "Raw application code, vendored libraries and generated numerical datasets",
+    "Full scripture translations: only existing metadata and original study notes are indexed in this corpus"
+  ],
+  "inventories": {
+    "pageCount": 135,
+    "documentationCount": 29,
+    "dataModuleCount": 24,
+    "sourceFileCount": 188,
+    "chunkCount": 3327
+  },
+  "sourceFiles": [
+    {
+      "file": "assets/js/core/data/behenian-stars.js",
+      "bytes": 8146,
+      "sha256": "1c9e818453cde3e7a9f313542deb981e8266e823b5844f2967821212b1c2d9e2",
+      "chunks": 16
+    },
+    {
+      "file": "assets/js/core/data/birth-reading-sources.js",
+      "bytes": 20211,
+      "sha256": "83ecf7079fb9da4469b853bf595ec77729e4057e5613ddcf464370e048e6d519",
+      "chunks": 45
+    },
+    {
+      "file": "assets/js/core/data/buddhist/index.js",
+      "bytes": 4108,
+      "sha256": "ee5f2b9a42bdc0195252106dfd034cf98b2368b66732d28742f4d47582da873e",
+      "chunks": 36
+    },
+    {
+      "file": "assets/js/core/data/chronology.js",
+      "bytes": 27002,
+      "sha256": "872052e0e37f98aca2372de2a6d0d15a4df24c1ece3fbf8482465ce3c872c08b",
+      "chunks": 51
+    },
+    {
+      "file": "assets/js/core/data/desktop-tools.js",
+      "bytes": 52388,
+      "sha256": "577b8f043474e6343f514095ee1270eb701e489ce4877e6d0b3d36745eba77d5",
+      "chunks": 134
+    },
+    {
+      "file": "assets/js/core/data/eschatology-comparisons.js",
+      "bytes": 55907,
+      "sha256": "154b5eb83426f844a9611967569c5ab2598e84ac4924da94b6a5ed0f83407b49",
+      "chunks": 55
+    },
+    {
+      "file": "assets/js/core/data/glossary.js",
+      "bytes": 101307,
+      "sha256": "fa988dc9706606d020681d57d5d773f416354c88e42ec063b9bfb85ce08faa64",
+      "chunks": 321
+    },
+    {
+      "file": "assets/js/core/data/greatworks-east.js",
+      "bytes": 91852,
+      "sha256": "8122c3d72022d9f5c207d2dfcb2a0a178105af121fbd773d40c2e745d3515970",
+      "chunks": 135
+    },
+    {
+      "file": "assets/js/core/data/greatworks.js",
+      "bytes": 90549,
+      "sha256": "52e526ac88772837a9446de41ce08131ae2a9e2d3380c36352efc3d9d72dcd58",
+      "chunks": 186
+    },
+    {
+      "file": "assets/js/core/data/horizon-traditions.js",
+      "bytes": 35134,
+      "sha256": "7f08607e2405001f250c7e61d6bfeba5a7add721dea4a75d036c4269f8774d75",
+      "chunks": 36
+    },
+    {
+      "file": "assets/js/core/data/houses.js",
+      "bytes": 5945,
+      "sha256": "9c7566eda637bd45c96ae427109cf00903415002cd7773edccfcdec377bcb7b8",
+      "chunks": 12
+    },
+    {
+      "file": "assets/js/core/data/jung-astrology.js",
+      "bytes": 29031,
+      "sha256": "3850ae2d286df87b2f177952030a240d894a509f22d033dec6de2dcc93326495",
+      "chunks": 42
+    },
+    {
+      "file": "assets/js/core/data/lunar-mansions.js",
+      "bytes": 12493,
+      "sha256": "cb50300c0c46de0b7091c7fcbe1774d8352808e57168231ca88553ee726c87ff",
+      "chunks": 28
+    },
+    {
+      "file": "assets/js/core/data/mcp-tool-contracts.js",
+      "bytes": 134516,
+      "sha256": "5ee8c3649407dff3736baefa58190b0bf3756f02b447c630013d804993b4621e",
+      "chunks": 93
+    },
+    {
+      "file": "assets/js/core/data/muhurta-data.js",
+      "bytes": 22301,
+      "sha256": "5f7f7f4beb3975a048fea9289bb632c75f14f46c0f4cc0f38d9b6c5c1127ee7c",
+      "chunks": 51
+    },
+    {
+      "file": "assets/js/core/data/newton-chronology-sources.js",
+      "bytes": 25388,
+      "sha256": "5616574d0a8258adc53824ff3b1d0e15d212614ee7cac6d6e77404d740564393",
+      "chunks": 28
+    },
+    {
+      "file": "assets/js/core/data/observatory-standards.js",
+      "bytes": 55418,
+      "sha256": "041e29f948220179a3e4b790242463322f2943bae3bca613a62d063e31e25da7",
+      "chunks": 16
+    },
+    {
+      "file": "assets/js/core/data/planets.js",
+      "bytes": 11894,
+      "sha256": "c48b6b8e3a647e09b955db2d8e05e73051d734687e2add1675aa9a4ad51193af",
+      "chunks": 11
+    },
+    {
+      "file": "assets/js/core/data/practitioners.js",
+      "bytes": 170107,
+      "sha256": "1562b4153f997cc420b714221600d4941e5f16f305250cb2de75004f48a611ec",
+      "chunks": 445
+    },
+    {
+      "file": "assets/js/core/data/signs.js",
+      "bytes": 9667,
+      "sha256": "a86c5e1d25bb9295105211bb150d176bb141ecb0ae6faae4bbe3b34f8800541e",
+      "chunks": 12
+    },
+    {
+      "file": "assets/js/core/data/sky-reading-sources.js",
+      "bytes": 23514,
+      "sha256": "7ed19e1ed50c93da6b26c4e42cae1201c03ed54657f6ab8bda19068fe89bb33e",
+      "chunks": 32
+    },
+    {
+      "file": "assets/js/core/data/study-lenses.js",
+      "bytes": 13247,
+      "sha256": "80922adcb34967250145de0affaeacc2c081e0a8d03981aadb7277b40cbcb41f",
+      "chunks": 10
+    },
+    {
+      "file": "assets/js/core/data/vedic-data.js",
+      "bytes": 21392,
+      "sha256": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b",
+      "chunks": 58
+    },
+    {
+      "file": "assets/js/core/data/yogasutra/meta.js",
+      "bytes": 3114,
+      "sha256": "5ba4041a587648bdb752a14e17198b85e09afd51d5b28372dbd4215d9f45136a",
+      "chunks": 2
+    },
+    {
+      "file": "docs/2026-10-05-domain-methods.md",
+      "bytes": 18654,
+      "sha256": "ae70b0f601f87a0b52b85dc634a623d099dacc0ad421f7982fe3468bfeac58d7",
+      "chunks": 19
+    },
+    {
+      "file": "docs/2026-10-05-study-sources.md",
+      "bytes": 12037,
+      "sha256": "4545aeef32221c776048d8e0f159f09ed9d999f9e4c17d97defa12f1241ee1f6",
+      "chunks": 11
+    },
+    {
+      "file": "docs/2026-10-05-symbol-methods.md",
+      "bytes": 9424,
+      "sha256": "35a21d5725923c8242a59bb78e9e61aa6c3e1daa5017992f1dbf72568a3d62e0",
+      "chunks": 10
+    },
+    {
+      "file": "docs/2026-10-atlas-methods.md",
+      "bytes": 26876,
+      "sha256": "c9fa6bb6c20c9bc521910702fb06137e18a2515b98e2db27a915e6d6f5c8a21d",
+      "chunks": 26
+    },
+    {
+      "file": "docs/2026-10-atlas-search-methods.md",
+      "bytes": 27698,
+      "sha256": "6c7b0fb074c493b38bf8c1d325d5e39a4a20bb9a6fe878c484eb992ff2037556",
+      "chunks": 26
+    },
+    {
+      "file": "docs/2026-10-calculation-methods.md",
+      "bytes": 8283,
+      "sha256": "ffc3829c6313269de58e6e3d5826dc6f1db5869f7ff4740e4adec1aa1907a58d",
+      "chunks": 9
+    },
+    {
+      "file": "docs/2026-10-calendar-alignment.md",
+      "bytes": 16862,
+      "sha256": "d22b5eb125cf82a4b133ef44f701dfa0b63f8d37cf606c0e81ea1cde065fd1fd",
+      "chunks": 17
+    },
+    {
+      "file": "docs/2026-10-calendar-inverse-methods.md",
+      "bytes": 4582,
+      "sha256": "1f139f3c64e17d5e73264eebbc7113333aa54f0d3d43a0c6927c1b3c93814fa0",
+      "chunks": 5
+    },
+    {
+      "file": "docs/2026-10-calendar-methods.md",
+      "bytes": 9569,
+      "sha256": "dcd690dcdb2da64d39ebeaa3e544c0203f51aec5bcfe5cabeed2afe18349dfe0",
+      "chunks": 9
+    },
+    {
+      "file": "docs/2026-10-calendar-observatory-ai.md",
+      "bytes": 9998,
+      "sha256": "7b653e6c1c3e340255848447b18f3948e6b1f964872f5067bb2c409a6c5755c8",
+      "chunks": 10
+    },
+    {
+      "file": "docs/2026-10-calendar-observatory-research.md",
+      "bytes": 35040,
+      "sha256": "3fc10c3a5a07d0a2b42053afaaf31116db34587e62a758bdeefcf6217790cc74",
+      "chunks": 31
+    },
+    {
+      "file": "docs/2026-10-calendar-timeline-engine.md",
+      "bytes": 15004,
+      "sha256": "8080ab399559e333954337752c1b29cd10eb898a33b61b9b4cd063cbaa21ea63",
+      "chunks": 14
+    },
+    {
+      "file": "docs/2026-10-calendar-timeline-methods.md",
+      "bytes": 12521,
+      "sha256": "e927be1330cac59e22b997d2c9a44f0062c79fa613f116be88618eb2f5c2b14b",
+      "chunks": 11
+    },
+    {
+      "file": "docs/2026-10-chart-relationships-methods.md",
+      "bytes": 5115,
+      "sha256": "4aa8805faf384aadd0a8050558e586aa848b62ee1e16d938a89fac00eb8cec22",
+      "chunks": 7
+    },
+    {
+      "file": "docs/2026-10-country-history-methods.md",
+      "bytes": 18747,
+      "sha256": "c7f4e0f702196b88000d92e8469c4642faec2f9317232bbe90ae67c0f355ae41",
+      "chunks": 17
+    },
+    {
+      "file": "docs/2026-10-ensemble-calendar.md",
+      "bytes": 11390,
+      "sha256": "d989d56ec06881e9ed09c9c7e5b6e13bfd690ef214d84dc62723a22a9f66d01a",
+      "chunks": 11
+    },
+    {
+      "file": "docs/2026-10-eschatology-atlas-methods.md",
+      "bytes": 7368,
+      "sha256": "30de029e79963a86f24b83bdf457a64547f0fdbef84397daf26c0a4f223fced3",
+      "chunks": 8
+    },
+    {
+      "file": "docs/2026-10-horizon-methods.md",
+      "bytes": 8234,
+      "sha256": "b2b3b021f32efab4db7ae9504939704ca166bccd8d48b0b78bd46609d7e31846",
+      "chunks": 9
+    },
+    {
+      "file": "docs/2026-10-horizon-ranking.md",
+      "bytes": 11240,
+      "sha256": "5f3ac1479f85bdcc1fd88d7470b961e70f53d33fc34c31610ad10ae26fed199d",
+      "chunks": 10
+    },
+    {
+      "file": "docs/2026-10-newton-chronology-methods.md",
+      "bytes": 5156,
+      "sha256": "202229d498b6209eeb8b6592d76269ce714f9c7c36b5d3ee514e485778146b83",
+      "chunks": 5
+    },
+    {
+      "file": "docs/2026-10-newton-sources.md",
+      "bytes": 13877,
+      "sha256": "566863a9a463aadc9920bd3891b7cac9502747f758c08bfffc73e9e7bee90386",
+      "chunks": 13
+    },
+    {
+      "file": "docs/2026-10-sky-ai-rag.md",
+      "bytes": 12222,
+      "sha256": "1980ba8789f321acbf8070abd20a5b44482faad7881537abe37a15313c4a1232",
+      "chunks": 12
+    },
+    {
+      "file": "docs/2026-10-sky-sources.md",
+      "bytes": 14611,
+      "sha256": "0935b5d3669e96e897fa5bdaba9e805877799696de378f94f890b1a56572560a",
+      "chunks": 15
+    },
+    {
+      "file": "docs/2026-10-studio-sources-standards.md",
+      "bytes": 18732,
+      "sha256": "800cd60c1d6223c9b816399ac9c1a5931e32ece2d9ef0fdec94f039e663d7101",
+      "chunks": 17
+    },
+    {
+      "file": "docs/2026-10-world-events-sources.md",
+      "bytes": 15542,
+      "sha256": "b950f48eb3676716958274f2a075336a1b7b1e5495f9ed8fb812879d41bcd50e",
+      "chunks": 14
+    },
+    {
+      "file": "docs/2026-11-chart-console-offline.md",
+      "bytes": 5059,
+      "sha256": "4c750840d56bf85a6b40c713c8233f550bb401bb41dc49b0710d6b6977f99e7b",
+      "chunks": 5
+    },
+    {
+      "file": "docs/2026-11-desktop-workbench.md",
+      "bytes": 6072,
+      "sha256": "5d027cfa52760fe36a8ddddcefd709d2a0b002aca3bbd039964a90144a00eaa5",
+      "chunks": 7
+    },
+    {
+      "file": "docs/2026-11-orbital-space-methods.md",
+      "bytes": 13401,
+      "sha256": "bb41a12cc5f207047737c1d1d03ddd74414b802138bc20b5b2ebbba66d6a227f",
+      "chunks": 14
+    },
+    {
+      "file": "index.html",
+      "bytes": 26534,
+      "sha256": "986d58f7e5a8c7abb95f467f82ca0e7e801a94b301b677a6a8061f1c3d82afc7",
+      "chunks": 36
+    },
+    {
+      "file": "mcp/README.md",
+      "bytes": 11684,
+      "sha256": "6026594efe9f38e1f014e13f2cc2db3dfaadaf736426ef2e4767e103e7872013",
+      "chunks": 12
+    },
+    {
+      "file": "pages/abhichara/atharvan.html",
+      "bytes": 11976,
+      "sha256": "e06f236465eefdeb2b1da3e583f197b68237499f707f6ce01e374ec37a176dac",
+      "chunks": 8
+    },
+    {
+      "file": "pages/abhichara/index.html",
+      "bytes": 11007,
+      "sha256": "ca3bf7246d0dd40f19e140e562043d01af6e79f03cd311d13028c2ebad1e724c",
+      "chunks": 8
+    },
+    {
+      "file": "pages/abhichara/six-acts.html",
+      "bytes": 29537,
+      "sha256": "53c8a43db2fff611d3f669283e894557336b748daf427aad22f5202bea0d79cb",
+      "chunks": 23
+    },
+    {
+      "file": "pages/abhichara/sources.html",
+      "bytes": 10380,
+      "sha256": "7d43f2cc44656d277971edb6579d0b85835dad5e637164ee1be1a9b45dfaa396",
+      "chunks": 7
+    },
+    {
+      "file": "pages/about/index.html",
+      "bytes": 35051,
+      "sha256": "be93bc0b60a916326b156f225f14e2395901fb8ef3ffa1620b44ef31ebd8f1bb",
+      "chunks": 27
+    },
+    {
+      "file": "pages/autopilot.html",
+      "bytes": 8262,
+      "sha256": "8782f8c10352d9414e34da1d9cae605a4c21c0b2c3a975ae6b2549a30fb39e53",
+      "chunks": 5
+    },
+    {
+      "file": "pages/basics.html",
+      "bytes": 20690,
+      "sha256": "8a8e095eac2313f1780d61bbc96155d15101d40d06ca92c849af13b0729bee61",
+      "chunks": 13
+    },
+    {
+      "file": "pages/birth-reading.html",
+      "bytes": 11318,
+      "sha256": "2eabfc40dc6b2b8e61d98155fc408470db3a9d6d8fa9d0eb7521001deaddb161",
+      "chunks": 2
+    },
+    {
+      "file": "pages/book1/degrees.html",
+      "bytes": 5718,
+      "sha256": "bc7b02daa9e436f520714a31a6d6fbeae49e7ad6b8bbead4b608e9106e90ee6a",
+      "chunks": 4
+    },
+    {
+      "file": "pages/book1/dignities.html",
+      "bytes": 6209,
+      "sha256": "6c95e5092172594debb1d0994303ebac0f6fa1be73d8e26393fd20ebe91e7b25",
+      "chunks": 3
+    },
+    {
+      "file": "pages/book1/index.html",
+      "bytes": 10125,
+      "sha256": "4ffb107300e004aa9a8d1f395dffaf0f5c26d0ea8f713218cf9eaf934bad03c7",
+      "chunks": 13
+    },
+    {
+      "file": "pages/book1/master.html",
+      "bytes": 6720,
+      "sha256": "5df4dd877819ca7f8000f412b4ff8011dfdc4e01b60d2916f40ece6a5de255b6",
+      "chunks": 4
+    },
+    {
+      "file": "pages/book1/planetary-hours.html",
+      "bytes": 3856,
+      "sha256": "be89b0064fe561bd2709646fffcaa4c3e73215f693422bf503151f908ec3ff3f",
+      "chunks": 2
+    },
+    {
+      "file": "pages/book1/reference.html",
+      "bytes": 2721,
+      "sha256": "99e24262742c2700dad20d8410adf35373e46502dfc2958530277485bd985933",
+      "chunks": 4
+    },
+    {
+      "file": "pages/book2/considerations.html",
+      "bytes": 4634,
+      "sha256": "d913b308c63c4c626bf24ad1b1fc33eaf081fccc405e1c4adf381f24213b5c5e",
+      "chunks": 10
+    },
+    {
+      "file": "pages/book2/examples.html",
+      "bytes": 3506,
+      "sha256": "6efd64ead1c9c3f7a972f502f17077da2602557595f8d7c64f29d45faca3f7ef",
+      "chunks": 2
+    },
+    {
+      "file": "pages/book2/horary.html",
+      "bytes": 6225,
+      "sha256": "1b4c1f4bd059a24bd39a757744db0a91dc5454270769e8bb4d30a748a3cf9845",
+      "chunks": 6
+    },
+    {
+      "file": "pages/book2/houses.html",
+      "bytes": 4297,
+      "sha256": "521a4986f2be5b8ca3bee56761494eb2bcab7a46b2d30cb6ca0289ff4474b7e2",
+      "chunks": 4
+    },
+    {
+      "file": "pages/book2/index.html",
+      "bytes": 7566,
+      "sha256": "dafa309f3d2d9310fe48dc049d5d91ecf5cec242863020af8ec2b9fd027dc448",
+      "chunks": 11
+    },
+    {
+      "file": "pages/book3/index.html",
+      "bytes": 6286,
+      "sha256": "290af99b3677f64b63807318dc7d2affb82f54aee8a881e1fcb93b6327cfd743",
+      "chunks": 10
+    },
+    {
+      "file": "pages/book3/master.html",
+      "bytes": 9352,
+      "sha256": "ac8a05ff36583f1e3fc92fc8bf0f76bd685cb41b885cfd89df3e54825790dc46",
+      "chunks": 9
+    },
+    {
+      "file": "pages/book3/nativity.html",
+      "bytes": 4740,
+      "sha256": "a70a115942b11d077dcdb0f3f9c968c2ead9c930188dc1accebd93737b79fe87",
+      "chunks": 2
+    },
+    {
+      "file": "pages/buddhist/dhammapada.html",
+      "bytes": 6086,
+      "sha256": "a0a3d182e755cc84119847554ae8992da3eaac9a6180243fbbede178d7b98ccf",
+      "chunks": 3
+    },
+    {
+      "file": "pages/buddhist/heart.html",
+      "bytes": 4192,
+      "sha256": "51752c12c1bc837faf3e7888c6daa971cfe356c217a88bb7356361b338576dc4",
+      "chunks": 2
+    },
+    {
+      "file": "pages/buddhist/index.html",
+      "bytes": 11096,
+      "sha256": "87cb57a6d355305603dafdc99563232f80a2e81ce796c56821cbc9763966f0f4",
+      "chunks": 13
+    },
+    {
+      "file": "pages/buddhist/metta.html",
+      "bytes": 3944,
+      "sha256": "0b49997fe7d8fdcf2838c34611380c1a81a06d9d35dc0197b41492e15354a2f1",
+      "chunks": 2
+    },
+    {
+      "file": "pages/buddhist/mn118.html",
+      "bytes": 5013,
+      "sha256": "11171a167a0f1370e1eff7e893619527815d2c49d86b1340e8c1056f0d1d2e2e",
+      "chunks": 3
+    },
+    {
+      "file": "pages/buddhist/sources.html",
+      "bytes": 12292,
+      "sha256": "7407b7516d6c99da7278e061bcba3f9820d606551172261d7cebf39ff886ed9c",
+      "chunks": 10
+    },
+    {
+      "file": "pages/calendar-atlas.html",
+      "bytes": 12247,
+      "sha256": "521fd94a407c8490356925650ffd7500412f3e5ca2cf0e02078a1e263038b012",
+      "chunks": 4
+    },
+    {
+      "file": "pages/calendar-compare.html",
+      "bytes": 11052,
+      "sha256": "2946ff073f5fbadaf84691b75dd8c28c3fb46ceb552e32d05d60e589fb6193a4",
+      "chunks": 7
+    },
+    {
+      "file": "pages/calendar-search.html",
+      "bytes": 11934,
+      "sha256": "aeb1ffd69dcb57c40fd002d7ff02b23b007df915edc8bf1da5a19d29b5ae655b",
+      "chunks": 4
+    },
+    {
+      "file": "pages/calendar-timeline.html",
+      "bytes": 14952,
+      "sha256": "21d5b255c82fe4d97e4c7620221f9c31a1c4ab7b6a559df21f52d272503bc91f",
+      "chunks": 8
+    },
+    {
+      "file": "pages/calendars.html",
+      "bytes": 11861,
+      "sha256": "17b372afb18f687af1d6d587433781fddac4761d10148b2a4d118eead2bb6123",
+      "chunks": 7
+    },
+    {
+      "file": "pages/calendars/chinese.html",
+      "bytes": 12335,
+      "sha256": "c6d3ce40b0bd516c1acaa942d2e486c278f39b5c236155d672b8c358cce61b4d",
+      "chunks": 4
+    },
+    {
+      "file": "pages/calendars/egyptian.html",
+      "bytes": 12274,
+      "sha256": "ebc1587daf19f66945bef5274f9e53acb0e5fd98ff8d3b032451030467dab09e",
+      "chunks": 4
+    },
+    {
+      "file": "pages/calendars/hebrew.html",
+      "bytes": 12320,
+      "sha256": "b3771a52ef39e802005bb509673f675ce8de13426ac3a5c7ffb7070cbe3ddd96",
+      "chunks": 4
+    },
+    {
+      "file": "pages/calendars/vedic.html",
+      "bytes": 12314,
+      "sha256": "1f63f9d081ba5cca2114bd85f661162930ad1638f72f28cdd7f63b01f4b84690",
+      "chunks": 4
+    },
+    {
+      "file": "pages/calendars/western.html",
+      "bytes": 12303,
+      "sha256": "d946ab7fbb2804a59051762ea6b08ec5ce295ce30e0c841d6de8c03355b48d0d",
+      "chunks": 4
+    },
+    {
+      "file": "pages/chronology/alchemy.html",
+      "bytes": 11722,
+      "sha256": "4fd16f7c43b885a3191354431184bc79f52e4e96c8ad09cd7e1afda56c33bcad",
+      "chunks": 17
+    },
+    {
+      "file": "pages/chronology/field-guide.html",
+      "bytes": 13332,
+      "sha256": "802ea4b542be2e452c202065e1186ea98cc143e81794ae931a70f5767313d91d",
+      "chunks": 11
+    },
+    {
+      "file": "pages/chronology/hermetica.html",
+      "bytes": 14782,
+      "sha256": "f5066a1c6b2e9ba33f3b87a85ec514b130910a7a9ea2eb1dc827580202aca593",
+      "chunks": 13
+    },
+    {
+      "file": "pages/chronology/index.html",
+      "bytes": 10584,
+      "sha256": "4f90d0875be0f6025e0a5d3dd702047d432a52d2fceac94cf2164d59bed1f964",
+      "chunks": 13
+    },
+    {
+      "file": "pages/chronology/library.html",
+      "bytes": 10432,
+      "sha256": "da4dd3f8765573c41c4b3e2c9037ad90fffd86f2055316e7d584b5477dcbc54b",
+      "chunks": 9
+    },
+    {
+      "file": "pages/chronology/rituals.html",
+      "bytes": 8587,
+      "sha256": "ea9cfe0fa757bd00339fbcf44b67d0bc886e0911649551d7677e038c157a59b1",
+      "chunks": 8
+    },
+    {
+      "file": "pages/compare.html",
+      "bytes": 9012,
+      "sha256": "08407b721ef5b4b97a35e70ddbd25b9b3644e2129380e51d2ba80d8475c2a231",
+      "chunks": 7
+    },
+    {
+      "file": "pages/confluence.html",
+      "bytes": 13493,
+      "sha256": "c4ce0f5795d337ea46ce87d649c2a23f9a986d05e92d14bad8dbe9dd0a4ebb30",
+      "chunks": 8
+    },
+    {
+      "file": "pages/contents.html",
+      "bytes": 21809,
+      "sha256": "07d0628600e17bda270004b571b9c1b306b371483cc6514261d465987a28e32e",
+      "chunks": 27
+    },
+    {
+      "file": "pages/country-calendars.html",
+      "bytes": 18904,
+      "sha256": "2d75e99cd1aa2560808715df5e19c78fade5f7686482aa0e28e3814e80edc1a7",
+      "chunks": 15
+    },
+    {
+      "file": "pages/cycles.html",
+      "bytes": 12852,
+      "sha256": "23ba13863be26f4b2e3f43bcbdcf68a1fe95fe442063626b11e7528b3b582a96",
+      "chunks": 9
+    },
+    {
+      "file": "pages/desktop.html",
+      "bytes": 14099,
+      "sha256": "953b28fbff3d9078d073b53b31a7847176be460a066b25962992c56d015f7983",
+      "chunks": 4
+    },
+    {
+      "file": "pages/eschatology-atlas.html",
+      "bytes": 15087,
+      "sha256": "3d9c5a3cb47262fbc787b56bc24135ee800c01c76a2b1b86ff6b36f396d5b266",
+      "chunks": 7
+    },
+    {
+      "file": "pages/event-horizon.html",
+      "bytes": 14158,
+      "sha256": "e70556bd135d7ba6539d41a2de8c246a1f69ab872a06741f419b1358944870da",
+      "chunks": 5
+    },
+    {
+      "file": "pages/experiment.html",
+      "bytes": 4488,
+      "sha256": "cf8fbba1696661311c53e277cbf978b1a2cd509d6317338a8ca1ab41c3ba65f9",
+      "chunks": 2
+    },
+    {
+      "file": "pages/geomancy.html",
+      "bytes": 11190,
+      "sha256": "459543c34ff074df67e02b7f6dbd12c0ece65ec0ca3d7d067230fd3819bc61ff",
+      "chunks": 5
+    },
+    {
+      "file": "pages/glossary.html",
+      "bytes": 4691,
+      "sha256": "1eb3a23bb03bfbae75fd7f0d114bc9c7921537692508498647dd7a41d2b6915a",
+      "chunks": 1
+    },
+    {
+      "file": "pages/greatworks/agrippa.html",
+      "bytes": 2739,
+      "sha256": "a122695fcc872efac2ab5aad7091694a11d1f406e82b05f9fb6c5864abb7118d",
+      "chunks": 2
+    },
+    {
+      "file": "pages/greatworks/crowley.html",
+      "bytes": 2671,
+      "sha256": "191c22cb4426f952486b0223dbe8cc2f71bfb74e78e3a32aaac8ee6630f3067e",
+      "chunks": 2
+    },
+    {
+      "file": "pages/greatworks/dee.html",
+      "bytes": 2717,
+      "sha256": "6b1820fd38869fb07685f02c264f0c04788235164c8e3fa466a04f3f8c612b8e",
+      "chunks": 2
+    },
+    {
+      "file": "pages/greatworks/east.html",
+      "bytes": 3520,
+      "sha256": "95953928e8e24bbea4b19c21f0953fa16cf2e65165743acc14d7142c71fe8950",
+      "chunks": 2
+    },
+    {
+      "file": "pages/greatworks/hall.html",
+      "bytes": 2581,
+      "sha256": "a80fc79ec4c642b02e874802338aed2114c085e19b6720e270f20f83a8c9be10",
+      "chunks": 2
+    },
+    {
+      "file": "pages/greatworks/hermetica.html",
+      "bytes": 2645,
+      "sha256": "d511978b2de64284ef8fbf2e2ad108477b49564e82b2ec1e09ec5fa783d5d5a2",
+      "chunks": 2
+    },
+    {
+      "file": "pages/greatworks/index.html",
+      "bytes": 4309,
+      "sha256": "2265dfa274fb796a25bc6555c3486e6e5bd68afe681f1844e2f8b3bf3a48cac0",
+      "chunks": 3
+    },
+    {
+      "file": "pages/greatworks/kin.html",
+      "bytes": 2809,
+      "sha256": "47278a77e2b2e3d8d208d65fee74d7453f6dd4167e1976c05c96c96aee2196f4",
+      "chunks": 2
+    },
+    {
+      "file": "pages/greatworks/varahamihira.html",
+      "bytes": 3849,
+      "sha256": "0212cda4ff560d6b30a64be14fa3b5636440b1a501b97ffa6f34b7a75e1c5b80",
+      "chunks": 3
+    },
+    {
+      "file": "pages/greatworks/vivekananda.html",
+      "bytes": 4458,
+      "sha256": "84e3b39c98cf4fa60ff96258552662b986d0beb5c9eb7ffb83c69df5450d869d",
+      "chunks": 3
+    },
+    {
+      "file": "pages/greatworks/yogananda.html",
+      "bytes": 5595,
+      "sha256": "921d93cc9f1f469b2a2c18286d4901f527df2c44332a6dddb2ca948a367d7603",
+      "chunks": 3
+    },
+    {
+      "file": "pages/handcalc.html",
+      "bytes": 16842,
+      "sha256": "4229f4f3df2c17b9d68ef94f4358bb5747599d50583ad6179544e680069a0471",
+      "chunks": 10
+    },
+    {
+      "file": "pages/how-it-works.html",
+      "bytes": 88375,
+      "sha256": "4dbe1b1c09189541bfa1af52a97b0d6a8ea0d6c8baec7c39d52f59f97b24e748",
+      "chunks": 68
+    },
+    {
+      "file": "pages/iching.html",
+      "bytes": 9187,
+      "sha256": "b581af37587485b7496b4d16241d75a9956f8d63ed6dc61a8f92f6708e2cd85c",
+      "chunks": 4
+    },
+    {
+      "file": "pages/incense.html",
+      "bytes": 6044,
+      "sha256": "d92f34b616bed1ad7802f5145307a4770a8dc98d5d8074d4c2f00a6f912d06ae",
+      "chunks": 8
+    },
+    {
+      "file": "pages/interpret.html",
+      "bytes": 11102,
+      "sha256": "01e364ead934608d54a616791e56c684c225c58be1e0bfe0fda8e7a874ed2db3",
+      "chunks": 12
+    },
+    {
+      "file": "pages/jung/experiment.html",
+      "bytes": 5388,
+      "sha256": "999bab70c0b9e30f9d6b28ee8e4edda3a7630c74fadfdabf28282836d61f7bfa",
+      "chunks": 3
+    },
+    {
+      "file": "pages/jung/index.html",
+      "bytes": 6877,
+      "sha256": "db45e7167a3c4bee4c96715d6ee9f5c4a7f012285a414aeccb3973ff1b6bdddd",
+      "chunks": 8
+    },
+    {
+      "file": "pages/jung/sources.html",
+      "bytes": 9637,
+      "sha256": "9dc9ad0da3125bf3419243809074847208922c367aa3a4f505b2573599904c5d",
+      "chunks": 7
+    },
+    {
+      "file": "pages/jung/theory.html",
+      "bytes": 12703,
+      "sha256": "507b95d5b236b2df512337046fef94cb1aa957e8f2ce7ec9e141ce8690e5ccf5",
+      "chunks": 10
+    },
+    {
+      "file": "pages/jung/timeline.html",
+      "bytes": 3773,
+      "sha256": "4e2443d1a14f0c57808fc07a547c77a589642ccb593207ff4e6b45088dddd944",
+      "chunks": 2
+    },
+    {
+      "file": "pages/jung/tool.html",
+      "bytes": 7911,
+      "sha256": "4f42718a57bdbc524aa1df4d20d41eb5fac86970acdf9fcf556bd8cb5e36e869",
+      "chunks": 5
+    },
+    {
+      "file": "pages/kabbalah.html",
+      "bytes": 10860,
+      "sha256": "408878a816764845cd4c8d852e2d69270fffbd09a8f86fed83fae172cb4e498a",
+      "chunks": 5
+    },
+    {
+      "file": "pages/kuta.html",
+      "bytes": 12270,
+      "sha256": "c8e0f013f5cf3982e36d230baa1b1dc92f3e63403cb6516467c84028efb1f9e3",
+      "chunks": 9
+    },
+    {
+      "file": "pages/learn.html",
+      "bytes": 76300,
+      "sha256": "55f765f858ed5eb2f30996ced08feae84d801d84c678519df7fd6ad184d15b7d",
+      "chunks": 42
+    },
+    {
+      "file": "pages/library/esoteric.html",
+      "bytes": 4071,
+      "sha256": "ebd8a711a6703a9fee93572d630e9fdc40c43bd25a17f893dc6bd343d893b857",
+      "chunks": 3
+    },
+    {
+      "file": "pages/library/index.html",
+      "bytes": 8666,
+      "sha256": "e5269950ba41efd176bfe40959c1390776a40b30bfac302241ef8f7d3429bb83",
+      "chunks": 7
+    },
+    {
+      "file": "pages/library/indian.html",
+      "bytes": 4158,
+      "sha256": "c227aab35647a3d5cefda727edd3ea72e3623d35e7aa8006db08563f4784f5c5",
+      "chunks": 3
+    },
+    {
+      "file": "pages/library/western.html",
+      "bytes": 3895,
+      "sha256": "201e29780303646c7f47da4a7c3e3287d24568925d7cce3616752697127d4c67",
+      "chunks": 3
+    },
+    {
+      "file": "pages/master.html",
+      "bytes": 2338,
+      "sha256": "6f27a82108dcb370defef4347b01d16e86f17547c78150a68c7530ad16047ebb",
+      "chunks": 1
+    },
+    {
+      "file": "pages/mcp.html",
+      "bytes": 7356,
+      "sha256": "f34d91ef9c9d054f61f92add93364a6ba6d5c7e93bfbcdf33df35f2c9639d539",
+      "chunks": 6
+    },
+    {
+      "file": "pages/moments.html",
+      "bytes": 11517,
+      "sha256": "84174326ee0e45cfb1d4a04737c328b9f0ba1212b87c5f88f5faad34d9941f33",
+      "chunks": 6
+    },
+    {
+      "file": "pages/muhurta.html",
+      "bytes": 11206,
+      "sha256": "bfbe5bf18e1252ef07c4e223b8a1e52b9140a33e4a3b6177055ed6c59f784e85",
+      "chunks": 8
+    },
+    {
+      "file": "pages/newton-chronology.html",
+      "bytes": 15076,
+      "sha256": "d297f3b63fc10ab2ba89628b192cdadbe06f2d2b5487b6bdc25548b4cb1abc93",
+      "chunks": 5
+    },
+    {
+      "file": "pages/now.html",
+      "bytes": 4255,
+      "sha256": "2827aca98208f9ff79f03fa15250a34fe6aa61fa822f1dea7434ba9616aea557",
+      "chunks": 1
+    },
+    {
+      "file": "pages/opgraph.html",
+      "bytes": 17837,
+      "sha256": "02b7cb3495a7ef1a568582157d0639601b5d48f5c782e3dba67f904706af7b99",
+      "chunks": 14
+    },
+    {
+      "file": "pages/picatrix/correspondences.html",
+      "bytes": 7997,
+      "sha256": "a57cb89a720fac21c7aea3e2a597d0be130347c1129b2e055f311ffd40f60246",
+      "chunks": 12
+    },
+    {
+      "file": "pages/picatrix/election.html",
+      "bytes": 6309,
+      "sha256": "c1e10654f0f9912c413624d63877f57a226a9302a88c2354a132906d856b3e6e",
+      "chunks": 3
+    },
+    {
+      "file": "pages/picatrix/faces.html",
+      "bytes": 5931,
+      "sha256": "322a58be94cda1bdb943f180e1248bba67da4b0e87cffcaefe65237229ba58b5",
+      "chunks": 3
+    },
+    {
+      "file": "pages/picatrix/index.html",
+      "bytes": 11365,
+      "sha256": "4daed64395020b3915b9643baf6893b9803881f129216db68db54ca92a3d8f78",
+      "chunks": 14
+    },
+    {
+      "file": "pages/picatrix/kameas.html",
+      "bytes": 7127,
+      "sha256": "f962da73073d404ef07779b1dd552afbf4708d2e0c6c51019dc29c30a2037ce4",
+      "chunks": 5
+    },
+    {
+      "file": "pages/picatrix/mansions.html",
+      "bytes": 5985,
+      "sha256": "ada89b6951579010f1d56ab09384bcb98044a150c6ce37722ce46815a51323b0",
+      "chunks": 4
+    },
+    {
+      "file": "pages/picatrix/prayers.html",
+      "bytes": 2639,
+      "sha256": "e5afe567bdf42d22f454faeaf735e1da16093f279a098867556952b992ae6d3b",
+      "chunks": 2
+    },
+    {
+      "file": "pages/picatrix/stars.html",
+      "bytes": 8464,
+      "sha256": "fdefbb16aea8855efb32cdf38b03a00fa216e60d299d1d3239f26dec87c05400",
+      "chunks": 4
+    },
+    {
+      "file": "pages/picatrix/talisman.html",
+      "bytes": 6128,
+      "sha256": "ea5460402f05aca85f1a40c98dd4e5b7eb3403fa07c8c3eda44a66fbf152b338",
+      "chunks": 2
+    },
+    {
+      "file": "pages/practices/index.html",
+      "bytes": 8263,
+      "sha256": "3325c5fb8dde1c84c84a52003993fe290c4ff42badcddc43c30fb9186dc44fb2",
+      "chunks": 7
+    },
+    {
+      "file": "pages/practices/mudras.html",
+      "bytes": 5930,
+      "sha256": "d314adbddd610d28b85350cb044b038ccd787a4db45f14f3fc51dfb2d93cd517",
+      "chunks": 3
+    },
+    {
+      "file": "pages/prasna.html",
+      "bytes": 13173,
+      "sha256": "67e3a811dc6a47b9dbd546388cc65ec5ffe52e45e6352a400db80cdd999119e4",
+      "chunks": 8
+    },
+    {
+      "file": "pages/rasa.html",
+      "bytes": 18006,
+      "sha256": "8e07ec2a8f2e68225ce6d94f38ba693fa1eeec60c0a478e95af7648c944faa4d",
+      "chunks": 13
+    },
+    {
+      "file": "pages/read.html",
+      "bytes": 7788,
+      "sha256": "f0dbef5227cc91aaf80ad721bcd8e4b8feb359a9ec621d352dedf3befdd5310c",
+      "chunks": 5
+    },
+    {
+      "file": "pages/roadmap.html",
+      "bytes": 16657,
+      "sha256": "b90dd7b09348a5ec6180eb7c911fdffaad3bcad0f3ff0a7be61f091df796b518",
+      "chunks": 26
+    },
+    {
+      "file": "pages/runes.html",
+      "bytes": 10219,
+      "sha256": "c7341225576d422744539249ba15de93728c70876bb48e7781051ef5cb3cab26",
+      "chunks": 4
+    },
+    {
+      "file": "pages/sigil-studio.html",
+      "bytes": 15285,
+      "sha256": "4850b808107f068389c794c7de426ea432b2fd39dfa4b5aeb7aa59320c54e24a",
+      "chunks": 6
+    },
+    {
+      "file": "pages/standards.html",
+      "bytes": 8641,
+      "sha256": "b4c9a0ccfddce0188ccfc29fb73a4bfa44598a524cac06789193e9e8c4a366ec",
+      "chunks": 5
+    },
+    {
+      "file": "pages/structure.html",
+      "bytes": 3070,
+      "sha256": "db63338e717cd064adc52acddf933734507c53e56e23090fba475bf719406545",
+      "chunks": 3
+    },
+    {
+      "file": "pages/studio.html",
+      "bytes": 17422,
+      "sha256": "9b5dfcfaa37c1ad3993065def9cef9eb78030c200937c22bafcfac62ffae714b",
+      "chunks": 10
+    },
+    {
+      "file": "pages/synastry.html",
+      "bytes": 11426,
+      "sha256": "d66952b0b33d419a6a48826709cdde07199c9d051a2149136d2d22a03f4ecd65",
+      "chunks": 8
+    },
+    {
+      "file": "pages/tajika.html",
+      "bytes": 14966,
+      "sha256": "7ee5d25e3549773f7f62876fdee2742e490522018675a44a36fcb5fe6578e9d8",
+      "chunks": 15
+    },
+    {
+      "file": "pages/tarot.html",
+      "bytes": 8708,
+      "sha256": "f56525f266562e0e5542c1bd64d7378f2154e1cb0eef3e3a3c0a995df2898048",
+      "chunks": 4
+    },
+    {
+      "file": "pages/thelemic-times.html",
+      "bytes": 9260,
+      "sha256": "c7c600aeaedcb540306aeb2ef6450d976cfcb3cb6ba9dc8de67b2124762788a7",
+      "chunks": 5
+    },
+    {
+      "file": "pages/timelords.html",
+      "bytes": 12322,
+      "sha256": "2cdba48550287b8c999621fe1fffe15bb3ad7c4f15eb155024a460607f61a045",
+      "chunks": 10
+    },
+    {
+      "file": "pages/tithi-pravesha.html",
+      "bytes": 11696,
+      "sha256": "b1d8e9ab5df622259251fcaf1c28b280c0f8fade5a949a857607d1b565f28747",
+      "chunks": 11
+    },
+    {
+      "file": "pages/tools.html",
+      "bytes": 53704,
+      "sha256": "b77c4364c627a9dbe6939a7b639d28571c16adbf2bc3761bd81878e9d3cc6098",
+      "chunks": 63
+    },
+    {
+      "file": "pages/trajectory.html",
+      "bytes": 7758,
+      "sha256": "b2a492ba52c56354791cbff42ff48e6341c32fc3fc04b01deb529d63d5354645",
+      "chunks": 3
+    },
+    {
+      "file": "pages/transits.html",
+      "bytes": 12012,
+      "sha256": "d3d5f5ac8169721aa84f1c0d83a447b3e5098b15f1619bd643c07f259c1f6afc",
+      "chunks": 7
+    },
+    {
+      "file": "pages/vedic/course.html",
+      "bytes": 32224,
+      "sha256": "7e27c57b2ab949f0ba564482ce204ab03e178a819317808d1c4244518cdba1f3",
+      "chunks": 19
+    },
+    {
+      "file": "pages/vedic/delineation.html",
+      "bytes": 7635,
+      "sha256": "08f8778f9c5aba996134d7037848f090f7b2e4f2f7c6939ce937993ce3f4b103",
+      "chunks": 3
+    },
+    {
+      "file": "pages/vedic/index.html",
+      "bytes": 13832,
+      "sha256": "7b146579fef932349d6a11b2e8c1d3a978ab3c735d192846796fa7386da9e1f7",
+      "chunks": 8
+    },
+    {
+      "file": "pages/vedic/yogas.html",
+      "bytes": 7915,
+      "sha256": "42f4d1232ec224edcaa7f68a42af43393caf44f7736c4f04ddb16c320ee2a97c",
+      "chunks": 3
+    },
+    {
+      "file": "pages/workbench.html",
+      "bytes": 15354,
+      "sha256": "9f7d826e80047247c102e6fac7667e53bddef96a03ff58381951567d862cefa4",
+      "chunks": 5
+    },
+    {
+      "file": "pages/workflow.html",
+      "bytes": 18722,
+      "sha256": "da71b3c042f34522b56a24abe3126dacb17e42e5959c001c2a7b09b5dfdaa6e9",
+      "chunks": 12
+    },
+    {
+      "file": "pages/world-events.html",
+      "bytes": 10820,
+      "sha256": "527e51ceef98d890fa346fc2b6f8548f6e7637a13ffc53dfd1d83f1cc440a16f",
+      "chunks": 5
+    },
+    {
+      "file": "pages/yoga/index.html",
+      "bytes": 9983,
+      "sha256": "09f1856ee16dbe97a4521aa1196bababff6c0f4f0136e712d848e17419b6a7d9",
+      "chunks": 11
+    },
+    {
+      "file": "pages/yoga/pada1.html",
+      "bytes": 3613,
+      "sha256": "9e1ef4232c350c34bad306ca4888806dfc01c44286d8974044e115fc4eec5b8c",
+      "chunks": 2
+    },
+    {
+      "file": "pages/yoga/pada2.html",
+      "bytes": 3784,
+      "sha256": "e48b1827ab44de3961190aa7e678a121e9d42bcc1a5b9f31200f7c05daec5333",
+      "chunks": 2
+    },
+    {
+      "file": "pages/yoga/pada3.html",
+      "bytes": 4852,
+      "sha256": "8720e3f2123cc96fe70a55bda52de84c512a7e4154150587c5cc0116a725600f",
+      "chunks": 3
+    },
+    {
+      "file": "pages/yoga/pada4.html",
+      "bytes": 4243,
+      "sha256": "da8f64f02062e44dbce8b0f2c0d0d0f8a40362f44e8f4d914d51ba32289a6553",
+      "chunks": 2
+    },
+    {
+      "file": "pages/yoga/sources.html",
+      "bytes": 9800,
+      "sha256": "aa110bb5372de5808a7a248487bf3c213028fcde222e7a5e50d1ec55262f11e3",
+      "chunks": 7
+    },
+    {
+      "file": "pages/yoga/theory.html",
+      "bytes": 23015,
+      "sha256": "f663a61ed8d98d72fddefc0afb068c3757f54bee62ad6cd331dc33b6198d8b30",
+      "chunks": 18
+    }
+  ],
+  "limitations": [
+    "Indexing a repository note does not newly verify its source or license every referenced edition.",
+    "Bibliographic coverage is not proof that a whole book was read.",
+    "The browser corpus is lexical reference retrieval; no embeddings or fine-tuning are claimed.",
+    "The public corpus never supplies personal chart facts. Chart readings require separately computed, explicitly supplied chart context."
+  ]
+}

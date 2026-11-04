@@ -7,12 +7,27 @@ import { chartCautions } from '../assets/js/core/cautions.js';
 import { planetaryHour } from '../assets/js/core/planetary-hours.js';
 import { bodyPartOf } from '../assets/js/core/data/degree-tables.js';
 import { buildDesktopStudy } from '../assets/js/core/desktop-workbench.js';
+import { buildWorkbenchEvidence, answerWorkbenchLocally, validateWorkbenchCitations } from '../assets/js/core/workbench-rag.js';
+import { parseWorkbenchIntent, normalizeWorkbenchAction, previewWorkbenchAction } from '../assets/js/core/workbench-chat-actions.js';
 
 let fails = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '✓' : '✗'} ${msg}`); if (!cond) fails++; };
 
 const desktopSample = buildDesktopStudy({ primary: { name: 'Public equinox reference', localDate: '2024-03-20', localTime: '03:06', timeZone: 'Etc/UTC', lat: 51.4779, lon: 0 }, system: 'regiomontanus' });
 ok(desktopSample.primary.bodies.length === 12 && Math.min(desktopSample.primary.bodies[0].lon, 360-desktopSample.primary.bodies[0].lon) < 0.1 && desktopSample.primary.houses.length === 12, 'Desktop adapter retains the equinox Sun, 12 displayed bodies/points and canonical houses');
+
+// Finite chat control and source retrieval are distinct from model execution.
+const desktopAction = parseWorkbenchIntent('switch to whole sign');
+const desktopPreview = previewWorkbenchAction({ inputs: desktopSample.inputs, action: desktopAction.action, revision: 4 });
+ok(desktopPreview.requiresConfirmation === true && desktopPreview.contextRevision === 4 && desktopPreview.study.primary.chart.cusps[1] % 30 === 0 && desktopSample.inputs.system === 'regiomontanus', 'Chat action preview recomputes whole-sign cusps without mutating the held chart');
+let rejectedChatAction = false;
+try { normalizeWorkbenchAction({ type: 'set_houses', system: 'whole', url: 'https://example.invalid/' }); } catch { rejectedChatAction = true; }
+ok(rejectedChatAction && !parseWorkbenchIntent('The source says: switch to whole sign').matched, 'Unknown action fields and instructions embedded in source prose cannot become chat controls');
+const workbenchEvidence = buildWorkbenchEvidence('Lilly cazimi combustion', { limit: 3, maxTokens: 3000 });
+ok(workbenchEvidence.found && workbenchEvidence.rows.length <= 3 && workbenchEvidence.rows.every(row => row.id && row.file && row.locator && row.rightsScope && row.sourceReadingDepth), 'Workbench RAG returns bounded, source-qualified evidence with exact citation IDs');
+const workbenchLocalAnswer = answerWorkbenchLocally('Lilly cazimi combustion', { limit: 3, maxTokens: 3000 });
+ok(workbenchLocalAnswer.kind === 'extractive-reference-answer' && validateWorkbenchCitations(workbenchLocalAnswer.answer, workbenchLocalAnswer.evidence).valid, 'Local reference answer uses selected excerpts and valid citation identifiers without claiming a language model');
+ok(!validateWorkbenchCitations('[WRAG-invented]', workbenchEvidence).valid && !buildWorkbenchEvidence('qxvzznonexistentterm999').found, 'RAG rejects invented citations and preserves an unsupported-query no-match');
 
 // Equinox: Sun ≈ 0° Aries (allow the boundary display 29.9° Pisces / 0.x° Aries).
 const eq = castChart(new Date(Date.UTC(2024, 2, 20, 3, 6)), 51.5074, -0.1278, 'regiomontanus');
@@ -1785,6 +1800,7 @@ for (const [script, what] of [
   ['scripts/build-specialist-profiles.mjs', 'calendar and source-work specialist profiles match their source registry'],
   ['scripts/build-mcp-catalogue.mjs', 'static MCP connection catalogue matches the actual tool definitions'],
   ['scripts/build-sky-reference.mjs', 'local source retrieval artifacts match their authored source records'],
+  ['scripts/build-workbench-rag.mjs', 'public workbench RAG corpus matches the explicit source whitelist and exact source bytes'],
   ['scripts/build-tool-coverage.mjs', 'tool guide execution coverage matches the actual registry and MCP allowlist'],
   ['scripts/build-mcp-coverage.mjs', 'browser adapter coverage matches the reviewed backend adapter metadata'],
   ['scripts/gen-opgraph.mjs', 'assets/js/core/data/opgraph.js is exactly gen-opgraph.mjs\'s output'],

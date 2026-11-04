@@ -4,6 +4,7 @@ import {readChartLibrary, saveChart, deleteChart, exportChartLibrary, importChar
 import {DESKTOP_TOOLS, DESKTOP_CATEGORIES} from '../core/data/desktop-tools.js';
 import {mountOfflineLibrary} from './offline-library.js';
 import {downloadBlob} from './state.js';
+import {previewWorkbenchAction} from '../core/workbench-chat-actions.js';
 
 const $=id=>document.getElementById(id);
 const e=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=String(text);if(cls)n.className=cls;return n;};
@@ -25,11 +26,13 @@ export function initDesktopWorkbench(){
   const app=$('dw-app');if(!app||app.dataset.initialized)return;app.dataset.initialized='true';
   let profiles={primary:{...publicProfile},secondary:{...publicProfile,name:'Comparison study',localDate:'2027-01-04'}};
   let reference=clone(profiles),study=null,selectedBody='Sun',selectedFrame='primary',selectedAspect=null,view='wheel',editing='primary',entries=[],savedId=null,libraryError=null,sliderTimer=null;
+  let revision=0;const contextListeners=new Set();
+  const touch=()=>{revision++;for(const fn of contextListeners)fn({revision,state:app.dataset.state});};
   const heldReady=()=>app.dataset.state==='ready'&&study;
   const settings=()=>({mode:$('dw-mode').value,zodiac:$('dw-zodiac').value,system:$('dw-system').value,orb:$('dw-orb').value===''?NaN:Number($('dw-orb').value)});
   const currentAspects=()=>study?.secondary?study.crossAspects:study?.primary.aspects||[];
   const target=()=>settings().mode==='natal'?'primary':'secondary';
-  function state(kind,message){app.dataset.state=kind;$('dw-status').textContent=message;for(const id of ['dw-save','dw-export-svg','dw-export-json','dw-print','dw-ai','dw-step-prev','dw-step-next','dw-offset','dw-time-reset','dw-now'])$(id).disabled=kind!=='ready';$('dw-results').setAttribute('aria-busy',String(kind==='loading'));}
+  function state(kind,message){app.dataset.state=kind;$('dw-status').textContent=message;for(const id of ['dw-save','dw-export-svg','dw-export-json','dw-print','dw-ai','dw-step-prev','dw-step-next','dw-offset','dw-time-reset','dw-now'])$(id).disabled=kind!=='ready';$('dw-results').setAttribute('aria-busy',String(kind==='loading'));touch();}
   function invalidate(){clearTimeout(sliderTimer);state('stale','Settings changed. Calculate to update the displayed chart and enable exports.');$('dw-secondary-row').hidden=$('dw-mode').value==='natal';}
   function calculation(candidate=profiles){return buildDesktopStudy({...settings(),primary:candidate.primary,secondary:candidate.secondary});}
   function applyStudy(next){study=next;selectedAspect=null;if(!study.secondary)selectedFrame='primary';render();const warnings=[...study.primary.warnings,...(study.secondary?.warnings||[])];state('ready',warnings.length?warnings.join(' '):`Calculated · ${study.primary.dateISO.replace('.000Z','Z')} · ${study.secondary?'two charts, explicit A/B comparison':'12 displayed bodies and points'} · changes stay in this tab.`);}
@@ -48,8 +51,8 @@ export function initDesktopWorkbench(){
     drawWheel();renderPositions();renderAspects();renderInspector();renderMethods();
   }
   function drawWheel(){if(!study)return;const active=document.activeElement,body=active?.getAttribute('data-dw-body'),frame=active?.getAttribute('data-dw-frame'),aspect=active?.getAttribute('data-dw-aspect');const options={selectedBody,selectedFrame,selectedAspect,showAspects:$('dw-show-aspects').checked,showHouses:$('dw-show-houses').checked,onSelectBody:selectBody,onSelectAspect:selectAspect};renderDesktopWheel($('dw-chart'),study,options);if(body)$('dw-chart').querySelector(`[data-dw-body="${CSS.escape(body)}"][data-dw-frame="${CSS.escape(frame)}"]`)?.focus({preventScroll:true});else if(aspect)$('dw-chart').querySelector(`[data-dw-aspect="${CSS.escape(aspect)}"]`)?.focus({preventScroll:true});}
-  function selectBody(id,frame='primary'){selectedBody=id;selectedFrame=frame;selectedAspect=null;drawWheel();renderInspector();renderAspectList();}
-  function selectAspect(a){selectedAspect=a;drawWheel();renderInspector();renderAspectList();}
+  function selectBody(id,frame='primary'){selectedBody=id;selectedFrame=frame;selectedAspect=null;drawWheel();renderInspector();renderAspectList();touch();}
+  function selectAspect(a){selectedAspect=a;drawWheel();renderInspector();renderAspectList();touch();}
   function renderInspector(){
     const host=$('dw-inspector');host.replaceChildren();if(!study)return;
     if(selectedAspect){const a=selectedAspect,f=study.primary.bodies.find(x=>x.id===a.from),t=(study.secondary||study.primary).bodies.find(x=>x.id===a.to),sep=Math.abs(((f.lon-t.lon+540)%360)-180);
@@ -85,7 +88,7 @@ export function initDesktopWorkbench(){
   $('dw-edit-primary').onclick=()=>editProfile('primary');$('dw-edit-secondary').onclick=()=>editProfile('secondary');$('dw-new').onclick=()=>editProfile('primary',true);
   $('dw-profile-form').addEventListener('submit',event=>{event.preventDefault();const raw=Object.fromEntries(keys.map(k=>[k,['lat','lon'].includes(k)?Number($('dw-profile-'+k).value):$('dw-profile-'+k).value]));try{const normalized=copyProfile(normalizeDesktopProfile(raw));const candidate={...profiles,[editing]:normalized};const next=calculation(candidate);profiles=candidate;reference[editing]=clone(normalized);if(editing==='primary')savedId=null;applyStudy(next);$('dw-profile-dialog').close();}catch(error){$('dw-profile-error').textContent=error.message;}});
   for(const dialog of document.querySelectorAll('.dw-dialog')){for(const close of dialog.querySelectorAll('[data-dw-close]'))close.onclick=()=>dialog.close();}
-  for(const button of document.querySelectorAll('[data-dw-view]'))button.onclick=()=>{view=button.dataset.dwView;for(const b of document.querySelectorAll('[data-dw-view]'))b.setAttribute('aria-pressed',String(b===button));for(const name of ['wheel','positions','aspects'])$(`dw-${name}-view`).hidden=view!==name;};
+  for(const button of document.querySelectorAll('[data-dw-view]'))button.onclick=()=>{view=button.dataset.dwView;for(const b of document.querySelectorAll('[data-dw-view]'))b.setAttribute('aria-pressed',String(b===button));for(const name of ['wheel','positions','aspects'])$(`dw-${name}-view`).hidden=view!==name;touch();};
   for(const id of ['dw-show-aspects','dw-show-houses'])$(id).onchange=drawWheel;
   $('dw-save').onclick=()=>{if(!heldReady())return;try{const saved=saveChart(study.inputs.primary,savedId?{id:savedId}:{});savedId=saved.id;refreshLibrary();$('dw-library-status').textContent=`Saved “${saved.name}” on this device.`;}catch(error){$('dw-library-status').textContent=error.message;$('dw-status').textContent=error.message;}};
   $('dw-library-search').oninput=refreshLibrary;$('dw-library-export').onclick=()=>{try{download(exportChartLibrary(),'astrology-chart-library.json');$('dw-library-status').textContent='Library exported. The file includes private chart records.';}catch(error){$('dw-library-status').textContent=error.message;}};
@@ -104,6 +107,27 @@ export function initDesktopWorkbench(){
   $('dw-tools-search').oninput=tools;$('dw-tools-category').onchange=tools;
   $('dw-open-tools').onclick=()=>{$('dw-toolbox').scrollIntoView({block:'start',behavior:'instant'});$('dw-tools-search').focus({preventScroll:true});};
   $('dw-open-offline').onclick=()=>{$('dw-offline').scrollIntoView({block:'start',behavior:'instant'});$('dw-offline').querySelector('button')?.focus({preventScroll:true});};
+  const chatBridge={
+    getSnapshot(){return{revision,state:app.dataset.state,inputs:study?{...clone(study.inputs),primary:copyProfile(profiles.primary),secondary:copyProfile(profiles.secondary)}:null,reference:clone(reference),selection:{body:selectedBody,frame:selectedFrame},view};},
+    previewAction(proposed){if(!heldReady())throw Error('Calculate the current chart settings before preparing an action.');return previewWorkbenchAction({inputs:this.getSnapshot().inputs,reference:clone(reference),revision,action:proposed});},
+    applyAction(proposed,expectedRevision){
+      if(!heldReady()||expectedRevision!==revision)throw Error('The chart changed after this proposal. Ask again to prepare an action for the current chart.');
+      const next=this.previewAction(proposed);
+      if(next.openTool){const url=new URL(next.openTool.href,new URL('../../../pages/desktop.html',import.meta.url));window.open(url.href,'_blank','noopener,noreferrer');return next;}
+      if(next.recalculate){
+        profiles={primary:copyProfile(next.inputs.primary),secondary:next.inputs.secondary?copyProfile(next.inputs.secondary):profiles.secondary};
+        for(const key of ['mode','zodiac','system','orb'])$('dw-'+key).value=String(next.inputs[key]);
+        if(next.action.type==='set_chart'){reference[next.action.frame]=clone(profiles[next.action.frame]);if(next.action.frame==='primary')savedId=null;}
+        applyStudy(next.study);
+      }
+      if(next.selection)selectBody(next.selection.body,next.selection.frame);
+      if(next.view)document.querySelector('[data-dw-view="'+next.view+'"]').click();
+      return next;
+    },
+    subscribe(listener){contextListeners.add(listener);return()=>contextListeners.delete(listener);}
+  };
   refreshLibrary();tools();mountOfflineLibrary($('dw-offline'));calculate();
+  import('./workbench-chat.js').then(({mountWorkbenchChat})=>mountWorkbenchChat($('dw-chat'),chatBridge)).catch(()=>{$('dw-chat').textContent='The research assistant could not load. Reload to retry; the chart studio remains available.';});
+  $('dw-open-chat').onclick=()=>{$('dw-chat').scrollIntoView({block:'start',behavior:'instant'});$('wc-question')?.focus({preventScroll:true});};
   window.addEventListener('storage',event=>{if(event.storageArea===localStorage)refreshLibrary();});
 }

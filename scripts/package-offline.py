@@ -65,6 +65,9 @@ HTML files is not equivalent. A downloaded private HTML reading is self-containe
 and can be opened directly without this local server.
 
 Includes the public pages, local calculation engines, charts and reference data.
+The desktop research assistant searches included source passages offline.
+Generated AI answers additionally need the companion ZIP or repository checkout,
+its local model runtime, or an explicitly configured external model provider.
 External books, websites, live information and hosted AI/MCP services require
 their own network connection. No personal birth data is included in this ZIP.
 In the desktop studio, Import JSON accepts an exported chart library. A study
