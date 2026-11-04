@@ -1,0 +1,1075 @@
+{
+  "schemaVersion": 1,
+  "builtAt": "2026-11-04",
+  "purpose": "Public source-backed worked examples for Reading Lab; calendar checks are not predictive validation.",
+  "sourcePolicy": {
+    "readingDepth": "Only the named sections were read; no full-book claim.",
+    "expectations": "Source values were transcribed before checking the app. Derived explanations and spelling aliases are declared.",
+    "rights": "Original paraphrases and factual fields only; no book/PDF/transcript redistribution or training licence inferred.",
+    "coverage": "Nine named families; selected methods only, not every religion, variant, house system or possible interpretation."
+  },
+  "sources": [
+    {
+      "id": "rl-egypt-ucl",
+      "title": "UCL Digital Egypt: Calendar",
+      "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/calendar.html",
+      "retrievedAt": "2026-11-04",
+      "locator": "Opening comparison of Egyptian and Coptic calendars; twelve-month table and epagomenal days",
+      "evidenceQuality": "institutional historical reference",
+      "readingDepth": "Full short page and month table read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Ancient Egyptian civil year: twelve thirty-day months plus five additional days.",
+        "Coptic/Alexandrian intercalation is a later reform; it must not be silently applied to the wandering civil year."
+      ],
+      "limitations": [
+        "This source supplies calendar structure, not personal horoscopes or a unique ancient epoch."
+      ],
+      "retrieval": {
+        "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/calendar.html",
+        "status": 200,
+        "finalURL": "https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/calendar.html",
+        "bytes": 6013,
+        "sha256": "2f3e15f5fa0a9c64cadffe2d9d685add58cfb33c78795092a53c1407f5bdc325"
+      }
+    },
+    {
+      "id": "rl-coptic-calendar",
+      "title": "CopticChurch.net: Calendar of Martyrs",
+      "url": "https://www.copticchurch.net/calendar",
+      "retrievedAt": "2026-11-04",
+      "locator": "Quick facts; month table; Calendar of Martyrs chronology",
+      "evidenceQuality": "community institutional calendar reference",
+      "readingDepth": "Selected calendar-structure and chronology sections read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Coptic calendar has twelve thirty-day months and a short thirteenth month; its leap convention differs from the ancient wandering year."
+      ],
+      "limitations": [
+        "Historical origin claims are not independently adopted; no current-date widget was treated as an external fixture."
+      ],
+      "retrieval": {
+        "url": "https://www.copticchurch.net/calendar",
+        "status": 200,
+        "finalURL": "https://copticchurch.net/calendar",
+        "bytes": 19470,
+        "sha256": "bad26373282e271539d57f639dd9cf2b4a7c260aec6dc6c251451c19fd03a9bd"
+      }
+    },
+    {
+      "id": "rl-maya-converter",
+      "title": "Smithsonian NMAI Living Maya Time: Maya Calendar Converter",
+      "url": "https://maya.nmai.si.edu/calendar/maya-calendar-converter",
+      "retrievedAt": "2026-11-04",
+      "locator": "Reading the Maya Calendar: explicit December 20, 2012 example",
+      "evidenceQuality": "institutional worked calendar example",
+      "readingDepth": "Main explanation and printed worked example read; converter not automated",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "2012-12-20 corresponds to 12.19.19.17.19, 3 Kawak, 2 K’ank’in in the displayed correlation.",
+        "Long Count units are 20 kin, 18 uinal, 20 tun and 20 katun."
+      ],
+      "limitations": [
+        "Correlation convention is part of the result; different correlations produce different Gregorian dates.",
+        "Glyph artwork and site implementation are not copied."
+      ],
+      "retrieval": {
+        "url": "https://maya.nmai.si.edu/calendar/maya-calendar-converter",
+        "status": 200,
+        "finalURL": "https://maya.nmai.si.edu/calendar/maya-calendar-converter",
+        "bytes": 35649,
+        "sha256": "28a3d8c7b733dbf5ba52f5a794b4e23e55a33795fadee4f55fc5db78b90e5a13"
+      }
+    },
+    {
+      "id": "rl-maya-2012",
+      "title": "Smithsonian NMAI: 2012, Resetting the Count",
+      "url": "https://maya.nmai.si.edu/2012-resetting-count",
+      "retrievedAt": "2026-11-04",
+      "locator": "Main introduction and Maya-perspective discussion",
+      "evidenceQuality": "institutional cultural contextualization",
+      "readingDepth": "Main explanatory section read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "A Long Count cycle transition is not evidence for an apocalypse."
+      ],
+      "limitations": [
+        "This is a selected institutional explanation, not coverage of every Maya community or interpretation."
+      ],
+      "retrieval": {
+        "url": "https://maya.nmai.si.edu/2012-resetting-count",
+        "status": 200,
+        "finalURL": "https://maya.nmai.si.edu/2012-resetting-count",
+        "bytes": 26955,
+        "sha256": "c0ae91c94666cf8b345d1c89f181a4968621f0c0790bfedfe9efb13f4a7dc475"
+      }
+    },
+    {
+      "id": "rl-lilly",
+      "title": "William Lilly: Christian Astrology, Book I, modern transcription",
+      "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "Printed pp. 101–105 essential dignities; pp. 113–114 combustion and cazimi",
+      "evidenceQuality": "primary historical text through modern transcription",
+      "readingDepth": "Selected definitions, worked examples and table read; not full book",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "The text treats dignity and solar proximity as distinct traditional judgments.",
+        "The eight-degree-thirty-minute combustion definition conflicts with its second ten-degree example.",
+        "The printed cazimi example places Sun at 15°30′ Taurus and Mercury at 15°25′ Taurus."
+      ],
+      "limitations": [
+        "Transcription glyphs can be corrupted; primary scan checking is needed before exact table extraction.",
+        "Historical descriptions are not validated forecasts of events."
+      ],
+      "retrieval": {
+        "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+        "status": 200,
+        "finalURL": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+        "bytes": 817139,
+        "sha256": "94bbce66c8e2c509a7d9ef56fb3378538dea44b549de500034d7ac2734b5b4ae"
+      }
+    },
+    {
+      "id": "rl-usccb-2024",
+      "title": "USCCB: Liturgical Calendar for the Dioceses of the United States of America, 2024",
+      "url": "https://www.usccb.org/resources/2024cal.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "Principal celebrations table (PDF p. 6); March 31 entry",
+      "evidenceQuality": "official denominational calendar",
+      "readingDepth": "Principal dates table and dated Easter entry read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Gregorian Easter Sunday is March 31, 2024 for this Catholic calendar."
+      ],
+      "limitations": [
+        "Denominational calendar, not a universal statement of Christian astrology."
+      ],
+      "retrieval": {
+        "url": "https://www.usccb.org/resources/2024cal.pdf",
+        "status": 200,
+        "finalURL": "https://www.usccb.org/resources/2024cal.pdf",
+        "bytes": 865542,
+        "sha256": "e07ff8238a63bff4cf59789a6ac0f9d906bf9a8b3746a9c54c5b2f79690f2660"
+      }
+    },
+    {
+      "id": "rl-coptic-feasts",
+      "title": "CopticChurch.net: Coptic Feasts for 2024",
+      "url": "https://www.copticchurch.net/calendar/feasts/2024",
+      "retrievedAt": "2026-11-04",
+      "locator": "Seven Major Feasts: Easter, May 5th",
+      "evidenceQuality": "community institutional liturgical calendar",
+      "readingDepth": "Entire short 2024 list read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Coptic Easter is May 5, 2024."
+      ],
+      "limitations": [
+        "Source states its calculator range is 1902–2037; the fixture does not validate other years."
+      ],
+      "retrieval": {
+        "url": "https://www.copticchurch.net/calendar/feasts/2024",
+        "status": 200,
+        "finalURL": "https://copticchurch.net/calendar/feasts/2024",
+        "bytes": 9476,
+        "sha256": "b4df3d14db32a88a91141bc04e29d66fba874d538c3c64235608d1c3544b1bad"
+      }
+    },
+    {
+      "id": "rl-rao",
+      "title": "P. V. R. Narasimha Rao: Vedic Astrology, An Integrated Approach",
+      "url": "https://www.vedicastrologer.org/articles/vedic_astro_textbook.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "§1.3.8.1 and Example 2, printed pp.13–14; §1.3.11, p.17; §1.3.13 Ayanamsa, p.18",
+      "evidenceQuality": "author-published worked textbook examples",
+      "readingDepth": "Selected tithi, hora and ayanamsha definitions and worked examples read; not full book",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Example 2: Moon 84°12′, Sun 227°46′; positive difference 216°26′; tithi 19, Krishna Chaturthi.",
+        "Wednesday 21:40 with sunrise 06:10: the worked hora example identifies the sixteenth hour and Moon ruler.",
+        "§1.3.13 explains precession, the changing tropical/sidereal offset, subtracting ayanamsha and the chosen Chitrapaksha/Lahiri convention."
+      ],
+      "limitations": [
+        "The hora passage uses an equal-hour approximation; unequal seasonal planetary hours are a different convention.",
+        "Modern textbook synthesis does not represent every Vedic school.",
+        "No independently published outcome follows from these arithmetic examples."
+      ],
+      "retrieval": {
+        "url": "https://www.vedicastrologer.org/articles/vedic_astro_textbook.pdf",
+        "status": 200,
+        "finalURL": "https://www.vedicastrologer.org/articles/vedic_astro_textbook.pdf",
+        "bytes": 3186470,
+        "sha256": "1cafa828f34764ed5e85816882df2e8f0bc014c5c57ccdb27169416e117fd4db"
+      }
+    },
+    {
+      "id": "rl-hko-2024",
+      "title": "Hong Kong Observatory: Gregorian–Lunar Calendar Conversion Table of 2024",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2024e.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "Single-page table, February row, Gregorian day 10",
+      "evidenceQuality": "official astronomical calendar table",
+      "readingDepth": "February row and year heading read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "February 10, 2024 is the first day of the first lunar month."
+      ],
+      "limitations": [
+        "Use Chinese civil calendar convention; neither a full BaZi reading nor an auspiciousness score."
+      ],
+      "retrieval": {
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2024e.pdf",
+        "status": 200,
+        "finalURL": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2024e.pdf",
+        "bytes": 257876,
+        "sha256": "d79232c648b6db862df8bdc620bba738c69c8658daa197775f8b670d9b496256"
+      }
+    },
+    {
+      "id": "rl-hko-2023",
+      "title": "Hong Kong Observatory: Gregorian–Lunar Calendar Conversion Table of 2023",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2023e.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "Single-page table, February day 20 and March day 22: repeated second lunar month",
+      "evidenceQuality": "official astronomical calendar table",
+      "readingDepth": "February and March month starts compared",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "February 20 starts the second lunar month; March 22 starts a second instance of lunar month two in 2023."
+      ],
+      "limitations": [
+        "Leap identity follows the repeated second-month sequence; PDF text extraction does not explicitly spell out the word leap."
+      ],
+      "retrieval": {
+        "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2023e.pdf",
+        "status": 200,
+        "finalURL": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2023e.pdf",
+        "bytes": 249351,
+        "sha256": "57245f05e454de6d4b18d6f20d868e497b37c40a01b8d9890936a7c5e7911ac5"
+      }
+    },
+    {
+      "id": "rl-hko-calendar",
+      "title": "Hong Kong Observatory: Gregorian–Lunar Calendar Conversion Table information",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendarinfo.htm",
+      "retrievedAt": "2026-11-04",
+      "locator": "Calendar introduction and explanatory links",
+      "evidenceQuality": "official astronomical calendar explanation",
+      "readingDepth": "Full short page read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Gregorian and Chinese lunar calendar conversion is an explicit calendrical operation."
+      ],
+      "limitations": [
+        "Calendar conversion does not establish personal fate or validate religious predictions."
+      ],
+      "retrieval": {
+        "url": "https://www.hko.gov.hk/en/gts/time/calendarinfo.htm",
+        "status": 200,
+        "finalURL": "https://www.hko.gov.hk/en/gts/time/calendarinfo.htm",
+        "bytes": 6493,
+        "sha256": "9e5e3fd0e2a9c579c925390ec9fd15f552f476103673be2bf8ae1382db9476cb"
+      }
+    },
+    {
+      "id": "rl-hebcal-convert",
+      "title": "Hebcal Converter API: October 3, 2024",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=3&g2h=1",
+      "retrievedAt": "2026-11-04",
+      "locator": "JSON fields gy,gm,gd,afterSunset,hy,hm,hd",
+      "evidenceQuality": "independent specialist conversion service",
+      "readingDepth": "Complete JSON response read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "2024-10-03 before sunset maps to 1 Tishrei 5785."
+      ],
+      "limitations": [
+        "Intl labels this month Tishri; the spelling alias is declared, not silently scored as different.",
+        "This is a selected external service comparison, not exhaustive independent validation."
+      ],
+      "retrieval": {
+        "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=3&g2h=1",
+        "status": 200,
+        "finalURL": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=3&g2h=1",
+        "bytes": 240,
+        "sha256": "26af0c56316cd12b80a9f446cea3ef5150eba2377371e14829c0bce4b1001a5c"
+      }
+    },
+    {
+      "id": "rl-hebcal-day",
+      "title": "Hebcal Converter API: October 2, 2024, before sunset",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1",
+      "retrievedAt": "2026-11-04",
+      "locator": "JSON afterSunset=false,hy,hm,hd",
+      "evidenceQuality": "independent specialist conversion service",
+      "readingDepth": "Complete JSON response read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "2024-10-02 before sunset maps to 29 Elul 5784."
+      ],
+      "limitations": [
+        "No location or solar time is supplied."
+      ],
+      "retrieval": {
+        "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1",
+        "status": 200,
+        "finalURL": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1",
+        "bytes": 238,
+        "sha256": "bcbfad7e089db96300192e19f793b342dcf5a052321c1b06165ea7a16400315d"
+      }
+    },
+    {
+      "id": "rl-hebcal-sunset",
+      "title": "Hebcal Converter API: October 2, 2024, after sunset",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1&gs=on",
+      "retrievedAt": "2026-11-04",
+      "locator": "JSON afterSunset=true,hy,hm,hd",
+      "evidenceQuality": "independent specialist conversion service",
+      "readingDepth": "Complete JSON response read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "2024-10-02 after sunset maps to 1 Tishrei 5785."
+      ],
+      "limitations": [
+        "The explicit sunset flag changes the religious date; this is not an observed sunset calculation."
+      ],
+      "retrieval": {
+        "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1&gs=on",
+        "status": 200,
+        "finalURL": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1&gs=on",
+        "bytes": 239,
+        "sha256": "6768074e2ac7629879b28d3f0fa453f94e8441922cb7aaaea73a250e1297cc5c"
+      }
+    },
+    {
+      "id": "rl-hebcal-rh",
+      "title": "Hebcal: Rosh Hashana 2024 / 5785",
+      "url": "https://www.hebcal.com/holidays/rosh-hashana-2024",
+      "retrievedAt": "2026-11-04",
+      "locator": "Opening date interval and description",
+      "evidenceQuality": "independent specialist holiday calendar",
+      "readingDepth": "Opening holiday dates and explanation read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Rosh Hashana 5785 begins on the evening of October 2, 2024."
+      ],
+      "limitations": [
+        "Local observance and exact sunset time require a location and community convention."
+      ],
+      "retrieval": {
+        "url": "https://www.hebcal.com/holidays/rosh-hashana-2024",
+        "status": 200,
+        "finalURL": "https://www.hebcal.com/holidays/rosh-hashana-2024",
+        "bytes": 52903,
+        "sha256": "6b9735a45016f86c7c1c46aef7b70064aa1893cb63cc7db54b425aea6e8d7b88"
+      }
+    },
+    {
+      "id": "rl-dee-monas",
+      "title": "John Dee: Monas Hieroglyphica (1564), Hamilton-Jones translation (1947)",
+      "url": "https://esotericarchives.com/dee/monad.htm",
+      "retrievedAt": "2026-11-04",
+      "locator": "Main body Theorems I–VI; title and translation attribution",
+      "evidenceQuality": "primary historical treatise in later translation",
+      "readingDepth": "Selected I–VI passages and edition attribution read; not full treatise",
+      "rights": "1564 Latin is historical public-domain material; the 1947 English translation has separate rights. Original short paraphrases only; no translation or diagrams redistributed.",
+      "claims": [
+        "Theorems III–VI assemble a central point and solar circle, lunar semicircle and right-angled cross as a symbolic monad."
+      ],
+      "limitations": [
+        "The table of contents duplicates a theorem label; body headings were used.",
+        "Not a birth-date calendar, a physical mechanism or proof of supernatural efficacy."
+      ],
+      "retrieval": {
+        "url": "https://esotericarchives.com/dee/monad.htm",
+        "status": 200,
+        "finalURL": "https://esotericarchives.com/dee/monad.htm",
+        "bytes": 60240,
+        "sha256": "72fca90c9b41353d09d4622a12e27653747b2ddef299a04b0303b12501039cda"
+      }
+    },
+    {
+      "id": "rl-jung-primary",
+      "title": "C. G. Jung: Psychological Types, H. G. Baynes translation (1923), archived OCR",
+      "url": "https://archive.org/download/psychological_types/psychological_types_djvu.txt",
+      "retrievedAt": "2026-11-04",
+      "locator": "Definitions: Feeling, printed pp. 543–545; Individuation, printed pp. 561–563",
+      "evidenceQuality": "primary historical psychology text via OCR",
+      "readingDepth": "Selected definitions read, including surrounding page markers; not full book",
+      "rights": "1923 English edition is public domain in the United States; jurisdiction may differ. OCR is not redistributed; original paraphrases are supplied.",
+      "claims": [
+        "Feeling is described as valuation, acceptance or rejection, and is not simply emotion.",
+        "Individuation is differentiated development that retains collective relationship, not mere isolation."
+      ],
+      "limitations": [
+        "OCR errors and historical psychological claims need contextual reading.",
+        "No typology, diagnosis or life outcome can be computed from a birth date with these definitions."
+      ],
+      "retrieval": {
+        "url": "https://archive.org/download/psychological_types/psychological_types_djvu.txt",
+        "status": 200,
+        "finalURL": "https://dn790006.ca.archive.org/0/items/psychological_types/psychological_types_djvu.txt",
+        "bytes": 1577410,
+        "sha256": "6549c4fa47565f0658eb7da4588198e24bff853678de4ad27cbb5d382e3107d4"
+      }
+    },
+    {
+      "id": "rl-jung-feeling",
+      "title": "Society of Analytical Psychology: Typology, Fiona Ross",
+      "url": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/typology/",
+      "retrievedAt": "2026-11-04",
+      "locator": "Psychological Functions section",
+      "evidenceQuality": "specialist secondary interpretation",
+      "readingDepth": "Psychological-functions section and attribution read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Thinking and feeling are described as judging functions; sensation and intuition as perceptive functions."
+      ],
+      "limitations": [
+        "A specialist interpretation supplements the primary text; it is not an independent clinical validation."
+      ],
+      "retrieval": {
+        "url": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/typology/",
+        "status": 200,
+        "finalURL": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/typology/",
+        "bytes": 124942,
+        "sha256": "bcc1c99c9fac02a6d9b40a4417d1f26789b4f22747eb211649960a361824dbec"
+      }
+    },
+    {
+      "id": "rl-jung-individuation",
+      "title": "Society of Analytical Psychology: Individuation, Martin Schmidt",
+      "url": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/individuation/",
+      "retrievedAt": "2026-11-04",
+      "locator": "Collective and personal section",
+      "evidenceQuality": "specialist secondary interpretation",
+      "readingDepth": "Selected collective/personal discussion read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Individuation involves both personal and collective dimensions."
+      ],
+      "limitations": [
+        "This is contextual interpretation, not an automated assessment."
+      ],
+      "retrieval": {
+        "url": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/individuation/",
+        "status": 200,
+        "finalURL": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/individuation/",
+        "bytes": 137308,
+        "sha256": "25254f1b1f85c3b7047d5f646ed4f2491901e94933895d846e2ddc0d248eff3b"
+      }
+    },
+    {
+      "id": "rl-plato-republic",
+      "title": "Plato: Republic, Book X, Benjamin Jowett translation",
+      "url": "https://classics.mit.edu/Plato/republic.11.x.html",
+      "retrievedAt": "2026-11-04",
+      "locator": "Myth of Er, Stephanus 617d–618a and 620d–621a; lot/choice passages",
+      "evidenceQuality": "primary philosophical text in historical translation",
+      "readingDepth": "Selected choice, responsibility and daimon passages read; not entire Republic",
+      "rights": "Ancient text and Jowett translation are public-domain works; site formatting is not copied. Original paraphrases only.",
+      "claims": [
+        "The lot determines order of choosing lives; responsibility is attributed to the chooser.",
+        "The daimon in this myth is not a natal longitude formula."
+      ],
+      "limitations": [
+        "Stephanus locators identify the standard passage; the MIT page is not line-numbered."
+      ],
+      "retrieval": {
+        "url": "https://classics.mit.edu/Plato/republic.11.x.html",
+        "status": 200,
+        "finalURL": "https://classics.mit.edu/Plato/republic.11.x.html",
+        "bytes": 93248,
+        "sha256": "504a965281b7344471910d7de8318db3066b126262c35fa6406dcc8efe27e56d"
+      }
+    },
+    {
+      "id": "rl-plato-timaeus",
+      "title": "Plato: Timaeus, Benjamin Jowett translation",
+      "url": "https://classics.mit.edu/Plato/timaeus.html",
+      "retrievedAt": "2026-11-04",
+      "locator": "Stephanus 90a–d, paragraph beginning And we should consider",
+      "evidenceQuality": "primary philosophical text in historical translation",
+      "readingDepth": "Selected rational/divine-principle passage read; not entire dialogue",
+      "rights": "Ancient text and Jowett translation are public-domain works; site formatting is not copied. Original paraphrases only.",
+      "claims": [
+        "The highest part of the soul is linked to a divine principle and the cultivation of understanding."
+      ],
+      "limitations": [
+        "This cosmological philosophy is distinct from an astrological Lot of Spirit and is not a predictive calculator."
+      ],
+      "retrieval": {
+        "url": "https://classics.mit.edu/Plato/timaeus.html",
+        "status": 200,
+        "finalURL": "https://classics.mit.edu/Plato/timaeus.html",
+        "bytes": 208667,
+        "sha256": "9b3a714ce39fa62d2c4d83b1d74d91f897a15be15ab5b90be6e125c8e6447e32"
+      }
+    },
+    {
+      "id": "rl-lilly-dog-figure",
+      "title": "William Lilly, Christian Astrology (1647), original dog-question figure",
+      "url": "https://ia903103.us.archive.org/BookReader/BookReaderImages.php?zip=/10/items/b30338724/b30338724_jp2.zip&file=b30338724_jp2/b30338724_0426.jp2&id=b30338724&scale=2&rotate=0",
+      "retrievedAt": "2026-11-04",
+      "locator": "Printed p.392, chapter LXII; archive b30338724, image leaf 426",
+      "evidenceQuality": "primary printed chart, visually inspected",
+      "readingDepth": "Full printed p392 image visually inspected, selected four clear planetary positions transcribed; adjacent narrative checked through OCR",
+      "rights": "1647 printed work is public domain; this app links the scan and republishes factual values with original commentary, not the scan image.",
+      "claims": [
+        "Printed Sun 15°45′ Virgo, Moon 4°10′ Virgo, Mercury 12°20′ Libra and Saturn 18°15′ Taurus differ from the inherited reconstruction.",
+        "Figure header reads29 August 1646 at 4:05 P.M.; historical OldStyle is retained."
+      ],
+      "limitations": [
+        "Only four unambiguously legible positions enter the reference checks. Other planetary degrees/minutes, cusp values and house assignments are not certified.",
+        "A printed figure comparison is not independent ephemeris validation. The reported recovery is Lilly’s narrative, not independently verified outcome data."
+      ],
+      "retrieval": {
+        "url": "https://ia903103.us.archive.org/BookReader/BookReaderImages.php?zip=/10/items/b30338724/b30338724_jp2.zip&file=b30338724_jp2/b30338724_0426.jp2&id=b30338724&scale=2&rotate=0",
+        "status": 200,
+        "finalURL": "https://ia903103.us.archive.org/BookReader/BookReaderImages.php?zip=/10/items/b30338724/b30338724_jp2.zip&file=b30338724_jp2/b30338724_0426.jp2&id=b30338724&scale=2&rotate=0",
+        "bytes": 496928,
+        "sha256": "0245b83baf50febaabeb17eb0acdf4375c2aac8b3cd319b9ca4e551e9fe2cbc9"
+      }
+    },
+    {
+      "id": "rl-lilly-primary",
+      "title": "William Lilly, Christian Astrology (1647), archive OCR",
+      "url": "https://archive.org/download/b30338724/b30338724_djvu.txt",
+      "retrievedAt": "2026-11-04",
+      "locator": "Chapter LXII, A Dogge missing, where?; printed pp.392–394 as verified against pageimage",
+      "evidenceQuality": "primary historical text through fallible OCR",
+      "readingDepth": "Selected dog-question narrative and surrounding chapter read; not entire book",
+      "rights": "1647 printed work is public domain; no full OCR redistribution.",
+      "claims": [
+        "The narrative discusses significator choice, direction and the author’s reported recovery of the missing dog."
+      ],
+      "limitations": [
+        "OCR page numbers and astrological glyphs are unreliable; the image supplies the four numerical reference fields.",
+        "The author’s favorable outcome report is not independent ground truth."
+      ],
+      "retrieval": {
+        "url": "https://archive.org/download/b30338724/b30338724_djvu.txt",
+        "status": 200,
+        "finalURL": "https://dn760106.eu.archive.org/0/items/b30338724/b30338724_djvu.txt",
+        "bytes": 2005702,
+        "sha256": "7c08b55359c41049c5d43901b8da869a326f8eb852e4a30603a4b698533626aa"
+      }
+    },
+    {
+      "id": "rl-swiss-general",
+      "title": "Astrodienst: Swiss Ephemeris general documentation",
+      "url": "https://www.astro.com/swisseph/swisseph.htm",
+      "retrievedAt": "2026-11-04",
+      "locator": "§2.8.1 zodiac definition; §6.2.1 Placidus; §6.2.5 equal and whole-sign houses; §6.4 polar limits",
+      "evidenceQuality": "maintainer technical documentation",
+      "readingDepth": "Selected zodiac, house-definition and polar-limit sections read; not full manual",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Tropical zero Aries is the vernal point; sidereal zero is selected relative to stars and depends on an ayanamsha convention.",
+        "Whole-sign houses begin at the start of the rising zodiac sign; equal houses from the Ascendant begin at the Ascendant degree.",
+        "Placidus cusps use divisions of semidiurnal and seminocturnal arcs."
+      ],
+      "limitations": [
+        "A technical definition does not validate a personal interpretation.",
+        "Placidus definition is checked in this maintained technical source; no independent second publisher was successfully retrieved in this pass."
+      ],
+      "retrieval": {
+        "url": "https://www.astro.com/swisseph/swisseph.htm",
+        "status": 200,
+        "finalURL": "https://www.astro.com/swisseph/swisseph.htm",
+        "bytes": 910985,
+        "sha256": "7ca3f8863d31001f3a1411139d4759813cc8c3d3c51312fbc45aa84382f05aa2"
+      }
+    }
+  ],
+  "retrievalAttempts": [
+    {
+      "id": "lilly-meta",
+      "url": "https://archive.org/metadata/b30338724",
+      "status": 200,
+      "finalURL": "https://archive.org/metadata/b30338724",
+      "bytes": 162240,
+      "sha256": "b48722fc1ab08b3d2e221a5cdffe768cc53a52eb72876adeb20a4ace88947184"
+    },
+    {
+      "id": "usccb-2024",
+      "url": "https://www.usccb.org/resources/2024cal.pdf",
+      "status": 200,
+      "finalURL": "https://www.usccb.org/resources/2024cal.pdf",
+      "bytes": 865542,
+      "sha256": "e07ff8238a63bff4cf59789a6ac0f9d906bf9a8b3746a9c54c5b2f79690f2660"
+    },
+    {
+      "id": "lilly-ii",
+      "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-II.pdf",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "hko-leap",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/text/files/2023e.txt",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "hebcal-sunset",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1&gs=on",
+      "status": 200,
+      "finalURL": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1&gs=on",
+      "bytes": 239,
+      "sha256": "6768074e2ac7629879b28d3f0fa453f94e8441922cb7aaaea73a250e1297cc5c"
+    },
+    {
+      "id": "hebcal-day",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1",
+      "status": 200,
+      "finalURL": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1",
+      "bytes": 238,
+      "sha256": "bcbfad7e089db96300192e19f793b342dcf5a052321c1b06165ea7a16400315d"
+    },
+    {
+      "id": "jung-meta",
+      "url": "https://archive.org/metadata/psychological_types",
+      "status": 200,
+      "finalURL": "https://archive.org/metadata/psychological_types",
+      "bytes": 138741,
+      "sha256": "d2267ca4656f057ae20961c7f8ae3b0133519d6079a91ba19145a3bd3774b8a0"
+    },
+    {
+      "id": "lilly-dog-figure",
+      "url": "https://ia903103.us.archive.org/BookReader/BookReaderImages.php?zip=/10/items/b30338724/b30338724_jp2.zip&file=b30338724_jp2/b30338724_0426.jp2&id=b30338724&scale=2&rotate=0",
+      "status": 200,
+      "finalURL": "https://ia903103.us.archive.org/BookReader/BookReaderImages.php?zip=/10/items/b30338724/b30338724_jp2.zip&file=b30338724_jp2/b30338724_0426.jp2&id=b30338724&scale=2&rotate=0",
+      "bytes": 496928,
+      "sha256": "0245b83baf50febaabeb17eb0acdf4375c2aac8b3cd319b9ca4e551e9fe2cbc9"
+    },
+    {
+      "id": "lilly-dog-jp2",
+      "url": "https://ia903103.us.archive.org/BookReader/BookReaderImages.php?zip=/10/items/b30338724/b30338724_jp2.zip&file=b30338724_jp2/b30338724_0428.jp2&id=b30338724&scale=2&rotate=0",
+      "status": 200,
+      "finalURL": "https://ia903103.us.archive.org/BookReader/BookReaderImages.php?zip=/10/items/b30338724/b30338724_jp2.zip&file=b30338724_jp2/b30338724_0428.jp2&id=b30338724&scale=2&rotate=0",
+      "bytes": 554749,
+      "sha256": "d0c34815417f431d0bf2b002fefc9ae8eee49a876428467d01c12b66343e1e7d"
+    },
+    {
+      "id": "house-astroarticle",
+      "url": "https://www.astro.com/astrology/in_house2_e.htm",
+      "status": 200,
+      "finalURL": "https://www.astro.com/cgi/prep.cgi/astrology/in_house2_e.htm",
+      "bytes": 1965,
+      "sha256": "f5803b32034b26812c1bf4b77b6f50908090719626195c581a7a5eecd4d34704"
+    },
+    {
+      "id": "house-kepler",
+      "url": "https://www.keplercollege.org/house-systems/",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "jung-primary",
+      "url": "https://archive.org/download/psychological_types/psychological_types_djvu.txt",
+      "status": 200,
+      "finalURL": "https://dn790006.ca.archive.org/0/items/psychological_types/psychological_types_djvu.txt",
+      "bytes": 1577410,
+      "sha256": "6549c4fa47565f0658eb7da4588198e24bff853678de4ad27cbb5d382e3107d4"
+    },
+    {
+      "id": "lilly-archive-search",
+      "url": "https://archive.org/advancedsearch.php?q=title%3A%22Christian+astrology%22+AND+creator%3ALilly&output=json&rows=8",
+      "status": 200,
+      "finalURL": "https://archive.org/advancedsearch.php?q=title%3A%22Christian+astrology%22+AND+creator%3ALilly&output=json&rows=8",
+      "bytes": 15040,
+      "sha256": "0687ab50a0a14a36914875023b400f7486d624a84c4cdb15656dc1a9c49a8ee2"
+    },
+    {
+      "id": "hko-chinese-rules",
+      "url": "https://www.hko.gov.hk/en/gts/time/24solarterms.htm",
+      "status": 200,
+      "finalURL": "https://www.hko.gov.hk/en/gts/time/24solarterms.htm",
+      "bytes": 12695,
+      "sha256": "2bf78b365fd8e53ae52c36560fc7d46114fe4a6403861824ecd1ef54b234e62f"
+    },
+    {
+      "id": "lilly-primary",
+      "url": "https://archive.org/download/b30338724/b30338724_djvu.txt",
+      "status": 200,
+      "finalURL": "https://dn760106.eu.archive.org/0/items/b30338724/b30338724_djvu.txt",
+      "bytes": 2005702,
+      "sha256": "7c08b55359c41049c5d43901b8da869a326f8eb852e4a30603a4b698533626aa"
+    },
+    {
+      "id": "swisseph",
+      "url": "https://www.astro.com/swisseph/swephprg.htm",
+      "status": 200,
+      "finalURL": "https://www.astro.com/swisseph/swephprg.htm",
+      "bytes": 1210408,
+      "sha256": "8fe1629b648eb86420f1ee80b1061c03c99e2d68c5b03c22fedc16819bdebff3"
+    },
+    {
+      "id": "astrowiki-houses",
+      "url": "https://www.astro.com/astrowiki/en/House_System",
+      "status": 200,
+      "finalURL": "https://www.astro.com/cgi/prep.cgi/astrowiki/en/House_System",
+      "bytes": 1965,
+      "sha256": "c278b8919eb0ac6caf11e26b40269c79e97a0597538e5fe286e01a2b93311343"
+    },
+    {
+      "id": "astrowiki-zodiac",
+      "url": "https://www.astro.com/astrowiki/en/Zodiac",
+      "status": 200,
+      "finalURL": "https://www.astro.com/cgi/prep.cgi/astrowiki/en/Zodiac",
+      "bytes": 1959,
+      "sha256": "15f51cd8c0d0923f78f7b41588b5367deb4ec340878f2a5a75d7e3e2d38dc33c"
+    },
+    {
+      "id": "lilly-scandata",
+      "url": "https://archive.org/download/b30338724/b30338724_scandata.xml",
+      "status": 200,
+      "finalURL": "https://dn790009.ca.archive.org/0/items/b30338724/b30338724_scandata.xml",
+      "bytes": 914360,
+      "sha256": "8af7a3decdf9a2072f76c8c35816705047d171b4f49630740402bbcaf39e4ee3"
+    },
+    {
+      "id": "swiss-general",
+      "url": "https://www.astro.com/swisseph/swisseph.htm",
+      "status": 200,
+      "finalURL": "https://www.astro.com/swisseph/swisseph.htm",
+      "bytes": 910985,
+      "sha256": "7ca3f8863d31001f3a1411139d4759813cc8c3d3c51312fbc45aa84382f05aa2"
+    },
+    {
+      "id": "dictionary-placidus",
+      "url": "https://theastrologydictionary.com/p/placidus/",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "dictionary-equal",
+      "url": "https://theastrologydictionary.com/e/equal-houses/",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "dictionary-whole",
+      "url": "https://theastrologydictionary.com/w/whole-sign-house-system/",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "lilly-dog-image",
+      "url": "https://iiif.archivelab.org/iiif/b30338724$428/full/1200,/0/default.jpg",
+      "error": "HTTP Error 500: Internal Server Error"
+    },
+    {
+      "id": "egypt-ucl",
+      "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/calendar.html",
+      "status": 200,
+      "finalURL": "https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/calendar.html",
+      "bytes": 6013,
+      "sha256": "2f3e15f5fa0a9c64cadffe2d9d685add58cfb33c78795092a53c1407f5bdc325"
+    },
+    {
+      "id": "maya-smithsonian",
+      "url": "https://maya.nmai.si.edu/calendar/calendar-system",
+      "error": "HTTP Error 520: Unknown"
+    },
+    {
+      "id": "maya-converter",
+      "url": "https://maya.nmai.si.edu/calendar/maya-calendar-converter",
+      "status": 200,
+      "finalURL": "https://maya.nmai.si.edu/calendar/maya-calendar-converter",
+      "bytes": 35649,
+      "sha256": "28a3d8c7b733dbf5ba52f5a794b4e23e55a33795fadee4f55fc5db78b90e5a13"
+    },
+    {
+      "id": "maya-2012",
+      "url": "https://maya.nmai.si.edu/2012-resetting-count",
+      "status": 200,
+      "finalURL": "https://maya.nmai.si.edu/2012-resetting-count",
+      "bytes": 26955,
+      "sha256": "c0ae91c94666cf8b345d1c89f181a4968621f0c0790bfedfe9efb13f4a7dc475"
+    },
+    {
+      "id": "coptic-calendar",
+      "url": "https://www.copticchurch.net/calendar",
+      "status": 200,
+      "finalURL": "https://copticchurch.net/calendar",
+      "bytes": 19470,
+      "sha256": "bad26373282e271539d57f639dd9cf2b4a7c260aec6dc6c251451c19fd03a9bd"
+    },
+    {
+      "id": "coptic-feasts",
+      "url": "https://www.copticchurch.net/calendar/feasts/2024",
+      "status": 200,
+      "finalURL": "https://copticchurch.net/calendar/feasts/2024",
+      "bytes": 9476,
+      "sha256": "b4df3d14db32a88a91141bc04e29d66fba874d538c3c64235608d1c3544b1bad"
+    },
+    {
+      "id": "usno-easter",
+      "url": "https://aa.usno.navy.mil/faq/easter",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "id": "usno-dates",
+      "url": "https://aa.usno.navy.mil/calculated/seasons?year=2024&task=0",
+      "error": "HTTP Error 503: Service Unavailable"
+    },
+    {
+      "id": "hko-2024",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2024e.pdf",
+      "status": 200,
+      "finalURL": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2024e.pdf",
+      "bytes": 257876,
+      "sha256": "d79232c648b6db862df8bdc620bba738c69c8658daa197775f8b670d9b496256"
+    },
+    {
+      "id": "hko-2023",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2023e.pdf",
+      "status": 200,
+      "finalURL": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2023e.pdf",
+      "bytes": 249351,
+      "sha256": "57245f05e454de6d4b18d6f20d868e497b37c40a01b8d9890936a7c5e7911ac5"
+    },
+    {
+      "id": "hko-calendar",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendarinfo.htm",
+      "status": 200,
+      "finalURL": "https://www.hko.gov.hk/en/gts/time/calendarinfo.htm",
+      "bytes": 6493,
+      "sha256": "9e5e3fd0e2a9c579c925390ec9fd15f552f476103673be2bf8ae1382db9476cb"
+    },
+    {
+      "id": "hebcal-convert",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=3&g2h=1",
+      "status": 200,
+      "finalURL": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=3&g2h=1",
+      "bytes": 240,
+      "sha256": "26af0c56316cd12b80a9f446cea3ef5150eba2377371e14829c0bce4b1001a5c"
+    },
+    {
+      "id": "hebcal-rh",
+      "url": "https://www.hebcal.com/holidays/rosh-hashana-2024",
+      "status": 200,
+      "finalURL": "https://www.hebcal.com/holidays/rosh-hashana-2024",
+      "bytes": 52903,
+      "sha256": "6b9735a45016f86c7c1c46aef7b70064aa1893cb63cc7db54b425aea6e8d7b88"
+    },
+    {
+      "id": "chabad-rh",
+      "url": "https://www.chabad.org/holidays/JewishNewYear/template_cdo/aid/4687/jewish/When-Is-Rosh-Hashanah-in-2024-2025-2026-2027-and-2028.htm",
+      "status": 200,
+      "finalURL": "https://www.chabad.org/library/article_cdo/aid/4687/jewish/Yom-Kippur-2027.htm",
+      "bytes": 105451,
+      "sha256": "9ad93ee071dbf74735f084dc0a549aed5d7b3a325931c990bf08638fbfc29d27"
+    },
+    {
+      "id": "rao",
+      "url": "https://www.vedicastrologer.org/articles/vedic_astro_textbook.pdf",
+      "status": 200,
+      "finalURL": "https://www.vedicastrologer.org/articles/vedic_astro_textbook.pdf",
+      "bytes": 3186470,
+      "sha256": "1cafa828f34764ed5e85816882df2e8f0bc014c5c57ccdb27169416e117fd4db"
+    },
+    {
+      "id": "lilly",
+      "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+      "status": 200,
+      "finalURL": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+      "bytes": 817139,
+      "sha256": "94bbce66c8e2c509a7d9ef56fb3378538dea44b549de500034d7ac2734b5b4ae"
+    },
+    {
+      "id": "lilly-ship",
+      "url": "https://www.skyscript.co.uk/shiphorary.html",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "lilly-dog",
+      "url": "https://www.skyscript.co.uk/CA.html",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "dee-monas",
+      "url": "https://esotericarchives.com/dee/monad.htm",
+      "status": 200,
+      "finalURL": "https://esotericarchives.com/dee/monad.htm",
+      "bytes": 60240,
+      "sha256": "72fca90c9b41353d09d4622a12e27653747b2ddef299a04b0303b12501039cda"
+    },
+    {
+      "id": "plato-republic",
+      "url": "https://classics.mit.edu/Plato/republic.11.x.html",
+      "status": 200,
+      "finalURL": "https://classics.mit.edu/Plato/republic.11.x.html",
+      "bytes": 93248,
+      "sha256": "504a965281b7344471910d7de8318db3066b126262c35fa6406dcc8efe27e56d"
+    },
+    {
+      "id": "plato-timaeus",
+      "url": "https://classics.mit.edu/Plato/timaeus.html",
+      "status": 200,
+      "finalURL": "https://classics.mit.edu/Plato/timaeus.html",
+      "bytes": 208667,
+      "sha256": "9b3a714ce39fa62d2c4d83b1d74d91f897a15be15ab5b90be6e125c8e6447e32"
+    },
+    {
+      "id": "jung-feeling",
+      "url": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/typology/",
+      "status": 200,
+      "finalURL": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/typology/",
+      "bytes": 124942,
+      "sha256": "bcc1c99c9fac02a6d9b40a4417d1f26789b4f22747eb211649960a361824dbec"
+    },
+    {
+      "id": "jung-individuation",
+      "url": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/individuation/",
+      "status": 200,
+      "finalURL": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/individuation/",
+      "bytes": 137308,
+      "sha256": "25254f1b1f85c3b7047d5f646ed4f2491901e94933895d846e2ddc0d248eff3b"
+    }
+  ],
+  "rejectedEvidence": [
+    {
+      "id": "chabad-rh",
+      "reason": "Requested RoshHashana URL redirected to unrelated YomKippur2027 page; HTTP 200 is not relevant evidence."
+    },
+    {
+      "id": "lilly-ship",
+      "reason": "HTTP403; no fresh source reading."
+    },
+    {
+      "id": "lilly-dog",
+      "reason": "HTTP403; no fresh source reading."
+    },
+    {
+      "id": "usno-easter",
+      "reason": "HTTP503; not treated as fetched evidence."
+    },
+    {
+      "id": "astrowiki-houses",
+      "reason": "HTTP200 returned a JavaScript browser-check page, not the requested article; excluded from substantive evidence."
+    },
+    {
+      "id": "astrowiki-zodiac",
+      "reason": "HTTP200 returned a JavaScript browser-check page, not the requested article; excluded from substantive evidence."
+    },
+    {
+      "id": "house-astroarticle",
+      "reason": "HTTP200 returned a JavaScript browser-check page, not the requested article; excluded from substantive evidence."
+    }
+  ],
+  "reviewRounds": [
+    {
+      "round": 1,
+      "focus": "Source selection and baseline field comparison",
+      "changes": [
+        "Selected 16 public cases across nine families.",
+        "Separated textual methods from calendar and angle checks.",
+        "Declared spelling normalization, leap-month inference and missing religious boundaries."
+      ],
+      "evidence": {
+        "cases": 16,
+        "referenceCases": 6,
+        "matchedFields": 18,
+        "referenceFields": 18,
+        "textualCasesExcluded": 10
+      }
+    },
+    {
+      "round": 2,
+      "focus": "Source and mechanism corrections",
+      "changes": [
+        "Promoted the printed Lilly cazimi example to two source-field checks.",
+        "Added concise house and zodiac mechanism notes.",
+        "Added the original1647 dog figure as case17 and observed four source mismatches before correction.",
+        "Three agents independently inspected four clear printed positions; engine corrected only those four and withdrew unsupported full-figure precision claims.",
+        "Rejected irrelevant and challenge HTTP200 responses as evidence."
+      ],
+      "evidence": {
+        "dogBeforeMatches": 0,
+        "dogReferenceFields": 4,
+        "sourceScanSHA256": "0245b83baf50febaabeb17eb0acdf4375c2aac8b3cd319b9ca4e551e9fe2cbc9"
+      }
+    },
+    {
+      "round": 3,
+      "focus": "Independent source audit and acceptance of bounded scope",
+      "changes": [
+        "Independent QA re-fetched nine source URLs and verified NMAI, Rao, HKO, Hebcal, USCCB, Coptic, Dee and Jung passages.",
+        "Research, engine and QA independently agreed on four printed dog positions.",
+        "Checked every case and mechanism-note sourceId resolves to a source record.",
+        "Kept unverified reconstructed geometry and unimplemented cultural variants outside the numerical claim."
+      ],
+      "evidence": {
+        "cases": 17,
+        "referenceCases": 8,
+        "matchedFields": 24,
+        "referenceFields": 24,
+        "textualCasesExcluded": 9,
+        "missingSourceIds": 0,
+        "dogAfterMatches": 4
+      },
+      "limits": [
+        "No predictive-outcome accuracy is estimated.",
+        "Only the four named dog positions are verified.",
+        "Placidus has one fetched technical publisher in this source pass."
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "id": "lilly-dog-primary-figure-2026-11-04",
+      "caseId": "lilly-dog-printed-figure",
+      "sourceId": "rl-lilly-dog-figure",
+      "sourceSha256": "0245b83baf50febaabeb17eb0acdf4375c2aac8b3cd319b9ca4e551e9fe2cbc9",
+      "sourceLocator": "Christian Astrology1647 printed p.392, Archive b30338724 leaf 426",
+      "beforeStatus": "reference-mismatch",
+      "beforeMatchedFields": 0,
+      "referenceFields": 4,
+      "fields": [
+        {
+          "body": "Sun",
+          "inherited": "15°57′ Virgo",
+          "printed": "15°45′ Virgo",
+          "expectedLongitude": 165.75
+        },
+        {
+          "body": "Moon",
+          "inherited": "5°43′ Virgo",
+          "printed": "4°10′ Virgo",
+          "expectedLongitude": 154.16666666666666
+        },
+        {
+          "body": "Mercury",
+          "inherited": "12°03′ Libra",
+          "printed": "12°20′ Libra",
+          "expectedLongitude": 192.33333333333334
+        },
+        {
+          "body": "Saturn",
+          "inherited": "17°55′ Taurus",
+          "printed": "18°15′ Taurus",
+          "expectedLongitude": 48.25
+        }
+      ],
+      "independentVisualReads": [
+        "source researcher",
+        "engine reviewer",
+        "independent QA reviewer"
+      ],
+      "scope": "Correct these four printed values only. Other inherited planet/cusp/house fields remain unverified; no independent ephemeris or outcome accuracy claim.",
+      "afterStatus": "reference-fields-match",
+      "afterMatchedFields": 4,
+      "remainingLimitations": "The Reading Lab withholds unverified angles, houses, sect-dependent dignity, motion flags and automatic judgment. Other inherited planet longitudes remain visibly unverified."
+    }
+  ],
+  "acceptance": {
+    "sourceDataFrozenAt": "2026-11-04",
+    "cases": 17,
+    "sourceRecords": 24,
+    "methodNotes": 4,
+    "referenceCases": 8,
+    "referenceFields": 24,
+    "matchedFields": 24,
+    "textualCasesExcluded": 9,
+    "engineReportedValidation": "8,166 assertions;36 casts; engine agent reported full pass after correction.",
+    "scope": "Source field agreement only; no predictive outcome assessment."
+  }
+}

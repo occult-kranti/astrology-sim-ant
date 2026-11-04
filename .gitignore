@@ -6,3 +6,10 @@ node_modules/
 test-results/
 
 _site/
+
+# Optional local-model experiments keep environments and weight files outside Git.
+__pycache__/
+*.pyc
+*.safetensors
+*.gguf
+.venv/

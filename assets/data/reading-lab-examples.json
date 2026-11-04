@@ -1,0 +1,2527 @@
+{
+  "schemaVersion": 1,
+  "kind": "public-reading-lab-examples",
+  "datasetId": "reading-lab-public-v1",
+  "publicationScope": "Authored public source examples and original commentary; no private profiles, chat logs, model training data, sealed model tests or full books.",
+  "sourceFiles": [
+    {
+      "file": "assets/js/core/aspects.js",
+      "bytes": 3517,
+      "sha256": "837e71a913479605b776414018f3a17b210eaf3aad221b72bbc63d3e0a6f98be"
+    },
+    {
+      "file": "assets/js/core/astro.js",
+      "bytes": 14873,
+      "sha256": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab"
+    },
+    {
+      "file": "assets/js/core/calendar-observatory.js",
+      "bytes": 26288,
+      "sha256": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9"
+    },
+    {
+      "file": "assets/js/core/calendar.js",
+      "bytes": 10684,
+      "sha256": "a23bc2ae59d96a82bccc62a1c794d0ae5327eaf8599e9f0fdfb4c78166a5ee8f"
+    },
+    {
+      "file": "assets/js/core/chart-from-positions.js",
+      "bytes": 5784,
+      "sha256": "ac6bcae7a3227ed7ddd3e27bd56421cbf4fef852b0c37478173b262f51bf7b33"
+    },
+    {
+      "file": "assets/js/core/considerations.js",
+      "bytes": 4911,
+      "sha256": "3ba3a4a7d83574ac475de691d833d45be12d7d4f84ccb32f86e55f54ea56a19e"
+    },
+    {
+      "file": "assets/js/core/cultural-calendars.js",
+      "bytes": 11265,
+      "sha256": "819804fe10ac53afee33dbf65ff2cc8bea1841c32870d9c421b77481caf0cf55"
+    },
+    {
+      "file": "assets/js/core/data/dignities-data.js",
+      "bytes": 9676,
+      "sha256": "dd0b0931fdaab1f58ad49a1bbbedc4eed978792af153fc00dd247e4c2c7aa191"
+    },
+    {
+      "file": "assets/js/core/data/jung-astrology.js",
+      "bytes": 29031,
+      "sha256": "3850ae2d286df87b2f177952030a240d894a509f22d033dec6de2dcc93326495"
+    },
+    {
+      "file": "assets/js/core/data/muhurta-data.js",
+      "bytes": 22301,
+      "sha256": "5f7f7f4beb3975a048fea9289bb632c75f14f46c0f4cc0f38d9b6c5c1127ee7c"
+    },
+    {
+      "file": "assets/js/core/data/reading-cases.js",
+      "bytes": 65072,
+      "sha256": "fe3925ca2827f06aeac5d16e78df137474c49632bafd4276bbd9d7ffb17bda79"
+    },
+    {
+      "file": "assets/js/core/data/sky-reading-sources.js",
+      "bytes": 23514,
+      "sha256": "7ed19e1ed50c93da6b26c4e42cae1201c03ed54657f6ab8bda19068fe89bb33e"
+    },
+    {
+      "file": "assets/js/core/data/vedic-data.js",
+      "bytes": 21392,
+      "sha256": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b"
+    },
+    {
+      "file": "assets/js/core/data/vedic-remedies.js",
+      "bytes": 27941,
+      "sha256": "29056fa5597f82184f349fead9c6fe37acc8a7f9ba312d96e125f5fa2f8c205f"
+    },
+    {
+      "file": "assets/js/core/data/worked-charts.js",
+      "bytes": 18075,
+      "sha256": "e77729ec60b72f2fdab3038dff85e0333d9a6fdbaf29625fa615febc4c981161"
+    },
+    {
+      "file": "assets/js/core/day-guidance.js",
+      "bytes": 27917,
+      "sha256": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b"
+    },
+    {
+      "file": "assets/js/core/dignities.js",
+      "bytes": 6960,
+      "sha256": "618cb3436f16a67f9886fa6f6f66f60d98e3159b64c5305411611205f3e5e35f"
+    },
+    {
+      "file": "assets/js/core/instant-boundary.js",
+      "bytes": 1418,
+      "sha256": "ae41bd2705e2cbadb7ab6845301bc8d3d81f05637ab411238f27b995260fc5f1"
+    },
+    {
+      "file": "assets/js/core/jung.js",
+      "bytes": 15353,
+      "sha256": "8793a511a89f2eb2ccdef004cc9d401cc09877df88f504ccff66414e09c09e8d"
+    },
+    {
+      "file": "assets/js/core/muhurta.js",
+      "bytes": 14992,
+      "sha256": "dc460a0a99cf81ba593636aba55835bc6804c2f88a1c9d9a2d9db9c283ff32e2"
+    },
+    {
+      "file": "assets/js/core/planetary-hours.js",
+      "bytes": 5327,
+      "sha256": "ca46d1a4ff21914211d278c1b65564cfc78579fb93e451cd05a772cc8eda8db4"
+    },
+    {
+      "file": "assets/js/core/reading-lab.js",
+      "bytes": 29867,
+      "sha256": "9450c8fd7da73c8fc2f6282a1910ce1278750e840e13953d1609d2910611c13b"
+    },
+    {
+      "file": "assets/js/core/sky-interpretation.js",
+      "bytes": 30077,
+      "sha256": "d4c4cb3363bb10481af0a27b7b32eefdd0af9ea6e33acc7183bf80dc2138a003"
+    },
+    {
+      "file": "assets/js/core/time.js",
+      "bytes": 6552,
+      "sha256": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579"
+    },
+    {
+      "file": "assets/js/core/vedic.js",
+      "bytes": 42880,
+      "sha256": "93fae27b6cdcc91aab89e27c251a4b56c4412d27d6974ae3dceb6537644cae35"
+    },
+    {
+      "file": "assets/js/lib/astronomy.js",
+      "bytes": 412025,
+      "sha256": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7"
+    },
+    {
+      "file": "assets/vendor/adhan/Adhan.js",
+      "bytes": 827,
+      "sha256": "0326893cd2c4994f9a67bc1008ab54a2678a728e3123e01ce6b4d111008d09f0"
+    },
+    {
+      "file": "assets/vendor/adhan/Astronomical.js",
+      "bytes": 11903,
+      "sha256": "fde941a806a3958efa96b20ec4f9dfd6052d2c0ffbbe6d3d670dbb8e32f44b08"
+    },
+    {
+      "file": "assets/vendor/adhan/CalculationMethod.js",
+      "bytes": 2476,
+      "sha256": "25fe507d157eb462913f9d552c527b4fd34023f1965129f5d31ce380c1cada21"
+    },
+    {
+      "file": "assets/vendor/adhan/CalculationParameters.js",
+      "bytes": 2040,
+      "sha256": "2389ac64c932c3a287bb7fdf13e6585b763781e7e59d9676039d409c83da3401"
+    },
+    {
+      "file": "assets/vendor/adhan/Coordinates.js",
+      "bytes": 275,
+      "sha256": "0233d695243aa554199115df9c1e3d6c84e66699ac6bef531e4e6cf4e13c8cc4"
+    },
+    {
+      "file": "assets/vendor/adhan/DateUtils.js",
+      "bytes": 1825,
+      "sha256": "ecbe2737fb91fdbe6fe8be92600f6817f1b2e6e4fddd14233f94c4d89aa366d5"
+    },
+    {
+      "file": "assets/vendor/adhan/HighLatitudeRule.js",
+      "bytes": 495,
+      "sha256": "35a9be5d9b49c10210477b81ba1c98450ac99a58e5125c45cba3398fb68f2778"
+    },
+    {
+      "file": "assets/vendor/adhan/Madhab.js",
+      "bytes": 382,
+      "sha256": "644398adb646260a337b34cab2277a3c2f798f064d9cb968f670aeaa857506f4"
+    },
+    {
+      "file": "assets/vendor/adhan/MathUtils.js",
+      "bytes": 603,
+      "sha256": "b888fd77de0ebaa9c218d27a8f859555bcf32a89e974b6a1f4aeea9c61dd1d89"
+    },
+    {
+      "file": "assets/vendor/adhan/PolarCircleResolution.js",
+      "bytes": 2846,
+      "sha256": "ae218b4dccdf083afcde1b85494947c72d928e5430683a4d3013261e20b95a07"
+    },
+    {
+      "file": "assets/vendor/adhan/Prayer.js",
+      "bytes": 275,
+      "sha256": "a13792a407bca56ca24f480c7f0f54fc4dd0324fce83e56d53ae4bfd9e22a922"
+    },
+    {
+      "file": "assets/vendor/adhan/PrayerTimes.js",
+      "bytes": 9071,
+      "sha256": "45c1936d2f96229e9b80b113531be4e71b537da10f76aad0e28035ee94f5cb4d"
+    },
+    {
+      "file": "assets/vendor/adhan/Qibla.js",
+      "bytes": 806,
+      "sha256": "3467a2c6816172a7b17379011e0a005ca60e0211ffba99d8fd5344f640db67fb"
+    },
+    {
+      "file": "assets/vendor/adhan/Rounding.js",
+      "bytes": 179,
+      "sha256": "c610a7340967a9f33835be8dc87ef54aa11aeae2f09cb9e60bb643536d31deeb"
+    },
+    {
+      "file": "assets/vendor/adhan/Shafaq.js",
+      "bytes": 185,
+      "sha256": "60046362337cf7849af983e33033fc81fc48dcf40826a916517e696e19d06838"
+    },
+    {
+      "file": "assets/vendor/adhan/SolarCoordinates.js",
+      "bytes": 1419,
+      "sha256": "0f139365902bc82ffcf96cec7278e8afc41835ae8e040a97ff351fe0c99ad98e"
+    },
+    {
+      "file": "assets/vendor/adhan/SolarTime.js",
+      "bytes": 2448,
+      "sha256": "9fff93b5fc7d745a0e946ac99dae17429a1441fac6280585c49eccdda3f5fa5d"
+    },
+    {
+      "file": "assets/vendor/adhan/SunnahTimes.js",
+      "bytes": 890,
+      "sha256": "507876f09d121eedb3b411aa52ad482ec706167517ecc8edd1e7dc72d4676fe8"
+    },
+    {
+      "file": "assets/vendor/adhan/TimeComponents.js",
+      "bytes": 539,
+      "sha256": "f081f2ed06e0c5086ee1d60238e40a58b714e608feed49ae5f931b4d14d5ec0d"
+    },
+    {
+      "file": "research/reading-lab/source-ledger.json",
+      "bytes": 50866,
+      "sha256": "dccf50304cb3ee4f257dd78fa8d8abd8b5abb356cdf83724d955f729f80ef3ff"
+    },
+    {
+      "file": "scripts/build-reading-lab-database.mjs",
+      "bytes": 13929,
+      "sha256": "3af43a36762ee0093f87df6b95ec7b047e04ceb62f060fe26ca0d74bdd188080"
+    },
+    {
+      "file": "supabase/migrations/202611040002_reading_lab.sql",
+      "bytes": 7191,
+      "sha256": "83e3e03741f88c773e8d665debc1d5de54ec27c52d126acdc8590fd920b79fed"
+    }
+  ],
+  "sourceGraphSHA256": "6ddff5c22da784602bf4e50f92a099fbd0e4c7376edd4f76e608a9a8e56b24b0",
+  "runtimeNote": "Civil labels use the supported JavaScript Intl calendar implementation. Check mode compares actual output as well as source hashes; runtime-specific label changes require review.",
+  "frameworks": [
+    {
+      "id": "egyptian",
+      "label": "Egyptian / Coptic study",
+      "kind": "calendar",
+      "implemented": "partial",
+      "method": "Coptic civil conversion; ancient Egyptian calendars remain source study",
+      "limits": [
+        "Coptic dates are not ancient Egyptian horoscopes. No ancient civil epoch or lunar reconstruction is selected."
+      ]
+    },
+    {
+      "id": "mayan",
+      "label": "Maya calendar arithmetic",
+      "kind": "calendar",
+      "implemented": "calculated",
+      "method": "Long Count, Tzolk’in and Haab’; GMT correlation 584283; selected civil date",
+      "limits": [
+        "Civil midnight is this study’s display boundary, not a universal ancient or present-day Maya ritual rule. No personality horoscope or apocalypse prediction.",
+        "Day and month names use selected transliterations; spellings and community naming conventions differ. The independent worked fixture covers its listed fields, not every historical date or community practice."
+      ]
+    },
+    {
+      "id": "dee",
+      "label": "John Dee / textual method",
+      "kind": "textual",
+      "implemented": "textual-only",
+      "method": "Source passage and symbolic-method comparison",
+      "limits": [
+        "No universal Dee natal or predictive calendar algorithm is implemented."
+      ]
+    },
+    {
+      "id": "lilly",
+      "label": "Historical Western / Christian calendars",
+      "kind": "astrology-and-computus",
+      "implemented": "partial",
+      "method": "Tropical chart with named houses; Christian Gregorian/Julian computus is a separate method",
+      "limits": [
+        "Lilly’s title is historical, not authority for all Christian beliefs. A moment chart is neither a birth chart nor a complete horary judgment."
+      ]
+    },
+    {
+      "id": "vedic",
+      "label": "Jyotiṣa / Vedic study",
+      "kind": "astrology",
+      "implemented": "partial",
+      "method": "Linear Lahiri approximation, whole-sign houses and canonical instantaneous pañcāṅga",
+      "limits": [
+        "Regional festivals and month conventions are unimplemented; no personal daśā or remedy is inferred from a study moment."
+      ]
+    },
+    {
+      "id": "chinese",
+      "label": "Chinese civil calendar",
+      "kind": "calendar",
+      "implemented": "partial",
+      "method": "Named Intl Chinese civil calendar with leap-month label",
+      "limits": [
+        "A civil conversion is not BaZi, Zi Wei Dou Shu, a Tong Shu election, or all Chinese traditions."
+      ]
+    },
+    {
+      "id": "hebrew",
+      "label": "Hebrew civil calendar",
+      "kind": "calendar",
+      "implemented": "partial",
+      "method": "Named Intl Hebrew date with selected-zone civil-midnight boundary",
+      "limits": [
+        "Sunset religious dates, Israel/diaspora observance policies and Kabbalistic prescriptions are not computed."
+      ]
+    },
+    {
+      "id": "jung",
+      "label": "Jung / symbolic reflection",
+      "kind": "reflection",
+      "implemented": "reflection",
+      "method": "Textual reflection; optional explicitly post-Jungian elemental tally",
+      "limits": [
+        "The element-to-function mapping is largely post-Jungian. It does not diagnose personality, mental health or unconscious contents."
+      ]
+    },
+    {
+      "id": "plato",
+      "label": "Plato / philosophical reflection",
+      "kind": "reflection",
+      "implemented": "textual-only",
+      "method": "Source passages on choice and daimon as philosophical study",
+      "limits": [
+        "No numerical Platonic natal calendar or proof of a personal supernatural entity is inferred."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "rl-egypt-ucl",
+      "title": "UCL Digital Egypt: Calendar",
+      "url": "https://www.ucl.ac.uk/museums-static/digitalegypt/chronology/calendar.html",
+      "retrievedAt": "2026-11-04",
+      "locator": "Opening comparison of Egyptian and Coptic calendars; twelve-month table and epagomenal days",
+      "evidenceQuality": "institutional historical reference",
+      "readingDepth": "Full short page and month table read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Ancient Egyptian civil year: twelve thirty-day months plus five additional days.",
+        "Coptic/Alexandrian intercalation is a later reform; it must not be silently applied to the wandering civil year."
+      ],
+      "limitations": [
+        "This source supplies calendar structure, not personal horoscopes or a unique ancient epoch."
+      ]
+    },
+    {
+      "id": "rl-coptic-calendar",
+      "title": "CopticChurch.net: Calendar of Martyrs",
+      "url": "https://www.copticchurch.net/calendar",
+      "retrievedAt": "2026-11-04",
+      "locator": "Quick facts; month table; Calendar of Martyrs chronology",
+      "evidenceQuality": "community institutional calendar reference",
+      "readingDepth": "Selected calendar-structure and chronology sections read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Coptic calendar has twelve thirty-day months and a short thirteenth month; its leap convention differs from the ancient wandering year."
+      ],
+      "limitations": [
+        "Historical origin claims are not independently adopted; no current-date widget was treated as an external fixture."
+      ]
+    },
+    {
+      "id": "rl-maya-converter",
+      "title": "Smithsonian NMAI Living Maya Time: Maya Calendar Converter",
+      "url": "https://maya.nmai.si.edu/calendar/maya-calendar-converter",
+      "retrievedAt": "2026-11-04",
+      "locator": "Reading the Maya Calendar: explicit December 20, 2012 example",
+      "evidenceQuality": "institutional worked calendar example",
+      "readingDepth": "Main explanation and printed worked example read; converter not automated",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "2012-12-20 corresponds to 12.19.19.17.19, 3 Kawak, 2 K’ank’in in the displayed correlation.",
+        "Long Count units are 20 kin, 18 uinal, 20 tun and 20 katun."
+      ],
+      "limitations": [
+        "Correlation convention is part of the result; different correlations produce different Gregorian dates.",
+        "Glyph artwork and site implementation are not copied."
+      ]
+    },
+    {
+      "id": "rl-maya-2012",
+      "title": "Smithsonian NMAI: 2012, Resetting the Count",
+      "url": "https://maya.nmai.si.edu/2012-resetting-count",
+      "retrievedAt": "2026-11-04",
+      "locator": "Main introduction and Maya-perspective discussion",
+      "evidenceQuality": "institutional cultural contextualization",
+      "readingDepth": "Main explanatory section read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "A Long Count cycle transition is not evidence for an apocalypse."
+      ],
+      "limitations": [
+        "This is a selected institutional explanation, not coverage of every Maya community or interpretation."
+      ]
+    },
+    {
+      "id": "rl-lilly",
+      "title": "William Lilly: Christian Astrology, Book I, modern transcription",
+      "url": "https://www.worldastrology.net/wp-content/uploads/2008/12/CA-I.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "Printed pp. 101–105 essential dignities; pp. 113–114 combustion and cazimi",
+      "evidenceQuality": "primary historical text through modern transcription",
+      "readingDepth": "Selected definitions, worked examples and table read; not full book",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "The text treats dignity and solar proximity as distinct traditional judgments.",
+        "The eight-degree-thirty-minute combustion definition conflicts with its second ten-degree example.",
+        "The printed cazimi example places Sun at 15°30′ Taurus and Mercury at 15°25′ Taurus."
+      ],
+      "limitations": [
+        "Transcription glyphs can be corrupted; primary scan checking is needed before exact table extraction.",
+        "Historical descriptions are not validated forecasts of events."
+      ]
+    },
+    {
+      "id": "rl-usccb-2024",
+      "title": "USCCB: Liturgical Calendar for the Dioceses of the United States of America, 2024",
+      "url": "https://www.usccb.org/resources/2024cal.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "Principal celebrations table (PDF p. 6); March 31 entry",
+      "evidenceQuality": "official denominational calendar",
+      "readingDepth": "Principal dates table and dated Easter entry read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Gregorian Easter Sunday is March 31, 2024 for this Catholic calendar."
+      ],
+      "limitations": [
+        "Denominational calendar, not a universal statement of Christian astrology."
+      ]
+    },
+    {
+      "id": "rl-coptic-feasts",
+      "title": "CopticChurch.net: Coptic Feasts for 2024",
+      "url": "https://www.copticchurch.net/calendar/feasts/2024",
+      "retrievedAt": "2026-11-04",
+      "locator": "Seven Major Feasts: Easter, May 5th",
+      "evidenceQuality": "community institutional liturgical calendar",
+      "readingDepth": "Entire short 2024 list read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Coptic Easter is May 5, 2024."
+      ],
+      "limitations": [
+        "Source states its calculator range is 1902–2037; the fixture does not validate other years."
+      ]
+    },
+    {
+      "id": "rl-rao",
+      "title": "P. V. R. Narasimha Rao: Vedic Astrology, An Integrated Approach",
+      "url": "https://www.vedicastrologer.org/articles/vedic_astro_textbook.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "§1.3.8.1 and Example 2, printed pp.13–14; §1.3.11, p.17; §1.3.13 Ayanamsa, p.18",
+      "evidenceQuality": "author-published worked textbook examples",
+      "readingDepth": "Selected tithi, hora and ayanamsha definitions and worked examples read; not full book",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Example 2: Moon 84°12′, Sun 227°46′; positive difference 216°26′; tithi 19, Krishna Chaturthi.",
+        "Wednesday 21:40 with sunrise 06:10: the worked hora example identifies the sixteenth hour and Moon ruler.",
+        "§1.3.13 explains precession, the changing tropical/sidereal offset, subtracting ayanamsha and the chosen Chitrapaksha/Lahiri convention."
+      ],
+      "limitations": [
+        "The hora passage uses an equal-hour approximation; unequal seasonal planetary hours are a different convention.",
+        "Modern textbook synthesis does not represent every Vedic school.",
+        "No independently published outcome follows from these arithmetic examples."
+      ]
+    },
+    {
+      "id": "rl-hko-2024",
+      "title": "Hong Kong Observatory: Gregorian–Lunar Calendar Conversion Table of 2024",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2024e.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "Single-page table, February row, Gregorian day 10",
+      "evidenceQuality": "official astronomical calendar table",
+      "readingDepth": "February row and year heading read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "February 10, 2024 is the first day of the first lunar month."
+      ],
+      "limitations": [
+        "Use Chinese civil calendar convention; neither a full BaZi reading nor an auspiciousness score."
+      ]
+    },
+    {
+      "id": "rl-hko-2023",
+      "title": "Hong Kong Observatory: Gregorian–Lunar Calendar Conversion Table of 2023",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendar/pdf/files/2023e.pdf",
+      "retrievedAt": "2026-11-04",
+      "locator": "Single-page table, February day 20 and March day 22: repeated second lunar month",
+      "evidenceQuality": "official astronomical calendar table",
+      "readingDepth": "February and March month starts compared",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "February 20 starts the second lunar month; March 22 starts a second instance of lunar month two in 2023."
+      ],
+      "limitations": [
+        "Leap identity follows the repeated second-month sequence; PDF text extraction does not explicitly spell out the word leap."
+      ]
+    },
+    {
+      "id": "rl-hko-calendar",
+      "title": "Hong Kong Observatory: Gregorian–Lunar Calendar Conversion Table information",
+      "url": "https://www.hko.gov.hk/en/gts/time/calendarinfo.htm",
+      "retrievedAt": "2026-11-04",
+      "locator": "Calendar introduction and explanatory links",
+      "evidenceQuality": "official astronomical calendar explanation",
+      "readingDepth": "Full short page read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Gregorian and Chinese lunar calendar conversion is an explicit calendrical operation."
+      ],
+      "limitations": [
+        "Calendar conversion does not establish personal fate or validate religious predictions."
+      ]
+    },
+    {
+      "id": "rl-hebcal-convert",
+      "title": "Hebcal Converter API: October 3, 2024",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=3&g2h=1",
+      "retrievedAt": "2026-11-04",
+      "locator": "JSON fields gy,gm,gd,afterSunset,hy,hm,hd",
+      "evidenceQuality": "independent specialist conversion service",
+      "readingDepth": "Complete JSON response read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "2024-10-03 before sunset maps to 1 Tishrei 5785."
+      ],
+      "limitations": [
+        "Intl labels this month Tishri; the spelling alias is declared, not silently scored as different.",
+        "This is a selected external service comparison, not exhaustive independent validation."
+      ]
+    },
+    {
+      "id": "rl-hebcal-day",
+      "title": "Hebcal Converter API: October 2, 2024, before sunset",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1",
+      "retrievedAt": "2026-11-04",
+      "locator": "JSON afterSunset=false,hy,hm,hd",
+      "evidenceQuality": "independent specialist conversion service",
+      "readingDepth": "Complete JSON response read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "2024-10-02 before sunset maps to 29 Elul 5784."
+      ],
+      "limitations": [
+        "No location or solar time is supplied."
+      ]
+    },
+    {
+      "id": "rl-hebcal-sunset",
+      "title": "Hebcal Converter API: October 2, 2024, after sunset",
+      "url": "https://www.hebcal.com/converter?cfg=json&gy=2024&gm=10&gd=2&g2h=1&gs=on",
+      "retrievedAt": "2026-11-04",
+      "locator": "JSON afterSunset=true,hy,hm,hd",
+      "evidenceQuality": "independent specialist conversion service",
+      "readingDepth": "Complete JSON response read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "2024-10-02 after sunset maps to 1 Tishrei 5785."
+      ],
+      "limitations": [
+        "The explicit sunset flag changes the religious date; this is not an observed sunset calculation."
+      ]
+    },
+    {
+      "id": "rl-hebcal-rh",
+      "title": "Hebcal: Rosh Hashana 2024 / 5785",
+      "url": "https://www.hebcal.com/holidays/rosh-hashana-2024",
+      "retrievedAt": "2026-11-04",
+      "locator": "Opening date interval and description",
+      "evidenceQuality": "independent specialist holiday calendar",
+      "readingDepth": "Opening holiday dates and explanation read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Rosh Hashana 5785 begins on the evening of October 2, 2024."
+      ],
+      "limitations": [
+        "Local observance and exact sunset time require a location and community convention."
+      ]
+    },
+    {
+      "id": "rl-dee-monas",
+      "title": "John Dee: Monas Hieroglyphica (1564), Hamilton-Jones translation (1947)",
+      "url": "https://esotericarchives.com/dee/monad.htm",
+      "retrievedAt": "2026-11-04",
+      "locator": "Main body Theorems I–VI; title and translation attribution",
+      "evidenceQuality": "primary historical treatise in later translation",
+      "readingDepth": "Selected I–VI passages and edition attribution read; not full treatise",
+      "rights": "1564 Latin is historical public-domain material; the 1947 English translation has separate rights. Original short paraphrases only; no translation or diagrams redistributed.",
+      "claims": [
+        "Theorems III–VI assemble a central point and solar circle, lunar semicircle and right-angled cross as a symbolic monad."
+      ],
+      "limitations": [
+        "The table of contents duplicates a theorem label; body headings were used.",
+        "Not a birth-date calendar, a physical mechanism or proof of supernatural efficacy."
+      ]
+    },
+    {
+      "id": "rl-jung-primary",
+      "title": "C. G. Jung: Psychological Types, H. G. Baynes translation (1923), archived OCR",
+      "url": "https://archive.org/download/psychological_types/psychological_types_djvu.txt",
+      "retrievedAt": "2026-11-04",
+      "locator": "Definitions: Feeling, printed pp. 543–545; Individuation, printed pp. 561–563",
+      "evidenceQuality": "primary historical psychology text via OCR",
+      "readingDepth": "Selected definitions read, including surrounding page markers; not full book",
+      "rights": "1923 English edition is public domain in the United States; jurisdiction may differ. OCR is not redistributed; original paraphrases are supplied.",
+      "claims": [
+        "Feeling is described as valuation, acceptance or rejection, and is not simply emotion.",
+        "Individuation is differentiated development that retains collective relationship, not mere isolation."
+      ],
+      "limitations": [
+        "OCR errors and historical psychological claims need contextual reading.",
+        "No typology, diagnosis or life outcome can be computed from a birth date with these definitions."
+      ]
+    },
+    {
+      "id": "rl-jung-feeling",
+      "title": "Society of Analytical Psychology: Typology, Fiona Ross",
+      "url": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/typology/",
+      "retrievedAt": "2026-11-04",
+      "locator": "Psychological Functions section",
+      "evidenceQuality": "specialist secondary interpretation",
+      "readingDepth": "Psychological-functions section and attribution read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Thinking and feeling are described as judging functions; sensation and intuition as perceptive functions."
+      ],
+      "limitations": [
+        "A specialist interpretation supplements the primary text; it is not an independent clinical validation."
+      ]
+    },
+    {
+      "id": "rl-jung-individuation",
+      "title": "Society of Analytical Psychology: Individuation, Martin Schmidt",
+      "url": "https://www.thesap.org.uk/articles-on-jungian-psychology-2/about-analysis-and-therapy/individuation/",
+      "retrievedAt": "2026-11-04",
+      "locator": "Collective and personal section",
+      "evidenceQuality": "specialist secondary interpretation",
+      "readingDepth": "Selected collective/personal discussion read",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Individuation involves both personal and collective dimensions."
+      ],
+      "limitations": [
+        "This is contextual interpretation, not an automated assessment."
+      ]
+    },
+    {
+      "id": "rl-plato-republic",
+      "title": "Plato: Republic, Book X, Benjamin Jowett translation",
+      "url": "https://classics.mit.edu/Plato/republic.11.x.html",
+      "retrievedAt": "2026-11-04",
+      "locator": "Myth of Er, Stephanus 617d–618a and 620d–621a; lot/choice passages",
+      "evidenceQuality": "primary philosophical text in historical translation",
+      "readingDepth": "Selected choice, responsibility and daimon passages read; not entire Republic",
+      "rights": "Ancient text and Jowett translation are public-domain works; site formatting is not copied. Original paraphrases only.",
+      "claims": [
+        "The lot determines order of choosing lives; responsibility is attributed to the chooser.",
+        "The daimon in this myth is not a natal longitude formula."
+      ],
+      "limitations": [
+        "Stephanus locators identify the standard passage; the MIT page is not line-numbered."
+      ]
+    },
+    {
+      "id": "rl-plato-timaeus",
+      "title": "Plato: Timaeus, Benjamin Jowett translation",
+      "url": "https://classics.mit.edu/Plato/timaeus.html",
+      "retrievedAt": "2026-11-04",
+      "locator": "Stephanus 90a–d, paragraph beginning And we should consider",
+      "evidenceQuality": "primary philosophical text in historical translation",
+      "readingDepth": "Selected rational/divine-principle passage read; not entire dialogue",
+      "rights": "Ancient text and Jowett translation are public-domain works; site formatting is not copied. Original paraphrases only.",
+      "claims": [
+        "The highest part of the soul is linked to a divine principle and the cultivation of understanding."
+      ],
+      "limitations": [
+        "This cosmological philosophy is distinct from an astrological Lot of Spirit and is not a predictive calculator."
+      ]
+    },
+    {
+      "id": "rl-lilly-dog-figure",
+      "title": "William Lilly, Christian Astrology (1647), original dog-question figure",
+      "url": "https://ia903103.us.archive.org/BookReader/BookReaderImages.php?zip=/10/items/b30338724/b30338724_jp2.zip&file=b30338724_jp2/b30338724_0426.jp2&id=b30338724&scale=2&rotate=0",
+      "retrievedAt": "2026-11-04",
+      "locator": "Printed p.392, chapter LXII; archive b30338724, image leaf 426",
+      "evidenceQuality": "primary printed chart, visually inspected",
+      "readingDepth": "Full printed p392 image visually inspected, selected four clear planetary positions transcribed; adjacent narrative checked through OCR",
+      "rights": "1647 printed work is public domain; this app links the scan and republishes factual values with original commentary, not the scan image.",
+      "claims": [
+        "Printed Sun 15°45′ Virgo, Moon 4°10′ Virgo, Mercury 12°20′ Libra and Saturn 18°15′ Taurus differ from the inherited reconstruction.",
+        "Figure header reads29 August 1646 at 4:05 P.M.; historical OldStyle is retained."
+      ],
+      "limitations": [
+        "Only four unambiguously legible positions enter the reference checks. Other planetary degrees/minutes, cusp values and house assignments are not certified.",
+        "A printed figure comparison is not independent ephemeris validation. The reported recovery is Lilly’s narrative, not independently verified outcome data."
+      ]
+    },
+    {
+      "id": "rl-lilly-primary",
+      "title": "William Lilly, Christian Astrology (1647), archive OCR",
+      "url": "https://archive.org/download/b30338724/b30338724_djvu.txt",
+      "retrievedAt": "2026-11-04",
+      "locator": "Chapter LXII, A Dogge missing, where?; printed pp.392–394 as verified against pageimage",
+      "evidenceQuality": "primary historical text through fallible OCR",
+      "readingDepth": "Selected dog-question narrative and surrounding chapter read; not entire book",
+      "rights": "1647 printed work is public domain; no full OCR redistribution.",
+      "claims": [
+        "The narrative discusses significator choice, direction and the author’s reported recovery of the missing dog."
+      ],
+      "limitations": [
+        "OCR page numbers and astrological glyphs are unreliable; the image supplies the four numerical reference fields.",
+        "The author’s favorable outcome report is not independent ground truth."
+      ]
+    },
+    {
+      "id": "rl-swiss-general",
+      "title": "Astrodienst: Swiss Ephemeris general documentation",
+      "url": "https://www.astro.com/swisseph/swisseph.htm",
+      "retrievedAt": "2026-11-04",
+      "locator": "§2.8.1 zodiac definition; §6.2.1 Placidus; §6.2.5 equal and whole-sign houses; §6.4 polar limits",
+      "evidenceQuality": "maintainer technical documentation",
+      "readingDepth": "Selected zodiac, house-definition and polar-limit sections read; not full manual",
+      "rights": "Reference and original paraphrase only; linked material is not redistributed and no training licence is inferred.",
+      "claims": [
+        "Tropical zero Aries is the vernal point; sidereal zero is selected relative to stars and depends on an ayanamsha convention.",
+        "Whole-sign houses begin at the start of the rising zodiac sign; equal houses from the Ascendant begin at the Ascendant degree.",
+        "Placidus cusps use divisions of semidiurnal and seminocturnal arcs."
+      ],
+      "limitations": [
+        "A technical definition does not validate a personal interpretation.",
+        "Placidus definition is checked in this maintained technical source; no independent second publisher was successfully retrieved in this pass."
+      ]
+    }
+  ],
+  "methodNotes": [
+    {
+      "id": "RL-METHOD-HOUSE-ORIGINS",
+      "title": "Whole-sign versus equal houses: different origins",
+      "sourceIds": [
+        "rl-swiss-general"
+      ],
+      "locator": "Swiss Ephemeris general documentation §6.2.5",
+      "text": "Whole-sign houses assign the entire zodiac sign containing the Ascendant to house one: its cusp is 0° of that sign. Equal houses from the Ascendant divide the ecliptic into twelve 30° houses beginning at the actual Ascendant degree. For a synthetic Ascendant of 18° Taurus, whole-sign house one starts at 0° Taurus, while equal house one starts at 18° Taurus. The sky positions do not change when the house convention changes; a planet near a boundary can change house. This is a method definition and synthetic illustration, not an external worked birth example.",
+      "limitations": [
+        "Not every system called equal houses uses the Ascendant; name the variant explicitly.",
+        "A house-placement disagreement does not by itself establish that either interpretation predicts an outcome."
+      ]
+    },
+    {
+      "id": "RL-METHOD-PLACIDUS",
+      "title": "Placidus: time arcs and high-latitude limits",
+      "sourceIds": [
+        "rl-swiss-general"
+      ],
+      "locator": "Swiss Ephemeris general documentation §§6.2.1 and 6.4",
+      "text": "Placidus houses divide semidiurnal and seminocturnal arcs: the arcs of apparent daily motion from horizon to meridian above and below the horizon. Its intermediate cusps are ecliptic points satisfying the specified fractions of their own arcs. It is not simply twelve equal zodiac sectors or a trisection of an ecliptic quadrant. Latitude and local time matter. In polar situations the required rising or setting geometry may be absent; a fallback system must be labelled rather than silently called Placidus.",
+      "limitations": [
+        "Definition checked in the maintainer technical manual; second independent publisher retrieval was unsuccessful.",
+        "Software parity and the interpretation of a house require separate evidence."
+      ]
+    },
+    {
+      "id": "RL-METHOD-ZODIAC-FRAMES",
+      "title": "Tropical versus sidereal: origin, stars and precession",
+      "sourceIds": [
+        "rl-swiss-general",
+        "rl-rao"
+      ],
+      "locator": "Swiss Ephemeris general documentation §2.8.1; Rao §1.3.13,printed p.18",
+      "text": "The tropical zodiac sets 0° Aries at the vernal equinox on the ecliptic. A sidereal zodiac selects its origin relative to a stellar reference; different ayanamsha conventions choose different offsets. Precession changes the equinox relative to the stars, so tropical and sidereal longitude labels slowly diverge. In the usual offset method, sidereal longitude equals tropical longitude minus the chosen ayanamsha, normalized to 0–360°. This is not a fixed celestial-equator reference, and neither zodiac is identical to the unequal modern IAU constellation boundaries. The same observed planet may have different sign labels without the planet moving.",
+      "limitations": [
+        "The app uses a named linear Lahiri approximation, not exact universal sidereal or JHora parity.",
+        "A frame difference is not evidence for different physical influences."
+      ]
+    },
+    {
+      "id": "RL-METHOD-READING-CHAIN",
+      "title": "From a checked calculation to a conditional everyday reading",
+      "sourceIds": [
+        "rl-lilly",
+        "rl-rao",
+        "rl-jung-primary",
+        "rl-plato-republic"
+      ],
+      "locator": "Worked examples and distinctions in the selected passages; application structure is authored for this app",
+      "text": "Keep five layers visible: (1) supplied input and convention; (2) reproducible calculated fact; (3) the named source rule, including conflicts; (4) a conditional everyday scenario explicitly authored as a reflective application; (5) a low-risk action and observations that would support or weaken its usefulness. A matching date or angle validates that field only. Shared Moon/Sun inputs do not make two symbolic methods independent evidence. Do not infer diagnosis, guaranteed fortune, war, disasters or a person’s beliefs from the reading.",
+      "limitations": [
+        "The scenario-to-outcome link has not been validated by the source-field checks.",
+        "Use practical evidence for consequential decisions."
+      ]
+    }
+  ],
+  "summary": {
+    "examples": 17,
+    "sources": 24,
+    "traditions": 9,
+    "casesWithReferenceFields": 8,
+    "unevaluableCases": 9,
+    "referenceFields": 24,
+    "matchedFields": 24,
+    "outcomeEvaluable": false,
+    "scope": "Matching listed source fields is not predictive accuracy or full-chart validation."
+  },
+  "examples": [
+    {
+      "id": "egyptian-civil-structure",
+      "title": "Egyptian civil year: twelve months and five extra days",
+      "traditionId": "egyptian",
+      "methodId": "ancient-civil-vs-coptic",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-egypt-ucl",
+        "rl-coptic-calendar"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "Twelve thirty-day months plus five additional days make a 365-day ancient civil year. Coptic intercalation belongs to a later reform.",
+        "sourceLocator": "UCL month table and opening calendar comparison",
+        "scenarios": [
+          "If organizing a historical exhibit, preserve its civil-calendar convention instead of replacing it with today’s Coptic date.",
+          "For a recurring personal review, a calendar anniversary can be a chosen reminder without implying a favorable cosmic event."
+        ],
+        "questions": [
+          "Which historical period and epoch is intended?",
+          "Is the date civil Egyptian, Alexandrian/Coptic or a modern reconstruction?"
+        ],
+        "actions": [
+          "Record the epoch and leap convention beside any conversion.",
+          "Use ordinary scheduling needs to choose an anniversary activity."
+        ],
+        "supportChecks": [
+          "The stated structure sums to 365 days.",
+          "The selected source distinguishes intercalation from the earlier civil year."
+        ],
+        "refuteChecks": [
+          "A result silently inserts a sixth epagomenal day into an unreformed ancient year.",
+          "A modern Coptic conversion is labelled a verified ancient Egyptian horoscope."
+        ],
+        "limits": [
+          "No independent Gregorian-to-ancient-Egyptian epoch fixture is supplied; this case is not counted as conversion accuracy."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "egyptian",
+            "status": "unavailable",
+            "method": "Coptic civil conversion; ancient Egyptian calendars remain source study",
+            "limitations": [
+              "Coptic dates are not ancient Egyptian horoscopes. No ancient civil epoch or lunar reconstruction is selected."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "c797f5f08eae8298bd442de0f3bcc26b55f463a584cec42f2a12ac3c08d03bfa"
+    },
+    {
+      "id": "mayan-nmai-2012-12-20",
+      "title": "Smithsonian worked Maya date: December 20, 2012",
+      "traditionId": "mayan",
+      "methodId": "long-count-gmt584283",
+      "kind": "calendar-check",
+      "sourceIds": [
+        "rl-maya-converter",
+        "rl-maya-2012"
+      ],
+      "input": {
+        "dateISO": "2012-12-20",
+        "timeZone": "UTC"
+      },
+      "expected": [
+        {
+          "field": "frameworks.mayan.facts.longCount",
+          "value": "12.19.19.17.19",
+          "basis": "Smithsonian printed worked example"
+        },
+        {
+          "field": "frameworks.mayan.facts.tzolkin.number",
+          "value": 3,
+          "basis": "Same example"
+        },
+        {
+          "field": "frameworks.mayan.facts.tzolkin.name",
+          "value": "Kawak",
+          "basis": "Same example"
+        },
+        {
+          "field": "frameworks.mayan.facts.haab.day",
+          "value": 2,
+          "basis": "Same example"
+        },
+        {
+          "field": "frameworks.mayan.facts.haab.month",
+          "value": "K’ank’in",
+          "basis": "Source apostrophe spelling normalized explicitly to this display label"
+        }
+      ],
+      "evaluability": {
+        "status": "external-reference",
+        "reason": "Only the listed source fields are compared. No personal outcome is evaluated."
+      },
+      "interpretation": {
+        "rule": "The Long Count counts elapsed days in unequal place-value units; the Tzolk’in and Haab are parallel cycles.",
+        "sourceLocator": "NMAI Reading the Maya Calendar, December 20 example",
+        "scenarios": [
+          "If a deadline looks symbolically important because a cycle ends, use the transition to review completed work and next steps.",
+          "A community calendar observance should follow that community’s practice rather than a generic catastrophe narrative."
+        ],
+        "questions": [
+          "Which correlation constant is in use?",
+          "What evidence beyond a calendar label supports the proposed real-world claim?"
+        ],
+        "actions": [
+          "Compare the printed date with the displayed fields.",
+          "Write a practical retrospective and a reversible next step."
+        ],
+        "supportChecks": [
+          "All five displayed date fields match the external example."
+        ],
+        "refuteChecks": [
+          "Switching the correlation changes the Gregorian mapping.",
+          "A cycle boundary is used as evidence of a disaster."
+        ],
+        "limits": [
+          "This fixture checks one published conversion, not all Maya calendrical traditions or outcomes."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "reference-fields-match",
+      "fieldChecks": [
+        {
+          "field": "frameworks.mayan.facts.longCount",
+          "value": "12.19.19.17.19",
+          "basis": "Smithsonian printed worked example",
+          "actual": "12.19.19.17.19",
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.mayan.facts.tzolkin.number",
+          "value": 3,
+          "basis": "Same example",
+          "actual": 3,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.mayan.facts.tzolkin.name",
+          "value": "Kawak",
+          "basis": "Same example",
+          "actual": "Kawak",
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.mayan.facts.haab.day",
+          "value": 2,
+          "basis": "Same example",
+          "actual": 2,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.mayan.facts.haab.month",
+          "value": "K’ank’in",
+          "basis": "Source apostrophe spelling normalized explicitly to this display label",
+          "actual": "K’ank’in",
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        }
+      ],
+      "matchedFields": 5,
+      "totalReferenceFields": 5,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "reading-lab",
+        "context": {
+          "inputKind": "date-only-study",
+          "timeKnown": false,
+          "dateISO": "2012-12-20",
+          "timeZone": "UTC",
+          "calendarBoundary": "selected-zone civil midnight"
+        },
+        "frameworks": [
+          {
+            "id": "mayan",
+            "status": "available",
+            "method": "Long Count, Tzolk’in and Haab’; GMT correlation 584283; selected civil date",
+            "limitations": [
+              "Civil midnight is this study’s display boundary, not a universal ancient or present-day Maya ritual rule. No personality horoscope or apocalypse prediction.",
+              "Day and month names use selected transliterations; spellings and community naming conventions differ. The independent worked fixture covers its listed fields, not every historical date or community practice."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "e31c781d1c8633f092d57d36d2c3806a2afdddf10b76890129ededb80a72dd8d"
+    },
+    {
+      "id": "lilly-cazimi-example",
+      "title": "Lilly’s printed cazimi example: a five-minute separation",
+      "traditionId": "lilly",
+      "methodId": "historical-solar-proximity",
+      "kind": "worked-chart",
+      "sourceIds": [
+        "rl-lilly"
+      ],
+      "input": {
+        "planetLongitude": 45.416666666666664,
+        "sunLongitude": 45.5
+      },
+      "expected": [
+        {
+          "field": "frameworks.lilly.facts.solarProximity.separationDegrees",
+          "value": 0.08333333333333333,
+          "basis": "Printed Sun 15°30′ Taurus and Mercury15°25′ Taurus",
+          "tolerance": 1e-10
+        },
+        {
+          "field": "frameworks.lilly.facts.solarProximity.textualCategory",
+          "value": "cazimi",
+          "basis": "Printed example explicitly classed as cazimi"
+        }
+      ],
+      "evaluability": {
+        "status": "external-reference",
+        "reason": "Published positions and selected historical rule only; not independent ephemeris, complete horoscope or outcome validation."
+      },
+      "interpretation": {
+        "rule": "Lilly’s example has Sun at 15°30′ Taurus and Mercury at 15°25′ Taurus: five arcminutes apart, within his seventeen-arcminute cazimi limit.",
+        "sourceLocator": "Christian Astrology I, printed p.113, Cazimi",
+        "scenarios": [
+          "As a historical-reading exercise, first check the angular arithmetic, then label the traditional positive judgment separately.",
+          "If using the image of concentration as a journaling prompt, choose a short focused work session and observe whether it helps."
+        ],
+        "questions": [
+          "Are the two positions in the same sign and frame?",
+          "Is a practical benefit observed, or only assumed from the label?"
+        ],
+        "actions": [
+          "Keep source arithmetic separate from claims about success.",
+          "Try one brief, measurable focus block without changing a major commitment."
+        ],
+        "supportChecks": [
+          "The difference between the printed positions is five arcminutes."
+        ],
+        "refuteChecks": [
+          "The model interprets five arcminutes as five degrees.",
+          "A historical dignity label is asserted to guarantee an outcome."
+        ],
+        "limits": [
+          "Only the two printed positions and their named classification are checked; no birth date, observer, ephemeris accuracy or outcome is inferred."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "reference-fields-match",
+      "fieldChecks": [
+        {
+          "field": "frameworks.lilly.facts.solarProximity.separationDegrees",
+          "value": 0.08333333333333333,
+          "basis": "Printed Sun 15°30′ Taurus and Mercury15°25′ Taurus",
+          "tolerance": 1e-10,
+          "actual": 0.08333333333325754,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.lilly.facts.solarProximity.textualCategory",
+          "value": "cazimi",
+          "basis": "Printed example explicitly classed as cazimi",
+          "actual": "cazimi",
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        }
+      ],
+      "matchedFields": 2,
+      "totalReferenceFields": 2,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-solar-example",
+        "context": {
+          "inputKind": "source-longitudes",
+          "timeKnown": false,
+          "frame": "Printed same-sign positions; no observer, natal clock, or full chart is inferred"
+        },
+        "frameworks": [
+          {
+            "id": "lilly",
+            "status": "source-rule-example",
+            "method": "Tropical chart with named houses; Christian Gregorian/Julian computus is a separate method",
+            "limitations": [
+              "Lilly’s title is historical, not authority for all Christian beliefs. A moment chart is neither a birth chart nor a complete horary judgment."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "e15d593c027c7baac3e9de64b66a80f96d3f8c08516f14009d463679b85b04d4"
+    },
+    {
+      "id": "lilly-combustion-disagreement",
+      "title": "Lilly combustion: preserve a source contradiction",
+      "traditionId": "lilly",
+      "methodId": "historical-rule-conflict",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-lilly"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "The stated same-sign combustion threshold is 8°30′. The first example is separated by 8°; the next is separated by 10° yet is also called combust. The discrepancy remains visible.",
+        "sourceLocator": "Christian Astrology I, printed pp.113–114, Combustion",
+        "scenarios": [
+          "When two rules disagree, pause an interpretation and record which rule the software actually implements.",
+          "For an everyday decision, treat the contradiction as a reason to seek ordinary evidence, not as a hidden danger signal."
+        ],
+        "questions": [
+          "Was the prose definition or conflicting example selected?",
+          "Can a primary scan or another edition resolve a transcription issue?"
+        ],
+        "actions": [
+          "Label the contradiction in notes.",
+          "Do not average incompatible rules into a new confidence score."
+        ],
+        "supportChecks": [
+          "The two stated examples differ by 8° and 10°, respectively."
+        ],
+        "refuteChecks": [
+          "The 10° example is silently changed to fit 8°30′.",
+          "The disputed passage is presented as uniform agreement."
+        ],
+        "limits": [
+          "No numerical accuracy credit: the source itself supplies incompatible classification evidence."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "lilly",
+            "status": "unavailable",
+            "method": "Tropical chart with named houses; Christian Gregorian/Julian computus is a separate method",
+            "limitations": [
+              "Lilly’s title is historical, not authority for all Christian beliefs. A moment chart is neither a birth chart nor a complete horary judgment."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "c44434c10fc89c5774fa9b5c4435d3ab01b346dcf12b48ad1bff533e22616778"
+    },
+    {
+      "id": "christian-easter-2024",
+      "title": "Two 2024 Easter dates: March 31 and May 5",
+      "traditionId": "lilly",
+      "methodId": "christian-computus",
+      "kind": "calendar-check",
+      "sourceIds": [
+        "rl-usccb-2024",
+        "rl-coptic-feasts"
+      ],
+      "input": {
+        "dateISO": "2024-01-01",
+        "timeZone": "UTC"
+      },
+      "expected": [
+        {
+          "field": "frameworks.lilly.facts.computus.gregorianEaster",
+          "value": "2024-03-31",
+          "basis": "USCCB 2024 principal celebrations table"
+        },
+        {
+          "field": "frameworks.lilly.facts.computus.julianEasterGregorian",
+          "value": "2024-05-05",
+          "basis": "CopticChurch.net Easter 2024 date"
+        }
+      ],
+      "evaluability": {
+        "status": "external-reference",
+        "reason": "Only the listed source fields are compared. No personal outcome is evaluated."
+      },
+      "interpretation": {
+        "rule": "Gregorian and Julian Paschal calculations can identify different civil Sundays; the source calendars specify distinct Christian observances.",
+        "sourceLocator": "USCCB 2024 table; CopticChurch.net Seven Major Feasts",
+        "scenarios": [
+          "If arranging a multi-community meal, the five-week difference can affect attendance and fasting practice.",
+          "A calendar comparison can explain a scheduling mismatch without ranking one community’s date as spiritually stronger."
+        ],
+        "questions": [
+          "Which community and calendar convention is involved?",
+          "Are travel, worship and meal plans compatible with participants’ actual observance?"
+        ],
+        "actions": [
+          "Confirm the observance with participants.",
+          "Keep both dates visible when planning shared events."
+        ],
+        "supportChecks": [
+          "The two named calendars publish these exact 2024 dates."
+        ],
+        "refuteChecks": [
+          "A result treats all Christians as using a single date.",
+          "A computus result is repurposed as a natal or geopolitical prediction."
+        ],
+        "limits": [
+          "Lilly is the historical-Western navigation family; Christian computus is a separate method, not a rule from Lilly or a universal Christian horoscope."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "reference-fields-match",
+      "fieldChecks": [
+        {
+          "field": "frameworks.lilly.facts.computus.gregorianEaster",
+          "value": "2024-03-31",
+          "basis": "USCCB 2024 principal celebrations table",
+          "actual": "2024-03-31",
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.lilly.facts.computus.julianEasterGregorian",
+          "value": "2024-05-05",
+          "basis": "CopticChurch.net Easter 2024 date",
+          "actual": "2024-05-05",
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        }
+      ],
+      "matchedFields": 2,
+      "totalReferenceFields": 2,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "reading-lab",
+        "context": {
+          "inputKind": "date-only-study",
+          "timeKnown": false,
+          "dateISO": "2024-01-01",
+          "timeZone": "UTC",
+          "calendarBoundary": "selected-zone civil midnight"
+        },
+        "frameworks": [
+          {
+            "id": "lilly",
+            "status": "partial",
+            "method": "Tropical chart with named houses; Christian Gregorian/Julian computus is a separate method",
+            "limitations": [
+              "Lilly’s title is historical, not authority for all Christian beliefs. A moment chart is neither a birth chart nor a complete horary judgment.",
+              "Date-only input: no clock, ascendant, houses or instant pañcāṅga is inferred."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "b62343a58d9ce809d8d30852eda75c82b6080c2c34be3db3781a99d2457173b4"
+    },
+    {
+      "id": "vedic-rao-tithi-example-2",
+      "title": "Rao Example 2: Krishna Chaturthi from supplied longitudes",
+      "traditionId": "vedic",
+      "methodId": "tithi-longitude-example",
+      "kind": "calendar-check",
+      "sourceIds": [
+        "rl-rao"
+      ],
+      "input": {
+        "sunLongitude": 227.76666666666668,
+        "moonLongitude": 84.2,
+        "frame": "Published same-frame longitudes; no birth date or observer"
+      },
+      "expected": [
+        {
+          "field": "frameworks.vedic.facts.elongationDegrees",
+          "value": 216.43333333333334,
+          "basis": "Rao printed p.14:216°26′",
+          "tolerance": 1e-9
+        },
+        {
+          "field": "frameworks.vedic.facts.tithiNumber",
+          "value": 19,
+          "basis": "Rao Example 2:19th tithi, Krishna Chaturthi"
+        }
+      ],
+      "evaluability": {
+        "status": "external-reference",
+        "reason": "Only the listed source fields are compared. No personal outcome is evaluated."
+      },
+      "interpretation": {
+        "rule": "Subtract Sun from Moon, normalize to 0–360°, divide by 12°, and add one to the integer quotient. This gives lunar phase division, not personal destiny.",
+        "sourceLocator": "§1.3.8.1, Example 2, printed pp.13–14",
+        "scenarios": [
+          "If checking an almanac, this arithmetic explains why a tithi can change independently of midnight.",
+          "For a personal review routine, use a phase label as an optional reminder; determine workload from actual capacity."
+        ],
+        "questions": [
+          "Were both longitudes expressed in the same reference frame?",
+          "Does the local observance require the tithi at sunrise or another moment?"
+        ],
+        "actions": [
+          "Reproduce the subtraction before interpreting the label.",
+          "Consult a location-specific almanac for a real observance."
+        ],
+        "supportChecks": [
+          "The normalized difference and nineteenth tithi match the published arithmetic."
+        ],
+        "refuteChecks": [
+          "The case is assigned a fabricated birth time or location.",
+          "A symbolic tithi is asserted to predict a specific event."
+        ],
+        "limits": [
+          "No ephemeris accuracy is tested: the longitudes are supplied by the source. No outcome labels are available."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "reference-fields-match",
+      "fieldChecks": [
+        {
+          "field": "frameworks.vedic.facts.elongationDegrees",
+          "value": 216.43333333333334,
+          "basis": "Rao printed p.14:216°26′",
+          "tolerance": 1e-9,
+          "actual": 216.43333333333334,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.vedic.facts.tithiNumber",
+          "value": 19,
+          "basis": "Rao Example 2:19th tithi, Krishna Chaturthi",
+          "actual": 19,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        }
+      ],
+      "matchedFields": 2,
+      "totalReferenceFields": 2,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-longitude-example",
+        "context": {
+          "inputKind": "source-longitudes",
+          "timeKnown": false,
+          "frame": "Published same-frame longitudes; no birth date or observer"
+        },
+        "frameworks": [
+          {
+            "id": "vedic",
+            "status": "arithmetic-example",
+            "method": "Linear Lahiri approximation, whole-sign houses and canonical instantaneous pañcāṅga",
+            "limitations": [
+              "Regional festivals and month conventions are unimplemented; no personal daśā or remedy is inferred from a study moment."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "dd8aca73828f876d6b1fea54027bb6c46d05554ff78e3f27806cf785667c36f5"
+    },
+    {
+      "id": "vedic-rao-hora-example",
+      "title": "Rao’s Wednesday hora example and its convention",
+      "traditionId": "vedic",
+      "methodId": "textbook-hora-convention",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-rao"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "For Wednesday 21:40 with sunrise 06:10, the textbook counts the running sixteenth hour from sunrise and assigns Moon in the repeating planetary order.",
+        "sourceLocator": "§1.3.11 Hora, printed p.17",
+        "scenarios": [
+          "When two applications name different hour rulers, check whether one uses unequal daytime/nighttime hours and the other this equal-hour convention.",
+          "A scheduled rest or reflection interval can be useful because it fits the person’s routine, independently of the ruler label."
+        ],
+        "questions": [
+          "What sunrise and day-length convention was used?",
+          "Are clocks and time zones the same?"
+        ],
+        "actions": [
+          "Record the hora convention before comparing tools.",
+          "Keep a routine only if it helps in practice."
+        ],
+        "supportChecks": [
+          "15h30m elapsed falls in the running sixteenth hour under the worked convention."
+        ],
+        "refuteChecks": [
+          "The example is claimed to validate unequal seasonal hours without a sunset input.",
+          "A planetary-hour label overrides an urgent practical need."
+        ],
+        "limits": [
+          "The example lacks a calendar date/location and sunset; it is not an external reference for the app’s seasonal-hours calculator."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "vedic",
+            "status": "unavailable",
+            "method": "Linear Lahiri approximation, whole-sign houses and canonical instantaneous pañcāṅga",
+            "limitations": [
+              "Regional festivals and month conventions are unimplemented; no personal daśā or remedy is inferred from a study moment."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "a3144113f96152674e429a52288ed044984306b9bbe220b05282f7e42351b6bc"
+    },
+    {
+      "id": "chinese-new-year-2024",
+      "title": "HKO 2024: first day of the first lunar month",
+      "traditionId": "chinese",
+      "methodId": "chinese-civil-lunisolar",
+      "kind": "calendar-check",
+      "sourceIds": [
+        "rl-hko-2024",
+        "rl-hko-calendar"
+      ],
+      "input": {
+        "dateISO": "2024-02-10",
+        "timeZone": "Asia/Hong_Kong"
+      },
+      "expected": [
+        {
+          "field": "frameworks.chinese.facts.month",
+          "value": 1,
+          "basis": "HKO February 10 cell:1st Lunar Month"
+        },
+        {
+          "field": "frameworks.chinese.facts.day",
+          "value": 1,
+          "basis": "The cell denotes the first day of the month"
+        },
+        {
+          "field": "frameworks.chinese.facts.isLeapMonth",
+          "value": false,
+          "basis": "First regular lunar month in HKO 2024 table"
+        }
+      ],
+      "evaluability": {
+        "status": "external-reference",
+        "reason": "Only the listed source fields are compared. No personal outcome is evaluated."
+      },
+      "interpretation": {
+        "rule": "Chinese civil lunar dates follow astronomical month starts and calendar rules; the lunar date alone does not constitute BaZi or a task election.",
+        "sourceLocator": "HKO 2024 single-page table, February row",
+        "scenarios": [
+          "For a family gathering or travel plan, this date identifies an observance whose practical impact depends on local closures and attendance.",
+          "A new-year reflection can focus on a small commitment, without assuming the year animal determines personality."
+        ],
+        "questions": [
+          "Which regional calendar/time-zone convention is intended?",
+          "Which services or workplaces actually close?"
+        ],
+        "actions": [
+          "Check local opening hours and travel demand.",
+          "Confirm family observance instead of inferring it from nationality."
+        ],
+        "supportChecks": [
+          "The table’s February 10 cell starts month1."
+        ],
+        "refuteChecks": [
+          "The lunar year label is treated as a complete birth chart."
+        ],
+        "limits": [
+          "Selected modern civil conversion; no BaZi pillars, auspiciousness judgments or all Chinese traditions are validated."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "reference-fields-match",
+      "fieldChecks": [
+        {
+          "field": "frameworks.chinese.facts.month",
+          "value": 1,
+          "basis": "HKO February 10 cell:1st Lunar Month",
+          "actual": 1,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.chinese.facts.day",
+          "value": 1,
+          "basis": "The cell denotes the first day of the month",
+          "actual": 1,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.chinese.facts.isLeapMonth",
+          "value": false,
+          "basis": "First regular lunar month in HKO 2024 table",
+          "actual": false,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        }
+      ],
+      "matchedFields": 3,
+      "totalReferenceFields": 3,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "reading-lab",
+        "context": {
+          "inputKind": "date-only-study",
+          "timeKnown": false,
+          "dateISO": "2024-02-10",
+          "timeZone": "Asia/Hong_Kong",
+          "calendarBoundary": "selected-zone civil midnight"
+        },
+        "frameworks": [
+          {
+            "id": "chinese",
+            "status": "partial",
+            "method": "Named Intl Chinese civil calendar with leap-month label",
+            "limitations": [
+              "A civil conversion is not BaZi, Zi Wei Dou Shu, a Tong Shu election, or all Chinese traditions."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "4491aa78e2d54b5043d1c4f2d145fcee7266ab2522bd6d7bc0d3c3bb339c0b0c"
+    },
+    {
+      "id": "chinese-leap-month-2023",
+      "title": "HKO 2023: the second occurrence of lunar month two",
+      "traditionId": "chinese",
+      "methodId": "chinese-civil-lunisolar",
+      "kind": "calendar-check",
+      "sourceIds": [
+        "rl-hko-2023",
+        "rl-hko-calendar"
+      ],
+      "input": {
+        "dateISO": "2023-03-22",
+        "timeZone": "Asia/Hong_Kong"
+      },
+      "expected": [
+        {
+          "field": "frameworks.chinese.facts.month",
+          "value": 2,
+          "basis": "HKO March 22 cell starts second lunar month again after February 20"
+        },
+        {
+          "field": "frameworks.chinese.facts.day",
+          "value": 1,
+          "basis": "Month-start cell"
+        },
+        {
+          "field": "frameworks.chinese.facts.isLeapMonth",
+          "value": true,
+          "basis": "Explicit inference from repeated second month in the official table; not an outcome label"
+        }
+      ],
+      "evaluability": {
+        "status": "external-reference",
+        "reason": "Only the listed source fields are compared. No personal outcome is evaluated."
+      },
+      "interpretation": {
+        "rule": "A leap lunar month repeats a month number; matching only month and day can therefore confuse two distinct dates.",
+        "sourceLocator": "HKO 2023 February 20 and March 22 month starts",
+        "scenarios": [
+          "If matching a lunar birthday or archive entry, preserve the leap-month flag to avoid selecting the wrong anniversary.",
+          "When importing a calendar, test whether the application can distinguish regular and intercalary month two."
+        ],
+        "questions": [
+          "Does the historical record specify leap month?",
+          "Which anniversary convention does the person or community use?"
+        ],
+        "actions": [
+          "Store leap-month identity alongside month/day.",
+          "Ask the relevant person about anniversary practice."
+        ],
+        "supportChecks": [
+          "The HKO table contains two successive month-two starts."
+        ],
+        "refuteChecks": [
+          "The app discards leap status or equates both occurrences."
+        ],
+        "limits": [
+          "Leap status is inferred from the official table sequence; the PDF text extractor omits a separate word leap."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "reference-fields-match",
+      "fieldChecks": [
+        {
+          "field": "frameworks.chinese.facts.month",
+          "value": 2,
+          "basis": "HKO March 22 cell starts second lunar month again after February 20",
+          "actual": 2,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.chinese.facts.day",
+          "value": 1,
+          "basis": "Month-start cell",
+          "actual": 1,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.chinese.facts.isLeapMonth",
+          "value": true,
+          "basis": "Explicit inference from repeated second month in the official table; not an outcome label",
+          "actual": true,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        }
+      ],
+      "matchedFields": 3,
+      "totalReferenceFields": 3,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "reading-lab",
+        "context": {
+          "inputKind": "date-only-study",
+          "timeKnown": false,
+          "dateISO": "2023-03-22",
+          "timeZone": "Asia/Hong_Kong",
+          "calendarBoundary": "selected-zone civil midnight"
+        },
+        "frameworks": [
+          {
+            "id": "chinese",
+            "status": "partial",
+            "method": "Named Intl Chinese civil calendar with leap-month label",
+            "limitations": [
+              "A civil conversion is not BaZi, Zi Wei Dou Shu, a Tong Shu election, or all Chinese traditions."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "7027b4ec3da6f51ae508afdb94428098469599114c41d412390f95418939d1ac"
+    },
+    {
+      "id": "hebrew-tishri-2024",
+      "title": "Hebcal: October 3, 2024 is 1 Tishrei 5785",
+      "traditionId": "hebrew",
+      "methodId": "hebrew-civil-conversion",
+      "kind": "calendar-check",
+      "sourceIds": [
+        "rl-hebcal-convert",
+        "rl-hebcal-rh"
+      ],
+      "input": {
+        "dateISO": "2024-10-03",
+        "timeZone": "UTC"
+      },
+      "expected": [
+        {
+          "field": "frameworks.hebrew.facts.year",
+          "value": 5785,
+          "basis": "Hebcal JSON hy"
+        },
+        {
+          "field": "frameworks.hebrew.facts.month",
+          "value": "Tishri",
+          "basis": "Hebcal hm=Tishrei; declared Intl English alias Tishri"
+        },
+        {
+          "field": "frameworks.hebrew.facts.day",
+          "value": 1,
+          "basis": "Hebcal JSON hd"
+        }
+      ],
+      "evaluability": {
+        "status": "external-reference",
+        "reason": "Only the listed source fields are compared. No personal outcome is evaluated."
+      },
+      "interpretation": {
+        "rule": "A civil-date conversion identifies a Hebrew calendar date under a before-sunset convention. Religious days begin in the preceding evening.",
+        "sourceLocator": "Hebcal JSON fields and Rosh Hashana 2024 opening paragraph",
+        "scenarios": [
+          "For arranging a meeting, an observance may begin before the Gregorian date shown on a civil calendar.",
+          "For a personal reflection, focus on accountability and plans only if this practice fits the person’s own commitments."
+        ],
+        "questions": [
+          "Is the event before or after local sunset?",
+          "Whose community practice is being followed?"
+        ],
+        "actions": [
+          "Confirm the evening boundary with a local calendar.",
+          "Avoid assigning religious observance from ancestry or residence."
+        ],
+        "supportChecks": [
+          "Year/month/day match the external before-sunset response after the declared spelling alias."
+        ],
+        "refuteChecks": [
+          "The spelling alias is treated as a date error.",
+          "A civil-midnight display is claimed to calculate religious sunset."
+        ],
+        "limits": [
+          "The example supplies no location or observed sunset; it does not validate Kabbalah, religious doctrine or personal predictions."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "reference-fields-match",
+      "fieldChecks": [
+        {
+          "field": "frameworks.hebrew.facts.year",
+          "value": 5785,
+          "basis": "Hebcal JSON hy",
+          "actual": 5785,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.hebrew.facts.month",
+          "value": "Tishri",
+          "basis": "Hebcal hm=Tishrei; declared Intl English alias Tishri",
+          "actual": "Tishri",
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.hebrew.facts.day",
+          "value": 1,
+          "basis": "Hebcal JSON hd",
+          "actual": 1,
+          "tolerance": 0,
+          "match": true,
+          "missing": false
+        }
+      ],
+      "matchedFields": 3,
+      "totalReferenceFields": 3,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "reading-lab",
+        "context": {
+          "inputKind": "date-only-study",
+          "timeKnown": false,
+          "dateISO": "2024-10-03",
+          "timeZone": "UTC",
+          "calendarBoundary": "selected-zone civil midnight"
+        },
+        "frameworks": [
+          {
+            "id": "hebrew",
+            "status": "partial",
+            "method": "Named Intl Hebrew date with selected-zone civil-midnight boundary",
+            "limitations": [
+              "Sunset religious dates, Israel/diaspora observance policies and Kabbalistic prescriptions are not computed."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "7420703f6bdbdc6c6ffbb3ca9d05b7e0ebb85f57df342b2b4f48175662d40dde"
+    },
+    {
+      "id": "hebrew-sunset-boundary-2024",
+      "title": "Same civil date, two Hebrew dates across sunset",
+      "traditionId": "hebrew",
+      "methodId": "religious-day-boundary",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-hebcal-day",
+        "rl-hebcal-sunset",
+        "rl-hebcal-rh"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "Hebcal’s explicit flag maps October 2, 2024 before sunset to 29 Elul 5784 and after sunset to 1 Tishrei 5785. A location-free date cannot decide which applies at an instant.",
+        "sourceLocator": "Paired converter JSON afterSunset=false/true",
+        "scenarios": [
+          "An evening invitation may already fall on the next religious day, even when a civil calendar still shows October2.",
+          "When applications disagree, distinguish a missing sunset convention from a faulty arithmetic algorithm."
+        ],
+        "questions": [
+          "Was the after-sunset flag set explicitly?",
+          "Is the local horizon/time-zone context available?"
+        ],
+        "actions": [
+          "Keep both the civil date and religious boundary convention visible.",
+          "Use local community times when an observance matters."
+        ],
+        "supportChecks": [
+          "The two retrieved JSON responses change year, month and day with the explicit flag."
+        ],
+        "refuteChecks": [
+          "The app invents a sunset time from a date alone."
+        ],
+        "limits": [
+          "Boundary demonstration is not scored numerically because the present date-only converter does not evaluate local sunset."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "hebrew",
+            "status": "unavailable",
+            "method": "Named Intl Hebrew date with selected-zone civil-midnight boundary",
+            "limitations": [
+              "Sunset religious dates, Israel/diaspora observance policies and Kabbalistic prescriptions are not computed."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "ec9dae9554850b10b8f9653e193b8883c623eb1efc19984c22b4f17b3f56226c"
+    },
+    {
+      "id": "dee-monas-symbolic-method",
+      "title": "Dee’s Monas: inspect a symbolic construction",
+      "traditionId": "dee",
+      "methodId": "monas-symbolic-composition",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-dee-monas"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "Dee builds a symbolic monad from geometric and celestial signs; the work’s symbolic correspondences are distinct from a numerical natal calendar.",
+        "sourceLocator": "Monas body Theorems I–VI, 1564; Hamilton-Jones 1947 translation",
+        "scenarios": [
+          "If designing a personal emblem, document which elements come from Dee and which express a modern intention.",
+          "When a generated design claims historical authority, check its component explanation against the selected theorem before accepting it."
+        ],
+        "questions": [
+          "Is this a faithful historical study or an original artwork?",
+          "What action does the intended symbol remind the user to take?"
+        ],
+        "actions": [
+          "Label modern additions and interpretation.",
+          "Use the artwork as an optional reminder, without claims of guaranteed efficacy."
+        ],
+        "supportChecks": [
+          "The cited theorem supports the named component or relationship."
+        ],
+        "refuteChecks": [
+          "A design is described as a verified magical mechanism.",
+          "A birth-date prediction is attributed to Monas without a stated algorithm."
+        ],
+        "limits": [
+          "Selected textual and visual reasoning only; no supernatural efficacy, complete Dee system or calendar accuracy is claimed."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "dee",
+            "status": "textual-only",
+            "method": "Source passage and symbolic-method comparison",
+            "limitations": [
+              "No universal Dee natal or predictive calendar algorithm is implemented."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "96ea5c915363e24f65fd5cc2aab4f91b42b2c6f200b3d826f161c03c8057bd62"
+    },
+    {
+      "id": "jung-feeling-valuation",
+      "title": "Jung: distinguish valuation from a mood",
+      "traditionId": "jung",
+      "methodId": "psychological-types-reflection",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-jung-primary",
+        "rl-jung-feeling"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "In Jung’s definition, feeling assigns value through acceptance or rejection; this differs from treating every emotional episode as a personality type.",
+        "sourceLocator": "Psychological Types (1923), Definitions Feeling, pp.543–545",
+        "scenarios": [
+          "If two jobs look equally plausible on paper, compare concrete values such as autonomy, learning and relationships; separately record anxiety or excitement.",
+          "A disagreement may reveal different priorities rather than a fixed defect in either person."
+        ],
+        "questions": [
+          "Which value is being accepted or rejected?",
+          "Would the judgment change after rest or more information?"
+        ],
+        "actions": [
+          "List the evidence, value judgment and current mood separately.",
+          "Test one small decision and review its effects."
+        ],
+        "supportChecks": [
+          "The explanation distinguishes valuation from raw emotional intensity."
+        ],
+        "refuteChecks": [
+          "A birth chart is used to diagnose a Jungian type.",
+          "An exercise is presented as a validated clinical assessment."
+        ],
+        "limits": [
+          "Historical reflective framework, not diagnosis, psychometric scoring or a birth-date calculator."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "jung",
+            "status": "textual-only",
+            "method": "Textual reflection; optional explicitly post-Jungian elemental tally",
+            "limitations": [
+              "The element-to-function mapping is largely post-Jungian. It does not diagnose personality, mental health or unconscious contents."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "fc99925d94b4989f6d033efce04440a8af90907e86c3770681740df145f45c5c"
+    },
+    {
+      "id": "jung-individuation-relationship",
+      "title": "Jung: differentiation with relationship",
+      "traditionId": "jung",
+      "methodId": "individuation-reflection",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-jung-primary",
+        "rl-jung-individuation"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "Individuation concerns the development of individuality while retaining collective relationship; the selected definition explicitly rejects mere isolation.",
+        "sourceLocator": "Psychological Types (1923), Definitions Individuation, pp.561–563",
+        "scenarios": [
+          "If work identity dominates home life, experiment with a role boundary while maintaining important relationships.",
+          "A desire for independence can be examined alongside obligations and support rather than framed as withdrawal from everyone."
+        ],
+        "questions": [
+          "Which role feels overused?",
+          "Which relationships or responsibilities should remain supported?"
+        ],
+        "actions": [
+          "Choose one reversible boundary and communicate it clearly.",
+          "Review whether the change improves both autonomy and connection."
+        ],
+        "supportChecks": [
+          "The exercise includes personal differentiation and relationship together."
+        ],
+        "refuteChecks": [
+          "The model prescribes social withdrawal as Jung’s universal rule."
+        ],
+        "limits": [
+          "A modern reflective application; no diagnosis or predicted developmental destiny."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "jung",
+            "status": "textual-only",
+            "method": "Textual reflection; optional explicitly post-Jungian elemental tally",
+            "limitations": [
+              "The element-to-function mapping is largely post-Jungian. It does not diagnose personality, mental health or unconscious contents."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "d40bd02903e8cd6323c4760c128e13fa910c21e51f7c58b86e6bc392f1a1eec0"
+    },
+    {
+      "id": "plato-er-choice",
+      "title": "Plato’s Myth of Er: the chooser and the lot",
+      "traditionId": "plato",
+      "methodId": "myth-of-er-reflection",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-plato-republic"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "In the myth, lots establish order of choice, while the chooser remains responsible for selecting a life; this narrative lot is not a natal zodiac longitude.",
+        "sourceLocator": "Republic X 617d–618a, 620d–621a",
+        "scenarios": [
+          "When choosing a city or course, compare the life each option would require rather than assuming a symbolic sign decides it.",
+          "Limited options can be acknowledged while still identifying choices within those constraints."
+        ],
+        "questions": [
+          "What daily activities would each option actually involve?",
+          "Which trade-offs are being hidden by an attractive title or image?"
+        ],
+        "actions": [
+          "Write the costs, responsibilities and reversible steps for each option.",
+          "Use finances, safety, support and opportunity as decision evidence."
+        ],
+        "supportChecks": [
+          "The reading preserves the difference between selection order and moral responsibility."
+        ],
+        "refuteChecks": [
+          "The myth is converted into an unsupported birthday-based destiny calculation."
+        ],
+        "limits": [
+          "Philosophical narrative and modern decision exercise; distinct from Hellenistic Lot of Spirit formulas."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "plato",
+            "status": "textual-only",
+            "method": "Source passages on choice and daimon as philosophical study",
+            "limitations": [
+              "No numerical Platonic natal calendar or proof of a personal supernatural entity is inferred."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "44513a0696bc665351c541f743be2906e0faf64abf74e1a014ff7deff3833de4"
+    },
+    {
+      "id": "plato-timaeus-cultivation",
+      "title": "Plato’s Timaeus: cultivate understanding",
+      "traditionId": "plato",
+      "methodId": "rational-daimon-reflection",
+      "kind": "textual-method",
+      "sourceIds": [
+        "rl-plato-timaeus"
+      ],
+      "input": {},
+      "expected": [],
+      "evaluability": {
+        "status": "textual-only",
+        "reason": "Textual method comparison; no independent numerical prediction is claimed."
+      },
+      "interpretation": {
+        "rule": "The selected passage connects the highest divine principle with cultivation of understanding; it is philosophical anthropology, not a numerical daimon placement.",
+        "sourceLocator": "Timaeus 90a–d",
+        "scenarios": [
+          "If a symbolic reading creates worry, turn it into a study question that can be checked rather than treating it as an instruction.",
+          "A regular learning practice can embody the passage’s emphasis on understanding without requiring assent to its ancient cosmology."
+        ],
+        "questions": [
+          "What claim can be investigated with evidence?",
+          "What small learning practice is sustainable?"
+        ],
+        "actions": [
+          "Choose a short reading or observation session and note what changed in understanding.",
+          "Separate the text’s cosmology from modern astronomy and personal action."
+        ],
+        "supportChecks": [
+          "The interpretation identifies the passage’s emphasis on cultivated understanding."
+        ],
+        "refuteChecks": [
+          "The passage is used to guarantee happiness or infer a supernatural identity."
+        ],
+        "limits": [
+          "Selected philosophical passage; not a medical, religious-authority or destiny assessment."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "not-numerically-evaluable",
+      "fieldChecks": [],
+      "matchedFields": 0,
+      "totalReferenceFields": 0,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-textual-method",
+        "context": {
+          "inputKind": "source-text",
+          "timeKnown": false
+        },
+        "frameworks": [
+          {
+            "id": "plato",
+            "status": "textual-only",
+            "method": "Source passages on choice and daimon as philosophical study",
+            "limitations": [
+              "No numerical Platonic natal calendar or proof of a personal supernatural entity is inferred."
+            ]
+          }
+        ],
+        "warnings": [],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "1e2721aa352f7b679e1995c5282bf226f78de492f2419424bef2d1fa0bf3f9da"
+    },
+    {
+      "id": "lilly-dog-printed-figure",
+      "title": "Lilly’s missing-dog figure: four printed positions",
+      "traditionId": "lilly",
+      "methodId": "historical-printed-figure",
+      "kind": "worked-chart",
+      "sourceIds": [
+        "rl-lilly-dog-figure",
+        "rl-lilly-primary"
+      ],
+      "input": {
+        "workedChartKey": "dog"
+      },
+      "expected": [
+        {
+          "field": "frameworks.lilly.facts.chart.planets.Sun.longitude",
+          "value": 165.75,
+          "basis": "Printed 15°45′ Virgo; read directly from the 1647 figure",
+          "tolerance": 1e-9
+        },
+        {
+          "field": "frameworks.lilly.facts.chart.planets.Moon.longitude",
+          "value": 154.16666666666666,
+          "basis": "Printed 4°10′ Virgo; read directly from the 1647 figure",
+          "tolerance": 1e-9
+        },
+        {
+          "field": "frameworks.lilly.facts.chart.planets.Mercury.longitude",
+          "value": 192.33333333333334,
+          "basis": "Printed 12°20′ Libra; read directly from the 1647 figure",
+          "tolerance": 1e-9
+        },
+        {
+          "field": "frameworks.lilly.facts.chart.planets.Saturn.longitude",
+          "value": 48.25,
+          "basis": "Printed 18°15′ Taurus; read directly from the 1647 figure",
+          "tolerance": 1e-9
+        }
+      ],
+      "evaluability": {
+        "status": "external-reference",
+        "reason": "Four directly transcribed printed fields only. The initial inherited reconstruction mismatched all four; before/after values are retained in the source ledger. No ephemeris or outcome validation."
+      },
+      "interpretation": {
+        "rule": "Compare a reconstruction with the actual printed figure before interpreting it. The four reference positions are transcriptions, not modern recomputed ephemeris values.",
+        "sourceLocator": "Christian Astrology (1647), printed p.392; narrative pp.393–394",
+        "scenarios": [
+          "If a historical software example differs from its source, inspect the source before choosing which representation to study.",
+          "In an actual missing-pet situation, use searches, neighbours, shelters and identification records; the historical narrative is not a substitute for those steps."
+        ],
+        "questions": [
+          "Which positions are directly legible in the source?",
+          "Is a value a printed position, modern recomputation or an approximate reconstruction?"
+        ],
+        "actions": [
+          "Keep a per-field source status and record corrections.",
+          "Treat the reported recovery as an author’s account, without an accuracy rate."
+        ],
+        "supportChecks": [
+          "The four angular fields match the independently inspected print after any documented correction."
+        ],
+        "refuteChecks": [
+          "Recomputed values are called printed values.",
+          "A selected success narrative is used as proof of predictive validity."
+        ],
+        "limits": [
+          "Only four planet positions are reference checked. Remaining planet data, cusps, houses and speeds retain inherited reconstruction uncertainty.",
+          "Historical date:29 August 1646 Old Style corresponds to8 September 1646 Gregorian; no new timed ephemeris calculation is tested.",
+          "The printed positions and narrative do not independently establish when or why a real dog was recovered."
+        ],
+        "applicationBasis": "The practical scenarios and actions below are modern, conditional exercises, not quotations or tested predictions from the historical source."
+      },
+      "status": "reference-fields-match",
+      "fieldChecks": [
+        {
+          "field": "frameworks.lilly.facts.chart.planets.Sun.longitude",
+          "value": 165.75,
+          "basis": "Printed 15°45′ Virgo; read directly from the 1647 figure",
+          "tolerance": 1e-9,
+          "actual": 165.75,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.lilly.facts.chart.planets.Moon.longitude",
+          "value": 154.16666666666666,
+          "basis": "Printed 4°10′ Virgo; read directly from the 1647 figure",
+          "tolerance": 1e-9,
+          "actual": 154.16666666666663,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.lilly.facts.chart.planets.Mercury.longitude",
+          "value": 192.33333333333334,
+          "basis": "Printed 12°20′ Libra; read directly from the 1647 figure",
+          "tolerance": 1e-9,
+          "actual": 192.33333333333337,
+          "match": true,
+          "missing": false
+        },
+        {
+          "field": "frameworks.lilly.facts.chart.planets.Saturn.longitude",
+          "value": 48.25,
+          "basis": "Printed 18°15′ Taurus; read directly from the 1647 figure",
+          "tolerance": 1e-9,
+          "actual": 48.25,
+          "match": true,
+          "missing": false
+        }
+      ],
+      "matchedFields": 4,
+      "totalReferenceFields": 4,
+      "outcomeEvaluable": false,
+      "resultSummary": {
+        "kind": "source-worked-chart",
+        "context": {
+          "inputKind": "printed-figure",
+          "timeKnown": false,
+          "workedChartKey": "dog",
+          "dateNote": "29 August 1646 (Old Style), 4:05 p.m."
+        },
+        "frameworks": [
+          {
+            "id": "lilly",
+            "status": "partial-source-reconstruction",
+            "method": "Tropical chart with named houses; Christian Gregorian/Julian computus is a separate method",
+            "limitations": [
+              "Lilly’s title is historical, not authority for all Christian beliefs. A moment chart is neither a birth chart nor a complete horary judgment.",
+              "PARTIAL RECONSTRUCTION: only four planetary longitudes are newly verified. Ascendant, Midheaven, house assignments, other planet longitudes and retrograde markers remain inherited and unverified; the printed angles appear to disagree with this reconstruction. The wheel uses equal cusps from the unverified inherited Ascendant; no complete chart agreement or automated judgment is established. Old Style: 29 Aug 1646 O.S. ≈ 8 Sep N.S.; the historical clock is not a modern IANA timestamp. The dog is assigned to Mercury, lord of the 6th, in Lilly’s narrative; his reported recovery is separate from the four position checks.",
+              "Four directly transcribed printed fields only. The initial inherited reconstruction mismatched all four; before/after values are retained in the source ledger. No ephemeris or outcome validation.",
+              "Only four planet positions are reference checked. Remaining planet data, cusps, houses and speeds retain inherited reconstruction uncertainty.",
+              "Historical date:29 August 1646 Old Style corresponds to8 September 1646 Gregorian; no new timed ephemeris calculation is tested.",
+              "The printed positions and narrative do not independently establish when or why a real dog was recovered."
+            ],
+            "verification": {
+              "status": "partial-source-check",
+              "checkedAt": "2026-11-04",
+              "verifiedPlanetLongitudes": [
+                "Sun",
+                "Moon",
+                "Mercury",
+                "Saturn"
+              ],
+              "unverified": [
+                "Ascendant",
+                "Midheaven",
+                "house assignments",
+                "Venus longitude",
+                "Mars longitude",
+                "Jupiter longitude",
+                "retrograde markers"
+              ],
+              "note": "Only four planetary longitudes were freshly checked against the 1647 printed figure on p.392: Sun, Moon, Mercury and Saturn. Other coordinates, angles, house assignments and motion flags remain inherited and unverified; the printed angles appear to disagree with the inherited reconstruction. This is a partial reconstruction, not a verified complete chart or independent confirmation of Lilly’s reported outcome.",
+              "source": "https://archive.org/details/b30338724/page/n426/mode/1up"
+            },
+            "withheld": [
+              "Ascendant",
+              "Midheaven",
+              "houses",
+              "sect-dependent dignity",
+              "motion flags",
+              "automated judgment"
+            ]
+          }
+        ],
+        "warnings": [
+          "Only four planetary longitudes were freshly checked against the 1647 printed figure on p.392: Sun, Moon, Mercury and Saturn. Other coordinates, angles, house assignments and motion flags remain inherited and unverified; the printed angles appear to disagree with the inherited reconstruction. This is a partial reconstruction, not a verified complete chart or independent confirmation of Lilly’s reported outcome."
+        ],
+        "limits": [
+          "Calculable dates and chart geometry can be checked against references; symbolic interpretations and life outcomes cannot be validated by a field match.",
+          "Shared sky inputs are mathematical dependencies, not independent corroboration. Unlike methods are not combined into a universal good/bad score.",
+          "Astrology has no demonstrated predictive validity. Conditional examples invite ordinary observation and reflection, not predictions or consequential prescriptions.",
+          "Public examples are source-worked or arithmetic teaching cases. No private birth profile is bundled or inferred."
+        ],
+        "scope": "Status, boundaries and limitations only. Field checks retain their listed values; full calculated charts are not stored."
+      },
+      "contentSHA256": "abfba26491f63897cdcabd8109dc47ef9a60e85e4cf69c88fe50f55b4176d4be"
+    }
+  ],
+  "contentSHA256": "79050b60c90739c8bc668a95c89de3b1b1657594433811427dd6338920d16009"
+}

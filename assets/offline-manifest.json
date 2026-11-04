@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "83b86b3634e204277e272166c4e87e64136ade55230bdcfa85b07933d70fa5f6",
-  "totalBytes": 57831721,
+  "version": "0ef275cce3a1c01fab16b73a488300fed02b186e621fa984ce9d70f4b795152a",
+  "totalBytes": 58297679,
   "files": [
     {
       "path": "assets/css/birth-chart-console.css",
@@ -134,6 +134,11 @@
       "sha256": "53fdd5fad0fda9a17d58f940e7e3868124d19d173d1591dc91f69323edddad74"
     },
     {
+      "path": "assets/css/reading-lab.css",
+      "bytes": 21050,
+      "sha256": "7572d67c55ca3738e54ad995ee3b76c0ecaed128e7bdf1e9f3a644e728330335"
+    },
+    {
       "path": "assets/css/sigil-studio.css",
       "bytes": 8977,
       "sha256": "a3075d4b40d17bda2e21fb3d01622f930c2bafdada1dd90d9da25638a0e1946a"
@@ -256,7 +261,7 @@
     {
       "path": "assets/data/horizon-2031-manifest.json",
       "bytes": 141295,
-      "sha256": "0ef2806badb241f7b6879b8ed1213fc7ab718744e6561ce55d2eb60145586e7c"
+      "sha256": "b5860fd6b3b3c75c82d1d39c1141419b525aa92c58cfcdb2919ea5c1cc8d77d7"
     },
     {
       "path": "assets/data/horizon-2031/astronomy.json",
@@ -280,8 +285,13 @@
     },
     {
       "path": "assets/data/mcp-catalogue.json",
-      "bytes": 189768,
-      "sha256": "33a902c2f8a5330452038416192d22ff50578a881279e5f254784deb0bd91e8e"
+      "bytes": 195598,
+      "sha256": "5abc4883ad6f1adac298231a659564084853a2a7051c3ff71b6246ce6ab9c850"
+    },
+    {
+      "path": "assets/data/reading-lab-examples.json",
+      "bytes": 119402,
+      "sha256": "c95fa8b2d43d68dd8aa1b33cb0653e839988f3cabd7bccda2c6bad9c3ddc4d65"
     },
     {
       "path": "assets/data/world-events.json",
@@ -739,6 +749,11 @@
       "sha256": "5c350f59f1646f538f94eaf022a266802e07b1d2fb15c5b7e3486f81ed591129"
     },
     {
+      "path": "assets/js/app/reading-lab.js",
+      "bytes": 27559,
+      "sha256": "dd863218adde403c3a8c32da21e304e9d162bec6e9dc6c39c5f849f0ca2fc982"
+    },
+    {
       "path": "assets/js/app/runes.js",
       "bytes": 18715,
       "sha256": "497f439574442374ba91c284f3099e0b0cc6863ff39c0fa11cdb050a4a49d91c"
@@ -900,8 +915,8 @@
     },
     {
       "path": "assets/js/app/workbench-chat.js",
-      "bytes": 22735,
-      "sha256": "ffcc4f0bc1f46dbdbc4087cdf70a7e8cf91baebda1c723833fc6549f5133d0f7"
+      "bytes": 25808,
+      "sha256": "151d27f9e4d604ceeaef7fb6c6b1d5a610db9b2899de9220634b2f664979de39"
     },
     {
       "path": "assets/js/app/workbench-supabase.js",
@@ -915,8 +930,8 @@
     },
     {
       "path": "assets/js/app/worked-charts.js",
-      "bytes": 6565,
-      "sha256": "e0d52a61ad42ccaeb397ca74b1380ca0ee46f603bdebe12ff961a84e45bf8ae3"
+      "bytes": 7979,
+      "sha256": "8f5f9d0e15b5ac7666efa776c7148e251e87da9fc1c12e2934bf794b642e835e"
     },
     {
       "path": "assets/js/app/world-events.js",
@@ -1160,8 +1175,8 @@
     },
     {
       "path": "assets/js/core/data/desktop-tools.js",
-      "bytes": 52388,
-      "sha256": "577b8f043474e6343f514095ee1270eb701e489ce4877e6d0b3d36745eba77d5"
+      "bytes": 52757,
+      "sha256": "e7c8c7e6bda368550882e3be932d017a703f39f06eee40c743e199ea7fc3c654"
     },
     {
       "path": "assets/js/core/data/dignities-data.js",
@@ -1221,12 +1236,12 @@
     {
       "path": "assets/js/core/data/horizon-preset-version.js",
       "bytes": 492,
-      "sha256": "06b9e4b27d440ce80775cf36ddd7be74d2bbc8b5b9060eb4fef301ef8a299430"
+      "sha256": "dbb533858bb10a45b911168b1f229d1e8b47ee1cad5d78da0a637ef570b429df"
     },
     {
       "path": "assets/js/core/data/horizon-tool-coverage.js",
-      "bytes": 12460,
-      "sha256": "771314ebd8613f940c8891453d9c0dddb3c78d5e5d18647a2416827233e19c33"
+      "bytes": 12920,
+      "sha256": "6e0c636f51d9c61a192ad3747a67ff12d23a4b60bcf856c6d2c7e9e51de08c1d"
     },
     {
       "path": "assets/js/core/data/horizon-traditions.js",
@@ -1280,13 +1295,13 @@
     },
     {
       "path": "assets/js/core/data/mcp-adapter-coverage.js",
-      "bytes": 16201,
-      "sha256": "ca57c366d02f9c9bf6d2607dcd9a523b41b91b34c4e747b25ae7cbd00c3a2f72"
+      "bytes": 16831,
+      "sha256": "50940ceec1ed243548c28bc15d22a3241f9a744878f730f8eb819a01ddd1e547"
     },
     {
       "path": "assets/js/core/data/mcp-tool-contracts.js",
-      "bytes": 134516,
-      "sha256": "5ee8c3649407dff3736baefa58190b0bf3756f02b447c630013d804993b4621e"
+      "bytes": 138447,
+      "sha256": "0355fff57b7cf199d62d42d517c8db2ff0bfb5c8981a1d8a4f9571c119e8fc10"
     },
     {
       "path": "assets/js/core/data/muhurta-data.js",
@@ -1349,6 +1364,11 @@
       "sha256": "5448cd39df238376df337cda3592ae55d2a18362799129d5dfe53b1b726541de"
     },
     {
+      "path": "assets/js/core/data/reading-cases.js",
+      "bytes": 65072,
+      "sha256": "fe3925ca2827f06aeac5d16e78df137474c49632bafd4276bbd9d7ffb17bda79"
+    },
+    {
       "path": "assets/js/core/data/runes-data.js",
       "bytes": 32331,
       "sha256": "0cbf82eed2951d4c6ed33c28f53f1169fbff3a8d0f4580e84edaf3e316b3409d"
@@ -1400,13 +1420,13 @@
     },
     {
       "path": "assets/js/core/data/workbench-rag-corpus.js",
-      "bytes": 4594119,
-      "sha256": "9a02bd74c714448c518f992e19f34a0f9628793c6ea0d79c469ca9a94412ecdf"
+      "bytes": 4764610,
+      "sha256": "34403bca9ec0163baaffbcb3510b316cc0db1873f0ef7eb721d70d86fbf58685"
     },
     {
       "path": "assets/js/core/data/worked-charts.js",
-      "bytes": 16802,
-      "sha256": "99fd92f05926a5d0314c2945be323226960cbaaf7c90d291dff2e2b13813cbb8"
+      "bytes": 18075,
+      "sha256": "e77729ec60b72f2fdab3038dff85e0333d9a6fdbaf29625fa615febc4c981161"
     },
     {
       "path": "assets/js/core/data/yoga-rules.js",
@@ -1664,6 +1684,11 @@
       "sha256": "ecebec1aed8ad21e2a2aa3947f51c00385fd3640133db47db17137286cbf4547"
     },
     {
+      "path": "assets/js/core/reading-lab.js",
+      "bytes": 29867,
+      "sha256": "9450c8fd7da73c8fc2f6282a1910ce1278750e840e13953d1609d2910611c13b"
+    },
+    {
       "path": "assets/js/core/reading.js",
       "bytes": 16591,
       "sha256": "85ee807015b2fa8e48809e54efadd94162f36c5dc0a97a044d0891d79a01566b"
@@ -1675,8 +1700,8 @@
     },
     {
       "path": "assets/js/core/registry.js",
-      "bytes": 147323,
-      "sha256": "23989786d223746d0646310dcd0eb36d03012d5e027893e73dcd84d40e378b1b"
+      "bytes": 148778,
+      "sha256": "8636e6f625952c6c202cf4bd08635f9c7da8a809335b80e8165d1843c6a92cd0"
     },
     {
       "path": "assets/js/core/releasing.js",
@@ -1810,8 +1835,8 @@
     },
     {
       "path": "assets/js/core/vedic.js",
-      "bytes": 42168,
-      "sha256": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278"
+      "bytes": 42880,
+      "sha256": "93fae27b6cdcc91aab89e27c251a4b56c4412d27d6974ae3dceb6537644cae35"
     },
     {
       "path": "assets/js/core/viz/chart-palette.js",
@@ -1920,8 +1945,8 @@
     },
     {
       "path": "assets/search-index.json",
-      "bytes": 298917,
-      "sha256": "6cb50f4e991844c1f1a4a357cb096b602c572b6eecff6aa04ae1ad31f5b78759"
+      "bytes": 301312,
+      "sha256": "48ec9b11ea240b1744aa31b2c2e0ada95522209162576d7b4d949dea9ccabf08"
     },
     {
       "path": "assets/vendor/adhan/Adhan.js",
@@ -2567,6 +2592,11 @@
       "path": "pages/read.html",
       "bytes": 7788,
       "sha256": "f0dbef5227cc91aaf80ad721bcd8e4b8feb359a9ec621d352dedf3befdd5310c"
+    },
+    {
+      "path": "pages/reading-lab.html",
+      "bytes": 10975,
+      "sha256": "6472df6ba4604a9c2dc609207332afca3e1d7b3ae48f17f7a35320219c815dab"
     },
     {
       "path": "pages/roadmap.html",

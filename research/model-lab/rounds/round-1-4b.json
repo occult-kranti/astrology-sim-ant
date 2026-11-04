@@ -1,0 +1,89 @@
+{
+  "kind": "actual-llama-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-1/requests.json",
+    "maxNewTokens": 512,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-1-4b.json",
+    "seed": 20261104,
+    "baseURL": "http://127.0.0.1:8845/v1/",
+    "model": "workbench-qwen3-4b-q4",
+    "temperature": 0.2
+  },
+  "configSHA256": "00930b94501daf49240f2758301dfb832740dc7a2014a36cce8461470dff9df7",
+  "requestsSHA256": "21e309e0b05e35d8f16210efd3c23d67892ee372f92c9a1a3fccf0e9325238d9",
+  "results": [
+    {
+      "id": "D05",
+      "split": "development",
+      "requestSHA256": "d41c9eeae91632ca22589f494e8ec21693f4f8da34e23f329ecfcc326482aab8",
+      "seconds": 28.247,
+      "text": "{\n  \"answer\": \"The elongation is calculated as the absolute difference between the Moon and Sun longitudes: |14 - 350| = 336 degrees. Normalized to [0, 360), it remains 336 degrees. Using the tithi formula: Tithi = floor(norm360(Moon longitude - Sun longitude)/12) + 1. Moon - Sun = 14 - 350 = -336. norm360(-336) = 24. Then, floor(24 / 12) + 1 = floor(2) + 1 = 3. Thus, the one-based tithi is 3. The limit of this result is defined by the half-open interval: exactly 24 degrees belongs to tithi 3, meaning the tithi boundary is inclusive at 24 degrees. This result is valid within the specified tithi partitioning rule [EVAL-D05-S1].\",\n  \"citations\": [\n    \"EVAL-D05-S1\"\n  ],\n  \"actions\": []\n}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 246,
+        "prompt_tokens": 822,
+        "total_tokens": 1068,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D07",
+      "split": "development",
+      "requestSHA256": "e31068f8025463c62b1ba1bbb541fcae7a44c308e3fd7221da765e1eee91ad80",
+      "seconds": 11.002,
+      "text": "{\"answer\":\"No, you cannot use the Hebrew date from the civil-calendar widget to determine if a sunset-based observance has begun. The start of a sunset-based observance depends on local solar conditions and community conventions, which require specific location, time, and sunset data—not just a Hebrew date. These factors were not provided in the reference data. [EVAL-D07-S1]\",\"citations\":[\"EVAL-D07-S1\"],\"actions\":[]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 95,
+        "prompt_tokens": 787,
+        "total_tokens": 882,
+        "prompt_tokens_details": {
+          "cached_tokens": 437
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D09",
+      "split": "development",
+      "requestSHA256": "cbbebdb403f496868a2707ec75cecca03d797370498cfd627465152cd013ef88",
+      "seconds": 11.055,
+      "text": "{\"answer\":\"No, the lottery in Plato’s Myth of Er is not the same as the astrological Lot of Spirit. In the Myth of Er, drawn lots are a symbolic method to determine the order of lives chosen after death, serving a narrative and philosophical purpose. The astrological Lot of Spirit is a specific angular calculation involving the Ascendant, Sun, and Moon, based on a named conventional formula used in astrology. These are distinct concepts: one is a mythological device, the other a technical astrological computation. Plato does not provide the astrological formula in the referenced passage [EVAL-D09-S1].\",\"citations\":[\"EVAL-D09-S1\"],\"actions\":[]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 142,
+        "prompt_tokens": 807,
+        "total_tokens": 949,
+        "prompt_tokens_details": {
+          "cached_tokens": 660
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D10",
+      "split": "development",
+      "requestSHA256": "2c002771e8553f4c1c3fcce758212b603493ae673dd28ffa634bc0d35cc0a7d2",
+      "seconds": 12.03,
+      "text": "{\n  \"answer\": \"An exact Ascendant and all twelve house cusps cannot be determined without a birth time. The server-recomputed chart context shows no birth time is available (timeKnown: false). A date-only study must retain the unknown time; assuming a specific time (e.g., noon) is not supported by recovered data and would be an invalid assumption. Therefore, no exact Ascendant or house cusps can be provided.\",\n  \"citations\": [\"EVAL-D10-S1\"],\n  \"actions\": []\n}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 110,
+        "prompt_tokens": 813,
+        "total_tokens": 923,
+        "prompt_tokens_details": {
+          "cached_tokens": 466
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    }
+  ],
+  "scope": "Raw development or heldout responses; judge dimensions separately and retain failures."
+}

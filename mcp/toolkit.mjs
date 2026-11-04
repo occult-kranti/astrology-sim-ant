@@ -18,6 +18,7 @@ import { CALENDAR_TIMELINE_MCP_TOOLS } from './calendar-timeline-adapters.mjs';
 import { NEWTON_CHRONOLOGY_MCP_TOOL } from './newton-chronology-adapters.mjs';
 import { ESCHATOLOGY_ATLAS_MCP_TOOLS } from './eschatology-atlas-adapters.mjs';
 import { WORKBENCH_RAG_MCP_TOOLS } from './workbench-rag-adapters.mjs';
+import { READING_LAB_MCP_TOOLS } from './reading-lab-adapters.mjs';
 import { buildSkySnapshot, buildSkyTimelineSync, SKY_BODIES } from '../assets/js/core/sky-dynamics.js';
 import { buildCalendarAlignment } from '../assets/js/core/calendar-alignment.js';
 import { buildSkyInterpretation, SKY_READING_LENSES } from '../assets/js/core/sky-interpretation.js';
@@ -59,6 +60,7 @@ export const TOOLS = [
   NEWTON_CHRONOLOGY_MCP_TOOL,
   ...ESCHATOLOGY_ATLAS_MCP_TOOLS,
   ...WORKBENCH_RAG_MCP_TOOLS,
+  ...READING_LAB_MCP_TOOLS,
   define('workbench_tool_guide', 'Explain a named calculator or reference capability: required inputs, source locators, output, local route and actual MCP/browser support. This is a guide, not a calculated chart or proof that the hosted service is current.', object({ capabilityId: enumeration(REGISTRY.map(row => row.id)), query: string(240), pagePath: string(300) }), args => getToolGuide(args)),
   define('workbench_sky_snapshot', 'Calculate Sun, Moon and all eight planet/dwarf-planet targets, tropical signs, apparent motion, uniform-orb aspects, optional bounded stellar layers and heliocentric J2000 vectors. Explicit observer supplied; 1900–2100. Projection, star catalogue and horizon limitations travel with the data; no inferred birth or interpretation.', object({dateISO:instant,...location,timeZone:string(),bodyIds:list(enumeration(SKY_BODIES.map(b=>b.id)),10,1),includeStars:bool,includeModernStars:bool,includeCatalogStars:bool,aspectOrb:number(0,10)},['dateISO','lat','lon','timeZone']), args=>{const {bodyIds,includeStars,includeModernStars,includeCatalogStars,aspectOrb,...input}=args;return buildSkySnapshot(input,{bodyIds,includeStars,includeModernStars,includeCatalogStars,aspectOrb});}),
   define('workbench_sky_timeline', 'Calculate a bounded geocentric timeline, not a fixed year table: at most 512 samples, 1024 exact solar/lunar quarter events and 3660 elapsed days. Use an explicit interval or a center with up to five years either side. Sampled paths can miss fast events; UTC grid and local clock labels are distinct. No observer or birth data.',object({centerISO:instant,startISO:instant,endISO:instant,yearsBefore:integer(0,5),yearsAfter:integer(0,5),stepDays:number(1/24,365),stepHours:number(1,8760),timeZone:string(),bodyIds:list(enumeration(SKY_BODIES.map(b=>b.id)),10,1),includeEvents:bool},['timeZone']),args=>buildSkyTimelineSync(args,{maxSamples:512,maxEvents:1024})),

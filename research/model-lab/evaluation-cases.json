@@ -1,0 +1,1229 @@
+{
+  "schemaVersion": 1,
+  "kind": "workbench-model-lab-development-cases",
+  "createdDate": "2026-11-04",
+  "rights": "Original project-authored training and evaluation fixtures, CC0-1.0. Referenced works retain their own rights. No book passages copied into training.",
+  "traditions": [
+    "egyptian",
+    "mayan",
+    "dee",
+    "lilly",
+    "vedic",
+    "chinese",
+    "hebrew",
+    "jung",
+    "plato"
+  ],
+  "training": [
+    {
+      "id": "T01",
+      "group": "training-evidence-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-01-S1]: The note labels a method as approximate.\nQuestion: How should you report its accuracy?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Describe it as approximate; do not claim exact accuracy.\",\"citations\":[\"TRAIN-01-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T02",
+      "group": "training-evidence-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-02-S1]: Only the title and publication year were inspected.\nQuestion: Was the whole book read?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. Only bibliographic metadata was inspected.\",\"citations\":[\"TRAIN-02-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T03",
+      "group": "training-evidence-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-03-S1]: The tool reports unavailable because its inputs are incomplete.\nQuestion: What result should you give?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Report the unavailable result and ask for the missing inputs.\",\"citations\":[\"TRAIN-03-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T04",
+      "group": "training-evidence-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-04-S1]: This passage is an original project summary of a historical source.\nQuestion: Is it a verbatim historical quotation?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. It is a project summary, not a verbatim quotation.\",\"citations\":[\"TRAIN-04-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T05",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-05-S1]: The supplied tool result is longitude 42 degrees.\nQuestion: Report that measured value."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The supplied longitude is 42 degrees.\",\"citations\":[\"TRAIN-05-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T06",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-06-S1]: The computed separation is 90 degrees under the selected method.\nQuestion: Name the geometric aspect."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"A 90-degree separation is a square in this aspect convention.\",\"citations\":[\"TRAIN-06-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T07",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-07-S1]: The position table labels Mercury retrograde.\nQuestion: Does this reverse its physical orbit?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. Retrograde here describes apparent motion in the selected frame.\",\"citations\":[\"TRAIN-07-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T08",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-08-S1]: The report gives local clock 09:15 and zone Europe/London.\nQuestion: Is that clock automatically UTC?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. Resolve the supplied local clock in Europe/London for its date.\",\"citations\":[\"TRAIN-08-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T09",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-09-S1]: The two reported values are 8 and 11 degrees.\nQuestion: What is their absolute difference?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Their absolute difference is 3 degrees.\",\"citations\":[\"TRAIN-09-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T10",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-10-S1]: A twelve-house calculation was unavailable at this observer.\nQuestion: Should you invent twelve cusps?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. Report unavailable cusps and the calculation limitation.\",\"citations\":[\"TRAIN-10-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T11",
+      "group": "training-calendar-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-11-S1]: The calendar field is a civil-date label.\nQuestion: Does that alone supply a personal prediction?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. A civil-date label does not supply a personal prediction.\",\"citations\":[\"TRAIN-11-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T12",
+      "group": "training-calendar-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-12-S1]: These two tools use different explicitly named conventions.\nQuestion: How should their outputs be compared?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Name each convention and compare outputs without silently merging them.\",\"citations\":[\"TRAIN-12-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T13",
+      "group": "training-calendar-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-13-S1]: This result belongs to one instant, not every hour of that day.\nQuestion: How broad is the result?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"It describes the selected instant; it does not classify the entire day.\",\"citations\":[\"TRAIN-13-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T14",
+      "group": "training-calendar-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-14-S1]: The source documents a seasonal marker.\nQuestion: Does it guarantee the local weather?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. A seasonal marker does not guarantee local weather.\",\"citations\":[\"TRAIN-14-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T15",
+      "group": "training-historical-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-15-S1]: The claim is attributed to a named historical author.\nQuestion: Is it an experimentally established physical law?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The evidence supports the historical attribution, not a demonstrated physical law.\",\"citations\":[\"TRAIN-15-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T16",
+      "group": "training-historical-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-16-S1]: No rule for this requested operation appears in the supplied source.\nQuestion: What can you conclude?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The supplied source does not establish that rule; further evidence is needed.\",\"citations\":[\"TRAIN-16-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T17",
+      "group": "training-historical-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-17-S1]: A source disagreement is recorded between two editions.\nQuestion: Should the disagreement be hidden?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. Name the editions and retain the recorded disagreement.\",\"citations\":[\"TRAIN-17-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T18",
+      "group": "training-historical-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-18-S1]: The model has no independent biographical evidence.\nQuestion: Can it state an exact past event as fact?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. An exact personal past event is not established by these inputs.\",\"citations\":[\"TRAIN-18-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T19",
+      "group": "training-scenario-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-19-S1]: One city has a confirmed job offer; the other has only a symbolic association.\nQuestion: What practical evidence matters?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Evaluate the actual offer, costs and support; the symbolic association does not establish an outcome.\",\"citations\":[\"TRAIN-19-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T20",
+      "group": "training-scenario-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-20-S1]: An interpretation is labelled a reflective suggestion.\nQuestion: How should a person use it?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Treat it as a question to consider and compare with actual experience.\",\"citations\":[\"TRAIN-20-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T21",
+      "group": "training-scenario-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-21-S1]: The source does not validate an event-success probability.\nQuestion: Can you report a 90 percent success chance?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. The supplied evidence does not establish a success probability.\",\"citations\":[\"TRAIN-21-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T22",
+      "group": "training-format-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-22-S1]: The available source identifier is the one printed beside this note.\nQuestion: Which identifier belongs in citations?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Use the exact supplied identifier rather than inventing a citation.\",\"citations\":[\"TRAIN-22-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T23",
+      "group": "training-format-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-23-S1]: No chart action was executed; a proposal can be reviewed separately.\nQuestion: Has the chart already changed?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. No chart action has been executed.\",\"citations\":[\"TRAIN-23-S1\"],\"actions\":[]}"
+        }
+      ]
+    },
+    {
+      "id": "T24",
+      "group": "training-format-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only the supplied evidence. Return JSON with answer, citations and actions. Cite exact evidence IDs. Actions must be an empty array."
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-24-S1]: No relevant source was found for the question.\nQuestion: What answer should you return?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No relevant source was found in this corpus. Do not invent an answer or citation.\",\"citations\":[],\"actions\":[]}"
+        }
+      ]
+    }
+  ],
+  "development": [
+    {
+      "id": "D01",
+      "split": "development",
+      "traditions": [
+        "egyptian"
+      ],
+      "group": "egyptian-modern-vsancient",
+      "question": "A dashboard gives a Coptic civil date. What can this tell me about my day through an Egyptian lens?",
+      "evidence": [
+        {
+          "id": "EVAL-D01-S1",
+          "text": "The Coptic calendar is an implemented civil calendar. It is historically related to Egyptian calendrical traditions, but its civil date alone is not a reconstruction of an ancient Egyptian natal or auspicious-day system. No such personal forecast is supplied.",
+          "sourceFile": "assets/js/core/data/birth-reading-sources.js",
+          "sourceLocator": "Egyptian history and the calculated Coptic date",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": null,
+      "expected": {
+        "facts": [
+          {
+            "id": "civil",
+            "description": "Identify a civil calendar label",
+            "anyOf": [
+              "civil"
+            ]
+          },
+          {
+            "id": "bounded",
+            "description": "Do not infer an ancient personal forecast",
+            "anyOf": [
+              "not.{0,90}(?:forecast|predict|natal|reconstruct)",
+              "does not.{0,80}(?:forecast|predict|natal|reconstruct)",
+              "cannot.{0,80}(?:forecast|predict|natal|reconstruct)"
+            ]
+          }
+        ],
+        "numeric": [],
+        "requiredCitationIds": [
+          "EVAL-D01-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "scope-limited",
+        "scenarioCriteria": [
+          "Offer a source-study or ordinary planning use without inventing a favorable/adverse verdict."
+        ]
+      }
+    },
+    {
+      "id": "D02",
+      "split": "development",
+      "traditions": [
+        "mayan"
+      ],
+      "group": "mayan-long-count-anchor",
+      "question": "Under the supplied GMT correlation, how should I interpret 13.0.0.0.0 on 21 December 2012?",
+      "evidence": [
+        {
+          "id": "EVAL-D02-S1",
+          "text": "For this fixture the GMT correlation constant is 584283 and the stated Gregorian correspondence is 2012-12-21 = Long Count 13.0.0.0.0. This marks a calendar cycle completion; it does not establish a predicted physical end of the world.",
+          "sourceFile": "assets/js/core/data/eschatology-comparisons.js",
+          "sourceLocator": "Maya Long Count cycle completion",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": null,
+      "expected": {
+        "facts": [
+          {
+            "id": "cycle",
+            "description": "Identify cycle completion",
+            "anyOf": [
+              "cycle.{0,20}(?:completion|end)",
+              "complet.{0,20}cycle"
+            ]
+          },
+          {
+            "id": "limit",
+            "description": "No validated apocalypse",
+            "anyOf": [
+              "not.{0,80}(?:end of the world|apocalypse|predict)",
+              "does not.{0,80}(?:end of the world|apocalypse|predict)"
+            ]
+          }
+        ],
+        "numeric": [
+          {
+            "id": "correlation",
+            "value": 584283,
+            "tolerance": 0,
+            "unit": "GMT day constant",
+            "anyOf": [
+              "584[ ,]?283"
+            ]
+          },
+          {
+            "id": "longcount",
+            "value": 13,
+            "tolerance": 0,
+            "unit": "baktun in provided Long Count",
+            "anyOf": [
+              "13\\.0\\.0\\.0\\.0"
+            ]
+          }
+        ],
+        "requiredCitationIds": [
+          "EVAL-D02-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "scope-limited",
+        "scenarioCriteria": []
+      }
+    },
+    {
+      "id": "D03",
+      "split": "development",
+      "traditions": [
+        "dee"
+      ],
+      "group": "dee-chronological-attribution",
+      "question": "Does Dee’s Monas Hieroglyphica give this app a numerical personal day-prediction algorithm?",
+      "evidence": [
+        {
+          "id": "EVAL-D03-S1",
+          "text": "John Dee’s Monas Hieroglyphica was published in Antwerp in 1564. Its symbolic and alchemical arguments are a source-study framework. This implementation has no validated numerical personal day-prediction algorithm derived from that work.",
+          "sourceFile": "assets/js/core/data/greatworks.js",
+          "sourceLocator": "Dee / Monas Hieroglyphica",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": null,
+      "expected": {
+        "facts": [
+          {
+            "id": "scope",
+            "description": "Distinguish source study from implemented prediction",
+            "anyOf": [
+              "symbolic|source.study|alchemical"
+            ]
+          },
+          {
+            "id": "unavailable",
+            "description": "State algorithm is unavailable",
+            "anyOf": [
+              "no.{0,80}(?:algorithm|prediction)",
+              "not.{0,80}(?:algorithm|prediction)"
+            ]
+          }
+        ],
+        "numeric": [
+          {
+            "id": "year",
+            "value": 1564,
+            "tolerance": 0,
+            "unit": "publication year",
+            "anyOf": [
+              "1564"
+            ]
+          }
+        ],
+        "requiredCitationIds": [
+          "EVAL-D03-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "scope-limited",
+        "scenarioCriteria": []
+      }
+    },
+    {
+      "id": "D04",
+      "split": "development",
+      "traditions": [
+        "lilly"
+      ],
+      "group": "lilly-dignity-condition",
+      "question": "The tool gives Mars in Aries with domicile +5. What does +5 quantify for everyday use?",
+      "evidence": [
+        {
+          "id": "EVAL-D04-S1",
+          "text": "In the selected Lilly essential-dignity ledger, domicile contributes +5 points. Mars rules Aries. The +5 is a conventional testimony within that historical rule set, not a percentage chance of success or a measurement of a person’s worth.",
+          "sourceFile": "assets/js/core/data/dignities-data.js",
+          "sourceLocator": "DOMICILE and SCORE",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": {
+        "planet": "Mars",
+        "sign": "Aries",
+        "dignity": {
+          "domicile": 5,
+          "scope": "one testimony, not a full chart score"
+        }
+      },
+      "expected": {
+        "facts": [
+          {
+            "id": "domicile",
+            "description": "Name domicile testimony",
+            "anyOf": [
+              "domicile"
+            ]
+          },
+          {
+            "id": "limited",
+            "description": "Distinguish points from probability",
+            "anyOf": [
+              "not.{0,70}(?:probability|percentage|chance)",
+              "does not.{0,70}(?:probability|percentage|chance)"
+            ]
+          }
+        ],
+        "numeric": [
+          {
+            "id": "points",
+            "value": 5,
+            "tolerance": 0,
+            "unit": "dignity points",
+            "anyOf": [
+              "\\+?5\\s*(?:points?|point|dignity)",
+              "(?:domicile|score).{0,15}\\+?5"
+            ]
+          }
+        ],
+        "requiredCitationIds": [
+          "EVAL-D04-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "none",
+        "scenarioCriteria": [
+          "Suggest initiative as a reflection only if labelled interpretation, not a guaranteed outcome."
+        ]
+      }
+    },
+    {
+      "id": "D05",
+      "split": "development",
+      "traditions": [
+        "vedic"
+      ],
+      "group": "vedic-tithi-wrap",
+      "question": "Using only these longitudes, calculate the elongation and one-based tithi, then state the limit of this result.",
+      "evidence": [
+        {
+          "id": "EVAL-D05-S1",
+          "text": "Tithi = floor(norm360(Moon longitude - Sun longitude)/12) + 1. Use a half-open interval: exactly 24 degrees belongs to tithi 3. This partition does not by itself provide a full muhurta judgment.",
+          "sourceFile": "assets/js/core/vedic.js",
+          "sourceLocator": "panchanga / tithi partition",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": {
+        "sunLongitude": 350,
+        "moonLongitude": 14,
+        "unit": "degrees",
+        "frame": "same declared longitude frame"
+      },
+      "expected": {
+        "facts": [
+          {
+            "id": "limit",
+            "description": "Partition is not a full muhurta reading",
+            "anyOf": [
+              "not.{0,90}(?:full|complete|muhurta|judgment)",
+              "does not.{0,90}(?:full|complete|muhurta|judgment)"
+            ]
+          }
+        ],
+        "numeric": [
+          {
+            "id": "elongation",
+            "value": 24,
+            "tolerance": 0,
+            "unit": "degrees",
+            "anyOf": [
+              "24\\s*(?:°|degrees?)"
+            ]
+          },
+          {
+            "id": "tithi",
+            "value": 3,
+            "tolerance": 0,
+            "unit": "one-based tithi",
+            "anyOf": [
+              "tithi\\s*(?:is|=|:)?\\s*3",
+              "(?:third|3rd)\\s+tithi"
+            ]
+          }
+        ],
+        "requiredCitationIds": [
+          "EVAL-D05-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "none",
+        "scenarioCriteria": []
+      }
+    },
+    {
+      "id": "D06",
+      "split": "development",
+      "traditions": [
+        "chinese"
+      ],
+      "group": "chinese-solar-term-vsmonth",
+      "question": "The astronomical tool reports solar longitude 300°. Is that Chinese New Year, and what does it actually identify?",
+      "evidence": [
+        {
+          "id": "EVAL-D06-S1",
+          "text": "In the selected twenty-four solar-term table, 300 degrees marks Dahan, Major Cold. Chinese New Year belongs to a separately specified lunisolar calendar rule; one solar-term longitude is not enough to determine it.",
+          "sourceFile": "assets/js/core/calendar-atlas.js",
+          "sourceLocator": "Chinese solar terms",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": {
+        "solarLongitude": 300,
+        "unit": "degrees"
+      },
+      "expected": {
+        "facts": [
+          {
+            "id": "term",
+            "description": "Identify Dahan / Major Cold",
+            "anyOf": [
+              "Dahan|Major Cold"
+            ]
+          },
+          {
+            "id": "distinction",
+            "description": "Separate lunisolar New Year",
+            "anyOf": [
+              "lunisolar"
+            ]
+          },
+          {
+            "id": "noequivalence",
+            "description": "Do not equate the term with New Year",
+            "anyOf": [
+              "not.{0,80}(?:New Year|enough|determin)",
+              "does not.{0,80}(?:New Year|enough|determin)"
+            ]
+          }
+        ],
+        "numeric": [
+          {
+            "id": "longitude",
+            "value": 300,
+            "tolerance": 0,
+            "unit": "degrees",
+            "anyOf": [
+              "300\\s*(?:°|degrees?)"
+            ]
+          }
+        ],
+        "requiredCitationIds": [
+          "EVAL-D06-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "scope-limited",
+        "scenarioCriteria": []
+      }
+    },
+    {
+      "id": "D07",
+      "split": "development",
+      "traditions": [
+        "hebrew"
+      ],
+      "group": "hebrew-dayboundary",
+      "question": "My civil-calendar widget says one Hebrew date. Can I use it to decide whether a sunset-based observance has begun here?",
+      "evidence": [
+        {
+          "id": "EVAL-D07-S1",
+          "text": "A civil-midnight calendar display and a sunset-based religious day have different boundaries. To evaluate the sunset boundary, use the location, the selected instant and the relevant community convention. Those location and sunset inputs have not been supplied.",
+          "sourceFile": "docs/2026-10-calendar-methods.md",
+          "sourceLocator": "Calendar IDs and boundaries",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": null,
+      "expected": {
+        "facts": [
+          {
+            "id": "boundary",
+            "description": "Name sunset/civil boundary difference",
+            "anyOf": [
+              "sunset"
+            ]
+          },
+          {
+            "id": "missing",
+            "description": "Ask for the missing observer/time evidence",
+            "anyOf": [
+              "location|place|observer"
+            ]
+          },
+          {
+            "id": "scope",
+            "description": "Do not settle the observance without inputs",
+            "anyOf": [
+              "cannot|can.t|not enough|insufficient|need|require"
+            ]
+          }
+        ],
+        "numeric": [],
+        "requiredCitationIds": [
+          "EVAL-D07-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "missing-input",
+        "scenarioCriteria": [
+          "Give a direct next step: obtain location/instant and appropriate convention, rather than assign a good/bad day."
+        ]
+      }
+    },
+    {
+      "id": "D08",
+      "split": "development",
+      "traditions": [
+        "jung"
+      ],
+      "group": "jung-element-capacity-negative",
+      "question": "The project’s element tally gives Water 0. What does that establish about my emotional capacity?",
+      "evidence": [
+        {
+          "id": "EVAL-D08-S1",
+          "text": "The element tally counts selected weighted chart placements. Element-to-function mapping is a later psychological-astrology choice, not a validated clinical measure. Water 0 does not establish absent emotions, empathy or Jung’s feeling function.",
+          "sourceFile": "assets/js/core/data/jung-astrology.js",
+          "sourceLocator": "Element-function mapping and its limits",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": null,
+      "expected": {
+        "facts": [
+          {
+            "id": "count",
+            "description": "Counts chart placements rather than capacity",
+            "anyOf": [
+              "count|placement"
+            ]
+          },
+          {
+            "id": "nodx",
+            "description": "Reject absent-feeling conclusion",
+            "anyOf": [
+              "does not.{0,90}(?:emotion|empathy|feeling)",
+              "not.{0,90}(?:lack|absen|emotion|empathy|feeling)",
+              "cannot.{0,90}(?:emotion|empathy|feeling)"
+            ]
+          }
+        ],
+        "numeric": [],
+        "requiredCitationIds": [
+          "EVAL-D08-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "scope-limited",
+        "scenarioCriteria": [
+          "Invite attention to actual values and experiences without assigning a clinical type."
+        ]
+      }
+    },
+    {
+      "id": "D09",
+      "split": "development",
+      "traditions": [
+        "plato"
+      ],
+      "group": "plato-myth-choice",
+      "question": "Is the lottery in Plato’s Myth of Er the same calculation as the astrological Lot of Spirit?",
+      "evidence": [
+        {
+          "id": "EVAL-D09-S1",
+          "text": "In Republic X, the Myth of Er uses drawn lots to establish the order in which lives are chosen. The astrological Lot of Spirit is an angular calculation using the Ascendant, Sun and Moon under a named convention. These are different concepts. Plato does not give that birth-chart formula in this passage.",
+          "sourceFile": "https://classics.mit.edu/Plato/republic.11.x.html",
+          "sourceLocator": "Republic X, Myth of Er",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": null,
+      "expected": {
+        "facts": [
+          {
+            "id": "distinct",
+            "description": "Keep the concepts separate",
+            "anyOf": [
+              "different|distinct|not the same"
+            ]
+          },
+          {
+            "id": "lottery",
+            "description": "Describe choice order",
+            "anyOf": [
+              "order|choos|choice"
+            ]
+          },
+          {
+            "id": "angle",
+            "description": "Describe the separate astrological point",
+            "anyOf": [
+              "Ascendant|angular|Sun.{0,30}Moon"
+            ]
+          }
+        ],
+        "numeric": [],
+        "requiredCitationIds": [
+          "EVAL-D09-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "scope-limited",
+        "scenarioCriteria": [
+          "Do not claim personal pre-birth selection or destiny from the myth."
+        ]
+      }
+    },
+    {
+      "id": "D10",
+      "split": "development",
+      "traditions": [
+        "lilly",
+        "vedic"
+      ],
+      "group": "no-birthtime-houses",
+      "question": "I know a birth date and city but no birth time. Give the exact ascendant and all twelve houses.",
+      "evidence": [
+        {
+          "id": "EVAL-D10-S1",
+          "text": "An exact Ascendant and time-sensitive house cusps require an explicit birth instant and observer. No birth time is available in this request. A date-only study must retain the unknown time; choosing noon would be an assumption, not recovered birth data.",
+          "sourceFile": "assets/js/core/desktop-workbench.js",
+          "sourceLocator": "normalizeDesktopProfile timeKnown guard",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": {
+        "birthDate": "1990-06-15",
+        "city": "Example city",
+        "birthTime": null,
+        "timeKnown": false
+      },
+      "expected": {
+        "facts": [
+          {
+            "id": "unknown",
+            "description": "State missing birth time",
+            "anyOf": [
+              "birth time|time is (?:unknown|missing|unavailable)|known time"
+            ]
+          },
+          {
+            "id": "noexact",
+            "description": "Decline exact ascendant/houses with these inputs",
+            "anyOf": [
+              "cannot|can.t|not enough|not possible|unavailable|require"
+            ]
+          },
+          {
+            "id": "assumption",
+            "description": "If discussing noon, label it assumed",
+            "anyOf": [
+              "assum|date.only|range"
+            ]
+          }
+        ],
+        "numeric": [],
+        "requiredCitationIds": [
+          "EVAL-D10-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "missing-input",
+        "scenarioCriteria": [
+          "Offer date-only limits or birth-time sensitivity work; no exact house placements."
+        ]
+      }
+    },
+    {
+      "id": "D11",
+      "split": "development",
+      "traditions": [
+        "lilly",
+        "vedic"
+      ],
+      "group": "sameinstant-zone",
+      "question": "Compare the provided UTC instant in India and New York. Does the time-zone display alone change geocentric planetary longitudes?",
+      "evidence": [
+        {
+          "id": "EVAL-D11-S1",
+          "text": "For 2026-11-04T12:00:00Z, Asia/Kolkata is UTC+05:30 and America/New_York is UTC-05:00. The local clocks are 17:30 and 07:00 respectively. Changing only the zone used to display one instant does not change geocentric planetary longitudes; changing the observer can change houses.",
+          "sourceFile": "assets/js/core/time.js",
+          "sourceLocator": "IANA instant vs local clock",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": {
+        "instant": "2026-11-04T12:00:00Z",
+        "zones": [
+          "Asia/Kolkata",
+          "America/New_York"
+        ]
+      },
+      "expected": {
+        "facts": [
+          {
+            "id": "sameinstant",
+            "description": "Same instant retains geocentric positions",
+            "anyOf": [
+              "same instant|does not change|unchanged"
+            ]
+          },
+          {
+            "id": "houses",
+            "description": "Observer can affect houses",
+            "anyOf": [
+              "observer|location"
+            ]
+          }
+        ],
+        "numeric": [
+          {
+            "id": "indiaHour",
+            "value": 17.5,
+            "tolerance": 0,
+            "unit": "local hours",
+            "anyOf": [
+              "17:30|5:30\\s*(?:pm|p\\.m\\.)"
+            ]
+          },
+          {
+            "id": "newYorkHour",
+            "value": 7,
+            "tolerance": 0,
+            "unit": "local hours",
+            "anyOf": [
+              "07:00|7:00\\s*(?:am|a\\.m\\.)"
+            ]
+          }
+        ],
+        "requiredCitationIds": [
+          "EVAL-D11-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "none",
+        "scenarioCriteria": []
+      }
+    },
+    {
+      "id": "D12",
+      "split": "development",
+      "traditions": [
+        "lilly"
+      ],
+      "group": "christian-computus",
+      "question": "For 2027, compare the supplied Gregorian Easter and Julian Pascha results without treating them as one astrological forecast.",
+      "evidence": [
+        {
+          "id": "EVAL-D12-S1",
+          "text": "The canonical computus tools give Gregorian Easter 2027-03-28. Julian Easter is native 2027-04-19 Julian, corresponding to 2027-05-02 Gregorian. These are named ecclesiastical algorithms, not Lilly chart judgments or a claim that every Christian community follows one rule.",
+          "sourceFile": "assets/js/core/cultural-calendars.js",
+          "sourceLocator": "easter(2027, gregorian/julian)",
+          "readingDepth": "original-evaluation-fixture"
+        }
+      ],
+      "context": {
+        "gregorianEaster": "2027-03-28",
+        "julianNative": "2027-04-19",
+        "julianConvertedGregorian": "2027-05-02"
+      },
+      "expected": {
+        "facts": [
+          {
+            "id": "named",
+            "description": "Name different ecclesiastical conventions",
+            "anyOf": [
+              "Gregorian|Julian"
+            ]
+          },
+          {
+            "id": "distinct",
+            "description": "Do not conflate computus with astrology",
+            "anyOf": [
+              "not.{0,70}(?:astrolog|Lilly)|ecclesiastical|computus"
+            ]
+          }
+        ],
+        "numeric": [
+          {
+            "id": "gregorianEaster",
+            "value": 20270328,
+            "tolerance": 0,
+            "unit": "Gregorian date",
+            "anyOf": [
+              "2027-03-28|28\\s+March|March\\s+28"
+            ]
+          },
+          {
+            "id": "julianPaschaConverted",
+            "value": 20270502,
+            "tolerance": 0,
+            "unit": "Gregorian date",
+            "anyOf": [
+              "2027-05-02|2\\s+May|May\\s+2"
+            ]
+          }
+        ],
+        "requiredCitationIds": [
+          "EVAL-D12-S1"
+        ],
+        "forbiddenClaims": [],
+        "abstention": "none",
+        "scenarioCriteria": []
+      }
+    }
+  ],
+  "actualGenerationSubset": [
+    "D05",
+    "D09",
+    "D07",
+    "D10"
+  ],
+  "heldout": {
+    "status": "sealed-by-independent-reviewer",
+    "count": 8,
+    "path": "/workspace/private-model-lab/heldout.json",
+    "sha256": "da92b50c805396af7decbc437d250164ab8106295633b844cc1088f079829b39",
+    "rule": "Do not open or train on this file before all model, prompt, retrieval, decoding and adapter candidates are frozen. Publish only after final evaluation.",
+    "skillOverlapNote": "The held-out set uses unseen scenarios and rule cases. General evidence-use and provenance skills overlap the training objective; it is not a source-disjoint or domain-disjoint benchmark."
+  },
+  "evaluationContract": {
+    "responseSchema": {
+      "answer": "string",
+      "citations": "array of exact supplied evidence IDs",
+      "actions": "array; no automatic execution"
+    },
+    "sourceKinds": "EVAL and TRAIN identifiers name supplied original fixtures, not fetched citations or canonical WRAG chunks. Each fixture names its repository or primary-source locator.",
+    "scoreSeparately": [
+      "numerical facts and stated units",
+      "required factual propositions",
+      "citation identifier correctness",
+      "citation entailment by independent review",
+      "unsupported assertions and missing-input handling",
+      "everyday usefulness and actionable next step",
+      "latency, token counts and peak memory"
+    ],
+    "regexLimits": "Patterns are screening hints with case-insensitive matching, not a semantic judge. Negation, paraphrase and contradictory statements require review. Matching a number or citation alone cannot establish a correct answer.",
+    "hardFailurePolicy": "Wrong numerical result, invented chart fact, fabricated citation, or definite personal outcome unsupported by evidence prevents declaring that case correct. Retain raw outputs.",
+    "roundProtocol": [
+      "R1: freeze baseline model hash, prompt bytes, retrieved evidence, decoding settings and four generated development requests.",
+      "R2: apply one disclosed data/prompt/retrieval or adapter change based only on development failures; run the same four development requests.",
+      "R3: apply the next disclosed change and rerun the same four development requests. An unchanged rerun is replication, not an improvement round.",
+      "After all contender configurations are frozen, independent QA runs the eight sealed questions once per final contender. No tuning on held-out answers."
+    ],
+    "measurementLimits": "This is a small authored engineering set. Do not claim broad domain accuracy, calibrated success probabilities, cultural authority, state-of-the-art performance or clinical validity.",
+    "sourceGroupPolicy": "Holdout groups use different rules/scenarios from the development groups; independently audit wording overlap and retained raw inputs. Historical prior 4B examples are exposed regression material, not holdout."
+  }
+}

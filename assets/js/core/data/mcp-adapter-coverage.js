@@ -49,7 +49,7 @@ export const MCP_ADAPTER_COVERAGE = {
       "data.sourceRecord",
       "data.methods.cuspApprox"
     ],
-    "scope": "Only four existing WORKED_CHARTS keys; historical reconstruction with record caveats, equal-cusp/mean-motion limits and no invented UTC date."
+    "scope": "Only four existing WORKED_CHARTS keys; partial source-checked records withhold unresolved angles/houses/motions, while other historical reconstructions retain equal-cusp/mean-motion limits. No invented UTC date or outcome validation."
   },
   "country-history": {
     "mcpTools": [
@@ -299,6 +299,21 @@ export const MCP_ADAPTER_COVERAGE = {
       "data.result.outOfScope"
     ],
     "scope": "Known moment, explicit question house and optional selected KP number/direction; no actual outcome answer."
+  },
+  "reading-lab": {
+    "mcpTools": [
+      "workbench_reading_lab",
+      "workbench_reading_examples"
+    ],
+    "outputPaths": [
+      "data.context",
+      "data.frameworks",
+      "data.checks",
+      "data.examples",
+      "data.sources",
+      "data.limits"
+    ],
+    "scope": "Nine source-qualified families, explicit date/moment inputs and registered public examples; calendar arithmetic, partial chart methods and textual reflection stay distinct. No universal outcome score, private records or automatic browser actions."
   },
   "rectification": {
     "mcpTools": [

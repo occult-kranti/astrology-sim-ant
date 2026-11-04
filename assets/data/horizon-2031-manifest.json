@@ -1,7 +1,7 @@
 {
   "kind": "event-horizon-preset",
   "schemaVersion": 1,
-  "datasetId": "horizon-2031-1a080a38f518-8c73e1e14ca1",
+  "datasetId": "horizon-2031-08d86f8b7e85-fa70488b1234",
   "request": {
     "startDate": "2026-10-30",
     "endDate": "2031-01-01",
@@ -91,7 +91,7 @@
       },
       {
         "path": "assets/js/core/data/horizon-tool-coverage.js",
-        "sha256": "771314ebd8613f940c8891453d9c0dddb3c78d5e5d18647a2416827233e19c33"
+        "sha256": "6e0c636f51d9c61a192ad3747a67ff12d23a4b60bcf856c6d2c7e9e51de08c1d"
       },
       {
         "path": "assets/js/core/data/horizon-traditions.js",
@@ -99,7 +99,7 @@
       },
       {
         "path": "assets/js/core/data/mcp-tool-contracts.js",
-        "sha256": "5ee8c3649407dff3736baefa58190b0bf3756f02b447c630013d804993b4621e"
+        "sha256": "0355fff57b7cf199d62d42d517c8db2ff0bfb5c8981a1d8a4f9571c119e8fc10"
       },
       {
         "path": "assets/js/core/data/muhurta-data.js",
@@ -151,7 +151,7 @@
       },
       {
         "path": "assets/js/core/registry.js",
-        "sha256": "23989786d223746d0646310dcd0eb36d03012d5e027893e73dcd84d40e378b1b"
+        "sha256": "8636e6f625952c6c202cf4bd08635f9c7da8a809335b80e8165d1843c6a92cd0"
       },
       {
         "path": "assets/js/core/time.js",
@@ -159,7 +159,7 @@
       },
       {
         "path": "assets/js/core/vedic.js",
-        "sha256": "dc7df61f864d6853497267f7a1bb04bc7a7b80ed2d7f5130a4ccccaf35532278"
+        "sha256": "93fae27b6cdcc91aab89e27c251a4b56c4412d27d6974ae3dceb6537644cae35"
       },
       {
         "path": "assets/js/lib/astronomy.js",
@@ -242,12 +242,12 @@
         "sha256": "f081f2ed06e0c5086ee1d60238e40a58b714e608feed49ae5f931b4d14d5ec0d"
       }
     ],
-    "sha256": "1a080a38f51874a1165395add5ae9c329339c282a9d05263d852459928ed75b2"
+    "sha256": "08d86f8b7e8540458dc89b54c757d00c09eb23915d07d198d2ed76d762415ebe"
   },
   "catalogueHashes": {
     "sourcesSHA256": "1628baad7582055759e073451266ca9938f600996a850bd6b2b7044d7b7d49c3",
     "coverageSHA256": "b19b10ece86cabb09040708c43f409ebafe5df37c8edc4102a1edbb669f197e9",
-    "toolCoverageSHA256": "9414ed095e01947b9796d7a8e1e871e9ae1f881ff22ec1fe0cb40e1c1de83f9d"
+    "toolCoverageSHA256": "754fc43b29886f80808e9d143b36a766af59ae08737bd4d43f0551ca4dac2a23"
   },
   "parts": [
     {
@@ -2826,9 +2826,9 @@
       "canonicalCalls": 4575,
       "guidanceCalls": 4575,
       "purposeBatchEvaluations": 4575,
-      "elapsedMs": 50830.800477,
-      "sampleMs": 47570.262809,
-      "astronomyMs": 3257.017037999998
+      "elapsedMs": 70412.306969,
+      "sampleMs": 65976.666345,
+      "astronomyMs": 4431.698258000004
     },
     "provenance": {
       "calculation": "Locally calculated canonical engines",
@@ -2840,7 +2840,7 @@
         "cldr": "48.0",
         "tz": "2026b"
       },
-      "generatedAt": "2026-11-04T20:11:22.068Z",
+      "generatedAt": "2026-11-04T21:03:44.416Z",
       "privateBirthIncluded": false,
       "modelUsed": false
     }

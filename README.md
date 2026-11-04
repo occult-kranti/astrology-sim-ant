@@ -1,10 +1,22 @@
 # The Astrologer's Workbench — Calendar Observatory
 
+The new **[Reading Lab](pages/reading-lab.html)** compares nine named families: Egyptian/Coptic, Maya, Dee, historical Western/Lilly, Vedic, Chinese, Hebrew, Jung and Plato. Explore **17 public worked or textual cases with 24 sources**, inspect the rule and calculation, then read conditional everyday examples with alternatives and limits. **24/24 listed fields match across eight reference cases**; the other nine textual cases remain numerically unevaluable. Christian computus is a separate method from Lilly's astrology, and a field match does not validate a life prediction. The Lilly dog figure now preserves four corrected printed longitudes while withholding unchecked chart judgments. Read the [source methods](docs/2026-11-reading-lab-sources.md) and [independent verification](docs/2026-11-reading-lab-verification.md). The local [MCP registry](mcp/README.md) now exposes 83 read-only tools, including the two Reading Lab adapters.
+
+The **[local model laboratory](docs/2026-11-local-model-methods.md)** records three actual development rounds: 24 generated answers across the existing 4B model and a separate 0.6B base/LoRA experiment, plus two answers from a newer Qwen3.5-4B challenger. CPU LoRA changed real adapter parameters, but the adapter is **not promoted**. The selected optional default remains Qwen3-4B-Instruct-2507 with the `scenario-v3` prompt; the newer challenger was slower on its two-case development comparison. The final eight-case holdout was run once for each final contender, bringing the total to **42 actual benchmark answers**; both still made substantive errors. Raw failures, timings and frozen configurations are retained in [the experiment records](research/model-lab/) and [training report](docs/2026-11-model-training.md). These are small engineering comparisons, not a state-of-the-art or broad accuracy claim.
+
+Independent model-agent review of the eight held-out scenarios classified the 4B answers as **3 adequate, 3 partial and 2 materially incorrect**, versus **1, 3 and 4** for the adapter. These are case dispositions, not an accuracy estimate or independent human review; reference excerpts remain the default. The [review record](research/model-lab/independent-review.json) preserves the individual findings.
+
+The [public example database](assets/data/reading-lab-examples.json) works as static JSON. An optional [Supabase schema](supabase/migrations/202611040002_reading_lab.sql) and local SQL export support published-source reads without storing private profiles or model test data; the [local database tests](research/reading-lab/database-receipt.json) passed. No hosted Supabase project was configured. **Pages publication remains deferred by the user**; the branch, offline artifacts and local companion are separate from the previously published site. The frozen RAG corpus contains **3,417 chunks from 191 public source files**, organized into 235 retrieval units (4,764,610 bytes). These units are indexing boundaries, not independent corroborating sources. A recorded Hebrew day-boundary query still misses its supporting passage at smaller conservative, character-estimated token budgets; a larger packet recovers it. These estimates are not model BPE token counts, and source coverage does not guarantee retrieval for every question.
+
 The desktop studio now includes a **[research chatbot with local RAG](docs/2026-11-workbench-rag.md)**: cited public-source search, reviewed chart changes, an optional CPU model companion, Supabase reference search, OpenAI API support and an official local-app ChatGPT sign-in adapter. Start with **Research chat → Search local sources**, or follow the [local model setup](local-rag/README.md). Source excerpts work offline. Generated answers need a configured model and may be inaccurate; book metadata is not a full-book corpus. Live Supabase and ChatGPT account connections remain optional setup steps.
 
-The new **[Desktop chart studio](pages/desktop.html)** brings a private chart library, natal/transit/synastry wheels, exact positions, house tables, an aspect matrix, date stepping and a source inspector into one black instrument desk. Search all 134 existing application destinations from its toolkit. Profiles stay in the browser; save/import/export are deliberate actions. The public example is a Greenwich study, not a personal birth record.
+The offline browser runs the calculators and source-excerpt search. Generated text requires the companion server and its configured local or authorized remote model. Browser-native WebGPU inference has not been tested, and model weights are not embedded in the static page.
+
+The new **[Desktop chart studio](pages/desktop.html)** brings a private chart library, natal/transit/synastry wheels, exact positions, house tables, an aspect matrix, date stepping and a source inspector into one black instrument desk. Search all 135 application destinations from its toolkit. Profiles stay in the browser; save/import/export are deliberate actions. The public example is a Greenwich study, not a personal birth record.
 
 A [single-file desktop edition](docs/2026-11-desktop-standalone.md) also opens directly from disk without a local server. Its chart studio works offline; linked specialist pages remain online, while the full portable ZIP includes the complete collection. The [standalone verification](docs/2026-11-desktop-standalone-verification.md) records actual file-origin checks.
+
+The current offline package contains 548 public files totaling 58,297,679 bytes before compression. Its ZIP is 8,637,939 bytes; the standalone desktop HTML is 5,125,463 bytes. Model weights and the separately configured companion are not embedded in those static files. The [current handoff](HANDOFF.md) records their artifact hashes and completed verification scope.
 
 The desktop edition lives on `feat/desktop-astrology-workbench`, with all existing routes retained. It uses the existing Astronomy Engine and four house algorithms; it is not feature-equivalent to Solar Fire, TimePassages or Kepler. See [research](docs/2026-11-desktop-research.md), [design and methods](docs/2026-11-desktop-workbench.md), [verification](docs/2026-11-desktop-verification.md) and [publication status](docs/2026-11-desktop-release.md).
 
@@ -100,7 +112,9 @@ traditional Muhūrta classifications, temporal planetary hours, and method-selec
 times at one explicit instant. It shows shared derivations, differing day boundaries,
 sources, approximations and unavailable methods. This is a bounded implementation,
 not a calculator for every culture: regional observances, lunar sightings, Tibetan,
-Maya, Balinese and other specialist systems remain **TBD**. Five added runtime calendar
+Balinese and other specialist systems remain unimplemented. The [Reading Lab](pages/reading-lab.html)
+now calculates Maya Long Count, Tzolk’in and Haab’ under the named GMT 584283 correlation;
+broader Maya variants and ritual-day conventions remain outside that converter. Five added runtime calendar
 conversions retain pending independent-fixture labels. Traditional readings are attributed
 study material, not validated predictions or personal advice.
 
@@ -144,6 +158,7 @@ the browser.
 
 | Area | Pages / tools |
 |------|---------------|
+| **Reading Lab** | `pages/reading-lab.html` — nine named families, 17 public source cases, calculation checks, conditional everyday readings and explicit unevaluable methods; two read-only MCP adapters |
 | **Desktop calendar atlas** | `pages/calendar-atlas.html` — calculated sky dial, selected methods, five family pages, source inspector, optional birth context and JSON/SVG exports |
 | **Date & event laboratory** | `pages/calendar-search.html` — worker-based brute/optimized scan, event-derived filters, source-qualified event/control comparisons, CSV/JSON import and export |
 | **Home** | `index.html` — overview, "find your way", the three books, the tools, the science note |

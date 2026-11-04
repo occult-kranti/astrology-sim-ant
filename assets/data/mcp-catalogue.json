@@ -3250,7 +3250,7 @@
     },
     {
       "name": "workbench_printed_chart",
-      "description": "Replay one of the four existing Lilly worked-chart records through chartFromPositions. Only an explicit existing record key is accepted; no arbitrary chart, dates or position rows. Returns inherited position provenance, equal-cusp fallback and mean-motion limitations. This is a historical reconstruction, not a new astronomical cast or independently verified historical outcome.",
+      "description": "Replay one of four existing Lilly worked-chart records. Only an explicit existing record key is accepted; no arbitrary chart, dates or position rows. Retains inherited provenance and approximation limits. The partly checked missing-dog example returns four verified longitudes and labelled inherited positions while withholding unresolved angles, houses, motions and derived judgments. This is a historical reconstruction, not a new astronomical cast or independently verified historical outcome.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -4389,6 +4389,7 @@
               "toolId": {
                 "type": "string",
                 "enum": [
+                  "reading-lab",
                   "index",
                   "abhichara-atharvan",
                   "abhichara-index",
@@ -4658,6 +4659,164 @@
       }
     },
     {
+      "name": "workbench_reading_lab",
+      "description": "Calculate or replay one explicit Reading Lab study across nine typed families: Egyptian/Coptic, Maya GMT584283, Dee, historical Western/Lilly with separate Christian computus, Vedic, Chinese, Hebrew, Jung and Plato. Exactly one inputs or public caseId. Date-only never invents a birth clock. Common frame1900–2100; isolated Maya date-only supports its declared BCE epoch. Textual frameworks and missing methods remain explicit. Returns bounded canonical facts, conditional source-qualified exercises and limitations; no prediction accuracy or browser execution.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "inputs": {
+            "type": "object",
+            "properties": {
+              "dateISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 13
+              },
+              "instantISO": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "time": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "disambiguation": {
+                "type": "string",
+                "enum": [
+                  "reject",
+                  "earlier",
+                  "later"
+                ]
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "frameworks": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "egyptian",
+                    "mayan",
+                    "dee",
+                    "lilly",
+                    "vedic",
+                    "chinese",
+                    "hebrew",
+                    "jung",
+                    "plato"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 9,
+                "uniqueItems": true
+              },
+              "purpose": {
+                "type": "string",
+                "enum": [
+                  "study",
+                  "planning",
+                  "work",
+                  "relationships",
+                  "reflection"
+                ]
+              }
+            },
+            "required": [
+              "timeZone"
+            ],
+            "additionalProperties": false
+          },
+          "caseId": {
+            "type": "string",
+            "enum": [
+              "egyptian-civil-structure",
+              "mayan-nmai-2012-12-20",
+              "lilly-cazimi-example",
+              "lilly-combustion-disagreement",
+              "christian-easter-2024",
+              "vedic-rao-tithi-example-2",
+              "vedic-rao-hora-example",
+              "chinese-new-year-2024",
+              "chinese-leap-month-2023",
+              "hebrew-tishri-2024",
+              "hebrew-sunset-boundary-2024",
+              "dee-monas-symbolic-method",
+              "jung-feeling-valuation",
+              "jung-individuation-relationship",
+              "plato-er-choice",
+              "plato-timaeus-cultivation",
+              "lilly-dog-printed-figure"
+            ]
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "workbench_reading_examples",
+      "description": "Compare selected registered public worked examples with their independently sourced expected fields and preserve unmatched or unevaluable cases. Optional distinct caseIds; defaults to the curated catalogue. Return source reading depth, convention, exact check values and conditional everyday exercises. Matching a calendar or printed position does not validate an author’s reported life outcome. No free-form expected values, private profiles, model calls or external requests.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "caseIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "egyptian-civil-structure",
+                "mayan-nmai-2012-12-20",
+                "lilly-cazimi-example",
+                "lilly-combustion-disagreement",
+                "christian-easter-2024",
+                "vedic-rao-tithi-example-2",
+                "vedic-rao-hora-example",
+                "chinese-new-year-2024",
+                "chinese-leap-month-2023",
+                "hebrew-tishri-2024",
+                "hebrew-sunset-boundary-2024",
+                "dee-monas-symbolic-method",
+                "jung-feeling-valuation",
+                "jung-individuation-relationship",
+                "plato-er-choice",
+                "plato-timaeus-cultivation",
+                "lilly-dog-printed-figure"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 32,
+            "uniqueItems": true
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
       "name": "workbench_tool_guide",
       "description": "Explain a named calculator or reference capability: required inputs, source locators, output, local route and actual MCP/browser support. This is a guide, not a calculated chart or proof that the hosted service is current.",
       "inputSchema": {
@@ -4666,6 +4825,7 @@
           "capabilityId": {
             "type": "string",
             "enum": [
+              "reading-lab",
               "positions",
               "essential-dignity",
               "accidental-dignity",

@@ -88,6 +88,9 @@ export async function run() {
     const r = call('workbench_source_lookup', { capabilityId,id });
     ok(eq(r.result,expected) && r.staticLookup && r.interpretationScope, `Source record parity: ${capabilityId}/${id}`);
   }
+  const partialSource=call('workbench_source_lookup',{capabilityId:'worked-charts',id:'dog'});
+  ok(partialSource.staticLookup && partialSource.result.verification.status==='partial-source-check' && partialSource.result.verification.verifiedPlanetLongitudes.length===4,'Raw dog source lookup retains exactly four checked longitudes; it is not a calculated full chart');
+  ok(partialSource.result.caveats.includes('PARTIAL RECONSTRUCTION') && partialSource.result.outcome.includes('Lilly reports') && !partialSource.result.sources.includes('every planet confirmed'),'Static source metadata separates uncertainty, printed corrections and the author’s reported outcome');
   for (const args of [{capabilityId:'mansion-images',id:'29'}, {capabilityId:'mansion-images',id:'Sun'}, {capabilityId:'mansion-images',id:1}, {capabilityId:'planet-images',id:'stolen-fish'}, {capabilityId:'worked-charts',id:'Sun'}, {capabilityId:'__proto__',id:'Sun'}, {capabilityId:'picatrix-prayers',id:'../../secret'}]) throws(() => call('workbench_source_lookup',args), 'Static lookup rejects wrong-catalogue key, coercion or path input');
   const record = call('workbench_source_lookup',{capabilityId:'mansion-images',id:'22'});record.result.name='MUTATED';
   ok(call('workbench_source_lookup',{capabilityId:'mansion-images',id:'22'}).result.name !== 'MUTATED' && mansionImage(22).name !== 'MUTATED', 'Lookup response cannot mutate the canonical source record');

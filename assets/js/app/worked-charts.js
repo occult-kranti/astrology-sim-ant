@@ -34,7 +34,7 @@ export function initWorkedCharts() {
     host.appendChild(sec);
     ids.push(sec.id);
     // draw the wheel into its placeholder, if this chart has a full figure
-    if (wc.figure) {
+    if (wc.figure && wc.verification?.status !== 'partial-source-check') {
       try {
         const chart = chartFromPositions(buildSpec(wc));
         const bodies = {}; for (const p of PLANETS7) if (chart.planets[p]) bodies[p] = chart.planets[p];
@@ -57,7 +57,17 @@ function buildSpec(wc) {
 
 function renderOne(wc, i) {
   let figureBlock = '';
-  if (wc.figure) {
+  const partial = wc.verification?.status === 'partial-source-check';
+  if (wc.figure && partial) {
+    const chart = chartFromPositions(buildSpec(wc));
+    figureBlock = `<div class="callout" data-source-status="partial-source-check"><span class="label">Partial reconstruction · four printed positions checked</span>
+      <p>${esc(wc.verification.note)}</p>
+      <p>The chart wheel, dignity ledger and automated full judgment are withheld while the angles, houses and remaining fields are unresolved.</p>
+      <p><a href="${esc(wc.verification.source)}" target="_blank" rel="noopener noreferrer">Inspect the 1647 printed figure, page 392</a> · Checked ${esc(wc.verification.checkedAt)}</p></div>
+      <table class="data"><caption>Position transcription status; these checks do not evaluate the reported recovery</caption>
+        <thead><tr><th scope="col">Planet</th><th scope="col">Longitude</th><th scope="col">Source status</th></tr></thead>
+        <tbody>${PLANETS7.filter(name => chart.planets[name]).map(name => `<tr><th scope="row">${G(name)} ${esc(name)}</th><td>${esc(formatLon(chart.planets[name].lon))}</td><td>${wc.verification.verifiedPlanetLongitudes.includes(name) ? 'Printed longitude checked' : 'Inherited; unverified'}</td></tr>`).join('')}</tbody></table>`;
+  } else if (wc.figure) {
     const chart = chartFromPositions(buildSpec(wc));
     const j = horaryJudgement(chart, wc.quesitedHouse, { querentHouse: wc.querentHouse || 1, sense: wc.judgeSense });
     figureBlock = `
@@ -90,7 +100,7 @@ function renderOne(wc, i) {
     ${figureBlock}
     <p><b>Lilly's reasoning.</b> ${esc(wc.reasoning)}</p>
     <p><b>Judgement.</b> ${esc(wc.verdict)}</p>
-    <p><b>Outcome.</b> <span class="pos">${esc(wc.outcome)}</span></p>
+    <p><b>${partial ? 'Lilly’s reported outcome.' : 'Outcome.'}</b> <span${partial ? '' : ' class="pos"'}>${esc(wc.outcome)}</span></p>
     <details class="small" style="margin-top:.5rem"><summary>Sources &amp; reconstruction notes</summary>
       <p class="muted" style="margin:.3rem 0 0">${esc(wc.sources)}</p>
       ${wc.caveats ? `<p class="muted">${esc(wc.caveats)}</p>` : ''}</details>`;

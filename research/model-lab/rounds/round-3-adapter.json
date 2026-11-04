@@ -1,0 +1,65 @@
+{
+  "kind": "actual-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-3/requests.json",
+    "maxNewTokens": 512,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-3-adapter.json",
+    "seed": 20261104,
+    "base": "/workspace/.cache/workbench-model-lab/base",
+    "maxInputTokens": 4096,
+    "adapter": "/workspace/.cache/workbench-model-lab/checkpoints/round-3"
+  },
+  "configSHA256": "d7f3c9a559466dc08ec263d1e1be9db3a3a4dfc94c01868985f4fd5659c50f6c",
+  "requestsSHA256": "6064780c4b2a68af45c0a808c510c09376c75952ae1cbb4100416adcf86717ac",
+  "torch": "2.6.0+cpu",
+  "precision": "bfloat16",
+  "device": "cpu",
+  "results": [
+    {
+      "id": "D05",
+      "split": "development",
+      "promptSHA256": "a19e01fea30c5204398858eabb8b38c41bb5d541923ee211661d5925d7652cf4",
+      "requestSHA256": "e4144e6d1781b9789da2d7748037c46cd03112930fbd97b5c6f5fe13128c1e3c",
+      "inputTokens": 943,
+      "outputTokens": 189,
+      "seconds": 18.1,
+      "text": "```json\n{\n  \"answer\": \"The elongation is 24 degrees, and the tithi number is 3. The limit of this result is that it only provides elongation and tithi from same-frame input longitudes, not a full muhurta judgment or life prediction.\",\n  \"citations\": [\"EVAL-D05-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    {\"sourceId\": \"EVAL-D05-S1\", \"quote\": \"Tithi = floor(norm360(Moon longitude - Sun longitude)/12) + 1. Use a half-open interval: exactly 24 degrees belongs to tithi 3.\"}, \n    {\"sourceId\": \"EVAL-D05-S1\", \"quote\": \"This partition does not by itself provide a full muhurta judgment.\"}\n  ]\n}\n```",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D07",
+      "split": "development",
+      "promptSHA256": "27140706907d041659e69007a0592a2b2f46e39a75f8e603dcafe430c1aee7f7",
+      "requestSHA256": "c8af067ef8ecd83b69b07aeb9a93220fc8b88e4f85a8d9757d4a88796cc2ea11",
+      "inputTokens": 832,
+      "outputTokens": 179,
+      "seconds": 16.529,
+      "text": "```json\n{\n  \"answer\": \"The civil-midnight calendar widget does not provide sunset-based observance boundaries, so you cannot use it to determine if a sunset-based observance has begun here. No specific evidence or reference passage supports this interpretation, and the server context indicates that such boundaries are not yet available. No source citation or grounding is provided.\",\n  \"citations\": [\"EVAL-D07-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-D07-S1\", \"quote\": \"A civil-midnight calendar display and a sunset-based religious day have different boundaries.\" },\n    { \"sourceId\": \"EVAL-D07-S1\", \"quote\": \"To evaluate the sunset boundary, use the location, the selected instant and the relevant community convention.\" }\n  ]\n}\n```",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D09",
+      "split": "development",
+      "promptSHA256": "65d46e5620b1aff29fee1d0a82e1dbe92da2e9dcb67bcd6e80cca8a968940403",
+      "requestSHA256": "2123051b088c5c900bea4352d24a4c199fe9394bebc924640e758a8e963a9d6d",
+      "inputTokens": 842,
+      "outputTokens": 210,
+      "seconds": 19.001,
+      "text": "```json\n{\n  \"answer\": \"The lottery in Plato’s *Myth of Er* is not the same as the astrological Lot of Spirit. The Myth of Er uses drawn lots to establish the order in which lives are chosen, while the Lot of Spirit is an angular calculation using the Ascendant, Sun, and Moon under a named convention. Plato does not provide the birth-chart formula for this calculation in the passage. This is a source-limited explanation.\",\n  \"citations\": [\"EVAL-D09-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-D09-S1\", \"quote\": \"In Republic X, the Myth of Er uses drawn lots to establish the order in which lives are chosen.\" },\n    { \"sourceId\": \"EVAL-D09-S1\", \"quote\": \"The astrological Lot of Spirit is an angular calculation using the Ascendant, Sun, and Moon under a named convention.\" }\n  ]\n}\n```",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D10",
+      "split": "development",
+      "promptSHA256": "6979b332dcfe38fe5853f4175f5bf6eadb880c97ac1dd122e63588e07faefbbb",
+      "requestSHA256": "f696f5d7012a273caa95eaa2d5c98516475f27d2fd0648423218f593ea61944f",
+      "inputTokens": 844,
+      "outputTokens": 175,
+      "seconds": 19.817,
+      "text": "```json\n{\n  \"answer\": \"The exact ascendant and time-sensitive house cusps require an explicit birth instant and observer. A date-only study must retain the unknown time; choosing noon would be an assumption, not recovered birth data. No birth time is available in this request. A date-only study must retain the unknown time; choosing noon would be an assumption, not recovered birth data.\",\n  \"citations\": [\"EVAL-D10-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    {\"sourceId\": \"EVAL-D10-S1\", \"quote\": \"An exact Ascendant and time-sensitive house cusps require an explicit birth instant and observer.\"},\n    {\"sourceId\": \"EVAL-D10-S1\", \"quote\": \"No birth time is available in this request.\"}\n  ]\n}\n```",
+      "maxNewTokensReached": false
+    }
+  ],
+  "maxRSSKiB": 2988668,
+  "scope": "Raw sampled outputs; no automated score establishes semantic accuracy."
+}

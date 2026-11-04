@@ -1,0 +1,53 @@
+{
+  "kind": "actual-llama-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-3/challenger-requests.json",
+    "maxNewTokens": 512,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-3-challenger.json",
+    "seed": 20261104,
+    "baseURL": "http://127.0.0.1:8855/v1/",
+    "model": "workbench-qwen3.5-4b-q4",
+    "temperature": 0
+  },
+  "configSHA256": "a2445f1f9b20b3bd30c6fa77654444e04f59e1eadbe6294b9e51bdf040bc7dad",
+  "requestsSHA256": "bb4e6f30d2db344c9a75e16e1c073021234b91d541c98c1e55266936e91c9533",
+  "results": [
+    {
+      "id": "D05",
+      "split": "development",
+      "requestSHA256": "2f9f65ed3c73486cbc7d335efc06041f202ad1611e502b6e6949b22fab1ea46b",
+      "seconds": 35.612,
+      "text": "{\n  \"answer\": \"The elongation is 24 degrees and the tithi is 3 (Tṛtīyā). The limit of this result is that it provides only elongation and tithi from same-frame input longitudes; it does not provide a full muhurta judgment or life prediction [EVAL-D05-S1].\",\n  \"citations\": [\n    \"EVAL-D05-S1\"\n  ],\n  \"actions\": [],\n  \"grounding\": [\n    {\n      \"sourceId\": \"EVAL-D05-S1\",\n      \"quote\": \"Tithi = floor(norm360(Moon longitude - Sun longitude)/12) + 1. Use a half-open interval: exactly 24 degrees belongs to tithi 3.\",\n      \"claim\": \"The formula defines tithi calculation and specifies that 24 degrees belongs to tithi 3.\"\n    },\n    {\n      \"sourceId\": \"EVAL-D05-S1\",\n      \"quote\": \"This partition does not by itself provide a full muhurta judgment.\",\n      \"claim\": \"The result is limited to elongation and tithi without full muhurta judgment.\"\n    }\n  ]\n}",
+      "model": "workbench-qwen3.5-4b-q4",
+      "usage": {
+        "completion_tokens": 281,
+        "prompt_tokens": 955,
+        "total_tokens": 1236,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D09",
+      "split": "development",
+      "requestSHA256": "bf21d3f339faee7f35213dea039e39ef9870273944cfa529b7e8b25f77c74a12",
+      "seconds": 30.524,
+      "text": "{\n  \"answer\": \"No, the lottery in Plato's Myth of Er is not the same calculation as the astrological Lot of Spirit. The Myth of Er uses drawn lots to establish the order in which lives are chosen [EVAL-D09-S1], whereas the Lot of Spirit is an angular calculation using the Ascendant, Sun, and Moon under a named convention [EVAL-D09-S1]. Plato does not provide the birth-chart formula for the Lot of Spirit in this passage [EVAL-D09-S1]. The concepts differ fundamentally: one is a narrative device for selecting fates, and the other is a specific astronomical computation for a chart point. There is no evidence in the supplied text that Plato's method matches the astrological formula.\",\n  \"citations\": [\n    \"EVAL-D09-S1\"\n  ],\n  \"actions\": [],\n  \"grounding\": [\n    {\n      \"sourceId\": \"EVAL-D09-S1\",\n      \"quote\": \"In Republic X, the Myth of Er uses drawn lots to establish the order in which lives are chosen.\",\n      \"claim\": \"Plato's Myth of Er uses drawn lots to select lives.\"\n    },\n    {\n      \"sourceId\": \"EVAL-D09-S1\",\n      \"quote\": \"The astrological Lot of Spirit is an angular calculation using the Ascendant, Sun and Moon under a named convention.\",\n      \"claim\": \"The Lot of Spirit is an angular calculation involving Ascendant, Sun, and Moon.\"\n    }\n  ]\n}",
+      "model": "workbench-qwen3.5-4b-q4",
+      "usage": {
+        "completion_tokens": 337,
+        "prompt_tokens": 854,
+        "total_tokens": 1191,
+        "prompt_tokens_details": {
+          "cached_tokens": 439
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    }
+  ],
+  "scope": "Raw development or heldout responses; judge dimensions separately and retain failures."
+}

@@ -1,0 +1,59 @@
+{
+  "kind": "actual-cpu-lora-training",
+  "config": {
+    "base": "/workspace/.cache/workbench-model-lab/base",
+    "trainingJSONL": "/workspace/.cache/workbench-model-lab/training.jsonl",
+    "output": "/workspace/.cache/workbench-model-lab/checkpoints/probe",
+    "rank": 4,
+    "alpha": 8,
+    "learningRate": 0.0002,
+    "steps": 2,
+    "maxLength": 128,
+    "maxWallSeconds": 120,
+    "seed": 20261104
+  },
+  "configSHA256": "7d88080efcf03a7babb5b02a374250d3331a4c508ea4f28f0f00f43555c4d8cb",
+  "trainingDataSHA256": "703c46d309de2e592cebd79e15a448aba47ad5ad036919f52582b6bab96b2195",
+  "torch": "2.6.0+cpu",
+  "device": "cpu",
+  "precision": "bfloat16 frozen base, trainable adapter as supplied by PEFT",
+  "trainableParameters": 573440,
+  "initialParameterSHA256": "069660ed55d2a10f64804b99266e9a8ac319115fb2a4f81b9608c7e9e3c32327",
+  "finalParameterSHA256": "38aec34b4f740c37569f6b86295fecddf0ec6df3c32ca3a307cd85f4975019f7",
+  "steps": 2,
+  "seconds": 1.476,
+  "adapterDeltaL2": 0.2096449536344563,
+  "nonzeroParameterUpdate": true,
+  "maxRSSKiB": 2061184,
+  "lossRows": [
+    {
+      "step": 1,
+      "recordId": "T01",
+      "tokens": 99,
+      "loss": 2.098264455795288,
+      "gradientNorm": 4.22107458114624,
+      "seconds": 0.764
+    },
+    {
+      "step": 2,
+      "recordId": "T02",
+      "tokens": 97,
+      "loss": 1.973733901977539,
+      "gradientNorm": 4.256352424621582,
+      "seconds": 0.69
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "adapter_config.json",
+      "bytes": 795,
+      "sha256": "1e59abe585cb4d0a499a2e1388c0df82fb10a6f01ba6509f8b509341d3989c7d"
+    },
+    {
+      "file": "adapter_model.safetensors",
+      "bytes": 2308432,
+      "sha256": "2cdbf4088ac0e034f6db2c739ffaca191ec4ba0b13083e0ad8e69feeed7a25ca"
+    }
+  ],
+  "scope": "Training loss and nonzero updates are not an accuracy result. Only training-split originals were used."
+}

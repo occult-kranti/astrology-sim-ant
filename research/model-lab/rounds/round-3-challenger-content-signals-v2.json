@@ -1,0 +1,158 @@
+{
+  "kind": "mechanical-evaluation-signals-v2",
+  "split": "development",
+  "coverage": {
+    "expected": [
+      "D05",
+      "D09"
+    ],
+    "actual": [
+      "D05",
+      "D09"
+    ],
+    "missing": [],
+    "unexpected": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "contentPolicy": "Only parsed answer content is evaluated; outer Markdown fences may be removed, no other JSON repair. Strict JSON compliance remains separate.",
+  "evaluatorSHA256": "d9a62523622d5908ae0dcbe66208f345818271186add1167ebbde6f63917ec5a",
+  "casesSHA256": "4b213dee333751e3106c97054777e4630853e27f379b736a020740afc725bdb0",
+  "outputsSHA256": "40b3c46806b3a1d1cf4d500d3034b73e09440ae1884c7d61d126e8bd7dd5ea6d",
+  "results": [
+    {
+      "id": "D05",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "limit",
+          "matchedExpectedPattern": true,
+          "description": "Partition is not a full muhurta reading",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [
+        {
+          "id": "elongation",
+          "matchedExpectedPattern": true,
+          "description": null,
+          "expectedValue": 24,
+          "tolerance": 0
+        },
+        {
+          "id": "tithi",
+          "matchedExpectedPattern": true,
+          "description": null,
+          "expectedValue": 3,
+          "tolerance": 0
+        }
+      ],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-D05-S1"
+        ],
+        "inline": [
+          "EVAL-D05-S1"
+        ],
+        "structured": [
+          "EVAL-D05-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-D05-S1",
+          "exactSubstring": true,
+          "characters": 127,
+          "within180Characters": true
+        },
+        {
+          "sourceId": "EVAL-D05-S1",
+          "exactSubstring": true,
+          "characters": 66,
+          "within180Characters": true
+        }
+      ],
+      "scenarioCriteriaForManualReview": [],
+      "abstentionExpectation": "none",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 35.612,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "D09",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "distinct",
+          "matchedExpectedPattern": true,
+          "description": "Keep the concepts separate",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "lottery",
+          "matchedExpectedPattern": true,
+          "description": "Describe choice order",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "angle",
+          "matchedExpectedPattern": true,
+          "description": "Describe the separate astrological point",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-D09-S1"
+        ],
+        "inline": [
+          "EVAL-D09-S1",
+          "EVAL-D09-S1",
+          "EVAL-D09-S1"
+        ],
+        "structured": [
+          "EVAL-D09-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-D09-S1",
+          "exactSubstring": true,
+          "characters": 95,
+          "within180Characters": true
+        },
+        {
+          "sourceId": "EVAL-D09-S1",
+          "exactSubstring": true,
+          "characters": 116,
+          "within180Characters": true
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "Do not claim personal pre-birth selection or destiny from the myth."
+      ],
+      "abstentionExpectation": "scope-limited",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 30.524,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    }
+  ],
+  "scope": "Report numeric, format, citation, quote and prohibited-pattern signals separately. No aggregate accuracy claim; negatives may require contextual interpretation."
+}

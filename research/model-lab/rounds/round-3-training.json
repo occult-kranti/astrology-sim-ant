@@ -1,0 +1,236 @@
+{
+  "kind": "actual-cpu-lora-training",
+  "config": {
+    "base": "/workspace/.cache/workbench-model-lab/base",
+    "trainingJSONL": "/workspace/.cache/workbench-model-lab/training-v3.jsonl",
+    "output": "/workspace/.cache/workbench-model-lab/checkpoints/round-3",
+    "rank": 4,
+    "alpha": 8,
+    "learningRate": 5e-05,
+    "steps": 24,
+    "maxLength": 256,
+    "maxWallSeconds": 180,
+    "seed": 20261104,
+    "stageDecision": "Reset untouched base after observed R2 regression; new training-only schema alignment; no development answers or heldout data used."
+  },
+  "configSHA256": "9ae1849df6848c4c63e18cb82e1531a42f6b7056111688130b9f302fff42ced0",
+  "trainingDataSHA256": "3e4157b86cf9bf74f7ecd4c1bda99adab3a68cb3b2eec4c28d5645cd61ba5e06",
+  "torch": "2.6.0+cpu",
+  "device": "cpu",
+  "precision": "bfloat16 frozen base, trainable adapter as supplied by PEFT",
+  "trainableParameters": 573440,
+  "initialParameterSHA256": "069660ed55d2a10f64804b99266e9a8ac319115fb2a4f81b9608c7e9e3c32327",
+  "finalParameterSHA256": "287d98e0ed5f8fb3a9d9256f15d14639d19515cd4b6cf4202b698036a139a38b",
+  "steps": 24,
+  "seconds": 28.886,
+  "adapterDeltaL2": 0.5633369998964586,
+  "nonzeroParameterUpdate": true,
+  "maxRSSKiB": 2746712,
+  "lossRows": [
+    {
+      "step": 1,
+      "recordId": "T01",
+      "tokens": 177,
+      "loss": 1.2333732843399048,
+      "gradientNorm": 3.5316660404205322,
+      "seconds": 1.17
+    },
+    {
+      "step": 2,
+      "recordId": "T02",
+      "tokens": 184,
+      "loss": 0.9837856292724609,
+      "gradientNorm": 2.9304678440093994,
+      "seconds": 1.145
+    },
+    {
+      "step": 3,
+      "recordId": "T03",
+      "tokens": 182,
+      "loss": 1.7424558401107788,
+      "gradientNorm": 3.770761251449585,
+      "seconds": 1.138
+    },
+    {
+      "step": 4,
+      "recordId": "T04",
+      "tokens": 190,
+      "loss": 0.9556004405021667,
+      "gradientNorm": 2.9661850929260254,
+      "seconds": 1.192
+    },
+    {
+      "step": 5,
+      "recordId": "T05",
+      "tokens": 182,
+      "loss": 0.9146395921707153,
+      "gradientNorm": 3.573235034942627,
+      "seconds": 1.086
+    },
+    {
+      "step": 6,
+      "recordId": "T06",
+      "tokens": 205,
+      "loss": 2.2754745483398438,
+      "gradientNorm": 3.2330822944641113,
+      "seconds": 1.2
+    },
+    {
+      "step": 7,
+      "recordId": "T07",
+      "tokens": 197,
+      "loss": 1.7553081512451172,
+      "gradientNorm": 3.168426036834717,
+      "seconds": 1.154
+    },
+    {
+      "step": 8,
+      "recordId": "T08",
+      "tokens": 216,
+      "loss": 1.6030535697937012,
+      "gradientNorm": 2.411391496658325,
+      "seconds": 1.276
+    },
+    {
+      "step": 9,
+      "recordId": "T09",
+      "tokens": 207,
+      "loss": 1.503748893737793,
+      "gradientNorm": 3.739244222640991,
+      "seconds": 1.449
+    },
+    {
+      "step": 10,
+      "recordId": "T10",
+      "tokens": 188,
+      "loss": 1.2381490468978882,
+      "gradientNorm": 2.898669719696045,
+      "seconds": 1.145
+    },
+    {
+      "step": 11,
+      "recordId": "T11",
+      "tokens": 185,
+      "loss": 1.4102330207824707,
+      "gradientNorm": 3.6476783752441406,
+      "seconds": 1.21
+    },
+    {
+      "step": 12,
+      "recordId": "T12",
+      "tokens": 184,
+      "loss": 1.2655667066574097,
+      "gradientNorm": 3.242147445678711,
+      "seconds": 1.165
+    },
+    {
+      "step": 13,
+      "recordId": "T13",
+      "tokens": 190,
+      "loss": 0.9143053293228149,
+      "gradientNorm": 2.6547257900238037,
+      "seconds": 1.296
+    },
+    {
+      "step": 14,
+      "recordId": "T14",
+      "tokens": 187,
+      "loss": 1.6630991697311401,
+      "gradientNorm": 3.3925061225891113,
+      "seconds": 1.174
+    },
+    {
+      "step": 15,
+      "recordId": "T15",
+      "tokens": 192,
+      "loss": 1.1847487688064575,
+      "gradientNorm": 2.554839611053467,
+      "seconds": 1.224
+    },
+    {
+      "step": 16,
+      "recordId": "T16",
+      "tokens": 191,
+      "loss": 1.2079485654830933,
+      "gradientNorm": 3.2061359882354736,
+      "seconds": 1.486
+    },
+    {
+      "step": 17,
+      "recordId": "T17",
+      "tokens": 179,
+      "loss": 0.8445976972579956,
+      "gradientNorm": 2.212714672088623,
+      "seconds": 1.305
+    },
+    {
+      "step": 18,
+      "recordId": "T18",
+      "tokens": 193,
+      "loss": 1.2317169904708862,
+      "gradientNorm": 2.4546055793762207,
+      "seconds": 1.296
+    },
+    {
+      "step": 19,
+      "recordId": "T19",
+      "tokens": 204,
+      "loss": 0.8508412837982178,
+      "gradientNorm": 2.864307165145874,
+      "seconds": 1.23
+    },
+    {
+      "step": 20,
+      "recordId": "T20",
+      "tokens": 187,
+      "loss": 1.2925398349761963,
+      "gradientNorm": 2.6100568771362305,
+      "seconds": 1.159
+    },
+    {
+      "step": 21,
+      "recordId": "T21",
+      "tokens": 194,
+      "loss": 0.7679987549781799,
+      "gradientNorm": 2.6194510459899902,
+      "seconds": 1.195
+    },
+    {
+      "step": 22,
+      "recordId": "T22",
+      "tokens": 186,
+      "loss": 1.362660527229309,
+      "gradientNorm": 2.9585838317871094,
+      "seconds": 1.131
+    },
+    {
+      "step": 23,
+      "recordId": "T23",
+      "tokens": 181,
+      "loss": 0.6937362551689148,
+      "gradientNorm": 2.7198336124420166,
+      "seconds": 1.109
+    },
+    {
+      "step": 24,
+      "recordId": "T24",
+      "tokens": 143,
+      "loss": 2.365140438079834,
+      "gradientNorm": 5.167424201965332,
+      "seconds": 0.927
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "adapter_config.json",
+      "bytes": 795,
+      "sha256": "aa5c170d6b1c52f33e1d601c395b9e99e9317132abe6bf8ae1e273186380ca00"
+    },
+    {
+      "file": "adapter_model.safetensors",
+      "bytes": 2308432,
+      "sha256": "b993f01d7d7bab1cde53b12f8afaa3579a1aa06d1d4ab04b4c4ccb49a952bb4e"
+    }
+  ],
+  "scope": "Training loss and nonzero updates are not an accuracy result. Only training-split originals were used."
+}

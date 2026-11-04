@@ -1,0 +1,23 @@
+{
+  "kind": "immutable-evaluation-request-freeze",
+  "profile": {
+    "id": "scenario-v3",
+    "round": 3,
+    "temperature": 0,
+    "maxTokens": 1000,
+    "retrievalLimit": 5,
+    "retrievalTokens": 2100,
+    "description": "Evidence plus conditional everyday scenarios, alternatives and observable checks."
+  },
+  "caseIds": [
+    "D05",
+    "D07",
+    "D09",
+    "D10"
+  ],
+  "split": "development",
+  "casesSHA256": "41880a58590e389e7e11451b96eb5a1525600b3aea1ba6deaaff521637456b6f",
+  "promptSourceSHA256": "b1abb14bd9738633579e2afbd8fca3c9a619027cd4a543fcc4cd4cd96731dd0e",
+  "requestsSHA256": "6064780c4b2a68af45c0a808c510c09376c75952ae1cbb4100416adcf86717ac",
+  "scope": "Explicit fixed reference packets. Retrieval quality is evaluated separately; no live retrieval mutation inside these comparisons."
+}

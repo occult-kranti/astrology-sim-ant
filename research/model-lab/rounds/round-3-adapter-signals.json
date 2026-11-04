@@ -1,0 +1,214 @@
+{
+  "kind": "mechanical-evaluation-signals",
+  "split": "development",
+  "coverage": {
+    "expected": [
+      "D05",
+      "D07",
+      "D09",
+      "D10"
+    ],
+    "actual": [
+      "D05",
+      "D07",
+      "D09",
+      "D10"
+    ],
+    "missing": [],
+    "unexpected": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "casesSHA256": "4b213dee333751e3106c97054777e4630853e27f379b736a020740afc725bdb0",
+  "outputsSHA256": "3a7622828133ab3f31a7abd63aa137aee4eddf0907f6e086afb04e225bd05af5",
+  "results": [
+    {
+      "id": "D05",
+      "jsonObject": false,
+      "factsPatternSignals": [
+        {
+          "id": "limit",
+          "matchedExpectedPattern": true,
+          "description": "Partition is not a full muhurta reading",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [
+        {
+          "id": "elongation",
+          "matchedExpectedPattern": true,
+          "description": null,
+          "expectedValue": 24,
+          "tolerance": 0
+        },
+        {
+          "id": "tithi",
+          "matchedExpectedPattern": true,
+          "description": null,
+          "expectedValue": 3,
+          "tolerance": 0
+        }
+      ],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-D05-S1"
+        ],
+        "inline": [],
+        "structured": [],
+        "unknown": [],
+        "allRequiredInline": false
+      },
+      "exactQuoteSignals": [],
+      "scenarioCriteriaForManualReview": [],
+      "abstentionExpectation": "none",
+      "actionsEmpty": false,
+      "truncated": false,
+      "seconds": 18.1,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "D07",
+      "jsonObject": false,
+      "factsPatternSignals": [
+        {
+          "id": "boundary",
+          "matchedExpectedPattern": true,
+          "description": "Name sunset/civil boundary difference",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "missing",
+          "matchedExpectedPattern": true,
+          "description": "Ask for the missing observer/time evidence",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "scope",
+          "matchedExpectedPattern": true,
+          "description": "Do not settle the observance without inputs",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-D07-S1"
+        ],
+        "inline": [],
+        "structured": [],
+        "unknown": [],
+        "allRequiredInline": false
+      },
+      "exactQuoteSignals": [],
+      "scenarioCriteriaForManualReview": [
+        "Give a direct next step: obtain location/instant and appropriate convention, rather than assign a good/bad day."
+      ],
+      "abstentionExpectation": "missing-input",
+      "actionsEmpty": false,
+      "truncated": false,
+      "seconds": 16.529,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "D09",
+      "jsonObject": false,
+      "factsPatternSignals": [
+        {
+          "id": "distinct",
+          "matchedExpectedPattern": true,
+          "description": "Keep the concepts separate",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "lottery",
+          "matchedExpectedPattern": true,
+          "description": "Describe choice order",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "angle",
+          "matchedExpectedPattern": true,
+          "description": "Describe the separate astrological point",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-D09-S1"
+        ],
+        "inline": [],
+        "structured": [],
+        "unknown": [],
+        "allRequiredInline": false
+      },
+      "exactQuoteSignals": [],
+      "scenarioCriteriaForManualReview": [
+        "Do not claim personal pre-birth selection or destiny from the myth."
+      ],
+      "abstentionExpectation": "scope-limited",
+      "actionsEmpty": false,
+      "truncated": false,
+      "seconds": 19.001,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "D10",
+      "jsonObject": false,
+      "factsPatternSignals": [
+        {
+          "id": "unknown",
+          "matchedExpectedPattern": true,
+          "description": "State missing birth time",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "noexact",
+          "matchedExpectedPattern": true,
+          "description": "Decline exact ascendant/houses with these inputs",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "assumption",
+          "matchedExpectedPattern": true,
+          "description": "If discussing noon, label it assumed",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-D10-S1"
+        ],
+        "inline": [],
+        "structured": [],
+        "unknown": [],
+        "allRequiredInline": false
+      },
+      "exactQuoteSignals": [],
+      "scenarioCriteriaForManualReview": [
+        "Offer date-only limits or birth-time sensitivity work; no exact house placements."
+      ],
+      "abstentionExpectation": "missing-input",
+      "actionsEmpty": false,
+      "truncated": false,
+      "seconds": 19.817,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    }
+  ],
+  "scope": "Report numeric, format, citation, quote and prohibited-pattern signals separately. No aggregate accuracy claim; negatives may require contextual interpretation."
+}

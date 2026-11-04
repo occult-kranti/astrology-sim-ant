@@ -2,21 +2,21 @@
   "schemaVersion": 1,
   "scope": "Explicit public-repository allowlist; existing reference notes, project-document prose, page explanations, book catalogues and tool metadata.",
   "categories": {
-    "charts": 702,
+    "charts": 774,
     "calendars": 173,
     "timing": 52,
     "vedic": 193,
     "symbols": 152,
     "books": 1011,
     "research": 274,
-    "software": 177,
-    "tools": 134,
-    "sources": 459
+    "software": 181,
+    "tools": 135,
+    "sources": 472
   },
   "readingDepth": {
-    "full-text": 374,
-    "reference-note": 2726,
-    "metadata": 227
+    "full-text": 389,
+    "reference-note": 2798,
+    "metadata": 230
   },
   "definition": {
     "full-text": "Project-document prose only, not full underlying books; code blocks omitted.",
@@ -32,12 +32,14 @@
     "Full scripture translations: only existing metadata and original study notes are indexed in this corpus"
   ],
   "inventories": {
-    "pageCount": 135,
-    "documentationCount": 29,
-    "dataModuleCount": 24,
-    "sourceFileCount": 188,
-    "chunkCount": 3327
+    "pageCount": 136,
+    "documentationCount": 30,
+    "dataModuleCount": 25,
+    "sourceFileCount": 191,
+    "chunkCount": 3417,
+    "retrievalUnitCount": 235
   },
+  "retrievalGrouping": "Reading Lab cases, source records and method notes have separate retrieval units; continuation chunks share their unit. Other files retain file-level grouping. Units sharing bibliography are not independent evidence.",
   "sourceFiles": [
     {
       "file": "assets/js/core/data/behenian-stars.js",
@@ -65,9 +67,9 @@
     },
     {
       "file": "assets/js/core/data/desktop-tools.js",
-      "bytes": 52388,
-      "sha256": "577b8f043474e6343f514095ee1270eb701e489ce4877e6d0b3d36745eba77d5",
-      "chunks": 134
+      "bytes": 52757,
+      "sha256": "e7c8c7e6bda368550882e3be932d017a703f39f06eee40c743e199ea7fc3c654",
+      "chunks": 135
     },
     {
       "file": "assets/js/core/data/eschatology-comparisons.js",
@@ -119,9 +121,9 @@
     },
     {
       "file": "assets/js/core/data/mcp-tool-contracts.js",
-      "bytes": 134516,
-      "sha256": "5ee8c3649407dff3736baefa58190b0bf3756f02b447c630013d804993b4621e",
-      "chunks": 93
+      "bytes": 138447,
+      "sha256": "0355fff57b7cf199d62d42d517c8db2ff0bfb5c8981a1d8a4f9571c119e8fc10",
+      "chunks": 95
     },
     {
       "file": "assets/js/core/data/muhurta-data.js",
@@ -152,6 +154,12 @@
       "bytes": 170107,
       "sha256": "1562b4153f997cc420b714221600d4941e5f16f305250cb2de75004f48a611ec",
       "chunks": 445
+    },
+    {
+      "file": "assets/js/core/data/reading-cases.js",
+      "bytes": 65072,
+      "sha256": "fe3925ca2827f06aeac5d16e78df137474c49632bafd4276bbd9d7ffb17bda79",
+      "chunks": 63
     },
     {
       "file": "assets/js/core/data/signs.js",
@@ -352,6 +360,12 @@
       "chunks": 14
     },
     {
+      "file": "docs/2026-11-reading-lab-sources.md",
+      "bytes": 13055,
+      "sha256": "c01c2de51c70b03eea2a7bf82c4802682f0c8173471cfed46a4b2dcda8fa2ad7",
+      "chunks": 13
+    },
+    {
       "file": "index.html",
       "bytes": 26534,
       "sha256": "986d58f7e5a8c7abb95f467f82ca0e7e801a94b301b677a6a8061f1c3d82afc7",
@@ -359,9 +373,9 @@
     },
     {
       "file": "mcp/README.md",
-      "bytes": 11684,
-      "sha256": "6026594efe9f38e1f014e13f2cc2db3dfaadaf736426ef2e4767e103e7872013",
-      "chunks": 12
+      "bytes": 13920,
+      "sha256": "bfe85a0e0610373ec456a324237f0524212c28934d0bb6b51b5165bcffcc3726",
+      "chunks": 14
     },
     {
       "file": "pages/abhichara/atharvan.html",
@@ -992,6 +1006,12 @@
       "bytes": 7788,
       "sha256": "f0dbef5227cc91aaf80ad721bcd8e4b8feb359a9ec621d352dedf3befdd5310c",
       "chunks": 5
+    },
+    {
+      "file": "pages/reading-lab.html",
+      "bytes": 10975,
+      "sha256": "6472df6ba4604a9c2dc609207332afca3e1d7b3ae48f17f7a35320219c815dab",
+      "chunks": 9
     },
     {
       "file": "pages/roadmap.html",

@@ -32,6 +32,17 @@ const HIW = a => `pages/how-it-works.html#hiw-${a}`;
 // ---------------------------------------------------------------------------
 export const REGISTRY = [
   {
+    id:'reading-lab', title:'Comparative reading and public example laboratory',
+    module:'assets/js/core/reading-lab.js', exportName:'calculateReadingLab',
+    exports:['normalizeReadingLabInputs','exportReadingLab','exportReadingCase','compareReadingCases','calculateMayaDate'],
+    computes:'Compare nine named cultural, astrological and reflective frameworks with explicit date precision, method boundaries and source-qualified conditional everyday exercises. Reproduce registered public cases and compare only independently sourced numerical fields; textual cases and life outcomes remain unevaluable.',
+    inputs:[{name:'input',type:'object',required:true,desc:'Strict union of dateISO with optional explicit clock, or instantISO; IANA timeZone and selected frameworks/purpose. Coordinates only for a declared moment. Main range1900–2100; isolated Maya date-only conversion has its separate documented proleptic range.'}],
+    outputShape:'{inputs,context,frameworks,warnings,limits}; compact export and public-case comparison have separate named contracts.',
+    callable:false, book:'Comparative source study', chapter:'Public examples and conditional applications',
+    citation:'assets/js/core/data/reading-cases.js; docs/2026-11-reading-lab-sources.md. Source locators, reading depth, rights and unavailable scope are explicit per case.',
+    pages:['pages/reading-lab.html'],howItWorks:'pages/reading-lab.html',glossaryTerms:[],
+  },
+  {
     id: 'positions', title: 'Cast the figure (positions, angles, houses)',
     module: 'assets/js/core/astro.js', exportName: 'castChart',
     exports: ['signOf', 'formatLon', 'houses', 'partOfFortune', 'antiscion'],

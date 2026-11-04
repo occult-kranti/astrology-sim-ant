@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="no-referrer">
+<script src="../assets/js/app/appearance-boot.js" data-site-appearance-boot></script>
+<title>Reading lab — The Astrologer's Workbench</title>
+<meta name="description" content="Compare nine named calendar, traditional and reflective frameworks. Recreate public worked examples, inspect sources and assumptions, and translate readings into conditional everyday questions.">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%97%8E%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/style.css"><link rel="stylesheet" href="../assets/css/observatory.css" data-observatory-style="true">
+<link rel="stylesheet" href="../assets/css/site-themes.css" data-site-design="site-themes"><link rel="stylesheet" href="../assets/css/site-components.css" data-site-design="site-components"><link rel="stylesheet" href="../assets/css/site-patterns.css" data-site-design="site-patterns">
+<link rel="stylesheet" href="../assets/css/workbench-chat.css"><link rel="stylesheet" href="../assets/css/reading-lab.css">
+</head>
+<body class="reading-lab-page" data-page-family="observatory">
+<main id="rl-app" class="rl-app" data-state="loading">
+  <header class="rl-titlebar">
+    <div class="rl-brand"><span class="rl-mark" aria-hidden="true">◎</span><div><p class="rl-eyebrow">THE ASTROLOGER'S WORKBENCH / COMPARATIVE STUDIES</p><h1>Reading lab<span class="rl-edition">02</span></h1><p class="rl-subtitle">One declared context. Nine distinct ways of reading it.</p></div></div>
+    <div class="rl-title-actions"><a href="desktop.html">Chart studio</a><button id="rl-open-chat" type="button">Research assistant</button><button id="rl-export-json" type="button" disabled>Study JSON</button><button id="rl-export-csv" type="button" disabled>Comparison CSV</button></div>
+  </header>
+  <nav class="rl-jumps" aria-label="Reading lab sections"><a href="#rl-context-title">Set context</a><a href="#rl-comparison-title">Compare methods</a><a href="#rl-inspector-title">Practical reading</a><a href="#rl-reference-title">Check the example</a></nav>
+  <div class="rl-workspace">
+    <aside class="rl-context" aria-labelledby="rl-context-title">
+      <div class="rl-section-heading"><h2 id="rl-context-title">Study context</h2><span class="rl-local">ON THIS DEVICE</span></div>
+      <section class="rl-case-picker" aria-labelledby="rl-case-heading"><div class="rl-number">01 <span>START FROM A SOURCE</span></div><h3 id="rl-case-heading">A public worked example</h3><label for="rl-case-filter">Find an example</label><input id="rl-case-filter" type="search" placeholder="Try Maya, Easter or Jung…" autocomplete="off"><label for="rl-case-select">Source example</label><select id="rl-case-select" aria-describedby="rl-case-preview"><option value="">Loading public examples…</option></select><p id="rl-case-preview" class="rl-small">Examples retain the source's actual precision and limitations.</p><button id="rl-load-case" type="button" class="rl-wide">Load selected example <span aria-hidden="true">→</span></button><p id="rl-case-count" class="rl-micro"></p></section>
+      <div class="rl-number rl-number-context">02 <span>DECLARE THE CONTEXT</span></div>
+      <form id="rl-form" novalidate>
+        <div class="rl-form-heading"><h3>A date, or a known moment</h3><button id="rl-new-study" type="button">New study</button></div>
+        <p id="rl-study-mode" class="rl-mode" aria-live="polite">Custom date-only study</p>
+        <label for="rl-date">Gregorian date</label><input id="rl-date" name="dateISO" type="date" value="2024-03-20" aria-describedby="rl-precision-note">
+        <label for="rl-zone">IANA time zone</label><input id="rl-zone" name="timeZone" value="UTC" list="rl-zones" autocomplete="off" spellcheck="false"><datalist id="rl-zones"><option value="UTC"><option value="Europe/London"><option value="America/New_York"><option value="Asia/Kolkata"><option value="Asia/Shanghai"><option value="Asia/Jerusalem"><option value="Africa/Cairo"></datalist>
+        <label class="rl-check"><input id="rl-time-known" type="checkbox"> I have a known or explicitly assumed clock</label>
+        <div id="rl-clock-fields" class="rl-clock-fields" hidden><label for="rl-time">Local clock</label><input id="rl-time" type="time" step="1" disabled><label for="rl-disambiguation">Repeated clock during daylight saving</label><select id="rl-disambiguation" disabled><option value="reject">Ask when ambiguous</option><option value="earlier">Earlier occurrence</option><option value="later">Later occurrence</option></select></div>
+        <p id="rl-precision-note" class="rl-small">Date-only means no assumed midnight, planetary instant or personal houses. Timed rules require an explicit clock.</p>
+        <details id="rl-observer-details"><summary>Observer &amp; house convention</summary><p class="rl-small">Supply coordinates when a method requires an observer. A place label does not look up a location.</p><label for="rl-place">Your place label · optional</label><input id="rl-place" type="text" maxlength="120" placeholder="e.g. Greenwich study" autocomplete="off"><div class="rl-coordinate-fields"><label for="rl-lat">Latitude · north +<input id="rl-lat" type="number" min="-90" max="90" step="any" placeholder="−90 to 90"></label><label for="rl-lon">Longitude · east +<input id="rl-lon" type="number" min="-180" max="180" step="any" placeholder="−180 to 180"></label></div><label for="rl-system">Western house convention</label><select id="rl-system"><option value="regiomontanus">Regiomontanus</option><option value="placidus">Placidus</option><option value="whole">Whole sign</option><option value="equal">Equal</option></select><p class="rl-small">This selection applies only where a calculated Western chart is available. It does not turn a civil calendar or reflective text into a natal chart.</p></details>
+        <button id="rl-calculate" type="submit" class="rl-primary rl-wide">Calculate &amp; compare <span aria-hidden="true">→</span></button><p id="rl-form-error" class="rl-error" role="alert"></p>
+      </form>
+      <p class="rl-privacy">Inputs stay in this tab. Exports include the displayed study; an AI request includes its context only after a separate preview and opt-in.</p>
+    </aside>
+    <section class="rl-analysis" aria-label="Method comparison">
+      <div class="rl-overview"><div id="rl-compass" class="rl-compass" aria-label="Method map"></div><div class="rl-overview-copy"><p class="rl-eyebrow">A MAP OF METHODS, NOT A SINGLE VERDICT</p><h2 id="rl-context-summary">Compare the reading,<br>keep the differences.</h2><p id="rl-context-detail">Calendar labels, astronomical calculations, traditional rules and reflective texts answer different questions.</p><div id="rl-context-badges" class="rl-context-badges"></div><p id="rl-status" role="status" aria-live="polite">Preparing the local reading methods…</p></div></div>
+      <section class="rl-method-controls" aria-labelledby="rl-method-title"><div class="rl-method-top"><h2 id="rl-method-title">Choose your lenses</h2><div class="rl-presets"><button id="rl-all" type="button">All nine</button><button id="rl-calculated" type="button">Date &amp; sky</button><button id="rl-reflection" type="button">Reflective texts</button></div></div><fieldset id="rl-method-filter"><legend class="rl-visually-hidden">Frameworks in the comparison</legend></fieldset><p id="rl-selection-note" class="rl-micro">Select a row or a named point in the map to read its evidence.</p></section>
+      <div id="rl-dirty-notice" class="rl-dirty-notice" hidden><span aria-hidden="true">↻</span><div><h3>Recalculate this context</h3><p>The edited study has no current results or reference match. Your inputs are preserved.</p></div></div>
+      <section id="rl-comparison-panel" class="rl-comparison-panel" aria-labelledby="rl-comparison-title"><div class="rl-table-heading"><div><p class="rl-eyebrow">SIDE BY SIDE</p><h2 id="rl-comparison-title" tabindex="-1">Comparison ledger</h2></div><span id="rl-result-count" class="rl-count"></span></div><div class="rl-table-scroll" tabindex="0" role="region" aria-label="Framework comparison table"><table id="rl-comparison"><thead><tr><th scope="col">Framework</th><th scope="col">What it returns</th><th scope="col">Method / precision</th><th scope="col">Reference check</th></tr></thead><tbody id="rl-comparison-body"><tr><td colspan="4">Loading named methods…</td></tr></tbody></table></div><p class="rl-table-note">Matching a published value checks a specific calculation. It does not verify a prediction or establish agreement between independent traditions.</p></section>
+      <section id="rl-differences" class="rl-differences" aria-labelledby="rl-differences-title"><h2 id="rl-differences-title">Where the readings differ</h2><div id="rl-difference-list"><p>Calculate a context to inspect boundaries, unavailable methods and differing conventions.</p></div></section>
+    </section>
+    <aside id="rl-inspector" class="rl-inspector" aria-labelledby="rl-inspector-title"><div class="rl-section-heading"><h2 id="rl-inspector-title" tabindex="-1">Practical reading</h2><span>RULE → LIFE</span></div><div id="rl-inspector-body"><p class="rl-empty">Select a framework to connect its stated rule with an everyday question, the observations that matter and a low-risk next step.</p></div></aside>
+  </div>
+  <section id="rl-reference" class="rl-reference" aria-labelledby="rl-reference-title"><header><div><p class="rl-eyebrow">RECREATE, THEN QUESTION</p><h2 id="rl-reference-title" tabindex="-1">The worked example, checked.</h2></div><span id="rl-reference-mode" class="rl-badge">Custom study · no reference claim</span></header><div id="rl-reference-body"><p>Load a sourced example and calculate it to compare the published or source-derived value with the implementation. Custom dates do not inherit an example's match.</p></div></section>
+  <section id="rl-chat" class="wc-shell rl-chat" aria-label="Research and reading assistant" hidden></section>
+  <footer class="rl-footer"><p>Every method keeps its name, assumptions and source. Practical readings are conditional prompts for reflection; no date label establishes personal safety, destiny or an assured outcome.</p><a href="desktop.html">Return to chart studio</a></footer>
+  <noscript><p>JavaScript is required for local calculations. The <a href="tools.html">tool directory</a> and <a href="library/index.html">source library</a> remain available.</p></noscript>
+</main>
+<script type="module">import {mountChrome} from '../assets/js/app/shared.js';import {initReadingLab} from '../assets/js/app/reading-lab.js';mountChrome('tools');initReadingLab();</script>
+</body>
+</html>

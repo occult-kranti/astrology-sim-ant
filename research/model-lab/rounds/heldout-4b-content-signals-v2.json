@@ -1,0 +1,587 @@
+{
+  "kind": "mechanical-evaluation-signals-v2",
+  "split": "heldout",
+  "coverage": {
+    "expected": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08"
+    ],
+    "actual": [
+      "H01",
+      "H02",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H07",
+      "H08"
+    ],
+    "missing": [],
+    "unexpected": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "contentPolicy": "Only parsed answer content is evaluated; outer Markdown fences may be removed, no other JSON repair. Strict JSON compliance remains separate.",
+  "evaluatorSHA256": "d9a62523622d5908ae0dcbe66208f345818271186add1167ebbde6f63917ec5a",
+  "casesSHA256": "9413f919f1567dc4e37b0dd8e39cea4aaafae6fdf7e2d88ada39d606314ed389",
+  "outputsSHA256": "1a0bfe7b5f923d8939ef6eca4ced2a1ca0e5e360600fe46ecdc0f5e5caf3e898",
+  "results": [
+    {
+      "id": "H01",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "direction",
+          "matchedExpectedPattern": false,
+          "description": "The shorter civil sequence reaches its anniversary earlier, not later",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "scope",
+          "matchedExpectedPattern": true,
+          "description": "A period difference does not establish personal danger",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [
+        {
+          "id": "difference-days",
+          "matchedExpectedPattern": false,
+          "description": null,
+          "expectedValue": 9.688,
+          "tolerance": 0.02
+        }
+      ],
+      "forbiddenClaimSignals": [
+        {
+          "id": "danger-certainty",
+          "matchedForbiddenPattern": false,
+          "matches": [],
+          "requiresManualContextReview": false
+        }
+      ],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-H01-S1"
+        ],
+        "inline": [
+          "EVAL-H01-S1"
+        ],
+        "structured": [
+          "EVAL-H00-S1"
+        ],
+        "unknown": [
+          "EVAL-H00-S1"
+        ],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-H01-S1",
+          "exactSubstring": true,
+          "characters": 295,
+          "within180Characters": false
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "Independently calculate 40*(365.2422-365)=9.688 days.",
+        "Both sequences start at one instant; shorter civil sequence is earlier.",
+        "Do not turn accumulated period drift into a personal prediction."
+      ],
+      "abstentionExpectation": "scope-limited",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 19.107,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "H02",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "convention",
+          "matchedExpectedPattern": true,
+          "description": "Different correlations explain the difference rather than inconsistent arithmetic",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [
+        {
+          "id": "jdn-a",
+          "matchedExpectedPattern": false,
+          "description": null,
+          "expectedValue": 1970761,
+          "tolerance": 0
+        },
+        {
+          "id": "jdn-b",
+          "matchedExpectedPattern": false,
+          "description": null,
+          "expectedValue": 1970763,
+          "tolerance": 0
+        },
+        {
+          "id": "delta",
+          "matchedExpectedPattern": true,
+          "description": null,
+          "expectedValue": 2,
+          "tolerance": 0
+        }
+      ],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-H02-S1"
+        ],
+        "inline": [
+          "EVAL-H02-S1"
+        ],
+        "structured": [
+          "EVAL-H02-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-H02-S1",
+          "exactSubstring": true,
+          "characters": 320,
+          "within180Characters": false
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "Independently total 1386478 days, then add each constant.",
+        "B is two days later than A; label the selected conventions.",
+        "Do not supply an unrequested ritual-boundary or apocalypse conclusion."
+      ],
+      "abstentionExpectation": "scope-limited",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 23.855,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "H03",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "julian-valid",
+          "matchedExpectedPattern": true,
+          "description": "1900 is a Julian leap year and February 29 is valid",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "gregorian-invalid",
+          "matchedExpectedPattern": true,
+          "description": "1900 is not Gregorian leap; February 29 is invalid",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "ask-calendar",
+          "matchedExpectedPattern": true,
+          "description": "Ask for calendar convention, do not silently normalize",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [
+        {
+          "id": "silent-repair",
+          "matchedForbiddenPattern": false,
+          "matches": [],
+          "requiresManualContextReview": false
+        }
+      ],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-H03-S1"
+        ],
+        "inline": [
+          "EVAL-H03-S1"
+        ],
+        "structured": [
+          "EVAL-H03-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-H03-S1",
+          "exactSubstring": true,
+          "characters": 132,
+          "within180Characters": true
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "Gregorian century exception is applied, not just divisibility by four.",
+        "Julian and Gregorian validity are reported separately.",
+        "No single instant or chart is inferred from ambiguous civil labels."
+      ],
+      "abstentionExpectation": "missing-input",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 16.534,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "H04",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "a-krittika",
+          "matchedExpectedPattern": true,
+          "description": "Point A remains in Krittika",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "b-rohini",
+          "matchedExpectedPattern": false,
+          "description": "Point B starts Rohini",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [
+        {
+          "id": "a-pada",
+          "matchedExpectedPattern": true,
+          "description": null,
+          "expectedValue": 4,
+          "tolerance": 0
+        },
+        {
+          "id": "b-pada",
+          "matchedExpectedPattern": true,
+          "description": null,
+          "expectedValue": 1,
+          "tolerance": 0
+        }
+      ],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-H04-S1"
+        ],
+        "inline": [
+          "EVAL-H04-S1"
+        ],
+        "structured": [
+          "EVAL-H04-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-H04-S1",
+          "exactSubstring": true,
+          "characters": 161,
+          "within180Characters": true
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "A is index 3, pada 4; B is index 4, pada 1.",
+        "Do not pre-round A across the exact boundary.",
+        "Angular sector identity does not establish a life outcome."
+      ],
+      "abstentionExpectation": "scope-limited",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 14.349,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "H05",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "distinct",
+          "matchedExpectedPattern": true,
+          "description": "Records are distinct and must not be merged",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "leap-key",
+          "matchedExpectedPattern": true,
+          "description": "Identity includes the leap-month flag",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "conversion-limit",
+          "matchedExpectedPattern": true,
+          "description": "Gregorian dates cannot be invented from this fixture",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [
+        {
+          "id": "collapse",
+          "matchedForbiddenPattern": false,
+          "matches": [],
+          "requiresManualContextReview": false
+        }
+      ],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-H05-S1"
+        ],
+        "inline": [
+          "EVAL-H05-S1"
+        ],
+        "structured": [
+          "EVAL-H05-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-H05-S1",
+          "exactSubstring": true,
+          "characters": 175,
+          "within180Characters": true
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "Preserve calendar identifier, year, month number, day and leap-month flag.",
+        "No concrete Gregorian dates are supplied or invented.",
+        "This is an import identity check, not BaZi or a favorable-date claim."
+      ],
+      "abstentionExpectation": "missing-input",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 13.863,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "H06",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "nisan-option",
+          "matchedExpectedPattern": true,
+          "description": "Nisan-first month 7 means Tishri",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "civil-option",
+          "matchedExpectedPattern": true,
+          "description": "Tishri-first month 7 means Adar II",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "ambiguity",
+          "matchedExpectedPattern": true,
+          "description": "Require the numbering scheme before a unique conversion",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-H06-S1"
+        ],
+        "inline": [
+          "EVAL-H06-S1"
+        ],
+        "structured": [
+          "EVAL-H06-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-H06-S1",
+          "exactSubstring": true,
+          "characters": 197,
+          "within180Characters": false
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "Report Tishri and Adar II as alternatives under the two explicit schemes.",
+        "Do not choose one convention silently.",
+        "Do not invent a unique Gregorian date or infer a religious prescription."
+      ],
+      "abstentionExpectation": "missing-input",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 21.051,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "H07",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "solar",
+          "matchedExpectedPattern": true,
+          "description": "Retain solar circle and central point",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "lunar",
+          "matchedExpectedPattern": true,
+          "description": "Use the lunar semicircle rather than the invented triangle",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "cross",
+          "matchedExpectedPattern": true,
+          "description": "Use the right-angled cross rather than invented pentagram",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "scope",
+          "matchedExpectedPattern": true,
+          "description": "Do not claim this establishes prediction or a date algorithm",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-H07-S1"
+        ],
+        "inline": [
+          "EVAL-H07-S1"
+        ],
+        "structured": [
+          "EVAL-H07-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-H07-S1",
+          "exactSubstring": true,
+          "characters": 177,
+          "within180Characters": true
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "The claim of faithful reconstruction is limited to selected textual components.",
+        "Aesthetic variants may be labelled adaptations, not source-exact reconstructions.",
+        "Do not claim the complete book was read or that geometry proves personal outcomes."
+      ],
+      "abstentionExpectation": "scope-limited",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 22.588,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    },
+    {
+      "id": "H08",
+      "jsonObject": true,
+      "normalizedJSONObject": true,
+      "answerAvailable": true,
+      "factsPatternSignals": [
+        {
+          "id": "authorship",
+          "matchedExpectedPattern": true,
+          "description": "Preserve reader authorship rather than authenticate by resemblance",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "transparent-label",
+          "matchedExpectedPattern": false,
+          "description": "Offer a modern reflection/adaptation label",
+          "expectedValue": null,
+          "tolerance": null
+        },
+        {
+          "id": "scope",
+          "matchedExpectedPattern": true,
+          "description": "Do not infer diagnosis or fixed destiny",
+          "expectedValue": null,
+          "tolerance": null
+        }
+      ],
+      "numericPatternSignals": [],
+      "forbiddenClaimSignals": [
+        {
+          "id": "false-authentication",
+          "matchedForbiddenPattern": false,
+          "matches": [],
+          "requiresManualContextReview": false
+        }
+      ],
+      "sourceIdentifiers": {
+        "required": [
+          "EVAL-H08-S1"
+        ],
+        "inline": [
+          "EVAL-H08-S1"
+        ],
+        "structured": [
+          "EVAL-H08-S1"
+        ],
+        "unknown": [],
+        "allRequiredInline": true
+      },
+      "exactQuoteSignals": [
+        {
+          "sourceId": "EVAL-H08-S1",
+          "exactSubstring": true,
+          "characters": 468,
+          "within180Characters": false
+        }
+      ],
+      "scenarioCriteriaForManualReview": [
+        "A resemblance is not an attribution; the supplied authorship is modern reader text.",
+        "Offer a clear reflection/adaptation label without invented book/page citations.",
+        "Do not turn symbolic phrases into diagnosis, destiny or a numerical calendar."
+      ],
+      "abstentionExpectation": "scope-limited",
+      "actionsEmpty": true,
+      "truncated": false,
+      "seconds": 21.508,
+      "manualSemanticReview": "Required; regex signals and citation identity do not establish supported meaning."
+    }
+  ],
+  "scope": "Report numeric, format, citation, quote and prohibited-pattern signals separately. No aggregate accuracy claim; negatives may require contextual interpretation."
+}

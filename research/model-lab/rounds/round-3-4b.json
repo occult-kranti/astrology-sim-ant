@@ -1,0 +1,89 @@
+{
+  "kind": "actual-llama-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-3/requests.json",
+    "maxNewTokens": 512,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-3-4b.json",
+    "seed": 20261104,
+    "baseURL": "http://127.0.0.1:8845/v1/",
+    "model": "workbench-qwen3-4b-q4",
+    "temperature": 0
+  },
+  "configSHA256": "4294b4b3741c7d58a105edc5c07fb585b15b954d013f4d8ff96f405166aaf870",
+  "requestsSHA256": "6064780c4b2a68af45c0a808c510c09376c75952ae1cbb4100416adcf86717ac",
+  "results": [
+    {
+      "id": "D05",
+      "split": "development",
+      "requestSHA256": "2f9f65ed3c73486cbc7d335efc06041f202ad1611e502b6e6949b22fab1ea46b",
+      "seconds": 21.603,
+      "text": "{\"answer\":\"Elongation is 24 degrees. Tithi is 3 (Tṛtīyā). The limit is a half-open 12-degree partition: exactly 24 degrees belongs to tithi 3, with boundaries defined such that values at the edge belong to the next tithi. [EVAL-D05-S1]\",\"citations\":[\"EVAL-D05-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"EVAL-D05-S1\",\"quote\":\"Tithi = floor(norm360(Moon longitude - Sun longitude)/12) + 1. Use a half-open interval: exactly 24 degrees belongs to tithi 3.\",\"claim\":\"The tithi calculation and boundary rule are defined by this formula and interval.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 171,
+        "prompt_tokens": 939,
+        "total_tokens": 1110,
+        "prompt_tokens_details": {
+          "cached_tokens": 151
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D07",
+      "split": "development",
+      "requestSHA256": "bcf7144c608c137582f9a0a67558fddf627a61266df5cd91ca71526e4e58450c",
+      "seconds": 13.254,
+      "text": "{\"answer\": \"No, you cannot use a civil-calendar widget to determine if a sunset-based observance has begun. A civil-midnight calendar and sunset-based religious days have different boundaries. To assess the sunset boundary, you need the location, the specific time, and the community's convention—none of which are provided. [EVAL-D07-S1]\", \"citations\": [\"EVAL-D07-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-D07-S1\", \"quote\": \"A civil-midnight calendar display and a sunset-based religious day have different boundaries. To evaluate the sunset boundary, use the location, the selected instant and the relevant community convention. Those location and sunset inputs have not been supplied.\", \"claim\": \"Sunset-based observances require location, time, and community convention, not a civil-calendar widget.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 186,
+        "prompt_tokens": 828,
+        "total_tokens": 1014,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D09",
+      "split": "development",
+      "requestSHA256": "bf21d3f339faee7f35213dea039e39ef9870273944cfa529b7e8b25f77c74a12",
+      "seconds": 13.634,
+      "text": "{\"answer\": \"No, the lottery in Plato’s Myth of Er is not the same as the astrological Lot of Spirit. The Myth of Er uses drawn lots to determine life order, a narrative device; the astrological Lot of Spirit is a chart-based calculation involving Ascendant, Sun, and Moon. These are distinct concepts from different traditions. [EVAL-D09-S1]\", \"citations\": [\"EVAL-D09-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-D09-S1\", \"quote\": \"In Republic X, the Myth of Er uses drawn lots to establish the order in which lives are chosen. The astrological Lot of Spirit is an angular calculation using the Ascendant, Sun and Moon under a named convention. These are different concepts.\", \"claim\": \"Plato’s lottery and the astrological Lot of Spirit are fundamentally different.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 188,
+        "prompt_tokens": 838,
+        "total_tokens": 1026,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D10",
+      "split": "development",
+      "requestSHA256": "9570133514769e0c3e85126b7597df13883c382ca7767c17daa07a45947ee7c7",
+      "seconds": 9.051,
+      "text": "{\"answer\":\"Cannot determine exact Ascendant or houses without birth time. A date-only chart lacks time-sensitive house cusps. [EVAL-D10-S1]\",\"citations\":[\"EVAL-D10-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"EVAL-D10-S1\",\"quote\":\"An exact Ascendant and time-sensitive house cusps require an explicit birth instant and observer. No birth time is available in this request.\",\"claim\":\"Birth time is required for accurate house and Ascendant calculation\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 108,
+        "prompt_tokens": 840,
+        "total_tokens": 948,
+        "prompt_tokens_details": {
+          "cached_tokens": 684
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    }
+  ],
+  "scope": "Raw development or heldout responses; judge dimensions separately and retain failures."
+}

@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-manual-semantic-review",
+  "reviewedAt": "2026-11-04T21:08:35.832635+00:00",
+  "reviewer": "desktop_qa independent QA agent; not independent human reviewers",
+  "rubric": {
+    "adequate": "Core requested factual and scope conclusions are supplied without a material semantic error; format/source checks remain separate.",
+    "partial": "Some useful content, but a required result is missing or a qualification/correction is needed.",
+    "incorrect": "Contains a material mathematical, calendar-identity or source interpretation error.",
+    "countsUse": "Convenience-sample case dispositions only. Do not interpret these counts as general accuracy or a validated model-ranking score."
+  },
+  "sealedSet": {
+    "count": 8,
+    "sha256": "da92b50c805396af7decbc437d250164ab8106295633b844cc1088f079829b39",
+    "frozenAt": "2026-11-04T20:41:12.506222+00:00",
+    "configurationFrozenAt": "2026-11-04T20:57:13.574786+00:00",
+    "freezeReceiptSHA256": "f1663b1c00d7ff7b086e0384542a665f476682d79cd9d6712b96f126edf368cb",
+    "configFilesAndSourceHashesStillMatch": true,
+    "unseenScenariosNotSourceOrDomainDisjoint": true,
+    "noRetuningAfterRelease": true
+  },
+  "independentArithmetic": {
+    "egyptianDriftDays": 9.688,
+    "direction": "civil anniversary earlier",
+    "longCountDayTotal": 1386478,
+    "jdnA": 1970761,
+    "jdnB": 1970763,
+    "boundaryA": {
+      "nakshatra": "Krittika",
+      "index": 3,
+      "pada": 4
+    },
+    "boundaryB": {
+      "nakshatra": "Rohini",
+      "index": 4,
+      "pada": 1
+    }
+  },
+  "models": [
+    {
+      "model": "heldout-4b",
+      "raw": "research/model-lab/rounds/heldout-4b.json",
+      "rawSHA256": "1a0bfe7b5f923d8939ef6eca4ced2a1ca0e5e360600fe46ecdc0f5e5caf3e898",
+      "caseDispositions": {
+        "adequate": 3,
+        "partial": 3,
+        "incorrect": 2
+      },
+      "mechanical": {
+        "strictJSON": 8,
+        "fenceNormalizedJSON": 8,
+        "allRequiredInlineIDs": 8,
+        "casesWithUnknownIDs": 1,
+        "latencySeconds": {
+          "min": 13.863,
+          "median": 20.079,
+          "max": 23.855
+        }
+      },
+      "cases": [
+        {
+          "id": "H01",
+          "disposition": "incorrect",
+          "review": "Reports 96.88 days later; independent arithmetic gives 9.688 days earlier. Correctly withholds a personal-danger conclusion. Structured citation invents EVAL-H00-S1 despite a valid inline H01 marker.",
+          "rawTextSHA256": "eecf937c1367bb2131d8c2d058b7e823cecd566cba517c7dfe0fb7723a6829c2",
+          "seconds": 19.107,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [
+              "EVAL-H00-S1"
+            ],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 295,
+                "withinLimit": false
+              }
+            ]
+          }
+        },
+        {
+          "id": "H02",
+          "disposition": "partial",
+          "review": "Correctly explains a two-day correlation difference, but leaves variable formulas instead of the requested concrete JDN values 1,970,761 and 1,970,763.",
+          "rawTextSHA256": "4dec86022dcd4e10c3167e02aea69fee25dc6b14665dc0310094012398b5333d",
+          "seconds": 23.855,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 320,
+                "withinLimit": false
+              }
+            ]
+          }
+        },
+        {
+          "id": "H03",
+          "disposition": "adequate",
+          "review": "Correct Julian-valid/Gregorian-invalid distinction, century exception and explicit request for the missing calendar convention; no silent normalization.",
+          "rawTextSHA256": "980cb5ab138870e30ede1a97a781a859d55dc42a107011b81f29d70f7fa2ea57",
+          "seconds": 16.534,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 132,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H04",
+          "disposition": "incorrect",
+          "review": "A is correctly Krittika/index3/pada4. B is incorrectly Bharani/index2 rather than Rohini/index4/pada1 at the exact 40-degree boundary.",
+          "rawTextSHA256": "37bc91bc29603d583a78262c579e6fb75ea65ce1c9d531d92b56d28ce0dc5e7b",
+          "seconds": 14.349,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 161,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H05",
+          "disposition": "partial",
+          "review": "Correctly refuses merging and explains the leap flag, yet its minimum-identity sentence lists only year/month/day, omitting the very flag needed to distinguish records.",
+          "rawTextSHA256": "cdd9ef67774973f1a60a4b56d8fabf8967b735c995c3a9f93823e9326f6ef43b",
+          "seconds": 13.863,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 175,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H06",
+          "disposition": "adequate",
+          "review": "Correctly gives Tishri under Nisan-first and AdarII under the stipulated Tishri-first scheme, and refuses a unique Gregorian date without the scheme.",
+          "rawTextSHA256": "4a46d650d023bd43cf94f5a547d2693e9ebcafe0a607aef7863515089bec41d2",
+          "seconds": 21.051,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 197,
+                "withinLimit": false
+              }
+            ]
+          }
+        },
+        {
+          "id": "H07",
+          "disposition": "adequate",
+          "review": "Retains circle/centralpoint, lunar semicircle and right-angled cross; rejects unsupported triangle/pentagram additions and personal prediction claims.",
+          "rawTextSHA256": "1a5f4e07050f01da87229de7c7e9e8d7998cd5b7b66fc5eccdf42083453e0389",
+          "seconds": 22.588,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 177,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H08",
+          "disposition": "partial",
+          "review": "Correct reader authorship, alternative reflection label and no diagnosis/destiny. Adds unsupported psychological-projection speculation; useful core answer still needs editing.",
+          "rawTextSHA256": "a01b27b7927cca4dca732db5bdc91bd79bba473e342e2e0ce8159d071804d9eb",
+          "seconds": 21.508,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 468,
+                "withinLimit": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "model": "heldout-adapter",
+      "raw": "research/model-lab/rounds/heldout-adapter.json",
+      "rawSHA256": "f910dad8ebaeb70078af6b5276beba284759a789f56053b70bf244e58eb31738",
+      "caseDispositions": {
+        "adequate": 1,
+        "partial": 3,
+        "incorrect": 4
+      },
+      "mechanical": {
+        "strictJSON": 0,
+        "fenceNormalizedJSON": 7,
+        "allRequiredInlineIDs": 1,
+        "casesWithUnknownIDs": 0,
+        "latencySeconds": {
+          "min": 17.654,
+          "median": 22.601,
+          "max": 35.143
+        }
+      },
+      "cases": [
+        {
+          "id": "H01",
+          "disposition": "incorrect",
+          "review": "Reports 0.2422 days earlier: uses the one-year difference rather than forty periods. Correctly withholds a dangerous-day conclusion.",
+          "rawTextSHA256": "469397d1310741ed5a9704733debfa30841804ed051e090dfab7a24b561c663c",
+          "seconds": 18.339,
+          "sourceChecks": {
+            "allRequiredInline": false,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 116,
+                "withinLimit": true
+              },
+              {
+                "exactSubstring": true,
+                "characters": 28,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H02",
+          "disposition": "incorrect",
+          "review": "Computes the correlation difference of2 but repeats the dashboard arithmetic-contradiction claim rather than rejecting it; omits both required JDN values.",
+          "rawTextSHA256": "032c521e93f1d4976c8f15c2a62fe70fc2c7fafcf8f5a92a22591f056516128f",
+          "seconds": 25.867,
+          "sourceChecks": {
+            "allRequiredInline": false,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 157,
+                "withinLimit": true
+              },
+              {
+                "exactSubstring": true,
+                "characters": 104,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H03",
+          "disposition": "partial",
+          "review": "Correct validity in each calendar and refusal of silent normalization, but does not explicitly tell the importer to obtain the missing calendar convention. No Gregorian century-rule explanation is supplied.",
+          "rawTextSHA256": "8f78415c1a23bfadf84159fc084a548f98f0e6e0bf6c2ccd9cd895b50dc7dc48",
+          "seconds": 17.654,
+          "sourceChecks": {
+            "allRequiredInline": false,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 53,
+                "withinLimit": true
+              },
+              {
+                "exactSubstring": true,
+                "characters": 127,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H04",
+          "disposition": "partial",
+          "review": "Lists all four supplied nakshatra names for both points; does not actually classify A/B or report their padas. Name presence is not a successful answer.",
+          "rawTextSHA256": "0480da5b07fa75eedffb0c335f41d8fa0a6d084ddcb2d99b4ec18d082c6f2dfc",
+          "seconds": 19.258,
+          "sourceChecks": {
+            "allRequiredInline": true,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 89,
+                "withinLimit": true
+              },
+              {
+                "exactSubstring": true,
+                "characters": 58,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H05",
+          "disposition": "incorrect",
+          "review": "Contradicts itself about leap-month identity, says the leap marker is not used for the date and its known status is unknown; minimum fields omit the marker.",
+          "rawTextSHA256": "d5176c21ed62783fdc86e3ec5fe30d4446ab327e81761f04b525a57704268bf1",
+          "seconds": 26.639,
+          "sourceChecks": {
+            "allRequiredInline": false,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 79,
+                "withinLimit": true
+              },
+              {
+                "exactSubstring": true,
+                "characters": 80,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H06",
+          "disposition": "incorrect",
+          "review": "Malformed JSON even after removing outer fences. Human reading also finds omitted Tishri alternative, irrelevant month list and false permission for a unique Gregorian date.",
+          "rawTextSHA256": "645083bce586345732592037e607b18f861abd1e196011622ae6c1cbc41e240a",
+          "seconds": 35.143,
+          "sourceChecks": {
+            "allRequiredInline": false,
+            "unknown": [],
+            "quotes": []
+          }
+        },
+        {
+          "id": "H07",
+          "disposition": "partial",
+          "review": "Restores lunar semicircle and right-angled cross and limits predictive claims, but omits the central point in its renderer instruction and does not explicitly classify the triangle/pentagram as adaptations.",
+          "rawTextSHA256": "d021241f172ba3dbb710925919db1ea4dca593452c944e649ae0a975da3eb0e1",
+          "seconds": 25.581,
+          "sourceChecks": {
+            "allRequiredInline": false,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": true,
+                "characters": 195,
+                "withinLimit": false
+              },
+              {
+                "exactSubstring": true,
+                "characters": 37,
+                "withinLimit": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "H08",
+          "disposition": "adequate",
+          "review": "Attributes sentences to the present-day reader, offers Reader Reflection and rejects diagnosis/destiny. Wording authentic quotation by a reader is awkward, but it does not misattribute them to Jung/Plato.",
+          "rawTextSHA256": "9c101a8125576b0e7cd0b9a1e7bd0dcf3ef4ffe9469c9702b159378edc506d35",
+          "seconds": 19.621,
+          "sourceChecks": {
+            "allRequiredInline": false,
+            "unknown": [],
+            "quotes": [
+              {
+                "exactSubstring": false,
+                "characters": 72,
+                "withinLimit": true
+              },
+              {
+                "exactSubstring": false,
+                "characters": 65,
+                "withinLimit": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "developmentReview": {
+    "actualPrimaryOutputs": 24,
+    "challengerOutputs": 2,
+    "generatedDevelopmentIDs": [
+      "D05",
+      "D07",
+      "D09",
+      "D10"
+    ],
+    "availableDevelopmentFixtures": 12,
+    "reviewedAllPrimaryOutputs": true,
+    "regressions": [
+      "R1 small D05 gives14 degrees rather than24.",
+      "R1 4B D05 supplies contradictory336 and24-degree elongations.",
+      "R2 4B D05 gives124 degrees/tithi1.",
+      "R2 adapter D10 invents noon and houses from an unknown birth clock.",
+      "R3 adapter D07 denies supporting evidence while supplying real citations/quotes."
+    ],
+    "r3Confounds": [
+      "Prompt, retrieval settings, target text, learning rate and reset checkpoint differ.",
+      "R3 D05 adds canonical computedPartition values24 degrees/tithi3; restored numbers can be copying a tool result rather than learned arithmetic.",
+      "4B uses JSON grammar, HF adapter does not; BF16 versus quantized inference differ.",
+      "Fixed supplied source packets test generation, not live retrieval quality."
+    ],
+    "challenger": "Two Qwen3.5 outputs give core D05/D09 distinctions, but D05 also has the computedPartition helper; D09 grounding paraphrases lots selecting lives whereas the source says order of choosing. Two cases do not establish a superior general model."
+  },
+  "evaluationAudit": [
+    "No exact heldout-question duplicates or shared five-word shingles were found against training/development questions; this does not prove semantic/pretraining independence.",
+    "Generic source-use/provenance skills overlap intentionally.",
+    "Regex name-presence signals can credit a list without a classification; H04 adapter illustrates this.",
+    "Exact quotes can accompany wrong claims; H01/H04 4B illustrate this.",
+    "Only outer Markdown fences are removed for normalized-content evaluation; malformed H06 adapter receives no parsed-content credit.",
+    "Numerical pattern signals do not implement tolerance arithmetic or semantic entailment."
+  ],
+  "decision": "Keep local source excerpts as the browser default. Optional4B drafts need source and arithmetic review. Do not promote the trained0.6B adapter or two-case3.5 challenger as validated reading engines.",
+  "limits": [
+    "Eight deliberately selected heterogeneous scenarios, one generation per configuration, no repeated seeds or confidence intervals.",
+    "No full-book coverage, personal chart training, forecast or life-outcome validation.",
+    "A real nonzero LoRA weight update and reload prove training execution, not quality improvement.",
+    "These are reviews by another model agent, not an independent human expert study."
+  ]
+}

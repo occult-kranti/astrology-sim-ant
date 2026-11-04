@@ -1,0 +1,60 @@
+{
+  "kind": "final-configuration-freeze-before-heldout-access",
+  "frozenAt": "2026-11-04T20:57:13.574786+00:00",
+  "selection": "Retain Qwen3-4B-Instruct-2507 scenario-v3 as optional default; compare final Qwen3-0.6B LoRA as experimental alternative. Qwen3.5 remains a two-case development challenger, not selected for promotion.",
+  "selectionReason": "The2507 R3 configuration preserved core facts/citations and was faster on the two shared challenger cases; adapter defects remain. Limited development evidence does not establish general accuracy.",
+  "holdoutCount": 8,
+  "sealedSHA256": "da92b50c805396af7decbc437d250164ab8106295633b844cc1088f079829b39",
+  "holdoutReadYet": false,
+  "profile": "scenario-v3",
+  "adapterSHA256": "b993f01d7d7bab1cde53b12f8afaa3579a1aa06d1d4ab04b4c4ccb49a952bb4e",
+  "configurations": [
+    {
+      "file": "research/model-lab/rounds/heldout-4b-config.json",
+      "sha256": "47933a4bc3223a388568b632456e7ff5db4b7b61bc87e31cee771e3a083d369b"
+    },
+    {
+      "file": "research/model-lab/rounds/heldout-adapter-config.json",
+      "sha256": "10284e579faa709d8f5f18697b27a84d02d585fdd4b5fc148d772be3d424a181"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "file": "local-rag/model-prompt.mjs",
+      "sha256": "b1abb14bd9738633579e2afbd8fca3c9a619027cd4a543fcc4cd4cd96731dd0e"
+    },
+    {
+      "file": "local-rag/model-lab/generate.py",
+      "sha256": "a31bacae9bcf0f389a695ba54b6f5f0dc9fbfefb3db6c77cd9831e93e24e181f"
+    },
+    {
+      "file": "local-rag/model-lab/generate-llama.mjs",
+      "sha256": "fa9283ab3ff728aeed5e7f16e15fdd340189f12d20f030037627f9fd6e07d5b9"
+    },
+    {
+      "file": "local-rag/model-lab/serve-adapter.py",
+      "sha256": "0e0a0a6501a5568544d427e73f5ff6995d65e9f78f35405f03aa9fd5ec5cc78b"
+    },
+    {
+      "file": "local-rag/model-lab/evaluate.py",
+      "sha256": "d9a62523622d5908ae0dcbe66208f345818271186add1167ebbde6f63917ec5a"
+    },
+    {
+      "file": "assets/js/core/vedic.js",
+      "sha256": "93fae27b6cdcc91aab89e27c251a4b56c4412d27d6974ae3dceb6537644cae35"
+    },
+    {
+      "file": "assets/js/core/astro.js",
+      "sha256": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab"
+    },
+    {
+      "file": "research/model-lab/training-v3.json",
+      "sha256": "8a4d6d786fd4f7922c5a84afb01bd64ddfe65d47862409d12c54f81d435d1cf3"
+    },
+    {
+      "file": "research/model-lab/rounds/round-3-training-config.json",
+      "sha256": "9ae1849df6848c4c63e18cb82e1531a42f6b7056111688130b9f302fff42ced0"
+    }
+  ],
+  "runtimeNote": "The adapter final set uses the actual loopback PEFT server with the same base revision, BF16/tokenizer and greedy decoding as R3;512-token output cap and90-second generation deadline. Transport differs from direct Python batch. No grammar constraint is added."
+}

@@ -1,0 +1,235 @@
+{
+  "kind": "actual-cpu-lora-training",
+  "config": {
+    "base": "/workspace/.cache/workbench-model-lab/base",
+    "trainingJSONL": "/workspace/.cache/workbench-model-lab/training.jsonl",
+    "output": "/workspace/.cache/workbench-model-lab/checkpoints/round-2",
+    "rank": 4,
+    "alpha": 8,
+    "learningRate": 0.0002,
+    "steps": 24,
+    "maxLength": 128,
+    "maxWallSeconds": 180,
+    "seed": 20261104
+  },
+  "configSHA256": "fa432423efffd6c8caee1f8ec51158f957bd65ed6699abf49be3ca47c1dfb6cc",
+  "trainingDataSHA256": "703c46d309de2e592cebd79e15a448aba47ad5ad036919f52582b6bab96b2195",
+  "torch": "2.6.0+cpu",
+  "device": "cpu",
+  "precision": "bfloat16 frozen base, trainable adapter as supplied by PEFT",
+  "trainableParameters": 573440,
+  "initialParameterSHA256": "069660ed55d2a10f64804b99266e9a8ac319115fb2a4f81b9608c7e9e3c32327",
+  "finalParameterSHA256": "6ac4e8f4ee355c8f4113fb0deb5d593059cae55192fc81bbb9f1cd25e34f0452",
+  "steps": 24,
+  "seconds": 18.128,
+  "adapterDeltaL2": 1.6210401003359207,
+  "nonzeroParameterUpdate": true,
+  "maxRSSKiB": 2230856,
+  "lossRows": [
+    {
+      "step": 1,
+      "recordId": "T01",
+      "tokens": 99,
+      "loss": 2.098264455795288,
+      "gradientNorm": 4.22107458114624,
+      "seconds": 0.828
+    },
+    {
+      "step": 2,
+      "recordId": "T02",
+      "tokens": 97,
+      "loss": 1.973733901977539,
+      "gradientNorm": 4.256352424621582,
+      "seconds": 0.743
+    },
+    {
+      "step": 3,
+      "recordId": "T03",
+      "tokens": 100,
+      "loss": 1.8902119398117065,
+      "gradientNorm": 4.7955780029296875,
+      "seconds": 0.754
+    },
+    {
+      "step": 4,
+      "recordId": "T04",
+      "tokens": 107,
+      "loss": 0.8244919776916504,
+      "gradientNorm": 3.533388614654541,
+      "seconds": 0.772
+    },
+    {
+      "step": 5,
+      "recordId": "T05",
+      "tokens": 98,
+      "loss": 1.0101664066314697,
+      "gradientNorm": 6.236649036407471,
+      "seconds": 0.7
+    },
+    {
+      "step": 6,
+      "recordId": "T06",
+      "tokens": 105,
+      "loss": 2.6595144271850586,
+      "gradientNorm": 5.146797180175781,
+      "seconds": 0.761
+    },
+    {
+      "step": 7,
+      "recordId": "T07",
+      "tokens": 101,
+      "loss": 2.5400729179382324,
+      "gradientNorm": 5.049868583679199,
+      "seconds": 0.726
+    },
+    {
+      "step": 8,
+      "recordId": "T08",
+      "tokens": 111,
+      "loss": 2.591505527496338,
+      "gradientNorm": 4.1348185539245605,
+      "seconds": 0.796
+    },
+    {
+      "step": 9,
+      "recordId": "T09",
+      "tokens": 100,
+      "loss": 0.7296569347381592,
+      "gradientNorm": 5.48429536819458,
+      "seconds": 0.753
+    },
+    {
+      "step": 10,
+      "recordId": "T10",
+      "tokens": 101,
+      "loss": 2.222024440765381,
+      "gradientNorm": 3.823126792907715,
+      "seconds": 0.718
+    },
+    {
+      "step": 11,
+      "recordId": "T11",
+      "tokens": 103,
+      "loss": 0.40697231888771057,
+      "gradientNorm": 2.321969509124756,
+      "seconds": 0.739
+    },
+    {
+      "step": 12,
+      "recordId": "T12",
+      "tokens": 100,
+      "loss": 2.091634511947632,
+      "gradientNorm": 3.514981508255005,
+      "seconds": 0.709
+    },
+    {
+      "step": 13,
+      "recordId": "T13",
+      "tokens": 107,
+      "loss": 1.703056812286377,
+      "gradientNorm": 3.7072324752807617,
+      "seconds": 0.736
+    },
+    {
+      "step": 14,
+      "recordId": "T14",
+      "tokens": 98,
+      "loss": 0.46882814168930054,
+      "gradientNorm": 2.32531476020813,
+      "seconds": 0.751
+    },
+    {
+      "step": 15,
+      "recordId": "T15",
+      "tokens": 105,
+      "loss": 1.5017417669296265,
+      "gradientNorm": 5.1943864822387695,
+      "seconds": 0.793
+    },
+    {
+      "step": 16,
+      "recordId": "T16",
+      "tokens": 104,
+      "loss": 1.5709062814712524,
+      "gradientNorm": 4.488191604614258,
+      "seconds": 0.765
+    },
+    {
+      "step": 17,
+      "recordId": "T17",
+      "tokens": 99,
+      "loss": 1.7267073392868042,
+      "gradientNorm": 3.180988311767578,
+      "seconds": 0.723
+    },
+    {
+      "step": 18,
+      "recordId": "T18",
+      "tokens": 106,
+      "loss": 1.3659358024597168,
+      "gradientNorm": 2.6794538497924805,
+      "seconds": 0.793
+    },
+    {
+      "step": 19,
+      "recordId": "T19",
+      "tokens": 112,
+      "loss": 2.164933919906616,
+      "gradientNorm": 3.4442906379699707,
+      "seconds": 0.813
+    },
+    {
+      "step": 20,
+      "recordId": "T20",
+      "tokens": 102,
+      "loss": 1.4144985675811768,
+      "gradientNorm": 2.8329734802246094,
+      "seconds": 0.761
+    },
+    {
+      "step": 21,
+      "recordId": "T21",
+      "tokens": 106,
+      "loss": 0.9316406846046448,
+      "gradientNorm": 2.7909440994262695,
+      "seconds": 0.735
+    },
+    {
+      "step": 22,
+      "recordId": "T22",
+      "tokens": 103,
+      "loss": 1.8021461963653564,
+      "gradientNorm": 5.216762065887451,
+      "seconds": 0.756
+    },
+    {
+      "step": 23,
+      "recordId": "T23",
+      "tokens": 101,
+      "loss": 0.3928370177745819,
+      "gradientNorm": 2.5345842838287354,
+      "seconds": 0.752
+    },
+    {
+      "step": 24,
+      "recordId": "T24",
+      "tokens": 99,
+      "loss": 2.047816276550293,
+      "gradientNorm": 4.661571502685547,
+      "seconds": 0.722
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "adapter_config.json",
+      "bytes": 795,
+      "sha256": "1e59abe585cb4d0a499a2e1388c0df82fb10a6f01ba6509f8b509341d3989c7d"
+    },
+    {
+      "file": "adapter_model.safetensors",
+      "bytes": 2308432,
+      "sha256": "b0e3d549e5ef958a1607dc46440de5b5355f4d32ded73526da64fdc3ce743056"
+    }
+  ],
+  "scope": "Training loss and nonzero updates are not an accuracy result. Only training-split originals were used."
+}

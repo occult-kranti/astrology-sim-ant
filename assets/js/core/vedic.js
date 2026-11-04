@@ -118,6 +118,16 @@ function panchanga(sunSidLon, moonSidLon, day) {
   };
 }
 
+/** Public arithmetic adapter for source-worked longitude examples. These are
+ * sidereal longitudes in one declared frame, not a clock or a natal chart.
+ * Without a computed sunrise day, vāra remains unavailable. */
+export function panchangaFromLongitudes(sunSidLon, moonSidLon) {
+  if (![sunSidLon, moonSidLon].every(value => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value < 360)) throw new RangeError('Use finite longitudes in [0, 360) in the same declared sidereal frame.');
+  const result = panchanga(sunSidLon, moonSidLon, null);
+  result.vara.method = 'No observer or clock was supplied for this longitude example; sunrise-bounded vāra is unavailable.';
+  return result;
+}
+
 // ---------------------------------------------------------------------------
 //  Aṣṭakavarga — BAV per planet (per sign, 0–8) + SAV; checksum savTotal = 337.
 // ---------------------------------------------------------------------------

@@ -1,0 +1,65 @@
+{
+  "kind": "actual-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-1/requests.json",
+    "maxNewTokens": 512,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-1-small-base.json",
+    "seed": 20261104,
+    "base": "/workspace/.cache/workbench-model-lab/base",
+    "maxInputTokens": 4096,
+    "adapter": null
+  },
+  "configSHA256": "7b40c275e55aeb6548128e4c25d5b8c548746bb7d29f675ad6f9c615b7cd05ce",
+  "requestsSHA256": "21e309e0b05e35d8f16210efd3c23d67892ee372f92c9a1a3fccf0e9325238d9",
+  "torch": "2.6.0+cpu",
+  "precision": "bfloat16",
+  "device": "cpu",
+  "results": [
+    {
+      "id": "D05",
+      "split": "development",
+      "promptSHA256": "a11b04262a248a553f5aefb860c7bece932c17c97c6c466cffd7251f30188da1",
+      "requestSHA256": "95e50d43e08694e679039eea3b098b3bf802c6651098e25e35c6dd39a5e6e545",
+      "inputTokens": 826,
+      "outputTokens": 64,
+      "seconds": 8.145,
+      "text": "```json\n{\n  \"answer\": \"The elongation is 14 degrees, and the tithi is 3. The limit of this result is 14 degrees.\",\n  \"citations\": [\n    [EVAL-D05-S1]\n  ],\n  \"actions\": []\n}\n```",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D07",
+      "split": "development",
+      "promptSHA256": "07d68678851cc8f4c235a9503e74317f393b5c37f8a38fa8881f9c6c1098875d",
+      "requestSHA256": "5d2369f1184d4a957b024c0e877db860e6fc2a9744e8ff8e00a9359471be381a",
+      "inputTokens": 791,
+      "outputTokens": 68,
+      "seconds": 7.246,
+      "text": "```json\n{\n  \"answer\": \"No, the civil-calendar widget does not provide information about sunset-based observances. The server-retrieved reference data indicates that sunset-based observances have different boundaries and require location, selected instant, and relevant community convention inputs.\",\n  \"citations\": [],\n  \"actions\": []\n}\n```",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D09",
+      "split": "development",
+      "promptSHA256": "6eeb5b2fac0ee090f913a64cca74d548710423affe636a1814de4140cf255129",
+      "requestSHA256": "cf28d38690025accc9358bb5d77cb79bf6ee6b81d17c458423793a87b567b563",
+      "inputTokens": 811,
+      "outputTokens": 109,
+      "seconds": 10.34,
+      "text": "```json\n{\n  \"answer\": \"No, the lottery in Plato’s *Myth of Er* is not the same calculation as the astrological Lot of Spirit. The Myth of Er uses drawn lots to establish the order in which lives are chosen, while the Lot of Spirit is an angular calculation using the Ascendant, Sun, and Moon under a named convention. Plato does not provide the birth-chart formula for this calculation.\",\n  \"citations\": [EVAL-D09-S1],\n  \"actions\": []\n}\n```",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D10",
+      "split": "development",
+      "promptSHA256": "b3ec6fd95c8fea26dbea64eb8ac053f18d05722b747d72b37af87ddaf578dd86",
+      "requestSHA256": "e245d4b6aa6073c5e9fbc70c19058a2b68d60747466270daa74fab5a82f3b719",
+      "inputTokens": 817,
+      "outputTokens": 58,
+      "seconds": 6.662,
+      "text": "```json\n{\n  \"answer\": \"The exact ascendant and all twelve houses cannot be determined without an explicit birth instant and observer. The provided birth date and city are available, but no birth time is known.\",\n  \"citations\": [],\n  \"actions\": []\n}\n```",
+      "maxNewTokensReached": false
+    }
+  ],
+  "maxRSSKiB": 2270576,
+  "scope": "Raw sampled outputs; no automated score establishes semantic accuracy."
+}

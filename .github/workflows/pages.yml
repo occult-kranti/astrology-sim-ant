@@ -42,6 +42,7 @@ jobs:
           node scripts/test-newton-chronology-protocol.mjs
           node scripts/test-eschatology-atlas-protocol.mjs
           node scripts/test-workbench-rag-protocol.mjs
+          node scripts/test-reading-lab-protocol.mjs
           npm test --prefix mcp
       - name: Keep MCP lock and verification evidence
         if: always()
@@ -63,6 +64,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Use Python for standard-library evaluation checks
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Calculation and source checks
         env:
           NEWTON_SEMANTIC_RECEIPT: test-results/newton-chronology-semantic.json
@@ -71,12 +76,22 @@ jobs:
           node scripts/engine-test.mjs
           node scripts/tests/desktop-workbench.mjs
           node scripts/tests/desktop-library.mjs
+          node scripts/tests/reading-lab.mjs
           node scripts/tests/workbench-chat-actions.mjs
           node scripts/tests/workbench-rag.mjs
           node scripts/build-workbench-rag.mjs --check
+          node scripts/build-reading-lab-database.mjs --check
           node scripts/audit.mjs
           node scripts/round-ledger.mjs --check
           node scripts/build-offline-manifest.mjs --check
+      - name: Model fixture provenance and answer-evaluator regression checks
+        # Fixture arithmetic and stdlib-only scoring tests. No training, model
+        # download, sealed-data access, live authentication or inference in CI.
+        run: |
+          mkdir -p test-results/model-lab
+          node scripts/tests/model-lab-fixtures.mjs > test-results/model-lab/fixture-integrity.json
+          python3 local-rag/model-lab/test-evaluator.py > test-results/model-lab/evaluator-regression.json
+          python3 -m py_compile local-rag/model-lab/*.py
       - name: Install pinned optional companion test dependencies
         run: npm ci --prefix local-rag --ignore-scripts
       - name: Local RAG HTTP boundaries and SIWC cryptographic contracts
@@ -93,6 +108,11 @@ jobs:
           PGLITE_PKG: node_modules/@electric-sql/pglite/dist/index.js
           WORKBENCH_DB_RECEIPT: test-results/workbench-rag-db/receipt.json
         run: node scripts/test-workbench-rag-db.mjs
+      - name: Public reading examples, invoker RPC and database role boundaries
+        env:
+          PGLITE_PKG: node_modules/@electric-sql/pglite/dist/index.js
+          READING_LAB_DB_RECEIPT: test-results/reading-lab-db/receipt.json
+        run: node scripts/test-reading-lab-db.mjs
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Build and verify the direct-open standalone desktop edition
@@ -111,6 +131,10 @@ jobs:
           WORKBENCH_CHAT_OUTPUT: test-results/workbench-chat
           WORKBENCH_CHAT_STANDALONE_HTML: test-results/desktop-standalone-build/desktop-chart-studio.html
         run: node scripts/browser-workbench-chat.mjs
+      - name: Reading Lab source examples, date precision, reviewed context and accessible comparisons
+        env:
+          READING_LAB_OUTPUT: test-results/reading-lab
+        run: node scripts/browser-reading-lab.mjs
       - name: Orbital frames, eclipse timeline and named source readings
         env:
           ORBITAL_OUTPUT: test-results/orbital-space
@@ -332,6 +356,9 @@ jobs:
                 if (!home.ok) throw new Error('Published homepage is unavailable.');
                 const desktop = await fetch(new URL('pages/desktop.html', base), { signal: AbortSignal.timeout(10000) });
                 if (!desktop.ok || !(await desktop.text()).includes('desktop-workbench')) throw new Error('Published desktop workbench is unavailable.');
+                const readingLab = await fetch(new URL('pages/reading-lab.html', base), { signal: AbortSignal.timeout(10000) });
+                const readingLabHTML = await readingLab.text();
+                if (!readingLab.ok || !readingLabHTML.includes('id="rl-app"') || !readingLabHTML.includes('reading-lab.js')) throw new Error('Published Reading Lab is unavailable.');
                 const studio = await fetch(new URL('pages/studio.html', base), { signal: AbortSignal.timeout(10000) });
                 const studioHTML = await studio.text();
                 if (!studio.ok || !studioHTML.includes('Live Symbol Studio') || !studioHTML.includes('sessionJournal')) throw new Error('Published Studio/session journal is unavailable.');
@@ -339,7 +366,7 @@ jobs:
                 if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
                 const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
                 const catalogue = await catalogueResponse.json();
-                const required = ['workbench_calendar_timeline_frame', 'workbench_country_history', 'workbench_horizon_scan', 'workbench_horizon_day', 'workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide'];
+                const required = ['workbench_calendar_timeline_frame', 'workbench_country_history', 'workbench_horizon_scan', 'workbench_horizon_day', 'workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide', 'workbench_reading_lab', 'workbench_reading_examples'];
                 const publishedNames = Array.isArray(catalogue.tools) ? catalogue.tools.map(tool => tool.name).sort() : [];
                 if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || !Array.isArray(release.sourceMcpTools) || JSON.stringify(publishedNames) !== JSON.stringify(release.sourceMcpTools) || !required.every(name => publishedNames.includes(name))) throw new Error('Published MCP catalogue is missing or does not match the verified release.');
                 const comparison = await fetch(new URL('pages/calendar-compare.html', base), { signal: AbortSignal.timeout(10000) });

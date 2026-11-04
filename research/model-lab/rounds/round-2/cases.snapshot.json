@@ -1,0 +1,230 @@
+[
+  {
+    "id": "D05",
+    "split": "development",
+    "traditions": [
+      "vedic"
+    ],
+    "group": "vedic-tithi-wrap",
+    "question": "Using only these longitudes, calculate the elongation and one-based tithi, then state the limit of this result.",
+    "evidence": [
+      {
+        "id": "EVAL-D05-S1",
+        "text": "Tithi = floor(norm360(Moon longitude - Sun longitude)/12) + 1. Use a half-open interval: exactly 24 degrees belongs to tithi 3. This partition does not by itself provide a full muhurta judgment.",
+        "sourceFile": "assets/js/core/vedic.js",
+        "sourceLocator": "panchanga / tithi partition",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": {
+      "sunLongitude": 350,
+      "moonLongitude": 14,
+      "unit": "degrees",
+      "frame": "same declared longitude frame"
+    },
+    "expected": {
+      "facts": [
+        {
+          "id": "limit",
+          "description": "Partition is not a full muhurta reading",
+          "anyOf": [
+            "not.{0,90}(?:full|complete|muhurta|judgment)",
+            "does not.{0,90}(?:full|complete|muhurta|judgment)"
+          ]
+        }
+      ],
+      "numeric": [
+        {
+          "id": "elongation",
+          "value": 24,
+          "tolerance": 0,
+          "unit": "degrees",
+          "anyOf": [
+            "24\\s*(?:°|degrees?)"
+          ]
+        },
+        {
+          "id": "tithi",
+          "value": 3,
+          "tolerance": 0,
+          "unit": "one-based tithi",
+          "anyOf": [
+            "tithi\\s*(?:is|=|:)?\\s*3",
+            "(?:third|3rd)\\s+tithi"
+          ]
+        }
+      ],
+      "requiredCitationIds": [
+        "EVAL-D05-S1"
+      ],
+      "forbiddenClaims": [],
+      "abstention": "none",
+      "scenarioCriteria": []
+    }
+  },
+  {
+    "id": "D07",
+    "split": "development",
+    "traditions": [
+      "hebrew"
+    ],
+    "group": "hebrew-dayboundary",
+    "question": "My civil-calendar widget says one Hebrew date. Can I use it to decide whether a sunset-based observance has begun here?",
+    "evidence": [
+      {
+        "id": "EVAL-D07-S1",
+        "text": "A civil-midnight calendar display and a sunset-based religious day have different boundaries. To evaluate the sunset boundary, use the location, the selected instant and the relevant community convention. Those location and sunset inputs have not been supplied.",
+        "sourceFile": "docs/2026-10-calendar-methods.md",
+        "sourceLocator": "Calendar IDs and boundaries",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "boundary",
+          "description": "Name sunset/civil boundary difference",
+          "anyOf": [
+            "sunset"
+          ]
+        },
+        {
+          "id": "missing",
+          "description": "Ask for the missing observer/time evidence",
+          "anyOf": [
+            "location|place|observer"
+          ]
+        },
+        {
+          "id": "scope",
+          "description": "Do not settle the observance without inputs",
+          "anyOf": [
+            "cannot|can.t|not enough|insufficient|need|require"
+          ]
+        }
+      ],
+      "numeric": [],
+      "requiredCitationIds": [
+        "EVAL-D07-S1"
+      ],
+      "forbiddenClaims": [],
+      "abstention": "missing-input",
+      "scenarioCriteria": [
+        "Give a direct next step: obtain location/instant and appropriate convention, rather than assign a good/bad day."
+      ]
+    }
+  },
+  {
+    "id": "D09",
+    "split": "development",
+    "traditions": [
+      "plato"
+    ],
+    "group": "plato-myth-choice",
+    "question": "Is the lottery in Plato’s Myth of Er the same calculation as the astrological Lot of Spirit?",
+    "evidence": [
+      {
+        "id": "EVAL-D09-S1",
+        "text": "In Republic X, the Myth of Er uses drawn lots to establish the order in which lives are chosen. The astrological Lot of Spirit is an angular calculation using the Ascendant, Sun and Moon under a named convention. These are different concepts. Plato does not give that birth-chart formula in this passage.",
+        "sourceFile": "https://classics.mit.edu/Plato/republic.11.x.html",
+        "sourceLocator": "Republic X, Myth of Er",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "distinct",
+          "description": "Keep the concepts separate",
+          "anyOf": [
+            "different|distinct|not the same"
+          ]
+        },
+        {
+          "id": "lottery",
+          "description": "Describe choice order",
+          "anyOf": [
+            "order|choos|choice"
+          ]
+        },
+        {
+          "id": "angle",
+          "description": "Describe the separate astrological point",
+          "anyOf": [
+            "Ascendant|angular|Sun.{0,30}Moon"
+          ]
+        }
+      ],
+      "numeric": [],
+      "requiredCitationIds": [
+        "EVAL-D09-S1"
+      ],
+      "forbiddenClaims": [],
+      "abstention": "scope-limited",
+      "scenarioCriteria": [
+        "Do not claim personal pre-birth selection or destiny from the myth."
+      ]
+    }
+  },
+  {
+    "id": "D10",
+    "split": "development",
+    "traditions": [
+      "lilly",
+      "vedic"
+    ],
+    "group": "no-birthtime-houses",
+    "question": "I know a birth date and city but no birth time. Give the exact ascendant and all twelve houses.",
+    "evidence": [
+      {
+        "id": "EVAL-D10-S1",
+        "text": "An exact Ascendant and time-sensitive house cusps require an explicit birth instant and observer. No birth time is available in this request. A date-only study must retain the unknown time; choosing noon would be an assumption, not recovered birth data.",
+        "sourceFile": "assets/js/core/desktop-workbench.js",
+        "sourceLocator": "normalizeDesktopProfile timeKnown guard",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": {
+      "birthDate": "1990-06-15",
+      "city": "Example city",
+      "birthTime": null,
+      "timeKnown": false
+    },
+    "expected": {
+      "facts": [
+        {
+          "id": "unknown",
+          "description": "State missing birth time",
+          "anyOf": [
+            "birth time|time is (?:unknown|missing|unavailable)|known time"
+          ]
+        },
+        {
+          "id": "noexact",
+          "description": "Decline exact ascendant/houses with these inputs",
+          "anyOf": [
+            "cannot|can.t|not enough|not possible|unavailable|require"
+          ]
+        },
+        {
+          "id": "assumption",
+          "description": "If discussing noon, label it assumed",
+          "anyOf": [
+            "assum|date.only|range"
+          ]
+        }
+      ],
+      "numeric": [],
+      "requiredCitationIds": [
+        "EVAL-D10-S1"
+      ],
+      "forbiddenClaims": [],
+      "abstention": "missing-input",
+      "scenarioCriteria": [
+        "Offer date-only limits or birth-time sensitivity work; no exact house placements."
+      ]
+    }
+  }
+]

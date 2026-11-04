@@ -1,0 +1,162 @@
+{
+  "kind": "actual-llama-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/heldout/requests.json",
+    "baseURL": "http://127.0.0.1:8845/v1/",
+    "model": "workbench-qwen3-4b-q4",
+    "temperature": 0,
+    "maxNewTokens": 512,
+    "seed": 20261104,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/heldout-4b.json",
+    "selectedBeforeUnsealing": true
+  },
+  "configSHA256": "47933a4bc3223a388568b632456e7ff5db4b7b61bc87e31cee771e3a083d369b",
+  "requestsSHA256": "215831f0aa5163fb4fca7b2352b8529b7507fc14e3f215700b13970babc5a5ad",
+  "results": [
+    {
+      "id": "H01",
+      "split": "heldout",
+      "requestSHA256": "3d164f1b3538265f927419374478d3536cd663b52b02acd3a84f79383a516009",
+      "seconds": 19.107,
+      "text": "{\"answer\": \"After 40 civil years (40 × 365.0000 = 14,600 days), the anniversary is 40 × (365.2422 − 365.0000) = 40 × 0.2422 = 96.88 days later than after 40 comparison years. This difference arises from the longer comparison year. However, this does not establish whether a person will have a dangerous day. No personal outcome or astrological interpretation is supported by the source. [EVAL-H01-S1]\", \"citations\": [\"EVAL-H00-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-H01-S1\", \"quote\": \"Arithmetic teaching assumptions: a schematic Egyptian civil year has 365.0000 days; the comparison seasonal year is stipulated here as 365.2422 days. Ignore short-term variation. Compare forty periods from the same initial instant. These are period lengths, not evidence about personal outcomes.\", \"claim\": \"The difference in anniversary timing is due to year length, not personal danger.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 262,
+        "prompt_tokens": 871,
+        "total_tokens": 1133,
+        "prompt_tokens_details": {
+          "cached_tokens": 683
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H02",
+      "split": "heldout",
+      "requestSHA256": "3bb2a82de62dd5c1e9f0dc52853bd32f80c55154b109a0f8afd668103aec8aee",
+      "seconds": 23.855,
+      "text": "{\"answer\": \"Database A: JDN = 144000*baktun + 7200*katun + 360*tun + 20*uinal + kin + 584283; Database B: JDN = ... + 584285. Difference = 2 days. No arithmetic contradiction; only a difference in correlation constant. Evidence: [EVAL-H02-S1]. Possible everyday scenario: Different databases use different conventions for aligning Long Count to civil days. Alternative explanation: The difference arises from historical or computational choice, not error. What to check: Verify if both databases use the same Long Count values (baktun, katun, etc.). Optional next step: Confirm the source of the correlation constants. Limits: No Gregorian date or birth time provided; no life outcome inference.\", \"citations\": [\"EVAL-H02-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-H02-S1\", \"quote\": \"For this arithmetic fixture, Long Count day total D=144000*baktun+7200*katun+360*tun+20*uinal+kin. Integer JDN=D+C for the explicitly selected correlation C. Two different C values are different correlation conventions; compare them with their constants visible. No Gregorian conversion or ritual boundary is stipulated.\", \"claim\": \"Different correlation constants represent different conventions, not contradictions.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 318,
+        "prompt_tokens": 909,
+        "total_tokens": 1227,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H03",
+      "split": "heldout",
+      "requestSHA256": "89e0a60ace29ae1866c4ce1562e0331aa4df1a56a0106c610c6aa6b67ecb18e3",
+      "seconds": 16.534,
+      "text": "{\"answer\": \"The date 1900-02-29 is valid in the Julian calendar but invalid in the Gregorian calendar. In Julian, 1900 is divisible by 4, so it is a leap year. In Gregorian, 1900 is a century year not divisible by 400, so it is not a leap year. Thus, February 29, 1900, does not exist in Gregorian. The importer should ask for the calendar convention, not silently normalize it. [EVAL-H03-S1]\", \"citations\": [\"EVAL-H03-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-H03-S1\", \"quote\": \"Julian years divisible by 4 are leap years. Gregorian years divisible by 4 are leap years except century years not divisible by 400.\", \"claim\": \"February 29, 1900, is valid in Julian but not in Gregorian.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 222,
+        "prompt_tokens": 885,
+        "total_tokens": 1107,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H04",
+      "split": "heldout",
+      "requestSHA256": "278b65998a3107f2c038caf1809e96250cec23c8e696ea3a3e4cbdca1c878648",
+      "seconds": 14.349,
+      "text": "{\"answer\": \"Point A (39°59'59\\\") falls in Krittika (index 3), pada 4. Point B (40°00'00\\\") is exactly at the boundary of Krittika and Bharani (index 2); it belongs to Bharani (index 2), pada 1. [EVAL-H04-S1]\",\"citations\":[\"EVAL-H04-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"EVAL-H04-S1\",\"quote\":\"Each nakshatra occupies 13 degrees 20 minutes and has four padas of 3 degrees 20 minutes. Intervals include their left boundary and exclude their right boundary.\",\"claim\":\"Boundary classification follows left-inclusive intervals with fixed nakshatra sectors\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 170,
+        "prompt_tokens": 924,
+        "total_tokens": 1094,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H05",
+      "split": "heldout",
+      "requestSHA256": "ff379f662731ebb5f80e571e94460c3a6fc4c966aa7044c745dbcd69af8da670",
+      "seconds": 13.863,
+      "text": "{\"answer\": \"No, the dashboard cannot merge them as the same date. The minimum identity fields it must preserve are year, month, and day. The leap-month marker (isLeapMonth) distinguishes the records as different months. What remains unknown is the Gregorian date equivalence, as no conversion table is available. [EVAL-H05-S1]\", \"citations\": [\"EVAL-H05-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-H05-S1\", \"quote\": \"an intercalary month repeats a month number while remaining a different month. These two records are stipulated to be valid entries in a year with an intercalary second month.\", \"claim\": \"The leap-month marker distinguishes the records as different months.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 167,
+        "prompt_tokens": 913,
+        "total_tokens": 1080,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H06",
+      "split": "heldout",
+      "requestSHA256": "21d2dd9bb978d0d10b14450a88acb17287eed4f90b192d89bf8e6ff4eff58c5b",
+      "seconds": 21.051,
+      "text": "{\"answer\": \"The export could use either a Nisan-first or Tishri-first scheme. In Nisan-first, month 7 is Tishri; in Tishri-first, month 7 is Adar II. Without specifying the scheme, the Gregorian date cannot be uniquely determined. Evidence: [EVAL-H06-S1] states both schemes exist and the record omits which is used. Possible everyday scenario: A calendar app might default to one scheme but lacks clarity. Alternative explanation: The omission means the date is ambiguous. What to check: Confirm if the scheme (Nisan-first or Tishri-first) is declared. Optional next step: Request the scheme specification. Limits: No personal chart or outcome is implied.\", \"citations\": [\"EVAL-H06-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-H06-S1\", \"quote\": \"Numbering fixture in a leap year: in a Nisan-first scheme, Nisan=1 and Tishri=7. In the supplied Tishri-first civil scheme, Tishri=1, Heshvan=2, Kislev=3, Tevet=4, Shevat=5, Adar I=6 and Adar II=7.\", \"claim\": \"The record omits the month numbering scheme used.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 282,
+        "prompt_tokens": 913,
+        "total_tokens": 1195,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H07",
+      "split": "heldout",
+      "requestSHA256": "41658622fe465c9fffebd1faf3df318b923751d0a76390c4d60ac486a5b924ee",
+      "seconds": 22.588,
+      "text": "{\"answer\": \"The renderer should retain the solar circle with a central point and the right-angled cross, as these are explicitly described in [EVAL-H07-S1]. The lunar semicircle above the solar circle is also supported by the passage. The triangle and pentagram are not mentioned and should not be retained. The passage does not establish any predictive claims, personal outcomes, or modern date-scoring algorithms. Claim: The diagram is a faithful reconstruction only if it preserves the described geometric elements. What to check: Verify that no non-passaged elements (like triangle or pentagram) were added. Limit: The passage does not support any life event predictions or symbolic interpretations beyond historical symbolic geometry.\", \"citations\": [\"EVAL-H07-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-H07-S1\", \"quote\": \"the solar circle includes a visible central point; the lunar semicircle is placed above and combined with the solar circle; the construction is supported by a right-angled cross\", \"claim\": \"The diagram must preserve the solar circle, central point, lunar semicircle, and right-angled cross to be faithful.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 248,
+        "prompt_tokens": 931,
+        "total_tokens": 1179,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H08",
+      "split": "heldout",
+      "requestSHA256": "eafb6e2a0312cd565d533bc98601c5b6581b29c1f0cc17f51bbd0c75cd17f8b1",
+      "seconds": 21.508,
+      "text": "{\"answer\": \"The sentences are not authentic quotations from Jung or Plato; they were authored by the user. [EVAL-H08-S1] states there is no evidence of quotation authenticity. These statements do not establish a personal diagnosis or destiny. They reflect personal interpretation, not empirical or historical evidence. Alternative label: 'User-generated reflection.' Possible everyday scenario: A person expressing belief in their chart's influence. Alternative explanation: This may stem from psychological projection, not astrological truth. What to check: Verify if the statements align with actual astrological or philosophical texts. Optional next step: Compare with verified quotes from Jung or Plato. Limits: No personal chart or data was provided to validate any outcome.\", \"citations\": [\"EVAL-H08-S1\"], \"actions\": [], \"grounding\": [{\"sourceId\": \"EVAL-H08-S1\", \"quote\": \"Provenance fixture: a present-day reader authored these sentences for this exercise, not as transcriptions: (A) \\\"My chart contains a symbol, so I must be the personality it names.\\\" (B) \\\"My life has a story, so my choices can no longer change it.\\\" The provided record contains no passage locator in Jung or Plato and no evidence of quotation authenticity. Reader reflection, attributed primary quotation and measured psychological evidence are different evidence types.\", \"claim\": \"The sentences are user-authored and not authentic quotations from Jung or Plato.\"}]}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 294,
+        "prompt_tokens": 908,
+        "total_tokens": 1202,
+        "prompt_tokens_details": {
+          "cached_tokens": 685
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    }
+  ],
+  "scope": "Raw development or heldout responses; judge dimensions separately and retain failures."
+}

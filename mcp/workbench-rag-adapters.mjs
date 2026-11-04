@@ -26,13 +26,31 @@ function validate(schema,value,path='arguments'){
     for(const key of schema.required)if(!Object.hasOwn(value,key))throw new TypeError(`Missing ${path}.${key}.`);
     for(const[key,v]of Object.entries(value))validate(schema.properties[key],v,`${path}.${key}`);return;
   }
-  if(schema.type==='array'){if(!Array.isArray(value)||value.length>(schema.maxItems??64)||value.length<(schema.minItems??0))throw new RangeError(`${path} has an invalid length.`);if(schema.uniqueItems&&new Set(value).size!==value.length)throw new RangeError(`${path} must be distinct.`);for(let i=0;i<value.length;i++){if(!Object.hasOwn(value,i))throw new TypeError(`${path} cannot have holes.`);validate(schema.items,value[i],`${path}[${i}]`);}return;}
+  if(schema.type==='array'){
+    if(!Array.isArray(value)||Object.getPrototypeOf(value)!==Array.prototype||value.length>(schema.maxItems??64)||value.length<(schema.minItems??0))throw new RangeError(`${path} has an invalid array shape or length.`);
+    for(const key of Reflect.ownKeys(value)){
+      if(key==='length')continue;
+      if(typeof key!=='string'||!/^(0|[1-9]\d*)$/.test(key)||Number(key)>=value.length)throw new TypeError(`${path} accepts ordinary JSON array entries only.`);
+      const d=Object.getOwnPropertyDescriptor(value,key);
+      if(!d.enumerable||!Object.hasOwn(d,'value'))throw new TypeError(`${path} accepts ordinary JSON array entries only.`);
+    }
+    const seen=new Set();
+    for(let i=0;i<value.length;i++){
+      const d=Object.getOwnPropertyDescriptor(value,String(i));
+      if(!d)throw new TypeError(`${path} cannot have holes.`);
+      validate(schema.items,d.value,`${path}[${i}]`);
+      if(schema.uniqueItems&&seen.has(d.value))throw new RangeError(`${path} must be distinct.`);
+      seen.add(d.value);
+    }
+    return;
+  }
   if(schema.type==='integer'?!Number.isInteger(value):typeof value!==schema.type)throw new TypeError(`${path} must be ${schema.type}.`);
   if(schema.enum&&!schema.enum.includes(value))throw new RangeError(`${path} has an unsupported value.`);
   if(typeof value==='number'&&(!Number.isFinite(value)||value<schema.minimum||value>schema.maximum))throw new RangeError(`${path} is out of bounds.`);
   if(typeof value==='string'&&(value.length<(schema.minLength??0)||value.length>schema.maxLength))throw new RangeError(`${path} has an invalid length.`);
 }
 function finish(data){const value={...data,mcpDisclosure:disclosure};const encoded=JSON.stringify(value);if(new TextEncoder().encode(encoded).length>1300000)throw new RangeError('Desktop/RAG response exceeds its 1.3 MB bound. Narrow the request.');return JSON.parse(encoded);}
+export {validate as validateWorkbenchContract};
 export function runWorkbenchRagSearch(args){validate(workbenchRagSearchSchema,args);const{query,...options}=args;return finish(buildWorkbenchEvidence(query,options));}
 export function runWorkbenchDesktopChart(args){validate(workbenchDesktopChartSchema,args);return finish(buildDesktopStudy(normalizeWorkbenchInputs(args.inputs)));}
 export function runWorkbenchActionPreview(args){validate(workbenchActionPreviewSchema,args);return finish(previewWorkbenchAction(args));}

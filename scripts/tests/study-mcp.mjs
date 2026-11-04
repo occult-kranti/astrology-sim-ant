@@ -56,9 +56,18 @@ export async function run() {
   throws(()=>call('workbench_vedic_graha_bala',{...input,system:'placidus'}),'Vedic adapter does not accept an ignored house-system option');
   for(const record of WORKED_CHARTS){
     const r=call('workbench_printed_chart',{key:record.key}),expected=chartFromPositions(record.figure);
-    ok(eq(r.result,expected),record.key+' replay matches the actual canonical printed-position helper');
-    ok(r.status === 'reconstructed' && r.context.dateISO === null && r.result.date === null && !r.methods.modernEphemerisRecalculated,record.key+' is not relabelled as a modern astronomical cast');
-    ok(r.methods.cuspApprox === true && r.methods.actualCuspConvention.includes('Equal houses') && r.methods.motionConvention.includes('mean daily'),record.key+' retains actual equal-cusp and mean-motion limitations');
+    if(record.verification?.status === 'partial-source-check'){
+      ok(r.status === 'partial-reconstructed' && r.result.partial === true && r.context.dateISO === null && r.result.date === null && !r.methods.modernEphemerisRecalculated,'Partially checked dog figure is not promoted to a complete or modern chart');
+      const golden={Sun:165.75,Moon:154+10/60,Mercury:192+20/60,Saturn:48.25};
+      for(const [name,longitude]of Object.entries(golden))ok(Math.abs(r.result.planets[name].lon-longitude)<1e-9 && r.result.planets[name].longitudeVerification==='printed-field-checked','Primary1647p392 printed position: '+name);
+      ok(['asc','mc','cusps','isDay'].every(key=>!(key in r.result)) && Object.values(r.result.planets).every(p=>!('house'in p)&&!('speed'in p)&&!('retrograde'in p)), 'Partial remote replay withholds unverified angles, houses, sect and motion');
+      ok(r.result.planets.Venus.longitudeVerification==='inherited-unverified' && eq(r.sourceRecord.verification,record.verification),'Unchecked positions retain their explicit verification boundary');
+      ok(r.methods.cuspApprox===null && r.methods.actualCuspConvention.includes('Withheld') && r.methods.motionConvention.includes('Withheld'),'Partial replay does not claim verified cusp or speed conventions');
+    }else{
+      ok(eq(r.result,expected),record.key+' replay matches the actual canonical printed-position helper');
+      ok(r.status === 'reconstructed' && r.context.dateISO === null && r.result.date === null && !r.methods.modernEphemerisRecalculated,record.key+' is not relabelled as a modern astronomical cast');
+      ok(r.methods.cuspApprox === true && r.methods.actualCuspConvention.includes('Equal houses') && r.methods.motionConvention.includes('mean daily'),record.key+' retains actual equal-cusp and mean-motion limitations');
+    }
     ok(r.sourceRecord.caveats === record.caveats && r.source === record.sources && r.sourceRecord.completeness === record.completeness,record.key+' retains inherited source discrepancies and completeness label');
   }
   for(const args of [{key:'unknown'}, {key:'../../secret'}, {key:'stolen-fish',spec:{asc:0}}, {key:'stolen-fish',dateISO:input.dateISO}, {key:'stolen-fish',planets:[]}, {key:'stolen-fish',system:'whole'}, {}, null])throws(()=>call('workbench_printed_chart',args),'Printed replay rejects arbitrary rows or undeclared reinterpretation inputs');

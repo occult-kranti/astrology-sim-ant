@@ -1,0 +1,89 @@
+{
+  "kind": "actual-llama-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-2/requests.json",
+    "maxNewTokens": 512,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-2-4b.json",
+    "seed": 20261104,
+    "baseURL": "http://127.0.0.1:8845/v1/",
+    "model": "workbench-qwen3-4b-q4",
+    "temperature": 0.1
+  },
+  "configSHA256": "f9166c9cf1006411f87ccac6f4ea885163ce7e6e40bb64ce9feda5b7891fc5ff",
+  "requestsSHA256": "457fad6ba226531f888ba4384991ad1c713b37f5ff9a6e49770a7a90443ac844",
+  "results": [
+    {
+      "id": "D05",
+      "split": "development",
+      "requestSHA256": "4cc33cac29b8d22128946e127be7a75e02d014d0a7124ec071357965c10d0383",
+      "seconds": 23.764,
+      "text": "{\n  \"answer\": \"The elongation is 124 degrees, and the one-based tithi is 1. The limit of this result is that the tithi calculation uses a half-open interval and does not provide a full muhurta judgment.\",\n  \"citations\": [\n    \"EVAL-D05-S1\"\n  ],\n  \"actions\": [],\n  \"grounding\": [\n    {\n      \"sourceId\": \"EVAL-D05-S1\",\n      \"quote\": \"Tithi = floor(norm360(Moon longitude - Sun longitude)/12) + 1. Use a half-open interval: exactly 24 degrees belongs to tithi 3. This partition does not by itself provide a full muhurthan judgment.\",\n      \"claim\": \"The tithi is calculated using the formula floor(norm360(Moon longitude - Sun longitude)/12) + 1, with a half-open interval where exactly 24 degrees belongs to tithi 3, and the result does not constitute a full muhurta judgment.\"\n    }\n  ]\n}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 235,
+        "prompt_tokens": 654,
+        "total_tokens": 889,
+        "prompt_tokens_details": {
+          "cached_tokens": 5
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D07",
+      "split": "development",
+      "requestSHA256": "e125b906e4892ffc2e90851e34c82ca1507173b536f11a7b3ecc0a46c763a2c2",
+      "seconds": 15.077,
+      "text": "{\n  \"answer\": \"No, you cannot use a civil-calendar widget to decide whether a sunset-based observance has begun, because such a widget only provides civil-midnight boundaries, which differ from sunset-based boundaries. To determine if a sunset-based observance has begun, you need the location, the specific time of sunset, and the relevant community convention—information not provided.\",\n  \"citations\": [\"EVAL-D07-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    {\n      \"sourceId\": \"EVAL-D07-S1\",\n      \"quote\": \"A civil-midnight calendar display and a sunset-based religious day have different boundaries. To evaluate the sunset boundary, use the location, the selected instant and the relevant community convention. Those location and sunset inputs have not been supplied.\",\n      \"claim\": \"A civil-midnight calendar display does not determine whether a sunset-based observance has begun, as it lacks the location, sunset time, and community convention required for such an evaluation.\"\n    }\n  ]\n}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 217,
+        "prompt_tokens": 636,
+        "total_tokens": 853,
+        "prompt_tokens_details": {
+          "cached_tokens": 493
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D09",
+      "split": "development",
+      "requestSHA256": "f9d375bc4a13d471e3c7a574371c5e9706112194f095abd89c434b89a5198f85",
+      "seconds": 12.685,
+      "text": "{\n  \"answer\": \"No, the lottery in Plato’s Myth of Er is not the same as the astrological Lot of Spirit.\",\n  \"citations\": [\"EVAL-D09-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    {\n      \"sourceId\": \"EVAL-D09-S1\",\n      \"quote\": \"In Republic X, the Myth of Er uses drawn lots to establish the order in which lives are chosen. The astrological Lot of Spirit is an angular calculation using the Ascendant, Sun and Moon under a named convention. These are different concepts.\",\n      \"claim\": \"The lottery in Plato’s Myth of Er and the astrological Lot of Spirit are distinct concepts, with the former being a narrative device involving drawn lots and the latter being a technical astrological calculation based on celestial positions.\"\n    }\n  ]\n}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 177,
+        "prompt_tokens": 646,
+        "total_tokens": 823,
+        "prompt_tokens_details": {
+          "cached_tokens": 493
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D10",
+      "split": "development",
+      "requestSHA256": "fa66d71ca9bb77c7f00f41ffd3cf80cce204bd824038c0fa09b3901164b5ac50",
+      "seconds": 14.52,
+      "text": "{\n  \"answer\": \"Cannot determine the exact ascendant or any of the twelve house cusps without a birth time. A birth time is required to calculate the ascendant and house positions, as these are time-sensitive and dependent on the exact moment of birth.\",\n  \"citations\": [\"EVAL-D10-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    {\n      \"sourceId\": \"EVAL-D10-S1\",\n      \"quote\": \"An exact Ascendant and time-sensitive house cusps require an explicit birth instant and observer. No birth time is available in this request. A date-only study must retain the unknown time; choosing noon would be an assumption, not recovered birth data.\",\n      \"claim\": \"The exact ascendant and house cusps cannot be calculated without a birth time, as they are time-sensitive and dependent on the precise moment of birth.\"\n    }\n  ]\n}",
+      "model": "workbench-qwen3-4b-q4",
+      "usage": {
+        "completion_tokens": 189,
+        "prompt_tokens": 648,
+        "total_tokens": 837,
+        "prompt_tokens_details": {
+          "cached_tokens": 492
+        }
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    }
+  ],
+  "scope": "Raw development or heldout responses; judge dimensions separately and retain failures."
+}

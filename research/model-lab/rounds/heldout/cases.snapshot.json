@@ -1,0 +1,531 @@
+[
+  {
+    "id": "H01",
+    "split": "heldout",
+    "traditions": [
+      "egyptian"
+    ],
+    "group": "egyptian-accumulated-period-drift",
+    "question": "Using only the stipulated periods below, after forty civil years how many days earlier or later does the civil anniversary occur than after forty comparison years? Show the arithmetic briefly. Does that difference establish whether a person will have a dangerous day?",
+    "evidence": [
+      {
+        "id": "EVAL-H01-S1",
+        "text": "Arithmetic teaching assumptions: a schematic Egyptian civil year has 365.0000 days; the comparison seasonal year is stipulated here as 365.2422 days. Ignore short-term variation. Compare forty periods from the same initial instant. These are period lengths, not evidence about personal outcomes.",
+        "sourceFile": "Original independent evaluation fixture",
+        "sourceLocator": "Explicit assumptions and arithmetic; no claim of a complete traditional reading",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "direction",
+          "description": "The shorter civil sequence reaches its anniversary earlier, not later",
+          "anyOf": [
+            "(?:civil|anniversary)[^.]{0,100}earlier",
+            "earlier[^.]{0,100}(?:civil|anniversary)"
+          ]
+        },
+        {
+          "id": "scope",
+          "description": "A period difference does not establish personal danger",
+          "anyOf": [
+            "(?:not|cannot|no)[^.]{0,100}(?:danger|personal|outcome|predict)"
+          ]
+        }
+      ],
+      "numeric": [
+        {
+          "id": "difference-days",
+          "value": 9.688,
+          "tolerance": 0.02,
+          "unit": "days",
+          "anyOf": [
+            "9\\.688\\b",
+            "9\\.69\\b",
+            "9\\.7\\s*days"
+          ]
+        }
+      ],
+      "requiredCitationIds": [
+        "EVAL-H01-S1"
+      ],
+      "forbiddenClaims": [
+        {
+          "id": "danger-certainty",
+          "description": "Must not infer danger from calendar drift",
+          "patterns": [
+            "(?:guarantees|proves|establishes)\\s+(?:a\\s+)?dangerous\\s+day"
+          ]
+        }
+      ],
+      "abstention": "scope-limited",
+      "scenarioCriteria": [
+        "Independently calculate 40*(365.2422-365)=9.688 days.",
+        "Both sequences start at one instant; shorter civil sequence is earlier.",
+        "Do not turn accumulated period drift into a personal prediction."
+      ]
+    }
+  },
+  {
+    "id": "H02",
+    "split": "heldout",
+    "traditions": [
+      "mayan"
+    ],
+    "group": "mayan-correlation-constant-sensitivity",
+    "question": "Two databases encode the same Long Count 9.12.11.5.18. Database A uses correlation 584283 and B uses 584285. Using the supplied rule, give each integer JDN and the difference. Should a comparison dashboard call the two civil-day outputs an arithmetic contradiction?",
+    "evidence": [
+      {
+        "id": "EVAL-H02-S1",
+        "text": "For this arithmetic fixture, Long Count day total D=144000*baktun+7200*katun+360*tun+20*uinal+kin. Integer JDN=D+C for the explicitly selected correlation C. Two different C values are different correlation conventions; compare them with their constants visible. No Gregorian conversion or ritual boundary is stipulated.",
+        "sourceFile": "Original independent evaluation fixture",
+        "sourceLocator": "Explicit assumptions and arithmetic; no claim of a complete traditional reading",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "convention",
+          "description": "Different correlations explain the difference rather than inconsistent arithmetic",
+          "anyOf": [
+            "(?:different|selected|distinct)[^.]{0,100}(?:correlation|convention)",
+            "(?:not|no)[^.]{0,80}(?:contradiction|arithmetic error)"
+          ]
+        }
+      ],
+      "numeric": [
+        {
+          "id": "jdn-a",
+          "value": 1970761,
+          "tolerance": 0,
+          "unit": "integer JDN",
+          "anyOf": [
+            "1,?970,?761\\b"
+          ]
+        },
+        {
+          "id": "jdn-b",
+          "value": 1970763,
+          "tolerance": 0,
+          "unit": "integer JDN",
+          "anyOf": [
+            "1,?970,?763\\b"
+          ]
+        },
+        {
+          "id": "delta",
+          "value": 2,
+          "tolerance": 0,
+          "unit": "days",
+          "anyOf": [
+            "\\b2\\s*(?:days|day)",
+            "\\btwo\\s+days"
+          ]
+        }
+      ],
+      "requiredCitationIds": [
+        "EVAL-H02-S1"
+      ],
+      "forbiddenClaims": [],
+      "abstention": "scope-limited",
+      "scenarioCriteria": [
+        "Independently total 1386478 days, then add each constant.",
+        "B is two days later than A; label the selected conventions.",
+        "Do not supply an unrequested ritual-boundary or apocalypse conclusion."
+      ]
+    }
+  },
+  {
+    "id": "H03",
+    "split": "heldout",
+    "traditions": [
+      "lilly"
+    ],
+    "group": "historical-calendar-century-leap-validation",
+    "question": "A historical-study import says 1900-02-29 but leaves its Julian/Gregorian calendar field blank. Is this date valid in each calendar under the supplied rules? Should the importer silently normalize it to March 1 or ask for its calendar?",
+    "evidence": [
+      {
+        "id": "EVAL-H03-S1",
+        "text": "Calendar validity rules for this fixture: Julian years divisible by 4 are leap years. Gregorian years divisible by 4 are leap years except century years not divisible by 400. A date label must retain its calendar convention; a failed validity check is not permission to silently change the source date. This concerns civil date validation, not a horoscope.",
+        "sourceFile": "Original independent evaluation fixture",
+        "sourceLocator": "Explicit assumptions and arithmetic; no claim of a complete traditional reading",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "julian-valid",
+          "description": "1900 is a Julian leap year and February 29 is valid",
+          "anyOf": [
+            "Julian[^.]{0,100}(?:valid|leap)",
+            "valid[^.]{0,80}Julian"
+          ]
+        },
+        {
+          "id": "gregorian-invalid",
+          "description": "1900 is not Gregorian leap; February 29 is invalid",
+          "anyOf": [
+            "Gregorian[^.]{0,100}(?:invalid|not a leap|not leap|common year)",
+            "invalid[^.]{0,80}Gregorian"
+          ]
+        },
+        {
+          "id": "ask-calendar",
+          "description": "Ask for calendar convention, do not silently normalize",
+          "anyOf": [
+            "(?:ask|clarif|specif|require)[^.]{0,100}calendar",
+            "(?:not|never)[^.]{0,80}(?:silently|normaliz)"
+          ]
+        }
+      ],
+      "numeric": [],
+      "requiredCitationIds": [
+        "EVAL-H03-S1"
+      ],
+      "forbiddenClaims": [
+        {
+          "id": "silent-repair",
+          "description": "Silent date replacement would erase source precision",
+          "patterns": [
+            "(?:should|must)\\s+silently\\s+normali[sz]e"
+          ]
+        }
+      ],
+      "abstention": "missing-input",
+      "scenarioCriteria": [
+        "Gregorian century exception is applied, not just divisibility by four.",
+        "Julian and Gregorian validity are reported separately.",
+        "No single instant or chart is inferred from ambiguous civil labels."
+      ]
+    }
+  },
+  {
+    "id": "H04",
+    "split": "heldout",
+    "traditions": [
+      "vedic"
+    ],
+    "group": "nakshatra-pada-boundary-precision",
+    "question": "In the stated sidereal frame, point A is 39 degrees 59 minutes 59 seconds and point B is exactly 40 degrees 00 minutes 00 seconds. Under the supplied half-open sectors, give each point's nakshatra name/index and pada. Do not round A to B before classifying.",
+    "evidence": [
+      {
+        "id": "EVAL-H04-S1",
+        "text": "Independent partition fixture: start at 0 degrees. Each nakshatra occupies 13 degrees 20 minutes and has four padas of 3 degrees 20 minutes. Intervals include their left boundary and exclude their right boundary. Ordered names: 1 Ashvini, 2 Bharani, 3 Krittika, 4 Rohini. These are equal angular sectors in a stated sidereal coordinate frame; classifying a boundary is not a personal event prediction.",
+        "sourceFile": "Original independent evaluation fixture",
+        "sourceLocator": "Explicit assumptions and arithmetic; no claim of a complete traditional reading",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "a-krittika",
+          "description": "Point A remains in Krittika",
+          "anyOf": [
+            "A[^.]{0,120}Krittika",
+            "Krittika[^.]{0,100}(?:point\\s*)?A"
+          ]
+        },
+        {
+          "id": "b-rohini",
+          "description": "Point B starts Rohini",
+          "anyOf": [
+            "B[^.]{0,120}Rohini",
+            "Rohini[^.]{0,100}(?:point\\s*)?B"
+          ]
+        }
+      ],
+      "numeric": [
+        {
+          "id": "a-pada",
+          "value": 4,
+          "tolerance": 0,
+          "unit": "pada",
+          "anyOf": [
+            "A[^\\n]{0,160}pada\\s*(?:4|four|IV)",
+            "Krittika[^\\n]{0,120}pada\\s*(?:4|four|IV)"
+          ]
+        },
+        {
+          "id": "b-pada",
+          "value": 1,
+          "tolerance": 0,
+          "unit": "pada",
+          "anyOf": [
+            "B[^\\n]{0,160}pada\\s*(?:1|one|I)\\b",
+            "Rohini[^\\n]{0,120}pada\\s*(?:1|one|I)\\b"
+          ]
+        }
+      ],
+      "requiredCitationIds": [
+        "EVAL-H04-S1"
+      ],
+      "forbiddenClaims": [],
+      "abstention": "scope-limited",
+      "scenarioCriteria": [
+        "A is index 3, pada 4; B is index 4, pada 1.",
+        "Do not pre-round A across the exact boundary.",
+        "Angular sector identity does not establish a life outcome."
+      ]
+    }
+  },
+  {
+    "id": "H05",
+    "split": "heldout",
+    "traditions": [
+      "chinese"
+    ],
+    "group": "intercalary-month-identity-preservation",
+    "question": "A calendar import has record A={year:2023, month:2, day:5, isLeapMonth:false} and B={year:2023, month:2, day:5, isLeapMonth:true}. Without a Gregorian conversion table, can the dashboard merge them as the same date? Describe the minimum identity fields it must preserve and what remains unknown.",
+    "evidence": [
+      {
+        "id": "EVAL-H05-S1",
+        "text": "Data-model fixture for a Chinese lunisolar calendar: an intercalary month repeats a month number while remaining a different month. These two records are stipulated to be valid entries in a year with an intercalary second month. The leap-month marker distinguishes that repeated month from the ordinary month. This fixture supplies no Gregorian conversion table, day boundary or horoscope.",
+        "sourceFile": "Original independent evaluation fixture",
+        "sourceLocator": "Explicit assumptions and arithmetic; no claim of a complete traditional reading",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "distinct",
+          "description": "Records are distinct and must not be merged",
+          "anyOf": [
+            "(?:distinct|different)[^.]{0,90}(?:date|month|record)",
+            "(?:not|cannot|never)[^.]{0,90}merge"
+          ]
+        },
+        {
+          "id": "leap-key",
+          "description": "Identity includes the leap-month flag",
+          "anyOf": [
+            "isLeapMonth",
+            "(?:leap.month|intercalary)[^.]{0,90}(?:flag|marker|identity|key)"
+          ]
+        },
+        {
+          "id": "conversion-limit",
+          "description": "Gregorian dates cannot be invented from this fixture",
+          "anyOf": [
+            "(?:no|not|cannot|unknown|missing)[^.]{0,100}(?:Gregorian|conversion)",
+            "(?:Gregorian|conversion)[^.]{0,100}(?:unknown|not supplied|needed|required)"
+          ]
+        }
+      ],
+      "numeric": [],
+      "requiredCitationIds": [
+        "EVAL-H05-S1"
+      ],
+      "forbiddenClaims": [
+        {
+          "id": "collapse",
+          "description": "Do not erase the intercalary marker",
+          "patterns": [
+            "(?:can|should)\\s+safely\\s+merge"
+          ]
+        }
+      ],
+      "abstention": "missing-input",
+      "scenarioCriteria": [
+        "Preserve calendar identifier, year, month number, day and leap-month flag.",
+        "No concrete Gregorian dates are supplied or invented.",
+        "This is an import identity check, not BaZi or a favorable-date claim."
+      ]
+    }
+  },
+  {
+    "id": "H06",
+    "split": "heldout",
+    "traditions": [
+      "hebrew"
+    ],
+    "group": "hebrew-month-numbering-scheme-ambiguity",
+    "question": "An export contains Hebrew year 5784, month number 7, day 3, but omits which of the supplied numbering schemes it uses. Name the possible months and explain whether a single Gregorian date can honestly be exported yet.",
+    "evidence": [
+      {
+        "id": "EVAL-H06-S1",
+        "text": "Numbering fixture in a leap year: in a Nisan-first scheme, Nisan=1 and Tishri=7. In the supplied Tishri-first civil scheme, Tishri=1, Heshvan=2, Kislev=3, Tevet=4, Shevat=5, Adar I=6 and Adar II=7. The source record does not declare either scheme. This test concerns preserving a naming convention, not assigning a religious observance or a Kabbalistic prediction.",
+        "sourceFile": "Original independent evaluation fixture",
+        "sourceLocator": "Explicit assumptions and arithmetic; no claim of a complete traditional reading",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "nisan-option",
+          "description": "Nisan-first month 7 means Tishri",
+          "anyOf": [
+            "Nisan[^.]{0,100}Tishr",
+            "Tishr[^.]{0,100}Nisan"
+          ]
+        },
+        {
+          "id": "civil-option",
+          "description": "Tishri-first month 7 means Adar II",
+          "anyOf": [
+            "Adar\\s*(?:II|2|two|second)"
+          ]
+        },
+        {
+          "id": "ambiguity",
+          "description": "Require the numbering scheme before a unique conversion",
+          "anyOf": [
+            "(?:ask|clarif|specif|missing|unknown|ambig)[^.]{0,100}(?:scheme|number|convention)",
+            "(?:scheme|convention)[^.]{0,100}(?:required|needed|missing|unknown)"
+          ]
+        }
+      ],
+      "numeric": [],
+      "requiredCitationIds": [
+        "EVAL-H06-S1"
+      ],
+      "forbiddenClaims": [],
+      "abstention": "missing-input",
+      "scenarioCriteria": [
+        "Report Tishri and Adar II as alternatives under the two explicit schemes.",
+        "Do not choose one convention silently.",
+        "Do not invent a unique Gregorian date or infer a religious prescription."
+      ]
+    }
+  },
+  {
+    "id": "H07",
+    "split": "heldout",
+    "traditions": [
+      "dee"
+    ],
+    "group": "dee-source-bound-glyph-components",
+    "question": "A draft diagram is labelled a faithful reconstruction of the supplied Dee passage, but it replaces the lunar semicircle with a triangle and the right-angled cross with a pentagram. Which components should the renderer retain to support that label, and what claims would the passage not establish?",
+    "evidence": [
+      {
+        "id": "EVAL-H07-S1",
+        "text": "Selected-source paraphrase, not a full-book transcription: in the body of John Dee, Monas Hieroglyphica, Hamilton-Jones English translation (1947), Theorems III–VI, the solar circle includes a visible central point; the lunar semicircle is placed above and combined with the solar circle; the construction is supported by a right-angled cross. This is historical symbolic geometry. These selected passages do not specify a modern date-scoring algorithm or verify personal predictions. The source page contents list has a duplicated VI label; use the body theorem headings.",
+        "sourceFile": "https://esotericarchives.com/dee/monad.htm",
+        "sourceLocator": "Body Theorems III–VI; Hamilton-Jones 1947 English translation of Monas Hieroglyphica (1564), selected-source paraphrase",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "solar",
+          "description": "Retain solar circle and central point",
+          "anyOf": [
+            "(?:solar|sun)[^.]{0,100}circle",
+            "(?:central|centre|center)[^.]{0,40}point"
+          ]
+        },
+        {
+          "id": "lunar",
+          "description": "Use the lunar semicircle rather than the invented triangle",
+          "anyOf": [
+            "(?:lunar|moon)[^.]{0,60}semicircle",
+            "semicircle[^.]{0,60}(?:lunar|moon)"
+          ]
+        },
+        {
+          "id": "cross",
+          "description": "Use the right-angled cross rather than invented pentagram",
+          "anyOf": [
+            "right.angled\\s+cross"
+          ]
+        },
+        {
+          "id": "scope",
+          "description": "Do not claim this establishes prediction or a date algorithm",
+          "anyOf": [
+            "(?:not|no|cannot)[^.]{0,100}(?:predict|date.scor|date.algorithm|personal)"
+          ]
+        }
+      ],
+      "numeric": [],
+      "requiredCitationIds": [
+        "EVAL-H07-S1"
+      ],
+      "forbiddenClaims": [],
+      "abstention": "scope-limited",
+      "scenarioCriteria": [
+        "The claim of faithful reconstruction is limited to selected textual components.",
+        "Aesthetic variants may be labelled adaptations, not source-exact reconstructions.",
+        "Do not claim the complete book was read or that geometry proves personal outcomes."
+      ]
+    }
+  },
+  {
+    "id": "H08",
+    "split": "heldout",
+    "traditions": [
+      "jung",
+      "plato"
+    ],
+    "group": "reader-authored-reflection-quotation-provenance",
+    "question": "I wrote the two sentences in the supplied note myself. For my comparison page, can I label the first an authentic quotation by Jung and the second an authentic quotation by Plato because they sound similar to those authors? Give a transparent alternative label and say whether these sentences establish a personal diagnosis or destiny.",
+    "evidence": [
+      {
+        "id": "EVAL-H08-S1",
+        "text": "Provenance fixture: a present-day reader authored these sentences for this exercise, not as transcriptions: (A) \"My chart contains a symbol, so I must be the personality it names.\" (B) \"My life has a story, so my choices can no longer change it.\" The provided record contains no passage locator in Jung or Plato and no evidence of quotation authenticity. Reader reflection, attributed primary quotation and measured psychological evidence are different evidence types.",
+        "sourceFile": "Original independent evaluation fixture",
+        "sourceLocator": "Explicit assumptions and arithmetic; no claim of a complete traditional reading",
+        "readingDepth": "original-evaluation-fixture"
+      }
+    ],
+    "context": null,
+    "expected": {
+      "facts": [
+        {
+          "id": "authorship",
+          "description": "Preserve reader authorship rather than authenticate by resemblance",
+          "anyOf": [
+            "(?:reader|user|your|you)[^.]{0,100}(?:authored|wrote|own|reflection|original)",
+            "(?:not|cannot)[^.]{0,100}(?:authentic|quotation|attribute)"
+          ]
+        },
+        {
+          "id": "transparent-label",
+          "description": "Offer a modern reflection/adaptation label",
+          "anyOf": [
+            "(?:modern|reader|personal|original)[^.]{0,80}(?:reflection|adaptation|sentence|writing)"
+          ]
+        },
+        {
+          "id": "scope",
+          "description": "Do not infer diagnosis or fixed destiny",
+          "anyOf": [
+            "(?:not|no|cannot)[^.]{0,100}(?:diagnos|destiny|determin|psycholog)"
+          ]
+        }
+      ],
+      "numeric": [],
+      "requiredCitationIds": [
+        "EVAL-H08-S1"
+      ],
+      "forbiddenClaims": [
+        {
+          "id": "false-authentication",
+          "description": "Do not authenticate a quotation from stylistic resemblance",
+          "patterns": [
+            "(?:are|is)\\s+(?:an?\\s+)?authentic\\s+quotation\\s+(?:by|from)\\s+(?:Jung|Plato)"
+          ]
+        }
+      ],
+      "abstention": "scope-limited",
+      "scenarioCriteria": [
+        "A resemblance is not an attribution; the supplied authorship is modern reader text.",
+        "Offer a clear reflection/adaptation label without invented book/page citations.",
+        "Do not turn symbolic phrases into diagnosis, destiny or a numerical calendar."
+      ]
+    }
+  }
+]

@@ -1,0 +1,65 @@
+{
+  "kind": "actual-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-2/requests.json",
+    "maxNewTokens": 512,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/round-2-adapter.json",
+    "seed": 20261104,
+    "base": "/workspace/.cache/workbench-model-lab/base",
+    "maxInputTokens": 4096,
+    "adapter": "/workspace/.cache/workbench-model-lab/checkpoints/round-2"
+  },
+  "configSHA256": "1b1872a79eda39a0ede9e25bcc23d42c91d8575a18dab7cadf4bfa4f06bf1e93",
+  "requestsSHA256": "457fad6ba226531f888ba4384991ad1c713b37f5ff9a6e49770a7a90443ac844",
+  "torch": "2.6.0+cpu",
+  "precision": "bfloat16",
+  "device": "cpu",
+  "results": [
+    {
+      "id": "D05",
+      "split": "development",
+      "promptSHA256": "7b1c835d1aaed7b3be8041d9491804a27ab71dadaaa244ca6ae0a147a2e0abce",
+      "requestSHA256": "f4b3c0e6d59370c935d17b7551b87b50c0f3b113aab039acc1b763e6b6be36ef",
+      "inputTokens": 658,
+      "outputTokens": 109,
+      "seconds": 11.204,
+      "text": "{\"answer\":\"This calculation provides the tithi, but does not provide a full muhurta judgment.\",\"citations\":[\"EVAL-D05-S1\"],\"actions\":[\"\"],\"grounding\":[\"[EVAL-D05-S1]\",\"Tithi = floor(norm360(Moon longitude - Sun longitude)/12) + 1. Use a half-open interval: exactly 24 degrees belongs to tithi 3. This partition does not by itself provide a full muhurta judgment.\"]}",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D07",
+      "split": "development",
+      "promptSHA256": "9c2bc14c99dda5282e09024cc4d91df0ec3056c2bce692861a885a6b14bc1262",
+      "requestSHA256": "ba9649f6d1e7d2db018e75bbac5317bebbad494150ab2648e9429b16354fec68",
+      "inputTokens": 640,
+      "outputTokens": 44,
+      "seconds": 5.313,
+      "text": "{\"answer\":\"No\",\"citations\":[\"EVAL-D07-S1\"],\"actions\":[\"\"],\"grounding\":[\"[EVAL-D07-S1]\"],\"sourceId\":\"EVAL-D07-S1\"}",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D09",
+      "split": "development",
+      "promptSHA256": "ace70b70661b1a409cedfb7d026661b3c5e7300d7d1f2aa3981d1a9cf49c711c",
+      "requestSHA256": "54c5a6667c2ba725b10cc93c795e79ee7a3824cabbfd9cc4cab9cb2d2d61cea0",
+      "inputTokens": 650,
+      "outputTokens": 10,
+      "seconds": 2.789,
+      "text": "[\"EVAL-D09-S1\"]",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "D10",
+      "split": "development",
+      "promptSHA256": "47101c11916d6cf28f00768af75d52ea21193426c703cec27734f3869cdd9851",
+      "requestSHA256": "b1e6aef1a99a418ef80b762d832b11594a1bd57fde7c78234d48e8f4508e7be0",
+      "inputTokens": 652,
+      "outputTokens": 161,
+      "seconds": 14.832,
+      "text": "{\"ascendant\":\"A\",\"time\":\"12:00 PM\",\"houses\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\"],\"citations\":[\"EVAL-D10-S1\"],\"actions\":[\"\"],\"grounding\":[\"[EVAL-D10-S1]\"],\"answer\":\"A; 12:00 PM; 12:00 PM; 12:00 PM; 12:00 PM; 12:00 PM; 12:00 PM; 12:00 PM; 12:00 PM; 12:00 PM; 12:00 PM; 12:00 PM\"]}",
+      "maxNewTokensReached": false
+    }
+  ],
+  "maxRSSKiB": 2415924,
+  "scope": "Raw sampled outputs; no automated score establishes semantic accuracy."
+}

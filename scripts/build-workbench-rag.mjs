@@ -47,16 +47,17 @@ function sections(text) {
   if (text) result.push(text);
   return result;
 }
-function add({file,title,locator,text,category='sources',readingDepth='reference-note',url=file,tags=[],rightsScope=sourceRights,sourceReadingDepth}) {
+function add({file,title,locator,text,category='sources',readingDepth='reference-note',url=file,tags=[],rightsScope=sourceRights,sourceReadingDepth,sourceUnit}) {
   const clean=plain(text);
   if(clean.length < 35) return;
   for(const [i,part] of sections(clean).entries()) {
     const where=`${locator}${i ? ` · continuation ${i+1}` : ''}`;
     const id=`WRAG-${sha(`${file}\n${where}\n${part}`).slice(0,16)}`;
     if(chunks.some(c=>c.id===id)) continue;
-    chunks.push({id,sourceId:`WRS-${sha(file).slice(0,16)}`,title:plain(title).slice(0,220),text:part,category,
+    const sourceKey=sourceUnit ? `${file}\n${sourceUnit.exportName}\n${sourceUnit.recordId}` : file;
+    chunks.push({id,sourceId:`WRS-${sha(sourceKey).slice(0,16)}`,...(sourceUnit?{sourceUnit}:{}),title:plain(title).slice(0,220),text:part,category,
       tags:[...new Set(tags.map(x=>plain(x)).filter(Boolean))].slice(0,16),file,locator:where,url,
-      readingDepth,rightsScope,sourceReadingDepth:sourceReadingDepth || (readingDepth==='full-text' ? 'Text of this project document only; referenced books and articles were not ingested in full.' : readingDepth==='metadata' ? 'Catalogue or tool metadata only; not the full referenced source.' : 'Existing project explanation or source note; not a new reading of the referenced work.'),
+      readingDepth,rightsScope,sourceReadingDepth:(sourceReadingDepth ? `Source-review scope: ${sourceReadingDepth}` : null) || (readingDepth==='full-text' ? 'Text of this project document only; referenced books and articles were not ingested in full.' : readingDepth==='metadata' ? 'Catalogue or tool metadata only; not the full referenced source.' : 'Existing project explanation or source note; not a new reading of the referenced work.'),
       textSHA256:sha(part),sourceFileSHA256:files.get(file).sha256});
     files.get(file).chunks++;
   }
@@ -96,7 +97,7 @@ const docFiles=[
  '2026-10-horizon-ranking.md','2026-10-newton-chronology-methods.md','2026-10-newton-sources.md',
  '2026-10-sky-ai-rag.md','2026-10-sky-sources.md','2026-10-studio-sources-standards.md',
  '2026-10-world-events-sources.md','2026-11-chart-console-offline.md','2026-11-desktop-workbench.md',
- '2026-11-orbital-space-methods.md',
+ '2026-11-orbital-space-methods.md','2026-11-reading-lab-sources.md',
 ].map(f=>`docs/${f}`).concat('mcp/README.md');
 for(const file of docFiles) {
   const raw=read(file).replace(/```[\s\S]*?```/g,'\n[Code example omitted from prose retrieval; inspect the linked document.]\n');
@@ -116,6 +117,7 @@ const modules={
  'jung-astrology':['JUNG_PLANET_ARCHETYPES','ELEMENT_FUNCTIONS','ANIMA_ANIMUS_NOTE','CONIUNCTIO_NOTE','JUNG_EXPERIMENT','AEON','JUNG_TIMELINE'],
  'chronology':['CHRONOLOGY_ERAS','CHRONOLOGY_ENTRIES'],
  'study-lenses':['STUDY_LENSES'],
+ 'reading-cases':['READING_CASES','READING_SOURCES','READING_METHOD_NOTES'],
  'mcp-tool-contracts':['MCP_TOOL_CONTRACTS'],
  'observatory-standards':['OBSERVATORY_STANDARDS'],
  'birth-reading-sources':['BIRTH_READING_SOURCES','BIRTH_COMPARISON_PRINCIPLES','BIRTH_METHOD_COMPARISONS','BIRTH_LIFE_DOMAINS'],
@@ -150,8 +152,20 @@ function record(file,exportName,value,path=exportName,parentTitle='') {
   if(dictionary && Object.values(scalar).every(v=>v&&typeof v==='object')) {
     for(const [k,v] of Object.entries(scalar))record(file,exportName,v,`${path}.${k}`,`${parentTitle} ${k}`.trim());
   } else {
+    // A bundled data file is not one authored passage. Keep continuation chunks
+    // together while allowing distinct cases, references and methods to compete
+    // under the existing diversity cap. These units are not independent evidence.
+    const readingUnitKinds={READING_CASES:'case',READING_SOURCES:'reference',READING_METHOD_NOTES:'method'};
+    const sourceUnit=file==='assets/js/core/data/reading-cases.js'&&readingUnitKinds[exportName] ? {
+      kind:readingUnitKinds[exportName],exportName,recordId:value.id||path,
+      bibliographicSourceIds:exportName==='READING_SOURCES'?[value.id]:[...(value.sourceIds||[])],
+      scope:'Retrieval grouping only; shared bibliography does not imply independent corroboration.',
+    }:undefined;
+    const sourceReadingDepth=sourceUnit?.kind==='case'
+      ? `Project worked example combining cited source facts with modern conditional exercises; scenarios/questions/actions are project-authored, not historical quotations or validated predictions. Source IDs: ${sourceUnit.bibliographicSourceIds.join(', ')}.`
+      : typeof(value.readingDepth||value.readingStatus)==='string'?(value.readingDepth||value.readingStatus):undefined;
     add({file,title:`${parentTitle ? `${parentTitle} · ` : ''}${title}`,locator:path,text:strings(scalar).join(' '),category:categoryFor(file),tags:[exportName,value.id,value.domain,value.practice,value.cat].filter(Boolean),readingDepth:exportName==='MCP_TOOL_CONTRACTS'?'metadata':'reference-note',url: typeof value.url==='string' && /^(https?:|pages\/|docs\/)/.test(value.url)?value.url:file,
-      rightsScope:typeof value.rights==='string'?value.rights:sourceRights,sourceReadingDepth:typeof(value.readingDepth||value.readingStatus)==='string'?(value.readingDepth||value.readingStatus):undefined});
+      rightsScope:typeof value.rights==='string'?value.rights:sourceRights,sourceReadingDepth,sourceUnit});
   }
   for(const key of nested)if(value[key])record(file,exportName,value[key],`${path}.${key}`,title);
 }
@@ -173,12 +187,13 @@ const coverage={schemaVersion:1,scope:'Explicit public-repository allowlist; exi
  readingDepth:Object.fromEntries(['full-text','reference-note','metadata'].map(d=>[d,chunks.filter(x=>x.readingDepth===d).length])),
  definition:{'full-text':'Project-document prose only, not full underlying books; code blocks omitted.','reference-note':'Existing original explanation, selected-source paraphrase or bibliographic/book study note.','metadata':'Tool/catalogue metadata; not the referenced source text.'},
  excluded:['Private chart libraries, prompts, birth data and reading reports','All files outside this repository','Downloaded third-party full books and external web pages','Evidence, telemetry, test artifacts, credentials and node_modules','Raw application code, vendored libraries and generated numerical datasets','Full scripture translations: only existing metadata and original study notes are indexed in this corpus'],
- inventories:{pageCount:pageFiles.length,documentationCount:docFiles.length,dataModuleCount:Object.keys(modules).length+1,sourceFileCount:files.size,chunkCount:chunks.length},
+ inventories:{pageCount:pageFiles.length,documentationCount:docFiles.length,dataModuleCount:Object.keys(modules).length+1,sourceFileCount:files.size,chunkCount:chunks.length,retrievalUnitCount:new Set(chunks.map(c=>c.sourceId)).size},
+ retrievalGrouping:'Reading Lab cases, source records and method notes have separate retrieval units; continuation chunks share their unit. Other files retain file-level grouping. Units sharing bibliography are not independent evidence.',
  sourceFiles:[...files.values()].sort((a,b)=>a.file.localeCompare(b.file)),
  limitations:['Indexing a repository note does not newly verify its source or license every referenced edition.','Bibliographic coverage is not proof that a whole book was read.','The browser corpus is lexical reference retrieval; no embeddings or fine-tuning are claimed.','The public corpus never supplies personal chart facts. Chart readings require separately computed, explicitly supplied chart context.']};
-const manifest={schemaVersion:1,kind:'workbench-public-reference-corpus',generator:'scripts/build-workbench-rag.mjs',chunkCount:chunks.length,sourceCount:files.size,categories,
+const manifest={schemaVersion:1,kind:'workbench-public-reference-corpus',generator:'scripts/build-workbench-rag.mjs',chunkCount:chunks.length,sourceCount:files.size,retrievalUnitCount:coverage.inventories.retrievalUnitCount,categories,
  corpusSHA256:sha(jsonl),coverageSHA256:sha(JSON.stringify(coverage)),sourceGraphSHA256:sha([...files.values()].sort((a,b)=>a.file.localeCompare(b.file)).map(x=>`${x.file}\t${x.sha256}`).join('\n')),
- maxChunkCharacters:MAX_TEXT,scope:coverage.scope,readingDepth:coverage.readingDepth,trainingPerformed:false,externalBooksDownloaded:false,privateDataIncluded:false};
+ maxChunkCharacters:MAX_TEXT,scope:coverage.scope,readingDepth:coverage.readingDepth,trainingPerformed:false,trainingScope:'This retrieval-corpus build performs no training. Separately documented experimental adapters use original, licensed training fixtures; their weights and evaluation sets are not indexed here.',externalBooksDownloaded:false,privateDataIncluded:false};
 const js=`// Generated by scripts/build-workbench-rag.mjs. Do not hand edit.\n// Public reference notes and metadata, not full books or training data.\nexport const WORKBENCH_RAG_MANIFEST = Object.freeze(${JSON.stringify(manifest)});\nexport const WORKBENCH_RAG_CHUNKS = Object.freeze(${JSON.stringify(chunks)}.map(Object.freeze));\n`;
 if(Buffer.byteLength(js)>5*1024*1024)throw new Error(`Corpus exceeds 5MiB: ${Buffer.byteLength(js)}`);
 const outputs=new Map([['assets/js/core/data/workbench-rag-corpus.js',js],['research/workbench-rag/chunks.jsonl',jsonl],['research/workbench-rag/manifest.json',JSON.stringify({...manifest,browserCorpusBytes:Buffer.byteLength(js)},null,2)+'\n'],['research/workbench-rag/coverage.json',JSON.stringify(coverage,null,2)+'\n']]);

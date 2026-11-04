@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "a024d46320be63bcf3cff4b604ebd82835561971",
+  "gates": {
+    "audit_html": 137,
+    "audit_js": 349,
+    "audit_problems": 0,
+    "parsed": true,
+    "engine_test_checks": 749,
+    "engine_test_fails": 0,
+    "browser_pages": 137,
+    "browser_errors": 0,
+    "drive_warnings": 2
+  },
+  "files": [
+    {
+      "kind": "audit",
+      "path": "docs/evidence/reading-model-release/audit.log",
+      "sha256": "0d326fbd7e3116ad367a145da3004012ac842fca96b159db0ce750d1e2011355"
+    },
+    {
+      "kind": "engine",
+      "path": "docs/evidence/reading-model-release/engine.log",
+      "sha256": "53773ead48e3a8525b883f9808c40267d7d1b2e454bee6187021a7d51c288251"
+    },
+    {
+      "kind": "browser",
+      "path": "docs/evidence/reading-model-release/browser.log",
+      "sha256": "07bfe244de52eae75c30a0f45de2821d23e6e3172c019e924c743ad90068a926"
+    }
+  ],
+  "note": "Complete executed gate stdout, not prospective counts. Two inherited UI3 descriptor warnings remain. Separate frozen Reading Lab browser receipt supplies185 focused checks."
+}

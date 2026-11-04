@@ -1,14 +1,209 @@
 {
   "schemaVersion": 1,
   "kind": "tool-coverage",
-  "capabilities": 100,
-  "mcpTools": 81,
-  "capabilitiesWithNamedAdapters": 81,
+  "capabilities": 101,
+  "mcpTools": 83,
+  "capabilitiesWithNamedAdapters": 82,
   "guideOnlyCapabilities": 19,
-  "localGuideRoutes": 95,
+  "localGuideRoutes": 96,
   "hostedMCP": "Not established by local source coverage; verify tools/list on the deployed revision.",
   "note": "A named adapter can expose a documented subset. Output paths and scope distinguish it from the full local page or every function option. Source validation and numerical consistency are separate.",
   "rows": [
+    {
+      "id": "reading-lab",
+      "title": "Comparative reading and public example laboratory",
+      "pages": [
+        "pages/reading-lab.html"
+      ],
+      "localFunctionInputs": [
+        {
+          "name": "input",
+          "type": "object",
+          "required": true,
+          "desc": "Strict union of dateISO with optional explicit clock, or instantISO; IANA timeZone and selected frameworks/purpose. Coordinates only for a declared moment. Main range1900–2100; isolated Maya date-only conversion has its separate documented proleptic range."
+        }
+      ],
+      "inputContractNote": "Local engine function arguments are not MCP call arguments. Use the exact schema for each named MCP tool; adapters may recompute charts and provide curated datasets instead of accepting them.",
+      "mcpContracts": [
+        {
+          "name": "workbench_reading_lab",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "inputs": {
+                "type": "object",
+                "properties": {
+                  "dateISO": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 13
+                  },
+                  "instantISO": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 40
+                  },
+                  "time": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 8
+                  },
+                  "timeZone": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "lat": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                  },
+                  "lon": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  },
+                  "disambiguation": {
+                    "type": "string",
+                    "enum": [
+                      "reject",
+                      "earlier",
+                      "later"
+                    ]
+                  },
+                  "system": {
+                    "type": "string",
+                    "enum": [
+                      "regiomontanus",
+                      "placidus",
+                      "whole",
+                      "equal"
+                    ]
+                  },
+                  "frameworks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "egyptian",
+                        "mayan",
+                        "dee",
+                        "lilly",
+                        "vedic",
+                        "chinese",
+                        "hebrew",
+                        "jung",
+                        "plato"
+                      ]
+                    },
+                    "minItems": 1,
+                    "maxItems": 9,
+                    "uniqueItems": true
+                  },
+                  "purpose": {
+                    "type": "string",
+                    "enum": [
+                      "study",
+                      "planning",
+                      "work",
+                      "relationships",
+                      "reflection"
+                    ]
+                  }
+                },
+                "required": [
+                  "timeZone"
+                ],
+                "additionalProperties": false
+              },
+              "caseId": {
+                "type": "string",
+                "enum": [
+                  "egyptian-civil-structure",
+                  "mayan-nmai-2012-12-20",
+                  "lilly-cazimi-example",
+                  "lilly-combustion-disagreement",
+                  "christian-easter-2024",
+                  "vedic-rao-tithi-example-2",
+                  "vedic-rao-hora-example",
+                  "chinese-new-year-2024",
+                  "chinese-leap-month-2023",
+                  "hebrew-tishri-2024",
+                  "hebrew-sunset-boundary-2024",
+                  "dee-monas-symbolic-method",
+                  "jung-feeling-valuation",
+                  "jung-individuation-relationship",
+                  "plato-er-choice",
+                  "plato-timaeus-cultivation",
+                  "lilly-dog-printed-figure"
+                ]
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "workbench_reading_examples",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "caseIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "egyptian-civil-structure",
+                    "mayan-nmai-2012-12-20",
+                    "lilly-cazimi-example",
+                    "lilly-combustion-disagreement",
+                    "christian-easter-2024",
+                    "vedic-rao-tithi-example-2",
+                    "vedic-rao-hora-example",
+                    "chinese-new-year-2024",
+                    "chinese-leap-month-2023",
+                    "hebrew-tishri-2024",
+                    "hebrew-sunset-boundary-2024",
+                    "dee-monas-symbolic-method",
+                    "jung-feeling-valuation",
+                    "jung-individuation-relationship",
+                    "plato-er-choice",
+                    "plato-timaeus-cultivation",
+                    "lilly-dog-printed-figure"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 32,
+                "uniqueItems": true
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        }
+      ],
+      "mcpTools": [
+        "workbench_reading_lab",
+        "workbench_reading_examples"
+      ],
+      "outputPaths": [
+        "data.context",
+        "data.frameworks",
+        "data.checks",
+        "data.examples",
+        "data.sources",
+        "data.limits"
+      ],
+      "scope": "Nine source-qualified families, explicit date/moment inputs and registered public examples; calendar arithmetic, partial chart methods and textual reflection stay distinct. No universal outcome score, private records or automatic browser actions.",
+      "browserFunction": null,
+      "source": {
+        "citation": "assets/js/core/data/reading-cases.js; docs/2026-11-reading-lab-sources.md. Source locators, reading depth, rights and unavailable scope are explicit per case.",
+        "book": "Comparative source study",
+        "chapter": "Public examples and conditional applications",
+        "readingStatus": "Inherited capability catalogue; consult the cited method record for passage verification."
+      },
+      "execution": "named-source-adapter"
+    },
     {
       "id": "positions",
       "title": "Cast the figure (positions, angles, houses)",
@@ -3364,7 +3559,7 @@
         "data.sourceRecord",
         "data.methods.cuspApprox"
       ],
-      "scope": "Only four existing WORKED_CHARTS keys; historical reconstruction with record caveats, equal-cusp/mean-motion limits and no invented UTC date.",
+      "scope": "Only four existing WORKED_CHARTS keys; partial source-checked records withhold unresolved angles/houses/motions, while other historical reconstructions retain equal-cusp/mean-motion limits. No invented UTC date or outcome validation.",
       "browserFunction": null,
       "source": {
         "citation": "A study helper; the figures it reads are cited to their source.",

@@ -1,0 +1,138 @@
+{
+  "kind": "actual-llama-cpu-model-generation",
+  "config": {
+    "requestsJSON": "/workspace/astrology-sim-ant/research/model-lab/rounds/heldout/requests.json",
+    "baseURL": "http://127.0.0.1:8846/v1/",
+    "model": "workbench-lab-qwen3-0.6b-lora",
+    "temperature": 0,
+    "maxNewTokens": 512,
+    "seed": 20261104,
+    "output": "/workspace/astrology-sim-ant/research/model-lab/rounds/heldout-adapter.json",
+    "selectedBeforeUnsealing": true
+  },
+  "configSHA256": "10284e579faa709d8f5f18697b27a84d02d585fdd4b5fc148d772be3d424a181",
+  "requestsSHA256": "215831f0aa5163fb4fca7b2352b8529b7507fc14e3f215700b13970babc5a5ad",
+  "results": [
+    {
+      "id": "H01",
+      "split": "heldout",
+      "requestSHA256": "3d164f1b3538265f927419374478d3536cd663b52b02acd3a84f79383a516009",
+      "seconds": 18.339,
+      "text": "```json\n{\n  \"answer\": \"Using the stipulated periods, after forty civil years, the civil anniversary occurs 0.2422 days earlier than after forty comparison years. This difference does not establish whether a person will have a dangerous day, as the source does not provide evidence about personal outcomes.\",\n  \"citations\": [\"EVAL-H01-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-H01-S1\", \"quote\": \"a schematic Egyptian civil year has 365.0000 days; the comparison seasonal year is stipulated here as 365.2422 days.\" },\n    { \"sourceId\": \"EVAL-H01-S1\", \"quote\": \"Ignore short-term variation.\" }\n  ]\n}\n```",
+      "model": "workbench-lab-qwen3-0.6b-lora",
+      "usage": {
+        "prompt_tokens": 875,
+        "completion_tokens": 176,
+        "total_tokens": 1051
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H02",
+      "split": "heldout",
+      "requestSHA256": "3bb2a82de62dd5c1e9f0dc52853bd32f80c55154b109a0f8afd668103aec8aee",
+      "seconds": 25.867,
+      "text": "```json\n{\n  \"answer\": \"The two databases encode the same Long Count 9.12.11.5.18. Database A uses correlation 584283 and B uses 584285. Using the supplied rule, JDN = D + C for the explicitly selected correlation C. The difference between the two C values is 584285 - 584283 = 2. The comparison dashboard calls the two civil-day outputs an arithmetic contradiction. No personal chart or reading inputs were disclosed.\",\n  \"citations\": [\"EVAL-H02-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-H02-S1\", \"quote\": \"For this arithmetic fixture, Long Count day total D=144000*baktun+7200*katun+360*tun+20*uinal+kin. Integer JDN=D+C for the explicitly selected correlation C.\" },\n    { \"sourceId\": \"EVAL-H02-S1\", \"quote\": \"Two different C values are different correlation conventions; compare them with their constants visible.\" }\n  ]\n}\n```",
+      "model": "workbench-lab-qwen3-0.6b-lora",
+      "usage": {
+        "prompt_tokens": 913,
+        "completion_tokens": 260,
+        "total_tokens": 1173
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H03",
+      "split": "heldout",
+      "requestSHA256": "89e0a60ace29ae1866c4ce1562e0331aa4df1a56a0106c610c6aa6b67ecb18e3",
+      "seconds": 17.654,
+      "text": "```json\n{\n  \"answer\": \"The date 1900-02-29 is valid in the Julian calendar, as it is a leap year. However, it is not valid in the Gregorian calendar. The importer should not silently normalize the date to March 1, as this would violate the rules. The source does not provide evidence for the calendar convention, so the answer is based on the rules provided.\",\n  \"citations\": [\"EVAL-H03-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-H03-S1\", \"quote\": \"This concerns civil date validation, not a horoscope.\" },\n    { \"sourceId\": \"EVAL-H03-S1\", \"quote\": \"A date label must retain its calendar convention; a failed validity check is not permission to silently change the source date.\" }\n  ]\n}\n```",
+      "model": "workbench-lab-qwen3-0.6b-lora",
+      "usage": {
+        "prompt_tokens": 889,
+        "completion_tokens": 193,
+        "total_tokens": 1082
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H04",
+      "split": "heldout",
+      "requestSHA256": "278b65998a3107f2c038caf1809e96250cec23c8e696ea3a3e4cbdca1c878648",
+      "seconds": 19.258,
+      "text": "```json\n{\n  \"answer\": \"Point A: [EVAL-H04-S1] 1 Ashvini, 2 Bharani, 3 Krittika, 4 Rohini. Point B: [EVAL-H04-S1] 1 Ashvini, 2 Bharani, 3 Krittika, 4 Rohini. No personal chart or reading inputs were disclosed.\",\n  \"citations\": [\"EVAL-H04-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-H04-S1\", \"quote\": \"Each nakshatra occupies 13 degrees 20 minutes and has four padas of 3 degrees 20 minutes.\" },\n    { \"sourceId\": \"EVAL-H04-S1\", \"quote\": \"Ordered names: 1 Ashvini, 2 Bharani, 3 Krittika, 4 Rohini.\" }\n  ]\n}\n```",
+      "model": "workbench-lab-qwen3-0.6b-lora",
+      "usage": {
+        "prompt_tokens": 928,
+        "completion_tokens": 208,
+        "total_tokens": 1136
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H05",
+      "split": "heldout",
+      "requestSHA256": "ff379f662731ebb5f80e571e94460c3a6fc4c966aa7044c745dbcd69af8da670",
+      "seconds": 26.639,
+      "text": "```json\n{\n  \"answer\": \"The calendar records A and B are both valid for 2023, but they differ in the intercalary month status. To merge them as the same date, the minimum identity fields to preserve are year, month, and day. The leap-month marker distinguishes the intercalary month from the ordinary month. The date remains unchanged, but the intercalary month status is preserved. The leap-month marker is not used for the date, so the date remains the same. The intercalary month status is not determined by the provided records, so it remains unknown. No further action is required.\",\n  \"citations\": [\"EVAL-H05-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-H05-S1\", \"quote\": \"This fixture supplies no Gregorian conversion table, day boundary or horoscope.\" },\n    { \"sourceId\": \"EVAL-H05-S1\", \"quote\": \"The leap-month marker distinguishes that repeated month from the ordinary month.\" }\n  ]\n}\n```",
+      "model": "workbench-lab-qwen3-0.6b-lora",
+      "usage": {
+        "prompt_tokens": 917,
+        "completion_tokens": 231,
+        "total_tokens": 1148
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H06",
+      "split": "heldout",
+      "requestSHA256": "21d2dd9bb978d0d10b14450a88acb17287eed4f90b192d89bf8e6ff4eff58c5b",
+      "seconds": 35.143,
+      "text": "```json\n{\n  \"answer\": \"The export contains Hebrew year 5784, month 7, day 3, but omits the Nisan-first scheme. Possible months are Heshvan (2), Kislev (3), Tevet (4), Shevat (5), Adar I (6), and Adar II (7). A single Gregorian date can be exported yet, as the omission does not affect the preservation of the naming convention.\",\n  \"citations\": [\"EVAL-H06-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\", \"EVAL-H06-S1\", \"Numbering fixture in a leap year: in a Nisan-first scheme, Nisan=1 and Tishri=7.\" },\n    { \"sourceId\", \"EVAL-H06-S1\", \"In the supplied Tishri-first civil scheme, Tishri=1, Heshvan=2, Kislev=3, Tevet=4, Shevat=5, Adar I=6 and Adar II=7.\" }\n  ]\n}\n```",
+      "model": "workbench-lab-qwen3-0.6b-lora",
+      "usage": {
+        "prompt_tokens": 917,
+        "completion_tokens": 236,
+        "total_tokens": 1153
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H07",
+      "split": "heldout",
+      "requestSHA256": "41658622fe465c9fffebd1faf3df318b923751d0a76390c4d60ac486a5b924ee",
+      "seconds": 25.581,
+      "text": "```json\n{\n  \"answer\": \"The renderer should retain the solar circle, lunar semicircle, and right-angled cross as they are described in the passage. The passage does not establish claims about personal predictions or a modern date-scoring algorithm. The source does not specify a modern date-scoring algorithm or verify personal predictions, and the duplicated VI label in the source page is not relevant to the question.\",\n  \"citations\": [\"EVAL-H07-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-H07-S1\", \"quote\": \"Theorems III–VI, the solar circle includes a visible central point; the lunar semicircle is placed above and combined with the solar circle; the construction is supported by a right-angled cross.\" },\n    { \"sourceId\": \"EVAL-H07-S1\", \"quote\": \"This is historical symbolic geometry.\" }\n  ]\n}\n```",
+      "model": "workbench-lab-qwen3-0.6b-lora",
+      "usage": {
+        "prompt_tokens": 935,
+        "completion_tokens": 202,
+        "total_tokens": 1137
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    },
+    {
+      "id": "H08",
+      "split": "heldout",
+      "requestSHA256": "eafb6e2a0312cd565d533bc98601c5b6581b29c1f0cc17f51bbd0c75cd17f8b1",
+      "seconds": 19.621,
+      "text": "```json\n{\n  \"answer\": \"The first sentence (A) is an authentic quotation by a present-day reader, not a source. The second sentence (B) is also an authentic quotation by a present-day reader, not a source. These sentences do not establish a personal diagnosis or destiny, but they provide a reflection prompt. An alternative label could be 'Reader Reflection'.\",\n  \"citations\": [\"EVAL-H08-S1\"],\n  \"actions\": [],\n  \"grounding\": [\n    { \"sourceId\": \"EVAL-H08-S1\", \"quote\": \"(A) 'My chart contains a symbol, so I must be the personality it names.'\", \"claim\": \"Reflection\" },\n    { \"sourceId\": \"EVAL-H08-S1\", \"quote\": \"(B) 'My life has a story, so my choices can no longer change it.'\", \"claim\": \"Reflection\" }\n  ]\n}\n```",
+      "model": "workbench-lab-qwen3-0.6b-lora",
+      "usage": {
+        "prompt_tokens": 912,
+        "completion_tokens": 198,
+        "total_tokens": 1110
+      },
+      "finishReason": "stop",
+      "maxNewTokensReached": false
+    }
+  ],
+  "scope": "Raw development or heldout responses; judge dimensions separately and retain failures."
+}

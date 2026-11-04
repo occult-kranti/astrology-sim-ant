@@ -2018,6 +2018,7 @@ export const MCP_TOOL_CONTRACTS = {
           "toolId": {
             "type": "string",
             "enum": [
+              "reading-lab",
               "index",
               "abhichara-atharvan",
               "abhichara-index",
@@ -4100,6 +4101,156 @@ export const MCP_TOOL_CONTRACTS = {
     ],
     "additionalProperties": false
   },
+  "workbench_reading_examples": {
+    "type": "object",
+    "properties": {
+      "caseIds": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "egyptian-civil-structure",
+            "mayan-nmai-2012-12-20",
+            "lilly-cazimi-example",
+            "lilly-combustion-disagreement",
+            "christian-easter-2024",
+            "vedic-rao-tithi-example-2",
+            "vedic-rao-hora-example",
+            "chinese-new-year-2024",
+            "chinese-leap-month-2023",
+            "hebrew-tishri-2024",
+            "hebrew-sunset-boundary-2024",
+            "dee-monas-symbolic-method",
+            "jung-feeling-valuation",
+            "jung-individuation-relationship",
+            "plato-er-choice",
+            "plato-timaeus-cultivation",
+            "lilly-dog-printed-figure"
+          ]
+        },
+        "minItems": 1,
+        "maxItems": 32,
+        "uniqueItems": true
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
+  "workbench_reading_lab": {
+    "type": "object",
+    "properties": {
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "dateISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 13
+          },
+          "instantISO": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "time": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 8
+          },
+          "timeZone": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "lat": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "lon": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "disambiguation": {
+            "type": "string",
+            "enum": [
+              "reject",
+              "earlier",
+              "later"
+            ]
+          },
+          "system": {
+            "type": "string",
+            "enum": [
+              "regiomontanus",
+              "placidus",
+              "whole",
+              "equal"
+            ]
+          },
+          "frameworks": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "egyptian",
+                "mayan",
+                "dee",
+                "lilly",
+                "vedic",
+                "chinese",
+                "hebrew",
+                "jung",
+                "plato"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 9,
+            "uniqueItems": true
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "study",
+              "planning",
+              "work",
+              "relationships",
+              "reflection"
+            ]
+          }
+        },
+        "required": [
+          "timeZone"
+        ],
+        "additionalProperties": false
+      },
+      "caseId": {
+        "type": "string",
+        "enum": [
+          "egyptian-civil-structure",
+          "mayan-nmai-2012-12-20",
+          "lilly-cazimi-example",
+          "lilly-combustion-disagreement",
+          "christian-easter-2024",
+          "vedic-rao-tithi-example-2",
+          "vedic-rao-hora-example",
+          "chinese-new-year-2024",
+          "chinese-leap-month-2023",
+          "hebrew-tishri-2024",
+          "hebrew-sunset-boundary-2024",
+          "dee-monas-symbolic-method",
+          "jung-feeling-valuation",
+          "jung-individuation-relationship",
+          "plato-er-choice",
+          "plato-timaeus-cultivation",
+          "lilly-dog-printed-figure"
+        ]
+      }
+    },
+    "required": [],
+    "additionalProperties": false
+  },
   "workbench_rectification": {
     "type": "object",
     "properties": {
@@ -5397,6 +5548,7 @@ export const MCP_TOOL_CONTRACTS = {
       "capabilityId": {
         "type": "string",
         "enum": [
+          "reading-lab",
           "positions",
           "essential-dignity",
           "accidental-dignity",

@@ -1,0 +1,23 @@
+{
+  "kind": "immutable-evaluation-request-freeze",
+  "profile": {
+    "id": "evidence-v2",
+    "round": 2,
+    "temperature": 0.1,
+    "maxTokens": 850,
+    "retrievalLimit": 4,
+    "retrievalTokens": 1800,
+    "description": "Quote-backed explanations, explicit method limits and unsupported-answer abstention."
+  },
+  "caseIds": [
+    "D05",
+    "D07",
+    "D09",
+    "D10"
+  ],
+  "split": "development",
+  "casesSHA256": "a7448b982f3581929fe3b45975febd83df851dd6e3dfefd560e82f328ad966ce",
+  "promptSourceSHA256": "b902d3d5050ea8fc8ab7dcb63c9b96eb1ebb44bf456961446b135c95227bd575",
+  "requestsSHA256": "457fad6ba226531f888ba4384991ad1c713b37f5ff9a6e49770a7a90443ac844",
+  "scope": "Explicit fixed reference packets. Retrieval quality is evaluated separately; no live retrieval mutation inside these comparisons."
+}

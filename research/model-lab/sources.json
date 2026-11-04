@@ -1,0 +1,853 @@
+{
+  "schemaVersion": 1,
+  "kind": "model-lab-primary-source-ledger",
+  "reviewedDate": "2026-11-04",
+  "scope": "Targeted official-paper, code, documentation and model-card review. Not an exhaustive global leaderboard survey.",
+  "hardware": {
+    "observedUTC": "2026-11-04T20:31:40Z",
+    "architecture": "x86_64",
+    "cpuModel": "AMD EPYC 9V74",
+    "visibleLogicalCPUs": 5,
+    "cgroupCpuMax": "400000 100000",
+    "effectiveCpuQuota": 4,
+    "cgroupMemoryMaxBytes": 34359738368,
+    "gpuExecutablePresent": false,
+    "nvidiaDevicePresent": false,
+    "source": "lscpu, free, cgroup cpu.max/memory.max, command lookup and /dev device inventory. No stress run is implied by this inventory."
+  },
+  "sources": [
+    {
+      "id": "lora-paper",
+      "url": "https://arxiv.org/abs/2106.09685",
+      "retrievedAt": "2026-11-04T20:32:25.346383+00:00",
+      "status": 200,
+      "finalURL": "https://arxiv.org/abs/2106.09685",
+      "bytes": 44248,
+      "sha256": "70bb70b4fd6d41b8a0f53fc5148017bf6ef5b73acba822027397f861aee135c6",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "Abstract and bibliographic version history; full paper not read in this pass.",
+      "claim": "Frozen base weights plus learned low-rank matrices reduce trainable parameters; historical benchmark claims are not this app’s results.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "lora-code",
+      "url": "https://raw.githubusercontent.com/microsoft/LoRA/main/README.md",
+      "retrievedAt": "2026-11-04T20:32:25.347012+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/microsoft/LoRA/main/README.md",
+      "bytes": 14379,
+      "sha256": "ce0b726fedd1198ebd841093b53ff5490672ffb2264479d8be044b5826a791c6",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "README introduction, reported results, repository structure and Quickstart sections inspected.",
+      "claim": "Adapters require their original compatible base checkpoint; adapter training is distinct from changing every base parameter.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/microsoft/LoRA",
+        "revision": "c4593f060e6a368d7bb5af5273b8e42810cdef90",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "qlora-paper",
+      "url": "https://arxiv.org/abs/2305.14314",
+      "retrievedAt": "2026-11-04T20:32:25.347452+00:00",
+      "status": 200,
+      "finalURL": "https://arxiv.org/abs/2305.14314",
+      "bytes": 43600,
+      "sha256": "a8471d458d43767325628cf5b1e7b8d88f057a0d51f537f59bea77dd4d7a9b4b",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "Abstract, method summary and version history; full paper not read.",
+      "claim": "Frozen 4-bit base plus LoRA, NF4, double quantization and paged optimizers; the published 65B / 48 GB GPU result is not CPU evidence.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qlora-code",
+      "url": "https://raw.githubusercontent.com/artidoro/qlora/main/README.md",
+      "retrievedAt": "2026-11-04T20:32:25.348138+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/artidoro/qlora/main/README.md",
+      "bytes": 10938,
+      "sha256": "f9205f6b2572f81b8919f523176315207806357482049c96fd6471c1c6b17472",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "README method, license and setup sections inspected.",
+      "claim": "MIT implementation; base-model licensing remains separate. GGUF Q4_K_M inference is not itself QLoRA training.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/artidoro/qlora",
+        "revision": "7f4e95a68dc076bea9b3a413d2b512eca6d004e5",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "dpo-paper",
+      "url": "https://arxiv.org/abs/2305.18290",
+      "retrievedAt": "2026-11-04T20:32:25.348465+00:00",
+      "status": 200,
+      "finalURL": "https://arxiv.org/abs/2305.18290",
+      "bytes": 44040,
+      "sha256": "a4191d70e363cfbf66a090a42c0b19475263f051d48dd39a8d415a0671920880",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "Abstract and bibliographic version history; full paper not read.",
+      "claim": "Preference-pair optimization without a separately fitted reward model; it needs defensible preferred/rejected examples.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "dpo-docs",
+      "url": "https://huggingface.co/docs/trl/main/en/dpo_trainer",
+      "retrievedAt": "2026-11-04T20:32:25.349102+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/docs/trl/main/en/dpo_trainer",
+      "bytes": 341688,
+      "sha256": "a95d9b980cd419a20a3a759f540cb65bdda3b734af0091703220d32eb4aaf421",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "Official trainer overview, data and configuration sections inspected; not all API options.",
+      "claim": "DPO is a training method; changing a system prompt is not DPO.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/eric-mitchell/direct-preference-optimization",
+        "revision": "f8b8c0f49dc92a430bae41585f9d467d3618fe2f",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "rome-paper",
+      "url": "https://arxiv.org/abs/2202.05262",
+      "retrievedAt": "2026-11-04T20:32:25.592564+00:00",
+      "status": 200,
+      "finalURL": "https://arxiv.org/abs/2202.05262",
+      "bytes": 42688,
+      "sha256": "3f3bc4a60d70a08d46362b5d4b5e1735e3d93ae67b2e567c8e5f04d19f58b500",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "Abstract, publication and version metadata.",
+      "claim": "Rank-one feed-forward editing studied factual associations and locality/generalization, not date arithmetic.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "rome-code",
+      "url": "https://raw.githubusercontent.com/kmeng01/rome/main/README.md",
+      "retrievedAt": "2026-11-04T20:32:25.604242+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/kmeng01/rome/main/README.md",
+      "bytes": 6729,
+      "sha256": "79853be062733fbf66680062c370b11fbf3d71b2d559d42dbf422ff50b3ce4a3",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "README installation, supported models and evaluation layout inspected.",
+      "claim": "The inspected original implementation declares GPU-only and GPT-2XL/GPT-J support; no Qwen CPU compatibility inferred.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/kmeng01/rome",
+        "revision": "0874014cd9837e4365f3e6f3c71400ef11509e04",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "memit-paper",
+      "url": "https://arxiv.org/abs/2210.07229",
+      "retrievedAt": "2026-11-04T20:32:25.663914+00:00",
+      "status": 200,
+      "finalURL": "https://arxiv.org/abs/2210.07229",
+      "bytes": 40230,
+      "sha256": "76206035a163b934e68f538e7fd8271ae0bbc203d670023a3984af3df5896129",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "Abstract, model sizes and version metadata.",
+      "claim": "Batch memory editing demonstrated thousands of associations on GPT-J6B/GPT-NeoX20B; not proof of symbolic-rule reasoning.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "memit-code",
+      "url": "https://raw.githubusercontent.com/kmeng01/memit/main/README.md",
+      "retrievedAt": "2026-11-04T20:32:25.737625+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/kmeng01/memit/main/README.md",
+      "bytes": 2632,
+      "sha256": "e14b1c0aff11f1ebb5b427115cdd660892e0305bb868102c1330299017b69b13",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "README API example and evaluation/summary commands inspected.",
+      "claim": "Specific factual rewrites require original model architecture and evaluation; no edited checkpoint created here.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/kmeng01/memit",
+        "revision": "80426fd9316cf9a50c5ba15e0912f2c2c5bfe84b",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "rag-paper",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "retrievedAt": "2026-11-04T20:32:25.896426+00:00",
+      "status": 200,
+      "finalURL": "https://arxiv.org/abs/2005.11401",
+      "bytes": 45835,
+      "sha256": "8fe67b6e6cba908511e7a7bb688a6306cd15309ae9096b4e57970469dce23e55",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "Abstract and publication/version metadata.",
+      "claim": "Retrieval combines parametric and external non-parametric memory; provenance and updatable corpus fit this application.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "heretic-code",
+      "url": "https://raw.githubusercontent.com/p-e-w/heretic/master/README.md",
+      "retrievedAt": "2026-11-04T20:32:25.899524+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/p-e-w/heretic/master/README.md",
+      "bytes": 15082,
+      "sha256": "6ce78f10f8c409f7def46dc978f46d8055533647df2d198d204d9cb378480cc1",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "README overview, usage qualifications, scorers, modifiers and reproducibility sections inspected.",
+      "claim": "Current 2.x default ARA differs from earlier descriptions of directional ablation alone; refusal-rate and KL scores are not domain correctness.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/p-e-w/heretic",
+        "revision": "f4cf5354032419178584e7c52af6de6c138de856",
+        "license": "AGPL-3.0"
+      }
+    },
+    {
+      "id": "heretic-main",
+      "url": "https://raw.githubusercontent.com/p-e-w/heretic/main/README.md",
+      "retrievedAt": "2026-11-04T20:32:25.967680+00:00",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "readingDepth": "Not read: retrieval failed.",
+      "claim": "No successful source access is claimed.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/p-e-w/heretic",
+        "revision": "f4cf5354032419178584e7c52af6de6c138de856",
+        "license": "AGPL-3.0"
+      }
+    },
+    {
+      "id": "heretic-api",
+      "url": "https://api.github.com/repos/p-e-w/heretic",
+      "retrievedAt": "2026-11-04T20:32:25.991515+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/p-e-w/heretic",
+      "bytes": 5245,
+      "sha256": "dd3daecbe11295c47402ecb3b97032b5aa68ec8cc4f2d98ccc61838f2c9ebdbb",
+      "contentType": "application/json; charset=utf-8",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/p-e-w/heretic",
+        "revision": "f4cf5354032419178584e7c52af6de6c138de856",
+        "license": "AGPL-3.0"
+      }
+    },
+    {
+      "id": "heretic-head",
+      "url": "https://api.github.com/repos/p-e-w/heretic/commits?per_page=1",
+      "retrievedAt": "2026-11-04T20:32:26.056924+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/p-e-w/heretic/commits?per_page=1",
+      "bytes": 4358,
+      "sha256": "9d8480eadbb58c915ac09ea49130c8fe7039a323d456f64ca3f75d1f336571a6",
+      "contentType": "application/json; charset=utf-8",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/p-e-w/heretic",
+        "revision": "f4cf5354032419178584e7c52af6de6c138de856",
+        "license": "AGPL-3.0"
+      }
+    },
+    {
+      "id": "qwen-latest",
+      "url": "https://huggingface.co/api/models?author=Qwen&sort=lastModified&direction=-1&limit=25",
+      "retrievedAt": "2026-11-04T20:32:26.154076+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/api/models?author=Qwen&sort=lastModified&direction=-1&limit=25",
+      "bytes": 12911,
+      "sha256": "9364a42c591a318c00d53dc9845810cc9ab86a339dea49a7cc0fca6dbdb79efa",
+      "contentType": "application/json; charset=utf-8",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen-3.5-4b-api",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3.5-4B",
+      "retrievedAt": "2026-11-04T20:32:26.303921+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/api/models/Qwen/Qwen3.5-4B",
+      "bytes": 20874,
+      "sha256": "e9db59c119739d9a4b47666fd2e0e43cf3e8587df136089b67bdfdf4b66d493f",
+      "contentType": "application/json; charset=utf-8",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen-3.5-4b-card",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/main/README.md",
+      "retrievedAt": "2026-11-04T20:32:26.415543+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/main/README.md",
+      "bytes": 77661,
+      "sha256": "1406be1b6b8fd8a6545870da516912804756593628a1d0fb0a7965211e82a7bb",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "Model overview, architecture, license header and selected benchmark/deployment sections inspected.",
+      "claim": "4B hybrid language model with a vision encoder; vendor reports MMLU-Pro 79.1 and GPQA Diamond 76.2. These scores were not independently reproduced.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen-current-card",
+      "url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/raw/cdbee75f17c01a7cc42f958dc650907174af0554/README.md",
+      "retrievedAt": "2026-11-04T20:32:26.415773+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/raw/cdbee75f17c01a7cc42f958dc650907174af0554/README.md",
+      "bytes": 8168,
+      "sha256": "8e3dd0c3b5b11897cc71092ccfe517bb7a9783479baa3665aad73c8d1a2041cd",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "Pinned model overview, license, benchmark and inference guidance inspected.",
+      "claim": "Existing Qwen3-4B-Instruct-2507 is a comparison baseline, not a current global state-of-the-art claim.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen-current-api",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3-4B-Instruct-2507",
+      "retrievedAt": "2026-11-04T20:32:26.606209+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/api/models/Qwen/Qwen3-4B-Instruct-2507",
+      "bytes": 7592,
+      "sha256": "b19f0488eec2de8ae8e020c3ecd26e7a3234b61fbdb2b7aad3728c7c98744baf",
+      "contentType": "application/json; charset=utf-8",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "peft-lora",
+      "url": "https://huggingface.co/docs/peft/main/en/developer_guides/lora",
+      "retrievedAt": "2026-11-04T20:32:26.633623+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/docs/peft/main/package_reference/lora",
+      "bytes": 626327,
+      "sha256": "b8f4c4fbdf73f50dff409b0009fe646a19588a35929989687723dbd71e4edaa1",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "LoRA developer guide selected initialization/adapter sections inspected; not every feature.",
+      "claim": "Adapters and their scaling/base-model compatibility must be pinned; experimental variants are not silently equivalent.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "bitsandbytes-hardware",
+      "url": "https://huggingface.co/docs/bitsandbytes/main/en/installation",
+      "retrievedAt": "2026-11-04T20:32:26.650160+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/docs/bitsandbytes/main/en/installation",
+      "bytes": 169493,
+      "sha256": "1d1d1cd6b903edaccd87a2f7638b4aa24bd39c4df67800904b3ebf194d19c6b4",
+      "contentType": "text/html; charset=utf-8",
+      "readingDepth": "CPU/CUDA requirements and CPU installation support sections inspected.",
+      "claim": "Current documentation includes CPU AVX2 support. The lack of a GPU does not prove all quantized training is impossible; the actual CPU pipeline still needs a feasibility probe.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "llama-training",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/examples/finetune/README.md",
+      "retrievedAt": "2026-11-04T20:32:26.659559+00:00",
+      "status": "failed",
+      "error": "HTTP Error 404: Not Found",
+      "readingDepth": "Not read: retrieval failed.",
+      "claim": "No successful source access is claimed.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "llama-server",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md",
+      "retrievedAt": "2026-11-04T20:32:26.801718+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md",
+      "bytes": 136429,
+      "sha256": "eafc1b53abd787613d13d1fb9a86a1fc9f90b59f1240b3eeb88c85ea08d9a137",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "Server README model, OpenAI-compatible endpoints and adapter-related references inspected.",
+      "claim": "Runtime endpoint compatibility does not by itself prove a model architecture or adapter executes correctly.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen-embedding",
+      "url": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B/raw/main/README.md",
+      "retrievedAt": "2026-11-04T20:32:26.854481+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B/raw/main/README.md",
+      "bytes": 17237,
+      "sha256": "c34d9b7e5a267ad3fdd13227a253686bc90844ff4744a2a6a86c7c905e3d06f3",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "Model overview, model sizes, instruction support and evaluation notes inspected.",
+      "claim": "0.6B embedding candidate, with up to 1024 dimensions; no embeddings were calculated by this research task.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen-reranker",
+      "url": "https://huggingface.co/Qwen/Qwen3-Reranker-0.6B/raw/main/README.md",
+      "retrievedAt": "2026-11-04T20:32:27.037753+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/Qwen/Qwen3-Reranker-0.6B/raw/main/README.md",
+      "bytes": 14742,
+      "sha256": "5bba8c734f6dd3ae48317b4139317e45a7fce48fc55e15670b23a0dd15492ab6",
+      "contentType": "text/plain; charset=utf-8",
+      "readingDepth": "Model overview, scoring usage and benchmark caveats inspected.",
+      "claim": "0.6B reranker candidate; published retrieval scores do not establish improvement on this corpus.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen35-gguf-api",
+      "url": "https://huggingface.co/api/models/unsloth/Qwen3.5-4B-GGUF?blobs=true",
+      "retrievedAt": "2026-11-04T20:36:18.158427+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/api/models/unsloth/Qwen3.5-4B-GGUF?blobs=true",
+      "bytes": 16054,
+      "sha256": "2b692d8e9b356754e8aab8a9df9c420a77916442b8d88cbbd890d14ee4d54892",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen35-gguf-card",
+      "url": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/raw/main/README.md",
+      "retrievedAt": "2026-11-04T20:36:18.158988+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/raw/main/README.md",
+      "bytes": 78906,
+      "sha256": "28546f5fc4f22ee1b3f17b908957f17fcfa66174032136265bdb27f404bc1e6c",
+      "readingDepth": "License, base model and quantization provenance inspected.",
+      "claim": "Third-party Unsloth quantization, not the base model’s exact full-precision artifact.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen38-27b-api",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B",
+      "retrievedAt": "2026-11-04T20:36:18.159502+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B",
+      "bytes": 24098,
+      "sha256": "23149944b977eeee1baa4eafdbbcb8d35332bf249216fb05fd8e1933a27c284e",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen38-27b-card",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/README.md",
+      "retrievedAt": "2026-11-04T20:36:18.159916+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/README.md",
+      "bytes": 65012,
+      "sha256": "57e4bdb258ee1a7d2635c5174ebd4e56abe392505cdb5f8bbb356b0dc4293641",
+      "readingDepth": "Model overview, license header and selected benchmark/deployment sections inspected.",
+      "claim": "A newer 27B candidate exists but is outside this run’s 3 GB artifact budget for a 4B-class challenger.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen38-flash-card",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/README.md",
+      "retrievedAt": "2026-11-04T20:36:18.160381+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/README.md",
+      "bytes": 65155,
+      "sha256": "35ca37ccc366f1ba478dab33841a2c0c18ce53fd62f291ca05341f7728b225b2",
+      "readingDepth": "Model overview and architecture counts inspected.",
+      "claim": "125B parameters with 6B activated, plus 51B n-gram embeddings and 4B MTP; active count does not equal the total download or RAM requirement.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "heretic-ara",
+      "url": "https://raw.githubusercontent.com/p-e-w/heretic/f4cf5354032419178584e7c52af6de6c138de856/src/heretic/modifiers/ara.py",
+      "retrievedAt": "2026-11-04T20:36:18.160786+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/p-e-w/heretic/f4cf5354032419178584e7c52af6de6c138de856/src/heretic/modifiers/ara.py",
+      "bytes": 16012,
+      "sha256": "e641fa89b4ff82c8266fda38f9ec6da75e9c589e94a5a694da893d4f4bbb33aa",
+      "readingDepth": "Pinned source: Settings; ara_loss; captured module I/O; LoRA setup; modify_model objective and L-BFGS optimizer inspected.",
+      "claim": "Actual code optimizes low-rank A/B matrices against module-output objectives; it is not a mere prompt adjustment.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/p-e-w/heretic",
+        "revision": "f4cf5354032419178584e7c52af6de6c138de856",
+        "license": "AGPL-3.0"
+      }
+    },
+    {
+      "id": "heretic-abliteration",
+      "url": "https://raw.githubusercontent.com/p-e-w/heretic/f4cf5354032419178584e7c52af6de6c138de856/src/heretic/modifiers/abliteration.py",
+      "retrievedAt": "2026-11-04T20:36:18.361358+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/p-e-w/heretic/f4cf5354032419178584e7c52af6de6c138de856/src/heretic/modifiers/abliteration.py",
+      "bytes": 19765,
+      "sha256": "9ed86121098ac1c1ce8d5b96d05bfcdf265154ab76a9ff4bed54b4002ceb8fcd",
+      "readingDepth": "Pinned source: modifier/settings and directional-projection code inspected, not every execution branch.",
+      "claim": "Directional ablation is a separate modifier; suppression of a behavioral direction does not teach calendar arithmetic.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/p-e-w/heretic",
+        "revision": "f4cf5354032419178584e7c52af6de6c138de856",
+        "license": "AGPL-3.0"
+      }
+    },
+    {
+      "id": "heretic-license",
+      "url": "https://raw.githubusercontent.com/p-e-w/heretic/f4cf5354032419178584e7c52af6de6c138de856/LICENSE",
+      "retrievedAt": "2026-11-04T20:36:18.361840+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/p-e-w/heretic/f4cf5354032419178584e7c52af6de6c138de856/LICENSE",
+      "bytes": 34523,
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+      "readingDepth": "AGPLv3 license file and repository API license metadata inspected.",
+      "claim": "No Heretic code is incorporated in this application by this research pass.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/p-e-w/heretic",
+        "revision": "f4cf5354032419178584e7c52af6de6c138de856",
+        "license": "AGPL-3.0"
+      }
+    },
+    {
+      "id": "arditi-paper",
+      "url": "https://arxiv.org/abs/2406.11717",
+      "retrievedAt": "2026-11-04T20:36:18.482470+00:00",
+      "status": 200,
+      "finalURL": "https://arxiv.org/abs/2406.11717",
+      "bytes": 43410,
+      "sha256": "ed5ba65eb5c3cecfd293bb007f25ad21591c9094a88b7c686a4a6fa868d27094",
+      "readingDepth": "Abstract and version history inspected.",
+      "claim": "Refusal-direction finding is a behavioral mechanism result, not an accuracy benchmark for the nine traditions.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "rrf-paper",
+      "url": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf",
+      "retrievedAt": "2026-11-04T20:36:18.559420+00:00",
+      "status": 200,
+      "finalURL": "https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf",
+      "bytes": 66196,
+      "sha256": "5c1f9f1fe0d80f67d82041bbe151ea17437bc7a7d9a920564cf122d1b09eafb5",
+      "readingDepth": "PDF first-page section 1 formula, fixed k = 60 and copyright notice inspected; the complete experiments were not reviewed.",
+      "claim": "Rank-based fusion avoids treating incomparable lexical/dense raw scores as one calibrated scale; local efficacy still needs measurement.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "llama-qwen35-support",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b12110/src/llama-arch.cpp",
+      "retrievedAt": "2026-11-04T20:36:18.578207+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b12110/src/llama-arch.cpp",
+      "bytes": 107459,
+      "sha256": "6054f982e7856defee08a51b6bbf66fec7c0856e72a792c6600a9c1407d44d56",
+      "readingDepth": "Pinned b12110 architecture registry entries and cases for qwen35/qwen35moe inspected.",
+      "claim": "Source-level compatibility evidence; actual GGUF loading must also pass.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "lora-repo-api",
+      "url": "https://api.github.com/repos/microsoft/LoRA",
+      "retrievedAt": "2026-11-04T20:40:04.560648+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/microsoft/LoRA",
+      "bytes": 6511,
+      "sha256": "ce060d82a4d4e8bad82b834c8b540533e1b1afcf0335971771a7106c94154189",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/microsoft/LoRA",
+        "revision": "c4593f060e6a368d7bb5af5273b8e42810cdef90",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "lora-head",
+      "url": "https://api.github.com/repos/microsoft/LoRA/commits?per_page=1",
+      "retrievedAt": "2026-11-04T20:40:04.564042+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/microsoft/LoRA/commits?per_page=1",
+      "bytes": 4351,
+      "sha256": "e88d767f6b27aae868a6c1f9ff57c1bc1c0c059b4e16660c3aca8e5dd2770cbd",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/microsoft/LoRA",
+        "revision": "c4593f060e6a368d7bb5af5273b8e42810cdef90",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "qlora-repo-api",
+      "url": "https://api.github.com/repos/artidoro/qlora",
+      "retrievedAt": "2026-11-04T20:40:04.572088+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/artidoro/qlora",
+      "bytes": 5130,
+      "sha256": "b35c8739661979bb7b83672020c91a2254f8c4574e586c5f14729a5795bf0059",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/artidoro/qlora",
+        "revision": "7f4e95a68dc076bea9b3a413d2b512eca6d004e5",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "qlora-head",
+      "url": "https://api.github.com/repos/artidoro/qlora/commits?per_page=1",
+      "retrievedAt": "2026-11-04T20:40:04.575986+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/artidoro/qlora/commits?per_page=1",
+      "bytes": 4371,
+      "sha256": "d4b47efcb703f62002803041bee7584852a9e1c27418b66108c7d0e40434830e",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/artidoro/qlora",
+        "revision": "7f4e95a68dc076bea9b3a413d2b512eca6d004e5",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "rome-repo-api",
+      "url": "https://api.github.com/repos/kmeng01/rome",
+      "retrievedAt": "2026-11-04T20:40:04.579976+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/kmeng01/rome",
+      "bytes": 5070,
+      "sha256": "1dff86546c8f1875c75cfa0121d9482068e703db50782f9e86b48046a7d87ebe",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/kmeng01/rome",
+        "revision": "0874014cd9837e4365f3e6f3c71400ef11509e04",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "rome-head",
+      "url": "https://api.github.com/repos/kmeng01/rome/commits?per_page=1",
+      "retrievedAt": "2026-11-04T20:40:04.580590+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/kmeng01/rome/commits?per_page=1",
+      "bytes": 3891,
+      "sha256": "3dc556922a27bb2a82fc992a7a9e09b6f400508b522d12bf67366e74f26351e7",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/kmeng01/rome",
+        "revision": "0874014cd9837e4365f3e6f3c71400ef11509e04",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "memit-repo-api",
+      "url": "https://api.github.com/repos/kmeng01/memit",
+      "retrievedAt": "2026-11-04T20:40:05.161208+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/kmeng01/memit",
+      "bytes": 5106,
+      "sha256": "e06e9343f0797510d080331b020767469f2c61c0479e25722b0009004120addd",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/kmeng01/memit",
+        "revision": "80426fd9316cf9a50c5ba15e0912f2c2c5bfe84b",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "memit-head",
+      "url": "https://api.github.com/repos/kmeng01/memit/commits?per_page=1",
+      "retrievedAt": "2026-11-04T20:40:05.195531+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/kmeng01/memit/commits?per_page=1",
+      "bytes": 3210,
+      "sha256": "9efe976c538910cd2305cb9b11b60de778e19460cac9962c94dcca0a2dc65b92",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/kmeng01/memit",
+        "revision": "80426fd9316cf9a50c5ba15e0912f2c2c5bfe84b",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "dpo-repo-api",
+      "url": "https://api.github.com/repos/eric-mitchell/direct-preference-optimization",
+      "retrievedAt": "2026-11-04T20:40:05.221164+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/eric-mitchell/direct-preference-optimization",
+      "bytes": 6504,
+      "sha256": "0ec87720dcd5330ba05b9eb35a4f70c5155ea095c8873fff571f4bb200f30f2b",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/eric-mitchell/direct-preference-optimization",
+        "revision": "f8b8c0f49dc92a430bae41585f9d467d3618fe2f",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "dpo-head",
+      "url": "https://api.github.com/repos/eric-mitchell/direct-preference-optimization/commits?per_page=1",
+      "retrievedAt": "2026-11-04T20:40:05.276555+00:00",
+      "status": 200,
+      "finalURL": "https://api.github.com/repos/eric-mitchell/direct-preference-optimization/commits?per_page=1",
+      "bytes": 3558,
+      "sha256": "d01a5c7b7eb639e464347ce453ccc9003c89cbc8799086a942980608e03a511a",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/eric-mitchell/direct-preference-optimization",
+        "revision": "f8b8c0f49dc92a430bae41585f9d467d3618fe2f",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "qwen-small-api",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3-0.6B",
+      "retrievedAt": "2026-11-04T20:40:05.294614+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/api/models/Qwen/Qwen3-0.6B",
+      "bytes": 9047,
+      "sha256": "a585014376c25a770a779433d4e8cc608f3773f6518b1a36d4414fffc81a7223",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen-reranker-api",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3-Reranker-0.6B",
+      "retrievedAt": "2026-11-04T20:40:05.428753+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/api/models/Qwen/Qwen3-Reranker-0.6B",
+      "bytes": 8140,
+      "sha256": "8696d4c1368d719b5acb68c880d495a979840a36a1e4b67548987e4936939a3b",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen-embedding-api",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3-Embedding-0.6B",
+      "retrievedAt": "2026-11-04T20:40:05.483739+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/api/models/Qwen/Qwen3-Embedding-0.6B",
+      "bytes": 9141,
+      "sha256": "5de89ae35f22cc163b577dfda33e2d404343c8614649497c953eb749fc9c3b89",
+      "readingDepth": "Repository/model API metadata inspected only; no complete source or model behavior inferred.",
+      "claim": "Used for identifiers, revision, license or file inventory metadata.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "heretic-commit-card",
+      "url": "https://raw.githubusercontent.com/p-e-w/heretic/f4cf5354032419178584e7c52af6de6c138de856/README.md",
+      "retrievedAt": "2026-11-04T20:40:05.506641+00:00",
+      "status": 200,
+      "finalURL": "https://raw.githubusercontent.com/p-e-w/heretic/f4cf5354032419178584e7c52af6de6c138de856/README.md",
+      "bytes": 15082,
+      "sha256": "6ce78f10f8c409f7def46dc978f46d8055533647df2d198d204d9cb378480cc1",
+      "readingDepth": "Pinned README, same sections as unpinned review.",
+      "claim": "Author labels training-free; distinguish module-level numerical optimization from standard end-to-end supervised training.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository.",
+      "repositoryPin": {
+        "repository": "https://github.com/p-e-w/heretic",
+        "revision": "f4cf5354032419178584e7c52af6de6c138de856",
+        "license": "AGPL-3.0"
+      }
+    },
+    {
+      "id": "qwen35-commit-card",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a/README.md",
+      "retrievedAt": "2026-11-04T20:40:05.639040+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/Qwen/Qwen3.5-4B/raw/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a/README.md",
+      "bytes": 77661,
+      "sha256": "1406be1b6b8fd8a6545870da516912804756593628a1d0fb0a7965211e82a7bb",
+      "readingDepth": "Pinned counterpart of the Qwen3.5-4B card with same reviewed sections.",
+      "claim": "Base revision 851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a, Apache-2.0.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    },
+    {
+      "id": "qwen35-gguf-commit-card",
+      "url": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/raw/e87f176479d0855a907a41277aca2f8ee7a09523/README.md",
+      "retrievedAt": "2026-11-04T20:40:05.679370+00:00",
+      "status": 200,
+      "finalURL": "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/raw/e87f176479d0855a907a41277aca2f8ee7a09523/README.md",
+      "bytes": 78906,
+      "sha256": "28546f5fc4f22ee1b3f17b908957f17fcfa66174032136265bdb27f404bc1e6c",
+      "readingDepth": "Pinned quantization card license/base provenance inspected.",
+      "claim": "Candidate metadata hash/size checked through HF LFS metadata; execution and downloaded-file hash are separate experiment evidence.",
+      "redistribution": "Only original summaries and source metadata are committed. Retrieved full HTML, papers, model cards and code review copies remain outside the repository."
+    }
+  ],
+  "modelPins": [
+    {
+      "id": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "license": "apache-2.0",
+      "purpose": "Existing 4B baseline",
+      "licenseScope": "Model-card metadata; retain the full license and notices when redistributing weights."
+    },
+    {
+      "id": "Qwen/Qwen3.5-4B",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "license": "apache-2.0",
+      "purpose": "Current challenger within the artifact budget",
+      "licenseScope": "Model-card metadata; retain the full license and notices when redistributing weights."
+    },
+    {
+      "id": "Qwen/Qwen3-0.6B",
+      "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+      "license": "apache-2.0",
+      "purpose": "CPU adapter feasibility probe",
+      "licenseScope": "Model-card metadata; retain the full license and notices when redistributing weights."
+    },
+    {
+      "id": "Qwen/Qwen3-Reranker-0.6B",
+      "revision": "e61197ed45024b0ed8a2d74b80b4d909f1255473",
+      "license": "apache-2.0",
+      "purpose": "Official reranker candidate researched; not run by this research task",
+      "licenseScope": "Model-card metadata; retain the full license and notices when redistributing weights."
+    },
+    {
+      "id": "Qwen/Qwen3-Embedding-0.6B",
+      "revision": "97b0c614be4d77ee51c0cef4e5f07c00f9eb65b3",
+      "license": "apache-2.0",
+      "purpose": "Official embedding candidate researched; not run by this research task",
+      "licenseScope": "Model-card metadata; retain the full license and notices when redistributing weights."
+    },
+    {
+      "id": "Qwen/Qwen3.8-27B",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "license": "apache-2.0",
+      "purpose": "Newer larger reference; outside the challenger budget",
+      "licenseScope": "Model-card metadata; retain the full license and notices when redistributing weights."
+    }
+  ],
+  "challenger": {
+    "base": "Qwen/Qwen3.5-4B",
+    "baseRevision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "repository": "unsloth/Qwen3.5-4B-GGUF",
+    "revision": "e87f176479d0855a907a41277aca2f8ee7a09523",
+    "file": "Qwen3.5-4B-Q4_K_M.gguf",
+    "bytes": 2740937888,
+    "sha256": "00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4",
+    "license": "Apache-2.0",
+    "runtimeSourceSupport": "llama.cpp b12110 lists LLM_ARCH_QWEN35. Actual loading and inference must be established by experiment receipts."
+  },
+  "limits": [
+    "No API keys, browser cookies, private conversations or private birth reports were acquired for this research.",
+    "Publication and model-card benchmark claims are not measurements from this workbench.",
+    "Heretic, ROME, MEMIT, DPO and QLoRA were researched. Execution requires a separate experiment artifact; documentation alone does not establish it.",
+    "LoRA evidence requires changed adapter parameters and actual baseline-versus-adapter outputs. Training loss alone is insufficient.",
+    "Reduced refusals do not establish correctness, calibration, source faithfulness or useful interpretation."
+  ]
+}

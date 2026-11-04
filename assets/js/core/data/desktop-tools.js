@@ -17,6 +17,13 @@ export const DESKTOP_CATEGORIES = Object.freeze([
 
 export const DESKTOP_TOOLS = Object.freeze([
   {
+    "id": "reading-lab",
+    "title": "Reading lab — compare calendars and source readings",
+    "category": "Charts & interpretation",
+    "description": "Recreate public worked examples across nine named frameworks, compare explicit rules and reference values, and inspect conditional everyday readings with source limits.",
+    "href": "reading-lab.html"
+  },
+  {
     "id": "index",
     "title": "Observatory home",
     "category": "Help & navigation",

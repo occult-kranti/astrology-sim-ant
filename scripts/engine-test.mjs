@@ -9,6 +9,7 @@ import { bodyPartOf } from '../assets/js/core/data/degree-tables.js';
 import { buildDesktopStudy } from '../assets/js/core/desktop-workbench.js';
 import { buildWorkbenchEvidence, answerWorkbenchLocally, validateWorkbenchCitations } from '../assets/js/core/workbench-rag.js';
 import { parseWorkbenchIntent, normalizeWorkbenchAction, previewWorkbenchAction } from '../assets/js/core/workbench-chat-actions.js';
+import { calculateReadingLab, calculateMayaDate, evaluateReadingCase, compareReadingCases } from '../assets/js/core/reading-lab.js';
 
 let fails = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '✓' : '✗'} ${msg}`); if (!cond) fails++; };
@@ -28,6 +29,13 @@ ok(workbenchEvidence.found && workbenchEvidence.rows.length <= 3 && workbenchEvi
 const workbenchLocalAnswer = answerWorkbenchLocally('Lilly cazimi combustion', { limit: 3, maxTokens: 3000 });
 ok(workbenchLocalAnswer.kind === 'extractive-reference-answer' && validateWorkbenchCitations(workbenchLocalAnswer.answer, workbenchLocalAnswer.evidence).valid, 'Local reference answer uses selected excerpts and valid citation identifiers without claiming a language model');
 ok(!validateWorkbenchCitations('[WRAG-invented]', workbenchEvidence).valid && !buildWorkbenchEvidence('qxvzznonexistentterm999').found, 'RAG rejects invented citations and preserves an unsupported-query no-match');
+
+const readingDateOnly = calculateReadingLab({ dateISO: '2024-03-20', timeZone: 'UTC' });
+ok(readingDateOnly.context.instantISO === null && !readingDateOnly.frameworks.lilly.facts.chart && !readingDateOnly.frameworks.vedic.facts.panchanga && readingDateOnly.frameworks.plato.kind === 'reflection', 'Reading Lab keeps date-only uncertainty and philosophical frameworks distinct from timed charts');
+const mayaReference = calculateMayaDate('2012-12-20');
+ok(mayaReference.longCount === '12.19.19.17.19' && mayaReference.tzolkin.number === 3 && mayaReference.tzolkin.name === 'Kawak' && mayaReference.haab.day === 2 && mayaReference.correlation === 584283, 'Reading Lab Maya fields reproduce the Smithsonian printed example under the declared GMT correlation');
+const publicReadingChecks = compareReadingCases(), checkedDog = evaluateReadingCase('lilly-dog-printed-figure');
+ok(publicReadingChecks.referenceFields === 24 && publicReadingChecks.matchedFields === 24 && publicReadingChecks.outcomeEvaluable === false && checkedDog.total === 4 && !checkedDog.result.frameworks.lilly.facts.chart.ascendant, 'Public source-field checks match while the partly verified Lilly figure withholds its unverified angles and any outcome-accuracy claim');
 
 // Equinox: Sun ≈ 0° Aries (allow the boundary display 29.9° Pisces / 0.x° Aries).
 const eq = castChart(new Date(Date.UTC(2024, 2, 20, 3, 6)), 51.5074, -0.1278, 'regiomontanus');
@@ -1771,7 +1779,7 @@ for (const suite of ['live-symbols', 'study-session']) {
 
 // Cross-calendar source/context and civil-week regression checks use the same
 // pure engines as the browser and MCP, without a host clock or live provider.
-for (const suite of ['calendar-observatory', 'observatory-schedule', 'calendar-study-packet', 'day-guidance', 'sigil-design', 'sigil-image-provider', 'observatory-standards', 'world-events', 'comparison-evidence', 'calendar-atlas', 'personal-calendar', 'calendar-search', 'sky-dynamics', 'orbital-events', 'sky-interpretation', 'calendar-alignment', 'tool-guide', 'sky-assistant', 'sky-chat-client', 'chart-mcp', 'calendar-mcp', 'oracle-mcp', 'observatory-mcp', 'study-mcp', 'horizon-astronomy', 'horizon-observances', 'horizon-ranking', 'horizon-independent', 'horizon-integration-independent', 'horizon-mcp', 'horizon-loader', 'country-history', 'country-history-independent', 'calendar-timeline', 'calendar-timeline-independent', 'newton-chronology', 'eschatology-atlas']) {
+for (const suite of ['reading-lab', 'model-lab-fixtures', 'calendar-observatory', 'observatory-schedule', 'calendar-study-packet', 'day-guidance', 'sigil-design', 'sigil-image-provider', 'observatory-standards', 'world-events', 'comparison-evidence', 'calendar-atlas', 'personal-calendar', 'calendar-search', 'sky-dynamics', 'orbital-events', 'sky-interpretation', 'calendar-alignment', 'tool-guide', 'sky-assistant', 'sky-chat-client', 'chart-mcp', 'calendar-mcp', 'oracle-mcp', 'observatory-mcp', 'study-mcp', 'horizon-astronomy', 'horizon-observances', 'horizon-ranking', 'horizon-independent', 'horizon-integration-independent', 'horizon-mcp', 'horizon-loader', 'country-history', 'country-history-independent', 'calendar-timeline', 'calendar-timeline-independent', 'newton-chronology', 'eschatology-atlas']) {
   try {
     execFileSync(process.execPath, [`scripts/tests/${suite}.mjs`], { cwd: REPO_ROOT, stdio: ['ignore', 'ignore', 'pipe'] });
     ok(true, `${suite}: PASS`);
@@ -1801,6 +1809,7 @@ for (const [script, what] of [
   ['scripts/build-mcp-catalogue.mjs', 'static MCP connection catalogue matches the actual tool definitions'],
   ['scripts/build-sky-reference.mjs', 'local source retrieval artifacts match their authored source records'],
   ['scripts/build-workbench-rag.mjs', 'public workbench RAG corpus matches the explicit source whitelist and exact source bytes'],
+  ['scripts/build-reading-lab-database.mjs', 'public Reading Lab database binds its source cases, calculation adapters and provenance hashes'],
   ['scripts/build-tool-coverage.mjs', 'tool guide execution coverage matches the actual registry and MCP allowlist'],
   ['scripts/build-mcp-coverage.mjs', 'browser adapter coverage matches the reviewed backend adapter metadata'],
   ['scripts/gen-opgraph.mjs', 'assets/js/core/data/opgraph.js is exactly gen-opgraph.mjs\'s output'],

@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "kind": "training-only-format-and-support-correction",
+  "createdDate": "2026-11-04",
+  "rights": "Original project-authored training and evaluation fixtures, CC0-1.0. Referenced works retain their own rights. No book passages copied into training.",
+  "parentTrainingRecordsSHA256": "f2f1f0344d8707c4a387df45221a9bee6cc9b99e77700e2463e874ba8421bc25",
+  "objective": "Correct the disclosed target-format mismatch: teach inline citations plus exact-quote grounding. Preserve original questions and evidence. Do not add development or held-out answers.",
+  "manualReview": "All 24 targets individually checked against their supplied evidence. T06 and T07 were narrowed because the original targets introduced an aspect-name definition and physical-motion explanation that their passages did not contain. T09 explicitly labels subtraction as calculated from supplied inputs. T20 labels the experiential check as an optional suggestion. No-match T24 carries no citations or grounding.",
+  "limits": [
+    "This is a small formatting and evidence-use experiment, not training on full traditions or books.",
+    "Reset the adapter to the same frozen base for the next training stage; retain the failed earlier adapter and raw outputs.",
+    "General evidence-use skills can overlap held-out skills. No sealed questions were read to author these targets."
+  ],
+  "changes": [
+    "Same 24 IDs, questions and evidence as the original set.",
+    "Updated system instructions and assistant targets only, plus explicit training split metadata.",
+    "Targets add inline IDs and grounded exact quotations; unsupported background claims were removed."
+  ],
+  "forbiddenInputs": [
+    "development answers",
+    "sealed questions or answers",
+    "private personal readings",
+    "downloaded book text"
+  ],
+  "training": [
+    {
+      "id": "T01",
+      "group": "training-evidence-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-01-S1]: The note labels a method as approximate.\nQuestion: How should you report its accuracy?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Describe the method as approximate, not exact. [TRAIN-01-S1]\",\"citations\":[\"TRAIN-01-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-01-S1\",\"quote\":\"labels a method as approximate\",\"claim\":\"The method is labelled approximate.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T02",
+      "group": "training-evidence-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-02-S1]: Only the title and publication year were inspected.\nQuestion: Was the whole book read?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. Only the title and publication year were inspected. [TRAIN-02-S1]\",\"citations\":[\"TRAIN-02-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-02-S1\",\"quote\":\"Only the title and publication year were inspected.\",\"claim\":\"The inspection covered bibliographic metadata only.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T03",
+      "group": "training-evidence-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-03-S1]: The tool reports unavailable because its inputs are incomplete.\nQuestion: What result should you give?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Report unavailable because the inputs are incomplete. Ask for those inputs. [TRAIN-03-S1]\",\"citations\":[\"TRAIN-03-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-03-S1\",\"quote\":\"its inputs are incomplete\",\"claim\":\"Incomplete inputs explain the unavailable result.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T04",
+      "group": "training-evidence-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-04-S1]: This passage is an original project summary of a historical source.\nQuestion: Is it a verbatim historical quotation?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. The passage is an original project summary, not a verbatim historical quotation. [TRAIN-04-S1]\",\"citations\":[\"TRAIN-04-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-04-S1\",\"quote\":\"an original project summary\",\"claim\":\"The passage is a project summary.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T05",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-05-S1]: The supplied tool result is longitude 42 degrees.\nQuestion: Report that measured value."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The supplied tool reports longitude 42 degrees. [TRAIN-05-S1]\",\"citations\":[\"TRAIN-05-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-05-S1\",\"quote\":\"longitude 42 degrees\",\"claim\":\"The reported longitude is 42 degrees.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T06",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-06-S1]: The computed separation is 90 degrees under the selected method.\nQuestion: Name the geometric aspect."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The supplied separation is 90 degrees. This passage does not define an aspect name, so that name is not established here. [TRAIN-06-S1]\",\"citations\":[\"TRAIN-06-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-06-S1\",\"quote\":\"separation is 90 degrees\",\"claim\":\"The passage supplies a separation, without an aspect-name definition.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T07",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-07-S1]: The position table labels Mercury retrograde.\nQuestion: Does this reverse its physical orbit?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The table labels Mercury retrograde. The passage does not explain physical orbital motion, so it cannot establish a physical reversal. [TRAIN-07-S1]\",\"citations\":[\"TRAIN-07-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-07-S1\",\"quote\":\"labels Mercury retrograde\",\"claim\":\"The source supplies a label, not a physical-motion explanation.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T08",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-08-S1]: The report gives local clock 09:15 and zone Europe/London.\nQuestion: Is that clock automatically UTC?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The clock is labelled local 09:15 in Europe/London, not explicitly UTC. Its date and zone conversion are still needed. [TRAIN-08-S1]\",\"citations\":[\"TRAIN-08-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-08-S1\",\"quote\":\"local clock 09:15 and zone Europe/London\",\"claim\":\"The source identifies a local clock and zone.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T09",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-09-S1]: The two reported values are 8 and 11 degrees.\nQuestion: What is their absolute difference?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Calculated from the supplied values: |11 - 8| = 3 degrees. [TRAIN-09-S1]\",\"citations\":[\"TRAIN-09-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-09-S1\",\"quote\":\"values are 8 and 11 degrees\",\"claim\":\"The supplied inputs are 8 and 11 degrees; subtraction gives 3 degrees.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T10",
+      "group": "training-calculation-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-10-S1]: A twelve-house calculation was unavailable at this observer.\nQuestion: Should you invent twelve cusps?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. Report that the twelve-house calculation is unavailable; do not invent cusps. [TRAIN-10-S1]\",\"citations\":[\"TRAIN-10-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-10-S1\",\"quote\":\"A twelve-house calculation was unavailable\",\"claim\":\"The house calculation is unavailable.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T11",
+      "group": "training-calendar-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-11-S1]: The calendar field is a civil-date label.\nQuestion: Does that alone supply a personal prediction?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. The evidence supplies a civil-date label and no personal forecast. [TRAIN-11-S1]\",\"citations\":[\"TRAIN-11-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-11-S1\",\"quote\":\"a civil-date label\",\"claim\":\"Only a civil-date label is supplied.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T12",
+      "group": "training-calendar-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-12-S1]: These two tools use different explicitly named conventions.\nQuestion: How should their outputs be compared?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Name the two conventions before comparing their outputs; the evidence identifies different conventions. [TRAIN-12-S1]\",\"citations\":[\"TRAIN-12-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-12-S1\",\"quote\":\"different explicitly named conventions\",\"claim\":\"The two tools use different conventions.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T13",
+      "group": "training-calendar-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-13-S1]: This result belongs to one instant, not every hour of that day.\nQuestion: How broad is the result?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"It describes one instant, not every hour of the day. [TRAIN-13-S1]\",\"citations\":[\"TRAIN-13-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-13-S1\",\"quote\":\"one instant, not every hour of that day\",\"claim\":\"The result applies to one instant.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T14",
+      "group": "training-calendar-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-14-S1]: The source documents a seasonal marker.\nQuestion: Does it guarantee the local weather?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. The evidence documents a seasonal marker and supplies no local-weather guarantee. [TRAIN-14-S1]\",\"citations\":[\"TRAIN-14-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-14-S1\",\"quote\":\"a seasonal marker\",\"claim\":\"A seasonal marker is documented; a weather guarantee is absent.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T15",
+      "group": "training-historical-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-15-S1]: The claim is attributed to a named historical author.\nQuestion: Is it an experimentally established physical law?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The evidence establishes an attribution to a historical author, not experimental proof of a physical law. [TRAIN-15-S1]\",\"citations\":[\"TRAIN-15-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-15-S1\",\"quote\":\"attributed to a named historical author\",\"claim\":\"The source supplies an attribution.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T16",
+      "group": "training-historical-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-16-S1]: No rule for this requested operation appears in the supplied source.\nQuestion: What can you conclude?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The supplied source gives no rule for that operation. Further evidence is needed. [TRAIN-16-S1]\",\"citations\":[\"TRAIN-16-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-16-S1\",\"quote\":\"No rule for this requested operation appears\",\"claim\":\"The requested rule is absent from the supplied source.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T17",
+      "group": "training-historical-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-17-S1]: A source disagreement is recorded between two editions.\nQuestion: Should the disagreement be hidden?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Retain the recorded disagreement between the two editions. [TRAIN-17-S1]\",\"citations\":[\"TRAIN-17-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-17-S1\",\"quote\":\"A source disagreement is recorded between two editions.\",\"claim\":\"Two editions disagree.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T18",
+      "group": "training-historical-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-18-S1]: The model has no independent biographical evidence.\nQuestion: Can it state an exact past event as fact?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. With no independent biographical evidence, these inputs do not establish an exact personal past event. [TRAIN-18-S1]\",\"citations\":[\"TRAIN-18-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-18-S1\",\"quote\":\"no independent biographical evidence\",\"claim\":\"Independent biographical evidence is absent.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T19",
+      "group": "training-scenario-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-19-S1]: One city has a confirmed job offer; the other has only a symbolic association.\nQuestion: What practical evidence matters?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"The confirmed job offer is practical evidence; the other city has only a symbolic association. [TRAIN-19-S1]\",\"citations\":[\"TRAIN-19-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-19-S1\",\"quote\":\"a confirmed job offer; the other has only a symbolic association\",\"claim\":\"The evidence distinguishes a confirmed offer from a symbolic association.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T20",
+      "group": "training-scenario-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-20-S1]: An interpretation is labelled a reflective suggestion.\nQuestion: How should a person use it?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Treat it as a reflective suggestion. Optional next step: compare it with your actual experience. [TRAIN-20-S1]\",\"citations\":[\"TRAIN-20-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-20-S1\",\"quote\":\"labelled a reflective suggestion\",\"claim\":\"The interpretation is labelled reflective.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T21",
+      "group": "training-scenario-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-21-S1]: The source does not validate an event-success probability.\nQuestion: Can you report a 90 percent success chance?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. The source does not validate a success probability, including 90 percent. [TRAIN-21-S1]\",\"citations\":[\"TRAIN-21-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-21-S1\",\"quote\":\"does not validate an event-success probability\",\"claim\":\"No event-success probability is validated.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T22",
+      "group": "training-format-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-22-S1]: The available source identifier is the one printed beside this note.\nQuestion: Which identifier belongs in citations?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"Use the exact identifier printed beside this supplied note. [TRAIN-22-S1]\",\"citations\":[\"TRAIN-22-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-22-S1\",\"quote\":\"the one printed beside this note\",\"claim\":\"The printed source identifier is the one to cite.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T23",
+      "group": "training-format-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-23-S1]: No chart action was executed; a proposal can be reviewed separately.\nQuestion: Has the chart already changed?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No. No chart action has been executed. [TRAIN-23-S1]\",\"citations\":[\"TRAIN-23-S1\"],\"actions\":[],\"grounding\":[{\"sourceId\":\"TRAIN-23-S1\",\"quote\":\"No chart action was executed\",\"claim\":\"No action has been executed.\"}]}"
+        }
+      ],
+      "split": "training"
+    },
+    {
+      "id": "T24",
+      "group": "training-format-use",
+      "rights": "CC0-1.0 original project-authored teaching example; no copied book prose.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Use only supplied evidence. Return JSON: answer, citations, actions:[], grounding. Put [sourceId] immediately after supported claims; cite exact IDs. Grounding items are {sourceId,quote,claim}; quote must be short exact source text. State missing evidence; do not invent definitions, inputs or outcomes. /no_think"
+        },
+        {
+          "role": "user",
+          "content": "Evidence [TRAIN-24-S1]: No relevant source was found for the question.\nQuestion: What answer should you return?"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"answer\":\"No relevant source was found in this corpus. Do not invent an answer or citation.\",\"citations\":[],\"actions\":[],\"grounding\":[]}"
+        }
+      ],
+      "split": "training"
+    }
+  ]
+}

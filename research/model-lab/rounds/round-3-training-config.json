@@ -1,0 +1,13 @@
+{
+  "base": "/workspace/.cache/workbench-model-lab/base",
+  "trainingJSONL": "/workspace/.cache/workbench-model-lab/training-v3.jsonl",
+  "output": "/workspace/.cache/workbench-model-lab/checkpoints/round-3",
+  "rank": 4,
+  "alpha": 8,
+  "learningRate": 5e-05,
+  "steps": 24,
+  "maxLength": 256,
+  "maxWallSeconds": 180,
+  "seed": 20261104,
+  "stageDecision": "Reset untouched base after observed R2 regression; new training-only schema alignment; no development answers or heldout data used."
+}
