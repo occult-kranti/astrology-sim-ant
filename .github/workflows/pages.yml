@@ -44,6 +44,7 @@ jobs:
           node scripts/test-workbench-rag-protocol.mjs
           node scripts/test-reading-lab-protocol.mjs
           node scripts/test-astrocartography-protocol.mjs
+          node scripts/test-timeline-search-protocol.mjs
           npm test --prefix mcp
       - name: Keep MCP lock and verification evidence
         if: always()
@@ -78,6 +79,10 @@ jobs:
           node scripts/tests/desktop-workbench.mjs
           node scripts/tests/desktop-library.mjs
           node scripts/tests/reading-lab.mjs
+          node scripts/tests/calendar-format-cache.mjs
+          node scripts/tests/timeline-search.mjs
+          node scripts/tests/timeline-statistics.mjs
+          node scripts/tests/timeline-search-independent.mjs
           node scripts/tests/astrocartography.mjs
           node scripts/tests/astrocartography-independent.mjs
           node scripts/tests/workbench-chat-actions.mjs
@@ -142,6 +147,10 @@ jobs:
         env:
           ASTROCARTOGRAPHY_OUTPUT: test-results/astrocartography
         run: node scripts/browser-astrocartography.mjs
+      - name: Calendar search, skeptical comparisons, bookmarks and map transfer
+        env:
+          TIMELINE_SEARCH_OUTPUT: test-results/timeline-search
+        run: node scripts/browser-timeline-search.mjs
       - name: Orbital frames, eclipse timeline and named source readings
         env:
           ORBITAL_OUTPUT: test-results/orbital-space
@@ -376,7 +385,7 @@ jobs:
                 if (!setup.ok || !(await setup.text()).includes('Connect MCP')) throw new Error('Published MCP connection page is unavailable.');
                 const catalogueResponse = await fetch(new URL('assets/data/mcp-catalogue.json', base), { signal: AbortSignal.timeout(10000) });
                 const catalogue = await catalogueResponse.json();
-                const required = ['workbench_calendar_timeline_frame', 'workbench_country_history', 'workbench_horizon_scan', 'workbench_horizon_day', 'workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide', 'workbench_reading_lab', 'workbench_reading_examples', 'workbench_astrocartography', 'workbench_astrocartography_place'];
+                const required = ['workbench_calendar_timeline_frame', 'workbench_country_history', 'workbench_horizon_scan', 'workbench_horizon_day', 'workbench_compare_moment', 'workbench_calendar_outlook', 'workbench_explain_guidance', 'workbench_calendar_atlas', 'workbench_sky_snapshot', 'workbench_sky_timeline', 'workbench_calendar_alignment', 'workbench_sky_interpretation', 'workbench_source_search', 'workbench_tool_guide', 'workbench_reading_lab', 'workbench_reading_examples', 'workbench_astrocartography', 'workbench_astrocartography_place', 'workbench_timeline_search', 'workbench_timeline_search_date'];
                 const publishedNames = Array.isArray(catalogue.tools) ? catalogue.tools.map(tool => tool.name).sort() : [];
                 if (!catalogueResponse.ok || catalogue.staticPageIsMcpServer !== false || !Array.isArray(release.sourceMcpTools) || JSON.stringify(publishedNames) !== JSON.stringify(release.sourceMcpTools) || !required.every(name => publishedNames.includes(name))) throw new Error('Published MCP catalogue is missing or does not match the verified release.');
                 const comparison = await fetch(new URL('pages/calendar-compare.html', base), { signal: AbortSignal.timeout(10000) });

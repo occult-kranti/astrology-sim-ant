@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-06T00:14:33.913Z",
+  "artifact": {
+    "path": "/workspace/artifacts/timeline-search/standalone-build/desktop-chart-studio.html",
+    "bytes": 5286771,
+    "sha256": "52f0b8e132f82b993363b032b4691323eac02b35612152f4e2c37c65b51cfa15",
+    "afterSHA256": "52f0b8e132f82b993363b032b4691323eac02b35612152f4e2c37c65b51cfa15"
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "transport": "file://",
+    "offlineFromContextCreation": true,
+    "browser": "151.0.7922.34",
+    "navigatorOnLine": true,
+    "offlineProbeFailure": "net::ERR_INTERNET_DISCONNECTED"
+  },
+  "checks": [
+    {
+      "journey": "desktop-1440",
+      "label": "Accepted artifact actually opens through file://",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Explicit QA probe confirms offline network enforcement before chart interaction",
+      "pass": true,
+      "detail": {
+        "errorText": "net::ERR_INTERNET_DISCONNECTED"
+      }
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Standalone retains one main landmark",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Executable code and styles have no external src/href dependency",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Default local chart renders twelve bodies and points",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Standalone opening does not automatically save a profile",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Initial catalogue retains the specialist catalogue",
+      "pass": true,
+      "detail": 153
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Initial catalogue links resolve to HTTPS or this file",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Initial catalogue online destinations are deliberate new-tab links",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Initial catalogue does not point its new self route at an unpublished Pages URL",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Desktop initial stays within the viewport",
+      "pass": true,
+      "detail": {
+        "width": 1440,
+        "scrollWidth": 1440
+      }
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Natal calculation downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Offline edited public fixture calculates the actual equinox instant",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Unsaved frame edit invalidates held exports in the bundle",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Sidereal calculation downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Bundled Lahiri option executes its declared calculation",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Transit calculation downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Standalone transit mode calculates the second epoch and cross contacts",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Comparison wheel renders both sets of twelve markers",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Elapsed transit step downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Offline timeline preserves primary chart and advances secondary by one day",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Synastry calculation downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Standalone synastry retains its distinct motion semantics",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Offline keyboard body selection opens the source-backed inspector",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Dynamically created inspector references resolve to online URLs, not broken local paths",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Standalone chart SVG downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Downloaded SVG is a valid standalone vector image without scripts",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Explicit Save stores the selected profile under this file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Portable local chart library downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Library backup contains the deliberate saved chart",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Invalid standalone import preserves saved charts",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "AI handoff opens a native review dialog offline",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "AI review packet carries the explicit selected chart evidence and privacy label",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Offline AI handoff text downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Downloaded AI handoff equals the visible editable text",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "AI dialog restores keyboard focus",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Explicitly saved file-origin library survives a real reload",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Reloaded dynamic catalogue retains the specialist catalogue",
+      "pass": true,
+      "detail": 153
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Reloaded dynamic catalogue links resolve to HTTPS or this file",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Reloaded dynamic catalogue online destinations are deliberate new-tab links",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Reloaded dynamic catalogue does not point its new self route at an unpublished Pages URL",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Tool filtering keeps online link rewriting",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Standalone does not depend on a registered service worker",
+      "pass": true
+    },
+    {
+      "journey": "desktop-1440",
+      "label": "Standalone explains the connection requirement of linked specialist resources",
+      "pass": true
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Mobile wheel stays within the viewport",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Mobile positions stays within the viewport",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Mobile aspects stays within the viewport",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Mobile wheel stays within the viewport",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Mobile native editor stays within the viewport",
+      "pass": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    {
+      "journey": "mobile-390",
+      "label": "Standalone mobile editor restores keyboard focus",
+      "pass": true
+    },
+    {
+      "journey": "storage-blocked",
+      "label": "File-origin storage restriction is explained",
+      "pass": true
+    },
+    {
+      "journey": "storage-blocked",
+      "label": "Calculation with blocked storage downloads from file origin",
+      "pass": true
+    },
+    {
+      "journey": "storage-blocked",
+      "label": "Local calculations and exports remain available when file storage is blocked",
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "runtimeErrors": [],
+  "automaticExternalRequests": [],
+  "explicitQAProbeRequests": [
+    {
+      "journey": "desktop-1440",
+      "url": "https://offline-probe.example.invalid/desktop-qa"
+    }
+  ],
+  "expectedProbeErrors": [
+    {
+      "journey": "desktop-1440",
+      "message": "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+      "url": "https://offline-probe.example.invalid/desktop-qa"
+    }
+  ],
+  "extraFileRequests": [],
+  "requests": [
+    {
+      "journey": "desktop-1440",
+      "url": "file:///workspace/artifacts/timeline-search/standalone-build/desktop-chart-studio.html"
+    },
+    {
+      "journey": "desktop-1440",
+      "url": "https://offline-probe.example.invalid/desktop-qa"
+    },
+    {
+      "journey": "desktop-1440",
+      "url": "file:///workspace/artifacts/timeline-search/standalone-build/desktop-chart-studio.html"
+    },
+    {
+      "journey": "mobile-390",
+      "url": "file:///workspace/artifacts/timeline-search/standalone-build/desktop-chart-studio.html"
+    },
+    {
+      "journey": "storage-blocked",
+      "url": "file:///workspace/artifacts/timeline-search/standalone-build/desktop-chart-studio.html"
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "desktop-1440-initial.png",
+      "bytes": 252742,
+      "sha256": "c38b3fd57c9d64446cff27c61fb368e561983d1948fefb16d102e0ed8b72d438"
+    },
+    {
+      "filename": "mobile-390-initial.png",
+      "bytes": 74110,
+      "sha256": "de3c05ab4a9cd3d0c10d4dc4f4458acff709e2683fb9f7a650566e1f8b0cd98e"
+    },
+    {
+      "filename": "mobile-390-editor.png",
+      "bytes": 63772,
+      "sha256": "1efd412921ae1847765bcbbbc154c78271cdcb8d2c20e428557bf031e2889813"
+    }
+  ],
+  "downloads": [
+    {
+      "label": "Natal calculation",
+      "filename": "01-astrology-desktop-study.json.gz",
+      "bytes": 31302,
+      "sha256": "9666380db494b2a643bd5fcad6af44637bd990ccdeafd881602aaedbaaef2d23"
+    },
+    {
+      "label": "Sidereal calculation",
+      "filename": "02-astrology-desktop-study.json.gz",
+      "bytes": 30508,
+      "sha256": "626784ac5504230df5758c0199d763ce0d2da451875b11842f73dfed2c1ee3ee"
+    },
+    {
+      "label": "Transit calculation",
+      "filename": "03-astrology-desktop-study.json.gz",
+      "bytes": 79581,
+      "sha256": "4a77c9bcf9b7ab1494a4c16c62597b8228e9261fb8eb7ec2c19553591162a41b"
+    },
+    {
+      "label": "Elapsed transit step",
+      "filename": "04-astrology-desktop-study.json.gz",
+      "bytes": 77793,
+      "sha256": "20097bb3cf7fe500c419a7c33f838d1b34e96465b637304c09fb3ce05461f65b"
+    },
+    {
+      "label": "Synastry calculation",
+      "filename": "05-astrology-desktop-study.json.gz",
+      "bytes": 76952,
+      "sha256": "2e1e0ee8c38f6f9b17a2b99dfae3a35c9c7d96d80f27e70719156e35759f110b"
+    },
+    {
+      "label": "Standalone chart SVG",
+      "filename": "06-astrology-desktop-chart.svg.gz",
+      "bytes": 116455,
+      "sha256": "88d598d8b1d69f687c3510f4279c934a8f67d907ff6bd2a2f283a0490cf5a567"
+    },
+    {
+      "label": "Portable local chart library",
+      "filename": "07-astrology-chart-library.json.gz",
+      "bytes": 530,
+      "sha256": "586f6a154bd9d1b33234350ae6b8c1f9d19ac2b067a078989419d9331e1e2d45"
+    },
+    {
+      "label": "Offline AI handoff text",
+      "filename": "08-private-astrology-study-prompt.txt.gz",
+      "bytes": 77651,
+      "sha256": "a0bcdc740b4c44326ba591b2477e236c1298ba7ae77a8bbead7a60bae364ba01"
+    },
+    {
+      "label": "Calculation with blocked storage",
+      "filename": "09-astrology-desktop-study.json.gz",
+      "bytes": 31302,
+      "sha256": "9666380db494b2a643bd5fcad6af44637bd990ccdeafd881602aaedbaaef2d23"
+    }
+  ],
+  "limits": {
+    "chatgptHosted": false,
+    "nativeDesktopBinary": false,
+    "physicalDevice": false,
+    "screenReader": false,
+    "allBrowsers": false,
+    "externalSpecialistToolsOffline": false,
+    "fileStoragePortableAcrossBrowsers": false,
+    "predictiveValidation": false
+  },
+  "pass": true,
+  "checkCount": 53,
+  "completedAt": "2026-11-06T00:14:37.992Z"
+}

@@ -34,7 +34,7 @@ Connect the provisioned Workbench plugin under **Plugins → Personal → Create
 
 ## Tools and contracts
 
-The current source registry exposes **85 read-only tools**. This is the local source count; the historical remote deployment status above remains separate. The feature branch has not been published to Pages in this iteration; deployment remains deferred by the user.
+The current source registry exposes **87 read-only tools**. This is the local source count; the historical remote deployment status above remains separate. The feature branch has not been published to Pages in this iteration; deployment remains deferred by the user.
 
 - `workbench_catalogue`: search the existing capability directory and links.
 - `workbench_chart`: Western chart, planetary hour and optional Vedic context, explicit instant and observer; optional birth radix/reference instant.
@@ -57,6 +57,13 @@ The generated [static catalogue](../assets/data/mcp-catalogue.json) contains the
 - `workbench_desktop_action_preview` validates one of ten finite chart/view/tool proposals and recomputes its proposed result. It does not control a browser. The browser must check its held context revision and require an explicit **Apply** action. Unsupported fields, executable code, arbitrary URLs, storage writes and provider calls have no action type. Reset requires an explicit reference profile; missing birth clocks are never invented.
 
 Run `node ../scripts/test-workbench-rag-protocol.mjs` for the actual official-SDK HTTP-handler and child-process stdio tests of these three tools. A passing local protocol test does not establish availability on the previously deployed backend. The [chatbot integration notes](../docs/2026-11-workbench-rag-integrations.md) distinguish local retrieval, local model generation, ChatGPT handoff and optional hosted services.
+
+## Timeline search adapters
+
+- `workbench_timeline_search` scans up to 366 explicit civil-date samples, using typed calendar/lunar/rule/weekday filter arrays converted to the canonical criteria contract. It returns every denominator, the complete predeclared statistical family, all unavailable-date indices and an explicitly selected summary of up to twelve matches. It does not return the full browser ledger or silently redefine the scan population to the displayed matches.
+- `workbench_timeline_search_date` recomputes one declared index in a range of up to 3,660 dates, without scanning every preceding day. All forty map distances are retained when map mode is active. A fixed reference requires an explicit instant; transit mode uses the sampled instant.
+
+Both tools are read-only and bound their output at 128 KiB. Missing clocks, ambiguous dates, unavailable calendars, constant features and irregular UTC spacing retain explicit reasons. Descriptive frequencies and a qualified relative-phase sensitivity test do not estimate real-world outcome probabilities. Holm adjustment retains the complete declared comparison family, including unavailable comparisons in its denominator; display filtering cannot change it. See [scan methods](../docs/2026-11-timeline-search-methods.md) and [statistical assumptions](../docs/2026-11-timeline-search-statistics.md). Test actual HTTP/stdio behavior with `node ../scripts/test-timeline-search-protocol.mjs`.
 
 ## Astrocartography adapters
 

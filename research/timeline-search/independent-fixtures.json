@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-timeline-search-mathematical-fixtures",
+  "claimScope": "Hand-enumerated finite arrays, elementary spherical geometry and independently specified civil-clock expectations. These are software/numerical checks, not evidence of astrological prediction.",
+  "construction": "Expected outputs below were derived from explicit rank lists, contingency tables, sorted Holm arithmetic, all circular rotations, and analytic equatorial half-arcs before calling the implementation under test.",
+  "rankCases": [
+    {"id":"tied-midrank","left":[1,1,2,3],"right":[1,2,2,3],"leftRanks":[1.5,1.5,3,4],"rightRanks":[1,2.5,2.5,4],"correlation":0.8333333333333334,"derivation":"Both centered rank sums of squares are4.5; cross-product3.75 gives5/6."},
+    {"id":"negative-monotone","left":[1,2,3,4],"right":[8,6,4,2],"leftRanks":[1,2,3,4],"rightRanks":[4,3,2,1],"correlation":-1},
+    {"id":"rerank-jointly-observed","left":[1,2,3,4],"right":[4,null,2,1],"correlation":-1,"derivation":"The three jointly available pairs rerank to[1,2,3] and[3,2,1]."}
+  ],
+  "binaryCases": [
+    {"id":"balanced-orthogonal","left":[1,1,0,0],"right":[1,0,1,0],"both":1,"leftOnly":1,"rightOnly":1,"neither":1,"validPairs":4,"phi":0,"jaccard":0.3333333333333333,"leftHitRate":0.5,"rightHitRate":0.5,"coHitRate":0.25,"lift":1},
+    {"id":"one-missing-pair","left":[1,null,0,1],"right":[1,1,0,0],"both":1,"leftOnly":1,"rightOnly":0,"neither":1,"validPairs":3,"phi":0.5,"jaccard":0.5,"leftHitRate":0.6666666666666666,"rightHitRate":0.3333333333333333,"coHitRate":0.3333333333333333,"lift":1.5}
+  ],
+  "exceedanceCases": [
+    {"values":[3,3,1,null,2],"availableCount":4,"missingCount":1,"minimum":1,"maximum":3,"mean":2.25,"constant":false,"exceedanceCount":[2,2,4,null,3],"exceedanceFrequency":[0.5,0.5,1,null,0.75]},
+    {"values":[5,5,5],"availableCount":3,"missingCount":0,"minimum":5,"maximum":5,"mean":5,"constant":true,"exceedanceCount":[3,3,3],"exceedanceFrequency":[1,1,1]},
+    {"values":[null,null],"availableCount":0,"missingCount":2,"minimum":null,"maximum":null,"mean":null,"constant":false,"exceedanceCount":[null,null],"exceedanceFrequency":[null,null]}
+  ],
+  "holmCases": [
+    {"raw":[0.01,0.04,0.03],"familySize":3,"adjusted":[0.03,0.06,0.06]},
+    {"raw":[0.01,null,0.04],"familySize":3,"adjusted":[0.03,null,0.08]},
+    {"raw":[0.04,0.03,0.01,null],"familySize":4,"adjusted":[0.09,0.09,0.04,null]},
+    {"raw":[0.01,0.04],"familySize":5,"adjusted":[0.05,0.16]},
+    {"raw":[null,null],"familySize":2,"adjusted":[null,null]}
+  ],
+  "rotationCases": [
+    {"id":"periodic-alternation","left":[1,0,1,0],"right":[1,0,1,0],"correlationsByOffset":[1,-1,1,-1],"tailProbability":1,"extremeCount":4,"nullMedianAbsolute":1,"effectAboveMedian":0,"derivation":"A perfect periodic association remains equally extreme in every relative circular phase."},
+    {"id":"two-blocks","left":[1,1,0,0],"right":[1,1,0,0],"correlationsByOffset":[1,0,-1,0],"tailProbability":0.5,"extremeCount":2,"nullMedianAbsolute":0.5,"effectAboveMedian":0.5},
+    {"id":"four-step-ramp","left":[1,2,3,4],"right":[1,2,3,4],"correlationsByOffset":[1,-0.2,-0.6,-0.2],"tailProbability":0.25,"extremeCount":1,"nullMedianAbsolute":0.4,"effectAboveMedian":0.6}
+  ],
+  "clockCases": [
+    {"id":"gregorian-leap","start":"2028-02-28","end":"2028-03-01","zone":"UTC","clock":"12:00","localDates":["2028-02-28","2028-02-29","2028-03-01"],"instants":["2028-02-28T12:00:00.000Z","2028-02-29T12:00:00.000Z","2028-03-01T12:00:00.000Z"]},
+    {"id":"century-not-leap","start":"2100-02-28","end":"2100-03-01","zone":"UTC","clock":"12:00","localDates":["2100-02-28","2100-03-01"],"instants":["2100-02-28T12:00:00.000Z","2100-03-01T12:00:00.000Z"]},
+    {"id":"new-york-spring-noon","start":"2026-03-07","end":"2026-03-08","zone":"America/New_York","clock":"12:00","localDates":["2026-03-07","2026-03-08"],"instants":["2026-03-07T17:00:00.000Z","2026-03-08T16:00:00.000Z"],"elapsedHours":23},
+    {"id":"new-york-autumn-noon","start":"2026-10-31","end":"2026-11-01","zone":"America/New_York","clock":"12:00","localDates":["2026-10-31","2026-11-01"],"instants":["2026-10-31T16:00:00.000Z","2026-11-01T17:00:00.000Z"],"elapsedHours":25}
+  ],
+  "aliasing": {
+    "body":{"id":"Sun","raDegrees":0,"declinationDegrees":0},
+    "observer":{"lat":0,"lon":180},
+    "sampledGastDegrees":[0,360],
+    "intermediateGastDegrees":180,
+    "angle":"MC",
+    "sampledDistanceDegrees":90,
+    "intermediateDistanceDegrees":0,
+    "thresholdKm":500,
+    "scope":"Synthetic uniform rotation over one complete turn; no real-day ephemeris or solar-time claim. Two endpoint samples miss an exact meridian-line passage between them."
+  }
+}

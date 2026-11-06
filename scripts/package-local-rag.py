@@ -114,6 +114,16 @@ public_reading = {
     'supabase/migrations/202611040002_reading_lab.sql',
 }
 public_astrocartography = {
+    'scripts/tests/timeline-search.mjs',
+    'scripts/tests/timeline-statistics.mjs',
+    'scripts/tests/timeline-search-independent.mjs',
+    'scripts/tests/calendar-format-cache.mjs',
+    'scripts/test-timeline-search-protocol.mjs',
+    'scripts/run-timeline-search-study.mjs',
+    'research/timeline-search/independent-fixtures.json',
+    'research/timeline-search/statistical-sources.json',
+    'research/timeline-search/public-study-freeze.json',
+    'research/timeline-search/public-three-year-summary.json',
     'scripts/tests/astrocartography.mjs', 'scripts/tests/astrocartography-independent.mjs',
     'scripts/test-astrocartography-protocol.mjs',
     'research/astrocartography/source-ledger.json',

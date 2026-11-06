@@ -5871,6 +5871,736 @@ export const MCP_TOOL_CONTRACTS = {
     ],
     "additionalProperties": false
   },
+  "workbench_timeline_search": {
+    "type": "object",
+    "properties": {
+      "request": {
+        "type": "object",
+        "properties": {
+          "timeline": {
+            "type": "object",
+            "properties": {
+              "startDate": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10
+              },
+              "endDate": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10
+              },
+              "time": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 8
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "disambiguation": {
+                "type": "string",
+                "enum": [
+                  "reject",
+                  "earlier",
+                  "later"
+                ]
+              },
+              "includeCatalogStars": {
+                "type": "boolean"
+              },
+              "includeGuidance": {
+                "type": "boolean"
+              },
+              "prayerMethod": {
+                "type": "string",
+                "enum": [
+                  "MuslimWorldLeague",
+                  "NorthAmerica",
+                  "Egyptian",
+                  "Karachi",
+                  "UmmAlQura",
+                  "MoonsightingCommittee",
+                  "Turkey"
+                ]
+              },
+              "asr": {
+                "type": "string",
+                "enum": [
+                  "Shafi",
+                  "Hanafi"
+                ]
+              },
+              "highLatitude": {
+                "type": "string",
+                "enum": [
+                  "MiddleOfTheNight",
+                  "SeventhOfTheNight",
+                  "TwilightAngle"
+                ]
+              }
+            },
+            "required": [
+              "startDate",
+              "endDate",
+              "time",
+              "timeZone",
+              "lat",
+              "lon",
+              "system",
+              "disambiguation"
+            ],
+            "additionalProperties": false
+          },
+          "calendarIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "gregory",
+                "julian",
+                "hebrew",
+                "islamic-civil",
+                "islamic-umalqura",
+                "chinese",
+                "buddhist",
+                "indian",
+                "persian",
+                "coptic",
+                "ethiopic",
+                "japanese",
+                "roc"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 13,
+            "uniqueItems": true
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 6
+            },
+            "minItems": 1,
+            "maxItems": 7,
+            "uniqueItems": true
+          },
+          "lunarFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "enum": [
+                    "phaseIndex",
+                    "tithi",
+                    "karana",
+                    "nakshatra",
+                    "yoga"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 60
+                  },
+                  "minItems": 1,
+                  "maxItems": 60,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "field",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "calendarFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "calendar": {
+                  "type": "string",
+                  "enum": [
+                    "gregory",
+                    "julian",
+                    "hebrew",
+                    "islamic-civil",
+                    "islamic-umalqura",
+                    "chinese",
+                    "buddhist",
+                    "indian",
+                    "persian",
+                    "coptic",
+                    "ethiopic",
+                    "japanese",
+                    "roc"
+                  ]
+                },
+                "field": {
+                  "type": "string",
+                  "enum": [
+                    "day",
+                    "month",
+                    "year",
+                    "era",
+                    "relatedYear",
+                    "yearName"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "minItems": 1,
+                  "maxItems": 60,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "calendar",
+                "field",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "ruleFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ruleId": {
+                  "type": "string",
+                  "enum": [
+                    "DG-W-LIGHT",
+                    "DG-W-SPEED",
+                    "DG-W-SOLAR",
+                    "DG-W-VIA",
+                    "DG-W-APPLY-MARS",
+                    "DG-W-APPLY-SATURN",
+                    "DG-J-TITHI",
+                    "DG-J-YOGA",
+                    "DG-J-KARANA",
+                    "DG-J-NAKSHATRA",
+                    "DG-H-TEMPORAL"
+                  ]
+                },
+                "classifications": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "favorable",
+                      "caution",
+                      "neutral",
+                      "unavailable"
+                    ]
+                  },
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "ruleId",
+                "classifications"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "map": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "transit",
+                  "fixed"
+                ]
+              },
+              "fixedInstantISO": {
+                "type": "string",
+                "minLength": 20,
+                "maxLength": 40
+              },
+              "bodyIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Sun",
+                    "Moon",
+                    "Mercury",
+                    "Venus",
+                    "Mars",
+                    "Jupiter",
+                    "Saturn",
+                    "Uranus",
+                    "Neptune",
+                    "Pluto"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 10,
+                "uniqueItems": true
+              },
+              "angleIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "ASC",
+                    "DSC",
+                    "MC",
+                    "IC"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 4,
+                "uniqueItems": true
+              },
+              "maxDistanceKm": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 3000
+              },
+              "minimumLines": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 40
+              }
+            },
+            "required": [
+              "mode"
+            ],
+            "additionalProperties": false
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "optimized",
+              "brute"
+            ]
+          }
+        },
+        "required": [
+          "timeline"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "request"
+    ],
+    "additionalProperties": false
+  },
+  "workbench_timeline_search_date": {
+    "type": "object",
+    "properties": {
+      "request": {
+        "type": "object",
+        "properties": {
+          "timeline": {
+            "type": "object",
+            "properties": {
+              "startDate": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10
+              },
+              "endDate": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 10
+              },
+              "time": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 8
+              },
+              "timeZone": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "system": {
+                "type": "string",
+                "enum": [
+                  "regiomontanus",
+                  "placidus",
+                  "whole",
+                  "equal"
+                ]
+              },
+              "disambiguation": {
+                "type": "string",
+                "enum": [
+                  "reject",
+                  "earlier",
+                  "later"
+                ]
+              },
+              "includeCatalogStars": {
+                "type": "boolean"
+              },
+              "includeGuidance": {
+                "type": "boolean"
+              },
+              "prayerMethod": {
+                "type": "string",
+                "enum": [
+                  "MuslimWorldLeague",
+                  "NorthAmerica",
+                  "Egyptian",
+                  "Karachi",
+                  "UmmAlQura",
+                  "MoonsightingCommittee",
+                  "Turkey"
+                ]
+              },
+              "asr": {
+                "type": "string",
+                "enum": [
+                  "Shafi",
+                  "Hanafi"
+                ]
+              },
+              "highLatitude": {
+                "type": "string",
+                "enum": [
+                  "MiddleOfTheNight",
+                  "SeventhOfTheNight",
+                  "TwilightAngle"
+                ]
+              }
+            },
+            "required": [
+              "startDate",
+              "endDate",
+              "time",
+              "timeZone",
+              "lat",
+              "lon",
+              "system",
+              "disambiguation"
+            ],
+            "additionalProperties": false
+          },
+          "calendarIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "gregory",
+                "julian",
+                "hebrew",
+                "islamic-civil",
+                "islamic-umalqura",
+                "chinese",
+                "buddhist",
+                "indian",
+                "persian",
+                "coptic",
+                "ethiopic",
+                "japanese",
+                "roc"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 13,
+            "uniqueItems": true
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 6
+            },
+            "minItems": 1,
+            "maxItems": 7,
+            "uniqueItems": true
+          },
+          "lunarFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "enum": [
+                    "phaseIndex",
+                    "tithi",
+                    "karana",
+                    "nakshatra",
+                    "yoga"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 60
+                  },
+                  "minItems": 1,
+                  "maxItems": 60,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "field",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "calendarFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "calendar": {
+                  "type": "string",
+                  "enum": [
+                    "gregory",
+                    "julian",
+                    "hebrew",
+                    "islamic-civil",
+                    "islamic-umalqura",
+                    "chinese",
+                    "buddhist",
+                    "indian",
+                    "persian",
+                    "coptic",
+                    "ethiopic",
+                    "japanese",
+                    "roc"
+                  ]
+                },
+                "field": {
+                  "type": "string",
+                  "enum": [
+                    "day",
+                    "month",
+                    "year",
+                    "era",
+                    "relatedYear",
+                    "yearName"
+                  ]
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "minItems": 1,
+                  "maxItems": 60,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "calendar",
+                "field",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "ruleFilters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ruleId": {
+                  "type": "string",
+                  "enum": [
+                    "DG-W-LIGHT",
+                    "DG-W-SPEED",
+                    "DG-W-SOLAR",
+                    "DG-W-VIA",
+                    "DG-W-APPLY-MARS",
+                    "DG-W-APPLY-SATURN",
+                    "DG-J-TITHI",
+                    "DG-J-YOGA",
+                    "DG-J-KARANA",
+                    "DG-J-NAKSHATRA",
+                    "DG-H-TEMPORAL"
+                  ]
+                },
+                "classifications": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "favorable",
+                      "caution",
+                      "neutral",
+                      "unavailable"
+                    ]
+                  },
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "ruleId",
+                "classifications"
+              ],
+              "additionalProperties": false
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "map": {
+            "type": "object",
+            "properties": {
+              "mode": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "transit",
+                  "fixed"
+                ]
+              },
+              "fixedInstantISO": {
+                "type": "string",
+                "minLength": 20,
+                "maxLength": 40
+              },
+              "bodyIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Sun",
+                    "Moon",
+                    "Mercury",
+                    "Venus",
+                    "Mars",
+                    "Jupiter",
+                    "Saturn",
+                    "Uranus",
+                    "Neptune",
+                    "Pluto"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 10,
+                "uniqueItems": true
+              },
+              "angleIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "ASC",
+                    "DSC",
+                    "MC",
+                    "IC"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 4,
+                "uniqueItems": true
+              },
+              "maxDistanceKm": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 3000
+              },
+              "minimumLines": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 40
+              }
+            },
+            "required": [
+              "mode"
+            ],
+            "additionalProperties": false
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "optimized",
+              "brute"
+            ]
+          }
+        },
+        "required": [
+          "timeline"
+        ],
+        "additionalProperties": false
+      },
+      "index": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 3659
+      }
+    },
+    "required": [
+      "request",
+      "index"
+    ],
+    "additionalProperties": false
+  },
   "workbench_tithi_pravesha": {
     "type": "object",
     "properties": {
@@ -5948,6 +6678,7 @@ export const MCP_TOOL_CONTRACTS = {
       "capabilityId": {
         "type": "string",
         "enum": [
+          "timeline-search",
           "astrocartography",
           "reading-lab",
           "positions",

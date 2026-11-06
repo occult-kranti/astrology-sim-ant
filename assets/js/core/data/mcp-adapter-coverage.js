@@ -445,6 +445,24 @@ export const MCP_ADAPTER_COVERAGE = {
     ],
     "scope": "Explicit distinct card IDs and reversals for the named spread; no model-selected or random draw."
   },
+  "timeline-search": {
+    "mcpTools": [
+      "workbench_timeline_search",
+      "workbench_timeline_search_date"
+    ],
+    "outputPaths": [
+      "data.request",
+      "data.counts",
+      "data.missingness",
+      "data.statistics",
+      "data.selectedMatches",
+      "data.row",
+      "data.sources",
+      "data.limitations",
+      "data.scope"
+    ],
+    "scope": "Explicit sampled-date searches with a 366-date MCP scan bound or one freshly calculated selected date from a 3660-date local grid. Complete statistical denominators and declared summary omissions; no outcome-risk estimate or browser state."
+  },
   "tithi-pravesha": {
     "mcpTools": [
       "workbench_tithi_pravesha"

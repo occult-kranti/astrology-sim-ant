@@ -1,0 +1,418 @@
+{
+  "status": "PASS",
+  "checks": 40791,
+  "corpusChunks": 3516,
+  "sourceFiles": 196,
+  "corpusSHA256": "73f2cca49172ced6d62c1c582a17e888a1a7b03e86278d7bcd2bd5c44dcb051b",
+  "readingLab": {
+    "caseRecords": 17,
+    "sourceRecords": 24,
+    "methodRecords": 4,
+    "families": 9,
+    "queries": 13,
+    "results": [
+      {
+        "family": "egyptian",
+        "query": "Why does the ancient Egyptian civil year have five extra days while Coptic intercalation belongs to a later reform?",
+        "recordId": "egyptian-civil-structure",
+        "hit": true,
+        "passageChecks": 2,
+        "citationIds": [
+          "WRAG-2d5e0fe58dd28d95",
+          "WRAG-5aedb04cfc812f56"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": true
+      },
+      {
+        "family": "mayan",
+        "query": "What is the Smithsonian worked Maya date for December 20, 2012, including Long Count and Kawak?",
+        "recordId": "mayan-nmai-2012-12-20",
+        "hit": true,
+        "passageChecks": 3,
+        "citationIds": [
+          "WRAG-cabf2db86d65ff2c",
+          "WRAG-d567da75ac846407"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": true
+      },
+      {
+        "family": "dee",
+        "query": "How does Dee’s Monas symbolic construction differ from a numerical natal calendar?",
+        "recordId": "dee-monas-symbolic-method",
+        "hit": true,
+        "passageChecks": 2,
+        "citationIds": [
+          "WRAG-f8591cfe195118da",
+          "WRAG-aa6e399df32855b9"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": true
+      },
+      {
+        "family": "lilly",
+        "query": "Which four positions in Lilly’s printed missing-dog figure differed from the inherited reconstruction?",
+        "recordId": "lilly-dog-printed-figure",
+        "hit": true,
+        "passageChecks": 4,
+        "citationIds": [
+          "WRAG-ec2fc4ba89f5f098",
+          "WRAG-6d56ca434ab05991"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": false
+      },
+      {
+        "family": "vedic",
+        "query": "In Rao Example 2, how do Moon 84 degrees 12 minutes and Sun 227 degrees 46 minutes give Krishna Chaturthi?",
+        "recordId": "vedic-rao-tithi-example-2",
+        "hit": true,
+        "passageChecks": 2,
+        "citationIds": [
+          "WRAG-4b5008ff88eafd2b"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": false
+      },
+      {
+        "family": "chinese",
+        "query": "How does HKO’s 2023 table identify the second lunar month on March 22 as repeated?",
+        "recordId": "chinese-leap-month-2023",
+        "hit": true,
+        "passageChecks": 3,
+        "citationIds": [
+          "WRAG-13d4caf0ca079417",
+          "WRAG-6d0adcf8bb21e2f4"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": true
+      },
+      {
+        "family": "hebrew",
+        "query": "How does Hebcal change October 2, 2024 from Elul to Tishrei before and after sunset?",
+        "recordId": "hebrew-sunset-boundary-2024",
+        "hit": true,
+        "passageChecks": 3,
+        "citationIds": [
+          "WRAG-81909425668c1869"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": false
+      },
+      {
+        "family": "jung",
+        "query": "What does Jung mean by feeling as valuation rather than just a mood?",
+        "recordId": "jung-feeling-valuation",
+        "hit": true,
+        "passageChecks": 2,
+        "citationIds": [
+          "WRAG-b1f2364148a9ddf4",
+          "WRAG-db4a123fe2d5e996"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": true
+      },
+      {
+        "family": "plato",
+        "query": "In Plato’s Myth of Er, does the lot decide order of choice or remove the chooser’s responsibility?",
+        "recordId": "plato-er-choice",
+        "hit": true,
+        "passageChecks": 3,
+        "citationIds": [
+          "WRAG-ac023703ba575d9f",
+          "WRAG-57579f3ab333bd3f"
+        ],
+        "authorshipHeaderPresent": true,
+        "authorshipNoteInReturnedExcerpts": true
+      },
+      {
+        "family": "house-origins",
+        "query": "How do whole-sign and equal houses differ when the Ascendant is 18 degrees Taurus?",
+        "recordId": "RL-METHOD-HOUSE-ORIGINS",
+        "hit": true,
+        "passageChecks": 3,
+        "citationIds": [
+          "WRAG-634bdbaef11741c4"
+        ],
+        "authorshipHeaderPresent": null,
+        "authorshipNoteInReturnedExcerpts": null
+      },
+      {
+        "family": "placidus",
+        "query": "How do Placidus semidiurnal and seminocturnal arcs affect high-latitude house calculation?",
+        "recordId": "RL-METHOD-PLACIDUS",
+        "hit": true,
+        "passageChecks": 3,
+        "citationIds": [
+          "WRAG-9a56010e08487b5a"
+        ],
+        "authorshipHeaderPresent": null,
+        "authorshipNoteInReturnedExcerpts": null
+      },
+      {
+        "family": "zodiac-frames",
+        "query": "How does precession change the tropical equinox versus the sidereal stellar reference and ayanamsha?",
+        "recordId": "RL-METHOD-ZODIAC-FRAMES",
+        "hit": true,
+        "passageChecks": 4,
+        "citationIds": [
+          "WRAG-e488f61a1fb5c1e2"
+        ],
+        "authorshipHeaderPresent": null,
+        "authorshipNoteInReturnedExcerpts": null
+      },
+      {
+        "family": "reading-chain",
+        "query": "How does a checked calculation become a named source rule, conditional everyday scenario and low-risk action?",
+        "recordId": "RL-METHOD-READING-CHAIN",
+        "hit": true,
+        "passageChecks": 3,
+        "citationIds": [
+          "WRAG-3c895a5e3812a8f8"
+        ],
+        "authorshipHeaderPresent": null,
+        "authorshipNoteInReturnedExcerpts": null
+      }
+    ],
+    "budgetDiagnostics": [
+      {
+        "maxTokens": 1000,
+        "targetRecordReturned": false,
+        "bothBoundaryDatesPresent": false,
+        "authorshipHeadersPresent": true,
+        "citationIds": [
+          "WRAG-9fe498b6c6b653eb"
+        ]
+      },
+      {
+        "maxTokens": 3000,
+        "targetRecordReturned": false,
+        "bothBoundaryDatesPresent": false,
+        "authorshipHeadersPresent": true,
+        "citationIds": [
+          "WRAG-9fe498b6c6b653eb",
+          "WRAG-14e3a47d72b50308"
+        ]
+      },
+      {
+        "maxTokens": 6000,
+        "targetRecordReturned": true,
+        "bothBoundaryDatesPresent": true,
+        "authorshipHeadersPresent": true,
+        "citationIds": [
+          "WRAG-9fe498b6c6b653eb",
+          "WRAG-14e3a47d72b50308",
+          "WRAG-589de42634c5cae5",
+          "WRAG-81909425668c1869"
+        ]
+      }
+    ],
+    "scope": "Public development retrieval coverage, not sealed model evaluation or predictive validity. Authorship and reading-depth notes are indexed; a bounded returned excerpt may omit its continuation."
+  },
+  "timelineSearch": {
+    "queries": 3,
+    "results": [
+      {
+        "id": "regular-grid",
+        "query": "Why is a timeline circular phase audit unavailable with DST or irregular UTC spacing?",
+        "citationIds": [
+          "WRAG-64647113ea32af45",
+          "WRAG-df3a0d39bd939258",
+          "WRAG-de29cc72b5bbcc4a"
+        ],
+        "passageChecks": 3
+      },
+      {
+        "id": "complete-family",
+        "query": "How does timeline search Holm adjustment account for unavailable comparisons and multiple tests?",
+        "citationIds": [
+          "WRAG-9f9ebd5e6f6d47e9",
+          "WRAG-7f74bb4cd33f263f",
+          "WRAG-0453f6257d259042"
+        ],
+        "passageChecks": 3
+      },
+      {
+        "id": "fixed-map",
+        "query": "Why does a fixed astrocartography reference map stay constant during a date scan?",
+        "citationIds": [
+          "WRAG-3907f0ad341b8d7a",
+          "WRAG-bcac713baa047482",
+          "WRAG-b4713b3a25e12885"
+        ],
+        "passageChecks": 3
+      }
+    ],
+    "scope": "Public source-retrieval regression; not generated-answer or outcome accuracy."
+  },
+  "astrocartography": {
+    "sourceRecords": 18,
+    "purposes": 6,
+    "queries": 5,
+    "results": [
+      {
+        "id": "geometric-horizon",
+        "query": "Does an astrocartography rising line use the visible solar limb and atmospheric refraction, or a geometric centre at altitude zero?",
+        "citationIds": [
+          "WRAG-dac5bb9cbb33b732",
+          "WRAG-c6e52c10b95fcd87",
+          "WRAG-eb51709ea38aac83",
+          "WRAG-c63a3e28464fc7da"
+        ],
+        "passageChecks": 3,
+        "hit": true
+      },
+      {
+        "id": "meridian-not-zenith",
+        "query": "Why is an astrocartography MC meridian line different from a planet being directly overhead?",
+        "citationIds": [
+          "WRAG-45f594e2a0c955fa",
+          "WRAG-b608365cdbd34088",
+          "WRAG-dac5bb9cbb33b732",
+          "WRAG-e4eef0a9c25e01c1"
+        ],
+        "passageChecks": 3,
+        "hit": true
+      },
+      {
+        "id": "editorial-score",
+        "query": "Are astrocartography purpose scores validated probabilities, or project-authored editorial weights?",
+        "citationIds": [
+          "WRAG-b6e7ea5a01e23f8e",
+          "WRAG-dcfc3a48e0ac5ca5",
+          "WRAG-5db8efd195f81042",
+          "WRAG-72d17bc5622f2884"
+        ],
+        "passageChecks": 3,
+        "hit": true
+      },
+      {
+        "id": "licensed-offline-data",
+        "query": "What are the licences for the offline Natural Earth land polygons and GeoNames cities?",
+        "citationIds": [
+          "WRAG-e0e6ce421ed59dad",
+          "WRAG-dff2ac996e8b6e5a",
+          "WRAG-f35c1bed257b7735"
+        ],
+        "passageChecks": 4,
+        "hit": true
+      },
+      {
+        "id": "radius-attribution",
+        "query": "Why does the astrocartography map use 6371.0088 km rather than an IAU nominal radius?",
+        "citationIds": [
+          "WRAG-c6a6bc8044c58aa7",
+          "WRAG-c42cb5a5dd76e4a0",
+          "WRAG-deff2d8f0ba0284f"
+        ],
+        "passageChecks": 3,
+        "hit": true
+      }
+    ],
+    "scope": "Source-specific development checks of geometry definitions, provenance and editorial attribution; not an outcome-validation benchmark."
+  },
+  "calibration": {
+    "questions": 10,
+    "hits": 10
+  },
+  "heldout": {
+    "questions": 8,
+    "hits": 8,
+    "results": [
+      {
+        "query": "Why are daylight planetary hours unequal between winter and summer?",
+        "hit": true,
+        "ids": [
+          "WRAG-3fdeeb547f4b6e6f",
+          "WRAG-61fbad7cd0b6b30d",
+          "WRAG-3b55242953eff961",
+          "WRAG-94913da681d4a4cf",
+          "WRAG-7fa40949dfd75375"
+        ]
+      },
+      {
+        "query": "Can Coptic civil dates reconstruct the ancient Egyptian lunar calendar?",
+        "hit": true,
+        "ids": [
+          "WRAG-969f2d20d1704853",
+          "WRAG-d67dfe16e5c8dc27",
+          "WRAG-2d5e0fe58dd28d95",
+          "WRAG-d14ec6a829de62c0",
+          "WRAG-a5fe1d4122160382"
+        ]
+      },
+      {
+        "query": "What happens when a clock repeats during daylight saving time?",
+        "hit": true,
+        "ids": [
+          "WRAG-d1b835209b33239b",
+          "WRAG-22313954eccbf37c",
+          "WRAG-fd78b93a90cc05ef",
+          "WRAG-72e4c9acabb59d9a"
+        ]
+      },
+      {
+        "query": "What is the disputed attribution of the Fourth Book to Agrippa?",
+        "hit": true,
+        "ids": [
+          "WRAG-c99f11d0897535c8",
+          "WRAG-3f93071a47876dc7",
+          "WRAG-89d3a6abb2aff932",
+          "WRAG-a1fbdb498feac21e",
+          "WRAG-06e89a589377b088"
+        ]
+      },
+      {
+        "query": "Is a global eclipse necessarily visible from my city?",
+        "hit": true,
+        "ids": [
+          "WRAG-3878874cfbfe29a8",
+          "WRAG-7a4dc965ce356637",
+          "WRAG-cc79feb961914ddd",
+          "WRAG-f08d8c48e4b1392e"
+        ]
+      },
+      {
+        "query": "What does a zodiac sign mean compared with an IAU constellation?",
+        "hit": true,
+        "ids": [
+          "WRAG-cf00601476297dbe",
+          "WRAG-e488f61a1fb5c1e2",
+          "WRAG-f803e19a2605fe03",
+          "WRAG-480a97f9e2d9af8e"
+        ]
+      },
+      {
+        "query": "How do I keep saved chart data private offline?",
+        "hit": true,
+        "ids": [
+          "WRAG-4bf719a9cee3e055",
+          "WRAG-c507cbf472104658",
+          "WRAG-b20dc8a2a244231a",
+          "WRAG-2144f07cd0bb7fa2"
+        ]
+      },
+      {
+        "query": "Does birth time uncertainty change the houses?",
+        "hit": true,
+        "ids": [
+          "WRAG-72e4c9acabb59d9a",
+          "WRAG-80c06350d72c6c02",
+          "WRAG-26bc2273dd7678e9",
+          "WRAG-b20dc8a2a244231a",
+          "WRAG-fb707b41b1c24387"
+        ]
+      }
+    ]
+  },
+  "stress": {
+    "queries": 240,
+    "elapsedMilliseconds": 134
+  },
+  "limits": [
+    "Engineering lexical-retrieval fixtures, not external benchmark or human evaluation.",
+    "Citation checks validate identifiers, not factual entailment.",
+    "No full referenced books, embeddings, model training or private chart corpus."
+  ]
+}

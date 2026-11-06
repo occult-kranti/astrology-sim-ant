@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-public-reading-database-verification",
+  "startedAt": "2026-11-06T00:10:31.313Z",
+  "engine": "@electric-sql/pglite 0.5.13; PostgreSQL in WASM",
+  "hostedSupabase": false,
+  "remoteCredentialsUsed": false,
+  "networkCalls": 0,
+  "privateProfilesIncluded": false,
+  "modelEvaluationDataIncluded": false,
+  "driverSHA256": "8149f412ee7e875dce8cea4bf8a1209296be656e9e5efb455e3f5103b4ac30a5",
+  "generatorSHA256": "3af43a36762ee0093f87df6b95ec7b047e04ceb62f060fe26ca0d74bdd188080",
+  "migrationSHA256": "83e3e03741f88c773e8d665debc1d5de54ec27c52d126acdc8590fd920b79fed",
+  "seedSHA256": "f5f3440253c5a8c0fd63de517318cc8b6de2782d1bbbab09c0c979918d1ac66e",
+  "databaseSHA256": "dd2e5a1bdc6ed9cb035ac654038c0cc4e8066c4aca29c28d1e8aa6157545e3db",
+  "pass": true,
+  "completedAt": "2026-11-06T00:10:35.573Z",
+  "checks": [
+    {
+      "label": "Generated public JSON matches fresh canonical calculation and explicit source hashes",
+      "pass": true
+    },
+    {
+      "label": "Public JSON stays below one megabyte",
+      "pass": true,
+      "detail": {
+        "bytes": 119402
+      }
+    },
+    {
+      "label": "Only published source cases enter the exporter",
+      "pass": true
+    },
+    {
+      "label": "No full calculated chart is stored in a result summary",
+      "pass": true
+    },
+    {
+      "label": "Model training and held-out files are absent from the source whitelist",
+      "pass": true
+    },
+    {
+      "label": "All nonnumeric examples remain unevaluable",
+      "pass": true
+    },
+    {
+      "label": "Migration is repeatable",
+      "pass": true
+    },
+    {
+      "label": "Seed is idempotent and contains all authored public cases",
+      "pass": true
+    },
+    {
+      "label": "Every public case, source, locator, rights statement, checked value, limit and hash round-trips exactly",
+      "pass": true,
+      "detail": {
+        "examples": 17
+      }
+    },
+    {
+      "label": "SQL preserves separate field counts and unevaluable cases",
+      "pass": true,
+      "detail": {
+        "traditions": 9,
+        "fields": 24,
+        "matches": 24,
+        "unevaluable": 9
+      }
+    },
+    {
+      "label": "RLS is enabled",
+      "pass": true
+    },
+    {
+      "label": "RPC uses invoker privileges and fixed empty search path",
+      "pass": true
+    },
+    {
+      "label": "Source validation helper is outside the exposed public schema",
+      "pass": true
+    },
+    {
+      "label": "Reseeding retires removed managed rows without deleting them",
+      "pass": true
+    },
+    {
+      "label": "anon sees exactly the published authored examples",
+      "pass": true
+    },
+    {
+      "label": "anon cannot directly read unpublished or retired rows",
+      "pass": true
+    },
+    {
+      "label": "anon RPC cannot expose unpublished rows",
+      "pass": true
+    },
+    {
+      "label": "anon insert is denied",
+      "pass": true
+    },
+    {
+      "label": "anon update is denied",
+      "pass": true
+    },
+    {
+      "label": "anon delete is denied",
+      "pass": true
+    },
+    {
+      "label": "anon truncate is denied",
+      "pass": true
+    },
+    {
+      "label": "anon can browse published examples through bounded RPC",
+      "pass": true
+    },
+    {
+      "label": "authenticated sees exactly the published authored examples",
+      "pass": true
+    },
+    {
+      "label": "authenticated cannot directly read unpublished or retired rows",
+      "pass": true
+    },
+    {
+      "label": "authenticated RPC cannot expose unpublished rows",
+      "pass": true
+    },
+    {
+      "label": "authenticated insert is denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated update is denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated delete is denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated truncate is denied",
+      "pass": true
+    },
+    {
+      "label": "authenticated can browse published examples through bounded RPC",
+      "pass": true
+    },
+    {
+      "label": "Unrelated role has no PUBLIC table permission",
+      "pass": true
+    },
+    {
+      "label": "Unrelated role has no PUBLIC RPC permission",
+      "pass": true
+    },
+    {
+      "label": "Trusted service role can curate explicitly",
+      "pass": true
+    },
+    {
+      "label": "RPC remains published-only for a bypass-RLS service role",
+      "pass": true
+    },
+    {
+      "label": "Source rights metadata is required by SQL constraint",
+      "pass": true
+    },
+    {
+      "label": "Source ID order cannot silently disagree with metadata",
+      "pass": true
+    },
+    {
+      "label": "Outcome validation cannot be claimed through this schema",
+      "pass": true
+    },
+    {
+      "label": "Unevaluable example cannot be marked a successful numerical match",
+      "pass": true
+    },
+    {
+      "label": "Source lookup: Maya",
+      "pass": true
+    },
+    {
+      "label": "Source lookup: cazimi",
+      "pass": true
+    },
+    {
+      "label": "Source lookup: Easter",
+      "pass": true
+    },
+    {
+      "label": "Source lookup: tithi",
+      "pass": true
+    },
+    {
+      "label": "Source lookup: leap month",
+      "pass": true
+    },
+    {
+      "label": "Source lookup: feeling",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: egyptian",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: mayan",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: dee",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: lilly",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: vedic",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: chinese",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: hebrew",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: jung",
+      "pass": true
+    },
+    {
+      "label": "Tradition filter: plato",
+      "pass": true
+    },
+    {
+      "label": "No-match lookup: the and of",
+      "pass": true
+    },
+    {
+      "label": "No-match lookup: !!!",
+      "pass": true
+    },
+    {
+      "label": "No-match lookup: zxqvplmn fyhrrtzz",
+      "pass": true
+    },
+    {
+      "label": "Invalid RPC argument rejected 56",
+      "pass": true
+    },
+    {
+      "label": "Invalid RPC argument rejected 57",
+      "pass": true
+    },
+    {
+      "label": "Invalid RPC argument rejected 58",
+      "pass": true
+    },
+    {
+      "label": "Invalid RPC argument rejected 59",
+      "pass": true
+    },
+    {
+      "label": "Invalid RPC argument rejected 60",
+      "pass": true
+    },
+    {
+      "label": "Invalid RPC argument rejected 61",
+      "pass": true
+    },
+    {
+      "label": "SQL-looking query remains inert data",
+      "pass": true
+    },
+    {
+      "label": "Requested count is enforced",
+      "pass": true
+    },
+    {
+      "label": "Sixty repeated RPC queries remain bounded and duplicate-free",
+      "pass": true,
+      "detail": {
+        "milliseconds": 74
+      }
+    }
+  ],
+  "queries": [
+    {
+      "query": "Maya",
+      "expected": "mayan-nmai-2012-12-20",
+      "returned": [
+        "mayan-nmai-2012-12-20"
+      ]
+    },
+    {
+      "query": "cazimi",
+      "expected": "lilly-cazimi-example",
+      "returned": [
+        "lilly-cazimi-example"
+      ]
+    },
+    {
+      "query": "Easter",
+      "expected": "christian-easter-2024",
+      "returned": [
+        "christian-easter-2024"
+      ]
+    },
+    {
+      "query": "tithi",
+      "expected": "vedic-rao-tithi-example-2",
+      "returned": [
+        "vedic-rao-tithi-example-2"
+      ]
+    },
+    {
+      "query": "leap month",
+      "expected": "chinese-leap-month-2023",
+      "returned": [
+        "chinese-leap-month-2023"
+      ]
+    },
+    {
+      "query": "feeling",
+      "expected": "jung-feeling-valuation",
+      "returned": [
+        "jung-feeling-valuation"
+      ]
+    }
+  ],
+  "summary": {
+    "checks": 65,
+    "examples": 17,
+    "sources": 24,
+    "traditions": 9,
+    "casesWithReferenceFields": 8,
+    "unevaluableCases": 9,
+    "referenceFields": 24,
+    "matchedFields": 24,
+    "outcomeEvaluable": false,
+    "scope": "Public-source storage, access-control and authored lookup regression checks; not model evaluation or predictive accuracy.",
+    "sqlLookupCases": 6
+  }
+}

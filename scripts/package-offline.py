@@ -54,6 +54,8 @@ readme = '''THE ASTROLOGER'S WORKBENCH — PORTABLE STATIC EDITION
        python3 -m http.server 8000 --bind 127.0.0.1
    On Windows, use: py -m http.server 8000 --bind 127.0.0.1
 3. Open http://localhost:8000/pages/desktop.html in your browser.
+   Scan calendar dates, inspect correlations and keep session bookmarks at:
+       http://localhost:8000/pages/calendar-timeline.html
    Explore the included offline world map at:
        http://localhost:8000/pages/astrocartography.html
    Compare sourced examples and calendars at:

@@ -1,0 +1,12 @@
+{
+  "scope": "Review harness correction, not a package code defect",
+  "fetchSuppliedHost": "untrusted.example",
+  "fetchReceivedHost": "127.0.0.1:41387",
+  "httpReceivedHost": "untrusted.example",
+  "explanation": "This Node fetch runtime replaced the supplied Host header with the request URL host. Raw node:http transmitted the intended hostile Host, and the packaged server rejected it with403 in the corrected smoke test.",
+  "originalFailureRetained": [
+    "startup-access-first.mjs",
+    "startup-access-first.log"
+  ],
+  "productChanges": 0
+}

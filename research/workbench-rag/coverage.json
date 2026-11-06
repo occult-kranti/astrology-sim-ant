@@ -2,21 +2,21 @@
   "schemaVersion": 1,
   "scope": "Explicit public-repository allowlist; existing reference notes, project-document prose, page explanations, book catalogues and tool metadata.",
   "categories": {
-    "charts": 834,
+    "charts": 859,
     "calendars": 173,
     "timing": 52,
     "vedic": 193,
     "symbols": 152,
     "books": 1011,
     "research": 274,
-    "software": 186,
+    "software": 194,
     "tools": 136,
     "sources": 472
   },
   "readingDepth": {
-    "full-text": 405,
+    "full-text": 432,
     "reference-note": 2843,
-    "metadata": 235
+    "metadata": 241
   },
   "definition": {
     "full-text": "Project-document prose only, not full underlying books; code blocks omitted.",
@@ -33,11 +33,11 @@
   ],
   "inventories": {
     "pageCount": 137,
-    "documentationCount": 31,
+    "documentationCount": 33,
     "dataModuleCount": 26,
-    "sourceFileCount": 194,
-    "chunkCount": 3483,
-    "retrievalUnitCount": 238
+    "sourceFileCount": 196,
+    "chunkCount": 3516,
+    "retrievalUnitCount": 240
   },
   "retrievalGrouping": "Reading Lab cases, source records and method notes have separate retrieval units; continuation chunks share their unit. Other files retain file-level grouping. Units sharing bibliography are not independent evidence.",
   "sourceFiles": [
@@ -127,9 +127,9 @@
     },
     {
       "file": "assets/js/core/data/mcp-tool-contracts.js",
-      "bytes": 148362,
-      "sha256": "32df17029f29434e33be39670d620171403938597505fe011c05b016dd42154a",
-      "chunks": 99
+      "bytes": 168262,
+      "sha256": "a6381accd307d29bd121a57b607d5e280de63d559ab8272ac5d4e18b63a77e37",
+      "chunks": 105
     },
     {
       "file": "assets/js/core/data/muhurta-data.js",
@@ -378,6 +378,18 @@
       "chunks": 13
     },
     {
+      "file": "docs/2026-11-timeline-search-methods.md",
+      "bytes": 9593,
+      "sha256": "8ece0f09ff0b716f0861c076eb44384a0fc580a1969577e01b7d4fd0d2294ba4",
+      "chunks": 11
+    },
+    {
+      "file": "docs/2026-11-timeline-search-statistics.md",
+      "bytes": 14206,
+      "sha256": "3b056bc8375b6df1bdc606b87aa1f223706c8bccc857fe3659a0be7519eaf59e",
+      "chunks": 14
+    },
+    {
       "file": "index.html",
       "bytes": 26662,
       "sha256": "84d69e97bb5dda1bc982c9b8c1c2159659868a279547e101940236dd01885954",
@@ -385,9 +397,9 @@
     },
     {
       "file": "mcp/README.md",
-      "bytes": 15173,
-      "sha256": "ca5b63b4cdfe2718b99278085f7cb29d538d772d0b1164bc4daea773fc0f7f2a",
-      "chunks": 15
+      "bytes": 16631,
+      "sha256": "a893927b4f95422607ec8fcc0df8b6dc6fab194b64f8ff6e514b2bd294d86616",
+      "chunks": 17
     },
     {
       "file": "pages/abhichara/atharvan.html",
@@ -421,8 +433,8 @@
     },
     {
       "file": "pages/astrocartography.html",
-      "bytes": 15967,
-      "sha256": "e86a728a5d9a0af79821bffa04b208f003b9212f8f6c5b17a8f816c6c67d2874",
+      "bytes": 16651,
+      "sha256": "f10f49cc13039c51b8f186e0a13c6e1d204ea87dadbc2926c36309b1e14b6280",
       "chunks": 7
     },
     {
@@ -583,8 +595,8 @@
     },
     {
       "file": "pages/calendar-timeline.html",
-      "bytes": 14952,
-      "sha256": "21d5b255c82fe4d97e4c7620221f9c31a1c4ab7b6a559df21f52d272503bc91f",
+      "bytes": 15205,
+      "sha256": "695f5d5c22a7c09c15e48c1c09afb63977d9b9dfb077d2adbf366b1cfa5cf417",
       "chunks": 8
     },
     {

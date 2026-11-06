@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "version": "7fd44fd11be7e69a772ba79348effe08847db55ffcc10c2d07e4145bc1b44f82",
-  "totalBytes": 58737818,
+  "version": "3eb2c0c1286ab6d8e84473233304bdaa1e21b63aa534e9531f4952ac79325476",
+  "totalBytes": 58955963,
   "files": [
     {
       "path": "assets/css/astrocartography.css",
-      "bytes": 28193,
-      "sha256": "624058b601b39c68c9864ba744466f1765a7d1228e3e5f6748a57b1b9189fe72"
+      "bytes": 28502,
+      "sha256": "6deed8521e5aabd3af4b89bd96d3302412f6c19c7877b7d56fea7d27fcc1856d"
     },
     {
       "path": "assets/css/birth-chart-console.css",
@@ -40,8 +40,8 @@
     },
     {
       "path": "assets/css/calendar-timeline.css",
-      "bytes": 18463,
-      "sha256": "d891a73069c312848e1aa975c3a7b91a9f718a071f54fa2c6149a18489803796"
+      "bytes": 20345,
+      "sha256": "e124da9a5c577d2fc2cf7f0bd6808f477a7b4f925a7142f1aabca79b925e54b3"
     },
     {
       "path": "assets/css/calendars.css",
@@ -189,6 +189,11 @@
       "sha256": "8541bba91288b41fdcd5288dd30f93d3c2898fae1887f8af269616a632df7689"
     },
     {
+      "path": "assets/css/timeline-search.css",
+      "bytes": 12187,
+      "sha256": "668b7013ac005f0019974ab9c4a0d64e13902a19c1fa8aaf8749f7b03fe304c8"
+    },
+    {
       "path": "assets/css/vedic-tools.css",
       "bytes": 13884,
       "sha256": "79ef453dfae848f4d9fc2e0027aeaba78cf4aa51a400a395e2519747f85eee2c"
@@ -270,8 +275,8 @@
     },
     {
       "path": "assets/data/horizon-2031-manifest.json",
-      "bytes": 141306,
-      "sha256": "e5bf719d9ec1ab4d0b80d895463c7209b29ed651a20c4830d0bdfb82462ee158"
+      "bytes": 141307,
+      "sha256": "deff23743126d82a84e0e33a6a218ed2041ef56f5d143552bba8f314bd4057ff"
     },
     {
       "path": "assets/data/horizon-2031/astronomy.json",
@@ -295,13 +300,13 @@
     },
     {
       "path": "assets/data/mcp-catalogue.json",
-      "bytes": 208180,
-      "sha256": "77ebdd6c57337ad85795ff7d1f14b4b6f42f2baa39fc1c8634664eb6924e9f69"
+      "bytes": 232238,
+      "sha256": "3d9a57e042e7f85cf72d855f7b2cd7c4b31f8b57e76f208a0fa74e71804d52fc"
     },
     {
       "path": "assets/data/reading-lab-examples.json",
       "bytes": 119402,
-      "sha256": "c95fa8b2d43d68dd8aa1b33cb0653e839988f3cabd7bccda2c6bad9c3ddc4d65"
+      "sha256": "bc4779b4c2b544555e8db70d2df70b1747fdc979bf8d4c73af3d1d95b62257a8"
     },
     {
       "path": "assets/data/world-events.json",
@@ -359,9 +364,14 @@
       "sha256": "54ce2e2bf9ae49c5ed5e6bb3c693f50c4106afde4c293747f15489c6603258d9"
     },
     {
+      "path": "assets/js/app/astrocartography-handoff.js",
+      "bytes": 5899,
+      "sha256": "fda8bf26ee6e94a3aef607383db252463d32eb34caf7c2b279cca5a89b7ac4ec"
+    },
+    {
       "path": "assets/js/app/astrocartography.js",
-      "bytes": 48849,
-      "sha256": "9be089ed765d761b1efd3ff7f6b2433b9b639db634be2678d2b50245cdf74bbf"
+      "bytes": 51235,
+      "sha256": "cb2c9d6ee373ec40c8d44809817126f37bee4a945650f325b63ae6b2503cc8a5"
     },
     {
       "path": "assets/js/app/autolink.js",
@@ -430,8 +440,8 @@
     },
     {
       "path": "assets/js/app/calendar-timeline.js",
-      "bytes": 55908,
-      "sha256": "2c08a87c5f38b46d15d04a9afe4011a63fa5d932670c7e6f514aac8dddc02792"
+      "bytes": 56943,
+      "sha256": "7729b9ef9772dc5debd22892a909913aa225d2d6871c8f892c8205f6de3c5be0"
     },
     {
       "path": "assets/js/app/cast-hour.js",
@@ -854,6 +864,11 @@
       "sha256": "45ca8e6788e6367ea3391ae3996c4cbd2abde253c8b9a1d7ae11dea9228af7f7"
     },
     {
+      "path": "assets/js/app/timeline-search.js",
+      "bytes": 38655,
+      "sha256": "4f4f202729345f790acb29caa5b1ba955c205eed0cfb29e9fe50706d924ca3d4"
+    },
+    {
       "path": "assets/js/app/timelords.js",
       "bytes": 22047,
       "sha256": "c381d8d43ac11aa42e868d1383940b8a32be4d65a240c560540b9159b82c701d"
@@ -975,8 +990,8 @@
     },
     {
       "path": "assets/js/core/astrocartography.js",
-      "bytes": 29017,
-      "sha256": "d80444acb9bab26650b2282a1ffadbb060ac39803aa9aac2195851c3a8a40b94"
+      "bytes": 29387,
+      "sha256": "3a27088ab30d5964180ef2b8c2abe35bcd1f739c11a8c5b6a349a75dc2ba8847"
     },
     {
       "path": "assets/js/core/birth-reading.js",
@@ -1010,8 +1025,8 @@
     },
     {
       "path": "assets/js/core/calendar-search.js",
-      "bytes": 33328,
-      "sha256": "a4799ab46d4265aaec962db9748c12f3206f6ae91f989968084a9b20c3acc7ae"
+      "bytes": 34325,
+      "sha256": "06438615a5bd12f1d93bda8754eb801cac8afb6fb5e7e923d26f08b013ee01f4"
     },
     {
       "path": "assets/js/core/calendar-study-packet.js",
@@ -1075,8 +1090,8 @@
     },
     {
       "path": "assets/js/core/cultural-calendars.js",
-      "bytes": 11265,
-      "sha256": "819804fe10ac53afee33dbf65ff2cc8bea1841c32870d9c421b77481caf0cf55"
+      "bytes": 12454,
+      "sha256": "5508ea3738f9e561e48c351b3aa363fd956ff8e785a898a2fd970d0de7f66795"
     },
     {
       "path": "assets/js/core/cycles.js",
@@ -1261,12 +1276,12 @@
     {
       "path": "assets/js/core/data/horizon-preset-version.js",
       "bytes": 492,
-      "sha256": "d1e8f0eb335039aeb88ea51013f90aebdf2ae283757320ce4ac80d22a50bb6c2"
+      "sha256": "8bd4e725a3e29abe5cfe552293873d6f3fd2db9972998a66cb7ba504c544e4fe"
     },
     {
       "path": "assets/js/core/data/horizon-tool-coverage.js",
-      "bytes": 13255,
-      "sha256": "c36bb4819284e7263493ed1153157cafca7e99a5b4e4861e13697607709651cd"
+      "bytes": 13602,
+      "sha256": "bf15c2412adf537711d8c2fdae8eeb54bb22f015854e119aa6e17acc02d190e7"
     },
     {
       "path": "assets/js/core/data/horizon-traditions.js",
@@ -1320,13 +1335,13 @@
     },
     {
       "path": "assets/js/core/data/mcp-adapter-coverage.js",
-      "bytes": 17506,
-      "sha256": "a31e664a50fb9038b1b597cb92e1cf476f5898357eef13b6545b2166a39b4bd1"
+      "bytes": 18125,
+      "sha256": "06f2bbe54b664ff7d99f17876a9bc80243dd0f2456dc4fc846407462b1dc051f"
     },
     {
       "path": "assets/js/core/data/mcp-tool-contracts.js",
-      "bytes": 148362,
-      "sha256": "32df17029f29434e33be39670d620171403938597505fe011c05b016dd42154a"
+      "bytes": 168262,
+      "sha256": "a6381accd307d29bd121a57b607d5e280de63d559ab8272ac5d4e18b63a77e37"
     },
     {
       "path": "assets/js/core/data/muhurta-data.js",
@@ -1445,8 +1460,8 @@
     },
     {
       "path": "assets/js/core/data/workbench-rag-corpus.js",
-      "bytes": 4867716,
-      "sha256": "4306236e7fd55baa7abfe6b8c822c0aee1122b3c578efadba8a91a217ddd7289"
+      "bytes": 4926373,
+      "sha256": "5ccd2514f4f1b36362f9989f96794726767a6902f3c2a41635ab853ed1d64384"
     },
     {
       "path": "assets/js/core/data/worked-charts.js",
@@ -1725,8 +1740,8 @@
     },
     {
       "path": "assets/js/core/registry.js",
-      "bytes": 150285,
-      "sha256": "40db20b3452922c1ee0569ae3bd5b0ea36350687ea6c5bee43ac6d46d7b86c41"
+      "bytes": 151709,
+      "sha256": "83d9d1f2d4b2ce40b7e1ecfa3b069787cb4180d428e9b463c988fdb2d5d576f4"
     },
     {
       "path": "assets/js/core/releasing.js",
@@ -1827,6 +1842,16 @@
       "path": "assets/js/core/time.js",
       "bytes": 6552,
       "sha256": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579"
+    },
+    {
+      "path": "assets/js/core/timeline-search.js",
+      "bytes": 21611,
+      "sha256": "337f0b658c2a655adfe0147b8f8c53fb991af5dbb0fe92646fe364f9c4589c01"
+    },
+    {
+      "path": "assets/js/core/timeline-statistics.js",
+      "bytes": 22687,
+      "sha256": "b7b169caedca445472a5450d29254b4e6908d4a2da7ce52ce3acb3a825f420b8"
     },
     {
       "path": "assets/js/core/tithi-pravesha.js",
@@ -1969,9 +1994,14 @@
       "sha256": "dc6fbbce1a6e13da985ea2e360dbdf9aa7c150254b3ef11aa0857cf0754c78ad"
     },
     {
+      "path": "assets/js/workers/timeline-search-worker.js",
+      "bytes": 2973,
+      "sha256": "963f5bacec8de0a489c892c26f33d30264afc71c1f812d9824f992084dca2d1d"
+    },
+    {
       "path": "assets/search-index.json",
-      "bytes": 303767,
-      "sha256": "12eb5136520d78db55680a6f0d161fe04adb0524969e1f601c2ba9c19740bbaa"
+      "bytes": 303789,
+      "sha256": "a270cf9ee451e31f3f9d3c0b0ccc154a9fa91b168d496edf5f4a12457a5b6fd2"
     },
     {
       "path": "assets/vendor/adhan/Adhan.js",
@@ -2120,8 +2150,8 @@
     },
     {
       "path": "pages/astrocartography.html",
-      "bytes": 15967,
-      "sha256": "e86a728a5d9a0af79821bffa04b208f003b9212f8f6c5b17a8f816c6c67d2874"
+      "bytes": 16651,
+      "sha256": "f10f49cc13039c51b8f186e0a13c6e1d204ea87dadbc2926c36309b1e14b6280"
     },
     {
       "path": "pages/autopilot.html",
@@ -2255,8 +2285,8 @@
     },
     {
       "path": "pages/calendar-timeline.html",
-      "bytes": 14952,
-      "sha256": "21d5b255c82fe4d97e4c7620221f9c31a1c4ab7b6a559df21f52d272503bc91f"
+      "bytes": 15205,
+      "sha256": "695f5d5c22a7c09c15e48c1c09afb63977d9b9dfb077d2adbf366b1cfa5cf417"
     },
     {
       "path": "pages/calendars.html",

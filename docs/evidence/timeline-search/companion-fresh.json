@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "kind": "fresh-companion-extraction-verification",
+  "pass": true,
+  "scope": "Fresh archive extraction; every manifested payload rehashed before and after package dependency installation and tests. Packaged numerical/protocol/mock suites and actual loopback model-disabled programmatic startup/access. No model downloads or inference, provider account authorization, browser journeys, hosted deployment or complete research replay.",
+  "archive": {
+    "filename": "workbench-local-rag.zip",
+    "bytes": 11179292,
+    "sha256": "619a93e924b84d9fa844cf65633c7e9428d8c0f533cfb116f7769030093b5fb7",
+    "entries": 859,
+    "manifestedPayloadFiles": 858,
+    "manifestFileNotSelfHashed": true
+  },
+  "manifestVerification": {
+    "beforeFailures": [],
+    "afterChangedFiles": [],
+    "payloadsUnchanged": true,
+    "requiredCurrentFilesChecked": 25,
+    "allRequiredFilesMatchFrozenSource": true
+  },
+  "dependencies": {
+    "method": "npm ci --ignore-scripts --no-audit --no-fund in extracted mcp and local-rag",
+    "versions": {
+      "@modelcontextprotocol/server": "2.3.1",
+      "@modelcontextprotocol/node": "2.1.1",
+      "undici": "7.16.0"
+    },
+    "networkScope": "Pinned npm dependencies only; no models or external provider calls"
+  },
+  "tests": [
+    {
+      "name": "timeline-search",
+      "checks": 49,
+      "pass": true,
+      "log": "timeline-search.log",
+      "logSHA256": "c83ee6870df7095397b6c6b4c9a587f607a180f7712d20aa9b7675d013a4c9d1"
+    },
+    {
+      "name": "timeline-search-independent",
+      "checks": 51,
+      "pass": true,
+      "log": "timeline-search-independent.log",
+      "logSHA256": "05a40b437a689259f574746ca08029d605a014f481abc35d0e50cda56f4431a7"
+    },
+    {
+      "name": "calendar-format-cache",
+      "checks": 766,
+      "pass": true,
+      "log": "calendar-format-cache.log",
+      "logSHA256": "e83f92818e9765490490529436e731fffa7d92956d2668ac98d10098752abb12"
+    },
+    {
+      "name": "timeline-statistics",
+      "checks": 148,
+      "pass": true,
+      "log": "timeline-statistics.log",
+      "logSHA256": "baed1d7fe632f000759c8d753f2c8327df83dd4046c897da2ce10bc290b798a1"
+    },
+    {
+      "name": "protocol",
+      "checks": 540,
+      "pass": true,
+      "log": "protocol.log",
+      "logSHA256": "d505ce4a5a8cfb43610fc5e00ab62ae2fd27be79537ff508e2c4d6a736ba9809"
+    },
+    {
+      "name": "local-rag-server",
+      "checks": 175,
+      "pass": true,
+      "log": "local-rag-server.log",
+      "logSHA256": "3defc4434379ca41083c8d2e54abfe7840b8408103c47d63af288783afdb87fe"
+    }
+  ],
+  "modelDisabledStartup": {
+    "pass": true,
+    "checks": 45,
+    "providerFetchCalls": 0,
+    "receipt": "startup-access.json",
+    "receiptSHA256": "32e27ee52d980f9c805f57629d0ce8f3576499ac029a55fd46f6c40ae95ad7c1",
+    "scope": "Actual loopback HTTP startup via packaged createRagServer/loadConfig with local model disabled, login null and a rejecting provider-fetch stub; not npm CLI/login startup, live account authorization or model inference."
+  },
+  "corpus": {
+    "chunkCount": 3516,
+    "sourceCount": 196,
+    "retrievalUnitCount": 240,
+    "sha256": "73f2cca49172ced6d62c1c582a17e888a1a7b03e86278d7bcd2bd5c44dcb051b",
+    "browserCorpusBytes": 4926373
+  },
+  "harnessCorrection": {
+    "scope": "Review harness correction, not a package code defect",
+    "fetchSuppliedHost": "untrusted.example",
+    "fetchReceivedHost": "127.0.0.1:41387",
+    "httpReceivedHost": "untrusted.example",
+    "explanation": "This Node fetch runtime replaced the supplied Host header with the request URL host. Raw node:http transmitted the intended hostile Host, and the packaged server rejected it with403 in the corrected smoke test.",
+    "originalFailureRetained": [
+      "startup-access-first.mjs",
+      "startup-access-first.log"
+    ],
+    "productChanges": 0
+  },
+  "artifacts": [
+    {
+      "path": "calendar-format-cache.log",
+      "sha256": "e83f92818e9765490490529436e731fffa7d92956d2668ac98d10098752abb12"
+    },
+    {
+      "path": "host-harness-correction.json",
+      "sha256": "8529e48ecbf156dd09f8b8f0f7af038ad86c23f74602ae844aeb1cbfa464a191"
+    },
+    {
+      "path": "local-rag-server.log",
+      "sha256": "3defc4434379ca41083c8d2e54abfe7840b8408103c47d63af288783afdb87fe"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "9258a969719ddc998fa3d48f0922e6a3aca59dbf9d97f41d5e1e7a043632e23b"
+    },
+    {
+      "path": "npm-local-rag.log",
+      "sha256": "5a9ce527b2bc3d21b19be9708093012e0e20d5beec1cfb47dfbb12dc3087b27c"
+    },
+    {
+      "path": "npm-mcp.log",
+      "sha256": "a74fc3ec12cb354ea7219e6f2aa9b309334d8514c6a476dbfef2f9d145153c07"
+    },
+    {
+      "path": "protocol.log",
+      "sha256": "d505ce4a5a8cfb43610fc5e00ab62ae2fd27be79537ff508e2c4d6a736ba9809"
+    },
+    {
+      "path": "startup-access-first.log",
+      "sha256": "ea82e9824c438d20ada45a33439cde4e0efa42687aedf8dcb92e96e904d94f45"
+    },
+    {
+      "path": "startup-access-first.mjs",
+      "sha256": "2b150101da19ea2ac91c4ebbe378f799feb91394958882aaac67ecbd952f5c1e"
+    },
+    {
+      "path": "startup-access.json",
+      "sha256": "32e27ee52d980f9c805f57629d0ce8f3576499ac029a55fd46f6c40ae95ad7c1"
+    },
+    {
+      "path": "startup-access.log",
+      "sha256": "5c0a25644b47a5a1b30fc17a9a7d49fe8a2627545bf757b73c0c7a1ab07f68f3"
+    },
+    {
+      "path": "startup-access.mjs",
+      "sha256": "850a8ede6375b1c54da9648b17122e81ee03191a1f5bdf64be59a6595f6e6371"
+    },
+    {
+      "path": "timeline-search-independent.log",
+      "sha256": "05a40b437a689259f574746ca08029d605a014f481abc35d0e50cda56f4431a7"
+    },
+    {
+      "path": "timeline-search.log",
+      "sha256": "c83ee6870df7095397b6c6b4c9a587f607a180f7712d20aa9b7675d013a4c9d1"
+    },
+    {
+      "path": "timeline-statistics.log",
+      "sha256": "baed1d7fe632f000759c8d753f2c8327df83dd4046c897da2ce10bc290b798a1"
+    }
+  ],
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  }
+}

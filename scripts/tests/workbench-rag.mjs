@@ -180,6 +180,20 @@ const astroRetrievalResults=astroQueries.map(([id,query,proof])=>{
  return {id,query,citationIds:rows.map(c=>c.id),passageChecks:proof.length,hit:true};
 });
 
+const timelineRetrievalResults=[
+ ['regular-grid','Why is a timeline circular phase audit unavailable with DST or irregular UTC spacing?',[/equally spaced UTC/,/unavailable/,/daylight.saving/]],
+ ['complete-family','How does timeline search Holm adjustment account for unavailable comparisons and multiple tests?',[/Holm/,/unavailable/i,/p=1|reference value of one/]],
+ ['fixed-map','Why does a fixed astrocartography reference map stay constant during a date scan?',[/constant/,/fixed/i,/transit/]],
+].map(([id,query,proof])=>{
+ const evidence=buildWorkbenchEvidence(query,{limit:5,maxTokens:6000});
+ const rows=evidence.rows.filter(c=>/^docs\/2026-11-timeline-search-(methods|statistics)\.md$/.test(c.file));
+ const text=rows.map(c=>c.excerpt).join(' ');
+ check(rows.length>0,`Timeline skeptical-method question retrieves its source: ${id}`);
+ for(const expression of proof)check(expression.test(text),`Timeline returned passage supports ${id}: ${expression}`);
+ check(evidence.estimatedTokens<=6000,'Timeline evidence remains bounded');
+ return{id,query,citationIds:rows.map(c=>c.id),passageChecks:proof.length};
+});
+
 const calibration=[
  ['What does cazimi mean and how does Lilly distinguish combustion?',/sky-reading-sources\.js|sky-sources\.md/],
  ['How does Lahiri sidereal differ from tropical zodiac?',/pages\/learn|sky-reading-sources|pages\/vedic/],
@@ -255,6 +269,7 @@ const elapsed=performance.now()-start;
 check(elapsed<20000,'Bounded local retrieval stress within 20 seconds');
 console.log(JSON.stringify({status:'PASS',checks,corpusChunks:manifest.chunkCount,sourceFiles:manifest.sourceCount,corpusSHA256:manifest.corpusSHA256,
  readingLab:{caseRecords:READING_CASES.length,sourceRecords:READING_SOURCES.length,methodRecords:READING_METHOD_NOTES.length,families:9,queries:readingQueries.length,results:readingRetrievalResults,budgetDiagnostics:readingBudgetDiagnostics,scope:'Public development retrieval coverage, not sealed model evaluation or predictive validity. Authorship and reading-depth notes are indexed; a bounded returned excerpt may omit its continuation.'},
+ timelineSearch:{queries:timelineRetrievalResults.length,results:timelineRetrievalResults,scope:'Public source-retrieval regression; not generated-answer or outcome accuracy.'},
  astrocartography:{sourceRecords:ASTROCARTOGRAPHY_SOURCES.length,purposes:ASTROCARTOGRAPHY_PURPOSES.length,queries:astroQueries.length,results:astroRetrievalResults,scope:'Source-specific development checks of geometry definitions, provenance and editorial attribution; not an outcome-validation benchmark.'},
  calibration:{questions:calibration.length,hits:calibration.length},heldout:{questions:holdout.length,hits:heldoutResults.filter(x=>x.hit).length,results:heldoutResults},
  stress:{queries:240,elapsedMilliseconds:Math.round(elapsed)},limits:['Engineering lexical-retrieval fixtures, not external benchmark or human evaluation.','Citation checks validate identifiers, not factual entailment.','No full referenced books, embeddings, model training or private chart corpus.']},null,2));

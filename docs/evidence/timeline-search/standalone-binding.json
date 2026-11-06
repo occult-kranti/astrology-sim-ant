@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "standalone-source-and-corpus-binding",
+  "checkedAt": "2026-11-06T00:14:55.988Z",
+  "artifactBytes": 5286771,
+  "artifactSHA256": "52f0b8e132f82b993363b032b4691323eac02b35612152f4e2c37c65b51cfa15",
+  "sourceInputCount": 53,
+  "sourceMismatches": [],
+  "buildSourceCommit": "162a4084e5a43f7409b02e0a45ec1e0287cc3730",
+  "corpusInput": {
+    "path": "assets/js/core/data/workbench-rag-corpus.js",
+    "bytes": 4926373,
+    "sha256": "5ccd2514f4f1b36362f9989f96794726767a6902f3c2a41635ab853ed1d64384"
+  },
+  "corpus": {
+    "chunkCount": 3516,
+    "sourceCount": 196,
+    "retrievalUnitCount": 240,
+    "corpusSHA256": "73f2cca49172ced6d62c1c582a17e888a1a7b03e86278d7bcd2bd5c44dcb051b"
+  },
+  "embeddedCorpusSHAFound": true,
+  "note": "Source digests bind the generated standalone file to current source inputs. A build baseline commit alone does not establish committed-source identity; root can bind the final commit separately.",
+  "embeddedCountsMatch": true
+}

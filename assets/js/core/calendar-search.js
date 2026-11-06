@@ -65,6 +65,20 @@ function compactSample(date,input,comparison,guidance){const p=comparison.vedic.
 function criteriaResults(sample,request){return request.criteria.map(c=>{let value=null,available=sample.status==='available',group='civil-calendar';if(available){if(c.kind==='weekday')value=new Date(dateMs(sample.date)).getUTCDay();if(c.kind==='calendar'){const row=sample.calendars.find(r=>r.id===c.calendar);value=row?.status==='available'?row.parts.find(p=>p.type===c.field)?.value??null:null;}if(c.kind==='lunar'){value=sample.lunar[c.field];group=LUNAR.find(f=>f.field===c.field).dependencyGroup;}if(c.kind==='rule'){const rule=sample.rules.find(r=>r.ruleId===c.ruleId);value=rule?.classification??null;group=rule?.dependencyGroup;}}available=available&&value!==null&&!(c.kind==='rule'&&value==='unavailable');return{id:criterionId(c),criterion:copy(c),value,available,matched:value!==null&&(c.kind==='rule'?c.classifications:c.values).includes(value),dependencyGroup:group};});}
 function evaluateSample(sample,request){const results=criteriaResults(sample,request);if(request.concurrence){const c=request.concurrence,row=sample.ruleCounts?.find(r=>r.traditionId===c.traditionId),value=row?.[c.classification]??null;results.push({id:'concurrence',criterion:copy(c),value,available:!!row&&row.unavailable===0,matched:value!==null&&value>=c.minimum,dependencyGroup:'dependent-rules-within-one-tradition',denominator:row?.total??null,unavailableRules:row?.unavailable??null});}return{...sample,criteriaResults:results,matched:sample.status==='available'&&results.every(r=>r.matched),fullyObserved:sample.status==='available'&&results.every(r=>r.available)};}
 function fullSample(date,input,stats){stats.canonicalEvaluations+=2;stats.guidanceEvaluations++;const comparison=compareMoment(input),guidance=buildDayGuidance(input);return compactSample(date,input,comparison,guidance);}
+/** Shared canonical composition for bounded scanners. These are calculation
+ * inputs, not caller-supplied derived geometry. No search/filter is performed. */
+export function buildCalendarSearchSample(date,input,{includeRules=true}={}){
+ dateOnly(date);if(typeof includeRules!=='boolean')throw new TypeError('includeRules must be boolean.');
+ const comparison=compareMoment(input);
+ if(comparison.context.localDate!==date)throw new RangeError('The sample date must equal the observer civil date.');
+ const guidance=includeRules?buildDayGuidance(input):{traditions:[]};
+ return {...compactSample(date,input,comparison,guidance),astronomy:copy(comparison.astronomy)};
+}
+/** Evaluates held canonical sample fields; does not authenticate or recompute
+ * a supplied sample. Scanner boundaries validate requests before this helper. */
+export function evaluateCalendarSearchSample(sample,criteria){
+ return evaluateSample(sample,{criteria:normalizeCalendarSearchCriteria(criteria),concurrence:null});
+}
 const initialStats=()=>({elapsedMs:0,calendarFieldObservations:0,canonicalEvaluations:0,guidanceEvaluations:0,civilPrefilters:0,lunarPrefilters:0,lunarBodyEvaluations:0,boundaryFallbacks:0,earlyRejected:0,cacheHits:0});
 function retainCandidate(hits,sample,request){
  if(request.order==='chronological'){sample.rank=null;if(hits.length<request.maxResults)hits.push(sample);return;}

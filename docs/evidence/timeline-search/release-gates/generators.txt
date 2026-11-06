@@ -1,0 +1,101 @@
+scripts/gen-opgraph.mjs
+[gen-opgraph] --check OK — the committed module is exactly this generator's output.
+
+scripts/seed-opgraph-gate.mjs
+[seed-gate] --check OK.
+
+scripts/build-specialist-profiles.mjs
+{"mode":"check","calendarProfiles":13,"catalogueBookProfiles":34,"additionalBookProfiles":11,"totalProfiles":58,"artifacts":59,"changed":0}
+
+scripts/build-mcp-catalogue.mjs
+Generated static connection catalogue: 87 tools.
+
+scripts/build-sky-reference.mjs
+{"mode":"check","chunks":17,"sources":14,"jsonlSHA256":"61a6adf384fb4e78f721f0671411fcf383376b57badb7e3c4c42150066ace34a","trainingPerformed":false}
+
+scripts/build-workbench-rag.mjs
+{
+  "mode": "check",
+  "chunks": 3516,
+  "sources": 196,
+  "bytes": 4926373,
+  "categories": {
+    "charts": 859,
+    "calendars": 173,
+    "timing": 52,
+    "vedic": 193,
+    "symbols": 152,
+    "books": 1011,
+    "research": 274,
+    "software": 194,
+    "tools": 136,
+    "sources": 472
+  },
+  "corpusSHA256": "73f2cca49172ced6d62c1c582a17e888a1a7b03e86278d7bcd2bd5c44dcb051b"
+}
+
+scripts/build-reading-lab-database.mjs
+{
+  "mode": "check",
+  "path": "assets/data/reading-lab-examples.json",
+  "bytes": 119402,
+  "contentSHA256": "dd2e5a1bdc6ed9cb035ac654038c0cc4e8066c4aca29c28d1e8aa6157545e3db",
+  "examples": 17,
+  "sources": 24,
+  "traditions": 9,
+  "casesWithReferenceFields": 8,
+  "unevaluableCases": 9,
+  "referenceFields": 24,
+  "matchedFields": 24,
+  "outcomeEvaluable": false,
+  "scope": "Matching listed source fields is not predictive accuracy or full-chart validation.",
+  "sqlDirectory": null,
+  "hostedDeployment": false
+}
+
+scripts/build-tool-coverage.mjs
+{"mode":"check","capabilities":103,"mcpTools":87,"withNamedAdapters":84,"guideOnly":19,"routes":97}
+
+scripts/build-mcp-coverage.mjs
+{"mode":"check","capabilities":46,"adapterTools":49,"inputContracts":87}
+
+scripts/generate-horizon-preset.mjs
+{
+  "pass": true,
+  "datasetId": "horizon-2031-b049e565af80-47fda718ccaf",
+  "sourceFiles": 46,
+  "parts": 4,
+  "totalBytes": 35146697,
+  "counts": {
+    "days": 1525,
+    "cases": 3,
+    "totalSamples": 4575,
+    "processedSamples": 4575,
+    "availableSamples": 4575,
+    "unavailableSamples": 0,
+    "calendarRows": 59475,
+    "availableCalendarRows": 59475,
+    "profileResults": 18300,
+    "rankableProfileResults": 17114,
+    "observanceRows": 1011,
+    "uniqueObservances": 337,
+    "eventCount": 5883,
+    "truncated": false
+  },
+  "runtime": {
+    "environment": "node",
+    "node": "24.19.0",
+    "v8": "13.6.233.17-node.51",
+    "icu": "78.3",
+    "cldr": "48.0",
+    "tz": "2026b"
+  },
+  "mode": "check",
+  "recalculated": false
+}
+
+assets/data/country-events/generate.mjs
+Country event research: 9 artifacts match; 28 records, 7 countries; accepted calculations imported without refitting.
+
+scripts/build-offline-manifest.mjs
+Offline manifest current: 560 public files, 58955963 bytes, 3eb2c0c1286ab6d8e84473233304bdaa1e21b63aa534e9531f4952ac79325476.

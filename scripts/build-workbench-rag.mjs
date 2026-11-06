@@ -97,7 +97,7 @@ const docFiles=[
  '2026-10-horizon-ranking.md','2026-10-newton-chronology-methods.md','2026-10-newton-sources.md',
  '2026-10-sky-ai-rag.md','2026-10-sky-sources.md','2026-10-studio-sources-standards.md',
  '2026-10-world-events-sources.md','2026-11-chart-console-offline.md','2026-11-desktop-workbench.md',
- '2026-11-orbital-space-methods.md','2026-11-reading-lab-sources.md','2026-11-astrocartography-methods.md',
+ '2026-11-orbital-space-methods.md','2026-11-reading-lab-sources.md','2026-11-astrocartography-methods.md','2026-11-timeline-search-methods.md','2026-11-timeline-search-statistics.md',
 ].map(f=>`docs/${f}`).concat('mcp/README.md');
 for(const file of docFiles) {
   const raw=read(file).replace(/```[\s\S]*?```/g,'\n[Code example omitted from prose retrieval; inspect the linked document.]\n');

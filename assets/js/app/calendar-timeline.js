@@ -1,6 +1,7 @@
 // A view over one canonical frame. Calendar/planet values are never computed by
 // presentation. Input changes terminate their worker and invalidate all exports.
 import { downloadBlob } from './state.js';
+import { mountTimelineSearch } from './timeline-search.js';
 import { CHART_PAINT, chartBodyColor, planetSurfaceSVG, instrumentSurfaceSVG, neonStrokeSVG } from '../core/viz/chart-palette.js';
 import { mountDateNavigator } from './date-wayfinding.js';
 import { celestialPhase, celestialEventsForRange, celestialMarkers } from '../core/celestial-navigation.js';
@@ -151,6 +152,8 @@ export function initCalendarTimeline() {
   let grid = null, frame = null, worker = null, revision = 0, selectedIndex = 0, busy = false, request = null, active = true, history = null, marker = null;
   const selectedFamilies = new Set(), main = document.querySelector('.calendar-timeline');
   const sourceRows = new Map(), dateNavigators = new Map();
+  const searchPanel = mountTimelineSearch($('ct-search'), { onSelectDate(date) { if (!grid || !request || !active) return false; const index = grid.slots.findIndex(slot => slot.localDate === date); if (index < 0) return false; clearMarker(); select(index); return true; } });
+  function updateSearchContext() { searchPanel.update({ timeline: request, sampleCount: grid?.slots.length || 0, selectedDate: grid?.slots[selectedIndex]?.localDate || null, active }); }
   let navigationFocus = null, highlightSelection = null, tropicalRelationships = null, siderealRelationships = null;
   function clearRelationships() { tropicalRelationships?.destroy(); siderealRelationships?.destroy(); tropicalRelationships = siderealRelationships = null; }
   function clearDateNavigators() { for (const nav of dateNavigators.values()) nav.destroy(); dateNavigators.clear(); }
@@ -233,7 +236,7 @@ export function initCalendarTimeline() {
     $('ct-stale').hidden = false; $('ct-error').hidden = true; $('ct-unavailable').hidden = true; $('ct-export-status').textContent = ''; exportsEnabled(false);
     $('ct-atlas-link').href = new URL('pages/calendar-atlas.html', ROOT).href;
     $('ct-sources').replaceChildren(node('p', 'Apply the updated settings to display their source records.', 'ct-note')); sourceRows.clear();
-    state('stale', message); controls();
+    state('stale', message); controls(); updateSearchContext();
   }
   function fail(message) { $('ct-pending-space').hidden = true; busy = false; worker?.terminate(); worker = null; $('ct-error').textContent = message; $('ct-error').hidden = false; frame = null; $('ct-output').hidden = true; exportsEnabled(false); state('error', 'Calculation unavailable. Correct the settings and choose Apply settings to retry.'); $('ct-settings').open = true; controls(); }
   function operate(type, input, index, done) {
@@ -256,7 +259,7 @@ export function initCalendarTimeline() {
     $('ct-date').value = slot.localDate; $('ct-slider').value = String(selectedIndex); $('ct-slider').setAttribute('aria-valuetext', dateLabel(slot.localDate) + ' at ' + slot.localTime + ' ' + request.timeZone);
     $('ct-slider').style.setProperty('--ct-progress', (selectedIndex / Math.max(1, grid.slots.length - 1) * 100) + '%');
     $('ct-date-heading').textContent = dateLabel(slot.localDate); $('ct-chart-date').textContent = dateLabel(slot.localDate); $('ct-selected-context').textContent = `${slot.localTime} · ${request.timeZone} · explicit study clock`;
-    controls();
+    controls(); updateSearchContext();
   }
   function select(index) {
     if (!grid || !request) return;
@@ -274,7 +277,7 @@ export function initCalendarTimeline() {
     let input; try { input = readRequest(); } catch (error) { fail(error.message); return; }
     state('loading', 'Resolving the local clock for every date in this range…');
     operate('grid', input, 0, result => {
-      grid = result; request = result.request; selectedIndex = Math.max(0, result.slots.findIndex(s => s.localDate === desiredDate));
+      grid = result; request = result.request; selectedIndex = Math.max(0, result.slots.findIndex(s => s.localDate === desiredDate)); updateSearchContext();
       $('ct-date').min = request.startDate; $('ct-date').max = request.endDate; $('ct-slider').max = String(result.slots.length - 1);
       $('ct-start-label').textContent = dateLabel(request.startDate, true); $('ct-end-label').textContent = dateLabel(request.endDate, true);
       $('ct-slot-count').textContent = `${result.counts.total.toLocaleString()} dates · ${result.counts.ambiguous + result.counts.unavailable} unresolved`;
@@ -320,6 +323,7 @@ export function initCalendarTimeline() {
     }
   }
   function renderCalendars(result) {
+    const expandedDates = new Set([...$('ct-calendars').querySelectorAll('.ct-calendar-date-disclosure[open]')].map(d=>d.closest('[data-calendar-id]').dataset.calendarId));
     const rows = result.atlas.rows.filter(r => selectedFamilies.has(r.familyId)); $('ct-calendars').replaceChildren();
     $('ct-calendar-count').textContent = `${rows.length} named methods in ${selectedFamilies.size} selected families. ${rows.filter(r => r.status === 'unavailable').length} explicitly unavailable. Family selection changes this display; downloads retain the complete selected frame.`;
     if (!rows.length) { $('ct-calendars').append(node('p', 'Select a calendar family to display its dates and methods.', 'ct-note ct-no-calendars')); return; }
@@ -327,7 +331,8 @@ export function initCalendarTimeline() {
       const article = node('article', null, 'ct-calendar'); article.dataset.calendarId = row.id; article.dataset.dateIso = result.context.dateISO;
       article.append(node('p', human(row.kind), 'ct-kicker'), node('h3', row.label), node('p', row.summary || row.result?.text || row.reason || 'Unavailable', 'ct-calendar-value'), node('p', `${human(row.status)} · ${human(row.boundary)}`, 'ct-note'));
       const body = node('div'); body.append(node('p', row.method), node('p', 'Validation: ' + row.validation), list(row.limitations), citations(row.sourceIds)); if (row.reason) body.append(node('p', row.reason));
-      article.append(node('div',null,'ct-calendar-dates'),details('Method, source & limits', body)); $('ct-calendars').append(article);
+      const dateDisclosure=node('details',null,'ct-calendar-date-disclosure');dateDisclosure.open=expandedDates.has(row.id);dateDisclosure.append(node('summary','Date slider, celestial markers & bookmarks'),node('div',null,'ct-calendar-dates'));
+      article.append(dateDisclosure,details('Method, source & limits', body)); $('ct-calendars').append(article);
     }
   }
   function renderRules(result) {
@@ -405,8 +410,8 @@ export function initCalendarTimeline() {
   $('ct-cancel').addEventListener('click', () => { stop(); frame = null; $('ct-pending-space').hidden = true; $('ct-output').hidden = true; $('ct-output').removeAttribute('data-date-iso'); $('ct-sources').replaceChildren(node('p', 'Calculation cancelled. Apply settings or choose a date to restore its source records.', 'ct-note')); exportsEnabled(false); state('cancelled', 'Calculation cancelled. Choose another date or Apply settings to restart.'); });
   $('ct-reset').addEventListener('click', () => { marker = null; $('ct-history-assumption').hidden = true; $('ct-observer-assumption').hidden=true; fillSettings(DEFAULTS); apply(DEFAULTS.startDate); });
   $('ct-json').addEventListener('click', () => exportResult('json')); $('ct-csv').addEventListener('click', () => exportResult('csv'));
-  window.addEventListener('pagehide', () => { active = false; stop(); clearRelationships(); frame = null; exportsEnabled(false); });
-  window.addEventListener('pageshow', event => { active = true; if (event.persisted) apply(); });
+  window.addEventListener('pagehide', () => { active = false; searchPanel.suspend(); stop(); clearRelationships(); frame = null; exportsEnabled(false); });
+  window.addEventListener('pageshow', event => { active = true; updateSearchContext(); if (event.persisted) apply(); });
   const linked=new URLSearchParams(location.search),initial={...DEFAULTS};let initialDate=DEFAULTS.startDate,linkError='';
   if(linked.has('countryObserver')) {
     const country=COUNTRY_EVENT_COUNTRIES.find(country=>country.id===linked.get('countryObserver'));

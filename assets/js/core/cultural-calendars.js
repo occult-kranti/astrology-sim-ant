@@ -51,13 +51,31 @@ export function utcInstant(dateValue, timeValue = '12:00') {
   date.setUTCHours(+match[1], +match[2], +(match[3] || 0));
   return date;
 }
+// Reuse immutable Intl objects during bounded scans. These caches contain only
+// public method/zone names and formatter configuration, never dates or profiles.
+// Reset on a replaced Intl factory (polyfill/test runtime); cap each collection.
+const FORMAT_CACHE_LIMIT = 128;
+const zoneCache = new Map(), supportedCache = new Map(), formatterCache = new Map();
+let cachedIntlFactory = Intl.DateTimeFormat;
+function cachedIntl(cache, key, create) {
+  if (cachedIntlFactory !== Intl.DateTimeFormat) {
+    zoneCache.clear(); supportedCache.clear(); formatterCache.clear();
+    cachedIntlFactory = Intl.DateTimeFormat;
+  }
+  if (cache.has(key)) { const value = cache.get(key); cache.delete(key); cache.set(key, value); return value; }
+  const value = create();
+  cache.set(key, value);
+  if (cache.size > FORMAT_CACHE_LIMIT) cache.delete(cache.keys().next().value);
+  return value;
+}
 export function validateZone(zone) {
   if (typeof zone !== 'string' || !zone.trim()) throw new RangeError('Enter an IANA time zone, such as Europe/London.');
-  try { return new Intl.DateTimeFormat('en', { timeZone: zone.trim() }).resolvedOptions().timeZone; }
+  try { return cachedIntl(zoneCache, zone.trim(), () => new Intl.DateTimeFormat('en', { timeZone: zone.trim() }).resolvedOptions().timeZone); }
   catch { throw new RangeError('Time zone is not recognized. Use an IANA name such as Asia/Kolkata or UTC.'); }
 }
 export function calendarSupported(id) {
-  try { return new Intl.DateTimeFormat('en', { calendar: id, timeZone: 'UTC' }).resolvedOptions().calendar === id; }
+  if (typeof id !== 'string') return false;
+  try { return cachedIntl(supportedCache, id, () => new Intl.DateTimeFormat('en', { calendar: id, timeZone: 'UTC' }).resolvedOptions().calendar === id); }
   catch { return false; }
 }
 export function calendarAtInstant(date, id, timeZone = 'UTC') {
@@ -68,10 +86,11 @@ export function calendarAtInstant(date, id, timeZone = 'UTC') {
   // The supported range applies to both the UTC instant and the observer's
   // civil date. At the date line, one can be in range while the other is not.
   // Match compareMoment rather than letting this direct API display 1899/2101.
-  const localYear = Number(new Intl.DateTimeFormat('en-u-ca-gregory-nu-latn', { timeZone: zone, year: 'numeric' }).formatToParts(date).find(part => part.type === 'year').value);
+  const yearFormatter = cachedIntl(formatterCache, JSON.stringify(['local-year', zone]), () => new Intl.DateTimeFormat('en-u-ca-gregory-nu-latn', { timeZone: zone, year: 'numeric' }));
+  const localYear = Number(yearFormatter.formatToParts(date).find(part => part.type === 'year').value);
   if (localYear < 1900 || localYear > 2100) throw new RangeError('The observer-zone civil date must also be within 1900–2100.');
   if (!calendarSupported(id)) return { supported: false, id, text: 'This browser does not support this calendar.' };
-  const formatter = new Intl.DateTimeFormat('en', { calendar: id, timeZone: zone, year: 'numeric', month: 'long', day: 'numeric', era: 'short' });
+  const formatter = cachedIntl(formatterCache, JSON.stringify(['calendar', id, zone]), () => new Intl.DateTimeFormat('en', { calendar: id, timeZone: zone, year: 'numeric', month: 'long', day: 'numeric', era: 'short' }));
   return { supported: true, id, text: formatter.format(date), parts: formatter.formatToParts(date), timeZone: zone, boundary: 'civil-midnight' };
 }
 // Gregorian computus (Meeus/Jones/Butcher). Ecclesiastical, not an observed Moon.

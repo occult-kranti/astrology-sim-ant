@@ -1,0 +1,279 @@
+{
+  "pass": true,
+  "checks": 45,
+  "details": [
+    {
+      "name": "Loopback-only programmatic server startup",
+      "pass": true
+    },
+    {
+      "name": "Health200",
+      "pass": true
+    },
+    {
+      "name": "Localmodel explicitlydisabled",
+      "pass": true
+    },
+    {
+      "name": "Disabledmodel notready",
+      "pass": true
+    },
+    {
+      "name": "OpenAI notconfigured",
+      "pass": true
+    },
+    {
+      "name": "Publicretrieval ready",
+      "pass": true
+    },
+    {
+      "name": "Currentcorpus SHA matches package",
+      "pass": true
+    },
+    {
+      "name": "Currentcorpus chunk count matches package",
+      "pass": true
+    },
+    {
+      "name": "Publicroute200 pages/calendar-timeline.html",
+      "pass": true
+    },
+    {
+      "name": "Exactpublicbytes pages/calendar-timeline.html",
+      "pass": true
+    },
+    {
+      "name": "nosniff pages/calendar-timeline.html",
+      "pass": true
+    },
+    {
+      "name": "Publicroute200 pages/astrocartography.html",
+      "pass": true
+    },
+    {
+      "name": "Exactpublicbytes pages/astrocartography.html",
+      "pass": true
+    },
+    {
+      "name": "nosniff pages/astrocartography.html",
+      "pass": true
+    },
+    {
+      "name": "Publicroute200 assets/js/app/timeline-search.js",
+      "pass": true
+    },
+    {
+      "name": "Exactpublicbytes assets/js/app/timeline-search.js",
+      "pass": true
+    },
+    {
+      "name": "nosniff assets/js/app/timeline-search.js",
+      "pass": true
+    },
+    {
+      "name": "Publicroute200 assets/js/core/timeline-search.js",
+      "pass": true
+    },
+    {
+      "name": "Exactpublicbytes assets/js/core/timeline-search.js",
+      "pass": true
+    },
+    {
+      "name": "nosniff assets/js/core/timeline-search.js",
+      "pass": true
+    },
+    {
+      "name": "Publicroute200 assets/js/core/timeline-statistics.js",
+      "pass": true
+    },
+    {
+      "name": "Exactpublicbytes assets/js/core/timeline-statistics.js",
+      "pass": true
+    },
+    {
+      "name": "nosniff assets/js/core/timeline-statistics.js",
+      "pass": true
+    },
+    {
+      "name": "Publicroute200 assets/js/workers/timeline-search-worker.js",
+      "pass": true
+    },
+    {
+      "name": "Exactpublicbytes assets/js/workers/timeline-search-worker.js",
+      "pass": true
+    },
+    {
+      "name": "nosniff assets/js/workers/timeline-search-worker.js",
+      "pass": true
+    },
+    {
+      "name": "Publicroute200 assets/css/timeline-search.css",
+      "pass": true
+    },
+    {
+      "name": "Exactpublicbytes assets/css/timeline-search.css",
+      "pass": true
+    },
+    {
+      "name": "nosniff assets/css/timeline-search.css",
+      "pass": true
+    },
+    {
+      "name": "Publicroute200 assets/js/app/astrocartography-handoff.js",
+      "pass": true
+    },
+    {
+      "name": "Exactpublicbytes assets/js/app/astrocartography-handoff.js",
+      "pass": true
+    },
+    {
+      "name": "nosniff assets/js/app/astrocartography-handoff.js",
+      "pass": true
+    },
+    {
+      "name": "Private/nonpublic route denied /.git/config",
+      "pass": true
+    },
+    {
+      "name": "Private/nonpublic route denied /local-rag/.env",
+      "pass": true
+    },
+    {
+      "name": "Private/nonpublic route denied /mcp/package.json",
+      "pass": true
+    },
+    {
+      "name": "Private/nonpublic route denied /README.md",
+      "pass": true
+    },
+    {
+      "name": "Private/nonpublic route denied /private-birth-reading/reading.html",
+      "pass": true
+    },
+    {
+      "name": "Private/nonpublic route denied /research/workbench-rag/chunks.jsonl",
+      "pass": true
+    },
+    {
+      "name": "Private/nonpublic route denied /LOCAL-ASSISTANT-PACKAGE.json",
+      "pass": true
+    },
+    {
+      "name": "Private/nonpublic route denied /assets/%252e%252e/local-rag/.env",
+      "pass": true
+    },
+    {
+      "name": "Disabledprovider returns503",
+      "pass": true
+    },
+    {
+      "name": "No modelanswer fabricated",
+      "pass": true
+    },
+    {
+      "name": "UntrustedOrigin denied",
+      "pass": true
+    },
+    {
+      "name": "UntrustedHost denied via explicit node:http wire header",
+      "pass": true
+    },
+    {
+      "name": "No upstream/provider fetch executed",
+      "pass": true
+    }
+  ],
+  "scope": "Actual loopback HTTP startup via packaged createRagServer/loadConfig with local model disabled, login null and a rejecting provider-fetch stub; not npm CLI/login startup, live account authorization or model inference.",
+  "runtime": {
+    "node": "24.19.0",
+    "acorn": "8.17.0",
+    "ada": "3.4.4",
+    "amaro": "1.1.10",
+    "ares": "1.34.6",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "137",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.69.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.4",
+    "simdutf": "6.4.0",
+    "sqlite": "3.53.3",
+    "tz": "2026b",
+    "undici": "7.29.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "13.6.233.17-node.51",
+    "zlib": "1.3.2.1-motley-3246f1b",
+    "zstd": "1.5.7"
+  },
+  "health": {
+    "schemaVersion": 1,
+    "service": "astrology-workbench-local-rag",
+    "local": {
+      "enabled": false,
+      "ready": false,
+      "model": "workbench-qwen3-4b-q4",
+      "note": "Local model is disabled.",
+      "contextPreflight": {
+        "mode": "off",
+        "configuredWindowTokens": 8192,
+        "ready": null,
+        "note": "Tokenizer preflight is off for this provider; byte bounds and explicit provider errors still apply."
+      }
+    },
+    "openai": {
+      "configured": false,
+      "ready": null,
+      "model": null,
+      "note": "Set OPENAI_API_KEY and OPENAI_MODEL on the server to enable this provider."
+    },
+    "chatgpt": {
+      "configured": false,
+      "connected": false,
+      "ready": false,
+      "note": "ChatGPT connection is not configured."
+    },
+    "prompt": {
+      "profile": "scenario-v3",
+      "temperatureForLocal": 0,
+      "maxOutputTokens": 512,
+      "contextMaxBytes": 32768,
+      "providerPayloadMaxBytes": 98304
+    },
+    "runtime": {
+      "maxConcurrent": 1,
+      "timeoutMs": 110000
+    },
+    "retrieval": {
+      "provider": "local-public-source-corpus",
+      "ready": true,
+      "chunkCount": 3516,
+      "corpusSHA256": "73f2cca49172ced6d62c1c582a17e888a1a7b03e86278d7bcd2bd5c44dcb051b",
+      "limit": 5,
+      "maxTokens": 2100
+    },
+    "privacy": "Stateless requests; chart, reading or astrocartography inputs are included only when explicitly sent. No conversation or chart storage on this server."
+  },
+  "providerFetchCalls": 0,
+  "actualModelInference": false,
+  "modelDownloads": false,
+  "sourceFiles": [
+    {
+      "path": "local-rag/server.mjs",
+      "sha256": "3b8d35c0ceb9bab3a68b45b999843254be5dbc203abb4d5847e8747e16ea6690"
+    },
+    {
+      "path": "research/workbench-rag/manifest.json",
+      "sha256": "a7644c7911ff430aa6342a27f0f2a23101d928ed9037560d68c6b88c15f0896e"
+    }
+  ]
+}

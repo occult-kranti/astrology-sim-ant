@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "kind": "timeline-statistical-method-source-ledger",
+  "scope": "Selected sources informing an explicitly artificial circular-phase sensitivity analysis, not astrological outcome prediction or calibration.",
+  "sources": [
+    {
+      "id": "TLS-ASA",
+      "title": "American Statistical Association, official release about its 2016 p-value statement",
+      "url": "https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf",
+      "locator": "Page 2, six principles",
+      "readingDepth": "selected-official-summary",
+      "retrievedAt": "2026-11-05T23:57:19.356158+00:00",
+      "bytes": 242050,
+      "sha256": "5327785901ea402c063458e9d061b131a2f4a81c8a6d46fd9e217238b61f8ca9",
+      "supports": [
+        "P-values do not quantify the probability a studied hypothesis is true.",
+        "Full reporting and effect size matter; thresholds alone do not support scientific/business decisions."
+      ],
+      "limitations": "This is the official press release/summary, not the full journal article.",
+      "rights": "Only bibliographic metadata and original methodological paraphrase redistributed. Source documents remain outside Git; the official R source is GPL-2-or-later.",
+      "downloadLocation": "/tmp/timeline-statistics-sources/asa-2016.bin"
+    },
+    {
+      "id": "TLS-PHIPSON",
+      "title": "Phipson and Smyth, Permutation P-values Should Never Be Zero",
+      "url": "https://gksmyth.github.io/pubs/permp.pdf",
+      "locator": "Author PDF published 31 October 2010, corrected 9 February 2011; abstract and sections 4–6",
+      "readingDepth": "selected-full-text",
+      "retrievedAt": "2026-11-05T23:57:19.356444+00:00",
+      "bytes": 189169,
+      "sha256": "3ae85ec85dc069064c859778282e96c2700f2734ea9ae20d2ed4d7dfb9947a9b",
+      "supports": [
+        "Identity/plus-one convention avoids spuriously zero sampled-randomization values.",
+        "Sampling with and without replacement have distinct derivations and assumptions."
+      ],
+      "limitations": "Its valid-randomization premises are not a claim that deterministic calendar series generate valid real-world outcome p-values.",
+      "rights": "Only bibliographic metadata and original methodological paraphrase redistributed. Source documents remain outside Git; the official R source is GPL-2-or-later.",
+      "downloadLocation": "/tmp/timeline-statistics-sources/phipson-authors.bin"
+    },
+    {
+      "id": "TLS-SURROGATES",
+      "title": "Schreiber and Schmitz, Surrogate time series",
+      "url": "https://arxiv.org/pdf/chao-dyn/9909037",
+      "locator": "Sections 1, 3, 4.5 and 7.2; arXiv identifier chao-dyn/9909037v1",
+      "readingDepth": "selected-full-text",
+      "retrievedAt": "2026-11-05T23:57:19.356889+00:00",
+      "bytes": 635261,
+      "sha256": "945542dfc201380dd6ac682703a90e171aaf51d48bdabb55f129345466dfe7bc",
+      "supports": [
+        "Surrogate methods require an explicit null and careful interpretation.",
+        "Post-selection, periodic endpoint mismatch and nonstationarity can invalidate naive interpretations."
+      ],
+      "limitations": "The project circular-phase comparison is original; it does not reproduce the paper’s Fourier-surrogate algorithms. The downloaded PDF prints a 2024 typesetting date alongside 1999 arXiv metadata; hash identifies the actual inspected bytes.",
+      "rights": "Only bibliographic metadata and original methodological paraphrase redistributed. Source documents remain outside Git; the official R source is GPL-2-or-later.",
+      "downloadLocation": "/tmp/timeline-statistics-sources/surrogate-schreiber.bin"
+    },
+    {
+      "id": "TLS-HOLM-R",
+      "title": "R stats official p.adjust documentation",
+      "url": "https://stat.ethz.ch/R-manual/R-devel/library/stats/html/p.adjust.html",
+      "locator": "Details: Holm; larger family n; source references",
+      "readingDepth": "documentation",
+      "retrievedAt": "2026-11-05T23:57:19.357326+00:00",
+      "bytes": 11257,
+      "sha256": "6f94e1865b7ffdea6a8018cf6a84b6891798ecc568cea661e97ebaae533059b6",
+      "supports": [
+        "Holm adjustment uses the full family size.",
+        "Strong family-wise control requires suitable raw p-values; arbitrary-dependence allowance does not validate a misspecified null."
+      ],
+      "limitations": "The original Holm (1979) JSTOR body was not accessible; reading the original paper is not claimed.",
+      "rights": "Only bibliographic metadata and original methodological paraphrase redistributed. Source documents remain outside Git; the official R source is GPL-2-or-later.",
+      "downloadLocation": "/tmp/timeline-statistics-sources/r-p-adjust.bin"
+    },
+    {
+      "id": "TLS-HOLM-R-SOURCE",
+      "title": "R stats official p.adjust.R implementation",
+      "url": "https://svn.r-project.org/R/trunk/src/library/stats/R/p.adjust.R",
+      "locator": "holm branch: ordered scaled values, running maximum, original ordering",
+      "readingDepth": "source-code",
+      "retrievedAt": "2026-11-05T23:57:19.357371+00:00",
+      "bytes": 3069,
+      "sha256": "f118c13d63412ab45e18191763e3e55e6addd880f5557a908f2f11b5b90e060c",
+      "supports": [
+        "Independent implementation-level confirmation of the Holm formula used here."
+      ],
+      "limitations": "The retrieved trunk source is mutable upstream; the downloaded SHA identifies the inspected version. No R runtime is required by the web application.",
+      "rights": "Only bibliographic metadata and original methodological paraphrase redistributed. Source documents remain outside Git; the official R source is GPL-2-or-later.",
+      "downloadLocation": "/tmp/timeline-statistics-sources/r-p-adjust-source.bin"
+    },
+    {
+      "id": "TLS-SCIPY",
+      "title": "SciPy permutation_test official documentation",
+      "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.permutation_test.html",
+      "locator": "alternative, exact/randomizedreference, plus-one convention and inclusive tails",
+      "readingDepth": "documentation",
+      "retrievedAt": "2026-11-05T23:57:19.357419+00:00",
+      "bytes": 78485,
+      "sha256": "abad06ea8fb63e1e4d4f7e2c021c4242b04eb29fd0a4f97b1f8abf4504c173b5",
+      "supports": [
+        "Includes equality in one-sided null tails and explains identity correction.",
+        "Reports null/statistic convention; two-sided definitions are not universal."
+      ],
+      "limitations": "The project uses absolute Spearman tails, not SciPy’s doubled-minimum convention; SciPy is not a browser dependency.",
+      "rights": "Only bibliographic metadata and original methodological paraphrase redistributed. Source documents remain outside Git; the official R source is GPL-2-or-later.",
+      "downloadLocation": "/tmp/timeline-statistics-sources/scipy-permutation.bin"
+    }
+  ],
+  "unsuccessfulAttempts": [
+    {
+      "id": "holm-original",
+      "url": "https://www.jstor.org/stable/4615733",
+      "readingStatus": "not-read",
+      "reason": "HTTP 200 served a JavaScript client challenge, not the article.",
+      "bytes": 3038,
+      "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea"
+    },
+    {
+      "id": "phipson-pubmed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21044043/",
+      "readingStatus": "not-read",
+      "reason": "HTTP 203 served a cookie challenge; author PDF subsequently obtained.",
+      "bytes": 5590,
+      "sha256": "8975520f8b7ef77474f77c2f73e7956d60b0473dafd29b807136608f548646b8"
+    }
+  ],
+  "fullDocumentsRedistributed": false
+}

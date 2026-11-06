@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "kind": "independent-timeline-search-review",
+  "startedAt": "2026-11-06T00:15:27.933Z",
+  "node": "v24.19.0",
+  "sourceBefore": {
+    "research/timeline-search/independent-fixtures.json": "a148bf4f6d4f13027e5a3d1920a8941c9ee72deb9895e63599a70e0cf048484a",
+    "scripts/tests/timeline-search-independent.mjs": "2a0d2ca66be73c97fd6b157272ee951d8ca7dee21eabdaf7161fe0972bd1c355",
+    "assets/js/core/timeline-search.js": "337f0b658c2a655adfe0147b8f8c53fb991af5dbb0fe92646fe364f9c4589c01",
+    "assets/js/core/timeline-statistics.js": "b7b169caedca445472a5450d29254b4e6908d4a2da7ce52ce3acb3a825f420b8",
+    "assets/js/core/calendar-search.js": "06438615a5bd12f1d93bda8754eb801cac8afb6fb5e7e923d26f08b013ee01f4",
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/cultural-calendars.js": "5508ea3738f9e561e48c351b3aa363fd956ff8e785a898a2fd970d0de7f66795",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/astrocartography.js": "3a27088ab30d5964180ef2b8c2abe35bcd1f739c11a8c5b6a349a75dc2ba8847",
+    "assets/js/workers/timeline-search-worker.js": "963f5bacec8de0a489c892c26f33d30264afc71c1f812d9824f992084dca2d1d"
+  },
+  "fixtureSHA256": "a148bf4f6d4f13027e5a3d1920a8941c9ee72deb9895e63599a70e0cf048484a",
+  "checks": [
+    {
+      "label": "Hand ranks and correlation: tied-midrank",
+      "pass": true
+    },
+    {
+      "label": "Hand ranks and correlation: negative-monotone",
+      "pass": true
+    },
+    {
+      "label": "Hand ranks and correlation: rerank-jointly-observed",
+      "pass": true
+    },
+    {
+      "label": "Independent contingency arithmetic: balanced-orthogonal",
+      "pass": true
+    },
+    {
+      "label": "Independent contingency arithmetic: one-missing-pair",
+      "pass": true
+    },
+    {
+      "label": "Tie-inclusive finite-grid occupancy 0",
+      "pass": true
+    },
+    {
+      "label": "Tie-inclusive finite-grid occupancy 1",
+      "pass": true
+    },
+    {
+      "label": "Tie-inclusive finite-grid occupancy 2",
+      "pass": true
+    },
+    {
+      "label": "Full-family Holm arithmetic 0",
+      "pass": true
+    },
+    {
+      "label": "Full-family Holm arithmetic 1",
+      "pass": true
+    },
+    {
+      "label": "Full-family Holm arithmetic 2",
+      "pass": true
+    },
+    {
+      "label": "Full-family Holm arithmetic 3",
+      "pass": true
+    },
+    {
+      "label": "Full-family Holm arithmetic 4",
+      "pass": true
+    },
+    {
+      "label": "Hand-enumerated circular phase: periodic-alternation",
+      "pass": true
+    },
+    {
+      "label": "Hand-enumerated circular phase: two-blocks",
+      "pass": true
+    },
+    {
+      "label": "Hand-enumerated circular phase: four-step-ramp",
+      "pass": true
+    },
+    {
+      "label": "Missing/constant hypotheses remain in the planned correction family",
+      "pass": true
+    },
+    {
+      "label": "Irregular clock grid cannot gain a null audit: unequal",
+      "pass": true
+    },
+    {
+      "label": "Irregular clock grid cannot gain a null audit: missing",
+      "pass": true
+    },
+    {
+      "label": "Irregular clock grid cannot gain a null audit: repeated",
+      "pass": true
+    },
+    {
+      "label": "Jointly missing observations are described but never compressed into a phase audit",
+      "pass": true
+    },
+    {
+      "label": "Seeded sampled reference is unique, fixed-budget, reproducible and never zero",
+      "pass": true
+    },
+    {
+      "label": "Sampled null result is invariant to reordered UI series IDs",
+      "pass": true
+    },
+    {
+      "label": "A full45-pair family of constant series performs no invented resampling",
+      "pass": true
+    },
+    {
+      "label": "Statistics reject fabricated dates, holes and non-finite observations",
+      "pass": true
+    },
+    {
+      "label": "No-series calendar ledger has an explicit empty statistical family",
+      "pass": true
+    },
+    {
+      "label": "Independent civil clock/date fixture: gregorian-leap",
+      "pass": true
+    },
+    {
+      "label": "Independent civil clock/date fixture: century-not-leap",
+      "pass": true
+    },
+    {
+      "label": "Independent civil clock/date fixture: new-york-spring-noon",
+      "pass": true
+    },
+    {
+      "label": "Independent civil clock/date fixture: new-york-autumn-noon",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock remains a complete missing row: NONEXISTENT_TIME America/New_York",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock remains a complete missing row: AMBIGUOUS_TIME America/New_York",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock remains a complete missing row: NONEXISTENT_DATE Pacific/Apia",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock remains a complete missing row: UTC_RANGE Pacific/Auckland",
+      "pass": true
+    },
+    {
+      "label": "Unresolved clock remains a complete missing row: UTC_RANGE Pacific/Honolulu",
+      "pass": true
+    },
+    {
+      "label": "Explicit repeated clock occurrence: earlier",
+      "pass": true
+    },
+    {
+      "label": "Explicit repeated clock occurrence: later",
+      "pass": true
+    },
+    {
+      "label": "DST civil grid has descriptive pairs but no artificial equal-UTC audit",
+      "pass": true
+    },
+    {
+      "label": "Fixed geometry stays fixed for every future date and all40 angular branches",
+      "pass": true
+    },
+    {
+      "label": "Transit maps change with the selected sampled instant, not house/calendar display labels",
+      "pass": true
+    },
+    {
+      "label": "Same UTC/observer in different civil zones yields the same40 distances",
+      "pass": true
+    },
+    {
+      "label": "Geometry-only helper preserves canonical half-arcs and independent scalar distances",
+      "pass": true
+    },
+    {
+      "label": "Independent narrow-passage counterexample demonstrates endpoint sampling aliasing",
+      "pass": true
+    },
+    {
+      "label": "Brute/optimized entire retained semantics agree: none",
+      "pass": true
+    },
+    {
+      "label": "Brute/optimized entire retained semantics agree: transit",
+      "pass": true
+    },
+    {
+      "label": "Brute/optimized entire retained semantics agree: fixed",
+      "pass": true
+    },
+    {
+      "label": "Complete exports retain nonmatches, all40 distances and source/selection contract",
+      "pass": true
+    },
+    {
+      "label": "Cancellation at an actual progress boundary never returns partial success",
+      "pass": true
+    },
+    {
+      "label": "Worker cancellation is generation-specific and cannot emit a completed ledger",
+      "pass": true
+    },
+    {
+      "label": "Canonical scan and seeded comparison need no network or nondeterministic RNG",
+      "pass": true
+    },
+    {
+      "label": "Clock/map choices reject invented instants, unsupported keys and accessor inputs",
+      "pass": true
+    }
+  ],
+  "limits": [
+    "Finite fixtures establish tested numerical/software behavior, not predictive validity.",
+    "Circular-phase tails are conditional on an explicitly artificial reference model.",
+    "Civil clock expectations depend on the runtime IANA database for the specified historical dates.",
+    "Daily distance sampling cannot establish continuous absence of a short angular visit."
+  ],
+  "sourceAfter": {
+    "research/timeline-search/independent-fixtures.json": "a148bf4f6d4f13027e5a3d1920a8941c9ee72deb9895e63599a70e0cf048484a",
+    "scripts/tests/timeline-search-independent.mjs": "2a0d2ca66be73c97fd6b157272ee951d8ca7dee21eabdaf7161fe0972bd1c355",
+    "assets/js/core/timeline-search.js": "337f0b658c2a655adfe0147b8f8c53fb991af5dbb0fe92646fe364f9c4589c01",
+    "assets/js/core/timeline-statistics.js": "b7b169caedca445472a5450d29254b4e6908d4a2da7ce52ce3acb3a825f420b8",
+    "assets/js/core/calendar-search.js": "06438615a5bd12f1d93bda8754eb801cac8afb6fb5e7e923d26f08b013ee01f4",
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/cultural-calendars.js": "5508ea3738f9e561e48c351b3aa363fd956ff8e785a898a2fd970d0de7f66795",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/astrocartography.js": "3a27088ab30d5964180ef2b8c2abe35bcd1f739c11a8c5b6a349a75dc2ba8847",
+    "assets/js/workers/timeline-search-worker.js": "963f5bacec8de0a489c892c26f33d30264afc71c1f812d9824f992084dca2d1d"
+  },
+  "sourceChanged": [],
+  "completedAt": "2026-11-06T00:15:28.430Z",
+  "failures": [],
+  "pass": true,
+  "sourceStable": true
+}

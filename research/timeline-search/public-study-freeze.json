@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-06T00:02:13.474Z",
+  "request": {
+    "timeline": {
+      "startDate": "2026-11-06",
+      "endDate": "2029-11-05",
+      "time": "12:00",
+      "timeZone": "UTC",
+      "lat": 51.4779,
+      "lon": 0,
+      "system": "whole",
+      "disambiguation": "reject"
+    },
+    "criteria": [
+      {
+        "kind": "lunar",
+        "field": "tithi",
+        "values": [
+          1,
+          15,
+          16,
+          30
+        ]
+      },
+      {
+        "kind": "lunar",
+        "field": "nakshatra",
+        "values": [
+          1,
+          10,
+          19
+        ]
+      },
+      {
+        "kind": "weekday",
+        "values": [
+          1,
+          3,
+          5
+        ]
+      }
+    ],
+    "map": {
+      "mode": "transit",
+      "maxDistanceKm": 300,
+      "minimumLines": 1
+    },
+    "mode": "optimized"
+  },
+  "requestSHA256": "410b810b9172e06d9bfe2109bb4cfe686e1d5a98f04a7acc2cd056713a20c8cc",
+  "sourceHashes": {
+    "assets/js/core/aspects.js": "837e71a913479605b776414018f3a17b210eaf3aad221b72bbc63d3e0a6f98be",
+    "assets/js/core/astro.js": "d8a57e6cd5e463a07fafbfecba1466ab516b82f2acf513fdf0d4c7517fdde2ab",
+    "assets/js/core/astrocartography.js": "3a27088ab30d5964180ef2b8c2abe35bcd1f739c11a8c5b6a349a75dc2ba8847",
+    "assets/js/core/calendar-atlas.js": "917ff26c071b78a665cea9bdf145abd584cb8b2f2fbf5a7203099e91a25d62f6",
+    "assets/js/core/calendar-observatory.js": "a3b181262b66c33360a405a599ae627d2fa859aef268595ba4d8dae7065346e9",
+    "assets/js/core/calendar-search.js": "06438615a5bd12f1d93bda8754eb801cac8afb6fb5e7e923d26f08b013ee01f4",
+    "assets/js/core/calendar-timeline.js": "4b3b71f570a1191346f450e92678c32f5e7e29b0c94c5d94929115dc95f35e27",
+    "assets/js/core/calendar.js": "a23bc2ae59d96a82bccc62a1c794d0ae5327eaf8599e9f0fdfb4c78166a5ee8f",
+    "assets/js/core/chart-from-positions.js": "ac6bcae7a3227ed7ddd3e27bd56421cbf4fef852b0c37478173b262f51bf7b33",
+    "assets/js/core/considerations.js": "3ba3a4a7d83574ac475de691d833d45be12d7d4f84ccb32f86e55f54ea56a19e",
+    "assets/js/core/cultural-calendars.js": "5508ea3738f9e561e48c351b3aa363fd956ff8e785a898a2fd970d0de7f66795",
+    "assets/js/core/data/astrocartography-data.js": "7efcbc1c7944452f2b02b2bd1677c65aecfff863b4e2226b81f93783872ef954",
+    "assets/js/core/data/behenian-stars.js": "1c9e818453cde3e7a9f313542deb981e8266e823b5844f2967821212b1c2d9e2",
+    "assets/js/core/data/bright-star-catalog.js": "96c1634518bb7dab2b01b8d54064ac0908aae2eb4b7727d3360f1cb770dc333c",
+    "assets/js/core/data/dignities-data.js": "dd0b0931fdaab1f58ad49a1bbbedc4eed978792af153fc00dd247e4c2c7aa191",
+    "assets/js/core/data/jung-astrology.js": "3850ae2d286df87b2f177952030a240d894a509f22d033dec6de2dcc93326495",
+    "assets/js/core/data/muhurta-data.js": "5f7f7f4beb3975a048fea9289bb632c75f14f46c0f4cc0f38d9b6c5c1127ee7c",
+    "assets/js/core/data/reading-cases.js": "fe3925ca2827f06aeac5d16e78df137474c49632bafd4276bbd9d7ffb17bda79",
+    "assets/js/core/data/sky-reading-sources.js": "7ed19e1ed50c93da6b26c4e42cae1201c03ed54657f6ab8bda19068fe89bb33e",
+    "assets/js/core/data/timeline-study-tasks.js": "0eeebc1d445844db95c4e9e8f38f2f6c4fe0b2035019c74eea4e2bf5d52d3d46",
+    "assets/js/core/data/vedic-data.js": "7c208d6774b78d45f7809973ad796018e85429e6446db876df8fd43d4825c35b",
+    "assets/js/core/data/vedic-remedies.js": "29056fa5597f82184f349fead9c6fe37acc8a7f9ba312d96e125f5fa2f8c205f",
+    "assets/js/core/data/worked-charts.js": "e77729ec60b72f2fdab3038dff85e0333d9a6fdbaf29625fa615febc4c981161",
+    "assets/js/core/day-guidance.js": "452800185b54ffe64d337b767279af5f726d5d0df64981c599cc563d8f71e00b",
+    "assets/js/core/desktop-workbench.js": "6e46dffc61633f60b0353074a4fa4b10054706d25de03b9502e5e1c91a8d8ced",
+    "assets/js/core/dignities.js": "618cb3436f16a67f9886fa6f6f66f60d98e3159b64c5305411611205f3e5e35f",
+    "assets/js/core/horizon-ranking.js": "af2c5ff2550e2c65392f99c46d00e3ad5abb8baddcf5e36dca45fc813435ba08",
+    "assets/js/core/instant-boundary.js": "ae41bd2705e2cbadb7ab6845301bc8d3d81f05637ab411238f27b995260fc5f1",
+    "assets/js/core/jung.js": "8793a511a89f2eb2ccdef004cc9d401cc09877df88f504ccff66414e09c09e8d",
+    "assets/js/core/muhurta.js": "dc460a0a99cf81ba593636aba55835bc6804c2f88a1c9d9a2d9db9c283ff32e2",
+    "assets/js/core/planetary-hours.js": "ca46d1a4ff21914211d278c1b65564cfc78579fb93e451cd05a772cc8eda8db4",
+    "assets/js/core/reading-lab.js": "9450c8fd7da73c8fc2f6282a1910ce1278750e840e13953d1609d2910611c13b",
+    "assets/js/core/sky-dynamics.js": "d23fac77f7083fcf61da386a9c4d5f7534a99c1bb9feb7b21e930bc20d3804c3",
+    "assets/js/core/sky-interpretation.js": "d4c4cb3363bb10481af0a27b7b32eefdd0af9ea6e33acc7183bf80dc2138a003",
+    "assets/js/core/time.js": "8d5fff923145380d5ea19054b59e3a3411bd6cd5a79d78111585e490287ca579",
+    "assets/js/core/timeline-search.js": "337f0b658c2a655adfe0147b8f8c53fb991af5dbb0fe92646fe364f9c4589c01",
+    "assets/js/core/timeline-statistics.js": "b7b169caedca445472a5450d29254b4e6908d4a2da7ce52ce3acb3a825f420b8",
+    "assets/js/core/vedic.js": "93fae27b6cdcc91aab89e27c251a4b56c4412d27d6974ae3dceb6537644cae35",
+    "assets/js/lib/astronomy.js": "068f1445ed0c636c94818fe6d20d7d125120e605e0bab9fc4675c3d531be5ad7",
+    "assets/vendor/adhan/Adhan.js": "0326893cd2c4994f9a67bc1008ab54a2678a728e3123e01ce6b4d111008d09f0",
+    "assets/vendor/adhan/Astronomical.js": "fde941a806a3958efa96b20ec4f9dfd6052d2c0ffbbe6d3d670dbb8e32f44b08",
+    "assets/vendor/adhan/CalculationMethod.js": "25fe507d157eb462913f9d552c527b4fd34023f1965129f5d31ce380c1cada21",
+    "assets/vendor/adhan/CalculationParameters.js": "2389ac64c932c3a287bb7fdf13e6585b763781e7e59d9676039d409c83da3401",
+    "assets/vendor/adhan/Coordinates.js": "0233d695243aa554199115df9c1e3d6c84e66699ac6bef531e4e6cf4e13c8cc4",
+    "assets/vendor/adhan/DateUtils.js": "ecbe2737fb91fdbe6fe8be92600f6817f1b2e6e4fddd14233f94c4d89aa366d5",
+    "assets/vendor/adhan/HighLatitudeRule.js": "35a9be5d9b49c10210477b81ba1c98450ac99a58e5125c45cba3398fb68f2778",
+    "assets/vendor/adhan/Madhab.js": "644398adb646260a337b34cab2277a3c2f798f064d9cb968f670aeaa857506f4",
+    "assets/vendor/adhan/MathUtils.js": "b888fd77de0ebaa9c218d27a8f859555bcf32a89e974b6a1f4aeea9c61dd1d89",
+    "assets/vendor/adhan/PolarCircleResolution.js": "ae218b4dccdf083afcde1b85494947c72d928e5430683a4d3013261e20b95a07",
+    "assets/vendor/adhan/Prayer.js": "a13792a407bca56ca24f480c7f0f54fc4dd0324fce83e56d53ae4bfd9e22a922",
+    "assets/vendor/adhan/PrayerTimes.js": "45c1936d2f96229e9b80b113531be4e71b537da10f76aad0e28035ee94f5cb4d",
+    "assets/vendor/adhan/Qibla.js": "3467a2c6816172a7b17379011e0a005ca60e0211ffba99d8fd5344f640db67fb",
+    "assets/vendor/adhan/Rounding.js": "c610a7340967a9f33835be8dc87ef54aa11aeae2f09cb9e60bb643536d31deeb",
+    "assets/vendor/adhan/Shafaq.js": "60046362337cf7849af983e33033fc81fc48dcf40826a916517e696e19d06838",
+    "assets/vendor/adhan/SolarCoordinates.js": "0f139365902bc82ffcf96cec7278e8afc41835ae8e040a97ff351fe0c99ad98e",
+    "assets/vendor/adhan/SolarTime.js": "9fff93b5fc7d745a0e946ac99dae17429a1441fac6280585c49eccdda3f5fa5d",
+    "assets/vendor/adhan/SunnahTimes.js": "507876f09d121eedb3b411aa52ad482ec706167517ecc8edd1e7dc72d4676fe8",
+    "assets/vendor/adhan/TimeComponents.js": "f081f2ed06e0c5086ee1d60238e40a58b714e608feed49ae5f931b4d14d5ec0d"
+  },
+  "selection": "Arbitrary illustrative conditions fixed before this run; no claim of privileged dates, preregistered scientific validation or outcome calibration.",
+  "referencePopulation": "Every available noon UTC sample at Greenwich in the declared three-year window.",
+  "outcomeLabels": false
+}

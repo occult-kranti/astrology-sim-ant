@@ -82,18 +82,21 @@ function renderedSegments(geometry){
  }
  return segments.filter(s=>s.length>1);
 }
-function semicircle(bodyId,angleId,normal,midpoint){
+function semicircle(bodyId,angleId,normal,midpoint,render=true){
  const n=unit(normal),m=unit(midpoint),tangent=unit(cross(n,m));
  const geometry={normal:n,midpoint:m,tangent,endpoints:[scale(tangent,-1),tangent],arcRadians:Math.PI};
- return{id:`${bodyId}-${angleId}`,bodyId,angle:angleId,geometry,segments:renderedSegments(geometry),boundary:'Closed semicircle for distance measurement; endpoints may be grazing or polar degeneracies, not ordinary angle events',sampling:'91 analytic arc samples with exact dateline intersections; samples are display geometry, not the distance/crossing algorithm'};
+ return{id:`${bodyId}-${angleId}`,bodyId,angle:angleId,geometry,segments:render?renderedSegments(geometry):[],boundary:'Closed semicircle for distance measurement; endpoints may be grazing or polar degeneracies, not ordinary angle events',sampling:render?'91 analytic arc samples with exact dateline intersections; samples are display geometry, not the distance/crossing algorithm':'Display segments omitted; analytic semicircle geometry retained for exact distance measurement'};
 }
 /** Synthetic RA/declination inputs support independent geometry fixtures. */
-export function lineGeometryForBody(body,gastDegrees){
+export function lineGeometryForBody(body,gastDegrees,options={}){
+ object(options,['render'],'Line geometry options');
+ const render=options.render===undefined?true:options.render;
+ if(typeof render!=='boolean')throw new TypeError('Line render option must be boolean.');
  if(!body||!ASTROCARTOGRAPHY_BODY_IDS.includes(body.id)||![body.raDegrees,body.declinationDegrees,gastDegrees].every(Number.isFinite)||Math.abs(body.declinationDegrees)>90)throw new RangeError('Use a supported body and finite equatorial angles.');
  const lambda=wrap(body.raDegrees-gastDegrees)*DEG,delta=body.declinationDegrees*DEG,u=[Math.cos(lambda),Math.sin(lambda),0],east=[-Math.sin(lambda),Math.cos(lambda),0],sky=[Math.cos(delta)*u[0],Math.cos(delta)*u[1],Math.sin(delta)];
  const lines=[],warnings=[];
  if(Math.abs(Math.cos(delta))<EPS)warnings.push('Declination at a celestial pole: right ascension and ordinary angular-transit/rising/setting orientation are undefined; all angular lines omitted.');
- else lines.push(semicircle(body.id,'MC',east,u),semicircle(body.id,'IC',east,scale(u,-1)),semicircle(body.id,'ASC',sky,scale(east,-1)),semicircle(body.id,'DSC',sky,east));
+ else lines.push(semicircle(body.id,'MC',east,u,render),semicircle(body.id,'IC',east,scale(u,-1),render),semicircle(body.id,'ASC',sky,scale(east,-1),render),semicircle(body.id,'DSC',sky,east,render));
  return{bodyId:body.id,lines,warnings,riseSetLatitudeLimit:90-Math.abs(body.declinationDegrees)};
 }
 function validGeometry(line){const g=line?.geometry;if(!g||![g.normal,g.midpoint,g.tangent].every(v=>Array.isArray(v)&&v.length===3&&v.every(Number.isFinite)&&Math.abs(length(v)-1)<1e-7)||Math.abs(dot(g.normal,g.midpoint))>1e-7||Math.abs(dot(g.normal,g.tangent))>1e-7||Math.abs(dot(g.midpoint,g.tangent))>1e-7)throw new RangeError('A valid unit-sphere semicircle geometry is required.');return g;}

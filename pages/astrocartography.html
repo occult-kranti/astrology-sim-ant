@@ -12,6 +12,14 @@
 </head>
 <body class="astrocartography-page" data-page-family="observatory">
 <main id="ag-app" class="ag-app" data-state="loading">
+<section id="ag-transfer" class="ag-transfer" aria-labelledby="ag-transfer-title" hidden>
+  <h2 id="ag-transfer-title">Review a timeline map</h2>
+  <p id="ag-transfer-status" role="status">The timeline supplied explicit inputs. Your current map stays in place until you calculate them.</p>
+  <p id="ag-transfer-summary"></p>
+  <div class="ag-toolbar"><button id="ag-transfer-apply" type="button" hidden>Calculate transferred map</button><button id="ag-transfer-discard" type="button">Discard transfer</button></div>
+  <p class="ag-small">Inputs travel only between these same-origin tabs in memory. No chart data enters the URL, saved-chart library or model provider.</p>
+</section>
+
   <header class="ag-titlebar"><div class="ag-identity"><svg class="ag-emblem" width="42" height="42" viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="18"/><ellipse cx="21" cy="21" rx="8" ry="18"/><path d="M3 21H39M7 11Q21 18 35 11M7 31Q21 24 35 31"/></svg><div><p class="ag-eyebrow">THE ASTROLOGER'S WORKBENCH / GEOGRAPHIC STUDIES</p><h1>Astrocartography <span>atlas</span></h1><p class="ag-subtitle">One UTC moment. Every longitude.</p></div></div><div class="ag-header-actions"><a href="#ag-profile-title">Edit moment</a><a href="desktop.html">Chart studio</a><button id="ag-open-chat" type="button">Research assistant</button><button id="ag-export-json" type="button" disabled>Study JSON</button><button id="ag-export-csv" type="button" disabled>Places CSV</button><button id="ag-print" type="button" disabled>Print</button></div></header>
   <div class="ag-context-strip"><span id="ag-mode" class="ag-tag">PUBLIC EQUINOX EXAMPLE</span><p id="ag-context-summary">Preparing the declared moment…</p><p id="ag-status" role="status" aria-live="polite">Loading local geometry and coastline.</p></div>
   <div class="ag-workspace">

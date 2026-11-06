@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "checks": 540,
+  "tools": [
+    "workbench_timeline_search",
+    "workbench_timeline_search_date"
+  ],
+  "maximalSummaryBytes": 112786,
+  "transports": [
+    "official-SDK HTTP handler",
+    "spawned child-process stdio"
+  ],
+  "sourceManifest": {
+    "scripts/test-timeline-search-protocol.mjs": "cffff421c833d5452793e6f328935fa30f34439ed2e76a551b1d2262926f6c6b",
+    "mcp/timeline-search-adapters.mjs": "fe3d8b343883d645790fa11bb478353038e34fd6ed430485a840af91151c8b3e",
+    "mcp/toolkit.mjs": "6fea6b7be27444b5eba9ab5e1c0de39af8e15cfa59dc464b3a526304e70a1add",
+    "assets/js/core/timeline-search.js": "337f0b658c2a655adfe0147b8f8c53fb991af5dbb0fe92646fe364f9c4589c01",
+    "assets/js/core/timeline-statistics.js": "b7b169caedca445472a5450d29254b4e6908d4a2da7ce52ce3acb3a825f420b8",
+    "assets/js/core/calendar-search.js": "06438615a5bd12f1d93bda8754eb801cac8afb6fb5e7e923d26f08b013ee01f4",
+    "assets/js/core/astrocartography.js": "3a27088ab30d5964180ef2b8c2abe35bcd1f739c11a8c5b6a349a75dc2ba8847",
+    "assets/js/core/cultural-calendars.js": "5508ea3738f9e561e48c351b3aa363fd956ff8e785a898a2fd970d0de7f66795"
+  },
+  "liveModelUsed": false,
+  "hostedDeploymentVerified": false
+}

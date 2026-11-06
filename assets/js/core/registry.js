@@ -32,6 +32,17 @@ const HIW = a => `pages/how-it-works.html#hiw-${a}`;
 // ---------------------------------------------------------------------------
 export const REGISTRY = [
   {
+    id:'timeline-search', title:'Calendar date search and skeptical comparison',
+    module:'assets/js/core/timeline-search.js', exportName:'buildTimelineSearch',
+    exports:['normalizeTimelineSearchRequest','buildTimelineSearchDate','getTimelineSearchDate','serializeTimelineSearchJSON','serializeTimelineSearchCSV'],
+    computes:'Complete sampled-date ledger, calendar and rule matches, forty angular-line distances, finite-grid rarity and declared relative-phase sensitivity. Fixed reference geometry is distinguished from time-varying transit geometry.',
+    inputs:[{name:'request',type:'object',required:true,desc:'Explicit applied timeline range, clock, zone, observer and repeated-clock policy; up to eight supported criteria and fixed or transit map mode. Browser max3660 dates; MCP scan max366.'}],
+    outputShape:'{request,rows,counts,statistics,series,mapMethod,sources,limitations,stats}; full date ledger with explicit missingness and predeclared statistical family.',
+    callable:false, book:'Calendar comparison and statistical methods', chapter:'Sampled search and skeptical controls',
+    citation:'docs/2026-11-timeline-search-methods.md; docs/2026-11-timeline-search-statistics.md. Descriptive coincidences and an artificial phase null do not estimate real-world event probabilities.',
+    pages:['pages/calendar-timeline.html'], howItWorks:'pages/calendar-timeline.html', glossaryTerms:[],
+  },
+  {
     id:'astrocartography', title:'Astrocartography and relocated place comparison',
     module:'assets/js/core/astrocartography.js', exportName:'buildAstrocartography',
     exports:['normalizeAstrocartographyInputs','inspectAstrocartographyPlace','exportAstrocartography','exportAstrocartographyPlace'],
